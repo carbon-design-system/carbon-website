@@ -30,7 +30,7 @@ export default class ColorTokenTable extends React.Component {
 
   addScrollListener() {
     document.addEventListener('scroll', () => {
-      let stickyPoint = this.state.mobile ? 400 : 398;
+      const stickyPoint = this.state.mobile ? 400 : 398;
       if (window.scrollY >= stickyPoint) {
         this.setState({
           sticky: true,
@@ -64,7 +64,7 @@ export default class ColorTokenTable extends React.Component {
   };
 
   hexToRgb = hex => {
-    let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     return result
       ? {
           r: parseInt(result[1], 16),
@@ -79,7 +79,7 @@ export default class ColorTokenTable extends React.Component {
     const value = tokenInfo.value;
     let bgColor = value[currentTheme].hex;
     if (bgColor.substring(bgColor.length - 3, bgColor.length) === '50%') {
-      let hex = bgColor.substring(0, bgColor.length - 6);
+      const hex = bgColor.substring(0, bgColor.length - 6);
       bgColor = `rgba(${this.hexToRgb(hex).r}, ${this.hexToRgb(hex).g}, ${
         this.hexToRgb(hex).b
       }, 0.5)`;
@@ -114,14 +114,12 @@ export default class ColorTokenTable extends React.Component {
   };
 
   renderToken = (token, tokenInfo, key) => {
-    const roles = tokenInfo.role.map((role, i) => {
-      return (
-        <li key={i}>
-          {role}
-          {i !== tokenInfo.role.length - 1 && ';'}
-        </li>
-      );
-    });
+    const roles = tokenInfo.role.map((role, i) => (
+      <li key={i}>
+        {role}
+        {i !== tokenInfo.role.length - 1 && ';'}
+      </li>
+    ));
     return (
       <tr key={key}>
         <td>
@@ -173,13 +171,9 @@ export default class ColorTokenTable extends React.Component {
               </tr>
             </thead>
             <tbody>
-              {Object.keys(colorTokens['core-tokens']).map((token, i) => {
-                return this.renderToken(
-                  token,
-                  colorTokens['core-tokens'][token],
-                  i
-                );
-              })}
+              {Object.keys(colorTokens['core-tokens']).map((token, i) =>
+                this.renderToken(token, colorTokens['core-tokens'][token], i)
+              )}
             </tbody>
           </table>
         </div>
@@ -196,14 +190,12 @@ export default class ColorTokenTable extends React.Component {
               </tr>
             </thead>
             <tbody>
-              {Object.keys(colorTokens['interaction-tokens']).map(
-                (token, i) => {
-                  return this.renderToken(
-                    token,
-                    colorTokens['interaction-tokens'][token],
-                    i
-                  );
-                }
+              {Object.keys(colorTokens['interaction-tokens']).map((token, i) =>
+                this.renderToken(
+                  token,
+                  colorTokens['interaction-tokens'][token],
+                  i
+                )
               )}
             </tbody>
           </table>
