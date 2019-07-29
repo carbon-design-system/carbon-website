@@ -10,6 +10,7 @@ module.exports = {
       options: {
         repository: {
           baseUrl: 'https://github.com/carbon-design-system/carbon-www',
+          subDirectory: '',
         },
       },
     },
