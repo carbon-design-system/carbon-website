@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import GlossaryList from '../GlossaryList/GlossaryList';
 import GlossaryNav from '../GlossaryNav/GlossaryNav';
 
-class Glossary extends Component {
+class GlossaryComponent extends Component {
   render() {
     const glossary = require('../../../../data/guidelines/glossary'); // eslint-disable-line
     return (
@@ -19,4 +19,4 @@ class Glossary extends Component {
   }
 }
 
-export default Glossary;
+export default GlossaryComponent;
