@@ -44,9 +44,9 @@ class ComponentOverview extends React.Component {
       <div className="bx--row">
         <div className="bx--col-lg-12 bx--offset-lg-4 bx--no-gutter">
           <ul className="component-overview">
-            {Object.keys(componentList.components).map(component => {
-              return this.renderItems(componentList.components[component]);
-            })}
+            {Object.keys(componentList.components).map(component =>
+              this.renderItems(componentList.components[component])
+            )}
           </ul>
         </div>
       </div>

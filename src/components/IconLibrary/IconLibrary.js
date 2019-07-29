@@ -40,11 +40,10 @@ export default class IconLibrary extends React.Component {
   filterIcons = () => {
     this.setState(state => {
       const { icons, searchValue } = state;
-      const filteredIcons = Object.keys(icons).filter(icon => {
-        return (
+      const filteredIcons = Object.keys(icons).filter(
+        icon =>
           searchValue === '' || icon.toLowerCase().indexOf(searchValue) !== -1
-        );
-      });
+      );
       return {
         filteredIcons,
         sections: createIconSections(icons, filteredIcons),
@@ -267,20 +266,18 @@ function createIconSections(icons, filteredIcons) {
       }
       return groups[size].length !== 0;
     })
-    .map(size => {
-      return (
-        <section key={size} className="icon-size" aria-labelledby={`icon-h2`}>
-          <header>
-            <h2 className={`icon-h2`}>
-              {isNaN(size) ? size : `${size}x${size}`}
-            </h2>
-          </header>
-          <ul className="icons-list">
-            {renderIconList(groups[size], filteredIcons)}
-          </ul>
-        </section>
-      );
-    });
+    .map(size => (
+      <section key={size} className="icon-size" aria-labelledby={`icon-h2`}>
+        <header>
+          <h2 className={`icon-h2`}>
+            {isNaN(size) ? size : `${size}x${size}`}
+          </h2>
+        </header>
+        <ul className="icons-list">
+          {renderIconList(groups[size], filteredIcons)}
+        </ul>
+      </section>
+    ));
 }
 
 /**

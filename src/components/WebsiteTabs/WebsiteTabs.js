@@ -105,61 +105,52 @@ class Tabs extends React.Component {
     return React.Children.map(this.props.children, tab => tab);
   }
 
-  getTabAt = (index, useFresh) => {
-    return (
-      (!useFresh && this[`tab${index}`]) ||
-      React.Children.toArray(this.props.children)[index]
-    );
-  };
+  getTabAt = (index, useFresh) =>
+    (!useFresh && this[`tab${index}`]) ||
+    React.Children.toArray(this.props.children)[index];
 
   setTabAt = (index, tabRef) => {
     this[`tab${index}`] = tabRef;
   };
 
   // following functions (handle*) are Props on Tab.js, see Tab.js for parameters
-  handleTabClick = onSelectionChange => {
-    return (index, evt) => {
-      evt.preventDefault();
+  handleTabClick = onSelectionChange => (index, evt) => {
+    evt.preventDefault();
+    this.selectTabAt(index, onSelectionChange);
+    this.setState({
+      dropdownHidden: true,
+    });
+  };
+
+  handleTabKeyDown = onSelectionChange => (index, evt) => {
+    const key = evt.key || evt.which;
+
+    if (key === 'Enter' || key === 13 || key === ' ' || key === 32) {
       this.selectTabAt(index, onSelectionChange);
       this.setState({
         dropdownHidden: true,
       });
-    };
+    }
   };
 
-  handleTabKeyDown = onSelectionChange => {
-    return (index, evt) => {
-      const key = evt.key || evt.which;
+  handleTabAnchorFocus = onSelectionChange => index => {
+    const tabCount = React.Children.count(this.props.children) - 1;
+    let tabIndex = index;
 
-      if (key === 'Enter' || key === 13 || key === ' ' || key === 32) {
-        this.selectTabAt(index, onSelectionChange);
-        this.setState({
-          dropdownHidden: true,
-        });
+    if (index < 0) {
+      tabIndex = tabCount;
+    } else if (index > tabCount) {
+      tabIndex = 0;
+    }
+
+    const tab = this.getTabAt(tabIndex);
+
+    if (tab) {
+      this.selectTabAt(tabIndex, onSelectionChange);
+      if (tab.tabAnchor) {
+        tab.tabAnchor.focus();
       }
-    };
-  };
-
-  handleTabAnchorFocus = onSelectionChange => {
-    return index => {
-      const tabCount = React.Children.count(this.props.children) - 1;
-      let tabIndex = index;
-
-      if (index < 0) {
-        tabIndex = tabCount;
-      } else if (index > tabCount) {
-        tabIndex = 0;
-      }
-
-      const tab = this.getTabAt(tabIndex);
-
-      if (tab) {
-        this.selectTabAt(tabIndex, onSelectionChange);
-        if (tab.tabAnchor) {
-          tab.tabAnchor.focus();
-        }
-      }
-    };
+    }
   };
 
   handleDropdownClick = () => {
@@ -309,9 +300,9 @@ export default class WebsiteTabs extends React.Component {
   };
 
   updateTabChildren = () => {
-    this.tabChildren = this.props.children.filter(child => {
-      return child.$$typeof !== undefined;
-    });
+    this.tabChildren = this.props.children.filter(
+      child => child.$$typeof !== undefined
+    );
   };
 
   componentDidMount() {

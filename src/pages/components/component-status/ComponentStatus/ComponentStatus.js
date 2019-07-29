@@ -13,41 +13,39 @@ const tags = {
 };
 
 class ComponentStatus extends React.Component {
-  renderItems = currentItem => {
-    return (
-      <tr key={currentItem.component}>
-        <td>{currentItem.component}</td>
-        <td>
-          {Object.keys(currentItem.vanilla)
-            .filter(key => currentItem.vanilla[key])
-            .map(key => {
-              return <React.Fragment key={key}>{tags[key]}</React.Fragment>;
-            })}
-        </td>
-        <td>
-          {Object.keys(currentItem.react)
-            .filter(key => currentItem.react[key])
-            .map(key => {
-              return <React.Fragment key={key}>{tags[key]}</React.Fragment>;
-            })}
-        </td>
-        <td>
-          {Object.keys(currentItem.angular)
-            .filter(key => currentItem.angular[key])
-            .map(key => {
-              return <React.Fragment key={key}>{tags[key]}</React.Fragment>;
-            })}
-        </td>
-        <td>
-          {Object.keys(currentItem.vue)
-            .filter(key => currentItem.vue[key])
-            .map(key => {
-              return <React.Fragment key={key}>{tags[key]}</React.Fragment>;
-            })}
-        </td>
-      </tr>
-    );
-  };
+  renderItems = currentItem => (
+    <tr key={currentItem.component}>
+      <td>{currentItem.component}</td>
+      <td>
+        {Object.keys(currentItem.vanilla)
+          .filter(key => currentItem.vanilla[key])
+          .map(key => (
+            <React.Fragment key={key}>{tags[key]}</React.Fragment>
+          ))}
+      </td>
+      <td>
+        {Object.keys(currentItem.react)
+          .filter(key => currentItem.react[key])
+          .map(key => (
+            <React.Fragment key={key}>{tags[key]}</React.Fragment>
+          ))}
+      </td>
+      <td>
+        {Object.keys(currentItem.angular)
+          .filter(key => currentItem.angular[key])
+          .map(key => (
+            <React.Fragment key={key}>{tags[key]}</React.Fragment>
+          ))}
+      </td>
+      <td>
+        {Object.keys(currentItem.vue)
+          .filter(key => currentItem.vue[key])
+          .map(key => (
+            <React.Fragment key={key}>{tags[key]}</React.Fragment>
+          ))}
+      </td>
+    </tr>
+  );
 
   render() {
     const vanillaVersion = Packages.dependencies['carbon-components'];
@@ -70,9 +68,9 @@ class ComponentStatus extends React.Component {
               </tr>
             </thead>
             <tbody>
-              {Object.keys(componentStatus.components).map(component => {
-                return this.renderItems(componentStatus.components[component]);
-              })}
+              {Object.keys(componentStatus.components).map(component =>
+                this.renderItems(componentStatus.components[component])
+              )}
             </tbody>
           </table>
         </div>
