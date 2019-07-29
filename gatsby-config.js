@@ -5,7 +5,14 @@ module.exports = {
     keywords: 'gatsby,theme,carbon',
   },
   plugins: [
-    'gatsby-theme-carbon',
+    {
+      resolve: 'gatsby-theme-carbon',
+      options: {
+        repository: {
+          baseUrl: 'https://github.com/carbon-design-system/carbon-www',
+        },
+      },
+    },
     {
       resolve: 'gatsby-plugin-compile-es6-packages',
       options: { modules: ['@carbon/addons-website'] },
