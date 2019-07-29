@@ -5,25 +5,27 @@ import { calloutLink } from './Homepage.module.scss';
 
 import Carbon from '../../images/carbon.jpg';
 
-const FirstLeftText = () => <p>Carbon Design
-System</p>;
+const FirstLeftText = () => <p>Carbon Design System</p>;
 
 const FirstRightText = () => (
   <p>
-    Carbon is IBM’s <strong>open-source</strong> design system for products and experiences. With the IBM Design Language as its foundation, the system consists of working code, design tools and resources, human interface guidelines, and a vibrant community of contributors.
+    Carbon is IBM’s <strong>open-source</strong> design system for products and
+    experiences. With the IBM Design Language as its foundation, the system
+    consists of working code, design tools and resources, human interface
+    guidelines, and a vibrant community of contributors.
   </p>
 );
 
-const SecondLeftText = () => <p>Wondering how
-to contribute?</p>;
+const SecondLeftText = () => <p>Wondering how to contribute?</p>;
 
 const SecondRightText = () => (
   <p>
-    We welcome all feedback, designs, or ideas in order to produce the best possible experience for our users. If you’re interested in contributing, check out our contributing guidelines to get started.
+    We welcome all feedback, designs, or ideas in order to produce the best
+    possible experience for our users. If you’re interested in contributing,
+    check out our contributing guidelines to get started.
     <a
       className={calloutLink}
-      href="https://www.carbondesignsystem.com/contributions/overview/"
-    >
+      href="https://www.carbondesignsystem.com/contributions/overview/">
       Start contributing →
     </a>
   </p>
