@@ -1,0 +1,459 @@
+$prefix: 'bx';
+
+// Typeset Style
+.#{$prefix}--typeset-style-container {
+  position: relative;
+  padding: 0 $spacing-03;
+  margin-bottom: $spacing-09;
+
+  @include carbon--breakpoint('md') {
+    padding: 0;
+    left: 0;
+    margin-right: 0;
+  }
+
+  @include carbon--breakpoint('lg') {
+    margin-top: 0;
+    left: 0.5rem;
+    margin-right: $spacing-03;
+  }
+}
+
+.#{$prefix}--typeset-style-container .page-h4 {
+  margin-top: $spacing-09;
+  display: inline-block;
+
+  &:before {
+    display: none;
+  }
+
+  &::first-letter {
+    text-transform: uppercase;
+  }
+}
+
+.#{$prefix}--typeset-style-button {
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  height: 100%;
+  margin: 0;
+  padding: 0 $spacing-05;
+  text-transform: capitalize;
+  z-index: 4;
+
+  &:hover {
+    background-color: $carbon--gray-20;
+  }
+
+  &.selected {
+    background-color: $carbon--gray-100;
+    color: $carbon--gray-10;
+
+    &:hover {
+      background-color: $carbon--gray-100;
+    }
+  }
+
+  &:focus {
+    outline: 2px solid $focus;
+    outline-offset: 0;
+    position: relative;
+  }
+}
+
+.#{$prefix}--typeset-style-controls {
+  height: 100%;
+  left: 0;
+  position: absolute !important;
+  top: 0;
+  width: 100vw;
+
+  @include carbon--breakpoint('md') {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+.#{$prefix}--typeset-style-controls-sticky {
+  align-items: center;
+  background-color: $carbon--white-0;
+  width: auto;
+  z-index: 2;
+  box-sizing: content-box;
+}
+
+.#{$prefix}--typeset-style-controls-sticky-stuck {
+  box-shadow: 0px 2px 6px 0px rgba($carbon--black-100, 0.2);
+
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    background: $carbon--gray-10;
+    height: 6rem;
+    width: 1rem;
+
+    @include carbon--breakpoint('md') {
+      height: 4rem;
+    }
+  }
+
+  &:before {
+    left: -2rem;
+  }
+
+  &:after {
+    right: -2rem;
+  }
+}
+
+.#{$prefix}--typeset-style-nav-shiv {
+  width: 100%;
+  height: 1rem;
+}
+
+.#{$prefix}--typeset-style-breakpoint-controls {
+  height: 3rem;
+  align-items: center;
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding-left: $spacing-05;
+  padding-right: 0;
+  width: 100%;
+
+  @include carbon--breakpoint('md') {
+    width: 62.5%;
+  }
+
+  @include carbon--breakpoint('lg') {
+    width: 50%;
+  }
+}
+
+.#{$prefix}--typeset-style-screen-width-label {
+  padding-right: $spacing-05;
+  display: inline-block;
+}
+
+.#{$prefix}--typeset-style-screen-controls {
+  align-items: center;
+  height: 3rem;
+  border-top: 1px solid $carbon--gray-20;
+  padding-left: $spacing-05;
+  padding-right: $spacing-05;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  width: 100%;
+
+  @include carbon--breakpoint('md') {
+    border-top: none;
+    border-left: 1px solid $carbon--gray-20;
+    width: 37.5%;
+  }
+
+  @include carbon--breakpoint('lg') {
+    width: 50%;
+  }
+}
+
+.#{$prefix}--typeset-style-screen-label {
+  height: auto;
+  margin-bottom: 0;
+  // Need to set the width explicitly to make sure the slider
+  // keeps the same size when going from three to four digits (999-1000)
+  min-width: 3.4rem;
+  text-align: right;
+}
+
+.#{$prefix}--typeset-style-input {
+  margin: 0;
+  margin-right: rem(20px);
+  width: 100%;
+}
+
+.#{$prefix}--typeset-style-toggle-container {
+  position: relative;
+  z-index: 1;
+}
+
+.#{$prefix}--typeset-style-toggle-button {
+  background-color: $carbon--white-0;
+  box-shadow: inset 0 -1px 0 0 $carbon--gray-20;
+  color: $carbon--gray-100;
+  border: none;
+  cursor: pointer;
+  margin: 0;
+  height: 3rem;
+
+  input {
+    margin: 0;
+    visibility: hidden;
+    width: 0;
+  }
+
+  &.checked {
+    background-color: $carbon--gray-100;
+    color: $carbon--white-0;
+
+    &:hover {
+      background-color: $carbon--gray-100;
+    }
+  }
+
+  &:hover {
+    background-color: $carbon--gray-20;
+  }
+}
+
+.#{$prefix}--typeset-style-button-controls-container {
+  height: 100%;
+  margin-left: auto;
+}
+
+.#{$prefix}--typeset-style-breakpoints-container {
+  position: relative;
+  margin-top: $spacing-05;
+
+  @include carbon--breakpoint('md') {
+    margin-top: 0;
+  }
+}
+
+.#{$prefix}--typeset-style-section-spacer {
+  margin-bottom: calc(1rem + 1px);
+}
+
+.#{$prefix}--typeset-style-title-shiv {
+  padding-top: $spacing-05;
+  background-color: $carbon--gray-10;
+  position: relative;
+}
+
+.#{$prefix}--typeset-style-group-title-container {
+  background-color: $carbon--white-0;
+  height: 3rem;
+  padding: $spacing-05;
+  border-bottom: 1px solid $carbon--gray-20;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+}
+
+.#{$prefix}--typeset-style-group-title {
+  margin: 0;
+  padding: 0;
+}
+
+// ------------------------------------------------------
+// Input Range
+// ------------------------------------------------------
+.#{$prefix}--input-range {
+  appearance: none;
+  font-size: 0px;
+  position: relative;
+  cursor: pointer;
+  // Provide a larger interaction hit area
+  padding-top: $spacing-03;
+  padding-bottom: $spacing-03;
+  width: 100%;
+
+  // Remove extra padding on Edge that causes vertical misalignment
+  // IE Edge 16+ CSS
+  // See https://browserstrangeness.github.io/css_hacks.html
+  @supports (-ms-ime-align: auto) {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  // Chaining the selectors doesn't work because browsers.
+  // See https://css-tricks.com/sliding-nightmare-understanding-range-input/#structure
+  &::-webkit-slider-runnable-track {
+    background: $carbon--gray-20;
+    height: rem(1px);
+  }
+  &::-moz-range-track {
+    background: $carbon--gray-20;
+    height: rem(1px);
+  }
+
+  &::-webkit-slider-thumb {
+    appearance: none;
+    background: $carbon--black-100;
+    border: 0;
+    border-radius: 100%;
+    height: rem(14px);
+    margin-top: rem(-7px);
+    width: rem(14px);
+    transition-property: height, width, margin;
+    transition-duration: 0.1s;
+    transition-timing-function: $carbon--standard-easing;
+  }
+  &::-moz-range-thumb {
+    appearance: none;
+    background: $carbon--black-100;
+    border: 0;
+    border-radius: 100%;
+    height: rem(14px);
+    margin-top: rem(-7px);
+    width: rem(14px);
+    transition-property: height, width, margin;
+    transition-duration: 0.1s;
+    transition-timing-function: $carbon--standard-easing;
+  }
+
+  &::-ms-track {
+    background: transparent;
+    border-color: transparent;
+    border-width: rem(14px) 0;
+    color: transparent;
+    height: rem(1px);
+  }
+  &::-ms-fill-lower {
+    background: $carbon--black-100;
+  }
+  &::-ms-fill-upper {
+    background: $carbon--black-100;
+  }
+  &::-ms-thumb {
+    appearance: none;
+    background: $carbon--black-100;
+    border-radius: 100%;
+    border: 0;
+    height: rem(14px);
+    margin-top: rem(-1px);
+    width: rem(14px);
+  }
+
+  &:after {
+    background: $carbon--black-100;
+    content: '';
+    position: absolute;
+    height: rem(1px);
+    width: var(--track-width);
+  }
+
+  &:hover,
+  &:active {
+    &::-webkit-slider-thumb {
+      margin-top: rem(-9px);
+      width: rem(18px);
+      height: rem(18px);
+    }
+    &::-moz-range-thumb {
+      margin-top: rem(-9px);
+      width: rem(18px);
+      height: rem(18px);
+    }
+    &::-ms-thumb {
+      margin-top: rem(-2px);
+      width: rem(18px);
+      height: rem(18px);
+    }
+  }
+
+  &:focus {
+    outline: 2px solid $focus;
+    outline-offset: 0;
+  }
+}
+
+// ------------------------------------------------------
+// Sticky Container
+// ------------------------------------------------------
+
+.#{$prefix}--sticky-container {
+  position: sticky;
+  z-index: 5;
+  top: 0;
+  transition-property: top;
+  transition-duration: $transition--expansion;
+  transition-timing-function: $carbon--standard-easing;
+}
+
+.#{$prefix}--sticky-container-visible {
+  top: 3rem;
+
+  &.#{$prefix}--sticky-container-banner {
+    top: 5.5rem;
+  }
+}
+
+.#{$prefix}--sticky-container-hidden {
+  &.#{$prefix}--sticky-container-banner {
+    top: 2.5rem;
+  }
+}
+
+.#{$prefix}--sticky-container-secondary {
+  z-index: 4;
+}
+
+.#{$prefix}--sticky-container-secondary-hidden {
+  top: 3rem;
+
+  &.#{$prefix}--sticky-container-banner {
+    top: 5.5rem;
+  }
+}
+
+.#{$prefix}--sticky-container-secondary-visible {
+  top: 6rem;
+
+  &.#{$prefix}--sticky-container-banner {
+    top: 8.5rem;
+  }
+}
+
+// ------------------------------------------------------
+// Typeset Example
+// ------------------------------------------------------
+.#{$prefix}--typeset-example-container {
+  margin-top: $spacing-05;
+}
+
+.#{$prefix}--typeset-example {
+  margin-top: $spacing-05;
+}
+
+.#{$prefix}--typeset-example-row {
+  background-color: $carbon--white-0;
+  min-height: rem(216px);
+}
+
+.#{$prefix}--typeset-example-group-title {
+  background-color: $carbon--gray-20;
+  height: 4rem;
+}
+
+.#{$prefix}--typeset-example-description {
+  padding: $spacing-05 15% $spacing-05 $spacing-05;
+  overflow: hidden;
+
+  @include carbon--breakpoint('md') {
+    width: 62.5%;
+  }
+
+  @include carbon--breakpoint('lg') {
+    width: 66.7%;
+  }
+}
+
+.#{$prefix}--typeset-example-specs {
+  padding: $spacing-05;
+  width: 33.3%;
+
+  @include carbon--breakpoint('md') {
+    border-left: 1px solid $carbon--gray-20;
+  }
+}
+
+.#{$prefix}--typeset-example-specs-text {
+  margin-bottom: $spacing-03;
+}
+
+.#{$prefix}--typeset-example-code-style {
+  display: block;
+  margin-top: $spacing-03;
+}
