@@ -22,7 +22,7 @@ class Glossary extends Component {
         </h2>
         {Object.keys(entry).map(list => {
           const listItems = Object.keys(entry[list]).map(word => {
-            counter++;
+            counter += 1;
             const currentWord = entry[list][word];
             let wordId = word.toLowerCase().replace(' ', '-');
             const desc = currentWord.desc

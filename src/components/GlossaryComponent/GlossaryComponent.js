@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import GlossaryList from '../GlossaryList/GlossaryList';
-import GlossaryNav from '../GlossaryNav/GlossaryNav';
+import GlossaryList from './GlossaryList';
+import GlossaryNav from './GlossaryNav';
 
 class GlossaryComponent extends Component {
   render() {
-    const glossary = require('../../../../data/guidelines/glossary'); // eslint-disable-line
+    const glossary = require('../../data/guidelines/glossary'); // eslint-disable-line
     return (
       <div className="glossary">
         <GlossaryNav />
