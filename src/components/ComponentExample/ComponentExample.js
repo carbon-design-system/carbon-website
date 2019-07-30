@@ -1,16 +1,19 @@
+/* eslint-disable import/no-dynamic-require */
+/* eslint-disable global-require */
 import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import CodeExample from '../CodeExample/CodeExample';
 import * as carbonComponents from 'carbon-components/es/globals/js/components';
 import {
   DIRECTION_TOP,
   DIRECTION_BOTTOM,
 } from 'carbon-components/es/components/floating-menu/floating-menu';
-import InlineLoadingDemoButton from '../../content/components/inline-loading/inline-loading-demo-button';
 import settings from 'carbon-components/es/globals/js/settings';
 import { RadioButtonGroup, RadioButton } from 'carbon-components-react';
 import { Launch16 } from '@carbon/icons-react';
+
+import InlineLoadingDemoButton from './inline-loading-demo-button';
+import CodeExample from '../CodeExample/CodeExample';
 
 /**
  * Determines how the vertical position of live demo container should affect the floating menu position offset.
@@ -44,7 +47,6 @@ class ComponentExample extends Component {
     htmlFile: PropTypes.string,
     component: PropTypes.string,
     variation: PropTypes.string,
-    hideViewFullRender: PropTypes.bool,
     codepenSlug: PropTypes.string,
     hasLightVersion: PropTypes.string,
     hasReactVersion: PropTypes.bool,
@@ -59,6 +61,18 @@ class ComponentExample extends Component {
     currentFieldColor: 'field-01',
     currentHTMLfile: this.props.htmlFile,
   };
+
+  componentWillReceiveProps(props) {
+    if (this.state.currentHTMLfile !== props.htmlFile) {
+      this.setState({ currentHTMLfile: props.htmlFile });
+    }
+  }
+  componentDidUpdate({ htmlFile }) {
+    const { prevHtmlFile } = this.props;
+    if (prevHtmlFile !== htmlFile) {
+      this.releaseAndInstantiateComponents();
+    }
+  }
 
   onSwitchFieldColors = value => {
     this.setState({
@@ -92,30 +106,23 @@ class ComponentExample extends Component {
     });
   };
 
-  _ref = null;
+  exampleRef = null;
 
-  _handles = [];
+  handles = [];
 
-  _liveContainerRef = createRef();
+  liveContainerRef = createRef();
 
-  _liveDemoRef = ref => {
-    this._ref = ref;
-    this._releaseAndInstantiateComponents();
+  liveDemoRef = ref => {
+    this.exampleRef = ref;
+    this.releaseAndInstantiateComponents();
   };
 
-  componentDidUpdate({ htmlFile }) {
-    const { prevHtmlFile } = this.props;
-    if (prevHtmlFile !== htmlFile) {
-      this._releaseAndInstantiateComponents();
-    }
-  }
-
-  _releaseAndInstantiateComponents() {
-    const handles = this._handles;
+  releaseAndInstantiateComponents() {
+    const handles = this.handles;
     for (let instance = handles.pop(); instance; instance = handles.pop()) {
       instance.release();
     }
-    const ref = this._ref;
+    const ref = this.exampleRef;
     if (ref) {
       const { component } = this.props;
       const currentComponent = component
@@ -148,8 +155,10 @@ class ComponentExample extends Component {
                     left: containerLeft,
                     top: containerTop,
                   } = liveContainerRef.getBoundingClientRect();
+                  // eslint-disable-next-line no-param-reassign
                   calendarContainer.style.left = `${inputLeft -
                     containerLeft}px`;
+                  // eslint-disable-next-line no-param-reassign
                   calendarContainer.style.top = `${inputTop -
                     containerTop +
                     _positionElement.offsetHeight}px`;
@@ -165,7 +174,7 @@ class ComponentExample extends Component {
                       direction,
                       trigger
                     );
-                    const liveContainerRef = this._liveContainerRef.current;
+                    const liveContainerRef = this.liveContainerRef.current;
                     if (liveContainerRef) {
                       const { left: origLeft, top: origTop } = origOffset;
                       const {
@@ -178,7 +187,8 @@ class ComponentExample extends Component {
                           : parseInt(
                               liveContainerRef.ownerDocument.defaultView
                                 .getComputedStyle(liveContainerRef)
-                                .getPropertyValue('border-left-width') // FF doesn't have one for `border-width`
+                                .getPropertyValue('border-left-width'), // FF doesn't have one for `border-width`
+                              10
                             );
                       const adjustLeft =
                         liveContainerLeft +
@@ -202,6 +212,7 @@ class ComponentExample extends Component {
               });
             }
             if (TheComponent.prototype.createdByLauncher) {
+              // eslint-disable-next-line no-underscore-dangle
               const initHandles = this.constructor._initHandles;
               if (!initHandles.has(TheComponent)) {
                 initHandles.set(
@@ -221,12 +232,6 @@ class ComponentExample extends Component {
           }
         }
       );
-    }
-  }
-
-  componentWillReceiveProps(props) {
-    if (this.state.currentHTMLfile !== props.htmlFile) {
-      this.setState({ currentHTMLfile: props.htmlFile });
     }
   }
 
@@ -280,7 +285,7 @@ class ComponentExample extends Component {
       `component-example__live--${component}`,
       {
         'component-example__live--light':
-          (currentFieldColor === 'field-02') & (hasLightVersion === true),
+          currentFieldColor === 'field-02' && hasLightVersion === true,
       }
     );
 
@@ -291,11 +296,12 @@ class ComponentExample extends Component {
       <div className={lightUIclassnames}>
         <div
           className={liveBackgroundClasses}
-          ref={this._liveContainerRef}
+          ref={this.liveContainerRef}
           data-floating-menu-container>
           <div className={classNames}>
             <div
-              ref={this._liveDemoRef}
+              ref={this.liveDemoRef}
+              // eslint-disable-next-line react/no-danger
               dangerouslySetInnerHTML={{ __html: demoHtml }}
             />
           </div>

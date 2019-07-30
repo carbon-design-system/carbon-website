@@ -11,7 +11,6 @@ export default class ComponentCode extends React.Component {
     component: PropTypes.string,
     variation: PropTypes.string,
     codepen: PropTypes.string,
-    background: PropTypes.string,
     hasLightVersion: PropTypes.bool,
     hasReactVersion: PropTypes.bool,
     hasAngularVersion: PropTypes.string,
@@ -33,13 +32,14 @@ export default class ComponentCode extends React.Component {
     } = this.props;
 
     let htmlFile;
-    if (experimental) {
-      try {
-        htmlFile = require(`../../html/${component}/${variation}.html`);
-      } catch (err) {} // eslint-disable-line no-empty
-    }
-    if (!htmlFile) {
+    try {
+      // eslint-disable-next-line import/no-dynamic-require, global-require
       htmlFile = require(`carbon-components/html/${component}/${variation}.html`);
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error(
+        `Unable to import htmlFile at 'carbon-components/html/${component}/${variation}.html'`
+      );
     }
 
     return (
