@@ -8,6 +8,7 @@ module.exports = {
     {
       resolve: 'gatsby-theme-carbon',
       options: {
+        mdxExtensions: ['.mdx'],
         repository: {
           baseUrl: 'https://github.com/carbon-design-system/carbon-www',
           subDirectory: '',

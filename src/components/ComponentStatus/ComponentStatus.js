@@ -1,6 +1,7 @@
 import React from 'react';
-import Packages from '../../../../../package.json';
 import { Tag } from 'carbon-components-react';
+import Packages from '../../../package.json';
+import componentStatus from '../../data/components.json';
 
 const tags = {
   stable: <Tag type="green">Stable</Tag>,
@@ -49,8 +50,6 @@ class ComponentStatus extends React.Component {
 
   render() {
     const vanillaVersion = Packages.dependencies['carbon-components'];
-    const componentStatus = require('../../../../data/components.json'); // eslint-disable-line
-
     return (
       <div className="bx--row component-status">
         <div className="bx--col-lg-12 bx--offset-lg-4">

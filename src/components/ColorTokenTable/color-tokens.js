@@ -1,5 +1,5 @@
 /* eslint-disable */
-module.exports = {
+const colorTokens = {
   'core-tokens': {
     '$ui-background': {
       role: ['Default page background'],
@@ -1142,3 +1142,6 @@ module.exports = {
     },
   },
 };
+
+export default colorTokens;
+

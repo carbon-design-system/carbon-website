@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'gatsby';
+import componentList from '../../data/components.json';
 
 class ComponentOverview extends React.Component {
   renderItems = currentItem => {
@@ -39,7 +40,6 @@ class ComponentOverview extends React.Component {
   };
 
   render() {
-    const componentList = require('../../../../data/components.json'); // eslint-disable-line
     return (
       <div className="bx--row">
         <div className="bx--col-lg-12 bx--offset-lg-4 bx--no-gutter">
