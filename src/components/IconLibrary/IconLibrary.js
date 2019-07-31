@@ -150,7 +150,7 @@ export default class IconLibrary extends React.Component {
       console.error(errorLoadingIcons); // eslint-disable-line no-console
       return (
         <div className="page bx--row">
-          <div className="bx--col-lg-12 bx--offset-lg-4">
+          <div className="bx--col-lg-12">
             <h3>Yikes! Looks like something went wrong.</h3>
             <p>
               We're still working out some problems in our experimental website.
@@ -171,17 +171,17 @@ export default class IconLibrary extends React.Component {
     if (filteredIcons.length === 0) {
       return (
         <div className="page bx--row">
-          <div className="bx--col-lg-8 bx--offset-lg-4 bx--no-gutter-md bx--no-gutter-lg">
+          <div className="bx--col-lg-8 bx--no-gutter-md bx--no-gutter-lg">
             {search}
           </div>
-          <div className="icon-search--message bx--col-lg-12 bx--offset-lg-4">
+          <div className="icon-search--message bx--col-lg-12">
             <p className="icon-search--message__no-results">
               It appears we don’t have an icon that matches your search. Try
               different search terms or give us a hand—submit your own design to
               the library!
             </p>
           </div>
-          <div className="bx--offset-lg-4 bx--col-lg-4 bx--col-md-3 bx--col-sm-4 bx--no-gutter-sm bx--no-gutter-md bx--no-gutter-lg">
+          <div className="bx--col-lg-4 bx--col-md-3 bx--col-sm-4 bx--no-gutter-sm bx--no-gutter-md bx--no-gutter-lg">
             <ClickableTile
               title="Submit an icon design."
               href="https://github.com/carbon-design-system/carbon/tree/master/packages/icons"
@@ -195,7 +195,7 @@ export default class IconLibrary extends React.Component {
 
     return (
       <div className="page bx--row">
-        <div className="icon-search--wrapper bx--col-lg-8 bx--offset-lg-4 bx--no-gutter-md bx--no-gutter-lg">
+        <div className="icon-search--wrapper bx--col-lg-8 bx--no-gutter-md bx--no-gutter-lg">
           {search}
           {this.state.searchValue || this.state.searchValue !== '' ? (
             <p className="icon-search--status">
@@ -206,7 +206,7 @@ export default class IconLibrary extends React.Component {
             ''
           )}
         </div>
-        <div className="bx--col-lg-12 bx--offset-lg-4 bx--no-gutter-sm bx--no-gutter-md bx--no-gutter-lg">
+        <div className="bx--col-lg-12 bx--no-gutter-sm bx--no-gutter-md bx--no-gutter-lg">
           {sections}
         </div>
       </div>

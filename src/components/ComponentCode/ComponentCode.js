@@ -55,7 +55,7 @@ export default class ComponentCode extends React.Component {
           return (
             <>
               <div className="bx--row">
-                <div className="bx--col-lg-12 bx--offset-lg-4">
+                <div className="bx--col-lg-12">
                   <h2 id={hash} className="page-h2">
                     {hash && (
                       <Link className="anchor-link" to={`${path}#${hash}`}>
@@ -71,7 +71,7 @@ export default class ComponentCode extends React.Component {
               </div>
 
               <div className="component-variation bx--row">
-                <div className="bx--col-lg-12 bx--offset-lg-4 bx--no-gutter">
+                <div className="bx--col-lg-12 bx--no-gutter">
                   <ComponentExample
                     codepenSlug={codepen}
                     component={component}

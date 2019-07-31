@@ -30,7 +30,7 @@ export default class ComponentDocs extends React.Component {
 
           return (
             <div className="page_md component-docs bx--row">
-              <div className="bx--col-lg-12 bx--offset-lg-4">
+              <div className="bx--col-lg-12">
                 <h2 id="documentation" className="page-h2">
                   <Link className="anchor-link" to={`${path}#documentation`}>
                     <Link20
