@@ -1,8 +1,8 @@
+/* eslint-disable react/no-danger */
+/* eslint-disable import/no-dynamic-require */
+/* eslint-disable global-require */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Location } from '@reach/router';
-import { Link } from 'gatsby';
-import { Link20 } from '@carbon/icons-react';
 
 export default class ComponentDocs extends React.Component {
   static propTypes = {
@@ -24,34 +24,17 @@ export default class ComponentDocs extends React.Component {
     }
 
     return (
-      <Location>
-        {({ location }) => {
-          const path = location.pathname;
-
-          return (
-            <div className="page_md component-docs bx--row">
-              <div className="bx--col-lg-12 bx--offset-lg-4">
-                <h2 id="documentation" className="page-h2">
-                  <Link className="anchor-link" to={`${path}#documentation`}>
-                    <Link20
-                      className="anchor-link__icon"
-                      aria-label="Anchor Link"
-                    />
-                  </Link>
-                  Documentation
-                </h2>
-                {
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: componentDocUrl,
-                    }}
-                  />
-                }
-              </div>
-            </div>
-          );
-        }}
-      </Location>
+      <div className="page_md component-docs bx--row">
+        <div className="bx--col-lg-12">
+          {
+            <div
+              dangerouslySetInnerHTML={{
+                __html: componentDocUrl,
+              }}
+            />
+          }
+        </div>
+      </div>
     );
   }
 }
