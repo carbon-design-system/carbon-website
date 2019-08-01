@@ -9,6 +9,7 @@ module.exports = {
       resolve: 'gatsby-theme-carbon',
       options: {
         mdxExtensions: ['.mdx'],
+        imageQuality: 50,
         repository: {
           baseUrl: 'https://github.com/carbon-design-system/carbon-www',
           subDirectory: '',
