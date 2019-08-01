@@ -5,11 +5,13 @@ import { mdxIcon } from './MdxIcon.module.scss';
 import sketch from './icons/sketch.svg';
 import ase from './icons/ase.png';
 import codesandbox from './icons/codesandbox.svg';
+import codepen from './icons/codepen.svg';
 
 const localIcons = {
   sketch,
   ase,
   codesandbox,
+  codepen,
 };
 
 const carbonIcons = {
