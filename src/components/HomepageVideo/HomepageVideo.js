@@ -7,8 +7,6 @@ export default class HomepageVideo extends React.Component {
     super(props);
 
     this.onClick = this.onClick.bind(this);
-    // this.onMouseEnter = this.onMouseEnter.bind(this);
-    // this.onMouseLeave = this.onMouseLeave.bind(this);
   }
   state = { paused: false, hover: false };
 
