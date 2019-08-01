@@ -1144,4 +1144,3 @@ const colorTokens = {
 };
 
 export default colorTokens;
-
