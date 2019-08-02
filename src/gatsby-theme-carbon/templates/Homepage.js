@@ -4,8 +4,6 @@ import HomepageTemplate from 'gatsby-theme-carbon/src/templates/Homepage';
 import { calloutLink } from './Homepage.module.scss';
 import HomepageVideo from '../../components/HomepageVideo/HomepageVideo';
 
-import Carbon from '../../images/carbon.jpg';
-
 const FirstLeftText = () => <p>Carbon Design System</p>;
 
 const FirstRightText = () => (
@@ -50,6 +48,7 @@ const customProps = {
             </div>
             <HomepageVideo>
               <iframe
+                title="homepage video"
                 src="https://player.vimeo.com/video/322021187?muted=1&autoplay=1&loop=1&background=1"
                 width="100%"
                 height="100%"
