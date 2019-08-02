@@ -1,7 +1,7 @@
 import React from 'react';
 import { Search, Loading } from 'carbon-components-react';
 import ClickableTile from './ClickableTile';
-import githubIcon from '../../images/github-icon.png';
+import MdxIcon from '../MdxIcon';
 
 const sizes = ['16', '20', '24', '32'];
 
@@ -186,7 +186,7 @@ export default class IconLibrary extends React.Component {
               title="Submit an icon design."
               href="https://github.com/carbon-design-system/carbon/tree/master/packages/icons"
               type="resource">
-              <img alt="github icon" src={githubIcon} />
+              <MdxIcon name="github" />
             </ClickableTile>
           </div>
         </div>
