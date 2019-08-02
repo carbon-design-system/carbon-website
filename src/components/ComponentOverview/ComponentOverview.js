@@ -42,7 +42,7 @@ class ComponentOverview extends React.Component {
   render() {
     return (
       <div className="bx--row">
-        <div className="bx--col-lg-12 bx--offset-lg-4 bx--no-gutter">
+        <div className="bx--col-lg-12 bx--no-gutter">
           <ul className="component-overview">
             {Object.keys(componentList.components).map(component =>
               this.renderItems(componentList.components[component])

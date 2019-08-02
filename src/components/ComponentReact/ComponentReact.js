@@ -125,7 +125,7 @@ class ComponentReactExample extends Component {
     return (
       <>
         <div className="bx--row">
-          <div className="bx--col-lg-12 bx--offset-lg-4">
+          <div className="bx--col-lg-12">
             <h2 className="page-h2">{name}</h2>
             <p className="component-example__heading-label page-p">
               This component is currently only available in {getLibraryLinks()}.
@@ -133,7 +133,7 @@ class ComponentReactExample extends Component {
           </div>
         </div>
         <div className="component-variation bx--row">
-          <div className="bx--col-lg-12 bx--offset-lg-4 bx--no-gutter">
+          <div className="bx--col-lg-12 bx--no-gutter">
             <div>
               <div className="svg--sprite" aria-hidden="true" />
               <div className="component-example__live">
