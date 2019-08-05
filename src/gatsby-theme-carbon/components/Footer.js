@@ -4,32 +4,41 @@ import Footer from 'gatsby-theme-carbon/src/components/Footer';
 const Content = () => (
   <>
     <p>
-      By importing the <strong>Footer</strong> component from
-      gatsby-theme-carbon, we can supply our own props.
-    </p>
-    <p>
-      The default export from a shadowed component will replace that component
-      in the theme.
-    </p>
-    <p>
-      <a href="https://www.gatsbyjs.org/docs/themes/api-reference/#component-shadowing">
-        More about component shadowing
+      Have questions? Email us or open
+      <br /> an issue on{' '}
+      <a
+        style={{ textDecoration: 'underline' }}
+        href="https://github.com/carbon-design-system/carbon-www/issues/new">
+        Github.
       </a>
+    </p>
+    <p>
+      Vanilla Components version 10.4.1
+      <br />
+      React Components version 7.4.1
+      <br />
+      Last updated August 2, 2019
+      <br />
+      Copyright © 2019 IBM
     </p>
   </>
 );
 
 const links = {
   firstCol: [
-    { href: 'https://ibm.com/design', linkText: 'Shadowed link' },
-    { href: 'https://ibm.com/design', linkText: 'Shadowed link' },
-    { href: 'https://ibm.com/design', linkText: 'Shadowed link' },
+    {
+      href: 'https://www.carbondesignsystem.com/contributions/overview',
+      linkText: 'Contribute',
+    },
+    { href: 'https://www.ibm.com/privacy', linkText: 'Privacy' },
+    { href: 'https://www.ibm.com/legal', linkText: 'Terms of use' },
+    { href: 'https://www.ibm.com/', linkText: 'IBM.com' },
   ],
   secondCol: [
-    { href: 'https://ibm.com/design', linkText: 'Shadowed link' },
-    { href: 'https://ibm.com/design', linkText: 'Shadowed link' },
-    { href: 'https://ibm.com/design', linkText: 'Shadowed link' },
-    { href: 'https://ibm.com/design', linkText: 'Shadowed link' },
+    { href: 'https://dribbble.com/_carbondesign', linkText: 'Dribble' },
+    { href: 'https://medium.com/carbondesign', linkText: 'Medium' },
+    { href: 'https://twitter.com/_carbondesign', linkText: 'Twitter' },
+    { href: 'https://www.netlify.com/', linkText: 'Netlify' },
   ],
 };
 
