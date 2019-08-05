@@ -1,9 +1,8 @@
 import React from 'react';
-import { HomepageBanner, HomepageCallout } from 'gatsby-theme-carbon';
+import { HomepageCallout, ResourceCard } from 'gatsby-theme-carbon';
 import HomepageTemplate from 'gatsby-theme-carbon/src/templates/Homepage';
 import { calloutLink } from './Homepage.module.scss';
-
-import Carbon from '../../images/carbon.jpg';
+import HomepageVideo from '../../components/HomepageVideo/HomepageVideo';
 
 const FirstLeftText = () => <p>Carbon Design System</p>;
 
@@ -31,10 +30,35 @@ const SecondRightText = () => (
   </p>
 );
 
-const BannerText = () => <h1>Banner component</h1>;
-
 const customProps = {
-  Banner: <HomepageBanner renderText={BannerText} image={Carbon} />,
+  Banner: (
+    <>
+      <span className="homepage--dots" />
+      <section className="homepage--header">
+        <div className="bx--grid">
+          <div className="bx--row">
+            <div className="bx--col-lg-4 bx--col-md-4 bx--col-sm-2 bx--offset-lg-8 bx--offset-md-4 bx--offset-sm-2 homepage--tile-header">
+              <ResourceCard
+                subTitle="Read"
+                title="Migrate to v10"
+                href="/updates/v10-migration/overview"
+                color="dark"
+                actionIcon="arrowRight"
+              />
+            </div>
+            <HomepageVideo>
+              <iframe
+                title="homepage video"
+                src="https://player.vimeo.com/video/322021187?muted=1&autoplay=1&loop=1&background=1"
+                width="100%"
+                height="100%"
+              />
+            </HomepageVideo>
+          </div>
+        </div>
+      </section>
+    </>
+  ),
   FirstCallout: (
     <HomepageCallout
       backgroundColor="#030303"
