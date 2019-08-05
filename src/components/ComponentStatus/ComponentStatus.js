@@ -52,10 +52,10 @@ class ComponentStatus extends React.Component {
     const vanillaVersion = Packages.dependencies['carbon-components'];
     return (
       <div className="bx--row component-status">
-        <div className="bx--col-lg-12 bx--offset-lg-4">
+        <div className="bx--col-lg-12">
           <h2 className="page-h2">Current version: {vanillaVersion}</h2>
         </div>
-        <div className="bx--col-lg-12 bx--offset-lg-4 bx--no-gutter">
+        <div className="bx--col-lg-12 bx--no-gutter">
           <table className="page-table">
             <thead>
               <tr>
@@ -73,10 +73,10 @@ class ComponentStatus extends React.Component {
             </tbody>
           </table>
         </div>
-        <div className="bx--col-lg-8 bx--offset-lg-4 component-status__key">
+        <div className="bx--col-lg-8 component-status__key">
           <h4 className="page-h4">Key</h4>
         </div>
-        <div className="bx--col-lg-8 bx--offset-lg-4 bx--no-gutter">
+        <div className="bx--col-lg-8 bx--no-gutter">
           <table className="page-table">
             <thead>
               <tr>

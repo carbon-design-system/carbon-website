@@ -145,7 +145,7 @@ export default class ColorTokenTable extends React.Component {
     });
     return (
       <div className="bx--row color-token-table">
-        <div className="bx--col-lg-12 bx--offset-lg-4 bx--no-gutter">
+        <div className="bx--col-lg-12 bx--no-gutter">
           <ContentSwitcher
             className={themeSwitcherClasses}
             onChange={this.switchTheme}>
@@ -158,10 +158,10 @@ export default class ColorTokenTable extends React.Component {
             />
           </ContentSwitcher>
         </div>
-        <div className="bx--col-lg-7 bx--offset-lg-4">
+        <div className="bx--col-lg-7">
           <h3 className={h3Classes}>Core color tokens</h3>
         </div>
-        <div className="bx--col-lg-12 bx--offset-lg-4 bx--no-gutter">
+        <div className="bx--col-lg-12 bx--no-gutter">
           <table className="page-table">
             <thead>
               <tr>
@@ -177,10 +177,10 @@ export default class ColorTokenTable extends React.Component {
             </tbody>
           </table>
         </div>
-        <div className="bx--col-lg-7 bx--offset-lg-4">
+        <div className="bx--col-lg-7">
           <h3 className="page-h3">Interactive color tokens</h3>
         </div>
-        <div className="bx--col-lg-12 bx--offset-lg-4 bx--no-gutter">
+        <div className="bx--col-lg-12 bx--no-gutter">
           <table className="page-table">
             <thead>
               <tr>
