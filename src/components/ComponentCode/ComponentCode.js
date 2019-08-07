@@ -39,7 +39,7 @@ export default class ComponentCode extends React.Component {
 
     return (
       <div className="component-variation bx--row">
-        <div className="bx--col-lg-8 bx--no-gutter">
+        <div className="bx--col-lg-12 bx--no-gutter">
           <ComponentExample
             codepenSlug={codepen}
             component={component}
