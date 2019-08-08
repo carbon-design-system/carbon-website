@@ -2,8 +2,9 @@
 import React, { useEffect, useState } from 'react';
 import { pickBy, keyBy } from 'lodash';
 import { icons as iconMetaData } from '../../data/metadata.json';
+import IconContainer from './IconContainer';
 
-import { iconGrid, iconContainer } from './IconLibrary.module.scss';
+import { iconGrid } from './IconLibrary.module.scss';
 
 const flattenedIconMetaData = iconMetaData.flatMap(
   ({ variants, ...parent }) => {
@@ -63,17 +64,9 @@ const IconLibrary = () => {
 
   return (
     <div className={iconGrid}>
-      {iconComponents.map(icon =>
-        icon.Component ? (
-          <div className={iconContainer}>
-            <icon.Component key={icon.name}>
-              <title>{icon.friendly_name}</title>
-            </icon.Component>
-          </div>
-        ) : (
-          <h1>error: {icon.name}</h1>
-        )
-      )}
+      {iconComponents.map(icon => (
+        <IconContainer icon={icon} />
+      ))}
     </div>
   );
 };

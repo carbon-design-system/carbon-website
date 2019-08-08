@@ -1,15 +1,45 @@
 .icon-grid {
   display: grid;
+  background: $ui-03;
   width: 100%;
-  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 1px;
+  grid-template-columns: repeat(2, 1fr);
+
+  @include carbon--breakpoint('md') {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @include carbon--breakpoint('lg') {
+    grid-template-columns: repeat(6, 1fr);
+  }
 }
 
 .icon-container {
+  height: 0;
+  overflow: hidden;
+  padding-top: 100%;
+  background-color: $ui-background;
+  position: relative;
+}
+
+.icon-container-inside {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  background-color: $ui-background;
+}
+
+.flex-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: $spacing-05;
+  height: 100%;
+}
+
+.name {
+  position: absolute;
+  top: $spacing-05;
+  left: $spacing-05;
+  display: inline-block;
 }
