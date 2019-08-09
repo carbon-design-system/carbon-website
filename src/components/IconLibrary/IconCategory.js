@@ -14,17 +14,6 @@ import {
   iconCategory,
 } from './IconLibrary.module.scss';
 
-const IconSubcategory = ({ subcategory, icons }) => (
-  <li>
-    <h3 className={cx(h3, subcategoryTitle)}>{subcategory}</h3>
-    <ul className={iconGrid}>
-      {icons.map(icon => (
-        <IconCard key={icon.name} icon={icon} />
-      ))}
-    </ul>
-  </li>
-);
-
 const IconCategory = ({ category, icons }) => {
   const subcategories = Object.entries(
     groupBy(icons, 'categories[0].subcategory')
@@ -44,5 +33,16 @@ const IconCategory = ({ category, icons }) => {
     </section>
   );
 };
+
+const IconSubcategory = ({ subcategory, icons }) => (
+  <li>
+    <h3 className={cx(h3, subcategoryTitle)}>{subcategory}</h3>
+    <ul className={iconGrid}>
+      {icons.map(icon => (
+        <IconCard key={icon.name} icon={icon} />
+      ))}
+    </ul>
+  </li>
+);
 
 export default IconCategory;
