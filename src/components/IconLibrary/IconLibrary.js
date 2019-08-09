@@ -27,6 +27,21 @@ const flattenedIconMetaData = iconMetaData.flatMap(
   }
 );
 
+const iconData = keyBy(flattenedIconMetaData, obj => {
+  const friendlyNameArr = obj.friendly_name.split(' ');
+  const moduleName = friendlyNameArr
+    .map(word => {
+      // if the 'word' is a number at the end, use the an underscore prefix
+      if (!isNaN(word)) {
+        return `_${word}`;
+      }
+      // capitalize each word before joining
+      return word[0].toUpperCase() + word.slice(1);
+    })
+    .join('');
+  return moduleName;
+});
+
 const IconLibrary = () => {
   const [iconComponents, setIconComponents] = useState([]);
   useEffect(() => {
@@ -35,21 +50,6 @@ const IconLibrary = () => {
         iconsReact,
         (val, key) => key.slice(-2) === '32'
       );
-      const iconData = keyBy(flattenedIconMetaData, obj => {
-        const friendlyNameArr = obj.friendly_name.split(' ');
-        const moduleName = friendlyNameArr
-          .map(word => {
-            // if the 'word' is a number at the end, use the an underscore prefix
-            if (!isNaN(word)) {
-              return `_${word}`;
-            }
-            // capitalize each word before joining
-            return word[0].toUpperCase() + word.slice(1);
-          })
-          .join('');
-        return moduleName;
-      });
-
       const iconArray = Object.keys(iconData).map(icon => ({
         ...iconData[icon],
         Component:
@@ -57,7 +57,6 @@ const IconLibrary = () => {
           iconComponentList[`WatsonHealth${icon}32`] ||
           iconComponentList[`Q${icon}32`],
       }));
-
       setIconComponents(iconArray);
     });
   }, []);
