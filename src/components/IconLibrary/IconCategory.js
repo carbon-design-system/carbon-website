@@ -4,16 +4,19 @@ import {
   h2,
   h3,
 } from 'gatsby-theme-carbon/src/components/markdown/Markdown.module.scss';
+import cx from 'classnames';
+
 import IconCard from './IconCard';
-import { iconGrid } from './IconLibrary.module.scss';
+import {
+  iconGrid,
+  categoryTitle,
+  subcategoryTitle,
+  iconCategory,
+} from './IconLibrary.module.scss';
 
 const IconSubcategory = ({ subcategory, icons }) => (
   <>
-    <h3
-      className={h3}
-      style={{ margin: 0, marginTop: '48px', marginLeft: '1rem' }}>
-      {subcategory}
-    </h3>
+    <h3 className={cx(h3, subcategoryTitle)}>{subcategory}</h3>
     <div className={iconGrid}>
       {icons.map(icon => (
         <IconCard key={icon.name} icon={icon} />
@@ -27,12 +30,8 @@ const IconCategory = ({ category, icons }) => {
     groupBy(icons, 'categories[0].subcategory')
   );
   return (
-    <section>
-      <h2
-        className={h2}
-        style={{ margin: 0, marginLeft: '1rem', marginTop: '80px' }}>
-        {category}
-      </h2>
+    <section className={iconCategory}>
+      <h2 className={cx(h2, categoryTitle)}>{category}</h2>
       {subcategories.map(([subcategory, subcategoryIcons]) => (
         <IconSubcategory
           key={subcategory}
