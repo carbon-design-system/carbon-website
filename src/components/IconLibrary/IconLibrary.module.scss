@@ -1,11 +1,18 @@
 .filter-row {
   display: flex;
   align-items: flex-end;
+  flex-direction: column;
+  @include carbon--breakpoint('md') {
+    flex-direction: row;
+  }
 }
 
 .filter-row :global(.bx--search) {
-  width: 60%;
-  margin-right: 80px;
+  width: 100%;
+  @include carbon--breakpoint('md') {
+    width: 60%;
+    margin-right: 80px;
+  }
 }
 
 .filter-row :global(.bx--search .bx--search-input) {
@@ -14,6 +21,12 @@
 
 .filter-row :global(.bx--dropdown__wrapper) {
   flex-grow: 1;
+  width: 100%;
+  margin-top: $spacing-05;
+  @include carbon--breakpoint('md') {
+    margin-top: 0;
+    width: auto;
+  }
 }
 
 .icon-category .category-title {
@@ -26,6 +39,12 @@
   margin: 0;
   margin-top: 48px;
   margin-left: 1rem;
+}
+
+// i.e. fallback
+.icon-grid {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .icon-grid {
