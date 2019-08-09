@@ -1,10 +1,9 @@
 /* eslint-disable no-debugger */
 import React, { useEffect, useState } from 'react';
-import { pickBy, keyBy } from 'lodash';
+import { pickBy, keyBy, groupBy } from 'lodash';
 import { icons as iconMetaData } from '../../data/metadata.json';
-import IconContainer from './IconContainer';
 
-import { iconGrid } from './IconLibrary.module.scss';
+import IconCategory from './IconCategory';
 
 const flattenedIconMetaData = iconMetaData.flatMap(
   ({ variants, ...parent }) => {
@@ -61,12 +60,16 @@ const IconLibrary = () => {
     });
   }, []);
 
+  const categories = Object.entries(
+    groupBy(iconComponents, 'categories[0].name')
+  );
+
   return (
-    <div className={iconGrid}>
-      {iconComponents.map(icon => (
-        <IconContainer icon={icon} />
+    <>
+      {categories.map(([category, icons]) => (
+        <IconCategory key={category} category={category} icons={icons} />
       ))}
-    </div>
+    </>
   );
 };
 export default IconLibrary;

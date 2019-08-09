@@ -2,15 +2,15 @@
 import React from 'react';
 
 import {
-  iconContainer,
-  iconContainerInside,
+  iconCard,
+  iconCardInside,
   flexContainer,
   name,
 } from './IconLibrary.module.scss';
 
-const IconContainer = ({ icon }) => (
-  <div className={iconContainer}>
-    <div className={iconContainerInside}>
+const IconCard = ({ icon }) => (
+  <div className={iconCard}>
+    <div className={iconCardInside}>
       <div className={flexContainer}>
         <span className={name}>{icon.friendly_name}</span>
         <icon.Component>
@@ -21,4 +21,4 @@ const IconContainer = ({ icon }) => (
   </div>
 );
 
-export default IconContainer;
+export default IconCard;
