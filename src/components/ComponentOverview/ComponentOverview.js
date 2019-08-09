@@ -11,7 +11,7 @@ class ComponentOverview extends React.Component {
     if (component === 'Multiselect') {
       componentUrl = '/components/dropdown/code';
     } else if (component === 'UI shell') {
-      componentUrl = '/experimental/ui-shell/cpde';
+      componentUrl = '/components/UI-shell-header/code';
     } else {
       componentUrl = `/components/${component
         .toLowerCase()
