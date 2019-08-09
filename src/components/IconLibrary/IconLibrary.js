@@ -4,7 +4,7 @@ import { Search, Dropdown } from 'carbon-components-react';
 import { pickBy, groupBy } from 'lodash';
 
 import iconMetaData from './iconMetaData';
-import { filterRow } from './IconLibrary.module.scss';
+import { filterRow, iconLibrary } from './IconLibrary.module.scss';
 
 import IconCategory from './IconCategory';
 
@@ -55,7 +55,7 @@ const IconLibrary = () => {
       : categories.filter(([category]) => category === selectedCategory);
 
   return (
-    <>
+    <div className={iconLibrary}>
       <div className={filterRow}>
         <Search
           small
@@ -66,6 +66,7 @@ const IconLibrary = () => {
         />
         <Dropdown
           id="category-filter"
+          direction="bottom"
           light
           initialSelectedItem="All icons"
           titleText="Category"
@@ -77,7 +78,7 @@ const IconLibrary = () => {
       {filteredCategories.map(([category, icons]) => (
         <IconCategory key={category} category={category} icons={icons} />
       ))}
-    </>
+    </div>
   );
 };
 export default IconLibrary;

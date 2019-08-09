@@ -1,14 +1,22 @@
+.icon-library {
+  margin-left: -1rem;
+  margin-right: -1rem;
+  overflow: hidden;
+}
+
 .filter-row {
   display: flex;
-  align-items: flex-end;
   flex-direction: column;
+  align-items: center;
+  padding: 0 $spacing-05;
   @include carbon--breakpoint('md') {
+    align-items: flex-end;
+    padding: 0;
     flex-direction: row;
   }
 }
 
 .filter-row :global(.bx--search) {
-  width: 100%;
   @include carbon--breakpoint('md') {
     width: 60%;
     margin-right: 80px;
@@ -53,7 +61,6 @@
   width: 100%;
   background-color: $ui-03;
   grid-template-columns: repeat(2, 1fr);
-  overflow: hidden;
 
   @include carbon--breakpoint('md') {
     grid-template-columns: repeat(4, 1fr);
@@ -74,7 +81,6 @@ $icon-card-border: 1px solid $ui-03;
 
 .icon-card {
   height: 0;
-  overflow: hidden;
   padding-top: 100%;
   background-color: $ui-background;
   position: relative;
@@ -153,17 +159,16 @@ $icon-card-border: 1px solid $ui-03;
   height: 100%;
 }
 
-.icon-card-label {
+// carbon specificity ☠️
+.tooltip-definition
+  button:global(.bx--tooltip__trigger.bx--tooltip__trigger--definition) {
   @include carbon--type-style('label-01');
-  position: absolute;
+  max-width: calc(100% - #{$spacing-07});
   top: $spacing-04;
   left: $spacing-05;
+  position: absolute;
   display: inline-block;
-
-  // text overflow
-  display: block;
   overflow-x: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  width: calc(100% - #{$spacing-07});
 }
