@@ -1,9 +1,10 @@
 .icon-grid {
   display: grid;
-  background: $ui-03;
   width: 100%;
   grid-gap: 1px;
+  background-color: $ui-03;
   grid-template-columns: repeat(2, 1fr);
+  overflow: hidden;
 
   @include carbon--breakpoint('md') {
     grid-template-columns: repeat(4, 1fr);
@@ -12,6 +13,12 @@
   @include carbon--breakpoint('lg') {
     grid-template-columns: repeat(6, 1fr);
   }
+}
+
+.icon-grid::after {
+  content: '';
+  width: 600%;
+  background-color: #f3f3f3;
 }
 
 .icon-container {
@@ -38,6 +45,7 @@
 }
 
 .name {
+  @include carbon--type-style('body-short-01');
   position: absolute;
   top: $spacing-05;
   left: $spacing-05;
