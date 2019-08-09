@@ -28,7 +28,9 @@ const IconCategory = ({ category, icons }) => {
   );
   return (
     <section>
-      <h2 className={h2} style={{ margin: 0, marginLeft: '1rem' }}>
+      <h2
+        className={h2}
+        style={{ margin: 0, marginLeft: '1rem', marginTop: '80px' }}>
         {category}
       </h2>
       {subcategories.map(([subcategory, subcategoryIcons]) => (

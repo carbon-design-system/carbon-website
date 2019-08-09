@@ -1,8 +1,37 @@
+.filter-row {
+  display: flex;
+  align-items: flex-end;
+}
+
+.filter-row :global(.bx--search) {
+  width: 60%;
+  margin-right: 80px;
+}
+
+.filter-row :global(.bx--search .bx--search-input) {
+  height: 40px;
+}
+
+.filter-row :global(.bx--dropdown__wrapper) {
+  flex-grow: 1;
+}
+
+.category-title {
+  margin: 0;
+  margin-left: 1rem;
+  margin-top: 80px;
+}
+
+.subcategory-title {
+  margin: 0;
+  margin-top: 48px;
+  margin-left: 1rem;
+}
+
 .icon-grid {
   margin-top: $spacing-05;
   display: grid;
   width: 100%;
-  grid-gap: 1px;
   background-color: $ui-03;
   grid-template-columns: repeat(2, 1fr);
   overflow: hidden;
@@ -19,8 +48,10 @@
 .icon-grid::after {
   content: '';
   width: 600%;
-  background-color: #f3f3f3;
+  background-color: $ui-01;
 }
+
+$icon-card-border: 1px solid $ui-03;
 
 .icon-card {
   height: 0;
@@ -28,6 +59,64 @@
   padding-top: 100%;
   background-color: $ui-background;
   position: relative;
+  border-left: $icon-card-border;
+  border-top: $icon-card-border;
+  &:first-child {
+    border-left: none;
+  }
+
+  // first row
+  &:nth-child(-n + 2) {
+    border-top: none;
+  }
+
+  // every other card
+  &:nth-child(odd) {
+    border-left: none;
+  }
+}
+
+@include carbon--breakpoint('md') {
+  .icon-card {
+    // reset 2 column borders
+    &:nth-child(-n + 2) {
+      border-top: $icon-card-border;
+    }
+    &:nth-child(odd) {
+      border-left: $icon-card-border;
+    }
+
+    // first row of 4
+    &:nth-child(-n + 4) {
+      border-top: none;
+    }
+    // every 4th card (starting with 5th)
+    &:nth-child(4n + 1) {
+      border-left: none;
+    }
+  }
+}
+
+@include carbon--breakpoint('lg') {
+  .icon-card {
+    // reset 4 column borders
+    &:nth-child(-n + 4) {
+      border-top: $icon-card-border;
+    }
+    &:nth-child(4n + 1) {
+      border-left: $icon-card-border;
+    }
+
+    // first row of 6
+    &:nth-child(-n + 6) {
+      border-top: none;
+    }
+
+    // every 6th card (starting with 7th)
+    &:nth-child(6n + 1) {
+      border-left: none;
+    }
+  }
 }
 
 .icon-card-inside {
@@ -45,10 +134,17 @@
   height: 100%;
 }
 
-.name {
-  @include carbon--type-style('body-short-01');
+.icon-card-label {
+  @include carbon--type-style('label-01');
   position: absolute;
-  top: $spacing-05;
+  top: $spacing-04;
   left: $spacing-05;
   display: inline-block;
+
+  // text overflow
+  display: block;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: calc(100% - #{$spacing-07});
 }

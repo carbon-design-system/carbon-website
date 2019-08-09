@@ -5,14 +5,16 @@ import {
   iconCard,
   iconCardInside,
   flexContainer,
-  name,
+  iconCardLabel,
 } from './IconLibrary.module.scss';
 
 const IconCard = ({ icon }) => (
   <div className={iconCard}>
     <div className={iconCardInside}>
       <div className={flexContainer}>
-        <span className={name}>{icon.friendly_name}</span>
+        <span title={icon.friendly_name} className={iconCardLabel}>
+          {icon.friendly_name}
+        </span>
         <icon.Component>
           <title>{icon.friendly_name}</title>
         </icon.Component>
