@@ -1,3 +1,5 @@
+/* eslint-disable import/no-dynamic-require */
+/* eslint-disable global-require */
 import React from 'react';
 import { Link } from 'gatsby';
 import componentList from '../../data/components.json';
@@ -7,17 +9,20 @@ class ComponentOverview extends React.Component {
     const component = currentItem.component;
     let componentUrl;
     if (component === 'Multiselect') {
-      componentUrl = '/components/dropdown';
+      componentUrl = '/components/dropdown/code';
     } else if (component === 'UI shell') {
-      componentUrl = '/experimental/ui-shell';
+      componentUrl = '/components/UI-shell-header/code';
     } else {
-      componentUrl = `/components/${component.toLowerCase().replace(' ', '-')}`;
+      componentUrl = `/components/${component
+        .toLowerCase()
+        .replace(' ', '-')}/code`;
     }
 
     let componentImg;
     try {
       componentImg = require(`./images/${component}.svg`);
     } catch (e) {
+      // eslint-disable-next-line global-require
       componentImg = require('./images/NoImage.svg');
     }
 
