@@ -15,14 +15,14 @@ import {
 } from './IconLibrary.module.scss';
 
 const IconSubcategory = ({ subcategory, icons }) => (
-  <>
+  <li>
     <h3 className={cx(h3, subcategoryTitle)}>{subcategory}</h3>
-    <div className={iconGrid}>
+    <ul className={iconGrid}>
       {icons.map(icon => (
         <IconCard key={icon.name} icon={icon} />
       ))}
-    </div>
-  </>
+    </ul>
+  </li>
 );
 
 const IconCategory = ({ category, icons }) => {
@@ -32,13 +32,15 @@ const IconCategory = ({ category, icons }) => {
   return (
     <section className={iconCategory}>
       <h2 className={cx(h2, categoryTitle)}>{category}</h2>
-      {subcategories.map(([subcategory, subcategoryIcons]) => (
-        <IconSubcategory
-          key={subcategory}
-          subcategory={subcategory}
-          icons={subcategoryIcons}
-        />
-      ))}
+      <ul>
+        {subcategories.map(([subcategory, subcategoryIcons]) => (
+          <IconSubcategory
+            key={subcategory}
+            subcategory={subcategory}
+            icons={subcategoryIcons}
+          />
+        ))}
+      </ul>
     </section>
   );
 };

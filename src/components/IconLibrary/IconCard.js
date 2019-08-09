@@ -9,7 +9,7 @@ import {
 } from './IconLibrary.module.scss';
 
 const IconCard = ({ icon }) => (
-  <div className={iconCard}>
+  <li className={iconCard}>
     <div className={iconCardInside}>
       <div className={flexContainer}>
         <span title={icon.friendly_name} className={iconCardLabel}>
@@ -20,7 +20,7 @@ const IconCard = ({ icon }) => (
         </icon.Component>
       </div>
     </div>
-  </div>
+  </li>
 );
 
 export default IconCard;
