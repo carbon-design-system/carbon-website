@@ -1,5 +1,5 @@
 import { keyBy } from 'lodash';
-import { icons as iconMetaData } from '../../data/metadata.json';
+import { icons as iconMetaData } from '@carbon/icons/metadata.json';
 
 const flattenedIconMetaData = iconMetaData.flatMap(
   ({ variants, ...parent }) => {

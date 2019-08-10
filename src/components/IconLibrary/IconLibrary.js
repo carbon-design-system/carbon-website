@@ -37,12 +37,14 @@ const IconLibrary = () => {
           icon.friendly_name
             .toLowerCase()
             .includes(searchInputValue.toLowerCase()) ||
-          icon.categories[0].subcategory
-            .toLowerCase()
-            .includes(searchInputValue.toLowerCase()) ||
-          icon.aliases.some(alias =>
-            alias.toLowerCase().includes(searchInputValue.toLowerCase())
-          )
+          (icon.categories.length > 0 &&
+            icon.categories[0].subcategory
+              .toLowerCase()
+              .includes(searchInputValue.toLowerCase())) ||
+          (icon.aliases.length > 0 &&
+            icon.aliases.some(alias =>
+              alias.toLowerCase().includes(searchInputValue.toLowerCase())
+            ))
       );
 
   const categories = Object.entries(

@@ -19,9 +19,13 @@ const IconCard = ({ icon }) => (
         {icon.friendly_name}
       </TooltipDefinition>
       <div className={flexContainer}>
-        <icon.Component>
-          <title>{icon.friendly_name}</title>
-        </icon.Component>
+        {icon.Component ? (
+          <icon.Component>
+            <title>{icon.friendly_name}</title>
+          </icon.Component>
+        ) : (
+          <p>Error: no Component found for {icon.friendly_name}</p>
+        )}
       </div>
     </div>
   </li>
