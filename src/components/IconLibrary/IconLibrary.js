@@ -19,10 +19,12 @@ const IconLibrary = () => {
         iconsReact,
         (val, key) => key.slice(-2) === '32'
       );
+
       const iconArray = Object.keys(iconMetaData).map(icon => ({
         ...iconMetaData[icon],
+        // If the icon is unprefixed and starts with a number, add an underscore
         Component:
-          iconComponentList[`${icon}32`] ||
+          iconComponentList[isNaN(icon[0]) ? `${icon}32` : `_${icon}32`] ||
           iconComponentList[`WatsonHealth${icon}32`] ||
           iconComponentList[`Q${icon}32`],
       }));
@@ -37,7 +39,8 @@ const IconLibrary = () => {
           icon.friendly_name
             .toLowerCase()
             .includes(searchInputValue.toLowerCase()) ||
-          (icon.categories.length > 0 &&
+          (icon.categories &&
+            icon.categories[0] &&
             icon.categories[0].subcategory
               .toLowerCase()
               .includes(searchInputValue.toLowerCase())) ||

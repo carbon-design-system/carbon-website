@@ -1,6 +1,7 @@
 /* eslint-disable camelcase */
 import React from 'react';
 import { TooltipDefinition } from 'carbon-components-react';
+import { pascal } from 'change-case';
 import {
   iconCard,
   iconCardInside,
@@ -24,7 +25,7 @@ const IconCard = ({ icon }) => (
             <title>{icon.friendly_name}</title>
           </icon.Component>
         ) : (
-          <p>Error: no Component found for {icon.friendly_name}</p>
+          <p>Error: no component found for {pascal(icon.friendly_name)}</p>
         )}
       </div>
     </div>

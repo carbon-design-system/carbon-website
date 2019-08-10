@@ -1,5 +1,6 @@
 import { keyBy } from 'lodash';
 import { icons as iconMetaData } from '@carbon/icons/metadata.json';
+import { pascal } from 'change-case';
 
 const flattenedIconMetaData = iconMetaData.flatMap(
   ({ variants, ...parent }) => {
@@ -22,19 +23,6 @@ const flattenedIconMetaData = iconMetaData.flatMap(
   }
 );
 
-const iconData = keyBy(flattenedIconMetaData, obj => {
-  const friendlyNameArr = obj.friendly_name.split(' ');
-  const moduleName = friendlyNameArr
-    .map(word => {
-      // if the 'word' is a number at the end, use the an underscore prefix
-      if (!isNaN(word)) {
-        return `_${word}`;
-      }
-      // capitalize each word before joining
-      return word[0].toUpperCase() + word.slice(1);
-    })
-    .join('');
-  return moduleName;
-});
+const iconData = keyBy(flattenedIconMetaData, obj => pascal(obj.name));
 
 export default iconData;
