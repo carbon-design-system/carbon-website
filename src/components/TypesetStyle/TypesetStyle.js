@@ -836,13 +836,11 @@ const breakpoints = {
   max: Number(carbonBreakpoints.max.width.replace('rem', '')) * baseFontSize,
 };
 
-const nextLargerBreakpointPx = viewportWidth => {
-  return values(breakpoints)[indexOfCurrentBreakpoint(viewportWidth) + 1];
-};
+const nextLargerBreakpointPx = viewportWidth =>
+  values(breakpoints)[indexOfCurrentBreakpoint(viewportWidth) + 1];
 
-const indexOfCurrentBreakpoint = viewportWidth => {
-  return findLastIndex(values(breakpoints), width => viewportWidth >= width);
-};
+const indexOfCurrentBreakpoint = viewportWidth =>
+  findLastIndex(values(breakpoints), width => viewportWidth >= width);
 
 const isWithinBreakpoint = (viewportWidth, currentBreakpoint) => {
   if (viewportWidth === currentBreakpoint) return true;
@@ -909,28 +907,26 @@ class TypesetStyle extends React.Component {
   };
 
   getButtons = () =>
-    Object.keys(breakpoints).map(breakpointName => {
-      return (
-        <button
-          className={`${prefix}--typeset-style-button ${prefix}--type-body-long-01 ${
-            isWithinBreakpoint(
-              this.state.simulatedScreenWidth,
-              breakpoints[breakpointName]
-            )
-              ? 'selected'
-              : ''
-          }`}
-          value={breakpoints[breakpointName]}
-          selected={isWithinBreakpoint(
+    Object.keys(breakpoints).map(breakpointName => (
+      <button
+        className={`${prefix}--typeset-style-button ${prefix}--type-body-long-01 ${
+          isWithinBreakpoint(
             this.state.simulatedScreenWidth,
             breakpoints[breakpointName]
-          )}
-          onClick={this.toggleBreakpoint}
-          key={'breakpoint-tab' + breakpointName}>
-          {breakpointName}
-        </button>
-      );
-    });
+          )
+            ? 'selected'
+            : ''
+        }`}
+        value={breakpoints[breakpointName]}
+        selected={isWithinBreakpoint(
+          this.state.simulatedScreenWidth,
+          breakpoints[breakpointName]
+        )}
+        onClick={this.toggleBreakpoint}
+        key={`breakpoint-tab${breakpointName}`}>
+        {breakpointName}
+      </button>
+    ));
 
   render() {
     const {
