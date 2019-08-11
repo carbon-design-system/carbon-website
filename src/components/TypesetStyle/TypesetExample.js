@@ -163,7 +163,9 @@ const TypesetExample = props => (
                   <br />
                 )}
                 <div className={`${prefix}--typeset-example-code-style`}>
-                  <CodeSnippet type="inline">${type.name}</CodeSnippet>
+                  <CodeSnippet type="inline">
+                    ${type.name.split(' ')[0]}
+                  </CodeSnippet>
                 </div>
               </span>
             </div>
