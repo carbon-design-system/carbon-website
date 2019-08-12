@@ -48,9 +48,13 @@ const IconLibrary = () => {
             icon.categories[0].subcategory
               .toLowerCase()
               .includes(searchInputValue.toLowerCase())) ||
-          (icon.aliases.length > 0 &&
+          (icon.aliases &&
+            icon.aliases.length > 0 &&
             icon.aliases.some(alias =>
-              alias.toLowerCase().includes(searchInputValue.toLowerCase())
+              alias
+                .toString()
+                .toLowerCase()
+                .includes(searchInputValue.toLowerCase())
             ))
       );
 
