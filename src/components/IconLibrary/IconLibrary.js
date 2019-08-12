@@ -13,6 +13,7 @@ const IconLibrary = () => {
   const [iconComponents, setIconComponents] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('All icons');
   const [searchInputValue, setSearchInputValue] = useState('');
+  const [categoryList, setCategoryList] = useState([]);
 
   useEffect(() => {
     const iconComponentList = pickBy(
@@ -28,6 +29,8 @@ const IconLibrary = () => {
         iconComponentList[`WatsonHealth${icon}32`] ||
         iconComponentList[`Q${icon}32`],
     }));
+
+    setCategoryList(Object.entries(groupBy(iconArray, 'categories[0].name')));
     setIconComponents(iconArray);
   }, []);
 
@@ -76,7 +79,7 @@ const IconLibrary = () => {
           titleText="Category"
           onChange={({ selectedItem }) => setSelectedCategory(selectedItem)}
           label="Filter icons by category"
-          items={['All icons', ...categories.map(([category]) => category)]}
+          items={['All icons', ...categoryList.map(([category]) => category)]}
         />
       </div>
       {filteredCategories.map(([category, icons]) => (
