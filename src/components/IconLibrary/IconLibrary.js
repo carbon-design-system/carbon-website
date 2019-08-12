@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { Search, Dropdown } from 'carbon-components-react';
 import { pickBy, groupBy } from 'lodash';
+import * as iconsReact from '@carbon/icons-react';
 
 import iconMetaData from './iconMetaData';
 import { filterRow, iconLibrary } from './IconLibrary.module.scss';
@@ -14,22 +15,20 @@ const IconLibrary = () => {
   const [searchInputValue, setSearchInputValue] = useState('');
 
   useEffect(() => {
-    import('@carbon/icons-react').then(iconsReact => {
-      const iconComponentList = pickBy(
-        iconsReact,
-        (val, key) => key.slice(-2) === '32'
-      );
+    const iconComponentList = pickBy(
+      iconsReact,
+      (val, key) => key.slice(-2) === '32'
+    );
 
-      const iconArray = Object.keys(iconMetaData).map(icon => ({
-        ...iconMetaData[icon],
-        // If the icon is unprefixed and starts with a number, add an underscore
-        Component:
-          iconComponentList[isNaN(icon[0]) ? `${icon}32` : `_${icon}32`] ||
-          iconComponentList[`WatsonHealth${icon}32`] ||
-          iconComponentList[`Q${icon}32`],
-      }));
-      setIconComponents(iconArray);
-    });
+    const iconArray = Object.keys(iconMetaData).map(icon => ({
+      ...iconMetaData[icon],
+      // If the icon is unprefixed and starts with a number, add an underscore
+      Component:
+        iconComponentList[isNaN(icon[0]) ? `${icon}32` : `_${icon}32`] ||
+        iconComponentList[`WatsonHealth${icon}32`] ||
+        iconComponentList[`Q${icon}32`],
+    }));
+    setIconComponents(iconArray);
   }, []);
 
   const filteredIcons = !searchInputValue
