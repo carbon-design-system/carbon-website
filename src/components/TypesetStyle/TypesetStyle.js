@@ -158,7 +158,44 @@ const typeScale = {
       'letter-spacing': '0',
     },
   },
-
+  'productive-heading-06': {
+    sm: {
+      step: 9,
+      font: 'IBM Plex Sans',
+      'font-weight': '400',
+      'font-size': 2.625,
+      'line-height': 3.125,
+      'letter-spacing': '0',
+    },
+  },
+  'productive-heading-07': {
+    sm: {
+      step: 10,
+      font: 'IBM Plex Sans',
+      'font-weight': '300',
+      'font-size': 3.375,
+      'line-height': 4,
+      'letter-spacing': '0',
+    },
+  },
+  'expressive-heading-03': {
+    sm: {
+      step: 7,
+      font: 'IBM Plex Sans',
+      'font-weight': '400',
+      'font-size': 1.25,
+      'line-height': 1.625,
+      'letter-spacing': '0',
+    },
+    max: {
+      step: 13,
+      font: 'IBM Plex Sans',
+      'font-weight': '400',
+      'font-size': 1.5,
+      'line-height': 1.625,
+      'letter-spacing': '0',
+    },
+  },
   'expressive-heading-04': {
     sm: {
       step: 7,
@@ -201,7 +238,6 @@ const typeScale = {
       'letter-spacing': '0',
     },
   },
-
   'expressive-heading-05': {
     sm: {
       step: 8,
@@ -214,7 +250,7 @@ const typeScale = {
     md: {
       step: 9,
       font: 'IBM Plex Sans',
-      'font-weight': '400',
+      'font-weight': '300',
       'font-size': 2.25,
       'line-height': 2.75,
       'letter-spacing': '0',
@@ -222,7 +258,7 @@ const typeScale = {
     lg: {
       step: 10,
       font: 'IBM Plex Sans',
-      'font-weight': '400',
+      'font-weight': '300',
       'font-size': 2.625,
       'line-height': 3.125,
       'letter-spacing': '0',
@@ -230,7 +266,7 @@ const typeScale = {
     xlg: {
       step: 11,
       font: 'IBM Plex Sans',
-      'font-weight': '400',
+      'font-weight': '300',
       'font-size': 3,
       'line-height': 3.5,
       'letter-spacing': '0',
@@ -239,6 +275,48 @@ const typeScale = {
       step: 13,
       font: 'IBM Plex Sans',
       'font-weight': '300',
+      'font-size': 3.75,
+      'line-height': 4.375,
+      'letter-spacing': '0',
+    },
+  },
+  'expressive-heading-06': {
+    sm: {
+      step: 8,
+      font: 'IBM Plex Sans',
+      'font-weight': '600',
+      'font-size': 2,
+      'line-height': 2.5,
+      'letter-spacing': '0',
+    },
+    md: {
+      step: 9,
+      font: 'IBM Plex Sans',
+      'font-weight': '600',
+      'font-size': 2.25,
+      'line-height': 2.75,
+      'letter-spacing': '0',
+    },
+    lg: {
+      step: 10,
+      font: 'IBM Plex Sans',
+      'font-weight': '600',
+      'font-size': 2.625,
+      'line-height': 3.125,
+      'letter-spacing': '0',
+    },
+    xlg: {
+      step: 11,
+      font: 'IBM Plex Sans',
+      'font-weight': '600',
+      'font-size': 3,
+      'line-height': 3.5,
+      'letter-spacing': '0',
+    },
+    max: {
+      step: 13,
+      font: 'IBM Plex Sans',
+      'font-weight': '600',
       'font-size': 3.75,
       'line-height': 4.375,
       'letter-spacing': '0',
@@ -644,12 +722,12 @@ const typeSets = {
     {
       description: 'This is for component and layout headings.',
       key: 'heading-01',
-      name: 'heading-01',
+      name: 'productive-heading-01',
     },
     {
       description: 'This is for component and layout headings.',
       key: 'heading-02',
-      name: 'heading-02',
+      name: 'productive-heading-02',
     },
     {
       description: 'This is for component and layout headings.',
@@ -666,20 +744,33 @@ const typeSets = {
       key: 'productive-heading-05',
       name: 'productive-heading-05',
     },
+    {
+      description: 'This is for layout headings.',
+      key: 'productive-heading-06',
+      name: 'productive-heading-06',
+    },
+    {
+      description: 'This is for layout headings.',
+      key: 'productive-heading-07',
+      name: 'productive-heading-07',
+    },
   ],
-  fixedHeading: [
+  headings: [
     {
       description: 'This is for component and layout headings.',
       key: 'heading-01',
-      name: 'heading-01',
+      name: 'expressive-heading-01 (fixed)',
     },
     {
       description: 'This is for component and layout headings.',
       key: 'heading-02',
-      name: 'heading-02',
+      name: 'expressive-heading-02 (fixed)',
     },
-  ],
-  fluidHeadings: [
+    {
+      description: 'This is for component and layout headings.',
+      key: 'expressive-heading-03',
+      name: 'expressive-heading-03',
+    },
     {
       description: 'Heading style',
       key: 'expressive-heading-04',
@@ -690,8 +781,13 @@ const typeSets = {
       key: 'expressive-heading-05',
       name: 'expressive-heading-05',
     },
+    {
+      description: 'Heading style',
+      key: 'expressive-heading-06',
+      name: 'expressive-heading-06',
+    },
   ],
-  FluidParagraphsAndQuotes: [
+  paragraphsAndQuotes: [
     {
       description: 'Paragraph',
       key: 'expressive-paragraph-01',
@@ -708,7 +804,7 @@ const typeSets = {
       name: 'quotation-02',
     },
   ],
-  fluidDisplay: [
+  display: [
     {
       description: 'Display',
       key: 'display-01',
@@ -740,11 +836,11 @@ const breakpoints = {
   max: Number(carbonBreakpoints.max.width.replace('rem', '')) * baseFontSize,
 };
 
-const indexOfCurrentBreakpoint = viewportWidth =>
-  findLastIndex(values(breakpoints), width => viewportWidth >= width);
-
 const nextLargerBreakpointPx = viewportWidth =>
   values(breakpoints)[indexOfCurrentBreakpoint(viewportWidth) + 1];
+
+const indexOfCurrentBreakpoint = viewportWidth =>
+  findLastIndex(values(breakpoints), width => viewportWidth >= width);
 
 const isWithinBreakpoint = (viewportWidth, currentBreakpoint) => {
   if (viewportWidth === currentBreakpoint) return true;
@@ -764,7 +860,6 @@ class TypesetStyle extends React.Component {
 
   componentDidMount() {
     if (window.innerWidth < 500) {
-      // eslint-disable-next-line react/no-did-mount-set-state
       this.setState({
         mobile: true,
       });
@@ -772,6 +867,44 @@ class TypesetStyle extends React.Component {
     this.addResizeListener();
     this.addScrollListener();
   }
+
+  addScrollListener() {
+    document.addEventListener('scroll', () => {
+      if (this.refs.stickyBar) {
+        if (this.refs.stickyBar.getBoundingClientRect().top <= 104) {
+          this.setState({
+            sticky: true,
+          });
+        } else if (this.refs.stickyBar.getBoundingClientRect().top > 104) {
+          this.setState({
+            sticky: false,
+          });
+        }
+      }
+    });
+  }
+
+  addResizeListener() {
+    window.addEventListener('resize', () => {
+      if (window.innerWidth < 500) {
+        this.setState({
+          mobile: true,
+        });
+      } else if (window.innerWidth > 500) {
+        this.setState({
+          mobile: false,
+        });
+      }
+    });
+  }
+
+  toggleBreakpoint = e => {
+    this.setState({ simulatedScreenWidth: Number(e.target.value) });
+  };
+
+  toggleSet = value => {
+    this.setState({ tab: value });
+  };
 
   getButtons = () =>
     Object.keys(breakpoints).map(breakpointName => (
@@ -795,44 +928,6 @@ class TypesetStyle extends React.Component {
       </button>
     ));
 
-  toggleBreakpoint = e => {
-    this.setState({ simulatedScreenWidth: Number(e.target.value) });
-  };
-
-  toggleSet = value => {
-    this.setState({ tab: value });
-  };
-
-  addResizeListener() {
-    window.addEventListener('resize', () => {
-      if (window.innerWidth < 500) {
-        this.setState({
-          mobile: true,
-        });
-      } else if (window.innerWidth > 500) {
-        this.setState({
-          mobile: false,
-        });
-      }
-    });
-  }
-
-  addScrollListener() {
-    document.addEventListener('scroll', () => {
-      if (this.refs.stickyBar) {
-        if (this.refs.stickyBar.getBoundingClientRect().top <= 104) {
-          this.setState({
-            sticky: true,
-          });
-        } else if (this.refs.stickyBar.getBoundingClientRect().top > 104) {
-          this.setState({
-            sticky: false,
-          });
-        }
-      }
-    });
-  }
-
   render() {
     const {
       navBar,
@@ -852,7 +947,8 @@ class TypesetStyle extends React.Component {
     );
 
     return (
-      <div className={`${prefix}--typeset-style-container`}>
+      <div
+        className={`${prefix}--typeset-style-container ${prefix}--offset-lg-4`}>
         <StickyContainer
           navBar={navBar || true}
           banner={banner || true}
@@ -901,13 +997,16 @@ class TypesetStyle extends React.Component {
           {typesets
             .replace(', ', ',')
             .split(',')
-            .map(typeset => (
+            .map((typeset, i) => (
               <>
                 <h4 className="page-h4">
-                  {typeset.replace(/([a-z])([A-Z])/g, '$1 $2').toLowerCase()}
+                  {typeset
+                    .replace(/fixed/g, '')
+                    .replace(/([a-z])([A-Z])/g, '$1 $2')
+                    .toLowerCase()}
                 </h4>
                 <TypesetExample
-                  key={typeset}
+                  key={i}
                   simulatedScreenWidth={this.state.simulatedScreenWidth}
                   name={typeset}
                   typeSet={typeSets[typeset]}
