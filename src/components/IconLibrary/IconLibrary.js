@@ -5,7 +5,7 @@ import { pickBy, groupBy } from 'lodash';
 import * as iconsReact from '@carbon/icons-react';
 
 import iconMetaData from './iconMetaData';
-import { filterRow, iconLibrary } from './IconLibrary.module.scss';
+import { iconPage, filterRow, iconLibrary } from './IconLibrary.module.scss';
 
 import IconCategory from './IconCategory';
 
@@ -30,7 +30,9 @@ const IconLibrary = () => {
         iconComponentList[`Q${icon}32`],
     }));
 
-    setCategoryList(Object.entries(groupBy(iconArray, 'categories[0].name')));
+    setCategoryList(
+      Object.keys(groupBy(iconArray, 'categories[0].name')).sort()
+    );
     setIconComponents(iconArray);
   }, []);
 
@@ -62,7 +64,7 @@ const IconLibrary = () => {
       : categories.filter(([category]) => category === selectedCategory);
 
   return (
-    <div className={iconLibrary}>
+    <div className={iconPage}>
       <div className={filterRow}>
         <Search
           small
@@ -79,12 +81,14 @@ const IconLibrary = () => {
           titleText="Category"
           onChange={({ selectedItem }) => setSelectedCategory(selectedItem)}
           label="Filter icons by category"
-          items={['All icons', ...categoryList.map(([category]) => category)]}
+          items={['All icons', ...categoryList]}
         />
       </div>
-      {filteredCategories.map(([category, icons]) => (
-        <IconCategory key={category} category={category} icons={icons} />
-      ))}
+      <div className={iconLibrary}>
+        {filteredCategories.map(([category, icons]) => (
+          <IconCategory key={category} category={category} icons={icons} />
+        ))}
+      </div>
     </div>
   );
 };
