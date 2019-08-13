@@ -15,6 +15,7 @@ const IconLibrary = () => {
   const [selectedCategory, setSelectedCategory] = useState('All icons');
   const [searchInputValue, setSearchInputValue] = useState('');
   const [categoryList, setCategoryList] = useState([]);
+  const [categoriesLoaded, setCategoriesLoaded] = useState(false);
 
   useEffect(() => {
     const iconComponentList = pickBy(
@@ -34,6 +35,7 @@ const IconLibrary = () => {
     setCategoryList(
       Object.keys(groupBy(iconArray, 'categories[0].name')).sort()
     );
+    setCategoriesLoaded(true);
     setIconComponents(iconArray);
   }, []);
 
@@ -68,6 +70,8 @@ const IconLibrary = () => {
       ? categories
       : categories.filter(([category]) => category === selectedCategory);
 
+  const shouldShowNoResult = categoriesLoaded && filteredCategories.length < 0;
+
   return (
     <div className={iconPage}>
       <div className={filterRow}>
@@ -89,14 +93,14 @@ const IconLibrary = () => {
           items={['All icons', ...categoryList]}
         />
       </div>
-      {filteredCategories.length > 0 ? (
+      {shouldShowNoResult ? (
+        <NoResult />
+      ) : (
         <div className={iconLibrary}>
           {filteredCategories.map(([category, icons]) => (
             <IconCategory key={category} category={category} icons={icons} />
           ))}
         </div>
-      ) : (
-        <NoResult />
       )}
     </div>
   );
