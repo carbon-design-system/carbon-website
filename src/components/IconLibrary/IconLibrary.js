@@ -70,7 +70,7 @@ const IconLibrary = () => {
       ? categories
       : categories.filter(([category]) => category === selectedCategory);
 
-  const shouldShowNoResult = categoriesLoaded && filteredCategories.length < 0;
+  const shouldShowNoResult = categoriesLoaded && filteredCategories.length < 1;
 
   return (
     <div className={iconPage}>
