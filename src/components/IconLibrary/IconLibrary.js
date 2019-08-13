@@ -1,7 +1,7 @@
 /* eslint-disable no-debugger */
 import React, { useEffect, useState } from 'react';
 import { Search, Dropdown } from 'carbon-components-react';
-import { pickBy, groupBy } from 'lodash';
+import { pickBy, groupBy, debounce } from 'lodash';
 import * as iconsReact from '@carbon/icons-react';
 
 import iconMetaData from './iconMetaData';
@@ -16,6 +16,8 @@ const IconLibrary = () => {
   const [searchInputValue, setSearchInputValue] = useState('');
   const [categoryList, setCategoryList] = useState([]);
   const [categoriesLoaded, setCategoriesLoaded] = useState(false);
+
+  const debouncedSetSearchInputValue = debounce(setSearchInputValue, 200);
 
   useEffect(() => {
     const iconComponentList = pickBy(
@@ -39,27 +41,35 @@ const IconLibrary = () => {
     setIconComponents(iconArray);
   }, []);
 
-  const filteredIcons = !searchInputValue
-    ? iconComponents
-    : iconComponents.filter(
-        icon =>
-          icon.friendly_name
-            .toLowerCase()
-            .includes(searchInputValue.toLowerCase()) ||
-          (icon.categories &&
-            icon.categories[0] &&
-            icon.categories[0].subcategory
+  const getFilteredIcons = () => {
+    if (!searchInputValue) {
+      return iconComponents;
+    }
+    return iconComponents.filter(
+      // eslint-disable-next-line camelcase
+      ({ friendly_name, categories, aliases = [], name }) => {
+        const searchValue = searchInputValue.toLowerCase();
+        return (
+          friendly_name.toLowerCase().includes(searchValue) ||
+          aliases.some(alias =>
+            alias
+              .toString()
               .toLowerCase()
-              .includes(searchInputValue.toLowerCase())) ||
-          (icon.aliases &&
-            icon.aliases.length > 0 &&
-            icon.aliases.some(alias =>
-              alias
-                .toString()
-                .toLowerCase()
-                .includes(searchInputValue.toLowerCase())
-            ))
-      );
+              .includes(searchValue)
+          ) ||
+          (categories &&
+            categories[0] &&
+            categories[0].name.toLowerCase().includes(searchValue)) ||
+          (categories &&
+            categories[0] &&
+            categories[0].subcategory.toLowerCase().includes(searchValue)) ||
+          name.toLowerCase().includes(searchValue)
+        );
+      }
+    );
+  };
+
+  const filteredIcons = getFilteredIcons();
 
   const categories = Object.entries(
     groupBy(filteredIcons, 'categories[0].name')
@@ -79,7 +89,7 @@ const IconLibrary = () => {
           small
           light
           labelText="filter icons by searching for their name or subcategory"
-          onChange={e => setSearchInputValue(e.currentTarget.value)}
+          onChange={e => debouncedSetSearchInputValue(e.currentTarget.value)}
           placeHolderText={`Search by descriptors like "add", or "check"`}
         />
         <Dropdown
