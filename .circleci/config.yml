@@ -1,0 +1,19 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:10.15
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run:
+          name: Install yarn
+          command: |
+            curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.15.2
+      - run:
+          name: Install dependencies
+          command: PATH=$HOME/.yarn/bin:$PATH yarn install
+      - run:
+          name: Confirm project can build
+          command: |
+            PATH=$HOME/.yarn/bin:$PATH yarn build
