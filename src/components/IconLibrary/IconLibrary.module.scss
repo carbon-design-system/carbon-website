@@ -1,7 +1,9 @@
 .icon-page {
-  margin-left: -1rem;
-  margin-right: -1rem;
-  min-height: 100vh;
+  margin-left: -$spacing-05;
+  margin-right: -$spacing-05;
+
+  // prevent jank when icons load
+  min-height: 60vh;
 }
 
 .filter-row {
@@ -19,7 +21,7 @@
 .filter-row :global(.bx--search) {
   @include carbon--breakpoint('md') {
     width: 60%;
-    margin-right: 80px;
+    margin-right: $spacing-11;
   }
 }
 
@@ -43,14 +45,14 @@
 
 .icon-category .category-title {
   margin: 0;
-  margin-left: 1rem;
-  margin-top: 80px;
+  margin-left: $spacing-05;
+  margin-top: $spacing-11;
 }
 
 .icon-category .subcategory-title {
   margin: 0;
-  margin-top: 48px;
-  margin-left: 1rem;
+  margin-top: $spacing-09;
+  margin-left: $spacing-05;
 }
 
 // i.e. fallback
@@ -75,6 +77,7 @@
   }
 }
 
+// covers the excess space at the end of a grid
 .icon-grid::after {
   content: '';
   width: 600%;
@@ -175,4 +178,22 @@ $icon-card-border: 1px solid $ui-03;
   overflow-x: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.no-result h2 {
+  margin: 0;
+  margin-left: $spacing-05;
+  margin-top: $spacing-11;
+}
+
+.no-result p {
+  margin: 0;
+  margin-top: $spacing-06;
+  margin-left: $spacing-05;
+  max-width: 400px;
+}
+
+.no-result :global(.resource-card-group) {
+  margin-left: 0;
+  margin-top: $spacing-06;
 }

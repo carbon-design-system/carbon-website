@@ -8,6 +8,7 @@ import iconMetaData from './iconMetaData';
 import { iconPage, filterRow, iconLibrary } from './IconLibrary.module.scss';
 
 import IconCategory from './IconCategory';
+import NoResult from './NoResult';
 
 const IconLibrary = () => {
   const [iconComponents, setIconComponents] = useState([]);
@@ -88,11 +89,15 @@ const IconLibrary = () => {
           items={['All icons', ...categoryList]}
         />
       </div>
-      <div className={iconLibrary}>
-        {filteredCategories.map(([category, icons]) => (
-          <IconCategory key={category} category={category} icons={icons} />
-        ))}
-      </div>
+      {filteredCategories.length > 0 ? (
+        <div className={iconLibrary}>
+          {filteredCategories.map(([category, icons]) => (
+            <IconCategory key={category} category={category} icons={icons} />
+          ))}
+        </div>
+      ) : (
+        <NoResult />
+      )}
     </div>
   );
 };

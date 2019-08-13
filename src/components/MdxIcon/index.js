@@ -6,12 +6,14 @@ import sketch from './icons/sketch.svg';
 import ase from './icons/ase.png';
 import codesandbox from './icons/codesandbox.svg';
 import codepen from './icons/codepen.svg';
+import illustrator from './icons/illustrator.svg';
 
 const localIcons = {
   sketch,
   ase,
   codesandbox,
   codepen,
+  illustrator,
 };
 
 const carbonIcons = {
