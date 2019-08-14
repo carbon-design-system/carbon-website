@@ -16,12 +16,24 @@ jobs:
       uses: actions/setup-node@v1
       with:
         version: 10.x
+    - name: install and build
+      run: |
+        yarn install
+        yarn build
+
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@master
+    - name: Use Node.js 10.x
+      uses: actions/setup-node@v1
+      with:
+        version: 10.x 
     - name: Login and push
       run: |
-      # Install `ibmcloud` CLI
       curl -fsSL https://clis.ng.bluemix.net/install/linux | sh
 
-      # Login and push next manifest
       ibmcloud login \
         --apikey $CLOUD_API_KEY \
         -a https://api.ng.bluemix.net \
