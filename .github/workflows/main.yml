@@ -8,7 +8,7 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@master
@@ -19,9 +19,10 @@ jobs:
     - name: install cloud cli
       run: |
         curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
-    - name: ibmcloud login
+    - name: api key??
       with:
         API_KEY: ${{ secrets.API_KEY }}
+    - name: ibmcloud login
       run: |
         ibmcloud login -a "https://cloud.ibm.com" -u apikey -p "API_KEY" -o "carbon-design-system" -s "production" -r "us-south"   
     - name: ibmcloud install plugins
