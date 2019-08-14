@@ -19,12 +19,10 @@ jobs:
     - name: install cloud cli
       run: |
         curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
-    - name: api key??
+    - name: ibmcloud login
       with:
         API_KEY: ${{ secrets.API_KEY }}
-    - name: ibmcloud login
-      run: |
-        ibmcloud login -a "https://cloud.ibm.com" -u apikey -p "API_KEY" -o "carbon-design-system" -s "production" -r "us-south"   
+      run: ibmcloud login -a "https://cloud.ibm.com" -u apikey -p "API_KEY" -o "carbon-design-system" -s "production" -r "us-south"   
     - name: ibmcloud install plugins
       run: |
         ibmcloud cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org
