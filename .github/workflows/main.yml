@@ -8,7 +8,7 @@ on:
 jobs:
   build:
 
-    runs-on: macOS-10.14
+    runs-on: ubuntu-18.04
 
     steps:
     - uses: actions/checkout@master
@@ -18,10 +18,10 @@ jobs:
         version: 10.x
     - name: testing stuff
       run: |
-        curl -fsSL https://clis.cloud.ibm.com/install/osx | sh
+        curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
         ibmcloud login -a "https://cloud.ibm.com" -u apikey -p "$API_KEY" -o "carbon-design-system" -s "production" -r "us-south"
         ibmcloud cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org
         ibmcloud cf install-plugin blue-green-deploy -f -r CF-Community
 
-        ibmcloud cf blue-green-deploy carbon-website -f manifest.random.yml --delete-old-apps
+        ibmcloud cf blue-green-deploy carbon-website-test -f manifest.test.yml --delete-old-apps
 
