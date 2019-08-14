@@ -1,5 +1,18 @@
 import React from 'react';
 import Footer from 'gatsby-theme-carbon/src/components/Footer';
+// eslint-disable-next-line
+import timestamp from 'raw-loader!../../../build-timestamp';
+import Packages from '../../../package.json';
+
+const currentYear = new Date().getFullYear();
+const lastUpdated = new Intl.DateTimeFormat(undefined, {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+}).format(new Date(Number(timestamp)));
+
+const version = Packages.dependencies['carbon-components'];
+const reactVersion = Packages.dependencies['carbon-components-react'];
 
 const Content = () => (
   <>
@@ -13,13 +26,13 @@ const Content = () => (
       </a>
     </p>
     <p>
-      Vanilla Components version 10.4.1
+      Vanilla Components version {version}
       <br />
-      React Components version 7.4.1
+      React Components version {reactVersion}
       <br />
-      Last updated August 2, 2019
+      Last updated {lastUpdated}
       <br />
-      Copyright © 2019 IBM
+      Copyright © {currentYear} IBM
     </p>
   </>
 );
