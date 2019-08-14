@@ -30,11 +30,12 @@ jobs:
       uses: actions/setup-node@v1
       with:
         version: 10.x 
-    - name: Install `ibmcloud` CLI
+    - name: Install and deploy
       run: |
+       # Install `ibmcloud` CLI
       curl -fsSL https://clis.ng.bluemix.net/install/linux | sh
-    - name: Login and push
-      run: |
+
+       # Login and push manifest
       ibmcloud login --apikey $CLOUD_API_KEY -a https://api.ng.bluemix.net -o carbon-design-system -s production
       ibmcloud cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org
       ibmcloud cf install-plugin blue-green-deploy -f -r CF-Community
