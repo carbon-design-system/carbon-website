@@ -14,13 +14,13 @@ jobs:
     - uses: actions/checkout@master
     - name: Use Node.js 10.x
       uses: actions/setup-node@v1
-      env:
+      with:
         version: 10.x
     - name: install cloud cli
       run: |
         curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
     - name: ibmcloud login
-      with:
+      env:
         API_KEY: ${{ secrets.API_KEY }}
       run: ibmcloud login -a "https://cloud.ibm.com" -u apikey -p "$API_KEY" -o "carbon-design-system" -s "production" -r "us-south"   
     - name: ibmcloud install plugins
