@@ -13,7 +13,7 @@ ibmcloud login --sso  -a https://api.stage1.ng.bluemix.net  -o 'carbon@us.ibm.co
 ibmcloud cf push -f manifest.random.yml
 ```
 
-## Live
+## Production
 
 ```bash
 # Build
