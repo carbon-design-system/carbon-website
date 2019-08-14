@@ -1,5 +1,6 @@
 import React from 'react';
 import ResourceCard from 'gatsby-theme-carbon/src/components/ResourceCard';
+import Link from 'gatsby-theme-carbon/src/components/Link';
 import { Column, Row } from 'gatsby-theme-carbon';
 import {
   h2,
@@ -9,9 +10,18 @@ import {
 import MdxIcon from '../MdxIcon';
 import { noResult } from './IconLibrary.module.scss';
 
-const NoResult = () => (
+const NoResult = ({ allIconResults, setSelectedCategory }) => (
   <div className={noResult}>
-    <h2 className={h2}>No result found</h2>
+    {allIconResults ? (
+      <h2 className={h2}>
+        {allIconResults} matches found in{' '}
+        <Link onClick={() => setSelectedCategory('All icons')} href="#">
+          all icons.
+        </Link>
+      </h2>
+    ) : (
+      <h2 className={h2}>No result found</h2>
+    )}
     <p className={paragraph}>
       It appears we don’t have an icon that matches your search. Try different
       search terms or give us a hand—submit your own design to the library!

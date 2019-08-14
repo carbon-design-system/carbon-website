@@ -25,8 +25,26 @@
   }
 }
 
+.filter-row :global(.bx--dropdown--light) {
+  background: $ui-background !important;
+}
+
+.filter-row :global(.bx--list-box__menu) {
+  max-height: none;
+  z-index: 5000;
+}
+
+.filter-row :global(.bx--list-box__menu-item) {
+  background-color: $ui-background;
+}
+
 .filter-row :global(.bx--search .bx--search-input) {
   height: 40px;
+}
+
+.filter-row :global(.bx--search .bx--search-close) {
+  height: 40px;
+  width: 40px;
 }
 
 .filter-row :global(.bx--dropdown__wrapper) {
@@ -65,7 +83,6 @@
   margin-top: $spacing-05;
   display: grid;
   width: 100%;
-  background-color: $ui-03;
   grid-template-columns: repeat(2, 1fr);
 
   @include carbon--breakpoint('md') {
@@ -75,13 +92,6 @@
   @include carbon--breakpoint('lg') {
     grid-template-columns: repeat(6, 1fr);
   }
-}
-
-// covers the excess space at the end of a grid
-.icon-grid::after {
-  content: '';
-  width: 600%;
-  background-color: $ui-01;
 }
 
 $icon-card-border: 1px solid $ui-03;
@@ -178,6 +188,11 @@ $icon-card-border: 1px solid $ui-03;
   overflow-x: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.no-result a {
+  font-size: 1em;
+  text-decoration: underline;
 }
 
 .no-result h2 {

@@ -104,7 +104,10 @@ const IconLibrary = () => {
         />
       </div>
       {shouldShowNoResult ? (
-        <NoResult />
+        <NoResult
+          setSelectedCategory={setSelectedCategory}
+          allIconResults={filteredIcons.length}
+        />
       ) : (
         <div className={iconLibrary}>
           {filteredCategories.map(([category, icons]) => (
