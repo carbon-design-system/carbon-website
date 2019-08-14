@@ -16,12 +16,17 @@ jobs:
       uses: actions/setup-node@v1
       with:
         version: 10.x
-    - name: testing stuff
+    - name: install cloud cli
       run: |
         curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
-        ibmcloud login -a "https://cloud.ibm.com" -u apikey -p "$API_KEY" -o "carbon-design-system" -s "production" -r "us-south"
+    - name: ibmcloud login
+      run: |
+        ibmcloud login -a "https://cloud.ibm.com" -u apikey -p "$API_KEY" -o "carbon-design-system" -s "production" -r "us-south"   
+    - name: ibmcloud install plugins
+      run: |
         ibmcloud cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org
         ibmcloud cf install-plugin blue-green-deploy -f -r CF-Community
-
+    - name: ibmcloud deploy
+      run: |
         ibmcloud cf blue-green-deploy carbon-website-test -f manifest.test.yml --delete-old-apps
 
