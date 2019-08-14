@@ -33,6 +33,8 @@ jobs:
     - name: Install `ibmcloud` CLI
       run: |
       curl -fsSL https://clis.ng.bluemix.net/install/linux | sh
+    - name: Login and push
+      run: |
       ibmcloud login --apikey $CLOUD_API_KEY -a https://api.ng.bluemix.net -o carbon-design-system -s production
       ibmcloud cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org
       ibmcloud cf install-plugin blue-green-deploy -f -r CF-Community
