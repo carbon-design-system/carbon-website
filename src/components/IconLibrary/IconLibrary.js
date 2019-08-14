@@ -96,7 +96,7 @@ const IconLibrary = () => {
           id="category-filter"
           direction="bottom"
           light
-          initialSelectedItem="All icons"
+          selectedItem={selectedCategory}
           titleText="Category"
           onChange={({ selectedItem }) => setSelectedCategory(selectedItem)}
           label="Filter icons by category"
@@ -105,6 +105,7 @@ const IconLibrary = () => {
       </div>
       {shouldShowNoResult ? (
         <NoResult
+          selectedCategory={selectedCategory}
           setSelectedCategory={setSelectedCategory}
           allIconResults={filteredIcons.length}
         />
