@@ -7,6 +7,7 @@ import {
   iconCardInside,
   flexContainer,
   tooltipDefinition,
+  triggerText,
 } from './IconLibrary.module.scss';
 
 const IconCard = ({ icon }) => (
@@ -17,7 +18,7 @@ const IconCard = ({ icon }) => (
         direction="top"
         className={tooltipDefinition}
         tooltipText={icon.friendly_name}>
-        {icon.friendly_name}
+        <span className={triggerText}>{icon.friendly_name}</span>
       </TooltipDefinition>
       <div className={flexContainer}>
         {icon.Component ? (
