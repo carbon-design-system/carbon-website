@@ -1,6 +1,7 @@
 import React from 'react';
+import cx from 'classnames';
 import { LogoGithub32, Bee32 } from '@carbon/icons-react';
-import { mdxIcon } from './MdxIcon.module.scss';
+import { mdxIcon, iconInverse } from './MdxIcon.module.scss';
 
 import sketch from './icons/sketch.svg';
 import ase from './icons/ase.png';
@@ -21,7 +22,11 @@ const carbonIcons = {
   bee: Bee32,
 };
 
-const MdxIcon = ({ name }) => {
+const iconColor = {
+  inverse: iconInverse,
+};
+
+const MdxIcon = ({ name, color }) => {
   if (localIcons[name]) {
     return (
       <img className={mdxIcon} alt={`${name} icon`} src={localIcons[name]} />
@@ -30,7 +35,7 @@ const MdxIcon = ({ name }) => {
 
   if (carbonIcons[name]) {
     const Icon = carbonIcons[name];
-    return <Icon className={mdxIcon} />;
+    return <Icon className={cx(mdxIcon, iconColor[color])} />;
   }
 
   return null;
