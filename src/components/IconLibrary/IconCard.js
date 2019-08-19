@@ -1,25 +1,17 @@
 /* eslint-disable camelcase */
 import React from 'react';
-import { TooltipDefinition } from 'carbon-components-react';
 import { pascal } from 'change-case';
 import {
   iconCard,
   iconCardInside,
   flexContainer,
-  tooltipDefinition,
   triggerText,
 } from './IconLibrary.module.scss';
 
 const IconCard = ({ icon }) => (
   <li className={iconCard}>
     <div className={iconCardInside}>
-      <TooltipDefinition
-        align="start"
-        direction="top"
-        className={tooltipDefinition}
-        tooltipText={icon.friendly_name}>
-        <span className={triggerText}>{icon.friendly_name}</span>
-      </TooltipDefinition>
+      <span className={triggerText}>{icon.friendly_name}</span>
       <div className={flexContainer}>
         {icon.Component ? (
           <icon.Component>
