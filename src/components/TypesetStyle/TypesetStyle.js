@@ -162,7 +162,7 @@ const typeScale = {
     sm: {
       step: 9,
       font: 'IBM Plex Sans',
-      'font-weight': '400',
+      'font-weight': '300',
       'font-size': 2.625,
       'line-height': 3.125,
       'letter-spacing': '0',
