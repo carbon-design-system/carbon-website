@@ -1,0 +1,109 @@
+# Carbon, GitHub, and you
+Every piece of Carbon lives on GitHub. The system is split into several repositories (buckets of code, conversations, and notes), and each of these live in the Carbon Design System organization. When you’re working to change to the system, whether it be to the website or to a component, your work will go through a series of steps before it becomes part of Carbon core.
+ 
+### Prerequisites
+* A public GitHub account. You can link this to your Enterprise account for easy transition between enterprise repos and public repos.
+* A text editor. We recommend [Visual Studio Code](https://code.visualstudio.com/).
+
+### Machine setup
+1. Install dependencies by copying and pasting this into your Terminal and pressing *enter*:
+
+`/usr/bin/ruby -e “$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)” && brew install yarn --without-node && curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash && nvm install v10 && nvm alias default v10`
+
+2. Navigate to the repo: https://github.com/carbon-design-system/carbon-www
+3. In the upper right-hand corner of the page, click the “Fork” button
+4. Once you’re on your fork’s page, you’ll see a green button in the top right that says “Clone or download.” Click that.
+5. Copy the address you see there. It should start with `https://` and end with `.git`. If it doesn’t, make sure you’re on HTTPS and not SSH.
+6. Open up your favorite command-line app like Terminal or Hyper.
+7. Navigate to the folder you want your repo in. If you’re trying to find your documents folder, type `cd Documents`
+8. Once you’ve successfully moved into your folder of choice, enter `git clone [link you copied from GitHub earlier]`
+9. Now you need to move into the new directory. Once the download finishes, enter `cd carbon-www`
+10. Set the master repository as your upstream with `git remote add upstream https://github.com/carbon-design-system/carbon-www.git`
+11. Last step! Install your dependencies simply by running `yarn`
+
+You’re ready to rock. Hop over to VSCode or your text editor of choice and open the `carbon-www` folder to get crackin’.
+
+### Definitions
+You can see the full [GitHub glossary](https://help.github.com/en/articles/github-glossary) if you come across any words you’re unfamiliar with. Here are the words you’ll need to be familiar with for our daily workflow.
+ 
+[GitHub](https://github.com/): A for-profit service that helps teams manage code bases.
+
+[Repository](https://help.github.com/en/articles/about-repositories): “A repository is like a folder for your project. Your project’s repository contains all of your project’s files and stores each file’s revision history. You can also discuss and manage your project’s work within the repository.”
+
+[Fork](https://help.github.com/en/articles/github-glossary#fork): “A fork is a personal copy of another user’s repository that lives on your account. Forks allow you to freely make changes to a project without affecting the original. Forks remain attached to the original, allowing you to submit a pull request to the original’s author to update with your changes. You can also keep your fork up to date by pulling in updates from the original.”
+
+[Clone](https://help.github.com/en/articles/github-glossary#fork): “A clone is a copy of a repository that lives on your computer instead of on a website’s server somewhere, or the act of making that copy. With your clone you can edit the files in your preferred editor and use Git to keep track of your changes without having to be online. It is, however, connected to the remote version so that changes can be synced between the two. You can push your local changes to the  [remote](https://help.github.com/en/articles/github-glossary#remote)  to keep them synced when you’re online.”
+
+[Branch](https://help.github.com/en/articles/github-glossary#branch): “A branch is a parallel version of a repository. It is contained within the repository, but does not affect the primary or master branch allowing you to work freely without disrupting the ‘live’ version. When you’ve made the changes you want to make, you can merge your branch back into the master branch to publish your changes.”
+
+[Upstream](https://help.github.com/en/articles/github-glossary#upstream): “When talking about a branch or a fork, the primary branch on the original repository is often referred to as the ‘upstream’, since that is the main place that other changes will come in from. The branch/fork you are working on is then called the ‘downstream’.
+
+[Commit](https://help.github.com/en/articles/github-glossary#commit): “A commit, or ‘revision’, is an individual change to a file (or set of files). It’s like when you *save* a file, except with Git, every time you save it creates a unique ID (a.k.a. the ‘SHA’ or ‘hash’) that allows you to keep record of what changes were made when and by who. Commits usually contain a commit message which is a brief description of what changes were made.”
+
+
+## Workflow
+Follow this workflow each time you plan to make new changes.
+
+**Make the changes locally.** This means you make the changes to a copy of Carbon that lives on your computer.
+
+**Push to your fork.** On GitHub, you’ll have an exact copy of the repository you’re trying to change. This is called a fork. The changes you made locally (on your computer) now need to be reflected on your copy online.
+
+**Open a pull request.** You’re asking for permission to integrate your changes into the official, master copy of Carbon.
+
+### Creating a new branch in VSCode
+1. Ensure you’re on your “master” branch. You can see what branch you’re on in the lower-left corner of the VSCode window. You can switch your branch by clicking on the branch name and selecting “master” from the dropdown.
+
+[image:E1E3B02D-C0F9-4D88-A4B1-6853A8366644-875-0000A8CC8C9590ED/branch.png]
+
+3. Sync your branch with the upstream version. Switch to the Git management tab on the left hand side.
+[image:02B0433B-CDC5-48DB-BDE3-D02B86EC34F3-875-0000A8E3EEA3DD99/branch.png]
+
+ Click the three dots above and to the right…
+[image:0F701238-106C-4123-A98C-61A64770B79E-875-0000A8E903318C6F/branch.png]
+
+And select “Pull”
+[image:60E12AC0-F307-4923-AD8B-D3E839EBC97D-875-0000A8FE995E10BE/dropdown.png]
+
+4. Create a new branch. Head down to the bottom left again, and from the dropdown select “Create new branch from…”
+[image:24F6E6A4-5256-4190-8BAF-F9A2DA2AD13B-875-0000A9246B48328B/new branch from.png]
+
+Name your branch. Make sure this is something you can remember. All 
+lowercase and words separated by a hyphen. Press _enter_.
+[image:7418EA25-441E-4B68-BE5C-725BD36C5DFA-875-0000A94F7049EC61/brilll words.png]
+
+Select “master” as this should be the basis for your new branch.
+[image:888B2954-C756-44C8-8656-6F31DA98A026-875-0000A9454B49AB52/from master.png]
+
+Success! You’ll now see in the bottom left that you’re on your new branch.
+[image:9A4C25FB-80C6-4144-9DC6-0D6EC442ACB0-875-0000A974CAF19E74/new branch in left.png]
+
+
+### New branch in the command line
+
+This is a faster, albeit slightly more intimidating way to create a new branch.
+
+1. Open your Terminal app or open terminal in VSCode. To open terminal in VSCode, use the `^~` shortcut (CTRL-tilde)
+2. Check your branch with `git status`
+3. If you aren’t on your master branch, switch with `git checkout master`
+4. Now update the master branch to be in sync with `git pull upstream master`
+5. Now you can create a new branch: `git checkout -b [your-new-branch]`
+_Note: Branch names must be all lowercase and there must be hyphens between the words_
+
+### Committing and pushing changes
+I typically do this with VSCode tools as I like to visualize what changes I’ll be pushing. If you’d like to do this from Terminal, I can write those steps as well.
+
+Before we push, we have to commit changes. That means that we decide what changes we want to include in the batch before sending the batch up to our “origin” repo with a commit.
+
+1. Head back over to the Git tab in VSCode
+2. You’ll see the files you changed listed here
+[image:7914848D-6E32-4DCB-BB03-8C0359395C17-875-0000AA60D09F885E/FA504018-9EB0-407B-9162-30DF3E7E4765.png]
+
+If you click on the file name, VSCode will open a view that highlights additions in green and removals in red.
+[image:64D0FC86-E946-451F-A580-F61D0B7D2F1D-875-0000AA7008C3B783/446F1F4F-12F3-47E7-B97C-F59D9A56D4D7.png]
+
+Now we “stage” the changes. We do this by clicking the “+” next to the changed file. If you want to stage all changes, select the “+” that appears next to “CHANGES”
+
+3. Now, we commit our changes. Do this by clicking checkmark at the top of the panel.
+[image:DB737A8E-B29B-49DC-A12C-8F75E9D98E1A-875-0000AAC2870DD807/commit.png]
+
+4. The changes are committed! The last step (before we go…_online_) is to push these changes. Click the three dots in the top right of the panel and select “Push to…” and choose “origin” from that dropdown panel.
