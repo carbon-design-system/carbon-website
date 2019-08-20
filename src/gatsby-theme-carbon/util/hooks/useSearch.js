@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
 
 const useAlgoliaSearch = () => {
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (
       typeof window === `undefined` ||
       typeof window.docsearch === `undefined`
@@ -12,11 +12,10 @@ const useAlgoliaSearch = () => {
         apiKey: `296ea0c1d0e96b2b04900d0f4d1a6329`,
         indexName: `carbondesignsystem`,
         inputSelector: `#doc-search`,
-        // set this to true if you need to debug css
-        debug: true,
+        debug: false,
       });
     }
-  });
+  }, [window.docsearch]);
 };
 
 export default useAlgoliaSearch;
