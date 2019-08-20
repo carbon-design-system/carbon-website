@@ -97,7 +97,6 @@ const IconLibrary = () => {
           direction="bottom"
           light
           selectedItem={selectedCategory}
-          titleText="Category"
           onChange={({ selectedItem }) => setSelectedCategory(selectedItem)}
           label="Filter icons by category"
           items={['All icons', ...categoryList]}
