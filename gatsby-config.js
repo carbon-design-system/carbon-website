@@ -16,7 +16,7 @@ module.exports = {
         iconPath: './src/images/favicon-32.png',
         titleType: 'append',
         repository: {
-          baseUrl: 'https://github.com/carbon-design-system/carbon-www',
+          baseUrl: 'https://github.com/carbon-design-system/carbon-website',
           subDirectory: '',
         },
       },
