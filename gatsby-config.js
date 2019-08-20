@@ -7,11 +7,12 @@ module.exports = {
       'IBM, design, system, Carbon, design system, Bluemix, styleguide, style, guide, components, library, pattern, kit, component, cloud',
   },
   plugins: [
+    'gatsby-plugin-lodash',
     {
       resolve: 'gatsby-theme-carbon',
       options: {
         mdxExtensions: ['.mdx'],
-        isSearchEnabled: true,
+        isSearchEnabled: false,
         iconPath: './src/images/favicon-32.png',
         titleType: 'append',
         repository: {

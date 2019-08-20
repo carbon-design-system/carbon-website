@@ -1,332 +1,121 @@
-import React from 'react';
-import { Search, Loading } from 'carbon-components-react';
-import ClickableTile from './ClickableTile';
-import MdxIcon from '../MdxIcon';
+/* eslint-disable no-debugger */
+import React, { useEffect, useState } from 'react';
+import { Search, Dropdown } from 'carbon-components-react';
+import { pickBy, groupBy, debounce } from 'lodash';
+import * as iconsReact from '@carbon/icons-react';
 
-const sizes = ['16', '20', '24', '32'];
+import iconMetaData from './iconMetaData';
+import { iconPage, filterRow, iconLibrary } from './IconLibrary.module.scss';
 
-/**
- * Provides support for our experimental icon library, `@carbon/icons-react`,
- * at the /experimental/iconography/library route
- */
-export default class IconLibrary extends React.Component {
-  state = {
-    /**
-     * The error if an error occurs while loading icons
-     */
-    errorLoadingIcons: null,
+import IconCategory from './IconCategory';
+import NoResult from './NoResult';
 
-    /**
-     * Icon data that we load from `@carbon/icons-react`
-     */
-    icons: null,
+const IconLibrary = () => {
+  const [iconComponents, setIconComponents] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState('All icons');
+  const [searchInputValue, setSearchInputValue] = useState('');
+  const [categoryList, setCategoryList] = useState([]);
+  const [categoriesLoaded, setCategoriesLoaded] = useState(false);
 
-    /**
-     * Initialize as loading by default since we need to fetch all the icons
-     */
-    isLoading: true,
+  const debouncedSetSearchInputValue = debounce(setSearchInputValue, 200);
 
-    /**
-     * Initialize with empty string value for search
-     */
-    searchValue: '',
-  };
+  useEffect(() => {
+    const iconComponentList = pickBy(
+      iconsReact,
+      (val, key) => key.slice(-2) === '32'
+    );
 
-  /**
-   * Filter the current icon set by the given search value. Will shortcircuit if
-   * searchValue is an empty string as all icons will be visible with that
-   * query.
-   */
-  filterIcons = () => {
-    this.setState(state => {
-      const { icons, searchValue } = state;
-      const filteredIcons = Object.keys(icons).filter(
-        icon =>
-          searchValue === '' || icon.toLowerCase().indexOf(searchValue) !== -1
-      );
-      return {
-        filteredIcons,
-        sections: createIconSections(icons, filteredIcons),
-      };
-    });
-  };
+    const iconArray = Object.keys(iconMetaData).map(icon => ({
+      ...iconMetaData[icon],
+      // If the icon is unprefixed and starts with a number, add an underscore
+      Component:
+        iconComponentList[isNaN(icon[0]) ? `${icon}32` : `_${icon}32`] ||
+        iconComponentList[`WatsonHealth${icon}32`] ||
+        iconComponentList[`Q${icon}32`],
+    }));
 
-  /**
-   * Handle the `onChange` event from the Search component. We take the value of
-   * the event and set it as the searchValue, we then defer an update with
-   * `filterIcons` after the state has changed.
-   */
-  handleOnChange = event => {
-    const searchValue = event.target.value.trim().toLowerCase();
-    this.setState(
-      {
-        searchValue,
-      },
-      () => {
-        this.filterIcons();
+    setCategoryList(
+      Object.keys(groupBy(iconArray, 'categories[0].name')).sort()
+    );
+    setCategoriesLoaded(true);
+    setIconComponents(iconArray);
+  }, []);
+
+  const getFilteredIcons = () => {
+    if (!searchInputValue) {
+      return iconComponents;
+    }
+    return iconComponents.filter(
+      // eslint-disable-next-line camelcase
+      ({ friendly_name, categories, aliases = [], name }) => {
+        const searchValue = searchInputValue.toLowerCase();
+        return (
+          friendly_name.toLowerCase().includes(searchValue) ||
+          aliases.some(alias =>
+            alias
+              .toString()
+              .toLowerCase()
+              .includes(searchValue)
+          ) ||
+          (categories &&
+            categories[0] &&
+            categories[0].name.toLowerCase().includes(searchValue)) ||
+          (categories &&
+            categories[0] &&
+            categories[0].subcategory.toLowerCase().includes(searchValue)) ||
+          name.toLowerCase().includes(searchValue)
+        );
       }
     );
   };
 
-  /**
-   * clear search state to reset view to default
-   */
-  handleClearSearch = event => {
-    event.preventDefault();
-    this.setState(
-      {
-        searchValue: '',
-      },
-      () => {
-        this.filterIcons();
-      }
-    );
-  };
+  const filteredIcons = getFilteredIcons();
 
-  /**
-   * When our component mounts, we need to fetch the icon data from
-   * `@carbon/react`
-   */
-  componentDidMount() {
-    import('@carbon/icons-react')
-      .then(result => {
-        const icons = Object.keys(result)
-          .filter(name => name !== 'Icon')
-          .reduce(
-            (acc, name) => ({
-              ...acc,
-              [name]: result[name],
-            }),
-            {}
-          );
-        const filteredIcons = Object.keys(icons);
-        this.setState({
-          icons,
-          filteredIcons,
-          sections: createIconSections(icons, filteredIcons),
-          isLoading: false,
-          error: null,
-        });
-      })
-      .catch(error => {
-        this.setState({
-          errorLoadingIcons: error,
-          isLoading: false,
-          icons: null,
-        });
-      });
-  }
-
-  render() {
-    const {
-      errorLoadingIcons,
-      filteredIcons,
-      isLoading,
-      sections,
-    } = this.state;
-
-    const search = (
-      <Search
-        light
-        className="icon-search bx--search--light" // search updated to support `light` prop in https://github.com/carbon-design-system/carbon/pull/3230
-        onChange={this.handleOnChange}
-        placeHolderText="Search by icon name"
-        aria-label="Icon library search"
-        value={this.state.searchValue}
-        labelText="Icon library search"
-      />
-    );
-
-    if (isLoading) {
-      return (
-        <div className="page">
-          {search}
-          {isLoading && <Loading />}
-        </div>
-      );
-    }
-
-    if (errorLoadingIcons) {
-      console.error(errorLoadingIcons); // eslint-disable-line no-console
-      return (
-        <div className="page bx--row">
-          <div className="bx--col-lg-12">
-            <h3>Yikes! Looks like something went wrong.</h3>
-            <p>
-              We're still working out some problems in our experimental website.
-              If you can, we'd appreciate it if you could make an issue on{' '}
-              <a
-                href="https://github.com/carbon-design-system/carbon-website-gatsby"
-                rel="noopener noreferrer"
-                target="_blank">
-                our repo
-              </a>{' '}
-              to make sure that this gets fixed!
-            </p>
-          </div>
-        </div>
-      );
-    }
-
-    if (filteredIcons.length === 0) {
-      return (
-        <div className="page bx--row">
-          <div className="bx--col-lg-8 bx--no-gutter-md bx--no-gutter-lg">
-            {search}
-          </div>
-          <div className="icon-search--message bx--col-lg-12">
-            <p className="icon-search--message__no-results">
-              It appears we don’t have an icon that matches your search. Try
-              different search terms or give us a hand—submit your own design to
-              the library!
-            </p>
-          </div>
-          <div className="bx--col-lg-4 bx--col-md-3 bx--col-sm-4 bx--no-gutter-sm bx--no-gutter-md bx--no-gutter-lg">
-            <ClickableTile
-              title="Submit an icon design."
-              href="https://github.com/carbon-design-system/carbon/tree/master/packages/icons"
-              type="resource">
-              <MdxIcon name="github" />
-            </ClickableTile>
-          </div>
-        </div>
-      );
-    }
-
-    return (
-      <div className="page bx--row">
-        <div className="icon-search--wrapper bx--col-lg-8 bx--no-gutter-md bx--no-gutter-lg">
-          {search}
-          {this.state.searchValue || this.state.searchValue !== '' ? (
-            <p className="icon-search--status">
-              {filteredIcons.length} matches found! Or clear to{' '}
-              <button onClick={this.handleClearSearch}>view all</button> icons.
-            </p>
-          ) : (
-            ''
-          )}
-        </div>
-        <div className="bx--col-lg-12 bx--no-gutter-sm bx--no-gutter-md bx--no-gutter-lg">
-          {sections}
-        </div>
-      </div>
-    );
-  }
-}
-
-/**
- * Takes a flat object where the keys are icon names and transforms them into an
- * object where each key is a size and the value is an array of icons at that
- * size.
- */
-function groupIconsBySize(icons) {
-  return Object.keys(icons).reduce((acc, iconName) => {
-    const [group] = sizes.filter(size => iconName.indexOf(size) !== -1);
-    const friendlyName = iconName.replace(group, '');
-    if (!group) {
-      return acc;
-    }
-
-    const details = {
-      name: iconName,
-      friendlyName,
-      group,
-      Component: icons[iconName],
-    };
-
-    if (acc[group]) {
-      return {
-        ...acc,
-        [group]: acc[group].concat(details),
-      };
-    }
-
-    return {
-      ...acc,
-      [group]: [details],
-    };
-  }, {});
-}
-
-/**
- * Creates all the sections for the icons but filters by what icons are
- * available in filteredIcons. We use this method as part of our state
- * transformations above, instead of in the render method, because including
- * this in render causes noticeable jank in the UI. If we instead perform work
- * after the state transition for the search bar, then we get less noticeable
- * lag on the input.
- */
-function createIconSections(icons, filteredIcons) {
-  const groups = groupIconsBySize(icons);
-
-  return Object.keys(groups)
-    .filter(size => {
-      if (!Array.isArray(groups[size])) {
-        return false;
-      }
-      return groups[size].length !== 0;
-    })
-    .map(size => (
-      <section key={size} className="icon-size" aria-labelledby={`icon-h2`}>
-        <header>
-          <h2 className={`icon-h2`}>
-            {isNaN(size) ? size : `${size}x${size}`}
-          </h2>
-        </header>
-        <ul className="icons-list">
-          {renderIconList(groups[size], filteredIcons)}
-        </ul>
-      </section>
-    ));
-}
-
-/**
- * render list of available icons for this category.
- * if none are available, return a blank block
- */
-
-function renderIconList(categoryArray, filteredList) {
-  const displayedIconsList = categoryArray.filter(
-    icon => filteredList.indexOf(icon.name) !== -1
+  const categories = Object.entries(
+    groupBy(filteredIcons, 'categories[0].name')
   );
 
-  const displayedIcons = displayedIconsList.map(renderIcon);
+  const filteredCategories =
+    selectedCategory === 'All icons'
+      ? categories
+      : categories.filter(([category]) => category === selectedCategory);
 
-  if (displayedIcons.length > 0) {
-    return displayedIcons;
-  }
+  const shouldShowNoResult = categoriesLoaded && filteredCategories.length < 1;
 
   return (
-    <li className="icon__container">
-      <div className="bx--aspect-ratio bx--aspect-ratio--1x1">
-        <div className="icon__card bx--aspect-ratio--object" />
-        <p className="icon__card-no__results">
-          No results in this size.
-          <br />
-          <br />
-          Scale the closest size to use this icon.
-        </p>
+    <div className={iconPage}>
+      <div className={filterRow}>
+        <Search
+          small
+          light
+          labelText="filter icons by searching for their name or subcategory"
+          onChange={e => debouncedSetSearchInputValue(e.currentTarget.value)}
+          placeHolderText={`Search by descriptors like "add", or "check"`}
+        />
+        <Dropdown
+          id="category-filter"
+          direction="bottom"
+          light
+          selectedItem={selectedCategory}
+          onChange={({ selectedItem }) => setSelectedCategory(selectedItem)}
+          label="Filter icons by category"
+          items={['All icons', ...categoryList]}
+        />
       </div>
-    </li>
-  );
-}
-
-/**
- * Renders an individual icon
- * passing `null` renders no-results icon block
- */
-function renderIcon(icon) {
-  return (
-    <li key={icon.name} className="icon__container">
-      <div className="bx--aspect-ratio bx--aspect-ratio--1x1">
-        <div className="icon__card bx--aspect-ratio--object">
-          <icon.Component />
+      {shouldShowNoResult ? (
+        <NoResult
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
+          allIconResults={filteredIcons.length}
+        />
+      ) : (
+        <div className={iconLibrary}>
+          {filteredCategories.map(([category, icons]) => (
+            <IconCategory key={category} category={category} icons={icons} />
+          ))}
         </div>
-        <h5 className="icon__card-title" title={icon.name}>
-          {icon.name}
-        </h5>
-        <span className="icon__card-details" title={icon.name} />
-      </div>
-    </li>
+      )}
+    </div>
   );
-}
+};
+export default IconLibrary;
