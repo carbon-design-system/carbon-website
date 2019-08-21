@@ -6,6 +6,8 @@ import ReactGA from 'react-ga';
 import Prism from 'prismjs';
 import { Copy20, ChevronDown16 } from '@carbon/icons-react';
 
+import './prism.css';
+
 class CodeExample extends Component {
   static propTypes = {
     htmlFile: PropTypes.string,
