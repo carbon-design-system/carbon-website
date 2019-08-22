@@ -78,7 +78,7 @@ Here's what we're building – an informational section that has a heading and t
 
 ## Create components
 
-First we need files for the components, so create an `InfoSection` folder in `src/components`. Even though we're building multiple components, their names all start with `InfoSection`, so it makes sense to have them share one folder in components. Create these files:
+First we need files for the components, so create an `InfoSection` folder in `src/components`. Even though we're building multiple components, their names all start with `Info`, so it makes sense to have them share one folder in components. Create these files:
 
 ### Add files
 
@@ -219,7 +219,7 @@ _Note: At extra large viewports, we are using _`bx--col-xlg-3 bx--offset-xlg-1`_
 
 ## Use components
 
-Our styling is not complete yet, but with our components built let's put them to use. In `LandingPage.vue`, import the components towards the top of the script section. If you havent added a script section, do so now.
+Our styling is not complete yet, but with our components built let's put them to use. In `LandingPage.vue`, import the components towards the top of the script section. If you haven't added a script section, do so now.
 
 ##### src/views/LandingPage/LandingPage.vue
 
@@ -246,7 +246,7 @@ import Application32 from '@carbon/icons-vue/lib/application/32';
 
 _Note: You'll notice that these 32px icons aren't the pictograms as designed. The Carbon team is currently working on adding pictograms to the icons packages. Until then, we'll use the biggest SVGs._
 
-Don't forget to add the icons to the list of components used in our template. Wait a minute, are they being used by our template? Well yes and no. The components are going to be passed as an attribute rather than being used as a dom element. Vue treats this use case differently and instead of adding to the components property we need to assign the icons directly to the 'this' object. We can achieve this in a number of different ways, for example as data or computed propeties. The following is my preferred method when reactivity is not needed.
+Don't forget to add the icons to the list of components used in our template. Wait a minute, are they being used by our template? Well, yes and no. The components are going to be passed as an attribute rather than being used as a DOM element. Vue treats this use case differently and instead of adding to the components property, we need to assign the icons directly to the `this` object. We can achieve this in a number of different ways, for example as data or computed propeties. The following is our preferred method when reactivity is not needed.
 
 In the script section of the component add the lifecycle method `created()` to add the icons to the component.
 
@@ -319,7 +319,7 @@ _Note: Now is a good time to resize your browser from phone to extra large viewp
 
 ## Add styling
 
-Here's our design showing the spacing tokens that we need to add. We also need to set type style and borders.
+Here's our design showing the spacing tokens that we need to add. We also need to set the type style and borders.
 
 ![Info section spacing](../shared/step-4/images/info-spacing.png)
 
@@ -392,7 +392,7 @@ Also, the design has the last word in each subheading as bold. To accomplish tha
 
 ```javascript
 computed: {
-// Take in a phrase and separate the third word in an array
+  // Take in a phrase and separate the third word in an array
   splitHeading() {
     const splitHeading = this.heading.split(" ");
     const finalWord = splitHeading.pop();
