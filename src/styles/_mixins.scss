@@ -1,0 +1,48 @@
+$base-font-size: 16px;
+
+/// Convert px to rem
+/// @access public
+/// @param {Number} $px - Value of type in pixels
+/// @returns {Number} In rem
+/// @example rem(48px);
+/// @group global-typography
+/// @deprecated (For v10) Use `carbon--rem()`
+@function rem($px) {
+  @return ($px / $base-font-size) * 1rem;
+}
+
+/// Adds outline styles depending on specific type
+/// @access public
+/// @param {String} $type ['border'] - Type of outline from: `border`, `blurred`, `outline`, `invalid`, `reset`
+/// @example @include focus-outline('outline');
+/// @group global-helpers
+@mixin focus-outline($type: 'border') {
+  @if ($type == 'border') {
+    outline: 1px solid $focus;
+  }
+
+  @if ($type == 'blurred') {
+    box-shadow: 0 0 0 3px $focus;
+    outline: 1px solid transparent;
+  }
+
+  @if ($type == 'outline') {
+    outline: 2px solid $focus;
+    outline-offset: -2px;
+  }
+
+  @if ($type == 'outline-compat') {
+    border: 2px solid $focus;
+    box-sizing: border-box;
+  }
+
+  @if ($type == 'invalid') {
+    outline: 2px solid $support-01;
+    outline-offset: -2px;
+  }
+
+  @if ($type == 'reset') {
+    outline: 2px solid transparent;
+    outline-offset: -2px;
+  }
+}
