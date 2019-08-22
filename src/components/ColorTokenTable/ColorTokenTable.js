@@ -7,7 +7,7 @@ import {
   OverflowMenuItem,
 } from 'carbon-components-react';
 import { CopyToClipboard } from 'react-copy-to-clipboard/lib/Component';
-import colorTokens from './color-tokens';
+import colorTokens from '../../data/guidelines/color-tokens';
 
 const themes = ['white', 'g10', 'g90', 'g100'];
 
