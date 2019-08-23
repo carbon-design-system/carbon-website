@@ -1,0 +1,73 @@
+---
+title: Loading pattern
+---
+
+<PageDescription>
+  Loading is applied when additional information takes an extended amount of
+  time to process and appear on screen. Skeleton states and the loading
+  component are two interactions that communicate to users that data is
+  currently loading and the screen is not frozen.
+</PageDescription>
+
+## Skeleton states
+
+Skeleton states are simplified versions of Carbon components used on an initial page load to indicate that the information on the page has not entirely loaded yet. They should only appear for 1-3 seconds, disappearing once the actual content loads in.
+
+A Carbon skeleton state is shown as a stripped down, bare bones version of a component, using a `field-01` rectangular block for text. Motion is used in a skeleton state to convey that the page is not stuck loading but rather that data is still being pulled in.
+
+\*\* PICTURE
+
+\*\* Caption: Example of a text skeleton state in a data table.
+
+### Usage
+
+Skeleton states are not meant to represent every component on a page, but rather to illustrate the overall architecture of the page while it's loading. Typically, components that should have skeleton states are container-based components (tiles, structured list, etc.), data-based components (data tables, cards, etc.), and data-based text. Action components (button, input fields, checkboxes, toggle, etc.) do not need to have a skeleton state in most use cases, as they are not pulling in data and do not need additional time to load in.
+
+There are several components that should never be represented by a skeleton state since the data for these items should already be loaded in by the time a user interacts with them. These include:
+
+- toast notification
+- overflow menu
+- dropdown items
+- modal (elements inside a modal may have a skeleton state, however the modal itself should not be skeletonized)
+- small and large loader (used for other loading cases but not skeleton states)
+
+## Progressive loading
+
+When utilizing skeleton states, the order in which components, data, and content load in needs to be planned and designed for using the progressive loading technique. Progressive loading is when content loads in batches. The first batch to load should be the most simplified view of the page, followed by the secondary and tertiary batches, with each batch adding more page detail until the entire viewport has been loaded. The primary batch should illustrate a page's structural layout (the skeleton state versions of the container-based components), data-based text (the skeleton state version of text) and non-data text. Secondary and tertiary batches can include images, content below the fold, interactive (action-based) components, and/or data-based text. Remember that not all items need a skeleton state, but instead can be expressed as negative or white space until they load in. For example, a 600 x 600px image could be shown as a 600 x 600px area of white space until the secondary or tertiary batch when the full image loads in.
+
+\*\* image
+
+\*\* Caption: Example of a dashboard using skeleton states to demonstrate progressive loading
+
+## Loading components
+
+A loading component is a rotating shape indicating the application is processing and informing users that the system has reacted to an action taken.
+
+Use cases include:
+
+- When data processing takes more than a few seconds but no longer than one minute to load in
+- User-inputted data is being saved or submitted
+
+### Loading (large)
+
+The loading component should be used when the entire page is processing; for example, when data is being submitted or saved by the user.
+
+\*\* image
+
+\*\* Caption: Example of a large loader in context.
+
+### Inline loading
+
+The inline loading component is used when a single component is processing and appears inline to the relative component. For example, when a user tries to restart a stopped application, an inline loading component indicates the system is processing the restart request.
+
+\*\* image
+
+\*\* Caption: Example of an inline loader in context.
+
+## 'Load more' button
+
+A 'Load more' button may be used to extend a list where there are a large number of options (25 or more) that the user can choose from. It can also be used in cases where the list of options is populated via a database. Using 'Load more' allows the data to load in progressive batches.
+
+\*\* image
+
+\*\* Caption: Example of 'Load more' button in context.
