@@ -129,17 +129,13 @@ $ yarn add node-sass
 
 To avoid having to add the `~` prefix when importing SCSS files from `node_modules`, create a `.env` file at the project root that contains:
 
-##### .env
-
-```bash
+```bash path=.env
 SASS_PATH="node_modules"
 ```
 
 For the Windows operating system, use:
 
-##### .env
-
-```bash
+```bash  path=.env
 SASS_PATH=./node_modules
 ```
 
@@ -157,9 +153,7 @@ In the `src` directory, rename `index.css` as `index.scss`. Then in `index.js` u
 
 In `index.scss`, import the Carbon styles by adding the following at the top of the file:
 
-##### src/index.scss
-
-```scss
+```scss path=src/index.scss
 @import 'carbon-components/scss/globals/scss/styles.scss';
 ```
 
@@ -167,9 +161,7 @@ This will take a moment for the Sass to compile. Once compiled, you'll notice th
 
 Because any change to `index.scss` will re-compile all of the Carbon Sass, create an `app.scss` file in the `src` directory and in `App.js`, import that new file.
 
-##### src/App.js
-
-```javascript
+```javascript path=src/App.js
 import './app.scss';
 ```
 
@@ -177,18 +169,14 @@ _Note: To optimize our Sass compile time, we'll be adding app-specific styling t
 
 Next we'll import a `Button` from Carbon to test that our dependencies are working properly. At the top of `App.js`, import the `Button` by adding the following:
 
-##### src/App.js
-
-```javascript
+```javascript path=src/App.js
 import { Button } from 'carbon-components-react';
 ```
 
 In the `App` component return, you can now replace:
 
-##### src/App.js
-
 <!-- prettier-ignore-start -->
-```html
+```html path=src/App.js
 <div>
   Hello Carbon! Well, not quite yet. This is the starting point for the Carbon tutorial.
 </div>
@@ -197,10 +185,8 @@ In the `App` component return, you can now replace:
 
 with:
 
-##### src/App.js
-
 <!-- prettier-ignore-start -->
-```html
+```html path=src/App.js
 <Button>Button</Button>
 ```
 <!-- prettier-ignore-end -->
@@ -224,9 +210,7 @@ src/components/TutorialHeader
 
 In `index.scss` add the following feature-flag **above** the Carbon styles import like so:
 
-##### src/index.scss
-
-```scss
+```scss path=src/index.scss
 $feature-flags: (
   ui-shell: true,
 );
@@ -236,9 +220,7 @@ This is because our UI Shell is in experimental mode and the styles need to be m
 
 Next, in `app.scss`, we'll import our `TutorialHeader` styles. Your file should now look like this:
 
-##### src/app.scss
-
-```scss
+```scss path=src/app.scss
 @import './components/TutorialHeader/tutorial-header.scss';
 ```
 
@@ -246,18 +228,14 @@ Next, in `app.scss`, we'll import our `TutorialHeader` styles. Your file should 
 
 In `src/components/TutorialHeader/index.js`, import and export our `TutorialHeader` component like so:
 
-##### src/components/TutorialHeader/index.js
-
-```javascript
+```javascript path=src/components/TutorialHeader/index.js
 import TutorialHeader from './TutorialHeader';
 export default TutorialHeader;
 ```
 
 Next we'll import our Carbon UI Shell components into `TutorialHeader.js`. Set up the file like so:
 
-##### src/components/TutorialHeader/TutorialHeader.js
-
-```javascript
+```javascript path=src/components/TutorialHeader/TutorialHeader.js
 import React from 'react';
 import {
   Header,
@@ -295,9 +273,7 @@ _Note: It's important that the_ `TutorialHeader` _returns the Carbon_ `Header` _
 
 Now let's import the icons from our `@carbon/icons-react` elements package. In the `TutorialHeader.js` file, we need to import each individual icon we will use.
 
-##### src/components/TutorialHeader/TutorialHeader.js
-
-```javascript
+```javascript path=src/components/TutorialHeader/TutorialHeader.js
 import Notification20 from '@carbon/icons-react/lib/notification/20';
 import UserAvatar20 from '@carbon/icons-react/lib/user--avatar/20';
 import AppSwitcher20 from '@carbon/icons-react/lib/app-switcher/20';
@@ -305,17 +281,13 @@ import AppSwitcher20 from '@carbon/icons-react/lib/app-switcher/20';
 
 Then we need to add the `HeaderGlobalAction` component inside of the `HeaderGlobalBar` where we will add our icons. These represent actions in the header a user can make. Replace:
 
-##### src/components/TutorialHeader/TutorialHeader.js
-
-```html
+```html path=src/components/TutorialHeader/TutorialHeader.js
 <HeaderGlobalBar />
 ```
 
 With:
 
-##### src/components/TutorialHeader/TutorialHeader.js
-
-```html
+```html path=src/components/TutorialHeader/TutorialHeader.js
 <HeaderGlobalBar>
   <HeaderGlobalAction aria-label="Notifications">
     <Notification20 />
@@ -333,9 +305,7 @@ With:
 
 Next we'll render our UI Shell by importing our `TutorialHeader` component and `Content` into `App.js`. Your imports should look like this:
 
-##### src/App.js
-
-```javascript
+```javascript path=src/App.js
 import React, { Component } from 'react';
 import './app.scss';
 import { Button } from 'carbon-components-react';
@@ -345,9 +315,7 @@ import TutorialHeader from './components/TutorialHeader';
 
 Our `return` currently just contains a `Button`. Let's update that to include our imported components. This should look like the following:
 
-##### src/App.js
-
-```javascript
+```javascript path=src/App.js
 class App extends Component {
   render() {
     return (
@@ -400,9 +368,7 @@ src/content/RepoPage
 
 Next, we'll import our content Sass files in `app.scss`, like so:
 
-##### src/app.scss
-
-```scss
+```scss path=src/app.scss
 @import './components/TutorialHeader/tutorial-header.scss';
 @import './content/LandingPage/landing-page.scss';
 @import './content/RepoPage/repo-page.scss';
@@ -412,18 +378,14 @@ Next, we'll import our content Sass files in `app.scss`, like so:
 
 Now that our stylesheets are set up, we need to create our pages' components. Starting with `LandingPage`, just like with our header, we need to export the component in `src/content/LandingPage/index.js` by adding:
 
-##### src/content/LandingPage/index.js
-
-```javascript
+```javascript path=src/content/LandingPage/index.js
 import LandingPage from './LandingPage';
 export default LandingPage;
 ```
 
 Next in `LandingPage.js` we'll create our component.
 
-##### src/content/LandingPage/LandingPage.js
-
-```javascript
+```javascript path=src/content/LandingPage/LandingPage.js
 import React from 'react';
 
 const LandingPage = () => {
@@ -437,18 +399,14 @@ We'll repeat this process with `RepoPage`.
 
 In `src/content/RepoPage/index.js`, import and export the `RepoPage` component like so:
 
-##### src/content/RepoPage/index.js
-
-```javascript
+```javascript path=src/content/RepoPage/index.js
 import RepoPage from './RepoPage';
 export default RepoPage;
 ```
 
 Then in `RepoPage.js` create the component.
 
-##### src/content/RepoPage/RepoPage.js
-
-```javascript
+```javascript path=src/content/RepoPage/RepoPage.js
 import React from 'react';
 
 const RepoPage = () => {
@@ -471,9 +429,7 @@ $ yarn start
 
 First, we need to wrap our app in the `Router` component. In the root `index.js`, add the import:
 
-##### src/index.js
-
-```javascript
+```javascript path=src/index.js
 import { HashRouter as Router } from 'react-router-dom';
 ```
 
@@ -481,9 +437,7 @@ _Note: We're using_ `HashRouter` _instead of_ `BrowserRouter` _to simplify deplo
 
 Then, update the `render()` function to include the `Router`.
 
-##### src/index.js
-
-```javascript
+```javascript path=src/index.js
 ReactDOM.render(
   <Router>
     <App />
@@ -494,9 +448,7 @@ ReactDOM.render(
 
 In order to render our content pages, we need to add the following imports in `App.js` below our existing imports.
 
-##### src/App.js
-
-```javascript
+```javascript path=src/App.js
 import { Route, Switch } from 'react-router-dom';
 import LandingPage from './content/LandingPage';
 import RepoPage from './content/RepoPage';
@@ -508,10 +460,8 @@ Next thing we need to is update what we're returning in `App.js` . We currently 
 
 Now inside `Content` we'll add the following:
 
-##### src/App.js
-
 <!-- prettier-ignore-start -->
-```html
+```html path=src/App.js
 <Switch>
   <Route exact path="/" component={LandingPage} />
   <Route path="/repos" component={RepoPage} />
@@ -523,17 +473,13 @@ After that we need to do a couple quick fixes to the UI Shell to have it work wi
 
 Add the `Link` import in `TutorialHeader.js`:
 
-##### src/components/TutorialHeader/TutorialHeader.js
-
-```javascript
+```javascript path=src/components/TutorialHeader/TutorialHeader.js
 import { Link } from 'react-router-dom';
 ```
 
 We need to use the `Link` component instead of the default anchor elements to prevent full page reload when navigating to different pages with React Router. To use `Link`, update the `HeaderName` component to use the `element` prop and replace the `href` with `to`:
 
-##### src/components/TutorialHeader/TutorialHeader.js
-
-```javascript
+```javascript path=src/components/TutorialHeader/TutorialHeader.js
 <HeaderName element={Link} to="/" prefix="IBM">
   Carbon Tutorial
 </HeaderName>
@@ -541,9 +487,7 @@ We need to use the `Link` component instead of the default anchor elements to pr
 
 Do the same with the component that contains `href="/repos"`, updating to:
 
-##### src/components/TutorialHeader/TutorialHeader.js
-
-```javascript
+```javascript path=src/components/TutorialHeader/TutorialHeader.js
 <HeaderMenuItem element={Link} to="/repos">
   Repositories
 </HeaderMenuItem>
