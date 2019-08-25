@@ -71,9 +71,7 @@ You should see something similar to where the [previous step](/tutorial/react/st
 
 Before we get started with this step, we'll be adding some components that require IE11 polyfills. As shown in the [Carbon React documentation](https://github.com/carbon-design-system/carbon/blob/master/packages/react/.storybook/polyfills.js), go ahead and add these imports to the top of the root `index.js`. They aren't all needed, but we'll add them all to play it safe for the duration of the tutorial.
 
-##### src/index.js
-
-```javascript
+```javascript path=src/index.js
 import 'core-js/modules/es7.array.includes';
 import 'core-js/modules/es6.array.fill';
 import 'core-js/modules/es6.string.includes';
@@ -93,12 +91,10 @@ $ yarn add @carbon/grid
 
 In `index.scss`, we need to configure our grid to use 16 columns instead of the default 12 columns. We do this by adding `grid-columns-16: true` in our `$feature-flags`.
 
-##### src/index.scss
-
-```css
+```scss path=src/index.scss
 $feature-flags: (
   ui-shell: true,
-  grid-columns-16: true
+  grid-columns-16: true,
 );
 ```
 
@@ -126,9 +122,7 @@ We'll break this down into three rows. The first row with the gray background do
 
 We'll make rows like so:
 
-##### src/content/LandingPage/LandingPage.js
-
-```javascript
+```javascript path=src/content/LandingPage/LandingPage.js
 return (
   <div className="bx--grid bx--grid--full-width landing-page">
     <div className="bx--row landing-page__banner">
@@ -160,17 +154,13 @@ We'll start adding HTML elements and components by row.
 
 In our first row we'll need a `BreadCrumb` component. First, let's import the components we need. Because we'll be importing several components for this page, we'll import them directly from the `carbon-components-react` package instead of the direct path for each one.
 
-##### src/content/LandingPage/LandingPage.js
-
-```javascript
+```javascript path=src/content/LandingPage/LandingPage.js
 import { Breadcrumb, BreadcrumbItem } from 'carbon-components-react';
 ```
 
 We can now add our component to the first row, along with a header, like so:
 
-##### src/content/LandingPage/LandingPage.js
-
-```html
+```html path=src/content/LandingPage/LandingPage.js
 <div className="bx--row landing-page__banner">
   <div className="bx--col-lg-16">
     <Breadcrumb noTrailingSlash>
@@ -191,9 +181,7 @@ You may notice that the styles look off. Don't worry, we'll fix these later.
 
 In our second row we'll need `Tabs` and `Button` components. We'll update the `carbon-components-react` import to:
 
-##### src/content/LandingPage/LandingPage.js
-
-```javascript
+```javascript path=src/content/LandingPage/LandingPage.js
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -205,9 +193,7 @@ import {
 
 Before we can render the tabs, we need to add some props for the component after the import. These example props came from the [React Tabs Story](http://react.carbondesignsystem.com/?selectedKind=Tabs) in Storybook.
 
-##### src/content/LandingPage/LandingPage.js
-
-```javascript
+```javascript path=src/content/LandingPage/LandingPage.js
 const props = {
   tabs: {
     selected: 0,
@@ -224,9 +210,7 @@ const props = {
 
 Modify the second row to use the `Tab` component.
 
-##### src/content/LandingPage/LandingPage.js
-
-```html
+```html path=src/content/LandingPage/LandingPage.js
 <div className="bx--row landing-page__r2">
   <div className="bx--col bx--no-gutter">
     <Tabs {...props.tabs}>
@@ -270,7 +254,7 @@ _Note: We're using the grid for the page layout, but we also need to apply the g
 Hold up! If you were to run [DAP](https://www.ibm.com/able/dynamic-assessment-plug-in.html) to check for accessibility violations, you'd see `Multiple navigation landmarks must have unique labels specified with aria-label or aria-labelledby` because both the `Breadcrumb` and `Tabs` components use `<nav>` elements. To fix, add `aria-label` to the `Breadcrumb` opening tag:
 
 <!-- prettier-ignore-start -->
-```html
+```html 
 <Breadcrumb noTrailingSlash aria-label="Page navigation">
 ```
 <!-- prettier-ignore-end -->
@@ -278,16 +262,14 @@ Hold up! If you were to run [DAP](https://www.ibm.com/able/dynamic-assessment-pl
 Same goes for the `Tabs` opening tag:
 
 <!-- prettier-ignore-start -->
-```html
+```html 
 <Tabs {...props.tabs} aria-label="Tab navigation">
 ```
 <!-- prettier-ignore-end -->
 
 Next, we'll need to add a styling override to move the tabs to the right on large viewports. Create a file `_overrides.scss` in `src/content/LandingPage` with this declaration block.
 
-##### src/content/LandingPage/\_overrides.scss
-
-```scss
+```scss path=src/content/LandingPage/_overrides.scss
 .landing-page__r2 .bx--tabs__nav {
   right: 0;
 }
@@ -295,9 +277,7 @@ Next, we'll need to add a styling override to move the tabs to the right on larg
 
 Then in `_landing-page.scss` add this import at the top of the file.
 
-##### src/content/LandingPage/\_landing-page.scss
-
-```scss
+```scss path=src/content/LandingPage/_landing-page.scss
 @import './overrides.scss';
 ```
 
@@ -305,10 +285,8 @@ _Note: We don't have to include this in a separate file, but it's nice to keep o
 
 We can now add our images and text for each column in the first `Tab` in `LandingPage.js`.
 
-##### src/content/LandingPage/LandingPage.js
-
 <!-- prettier-ignore-start -->
-```html
+```html path=src/content/LandingPage/LandingPage.js
 <Tab {...props.tab} label="About">
   <div className="bx--grid bx--grid--no-gutter bx--grid--full-width">
     <div className="bx--row landing-page__tab-content">
@@ -340,9 +318,7 @@ We can now add our images and text for each column in the first `Tab` in `Landin
 
 Now let's set the image size in `_landing-page.scss`:
 
-##### src/content/LandingPage/\_landing-page.scss
-
-```scss
+```scss path=src/content/LandingPage/_landing-page.scss
 .landing-page__illo {
   max-width: 100%;
 }
@@ -354,9 +330,7 @@ Assuming that the second and third tab would have a similar design, we would set
 
 The third row will be created in a later tutorial, so we'll just add the headers for now.
 
-##### src/content/LandingPage/LandingPage.js
-
-```html
+```html path=src/content/LandingPage/LandingPage.js
 <div className="bx--row landing-page__r3">
   <div className="bx--col-md-4 bx--col-lg-4">
     <h3 className="landing-page__label">The Principles</h3>
@@ -371,9 +345,7 @@ The third row will be created in a later tutorial, so we'll just add the headers
 
 We've added basic layout styles in `_landing-page.scss`, so now let's add type, color and spacing styles to match the design. We'll be using our [spacing tokens](https://www.carbondesignsystem.com/guidelines/spacing). In `app.scss`, add these imports at the **top** of the file so we can use Carbon breakpoints, tokens, and typography Sass mixins and functions:
 
-##### src/app.scss
-
-```scss
+```scss path=src/app.scss
 @import 'carbon-components/scss/globals/scss/vendor/@carbon/type/scss/font-family.scss';
 @import 'carbon-components/scss/globals/scss/vendor/@carbon/layout/scss/breakpoint.scss';
 @import 'carbon-components/scss/globals/scss/typography.scss';
@@ -396,9 +368,7 @@ _Pro tip:_ `CTRL-G` _toggles the grid in Sketch._
 
 Back to `_landing-page.scss`, we need to add space above the breadcrumb and below the heading. For that, add:
 
-##### src/content/LandingPage/\_landing-page.scss
-
-```scss
+```scss path=src/content/LandingPage/_landing-page.scss
 .landing-page__banner {
   padding-top: $spacing-05;
   padding-bottom: $spacing-07 * 4;
@@ -411,9 +381,7 @@ Looking at the design, we need a wall-to-wall light gray background behind the b
 
 Add the following in `_mixins.scss`. Per the design we need to use Gray 10 for our banner background color, which can be set with the `$ui-01` [color token](https://www.carbondesignsystem.com/guidelines/color/usage). Also, we want the background to extend into the grid's outermost gutters to go the full width of the viewport, so given the DOM structure, we can achieve that by setting the background in an absolutely positioned pseudo element.
 
-##### src/content/LandingPage/\_mixins.scss
-
-```scss
+```scss path=src/content/LandingPage/_mixins.scss
 @mixin landing-page-background() {
   background-color: $ui-01;
   position: relative;
@@ -433,18 +401,14 @@ Add the following in `_mixins.scss`. Per the design we need to use Gray 10 for o
 
 After you have created `_mixins.scss`, import it at the **top** of `_landing-page.scss`. By now you should have two imports:
 
-##### src/content/LandingPage/\_landing-page.scss
-
-```scss
+```scss path=src/content/LandingPage/_landing-page.scss
 @import './mixins.scss';
 @import './overrides.scss';
 ```
 
 Now to use the new mixin, update the `.landing-page__banner` declaration block to:
 
-##### src/content/LandingPage/\_landing-page.scss
-
-```scss
+```scss path=src/content/LandingPage/_landing-page.scss
 .landing-page__banner {
   padding-top: $spacing-05;
   padding-bottom: $spacing-07 * 4;
@@ -466,9 +430,7 @@ Next, we can see that the `h1` is using the `heading-05` type token.
 
 The Sketch symbol naming is consistent with the development Sass tokens to help translate design to development. So, looking up the [type token](https://www.carbondesignsystem.com/guidelines/typography/productive), we know to use `productive-heading-05`:
 
-##### src/content/LandingPage/\_landing-page.scss
-
-```scss
+```scss path=src/content/LandingPage/_landing-page.scss
 .landing-page__heading {
   @include carbon--type-style('productive-heading-05');
 }
@@ -478,9 +440,7 @@ The Sketch symbol naming is consistent with the development Sass tokens to help 
 
 For our second row, we need to fix the tabs vertical positioning to match the design. By inspecting the tabs component, you can see that the tab height computes to `40px`. We can use that to create our negative top margin in rem units.
 
-##### src/content/LandingPage/\_landing-page.scss
-
-```scss
+```scss path=src/content/LandingPage/_landing-page.scss
 .landing-page__r2 {
   margin-top: rem(-40px);
 }
@@ -500,9 +460,7 @@ We also need to adjust our vertical spacing and type treatment. Like before, it'
 
 _Note: You may be wondering why there are vertical gaps between the type and spacers. Each type token has a line height that's suited for its font size. The vertical spacers adjacently touch the line height boundaries and not the baseline, for consistency as well as development ease so_ `margins` _and_ `paddings` _don't need to offset line heights._
 
-##### src/content/LandingPage/\_landing-page.scss
-
-```scss
+```scss path=src/content/LandingPage/_landing-page.scss
 .landing-page__tab-content {
   padding-top: $layout-05;
   padding-bottom: $layout-05;
@@ -538,9 +496,7 @@ _Note: You may be wondering why there are vertical gaps between the type and spa
 
 Let's also add some styles for the last row, even though that will get used later in the tutorial. You'll notice that we get to re-use the `landing-page-background` mixin that we just created.
 
-##### src/content/LandingPage/\_landing-page.scss
-
-```scss
+```scss path=src/content/LandingPage/_landing-page.scss
 .landing-page__r3 {
   padding-top: $spacing-09;
   padding-bottom: $spacing-09;
@@ -558,9 +514,7 @@ Ta-da! You should see a finished landing page! Now we can move on to the repo pa
 
 Now in our `RepoPage.js` we'll add our grid containers in the `return` section.
 
-##### src/content/RepoPage/RepoPage.js
-
-```javascript
+```javascript path=src/content/RepoPage/RepoPage.js
 return (
   <div className="bx--grid bx--grid--full-width bx--grid--no-gutter repo-page">
     <div className="bx--row repo-page__r1">
@@ -578,9 +532,7 @@ We currently have `RepoPage.js` that just contains a grid and placeholder conten
 
 First, we'll add our data table by importing a few components in `RepoTable.js`:
 
-##### src/content/RepoPage/RepoTable.js
-
-```javascript
+```javascript path=src/content/RepoPage/RepoTable.js
 import React from 'react';
 import {
   DataTable,
@@ -599,10 +551,8 @@ import {
 
 Then, let's create the `RepoTable` component and export it at the very bottom of the page.
 
-##### src/content/RepoPage/RepoTable.js
-
 <!-- prettier-ignore-start -->
-```javascript
+```javascript path=src/content/RepoPage/RepoTable.js
 const RepoTable = ({ rows, headers }) => {
   return (
     <DataTable
@@ -664,17 +614,13 @@ At this point, return to `RepoPage.js` because now we need to render a static `R
 
 Import `RepoTable` in `RepoPage.js`.
 
-##### src/content/RepoPage/RepoPage.js
-
-```javascript
+```javascript path=src/content/RepoPage/RepoPage.js
 import RepoTable from './RepoTable';
 ```
 
 Then below the imports, include the following arrays to pass into the `RepoTable` component. We'll be setting the `rows` array from an API in the next tutorial step, but for now, static example rows will suffice.
 
-##### src/content/RepoPage/RepoPage.js
-
-```javascript
+```javascript path=src/content/RepoPage/RepoPage.js
 const headers = [
   {
     key: 'name',
@@ -735,10 +681,8 @@ const rows = [
 
 Lastly in `RepoPage.js`, we need to simply replace `Data table will go here` with:
 
-##### src/content/RepoPage/RepoPage.js
-
 <!-- prettier-ignore-start -->
-```html
+```html path=src/content/RepoPage/RepoPage.js
 <RepoTable headers={headers} rows={rows} />
 ```
 <!-- prettier-ignore-end -->
@@ -749,9 +693,7 @@ Our styles for the repo page are mostly fine. We just need to update a few verti
 
 In `_repo-page.scss`, add the following styles:
 
-##### src/content/RepoPage/\_repo-page.scss
-
-```scss
+```scss path=src/content/RepoPage/_repo-page.scss
 .repo-page .bx--row {
   padding-top: $spacing-05;
   padding-bottom: $spacing-05;
