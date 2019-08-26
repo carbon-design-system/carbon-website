@@ -57,7 +57,7 @@ If you want to help improve the docs, it's a good idea to let others know what y
    upstream	   git@github.com/carbon-design-system/carbon-website.git (push)
    ```
 
-### Submitting an Issue
+### Submitting an issue
 
 Before you submit your issue, search the repository. Maybe your question was already answered.
 
