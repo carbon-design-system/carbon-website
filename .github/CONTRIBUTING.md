@@ -7,7 +7,7 @@ Want to contribute to this repository? Please read below first:
 - [Doc fixes](#doc-fixes)
 - [Submission guidelines](#submission-guidelines)
 
-## Issues and Bugs
+## Issues and bugs
 
 If you find a bug in the source code or a mistake in the documentation, you can help us by
 submitting an issue to this repo. Even better you can submit a Pull Request with a fix.
