@@ -52,11 +52,15 @@ cd carbon-tutorial-angular
 
 Add a remote called `upstream` so we can eventually submit a pull request once you have completed this tutorial step.
 
+##### SSH:
+
 ```bash
 git remote add upstream git@github.com:carbon-design-system/carbon-tutorial-angular.git
 ```
 
 Or, if you prefer to use HTTPS instead of SSH with your remotes:
+
+##### HTTPS:
 
 ```bash
 git remote add upstream https://github.com/carbon-design-system/carbon-tutorial-angular.git
@@ -99,13 +103,17 @@ git checkout -b angular-step-1 upstream/angular-step-1
 
 ### Add starter remote
 
-Add a temperary remote called `starter` so we can clone the [carbon-angular-starter](https://github.com/carbon-design-system/carbon-angular-starter).
+Add a temporary remote called `starter` so we can clone the [carbon-angular-starter](https://github.com/carbon-design-system/carbon-angular-starter).
+
+##### SSH:
 
 ```bash
 git remote add starter git@github.com:carbon-design-system/carbon-angular-starter.git
 ```
 
 Or, if you prefer to use HTTPS instead of SSH with your remotes:
+
+##### HTTPS:
 
 ```bash
 git remote add starter https://github.com/carbon-design-system/carbon-angular-starter.git
@@ -122,7 +130,7 @@ git pull --allow-unrelated-histories starter master
 
 ### Remove starter remote
 
-Remove the temperary remote called `starter` since we have no use for it anymore.
+Remove the temporary remote called `starter` since we have no use for it anymore.
 
 ```bash
 git remote remove starter
@@ -144,7 +152,7 @@ npm run start
 
 Your app should now be running with the message: `** Angular Live Development Server is listening on localhost:4200, open your browser on http://localhost:4200/ **`
 
-Thats it! Your browser should now resemble the preview above. You can skip [create your own](#create-your-own) and jump straight to [submit pull request](#submit-pull-request)
+That's it! Your browser should now resemble the preview above. You can skip [create your own](#create-your-own) and jump straight to [submit pull request](#submit-pull-request)
 
 ## Create your own
 
@@ -166,7 +174,7 @@ Thats it! Your browser should now resemble the preview above. You can skip [crea
 
 ## Install Angular CLI
 
-Since we are starting from scratch we need to first install Angular CLI
+Since we are starting from scratch, we need to first install Angular CLI
 
 ```bash
 npm install -g @angular/cli
@@ -244,11 +252,11 @@ npm run start
 
 Your app should now be running with the message: `** Angular Live Development Server is listening on localhost:4200, open your browser on http://localhost:4200/ **`
 
-Before we start adding components we want to start with an empty project, so delete everything in `app.component.html` except for the `router-outler`. We will also have to delete the test that was associated with this code. So in `app.component.spec.ts`, delete the `should render title in a h1 tag` test.
+Before we start adding components we want to start with an empty project, so delete everything in `app.component.html` except for the `router-outler`. We will also have to delete the test that was associated with this code. So in `app.component.spec.ts`, delete the `should render title` test.
 
 ## Creating Pages
 
-Next we’re going to create an Angular component called `StarterHome` using Angular CLI. We will also need a module and routing files.
+Next, we’re going to create an Angular component called `StarterHome` using Angular CLI. We will also need a module and routing files.
 
 ```bash
 ng g module starter-home --routing
@@ -270,7 +278,7 @@ src/app/starter-home
 
 ## Code style
 
-Next we will edit the code style to match Carbon angular recommendations. Through the conventions listed in our `tslint.js`, the app will look clean and easier to read and maintain. So replace your code in `tslint.json` with the code below.
+Next, we will edit the code style to match Carbon angular recommendations. Through the conventions listed in our `tslint.js`, the app will look clean and easier to read and maintain. So replace your code in `tslint.json` with the code below.
 
 ##### tslint.json
 
@@ -403,7 +411,6 @@ Next we will edit the code style to match Carbon angular recommendations. Throug
 			"check-preblock"
 		],
 
-		// [ENABLED, "attribute" | "element", "selectorPrefix" | ["listOfPrefixes"], "camelCase" | "kebab-case"]
 		"directive-selector": [true, "attribute", ["app", "test"], "camelCase"],
 		"component-selector": [true, "element", ["app", "test"], "kebab-case"],
 
@@ -423,7 +430,7 @@ Next we will edit the code style to match Carbon angular recommendations. Throug
 }
 ```
 
-Now that our guidelines are defined we need to apply them to our app.
+Now that our guidelines are defined, we need to apply them to our app.
 
 ```bash
 ng lint --fix
@@ -642,8 +649,8 @@ $feature-flags: (
 );
 
 body {
-  // To change the theme uncomment the below import and which ever carbon theme you want to use
-  // @import '~carbon-components/scss/globals/scss/vendor/@carbon/elements/scss/themes/theme-maps';
+  // To change the theme, uncomment the below import and whichever carbon theme you want to use
+  // @import "~carbon-components/scss/globals/scss/vendor/@carbon/elements/scss/themes/theme-maps";
   // $carbon--theme: $carbon--theme--g100;
   // $carbon--theme: $carbon--theme--g90;
   // $carbon--theme: $carbon--theme--g10;
@@ -787,7 +794,7 @@ self.addEventListener('fetch', e => {
 });
 ```
 
-Now we need to register our service worker and use it to cache files locally. In `index.html` add the below code in a script block under the `app-root` tag.
+Now we need to register our service worker and use it to cache files locally. In `index.html` add the below code in a script block using `<script></script>` under the `app-root` tag.
 
 ##### src/index.html
 
@@ -798,7 +805,7 @@ Now we need to register our service worker and use it to cache files locally. In
 console.error("Service worker error:", err); // }); // }
 ```
 
-Next we need to add the web app manifest. The manifest is a file in `json` format that provides the name, description, icon locations and other information required for an app to be considered a PWA. It lets users install the web app on the home screen just like native apps without going through an app store. Create a `manifest.json` in the `src` directory the paste the following code.
+Next, we need to add the web app manifest. The manifest is a file in `json` format that provides the name, description, icon locations and other information required for an app to be considered a PWA. It lets users install the web app on the home screen just like native apps without going through an app store. Create a `manifest.json` in the `src` directory the paste the following code.
 
 ##### src/manifest.json
 
@@ -850,7 +857,7 @@ Next we need to add the web app manifest. The manifest is a file in `json` forma
 }
 ```
 
-We will also need to add `sw.js` and `manifest.json` into our assets in `angular.json` and reference the `manifest.json` and `theme-color` in `index.html`. The theme color tells the browser with what color to tint UI elements such as the address bar.
+We will also need to add `sw.js` and `manifest.json` into our asset entities (build & test) in `angular.json` and reference the `manifest.json` and `theme-color` in the `index.html` `<head>` tags. The theme color tells the browser with what color to tint UI elements such as the address bar.
 
 ##### angular.json
 
@@ -870,15 +877,16 @@ We will also need to add `sw.js` and `manifest.json` into our assets in `angular
 <meta name="theme-color" content="#ffff00" />
 ```
 
-Finally, let's download the different sizes of icons to the `src/assests/icons` directory by running the following commands in that folder:
+Finally, let's download the different sizes of icons to the `src/assests/icons` directory by running the following commands:
 
 ```bash
-curl -o android-chrome-192x192.png https://raw.githubusercontent.com/carbon-design-system/carbon-angular-starter/master/src/assets/icons/android-chrome-192x192.png
-curl -o icon-144x144.png https://raw.githubusercontent.com/carbon-design-system/carbon-angular-starter/master/src/assets/icons/icon-144x144.png
-curl -o icon-192x192.png https://raw.githubusercontent.com/carbon-design-system/carbon-angular-starter/master/src/assets/icons/icon-192x192.png
-curl -o icon-256x256.png https://raw.githubusercontent.com/carbon-design-system/carbon-angular-starter/master/src/assets/icons/icon-256x256.png
-curl -o icon-384x384.png https://raw.githubusercontent.com/carbon-design-system/carbon-angular-starter/master/src/assets/icons/icon-384x384.png
-curl -o icon-512x512.png https://raw.githubusercontent.com/carbon-design-system/carbon-angular-starter/master/src/assets/icons/icon-512x512.png
+mkdir src/assets/icons
+curl -o src/assets/icons/android-chrome-192x192.png https://raw.githubusercontent.com/carbon-design-system/carbon-angular-starter/master/src/assets/icons/android-chrome-192x192.png
+curl -o src/assets/icons/icon-144x144.png https://raw.githubusercontent.com/carbon-design-system/carbon-angular-starter/master/src/assets/icons/icon-144x144.png
+curl -o src/assets/icons/icon-192x192.png https://raw.githubusercontent.com/carbon-design-system/carbon-angular-starter/master/src/assets/icons/icon-192x192.png
+curl -o src/assets/icons/icon-256x256.png https://raw.githubusercontent.com/carbon-design-system/carbon-angular-starter/master/src/assets/icons/icon-256x256.png
+curl -o src/assets/icons/icon-384x384.png https://raw.githubusercontent.com/carbon-design-system/carbon-angular-starter/master/src/assets/icons/icon-384x384.png
+curl -o src/assets/icons/icon-512x512.png https://raw.githubusercontent.com/carbon-design-system/carbon-angular-starter/master/src/assets/icons/icon-512x512.png
 ```
 
 ## Submit pull request

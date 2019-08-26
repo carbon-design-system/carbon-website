@@ -83,7 +83,7 @@ Before we start adding new components, we want to begin developing with a clean 
 },
 ```
 
-Next we're going to create an Angular component called `TutorialHeader` to use with the UI Shell Carbon component. Using Angular CLI we will create this component inside the `src/app` directory.
+Next, we're going to create an Angular component called `TutorialHeader` to use with the UI Shell Carbon component. Using Angular CLI we will create this component inside the `src/app` directory.
 
 ```bash
 ng g module tutorial-header --lint-fix
@@ -99,7 +99,6 @@ src/app/tutorial-header
 │   ├── tutorial-header.component.scss
 │   ├── tutorial-header.component.spec.ts
 │   └── tutorial-header.component.ts
-├── tutorial-header-routing.module.ts
 └── tutorial-header.module.ts
 ```
 
@@ -137,7 +136,8 @@ import { HeaderModule } from 'carbon-components-angular/ui-shell/ui-shell.module
 ```
 
 ```javascript
-imports: [HeaderModule];
+declarations: [ TutorialHeaderComponent ],
+imports: [ HeaderModule ]
 ```
 
 _Note: you can find a description of the different components used in UI Shell in our [carbon-components-angular](https://github.com/IBM/carbon-components-angular/tree/master/src/ui-shell) package._
@@ -146,7 +146,9 @@ _Note: you can find a description of the different components used in UI Shell i
 
 Now let's import the icons from our `@carbon/icons-angular` package. In `tutorial-header.module.ts` and `tutorial-header.component.spec.ts`, we need to import each individual icon we will use.
 
-##### src/tutorial-header/tutorial-header.module.ts, src/tutorial-header/tutorial-header/tutorial-header.component.spec.ts
+##### src/tutorial-header/tutorial-header.module.ts,
+
+##### src/tutorial-header/tutorial-header/tutorial-header.component.spec.ts
 
 ```javascript
 import { Notification20Module } from '@carbon/icons-angular/lib/notification/20';
@@ -197,7 +199,9 @@ And we will add some styling as well in `styles.scss`
 
 Next import the tutorial-header module in `app.module.ts` and `app.component.spec.ts` and add the component in `app.component.html`
 
-##### src/app/app.module.ts, src/app/app.component.spec.ts
+##### src/app/app.module.ts,
+
+##### src/app/app.component.spec.ts
 
 ```javascript
 import { TutorialHeaderModule } from './tutorial-header/tutorial-header.module';
@@ -230,7 +234,7 @@ And we will add some styling as well in `app.component.scss`
 
 Next thing we need to do is create the files for our content. These files will be located in the `app` folder inside of `src`. It should be a sibling of `tutorial-header`.
 
-Our app will have two pages. First we need a landing page. Let's start by running these commands:
+Our app will have two pages. First, we need a landing page. Let's start by running these commands:
 
 ```bash
 ng g module home --routing --lint-fix
@@ -354,7 +358,9 @@ $feature-flags: (
 
 Next we'll import our Carbon grid component into `home.module.ts` and `landing-page.component.spec.ts`.
 
-##### src/home/home.module.ts, src/home/landing-page/landing-page.component.spec.ts
+##### src/home/home.module.ts,
+
+##### src/home/landing-page/landing-page.component.spec.ts
 
 ```javascript
 import { GridModule } from 'carbon-components-angular';
@@ -418,7 +424,9 @@ We'll start adding HTML elements and components by row.
 
 In our first row we'll need a `Breadcrumb` component. First, let's import the components we need in `home.module.ts` and `landing-page.component.spec.ts`.
 
-##### src/home/home.module.ts, src/home/landing-page/landing-page.component.spec.ts
+##### src/home/home.module.ts,
+
+##### src/home/landing-page/landing-page.component.spec.ts
 
 ```javascript
 import { BreadcrumbModule, GridModule } from 'carbon-components-angular';
@@ -453,7 +461,9 @@ You may notice that the styles look off. Don't worry, we'll fix these later.
 
 In our second row we'll need `Tabs` and `Button` components also in `home.module.ts` and `landing-page.component.spec.ts`. We'll update the `carbon-components-angular` import to:
 
-##### src/home/home.module.ts, src/home/landing-page/landing-page.component.spec.ts
+##### src/home/home.module.ts,
+
+##### src/home/landing-page/landing-page.component.spec.ts
 
 ```javascript
 import {
@@ -801,7 +811,9 @@ Ta-da! You should see a finished landing page! Now we can move on to the repo pa
 
 First, we’ll add our grid and table by importing a few components in `repositories.module.ts` and `repo-page.component.spec.ts`:
 
-##### src/repositories/repositories.module.ts, src/repositories/repo-page/repo-page.component.spec.ts
+##### src/repositories/repositories.module.ts,
+
+##### src/repositories/repo-page/repo-page.component.spec.ts
 
 ```javascript
 import { GridModule, TableModule } from 'carbon-components-angular';
