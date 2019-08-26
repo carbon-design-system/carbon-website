@@ -7,7 +7,9 @@ import {
   OverflowMenuItem,
 } from 'carbon-components-react';
 import { CopyToClipboard } from 'react-copy-to-clipboard/lib/Component';
-import colorTokens from './color-tokens';
+import colorTokens from '../../data/guidelines/color-tokens';
+
+const themes = ['white', 'g10', 'g90', 'g100'];
 
 export default class ColorTokenTable extends React.Component {
   static propTypes = {};
@@ -59,7 +61,7 @@ export default class ColorTokenTable extends React.Component {
 
   switchTheme = theme => {
     this.setState({
-      theme: theme.name,
+      theme,
     });
   };
 
@@ -75,7 +77,10 @@ export default class ColorTokenTable extends React.Component {
   };
 
   renderValue = (token, tokenInfo) => {
-    const currentTheme = this.state.theme;
+    const currentTheme =
+      typeof this.state.theme === 'string'
+        ? this.state.theme
+        : themes[this.state.theme];
     const value = tokenInfo.value;
     let bgColor = value[currentTheme].hex;
     if (bgColor.substring(bgColor.length - 3, bgColor.length) === '50%') {
@@ -149,13 +154,10 @@ export default class ColorTokenTable extends React.Component {
           <ContentSwitcher
             className={themeSwitcherClasses}
             onChange={this.switchTheme}>
-            <Switch name="white" text={this.state.mobile ? 'Wte' : 'White'} />
-            <Switch name="g10" text={this.state.mobile ? 'G10' : 'Gray 10'} />
-            <Switch name="g90" text={this.state.mobile ? 'G90' : 'Gray 90'} />
-            <Switch
-              name="g100"
-              text={this.state.mobile ? 'G100' : 'Gray 100'}
-            />
+            <Switch text={this.state.mobile ? 'Wte' : 'White'} />
+            <Switch text={this.state.mobile ? 'G10' : 'Gray 10'} />
+            <Switch text={this.state.mobile ? 'G90' : 'Gray 90'} />
+            <Switch text={this.state.mobile ? 'G100' : 'Gray 100'} />
           </ContentSwitcher>
         </div>
         <div className="bx--col-lg-7">
