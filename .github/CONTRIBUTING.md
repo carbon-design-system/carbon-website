@@ -65,7 +65,7 @@ If your issue appears to be a bug, and hasn't been reported, open a new issue. H
 
 ### Submitting a Pull Request
 
-1. Search this repository for an open or closed Pull Request that relates to your submission. You don't want to duplicate effort.
+1. Search this repository for an open or closed pull request that relates to your submission. You don't want to duplicate effort.
 
 2. Pull the latest master branch from `upstream`:
 
