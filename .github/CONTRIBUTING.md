@@ -63,7 +63,7 @@ Before you submit your issue, search the repository. Maybe your question was alr
 
 If your issue appears to be a bug, and hasn't been reported, open a new issue. Help us to maximize the effort we can spend fixing issues and adding new features, by not reporting duplicate issues.
 
-### Submitting a Pull Request
+### Submitting a pull request
 
 1. Search this repository for an open or closed pull request that relates to your submission. You don't want to duplicate effort.
 
