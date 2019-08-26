@@ -1,5 +1,5 @@
 ---
-name: Accessibility Issue ♿
+name: Accessibility issue ♿
 about: Report an accessibility or usability issue
 title: ''
 labels: 'type: a11y'
