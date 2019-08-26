@@ -24,7 +24,7 @@ You can request a new feature by submitting an issue to this repo. Proposed feat
 
 If you want to help improve the docs, it's a good idea to let others know what you're working on to minimize duplication of effort. Comment on an issue to let others know what you're working on, or create a new issue if your work doesn't fit within the scope of any of the existing doc fix projects.
 
-**Please see the Submission Guidelines below**.
+**Please see the submission guidelines below**.
 
 ## Submission Guidelines
 
