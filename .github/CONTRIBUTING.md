@@ -3,7 +3,7 @@
 Want to contribute to this repository? Please read below first:
 
 - [Issues and bugs](#issues-and-bugs)
-- [Feature Requests](#feature-requests)
+- [Feature requests](#feature-requests)
 - [Doc Fixes](#doc-fixes)
 - [Submission Guidelines](#submission-guidelines)
 
