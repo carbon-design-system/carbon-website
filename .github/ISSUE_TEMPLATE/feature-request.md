@@ -24,7 +24,7 @@ Provide the business reasons for this request.
 
 Describe the full user experience for this feature. Also define the metrics by which we can measure success/failure for the user.
 
-### "Must have" functionality
+### Must-have functionality
 
 Highlight any "must have" needs and functionality for the request.
 
