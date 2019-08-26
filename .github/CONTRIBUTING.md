@@ -4,7 +4,7 @@ Want to contribute to this repository? Please read below first:
 
 - [Issues and bugs](#issues-and-bugs)
 - [Feature requests](#feature-requests)
-- [Doc Fixes](#doc-fixes)
+- [Doc fixes](#doc-fixes)
 - [Submission Guidelines](#submission-guidelines)
 
 ## Issues and Bugs
