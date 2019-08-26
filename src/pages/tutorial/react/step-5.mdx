@@ -74,9 +74,7 @@ Before we get started, [create an IBM Cloud account](https://cloud.ibm.com/regis
 
 So far we've been developing in a, well, development environment where static asset optimization hasn't been a priority. If you reference `/src/index.scss`, you'll see one `@import` that is pulling in Carbon's full Sass build.
 
-##### src/index.scss
-
-```scss
+```scss path=src/index.scss
 $feature-flags: (
   ui-shell: true,
   grid-columns-16: true,
@@ -87,9 +85,7 @@ $feature-flags: (
 
 To give you an idea of what's all included, open up `node_modules/carbon-components/scss/globals/scss/styles.scss`. You'll see imports for components like accordion, slider, tooltip, etc. Since we aren't using those components, let's exclude them from our built stylesheets. Keeping the `$feature-flags` Sass map, replace the `styles.scss` import with:
 
-##### src/index.scss
-
-```scss
+```scss path=src/index.scss
 // Feature flags
 $css--font-face: true;
 $css--plex: true;
@@ -132,9 +128,7 @@ _Note: If unfamiliar with buildpacks, the [staticfile buildpack docs](https://do
 
 With the Cloud Foundry CLI installed, next, we need to create a `manifest.yml` file in the root of the project. To prevent multiple apps trying to use the `carbon-tutorial` name, replace `USERNAME` with your GitHub username below to make sure our apps are uniquely named.
 
-##### manifest.yml
-
-```bash
+```bash path=manifest.yml
 ---
 applications:
   - name: carbon-tutorial-USERNAME
@@ -148,9 +142,7 @@ _Note: With this set-up we're still using a GitHub personal access token saved i
 
 Create a new static file in the root of the project named `Staticfile`. This tells the app to deploy from the `build` folder and not the root of the project.
 
-##### Staticfile
-
-```bash
+```bash path=Staticfile
 root: build
 ```
 
@@ -158,9 +150,7 @@ root: build
 
 After telling Cloud Foundry what to include, we can also specify what to ignore. Create a top-level `.cfignore` file. Cloud Foundry doesn't let you push read-only files (specifically, files with permissions <`400`), so to prevent issues with the deploy, add:
 
-##### .cfignore
-
-```bash
+```bash path=.cfignore
 node_modules/.cache
 ```
 
@@ -182,9 +172,7 @@ $ cf push -f manifest.yml
 
 To make it easy on ourselves by not needing to remember that command, let's add a script in `package.json`. We can combine the build and deploy steps to make sure we only deploy immediately after running the build. In the `"scripts"` object in `package.json`, add:
 
-##### package.json
-
-```bash
+```bash path=package.json
 "deploy": "rm -rf ./build && yarn build && cf push -f manifest.yml"
 ```
 
