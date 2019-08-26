@@ -12,7 +12,7 @@ Want to contribute to this repository? Please read below first:
 If you find a bug in the source code or a mistake in the documentation, you can help us by
 submitting an issue to this repo. Even better you can submit a Pull Request with a fix.
 
-**Please see the Submission Guidelines below**.
+**Please see the submission guidelines below**.
 
 ## Feature Requests
 
