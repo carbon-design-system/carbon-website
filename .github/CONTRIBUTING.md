@@ -26,7 +26,7 @@ If you want to help improve the docs, it's a good idea to let others know what y
 
 **Please see the submission guidelines below**.
 
-## Submission Guidelines
+## Submission guidelines
 
 ### Setup
 
