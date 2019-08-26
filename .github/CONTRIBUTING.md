@@ -14,7 +14,7 @@ submitting an issue to this repo. Even better you can submit a Pull Request with
 
 **Please see the submission guidelines below**.
 
-## Feature Requests
+## Feature requests
 
 You can request a new feature by submitting an issue to this repo. Proposed features (with suitable design documentation and reasoning) can be crafted and submitted to this repo as a Pull Request.
 
