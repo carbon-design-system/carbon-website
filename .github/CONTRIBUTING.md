@@ -35,16 +35,16 @@ If you want to help improve the docs, it's a good idea to let others know what y
 2. Navigate to your forked repository and copy the **SSH url**. Clone your fork by running the following in your terminal:
 
    ```
-   $ git clone git@github.com:{ YOUR_USERNAME }/design-language-website.git
-   $ cd design-language-website
+   $ git clone git@github.com:{ YOUR_USERNAME }/carbon-website.git
+   $ cd carbon-website
    ```
 
    See [GitHub docs](https://help.github.com/articles/fork-a-repo/) for more details on forking a repository.
 
-3. Once cloned, you will see `origin` as your default remote, pointing to your personal forked repository. Add a remote named `upstream` pointing to the main `design-language-website`:
+3. Once cloned, you will see `origin` as your default remote, pointing to your personal forked repository. Add a remote named `upstream` pointing to the main `carbon-website`:
 
    ```
-   $ git remote add upstream git@github.com:carbon-design-system/design-language-website.git
+   $ git remote add upstream git@github.com:carbon-design-system/carbon-website.git
    $ git remote -v
    ```
 
@@ -97,7 +97,7 @@ If your issue appears to be a bug, and hasn't been reported, open a new issue. H
    $ git push origin { YOUR_BRANCH_NAME }
    ```
 
-8. In GitHub, navigate to [carbon-design-system/design-language-website](https://github.com/carbon-design-system/carbon-website) and click the button that reads "Compare & pull request".
+8. In GitHub, navigate to [carbon-design-system/carbon-website](https://github.com/carbon-design-system/carbon-website) and click the button that reads "Compare & pull request".
 
 9. Write a title and description, the click "Create pull request".
 
