@@ -89,7 +89,7 @@ If your issue appears to be a bug, and hasn't been reported, open a new issue. H
    $ git commit -a -m "chore: Update header with newest designs, resolves #123"
    ```
 
-   **Note:** the optional commit -a command line option will automatically "add" and "rm" edited files. See [Close a commit via commit message](https://help.github.com/articles/closing-issues-via-commit-messages/) and [writing good commit messages](https://github.com/erlang/otp/wiki/Writing-good-commit-messages) for more details on commit messages.
+   **Note:** the optional commit `-a` command line option will automatically `add` and `rm` edited files. See [Close a commit via commit message](https://help.github.com/articles/closing-issues-via-commit-messages/) and [writing good commit messages](https://github.com/erlang/otp/wiki/Writing-good-commit-messages) for more details on commit messages.
 
 7. Once ready for feedback from other contributors and maintainers, **push your commits to your fork** (be sure to run `yarn ci-check` before pushing, to make sure your code passes linting and unit tests):
 
