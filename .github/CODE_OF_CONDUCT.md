@@ -4,7 +4,7 @@ This is a place to ask questions, work through any challenges, and share ideas a
 
 ### TLDR;
 
-- **Be respectful & understanding.** Not all of us will agree all the time, but disagreement is no excuse for poor behavior or poor manners. It is important that we resolve disagreements and differing views constructively.
+- **Be respectful and understanding.** Not all of us will agree all the time, but disagreement is no excuse for poor behavior or poor manners. It is important that we resolve disagreements and differing views constructively.
 
 * **Be welcoming.** We strive to be a community that welcomes and supports people of all backgrounds and identities.
 
