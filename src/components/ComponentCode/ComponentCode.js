@@ -38,19 +38,21 @@ export default class ComponentCode extends React.Component {
     }
 
     return (
-      <div className="component-variation">
-        <ComponentExample
-          codepenSlug={codepen}
-          component={component}
-          variation={variation}
-          htmlFile={htmlFile}
-          hideViewFullRender={this.props.hideViewFullRender}
-          hasLightVersion={hasLightVersion}
-          hasReactVersion={hasReactVersion}
-          hasAngularVersion={hasAngularVersion}
-          hasVueVersion={hasVueVersion}
-          experimental={experimental}
-        />
+      <div className="component-variation bx--row">
+        <div className="bx--col-lg-12 bx--no-gutter">
+          <ComponentExample
+            codepenSlug={codepen}
+            component={component}
+            variation={variation}
+            htmlFile={htmlFile}
+            hideViewFullRender={this.props.hideViewFullRender}
+            hasLightVersion={hasLightVersion}
+            hasReactVersion={hasReactVersion}
+            hasAngularVersion={hasAngularVersion}
+            hasVueVersion={hasVueVersion}
+            experimental={experimental}
+          />
+        </div>
       </div>
     );
   }
