@@ -47,12 +47,12 @@ const colorTokens = {
       role: ['Secondary interactive color', 'Secondary button'],
       value: {
         white: {
-          name: 'Gray 100',
-          hex: '#171717',
+          name: 'Gray 80',
+          hex: '#3d3d3d',
         },
         g10: {
-          name: 'Gray 100',
-          hex: '#171717',
+          name: 'Gray 80',
+          hex: '#3d3d3d',
         },
         g90: {
           name: 'Gray 60',
@@ -327,6 +327,27 @@ const colorTokens = {
         g100: {
           name: 'Blue 40',
           hex: '#6ea6ff',
+        },
+      },
+    },
+    '$inverse-link': {
+      role: ['Links on $inverse-02 backgrounds'],
+      value: {
+        white: {
+          name: 'Blue 40',
+          hex: '#6ea6ff',
+        },
+        g10: {
+          name: 'Blue 40',
+          hex: '#6ea6ff',
+        },
+        g90: {
+          name: 'Blue 60',
+          hex: '#0062ff',
+        },
+        g100: {
+          name: 'Blue 60',
+          hex: '#0062ff',
         },
       },
     },
@@ -858,6 +879,27 @@ const colorTokens = {
         g100: {
           name: 'Gray 90 hover',
           hex: '#353535',
+        },
+      },
+    },
+    '$inverse-hover-ui': {
+      role: ['Hover for $inverse-02'],
+      value: {
+        white: {
+          name: 'Gray 80 hover',
+          hex: '#4c4c4c',
+        },
+        g10: {
+          name: 'Gray 80 hover',
+          hex: '#4c4c4c',
+        },
+        g90: {
+          name: 'Gray 10 hover',
+          hex: '#e5e5e5',
+        },
+        g100: {
+          name: 'Gray 10 hover',
+          hex: '#e5e5e5',
         },
       },
     },
