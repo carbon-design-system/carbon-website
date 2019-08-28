@@ -1,0 +1,25 @@
+name: Test install IBM Cloud cli
+
+on: 
+  pull_request:
+    branches:
+    - master
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@master
+    - name: Use Node.js 10.x
+      uses: actions/setup-node@v1
+      with:
+        version: 10.x
+    - name: Install ibmcloud cli
+      run: |
+        curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
+    - name: Login to ibmcloud
+      env:
+        API_KEY: ${{ secrets.API_KEY }}
+      run: ibmcloud login -a "https://cloud.ibm.com" -u apikey -p "$API_KEY" -o "carbon-design-system" -s "production" -r "us-south"   
