@@ -1,6 +1,6 @@
 # Carbon Design System
 
-This is the [Carbon Design System website](http://www.carbondesignsystem.com) which is built using the [gatsby-theme-carbon](https://gatsby-theme-carbon.now.sh/) with GatsbyJS.
+This is the [Carbon Design System website](http://www.carbondesignsystem.com). It's built using the [gatsby-theme-carbon](https://gatsby-theme-carbon.now.sh/) with GatsbyJS.
 
 ## 📂 Structure
 
@@ -15,23 +15,23 @@ src
 ├── util
 ```
 
-## 👩‍💻 Development
+## 👩‍💻 Develop
 
-- 🤝 [Contribution Guidelines](.github/CONTRIBUTING.md)
-- 📚 [Content/Markdown Guidelines](https://gatsby-theme-carbon.now.sh/components/markdown)
-- 🗺 [Navigation Guidelines](https://gatsby-theme-carbon.now.sh/guides/navigation/sidebar)
+- 🤝 [Contribution guidelines](.github/CONTRIBUTING.md)
+- 📚 [Content and Markdown guidelines](https://gatsby-theme-carbon.now.sh/components/markdown)
+- 🗺 [Navigation guidelines](https://gatsby-theme-carbon.now.sh/guides/navigation/sidebar)
 
 - `yarn install` – install dependencies
 - `yarn dev` – start the development server
 - `yarn dev:clean` – use this if you have cache issues
-- `lint:js` – lint your javascript files
-- `format` - run prettier
+- `lint:js` – lint your JavaScript files
+- `format` - run Prettier
 
-If you need more detailed information on how to setup your machine to develop locally, please take a look at our [wiki](https://github.com/carbon-design-system/carbon-website-gatsby/wiki).
+If you need more detailed information on how to setup your machine to develop locally, please take a look at our [wiki](https://github.com/carbon-design-system/carbon-website/wiki).
 
 ## 🚀 Build
 
-Runing the build commands generates all the files and places them in the `public` folder.
+Runing the build command generates all the files and places them in the `public` folder.
 
 ```
 yarn build
