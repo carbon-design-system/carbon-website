@@ -364,17 +364,6 @@ module.exports = {
         subtext: 'Use instead of Back to top.',
       },
     },
-    Idioms: {
-      'test drive': {
-        desc:
-          '(noun) a test or evaluation of a piece of software for a specified amount of time.',
-        subtext: 'Context: You have 1 day left in your Bluemix test drive.',
-      },
-      'time flies': {
-        desc: '(phrase) time passes quickly.',
-        subtext: 'Context: Wow, time flies!',
-      },
-    },
   },
   U: {
     'Action labels': {
