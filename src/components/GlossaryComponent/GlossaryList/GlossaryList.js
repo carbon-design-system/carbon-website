@@ -21,7 +21,7 @@ class Glossary extends Component {
           {glossaryEntry}
           <span>{glossaryEntry}</span>
         </h2>
-        {Object.keys(entry).map(list => {
+        {Object.keys(entry).map((list, i) => {
           const listItems = Object.keys(entry[list]).map(word => {
             counter += 1;
             const currentWord = entry[list][word];
@@ -50,8 +50,7 @@ class Glossary extends Component {
             );
           });
           return (
-            <div key={list} className="glossary-entry__list">
-              <h3 className="glossary-entry__heading page-h3">{list}</h3>
+            <div key={i} className="glossary-entry__list">
               {listItems}
             </div>
           );
