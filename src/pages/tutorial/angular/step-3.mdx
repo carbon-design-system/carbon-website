@@ -70,7 +70,7 @@ You should see something similar to where the [previous step](/tutorial/angular/
 
 ## Install dependencies
 
-We'll shortcut this using the Angualr CLI, if you'd like more information head over to [Angular Apollo Installation](https://www.apollographql.com/docs/angular/recipes/angular-cli/) for details.
+We'll shortcut this using the Angular CLI, if you'd like more information head over to [Angular Apollo Installation](https://www.apollographql.com/docs/angular/recipes/angular-cli/) for details.
 
 _Note: If you have not yet installed the Angular CLI, you will need to [install the Angular CLI](https://cli.angular.io/) before running the Angular Apollo Installation._
 
@@ -78,7 +78,7 @@ Install the following
 
 - `apollo-client` - package containing everything you need to set up Apollo Client
 - `graphql` - parses your GraphQL queries
-- `apollo-angualr` - Apollo integration for Angular
+- `apollo-angular` - Apollo integration for Angular
 
 Using the command:
 
@@ -121,7 +121,7 @@ Once you have your token, we need to put it in a place where we can use it in ou
 
 ##### src/environment/environment.ts
 
-​
+​<!-- prettier-ignore-start -->
 
 ```javascript
 export const environment = {
@@ -129,6 +129,8 @@ export const environment = {
   githubPersonalAccessToken: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
 };
 ```
+
+<!-- prettier-ignore-end -->
 
 Go ahead and start your app with `npm run start`, or, if your app is running, you'll need to restart it to get access to this token.
 
@@ -165,7 +167,7 @@ export function createApollo(httpLink: HttpLink) {
 
 ### Imports
 
-Add the following import at the top of `RepoPage.js`:
+Add the following import at the top of `repo-table.component.ts`:
 
 ##### src/repositories/repo-table/repo-table.component.ts
 
@@ -182,7 +184,7 @@ You can use GitHub's [explorer](https://developer.github.com/v4/explorer/) tool 
 
 If you'd like some more information regarding writing queries, we recommend [Apollo's documentation](https://www.apollographql.com/docs/tutorial/queries) on this topic.
 
-First, we will add a private apollo parameter of type Apollo to the constructor.
+First, we will add a private apollo parameter of type Apollo to the constructor to get access to the Apollo service.
 
 ##### src/repositories/repo-table/repo-table.component.ts
 
@@ -190,7 +192,7 @@ First, we will add a private apollo parameter of type Apollo to the constructor.
 constructor(private apollo: Apollo) { }
 ```
 
-Next, we will fetch the data in `ngOnInit()`. Add the folowing code right below the model.header:
+Next, we will fetch the data in `ngOnInit()`. Add the folowing code right below the `model.header` declaration:
 
 ##### src/repositories/repo-table/repo-table.component.ts
 
@@ -228,13 +230,13 @@ this.apollo.watchQuery({
         }
       }
     }
-  `,
+  `
 })
 ```
 
 ### Custom data
 
-Our last column in the data table will be a comma-separated list of repository and home page links, so let's create a custom column.
+Our last column in the data table will be a comma-separated list of repository and home page links, so let's create a custom cell template.
 
 The column will have two values (`url` and `homepageUrl`) and will have the structure of an unordered list. If the repository does not have a home page URL, only render the repository link.
 
@@ -287,7 +289,7 @@ prepareData(data) {
       })
     ]);
   }
-  return this.model.data = newData;
+  return newData;
 }
 ```
 
@@ -411,12 +413,13 @@ Next we will call `selectPage()`. This will initialize the offset and use `prepa
 ```javascript
 selectPage(page) {
   const offset = this.model.pageLength * (page - 1);
-  this.model.data = this.prepareData(this.data.slice(offset, offset + this.model.pageLength));
+  const pageRawData = this.data.slice(offset, offset + this.model.pageLength);
+  this.model.data = this.prepareData(pageRawData);
   this.model.currentPage = page;
 }
 ```
 
-_Note: We only pass the rows that we want our table to display. We can do this by slicing the our array of rows depending on the first item and the page size._
+_Note: We only pass the rows that we want our table to display. We can do this by slicing our array of rows depending on the first item and the page size._
 
 Finally, let's import the `LinkModule` and `PaginationModule` to `repositories.module.ts` and `repo-table.component.spec` and add the template for pagination.
 
