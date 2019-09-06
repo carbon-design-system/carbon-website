@@ -21,5 +21,6 @@ module.exports = {
         },
       },
     },
+    'gatsby-plugin-meta-redirect', // keep as last line item
   ],
 };
