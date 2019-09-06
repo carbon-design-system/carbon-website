@@ -28,9 +28,9 @@ exports.createPages = ({ actions }) => {
   const { createRedirect } = actions;
 
   createRedirect({
-    fromPath: `/getting-started/about-carbon/`,
+    fromPath: `/getting-started/about-carbon`,
     isPermanent: true,
     redirectInBrowser: true,
-    toPath: `/get-started/about-carbon/`,
+    toPath: `/get-started/about-carbon`,
   });
 };
