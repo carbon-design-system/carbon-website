@@ -25,11 +25,6 @@ Adding allows a user to include an existing object to a list, set, or system. No
 
 ![](images/common-action-add.png)
 
-<Caption>
-  The current image example is not the best representation of add and should be
-  replaced
-</Caption>
-
 ### Interaction Guidelines
 
 #### Hierarchy and placement
@@ -46,20 +41,11 @@ Depending on the relevance of the add action on the page, the emphasis can be ei
 - Errors: failure to add, etc.
 - Is this a single or bulk action?
 
-### Content Guidelines
-
-Note: Will need feedback from our content team.
-
 ## Remove
 
 This action removes an object from a list or item; however, the object is not destroyed as a result of the action. Multiple objects can be removed at once. Note this is different than the delete action.
 
 ![](/images/common-action-remove.png)
-
-<Caption>
-  The current image example is not the best representation of remove and should
-  be replaced.
-</Caption>
 
 #### Affected Components
 
@@ -86,9 +72,15 @@ The remove action will most likely not be the primary action on the page and sho
 
 There are multiple types of notifications: inline, banners, status and toast. Toast notification can be used to display quick and/or short messages. Inline/Banner/Status notifications can be used to show up in task flows, or on top of a page to notify users of the status of an action. It’s also a good way to get the users attention when an action is needed.
 
+<Row>
+<Column colLg={8}>
+
 ![](/images/delete_toast.png)
 
-## Related Components
+</Column>
+</Row>
+
+#### Related Components
 
 Forms, Platform Pages, Global Nav, Modals
 
@@ -185,8 +177,8 @@ Create, Remove
 
 ### Existing Work
 
-- Carbon: https://www.carbondesignsystem.com/patterns/common-actions/#delete
-- Cloud Integration: https://pages.github.ibm.com/ide-design-guidelines/ide-design-guidelines-v2/patterns/deleting/usage
+[Carbon](https://www.carbondesignsystem.com/patterns/common-actions/#delete)
+[Cloud Integration](/experimental/delete)
 
 ### UX/Interaction Guidelines
 
@@ -261,20 +253,6 @@ First, if you are in a detail page, go back to the page that lists the item you 
    - Ideally both an in-UI notification as well as a notification on another communication channel, like email.
 2. Animate the item back on to the page, if it would be visible.
 
-[TBD - Undo behavior. e.g. not really deleting an item for 15 seconds to give the user time to revert]
-
-### Content Guidelines
-
-Existing guidelines:
-
-https://www.carbondesignsystem.com/patterns/common-actions/#delete
-
-Visual Guidelines (if it applies)
-
-[TBD - 'Deletion In Progress'/'Deleting Pending' States, Delete Animation for Table Rows & Other Items, Deletion Toasts, Deletion inline Notifications]
-
-[TBD - Someone should figure out how to visually separate ERROR from DANGER from YOUR DELETION WAS SUCCESSFUL. Is a successful deletion green? Or neutral, or what?]
-
 ## Create
 
 (Need a definition here)
@@ -289,13 +267,7 @@ Delete, Add
 
 #### Existing Work
 
-Guidance from Cloud Integration:
-_https://pages.github.ibm.com/ide-design-guidelines/ide-design-guidelines-v2/patterns/creating/usage_
-
-Work from the provisioning team
-
-See also:
-_Work around 'loading'_
+[Guidance from Cloud Integration](https://pages.github.ibm.com/ide-design-guidelines/ide-design-guidelines-v2/patterns/creating/usage)
 
 ### UX/Interaction Guidelines
 
@@ -325,17 +297,11 @@ Raise a notification to tell the user that creation failed.
 Ideally both an in-UI notification as well as a notification on another communication channel, like email.
 Animate the 'in progress' item away from the page.
 
-### Content Guidelines
-
-TBD
-
-### Visual Guidelines
-
-[TBD - 'Creation In Progress'/'Creation Pending' States, Create Animation for Table Rows & Other Items, Creation Toasts, Creation inline Notifications]
-
 ## Loading
 
 Loading states inform users that data retrieval is underway. The waiting experience is a crucial design opportunity. Though what is occuring on the back-end may not be obvious, we can reassure the user that progress is happening.
+
+![](/images/large-loader.png)
 
 #### Affected Components
 
@@ -349,23 +315,23 @@ Notifications, Inline Loading, Progress indicator, Modal
 
 Different reassurances are necessary for different wait times. A user will respond very differently to a wait time of 3 seconds versus a wait time of 45 seconds, and the loading state should reflect that. Select the loading state based on the max time a user might have to wait for the use case.
 
-**0 to 1 second**
+#### 0 to 1 second
 
 For the user to stay oriented in the process, no feedback is necessary.
 
-**1+ to 10 seconds**
+#### 1+ to 10 seconds
 
 10 seconds is the average time a user stays focused on a task. For a full page load or list, use a skeleton loader. For a single item load or button, use loading spinners (big or small).
 
-**10+ to 30 seconds**
+#### 10+ to 30 seconds
 
 For wait times over 10 seconds, users need to know context, time expectations, and ideally complete other tasks within the platform while loading is in progress. Ideally, use a progress bar to indicate the status. Give text updates on the status of the load.
 
-**30 sec to 1 min**
+#### 30 sec to 1 min
 
 For wait times over 30 seconds, users must have an option to cancel or “escape” the load. Use an optimistic loader - push users to the success state or the higher level overview and show a progress indicator or loading bar. Set expectations on how long it will take or how many steps are necessary to load. Open the load in a new tab if necessary to allow users to continue other tasks.
 
-**Over 1 min**
+#### Over 1 min
 
 Users cannot be expected to wait for longer than one minute. For wait times over a minute, a loading state should not be used. Push users to the higher level overview (depending on the use case) and use notifications to set expectations for wait times and send an external confirmation (for example, an email) when the load time is over.
 
