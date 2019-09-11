@@ -28,15 +28,6 @@ export default class Charts extends React.Component {
   render() {
     const { type } = this.props;
 
-    const simpleBarDemo = typeof window !== 'undefined' && (
-      <BarChart
-        data={simpleBarData}
-        options={simpleBarOptions}
-        width="100%"
-        height={400}
-      />
-    );
-
     const groupedBarDemo = typeof window !== 'undefined' && (
       <BarChart
         data={groupedBarData}
@@ -56,7 +47,14 @@ export default class Charts extends React.Component {
     );
 
     if (type === 'simpleBar') {
-      return <div>{simpleBarDemo}</div>;
+      return (
+        <BarChart
+          data={simpleBarData}
+          options={simpleBarOptions}
+          width="100%"
+          height={400}
+        />
+      );
     }
 
     if (type === 'groupedBar') {
