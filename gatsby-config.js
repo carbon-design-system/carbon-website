@@ -14,7 +14,7 @@ module.exports = {
         mdxExtensions: ['.mdx'],
         isSearchEnabled: true,
         iconPath: './src/images/favicon-32.png',
-        titleType: 'append',
+        titleType: 'prepend',
         repository: {
           baseUrl: 'https://github.com/carbon-design-system/carbon-website',
           subDirectory: '',
