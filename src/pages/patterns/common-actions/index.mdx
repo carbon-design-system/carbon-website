@@ -2,14 +2,11 @@
 title: Common actions
 ---
 
-### Common actions are frequently used actions that appear multiple times across different components and workflows. For platform consistency, these actions should only be applied in the ways described below.
+<PageDescription>
 
-<AnchorLinks>
+Common actions are frequently used actions that appear multiple times across different components and workflows. For platform consistency, these actions should only be applied in the ways described below.
 
-<AnchorLink>Regressive actions</AnchorLink>
-<AnchorLink>Progressive actions</AnchorLink>
-
-</AnchorLinks>
+</PageDescription>
 
 ## Regressive actions
 
@@ -28,47 +25,80 @@ title: Common actions
 
 Cancel stops the current action and closes the component or item. The user should be warned of any possible negative consequences of stopping an action from progressing, such as data corruption or data loss.
 
-**Usage:** Use a _secondary button_ or a _link_.
+Use a secondary button or a link for cancel actions.
 
 ![Example of cancel in a modal](images/common-action-1.png)
 
 ### Clear
 
-This action clears data from fields or removes selections. _Clear_ can also delete the contents of a document, such as a log. Typically, the default selection or value is reset for controls that have a default selection or value, such as radio buttons.
+This action clears data from fields or removes selections. Clear can also delete the contents of a document, such as a log. Typically, the default selection or value is reset for controls that have a default selection or value, such as radio buttons.
 
-**Usage:** Use the `x` icon on the right side of a field, item, or value.
+Use the `x` icon on the right side of a field, item, or value.
 
 ![Example of clear in Multi-select Dropdown and in Search](images/common-action-2.png)
 
 ### Close
 
-This action closes the current page, window, or menu. One example is closing a secondary window containing help. _Close_ is also used to dismiss information, such as notifications.
+This action closes the current page, window, or menu. One example is closing a secondary window containing help. Close is also used to dismiss information, such as notifications.
 
-**Usage:** Use the `close` icon, which is typically placed on the upper right side of the element. Do not use _close_ in a button.
+Use the `close` icon, which is typically placed on the upper right side of the element. Do not use close in a button.
 
 ![Example of close in an inline notification](images/common-action-3.png)
 
 ### Delete
 
-This action eradicates an existing object. _Delete_ actions cannot be easily undone and are typically permanent. The user should be warned of the negative consequences of destroying an object, such as loss of data.
-
-**Usage:** Use either the `delete` "trash can" icon, a _danger button_, or a danger option in a menu. A _danger modal_ is used when a warning is needed to confirm an action.
+This action destroys an existing object. Delete actions cannot be easily undone and are typically permanent. The user should be warned of the negative consequences of destroying an object, such as loss of data. Use either the `delete` `trash can` icon, a danger button, or a danger option in a menu. A danger modal is used when a warning is needed to confirm an action.
 
 ![Example of delete in a Modal and Overflow Menu](images/common-action-4.png)
+
+#### Non-dangerous deletion (~5% of cases)
+
+Use when it's trivial to undo deletion or re-create the item. Delete the item upon click or tap without further warning.
+
+#### Moderate danger deletion (~80% of cases)
+
+Use when an action cannot be undone or the item can't be easily recreated. Also use if you're deleting more than one thing.
+
+Ask for confirmation of the delete, with guidance on what will occur if they delete.
+
+#### High danger deletion (~15% of cases)
+
+Use when it would be very expensive or time consuming to re-create an item. Also use if the action deletes a large number of items, or if other important items would be deleted as a result of the action.
+
+In addition to presenting a dialog, have the user type the name of the resource they are deleting (manual confirmation).
+
+#### Post-deletion flow
+
+After the user deletes an item, return to the page that lists the item deleted. Animate the removal of the item from the list or page and present a success notification.
+
+If deletion fails, raise a notification to tell the user that deletion failed. Also send a second a notification on another communication channel, like email, if possible. Animate the item back onto the page if possible.
 
 ### Remove
 
 This action removes an object from a list or item; however, the object is not destroyed as a result of the action. Multiple objects can be removed at once.
 
-**Usage:** Use as a _button_ or `subtract` icon or glyph.
-
 ![Example of Remove in a Structured List](images/common-action-5.png)
+
+#### Hierarchy and placement
+
+Use as a button or `subtract` icon or glyph. The remove action will most likely not be the primary action on the page and should should not be overly emphasized.
+
+#### Considerations
+
+- What are the implications of the removing action for the user (example: financial, access, legal).
+- This action can be confused with deleting.
+- [Team question] Using an "X" icon can be confused with deleting, should it be used or not?
+- A user may not have the correct permissions for this action.
+- Can this action be undone? (if not, inform the user prior).
+- What timeframe will the action take (seconds, minutes, hours, days)?
+- Errors: failure to remove, etc.
+- Is this a single or bulk action?
 
 ### Reset
 
 This action reverts values back to their last saved state. The last saved state includes the values stored the last time the user clicked or triggered "Apply."
 
-**Usage:** Typically applied as a _link_.
+Reset is typically applied as a link.
 
 ![Example of reset in a filter](images/common-action-6.png)
 
@@ -88,23 +118,37 @@ This action reverts values back to their last saved state. The last saved state 
 
 This action adds an existing object to a list, set, or system. For example, adding a document to a folder.
 
-**Usage:** Use a _primary button_, _button with icon_, `add--glyph` or `add--outline` icon.
-
 ![Example of add as a Button with Icon in a Data Table](images/common-action-7.png)
+
+#### Hierarchy and placement
+
+Use a primary button, button with icon, `add--glyph` or `add--outline` icon.
+
+Depending on the relevance of the add action on the page, the emphasis can be either, high, medium or low. For example, a high emphasis action should use a single prominent button that makes it clear that other buttons have less importance in the hierarchy.
+
+#### Considerations
+
+- What are the implications of the add action for the user (example: financial, access, legal).
+- A user may not have the correct permissions for this action.
+- This action can be confused with creating.
+- Can this action be undone? (if not, inform the user prior).
+- What timeframe will the action take (seconds, minutes, hours, days)?
+- Errors: failure to add, etc.
+- Is this a single or bulk action?
 
 ### Copy
 
 Creates a new identical instance of the selected object(s) in a specific destination.
 
-**Usage:** Use the `copy` icon with the confirmation "copied" tooltip appearing post-click.
+Use the `copy` icon with the confirmation "copied" tooltip appearing post-click.
 
 ![Example of copy in a Code Snippet](images/common-action-8.png)
 
 ### Edit
 
-This action allows data or values to be changed. _Edit_ commonly triggers a state change to the targeted object or input item.
+This action allows data or values to be changed. Edit commonly triggers a state change to the targeted object or input item.
 
-**Usage:** Use as an option in a menu, or as a _button_ or `edit` icon.
+Offer edit as an option in a menu, or as a button or `edit` icon.
 
 ![Example of edit in a Data Table cell](images/common-action-9.png)
 
@@ -114,7 +158,7 @@ This action allows data or values to be changed. _Edit_ commonly triggers a stat
 
 Advances the user to the next step in a sequence of steps, such as in a wizard.
 
-**Usage:** Use a _button with icon_ or a standalone `forward` icon.
+Use a button with icon or a standalone `forward` icon.
 
 ![Example of next as a Button with Icon](images/common-action-11.png)
 
@@ -122,6 +166,6 @@ Advances the user to the next step in a sequence of steps, such as in a wizard.
 
 This action reloads the view of an object, list, or data set when the displayed view has become unsynchronized with the source.
 
-**Usage:** Use the `refresh` icon or a _button_.
+Use the `refresh` icon or a button.
 
 ![Example of edit in a Data Table cell](images/common-action-12.png)
