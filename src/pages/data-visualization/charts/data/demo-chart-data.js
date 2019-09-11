@@ -1,6 +1,6 @@
 import { DonutCenter } from '@carbon/charts';
 
-export const colors = [
+const colors = [
   '#00a68f',
   '#3b1a40',
   '#473793',
