@@ -259,7 +259,7 @@ module.exports = {
       redo: {
         desc: 'Redoes an undo action.',
         subtext:
-          'Likely used only as a tooltip on an icon button. Compare [undo](#undo).',
+          'Likely used only as a [tooltip](/components/tooltip/usage) on an icon button. Compare [undo](#undo).',
       },
       refresh: {
         desc:
