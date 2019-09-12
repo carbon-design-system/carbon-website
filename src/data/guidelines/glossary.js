@@ -43,7 +43,7 @@ module.exports = {
       },
       clear: {
         desc:
-          'This action clears all the fields or selections. Also deletes the contents of a document, such as a log. Typically the default selection or value is re-established for controls that always have a selection or value, such as radio buttons.',
+          'This action clears all the fields or selections. Also deletes the contents of a document, such as a log. Typically the default selection or value is re-established for controls that always have a selection or value, such as [radio buttons](/components/radio-button/usage).',
         subtext:
           'Where appropriate, combine clear with the object (for example, Clear fields or Clear all). Compare [delete](#delete) and [remove](#remove). See also the [Clear pattern](/patterns/common-actions#clear).',
       },
