@@ -178,7 +178,7 @@ We'll also:
 - Update the grid columns to match the design
 - Update the component content to use `info.json`
 - Replace columns 2 - 4 with `info-card` components
-- Remove class styling from `laning-page` component
+- Remove class styling from `landing-page` component
 
 ```html path=src/app/home/landing-page/landing-page.component.html
 <app-info-section></app-info-section>
@@ -193,6 +193,50 @@ We'll also:
   <app-info-card ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"> </app-info-card>
   <app-info-card ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"> </app-info-card>
 </section>
+```
+
+As you can see we've added instances of the `info-card` component. There is a few things that we need to do to resolve the errors in the browser. Firstly we need to update `InfoModule` to be able to use the `GridModule`. At the same time we will export the `info-section` and `info-card` components from the `InfoModule` so that we can use them in the `HomeModule` components (specifically `landing-page`).
+
+```ts path=src/app/info/info.module.ts
+import { NgModule } from "@angular/core";
+...
+import { GridModule } from "carbon-components-angular";
+
+
+@NgModule({
+	declarations: [InfoCardComponent, InfoSectionComponent],
+	imports: [
+		CommonModule,
+		GridModule
+	],
+	exports:  [InfoCardComponent, InfoSectionComponent]
+})
+export class InfoModule { }
+
+```
+
+We also need to import `InfoModule` into `HomeModule` otherwise we cannot use the `info-section` component within `landing-page`.
+
+```ts path=src/app/home/home.module.ts
+...
+import { InfoModule } from "./../info/info.module";
+import {
+	BreadcrumbModule,
+	ButtonModule,
+	GridModule,
+	TabsModule
+} from "carbon-components-angular";
+
+@NgModule({
+	declarations: [LandingPageComponent],
+	imports: [
+		CommonModule,
+    ...
+		TabsModule,
+		InfoModule
+	]
+})
+export class HomeModule { }
 ```
 
 Now we're going to go into the `info-section` component to add content from `info.json`.
