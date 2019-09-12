@@ -24,7 +24,7 @@ import Preview from 'components/Preview';
 
 Carbon provides a solid foundation for building web applications through its color palette, layout, spacing, type, as well as common building blocks in the form of components. So far, we've only used Carbon components to build out two pages.
 
-Next, we're going to use Carbon assets to build application-specific components. We'll do so by including accessibility and responsive considerations all throughout.
+Next, we're going to use Carbon assets to build application-specific components. We'll create our components with considerations for accessibility and responsiveness.
 
 A [preview](https://angular-step-5--carbon-tutorial.netlify.com) of what you'll build (see bottom of page):
 
@@ -169,7 +169,7 @@ Let's create the parent component that includes the "The Principles" heading. Th
 </div>
 ```
 
-We want to do a few things when abstracting it to a component. Firstly, we want to encapsulate the component's styles within it's dedicated stylesheet. We don't want to include `landing-page__r3` within the component template as that's specific to the landing page. In order to allow the landing page to have access to styling this specific instance of an `info-section` component we will pass the class into the instance within `landing-page` using [className].
+We want to do a few things when abstracting it to a component. Firstly, we want to encapsulate the component's styles within it's dedicated stylesheet. We don't want to include `landing-page__r3` within the component template as that's specific to the landing page. In order to allow the landing page to have access to styling this specific instance of an `info-section` component we could pass the class into the instance of the component. However, we won't need to do any additional styling from the `landing-page` so we can just go ahead use the component as is.
 
 We'll also:
 
@@ -178,9 +178,10 @@ We'll also:
 - Update the grid columns to match the design
 - Update the component content to use `info.json`
 - Replace columns 2 - 4 with `info-card` components
+- Remove class styling from `laning-page` component
 
 ```html path=src/app/home/landing-page/landing-page.component.html
-<app-info-section [className]="'landing-page__r3'"></app-info-section>
+<app-info-section></app-info-section>
 ```
 
 ```html path=src/app/info/info-section/info-section.component.html
