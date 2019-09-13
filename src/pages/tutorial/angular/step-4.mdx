@@ -83,13 +83,13 @@ First we need files for the components, so create an `Info` folder in `src/compo
 
 ### Generate modules & components using the Angular CLI
 
-Let's generate a new module that'll handle our `info-card` and `info-section` components:
+Let's generate a new module that'll handle our `InfoCard` and `InfoSection` components:
 
 ```bash
 ng generate module info
 ```
 
-Now we generate our `info-card` and `info-section` components:
+Now we generate our `InfoCard` and `InfoSection` components:
 
 ```bash
 ng generate component info/info-card --lint-fix
@@ -169,15 +169,15 @@ Let's create the parent component that includes the "The Principles" heading. Th
 </div>
 ```
 
-We want to do a few things when abstracting it to a component. Firstly, we want to encapsulate the component's styles within it's dedicated stylesheet. We don't want to include `landing-page__r3` within the component template as that's specific to the landing page. In order to allow the landing page to have access to styling this specific instance of an `info-section` component we could pass the class into the instance of the component. However, we won't need to do any additional styling from the `landing-page` so we can just go ahead use the component as is.
+We want to do a few things when abstracting it to a component. Firstly, we want to encapsulate the component's styles within it's dedicated stylesheet. We don't want to include `landing-page__r3` within the component template as that's specific to the landing page. In order to allow the landing page to have access to styling this specific instance of an `InfoSection` component we could pass the class into the instance of the component. However, we won't need to do any additional styling from the `landing-page` so we can just go ahead use the component as is.
 
 We'll also:
 
-- Add component class names like `info-section` and `info-section__heading`
+- Add component class names like `.info-section` and `.info-section__heading`
 - Semantically use `<section>` instead of `<div>`
 - Update the grid columns to match the design
 - Update the component content to use `info.json`
-- Replace columns 2 - 4 with `info-card` components
+- Replace columns 2 - 4 with `InfoCard` components
 - Remove class styling from `landing-page` component
 
 ```html path=src/app/home/landing-page/landing-page.component.html
@@ -195,7 +195,7 @@ We'll also:
 </section>
 ```
 
-As you can see we've added instances of the `info-card` component. There is a few things that we need to do to resolve the errors in the browser. Firstly we need to update `InfoModule` to be able to use the `GridModule`. At the same time we will export the `info-section` and `info-card` components from the `InfoModule` so that we can use them in the `HomeModule` components (specifically `landing-page`).
+As you can see we've added instances of the `InfoCard` component. There is a few things that we need to do to resolve the errors in the browser. Firstly we need to update `InfoModule` to be able to use the `GridModule`. At the same time we will export the `InfoSection` and `InfoCard` components from the `InfoModule` so that we can use them in the `HomeModule` components (specifically `landing-page`).
 
 ```ts path=src/app/info/info.module.ts
 import { NgModule } from "@angular/core";
@@ -215,7 +215,7 @@ export class InfoModule { }
 
 ```
 
-We also need to import `InfoModule` into `HomeModule` otherwise we cannot use the `info-section` component within `landing-page`.
+We also need to import `InfoModule` into `HomeModule` otherwise we cannot use the `InfoSection` component within `landing-page`.
 
 ```ts path=src/app/home/home.module.ts
 ...
@@ -239,7 +239,7 @@ import {
 export class HomeModule { }
 ```
 
-Now we're going to go into the `info-section` component to add content from `info.json`.
+Now we're going to go into the `InfoSection` component to add content from `info.json`.
 
 ```ts path=src/app/info/info-section/info-section.component.ts
 import { Component, OnInit } from '@angular/core';
@@ -260,7 +260,7 @@ export class InfoSectionComponent implements OnInit {
 }
 ```
 
-We essentially have added a `heading` and `items` variable into the model of each `InfoSectionComponent`, which we'll be using in the component's `.html` file to show content.
+We essentially have added a `heading` and `items` variable into the model of `InfoSectionComponent`, which we'll be using later to pass content into the children components `InfoCard`.
 
 We've also added class names that are specific to this component that we'll target in our stylesheet:
 
@@ -302,27 +302,9 @@ We've also added class names that are specific to this component that we'll targ
 }
 ```
 
-Now we also need to import `GridModule` from `carbon-components-angular` because we will be using the Carbon Angular Grid component:
-
-```ts path=src/app/info/info.module.ts
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { InfoSectionComponent } from './info-section/info-section.component';
-import { InfoCardComponent } from './info-card/info-card.component';
-
-import { GridModule } from 'carbon-components-angular';
-
-@NgModule({
-  declarations: [InfoSectionComponent, InfoCardComponent],
-  imports: [CommonModule, GridModule],
-  exports: [InfoSectionComponent, InfoCardComponent],
-})
-export class InfoModule {}
-```
-
 ### InfoCard component
 
-Next up we're going to build a component for columns 2 - 4, which currently looks like `<div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">Carbon is Open</div>`. In `src/app/info/info-card/info-card.component.html`, add:
+Next up we're going to build a component for columns 2 - 4, which currently looks like `<div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">Carbon is Open</div>`. We've added the data into the parent component but we have not told `snfo-section` component to give any data to the `InfoCard` because we first need to tell `InfoCard` that it will have data to display. In `src/app/info/info-card/info-card.component.html`, add:
 
 ```html path=src/app/info/info-card/info-card.component.html
 <div class="info-card">
@@ -353,7 +335,7 @@ export class InfoCardComponent implements OnInit {
 }
 ```
 
-Now we'll update `InfoSection` to use the new `InfoCard` component.
+Finally, we'll update `InfoSection` to use the new `InfoCard` component.
 
 ```html path=src/app/info/info-section/info-section.component.html
 <section ibmRow class="info-section info-section__r1">
@@ -386,31 +368,11 @@ Now we'll update `InfoSection` to use the new `InfoCard` component.
 
 ## Use components
 
-In order to use these components in the application, we'd need to import them into the `home` module.
+Next we're going to use Carbon Icon components in our custom components. We're going to place the icons within the `InfoCard` components as children. In the `InfoModule` we will import the modules we need for the Carbon Angular Icons:
 
-```ts path=src/app/home/home.module.ts
-import { NgModule } from "@angular/core";
-...
-import { InfoModule } from "../info/info.module";
-
-@NgModule({
-	declarations: [LandingPageComponent],
-	imports: [
-		...
-		TabsModule,
-		InfoModule
-	]
-})
-export class HomeModule { }
-```
-
-Now we're going to add Carbon Icon components into the `InfoCard` component.
-
-```ts path=src/content/LandingPage/LandingPage.js
+```ts path=src/info/info.module.ts
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { InfoSectionComponent } from './info-section/info-section.component';
-import { InfoCardComponent } from './info-card/info-card.component';
+...
 
 import { PersonFavorite32Module } from '@carbon/icons-angular/lib/person--favorite/32';
 import { Globe32Module } from '@carbon/icons-angular/lib/globe/32';
@@ -421,8 +383,7 @@ import { GridModule } from 'carbon-components-angular';
 @NgModule({
   declarations: [InfoSectionComponent, InfoCardComponent],
   imports: [
-    CommonModule,
-    GridModule,
+    ...
     PersonFavorite32Module,
     Globe32Module,
     Application32Module,
@@ -513,14 +474,6 @@ Starting with layout, add the following to `src/app/info/info-card/info-card.com
       max-width: 75%;
     }
   }
-
-  .info-card__icon {
-    margin-top: $spacing-09;
-
-    @include carbon--breakpoint(lg) {
-      margin-top: $layout-06;
-    }
-  }
 }
 ```
 
@@ -589,6 +542,37 @@ Then, add some styling for the icons within our `InfoCard` component:
     @include carbon--breakpoint(lg) {
       margin-top: $layout-06;
     }
+  }
+}
+```
+
+Finally, we need styles for the `InfoCard` borders. We will use the `InfoSection` to apply styles using the children selectors. Update the `InfoSection` stylesheet to include styles targeting the `InfoCard`:
+
+```scss path=src/app/info/info-section/info-section.component.scss
+app-info-card {
+  margin-top: $spacing-09;
+}
+
+// top border in only small breakpoints to prevent overrides
+@include carbon--breakpoint-down(md) {
+  app-info-card:not(:nth-child(2)) {
+    border-top: 1px solid $ui-03;
+    padding-top: $spacing-09;
+  }
+}
+
+// left border in just the 2nd column items
+@include carbon--breakpoint(md) {
+  app-info-card:nth-child(even) {
+    border-left: 1px solid $ui-03;
+  }
+}
+
+// left border in all items
+@include carbon--breakpoint(lg) {
+  app-info-card {
+    margin-top: 0;
+    border-left: 1px solid $ui-03;
   }
 }
 ```
