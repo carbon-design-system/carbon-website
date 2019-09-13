@@ -1,8 +1,8 @@
 ---
 name: Question ❓
-about: Usage question or discussion about the IBM Design Language Website.
+about: Usage question or discussion about the Carbon Design System Website.
 title: ''
-labels: ''
+labels: 'type: question :question:'
 assignees: ''
 ---
 
