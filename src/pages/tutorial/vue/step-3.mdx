@@ -147,7 +147,11 @@ const AUTH_TOKEN = process.env.VUE_APP_GITHUB_PERSONAL_ACCESS_TOKEN;
 // Target github api
 const httpEndpoint =
   process.env.VUE_APP_GRAPHQL_HTTP || 'https://api.github.com/graphql';
+```
 
+Update only the `wsEndpoint` and `getAuth` properties of the `defaultOptions` object:
+
+```javascript
 const defaultOptions = {
   // set wsEndpoint to null
   wsEndpoint: process.env.VUE_APP_GRAPHQL_WS,
@@ -364,7 +368,6 @@ with
 
 Here in order to switch between the standard rendering of a data cell we've wrapped our standard `{{cell}}` rendering in a template tag. The template tag is non-rendering so it will dissapear, leaving us with the same content as before.
 
-
 Using the v-if and v-else directives we switch based on the contents of the cell between the standard rendering and the LinkList component.
 
 Checking our output again, you should now see the LinkList component rendering the final column.
@@ -422,7 +425,11 @@ Replace:
 ##### src/views/RepoPage/RepoTable.vue
 
 ```html
-<cv-data-table :columns="columns" :title="title" :helper-text="helperText">
+<cv-data-table
+  :columns="columns"
+  :title="title"
+  :helper-text="helperText"
+></cv-data-table>
 ```
 
 with:
@@ -431,7 +438,12 @@ with:
 
 ```html
 <div v-if="loading">Loading...</div>
-<cv-data-table v-else :columns="columns" :title="title" :helper-text="helperText">
+<cv-data-table
+  v-else
+  :columns="columns"
+  :title="title"
+  :helper-text="helperText"
+></cv-data-table>
 ```
 
 Here we have made use of the v-if and v-else directives to switch content based on the state of `$apollo.loading`. If you refresh your app you should see this take effect.
