@@ -76,7 +76,7 @@ You should see something similar to where the [previous step](/tutorial/angular/
 
 Before we start adding new components, we want to begin developing with a clean app but still have the same configurations. So let's delete the starter-home directory and update the routing in `app-routing.module.ts` by removing the below block:
 
-```javascript
+```javascript path=src/app/app-routing.module.ts
 {
   path: "",
   loadChildren: () => import("./starter-home/starter-home.module").then(m => m.StarterHomeModule)
@@ -106,9 +106,7 @@ src/app/tutorial-header
 
 Next we'll import our Carbon UI Shell components into `tutorial-header.module.ts` and `tutorial-header.component.spec.ts`. Also, make sure we import and export `TutorialHeaderComponent`. Set up the file like so:
 
-##### src/tutorial-header/tutorial-header.module.ts
-
-```javascript
+```javascript path=src/app/tutorial-header/tutorial-header.module.ts
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -129,15 +127,15 @@ export {
 export class TutorialHeaderModule {}
 ```
 
-##### src/tutorial-header/tutorial-header.component.spec.ts
-
-```javascript
+```javascript path=src/app/tutorial-header/tutorial-header/tutorial-header.component.spec.ts
 import { HeaderModule } from 'carbon-components-angular/ui-shell/ui-shell.module';
 ```
 
-```javascript
-declarations: [ TutorialHeaderComponent ],
-imports: [ HeaderModule ]
+```javascript path=src/app/tutorial-header/tutorial-header/tutorial-header.component.spec.ts
+TestBed.configureTestingModule({
+  declarations: [TutorialHeaderComponent],
+  imports: [HeaderModule],
+});
 ```
 
 _Note: you can find a description of the different components used in UI Shell in our [carbon-components-angular](https://github.com/IBM/carbon-components-angular/tree/master/src/ui-shell) package._
@@ -146,25 +144,19 @@ _Note: you can find a description of the different components used in UI Shell i
 
 Now let's import the icons from our `@carbon/icons-angular` package. In `tutorial-header.module.ts` and `tutorial-header.component.spec.ts`, we need to import each individual icon we will use.
 
-##### src/tutorial-header/tutorial-header.module.ts,
-
-##### src/tutorial-header/tutorial-header/tutorial-header.component.spec.ts
-
-```javascript
+```javascript path=src/app/tutorial-header/tutorial-header.module.ts,src/app/tutorial-header/tutorial-header/tutorial-header.component.spec.ts
 import { Notification20Module } from '@carbon/icons-angular/lib/notification/20';
 import { UserAvatar20Module } from '@carbon/icons-angular/lib/user--avatar/20';
 import { AppSwitcher20Module } from '@carbon/icons-angular/lib/app-switcher/20';
 ```
 
-```javascript
+```javascript path=src/app/tutorial-header/tutorial-header.module.ts,src/app/tutorial-header/tutorial-header/tutorial-header.component.spec.ts
 imports: [Notification20Module, UserAvatar20Module, AppSwitcher20Module];
 ```
 
 Then we need to add the template code. Populate `tutorial-header.component.html` with:
 
-##### src/tutorial-header/tutorial-header.component.html
-
-```html
+```html path=src/app/tutorial-header/tutorial-header/tutorial-header.component.html
 <ibm-header name="Carbon Tutorial Angular">
   <ibm-header-navigation ariaLabel="Carbon Tutorial Angular">
     <ibm-header-item href="/repos">Repositories</ibm-header-item>
@@ -189,9 +181,7 @@ Then we need to add the template code. Populate `tutorial-header.component.html`
 
 And we will add some styling as well in `styles.scss`
 
-##### src/styles.scss
-
-```scss
+```scss path=src/styles.scss
 .header-icon {
   fill: white;
 }
@@ -199,32 +189,24 @@ And we will add some styling as well in `styles.scss`
 
 Next import the tutorial-header module in `app.module.ts` and `app.component.spec.ts` and add the component in `app.component.html`
 
-##### src/app/app.module.ts,
-
-##### src/app/app.component.spec.ts
-
-```javascript
+```javascript path=src/app/app.module.ts,src/app/app.component.spec.ts
 import { TutorialHeaderModule } from './tutorial-header/tutorial-header.module';
 ```
 
-```javascript
+```javascript path=src/app/app.module.ts,src/app/app.component.spec.ts
 imports: [TutorialHeaderModule];
 ```
 
-##### src/app/app.component.html
-
-```html
+```html path=src/app/app.component.html
 <app-tutorial-header></app-tutorial-header>
 <main class="main">
   <router-outlet></router-outlet>
 </main>
 ```
 
-And we will add some styling as well in `app.component.scss`
+And we will add some styling as well in `app.component.scss`.
 
-##### src/app/app.component.scss
-
-```scss
+```scss path=src/app/app.component.scss
 .main {
   margin: 40px 0 0 -7px;
 }
@@ -244,7 +226,7 @@ ng g component home/landing-page --lint-fix
 ##### Folder structure
 
 ```bash
-src/home
+src/app/home
 ├── home
 │   ├── landing-page.component.html
 │   ├── landing-page.component.scss
@@ -264,7 +246,7 @@ ng g component repositories/repo-page --lint-fix
 ##### Folder structure
 
 ```bash
-src/repositories
+src/app/repositories
 ├── repositories
 │   ├── repo-page.component.html
 │   ├── repo-page.component.scss
@@ -278,9 +260,7 @@ src/repositories
 
 We need to update routing functionality to enable the loading of `repositories`. Inside `app-routing.module.ts` we'll add the following code in the routes array:
 
-##### src/app-routing.module.ts
-
-```javascript
+```javascript path=src/app-routing.module.ts
 const routes: Routes = [
   {
     path: '',
@@ -303,9 +283,7 @@ const routes: Routes = [
 
 And add routes for the landing and repo pages:
 
-##### src/app/home/home-routing.module.ts
-
-```javascript
+```javascript path=src/app/home/home-routing.module.ts
 import { LandingPageComponent } from './landing-page/landing-page.component';
 
 const routes: Routes = [
@@ -316,9 +294,7 @@ const routes: Routes = [
 ];
 ```
 
-##### src/app/repositories/repositories-routing.module.ts
-
-```javascript
+```javascript path=src/app/repositories/repositories-routing.module.ts
 import { RepoPageComponent } from './repo-page/repo-page.component';
 
 const routes: Routes = [
@@ -331,9 +307,7 @@ const routes: Routes = [
 
 After that we need to do a couple quick fixes to the UI Shell to have it route to the repo page.
 
-##### src/tutorial-header/tutorial-header.component.html
-
-```html
+```html path=src/app/tutorial-header/tutorial-header.component.html
 <ibm-header-item routerLink="/repos">Repositories</ibm-header-item>
 ```
 
@@ -345,9 +319,7 @@ In our last step we added our styles, components and icon packages. Now we are g
 
 In `styles.scss`, we need to configure our grid to use 16 columns instead of the default 12 columns. We do this by adding `grid-columns-16: true` in our `$feature-flags`.
 
-##### src/styles.scss
-
-```css
+```css path=src/styles.scss
 $feature-flags: (
   grid-columns-16: true,
   css--body: false,
@@ -358,23 +330,20 @@ $feature-flags: (
 
 Next we'll import our Carbon grid component into `home.module.ts` and `landing-page.component.spec.ts`.
 
-##### src/home/home.module.ts,
-
-##### src/home/landing-page/landing-page.component.spec.ts
-
-```javascript
+```javascript path=src/app/home/landing-page/landing-page.component.spec.ts,src/app/home/home.module.ts
 import { GridModule } from 'carbon-components-angular';
-```
-
-```javascript
-imports: [GridModule];
+...
+@NgModule({
+  ...
+  imports: [GridModule]
+})
 ```
 
 ## Add landing page grid
 
 Let's add our grid elements to `landing-page.component.html`.
 
-In order to use the grid, we need to wrap everything in a `<div ibmGrid>`. We can continue to make rows by adding a `<div ibmRow>` inside the grid, as well as make columns within those rows by adding `<div ibmCol [columnNumbers]="{'[breakpoint]': [size]}`.
+In order to use the grid, we need to wrap everything in a `<div ibmGrid>`. We can continue to make rows by adding a `<div ibmRow>` inside the grid, as well as make columns within those rows by adding `<div ibmCol [columnNumbers]="{'[breakpoint]': [size]}"`.
 
 Our column sizes are specified by the number of columns they'll be spanning. If we use `[columnNumbers]="{'lg': 4}"`, it means it'll span 4 of the 16 columns. If we use `[columnNumbers]="{'lg': 8}"` it means it'll span 8 of the 16 columns, and so on.
 
@@ -390,9 +359,7 @@ We'll break this down into three rows. The first row with the gray background do
 
 We'll make rows like so:
 
-##### src/home/landing-page/landing-page.component.html
-
-```html
+```html path=src/app/home/landing-page/landing-page.component.html
 <div ibmGrid class="bx--grid--full-width landing-page">
   <div ibmRow class="landing-page__banner">
     <div ibmCol [columnNumbers]="{'lg': 16}">1</div>
@@ -424,23 +391,17 @@ We'll start adding HTML elements and components by row.
 
 In our first row we'll need a `Breadcrumb` component. First, let's import the components we need in `home.module.ts` and `landing-page.component.spec.ts`.
 
-##### src/home/home.module.ts,
-
-##### src/home/landing-page/landing-page.component.spec.ts
-
-```javascript
+```javascript path=src/app/home/home.module.ts,src/app/home/landing-page/landing-page.component.spec.ts
 import { BreadcrumbModule, GridModule } from 'carbon-components-angular';
 ```
 
-```javascript
+```javascript path=src/app/home/home.module.ts,src/app/home/landing-page/landing-page.component.spec.ts
 imports: [BreadcrumbModule, GridModule];
 ```
 
 We can now add our component to the first row, along with a header, like so:
 
-##### src/home/landing-page/landing-page.component.html
-
-```html
+```html path=src/app/home/landing-page/landing-page.component.html
 <div ibmRow class="landing-page__banner">
   <div ibmCol [columnNumbers]="{'lg': 16}">
     <ibm-breadcrumb noTrailingSlash="true">
@@ -461,11 +422,7 @@ You may notice that the styles look off. Don't worry, we'll fix these later.
 
 In our second row we'll need `Tabs` and `Button` components also in `home.module.ts` and `landing-page.component.spec.ts`. We'll update the `carbon-components-angular` import to:
 
-##### src/home/home.module.ts,
-
-##### src/home/landing-page/landing-page.component.spec.ts
-
-```javascript
+```javascript path=src/app/home/home.module.ts,src/app/home/landing-page/landing-page.component.spec.ts
 import {
   BreadcrumbModule,
   ButtonModule,
@@ -474,15 +431,13 @@ import {
 } from 'carbon-components-angular';
 ```
 
-```javascript
+```javascript path=src/app/home/home.module.ts,src/app/home/landing-page/landing-page.component.spec.ts
 imports: [BreadcrumbModule, ButtonModule, GridModule, TabsModule];
 ```
 
 Now we need to modify the second row to use the `Tab` component.
 
-##### src/home/landing-page/landing-page.component.html
-
-```html
+```html path=src/app/home/landing-page/landing-page.component.html
 <div ibmRow class="landing-page__r2">
   <div ibmCol class="bx--no-gutter">
     <ibm-tabs>
@@ -530,7 +485,7 @@ _Note: We're using the grid for the page layout, but we also need to apply the g
 Hold up! If you were to run [DAP](https://www.ibm.com/able/dynamic-assessment-plug-in.html) to check for accessibility violations, you'd see `Multiple navigation landmarks must have unique labels specified with aria-label or aria-labelledby` because both the `Breadcrumb` and `Tabs` components use `<nav>` elements. To fix, add `aria-label` to the `Breadcrumb` opening tag:
 
 <!-- prettier-ignore-start -->
-```html
+```html path=src/app/home/landing-page/landing-page.component.html
 <ibm-breadcrumb noTrailingSlash="true" ariaLabel="Page navigation">
 ```
 <!-- prettier-ignore-end -->
@@ -565,7 +520,7 @@ _Note: We don't have to include this in a separate file, but it's nice to keep o
 
 We can now add our images and text for each column in the first `Tab` in `landing-page.component.html`.
 
-##### src/home/landing-page/landing-page.component.html
+##### src/app/home/landing-page/landing-page.component.html
 
 <!-- prettier-ignore-start -->
 ```html
@@ -604,7 +559,7 @@ Now let's download the image in `src/assests` and set the image size in `landing
 curl -o tab-illo.png https://raw.githubusercontent.com/carbon-design-system/carbon-tutorial-vue/vue-step-3/src/assets/tab-illo.png
 ```
 
-##### src/home/landing-page/landing-page.component.scss
+##### src/app/home/landing-page/landing-page.component.scss
 
 ```scss
 .landing-page__illo {
@@ -618,7 +573,7 @@ Assuming that the second and third tab would have a similar design, we would set
 
 The third row will be created in a later tutorial, so we'll just add the headers for now.
 
-##### src/home/landing-page/landing-page.component.html
+##### src/app/home/landing-page/landing-page.component.html
 
 ```html
 <div ibmRow class="landing-page__r3">
@@ -635,7 +590,7 @@ The third row will be created in a later tutorial, so we'll just add the headers
 
 We've added basic layout styles in `landing-page.component.scss` and `styles.scss`, so now let's add type, color and spacing styles to match the design. We'll be using our [spacing tokens](https://www.carbondesignsystem.com/guidelines/spacing). In `landing-page.component.scss`, add these imports at the **top** of the file so we can use Carbon breakpoints, tokens, and typography Sass mixins and functions:
 
-##### src/home/landing-page/landing-page.component.scss
+##### src/app/home/landing-page/landing-page.component.scss
 
 ```scss
 @import '~carbon-components/scss/globals/scss/vendor/@carbon/type/scss/font-family';
@@ -658,7 +613,7 @@ _Pro tip:_ `CTRL-G` _toggles the grid in Sketch._
 
 Now, we need to add a space above the breadcrumb and below the heading. For that, add:
 
-##### src/home/landing-page/landing-page.component.scss
+##### src/app/home/landing-page/landing-page.component.scss
 
 ```scss
 .landing-page__banner {
@@ -673,9 +628,7 @@ Looking at the design, we need a wall-to-wall light gray background behind the b
 
 Per the design we need to use Gray 10 for our banner background color, which can be set with the `$ui-01` [color token](https://www.carbondesignsystem.com/guidelines/color/usage). Also, we want the background to extend into the grid's outermost gutters to go the full width of the viewport, so given the DOM structure, we can achieve that by setting the background in an absolutely positioned pseudo element.
 
-##### src/home/landing-page/landing-page.component.scss
-
-```scss
+```scss path=src/app/home/landing-page/landing-page.component.scss
 @mixin landing-page-background() {
   background-color: $ui-01;
   position: relative;
@@ -695,9 +648,7 @@ Per the design we need to use Gray 10 for our banner background color, which can
 
 Now to use the new mixin, update the `.landing-page__banner` declaration block to:
 
-##### src/home/landing-page/landing-page.component.scss
-
-```scss
+```scss path=src/app/home/landing-page/landing-page.component.scss
 .landing-page__banner {
   padding-top: $spacing-05;
   padding-bottom: $spacing-07 * 4;
@@ -719,9 +670,7 @@ Next, we can see that the `h1` is using the `heading-05` type token.
 
 The Sketch symbol naming is consistent with the development Sass tokens to help translate design to development. So, looking up the [type token](https://www.carbondesignsystem.com/guidelines/typography/productive), we know to use `productive-heading-05`:
 
-##### src/home/landing-page/landing-page.component.scss
-
-```scss
+```scss path=src/app/home/landing-page/landing-page.component.scss
 .landing-page__heading {
   @include carbon--type-style('productive-heading-05');
 }
@@ -731,9 +680,7 @@ The Sketch symbol naming is consistent with the development Sass tokens to help 
 
 For our second row, we need to fix the tabs vertical positioning to match the design. By inspecting the tabs component, you can see that the tab height computes to `40px`. We can use that to create our negative top margin in rem units.
 
-##### src/home/landing-page/landing-page.component.scss
-
-```scss
+```scss path=src/app/home/landing-page/landing-page.component.scss
 .landing-page__r2 {
   margin-top: rem(-40px);
 }
@@ -753,9 +700,7 @@ We also need to adjust our vertical spacing and type treatment. Like before, it'
 
 _Note: You may be wondering why there are vertical gaps between the type and spacers. Each type token has a line height that's suited for its font size. The vertical spacers adjacently touch the line height boundaries and not the baseline, for consistency as well as development ease so_ `margins` _and_ `paddings` _don't need to offset line heights._
 
-##### src/home/landing-page/landing-page.component.scss
-
-```scss
+```scss path=src/app/home/landing-page/landing-page.component.scss
 .landing-page__tab-content {
   padding-top: $layout-05;
   padding-bottom: $layout-05;
@@ -791,9 +736,7 @@ _Note: You may be wondering why there are vertical gaps between the type and spa
 
 Let's also add some styles for the last row, even though that will get used later in the tutorial. You'll notice that we get to re-use the `landing-page-background` mixin that we just created.
 
-##### src/home/landing-page/landing-page.component.scss
-
-```scss
+```scss path=src/app/home/landing-page/landing-page.component.scss
 .landing-page__r3 {
   padding-top: $spacing-09;
   padding-bottom: $spacing-09;
@@ -811,23 +754,17 @@ Ta-da! You should see a finished landing page! Now we can move on to the repo pa
 
 First, we’ll add our grid and table by importing a few components in `repositories.module.ts` and `repo-page.component.spec.ts`:
 
-##### src/repositories/repositories.module.ts,
-
-##### src/repositories/repo-page/repo-page.component.spec.ts
-
-```javascript
+```javascript path=src/app/repositories/repositories.module.ts,src/app/repositories/repo-page/repo-page.component.spec.ts
 import { GridModule, TableModule } from 'carbon-components-angular';
 ```
 
-```javascript
+```javascript path=src/app/repositories/repositories.module.ts,src/app/repositories/repo-page/repo-page.component.spec.ts
 imports: [GridModule, TableModule];
 ```
 
 Now in our `repo-page.component.html` we will add our grid containers.
 
-##### src/repositories/repo-page/repo-page.component.html
-
-```html
+```html path=src/app/repositories/repo-page/repo-page.component.html
 <div ibmGrid class="bx--grid--full-width bx--grid--no-gutter repo-page">
   <div ibmRow class="repo-page__r1">
     <div ibmCol [columnNumbers]="{'lg': 16}">Data table will go here</div>
@@ -846,7 +783,7 @@ ng g component repositories/repo-table --lint-fix
 ##### Folder structure
 
 ```bash
-src/repositories
+src/app/repositories
 ├── repo-table.component.html
 ├── repo-table.component.scss
 ├── repo-table.component.spec.ts
@@ -855,13 +792,11 @@ src/repositories
 
 Next we will add our newly generated repo-table to the declarations in `repo-page.component.spec.ts`
 
-##### src/repositories/repo-page/repo-page.component.spec.ts
-
-```javascript
+```javascript path=src/app/repositories/repo-page/repo-page.component.spec.ts
 import { RepoTableComponent } from '../repo-table/repo-table.component';
 ```
 
-```javascript
+```javascript path=src/app/repositories/repo-page/repo-page.component.spec.ts
 declarations: [ RepoPageComponent, RepoTableComponent ],
 ```
 
@@ -869,10 +804,8 @@ declarations: [ RepoPageComponent, RepoTableComponent ],
 
 Then, let's create the table in `repo-table.component.html`
 
-##### src/repositories/repo-table/repo-table.component.html
-
 <!-- prettier-ignore-start -->
-```html
+```html path=src/app/repositories/repo-table/repo-table.component.html
 <ibm-table-container>
 	<ibm-table-header>
 		<h4 ibmTableHeaderTitle>Carbon Repositories</h4>
@@ -895,9 +828,7 @@ Here, you create a view (with built-in controller) and provide it a model. Chang
 
 Then include the following arrays to pass into the `repo-table.component.ts` component. We'll be setting the `rows` array from an API in the next tutorial step, but for now, static example rows will suffice.
 
-##### src/repositories/repo-table/repo-table.component.ts
-
-```javascript
+```javascript path=src/app/repositories/repo-table/repo-table.component.ts
 import { Component, OnInit } from "@angular/core";
 
 import {
@@ -957,9 +888,7 @@ export class RepoTableComponent implements OnInit {
 
 At this point, go to `repo-page.component.html` because now we need to render a static `repo-table`.
 
-##### src/repositories/repo-page/repo-page.component.html
-
-```html
+```html path=src/app/repositories/repo-page/repo-page.component.html
 <div ibmGrid class="bx--grid--full-width bx--grid--no-gutter repo-page">
   <div ibmRow class="repo-page__r1">
     <div ibmCol [columnNumbers]="{'lg': 16}">
@@ -975,9 +904,7 @@ Our styles for the repo page are mostly fine. We just need to update a few verti
 
 In `repo-page.component.scss`, add the following styles:
 
-##### src/repositories/repo-page/repo-page.component.ts
-
-```scss
+```scss path=src/app/repositories/repo-page/repo-page.component.ts
 @import '~carbon-components/scss/globals/scss/typography';
 
 .repo-page .bx--row {

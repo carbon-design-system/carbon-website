@@ -91,9 +91,7 @@ $ ng lint --fix
 _Note: In case you receive_ `ERROR in ../node_modules/graphql/subscription/subscribe.d.ts:44:3 - error TS2304: Cannot find name 'AsyncIterableIterator'.`_, you'll have to add the code below in _`tsconfig.app.json` `lib`_:_
 ​
 
-##### src/tsconfig.app.json
-
-```javascript
+```javascript path=src/tsconfig.app.json
 "lib": [
   "es2016",
   "dom",
@@ -103,9 +101,7 @@ _Note: In case you receive_ `ERROR in ../node_modules/graphql/subscription/subsc
 
 _Note: In case you receive _`typings.d.ts:2:13 - error TS2403: Subsequent variable declarations must have the same type. Variable 'module' must be of type 'NodeModule', but here has type '{ id: string; }'.`_, you'll have to comment out or remove the code below in _`typings.d.ts`_:_
 
-##### src/typings.d.ts
-
-```javascript
+```javascript path=src/typings.d.ts
 declare var module: {
   id: string,
 };
@@ -119,11 +115,9 @@ When you get to the scope/permissions step, you can leave them all unchecked. We
 
 Once you have your token, we need to put it in a place where we can use it in our app. When your application is being built and developed, our app will parse environmental variables in any `environment` file and make them available.
 
-##### src/environment/environment.ts
-
 ​<!-- prettier-ignore-start -->
 
-```javascript
+```javascript path=src/environment/environment.ts
 export const environment = {
   production: false,
   githubPersonalAccessToken: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
@@ -144,9 +138,7 @@ import { environment } from '../environments/environment';
 
 Next, make your client by providing a URI for the GitHub GraphQL API as well as an authorization header using the environmental variable you just added to `environment.ts`.
 
-##### src/app/graphql.module.ts
-
-```javascript
+```javascript path=src/app/graphql.module.ts
 import { HttpHeaders } from '@angular/common/http';
 
 const uri = 'https://api.github.com/graphql'; // <-- add the URL of the GraphQL server here
@@ -169,9 +161,7 @@ export function createApollo(httpLink: HttpLink) {
 
 Add the following import at the top of `repo-table.component.ts`:
 
-##### src/repositories/repo-table/repo-table.component.ts
-
-```javascript
+```javascript path=src/app/repositories/repo-table/repo-table.component.ts
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 ```
@@ -186,17 +176,13 @@ If you'd like some more information regarding writing queries, we recommend [Apo
 
 First, we will add a private apollo parameter of type Apollo to the constructor to get access to the Apollo service.
 
-##### src/repositories/repo-table/repo-table.component.ts
-
-```javascript
+```javascript path=src/app/repositories/repo-table/repo-table.component.ts
 constructor(private apollo: Apollo) { }
 ```
 
 Next, we will fetch the data in `ngOnInit()`. Add the folowing code right below the `model.header` declaration:
 
-##### src/repositories/repo-table/repo-table.component.ts
-
-```graphql
+```graphql path=src/app/repositories/repo-table/repo-table.component.ts
 this.apollo.watchQuery({
   query: gql`
     query REPO_QUERY {
@@ -240,9 +226,7 @@ Our last column in the data table will be a comma-separated list of repository a
 
 The column will have two values (`url` and `homepageUrl`) and will have the structure of an unordered list. If the repository does not have a home page URL, only render the repository link.
 
-##### src/repositories/repo-table/repo-table.component.html
-
-```html
+```html path=src/app/repositories/repo-table/repo-table.component.html
 <ng-template #linkTemplate let-data="data">
   <ul style="display: flex">
     <li>
@@ -256,9 +240,7 @@ The column will have two values (`url` and `homepageUrl`) and will have the stru
 </ng-template>
 ```
 
-##### src/repositories/repo-table/repo-table.component.ts
-
-```javascript
+```javascript path=src/app/repositories/repo-table/repo-table.component.ts
 @ViewChild("linkTemplate", null)
 protected linkTemplate: TemplateRef<any>;
 ```
@@ -267,9 +249,7 @@ _Note: Don't forget to import_ `ViewChild` _and_ `TemplateRef`.
 
 Now let's create a function that transforms row data to our expected header keys. Notice how we're using our new `linkTemplate` to generate the value of the `links` key in each row.
 
-##### src/repositories/repo-table/repo-table.component.ts
-
-```javascript
+```javascript path=src/app/repositories/repo-table/repo-table.component.ts
 prepareData(data) {
   const newData = [];
 
@@ -303,9 +283,7 @@ Finally, if neither of those are true, it means we have our data! One nice advan
 
 At the end of the `watchQuery` in `ngOnInit()`:
 
-##### src/repositories/repo-table/repo-table.component.ts
-
-```javascript
+```javascript path=src/app/repositories/repo-table/repo-table.component.ts
 .valueChanges.subscribe((response: any) => {
   if (response.error) {
     const errorData = [];
@@ -327,9 +305,7 @@ The page will look the same as we're still rendering our static example rows, bu
 
 Now that we have that data, let's populate the data table. Replace `console.log(response);` with the following that destructures the `organization` object. Once we have the repositories, we can call our `prepareData()` to build the data table rows.
 
-##### src/repositories/repo-table/repo-table.component.ts
-
-```javascript
+```javascript path=src/app/repositories/repo-table/repo-table.component.ts
 // If we're here, we've got our data!
 this.prepareData(response.data.organization.repositories.nodes);
 ```
@@ -342,9 +318,7 @@ At this point, the first time that you visit the repositories page, we're queryi
 
 To do so, we will need to modify `repo-table.component.html` and `repo-table.component.ts`:
 
-##### src/repositories/repo-table/repo-table.component.html
-
-```html
+```html path=src/app/repositories/repo-table/repo-table.component.html
 <ibm-table
   [skeleton]="skeleton"
   [model]="skeleton ? skeletonModel : model"
@@ -356,9 +330,7 @@ To do so, we will need to modify `repo-table.component.html` and `repo-table.com
 
 We need to tell the loading skeleton how many rows to render, so let's use 10 skeleton rows to prepare for the next enhancement...
 
-##### src/repositories/repo-table/repo-table.component.ts
-
-```javascript
+```javascript path=src/app/repositories/repo-table/repo-table.component.ts
 skeletonModel = Table.skeletonModel(10, 6);
 skeleton = true;
 ```
@@ -367,9 +339,7 @@ _Note: Don't forget to import_ `Table`.
 
 Then replace the comment with:
 
-##### src/repositories/repo-table/repo-table.component.ts
-
-```javascript
+```javascript path=src/app/repositories/repo-table/repo-table.component.ts
 else if (response.loading) {
   this.skeleton = true;
 }
@@ -377,9 +347,7 @@ else if (response.loading) {
 
 and at the top of `prepareData()` add:
 
-##### src/repositories/repo-table/repo-table.component.ts
-
-```javascript
+```javascript path=src/app/repositories/repo-table/repo-table.component.ts
 this.skeleton = false;
 ```
 
@@ -395,9 +363,7 @@ data = [];
 
 Next, replace the code where we call `preapreData()` with:
 
-##### src/repositories/repo-table/repo-table.component.ts
-
-```javascript
+```javascript path=src/app/repositories/repo-table/repo-table.component.ts
 this.data = response.data.organization.repositories.nodes;
 this.model.pageLength = 10;
 this.model.totalDataLength = response.data.organization.repositories.totalCount;
@@ -408,9 +374,7 @@ This initializes the page size to `10` as we also specified in our loading skele
 
 Next we will call `selectPage()`. This will initialize the offset and use `prepareData()` to only render the subset of rows for the current "page".
 
-##### src/repositories/repo-table/repo-table.component.ts
-
-```javascript
+```javascript path=src/app/repositories/repo-table/repo-table.component.ts
 selectPage(page) {
   const offset = this.model.pageLength * (page - 1);
   const pageRawData = this.data.slice(offset, offset + this.model.pageLength);
@@ -423,23 +387,17 @@ _Note: We only pass the rows that we want our table to display. We can do this b
 
 Finally, let's import the `LinkModule` and `PaginationModule` to `repositories.module.ts` and `repo-table.component.spec` and add the template for pagination.
 
-##### src/repositories/repositories.module.ts,
-
-##### src/repositories/repo-table/repo-table.component.spec.ts
-
-```javascript
+```javascript path=src/app/repositories/repositories.module.ts,src/app/repositories/repo-table/repo-table.component.spec.ts
 import { LinkModule, PaginationModule } from 'carbon-components-angular';
 ```
 
-```javascript
+```javascript path=src/app/repositories/repositories.module.ts,src/app/repositories/repo-table/repo-table.component.spec.ts
 imports: [LinkModule, PaginationModule];
 ```
 
 Immediately after the `ibm-table` closing tag (`/>`), add the `ibm-pagination` component.
 
-##### src/repositories/repo-table/repo-table.component.html
-
-```html
+```html path=src/app/repositories/repo-table/repo-table.component.html
 <ibm-pagination
   [model]="model"
   (selectPage)="selectPage($event)"
