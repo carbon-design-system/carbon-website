@@ -22,7 +22,7 @@ A [preview](https://angular-step-2-carbon-tutorial.netlify.com) of what you will
 
 <Preview
   height="800"
-  title="Carbon Tutorial Step 1"
+  title="Carbon Angular Tutorial Step 1"
   src="https://angular-step-2-carbon-tutorial.netlify.com"
   frameborder="no"
   allowtransparency="true"
@@ -182,7 +182,7 @@ npm install -g @angular/cli
 
 ## Create an Angular App
 
-Now that we have our environment set up, starting a new Angular app is easy! We will be using the Angular CLI to create and generate our components. It can also generate services, router, components, and directives.
+Now that we have our environment set up, starting a new Angular app is easy! If you haven't set up the environment yet, please do so using the steps provided in Prerequisites (above). We will be using the Angular CLI to create and generate our components. It can also generate services, router, components, and directives.
 
 To create a new Angular project with Angular CLI, just run:
 
@@ -190,6 +190,7 @@ To create a new Angular project with Angular CLI, just run:
 ng new carbon-angular-tutorial --directory ./
 ```
 
+This will create the new project within the current directory. Make sure you do this within the cloned fork of the project.
 When you get prompted, enter the following.
 
 ```bash
@@ -197,27 +198,29 @@ When you get prompted, enter the following.
 ? Which stylesheet format would you like to use? SCSS
 ```
 
-This command will install the Angular app with all the configurations needed. Currently, the `src` directory should have the structure:
+This command will install the Angular app with all the configurations needed. Within the project folder `carbon-angular-tutorial`, the `src` directory should have the following structure:
 
 ```bash
-src
-├── app
-│   ├── app-routing.module.ts
-│   ├── app.component.html
-│   ├── app.component.scss
-│   ├── app.component.spec.ts
-│   ├── app.component.ts
-│   └── app.module.ts
-├── assets
-├── environments
-│   ├── environment.prod.ts
-│   └── environment.ts
-├── favicon.ico
-├── index.html
-├── main.ts
-├── polyfills.ts
-├── styles.scss
-└── test.ts
+carbon-angular-tutorial
+...
+  ├── src
+    ├── app
+    │   ├── app-routing.module.ts
+    │   ├── app.component.html
+    │   ├── app.component.scss
+    │   ├── app.component.spec.ts
+    │   ├── app.component.ts
+    │   └── app.module.ts
+    ├── assets
+    ├── environments
+    │   ├── environment.prod.ts
+    │   └── environment.ts
+    ├── favicon.ico
+    ├── index.html
+    ├── main.ts
+    ├── polyfills.ts
+    ├── styles.scss
+    └── test.ts
 ```
 
 ## Install Carbon
@@ -234,11 +237,9 @@ npm install carbon-components carbon-components-angular @carbon/icons-angular
 
 ### Import carbon-component styles
 
-In `styles/styles.scss`, import the Carbon styles by adding the following to the top of the file:
+In `src/styles.scss`, import the Carbon styles by adding the following to the top of the file:
 
-##### src/styles.scss
-
-```scss
+```scss path=src/styles.scss
 @import '~carbon-components/scss/globals/scss/styles';
 ```
 
@@ -280,9 +281,7 @@ src/app/starter-home
 
 Next, we will edit the code style to match Carbon angular recommendations. Through the conventions listed in our `tslint.js`, the app will look clean and easier to read and maintain. So replace your code in `tslint.json` with the code below.
 
-##### tslint.json
-
-```javascript
+```javascript path=tslint.json
 {
 	"rulesDirectory": [
     "node_modules/codelyzer"
@@ -438,9 +437,7 @@ ng lint --fix
 
 All files should now pass linting. Finally, to help the editor indent lines properly in our project and to keep code styles consistent, we need to edit `.editorconfig`.
 
-##### .editorconfig
-
-```ini
+```ini path=.editorconfig
 # Editor configuration, see https://editorconfig.org
 root = true
 
@@ -462,36 +459,32 @@ _Note: This only works with editors that support editorconfigs_
 
 The `StarterHome` component will hold the content of the starter app. We will add the grid, list, tabs and tiles Carbon components. Now, let's import these Carbon components from our `carbon-components-angular` package library.
 
-##### src/app/starter-home/starter-home.module.ts
-
-```javascript
+```javascript path=src/app/starter-home/starter-home.module.ts
 import {
   GridModule,
   ListModule,
   TabsModule,
   TilesModule,
 } from 'carbon-components-angular';
-```
 
-```javascript
-declarations: [StarterHomeComponent],
-imports: [
-  CommonModule,
-  StarterHomeRoutingModule,
-  GridModule,
-  ListModule,
-  TabsModule,
-  TilesModule
-]
+@NgModule({
+  declarations: [StarterHomeComponent],
+  imports: [
+    CommonModule,
+    StarterHomeRoutingModule,
+    GridModule,
+    ListModule,
+    TabsModule,
+    TilesModule
+  ]
+})
 ```
 
 _Note: Make sure to add these imports to_ `starter-home.component.spec.ts` _to ensure our tests pass._
 
 Next, let's add some markup and styling to match the starter app.
 
-##### src/app/starter-home/starter-home/starter-home.component.html
-
-```html
+```html path=src/app/starter-home/starter-home/starter-home.component.html
 <div class="starter-home" ibmGrid>
   <h1 class="title">Congratulations, <br />you made it!</h1>
   <p style="margin-top: 2rem;">
@@ -607,9 +600,7 @@ Next, let's add some markup and styling to match the starter app.
 </div>
 ```
 
-##### src/app/starter-home/starter-home/starter-home.component.scss
-
-```scss
+```scss path=src/app/starter-home/starter-home/starter-home.component.scss
 .starter-home {
   .title {
     font-size: 4rem;
@@ -639,13 +630,11 @@ Next, let's add some markup and styling to match the starter app.
 
 We will also add some styling in `src/styles.scss` for resets, font styles and the different themes that you can play around with.
 
-##### src/styles.scss
-
-```scss
+```scss path=src/styles.scss
 $feature-flags: (
   css--body: false,
   // we're providing our own body styles
-    css--reset: false // prevent thousands of resets being included...,,
+    css--reset: false // prevent thousands of resets being included...,
 );
 
 body {
@@ -685,9 +674,7 @@ body {
 
 Currently, we you will not be able to see anything in the browser since our routing is not set up yet. Angular CLI has already set up routing in `app-routing.module.ts` and `starter-home-routing.module.ts`, we just need to add the routes:
 
-##### src/app/app-routing.module.ts
-
-```javascript
+```javascript path=src/app/app-routing.module.ts
 const routes: Routes = [
   {
     path: '',
@@ -704,9 +691,7 @@ const routes: Routes = [
 ];
 ```
 
-##### src/starter-home/starter-home-routing.module.ts
-
-```javascript
+```javascript path=src/starter-home/starter-home-routing.module.ts
 import { StarterHomeComponent } from './starter-home/starter-home.component';
 
 const routes: Routes = [
@@ -723,9 +708,7 @@ Before we submit a pull request, let's explore progressive web app, or PWA. PWA 
 
 For more information on PWAs, check out the [developer's documentation](https://developers.google.com/web/progressive-web-apps/).
 
-##### src/sw.js
-
-```javascript
+```javascript path=src/sw.js
 let log = console.log.bind(console);
 let err = console.error.bind(console);
 
@@ -796,9 +779,7 @@ self.addEventListener('fetch', e => {
 
 Now we need to register our service worker and use it to cache files locally. In `index.html` add the below code in a script block using `<script></script>` under the `app-root` tag.
 
-##### src/index.html
-
-```html
+```html path=src/index.html
 // Uncomment the following lines to activate the service worker // if
 (navigator.serviceWorker) { // navigator.serviceWorker.register("sw.js").then(()
 => { // console.log("Service worker installed") // }, err => { //
@@ -807,9 +788,7 @@ console.error("Service worker error:", err); // }); // }
 
 Next, we need to add the web app manifest. The manifest is a file in `json` format that provides the name, description, icon locations and other information required for an app to be considered a PWA. It lets users install the web app on the home screen just like native apps without going through an app store. Create a `manifest.json` in the `src` directory the paste the following code.
 
-##### src/manifest.json
-
-```javascript
+```javascript path=src/manifest.json
 {
   "name": "Carbon Angular Starter",
   "short_name": "Starter",
@@ -859,9 +838,7 @@ Next, we need to add the web app manifest. The manifest is a file in `json` form
 
 We will also need to add `sw.js` and `manifest.json` into our asset entities (build & test) in `angular.json` and reference the `manifest.json` and `theme-color` in the `index.html` `<head>` tags. The theme color tells the browser with what color to tint UI elements such as the address bar.
 
-##### angular.json
-
-```javascript
+```javascript path=angular.json
 "assets": [
   "src/favicon.ico",
   "src/assets",
@@ -870,9 +847,7 @@ We will also need to add `sw.js` and `manifest.json` into our asset entities (bu
 ],
 ```
 
-##### src/index.html
-
-```html
+```html path=src/index.html
 <link rel="manifest" href="manifest.json" />
 <meta name="theme-color" content="#ffff00" />
 ```
