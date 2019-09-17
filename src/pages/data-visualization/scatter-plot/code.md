@@ -1,5 +1,6 @@
 ---
 title: Scatter plot
+description: Scatter plots are used to determine whether there is a relationship between two sets of quantitative values by showing the linear correlation between them.
 tabs: ['Code', 'Usage', 'Style']
 ---
 
