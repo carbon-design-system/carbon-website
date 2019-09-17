@@ -121,13 +121,14 @@ Once you have your token, we need to put it in a place where we can use it in ou
 
 ##### src/environment/environment.ts
 
-<!-- prettier-ignore -->
+<!-- prettier-ignore-start -->
 ```javascript
 export const environment = {
   production: false,
   githubPersonalAccessToken: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
 };
 ```
+<!-- prettier-ignore-end -->
 
 Go ahead and start your app with `npm run start`, or, if your app is running, you'll need to restart it to get access to this token.
 
@@ -145,10 +146,11 @@ Next, make your client by providing a URI for the GitHub GraphQL API as well as 
 
 ##### src/app/graphql.module.ts
 
+<!-- prettier-ignore-start -->
 ```javascript
-import { HttpHeaders } from '@angular/common/http';
+import { HttpHeaders } from "@angular/common/http";
 
-const uri = 'https://api.github.com/graphql'; // <-- add the URL of the GraphQL server here
+const uri = "https://api.github.com/graphql"; // <-- add the URL of the GraphQL server here
 export function createApollo(httpLink: HttpLink) {
   return {
     link: httpLink.create({
@@ -161,6 +163,7 @@ export function createApollo(httpLink: HttpLink) {
   };
 }
 ```
+<!-- prettier-ignore-end -->
 
 ## Fetch data
 
@@ -170,10 +173,12 @@ Add the following import at the top of `repo-table.component.ts`:
 
 ##### src/repositories/repo-table/repo-table.component.ts
 
+<!-- prettier-ignore-start -->
 ```javascript
-import { Apollo } from 'apollo-angular';
-import gql from 'graphql-tag';
+import { Apollo } from "apollo-angular";
+import gql from "graphql-tag";
 ```
+<!-- prettier-ignore-end -->
 
 ### Query
 
@@ -438,12 +443,14 @@ Immediately after the `ibm-table` closing tag (`/>`), add the `ibm-pagination` c
 
 ##### src/repositories/repo-table/repo-table.component.html
 
+<!-- prettier-ignore-start -->
 ```html
 <ibm-pagination
   [model]="model"
-  (selectPage)="selectPage($event)"
-></ibm-pagination>
+  (selectPage)="selectPage($event)">
+</ibm-pagination>
 ```
+<!-- prettier-ignore-end -->
 
 _Note: Like the other Carbon Angular component,_ `pagination` _component examples can be found in [Storybook](https://angular.carbondesignsystem.com/?path=/story/table--with-pagination) by browsing the story and knobs._
 
