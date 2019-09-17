@@ -49,7 +49,7 @@ class ComponentExample extends Component {
     variation: PropTypes.string,
     codepenSlug: PropTypes.string,
     hasLightVersion: PropTypes.string,
-    hasReactVersion: PropTypes.bool,
+    hasReactVersion: PropTypes.string,
     hasAngularVersion: PropTypes.string,
     hasVueVersion: PropTypes.string,
     experimental: PropTypes.bool,
@@ -309,17 +309,9 @@ class ComponentExample extends Component {
         <div className="component-toolbar">
           <div className="component-toolbar__current">Vanilla JS</div>
           <div className="component-toolbar__links">
-            {hasReactVersion === true && experimental !== true && (
+            {typeof hasReactVersion === 'string' && (
               <a
-                href={`http://react.carbondesignsystem.com/?selectedKind=${componentNameLink}`}
-                target="_blank"
-                rel="noopener noreferrer">
-                React <Launch16 />
-              </a>
-            )}
-            {hasReactVersion === true && experimental === true && (
-              <a
-                href={`http://react-experimental.carbondesignsystem.com/?selectedKind=${componentNameLink}`}
+                href={`http://react.carbondesignsystem.com/?path=/story/${hasReactVersion}`}
                 target="_blank"
                 rel="noopener noreferrer">
                 React <Launch16 />
