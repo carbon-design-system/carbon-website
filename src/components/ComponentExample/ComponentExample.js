@@ -98,7 +98,7 @@ class ComponentExample extends Component {
           <div className="component-toolbar__links">
             {typeof hasReactVersion === 'string' && (
               <a
-                href={`http://react.carbondesignsystem.com/?selectedKind=${hasReactVersion}`}
+                href={`http://react.carbondesignsystem.com/?path=/story/${hasReactVersion}`}
                 target="_blank"
                 rel="noopener noreferrer">
                 React <Launch16 />
