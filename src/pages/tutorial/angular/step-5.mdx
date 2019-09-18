@@ -74,30 +74,34 @@ Before we get started, [create an IBM Cloud account](https://cloud.ibm.com/regis
 
 So far we've been developing in a, well, development environment where static asset optimization hasn't been a priority. If you reference `/src/styles.scss`, you'll see one `@import` that is pulling in Carbon's full Sass build.
 
+<!-- prettier-ignore-start -->
 ```scss path=src/styles.scss
-@import 'carbon-components/scss/globals/scss/styles.scss';
+@import "carbon-components/scss/globals/scss/styles.scss";
 ```
+<!-- prettier-ignore-end -->
 
 To give you an idea of what's all included, open up `node_modules/carbon-components/scss/globals/scss/styles.scss`. You'll see imports for components like accordion, slider, tooltip, etc. Since we aren't using those components, let's exclude them from our built stylesheets. Keeping the `$feature-flags` Sass map, replace the `styles.scss` import with:
 
+<!-- prettier-ignore-start -->
 ```scss path=src/styles.scss
 // Feature flags
 $css--font-face: true;
 $css--plex: true;
 
 // Global styles
-@import 'carbon-components/scss/globals/scss/css--font-face';
-@import 'carbon-components/scss/globals/grid/grid';
+@import "carbon-components/scss/globals/scss/css--font-face";
+@import "carbon-components/scss/globals/grid/grid";
 
 // Carbon components
-@import 'carbon-components/scss/components/breadcrumb/breadcrumb';
-@import 'carbon-components/scss/components/button/button';
-@import 'carbon-components/scss/components/data-table/data-table';
-@import 'carbon-components/scss/components/link/link';
-@import 'carbon-components/scss/components/pagination/pagination';
-@import 'carbon-components/scss/components/tabs/tabs';
-@import 'carbon-components/scss/components/ui-shell/ui-shell';
+@import "carbon-components/scss/components/breadcrumb/breadcrumb";
+@import "carbon-components/scss/components/button/button";
+@import "carbon-components/scss/components/data-table/data-table";
+@import "carbon-components/scss/components/link/link";
+@import "carbon-components/scss/components/pagination/pagination";
+@import "carbon-components/scss/components/tabs/tabs";
+@import "carbon-components/scss/components/ui-shell/ui-shell";
 ```
+<!-- prettier-ignore-end -->
 
 Looking at the new `styles.scss` file, you may be asking what happened to importing `_vars.scss`, `_colors.scss`, `_theme.scss`, etc.? Many of those global Sass partials get imported through the components. For example, open `node_modules/carbon-components/scss/components/button/_button.scss` to see its dependencies. No harm in importing them as `styles.scss` does, but for simplicity here, we'll let the components pull them in.
 

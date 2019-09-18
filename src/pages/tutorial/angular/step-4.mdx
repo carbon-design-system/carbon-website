@@ -241,6 +241,8 @@ export class HomeModule { }
 
 Now we're going to go into the `InfoSection` component to add content from `info.json`.
 
+<!-- prettier-ignore-end -->
+
 ```ts path=src/app/info/info-section/info-section.component.ts
 import { Component, OnInit } from '@angular/core';
 import * as data from './../info.json';
@@ -260,13 +262,16 @@ export class InfoSectionComponent implements OnInit {
 }
 ```
 
+<!-- prettier-ignore-start -->
+
 We essentially have added a `heading` and `items` variable into the model of `InfoSectionComponent`, which we'll be using later to pass content into the children components `InfoCard`.
 
 We've also added class names that are specific to this component that we'll target in our stylesheet:
 
+<!-- prettier-ignore-start -->
 ```scss path=src/app/info/info-section/info-section.component.scss
-@import '~carbon-components/scss/globals/scss/typography';
-@import '~carbon-components/scss/globals/scss/vendor/@carbon/type/scss/font-family';
+@import "~carbon-components/scss/globals/scss/typography";
+@import "~carbon-components/scss/globals/scss/vendor/@carbon/type/scss/font-family";
 
 @mixin info-section-background() {
   background-color: $ui-01;
@@ -296,11 +301,12 @@ We've also added class names that are specific to this component that we'll targ
   }
 
   .info-section__heading {
-    @include carbon--type-style('heading-01');
-    @include carbon--font-weight('semibold');
+    @include carbon--type-style("heading-01");
+    @include carbon--font-weight("semibold");
   }
 }
 ```
+<!-- prettier-ignore-end -->
 
 ### InfoCard component
 
@@ -317,13 +323,14 @@ Next up we're going to build a component for columns 2 - 4, which currently look
 
 Now we've setup our `InfoCard` to display a heading and some content. We will setup the component `.ts` file to accept a `heading` and `content` input to be displayed.
 
+<!-- prettier-ignore-start -->
 ```ts path=src/app/info/info-card/info-card.component.ts
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input } from "@angular/core";
 
 @Component({
-  selector: 'app-info-card',
-  templateUrl: './info-card.component.html',
-  styleUrls: ['./info-card.component.scss'],
+  selector: "app-info-card",
+  templateUrl: "./info-card.component.html",
+  styleUrls: ["./info-card.component.scss"],
 })
 export class InfoCardComponent implements OnInit {
   @Input() heading;
@@ -334,6 +341,7 @@ export class InfoCardComponent implements OnInit {
   ngOnInit() {}
 }
 ```
+<!-- prettier-ignore-end -->
 
 Finally, we'll update `InfoSection` to use the new `InfoCard` component.
 
@@ -370,15 +378,16 @@ Finally, we'll update `InfoSection` to use the new `InfoCard` component.
 
 Next we're going to use Carbon Icon components in our custom components. We're going to place the icons within the `InfoCard` components as children. In the `InfoModule` we will import the modules we need for the Carbon Angular Icons:
 
+<!-- prettier-ignore-start -->
 ```ts path=src/info/info.module.ts
-import { NgModule } from '@angular/core';
+import { NgModule } from "@angular/core";
 ...
 
-import { PersonFavorite32Module } from '@carbon/icons-angular/lib/person--favorite/32';
-import { Globe32Module } from '@carbon/icons-angular/lib/globe/32';
-import { Application32Module } from '@carbon/icons-angular/lib/application/32';
+import { PersonFavorite32Module } from "@carbon/icons-angular/lib/person--favorite/32";
+import { Globe32Module } from "@carbon/icons-angular/lib/globe/32";
+import { Application32Module } from "@carbon/icons-angular/lib/application/32";
 
-import { GridModule } from 'carbon-components-angular';
+import { GridModule } from "carbon-components-angular";
 
 @NgModule({
   declarations: [InfoSectionComponent, InfoCardComponent],
@@ -392,6 +401,7 @@ import { GridModule } from 'carbon-components-angular';
 })
 export class InfoModule {}
 ```
+<!-- prettier-ignore-end -->
 
 Next we will use `<ng-content>` so that we can inject icons into the `InfoCard` from it's parent component (`InfoSection`)
 
@@ -449,9 +459,10 @@ We currently have the components displaying the content we created. We need to a
 
 Starting with layout, add the following to `src/app/info/info-card/info-card.component.scss`.
 
+<!-- prettier-ignore-start -->
 ```scss path=src/app/info/info-card/info-card.component.scss
-@import '~carbon-components/scss/globals/scss/typography';
-@import '~carbon-components/scss/globals/scss/layout';
+@import "~carbon-components/scss/globals/scss/typography";
+@import "~carbon-components/scss/globals/scss/layout";
 
 .info-card {
   display: flex;
@@ -461,13 +472,13 @@ Starting with layout, add the following to `src/app/info/info-card/info-card.com
   height: 100%;
 
   .info-card__heading {
-    @include carbon--type-style('productive-heading-03');
+    @include carbon--type-style("productive-heading-03");
   }
 
   .info-card__body {
     margin-top: $spacing-06;
     flex-grow: 1;
-    @include type-style('body-long-01');
+    @include type-style("body-long-01");
 
     // prevent large line lengths between small and medium viewports
     @include carbon--breakpoint-between(321px, md) {
@@ -476,6 +487,7 @@ Starting with layout, add the following to `src/app/info/info-card/info-card.com
   }
 }
 ```
+<!-- prettier-ignore-end -->
 
 Once you save, go ahead and resize your browser to see the responsive layout at the different breakpoints. Make sure to review these color and spacing tokens. There are also a few breakpoint mixins that may be new to you. The `@carbon/layout` [SassDoc](https://github.com/carbon-design-system/carbon/blob/master/packages/layout/docs/sass.md) is a great reference to see what all is available.
 
@@ -483,13 +495,14 @@ Once you save, go ahead and resize your browser to see the responsive layout at 
 
 Our `InfoCard` headings have to be updated to match the specs. We need to make the last word of each heading bold. Add the below custom function (`createArrayFromPhrase`) to `src/app/info/info-card/info-card.component.ts`:
 
+<!-- prettier-ignore-start -->
 ```ts path=src/app/info/info-card/info-card.component.ts
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-info-card',
-  templateUrl: './info-card.component.html',
-  styleUrls: ['./info-card.component.scss'],
+  selector: "app-info-card",
+  templateUrl: "./info-card.component.html",
+  styleUrls: ["./info-card.component.scss"],
 })
 export class InfoCardComponent implements OnInit {
   @Input() heading;
@@ -505,12 +518,13 @@ export class InfoCardComponent implements OnInit {
 
   // Take in a phrase and separate the third word in an array
   createArrayFromPhrase(phrase) {
-    const splitPhrase = phrase.split(' ');
+    const splitPhrase = phrase.split(" ");
     const thirdWord = splitPhrase.pop();
-    return [splitPhrase.join(' '), thirdWord];
+    return [splitPhrase.join(" "), thirdWord];
   }
 }
 ```
+<!-- prettier-ignore-end -->
 
 This'll allow us to still accept `heading` as an input to the component, but we'll need to change the template to use `splitHeading` rather than `heading` to display our heading content.
 
@@ -531,9 +545,10 @@ Update the component template to use `splitHeading`:
 
 Then, add some styling for the icons within our `InfoCard` component:
 
+<!-- prettier-ignore-start -->
 ```scss path=src/app/info/info-card/info-card.component.scss
-@import '~carbon-components/scss/globals/scss/typography';
-@import '~carbon-components/scss/globals/scss/layout';
+@import "~carbon-components/scss/globals/scss/typography";
+@import "~carbon-components/scss/globals/scss/layout";
 
 .info-card {
   ... .info-card__icon {
@@ -545,6 +560,7 @@ Then, add some styling for the icons within our `InfoCard` component:
   }
 }
 ```
+<!-- prettier-ignore-end -->
 
 Finally, we need styles for the `InfoCard` borders. We will use the `InfoSection` to apply styles using the children selectors. Update the `InfoSection` stylesheet to include styles targeting the `InfoCard`:
 

@@ -106,37 +106,43 @@ src/app/tutorial-header
 
 Next we'll import our Carbon UI Shell components into `tutorial-header.module.ts` and `tutorial-header.component.spec.ts`. Also, make sure we import and export `TutorialHeaderComponent`. Set up the file like so:
 
+<!-- prettier-ignore-start -->
 ```javascript path=src/app/tutorial-header/tutorial-header.module.ts
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { RouterModule } from "@angular/router";
 
-import { TutorialHeaderComponent } from './tutorial-header/tutorial-header.component';
+import { TutorialHeaderComponent } from "./tutorial-header/tutorial-header.component";
 
-import { HeaderModule } from 'carbon-components-angular';
+import { HeaderModule } from "carbon-components-angular";
 
 export {
   TutorialHeaderComponent,
-} from './tutorial-header/tutorial-header.component';
+} from "./tutorial-header/tutorial-header.component";
 
 @NgModule({
   declarations: [TutorialHeaderComponent],
   imports: [CommonModule, HeaderModule, RouterModule],
-  exports: [TutorialHeaderComponent],
+  exports: [TutorialHeaderComponent]
 })
 export class TutorialHeaderModule {}
 ```
+<!-- prettier-ignore-end -->
 
+<!-- prettier-ignore-start -->
 ```javascript path=src/app/tutorial-header/tutorial-header/tutorial-header.component.spec.ts
-import { HeaderModule } from 'carbon-components-angular/ui-shell/ui-shell.module';
+import { HeaderModule } from "carbon-components-angular/ui-shell/ui-shell.module";
 ```
+<!-- prettier-ignore-end -->
 
+<!-- prettier-ignore-start -->
 ```javascript path=src/app/tutorial-header/tutorial-header/tutorial-header.component.spec.ts
 TestBed.configureTestingModule({
   declarations: [TutorialHeaderComponent],
-  imports: [HeaderModule],
+  imports: [HeaderModule]
 });
 ```
+<!-- prettier-ignore-end -->
 
 _Note: you can find a description of the different components used in UI Shell in our [carbon-components-angular](https://github.com/IBM/carbon-components-angular/tree/master/src/ui-shell) package._
 
@@ -144,11 +150,13 @@ _Note: you can find a description of the different components used in UI Shell i
 
 Now let's import the icons from our `@carbon/icons-angular` package. In `tutorial-header.module.ts` and `tutorial-header.component.spec.ts`, we need to import each individual icon we will use.
 
+<!-- prettier-ignore-start -->
 ```javascript path=src/app/tutorial-header/tutorial-header.module.ts,src/app/tutorial-header/tutorial-header/tutorial-header.component.spec.ts
-import { Notification20Module } from '@carbon/icons-angular/lib/notification/20';
-import { UserAvatar20Module } from '@carbon/icons-angular/lib/user--avatar/20';
-import { AppSwitcher20Module } from '@carbon/icons-angular/lib/app-switcher/20';
+import { Notification20Module } from "@carbon/icons-angular/lib/notification/20";
+import { UserAvatar20Module } from "@carbon/icons-angular/lib/user--avatar/20";
+import { AppSwitcher20Module } from "@carbon/icons-angular/lib/app-switcher/20";
 ```
+<!-- prettier-ignore-end -->
 
 ```javascript path=src/app/tutorial-header/tutorial-header.module.ts,src/app/tutorial-header/tutorial-header/tutorial-header.component.spec.ts
 imports: [Notification20Module, UserAvatar20Module, AppSwitcher20Module];
@@ -156,6 +164,7 @@ imports: [Notification20Module, UserAvatar20Module, AppSwitcher20Module];
 
 Then we need to add the template code. Populate `tutorial-header.component.html` with:
 
+<!-- prettier-ignore-start -->
 ```html path=src/app/tutorial-header/tutorial-header/tutorial-header.component.html
 <ibm-header name="Carbon Tutorial Angular">
   <ibm-header-navigation ariaLabel="Carbon Tutorial Angular">
@@ -164,20 +173,21 @@ Then we need to add the template code. Populate `tutorial-header.component.html`
   <ibm-header-global>
     <ibm-header-action title="action">
       <ibm-icon-notification20
-        innerClass="header-icon"
-      ></ibm-icon-notification20>
+        innerClass="header-icon">
+      </ibm-icon-notification20>
     </ibm-header-action>
     <ibm-header-action title="action">
       <ibm-icon-user-avatar20 innerClass="header-icon"></ibm-icon-user-avatar20>
     </ibm-header-action>
     <ibm-header-action title="action">
       <ibm-icon-app-switcher20
-        innerClass="header-icon"
-      ></ibm-icon-app-switcher20>
+        innerClass="header-icon">
+      </ibm-icon-app-switcher20>
     </ibm-header-action>
   </ibm-header-global>
 </ibm-header>
 ```
+<!-- prettier-ignore-end -->
 
 And we will add some styling as well in `styles.scss`
 
@@ -189,9 +199,11 @@ And we will add some styling as well in `styles.scss`
 
 Next import the tutorial-header module in `app.module.ts` and `app.component.spec.ts` and add the component in `app.component.html`
 
+<!-- prettier-ignore-start -->
 ```javascript path=src/app/app.module.ts,src/app/app.component.spec.ts
-import { TutorialHeaderModule } from './tutorial-header/tutorial-header.module';
+import { TutorialHeaderModule } from "./tutorial-header/tutorial-header.module";
 ```
+<!-- prettier-ignore-end -->
 
 ```javascript path=src/app/app.module.ts,src/app/app.component.spec.ts
 imports: [TutorialHeaderModule];
@@ -294,6 +306,8 @@ const routes: Routes = [
 ];
 ```
 
+<!-- prettier-ignore-end -->
+
 ```javascript path=src/app/repositories/repositories-routing.module.ts
 import { RepoPageComponent } from './repo-page/repo-page.component';
 
@@ -304,6 +318,8 @@ const routes: Routes = [
   },
 ];
 ```
+
+<!-- prettier-ignore-end -->
 
 After that we need to do a couple quick fixes to the UI Shell to have it route to the repo page.
 
@@ -331,7 +347,7 @@ $feature-flags: (
 Next we'll import our Carbon grid component into `home.module.ts` and `landing-page.component.spec.ts`.
 
 ```javascript path=src/app/home/landing-page/landing-page.component.spec.ts,src/app/home/home.module.ts
-import { GridModule } from 'carbon-components-angular';
+import { GridModule } from "carbon-components-angular";
 ...
 @NgModule({
   ...
@@ -395,6 +411,8 @@ In our first row we'll need a `Breadcrumb` component. First, let's import the co
 import { BreadcrumbModule, GridModule } from 'carbon-components-angular';
 ```
 
+<!-- prettier-ignore-end -->
+
 ```javascript path=src/app/home/home.module.ts,src/app/home/landing-page/landing-page.component.spec.ts
 imports: [BreadcrumbModule, GridModule];
 ```
@@ -422,14 +440,16 @@ You may notice that the styles look off. Don't worry, we'll fix these later.
 
 In our second row we'll need `Tabs` and `Button` components also in `home.module.ts` and `landing-page.component.spec.ts`. We'll update the `carbon-components-angular` import to:
 
+<!-- prettier-ignore-start -->
 ```javascript path=src/app/home/home.module.ts,src/app/home/landing-page/landing-page.component.spec.ts
 import {
   BreadcrumbModule,
   ButtonModule,
   GridModule,
   TabsModule,
-} from 'carbon-components-angular';
+} from "carbon-components-angular";
 ```
+<!-- prettier-ignore-end -->
 
 ```javascript path=src/app/home/home.module.ts,src/app/home/landing-page/landing-page.component.spec.ts
 imports: [BreadcrumbModule, ButtonModule, GridModule, TabsModule];
@@ -500,9 +520,7 @@ Same goes for the `Tabs` opening tag:
 
 Next, we'll need to add a styling override to move the tabs to the right on large viewports. Create a file `carbon-overrides.scss` in `src/assets` with this declaration block.
 
-##### src/assets/carbon-overrides.scss
-
-```scss
+```scss path=src/assets/carbon-overrides.scss
 .landing-page__r2 .bx--tabs__nav {
   right: 0;
 }
@@ -510,20 +528,18 @@ Next, we'll need to add a styling override to move the tabs to the right on larg
 
 Then in `styles.scss` add this import at the top of the file.
 
-##### src/styles.scss
-
-```scss
-@import './assets/carbon-overrides.scss';
+<!-- prettier-ignore-start -->
+```scss path=src/styles.scss
+@import "./assets/carbon-overrides.scss";
 ```
+<!-- prettier-ignore-end -->
 
 _Note: We don't have to include this in a separate file, but it's nice to keep overrides separate from your application's styling so when migrating to future Carbon versions and if there are breaking changes via different class names, you have a consolidated list of styling declaration blocks to review._
 
 We can now add our images and text for each column in the first `Tab` in `landing-page.component.html`.
 
-##### src/app/home/landing-page/landing-page.component.html
-
 <!-- prettier-ignore-start -->
-```html
+```html path=src/app/home/landing-page/landing-page.component.html
 <ibm-tab heading="About">
   <div ibmGrid class="bx--grid--no-gutter bx--grid--full-width">
     <div ibmRow class="landing-page__tab-content">
@@ -559,9 +575,7 @@ Now let's download the image in `src/assests` and set the image size in `landing
 curl -o tab-illo.png https://raw.githubusercontent.com/carbon-design-system/carbon-tutorial-vue/vue-step-3/src/assets/tab-illo.png
 ```
 
-##### src/app/home/landing-page/landing-page.component.scss
-
-```scss
+```scss path=src/app/home/landing-page/landing-page.component.scss
 .landing-page__illo {
   max-width: 100%;
 }
@@ -573,9 +587,7 @@ Assuming that the second and third tab would have a similar design, we would set
 
 The third row will be created in a later tutorial, so we'll just add the headers for now.
 
-##### src/app/home/landing-page/landing-page.component.html
-
-```html
+```html path=src/app/home/landing-page/landing-page.component.html
 <div ibmRow class="landing-page__r3">
   <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
     <h3 class="landing-page__label">The Principles</h3>
@@ -590,12 +602,12 @@ The third row will be created in a later tutorial, so we'll just add the headers
 
 We've added basic layout styles in `landing-page.component.scss` and `styles.scss`, so now let's add type, color and spacing styles to match the design. We'll be using our [spacing tokens](https://www.carbondesignsystem.com/guidelines/spacing). In `landing-page.component.scss`, add these imports at the **top** of the file so we can use Carbon breakpoints, tokens, and typography Sass mixins and functions:
 
-##### src/app/home/landing-page/landing-page.component.scss
-
-```scss
-@import '~carbon-components/scss/globals/scss/vendor/@carbon/type/scss/font-family';
-@import '~carbon-components/scss/globals/scss/typography';
+<!-- prettier-ignore-start -->
+```scss path=src/app/home/landing-page/landing-page.component.scss
+@import "~carbon-components/scss/globals/scss/vendor/@carbon/type/scss/font-family";
+@import "~carbon-components/scss/globals/scss/typography";
 ```
+<!-- prettier-ignore-end -->
 
 ### Banner
 
@@ -613,9 +625,7 @@ _Pro tip:_ `CTRL-G` _toggles the grid in Sketch._
 
 Now, we need to add a space above the breadcrumb and below the heading. For that, add:
 
-##### src/app/home/landing-page/landing-page.component.scss
-
-```scss
+```scss path=src/app/home/landing-page/landing-page.component.scss
 .landing-page__banner {
   padding-top: $spacing-05;
   padding-bottom: $spacing-07 * 4;
@@ -670,11 +680,13 @@ Next, we can see that the `h1` is using the `heading-05` type token.
 
 The Sketch symbol naming is consistent with the development Sass tokens to help translate design to development. So, looking up the [type token](https://www.carbondesignsystem.com/guidelines/typography/productive), we know to use `productive-heading-05`:
 
+<!-- prettier-ignore-start -->
 ```scss path=src/app/home/landing-page/landing-page.component.scss
 .landing-page__heading {
-  @include carbon--type-style('productive-heading-05');
+  @include carbon--type-style("productive-heading-05");
 }
 ```
+<!-- prettier-ignore-end -->
 
 ### Row two
 
@@ -700,6 +712,7 @@ We also need to adjust our vertical spacing and type treatment. Like before, it'
 
 _Note: You may be wondering why there are vertical gaps between the type and spacers. Each type token has a line height that's suited for its font size. The vertical spacers adjacently touch the line height boundaries and not the baseline, for consistency as well as development ease so_ `margins` _and_ `paddings` _don't need to offset line heights._
 
+<!-- prettier-ignore-start -->
 ```scss path=src/app/home/landing-page/landing-page.component.scss
 .landing-page__tab-content {
   padding-top: $layout-05;
@@ -707,12 +720,12 @@ _Note: You may be wondering why there are vertical gaps between the type and spa
 }
 
 .landing-page__subheading {
-  @include carbon--type-style('productive-heading-03');
-  @include carbon--font-weight('semibold');
+  @include carbon--type-style("productive-heading-03");
+  @include carbon--font-weight("semibold");
 }
 
 .landing-page__p {
-  @include carbon--type-style('productive-heading-03');
+  @include carbon--type-style("productive-heading-03");
   margin-top: $spacing-06;
   margin-bottom: $spacing-08;
 
@@ -721,6 +734,7 @@ _Note: You may be wondering why there are vertical gaps between the type and spa
   }
 }
 ```
+<!-- prettier-ignore-end -->
 
 ### Row three
 
@@ -736,6 +750,7 @@ _Note: You may be wondering why there are vertical gaps between the type and spa
 
 Let's also add some styles for the last row, even though that will get used later in the tutorial. You'll notice that we get to re-use the `landing-page-background` mixin that we just created.
 
+<!-- prettier-ignore-start -->
 ```scss path=src/app/home/landing-page/landing-page.component.scss
 .landing-page__r3 {
   padding-top: $spacing-09;
@@ -744,9 +759,10 @@ Let's also add some styles for the last row, even though that will get used late
 }
 
 .landing-page__label {
-  @include carbon--type-style('heading-01');
+  @include carbon--type-style("heading-01");
 }
 ```
+<!-- prettier-ignore-end -->
 
 Ta-da! You should see a finished landing page! Now we can move on to the repo page.
 
@@ -754,9 +770,11 @@ Ta-da! You should see a finished landing page! Now we can move on to the repo pa
 
 First, we’ll add our grid and table by importing a few components in `repositories.module.ts` and `repo-page.component.spec.ts`:
 
+<!-- prettier-ignore-start -->
 ```javascript path=src/app/repositories/repositories.module.ts,src/app/repositories/repo-page/repo-page.component.spec.ts
-import { GridModule, TableModule } from 'carbon-components-angular';
+import { GridModule, TableModule } from "carbon-components-angular";
 ```
+<!-- prettier-ignore-end -->
 
 ```javascript path=src/app/repositories/repositories.module.ts,src/app/repositories/repo-page/repo-page.component.spec.ts
 imports: [GridModule, TableModule];
@@ -792,9 +810,11 @@ src/app/repositories
 
 Next we will add our newly generated repo-table to the declarations in `repo-page.component.spec.ts`
 
+<!-- prettier-ignore-start -->
 ```javascript path=src/app/repositories/repo-page/repo-page.component.spec.ts
-import { RepoTableComponent } from '../repo-table/repo-table.component';
+import { RepoTableComponent } from "../repo-table/repo-table.component";
 ```
+<!-- prettier-ignore-end -->
 
 ```javascript path=src/app/repositories/repo-page/repo-page.component.spec.ts
 declarations: [ RepoPageComponent, RepoTableComponent ],
@@ -828,63 +848,65 @@ Here, you create a view (with built-in controller) and provide it a model. Chang
 
 Then include the following arrays to pass into the `repo-table.component.ts` component. We'll be setting the `rows` array from an API in the next tutorial step, but for now, static example rows will suffice.
 
+<!-- prettier-ignore-start -->
 ```javascript path=src/app/repositories/repo-table/repo-table.component.ts
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 
 import {
   TableModel,
   TableItem,
-  TableHeaderItem
-} from "carbon-components-angular";
+  TableHeaderItem,
+} from 'carbon-components-angular';
 
 @Component({
-  selector: "app-repo-table",
-  templateUrl: "./repo-table.component.html",
-  styleUrls: ["./repo-table.component.scss"]
+  selector: 'app-repo-table',
+  templateUrl: './repo-table.component.html',
+  styleUrls: ['./repo-table.component.scss']
 })
 export class RepoTableComponent implements OnInit {
   model = new TableModel();
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
     this.model.data = [
       [
-        new TableItem({data: "Repo 1", expandedData: "Row description"}),
-        new TableItem({data: "Date"}),
-        new TableItem({data: "Date"}),
-        new TableItem({data: "123"}),
-        new TableItem({data: "456"}),
-        new TableItem({data: "Links"})
+        new TableItem({ data: 'Repo 1', expandedData: 'Row description' }),
+        new TableItem({ data: 'Date' }),
+        new TableItem({ data: 'Date' }),
+        new TableItem({ data: '123' }),
+        new TableItem({ data: '456' }),
+        new TableItem({ data: 'Links' }),
       ],
       [
-        new TableItem({data: "Repo 2", expandedData: "Row description"}}),
-        new TableItem({data: "Date"}),
-        new TableItem({data: "Date"}),
-        new TableItem({data: "123"}),
-        new TableItem({data: "456"}),
-        new TableItem({data: "Links"})
+        new TableItem({ data: 'Repo 2', expandedData: 'Row description' }),
+        new TableItem({ data: 'Date' }),
+        new TableItem({ data: 'Date' }),
+        new TableItem({ data: '123' }),
+        new TableItem({ data: '456' }),
+        new TableItem({ data: 'Links' }),
       ],
       [
-        new TableItem({data: "Repo 3", expandedData: "Row description"}}),
-        new TableItem({data: "Date"}),
-        new TableItem({data: "Date"}),
-        new TableItem({data: "123"}),
-        new TableItem({data: "456"}),
-        new TableItem({data: "Links"})
-      ]
+        new TableItem({ data: 'Repo 3', expandedData: 'Row description' }),
+        new TableItem({ data: 'Date' }),
+        new TableItem({ data: 'Date' }),
+        new TableItem({ data: '123' }),
+        new TableItem({ data: '456' }),
+        new TableItem({ data: 'Links' }),
+      ],
     ];
     this.model.header = [
-      new TableHeaderItem({data: "Name"}),
-      new TableHeaderItem({data: "Created"}),
-      new TableHeaderItem({data: "Updated"}),
-      new TableHeaderItem({data: "Open Issues"}),
-      new TableHeaderItem({data: "Stars"}),
-      new TableHeaderItem({data: "Links"})
+      new TableHeaderItem({ data: 'Name' }),
+      new TableHeaderItem({ data: 'Created' }),
+      new TableHeaderItem({ data: 'Updated' }),
+      new TableHeaderItem({ data: 'Open Issues' }),
+      new TableHeaderItem({ data: 'Stars' }),
+      new TableHeaderItem({ data: 'Links' }),
     ];
   }
 }
 ```
+<!-- prettier-ignore-end -->
 
 At this point, go to `repo-page.component.html` because now we need to render a static `repo-table`.
 
@@ -904,14 +926,16 @@ Our styles for the repo page are mostly fine. We just need to update a few verti
 
 In `repo-page.component.scss`, add the following styles:
 
+<!-- prettier-ignore-start -->
 ```scss path=src/app/repositories/repo-page/repo-page.component.ts
-@import '~carbon-components/scss/globals/scss/typography';
+@import "~carbon-components/scss/globals/scss/typography";
 
 .repo-page .bx--row {
   padding-top: $spacing-05;
   padding-bottom: $spacing-05;
 }
 ```
+<!-- prettier-ignore-end -->
 
 Congratulations! We've now created our static repo page!
 

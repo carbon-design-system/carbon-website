@@ -132,16 +132,19 @@ Go ahead and start your app with `npm run start`, or, if your app is running, yo
 
 We need to import the environment at the top of every file that we decide to use it in:
 
+<!-- prettier-ignore-start -->
 ```javascript
-import { environment } from '../environments/environment';
+import { environment } from "../environments/environment";
 ```
+<!-- prettier-ignore-end -->
 
 Next, make your client by providing a URI for the GitHub GraphQL API as well as an authorization header using the environmental variable you just added to `environment.ts`.
 
+<!-- prettier-ignore-start -->
 ```javascript path=src/app/graphql.module.ts
-import { HttpHeaders } from '@angular/common/http';
+import { HttpHeaders } from "@angular/common/http";
 
-const uri = 'https://api.github.com/graphql'; // <-- add the URL of the GraphQL server here
+const uri = "https://api.github.com/graphql"; // <-- add the URL of the GraphQL server here
 export function createApollo(httpLink: HttpLink) {
   return {
     link: httpLink.create({
@@ -154,6 +157,7 @@ export function createApollo(httpLink: HttpLink) {
   };
 }
 ```
+<!-- prettier-ignore-end -->
 
 ## Fetch data
 
@@ -161,10 +165,12 @@ export function createApollo(httpLink: HttpLink) {
 
 Add the following import at the top of `repo-table.component.ts`:
 
+<!-- prettier-ignore-start -->
 ```javascript path=src/app/repositories/repo-table/repo-table.component.ts
-import { Apollo } from 'apollo-angular';
-import gql from 'graphql-tag';
+import { Apollo } from "apollo-angular";
+import gql from "graphql-tag";
 ```
+<!-- prettier-ignore-end -->
 
 ### Query
 
@@ -397,12 +403,14 @@ imports: [LinkModule, PaginationModule];
 
 Immediately after the `ibm-table` closing tag (`/>`), add the `ibm-pagination` component.
 
+<!-- prettier-ignore-start -->
 ```html path=src/app/repositories/repo-table/repo-table.component.html
 <ibm-pagination
   [model]="model"
-  (selectPage)="selectPage($event)"
-></ibm-pagination>
+  (selectPage)="selectPage($event)">
+</ibm-pagination>
 ```
+<!-- prettier-ignore-end -->
 
 _Note: Like the other Carbon Angular component,_ `pagination` _component examples can be found in [Storybook](https://angular.carbondesignsystem.com/?path=/story/table--with-pagination) by browsing the story and knobs._
 
