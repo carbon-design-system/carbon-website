@@ -2,16 +2,16 @@
  * @param {Object} options The options.
  * @param {string} options.component The component name.
  * @param {string} options.variation The component variation name.
- * @param {boolean} [options.useLightVariant] `true` to use the light variant.
+ * @param {boolean} [options.useLightVersion] `true` to use the light variant.
  * @returns {string} The component demo HTML.
  */
-const getHTMLFile = ({ component, variation, useLightVariant }) => {
+const getHTMLFile = ({ component, variation, useLightVersion }) => {
   // NOTE: Old code had a condition where `carbon-components/html/${variation}/...` is used:
   // https://github.com/carbon-design-system/carbon-website/blob/da6ec21/src/components/ComponentExample/ComponentExample.js#L89
   // But after some debugging effort with running all component examples, the usage could not be seen,
   // and thus such logic is removed here
   try {
-    if (useLightVariant) {
+    if (useLightVersion) {
       if (
         (variation !== 'text-input--password' && variation.includes('--')) ||
         variation === 'code-snippet--inline'
