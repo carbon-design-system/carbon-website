@@ -58,12 +58,48 @@ export const groupedBarOptions = {
 
 // Simple bar
 export const simpleBarData = {
-  labels: ['Qty', 'More', 'Sold', 'Restocking', 'Misc'],
+  labels: [
+    '2016 Q1',
+    '2016 Q2',
+    '2016 Q3',
+    '2016 Q4',
+    '2017 Q1',
+    '2017 Q2',
+    '2017 Q3',
+    '2017 Q4',
+    '2018 Q1',
+    '2018 Q2',
+    '2018 Q3',
+    '2018 Q4',
+    '2019 Q1',
+    '2019 Q2',
+  ],
   datasets: [
     {
       label: 'Dataset 1',
       backgroundColors: colors,
-      data: [65000, 29123, 35213, 51213, 16932],
+      data: [
+        65000,
+        29123,
+        35213,
+        51213,
+        16932,
+        65000,
+        29123,
+        35213,
+        51213,
+        16932,
+        65000,
+        29123,
+        35213,
+        51213,
+        16932,
+        65000,
+        29123,
+        35213,
+        51213,
+        16932,
+      ],
     },
   ],
 };
@@ -72,12 +108,13 @@ export const simpleBarOptions = {
   accessibility: false,
   scales: {
     x: {
-      title: '2018 Annual Sales Figures',
+      title: 'Quarter',
     },
     y: {
       formatter: axisValue => `${axisValue / 1000}k`,
       yMaxAdjuster: yMaxValue => yMaxValue * 1.1,
       stacked: false,
+      title: 'No. of transactions',
     },
   },
   legendClickable: true,
