@@ -1,5 +1,6 @@
 ---
 title: Pie chart
+description: Pie charts show individual values that make up a whole data set so users can compare the values to each other and see how each value compares to the whole.
 tabs: ['Code', 'Usage', 'Style']
 ---
 

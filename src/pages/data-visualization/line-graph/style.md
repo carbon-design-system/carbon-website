@@ -1,5 +1,6 @@
 ---
 title: Line graph
+description: Line graphs connect individual data values together to show the continuity from one value to the next, making it a great way to display the shape of values as they change over time.
 tabs: ['Code', 'Usage', 'Style']
 ---
 
