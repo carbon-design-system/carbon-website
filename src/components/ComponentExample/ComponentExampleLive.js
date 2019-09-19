@@ -15,13 +15,10 @@ const components = {
 };
 
 const componentNamesMap = {
-  Card: ['OverflowMenu'],
   CodeSnippet: ['CodeSnippet', 'CopyButton'],
-  DataTable: ['DataTable', 'DataTableV2', 'OverflowMenu', 'Toolbar'],
-  DetailPageHeader: ['OverflowMenu', 'Tab'],
+  DataTable: ['DataTable', 'OverflowMenu', 'Toolbar'],
   InlineLoading: ['InlineLoading', 'InlineLoadingDemoButton'],
-  OrderSummary: ['Dropdown'],
-  Tabs: ['Tab', 'ContentSwitcher'],
+  Tabs: ['Tab'],
 };
 
 /**
@@ -37,7 +34,7 @@ const liveDemoContainerVerticalPositionFactors = {
 };
 
 /**
- * Releases stale vanilla component instaces and creates ones in the given DOM element.
+ * Creates vanilla component instances in the given DOM element.
  * @param {Object} The options.
  * @param {Element} options.container The DOM element to instantiate vanilla components in.
  * @param {string} options.component The name of vanilla component to instantiate.
