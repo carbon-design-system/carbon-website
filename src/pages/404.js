@@ -4,7 +4,7 @@ import { FourOhFour } from 'gatsby-theme-carbon';
 const links = [
   { href: '/get-started/about-carbon', text: 'About Carbon' },
   { href: '/components/overview', text: 'Components overview' },
-  { href: '/get-started/development/react', text: 'Get started: development' },
+  { href: '/get-started/develop/react', text: 'Get started: develop' },
   { href: '/get-started/design', text: 'Get started: design' },
 ];
 
