@@ -1,12 +1,14 @@
 ---
-title: Delete pattern
+title: Delete / Remove pattern
 ---
 
-### Deleting is a destructive action. To protect user resources, your product should support ‘undo’ where possible. If ‘undo’ support is impossible, request user confirmation before deleting a resource or asset.
+### _Deleting_ is a destructive action. To protect user resources, your product should support ‘undo’ where possible. If ‘undo’ support is impossible, request user confirmation before deleting a resource or asset.
+
+### _Removal_ is a non-destructive action. A user can remove an asset from a list or item without destroying it.
 
 #### Status:
 
-Experimental
+[Experimental](/experimental/overview)
 
 #### Maintainers:
 
@@ -14,80 +16,196 @@ Experimental
 
 <AnchorLinks>
 
-<AnchorLink>High impact</AnchorLink>
-<AnchorLink>Medium impact</AnchorLink>
-<AnchorLink>Low impact</AnchorLink>
+<AnchorLink>Delete High impact</AnchorLink>
+<AnchorLink>Delete Medium impact</AnchorLink>
+<AnchorLink>Delete Low impact</AnchorLink>
+<AnchorLink>Remove Medium impact</AnchorLink>
+<AnchorLink>Remove Low impact</AnchorLink>
+<AnchorLink>Anatomy</AnchorLink>
 
 </AnchorLinks>
 
-![Example of a deletion pattern using a modal in context](images/1.png)
+### Delete / Remove variations
 
-<Caption>Example of a deletion pattern using a moda</Caption>
+| Action | Variation       | Description                                                                                                               |
+| ------ | --------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| Delete | _High impact_   | Action can't be reversed and causes significant loss. The user types the resource name into the modal to confim deletion. |
+|        | _Medium impact_ | Action can't be reversed and causes some loss. The user sees a modal and confirms the consequence of deletion.            |
+|        | _Low impact_    | Action is reversible or very low impact. A confirmation modal may not be required.                                        |
+| Remove | _Medium impact_ | Action can't be reversed and causes some loss. The user sees a modal and confirms the consequence of removal.             |
+|        | _Low impact_    | Action is reversible or very low impact. A confirmation modal may not be required.                                        |
 
-## High impact
+## Delete High impact
 
 A high-impact deletion cannot be reversed. The action would result in a significant loss for a user if done accidentally.
 
+When deleting is medium-impact, a confirmation dialog should be presented to the user which displays:
+
+- The name of the resource
+- Consequences of the deletion
+- "This action cannot be undone."
+
 For high-impact scenarios, a user should confirm the action by manually entering the name of the resource. The 'Delete' button is enabled when the text entered perfectly matches the resource name.
 
-The text should tell the user the consequences of the deletion and that the action cannot be undone. Optionally, when the delete button is selected it changes to `Deleting…`.
+A [Done modal](#done-modal), [Requested modal](#requested-modal) or [Notification](#notification) can be used to confirm the action.
 
 <Row>
 <Column colLg={8}>
 
-![Example of an un-populated high-impact deletion modal](images/2.png)
+![The user enters the resource name in order to confirm deletion.](images/2.png)
 
-![Example of a populated high-impact deletion modal](images/3.png)
+<Caption>
+  {' '}
+  The user needs to enter the resource name in order to confirm deletion.
+</Caption>
 
-![Example of a high-impact deletion modal in its "deleting" state](images/5_0.png)
+![When the resource name is entered the Delete button is enabled.](images/3.png)
 
-![Example of a high-impact deletion modal in its "deleting" state](images/5_1.png)
-
-</Column>
-</Row>
-
-You can choose to show a notification confirming deletion is completed. This is useful when the deletion of the resource takes more than a few moments.
-
-<Row>
-<Column colLg={8}>
-
-![Example of a successful delete notification](images/5_2.png)
+<Caption>
+  {' '}
+  When the resource name is entered the Delete button is enabled.
+</Caption>
 
 </Column>
 </Row>
 
-## Medium impact
+## Delete Medium impact
 
 A medium-impact deletion is one that cannot be reversed, but would not be catastrophic if done accidentally. When deleting is medium-impact, a confirmation dialog should be presented to the user which displays:
 
 - The name of the resource
 - Consequences of the deletion
-- The action cannot be undone
+- "The action cannot be undone."
 
-Optionally, when the delete button is selected it changes to `Deleting…`.
+A [Done modal](#done-modal), [Requested modal](#requested-modal) or [Notification](#notification) can be used to confirm the action.
 
 <Row>
 <Column colLg={8}>
 
 ![Example of a standard delete modal](images/6.png)
 
-![Example of a standard delete modal in its "deleting" state](images/1_1.png)
-
-![Example of a standard delete modal in its "deleting" state](images/1_2.png)
+<Caption>An example of a standard delete modal</Caption>
 
 </Column>
 </Row>
 
-You can choose to show a notification confirming deletion is completed. This is useful when the deletion of the resource takes more than a few moments.
+## Delete Low impact
+
+Requiring the user to confirm deletion is generally recommended. However, in very low impact situations, such as when an ‘undo’ option is available, user confirmation may not be required.
+
+<Row>
+<Column colLg={8}>
+
+![Example of delete options in context without warnings for low impact delete actions](images/LowImpactDelete.png)
+
+<Caption> Low impact delete options</Caption>
+</Column>
+</Row>
+
+## Remove Medium impact
+
+Removing has a medium impact when the action can't be reversed, but would not be catastrophic if done accidentally.
+
+Text should tell the user the consequences of the removal and that the action cannot be undone.
+
+<Row>
+<Column colLg={8}>
+
+![Example of a medium impact remove modal](images/first-view.png)
+
+<Caption>
+  {' '}
+  Removal modals should include consequences of removal, and "This action cannot
+  be undone" statement.
+</Caption>
+
+</Column>
+</Row>
+
+## Remove Low impact
+
+As removing does not destroy an asset, typically user confirmation is not required.
+
+<Row>
+<Column colLg={8}>
+
+![Example of remove options in context without warnings for low impact remove actions.](images/LowImpactRemove.png)
+
+<Caption> Example low impact remove options</Caption>
+
+</Column>
+</Row>
+
+## Anatomy
+
+### Success modal
+
+In high or medium impact flows, an optional final dialog can be used to signify success at the end of a remove or delete action.
+
+<Row>
+<Column colLg={8}>
+
+![Example of a delete successful modal](images/DoneSerious.png)
+
+<Caption> Use a success modal to show that deleting is complete.</Caption>
+
+![Example of a remove successful modal](images/DoneMedium.png)
+
+<Caption> Use a success modal to show that removing is complete.</Caption>
+
+</Column>
+</Row>
+
+### Notification
+
+Use an optional notification to confirm a delete or remove action is completed. This is useful when the action takes more than a few moments.
 
 <Row>
 <Column colLg={8}>
 
 ![Example of a successful delete notification](images/7_updated.png)
 
+<Caption>
+  {' '}
+  An optional notification can be used to confirm the delete or remove action
+  with medium or high impact actions.
+</Caption>
+
 </Column>
 </Row>
 
-## Low impact
+### Requested modal
 
-Requiring the user to confirm deletion is generally recommended. However, in very low impact situations, such as when an ‘undo’ option is available, user confirmation may not be required.
+Some deletion or removal actions don't happen immediately. When this is the case, you can use the optional requested modal.
+
+<Row>
+<Column colLg={8}>
+
+![Deletion or Removal requested modal example](images/Requested.png)
+
+<Caption>
+  {' '}
+  An optional extra Deletion requested or Removal requested modal can be added
+  to medium or high impact workflows.
+</Caption>
+
+</Column>
+</Row>
+
+### Positioning
+
+Delete actions for sensitive items can be placed in a Manage view.
+
+<Row>
+<Column colLg={8}>
+
+![An example of the location of a remove action](images/DeleteExample.png)
+
+<Caption>An example of the location of a remove action</Caption>
+
+![An example of the location of a delete action](images/RemoveExample.png)
+
+<Caption>An example of the location of a delete action</Caption>
+
+</Column>
+</Row>
