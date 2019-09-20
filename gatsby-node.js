@@ -38,6 +38,13 @@ exports.createPages = ({ actions }) => {
     ['/tutorial/react-step-4', '/tutorial/react/step-4'],
     ['/tutorial/react-step-5', '/tutorial/react/step-5'],
     ['/tutorial/wrapping-up', '/tutorial/react/wrapping-up'],
+    ['contributions/overview', 'how-to-contribute/overview'],
+    ['contributions/governance', 'how-to-contribute/governance'],
+    ['contributions/bugs-and-requests', 'how-to-contribute/bugs-and-requests'],
+    ['contributions/documentation', 'how-to-contribute/documentation'],
+    ['contributions/component', 'how-to-contribute/component'],
+    ['contributions/pattern', 'how-to-contribute/pattern'],
+    ['contributions/add-ons', 'how-to-contribute/add-ons'],
   ];
 
   arr.forEach(a => {
