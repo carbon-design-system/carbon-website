@@ -26,17 +26,6 @@ export default class ComponentCode extends React.Component {
       experimental,
     } = this.props;
 
-    let htmlFile;
-    try {
-      // eslint-disable-next-line import/no-dynamic-require, global-require
-      htmlFile = require(`carbon-components/html/${component}/${variation}.html`);
-    } catch (err) {
-      // eslint-disable-next-line no-console
-      console.error(
-        `Unable to import htmlFile at 'carbon-components/html/${component}/${variation}.html'`
-      );
-    }
-
     return (
       <div className="component-variation bx--row">
         <div className="bx--col-lg-12 bx--no-gutter">
@@ -44,7 +33,6 @@ export default class ComponentCode extends React.Component {
             codepenSlug={codepen}
             component={component}
             variation={variation}
-            htmlFile={htmlFile}
             hideViewFullRender={this.props.hideViewFullRender}
             hasLightVersion={hasLightVersion}
             hasReactVersion={hasReactVersion}

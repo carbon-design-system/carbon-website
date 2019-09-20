@@ -1,5 +1,6 @@
 ---
 title: Bar graph
+description: Bar graphs use rectangles or bars to represent quantitative information. Bars make it easy to identify individual values and compare them as each bar is visually distinct.
 tabs: ['Code', 'Usage', 'Style']
 ---
 
