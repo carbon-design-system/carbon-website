@@ -1,5 +1,6 @@
 ---
 title: Overview
+description: Data visualization should communicate quantitative information in a way that tells a story about data.
 tabs: ['General', 'Colors', 'Style']
 ---
 
