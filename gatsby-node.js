@@ -27,10 +27,25 @@ exports.onCreateWebpackConfig = ({ actions }) => {
 exports.createPages = ({ actions }) => {
   const { createRedirect } = actions;
 
-  createRedirect({
-    fromPath: `/getting-started/about-carbon`,
-    isPermanent: true,
-    redirectInBrowser: true,
-    toPath: `/get-started/about-carbon`,
+  const arr = [
+    ['/getting-started/about-carbon', '/get-started/about-carbon'],
+    ['/getting-started/developers/vanilla', '/get-started/develop/vanilla'],
+    ['/getting-started/designers', '/get-started/design'],
+    ['/tutorial/overview', '/tutorial/react/overview'],
+    ['/tutorial/react-step-1', '/tutorial/react/step-1'],
+    ['/tutorial/react-step-2', '/tutorial/react/step-2'],
+    ['/tutorial/react-step-3', '/tutorial/react/step-3'],
+    ['/tutorial/react-step-4', '/tutorial/react/step-4'],
+    ['/tutorial/react-step-5', '/tutorial/react/step-5'],
+    ['/tutorial/wrapping-up', '/tutorial/react/wrapping-up'],
+  ];
+
+  arr.forEach(a => {
+    createRedirect({
+      fromPath: a[0],
+      toPath: a[1],
+      isPermanent: true,
+      redirectInBrowser: true,
+    });
   });
 };
