@@ -2,6 +2,8 @@ import React from 'react';
 import { MultiSelect } from 'carbon-components-react';
 import items from './dropdown-items';
 
+MultiSelect.displayName = 'MultiSelect';
+
 const MultiSelectDemo = ({ id, light }) => (
   <div style={{ width: 300 }}>
     <MultiSelect

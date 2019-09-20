@@ -2,6 +2,9 @@ import React from 'react';
 import { Dropdown, FormItem } from 'carbon-components-react';
 import items from './dropdown-items';
 
+Dropdown.displayName = 'Dropdown';
+FormItem.displayName = 'FormItem';
+
 const DropdownDemo = ({ id, light }) => (
   <>
     <FormItem>
