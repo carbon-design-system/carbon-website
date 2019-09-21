@@ -1,6 +1,8 @@
+/* eslint-disable jsx-a11y/media-has-caption */
 import React from 'react';
 import PropTypes from 'prop-types';
-import Player from '@vimeo/player';
+import mp4 from './carbon-web.mp4';
+import webm from './carbon-web.webm';
 
 export default class HomepageVideo extends React.Component {
   constructor(props) {
@@ -19,28 +21,28 @@ export default class HomepageVideo extends React.Component {
 
   onClick = evt => {
     evt.preventDefault();
-    const video = document.querySelector('.homepage-video--wrapper');
-    const iframe = video.querySelector('iframe');
-    const player = new Player(iframe);
-    if (this.state.paused) {
-      this.setState(
-        {
-          paused: false,
-        },
-        () => {
-          player.play();
-        }
-      );
-    } else {
-      this.setState(
-        {
-          paused: true,
-        },
-        () => {
-          player.pause();
-        }
-      );
-    }
+    // const video = document.querySelector('.homepage-video--wrapper');
+    // const iframe = video.querySelector('iframe');
+    // const player = new Player(iframe);
+    //   if (this.state.paused) {
+    //     this.setState(
+    //       {
+    //         paused: false,
+    //       },
+    //       () => {
+    //         player.play();
+    //       }
+    //     );
+    //   } else {
+    //     this.setState(
+    //       {
+    //         paused: true,
+    //       },
+    //       () => {
+    //         player.pause();
+    //       }
+    //     );
+    //   }
   };
 
   onMouseEnter = () => {
@@ -56,7 +58,7 @@ export default class HomepageVideo extends React.Component {
   };
 
   render() {
-    const { children } = this.props;
+    // const { children } = this.props;
     const pauseSvg = (
       <svg
         className="mouseOut"
@@ -112,7 +114,12 @@ export default class HomepageVideo extends React.Component {
 
     return (
       <div className="homepage-video--main">
-        <div className="homepage-video--wrapper">{children}</div>
+        <div className="homepage-video--wrapper">
+          <video controls muted autoPlay playsInline loop>
+            <source src={webm} type="video/webm" />
+            <source src={mp4} type="video/mp4" />
+          </video>
+        </div>
         <div className="homepage--video--overlay" />
         <button
           className="homepage-video--controls"
