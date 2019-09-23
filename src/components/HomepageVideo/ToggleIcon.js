@@ -7,10 +7,10 @@ import {
 } from '@carbon/icons-react';
 
 const Pause = ({ hovering }) =>
-  hovering ? <PlayOutlineFilled24 /> : <PlayOutline24 />;
+  hovering ? <PauseOutlineFilled24 /> : <PauseOutline24 />;
 
 const Play = ({ hovering }) =>
-  hovering ? <PauseOutlineFilled24 /> : <PauseOutline24 />;
+  hovering ? <PlayOutlineFilled24 /> : <PlayOutline24 />;
 
 const ToggleIcon = ({ paused, hovering }) =>
   paused ? <Play hovering={hovering} /> : <Pause hovering={hovering} />;
