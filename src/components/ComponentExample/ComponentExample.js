@@ -1,54 +1,20 @@
 /* eslint-disable import/no-dynamic-require */
 /* eslint-disable global-require */
-import React, { Component, createRef } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import * as carbonComponents from 'carbon-components/es/globals/js/components';
-import {
-  DIRECTION_TOP,
-  DIRECTION_BOTTOM,
-} from 'carbon-components/es/components/floating-menu/floating-menu';
-import settings from 'carbon-components/es/globals/js/settings';
 import { RadioButtonGroup, RadioButton } from 'carbon-components-react';
 import { Launch16 } from '@carbon/icons-react';
 
-import InlineLoadingDemoButton from './inline-loading-demo-button';
-import CodeExample from '../CodeExample/CodeExample';
-
-/**
- * Determines how the vertical position of live demo container should affect the floating menu position offset.
- * Refs:
- * https://github.com/IBM/carbon-components/blob/v9.0.0/src/components/floating-menu/floating-menu.js#L61
- * https://github.com/IBM/carbon-components/blob/v9.0.0/src/components/floating-menu/floating-menu.js#L69
- * @type {Object<string, number>}
- */
-const liveDemoContainerVerticalPositionFactors = {
-  [DIRECTION_TOP]: 1,
-  [DIRECTION_BOTTOM]: -1,
-};
-
-const components = {
-  ...carbonComponents,
-  InlineLoadingDemoButton,
-};
-
-const componentNamesMap = {
-  Card: ['OverflowMenu'],
-  CodeSnippet: ['CodeSnippet', 'CopyButton'],
-  DataTable: ['DataTable', 'DataTableV2', 'OverflowMenu', 'Toolbar'],
-  DetailPageHeader: ['OverflowMenu', 'Tab'],
-  InlineLoading: ['InlineLoading', 'InlineLoadingDemoButton'],
-  OrderSummary: ['Dropdown'],
-  Tabs: ['Tab', 'ContentSwitcher'],
-};
+import CodeExampleHTML from '../CodeExample/CodeExampleHTML';
+import ComponentExampleLive from './ComponentExampleLive';
 
 class ComponentExample extends Component {
   static propTypes = {
-    htmlFile: PropTypes.string,
     component: PropTypes.string,
     variation: PropTypes.string,
     codepenSlug: PropTypes.string,
-    hasLightVersion: PropTypes.string,
+    hasLightVersion: PropTypes.bool,
     hasReactVersion: PropTypes.string,
     hasAngularVersion: PropTypes.string,
     hasVueVersion: PropTypes.string,
@@ -58,185 +24,18 @@ class ComponentExample extends Component {
 
   state = {
     currentFieldColor: 'field-01',
-    currentHTMLfile: this.props.htmlFile,
   };
-
-  componentWillReceiveProps(props) {
-    if (this.state.currentHTMLfile !== props.htmlFile) {
-      this.setState({ currentHTMLfile: props.htmlFile });
-    }
-  }
-  componentDidUpdate({ htmlFile }) {
-    const { prevHtmlFile } = this.props;
-    if (prevHtmlFile !== htmlFile) {
-      this.releaseAndInstantiateComponents();
-    }
-  }
 
   onSwitchFieldColors = value => {
     this.setState({
       currentFieldColor: value,
     });
-
-    let newHTML;
-    let currentComponent = this.props.component;
-    const currentVariation = this.props.variation;
-    if (
-      currentComponent !== currentVariation &&
-      !currentVariation.includes(currentComponent)
-    ) {
-      currentComponent = currentVariation;
-    }
-    if (value === 'field-02') {
-      if (
-        (currentVariation !== 'text-input--password' &&
-          currentVariation.includes('--')) ||
-        currentVariation === 'code-snippet--inline'
-      ) {
-        newHTML = require(`carbon-components/html/${currentComponent}/${currentVariation}-light.html`);
-      } else {
-        newHTML = require(`carbon-components/html/${currentComponent}/${currentVariation}--light.html`);
-      }
-    } else {
-      newHTML = require(`carbon-components/html/${currentComponent}/${currentVariation}.html`);
-    }
-    this.setState({
-      currentHTMLfile: newHTML,
-    });
   };
-
-  exampleRef = null;
-
-  handles = [];
-
-  liveContainerRef = createRef();
-
-  liveDemoRef = ref => {
-    this.exampleRef = ref;
-    this.releaseAndInstantiateComponents();
-  };
-
-  releaseAndInstantiateComponents() {
-    const handles = this.handles;
-    for (let instance = handles.pop(); instance; instance = handles.pop()) {
-      instance.release();
-    }
-    const ref = this.exampleRef;
-    if (ref) {
-      const { component } = this.props;
-      const currentComponent = component
-        .replace(/-([a-z])/g, (match, token) => token.toUpperCase())
-        .replace(/^([a-z])/, (match, token) => token.toUpperCase());
-      // TODO: See if instances with different prefixes may exist as the same time.
-      // If so, we need to figure out more sophisticted approach here.
-      settings.prefix = 'bx';
-      (componentNamesMap[currentComponent] || [currentComponent]).forEach(
-        name => {
-          const TheComponent = components[name];
-          if (TheComponent) {
-            const options = {};
-            if (name === 'DatePicker') {
-              // Same as `this._liveContainerRef.current`, but that may not have been set up yet
-              const liveContainerRef = ref.closest('.component-example__live');
-              options.appendTo = liveContainerRef;
-              options.onPreCalendarPosition = (
-                selectedDates,
-                value,
-                { _positionElement, calendarContainer }
-              ) => {
-                // Make it "post" positioning handler
-                Promise.resolve().then(() => {
-                  const {
-                    left: inputLeft,
-                    top: inputTop,
-                  } = _positionElement.getBoundingClientRect();
-                  const {
-                    left: containerLeft,
-                    top: containerTop,
-                  } = liveContainerRef.getBoundingClientRect();
-                  // eslint-disable-next-line no-param-reassign
-                  calendarContainer.style.left = `${inputLeft -
-                    containerLeft}px`;
-                  // eslint-disable-next-line no-param-reassign
-                  calendarContainer.style.top = `${inputTop -
-                    containerTop +
-                    _positionElement.offsetHeight}px`;
-                });
-              };
-            }
-            if (name === 'OverflowMenu' || name === 'Tooltip') {
-              ['objMenuOffset', 'objMenuOffsetFlip'].forEach(optionName => {
-                if (TheComponent.options[optionName]) {
-                  options[optionName] = (menuBody, direction, trigger) => {
-                    const origOffset = TheComponent.options[optionName](
-                      menuBody,
-                      direction,
-                      trigger
-                    );
-                    const liveContainerRef = this.liveContainerRef.current;
-                    if (liveContainerRef) {
-                      const { left: origLeft, top: origTop } = origOffset;
-                      const {
-                        left: liveContainerLeft,
-                        top: liveContainerTop,
-                      } = liveContainerRef.getBoundingClientRect();
-                      const borderWidth =
-                        name !== 'OverflowMenu'
-                          ? 0
-                          : parseInt(
-                              liveContainerRef.ownerDocument.defaultView
-                                .getComputedStyle(liveContainerRef)
-                                .getPropertyValue('border-left-width'), // FF doesn't have one for `border-width`
-                              10
-                            );
-                      const adjustLeft =
-                        liveContainerLeft +
-                        borderWidth +
-                        menuBody.ownerDocument.defaultView.pageXOffset;
-                      const adjustTop =
-                        liveContainerTop +
-                        borderWidth +
-                        menuBody.ownerDocument.defaultView.pageYOffset;
-                      return {
-                        left: origLeft - adjustLeft,
-                        top:
-                          origTop +
-                          adjustTop *
-                            liveDemoContainerVerticalPositionFactors[direction],
-                      };
-                    }
-                    return origOffset;
-                  };
-                }
-              });
-            }
-            if (TheComponent.prototype.createdByLauncher) {
-              // eslint-disable-next-line no-underscore-dangle
-              const initHandles = this.constructor._initHandles;
-              if (!initHandles.has(TheComponent)) {
-                initHandles.set(
-                  TheComponent,
-                  TheComponent.init(ref.ownerDocument, options)
-                );
-              }
-            } else {
-              const selectorInit = TheComponent.options.selectorInit;
-              // Gatsby's setup seems to use `.concat()` for [...arraylike], which does not work for `NodeList`
-              handles.push(
-                ...Array.from(ref.querySelectorAll(selectorInit)).map(elem =>
-                  TheComponent.create(elem, options)
-                )
-              );
-            }
-          }
-        }
-      );
-    }
-  }
 
   render() {
     const {
       component,
+      variation,
       codepenSlug,
       hasLightVersion,
       hasReactVersion,
@@ -244,8 +43,7 @@ class ComponentExample extends Component {
       hasVueVersion,
     } = this.props;
 
-    const { currentHTMLfile = '', currentFieldColor } = this.state;
-    const demoHtml = currentHTMLfile;
+    const { currentFieldColor } = this.state;
 
     const classNames = classnames({
       'component-example__live--rendered': true,
@@ -270,29 +68,28 @@ class ComponentExample extends Component {
         .toUpperCase() + componentName.split(' ')[1].substring(1)}`;
     }
 
+    const useLightVersion =
+      currentFieldColor === 'field-02' && hasLightVersion === true;
     const liveBackgroundClasses = classnames(
       'component-example__live',
       `component-example__live--${component}`,
       {
-        'component-example__live--light':
-          currentFieldColor === 'field-02' && hasLightVersion === true,
+        'component-example__live--light': useLightVersion,
       }
     );
 
     const componentLink = `https://codepen.io/team/carbon/full/${codepenSlug}/`;
     const counter = Math.floor(Math.random() * 100) + 1;
 
+    /* eslint-disable no-script-url */
     return (
       <div className={lightUIclassnames}>
-        <div
-          className={liveBackgroundClasses}
-          ref={this.liveContainerRef}
-          data-floating-menu-container>
+        <div className={liveBackgroundClasses} data-floating-menu-container>
           <div className={classNames}>
-            <div
-              ref={this.liveDemoRef}
-              // eslint-disable-next-line react/no-danger
-              dangerouslySetInnerHTML={{ __html: demoHtml }}
+            <ComponentExampleLive
+              component={component}
+              variation={variation}
+              useLightVersion={useLightVersion}
             />
           </div>
         </div>
@@ -351,9 +148,14 @@ class ComponentExample extends Component {
             </div>
           )}
         </div>
-        <CodeExample htmlFile={currentHTMLfile} />
+        <CodeExampleHTML
+          component={component}
+          variation={variation}
+          useLightVersion={useLightVersion}
+        />
       </div>
     );
+    /* eslint-enable no-script-url */
   }
 }
 
