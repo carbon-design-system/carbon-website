@@ -88,7 +88,6 @@ class CodeExample extends Component {
           ref={ref => {
             this.codeBlock = ref;
           }}>
-          <span className="code-title">Code:</span>
           <pre className="line-numbers">
             <code className={codeClassName}>{htmlFile}</code>
           </pre>

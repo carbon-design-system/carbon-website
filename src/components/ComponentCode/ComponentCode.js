@@ -8,12 +8,10 @@ export default class ComponentCode extends React.Component {
     variation: PropTypes.string,
     codepen: PropTypes.string,
     hasLightVersion: PropTypes.bool,
-    defaultFrameworkVariant: PropTypes.bool,
-    hasVanillaVersion: PropTypes.bool,
-    hasReactVersion: PropTypes.oneOfType(
-      PropTypes.bool,
-      PropTypes.oneOf('live', 'link')
-    ),
+    defaultFrameworkVariant: PropTypes.oneOf('vanilla', 'react'),
+    hasLiveVersions: PropTypes.arrayOf(PropTypes.oneOf('vanilla', 'react')),
+    hasVanillaVersion: PropTypes.string,
+    hasReactVersion: PropTypes.string,
     hasAngularVersion: PropTypes.string,
     hasVueVersion: PropTypes.string,
     experimental: PropTypes.bool,
@@ -25,6 +23,7 @@ export default class ComponentCode extends React.Component {
       codepen,
       hasLightVersion,
       defaultFrameworkVariant,
+      hasLiveVersions,
       hasVanillaVersion,
       hasReactVersion,
       hasAngularVersion,
@@ -43,6 +42,7 @@ export default class ComponentCode extends React.Component {
             hideViewFullRender={this.props.hideViewFullRender}
             hasLightVersion={hasLightVersion}
             defaultFrameworkVariant={defaultFrameworkVariant}
+            hasLiveVersions={hasLiveVersions}
             hasVanillaVersion={hasVanillaVersion}
             hasReactVersion={hasReactVersion}
             hasAngularVersion={hasAngularVersion}

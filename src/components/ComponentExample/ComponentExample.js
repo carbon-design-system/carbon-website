@@ -3,13 +3,23 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { RadioButtonGroup, RadioButton } from 'carbon-components-react';
+import {
+  RadioButtonGroup,
+  RadioButton,
+  Select,
+  SelectItem,
+} from 'carbon-components-react';
 import { Launch16 } from '@carbon/icons-react';
 
 import CodeExampleHTML from '../CodeExample/CodeExampleHTML';
 import CodeExampleReact from '../CodeExample/CodeExampleReact';
 import ComponentExampleLive from './ComponentExampleLive';
 import ComponentExampleLiveReact from './ComponentExampleLiveReact';
+
+const liveVersionsLabels = {
+  vanilla: 'Vanilla',
+  react: 'React',
+};
 
 class ComponentExample extends Component {
   static propTypes = {
@@ -18,8 +28,9 @@ class ComponentExample extends Component {
     codepenSlug: PropTypes.string,
     defaultFrameworkVariant: PropTypes.oneOf('vanilla', 'react'),
     hasLightVersion: PropTypes.bool,
-    hasVanillaVersion: PropTypes.bool,
-    hasReactVersion: PropTypes.string, // React demo link or `live`
+    hasLiveVersions: PropTypes.arrayOf(PropTypes.oneOf('vanilla', 'react')),
+    hasVanillaVersion: PropTypes.string,
+    hasReactVersion: PropTypes.string,
     hasAngularVersion: PropTypes.string,
     hasVueVersion: PropTypes.string,
   };
@@ -28,7 +39,7 @@ class ComponentExample extends Component {
 
   state = {
     currentFieldColor: 'field-01',
-    currentFrameworkVariant: this.props.defaultFrameworkVariant,
+    currentFrameworkVariant: this.props.defaultFrameworkVariant || 'vanilla',
   };
 
   onSwitchFieldColors = value => {
@@ -37,12 +48,8 @@ class ComponentExample extends Component {
     });
   };
 
-  switchToVanilla = () => {
-    this.setState({ currentFrameworkVariant: 'vanilla' });
-  };
-
-  switchToReact = () => {
-    this.setState({ currentFrameworkVariant: 'react' });
+  switchCurrentFrameworkVariant = event => {
+    this.setState({ currentFrameworkVariant: event.target.value });
   };
 
   render() {
@@ -58,6 +65,7 @@ class ComponentExample extends Component {
     } = this.props;
 
     const { currentFieldColor, currentFrameworkVariant } = this.state;
+    const { hasLiveVersions = [currentFrameworkVariant] } = this.props;
 
     const classNames = classnames({
       'component-example__live--rendered': true,
@@ -114,34 +122,24 @@ class ComponentExample extends Component {
           </div>
         </div>
         <div className="component-toolbar">
-          <div className="component-toolbar__current">
-            {currentFrameworkVariant === 'react' ? 'React' : 'Vanilla JS'}
-          </div>
+          <div className="component-toolbar__label">View Sandbox</div>
           <div className="component-toolbar__links">
-            {currentFrameworkVariant !== 'vanilla' && hasVanillaVersion && (
+            {typeof hasVanillaVersion === 'string' && (
               <a
-                href="javascript:void 0"
-                rel="noopener noreferrer"
-                onClick={this.switchToVanilla}>
-                Vanilla JS
+                href={`http://the-carbon-components.netlify.com/?nav=${hasVanillaVersion}`}
+                target="_blank"
+                rel="noopener noreferrer">
+                Vanilla JS <Launch16 />
               </a>
             )}
-            {currentFrameworkVariant !== 'react' &&
-              (hasReactVersion === 'live' ? (
-                <a
-                  href="javascript:void 0"
-                  rel="noopener noreferrer"
-                  onClick={this.switchToReact}>
-                  React
-                </a>
-              ) : (
-                <a
-                  href={`http://react.carbondesignsystem.com/?path=/story/${hasReactVersion}`}
-                  target="_blank"
-                  rel="noopener noreferrer">
-                  React <Launch16 />
-                </a>
-              ))}
+            {typeof hasReactVersion === 'string' && (
+              <a
+                href={`http://react.carbondesignsystem.com/?path=/story/${hasReactVersion}`}
+                target="_blank"
+                rel="noopener noreferrer">
+                React <Launch16 />
+              </a>
+            )}
             {/* hasAngularVersion should be the query part of the storybook url */}
             {typeof hasAngularVersion === 'string' && (
               <a
@@ -184,6 +182,27 @@ class ComponentExample extends Component {
                 />
               </RadioButtonGroup>
             </div>
+          )}
+        </div>
+        <div className="component-language-select">
+          {hasLiveVersions.length > 1 ? (
+            <Select
+              inline
+              labelText="Language:"
+              value={currentFrameworkVariant}
+              onChange={this.switchCurrentFrameworkVariant}>
+              {hasLiveVersions.map(item => (
+                <SelectItem
+                  key={item}
+                  value={item}
+                  text={liveVersionsLabels[item]}
+                />
+              ))}
+            </Select>
+          ) : (
+            <span className="code-title">
+              Language: {liveVersionsLabels[currentFrameworkVariant]}
+            </span>
           )}
         </div>
         <CodeExampleToUse

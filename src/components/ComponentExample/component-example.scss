@@ -64,7 +64,7 @@
   scrollbar-width: 0;
 }
 
-.component-toolbar__current {
+.component-toolbar__label {
   height: 100%;
   display: flex;
   align-items: center;
@@ -108,9 +108,9 @@
 }
 
 .component-toolbar__switcher {
+  flex: 1;
   display: flex;
   align-items: center;
-  border-left: 1px solid $carbon--gray-80;
   height: 100%;
   padding-left: $spacing-05;
   padding-right: $spacing-05;
@@ -118,6 +118,7 @@
   .bx--form-item {
     margin-right: 0;
     margin-bottom: 0;
+    align-items: flex-end;
   }
 
   .bx--radio-button__label {
@@ -148,5 +149,59 @@
     + .bx--radio-button__label
     .bx--radio-button__appearance:before {
     background-color: $carbon--white-0;
+  }
+}
+
+.component-language-select {
+  background: $ui-05;
+  padding: 0.5rem 1rem 0 1rem;
+  height: 3rem;
+
+  .code-title {
+    @include carbon--type-style('code-02');
+    line-height: 2.5rem;
+  }
+
+  .bx--form-item {
+    margin: 0;
+  }
+
+  .bx--label {
+    @include carbon--type-style('code-02');
+  }
+
+  .bx--label,
+  .bx--select-option {
+    color: map-get($carbon--theme--g100, 'text-01');
+  }
+
+  .bx--select-input__wrapper:hover .bx--select-input {
+    background-color: map-get($carbon--theme--g100, 'hover-ui');
+  }
+
+  .bx--select-input {
+    color: map-get($carbon--theme--g100, 'text-01');
+    background-color: map-get($carbon--theme--g100, 'field-01');
+    border-bottom-color: map-get($carbon--theme--g100, 'ui-04');
+
+    &:hover {
+      background-color: map-get($carbon--theme--g100, 'hover-ui');
+    }
+
+    &:focus {
+      outline-color: map-get($carbon--theme--g100, 'focus');
+    }
+  }
+
+  .bx--select__arrow {
+    fill: map-get($carbon--theme--g100, 'ui-05');
+    top: 0.8125rem;
+  }
+
+  @-moz-document url-prefix() {
+    .#{$prefix}--select-option {
+      background-color: map-get($carbon--theme--g100, 'text-01');
+      color: map-get($carbon--theme--g100, 'text-01');
+    }
   }
 }

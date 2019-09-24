@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import reactElementToJSXString from 'react-element-to-jsx-string';
 import CodeExample from './CodeExample';
@@ -8,11 +8,7 @@ let instanceSeq = 0;
 const getInstanceId = component => `${component}-${instanceSeq++}`; // eslint-disable-line no-plusplus
 
 const CodeExampleReact = ({ component, variation, useLightVersion }) => {
-  const instanceId = useMemo(() => getInstanceId(component), [
-    component,
-    variation,
-    useLightVersion,
-  ]);
+  const { current: instanceId } = useRef(getInstanceId(component));
   const DemoComponent = demos[component] && demos[component][variation];
   // Uses function call instead of JSX to get the React element that `DemoComponent` generates
   const html =
