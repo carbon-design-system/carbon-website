@@ -7,13 +7,14 @@ import {
   paragraph,
 } from 'gatsby-theme-carbon/src/components/markdown/Markdown.module.scss';
 
-import MdxIcon from '../MdxIcon';
-import { noResult, allIcons, searchLabel } from './IconLibrary.module.scss';
+import MdxIcon from '../../MdxIcon';
+import { noResult, allSvgs, searchLabel } from './SvgLibrary.module.scss';
 
 const NoResult = ({
   allIconResults,
   setSelectedCategory,
   selectedCategory,
+  type = 'icons',
 }) => (
   <div className={noResult}>
     {allIconResults ? (
@@ -26,10 +27,10 @@ const NoResult = ({
           <span
             role="button"
             tabIndex="0"
-            onClick={() => setSelectedCategory('All icons')}
+            onClick={() => setSelectedCategory(`All ${type}`)}
             href="#"
-            className={cx(allIcons, 'bx--link')}>
-            all icons.
+            className={cx(allSvgs, 'bx--link')}>
+            all {type}.
           </span>
         </h2>
       </>

@@ -2,15 +2,15 @@
 import React from 'react';
 import { pascal } from 'change-case';
 import {
-  iconCard,
-  iconCardInside,
+  svgCard,
+  svgCardInside,
   flexContainer,
   triggerText,
-} from './IconLibrary.module.scss';
+} from './SvgLibrary.module.scss';
 
 const IconCard = ({ icon }) => (
-  <li className={iconCard}>
-    <div className={iconCardInside}>
+  <li className={svgCard}>
+    <div className={svgCardInside}>
       <span className={triggerText}>{icon.friendly_name}</span>
       <div className={flexContainer}>
         {icon.Component ? (
