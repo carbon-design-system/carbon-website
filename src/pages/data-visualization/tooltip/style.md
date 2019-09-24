@@ -1,5 +1,6 @@
 ---
 title: Tooltip
+description: Tooltips appear above or below a data representation depending on the use case. The quantitative value on the Tooltip corresponds to the numerical value that the data representation is depicting.
 tabs: ['Code', 'Usage', 'Style']
 ---
 
