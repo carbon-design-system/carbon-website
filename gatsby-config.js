@@ -15,6 +15,7 @@ module.exports = {
         isSearchEnabled: true,
         iconPath: './src/images/favicon-32.png',
         titleType: 'prepend',
+        withWebp: true,
         repository: {
           baseUrl: 'https://github.com/carbon-design-system/carbon-website',
           subDirectory: '',
