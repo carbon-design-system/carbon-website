@@ -6,7 +6,7 @@ title: Delete / Remove pattern
 
 ### _Deleting_ is a destructive action. To protect user resources, your product should support ‘undo’ where possible. If ‘undo’ support is impossible, request user confirmation before deleting a resource or asset.
 
-### _Removal_ is a non-destructive action. A user can remove an asset from a list or item without destroying it.
+### _Removing_ is a non-destructive action. A user can remove an asset from a list or item without destroying it.
 
 #### Status:
 
@@ -41,15 +41,16 @@ title: Delete / Remove pattern
 
 A high-impact deletion cannot be reversed. The action would result in a significant loss for a user if done accidentally.
 
-When deleting is medium-impact, a confirmation dialog should be presented to the user which displays:
+When deleting is high-impact, a confirmation dialog should be presented to the user which displays:
 
 - The name of the resource
 - Consequences of the deletion
 - "This action cannot be undone."
+- "An editable text field for the name of the resource to be entered"
 
 For high-impact scenarios, a user should confirm the action by manually entering the name of the resource. The 'Delete' button is enabled when the text entered perfectly matches the resource name.
 
-A [Done modal](#done-modal), [Requested modal](#requested-modal) or [Notification](#notification) can be used to confirm the action.
+Optionally a [Done modal](#done-modal), [Requested modal](#requested-modal) or [Notification](#notification) can be used to confirm the action (or a combination of one modal and a notification).
 
 <Row>
 <Column colLg={8}>
@@ -79,7 +80,7 @@ A medium-impact deletion is one that cannot be reversed, but would not be catast
 - Consequences of the deletion
 - "The action cannot be undone."
 
-A [Done modal](#done-modal), [Requested modal](#requested-modal) or [Notification](#notification) can be used to confirm the action.
+Optionally a [Done modal](#done-modal), [Requested modal](#requested-modal) or [Notification](#notification) can be used to confirm the action (or a combination of one modal and a notification).
 
 <Row>
 <Column colLg={8}>
@@ -140,9 +141,10 @@ As removing does not destroy an asset, typically user confirmation is not requir
 
 ## Anatomy
 
-### Success modal
+### Optional passive modal
 
-In high or medium impact flows, an optional final dialog can be used to signify success at the end of a remove or delete action.
+In high or medium impact flows, an optional passive modal can be used to signify the state at the end of a remove or delete action.
+This is particularly useful when the deletion or removal doesn't happen immediately, or a request has to be sent to trigger that action. 
 
 <Row>
 <Column colLg={8}>
@@ -160,7 +162,7 @@ In high or medium impact flows, an optional final dialog can be used to signify 
 
 ### Notification
 
-Use an optional notification to confirm a delete or remove action is completed. This is useful when the action takes more than a few moments.
+An optional notification can be used to confirm a delete or remove action has completed. This is useful when the action takes more than a few moments.
 
 <Row>
 <Column colLg={8}>
