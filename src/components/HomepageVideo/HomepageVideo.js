@@ -1,8 +1,12 @@
 /* eslint-disable jsx-a11y/media-has-caption */
 import React, { useRef, useState } from 'react';
+import ToggleIcon from './ToggleIcon';
+
 import mp4 from './carbon.mp4';
 import webm from './carbon.webm';
-import ToggleIcon from './ToggleIcon';
+import mp4Mobile from './carbon-mobile.mp4';
+import webmMobile from './carbon-mobile.webm';
+import poster from './poster.png';
 
 const HomepageVideo = () => {
   const videoRef = useRef();
@@ -26,7 +30,17 @@ const HomepageVideo = () => {
   return (
     <div className="homepage-video--main">
       <div className="homepage-video--wrapper">
-        <video ref={videoRef} muted autoPlay playsInline loop>
+        <video poster={poster} ref={videoRef} muted autoPlay playsInline loop>
+          <source
+            src={webmMobile}
+            type="video/webm"
+            media="all and (max-width: 600px)"
+          />
+          <source
+            src={mp4Mobile}
+            type="video/mp4"
+            media="all and (max-width: 600px)"
+          />
           <source src={webm} type="video/webm" />
           <source src={mp4} type="video/mp4" />
         </video>
