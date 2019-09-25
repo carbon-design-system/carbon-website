@@ -457,7 +457,7 @@ const colorTokens = {
       },
     },
     '$field-01': {
-      role: ['Default input fields', 'field color on $ui-backgrounds'],
+      role: ['Default input fields', 'Field color on $ui-backgrounds'],
       value: {
         white: {
           name: 'Gray 10',
