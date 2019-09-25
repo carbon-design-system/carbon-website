@@ -40,7 +40,7 @@ const Content = () => (
 const links = {
   firstCol: [
     {
-      href: 'https://www.carbondesignsystem.com/contributions/overview',
+      href: 'https://www.carbondesignsystem.com/how-to-contribute/overview',
       linkText: 'Contribute',
     },
     { href: 'https://www.ibm.com/privacy', linkText: 'Privacy' },
