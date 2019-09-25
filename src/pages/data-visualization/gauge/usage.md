@@ -1,5 +1,6 @@
 ---
 title: Gauge
+description: Gauge graphs show the part-to-whole relationship of one value compared to its total.
 tabs: ['Code', 'Usage', 'Style']
 ---
 
