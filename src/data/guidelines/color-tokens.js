@@ -65,7 +65,7 @@ const colorTokens = {
       },
     },
     '$interactive-03': {
-      role: ['4.5:1 aa contrast', 'Tertiary button'],
+      role: ['4.5:1 AA contrast', 'Tertiary button'],
       value: {
         white: {
           name: 'blue 60',
@@ -87,10 +87,10 @@ const colorTokens = {
     },
     '$interactive-04': {
       role: [
-        '3:1 aa contrast',
+        '3:1 AA contrast',
         'Selected elements',
-        'active elements',
-        'accent icons',
+        'Active elements',
+        'Accent icons',
       ],
       value: {
         white: {
@@ -112,7 +112,7 @@ const colorTokens = {
       },
     },
     $danger: {
-      role: ['Danger button background', '3:1 aa contrast'],
+      role: ['Danger button background', '3:1 AA contrast'],
       value: {
         white: {
           name: 'Red 60',
