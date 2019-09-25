@@ -8,13 +8,13 @@ import {
   triggerText,
 } from './SvgLibrary.module.scss';
 
-const IconCard = ({ icon }) => (
+const SvgCard = ({ icon, ...rest }) => (
   <li className={svgCard}>
     <div className={svgCardInside}>
       <span className={triggerText}>{icon.friendly_name}</span>
       <div className={flexContainer}>
         {icon.Component ? (
-          <icon.Component>
+          <icon.Component {...rest}>
             <title>{icon.friendly_name}</title>
           </icon.Component>
         ) : (
@@ -25,4 +25,4 @@ const IconCard = ({ icon }) => (
   </li>
 );
 
-export default IconCard;
+export default SvgCard;
