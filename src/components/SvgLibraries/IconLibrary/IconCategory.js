@@ -6,20 +6,20 @@ import {
 } from 'gatsby-theme-carbon/src/components/markdown/Markdown.module.scss';
 import cx from 'classnames';
 
-import IconCard from './IconCard';
+import SvgCard from '../shared/SvgCard';
 import {
-  iconGrid,
+  svgGrid,
   categoryTitle,
   subcategoryTitle,
-  iconCategory,
-} from './IconLibrary.module.scss';
+  svgCategory,
+} from '../shared/SvgLibrary.module.scss';
 
 const IconCategory = ({ category, icons }) => {
   const subcategories = Object.entries(
     groupBy(icons, 'categories[0].subcategory')
   );
   return (
-    <section className={iconCategory}>
+    <section className={svgCategory}>
       <h2 className={cx(h2, categoryTitle)}>{category}</h2>
       <ul>
         {subcategories.map(([subcategory, subcategoryIcons]) => (
@@ -37,9 +37,9 @@ const IconCategory = ({ category, icons }) => {
 const IconSubcategory = ({ subcategory, icons }) => (
   <li>
     <h3 className={cx(h3, subcategoryTitle)}>{subcategory}</h3>
-    <ul className={iconGrid}>
+    <ul className={svgGrid}>
       {icons.map(icon => (
-        <IconCard key={icon.name} icon={icon} />
+        <SvgCard key={icon.name} icon={icon} />
       ))}
     </ul>
   </li>
