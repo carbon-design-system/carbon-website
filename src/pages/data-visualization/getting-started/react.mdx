@@ -3,17 +3,110 @@ title: Get started
 tabs: ['Vanilla', 'React', 'Angular', 'Vue', 'Other frameworks']
 ---
 
+import DataOptionsSection from './shared-data-options-section';
+
 <AnchorLinks>
 
+<AnchorLink>Carbon Charts React library</AnchorLink>
 <AnchorLink>Install</AnchorLink>
 <AnchorLink>Getting started</AnchorLink>
+<AnchorLink>Development</AnchorLink>
+<AnchorLink>Troubleshooting</AnchorLink>
 
 </AnchorLinks>
 
+## Resources
+
+<Row>
+  <Column colMd={4} colLg={4} noGutterSm>
+    <ResourceCard
+      subTitle="Try Carbon Charts React components with CodeSandbox."
+      href="https://codesandbox.io/s/pppmo3ollx">
+      <MdxIcon name="codesandbox" />
+    </ResourceCard>
+  </Column>
+</Row>
+
+## Carbon Charts React library
+
+The library provides front-end developers & engineers a collection of reusable charting components to build websites and user interfaces. Adopting the library enables developers to use consistent markup, styles, and behavior in prototype and production work.
+
 ## Install
 
-Add content
+#### Using yarn:
+
+<br />
+
+```bash
+$ yarn add @carbon/charts @carbon/charts-react d3
+```
+
+#### If you prefer npm:
+
+<br />
+
+```bash
+$ npm install --save @carbon/charts @carbon/charts-react d3
+```
 
 ## Getting started
 
-Add content
+To start using the `BarChart` component, try the example below:
+
+```jsx
+import React from 'react';
+
+import { defaultColors } from '@carbon/charts';
+import { BarChart } from '@carbon/charts-react';
+import '@carbon/charts/style.css';
+
+class App extends React.Component {
+  state = {
+    data: stackedBarData,
+  };
+
+  render() {
+    return (
+      <div className="App">
+        <BarChart
+          data={this.state.data}
+          options={stackedBarOptions}
+          width="100%"
+          height={400}
+        />
+      </div>
+    );
+  }
+}
+
+// ...
+```
+
+<DataOptionsSection />
+
+## Development
+
+Please refer to the [Contribution Guidelines](https://github.com/carbon-design-system/carbon-charts/blob/master/CONTRIBUTING.md) before starting any work.
+
+### Using the server
+
+We recommend the use of [React Storybook](https://github.com/storybooks/react-storybook) for developing components.
+
+#### Start the server:
+
+<br />
+
+```bash
+cd packages/react
+yarn run storybook
+```
+
+Open browser to `http://localhost:9006/`.
+
+### List of available components
+
+View available components [here](https://github.com/carbon-design-system/carbon-charts#component-status).
+
+## Troubleshooting
+
+If you experience any issues while getting set up with Carbon Charts, please head over to the [GitHub repo](https://github.com/carbon-design-system/carbon-charts) for more guidelines and support. Please [create an issue](https://github.com/carbon-design-system/carbon-charts/issues) if your issue does not already exist.
