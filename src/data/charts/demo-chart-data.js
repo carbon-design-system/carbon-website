@@ -1,35 +1,26 @@
-import { DonutCenter } from '@carbon/charts';
-
-export const colors = [
-  '#00a68f',
-  '#3b1a40',
-  '#473793',
-  '#3c6df0',
-  '#56D2BB',
-  // 12 items needed
-];
+import { DonutCenter, defaultColors } from '@carbon/charts';
 
 export const groupedBarData = {
   labels: ['Qty', 'More', 'Sold', 'Restocking', 'Misc'],
   datasets: [
     {
       label: 'Dataset 1',
-      backgroundColors: [colors[0]],
+      backgroundColors: [defaultColors[0]],
       data: [65000, -29123, -35213, 51213, 16932],
     },
     {
       label: 'Dataset 2',
-      backgroundColors: [colors[1]],
+      backgroundColors: [defaultColors[1]],
       data: [32432, -21312, -56456, -21312, 34234],
     },
     {
       label: 'Dataset 3',
-      backgroundColors: [colors[2]],
+      backgroundColors: [defaultColors[2]],
       data: [-12312, 23232, 34232, -12312, -34234],
     },
     {
       label: 'Dataset 4',
-      backgroundColors: [colors[3]],
+      backgroundColors: [defaultColors[3]],
       data: [-32423, 21313, 64353, 24134, 32423],
     },
   ],
@@ -77,7 +68,7 @@ export const simpleBarData = {
   datasets: [
     {
       label: 'Dataset 1',
-      backgroundColors: colors,
+      backgroundColors: defaultColors,
       data: [
         65000,
         29123,
@@ -127,22 +118,22 @@ export const stackedBarData = {
   datasets: [
     {
       label: 'Dataset 1',
-      backgroundColors: [colors[0]],
+      backgroundColors: [defaultColors[0]],
       data: [65000, 29123, 35213, 51213, 16932],
     },
     {
       label: 'Dataset 2',
-      backgroundColors: [colors[1]],
+      backgroundColors: [defaultColors[1]],
       data: [32432, 21312, 56456, 21312, 34234],
     },
     {
       label: 'Dataset 3',
-      backgroundColors: [colors[2]],
+      backgroundColors: [defaultColors[2]],
       data: [12312, 23232, 34232, 12312, 34234],
     },
     {
       label: 'Dataset 4',
-      backgroundColors: [colors[3]],
+      backgroundColors: [defaultColors[3]],
       data: [32423, 21313, 64353, 24134, 32423],
     },
   ],
@@ -169,17 +160,17 @@ export const curvedLineData = {
   datasets: [
     {
       label: 'Dataset 1',
-      backgroundColors: [colors[0]],
+      backgroundColors: [defaultColors[0]],
       data: [65000, 79000, 49213, 51213, 16932],
     },
     {
       label: 'Dataset 2',
-      backgroundColors: [colors[1]],
+      backgroundColors: [defaultColors[1]],
       data: [80000, 21312, 56456, 21312, 0],
     },
     {
       label: 'Dataset 3',
-      backgroundColors: [colors[2]],
+      backgroundColors: [defaultColors[2]],
       data: [12312, 34232, 39232, 12312, 34234],
     },
   ],
@@ -211,17 +202,17 @@ export const lineData = {
   datasets: [
     {
       label: 'Dataset 1',
-      backgroundColors: [colors[0]],
+      backgroundColors: [defaultColors[0]],
       data: [0, 0, 0, 0, 0],
     },
     {
       label: 'Dataset 2',
-      backgroundColors: [colors[1]],
+      backgroundColors: [defaultColors[1]],
       data: [0, 10000, 20000, 30000, 40000],
     },
     {
       label: 'Dataset 3',
-      backgroundColors: [colors[2]],
+      backgroundColors: [defaultColors[2]],
       data: [0, 20000, 40000, 60000, 80000],
     },
   ],
@@ -245,7 +236,7 @@ export const demoPieOptions = {
   accessibility: false,
   legendClickable: true,
   containerResizable: true,
-  colors,
+  defaultColors,
 };
 
 export const demoPieData = {
@@ -264,7 +255,7 @@ export const demoPieData = {
   datasets: [
     {
       label: 'Dataset 1',
-      backgroundColors: colors,
+      backgroundColors: defaultColors,
       data: [
         100000,
         200000,
@@ -285,7 +276,7 @@ export const demoDonutOptions = {
   accessibility: false,
   legendClickable: true,
   containerResizable: true,
-  colors,
+  defaultColors,
   center: new DonutCenter({
     number: 25423,
     label: 'Browsers',
