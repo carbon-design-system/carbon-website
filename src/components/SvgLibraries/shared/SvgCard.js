@@ -2,19 +2,19 @@
 import React from 'react';
 import { pascal } from 'change-case';
 import {
-  iconCard,
-  iconCardInside,
+  svgCard,
+  svgCardInside,
   flexContainer,
   triggerText,
-} from './IconLibrary.module.scss';
+} from './SvgLibrary.module.scss';
 
-const IconCard = ({ icon }) => (
-  <li className={iconCard}>
-    <div className={iconCardInside}>
+const SvgCard = ({ icon, ...rest }) => (
+  <li className={svgCard}>
+    <div className={svgCardInside}>
       <span className={triggerText}>{icon.friendly_name}</span>
       <div className={flexContainer}>
         {icon.Component ? (
-          <icon.Component>
+          <icon.Component {...rest}>
             <title>{icon.friendly_name}</title>
           </icon.Component>
         ) : (
@@ -25,4 +25,4 @@ const IconCard = ({ icon }) => (
   </li>
 );
 
-export default IconCard;
+export default SvgCard;
