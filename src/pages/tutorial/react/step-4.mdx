@@ -1,5 +1,6 @@
 ---
 title: 4. Creating components
+description: Welcome to Carbon! This tutorial will guide you in creating a React app with the Carbon Design System.
 tabs:
   ['Overview', 'Step 1', 'Step 2', 'Step 3', 'Step 4', 'Step 5', 'Wrapping up']
 ---
@@ -92,17 +93,13 @@ src/components/Info
 
 Import `_info.scss` in `app.scss` after all of the `carbon-component` imports.
 
-##### src/app.scss
-
-```scss
+```scss path=src/app.scss
 @import './components/Info/info.scss';
 ```
 
 Like our other components, `index.js` will serve as an entrypoint. Since `Info.js` will export mutliple components, we'll use the `*` wildcard in the entrypoint export.
 
-##### src/components/Info/index.js
-
-```javascript
+```javascript path=src/components/Info/index.js
 export * from './Info';
 ```
 
@@ -110,9 +107,7 @@ export * from './Info';
 
 Let's create the parent component that includes the "The Principles" heading. That markup currently looks like this in `LandingPage.js`:
 
-##### src/content/LandingPage/LandingPage.js
-
-```html
+```html path=src/content/LandingPage/LandingPage.js
 <div className="bx--row landing-page__r3">
   <div className="bx--col-md-4 bx--col-lg-4">
     <h3 className="landing-page__label">The Principles</h3>
@@ -135,9 +130,7 @@ We'll also:
 
 Using `props` we can render any heading and any number of children components (`InfoCard` that we'll build soon.)
 
-##### src/components/Info/Info.js
-
-```javascript
+```javascript path=src/components/Info/Info.js
 import React from 'react';
 
 const InfoSection = props => (
@@ -152,9 +145,7 @@ const InfoSection = props => (
 
 At this point let's add styling for the new class names that we just added.
 
-##### src/components/Info/\_info.scss
-
-```scss
+```scss path=src/components/Info/_info.scss
 .info-section__heading {
   @include carbon--type-style('heading-01');
 }
@@ -164,9 +155,7 @@ At this point let's add styling for the new class names that we just added.
 
 Next up we're going to build a component for columns 2 - 4, which currently looks like `<div className="bx--col-md-4 bx--col-lg-4">Carbon is Open</div>`. At the bottom of `Info.js`, add:
 
-##### src/components/Info/Info.js
-
-```javascript
+```javascript path=src/components/Info/Info.js
 const InfoCard = props => {
   return (
     <article className="info-card bx--col-md-4 bx--col-lg-4 bx--col-xlg-3 bx--offset-xlg-1">
@@ -195,17 +184,13 @@ _Note: At extra large viewports, we are using _`bx--col-xlg-3 bx--offset-xlg-1`_
 
 Nothing is styled yet, but with our components built let's put them to use. In `LandingPage.js`, import the components towards the top of the file.
 
-##### src/content/LandingPage/LandingPage.js
-
-```javascript
+```javascript path=src/content/LandingPage/LandingPage.js
 import { InfoSection, InfoCard } from '../../components/Info';
 ```
 
 While we're at the top of `LandingPage.js`, import the icons that we'll need as well.
 
-##### src/content/LandingPage/LandingPage.js
-
-```javascript
+```javascript path=src/content/LandingPage/LandingPage.js
 import Globe32 from '@carbon/icons-react/lib/globe/32';
 import PersonFavorite32 from '@carbon/icons-react/lib/person--favorite/32';
 import Application32 from '@carbon/icons-react/lib/application/32';
@@ -215,9 +200,7 @@ _Note: You'll notice that these 32px icons aren't the pictograms as designed. Th
 
 With everything imported, replace the current:
 
-##### src/content/LandingPage/LandingPage.js
-
-```html
+```html path=src/content/LandingPage/LandingPage.js
 <div className="bx--row landing-page__r3">
   <div className="bx--col-md-4 bx--col-lg-4">
     <h3 className="landing-page__label">The Principles</h3>
@@ -230,10 +213,8 @@ With everything imported, replace the current:
 
 With the new components:
 
-##### src/content/LandingPage/LandingPage.js
-
 <!-- prettier-ignore-start -->
-```javascript
+```javascript path=src/content/LandingPage/LandingPage.js
 <InfoSection heading="The Principles" className="landing-page__r3">
   <InfoCard
     heading="Carbon is Open"
@@ -266,9 +247,7 @@ Here's our design showing the spacing tokens that we need to add. We also need t
 
 Starting with layout, add the following to `src/components/Info/_info.scss`.
 
-##### src/components/Info/\_info.scss
-
-```scss
+```scss path=src/components/Info/_info.scss
 .info-card {
   margin-top: $spacing-09;
   display: flex;
@@ -311,9 +290,7 @@ Once you save, go ahead and resize your browser to see the responsive layout at 
 
 Our `InfoCard` headings look to be too small. We need to increase their font sizes according to the design spec with:
 
-##### src/components/Info/\_info.scss
-
-```scss
+```scss path=src/components/Info/_info.scss
 .info-card__heading {
   @include carbon--type-style('productive-heading-03');
 }
@@ -321,9 +298,7 @@ Our `InfoCard` headings look to be too small. We need to increase their font siz
 
 Also, the design has the last word in each subheading as bold. To accomplish that, add this helper function after the import in `Info.js`.
 
-##### src/components/Info/Info.js
-
-```javascript
+```javascript path=src/components/Info/Info.js
 // Take in a phrase and separate the third word in an array
 function createArrayFromPhrase(phrase) {
   const splitPhrase = phrase.split(' ');
@@ -334,9 +309,7 @@ function createArrayFromPhrase(phrase) {
 
 Then, update `InfoCard` to use `createArrayFromPhrase`.
 
-##### src/components/Info/Info.js
-
-```javascript
+```javascript path=src/components/Info/Info.js
 const InfoCard = props => {
   const splitHeading = createArrayFromPhrase(props.heading);
 
@@ -355,9 +328,7 @@ const InfoCard = props => {
 
 Finally, add the declaration block in `_info.scss` to set `InfoCard` body copy styles and to bottom-align the icons.
 
-##### src/components/Info/\_info.scss
-
-```scss
+```scss path=src/components/Info/_info.scss
 .info-card__body {
   margin-top: $spacing-06;
   flex-grow: 1; // fill space so icons are bottom aligned

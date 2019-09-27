@@ -21,8 +21,8 @@ const Content = () => (
       <br /> an issue on{' '}
       <a
         style={{ textDecoration: 'underline' }}
-        href="https://github.com/carbon-design-system/carbon-www/issues/new">
-        Github.
+        href="https://github.com/carbon-design-system/carbon-website/issues/new">
+        GitHub.
       </a>
     </p>
     <p>
@@ -40,7 +40,7 @@ const Content = () => (
 const links = {
   firstCol: [
     {
-      href: 'https://www.carbondesignsystem.com/contributions/overview',
+      href: 'https://www.carbondesignsystem.com/how-to-contribute/overview',
       linkText: 'Contribute',
     },
     { href: 'https://www.ibm.com/privacy', linkText: 'Privacy' },
