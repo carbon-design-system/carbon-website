@@ -11,9 +11,6 @@ import Preview from 'components/Preview';
 <AnchorLinks>
 
 <AnchorLink>Fork, clone and branch</AnchorLink>
-<AnchorLink>Add UI Shell</AnchorLink>
-<AnchorLink>Create pages</AnchorLink>
-<AnchorLink>Add routing</AnchorLink>
 <AnchorLink>Add grid</AnchorLink>
 <AnchorLink>Add landing page grid</AnchorLink>
 <AnchorLink>Build landing page</AnchorLink>
@@ -72,282 +69,26 @@ npm run start
 
 You should see something similar to where the [previous step](/tutorial/angular/step-1)) left off.
 
-## Add UI Shell
-
-Before we start adding new components, we want to begin developing with a clean app but still have the same configurations. So let's delete the starter-home directory and update the routing in `app-routing.module.ts` by removing the below block:
-
-```javascript path=src/app/app-routing.module.ts
-{
-  path: "",
-  loadChildren: () => import("./starter-home/starter-home.module").then(m => m.StarterHomeModule)
-},
-```
-
-Next, we're going to create an Angular component called `TutorialHeader` to use with the UI Shell Carbon component. Using Angular CLI we will create this component inside the `src/app` directory.
-
-```bash
-ng g module tutorial-header --lint-fix
-ng g component tutorial-header/tutorial-header --lint-fix
-```
-
-##### Folder structure
-
-```bash
-src/app/tutorial-header
-├── tutorial-header
-│   ├── tutorial-header.component.html
-│   ├── tutorial-header.component.scss
-│   ├── tutorial-header.component.spec.ts
-│   └── tutorial-header.component.ts
-└── tutorial-header.module.ts
-```
-
-### Import UI Shell
-
-Next we'll import our Carbon UI Shell components into `tutorial-header.module.ts` and `tutorial-header.component.spec.ts`. Also, make sure we import and export `TutorialHeaderComponent`. Set up the file like so:
-
-<!-- prettier-ignore-start -->
-```javascript path=src/app/tutorial-header/tutorial-header.module.ts
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { RouterModule } from "@angular/router";
-
-import { TutorialHeaderComponent } from "./tutorial-header/tutorial-header.component";
-
-import { HeaderModule } from "carbon-components-angular";
-
-export {
-  TutorialHeaderComponent,
-} from "./tutorial-header/tutorial-header.component";
-
-@NgModule({
-  declarations: [TutorialHeaderComponent],
-  imports: [CommonModule, HeaderModule, RouterModule],
-  exports: [TutorialHeaderComponent]
-})
-export class TutorialHeaderModule {}
-```
-<!-- prettier-ignore-end -->
-
-<!-- prettier-ignore-start -->
-```javascript path=src/app/tutorial-header/tutorial-header/tutorial-header.component.spec.ts
-import { HeaderModule } from "carbon-components-angular/ui-shell/ui-shell.module";
-```
-<!-- prettier-ignore-end -->
-
-<!-- prettier-ignore-start -->
-```javascript path=src/app/tutorial-header/tutorial-header/tutorial-header.component.spec.ts
-TestBed.configureTestingModule({
-  declarations: [TutorialHeaderComponent],
-  imports: [HeaderModule]
-});
-```
-<!-- prettier-ignore-end -->
-
-_Note: you can find a description of the different components used in UI Shell in our [carbon-components-angular](https://github.com/IBM/carbon-components-angular/tree/master/src/ui-shell) package._
-
-### Import icons
-
-Now let's import the icons from our `@carbon/icons-angular` package. In `tutorial-header.module.ts` and `tutorial-header.component.spec.ts`, we need to import each individual icon we will use.
-
-<!-- prettier-ignore-start -->
-```javascript path=src/app/tutorial-header/tutorial-header.module.ts,src/app/tutorial-header/tutorial-header/tutorial-header.component.spec.ts
-import { Notification20Module } from "@carbon/icons-angular/lib/notification/20";
-import { UserAvatar20Module } from "@carbon/icons-angular/lib/user--avatar/20";
-import { AppSwitcher20Module } from "@carbon/icons-angular/lib/app-switcher/20";
-```
-<!-- prettier-ignore-end -->
-
-```javascript path=src/app/tutorial-header/tutorial-header.module.ts,src/app/tutorial-header/tutorial-header/tutorial-header.component.spec.ts
-imports: [Notification20Module, UserAvatar20Module, AppSwitcher20Module];
-```
-
-Then we need to add the template code. Populate `tutorial-header.component.html` with:
-
-<!-- prettier-ignore-start -->
-```html path=src/app/tutorial-header/tutorial-header/tutorial-header.component.html
-<ibm-header name="Carbon Tutorial Angular">
-  <ibm-header-navigation ariaLabel="Carbon Tutorial Angular">
-    <ibm-header-item href="/repos">Repositories</ibm-header-item>
-  </ibm-header-navigation>
-  <ibm-header-global>
-    <ibm-header-action title="action">
-      <ibm-icon-notification20
-        innerClass="header-icon">
-      </ibm-icon-notification20>
-    </ibm-header-action>
-    <ibm-header-action title="action">
-      <ibm-icon-user-avatar20 innerClass="header-icon"></ibm-icon-user-avatar20>
-    </ibm-header-action>
-    <ibm-header-action title="action">
-      <ibm-icon-app-switcher20
-        innerClass="header-icon">
-      </ibm-icon-app-switcher20>
-    </ibm-header-action>
-  </ibm-header-global>
-</ibm-header>
-```
-<!-- prettier-ignore-end -->
-
-And we will add some styling as well in `styles.scss`
-
-```scss path=src/styles.scss
-.header-icon {
-  fill: white;
-}
-```
-
-Next import the tutorial-header module in `app.module.ts` and `app.component.spec.ts` and add the component in `app.component.html`
-
-<!-- prettier-ignore-start -->
-```javascript path=src/app/app.module.ts,src/app/app.component.spec.ts
-import { TutorialHeaderModule } from "./tutorial-header/tutorial-header.module";
-```
-<!-- prettier-ignore-end -->
-
-```javascript path=src/app/app.module.ts,src/app/app.component.spec.ts
-imports: [TutorialHeaderModule];
-```
-
-```html path=src/app/app.component.html
-<app-tutorial-header></app-tutorial-header>
-<main class="main">
-  <router-outlet></router-outlet>
-</main>
-```
-
-And we will add some styling as well in `app.component.scss`.
-
-```scss path=src/app/app.component.scss
-.main {
-  margin: 40px 0 0 -7px;
-}
-```
-
-## Create pages
-
-Next thing we need to do is create the files for our content. These files will be located in the `app` folder inside of `src`. It should be a sibling of `tutorial-header`.
-
-Our app will have two pages. First, we need a landing page. Let's start by running these commands:
-
-```bash
-ng g module home --routing --lint-fix
-ng g component home/landing-page --lint-fix
-```
-
-##### Folder structure
-
-```bash
-src/app/home
-├── home
-│   ├── landing-page.component.html
-│   ├── landing-page.component.scss
-│   ├── landing-page.component.spec.ts
-│   └── landing-page.component.ts
-├── home-routing.module.ts
-└── home-page.module.ts
-```
-
-And a repo page:
-
-```bash
-ng g module repositories --routing --lint-fix
-ng g component repositories/repo-page --lint-fix
-```
-
-##### Folder structure
-
-```bash
-src/app/repositories
-├── repositories
-│   ├── repo-page.component.html
-│   ├── repo-page.component.scss
-│   ├── repo-page.component.spec.ts
-│   └── repo-page.component.ts
-├── repositories-routing.module.ts
-└── repositories.module.ts
-```
-
-## Add routing
-
-We need to update routing functionality to enable the loading of `repositories`. Inside `app-routing.module.ts` we'll add the following code in the routes array:
-
-```javascript path=src/app-routing.module.ts
-const routes: Routes = [
-  {
-    path: '',
-    loadChildren: () => import('./home/home.module').then(m => m.HomeModule),
-  },
-  {
-    path: 'repos',
-    loadChildren: () =>
-      import('./repositories/repositories.module').then(
-        m => m.RepositoriesModule
-      ),
-  },
-  {
-    path: '',
-    redirectTo: '',
-    pathMatch: 'full',
-  },
-];
-```
-
-And add routes for the landing and repo pages:
-
-```javascript path=src/app/home/home-routing.module.ts
-import { LandingPageComponent } from './landing-page/landing-page.component';
-
-const routes: Routes = [
-  {
-    path: '',
-    component: LandingPageComponent,
-  },
-];
-```
-
-<!-- prettier-ignore-end -->
-
-```javascript path=src/app/repositories/repositories-routing.module.ts
-import { RepoPageComponent } from './repo-page/repo-page.component';
-
-const routes: Routes = [
-  {
-    path: '',
-    component: RepoPageComponent,
-  },
-];
-```
-
-<!-- prettier-ignore-end -->
-
-After that we need to do a couple quick fixes to the UI Shell to have it route to the repo page.
-
-```html path=src/app/tutorial-header/tutorial-header.component.html
-<ibm-header-item routerLink="/repos">Repositories</ibm-header-item>
-```
-
-You should now have a working header that routes to the repos pages without full page reload!
-
 ## Add grid
 
 In our last step we added our styles, components and icon packages. Now we are going to build the pages with the grid component.
 
 In `styles.scss`, we need to configure our grid to use 16 columns instead of the default 12 columns. We do this by adding `grid-columns-16: true` in our `$feature-flags`.
 
+<!-- prettier-ignore-start -->
 ```css path=src/styles.scss
 $feature-flags: (
   grid-columns-16: true,
-  css--body: false,
-  // we're providing our own body styles
+  css--body: false, // we're providing our own body styles
     css--reset: false // prevent thousands of resets being included...
 );
 ```
+<!-- prettier-ignore-end -->
 
 Next we'll import our Carbon grid component into `home.module.ts` and `landing-page.component.spec.ts`.
 
 ```javascript path=src/app/home/landing-page/landing-page.component.spec.ts,src/app/home/home.module.ts
-import { GridModule } from "carbon-components-angular";
+import { GridModule } from 'carbon-components-angular';
 ...
 @NgModule({
   ...
@@ -447,7 +188,7 @@ import {
   ButtonModule,
   GridModule,
   TabsModule,
-} from "carbon-components-angular";
+} from 'carbon-components-angular';
 ```
 <!-- prettier-ignore-end -->
 
@@ -530,7 +271,7 @@ Then in `styles.scss` add this import at the top of the file.
 
 <!-- prettier-ignore-start -->
 ```scss path=src/styles.scss
-@import "./assets/carbon-overrides.scss";
+@import './assets/carbon-overrides.scss';
 ```
 <!-- prettier-ignore-end -->
 
@@ -604,8 +345,8 @@ We've added basic layout styles in `landing-page.component.scss` and `styles.scs
 
 <!-- prettier-ignore-start -->
 ```scss path=src/app/home/landing-page/landing-page.component.scss
-@import "~carbon-components/scss/globals/scss/vendor/@carbon/type/scss/font-family";
-@import "~carbon-components/scss/globals/scss/typography";
+@import '~carbon-components/scss/globals/scss/vendor/@carbon/type/scss/font-family';
+@import '~carbon-components/scss/globals/scss/typography';
 ```
 <!-- prettier-ignore-end -->
 
@@ -683,7 +424,7 @@ The Sketch symbol naming is consistent with the development Sass tokens to help 
 <!-- prettier-ignore-start -->
 ```scss path=src/app/home/landing-page/landing-page.component.scss
 .landing-page__heading {
-  @include carbon--type-style("productive-heading-05");
+  @include carbon--type-style('productive-heading-05');
 }
 ```
 <!-- prettier-ignore-end -->
@@ -720,12 +461,12 @@ _Note: You may be wondering why there are vertical gaps between the type and spa
 }
 
 .landing-page__subheading {
-  @include carbon--type-style("productive-heading-03");
-  @include carbon--font-weight("semibold");
+  @include carbon--type-style('productive-heading-03');
+  @include carbon--font-weight('semibold');
 }
 
 .landing-page__p {
-  @include carbon--type-style("productive-heading-03");
+  @include carbon--type-style('productive-heading-03');
   margin-top: $spacing-06;
   margin-bottom: $spacing-08;
 
@@ -759,7 +500,7 @@ Let's also add some styles for the last row, even though that will get used late
 }
 
 .landing-page__label {
-  @include carbon--type-style("heading-01");
+  @include carbon--type-style('heading-01');
 }
 ```
 <!-- prettier-ignore-end -->
@@ -772,7 +513,7 @@ First, we’ll add our grid and table by importing a few components in `reposito
 
 <!-- prettier-ignore-start -->
 ```javascript path=src/app/repositories/repositories.module.ts,src/app/repositories/repo-page/repo-page.component.spec.ts
-import { GridModule, TableModule } from "carbon-components-angular";
+import { GridModule, TableModule } from 'carbon-components-angular';
 ```
 <!-- prettier-ignore-end -->
 
@@ -812,7 +553,7 @@ Next we will add our newly generated repo-table to the declarations in `repo-pag
 
 <!-- prettier-ignore-start -->
 ```javascript path=src/app/repositories/repo-page/repo-page.component.spec.ts
-import { RepoTableComponent } from "../repo-table/repo-table.component";
+import { RepoTableComponent } from '../repo-table/repo-table.component';
 ```
 <!-- prettier-ignore-end -->
 
@@ -928,7 +669,7 @@ In `repo-page.component.scss`, add the following styles:
 
 <!-- prettier-ignore-start -->
 ```scss path=src/app/repositories/repo-page/repo-page.component.ts
-@import "~carbon-components/scss/globals/scss/typography";
+@import '~carbon-components/scss/globals/scss/typography';
 
 .repo-page .bx--row {
   padding-top: $spacing-05;
@@ -948,6 +689,7 @@ We're going to submit a pull request to verify completion of this tutorial step.
 Run the `lint` and `test` scripts to make sure we're all set to submit a pull request.
 
 ```bash
+ng lint --fix
 npm run lint && npm test
 ```
 

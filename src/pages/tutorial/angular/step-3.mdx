@@ -48,8 +48,8 @@ This tutorial has an accompanying GitHub repository called [carbon-tutorial-angu
 With your repository all set up, let's check out the branch for this tutorial step's starting point.
 
 ```bash
-$ git fetch upstream
-$ git checkout -b angular-step-3 upstream/angular-step-3
+git fetch upstream
+git checkout -b angular-step-3 upstream/angular-step-3
 ```
 
 ### Build and start app
@@ -57,13 +57,13 @@ $ git checkout -b angular-step-3 upstream/angular-step-3
 Install the app's dependencies:
 
 ```bash
-$ npm install
+npm install
 ```
 
 Then, start the app:
 
 ```bash
-$ npm run start
+npm run start
 ```
 
 You should see something similar to where the [previous step](/tutorial/angular/step-2) left off. Stop your app with `CTRL-C` and let's get everything installed.
@@ -83,8 +83,8 @@ Install the following
 Using the command:
 
 ```bash
-$ ng add apollo-angular
-$ ng lint --fix
+ng add apollo-angular
+ng lint --fix
 ```
 
 ​
@@ -134,7 +134,7 @@ We need to import the environment at the top of every file that we decide to use
 
 <!-- prettier-ignore-start -->
 ```javascript
-import { environment } from "../environments/environment";
+import { environment } from '../environments/environment';
 ```
 <!-- prettier-ignore-end -->
 
@@ -142,9 +142,9 @@ Next, make your client by providing a URI for the GitHub GraphQL API as well as 
 
 <!-- prettier-ignore-start -->
 ```javascript path=src/app/graphql.module.ts
-import { HttpHeaders } from "@angular/common/http";
+import { HttpHeaders } from '@angular/common/http';
 
-const uri = "https://api.github.com/graphql"; // <-- add the URL of the GraphQL server here
+const uri = 'https://api.github.com/graphql'; // <-- add the URL of the GraphQL server here
 export function createApollo(httpLink: HttpLink) {
   return {
     link: httpLink.create({
@@ -167,8 +167,8 @@ Add the following import at the top of `repo-table.component.ts`:
 
 <!-- prettier-ignore-start -->
 ```javascript path=src/app/repositories/repo-table/repo-table.component.ts
-import { Apollo } from "apollo-angular";
-import gql from "graphql-tag";
+import { Apollo } from 'apollo-angular';
+import gql from 'graphql-tag';
 ```
 <!-- prettier-ignore-end -->
 
@@ -193,7 +193,7 @@ this.apollo.watchQuery({
   query: gql`
     query REPO_QUERY {
       # Let's use carbon as our organization
-      organization(login: "carbon-design-system") {
+      organization(login: 'carbon-design-system') {
         # We'll grab all the repositories in one go. To load more resources
         # continuously, see the advanced topics.
         repositories(first: 75, orderBy: { field: UPDATED_AT, direction: DESC }) {
@@ -247,7 +247,7 @@ The column will have two values (`url` and `homepageUrl`) and will have the stru
 ```
 
 ```javascript path=src/app/repositories/repo-table/repo-table.component.ts
-@ViewChild("linkTemplate", null)
+@ViewChild('linkTemplate', null)
 protected linkTemplate: TemplateRef<any>;
 ```
 
@@ -294,7 +294,7 @@ At the end of the `watchQuery` in `ngOnInit()`:
   if (response.error) {
     const errorData = [];
     errorData.push([
-      new TableItem({data: "error!" })
+      new TableItem({data: 'error!' })
     ]);
     this.model.data = errorData;
   } else if (response.loading) {
@@ -324,15 +324,16 @@ At this point, the first time that you visit the repositories page, we're queryi
 
 To do so, we will need to modify `repo-table.component.html` and `repo-table.component.ts`:
 
+<!-- prettier-ignore-start -->
 ```html path=src/app/repositories/repo-table/repo-table.component.html
 <ibm-table
   [skeleton]="skeleton"
   [model]="skeleton ? skeletonModel : model"
   [showSelectionColumn]="false"
-  [striped]="false"
->
+  [striped]="false">
 </ibm-table>
 ```
+<!-- prettier-ignore-end -->
 
 We need to tell the loading skeleton how many rows to render, so let's use 10 skeleton rows to prepare for the next enhancement...
 
@@ -425,7 +426,8 @@ We're going to submit a pull request to verify completion of this tutorial step.
 Run the CI check to make sure we're all set to submit a pull request.
 
 ```bash
-$ npm run test
+ng lint --fix
+npm run lint && npm test
 ```
 
 _Note: Having issues running the CI check? [Step 1](</tutorial/angular/step-1#continuous-integration-(ci)-check>) has troubleshooting notes that may help._
@@ -435,13 +437,13 @@ _Note: Having issues running the CI check? [Step 1](</tutorial/angular/step-1#co
 Before we can create a pull request, stage and commit all of your changes:
 
 ```bash
-$ git add --all && git commit -m "feat(tutorial): complete step 3"
+git add --all && git commit -m "feat(tutorial): complete step 3"
 ```
 
 Then, push to your repository:
 
 ```bash
-$ git push origin angular-step-3
+git push origin angular-step-3
 ```
 
 _Note: Having issues pushing your changes? [Step 1](/tutorial/angular/step-1#git-commit-and-push) has troubleshooting notes that may help._

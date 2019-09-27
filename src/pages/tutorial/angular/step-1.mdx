@@ -11,8 +11,8 @@ import Preview from 'components/Preview';
 <AnchorLinks>
 
 <AnchorLink>Prerequisites</AnchorLink>
-<AnchorLink>Use our starter app - recommended</AnchorLink>
-<AnchorLink>Create your own</AnchorLink>
+<AnchorLink>Use starter app - recommended</AnchorLink>
+<AnchorLink>Start from scratch</AnchorLink>
 
 </AnchorLinks>
 
@@ -21,7 +21,7 @@ import Preview from 'components/Preview';
 A [preview](https://angular-step-2-carbon-tutorial.netlify.com) of what you will build:
 
 <Preview
-  height="800"
+  height="200"
   title="Carbon Angular Tutorial Step 1"
   src="https://angular-step-2-carbon-tutorial.netlify.com"
   frameborder="no"
@@ -90,7 +90,7 @@ git fetch upstream
 git checkout -b angular-step-1 upstream/angular-step-1
 ```
 
-## Use our starter app (recommended)
+## Use starter app (recommended)
 
 <AnchorLinks>
 
@@ -98,6 +98,10 @@ git checkout -b angular-step-1 upstream/angular-step-1
 <AnchorLink>Pull starter code</AnchorLink>
 <AnchorLink>Remove starter remote</AnchorLink>
 <AnchorLink>Build and start</AnchorLink>
+<AnchorLink>Update UI Shell</AnchorLink>
+<AnchorLink>Create pages</AnchorLink>
+<AnchorLink>Add routing</AnchorLink>
+<AnchorLink>Submit pull request</AnchorLink>
 
 </AnchorLinks>
 
@@ -152,33 +156,68 @@ npm run start
 
 Your app should now be running with the message: `** Angular Live Development Server is listening on localhost:4200, open your browser on http://localhost:4200/ **`
 
-That's it! Your browser should now resemble the preview above. You can skip [create your own](#create-your-own) and jump straight to [submit pull request](#submit-pull-request)
+That's it! Your browser should now resemble our [starter-app](https://carbon-angular-starter.netlify.com/).
 
-## Create your own
+## Update UI Shell
+
+Let's update the UI Shell so it has a link to the repos page that we will create shortly. In `header.component.html` replace the code with:
+
+```html path=src/app/header/header.component.html
+<ibm-header name="Carbon Tutorial Angular">
+  <ibm-header-navigation ariaLabel="Carbon Tutorial Angular">
+    <ibm-header-item href="/repos">Repositories</ibm-header-item>
+  </ibm-header-navigation>
+  <ibm-header-global>
+    <ibm-header-action title="action">
+      <svg ibmIconNotification20></svg>
+    </ibm-header-action>
+    <ibm-header-action title="action">
+      <svg ibmIconUserAvatar20></svg>
+    </ibm-header-action>
+    <ibm-header-action title="action">
+      <svg ibmIconAppSwitcher20></svg>
+    </ibm-header-action>
+  </ibm-header-global>
+</ibm-header>
+```
+
+Before we continue on to the next step, we want to begin developing with a clean app. So let's delete the `src/app/starter-home` folder and update the routing in `app-routing.module.ts` by removing the below block:
+
+```javascript path=src/app/app-routing.module.ts
+{
+  path: '',
+  loadChildren: () => import('./starter-home/starter-home.module').then(m => m.StarterHomeModule)
+},
+```
+
+Now you can skip most of [Start from scratch](#start-from-scratch) and jump straight to [Create pages](#create-pages).
+
+## Start from scratch
 
 <AnchorLinks>
 
 <AnchorLink>Install Angular CLI</AnchorLink>
 <AnchorLink>Create an Angular App</AnchorLink>
 <AnchorLink>Install Carbon</AnchorLink>
-<AnchorLink>Run the app</AnchorLink>
-<AnchorLink>Creating Pages</AnchorLink>
 <AnchorLink>Code style</AnchorLink>
-<AnchorLink>Add starter content</AnchorLink>
-<AnchorLink>Add routing</AnchorLink>
-<AnchorLink>Add testing framework</AnchorLink>
 <AnchorLink>Progressive web app</AnchorLink>
+<AnchorLink>Run the app</AnchorLink>
+<AnchorLink>Add UI Shell</AnchorLink>
+<AnchorLink>Create pages</AnchorLink>
+<AnchorLink>Add routing</AnchorLink>
 <AnchorLink>Submit pull request</AnchorLink>
 
 </AnchorLinks>
 
 ## Install Angular CLI
 
-Since we are starting from scratch, we need to first install Angular CLI
+Since we are starting from scratch, we need to first install Angular CLI.
 
 ```bash
 npm install -g @angular/cli
 ```
+
+_Note: If you are using macOS you might need to execute as a_ `sudo` _command._
 
 ## Create an Angular App
 
@@ -243,43 +282,9 @@ In `src/styles.scss`, import the Carbon styles by adding the following to the to
 @import '~carbon-components/scss/globals/scss/styles';
 ```
 
-## Run the app
-
-Now we can run our app for a quick preview inside the browser.
-
-```bash
-npm run start
-```
-
-Your app should now be running with the message: `** Angular Live Development Server is listening on localhost:4200, open your browser on http://localhost:4200/ **`
-
-Before we start adding components we want to start with an empty project, so delete everything in `app.component.html` except for the `router-outler`. We will also have to delete the test that was associated with this code. So in `app.component.spec.ts`, delete the `should render title` test.
-
-## Creating Pages
-
-Next, we’re going to create an Angular component called `StarterHome` using Angular CLI. We will also need a module and routing files.
-
-```bash
-ng g module starter-home --routing
-ng g component starter-home/starter-home
-```
-
-You should now have the following folder structure:
-
-```bash
-src/app/starter-home
-├── starter-home
-│   ├── starter-home.component.html
-│   ├── starter-home.component.scss
-│   ├── starter-home.component.spec.ts
-│   └── starter-home.component.ts
-├── starter-home-routing.module.ts
-└── starter-home.module.ts
-```
-
 ## Code style
 
-Next, we will edit the code style to match Carbon angular recommendations. Through the conventions listed in our `tslint.js`, the app will look clean and easier to read and maintain. So replace your code in `tslint.json` with the code below.
+Next, we will edit the code style to match Carbon Angular recommendations. Through the conventions listed in our `tslint.js`, the app will look clean and easier to read and maintain. So replace your code in `tslint.json` with the code below.
 
 ```javascript path=tslint.json
 {
@@ -368,7 +373,7 @@ Next, we will edit the code style to match Carbon angular recommendations. Throu
 		"prefer-const": true,
 		"quotemark": [
 			true,
-			"double"
+			"single"
 		],
 		"radix": true,
 		"semicolon": [
@@ -453,258 +458,11 @@ max_line_length = off
 trim_trailing_whitespace = false
 ```
 
-_Note: This only works with editors that support editorconfigs_
-
-## Adding starter content
-
-The `StarterHome` component will hold the content of the starter app. We will add the grid, list, tabs and tiles Carbon components. Now, let's import these Carbon components from our `carbon-components-angular` package library.
-
-```javascript path=src/app/starter-home/starter-home.module.ts
-import {
-  GridModule,
-  ListModule,
-  TabsModule,
-  TilesModule,
-} from 'carbon-components-angular';
-
-@NgModule({
-  declarations: [StarterHomeComponent],
-  imports: [
-    CommonModule,
-    StarterHomeRoutingModule,
-    GridModule,
-    ListModule,
-    TabsModule,
-    TilesModule
-  ]
-})
-```
-
-_Note: Make sure to add these imports to_ `starter-home.component.spec.ts` _to ensure our tests pass._
-
-Next, let's add some markup and styling to match the starter app.
-
-```html path=src/app/starter-home/starter-home/starter-home.component.html
-<div class="starter-home" ibmGrid>
-  <h1 class="title">Congratulations, <br />you made it!</h1>
-  <p style="margin-top: 2rem;">
-    You have offically built your first Carbon Angular app
-  </p>
-  <div class="body-text" ibmRow>
-    <div ibmCol [columnNumbers]="{'lg': 6, 'md': 12, 'sm': 12}">
-      <p>
-        This app is to get you quickly started with our Carbon Angular
-        libraries. It currently includes the grid, list, tab and tile
-        components. Feel free to add or remove any components you desire. To
-        help you get started we've also set up:
-      </p>
-    </div>
-    <div ibmCol [columnNumbers]="{'lg': 6, 'md': 12, 'sm': 12}">
-      <ul ibmList class="list">
-        <li ibmListItem>Angular-cli</li>
-        <li ibmListItem>Build Process</li>
-        <li ibmListItem>Code styles <br />& editor configs</li>
-        <li ibmListItem>Folder structure</li>
-        <li ibmListItem>Lazy loading</li>
-        <li ibmListItem>Routing</li>
-        <li ibmListItem>Service workers</li>
-        <li ibmListItem>Test framework</li>
-      </ul>
-    </div>
-  </div>
-
-  <ibm-tabs isNavigation="false">
-    <ibm-tab heading="carbon-components-angular">
-      <p>Description</p>
-      <br />
-      <p style="margin-bottom: 2rem;">
-        A component library that gives developers a collection of re-usable
-        angular components that they can use for building websites and user
-        interfaces
-      </p>
-      <p>Other useful resources</p>
-      <br />
-      <div ibmRow>
-        <div ibmCol [columnNumbers]="{'md': 2, 'sm': 12}">
-          <ibm-clickable-tile
-            href="https://github.com/IBM/carbon-components-angular"
-            target="_blank"
-            >Repository</ibm-clickable-tile
-          >
-        </div>
-        <div ibmCol [columnNumbers]="{'md': 2, 'sm': 12}">
-          <ibm-clickable-tile
-            href="https://angular.carbondesignsystem.com/"
-            target="_blank"
-            >Component Library</ibm-clickable-tile
-          >
-        </div>
-        <div ibmCol [columnNumbers]="{'md': 2, 'sm': 12}">
-          <ibm-clickable-tile
-            href="https://angular.carbondesignsystem.com/documentation/"
-            target="_blank"
-            >Documentation</ibm-clickable-tile
-          >
-        </div>
-        <div ibmCol [columnNumbers]="{'md': 2, 'sm': 12}">
-          <ibm-clickable-tile
-            href="https://www.npmjs.com/package/carbon-components-angular"
-            target="_blank"
-            >NPM</ibm-clickable-tile
-          >
-        </div>
-      </div>
-    </ibm-tab>
-    <ibm-tab heading="carbon-charts">
-      <p>Description</p>
-      <br />
-      <p style="margin-bottom: 2rem;">
-        Carbon Charts is an open-source JavaScript data visualization library
-        that will be used as a functional component of IBM's Carbon Design
-        System.
-      </p>
-      <p>Other useful resources</p>
-      <br />
-      <div ibmRow>
-        <div ibmCol [columnNumbers]="{'md': 2, 'sm': 12}">
-          <ibm-clickable-tile
-            href="https://github.com/IBM/carbon-charts"
-            target="_blank"
-            >Repository</ibm-clickable-tile
-          >
-        </div>
-        <div ibmCol [columnNumbers]="{'md': 2, 'sm': 12}">
-          <ibm-clickable-tile
-            href="https://carbon-design-system.github.io/carbon-charts/"
-            target="_blank"
-            >Demo</ibm-clickable-tile
-          >
-        </div>
-        <div ibmCol [columnNumbers]="{'md': 2, 'sm': 12}">
-          <ibm-clickable-tile
-            href="https://carbon-design-system.github.io/carbon-charts/documentation/"
-            target="_blank"
-            >Documentation</ibm-clickable-tile
-          >
-        </div>
-        <div ibmCol [columnNumbers]="{'md': 2, 'sm': 12}">
-          <ibm-clickable-tile
-            href="https://www.npmjs.com/package/@carbon/charts"
-            target="_blank"
-            >NPM</ibm-clickable-tile
-          >
-        </div>
-      </div>
-    </ibm-tab>
-  </ibm-tabs>
-</div>
-```
-
-```scss path=src/app/starter-home/starter-home/starter-home.component.scss
-.starter-home {
-  .title {
-    font-size: 4rem;
-    font-weight: 400;
-  }
-
-  .body-text {
-    margin-top: 2rem;
-    margin-bottom: 4rem;
-  }
-
-  .list {
-    max-width: 500px;
-    padding-left: 50px;
-    column-count: 2;
-
-    @media only screen and (max-width: 1055px) {
-      margin-top: 3rem;
-    }
-
-    li {
-      font-weight: bold;
-    }
-  }
-}
-```
-
-We will also add some styling in `src/styles.scss` for resets, font styles and the different themes that you can play around with.
-
-```scss path=src/styles.scss
-$feature-flags: (
-  css--body: false,
-  // we're providing our own body styles
-    css--reset: false // prevent thousands of resets being included...,
-);
-
-body {
-  // To change the theme, uncomment the below import and whichever carbon theme you want to use
-  // @import "~carbon-components/scss/globals/scss/vendor/@carbon/elements/scss/themes/theme-maps";
-  // $carbon--theme: $carbon--theme--g100;
-  // $carbon--theme: $carbon--theme--g90;
-  // $carbon--theme: $carbon--theme--g10;
-
-  @import '~carbon-components/scss/globals/scss/styles';
-  color: $text-01;
-  background-color: $ui-background;
-
-  @import '~carbon-components/scss/globals/scss/css--reset';
-  @include reset;
-
-  position: absolute;
-  top: 0;
-  left: 0;
-  margin: 0;
-  min-width: 100vw;
-  min-height: 100vh;
-  font-family: 'IBM Plex Sans', Arial, sans-serif;
-
-  p {
-    @include type-style('expressive-paragraph-01');
-    max-width: 800px;
-  }
-
-  li {
-    @include type-style('body-long-02');
-  }
-}
-```
-
-## Add routing
-
-Currently, we you will not be able to see anything in the browser since our routing is not set up yet. Angular CLI has already set up routing in `app-routing.module.ts` and `starter-home-routing.module.ts`, we just need to add the routes:
-
-```javascript path=src/app/app-routing.module.ts
-const routes: Routes = [
-  {
-    path: '',
-    loadChildren: () =>
-      import('./starter-home/starter-home.module').then(
-        m => m.StarterHomeModule
-      ),
-  },
-  {
-    path: '',
-    redirectTo: '',
-    pathMatch: 'full',
-  },
-];
-```
-
-```javascript path=src/starter-home/starter-home-routing.module.ts
-import { StarterHomeComponent } from './starter-home/starter-home.component';
-
-const routes: Routes = [
-  {
-    path: '',
-    component: StarterHomeComponent,
-  },
-];
-```
+_Note: This only works with editors that support editorconfigs._
 
 ## Progressive web app
 
-Before we submit a pull request, let's explore progressive web app, or PWA. PWA is a web application that has a set of capabilities (similar to native apps) which provide an app-like experience to users. Some other capabilities include full responsiveness and browser compatibility, connectivity independence and self-updates. In the `src` directory create a file called `sw.js` and paste the code below.
+Before we start adding components, let's explore progressive web app, or PWA. PWA is a web application that has a set of capabilities (similar to native apps) which provide an app-like experience to users. Some other capabilities include full responsiveness and browser compatibility, connectivity independence and self-updates. In the `src` directory create a file called `sw.js` and paste the code below.
 
 For more information on PWAs, check out the [developer's documentation](https://developers.google.com/web/progressive-web-apps/).
 
@@ -779,12 +537,20 @@ self.addEventListener('fetch', e => {
 
 Now we need to register our service worker and use it to cache files locally. In `index.html` add the below code in a script block using `<script></script>` under the `app-root` tag.
 
+<!-- prettier-ignore-start -->
 ```html path=src/index.html
-// Uncomment the following lines to activate the service worker // if
-(navigator.serviceWorker) { // navigator.serviceWorker.register("sw.js").then(()
-=> { // console.log("Service worker installed") // }, err => { //
-console.error("Service worker error:", err); // }); // }
+<script>
+// Uncomment the following lines to activate the service worker
+// if (navigator.serviceWorker) {
+//   navigator.serviceWorker.register("sw.js").then(() => {
+//     console.log("Service worker installed"); 
+//   }, err => { 
+//     console.error("Service worker error:", err);
+//   });
+// }
+</script>
 ```
+<!-- prettier-ignore-end -->
 
 Next, we need to add the web app manifest. The manifest is a file in `json` format that provides the name, description, icon locations and other information required for an app to be considered a PWA. It lets users install the web app on the home screen just like native apps without going through an app store. Create a `manifest.json` in the `src` directory the paste the following code.
 
@@ -864,6 +630,253 @@ curl -o src/assets/icons/icon-384x384.png https://raw.githubusercontent.com/carb
 curl -o src/assets/icons/icon-512x512.png https://raw.githubusercontent.com/carbon-design-system/carbon-angular-starter/master/src/assets/icons/icon-512x512.png
 ```
 
+## Run the app
+
+Now we can run our app for a quick preview inside the browser.
+
+```bash
+npm run start
+```
+
+Your app should now be running with the message: `** Angular Live Development Server is listening on localhost:4200, open your browser on http://localhost:4200/ **`
+
+Before we start adding components we want to start with an empty project, so delete everything in `app.component.html` except for the `router-outler`. We will also have to delete the test that was associated with this code. So in `app.component.spec.ts`, delete the `should render title` and `should have as title 'carbon-angular-tutorial'` test.
+
+## Add UI Shell
+
+Next, we're going to create an Angular component called `Header` to use with the UI Shell Carbon component. Using Angular CLI we will create this component inside the `src/app` directory.
+
+```bash
+ng g component header --lint-fix
+```
+
+##### Folder structure
+
+```bash
+src/app/header
+├── header.component.html
+├── header.component.scss
+├── header.component.spec.ts
+└── header.component.ts
+```
+
+### Import UI Shell
+
+Next we'll import our Carbon UI Shell components into `app.module.ts`, `app.component.spec.ts` and `header.component.spec.ts`. Set up the file like so:
+
+<!-- prettier-ignore-start -->
+```javascript path=src/app/app.module.ts
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { HeaderComponent } from './header/header.component';
+
+// carbon-components-angular default imports
+import { UIShellModule } from 'carbon-components-angular';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    HeaderComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    UIShellModule
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+<!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+```javascript path=src/app/app.component.spec.ts,src/app/header/header.component.spec.ts
+import { UIShellModule } from 'carbon-components-angular/ui-shell/ui-shell.module';
+```
+<!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+```javascript path=src/app/app.component.spec.ts,src/app/header/header.component.spec.ts
+TestBed.configureTestingModule({
+  declarations: [HeaderComponent],
+  imports: [UIShellModule]
+});
+```
+<!-- prettier-ignore-end -->
+
+_Note: you can find a description of the different components used in UI Shell in our [carbon-components-angular](https://github.com/IBM/carbon-components-angular/tree/master/src/ui-shell) package._
+
+### Import icons
+
+Now let's import the icons from our `@carbon/icons-angular` package. In `app.module.ts`, `app.component.spec.ts` and `header.component.spec.ts`, we need to import each individual icon we will use.
+
+<!-- prettier-ignore-start -->
+```javascript path=src/app/app.module.ts,src/app/app.component.spec.ts,src/app/header/header.component.spec.ts
+import { Notification20Module } from '@carbon/icons-angular/lib/notification/20';
+import { UserAvatar20Module } from '@carbon/icons-angular/lib/user--avatar/20';
+import { AppSwitcher20Module } from '@carbon/icons-angular/lib/app-switcher/20';
+```
+<!-- prettier-ignore-end -->
+
+```javascript path=src/app/app.module.ts,src/app/app.component.spec.ts,src/app/header/header.component.spec.ts
+imports: [Notification20Module, UserAvatar20Module, AppSwitcher20Module];
+```
+
+Then we need to add the template code. Populate `header.component.html` with:
+
+<!-- prettier-ignore-start -->
+```html path=src/app/header/header.component.html
+<ibm-header name="Carbon Tutorial Angular">
+	<ibm-header-navigation ariaLabel="Carbon Tutorial Angular">
+		<ibm-header-item href="/repos">Repositories</ibm-header-item>
+	</ibm-header-navigation>
+	<ibm-header-global>
+		<ibm-header-action title="action">
+			<svg ibmIconNotification20></svg>
+		</ibm-header-action>
+		<ibm-header-action title="action">
+			<svg ibmIconUserAvatar20></svg>
+		</ibm-header-action>
+		<ibm-header-action title="action">
+			<svg ibmIconAppSwitcher20></svg>
+		</ibm-header-action>
+	</ibm-header-global>
+</ibm-header>
+```
+<!-- prettier-ignore-end -->
+
+Next import the header compoenent in `app.component.spec.ts` and add the component in `app.component.html`
+
+<!-- prettier-ignore-start -->
+```javascript path=src/app/app.component.spec.ts
+import { HeaderComponent } from './header/header.component';
+```
+<!-- prettier-ignore-end -->
+
+```javascript path=src/app/app.component.spec.ts
+declarations: [HeaderComponent];
+```
+
+```html path=src/app/app.component.html
+<app-header></app-header>
+<main class="bx--content">
+  <router-outlet></router-outlet>
+</main>
+```
+
+Let's add some padding to the top of the document, so the content is below the header. We are going to do this by using the `bx--header` class provided by carbon. So in `hedaer.component.ts` lets hostbind that class.
+
+```javascript
+import { Component, HostBinding } from '@angular/core';
+  ...
+	@HostBinding('class.bx--header') headerClass = true;
+```
+
+## Create pages
+
+Next thing we need to do is create the files for our content. These files will be located in the `app` folder inside of `src`. It should be a sibling of `header`.
+
+Our app will have two pages. First, we need a landing page. Go ahead and stop your development server (with `CTRL-C`) and then:
+
+```bash
+ng g module home --routing --lint-fix
+ng g component home/landing-page --lint-fix
+```
+
+##### Folder structure
+
+```bash
+src/app/home
+├── home
+│   ├── landing-page.component.html
+│   ├── landing-page.component.scss
+│   ├── landing-page.component.spec.ts
+│   └── landing-page.component.ts
+├── home-routing.module.ts
+└── home-page.module.ts
+```
+
+And a repo page:
+
+```bash
+ng g module repositories --routing --lint-fix
+ng g component repositories/repo-page --lint-fix
+```
+
+##### Folder structure
+
+```bash
+src/app/repositories
+├── repositories
+│   ├── repo-page.component.html
+│   ├── repo-page.component.scss
+│   ├── repo-page.component.spec.ts
+│   └── repo-page.component.ts
+├── repositories-routing.module.ts
+└── repositories.module.ts
+```
+
+Now you can restart your server with `npm run server`.
+
+## Add routing
+
+We need to update routing functionality to enable the loading of `repositories`. Inside `app-routing.module.ts` we'll add the following code in the routes array:
+
+```javascript path=src/app-routing.module.ts
+const routes: Routes = [
+  {
+    path: '',
+    loadChildren: () => import('./home/home.module').then(m => m.HomeModule),
+  },
+  {
+    path: 'repos',
+    loadChildren: () =>
+      import('./repositories/repositories.module').then(
+        m => m.RepositoriesModule
+      ),
+  },
+];
+```
+
+And add routes for the landing and repo pages:
+
+```javascript path=src/app/home/home-routing.module.ts
+import { LandingPageComponent } from './landing-page/landing-page.component';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: LandingPageComponent,
+  },
+];
+```
+
+<!-- prettier-ignore-start -->
+
+```javascript path=src/app/repositories/repositories-routing.module.ts
+import { RepoPageComponent } from './repo-page/repo-page.component';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: RepoPageComponent
+  }
+];
+```
+
+<!-- prettier-ignore-end -->
+
+After that we need to do a couple quick fixes to the UI Shell to have it route to the repo page.
+
+```html path=src/app/header/header.component.html
+<ibm-header-item routerLink="/repos">Repositories</ibm-header-item>
+```
+
+You should now have a working header that routes to the repos pages without full page reload!
+
 ## Submit pull request
 
 We're going to submit a pull request to verify completion of this tutorial step and demonstrate a couple related concepts.
@@ -875,6 +888,7 @@ _Note: Before you run any tests, make sure that you are using ChromeHeadless in 
 We have `lint` and `test` scripts defined in `package.json` that verify file formatting for files that have been touched since the last Git commit. You'd typically also have that script run your test suite as part of your CI build. Go ahead and make sure everything looks good with:
 
 ```bash
+ng lint --fix
 npm run lint && npm test
 ```
 
