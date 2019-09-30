@@ -16,7 +16,7 @@ const IconCategory = ({ category, pictograms }) => (
     <h2 className={cx(h2, categoryTitle)}>{category}</h2>
     <ul className={svgGrid}>
       {pictograms.map(pictogram => (
-        <SvgCard key={pictogram.name} icon={pictogram} />
+        <SvgCard key={pictogram.name} icon={pictogram} height={98} width={98} />
       ))}
     </ul>
   </section>
