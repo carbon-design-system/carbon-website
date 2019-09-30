@@ -2,12 +2,11 @@
 label: The grid is the framework for all the visual elements and typography at IBM. It’s fundamental to everything we design.
 title: Layout
 tabs: ['Overview', 'Code']
-description: The grid is the framework for all the visual elements and typography at IBM. It’s fundamental to everything we design.
 ---
 
 <AnchorLinks>
 
-<AnchorLink>Tooling</AnchorLink>
+<AnchorLink>Under the hood</AnchorLink>
 <AnchorLink>Getting started</AnchorLink>
 <AnchorLink>How it works</AnchorLink>
 <AnchorLink>Grid modes</AnchorLink>
@@ -17,17 +16,17 @@ description: The grid is the framework for all the visual elements and typograph
 
 </AnchorLinks>
 
-## Tooling
+## Under the hood
 
-TEST
+The IBM 2x Grid system is a fully responsive, robust, 16 column layout system with five default breakpoints and dozens of predefined classes.
 
-The IBM 2x Grid system is fully responsive and can be used to build diverse layouts thanks to a sixteen column system, five default breakpoints, Sass variables and mixins, and dozens of predefined classes.
+Our grid is built with Flexbox and closely mirrors Bootstrap's grid in that it uses containers, rows and columns to layout and align content. Below is an in-depth look at how it all comes together.
 
-Our grid is built with Flexbox and closely mirrors Bootstrap's grid in that it uses containers, rows and columns to layout and align content. Below is an in-depth look at how the grid comes together.
-
-If you’re new to Flexbox, read this [CSS Tricks Flexbox guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) for background, terminology, guidelines, and code snippets.
+If you’re new to Flexbox, this [CSS Tricks Flexbox guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) will provide more detail around everything from basic terminology to code.
 
 ## Getting started
+
+### With Carbon-components
 
 We provide multiple ways for you to use the grid for the Carbon Design System. By default, the grid code is included when you use `carbon-components`. To get started, you'll need to install this package using `npm`:
 
@@ -35,11 +34,15 @@ We provide multiple ways for you to use the grid for the Carbon Design System. B
 npm install carbon-components --save
 ```
 
+<br />
+
 Or, if you prefer Yarn:
 
 ```bash
 yarn add carbon-components
 ```
+
+<br />
 
 You can include the grid in one of two ways:
 
@@ -51,7 +54,9 @@ You can include the grid in one of two ways:
 @import 'carbon-components/scss/globals/grid/grid';
 ```
 
-If you're hoping to use the 16 column variant of the grid, we recommend enabling the `grid-columns-16` feature flag before including any imports in your Sass files. For example:
+<br />
+
+To use 16 column variant of the grid, you need to enable the `grid-columns-16` feature flag before including any imports in your Sass files. For example:
 
 ```scss
 $feature-flags: (
@@ -61,21 +66,33 @@ $feature-flags: (
 // If you're including all the styles for Carbon
 @import 'carbon-components/scss/globals/scss/styles.scss';
 
-// If you're wanting to import the grid
+// If you want to import the grid
 @import 'carbon-components/scss/globals/grid/grid';
 ```
 
-If you're hoping to use the grid without including `carbon-components`, we offer the `@carbon/grid` package. You can install this with `npm`:
+<InlineNotification>
+
+**Note:** By default, Carbon loads with 12 columns. This will change in v11 and the grid will default to 16 columns. Until then we ask you to enable the feature flag.
+
+</InlineNotification>
+
+### Without Carbon-components
+
+If you'd like to use the grid without including `carbon-components`, we offer the `@carbon/grid` package. You can install this with `npm`:
 
 ```bash
 npm install @carbon/grid --save
 ```
+
+<br />
 
 Or, if you prefer Yarn:
 
 ```bash
 yarn add @carbon/grid
 ```
+
+<br />
 
 You can then include the 16 column grid by doing the following in your Sass files:
 
@@ -85,15 +102,7 @@ You can then include the 16 column grid by doing the following in your Sass file
 
 ## How it works
 
-If you know bootstrap / flexbox — here’s a recap, bootstrap… don’t need to learn it again, here’s all our unique stuff / feaures like the UI Shell, influencers, hanging type
-
-<AnchorLinks small>
-
-<AnchorLink>Basic grid explainer</AnchorLink>
-<AnchorLink>Grid options</AnchorLink>
-<AnchorLink>Offsetting</AnchorLink>
-
-</AnchorLinks>
+We won't spend a lot of time here recapping the basics of the [Bootstrap grid](https://getbootstrap.com/docs/4.0/layout/grid/). Instead we'll emphasize the features that make this system unique, especially concerning gutter structure, type alignment and the UI Shell.
 
 ### Basic grid explainer
 
@@ -126,6 +135,8 @@ The below example creates four equal-width columns at small, medium, large, and 
   </Column>
 </Row>
 
+<br />
+
 #### Container
 
 `bx--grid` defines the overall grid context at the top level and applies the proper margin and our default max-width (1584px.) You can also remove this max width, by using a grid modifier class. See the full width example below.
@@ -138,7 +149,7 @@ The below example creates four equal-width columns at small, medium, large, and 
 
 `bx--col` defines individual columns inside a row. Use as many columns as you’d like out of the possible 16 per row. With Flexbox columns widths are set in percentages relative to their parent element so columns without a spec’d width will automatically be equal. For example, four instances of .col-sm (or bx-col?) will will give you four equal width columns — each 25% of the parent from the small breakpoint on up. See the auto-layout columns for more on this.
 
-### Responsive options
+### Grid options
 
 | Breakpoints     | Class prefix | # of cols | Gutter width\* |
 | --------------- | ------------ | --------- | -------------- |
@@ -152,6 +163,8 @@ The below example creates four equal-width columns at small, medium, large, and 
   * Gutter width is 32px — with 16px on each side of a column — at every
   breakpoint.
 </Caption>
+
+<br /><br />
 
 #### Responsive classes
 
@@ -310,17 +323,20 @@ If you want to change it up, use a combination of different classes for each gri
 ```
 
   </Column>
-<Column colMd={4} colLg={4}>
-  <DoDontExample type="do" caption="Do feel free to mix and match column structure">
+</Row>
 
-![Do feel free to mix and match column structure](images/Responsive_classes_do.png)
+<Row>
+<Column colMd={4} colLg={4}>
+  <DoDontExample type="do" caption="Do feel free to mix and match column structure.">
+
+![Do feel free to mix and match column structure.](images/Responsive_classes_do.png)
 
   </DoDontExample>
 </Column>
 <Column colMd={4} colLg={4} >
-  <DoDontExample type="dont" caption="As a general rule, don’t mix with 3 or 5 columns ">
+  <DoDontExample caption="As a general rule, don’t mix with 3 or 5 columns.">
 
-![As a general rule, don’t mix with 3 or 5 columns](images/Responsive_classes_dont.png)
+![As a general rule, don’t mix with 3 or 5 columns.](images/Responsive_classes_dont.png)
 
   </DoDontExample>
 </Column>
@@ -328,7 +344,7 @@ If you want to change it up, use a combination of different classes for each gri
 
 #### Equal width columns
 
-Use these classes for easy column sizing when you want to maintain the same grid tiers at every breakpoint. In the example below, the grid layouts apply to every breakpoint: from sm to max. Add any number of unit-less classes per row you need and every column will be the same width.
+Use these classes for easy column sizing when you want to maintain the same grid tiers at every breakpoint. In the example below, the grid layouts apply to every breakpoint: from `sm` to `max`. Add any number of unit-less classes per row you need and every column will be the same width.
 
 <Row>
   <Column noGutterSm>
@@ -397,6 +413,8 @@ In all, there are 3 different gutter scenarios in our system to allow for differ
 
 The primary focus of these gutter scenarios is to enable typographic alignment. Both in editorial scenarios and in product scenarios with components. Containers can “hang” into the gutter but for the most part, type within or without containers stays on the 32px gutter scenario in the interest of typographic alignment.
 
+<br /><br />
+
 <Row>
 <Column colLg={2} colMd={2}>
 
@@ -406,10 +424,12 @@ The primary focus of these gutter scenarios is to enable typographic alignment. 
 </Column>
 <Column colLg={10} colMd={6}>
 
-![](images/)
+![Default grid mode](images/Default.png)
 
 </Column>
 <Column colLg={2} colMd={2}>
+
+<br />
 
 **Cozy**<br/>
 16px gutter
@@ -417,10 +437,14 @@ The primary focus of these gutter scenarios is to enable typographic alignment. 
 </Column>
 <Column colLg={10} colMd={6}>
 
-![](images/)
+<br />
+
+![Cozy grid mode](images/Cozy.png)
 
 </Column>
 <Column colLg={2} colMd={2}>
+
+<br />
 
 **Condensed**<br/>
 3px gutter
@@ -428,16 +452,18 @@ The primary focus of these gutter scenarios is to enable typographic alignment. 
 </Column>
 <Column colLg={10} colMd={6}>
 
-![](images/)
+<br />
+
+![Condensed grid mode](images/Condensed.png)
 
 </Column>
 </Row>
 
-### The comfortable grid
+### The Comfortable grid
 
-Our default grid is 16 columns and has 32px gutters. Unless your design specifies something different, this is the grid you should go with — it’s also arguably the easiest to use. Note, here, the container edge does not extend into the gutter, so the type within the container gets 16px top and right padding. This is the only scenario in which the type within a container does not align with the type outside of the container.
+This is our default grid mode, with 16 columns and 32px gutters. Unless your design specifies something different, this is the grid you should go with — it’s also arguably the easiest to use. Here, the container edge does not extend into the gutter, so the type within the container does not sit on the columns.
 
-Rows that are adjacent and are comfortably arranged will have 32px of margin between them to match gutter. Use vertical helpers here.
+Rows that are adjacent and are "comfortably" arranged will have 32px of margin between them to match gutter. Use vertical helpers here.
 
 <Row>
   <Column noGutterSm>
@@ -466,36 +492,42 @@ Rows that are adjacent and are comfortably arranged will have 32px of margin bet
   </Column>
 </Row>
 
+<br />
+
 #### Usage
 
-Use the Comfortable grid mode when you are dealing with separate pieces of information with separate destinations, like this (name example).
+Use the Comfortable grid mode when you are dealing with separate pieces of information with separate destinations. This grid mode is also good for text-heavy situations, where maximum breathing room helps provide clarity and legibility. Also, basic images (without text on them) always use this grid mode.
 
-![grid example showing 32px gutter and comfortable grid](images/32px_gutter.png)
+<InlineNotification>
+
+**Note:** Fixed components with labels such as input fields and dropdowns must use the Comfortable grid mode. One overarching rule — applicable to each grid mode — is that type never hangs into the gutter. So we don't want to push label type into the gutter in order to get field type to align.
+
+</InlineNotification>
+
+![32px gutter](images/32px_gutter.png)
 
 <Row>
 <Column colMd={4} colLg={4}>
-  <DoDontExample type="do" caption="Do align type (outside of a container), components and tiles to the columns">
+  <DoDontExample type="do" caption="Do align type (outside of a container), components and tiles to the columns.">
 
-![example showing correct text alignment](images/32px_do.png)
+![Do align type (outside of a container), components and tiles to the columns.](images/32px_do.png)
 
   </DoDontExample>
 </Column>
 <Column colMd={4} colLg={4} >
-  <DoDontExample type="dont" caption="Do not take type off of the column structure to achieve alignment">
+  <DoDontExample caption="Do not take type off of the column structure to achieve alignment.">
 
-![example showing incorrect text alignment](images/32px_dont.png)
+![Do not take type off of the column structure to achieve alignment.](images/32px_dont.png)
 
   </DoDontExample>
 </Column>
 </Row>
 
-### The cozy grid
+### The Cozy grid
 
-The is the gutter scenario that requires the most explanation. The Cozy grid has caused a lot of confusion for our designers and developers. Because padding and gutter values are usually the same, people have confused them.
+This is the gutter scenario that requires the most explanation. Although it's caused a lot of confusion, the intent is simply to enable more typographic alignment. With the Cozy grid, the container, not the type, hangs 16px into the gutter; allowing headings and copy outside of containers to align with the copy within containers and components. This arrangement can easily be mirrored to accomodate languages that read right to left, like Arabic or Hebrew.
 
-The container, not the type, hangs 16px into the gutter this situation. This scenario allows for headings to align with the copy inside of containers.
-
-Rows that are adjacent and are comfortably arranged will have 16px of margin between them to match gutter. Use vertical helpers here.
+Rows that are adjacent and are cozily arranged will have 16px of margin between them to match gutter. Use vertical helpers here.
 
 <Row>
   <Column noGutterSm>
@@ -524,32 +556,38 @@ Rows that are adjacent and are comfortably arranged will have 16px of margin bet
   </Column>
 </Row>
 
+<br />
+
 #### Usage
 
-You can also use the Cozy grid mode when you are dealing with separate pieces of information with separate destinations but would like to save more real estate. This grid mode will give your compositions a sleeker look and allow for total type alignment.
+Use the Cozy grid mode when you are dealing with separate pieces of information with separate destinations, but would like to save more real estate. This grid mode will give your compositions a sleeker look and maximize type alignment, within and without containers.
 
-![16px gutter cozy grid example](images/16px_gutter.png)
+As mentioned above, fixed components with labels, such a input fields and dropdowns, should not hang into the gutter. See an example of how to incorporate a Comfortable and a Cozy grid scenario in the [Mix and match](#mix-and-match) section.
+
+![16px gutter](images/16px_gutter.png)
 
 <Row>
 <Column colMd={4} colLg={4}>
-  <DoDontExample type="do" caption="Do align components within containers flush to the columns">
+  <DoDontExample type="do" caption="Do align components within containers flush to the columns.">
 
-![](images/16px_do.png)
+![Do align components within containers flush to the columns.](images/16px_do.png)
 
   </DoDontExample>
 </Column>
 <Column colMd={4} colLg={4} >
-  <DoDontExample type="dont" caption="Do not hang type into the gutter under any circumstances     ">
+  <DoDontExample caption="Do not hang type into the gutter under any circumstances.">
 
-![](images/16px_dont.png)
+![Do not hang type into the gutter under any circumstances.](images/16px_dont.png)
 
   </DoDontExample>
 </Column>
 </Row>
 
-### The condensed grid
+### The Condensed grid
 
-The condensed grid collapses the gutter to 2px. Useful for fluid layouts. Rows have 2px of margin between them to match gutter. This grid mode is most often used in conjunction with another grid mode, either a Cozy or a Comfortable. This grid mode requires the most design skill.
+The Condensed grid collapses the gutter to 2px. To achieve this, containers and components bleed 16px into the gutter on either side of the column. This grid mode is most often used in conjunction with another grid mode, either Cozy or Comfortable and arguably requires the most design skill to incorporate into layouts.
+
+Rows that are adjacent will have a 2px of margin between them to match gutter. Use vertical helpers here.
 
 <Row>
   <Column noGutterSm>
@@ -578,25 +616,29 @@ The condensed grid collapses the gutter to 2px. Useful for fluid layouts. Rows h
   </Column>
 </Row>
 
+<br />
+
 #### Usage
 
-When you have separate pieces of information that form a larger picture, like a dashboard or an overview page, that’s can be a good time to use the condensed grid
-You see this grid mode often in portals, resource tiles and other introductory UI.
+When you have separate pieces of information that form a larger picture, like a dashboard or an overview page — that’s a good time to use the Condensed grid.
+You'll also see this grid mode in portals, resource tiles and other introductory UI. See it in action on the [IBM Design Language homepage](https://www.ibm.com/design/language/)
 
-![2px gutter grid example](images/2px_gutter.png)
+As mentioned above, fixed components with labels, such a input fields and dropdowns, should not hang into the gutter.
+
+![2px gutter](images/2px_gutter.png)
 
 <Row>
 <Column colMd={4} colLg={4}>
-  <DoDontExample type="do" caption="Do keep all type (inside and outside containers) aligned with the column grid">
+  <DoDontExample type="do" caption="Do keep all type (inside and outside containers) aligned with the column grid.">
 
-![2px example with type aliged inside grid](images/2px_do.png)
+![Do keep all type (inside and outside containers) aligned with the column grid.](images/2px_do.png)
 
   </DoDontExample>
 </Column>
 <Column colMd={4} colLg={4} >
-  <DoDontExample type="dont" caption="Do not hang type into the gutter under any circumstances">
+  <DoDontExample caption="Do not hang type into the gutter under any circumstances.">
 
-![2px example with type hanging](images/2px_dont.png)
+![Do not hang type into the gutter under any circumstances.](images/2px_dont.png)
 
   </DoDontExample>
 </Column>
@@ -608,20 +650,22 @@ You can use rows to mix and match grid modes. In this situation, margin bottom b
 
 #### Usage
 
-![mixed use grid example](images/Mixed_use.png)
+Unless you're using the Comfortable grid mode exclusively, mixing and matching is going to be the rule rather than the exception on most platforms — especially since our labeled components (input fields, dropdowns etc.) require a 32px gutter. We've provided a couple of examples below and will keep adding helpful uses cases as we find them.
+
+![32px gutter](images/Mixed_use.png)
 
 <Row>
 <Column colMd={4} colLg={4}>
-  <DoDontExample type="do" caption="Do feel free to apply different grid modes to certain components (like input fields with labels and tiles)">
+  <DoDontExample type="do" caption="Do keep all type (inside and outside containers) aligned with the column grid.">
 
-![example showing different grid modes](images/Mixed_use_do.png)
+![Do keep all type (inside and outside containers) aligned with the column grid.](images/Mixed_use_do.png)
 
   </DoDontExample>
 </Column>
 <Column colMd={4} colLg={4} >
-  <DoDontExample type="dont" caption="Do not apply different grid modes to the same component on the same page ">
+  <DoDontExample caption="Do not hang type into the gutter under any circumstances.">
 
-![example showing different grid modes on same component](images/Mixed_use_dont.png)
+![Do not hang type into the gutter under any circumstances.](images/Mixed_use_dont.png)
 
   </DoDontExample>
 </Column>
@@ -629,16 +673,16 @@ You can use rows to mix and match grid modes. In this situation, margin bottom b
 
 ## Incorporating the Shell
 
-The shell is what we call a grid influencer. We cover more about this in the Layout Overview section. The most commonly used product shell is the Flexbile panel. The collapsed Flexible Panel expands when the user hovers over any portion of it. When flexible panels expand, they either condense both the content and the grid or they push content beyond the edge of the browser.
-
-Should we say something about the grid affecting the breakpoints to ensure alignment with the mini unit grid beneath?
+We cover more about shell behavior on the Layout Overview tab in the [Grid influencers](/guidelines/layout/overview#grid-influencers) section. However, we've had a lot of questions about how the shell works in conjunction with our grid. That's why recently we incorporated the shell into our grid tooling as a Sketch template. We'd also like to show it in action here in a product.
 
 #### Collapsed state
+
+<br />
 
 <Row>
   <Column noGutterSm>
     <div className="grid-demo">
-      <div class="side-nav"></div>
+      <div class="demo-shell"></div>
       <div class="bx-demo--grid">
         <div class="bx-demo--row">
           <div class="bx-demo--col">1 of 8</div>
@@ -667,12 +711,7 @@ Should we say something about the grid affecting the breakpoints to ensure align
     </div>
 
 ```html
-<aside class="side-nav">
-  <!-- Toggle side-nav--expanded class above -->
-</aside>
-<div class="bx--grid">
-  <!-- ... -->
-</grid>
+what should we show here? the html, the css we added? both?
 ```
 
   </Column>
@@ -680,10 +719,12 @@ Should we say something about the grid affecting the breakpoints to ensure align
 
 #### Expanded state
 
+<br />
+
 <Row>
   <Column noGutterSm>
     <div className="grid-demo">
-      <div class="side-nav side-nav--expanded"></div>
+      <div class="demo-shell demo-shell--expanded"></div>
       <div class="bx-demo--grid">
         <div class="bx-demo--row">
           <div class="bx-demo--col">1 of 8</div>
@@ -712,26 +753,25 @@ Should we say something about the grid affecting the breakpoints to ensure align
     </div>
 
 ```html
-<aside class="side-nav side-nav--expanded">
-  <!-- Toggle side-nav--expanded class above -->
-</aside>
-<div class="bx--grid">
-  <!-- ... -->
-</grid>
+what should we show here? the html, the css we added? both?
 ```
 
   </Column>
 </Row>
 
+<br />
+
 #### Usage
 
-<Video src="/videos/shell_animation_trip.mp4" />
+The most commonly used product shell is the Flexbile panel. The collapsed Flexible Panel expands when the user hovers over any portion of it. When flexible panels expand, they either condense both the content and the grid or they push content beyond the edge of the browser.
 
-#### Alignments
+<Video vimeoId="363369752" />
+
+## Alignments
 
 ### Offsetting
 
-Use offset classes to offset content by a given column span. These classes increase the left margin of a column by \* columns. For example, bx—offset-lg-8 moves bx—col-lg-8 over eight columns.
+Use offset classes to offset content by a given column span. These classes increase the left margin of a column by \* columns. For example, `bx—offset-lg-8` moves `bx—col-lg-8` over eight columns.
 
 <Row>
   <Column noGutterSm>
@@ -845,21 +885,25 @@ Use offset classes to offset content by a given column span. These classes incre
 </Column>
 </Row>
 
-### vertical spacing
+### Vertical spacing
 
-More information and example guidance on vertical spacing coming soon.
+We intend to add a demo on vertical spacing soon — along with more guidance and examples around key heights and spacers.
 
 ## Techniques
 
 ### Full bleed content
 
-This maintains a max width of 1584px for the grid, but allows content to span infinitely Can write some explanation here and show a use case. When you want background colors or an image to go edge-to-edge, you will need to create a wrapping node around your grid with the color that you are looking to apply. In this example, we create an outer div and give it the class name bleed which we then style with a background color.
+By default, the grid maintains a max width of 1584px, but allows content to span infinitely. When you want background colors or an image to go edge-to-edge, you will need to create a wrapping node around your grid with the color that you are looking to apply. In this example, we create an outer div and give it the class name bleed which we then style with a background color.
 
-![full bleed grid example](images/Full_bleed.png)
+If you want to remove the default max width, you can do it by using a grid modifier class. This will allow your grid to span infinitely.
 
-### Aspect rations
+![Full bleed](images/Full_bleed.png)
 
-When designing fluid layouts, it’s helpful for an asset or card to be a specific aspect ratio. This is especially important in the case of same size tiles. We offer several classes for specifying aspect ratio for given content. We use these classes to maintain consistency throughout our UI.
+### Aspect ratios
+
+When designing fluid layouts, it’s helpful for an asset or card to be a specific aspect ratio. We offer several classes for specifying aspect ratio for given content. We use these classes to maintain consistency throughout our UI.
+
+We discuss aspect ratios and various grid behaviors more in depth on the Layout Overview tab, both in the [Aspect ratios](/guidelines/layout/overview#aspect-ratio) section and in the [Grid behaviors](/guidelines/layout/overview#grid-behaviors) section.
 
 <Row>
   <Column noGutterSm>
@@ -901,28 +945,28 @@ When designing fluid layouts, it’s helpful for an asset or card to be a specif
           <div class="bx-demo--col">
             <div class="bx-demo--aspect-ratio bx-demo--aspect-ratio--16x9">
               <div class="bx-demo--aspect-ratio--object">
-                <div class="aspect-ratio-content">16:19</div>
+                <div class="aspect-ratio-content">16:9</div>
               </div>
             </div>
           </div>
           <div class="bx-demo--col">
             <div class="bx-demo--aspect-ratio bx-demo--aspect-ratio--16x9">
               <div class="bx-demo--aspect-ratio--object">
-                <div class="aspect-ratio-content">16:19</div>
+                <div class="aspect-ratio-content">16:9</div>
               </div>
             </div>
           </div>
           <div class="bx-demo--col">
             <div class="bx-demo--aspect-ratio bx-demo--aspect-ratio--16x9">
               <div class="bx-demo--aspect-ratio--object">
-                <div class="aspect-ratio-content">16:19</div>
+                <div class="aspect-ratio-content">16:9</div>
               </div>
             </div>
           </div>
           <div class="bx-demo--col">
             <div class="bx-demo--aspect-ratio bx-demo--aspect-ratio--16x9">
               <div class="bx-demo--aspect-ratio--object">
-                <div class="aspect-ratio-content">16:19</div>
+                <div class="aspect-ratio-content">16:9</div>
               </div>
             </div>
           </div>
@@ -1079,49 +1123,52 @@ When designing fluid layouts, it’s helpful for an asset or card to be a specif
   </Column>
 </Row>
 
-#### Usage
+<br />
 
-Say something here about how aspect ratios serve as a guide and a starting point. It is not possible when using responsive grid classes for every image or container to be one of these sizes.
+#### Basic Usage
 
-![aspect ratio example](images/Aspect_Ratio.png)
+We understand that when using responsive grid classes, it's not always possible for every image or container to be one of these sizes. However it's important to use them to set the foundation of your layouts, especially in the case of same size tiles.
+
+![Aspect ratio](images/Aspect_Ratio.png)
+
+<br />
 
 #### Adaptability
 
-![aspect ratio flexible example](images/Aspect_Ratio_flexible.png)
+Image size can change ratios when the breakpoint changes.
+
+![Aspect ratio flexible](images/Aspect_Ratio_flexible.png)
 
 <Row>
 <Column colMd={4} colLg={4}>
-  <DoDontExample type="do" caption="When combining tiles, or tiles and images, do give each a designated aspect ratio ">
+  <DoDontExample type="do" caption="When combining tiles, or tiles and images, do give each a designated aspect ratio.">
 
-![When combining tiles, or tiles and images, do give each a designated aspect ratio ](images/AR_do_1.png)
+![When combining tiles, or tiles and images, do give each a designated aspect ratio.](images/AR_do_1.png)
 
   </DoDontExample>
 </Column>
 <Column colMd={4} colLg={4} >
-  <DoDontExample type="dont" caption="Do not shoe-horn each tile / tile and image into a combined aspect ratio  ">
+  <DoDontExample caption="Do not shoe-horn each tile / tile and image into a combined aspect ratio.">
 
-![Do not shoe-horn each tile / tile and image into a combined aspect ratio](images/AR_dont_1.png)
-
-  </DoDontExample>
-</Column>
-</Row>
-<Row>
-<Column colMd={4} colLg={4}>
-  <DoDontExample type="do" caption="Do use a designated aspect ratio for a grid of same-size fixed ratio tiles">
-
-![Do use a designated aspect ratio for a grid of same-size fixed ratio tiles](images/AR_do_2.png)
-
-  </DoDontExample>
-</Column>
-<Column colMd={4} colLg={4} >
-  <DoDontExample type="dont" caption="Don’t start with a random aspect ratio for a grid of same-size fixed ratio tiles ">
-
-![Don’t start with a random aspect ratio for a grid of same-size fixed ratio tiles ](images/AR_dont_2.png)
+![Do not shoe-horn each tile / tile and image into a combined aspect ratio.](images/AR_dont_1.png)
 
   </DoDontExample>
 </Column>
 </Row>
 
-### FAQ
+<Row>
+<Column colMd={4} colLg={4}>
+  <DoDontExample type="do" caption="Do use a designated aspect ratio for a grid of same-size fixed ratio tiles.">
 
-What if I need to make a three column grid?
+![Do use a designated aspect ratio for a grid of same-size fixed ratio tiles.](images/AR_do_2.png)
+
+  </DoDontExample>
+</Column>
+<Column colMd={4} colLg={4} >
+  <DoDontExample caption="Don’t start with a random aspect ratio for a grid of same-size fixed ratio tiles.">
+
+![Don’t start with a random aspect ratio for a grid of same-size fixed ratio tiles.](images/AR_dont_2.png)
+
+  </DoDontExample>
+</Column>
+</Row>
