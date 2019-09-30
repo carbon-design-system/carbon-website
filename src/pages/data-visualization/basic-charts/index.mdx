@@ -1,0 +1,316 @@
+---
+title: Basic charts
+---
+
+<PageDescription>
+
+Basic charts offer a way to visualize data sets in an intuitive, easy to understand way. Every chart should tell a story and should reflect the content on the page where it is found.
+
+</PageDescription>
+
+import '@carbon/charts/style.css';
+
+import {
+  BarChart,
+  PieChart,
+  DonutChart,
+  LineChart,
+} from '@carbon/charts-react';
+
+import {
+  groupedBarData,
+  groupedBarOptions,
+  simpleBarData,
+  simpleBarOptions,
+  stackedBarData,
+  stackedBarOptions,
+  curvedLineData,
+  curvedLineOptions,
+  lineData,
+  lineOptions,
+  demoPieData,
+  demoPieOptions,
+  demoDonutOptions,
+} from '../../../data/charts/demo-chart-data';
+
+<AnchorLinks>
+
+<AnchorLink>Bar chart</AnchorLink>
+<AnchorLink>Line chart</AnchorLink>
+<AnchorLink>Area chart</AnchorLink>
+<AnchorLink>Pie and donut chart</AnchorLink>
+<AnchorLink>Scatter plot</AnchorLink>
+<AnchorLink>Meter and gauge</AnchorLink>
+
+</AnchorLinks>
+
+## Bar chart
+
+### Default
+
+Bar charts use vertical or horizontal data markers to compare individual values; You can use it to compare discrete data or show trends over time.
+
+<BarChart
+  data={simpleBarData}
+  options={simpleBarOptions}
+  width="100%"
+  height={400}
+/>
+
+### Grouped bar chart
+
+A grouped bar chart, also known as clustered bar graph, multi-set bar chart, or grouped column chart, is a type of bar graph that is used to compare values across multiple categories.
+
+<BarChart
+  data={groupedBarData}
+  options={groupedBarOptions}
+  width="100%"
+  height={400}
+/>
+
+### Stacked bar
+
+Stacked bar charts are useful for comparing proportional contributions within a category. They plot the relative value that each data series contributes to the total.
+
+<BarChart
+  data={stackedBarData}
+  options={stackedBarOptions}
+  width="100%"
+  height={400}
+/>
+
+### Horizontal bar
+
+The horizontal bar chart follows the same principles as a vertical column chart, only the x- and y-axis are switched.
+
+<InlineNotification>
+
+**Note:** This chart is currently a concept and not included in the Carbon Charts repository yet. For more information, please go to the carbon-charts [GitHub repository](https://github.com/carbon-design-system/carbon-charts).
+
+</InlineNotification>
+
+<Row>
+<Column  colLg={8} colMd={6} colSm={4} noGutterSm>
+
+![Horizontal bar chart](images/charts-basic-horizontalbar.png)
+
+<Caption>Horizontal bar chart</Caption>
+
+</Column>
+</Row>
+
+## Line Chart
+
+### Default
+
+Line charts plot data at regular intervals connected by lines. You can use line visualizations to show trends over time and compare several data sets.
+
+<LineChart data={lineData} options={lineOptions} width="100%" height={400} />
+
+### Stepped line chart
+
+Stepped line charts plot data at regular intervals, forming a series of steps between data points. You can use line visualizations to show trends over time and compare several data sets.
+
+<br />
+
+#### Middle
+
+<br />
+
+<LineChart
+  data={lineData}
+  options={Object.assign({}, lineOptions, { curve: 'curveStep' })}
+  width="100%"
+  height={400}
+/>
+
+<br />
+
+#### Before
+
+<br />
+
+<LineChart
+  data={lineData}
+  options={Object.assign({}, lineOptions, { curve: 'curveStepBefore' })}
+  width="100%"
+  height={400}
+/>
+
+<br />
+
+#### After (regular)
+
+<br />
+
+<LineChart
+  data={lineData}
+  options={Object.assign({}, lineOptions, { curve: 'curveStepAfter' })}
+  width="100%"
+  height={400}
+/>
+
+### Curved line chart
+
+<br />
+
+#### Natural curve
+
+<br />
+
+<LineChart
+  data={curvedLineData}
+  options={curvedLineOptions}
+  width="100%"
+  height={400}
+/>
+
+<br />
+
+#### Bundle curve
+
+<br />
+
+<LineChart
+  data={curvedLineData}
+  options={Object.assign({}, curvedLineOptions, { curve: 'curveBundle' })}
+  width="100%"
+  height={400}
+/>
+
+<br />
+
+#### Monotone Y Curve
+
+<br />
+
+<LineChart
+  data={curvedLineData}
+  options={Object.assign({}, curvedLineOptions, { curve: 'curveMonotoneY' })}
+  width="100%"
+  height={400}
+/>
+
+<br />
+
+#### Monotone X Curve
+
+<br />
+
+<LineChart
+  data={curvedLineData}
+  options={Object.assign({}, curvedLineOptions, { curve: 'curveMonotoneX' })}
+  width="100%"
+  height={400}
+/>
+
+## Area chart
+
+<br />
+
+#### Default
+
+<br />
+
+Area charts are similar to line charts, but the areas below the lines are filled with colors or patterns. Stacked charts are useful for comparing proportional contributions within a category. They plot the relative value that each data series contributes to the total.
+
+<Row>
+<Column  colLg={8} colMd={6} colSm={4} noGutterSm>
+
+![Horizontal bar chart](images/charts-basic-area.png)
+
+</Column>
+</Row>
+
+<br />
+
+#### Stacked area chart
+
+<br />
+
+Stacked area charts are useful for comparing proportional contributions within a category. They plot the relative value that each data series contributes to the total.
+
+<InlineNotification>
+
+Note: This chart is currently a work-in-progress. To see our roadmap, request missing guidance, or contribute your own content, please go to [Carbon-charts GitHub repository](https://github.com/carbon-design-system/carbon-charts).
+
+</InlineNotification>
+
+<Row>
+<Column  colLg={8} colMd={6} colSm={4} noGutterSm>
+
+![Horizontal bar chart](images/charts-basic-areastacked.png)
+
+</Column>
+</Row>
+
+## Polar charts
+
+### Pie
+
+<PieChart
+  data={demoPieData}
+  options={demoPieOptions}
+  width="100%"
+  height={400}
+/>
+
+### Donut
+
+<DonutChart
+  data={demoPieData}
+  options={demoDonutOptions}
+  width="100%"
+  height={400}
+/>
+
+## Scatter plot
+
+<br />
+
+#### Default
+
+<br />
+
+Scatter plot visualizations use data points to plot two measures anywhere along a scale, not only at regular tick marks. You can use scatter plots to explore correlations between different measures.
+
+<br />
+
+#### Bubble chart
+
+<br />
+
+Bubble charts use data points and bubbles to plot measures anywhere along a scale. One measure is plotted along each axis. The size of the bubble represents a third measure. You can use bubble charts to represent financial data or any data where measure values are related.
+
+<Row>
+<Column  colLg={8} colMd={6} colSm={4} noGutterSm>
+
+![Horizontal bar chart](images/charts-basic-bubble.png)
+
+</Column>
+</Row>
+
+### Meter and gauge charts
+
+Meter and gauge charts are useful for showing values between a small number of variables either by using multiple markers on the same meter or gauge, or by using multiples of the chart.
+
+<Row>
+<Column colMd={4} colLg={4}>
+
+![Meters](images/charts-basic-meter.png)
+
+<Caption>
+Meter charts can represent data with a current value, minimum and maximum, and peaks or averages.
+</Caption>
+</Column>
+
+<Column colMd={4} colLg={4}>
+
+![Gauge](images/charts-basic-gauge.png)
+
+<Caption>
+  Gauge animates to the current value when dashboard loads to create emphasis.
+</Caption>
+
+</Column>
+</Row>
