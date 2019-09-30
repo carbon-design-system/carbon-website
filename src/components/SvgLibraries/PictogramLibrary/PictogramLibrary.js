@@ -82,7 +82,7 @@ const IconLibrary = () => {
           light
           labelText="filter pictograms by searching for their name or subcategory"
           onChange={e => debouncedSetSearchInputValue(e.currentTarget.value)}
-          placeHolderText={`Search by descriptors like "electronics", or "weather"`}
+          placeHolderText={`Search by descriptors like “electronics”, or “weather”`}
         />
         <Dropdown
           id="category-filter"
