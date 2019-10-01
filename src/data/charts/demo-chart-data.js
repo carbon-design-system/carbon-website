@@ -282,3 +282,26 @@ export const demoDonutOptions = {
     label: 'Browsers',
   }),
 };
+
+export const scatterData = {
+  labels: ['Qty', 'More', 'Sold', 'Restocking', 'Misc'],
+  datasets: [
+    {
+      label: 'Dataset 1',
+      backgroundColors: [defaultColors[0]],
+      data: [32100, 23500, 53100, 42300, 12300],
+    },
+    {
+      label: 'Dataset 2',
+      backgroundColors: [defaultColors[1]],
+      data: [34200, 53200, 42300, 21400, 0],
+    },
+    {
+      label: 'Dataset 3',
+      backgroundColors: [defaultColors[2]],
+      data: [41200, 23400, 34210, 1400, 42100],
+    },
+  ],
+};
+
+export const scatterOptions = lineOptions;
