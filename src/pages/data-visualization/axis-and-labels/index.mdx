@@ -59,7 +59,7 @@ Line charts and scatter plots are less sensitive to this distortion because they
 ![Gap in data denoted by texture](images/axislabel-zero-c.png)
 
 <Caption>
-  For line charts showing stock market activities, the existance of peaks and
+  For line charts showing stock market activities, the existence of peaks and
   valleys in trends is more important than the true size of the change.
 </Caption>
 
@@ -84,7 +84,15 @@ Sometimes it's useful to skip part of the axis to bring data on the extreme ends
 
 On the X axis, the break may be fluid with graph area size, with a minimum width of 16px. On the Y axis, we recommend fixing the distance break at 16px.
 
-If data is available during the break, restyle line segment to use 0.5px stroke and hide circles representing data points.
+<Row>
+<Column  colLg={8} colMd={4} colSm={4}>
+
+![Gap in data bar chart](images/axislabel-break-3.png)
+
+</Column>
+</Row>
+
+In line charts, if data is available during an axis break, restyle line segment to use 0.5px stroke and hide circles representing data points.
 
 <Row>
 <Column  colLg={8} colMd={4} colSm={4}>
@@ -106,14 +114,24 @@ If data isn't available between break points, denote the data gap with a texutre
 
 ## Time series
 
+#### Consistent increments
+
+Never change axis ticks increments to accomodate data availability. If any form of axis compression is required, use provided [axis break](#breaks-in-axes) styling to visually denote.
+
+#### Localization
+
 In time series, X-axis labels reflect the time increment in the data. When possible, use localized date and time format, or user preference. Otherwise, the chart defaults to the format presented below.
 
-Whenever data crosses into a new time cycle, such as a new day, month, or year, semibold the label to make it a “landmark” label to provide additional context for labels following it.
+#### Landmark labels
+
+Whenever data crosses into a new time cycle, such as a new day, month, or year, semibold the label to make it a “landmark” label to provide additional context for the labels following it.
 
 <Row>
 <Column  colLg={12} colMd={4} colSm={4}>
 
 ![Gap in data denoted by texture](images/axislabel-timeseries.png)
+
+<Caption>Example of time series plotted at 15 seconds intervals.</Caption>
 
 </Column>
 </Row>
