@@ -154,6 +154,63 @@ $svg-card-border: 1px solid $ui-03;
   }
 }
 
+.svg-grid.pictograms {
+  grid-template-columns: repeat(2, 1fr);
+
+  @include carbon--breakpoint('lg') {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.pictograms .svg-card {
+  border-left: $svg-card-border;
+  border-top: $svg-card-border;
+
+  .pictograms .svg-card {
+    // reset 2 column borders
+    &:nth-child(-n + 2) {
+      border-top: $svg-card-border;
+    }
+    &:nth-child(odd) {
+      border-left: $svg-card-border;
+    }
+
+    // first row of 4
+    &:nth-child(-n + 2) {
+      border-top: none;
+    }
+    // every 2nd card (starting with 4th)
+    &:nth-child(2n + 1) {
+      border-left: none;
+    }
+  }
+}
+
+@include carbon--breakpoint('lg') {
+  .pictograms .svg-card {
+    // reset 4 column borders
+    &:nth-child(odd) {
+      border-left: $svg-card-border;
+    }
+    &:nth-child(-n + 4) {
+      border-top: $svg-card-border;
+    }
+    &:nth-child(4n + 1) {
+      border-left: $svg-card-border;
+    }
+
+    // first row of 4
+    &:nth-child(-n + 4) {
+      border-top: none;
+    }
+
+    // every 4th card (starting with 5th)
+    &:nth-child(4n + 1) {
+      border-left: none;
+    }
+  }
+}
+
 .svg-card-inside {
   position: absolute;
   top: 0;
