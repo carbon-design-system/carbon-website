@@ -15,7 +15,7 @@ import {
 
 const IconCategory = ({ category, pictograms }) => {
   const isMobile = useMedia({ maxWidth: 1000 });
-  const size = isMobile ? 156 : 128;
+  const size = isMobile ? 128 : 96;
   return (
     <section className={svgCategory}>
       <h2 className={cx(h2, categoryTitle)}>{category}</h2>
