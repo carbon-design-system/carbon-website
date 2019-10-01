@@ -20,8 +20,8 @@ const IconCategory = ({ category, pictograms }) => (
         <SvgCard
           key={pictogram.name}
           icon={pictogram}
-          height="40%"
-          width="40%"
+          height="35%"
+          width="35%"
         />
       ))}
     </ul>
