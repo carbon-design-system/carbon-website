@@ -1,4 +1,4 @@
-.icon-page {
+.svg-page {
   margin-left: -$spacing-05;
   margin-right: -$spacing-05;
 
@@ -27,7 +27,7 @@
 
 .filter-row :global(.bx--list-box__menu) {
   background-color: $ui-background;
-  max-height: none;
+  max-height: 220px; // 4.5 x result height to demonstrate scrollability
   z-index: 5000;
 }
 
@@ -50,29 +50,29 @@
   }
 }
 
-.icon-library {
+.svg-library {
   overflow: hidden;
 }
 
-.icon-category .category-title {
+.svg-category .category-title {
   margin: 0;
   margin-left: $spacing-05;
   margin-top: $spacing-11;
 }
 
-.icon-category .subcategory-title {
+.svg-category .subcategory-title {
   margin: 0;
   margin-top: $spacing-09;
   margin-left: $spacing-05;
 }
 
 // i.e. fallback
-.icon-grid {
+.svg-grid {
   display: flex;
   flex-wrap: wrap;
 }
 
-.icon-grid {
+.svg-grid {
   margin-top: $spacing-05;
   display: grid;
   width: 100%;
@@ -87,15 +87,15 @@
   }
 }
 
-$icon-card-border: 1px solid $ui-03;
+$svg-card-border: 1px solid $ui-03;
 
-.icon-card {
+.svg-card {
   height: 0;
   padding-top: 100%;
   background-color: $ui-background;
   position: relative;
-  border-left: $icon-card-border;
-  border-top: $icon-card-border;
+  border-left: $svg-card-border;
+  border-top: $svg-card-border;
   &:first-child {
     border-left: none;
   }
@@ -112,13 +112,13 @@ $icon-card-border: 1px solid $ui-03;
 }
 
 @include carbon--breakpoint('md') {
-  .icon-card {
+  .svg-card {
     // reset 2 column borders
     &:nth-child(-n + 2) {
-      border-top: $icon-card-border;
+      border-top: $svg-card-border;
     }
     &:nth-child(odd) {
-      border-left: $icon-card-border;
+      border-left: $svg-card-border;
     }
 
     // first row of 4
@@ -133,13 +133,13 @@ $icon-card-border: 1px solid $ui-03;
 }
 
 @include carbon--breakpoint('lg') {
-  .icon-card {
+  .svg-card {
     // reset 4 column borders
     &:nth-child(-n + 4) {
-      border-top: $icon-card-border;
+      border-top: $svg-card-border;
     }
     &:nth-child(4n + 1) {
-      border-left: $icon-card-border;
+      border-left: $svg-card-border;
     }
 
     // first row of 6
@@ -154,7 +154,64 @@ $icon-card-border: 1px solid $ui-03;
   }
 }
 
-.icon-card-inside {
+.svg-grid.pictograms {
+  grid-template-columns: repeat(2, 1fr);
+
+  @include carbon--breakpoint('lg') {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.pictograms .svg-card {
+  border-left: $svg-card-border;
+  border-top: $svg-card-border;
+
+  .pictograms .svg-card {
+    // reset 2 column borders
+    &:nth-child(-n + 2) {
+      border-top: $svg-card-border;
+    }
+    &:nth-child(odd) {
+      border-left: $svg-card-border;
+    }
+
+    // first row of 4
+    &:nth-child(-n + 2) {
+      border-top: none;
+    }
+    // every 2nd card (starting with 4th)
+    &:nth-child(2n + 1) {
+      border-left: none;
+    }
+  }
+}
+
+@include carbon--breakpoint('lg') {
+  .pictograms .svg-card {
+    // reset 4 column borders
+    &:nth-child(odd) {
+      border-left: $svg-card-border;
+    }
+    &:nth-child(-n + 4) {
+      border-top: $svg-card-border;
+    }
+    &:nth-child(4n + 1) {
+      border-left: $svg-card-border;
+    }
+
+    // first row of 4
+    &:nth-child(-n + 4) {
+      border-top: none;
+    }
+
+    // every 4th card (starting with 5th)
+    &:nth-child(4n + 1) {
+      border-left: none;
+    }
+  }
+}
+
+.svg-card-inside {
   position: absolute;
   top: 0;
   left: 0;
@@ -169,7 +226,7 @@ $icon-card-border: 1px solid $ui-03;
   height: 100%;
 }
 
-.icon-card .trigger-text {
+.svg-card .trigger-text {
   @include carbon--type-style('label-01');
   top: $spacing-04;
   left: $spacing-05;
@@ -184,7 +241,7 @@ $icon-card-border: 1px solid $ui-03;
   display: inline-block;
 }
 
-.no-result .all-icons {
+.no-result .all-svgs {
   font-size: inherit;
   text-decoration: underline;
   cursor: pointer;

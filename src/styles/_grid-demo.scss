@@ -36,6 +36,23 @@
   }
 }
 
+// Hidden class helpers
+.hide-sm {
+  display: none;
+
+  @include carbon--breakpoint('md') {
+    display: block;
+  }
+}
+
+.hide-md {
+  display: none;
+
+  @include carbon--breakpoint('lg') {
+    display: block;
+  }
+}
+
 //---------------------------------------
 // Grid demo
 //---------------------------------------
@@ -44,17 +61,14 @@
   background: $ui-background;
   padding: $spacing-05 0;
   display: flex;
+  position: relative;
 }
 
 .grid-demo .bx-demo--grid {
   margin: 0;
-  width: 100%;
+  flex-grow: 1;
   padding-left: $spacing-07;
   padding-right: $spacing-07;
-}
-
-.grid-demo .side-nav + .bx-demo--grid {
-  padding-left: 0;
 }
 
 .grid-demo [class*='col'] {
@@ -77,7 +91,7 @@
 }
 
 .grid-demo--condensed [class*='col'] {
-  background-color: $carbon--purple-20;
+  background-color: $carbon--purple-30;
   outline: 1px solid $carbon--purple-30;
   padding-top: 0;
 }
@@ -96,6 +110,19 @@
 
 .grid-demo--condensed .grid-demo-content {
   background-color: $carbon--purple-10;
+}
+
+// Full bleed
+.grid-demo--bleed {
+  padding-top: $spacing-05;
+  padding-bottom: $spacing-05;
+}
+
+.grid-demo--bleed .bx-demo--grid {
+  background-color: $carbon--blue-30;
+  padding-top: 0;
+  padding-bottom: 0;
+  outline: 1px solid $carbon--blue-30;
 }
 
 //---------------------------------------
@@ -121,22 +148,42 @@
 //---------------------------------------
 // Shell collapsed/expanded
 //---------------------------------------
+.grid-demo .side-nav + .bx-demo--grid {
+  @include carbon--breakpoint('md') {
+    padding-left: $spacing-05;
+  }
+}
+
 .grid-demo .side-nav {
   height: 16rem;
   width: 3rem;
   background-color: $carbon--blue-20;
   outline: 1px solid $carbon--blue-30;
   margin-left: $spacing-05;
+  display: none;
+
+  @include carbon--breakpoint('md') {
+    display: block;
+  }
 }
 
 .grid-demo .side-nav--expanded {
   width: 16rem;
+  position: absolute;
+  display: block;
+  height: 12rem;
+
+  @include carbon--breakpoint('md') {
+    position: static;
+    height: auto;
+  }
 }
 
 //---------------------------------------
 // Code snippet override (full width)
 //---------------------------------------
-.grid-demo + pre > div[class*='Code-module--row'] {
+.grid-demo + pre > div[class*='Code-module--row'],
+.grid-demo--bleed + pre > div[class*='Code-module--row'] {
   width: 100%;
   margin-bottom: $spacing-06;
 }
@@ -153,4 +200,15 @@
 .bx-demo--row--condensed .bx-demo--col {
   padding-right: 0.0625rem;
   padding-left: 0.0625rem;
+}
+
+//---------------------------------------
+// Grid modes section
+//---------------------------------------
+.grid-modes .bx--col-lg-2 {
+  padding-top: $spacing-04;
+}
+
+.grid-modes div[class*='Markdown-module--paragraph-row'] {
+  margin-bottom: $spacing-03;
 }
