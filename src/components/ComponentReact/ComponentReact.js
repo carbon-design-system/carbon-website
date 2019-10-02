@@ -27,7 +27,9 @@ class ComponentReactExample extends Component {
     name: PropTypes.string,
     component: PropTypes.string,
     variation: PropTypes.string,
+    hasVanillaVersion: PropTypes.bool,
     hasAngularVersion: PropTypes.bool,
+    hasVueVersion: PropTypes.bool,
   };
 
   componentDidMount() {
@@ -57,22 +59,27 @@ class ComponentReactExample extends Component {
         />,
         this.comp
       );
-    } else if (this.props.variation === 'MultiSelect') {
+    } else if (
+      this.props.variation === 'Dropdown' ||
+      this.props.variation === 'MultiSelect'
+    ) {
       ReactDOM.render(
         <NewComponent
           items={items}
           itemToString={item => (item ? item.text : '')}
-          label="MultiSelect Label"
+          label={`${this.props.component} label`}
         />,
         this.comp
       );
-    } else if (this.props.variation === 'MultiSelect.Inline') {
-      NewComponent = reactComponent.MultiSelect;
+    } else if (
+      this.props.variation === 'Dropdown.Inline' ||
+      this.props.variation === 'MultiSelect.Inline'
+    ) {
       ReactDOM.render(
         <NewComponent
           items={items}
           itemToString={item => (item ? item.text : '')}
-          label="MultiSelect Label"
+          label={`${this.props.component} label`}
           type="inline"
         />,
         this.comp
@@ -81,44 +88,67 @@ class ComponentReactExample extends Component {
   };
 
   render() {
-    const { name, component, variation, hasAngularVersion } = this.props;
+    const {
+      name,
+      component,
+      variation,
+      hasVanillaVersion,
+      hasAngularVersion,
+      hasVueVersion,
+    } = this.props;
+    const storybookItem = `${component}--${variation ||
+      'default'}`.toLowerCase();
     const storybookMessage = {
-      'MultiSelect-MultiSelect.Filterable': 'Check off Filterable in KNOBS tab',
-      'MultiSelect-MultiSelect.Inline': 'Select inline in UI type in KNOBS tab',
-    }[`${component}-${variation || 'default'}`];
-    const storybookVariation = {
-      'MultiSelect-MultiSelect': '',
-      'MultiSelect-MultiSelect.Filterable': '',
-      'MultiSelect-MultiSelect.Inline': '',
-    }[`${component}-${variation || 'default'}`];
-    const componentLink = `http://react.carbondesignsystem.com/?selectedKind=${component}&selectedStory=${storybookVariation ||
-      'default'}`;
+      'multiselect--multiselect.filterable':
+        'Check off Filterable in KNOBS tab',
+      'multiselect--multiselect.inline':
+        'Select inline in UI type in KNOBS tab',
+    }[storybookItem];
+    const storybookVariation =
+      {
+        'dropdown--dropdown': 'dropdown--default',
+        'dropdown--dropdown.inline': 'dropdown--default',
+        'multiselect--multiselect': 'multiselect--default',
+        'multiselect--multiselect.filterable': 'multiselect--default',
+        'multiselect--multiselect.inline': 'multiselect--default',
+      }[storybookItem] || storybookItem;
+    const componentLink = `http://react.carbondesignsystem.com/?path=/story/${storybookVariation}`;
 
     const getLibraryLinks = () => {
-      if (hasAngularVersion) {
-        return (
-          <>
+      const librariesLinks = {
+        React: 'https://github.com/carbon-design-system/carbon-components',
+        vanilla: 'https://github.com/carbon-design-system/carbon-components',
+        Angular: 'https://github.com/ibm/carbon-components-angular',
+        Vue: 'https://github.com/carbon-design-system/carbon-components-vue',
+      };
+      const linksList = [
+        'React',
+        hasVanillaVersion && 'vanilla',
+        hasAngularVersion && 'Angular',
+        hasVueVersion && 'Vue',
+      ]
+        .filter(Boolean)
+        .map((item, index, a) => (
+          <React.Fragment key={item}>
             <a
-              href="https://github.com/ibm/carbon-components-react"
-              target="_blank">
-              our React
-            </a>{' '}
-            and{' '}
-            <a
-              href="https://github.com/ibm/carbon-components-angular"
-              target="_blank">
-              Angular libraries
+              key={`${item}-link`}
+              href={librariesLinks[item]}
+              target="_blank"
+              rel="noopener noreferrer">
+              {item}
             </a>
-          </>
-        );
-      }
+            {index < a.length - 1 && (
+              <span>{index < a.length - 2 ? ', ' : ' and '}</span>
+            )}
+          </React.Fragment>
+        ));
 
       return (
-        <a
-          href="https://github.com/ibm/carbon-components-react"
-          target="_blank">
-          our React library
-        </a>
+        <>
+          This component is {!hasVanillaVersion ? ' currently only' : ''}{' '}
+          available in our {linksList}{' '}
+          {linksList.length <= 1 ? 'library' : 'libraries'}.
+        </>
       );
     };
 
@@ -128,7 +158,7 @@ class ComponentReactExample extends Component {
           <div className="bx--col-lg-12">
             <h2 className="page-h2">{name}</h2>
             <p className="component-example__heading-label page-p">
-              This component is currently only available in {getLibraryLinks()}.
+              {getLibraryLinks()}
             </p>
           </div>
         </div>
@@ -138,7 +168,11 @@ class ComponentReactExample extends Component {
               <div className="svg--sprite" aria-hidden="true" />
               <div className="component-example__live">
                 <div className="component-example__live--rendered">
-                  <div ref={comp => (this.comp = comp)} />
+                  <div
+                    ref={comp => {
+                      this.comp = comp;
+                    }}
+                  />
                 </div>
                 <a
                   href={componentLink}
