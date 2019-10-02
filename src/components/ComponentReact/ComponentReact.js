@@ -154,14 +154,10 @@ class ComponentReactExample extends Component {
 
     return (
       <>
-        <div className="bx--row">
-          <div className="bx--col-lg-12">
-            <h2 className="page-h2">{name}</h2>
-            <p className="component-example__heading-label page-p">
-              {getLibraryLinks()}
-            </p>
-          </div>
-        </div>
+        <h2 className="page-h2">{name}</h2>
+        <p className="component-example__heading-label page-p">
+          {getLibraryLinks()}
+        </p>
         <div className="component-variation bx--row">
           <div className="bx--col-lg-12 bx--no-gutter">
             <div>
