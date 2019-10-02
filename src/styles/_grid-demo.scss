@@ -36,6 +36,23 @@
   }
 }
 
+// Hidden class helpers
+.hide-sm {
+  display: none;
+
+  @include carbon--breakpoint('md') {
+    display: block;
+  }
+}
+
+.hide-md {
+  display: none;
+
+  @include carbon--breakpoint('lg') {
+    display: block;
+  }
+}
+
 //---------------------------------------
 // Grid demo
 //---------------------------------------
@@ -44,6 +61,7 @@
   background: $ui-background;
   padding: $spacing-05 0;
   display: flex;
+  position: relative;
 }
 
 .grid-demo .bx-demo--grid {
@@ -51,10 +69,6 @@
   width: 100%;
   padding-left: $spacing-07;
   padding-right: $spacing-07;
-}
-
-.grid-demo .side-nav + .bx-demo--grid {
-  padding-left: 0;
 }
 
 .grid-demo [class*='col'] {
@@ -105,7 +119,7 @@
 }
 
 .grid-demo--bleed .bx-demo--grid {
-  background-color: $carbon--blue-40;
+  background-color: $carbon--blue-30;
   padding-top: 0;
   padding-bottom: 0;
   outline: 1px solid $carbon--blue-30;
@@ -134,16 +148,35 @@
 //---------------------------------------
 // Shell collapsed/expanded
 //---------------------------------------
+.grid-demo .side-nav + .bx-demo--grid {
+  @include carbon--breakpoint('md') {
+    padding-left: 0;
+  }
+}
+
 .grid-demo .side-nav {
   height: 16rem;
   width: 3rem;
   background-color: $carbon--blue-20;
   outline: 1px solid $carbon--blue-30;
   margin-left: $spacing-05;
+  display: none;
+
+  @include carbon--breakpoint('md') {
+    display: block;
+  }
 }
 
 .grid-demo .side-nav--expanded {
   width: 16rem;
+  position: absolute;
+  display: block;
+  height: 12rem;
+
+  @include carbon--breakpoint('md') {
+    position: static;
+    height: auto;
+  }
 }
 
 //---------------------------------------
