@@ -48,7 +48,6 @@ const links = {
     { href: 'https://www.ibm.com/', linkText: 'IBM.com' },
   ],
   secondCol: [
-    { href: 'https://dribbble.com/_carbondesign', linkText: 'Dribble' },
     { href: 'https://medium.com/carbondesign', linkText: 'Medium' },
     { href: 'https://twitter.com/_carbondesign', linkText: 'Twitter' },
     { href: 'https://www.netlify.com/', linkText: 'Netlify' },
