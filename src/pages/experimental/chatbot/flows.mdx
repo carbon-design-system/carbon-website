@@ -6,33 +6,70 @@ tabs: ['Overview', 'Usage', 'Flows', 'Content']
 
 <AnchorLinks>
 
-<AnchorLink>Launching Your Bot</AnchorLink>
-<AnchorLink>Multiple Users</AnchorLink>
+<AnchorLink>Launching a Bot</AnchorLink>
+<AnchorLink>Multiple Threads</AnchorLink>
+<AnchorLink>Expanding Cards</AnchorLink>
 <AnchorLink>Error States</AnchorLink>
 
 </AnchorLinks>
 
-## Launching a bot (Experimental)
+## Launching a Bot (Experimental)
 
 Bots should be launched from a button positioned at the bottom right of the screen, or from a button embedded within the UI. See Carbon Chatbot Add-on Design Kit for the appropriate variants and the Motion tab for duration and easing curves.
 
-Use a _landing page_ to first introduce the user to capabilities of your product, suggest common intents, or link to other ways of connecting with the main product.
+![Launching a Bot](images/chatbot-5.png)
 
-<Row>
-  <Column>
-    <Image height="500px" src="/images/welcome-screen-launch.gif" />
-  </Column>
-</Row>
+## Multiple Threads
 
-When a landing page is not used, be sure to welcome the user to the product first.
+This flow demonstrates connecting the user to a human agent when the bot cannot complete the request or the user would prefer interacting with a person.
 
-<Row>
-  <Column>
-    <Image height="500px" src="/images/launch-expressive.gif" />
-  </Column>
-</Row>
+### User Initiates Change
 
-## Error notifications (Experimental)
+Sometimes, a user indicates that they would like to chat with a human. Other times, this process can be suggested if a bot is repeatedly unsuccessful in answering a user’s question.
+
+![User Initiates Change](images/chatbot-12.png)
+
+### Notify the User
+
+Use a toast notification bar to indicate when the user is in a new conversation context, or that a new user has joined the the chat. Call out any significant changes with in-conversation status messages.
+
+![Notify the User](images/chatbot-13.png)
+
+### Multiple Users
+
+Combining two or more human agents into the same thread is a common practice. Where necessary, call out significant changes in who the user is addressing (particularly if they have different purposes)
+
+![Multiple Users](images/chatbot-14.png)
+
+### Incoming Messages
+
+For new messages appearing in another thread, be sure to use dots above the Threads icon to alert the user of new messages. Then, within the menu, indicate the amount of new messages on the specific thread. Visually distinguish threads with new messages.
+
+![Incoming Messages](images/chatbot-15.png)
+
+## Expanding Cards
+
+Where needed, use expanding cards to progressively disclose content. Use a full page view to show a very large amount of content to the user.
+
+### Default State
+
+Call out critical information in the default state. Provide a trigger to expand the card
+
+![Default State](images/chatbot-16.png)
+
+### Expanded State
+
+Provide more detailed information in the expanded state. Only if absolutely necessary, provide a way to access the full view of the content
+
+![Expanded State](images/chatbot-17.png)
+
+### Full View
+
+The full view is a generic container that can be used to display long-form content that would otherwise crowd a conversation thread.
+
+![Full View](images/chatbot-18.png)
+
+## Error States (Experimental)
 
 Be sure to indicate to a user when their message has not been sent due to a connectivity or server problem. When in a connected state, temporarily show the success notification, and then remove it along with any message error indicators.
 
