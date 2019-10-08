@@ -1,5 +1,6 @@
 ---
 title: 4. Creating components
+description: Welcome to Carbon! This tutorial will guide you in creating a Vue app with the Carbon Design System.
 internal: false
 tabs:
   ['Overview', 'Step 1', 'Step 2', 'Step 3', 'Step 4', 'Step 5', 'Wrapping up']
@@ -39,7 +40,7 @@ A [preview](https://vue-step-5--carbon-tutorial-vue.netlify.com) of what you'll 
 
 ## Fork, clone and branch
 
-This tutorial has an accompanying GitHub repository called [carbon-tutorial](https://github.com/carbon-design-system/carbon-tutorial-vue) that we'll use as a starting point for each step. If you haven't forked and cloned that repository yet, and haven't added the upstream remote, go ahead and do so by following the [step 1 instructions](/tutorial/vuew/step-1#fork-clone--branch).
+This tutorial has an accompanying GitHub repository called [carbon-tutorial](https://github.com/carbon-design-system/carbon-tutorial-vue) that we'll use as a starting point for each step. If you haven't forked and cloned that repository yet, and haven't added the upstream remote, go ahead and do so by following the [step 1 instructions](/tutorial/vue/step-1#fork-clone--branch).
 
 ### Branch
 
@@ -66,7 +67,7 @@ Then, start the app:
 $ yarn serve
 ```
 
-You should see something similar to where the [previous step](/tutorial/vuew/step-3) left off.
+You should see something similar to where the [previous step](/tutorial/vue/step-3) left off.
 
 ## Review design
 
@@ -78,7 +79,7 @@ Here's what we're building – an informational section that has a heading and t
 
 ## Create components
 
-First we need files for the components, so create an `InfoSection` folder in `src/components`. Even though we're building multiple components, their names all start with `InfoSection`, so it makes sense to have them share one folder in components. Create these files:
+First we need files for the components, so create an `InfoSection` folder in `src/components`. Even though we're building multiple components, their names all start with `Info`, so it makes sense to have them share one folder in components. Create these files:
 
 ### Add files
 
@@ -219,7 +220,7 @@ _Note: At extra large viewports, we are using _`bx--col-xlg-3 bx--offset-xlg-1`_
 
 ## Use components
 
-Our styling is not complete yet, but with our components built let's put them to use. In `LandingPage.vue`, import the components towards the top of the script section. If you havent added a script section, do so now.
+Our styling is not complete yet, but with our components built let's put them to use. In `LandingPage.vue`, import the components towards the top of the script section. If you haven't added a script section, do so now.
 
 ##### src/views/LandingPage/LandingPage.vue
 
@@ -246,7 +247,7 @@ import Application32 from '@carbon/icons-vue/lib/application/32';
 
 _Note: You'll notice that these 32px icons aren't the pictograms as designed. The Carbon team is currently working on adding pictograms to the icons packages. Until then, we'll use the biggest SVGs._
 
-Don't forget to add the icons to the list of components used in our template. Wait a minute, are they being used by our template? Well yes and no. The components are going to be passed as an attribute rather than being used as a dom element. Vue treats this use case differently and instead of adding to the components property we need to assign the icons directly to the 'this' object. We can achieve this in a number of different ways, for example as data or computed propeties. The following is my preferred method when reactivity is not needed.
+Don't forget to add the icons to the list of components used in our template. Wait a minute, are they being used by our template? Well, yes and no. The components are going to be passed as an attribute rather than being used as a DOM element. Vue treats this use case differently and instead of adding to the components property, we need to assign the icons directly to the `this` object. We can achieve this in a number of different ways, for example as data or computed propeties. The following is our preferred method when reactivity is not needed.
 
 In the script section of the component add the lifecycle method `created()` to add the icons to the component.
 
@@ -319,7 +320,7 @@ _Note: Now is a good time to resize your browser from phone to extra large viewp
 
 ## Add styling
 
-Here's our design showing the spacing tokens that we need to add. We also need to set type style and borders.
+Here's our design showing the spacing tokens that we need to add. We also need to set the type style and borders.
 
 ![Info section spacing](../shared/step-4/images/info-spacing.png)
 
@@ -392,7 +393,7 @@ Also, the design has the last word in each subheading as bold. To accomplish tha
 
 ```javascript
 computed: {
-// Take in a phrase and separate the third word in an array
+  // Take in a phrase and separate the third word in an array
   splitHeading() {
     const splitHeading = this.heading.split(" ");
     const finalWord = splitHeading.pop();
@@ -471,7 +472,7 @@ Run the CI check to make sure we're all set to submit a pull request.
 $ yarn ci-check
 ```
 
-_Note: Having issues running the CI check? [Step 1](</tutorial/vuew/step-1#continuous-integration-(ci)-check>) has troubleshooting notes that may help._
+_Note: Having issues running the CI check? [Step 1](/tutorial/vue/step-1#continuous-integration-ci-check) has troubleshooting notes that may help._
 
 ### Git commit and push
 
@@ -487,7 +488,7 @@ Then, push to your repository:
 $ git push origin vue-step-4
 ```
 
-_Note: Having issues pushing your changes? [Step 1](/tutorial/vuew/step-1#git-commit-and-push) has troubleshooting notes that may help._
+_Note: Having issues pushing your changes? [Step 1](/tutorial/vue/step-1#git-commit-and-push) has troubleshooting notes that may help._
 
 ### Pull request (PR)
 

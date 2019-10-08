@@ -1,3 +1,12 @@
+.component-docs table {
+  display: block;
+  max-width: calc(100% + 2rem);
+  overflow-x: scroll;
+  @include carbon--breakpoint('md') {
+    overflow-x: visible;
+  }
+}
+
 .component-docs > h2 + div > h3:first-child,
 .component-docs > h2 + div > h4:first-child {
   padding-top: 0 !important;
@@ -5,12 +14,16 @@
 
 //todo make this use the carbon code component. inject class somehow??
 body .component-docs pre {
-  font-size: 0.75rem;
-  line-height: 1.45;
+  @include carbon--type-style('code-02');
+  overflow-x: scroll;
+  scrollbar-width: none;
   background: $ui-05;
-  padding: $spacing-03 $spacing-09 $spacing-03 $spacing-06 !important;
+  padding: $spacing-03 $spacing-09 $spacing-03 $spacing-05 !important;
   margin-bottom: $spacing-06 !important;
+  margin-left: -$spacing-05;
+  margin-right: -$spacing-05;
   border-radius: 0;
+  color: $inverse-01;
 }
 
 body .component-docs code[class*='language-'] {
@@ -19,4 +32,36 @@ body .component-docs code[class*='language-'] {
 
 .component-docs h1 {
   display: none;
+}
+
+.component-docs .token:last-of-type {
+  margin-right: 0;
+}
+
+//---------------------------------------
+// Headings
+//---------------------------------------
+
+.component-docs h2 {
+  margin-top: $spacing-11;
+  margin-bottom: $spacing-05;
+  @include carbon--type-style('expressive-heading-04', true);
+}
+
+.component-docs h3 {
+  margin-top: $spacing-10;
+  margin-bottom: $spacing-05;
+  @include carbon--type-style('expressive-heading-03', true);
+}
+
+.component-docs h4 {
+  margin-top: $spacing-04;
+  @include carbon--type-style('heading-02');
+}
+
+.component-docs h5,
+.component-docs h6 {
+  // h5 and h6 intentionally mimic one another
+  margin-top: $spacing-04;
+  @include carbon--type-style('heading-01');
 }

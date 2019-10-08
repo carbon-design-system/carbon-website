@@ -1,5 +1,6 @@
 ---
 title: 3. Using APIs
+description: Welcome to Carbon! This tutorial will guide you in creating a React app with the Carbon Design System.
 tabs:
   ['Overview', 'Step 1', 'Step 2', 'Step 3', 'Step 4', 'Step 5', 'Wrapping up']
 ---
@@ -94,9 +95,7 @@ One caveat is that we need to start our variables with `REACT_APP_`. You can rea
 
 Since we don't want to commit this file to Git, we can put it in `.env.local` which is in our `.gitignore` list. Your file should just have a single line like this one, where the `x`s are replaced with your unique token.
 
-##### .env.local
-
-```bash
+```bash path=.env.local
 REACT_APP_GITHUB_PERSONAL_ACCESS_TOKEN=xxxxxx
 ```
 
@@ -108,18 +107,14 @@ The `react-apollo` library gives us a component that we need to put at the base 
 
 Add these two imports to `src/index.js`:
 
-##### src/index.js
-
-```javascript
+```javascript path=src/index.js
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 ```
 
 Next, make your client by providing a URI for the GitHub GraphQL API as well as an authorization header using the environmental variable you just added to `.env.local`.
 
-##### src/index.js
-
-```javascript
+```javascript path=src/index.js
 const client = new ApolloClient({
   uri: 'https://api.github.com/graphql',
   headers: {
@@ -130,9 +125,7 @@ const client = new ApolloClient({
 
 Now we can wrap our application with `ApolloProvider`. At the same time, we'll pass in the client we just made as a prop to the `ApolloProvider` component. Replace:
 
-##### src/index.js
-
-```html
+```html path=src/index.js
 <Router>
   <App />
 </Router>
@@ -140,10 +133,8 @@ Now we can wrap our application with `ApolloProvider`. At the same time, we'll p
 
 With:
 
-##### src/index.js
-
 <!-- prettier-ignore-start -->
-```html
+```html path=src/index.js
 <ApolloProvider client={client}>
   <Router>
     <App />
@@ -158,9 +149,7 @@ With:
 
 Add the following imports at the top of `RepoPage.js`:
 
-##### src/content/RepoPage/RepoPage.js
-
-```javascript
+```javascript path=src/content/RepoPage/RepoPage.js
 import { gql } from 'apollo-boost';
 import { Query } from 'react-apollo';
 ```
@@ -175,9 +164,7 @@ If you'd like some more information regarding writing queries and using the Quer
 
 Add this after your imports:
 
-##### src/content/RepoPage/RepoPage.js
-
-```graphql
+```graphql path=src/content/RepoPage/RepoPage.js
 const REPO_QUERY = gql`
   query REPO_QUERY {
     # Let's use carbon as our organization
@@ -221,17 +208,13 @@ Our last column in the data table will be a comma-separated list of repository a
 
 Import `Link` at the top of `RepoPage.js`.
 
-##### src/content/RepoPage/RepoPage.js
-
-```javascript
+```javascript path=src/content/RepoPage/RepoPage.js
 import { Link } from 'carbon-components-react';
 ```
 
 Then use `Link` in this component that has two props (`url` and `homepageUrl`) and returns an unordered list. If the repository does not have a home page URL, only render the repository link.
 
-##### src/content/RepoPage/RepoPage.js
-
-```javascript
+```javascript path=src/content/RepoPage/RepoPage.js
 const LinkList = ({ url, homepageUrl }) => (
   <ul style={{ display: 'flex' }}>
     <li>
@@ -249,9 +232,7 @@ const LinkList = ({ url, homepageUrl }) => (
 
 As a final helper, let's create a function that transforms row data to our expected header keys. Notice how we're using our new `LinkList` component to generate the value of the `links` key in each row.
 
-##### src/content/RepoPage/RepoPage.js
-
-```javascript
+```javascript path=src/content/RepoPage/RepoPage.js
 const getRowItems = rows =>
   rows.map(row => ({
     ...row,
@@ -274,17 +255,13 @@ Finally, if neither of those are true, it means we have our data! One nice advan
 
 We need to render the `RepoTable` in `Query`'s `return()` statement once the request is no longer loading and when there are no errors. To do so, replace the `RepoTable` line with the following `Query`.
 
-##### src/content/RepoPage/RepoPage.js
-
-```javascript
+```javascript path=src/content/RepoPage/RepoPage.js
 <RepoTable headers={headers} rows={rows} />
 ```
 
 Notice how we're passing the `REPO_QUERY` that we previously defined into the `query` prop.
 
-##### src/content/RepoPage/RepoPage.js
-
-```javascript
+```javascript path=src/content/RepoPage/RepoPage.js
 <Query query={REPO_QUERY}>
   {({ loading, error, data: { organization } }) => {
     // Wait for the request to complete
@@ -311,9 +288,7 @@ The page will look the same as we're still rendering our static example rows, bu
 
 Now that we have that data, let's populate the data table. Replace `console.log(organization);` with the following that destructures the `organization` object. Once we have the repositories, we can call our `getRowItems()` helper to build the data table rows.
 
-##### src/content/RepoPage/RepoPage.js
-
-```javascript
+```javascript path=src/content/RepoPage/RepoPage.js
 // If we're here, we've got our data!
 const { repositories } = organization;
 const rows = getRowItems(repositories.nodes);
@@ -333,9 +308,7 @@ We need to modify one aspect of the data table because if you expand a row, it s
 
 To do so, in `RepoTable.js`, add this look-up function as the first lines inside the `RepoTable`. This should go immediately before the component's `return()`.
 
-##### src/content/RepoPage/RepoTable.js
-
-```javascript
+```javascript path=src/content/RepoPage/RepoTable.js
 const getRowDescription = rowId => {
   const row = rows.find(({ id }) => id === rowId);
   return row ? row.description : '';
@@ -344,9 +317,7 @@ const getRowDescription = rowId => {
 
 Finally, in `RepoTable.js`, replace `<p>Row description</p>` with:
 
-##### src/content/RepoPage/RepoTable.js
-
-```html
+```html path=src/content/RepoPage/RepoTable.js
 <p>{getRowDescription(row.id)}</p>
 ```
 
@@ -356,17 +327,13 @@ At this point, the first time that you visit the repositories page, we're queryi
 
 To do so, back to `RepoPage.js`, add the `DataTableSkeleton` import by modifying the existing `carbon-components-react` import.
 
-##### src/content/RepoPage/RepoPage.js
-
-```javascript
+```javascript path=src/content/RepoPage/RepoPage.js
 import { Link, DataTableSkeleton } from 'carbon-components-react';
 ```
 
 Then replace the `if (loading) return 'Loading...';` with:
 
-##### src/content/RepoPage/RepoPage.js
-
-```javascript
+```javascript path=src/content/RepoPage/RepoPage.js
 if (loading)
   return (
     <DataTableSkeleton
@@ -387,17 +354,13 @@ We'll be using [React Hooks](https://reactjs.org/docs/hooks-intro.html) to manag
 
 Import React's [useState](https://reactjs.org/docs/hooks-state.html) by modifying the `React` import.
 
-##### src/content/RepoPage/RepoPage.js
-
-```javascript
+```javascript path=src/content/RepoPage/RepoPage.js
 import React, { useState } from 'react';
 ```
 
 Then initialize the new state variables that we'll use for pagination as the first lines inside the `RepoPage` component, above the `return()`.
 
-##### src/content/RepoPage/RepoPage.js
-
-```javascript
+```javascript path=src/content/RepoPage/RepoPage.js
 const [totalItems, setTotalItems] = useState(0);
 const [firstRowIndex, setFirstRowIndex] = useState(0);
 const [currentPageSize, setCurrentPageSize] = useState(10);
@@ -407,9 +370,7 @@ This initializes the total number of rows and the index of the first row to `0`,
 
 Next we need to use the function that updates the `totalItems` state, `setTotalItems()`, after we destructure our `organization.repositories`. Your block that transforms row data should look like:
 
-##### src/content/RepoPage/RepoPage.js
-
-```javascript
+```javascript path=src/content/RepoPage/RepoPage.js
 // If we're here, we've got our data!
 const { repositories } = organization;
 setTotalItems(repositories.totalCount);
@@ -418,10 +379,8 @@ const rows = getRowItems(repositories.nodes);
 
 Then we need to update our `RepoTable` `rows` prop to only render the subset of rows for the current "page". Update `<RepoTable headers={headers} rows={rows} />` to:
 
-##### src/content/RepoPage/RepoPage.js
-
 <!-- prettier-ignore-start -->
-```javascript
+```javascript path=src/content/RepoPage/RepoPage.js
 <RepoTable
   headers={headers}
   rows={rows.slice(
@@ -438,17 +397,13 @@ Finally, let's add the `Pagination` to update our state variables and cause the 
 
 Import `Pagination` by updating the `carbon-components-react` import.
 
-##### src/content/RepoPage/RepoPage.js
-
-```javascript
+```javascript path=src/content/RepoPage/RepoPage.js
 import { Link, DataTableSkeleton, Pagination } from 'carbon-components-react';
 ```
 
 Immediately after the `RepoTable` closing tag (`/>`), add the `Pagination` component using the state variables that we previously initialized.
 
-##### src/content/RepoPage/RepoPage.js
-
-```javascript
+```javascript path=src/content/RepoPage/RepoPage.js
 <Pagination
   totalItems={totalItems}
   backwardText="Previous page"

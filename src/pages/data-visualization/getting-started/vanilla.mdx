@@ -1,0 +1,169 @@
+---
+title: Get started
+description: Get started with Carbon Charts in Vanilla
+tabs: ['Vanilla', 'React', 'Angular', 'Vue', 'Other frameworks']
+---
+
+import DataOptionsSection from './shared-data-options-section';
+
+<PageDescription>
+
+Carbon charts help you tell accurate and convincing stories around data with beautiful and accessible visualizations.
+
+</PageDescription>
+
+<AnchorLinks>
+
+<AnchorLink>Carbon Charts Vanilla library</AnchorLink>
+<AnchorLink>Install</AnchorLink>
+<AnchorLink>Getting started</AnchorLink>
+<AnchorLink>Development</AnchorLink>
+<AnchorLink>Troubleshooting</AnchorLink>
+
+</AnchorLinks>
+
+## Resources
+
+<Row className="resource-card-group">
+<Column colMd={4} colLg={4} noGutterSm>
+  <ResourceCard
+    subTitle="Carbon Charts Core"
+    href="https://github.com/carbon-design-system/carbon-charts/tree/master/packages/core">
+    <MdxIcon name="github" />
+  </ResourceCard>
+</Column>
+
+<Column colMd={4} colLg={4} noGutterSm>
+  <ResourceCard
+    subTitle="Try Carbon Charts Vanilla components with CodeSandbox."
+    href="https://codesandbox.io/s/149vrzo62l">
+    <MdxIcon name="codesandbox" />
+  </ResourceCard>
+</Column>
+
+<Column colLg={4} colMd={4} noGutterSm>
+  <ResourceCard
+    subTitle="Download WIP charting design specifications (IBM internal link)"
+    disabled>
+    <MdxIcon name="sketch" />
+  </ResourceCard>
+</Column>
+
+<Column colLg={4} colMd={4} noGutterSm>
+<ResourceCard
+    subTitle="Data visualization color palettes (IBM internal link)"
+    href="https://ibm.box.com/s/3mt8fshtgy70r7rhxjhfo3gbdt0n3x5y"
+    actionIcon="download">
+    <MdxIcon name="sketch" />
+  </ResourceCard>
+</Column>
+</Row>
+
+## Carbon Charts Vanilla library
+
+The library provides a collection of reusable charting components to build websites and user interfaces. Adopting the library enables developers to use consistent markup, styles, and behavior in prototype and production work.
+
+## Install
+
+#### If using yarn:
+
+<br />
+
+```bash
+$ yarn add @carbon/charts d3
+```
+
+#### If you prefer npm:
+
+<br />
+
+```bash
+$ npm install --save @carbon/charts d3
+```
+
+## Getting started
+
+#### If consuming through a bundler (e.g. webpack):
+
+```html path=index.html
+...
+<div id="my-bar-chart"></div>
+...
+```
+
+```js path=index.js
+import '@carbon/charts/style.css';
+import { BarChart, defaultColors } from '@carbon/charts';
+
+// grab chart holder DOM element
+const chartHolder = document.getElementById('my-bar-chart');
+
+// initialize the chart
+new BarChart(chartHolder, {
+  data: stackedBarData,
+  options: stackedBarOptions,
+});
+```
+
+#### If consuming in a browser environment (e.g. through CDNs):
+
+```html path=index.html
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://unpkg.com/@carbon/charts/style.css" />
+  </head>
+  <body>
+    <div id="my-bar-chart"></div>
+
+    <script src="https://unpkg.com/@carbon/charts/index.umd.js"></script>
+    <script>
+      // grab chart holder DOM element
+      const chartHolder = document.getElementById('my-bar-chart');
+
+      const stackedBarData = {
+        // ...see next section
+      };
+
+      const stackedBarOptions = {
+        // ...see next section
+      };
+
+      // initialize the chart
+      new Charts.BarChart(chartHolder, {
+        data: stackedBarData,
+        options: stackedBarOptions,
+      });
+    </script>
+  </body>
+</html>
+```
+
+<DataOptionsSection />
+
+## Development
+
+Please refer to the [Contribution Guidelines](https://github.com/carbon-design-system/carbon-charts/blob/master/CONTRIBUTING.md) before starting any work.
+
+### Using the server
+
+We recommend the use of [Webpack Dev Server](https://github.com/webpack/webpack-dev-server) for developing components.
+
+#### Start the server
+
+<br />
+
+```bash
+cd packages/core
+yarn run demo:server
+```
+
+Open browser to `http://localhost:9001/`.
+
+### List of available components
+
+View available components [here](https://github.com/carbon-design-system/carbon-charts#component-status).
+
+## Troubleshooting
+
+If you experience any issues while getting set up with Carbon Charts, please head over to the [GitHub repo](https://github.com/carbon-design-system/carbon-charts) for more guidelines and support. Please [create an issue](https://github.com/carbon-design-system/carbon-charts/issues) if your issue does not already exist.
