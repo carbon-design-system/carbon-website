@@ -1,6 +1,18 @@
 const path = require('path');
 
-exports.onCreateWebpackConfig = ({ actions }) => {
+exports.onCreateWebpackConfig = ({ actions, stage, loaders }) => {
+  if (stage === 'build-html') {
+    actions.setWebpackConfig({
+      module: {
+        rules: [
+          {
+            test: /@carbon\/charts.*/,
+            use: loaders.null(),
+          },
+        ],
+      },
+    });
+  }
   // Allows importing html files for component code examples
   actions.setWebpackConfig({
     module: {
