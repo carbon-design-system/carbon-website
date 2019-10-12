@@ -752,6 +752,27 @@ const colorTokens = {
         },
       },
     },
+    '$inverse-focus-ui': {
+      role: ['Focus on high contrast moments'],
+      value: {
+        white: {
+          name: 'White',
+          hex: '#ffffff',
+        },
+        g10: {
+          name: 'White',
+          hex: '#ffffff',
+        },
+        g90: {
+          name: 'Blue 60',
+          hex: '#0f62fe',
+        },
+        g100: {
+          name: 'Blue 60',
+          hex: '#0f62fe',
+        },
+      },
+    },
     '$hover-primary': {
       role: ['$interactive-01 hover'],
       value: {
