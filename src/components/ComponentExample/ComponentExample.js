@@ -47,7 +47,7 @@ class ComponentExample extends Component {
 
     const classNames = classnames({
       'component-example__live--rendered': true,
-      [`${component}`]: true,
+      [`component-example--${component}`]: true,
     });
 
     const lightUIclassnames = classnames({
