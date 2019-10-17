@@ -1,0 +1,55 @@
+### Data and options
+
+Data and options follow the same model in all charts, with minor exceptions and differences in specific components.
+
+For instance, in the case of pie and donut charts, you would only provide one data set. In the case of donut charts, you can pass in an additional field called `center` in your options configuring the donut center.
+
+There are also additional options available depending on the chart type being used, for more examples please see [here](https://github.com/carbon-design-system/carbon-charts/tree/master/packages/core/demo/demo-data).
+
+Below are sample data and options that can be used in a stacked bar chart:
+
+```js
+import { BarChart, defaultColors } from '@carbon/charts';
+// Use the below if you're loading bundles through a CDN
+// const { BarChart, defaultColors } = Charts;
+
+const stackedBarData = {
+  labels: ['Quantity', 'Leads', 'Sold', 'Restocking', 'Misc'],
+  datasets: [
+    {
+      label: 'Dataset 1',
+      backgroundColors: [defaultColors[0]],
+      data: [65000, 29123, 35213, 51213, 16932],
+    },
+    {
+      label: 'Dataset 2',
+      backgroundColors: [defaultColors[1]],
+      data: [32432, 21312, 56456, 21312, 34234],
+    },
+    {
+      label: 'Dataset 3',
+      backgroundColors: [defaultColors[2]],
+      data: [12312, 23232, 34232, 12312, 34234],
+    },
+  ],
+};
+
+const stackedBarOptions = {
+  scales: {
+    x: {
+      title: '2018 Annual Sales',
+    },
+    y: {
+      title: 'Figures',
+      formatter: axisValue => {
+        return `${axisValue / 1000}k`;
+      },
+      stacked: true,
+    },
+  },
+  legendClickable: true,
+  containerResizable: true,
+};
+```
+
+export default ({ children }) => <>{children}</>;

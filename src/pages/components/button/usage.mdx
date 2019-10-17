@@ -1,38 +1,145 @@
 ---
 title: Button
+description: Buttons are used to initialize an action. Button labels express what action will occur when the user interacts with it.
 tabs: ['Code', 'Usage', 'Style']
 ---
 
 <AnchorLinks>
 
 <AnchorLink>General guidance</AnchorLink>
-<AnchorLink>Variations</AnchorLink>
+<AnchorLink>Button order</AnchorLink>
+<AnchorLink>Button alignment</AnchorLink>
 <AnchorLink>Labels</AnchorLink>
 <AnchorLink>Icon usage</AnchorLink>
 <AnchorLink>Danger button usage</AnchorLink>
+<AnchorLink>Variations</AnchorLink>
+<AnchorLink>References</AnchorLink>
 
 </AnchorLinks>
 
 ## General guidance
 
-_Buttons_ express what action will occur when the user clicks or touches it. Buttons are used to initialize an action, either in the background or foreground of an experience.
+**Buttons are used to initialize an action.** Button labels express what action will occur when the user interacts with it.
 
-Buttons are used primarily on action items. Some examples include **Add**, **Save**, **Delete**, and **Sign up**. Each page can have one or two primary buttons. Any remaining calls-to-action should be represented as secondary buttons.
+**Buttons are used primarily for actions.** Examples include Add, Save, Delete, and Sign up. Each page should have one primary button, and a **Return** or **Enter** keyboard event should trigger it. Any remaining calls-to-action should be represented as secondary buttons.
 
-Do not use buttons as navigational elements. Instead, use [links](/components/link) when the desired action is to take the user to a new page.
+**Do not use buttons as navigational elements.** Instead, use [links](/components/link/code) when the desired action is to take the user to a new page.
 
-## Variations
+**Primary buttons always appear to the right.** Secondary buttons appear to the left of the primary button.
 
-| Button type        | Purpose                                                                                                                                                                                                                                                                                                                                                                           |
-| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| _Primary_          | For the principal call to action on the page.                                                                                                                                                                                                                                                                                                                                     |
-| _Secondary_        | For secondary actions on each page.                                                                                                                                                                                                                                                                                                                                               |
-| _Button with icon_ | When words are not enough, icons can be used in buttons to better communicate what the button does. Icons are always paired with text.                                                                                                                                                                                                                                            |
-| _Disabled button_  | Use when the user cannot proceed until an input is collected.                                                                                                                                                                                                                                                                                                                     |
-| _Set of buttons_   | When an action required by the user has more than one option, always use a a negative action button (secondary) paired with a positive action button (primary) in that order. Negative action buttons will be on the left; positive action buttons on the right. When these two types of buttons are paired in the correct order, they will automatically space themselves apart. |
-| Small button       | Use when there is not enough vertical space for a regular sized button.                                                                                                                                                                                                                                                                                                           |
-| _Ghost button_     | When an action does not require primary dominance on the page.                                                                                                                                                                                                                                                                                                                    |
-| _Danger button_    | When an action has potentially destructive effects on the user's data (delete, remove, etc).                                                                                                                                                                                                                                                                                      |
+## Button order
+
+When using multiple buttons, the primary button appears to the right and any secondary buttons appear to the left. Research has shown that performance differences between secondary and primary button placement are negligible, however [maintaining consistency](https://www.nngroup.com/articles/ok-cancel-or-cancel-ok/) throughout a product, offering, or platform is crucial. The Secondary / Primary button order (secondary to the left and primary to the right) is therefore our required guidance and should be followed at all times.
+
+<Row>
+<Column colLg={8}>
+
+![Secondary/Primary button order in Modals](images/button-usage-4.png)
+
+<Caption>Secondary / Primary button order in a modal</Caption>
+
+</Column>
+</Row>
+
+## Button alignment
+
+Button alignment depends on where the buttons appear.
+
+- Use full-bleed or full-justified buttons for modals and side panels.
+- Use left-justified buttons for forms on their own page (not in a modal or side panel).
+- Use right-justified buttons if the primary response advances the user through a multi-step configuration such as a wizard.
+
+### Modal button alignment
+
+Single buttons or button groups in modals use full-bleed, full-width buttons. Single buttons span the full width of the modal.
+
+Full-width buttons provide significant advantages in time-to-target evaluations using [Fitts’ Law](https://www.interaction-design.org/literature/book/the-glossary-of-human-computer-interaction/fitts-s-law), and are increasingly common in other contexts users are likely to encounter.
+
+<Row>
+<Column colLg={8}>
+
+![Primary button in a modal](images/button-usage-3.png)
+
+<Caption>Single primary button in a modal</Caption>
+
+</Column>
+</Row>
+
+<Row>
+<Column colLg={8}>
+
+![Secondary / Primary button order in a modal](images/button-usage-4.png)
+
+<Caption>Secondary / Primary button pair in a modal</Caption>
+
+</Column>
+</Row>
+
+If there is a third action, place this within the modal itself as a link, rather than alongside the Secondary / Primary buttons.
+
+<Row>
+<Column colLg={8}>
+
+![Secondary / Primary button order with a third action in a modals](images/button-usage-5.png)
+
+<Caption>
+  Secondary / Primary button pair with a tertiary action in a modal
+</Caption>
+
+</Column>
+</Row>
+
+Use this same layout for buttons in side panels. Use full-width single buttons or full-width Secondary / Primary button pairs. If there is a third action, considering placing it within the side panel itself, rather than as part of the button group.
+
+Side panel buttons should be visible without scrolling. They should be visible if they’re at the top, the bottom (without scrolling), or sticky and at the bottom of the view if the content is longer than the viewport.
+
+### Non-modal forms
+
+On non-modal or in-page forms, align single buttons or Secondary / Primary button groups to the left. Buttons should align with the form controls regardless of the user‘s window width.
+
+<Row>
+<Column colLg={8}>
+
+![Primary button alignment in Forms](images/button-usage-6.png)
+
+<Caption>Single button alignment in forms</Caption>
+
+</Column>
+</Row>
+
+<Row>
+<Column colLg={8}>
+
+![Secondary / Primary button alignment in forms](images/button-usage-7.png)
+
+<Caption>Secondary / Primary button alignment in forms</Caption>
+
+</Column>
+</Row>
+
+### Multi-step forms
+
+When the primary action implies a navigation step forward, as in a wizard, align single buttons or Secondary/Primary button groups to the right. This position conveys the “next step” intention.
+
+<Row>
+<Column colLg={8}>
+
+![Primary button alignment in a wizard](images/button-usage-8.png)
+
+<Caption>Single button alignment in a wizard</Caption>
+
+</Column>
+</Row>
+
+<Row>
+<Column colLg={8}>
+
+![Secondary / Primary button alignment in a wizard](images/button-usage-9.png)
+
+<Caption>Secondary / Primary button pair alignment in a wizard</Caption>
+
+</Column>
+</Row>
 
 ## Labels
 
@@ -56,7 +163,7 @@ For consistency, see [labels and idioms](/guidelines/content/glossary) for the a
 
 ![button with glyph](images/button-usage-1.png)
 
-<Caption>Glyph usage in Buttons</Caption>
+<Caption>Glyph usage in buttons</Caption>
 
 </Column>
 </Row>
@@ -74,3 +181,21 @@ Danger buttons have a different visual style to inform users of potentially dest
 
 </Column>
 </Row>
+
+## Variations
+
+| Button type        | Purpose                                                                                                                                                                                                                                                                                                                                                                           |
+| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _Primary_          | For the principal call to action on the page.                                                                                                                                                                                                                                                                                                                                     |
+| _Secondary_        | For secondary actions on each page.                                                                                                                                                                                                                                                                                                                                               |
+| _Button with icon_ | When words are not enough, icons can be used in buttons to better communicate what the button does. Icons are always paired with text.                                                                                                                                                                                                                                            |
+| _Disabled button_  | Use when the user cannot proceed until an input is collected.                                                                                                                                                                                                                                                                                                                     |
+| _Set of buttons_   | When an action required by the user has more than one option, always use a a negative action button (secondary) paired with a positive action button (primary) in that order. Negative action buttons will be on the left; positive action buttons on the right. When these two types of buttons are paired in the correct order, they will automatically space themselves apart. |
+| _Small button_     | Use when there is not enough vertical space for a regular sized button.                                                                                                                                                                                                                                                                                                           |
+| _Ghost button_     | When an action does not require primary dominance on the page.                                                                                                                                                                                                                                                                                                                    |
+| _Danger button_    | When an action has potentially destructive effects on the user‘s data (delete, remove, etc).                                                                                                                                                                                                                                                                                      |
+
+## References
+
+- Jakob Nielsen, [_OK-Cancel or Cancel-OK? The Trouble With Buttons_](https://www.nngroup.com/articles/ok-cancel-or-cancel-ok/) (2008)
+- The Interaction Design Foundation, [_The Glossary of Human Computer Interaction, Chapter 37_](https://www.interaction-design.org/literature/book/the-glossary-of-human-computer-interaction/fitts-s-law)
