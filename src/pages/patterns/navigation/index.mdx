@@ -10,7 +10,7 @@ description: Navigation patterns show how the UI Shell components can be used in
 <AnchorLink>Configurations</AnchorLink>
 <AnchorLink>Navigation</AnchorLink>
 <AnchorLink>Grouping information</AnchorLink>
-<AnchorLink>Coming soon</AnchorLink>
+<AnchorLink>Accessibility considerations</AnchorLink>
 
 </AnchorLinks>
 
@@ -117,35 +117,93 @@ When planning your product's UI, put the emphasis on the tasks the user has to c
 
 Don’t place unbounded content in the shell side navigation. Usability drops rapidly as the number of items within the shell get too high. For this reason, do not place content that has no upper limit (such as created by users) within the shell’s side navigation. Instead make use of drill down patterns.
 
-## Accessibility considerations
+## Accessibility
 
-### Matching the DOM order to the visual order
+### Matching the DOM order to the visual hierarchy
 
-- Techniques outlined by the WCAG recommend the visual layout out of your UI objects should match the order they appear in your source code.
-- Keyboard users may have trouble predicting where the focus will go if the visual hierarchy does not match the order of the elements in the source code.
-- Users who use a combination of screen reader and screen magnifier may get confused when they order doesn't match.
-- Add visual that shows DOM next to HTML next to the UI.
+[Technique C27](https://www.w3.org/WAI/WCAG21/Techniques/css/C27) outlined in WCAG 2.1 recommends matching the visual order of your UI objects with the order they appear in your source code. This technique ensures the order — the designed hierarchy of information — is communicated the same visually as it is by assistive technologies.
 
-#### Meaningful sequence
+<Row>
+<Column  colLg={8} colMd={4} colSm={4}>
 
-- The relative order for breadcrumbs, wizards, or Anchor links matters if the nav items reflect the content's meaningful sequence.
-- What about provisioning or logging in? Things that take multiple steps and screens.
+![hint text](https://309w5s255371fs4df2vftgbl-wpengine.netdna-ssl.com/wp-content/uploads/2017/09/placeholder.jpg)
 
-#### Tab order
+<Caption>Visual that shows DOM next to HTML, UI, and A11y tree.</Caption>
 
-What info can we provide about how tab order relates to navigation?
+</Column>
+</Row>
 
-#### Navigation's role as a landmark region
+This technique is necessary when the organization of your navigation menu is used to covey the meaning of stepped concepts like provisioning or other wizard-style patterns. The intended meaning of your grouping and ordering may be lost if the position of an object is styled differently from the DOM order.
 
-- Specify which region should assume the role of a navigation landmark. This allows accessability tools to treat navigation objects accordingly to match user expectations. [ref](https://www.w3.org/TR/wai-aria-1.1/#dfn-role)
+In some cases, styling the elements with CSS to appear in a different order than the DOM. For example, this can happen on smaller screen widths when the side nav becomes an offscreen element.
+
+- Talk about `tabindex` here?
+
+- What about sticky headers or nav that is a docked footer?
+
+<Column  colLg={8} colMd={6} colSm={4} >
+
+![hint text](https://309w5s255371fs4df2vftgbl-wpengine.netdna-ssl.com/wp-content/uploads/2017/09/placeholder.jpg)
+
+<Caption>
+  A visual that shows a docked footer nav and the object at the top of the DOM.
+</Caption>
+
+</Column>
+
+#### Focus order
+
+- Getting to and from nav
+- double nests
+- What info can we provide about how focus order relates to navigation?
+- Nav menus may be too long for users to tab through before they can interact if the main content. Consider a "Skip navigation" link or Skip to main content?
+
+### Navigation's role as a landmark region
+
+- Specify which region should assume the role of a navigation landmark. This allows accessibility tools to treat navigation objects accordingly to match user expectations. [ref](https://www.w3.org/TR/wai-aria-1.1/#dfn-role)
+
+- Other regions include:
+
+<Column  colLg={8} colMd={6} colSm={4} >
+
+![hint text](https://309w5s255371fs4df2vftgbl-wpengine.netdna-ssl.com/wp-content/uploads/2017/09/placeholder.jpg)
+
+</Column>
+
+<Column  colLg={8} colMd={6} colSm={4} >
+
+<Caption>
+  Visual that highlights different landmark regions on the UI shell.
+</Caption>
+
+</Column>
+
 - For assistive technologies like screen readers and rotors.
+
+<Row>
+<Column colLg={8} colMd={6} colSm={4}>
+
+![hint text](https://309w5s255371fs4df2vftgbl-wpengine.netdna-ssl.com/wp-content/uploads/2017/09/placeholder.jpg)
+
+<Caption>Screenshot of a rotor in action.</Caption>
+
+</Column>
+</Row>
+
+#### Avoid multiple nav
+
+- Ref consistency from Deque
+- Do's and don'ts
 
 ## Touch interfaces
 
 - Loss of hover states
+- Where do header links go? Hamburger in left nav or app switcher?
+- Touch target size. 44px is min for WCAG. add link header
 
 #### References:
 
 - David R. Danielson, [_Transitional Volatility in Web Navigation_](https://www.researchgate.net/publication/240859594_Transitional_volatility_in_web_navigation) (2003)
 - Susan Farrell, [_Utility Navigation: What It Is and How to Design It_](https://www.nngroup.com/articles/utility-navigation/) (2015)
-- Web Content Accessibility Guidelines 2.1, [_Understanding Success Criterion 1.3.2: Meaningful Sequence_](https://www.w3.org/WAI/WCAG21/Understanding/meaningful-sequence.html) (2017-2018)
+- Web Content Accessibility Guidelines, [_WCAG_](https://www.w3.org/WAI/standards-guidelines/wcag/) (2018)
+- WebAIM, ["Skip Navigation" Links](https://webaim.org/techniques/skipnav/) (2013)
