@@ -4,31 +4,48 @@ description: A toggle is a control that is used to quickly switch between two po
 tabs: ['Code', 'Usage', 'Style']
 ---
 
+<AnchorLinks>
+
+<AnchorLink>General guidance</AnchorLink>
+<AnchorLink>Formatting</AnchorLink>
+<AnchorLink>Content</AnchorLink>
+<AnchorLink>Behavior</AnchorLink>
+<AnchorLink>Accessibility</AnchorLink>
+<AnchorLink>Variations</AnchorLink>
+<AnchorLink>Style</AnchorLink>
+<AnchorLink>Code</AnchorLink>
+<AnchorLink>Feedback</AnchorLink>
+
+</AnchorLinks>
+
 ## General guidance
 
-_Toggle_ is a control that is used to quickly switch between two possible states. Toggles are only used for these binary actions that occur immediately after the user “flips” the toggle switch. They are commonly used for “on/off” switches.
+Toggle is a control that is used to quickly switch between two possible states. Toggles are only used for these binary actions that occur immediately after the user “flips” the toggle switch. They are commonly used for “on/off” switches.
 
-<Row>
-<Column colLg={8}>
+<ComponentCode
+  name="Toggle"
+  component="toggle"
+  variation="toggle"
+  hasReactVersion="toggle--toggled"
+  hasVueVersion="toggle--default"
+  hasAngularVersion="?path=/story/toggle--basic"
+  codepen="QPNddd"></ComponentCode>
 
-![Example image of on and off toggles.](images/toggle-usage-1.png)
+## Formatting
 
-</Column>
-</Row>
+## Content 
 
-#### Heading
+**Use labels with a toggle so the action is clear.** Labels should be three words or less and appear on the side of a toggle. Use adjectives rather than verbs to describe labels and the state of the object affected.
 
-A heading may accompany a toggle to further clarify on the action the toggle will perform.
+**A heading may accompany a toggle to further clarify on the action the toggle will perform.**
 
-#### Labels
+## Behavior
 
-Use labels with a toggle so the action is clear. Labels should be three words or less and appear on the side of a toggle.
+## Accessibility
 
-#### Language
+## Variations 
 
-Use adjectives rather than verbs to describe labels and the state of the object affected.
-
-## Small toggle
+### Small toggle
 
 Small toggles are more compact in size, therefore they can be used in use cases such as [data tables](/components/data-table/code).
 
@@ -39,3 +56,92 @@ Small toggles are more compact in size, therefore they can be used in use cases 
 
 </Column>
 </Row>
+
+## Style
+
+### Color
+
+| Class                                                          | Property         | Color token   |
+| -------------------------------------------------------------- | ---------------- | ------------- |
+| `.bx--label`                                                   | text color       | `$text-02`    |
+| `.bx--toggle__text--left`                                      | text color       | `$text-01`    |
+| `.bx--toggle__appearance:before`                               | background-color | `$ui-04`      |
+| `.bx--toggle__appearance:after`                                | background-color | `$ui-03`      |
+| `.bx--toggle:checked +` <br/> `.bx--toggle__appearance:before` | background-color | `$support-02` |
+| `.bx--toggle:checked +` <br/> `.bx--toggle__appearance:after`  | background-color | `$icon-03`    |
+| `.bx--toggle:checked`                                          | background-color | `$support-02` |
+| `.bx--toggle__check`                                           | fill             | `$support-02` |
+
+<div className="image--fixed">
+
+![Inactive, inactive hover, and active states for a toggle](images/toggle-style-1.png)
+
+</div>
+
+<Caption>
+  Examples of inactive, inactive hover, and active states for a toggle
+</Caption>
+
+### Interactive states
+
+| Class                                                           | Property         | Color token    |
+| --------------------------------------------------------------- | ---------------- | -------------- |
+| `.bx--toggle__appearance:focus`                                 | border           | `$focus`       |
+| `.bx--label:disabled`                                           | text color       | `$disabled-02` |
+| `.bx--toggle__text--left:disabled`                              | text color       | `$disabled-02` |
+| `.bx--toggle:disabled +` <br/> `.bx--toggle__appearance:before` | background-color | `$disabled-01` |
+| `.bx--toggle:disabled +` <br/> `.bx--toggle__appearance:after`  | background-color | `$disabled-02` |
+
+### Typography
+
+Toggle labels should be set in sentence case, with only the first word in a phrase and any proper nouns capitalized, and no more than three words.
+
+| Class                     | Font-size (px/rem) | Font-weight   | Type token      |
+| ------------------------- | ------------------ | ------------- | --------------- |
+| `.bx--label`              | 12 / 0.75          | Regular / 400 | `$label-01`     |
+| `.bx--toggle__text--left` | 14 / 0.875         | Regular / 400 | `$body-long-01` |
+
+### Structure
+
+#### Toggle
+
+| Class                           | Property                  | px / rem  | Spacing token |
+| ------------------------------- | ------------------------- | --------- | ------------- |
+| `.bx--toggle__appearance`       | width                     | 48 / 3    | –             |
+| `.bx--toggle__appearance`       | height                    | 24 / 1.5  | –             |
+| `.bx--toggle__appearance:after` | height, width             | 18 / 1.25 | –             |
+| `.bx--toggle__label`            | margin-top, margin-bottom | 16 / 1    | `$spacing-05` |
+| `.bx--toggle__text--left`       | margin-left               | 8 / 0.5   | `$spacing-03` |
+
+<div className="image--fixed">
+
+![Structure and spacing measurements for toggle](images/toggle-style-2.png)
+
+</div>
+
+<Caption>Structure and spacing measurements for toggle | px / rem</Caption>
+
+#### Small toggle
+
+| Class                                                        | Property                  | px / rem   | Spacing token |
+| ------------------------------------------------------------ | ------------------------- | ---------- | ------------- |
+| `.bx--toggle--small`                                         | height                    | 16 / 1     | –             |
+| `.bx--toggle--small`                                         | width                     | 32 / 2     | –             |
+| `.bx--toggle--small +` <br/> `.bx--toggle__appearance:after` | height, width             | 10 / 0.625 | –             |
+| `.bx--toggle--small`                                         | margin-top, margin-bottom | 16 / 1     | `$spacing-05` |
+
+<div className="image--fixed">
+
+![Structure and spacing measurements for small toggle](images/toggle-style-3.png)
+
+</div>
+
+<Caption>
+  Structure and spacing measurements for small toggle | px / rem
+</Caption>
+
+## Code
+
+<ComponentDocs component="toggle"></ComponentDocs>
+
+## Feedback

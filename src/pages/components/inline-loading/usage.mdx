@@ -7,35 +7,42 @@ tabs: ['Code', 'Usage', 'Style']
 <AnchorLinks>
 
 <AnchorLink>General guidance</AnchorLink>
-<AnchorLink>Format</AnchorLink>
-<AnchorLink>States</AnchorLink>
+<AnchorLink>Formatting</AnchorLink>
+<AnchorLink>Content</AnchorLink>
+<AnchorLink>Behavior</AnchorLink>
+<AnchorLink>Accessibility</AnchorLink>
+<AnchorLink>Variations</AnchorLink>
+<AnchorLink>Style</AnchorLink>
+<AnchorLink>Code</AnchorLink>
+<AnchorLink>Feedback</AnchorLink>
 
 </AnchorLinks>
 
 ## General guidance
 
-_Inline loading_ spinners are used when performing actions. They help notify user's that their action is being processed.
+Inline loading spinners are used when performing actions. They help notify user's that their action is being processed.
 The waiting experience is a crucial design opportunity. Although it may not be obvious what is occurring on the back-end, we can communicate clearly to reassure the user that progress is happening.
 
-It is best practice to use an Inline loading component for any Create, Update, or Delete actions. The component provides feedback to the user about the progress of the action they took. This could be in a table, after a primary or secondary button click, or even in a modal.
+It is best practice to use an inline loading component for any Create, Update, or Delete actions. The component provides feedback to the user about the progress of the action they took. This could be in a table, after a primary or secondary button click, or even in a modal. The inline loading component should never be used to load a page or data.
 
-## Format
+<ComponentCode
+  name="Inline loading"
+  component="inline-loading"
+  variation="inline-loading"
+  hasReactVersion="inlineloading--inline-loading"
+  hasVueVersion="inlineloading--default"
+  hasAngularVersion="?path=/story/inline-loading--basic"
+  codepen="dLMXow"></ComponentCode>
 
-- If the inline loading is being used to submit a form, the form fields should get disabled.
+## Formatting
 
-- Descriptive text for the action is optional, but encouraged. If you have limited room or find adding text to be unnecessary you can just run through the animations.
+## Content 
 
-- The _success_ state of the inline loading component is active for 1.5 seconds before calling a optional function onSuccess. Use the onSuccess function to refetch new data, close a modal, or reset a form. If no function is specified the success state will last indefinitely.
+**Descriptive text for the action is optional, but encouraged.** If you have limited room or find adding text to be unnecessary you can just run through the animations.
 
-- If an error occurs, the Inline loading component should be hidden and a error notification should be added or error handling within a form should appear.
+## Behavior
 
-- The inline loading component should never be used to load a page or data.
-
-## States
-
-#### Loading
-
-The _loading_ state indicates that the action is still in progress.
+**The loading state indicates that the action is still in progress.** If the inline loading is being used to submit a form, the form fields should get disabled.
 
 <Row>
 <Column colLg={8}>
@@ -45,9 +52,7 @@ The _loading_ state indicates that the action is still in progress.
 </Column>
 </Row>
 
-#### Success
-
-The _success_ state indicates that the action completed successfully.
+**The success state indicates that the action completed successfully.** The success state of the inline loading component is active for 1.5 seconds before calling a optional function onSuccess. Use the onSuccess function to refetch new data, close a modal, or reset a form. If no function is specified the success state will last indefinitely.
 
 <Row>
 <Column colLg={8}>
@@ -57,9 +62,7 @@ The _success_ state indicates that the action completed successfully.
 </Column>
 </Row>
 
-#### Error
-
-The _error_ state indicates that the action did not complete successfully.
+**The error state indicates that the action did not complete successfully.** If an error occurs, the Inline loading component should be hidden and a error notification should be added or error handling within a form should appear.
 
 <Row>
 <Column colLg={8}>
@@ -68,3 +71,72 @@ The _error_ state indicates that the action did not complete successfully.
 
 </Column>
 </Row>
+
+## Accessibility
+
+## Variations 
+
+## Style
+
+### Color
+
+| Class                            | Property | Color token       |
+| -------------------------------- | -------- | ----------------- |
+| `.bx--loading__svg`              | stroke   | `$ui-03`          |
+| `.bx--inline-loading__checkmark` | color    | `$interactive-01` |
+| `.bx--inline-loading__text`      | color    | `$text-01`        |
+
+### Typography
+
+Button text should be set in sentence case, with only the first word in a phrase and any proper nouns capitalized.
+
+| Class                       | Font-size (px/rem) | Font-weight   | Type token       |
+| --------------------------- | ------------------ | ------------- | ---------------- |
+| `.bx--inline-loading__text` | 14 / 0.875         | Regular / 400 | `$body-short-01` |
+
+### Structure
+
+| Class     | Property      | px / rem | Spacing token |
+| --------- | ------------- | -------- | ------------- |
+| Spinner   | width, height | 16 / 1   | –             |
+| Checkmark | width, height | 16 / 1   | –             |
+
+<div className="image--fixed">
+
+![Inline loading spinner structure measurements](images/inline-loading-style-1.png)
+
+</div>
+
+<div className="image--fixed">
+
+![Inline loading states](images/inline-loading-style-2.png)
+
+</div>
+
+<div className="image--fixed">
+
+![Inline loading spinner in context example](images/inline-loading-style-3.png)
+
+</div>
+
+<Caption>
+  Structure measurements for small and large loading spinner | px / rem
+</Caption>
+
+#### Placement
+
+The inline loading component should appear during any user action loading. If button is used to trigger the action, the inline loading component should replace that button.
+
+<div className="image--fixed">
+
+![Inline loading spinner animated_in context example](images/inline-loading-animated.gif)
+
+</div>
+
+<Caption>Example of a inline loading in product context</Caption>
+
+## Code
+
+<ComponentDocs component="inline-loading"></ComponentDocs>
+
+## Feedback

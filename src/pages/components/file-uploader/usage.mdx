@@ -6,37 +6,49 @@ tabs: ['Code', 'Usage', 'Style']
 
 <AnchorLinks>
 
-<AnchorLink>General guidance </AnchorLink>
-<AnchorLink>Interaction</AnchorLink>
-<AnchorLink>Upload state</AnchorLink>
-<AnchorLink>Removing files</AnchorLink>
+<AnchorLink>General guidance</AnchorLink>
+<AnchorLink>Formatting</AnchorLink>
+<AnchorLink>Content</AnchorLink>
+<AnchorLink>Behavior</AnchorLink>
+<AnchorLink>Accessibility</AnchorLink>
+<AnchorLink>Variations</AnchorLink>
+<AnchorLink>Style</AnchorLink>
+<AnchorLink>Code</AnchorLink>
+<AnchorLink>Feedback</AnchorLink>
 
 </AnchorLinks>
 
 ## General guidance
 
-_File Uploader_ allows the user to transfer a file or submit content of their own.
+File uploader allows the user to transfer a file or submit content of their own. A file uploader is commonly found in forms, but they can also live as stand alone elements.
 
-- A File Uploader is commonly found in forms, but they can also live as stand alone elements.
-- **Add files** is the default text that appears with the File Uploader.
-- A File Uploader should always be accompanied by **Submit** or **Upload**, which is to be styled as a [Primary Button](/components/button).
-- Use an ellipsis (...) if the filename extends beyond the width of its parent element.
+<ComponentCode
+  name="File uploader"
+  component="file-uploader"
+  variation="file-uploader"
+  hasReactVersion="fileuploader--fileuploader"
+  hasVueVersion="fileuploader--default"
+  hasAngularVersion="?path=/story/file-uploader--basic"
+  codepen="MRyyyw"></ComponentCode>
 
-<Row>
-<Column colLg={8}>
+## Formatting
 
-![file uploader example](images/file-uploader-usage-1.png)
+## Content 
 
-</Column>
-</Row>
+**Add files** is the default text that appears with the file uploader.
 
-## Interaction
+A file uploader should always be accompanied by **Submit** or **Upload**, which is to be styled as a [Primary Button](/components/button).
 
-1. The user may select 1 or more files to upload at a time. By default, any file type is accepted, but you can add parameters to validate a specific file type.
-2. The action of clicking **Add files** will trigger a browser-specific upload window.
-3. Once the user chooses files to upload, the browser-specific upload window closes and the files will appear below the **Add files** button.
-4. User clicks **Submit** or **Upload** to submit their data.
-5. Any errors that may occur with the file should appear as an inline error
+Use an ellipsis (...) if the filename extends beyond the width of its parent element.
+
+## Behavior
+
+**The user may select 1 or more files to upload at a time. By default, any file type is accepted, but you can add parameters to validate a specific file type.**
+
+1. The action of clicking **Add files** will trigger a browser-specific upload window.
+2. Once the user chooses files to upload, the browser-specific upload window closes and the files will appear below the **Add files** button.
+3. User clicks **Submit** or **Upload** to submit their data.
+4. Any errors that may occur with the file should appear as an inline error
    [Notification](/components/notification).
 
 <Row>
@@ -47,9 +59,7 @@ _File Uploader_ allows the user to transfer a file or submit content of their ow
 </Column>
 </Row>
 
-## Upload state
-
-Developers using File Uploader will be able to use JavaScript to inject a Loading component when selected files are actually being uploaded.
+Developers using file uploader will be able to use JavaScript to inject a Loading component when selected files are actually being uploaded.
 
 <Row>
 <Column colLg={8}>
@@ -59,6 +69,74 @@ Developers using File Uploader will be able to use JavaScript to inject a Loadin
 </Column>
 </Row>
 
-## Removing files
-
 Developers will use JavaScript to inject a “close” button on each file that is selected to be uploaded. It's up to the developer to code the logic for removing these files individually. However, keep in mind that this kind of editing isn't supported natively in the browser.
+
+## Accessibility
+
+## Variations 
+
+## Style
+
+### Color
+
+| Class                      | Property   | Color token |
+| -------------------------- | ---------- | ----------- |
+| `.bx--label`               | text color | `$text-01`  |
+| `.bx--label-description`   | text color | `$text-02`  |
+| `.bx--file-filename`       | color      | `$text-01`  |
+| `.bx--file__selected-file` | background | `$ui-01`    |
+| `.bx--file-close`          | fill       | `$icon-01`  |
+
+#### Interactive states
+
+| Class                | Property      | Color token    |
+| -------------------- | ------------- | -------------- |
+| File name: invalid   | text color    | `$disabled-02` |
+| Error message        | text color    | `$support-01`  |
+| `.bx--file-filename` | border-bottom | `$support-01`  |
+
+### Typography
+
+The file uploader label and instruction text should be set in sentence case, with only the first letter of the first word in the sentence capitalized.
+
+| Class                    | Font-size (px/rem) | Font-weight     | Type token       |
+| ------------------------ | ------------------ | --------------- | ---------------- |
+| `.bx--label`             | 14 / 0.875         | Semi-bold / 600 | `$heading-01`    |
+| `.bx--label-description` | 14 / 0.875         | Regular / 400   | `$body-short-01` |
+| `.bx--file-filename`     | 14 / 0.875         | Regular / 400   | `$body-short-01` |
+
+### Structure
+
+The width of an uploaded file varies based on the content and layout of a design. Refer to the [button](/components/button) guidelines for styling and usage of the “Add files” button.
+
+| Class                      | Property      | px / rem | Spacing token |
+| -------------------------- | ------------- | -------- | ------------- |
+| `.bx--file-filename`       | height        | 40 / 2.5 | –             |
+| `.bx--file-filename`       | width         | 224 / 14 | –             |
+| `.bx--file__selected-file` | padding-left  | 16 / 1   | `$spacing-03` |
+| `.bx--file__selected-file` | margin-bottom | 8 / 0.5  | `$spacing-05` |
+
+<div className="image--fixed">
+
+![Structure and spacing measurements for file uploader](images/file-uploader-style-1.png)
+
+</div>
+
+<Caption>
+  Structure and spacing measurements for file uploader | px / rem
+</Caption>
+
+#### Recommended
+
+The following specs are not built into the file uploader component but are recommended by design as the proper amount between file uploader elements.
+
+| Class             | Property                  | px / rem | Spacing token |
+| ----------------- | ------------------------- | -------- | ------------- |
+| `.bx--file-close` | height, width             | 16 / 1   | –             |
+| `.bx--file-close` | margin-left, margin-right | 16 / 1   | `$spacing-05` |
+
+## Code
+
+<ComponentDocs component="file-uploader"></ComponentDocs>
+
+## Feedback

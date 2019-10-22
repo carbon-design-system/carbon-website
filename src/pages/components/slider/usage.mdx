@@ -4,29 +4,47 @@ description: Sliders provide a visual indication of adjustable content, where th
 tabs: ['Code', 'Usage', 'Style']
 ---
 
+<AnchorLinks>
+
+<AnchorLink>General guidance</AnchorLink>
+<AnchorLink>Formatting</AnchorLink>
+<AnchorLink>Content</AnchorLink>
+<AnchorLink>Behavior</AnchorLink>
+<AnchorLink>Accessibility</AnchorLink>
+<AnchorLink>Variations</AnchorLink>
+<AnchorLink>Style</AnchorLink>
+<AnchorLink>Code</AnchorLink>
+<AnchorLink>Feedback</AnchorLink>
+
+</AnchorLinks>
+
 ## General guidance
 
-_Sliders_ provide a visual indication of adjustable content, where the user can move the handle along a horizontal track to increase or decrease the value.
+Sliders provide a visual indication of adjustable content, where the user can move the handle along a horizontal track to increase or decrease the value.
 
-The slider in its basic form should be accompanied by a label and a number input that doubles as a display for the slider's current value. The basic slider does **not** include discrete values, as the slider represents a percentage of 0-100. In this case it is not necessary for a user to choose a specific value, but instead generally increase or decrease an input. For example, the user increases the slider amount and the volume of the music gets louder. The more complex versions should be used for selecting a specific value within a value range.
+- Do not use for ranges that are extremely large _i.e. 1-1000_.
+- Do not use for ranges that are too small _i.e. 1-3_.
 
-<Row>
-<Column colLg={8}>
+<ComponentCode
+  name="Slider"
+  component="slider"
+  variation="slider"
+  hasReactVersion="slider--default"
+  hasLightVersion
+  hasVueVersion="slider--default"
+  hasAngularVersion="?path=/story/slider--basic"
+  codepen="zXqozN"></ComponentCode>
 
-![Example of volume slider](images/slider-usage-1.png)
+## Formatting
 
-</Column>
-</Row>
+**The slider in its basic form should be accompanied by a label and a number input that doubles as a display for the slider's current value.** The basic slider does **not** include discrete values, as the slider represents a percentage of 0-100. In this case it is not necessary for a user to choose a specific value, but instead generally increase or decrease an input. For example, the user increases the slider amount and the volume of the music gets louder. The more complex versions should be used for selecting a specific value within a value range.
 
-<Row>
-<Column colLg={8}>
+## Content 
 
-![Example of volume slider](images/slider-usage-1.png)
+- The slider label should indicate what value the slider is changing.
+- Range values are used to describe the range in numbers.
 
-</Column>
-</Row>
-
-## Interaction
+## Behavior
 
 Users can choose a numerical value by:
 
@@ -45,9 +63,72 @@ Users can choose a numerical value by:
 </Column>
 </Row>
 
-## Best practices
+## Accessibility
 
-- The slider label should indicate what value the slider is changing.
-- Range values are used to describe the range in numbers.
-- Do not use for ranges that are extremely large _i.e. 1-1000_.
-- Do not use for ranges that are too small _i.e. 1-3_.
+## Variations 
+
+## Style
+
+### Color
+
+| Class                       | Property         | Color token |
+| --------------------------- | ---------------- | ----------- |
+| `.bx--slider__thumb`        | fill             | `$ui-05`    |
+| `.bx--slider__filled-track` | background-color | `$ui-05`    |
+| `.bx--slider__track`        | background-color | `$ui-03`    |
+| `.bx--label`                | text color       | `$text-02`  |
+| `.bx--slider__range-label`  | text color       | `$text-01`  |
+
+### Interactive states
+
+| Class                              | Property         | Color token       |
+| ---------------------------------- | ---------------- | ----------------- |
+| `.bx--slider__thumb:focus`         | border           | `$focus`          |
+| `.bx--slider__thumb:active`        | fill             | `$interactive-04` |
+| `.bx--slider__filled-track:active` | background-color | `$interactive-04` |
+| `.bx--label:disabled`              | text color       | `$disabled-02`    |
+| `.bx--slider__thumb:disabled`      | fill             | `$disabled-02`    |
+| `.bx--slider__track:disabled`      | background-color | `$disabled-02`    |
+
+### Typography
+
+_Slider_ labels should be set in sentence case, with only the first word in a phrase and any proper nouns capitalized, and no more than three words.
+
+| Class                      | Font-size (px/rem) | Font-weight   | Type token       |
+| -------------------------- | ------------------ | ------------- | ---------------- |
+| `.bx--label`               | 12 / 0.75          | Regular / 400 | `$label-01`      |
+| `.bx--slider__range-label` | 14 / 0.875         | Regular / 400 | `$body-short-01` |
+
+### Structure
+
+The width of a slider varies based on page content and layout.
+
+| Class                                   | Property                  | px / rem   | Spacing token |
+| --------------------------------------- | ------------------------- | ---------- | ------------- |
+| `.bx--slider__thumb`                    | height, width             | 14 / 0.875 | –             |
+| `.bx--slider__thumb:active`             | height, width             | 20 / 1.25  | –             |
+| `.bx--slider__track`                    | height                    | 4 / 0.25   | –             |
+| `.bx--label`                            | margin-bottom             | 16 / 1     | `$spacing-05` |
+| `.bx--slider__track`                    | margin-left, margin-right | 8 / 0.5    | `$spacing-03` |
+| `.bx--slider__range-label:last-of-type` | margin-right              | 16 / 1     | `$spacing-05` |
+
+<div className="image--fixed">
+
+![Structure and spacing measurements for slider](images/slider-style-1.png)
+
+</div>
+
+#### Recommended
+
+The following specs are not built into the slider component but are recommended by design as the proper sizing for the slider tracking line.
+
+| Class               | Property  | px / rem   | Spacing token |
+| ------------------- | --------- | ---------- | ------------- |
+| `.bx--slider-track` | min-width | 200 / 12.5 | –             |
+| `.bx--slider-track` | max-width | 640 / 40   | –             |
+
+## Code
+
+<ComponentDocs component="slider"></ComponentDocs>
+
+## Feedback

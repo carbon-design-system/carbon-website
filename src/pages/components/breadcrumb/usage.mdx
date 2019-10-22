@@ -4,21 +4,49 @@ description: The breadcrumb component is a secondary navigation pattern that sho
 tabs: ['Code', 'Usage', 'Style']
 ---
 
+<AnchorLinks>
+
+<AnchorLink>General guidance</AnchorLink>
+<AnchorLink>Formatting</AnchorLink>
+<AnchorLink>Content</AnchorLink>
+<AnchorLink>Behavior</AnchorLink>
+<AnchorLink>Accessibility</AnchorLink>
+<AnchorLink>Variations</AnchorLink>
+<AnchorLink>Style</AnchorLink>
+<AnchorLink>Code</AnchorLink>
+<AnchorLink>Feedback</AnchorLink>
+
+</AnchorLinks>
+
 ## General guidance
 
-The _breadcrumb_ component (aka, breadcrumb trail) is a secondary navigation pattern that shows hierarchy among content or traces a user's path. Breadcrumbs enable users to move quickly up to a parent level or previous step. All links in a breadcrumb should be clickable.
+The breadcrumb component (aka, breadcrumb trail) is a secondary navigation pattern that shows hierarchy among content or traces a user's path. Breadcrumbs enable users to move quickly up to a parent level or previous step.
 
 Breadcrumbs are very effective in products and experiences that have a large amount of content organized in a heirarchy of more than two levels. They are also highly effective in flows that contain multiple steps, operating in a similar way to a progress indicator. Breadcrumbs are always treated as secondary and should never entirely replace the primary navigation.
 
 Breadcrumbs' space-efficient design and high utility make them an easy choice for most designers.
 
-<Row>
-<Column colLg={8}>
+<ComponentCode
+  name="Breadcrumb"
+  component="breadcrumb"
+  variation="breadcrumb"
+  hasReactVersion="breadcrumb--default"
+  hasVueVersion="breadcrumb--default"
+  hasAngularVersion="?path=//story/breadcrumb--basic"
+  codepen="yreLJv"></ComponentCode>
 
-![multiple tiers of breadcrumb](images/breadcrumb-usage-1.png)
+## Formatting
 
-</Column>
-</Row>
+[^1]
+[^1]: Content note: should probably say something about truncated breadcrumbs up here if we talk about it in the spec section
+
+## Content
+
+## Behvaior
+
+**When a user hovers overs a breadcrumb, the breadcrumb title should be underlined.** All links in a breadcrumb should be clickable.
+
+## Accessibility
 
 ## Variations
 
@@ -26,3 +54,82 @@ Breadcrumbs' space-efficient design and high utility make them an easy choice fo
 | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | _Location-based_ | These illustrate the site's heirarchy and show the user where they are within that heirarchy.                                                                                              |
 | _Path-based_     | These show the actual steps the user took to get to the current page, rather than reflecting the site's information architecture. Path-based breadcrumbs are always dynamically generated. |
+
+## Style
+
+### Color
+
+| Class                         | Property | Color token           |
+| ----------------------------- | -------- | --------------------- |
+| `.bx--link`                   | color    | `$link-01`            |
+| `.bx--link:hover`             | color    | `$hover-primary-text` |
+| `.bx--breadcrumb-item::after` | color    | `$text-01`            |
+
+### Typography
+
+| Class       | Font-size (px/rem) | Font-weight   | Type token       |
+| ----------- | ------------------ | ------------- | ---------------- |
+| `.bx--link` | 14 / 0.875         | Regular / 400 | `$body-short-01` |
+
+<div className="image--fixed">
+
+![Breadcrumb typography treatment example](images/breadcrumb-style-1.png)
+
+</div>
+
+<Caption>Breadcrumb typography treatment example</Caption>
+
+### Structure
+
+The on-click dropdown should follow the [overflow menu](/components/overflow-menu) specs for sizing, padding, and interaction.
+
+| Class                  | Property    | px/rem  | Spacing token |
+| ---------------------- | ----------- | ------- | ------------- |
+| `.bx--breadcrumb-item` | margin-left | 8 / 0.5 | `$spacing-03` |
+
+<div className="image--fixed">
+
+![Truncated breadcrumb dropdown example](images/breadcrumb-style-2.png)
+
+</div>
+
+<Caption>Structure and spacing measurements for breadcrumb | px / rem</Caption>
+
+### Truncated Breadscrumbs
+
+Truncated breadcrumbs are not currently built into the breadcrumb component. The following colors from the [overflow menu](/overflow/style) are recommended for the overflow breadcrumb list.
+
+** Color **
+
+| Class                                      | Property         | Color token  |
+| ------------------------------------------ | ---------------- | ------------ |
+| `.bx--overflow-menu-options__btn`          | color            | `$icon-01`   |
+| `.bx--overflow-menu-options__option:hover` | background-color | `$hover-row` |
+
+** Typography **
+
+| Class                             | Font-size (px/rem) | Font-weight   | Type token       |
+| --------------------------------- | ------------------ | ------------- | ---------------- |
+| `.bx--overflow-menu-options__btn` | 14 / 0.875         | Regular / 400 | `$body-short-01` |
+
+** Structure **
+
+| Class                        | Property | px / rem | Spacing token |
+| ---------------------------- | -------- | -------- | ------------- |
+| `.bx--overflow-menu-options` | height   | 32 / 2   | –             |
+
+<div className="image--fixed">
+
+![Truncated breadcrumb dropdown example](images/breadcrumb-style-3.png)
+
+</div>
+
+<Caption>
+  Recommended structure and spacing measurements for breadcrumb | px / rem
+</Caption>
+
+## Code
+
+<ComponentDocs component="breadcrumb"></ComponentDocs>
+
+## Feedback

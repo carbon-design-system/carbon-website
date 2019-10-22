@@ -4,29 +4,106 @@ description: Content switchers manipulate the content shown following an exclusi
 tabs: ['Code', 'Usage', 'Style']
 ---
 
+<AnchorLinks>
+
+<AnchorLink>General guidance</AnchorLink>
+<AnchorLink>Formatting</AnchorLink>
+<AnchorLink>Content</AnchorLink>
+<AnchorLink>Behavior</AnchorLink>
+<AnchorLink>Accessibility</AnchorLink>
+<AnchorLink>Variations</AnchorLink>
+<AnchorLink>Style</AnchorLink>
+<AnchorLink>Code</AnchorLink>
+<AnchorLink>Feedback</AnchorLink>
+
+</AnchorLinks>
+
 ## General guidance
 
-_Content switcher_ manipulates the content shown following an exclusive or “either/or” pattern.
-It is used to toggle between two or more content sections within the same space on screen. Only one section can be shown at a time.
+Content switcher manipulates the content shown following an exclusive or “either/or” pattern. It is used to toggle between two or more content sections within the same space on screen. Only one section can be shown at a time.
 
-#### Text
+The content switcher is used for large groups of content, as opposed to the [toggle](https://www.carbondesignsystem.com/components/toggle) which is meant for a “yes/no” or “on/off” binary decision.
 
-Be concise and specific. Titles have a max of two words.
+<ComponentCode
+  name="Content switcher"
+  component="content-switcher"
+  variation="content-switcher"
+  hasReactVersion="contentswitcher--default"
+  hasVueVersion="contentswitcher--default"
+  hasAngularVersion="?path=/story/content-switcher--basic"
+  codepen="QPybNw"></ComponentCode>
 
-#### Default selection
+## Formatting
 
-Based on usage, there should be a default selection. The default selection is always the first option in a switcher.
+## Content 
 
-## Related components
+**Titles should be concise and specific.** They have a max of two words.
 
-#### Content switcher vs. toggle
+## Behavior
 
-The content switcher is used for large groups of content, as opposed to the [toggle](/components/toggle) which is meant for a “yes/no” or “on/off” binary decision.
+**Based on usage, there should be a default selection.** The default selection is always the first option in a switcher.
 
-<Row>
-<Column colLg={8}>
+## Accessibility
 
-![content switcher example](images/content-switcher-usage-1.png)
+## Variations 
 
-</Column>
-</Row>
+## Style
+
+### Color
+
+Content switchers have two main states: `selected` and `unselected`. By default, content switcher buttons are unselected with the selected state using a high contrast color.
+
+| Class                       | Property         | Color token |
+| --------------------------- | ---------------- | ----------- |
+| `.bx--content-switcher-btn` | background-color | `$ui-01`    |
+| `.bx--content-switcher-btn` | text color       | `$text-02`  |
+| `--selected`                | background-color | `$ui-05`    |
+| `--selected`                | text color       | `$text-04`  |
+| `:after`                    | divider          | `$ui-03`    |
+
+#### Interactive states
+
+Hover states only apply to `unselected` buttons.
+
+| State       | Property         | Color token    |
+| ----------- | ---------------- | -------------- |
+| `:hover`    | background-color | `$hover-ui`    |
+| `:hover`    | text color       | `$text-01`     |
+| `:focus`    | border           | `$focus`       |
+| `:disabled` | background-color | `$disabled-01` |
+| `:disabled` | text color       | `$disabled-02` |
+
+### Typography
+
+Content switcher text should be set in sentence case, with only the first word in a phrase and any proper nouns capitalized. The text should not exceed three words.
+
+| Class                       | Font-size (px/rem) | Font-weight   | Type style       |
+| --------------------------- | ------------------ | ------------- | ---------------- |
+| `.bx--content-switcher-btn` | 14 / 0.875         | Regular / 400 | `$body-short-01` |
+
+### Structure
+
+Content switchers must have at least two options for the user to choose from. Each container that makes up the content switcher is equal in size. The width of a container is determined by the length of the longest container option text plus the 16 px / 1rem on both sides of the text.
+
+| Class                       | Property                    | px / rem | Spacing token |
+| --------------------------- | --------------------------- | -------- | ------------- |
+| `.bx--content-switcher`     | height                      | 40 / 2.5 | –             |
+| `.bx--content-switcher`     | corner radius               | 4px      | –             |
+| `:after`                    | divider                     | 1px      | –             |
+| `.bx--content-switcher-btn` | padding-left, padding-right | 16 / 1   | `$spacing-05` |
+
+<div className="image--fixed">
+
+![Content switcher structure and spacing measurements](images/content-switcher-style-1.png)
+
+</div>
+
+<Caption>
+  Structure and spacing measurements for content switcher | px / rem
+</Caption>
+
+## Code
+
+<ComponentDocs component="content-switcher"></ComponentDocs>
+
+## Feedback

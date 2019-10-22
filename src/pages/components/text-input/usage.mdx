@@ -4,42 +4,54 @@ description: Text inputs enable the user to interact with and input content and 
 tabs: ['Code', 'Usage', 'Style']
 ---
 
-### Text inputs enable the user to interact with and input content and data. This component can be used for long and short form entries.
-
 <AnchorLinks>
 
 <AnchorLink>General guidance</AnchorLink>
-<AnchorLink>Format</AnchorLink>
+<AnchorLink>Formatting</AnchorLink>
 <AnchorLink>Content</AnchorLink>
+<AnchorLink>Behavior</AnchorLink>
+<AnchorLink>Accessibility</AnchorLink>
+<AnchorLink>Variations</AnchorLink>
+<AnchorLink>Style</AnchorLink>
+<AnchorLink>Code</AnchorLink>
+<AnchorLink>Feedback</AnchorLink>
 
 </AnchorLinks>
 
-<Row>
-<Column colLg={8}>
-
-![An example of a text input.](images/text-input-header-usage.png)
-
-</Column>
-</Row>
-
 ## General guidance
 
-There instances, sometimes in the same form, where you need users to enter both short and long form content. Allow the size of the text input box to reflect the length of the content you expect the user to enter.
+Text inputs enable the user to interact with and input content and data. This component can be used for long and short form entries.
 
-| Type       | Purpose                                                                           |
-| ---------- | --------------------------------------------------------------------------------- |
-| Text input | When the expected user input is a single line of text, as opposed to a paragraph. |
-| Text area  | When the expected user input is more than one sentence.                           |
+<ComponentCode
+  name="Text input"
+  component="text-input"
+  variation="text-input"
+  hasLightVersion
+  hasReactVersion="textinput--default"
+  hasVueVersion="textinput--default"
+  hasAngularVersion="?path=/story/input--input"
+  codepen="EJKNOw"
+/>
 
-## Format
+## Formatting
 
-### Default values
+**There are instances, sometimes in the same form, where you need users to enter both short and long form content.** Allow the size of the text input box to reflect the length of the content you expect the user to enter.
 
-Where possible, add programmatic assistance. Detect and pre-fill inputs to reduce errors and save time. When the software can't determine the value that belongs in an input, use type-ahead to make suggestions. Use sentence-case for default values, detected values, and auto-completion text.
+**Text fields and text areas may have a character limit and counter.** Use the character limit and counter to let users know how long their entry can be before they begin typing. While useful for data collection, character count is not an intuitive way to communicate content length to users. Character count allows a user to understand an input error if they surpass the character limit.
 
-### Validation and errors
+## Content 
 
-Real time validation helps to streamline the process and keep data clean when the user is filling out forms. For full guidelines, refer to the [forms](/components/form/usage) usage page.
+**Effective form labeling helps users understand what information to enter into a text input.** Using placeholder text in lieu of a label is sometimes employed as a space-saving method. However, this is not recommended because it hides context and presents accessibility issues.
+
+**Placeholder text provides hints or examples of what to enter.** Placeholder text disappears after the user begins entering data into the input and should not contain crucial information. Use sentence-style capitalization, and in most cases, write the text as a direct statement without punctuation.
+
+**Help text is pertinent information that assists the user in completing a field.** Help text is always available when the input is focused and appears underneath the label. Use sentence-style capitalization, and in most cases, write the text as full sentences with punctuation.
+
+## Behavior
+
+**Detect and pre-fill inputs to reduce errors and save time.** When the software can't determine the value that belongs in an input, use type-ahead to make suggestions. Use sentence-case for default values, detected values, and auto-completion text.
+
+**Real time validation helps to streamline the process and keep data clean when the user is filling out forms.** For full guidelines, refer to the [forms](/components/form/usage) usage page.
 
 <Row>
 <Column colLg={8}>
@@ -49,25 +61,7 @@ Real time validation helps to streamline the process and keep data clean when th
 </Column>
 </Row>
 
-### Character count
-
-Text fields and text areas may have a character limit and counter. Use the character limit and counter to let users know how long their entry can be before they begin typing.
-
-While useful for data collection, character count is not an intuitive way to communicate content length to users. Character count allows a user to understand an input error if they surpass the character limit.
-
-<Row>
-<Column colLg={8}>
-
-![An example of a text area.](images/text-area-usage-1.png)
-
-</Column>
-</Row>
-
-## Content
-
-### Labels
-
-Effective form labeling helps users understand what information to enter into a text input. Using placeholder text in lieu of a label is sometimes employed as a space-saving method. However, this is not recommended because it hides context and presents accessibility issues.
+## Accessibility
 
 #### Accessibility best practices for labels:
 
@@ -75,26 +69,90 @@ Effective form labeling helps users understand what information to enter into a 
 - Labels must be announced to the screen reader on focus.
 - Ensure the helper text that appears under an input is read when an assistive technology user stops at an input using ARIA.
 
-### Placeholder text
+## Variations 
 
-Placeholder text provides hints or examples of what to enter. Placeholder text disappears after the user begins entering data into the input and should not contain crucial information. Use sentence-style capitalization, and in most cases, write the text as a direct statement without punctuation.
+| Type       | Purpose                                                                           |
+| ---------- | --------------------------------------------------------------------------------- |
+| Text input | When the expected user input is a single line of text, as opposed to a paragraph. |
+| Text area  | When the expected user input is more than one sentence.                           |
 
-<Row>
-<Column colLg={8}>
+## Style
 
-![Placeholder text example](images/text-input-usage-1.png)
+### Color
 
-</Column>
-</Row>
+Inputs come in two different colors. The default input color is `$field-01` and is used on `$ui-background` and `$ui-01` page backgrounds. The `--light` version input color is `$field-02` and is used on `$ui-02` page backgrounds.
 
-### Help text
+| Class                          | Property         | Color token |
+| ------------------------------ | ---------------- | ----------- |
+| `.bx--label`                   | text color       | `$text-02`  |
+| `.bx--text-input`              | text color       | `$text-01`  |
+| `.bx--text-input::placeholder` | text color       | `$text-03`  |
+| `.bx--form__helper-text`       | text color       | `$text-02`  |
+| `.bx--text-input`              | background-color | `$field-01` |
+| `.bx--text-input--light`       | background-color | `$field-02` |
+| `.bx--text-input`              | border-bottom    | `$ui-04`    |
 
-Help text is pertinent information that assists the user in completing a field. Help text is always available when the input is focused and appears underneath the label. Use sentence-style capitalization, and in most cases, write the text as full sentences with punctuation.
+<div className="image--fixed">
 
-<Row>
-<Column colLg={8}>
+![Default and user input states for text input in both field colors](images/text-input-style-1.png)
 
-![Help text example](images/text-input-usage-3.png)
+</div>
 
-</Column>
-</Row>
+<Caption>
+  Examples of default and user-input states for text input in both $field-02
+  (left) and $field-01 (right)
+</Caption>
+
+### Interactive states
+
+| Class                           | Property   | Color token   |
+| ------------------------------- | ---------- | ------------- |
+| `.bx--text-input:focus`         | border     | `$focus`      |
+| `.bx--text-input[data-invalid]` | border     | `$support-01` |
+| `.bx--form-requirement`         | text color | `$support-01` |
+| `warning--filled`               | svg        | `$support-01` |
+
+### Typography
+
+Text input labels and placeholder text should be set in sentence case, with only the first word in a phrase and any proper nouns capitalized. Text input labels should be three words or less.
+
+| Class                    | Font-size (px/rem) | Font-weight   | Type token      |
+| ------------------------ | ------------------ | ------------- | --------------- |
+| `.bx--label`             | 12 / 0.75          | Regular / 400 | `$label-01`     |
+| `.bx--text-input`        | 14 / 0.875         | Regular / 400 | `$body-long-01` |
+| `.bx--form__helper-text` | 12 / 0.75          | Regular / 400 | `$label-01`     |
+| `.bx--form-requirement`  | 12 / 0.75          | Regular / 400 | `$label-01`     |
+
+### Structure
+
+| Class                   | Property                    | px / rem | Spacing token |
+| ----------------------- | --------------------------- | -------- | ------------- |
+| `.bx--text-input`       | height                      | 40 / 2.5 | –             |
+| `.bx--label`            | margin-bottom               | 8 / 0.5  | `$spacing-03` |
+| `.bx--text-input`       | padding-left, padding-right | 16 / 1   | `$spacing-05` |
+| `.bx--text-input`       | border-bottom               | 1px      | –             |
+| `.bx--text-input:focus` | border                      | 2px      | –             |
+
+<div className="image--fixed">
+
+![Structure and spacing measurements for text input](images/text-input-style-2.png)
+
+</div>
+
+<Caption>Structure and spacing measurements for text input | px / rem</Caption>
+
+<div className="image--fixed">
+
+![Active, help, error or disabled states for text input](images/text-input-style-3.png)
+
+</div>
+
+<Caption>
+  Examples of active, help, error and disabled text input states
+</Caption>
+
+## Code
+
+<ComponentDocs component="text-input" />
+
+## Feedback

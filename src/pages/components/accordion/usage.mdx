@@ -4,20 +4,92 @@ description: The accordion component delivers large amounts of content in a smal
 tabs: ['Code', 'Usage', 'Style']
 ---
 
+<AnchorLinks>
+
+<AnchorLink>General guidance</AnchorLink>
+<AnchorLink>Formatting</AnchorLink>
+<AnchorLink>Content</AnchorLink>
+<AnchorLink>Behavior</AnchorLink>
+<AnchorLink>Accessibility</AnchorLink>
+<AnchorLink>Variations</AnchorLink>
+<AnchorLink>Style</AnchorLink>
+<AnchorLink>Code</AnchorLink>
+<AnchorLink>Feedback</AnchorLink>
+
+</AnchorLinks>
+
 ## General guidance
 
 The accordion component delivers large amounts of content in a small space through progressive disclosure. That is, the user gets key details about the underlying content and can choose to expand that content within the constraints of the accordion. Accordions work especially well on mobile interfaces or whenever vertical space is at a premium.
 
-Avoid "nested" accordions—that is, collapsible content within collapsible content. This type of pattern goes against UX best practices.
+<ComponentCode
+  name="Accordion"
+  component="accordion"
+  variation="accordion"
+  hasReactVersion="accordion--default"
+  hasVueVersion="accordion--default"
+  hasAngularVersion="?path=/story/accordion--basic"
+  codepen="WWrNvp"></ComponentCode>
 
-The Carbon accordion allows for multiple sections to be expanded simultaneously.
+## Formatting
 
-A chevron is used to indicate the "expand/collapse" action, though the entire header area is clickable for the same action.
+**Avoid “nested” accordions—that is, collapsible content within collapsible content.** This type of pattern goes against UX best practices. [^1]
+[^1]: Content note: this seems like a good place to cite why nested accordions aren't a good idea.
 
-<Row>
-<Column colLg={8}>
+## Content
 
-![accordion example](images/accordion-usage-1.png)
+**All accordion labels are set in sentence case and should not exceed three words.** Set body text appropriately based on content.
 
-</Column>
-</Row>
+## Behvaior
+
+**A chevron is used to indicate the “expand/collapse” action, though the entire header area is clickable for the same action.** The Carbon accordion allows for multiple sections to be expanded simultaneously.
+
+## Accessibility
+
+## Style
+
+### Color
+
+| Class                     | Property   | Color token |
+| ------------------------- | ---------- | ----------- |
+| `.bx--accordion__title`   | color      | `$text-01`  |
+| `.bx--accordion__content` | color      | `$text-01`  |
+| `.bx--accordion__arrow`   | fill       | `$icon-01`  |
+| `.bx--accordion__item`    | border-top | `$ui-03`    |
+
+### Typography
+
+| Class                     | Font-size (px/rem) | Font-weight   | Type token      |
+| ------------------------- | ------------------ | ------------- | --------------- |
+| `.bx--accordion__title`   | 14 / 0.875         | Regular / 400 | `$body-long-01` |
+| `.bx--accordion__content` | 14 / 0.875         | Regular / 400 | `$body-long-01` |
+
+### Structure
+
+There is no limit to the height of an open row, however, follow the other padding specs below. The width of an accordion varies based on the content, layout, and page design. The chevron icon can be found on the [iconography](/guidelines/iconography/library) library page. Avoid having any text within 16px / 1rem of the accordion's sides. Additionally, include padding between labels, body copy, and separation lines to provide breathing room between elements.
+
+| Class                          | Property       | px/rem   | Spacing token |
+| ------------------------------ | -------------- | -------- | ------------- |
+| `.bx--accordion__heading`      | height         | 32 / 2   | –             |
+| `.bx--accordion__item`         | border-top     | 1        | –             |
+| `.bx--accordion__arrow`        | size           | 16 / 1   | –             |
+| `.bx--accordion__arrow`        | padding-right  | 16 / 1   | `$spacing-05` |
+| `.bx--accordion__title`        | margin-left    | 16 / 1   | `$spacing-05` |
+| `.bx--accordion__content`      | padding-right  | 25%      | –             |
+| `.bx--accordion__content`      | padding-top    | 8 / 0.5  | `$spacing-03` |
+| `.bx--accordion__content`      | padding-left   | 16 / 1   | `$spacing-05` |
+| `.bx--accordion__item--active` | padding-bottom | 24 / 1.5 | `$spacing-06` |
+
+<div className="image--fixed">
+
+![Structure and spacing measurements for accordion](images/test1.png)
+
+</div>
+
+<Caption>Structure and spacing measurements for accordion | px / rem</Caption>
+
+## Code
+
+<ComponentDocs component="accordion"></ComponentDocs>
+
+## Feedback

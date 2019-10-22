@@ -4,46 +4,57 @@ description: Notifications are messages that communicate information to the user
 tabs: ['Code', 'Usage', 'Style']
 ---
 
+<AnchorLinks>
+
+<AnchorLink>General guidance</AnchorLink>
+<AnchorLink>Formatting</AnchorLink>
+<AnchorLink>Content</AnchorLink>
+<AnchorLink>Behavior</AnchorLink>
+<AnchorLink>Accessibility</AnchorLink>
+<AnchorLink>Variations</AnchorLink>
+<AnchorLink>Style</AnchorLink>
+<AnchorLink>Code</AnchorLink>
+<AnchorLink>Feedback</AnchorLink>
+
+</AnchorLinks>
+
 ## General guidance
 
-_Notifications_ are messages that communicate information to the user.
+Notifications are messages that communicate information to the user.
 
-## Format
+<ComponentCode
+  name="Inline notification"
+  component="notification"
+  variation="inline-notification"
+  hasReactVersion="notifications--inline"
+  hasVueVersion="inlinenotification--default"
+  hasAngularVersion="?path=/story/notification--basic"
+  codepen="NmNrLg"></ComponentCode>
 
-#### Title
+## Formatting
 
-All notifications have subject titles, which should be short and descriptive. (Example: “Tester-app-02 has crashed.”)
+**Icons should be placed to the left of a title.** These glyphs (16x16) can be found in the iconography library. Icons may provide additional clarity.
 
-#### Message
+## Content 
 
-We recommend the body of the notification be contained within two lines. Be descriptive and include any troubleshooting actions or next steps. When possible, communicate the main message using just the title. You can include [links](/components/link) within the notification body that redirect the user to next steps.
+**All notifications have subject titles, which should be short and descriptive.** Example: “Tester-app-02 has crashed.”
 
-#### Dismissal
+**We recommend the body of the notification be contained within two lines.** Be descriptive and include any troubleshooting actions or next steps. When possible, communicate the main message using just the title. You can include links within the notification body that redirect the user to next steps.
 
-We recommend that toast notifications automatically disappear after five seconds. Inline notifications are persistent until the user dismisses them. All notifications have at least one method of dismissal (typically, it is a small “x” in the upper right hand corner).
+## Behavior
 
-#### Icons
+**All notifications have at least one method of dismissal (typically, it is a small “x” in the upper right hand corner).** We recommend that toast notifications automatically disappear after five seconds. Inline notifications are persistent until the user dismisses them.
 
-Icons may provide additional clarity. Icons should be placed to the left of a title. These glyphs (16x16) can be found in the [iconography](/guidelines/iconography/library) library.
+## Accessibility
 
-<Row>
-<Column colLg={8}>
-
-![The three icon states](images/notification-usage-1.png)
-
-</Column>
-</Row>
-
-## Variations
+## Variations 
 
 | Notification type     | Purpose                                                                                                                                                               |
 | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | _Toast notification_  | Toasts are a non-modal, time-based window elements used to display short messages; they usually appear at the bottom of the screen and disappear after a few seconds. |
 | _Inline notification_ | Inline notifications show up in task flows, to notify users of the status of an action. They usually appear at the top of the primary content area.                   |
 
-## Placement
-
-#### Toast notifications
+### Toast notifications
 
 Toast notifications slide in and out a page from the top-right corner. Actionable notifications do not appear on mobile screen widths.
 
@@ -55,7 +66,7 @@ Toast notifications slide in and out a page from the top-right corner. Actionabl
 </Column>
 </Row>
 
-#### Inline notifications
+### Inline notifications
 
 Inline notifications appear near its related item. In [forms](/components/form), we recommend placing the inline notification at the bottom of the form, right before the submission buttons. Depending on the context of the page, inline notifications can appear above the content as well.
 
@@ -66,3 +77,89 @@ Inline notifications appear near its related item. In [forms](/components/form),
 
 </Column>
 </Row>
+
+## Style
+
+### Color
+
+| Class                   | Property         | Color token            |
+| ----------------------- | ---------------- | ---------------------- |
+| `title`                 | text color       | `$text-01`             |
+| `subtitle`              | text color       | `$text-01`             |
+| `close-icon`            | fill             | `$icon-01`             |
+| `notification--error`   | background-color | `#fff0f1`              |
+| `notification--error`   | border-left      | `$support-01`          |
+| `svg.error--filled`     | fill             | `$support-01`          |
+| `notification--success` | background-color | `#dafbe4`              |
+| `notification--success` | border-left      | `$support-02`          |
+| `svg.checkmark-filled`  | fill             | `$support-02`          |
+| `notification--warning` | background-color | `#fff0f1`              |
+| `notification--warning` | border-left      | `$support-03`          |
+| `svg.warning-filled`    | fill             | `$support-03`          |
+| `notification--info`    | background-color | `rgba(253,209,58,.15)` |
+| `notification--info`    | border-left      | `$support-04`          |
+
+### Typography
+
+Notification text should be set in sentence case with only the first word capitalized. Notification titles should be concise and to the point.
+
+| Class                                                                          | Font-size (px/rem) | Font-weight    | Type token       |
+| ------------------------------------------------------------------------------ | ------------------ | -------------- | ---------------- |
+| `.bx--toast-notification__title` <br/> `.bx--inline-notification__title`       | 14 / 0.875         | SemiBold / 600 | `$heading-03`    |
+| `.bx--toast-notification__subtitle` <br/> `.bx--inline-notification__subtitle` | 14 / 0.875         | Regular / 400  | `$body-short-01` |  |
+
+### Structure
+
+#### Toast notification
+
+| Property                                 | Property                 | px / rem | Spacing token |
+| ---------------------------------------- | ------------------------ | -------- | ------------- |
+| `.bx--toast-notification`                | width                    | 288 / 18 | –             |
+| `.bx--toast-notification`                | border-left              | 3px      | –             |
+| `.bx--toast-notification`                | padding-right            | 16 / 1   | `$spacing-05` |
+| `.bx--toast-notification__title`         | margin-top               | 16 / 1   | `$spacing-05` |
+| `.bx--toast-notification__subtitle`      | margin-bottom            | 24 / 1.5 | `$spacing-06` |
+| `.bx--toast-notification__details`       | padding-right            | 16 / 1   | `$spacing-05` |
+| `.bx--toast-notification__caption`       | margin-bottom            | 16 / 1   | `$spacing-05` |
+| `.bx--inline-notification__close-button` | height, width            | 48 / 3   | –             |
+| `close-icon`                             | margin-top, margin-right | 16 / 1   | `$spacing-05` |
+
+<div className="image--fixed">
+
+![Structure and spacing for a toast notification](images/notification-style-1.png)
+
+</div>
+
+<Caption>
+  Structure and spacing measurements for a toast notification | px / rem
+</Caption>
+
+#### Inline notification
+
+The width of an _inline notification_ will vary based on content or layout.
+
+| Property                                 | Property                    | px / rem  | Spacing token |
+| ---------------------------------------- | --------------------------- | --------- | ------------- |
+| `.bx--inline-notification`               | min-height                  | 48 / 3    | `$spacing-09` |
+| `.bx--inline-notification`               | border-left                 | 3px       | –             |
+| `.bx--inline-notification__details`      | margin-left, margin-right   | 16 / 1    | `$spacing-05` |
+| `.bx--inline-notification__text-wrapper` | padding-top, padding-bottom | 12 / 0.75 | `$spacing-04` |
+| `.bx--inline-notification__icon`         | margin-right                | 16 / 1    | `$spacing-05` |
+| `.bx--inline-notification__close-button` | height, width               | 48 / 3    | –             |
+| `close-icon`                             | icon size                   | 16 x 16   | –             |
+
+<div className="image--fixed">
+
+![Structure and spacing for an inline notification](images/notification-style-2.png)
+
+</div>
+
+<Caption>
+  Structure and spacing measurements for a inline notification | px / rem
+</Caption>
+
+## Code
+
+<ComponentDocs component="notification"></ComponentDocs>
+
+## Feedback
