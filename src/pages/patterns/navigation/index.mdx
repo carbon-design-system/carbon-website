@@ -7,10 +7,11 @@ description: Navigation patterns show how the UI Shell components can be used in
 
 <AnchorLinks>
 
+<AnchorLink>Terms</AnchorLink>
 <AnchorLink>Configurations</AnchorLink>
 <AnchorLink>Navigation</AnchorLink>
 <AnchorLink>Grouping information</AnchorLink>
-<AnchorLink>Accessibility considerations</AnchorLink>
+<AnchorLink>Accessibility</AnchorLink>
 
 </AnchorLinks>
 
@@ -79,7 +80,7 @@ The primary, or local, navigation takes users between areas of an offering. Gene
 
 Match an offering's navigation with neighboring offerings. Following a similar application structure and navigation as the rest of the platform will minimize transitional volatility and your users will spend less time getting reoriented. Your users will be able to quickly move between screens and states in your product and their expectations for the platform's capability will increase.
 
-#### Drill down levels & breadcrumbs
+#### Drill down levels and breadcrumbs
 
 Breadcrumbs let your user see where they are in the hierarchy of the application and gives users a way to navigate back up.
 
@@ -136,13 +137,9 @@ Don’t place unbounded content in the shell side navigation. Usability drops ra
 </Column>
 </Row>
 
-This technique is necessary when the organization of your navigation menu is used to covey the meaning of stepped concepts like provisioning or other wizard-style patterns. The intended meaning of your grouping and ordering may be lost if the position of an object is styled differently from the DOM order.
+This technique is necessary when the organization of your navigation menu is used to convey the meaning of stepped concepts like provisioning or other wizard-style patterns. The intended meaning of your grouping and ordering may be lost if the position of an object is styled differently from the DOM order.
 
 In some cases, styling the elements with CSS to appear in a different visual order than the DOM order may be beneficial. For example, on narrow or mobile screen widths you may choose to move your navigation from the top of the screen to another area that's more appropriate for your user's context.
-
-- Talk about `tabindex` here?
-
-- What about sticky headers or nav that is a docked footer?
 
 <Row>
 
@@ -158,50 +155,73 @@ In some cases, styling the elements with CSS to appear in a different visual ord
 </Column>
 </Row>
 
-### Focus order
+### Keyboard navigation
 
-- Getting to and from nav
-- double nests
-- What info can we provide about how focus order relates to navigation?
-- Nav menus may be too long for users to tab through before they can interact if the main content. It's required to have "Skip to main".
+#### Focus order
 
-### Navigation's role as a landmark region
+Some users may be interacting with your site with only a keyboard. Starting focus in the main nav lets them quickly get to another area in your UI, but could block them from the main content if there is a large number of nav items to tab through first.
 
-- Specify which region should assume the role of a navigation landmark. This allows accessibility tools to treat navigation objects accordingly to match user expectations. [ref](https://www.w3.org/TR/wai-aria-1.1/#dfn-role)
-
-- Other regions include:
-
-<Column  colLg={8} colMd={6} colSm={4} >
-
-![hint text](https://309w5s255371fs4df2vftgbl-wpengine.netdna-ssl.com/wp-content/uploads/2017/09/placeholder.jpg)
-
-</Column>
-
-<Column  colLg={8} colMd={6} colSm={4} >
-
-<Caption>
-  Visual that highlights different landmark regions on the UI shell.
-</Caption>
-
-</Column>
-
-- For assistive technologies like screen readers and rotors.
+[Success Criterion 2.4.1 (Bypass Blocks)](https://www.w3.org/TR/2016/NOTE-WCAG20-TECHS-20161007/G1) suggest bypassing these blocks by providing "Skip to main" link at the start of you navigation's focusable controls. This lets users
 
 <Row>
-<Column colLg={8} colMd={6} colSm={4}>
+<Column  colLg={8} colMd={8} colSm={6} >
 
-![hint text](https://309w5s255371fs4df2vftgbl-wpengine.netdna-ssl.com/wp-content/uploads/2017/09/placeholder.jpg)
+![hint text](images/skip-to-main-content.gif)
 
-<Caption>Screenshot of a rotor in action.</Caption>
+<Caption>
+  The "Skip to main content link" is the first focusable element on the Carbon
+  website.
+</Caption>
 
 </Column>
 </Row>
 
-### Avoid multiple nav
+#### Double nests
 
-- Create consistent cues for orientation
+This section needs to be completed.
+
+#### Avoid multiple nav
+
+#### Create consistent cues for orientation
+
 - Ref consistency from Deque
 - Do's and don'ts
+
+### Landmark regions
+
+Landmark regions let users quickly get around your site by navigating between sections of
+
+- Other regions include: main, form, and search
+
+<Row>
+
+<Column  colLg={8} colMd={8} colSm={6} >
+
+![hint text](images/landmark_zones.png)
+
+<Caption>Screenshot of a rotor in action.</Caption>
+
+</Column>
+
+</Row>
+
+#### Getting to and from nav
+
+- Specify which region should assume the role of a navigation landmark. This allows accessibility tools to treat navigation objects accordingly to match user expectations. [ref](https://www.w3.org/TR/wai-aria-1.1/#dfn-role)
+
+- Touch on the role of landmark zones for assistive technologies like screen readers and rotors.
+
+<Row>
+
+<Column  colLg={8} colMd={8} colSm={6} >
+
+![hint text](images/voiceover.png)
+
+<Caption>Screenshot of a rotor in action.</Caption>
+
+</Column>
+
+</Row>
 
 ## Touch interfaces
 
@@ -214,5 +234,5 @@ In some cases, styling the elements with CSS to appear in a different visual ord
 - David R. Danielson, [_Transitional Volatility in Web Navigation_](https://www.researchgate.net/publication/240859594_Transitional_volatility_in_web_navigation) (2003)
 - Susan Farrell, [_Utility Navigation: What It Is and How to Design It_](https://www.nngroup.com/articles/utility-navigation/) (2015)
 - Web Content Accessibility Guidelines, [_WCAG_](https://www.w3.org/WAI/standards-guidelines/wcag/) (2018)
-- WebAIM, ["Skip Navigation" Links](https://webaim.org/techniques/skipnav/) (2013)
-- IBM Design, [Accessibility Handbook](http://accessibility-handbook.mybluemix.net/design/a11y-handbook/)(2019)
+- WebAIM, [_"Skip Navigation" Links_](https://webaim.org/techniques/skipnav/) (2013)
+- IBM Design, [_Accessibility Handbook_](http://accessibility-handbook.mybluemix.net/design/a11y-handbook/) (2019)
