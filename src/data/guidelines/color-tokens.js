@@ -123,11 +123,11 @@ const colorTokens = {
           hex: '#da1e28',
         },
         g90: {
-          name: 'Red 50',
+          name: 'Red 60',
           hex: '#da1e28',
         },
         g100: {
-          name: 'Red 50',
+          name: 'Red 60',
           hex: '#da1e28',
         },
       },
