@@ -133,7 +133,10 @@ const colorTokens = {
       },
     },
     '$ui-01': {
-      role: ['Primary container background', 'Secondary page background'],
+      role: [
+        'Container background on $ui-background',
+        'Secondary page background',
+      ],
       value: {
         white: {
           name: 'Gray 10',
@@ -154,7 +157,7 @@ const colorTokens = {
       },
     },
     '$ui-02': {
-      role: ['Primary page background', 'Secondary container background'],
+      role: ['Container background on $ui-01', '`Light` variant background'],
       value: {
         white: {
           name: 'White',
@@ -175,7 +178,7 @@ const colorTokens = {
       },
     },
     '$ui-03': {
-      role: ['Subtle border', 'Tertiary background color'],
+      role: ['Subtle border', 'Tertiary background'],
       value: {
         white: {
           name: 'Gray 20',
@@ -246,7 +249,7 @@ const colorTokens = {
         'Primary text',
         'Body copy',
         'Headers',
-        'Hover text color for text-02',
+        'Hover text color for $text-02',
       ],
       value: {
         white: {
@@ -457,7 +460,7 @@ const colorTokens = {
       },
     },
     '$field-01': {
-      role: ['Default input fields', 'Field color on $ui-backgrounds'],
+      role: ['Default input fields', 'Fields on $ui-backgrounds'],
       value: {
         white: {
           name: 'Gray 10',
@@ -478,7 +481,7 @@ const colorTokens = {
       },
     },
     '$field-02': {
-      role: ['Input field color on $ui-02 backgrounds'],
+      role: ['`Light` variant input fields', 'Fields on $ui-02 backgrounds'],
       value: {
         white: {
           name: 'White',
