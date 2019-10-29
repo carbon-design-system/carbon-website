@@ -5,116 +5,133 @@ description: Search enables users to specify a word or a phrase to find particul
 
 <PageDescription>
 
-Search enables users to specify a word or a phrase to find particular relevant pieces of content.
+Search takes a blank state and adds to it based on criteria that matches. It's like a conversation between the user and system: the user expresses their information need as a query, and the system expresses its response as a set of results.
 
 </PageDescription>
 
 <AnchorLinks>
-  <AnchorLink>Basic search bar</AnchorLink>
+  <AnchorLink>Basic search</AnchorLink>
   <AnchorLink>Global search</AnchorLink>
   <AnchorLink>Targeted search</AnchorLink>
-  <AnchorLink>Faceted filtering</AnchorLink>
 </AnchorLinks>
 
-## Basic search bar
+## Basic search
 
-Search enables users to specify a word or a phrase to find particular relevant pieces of content.
+<Row>
+<Column colLg={8}>
 
 ![basic search bar](/images/search-bar.png)
 
-The basic search bar contains the following:
+</Column>
+</Row>
 
-- A search input, including descriptive placeholder text
-- A search icon-only button, which triggers the search
-- A clear icon-only button, revealed when the input contains a value and has focus
+### When to use basic search
+
+**Choose basic search when there are space constraints in your design.** It can also be component-specific. For example, small search can be used to filter data within a data table.
+
+**Do not use basic search for a global search bar.** Basic search is intended for focused search within a page or component.
+
+Use this pattern when:
+
+- It can help users navigate large or complex websites and applications
+- You provide a service through information delivery, like a portal
+
+### How basic search works
+
+At the atomic level, search is composed of:
+an input field
+a button to run the search query
+
+The search input field should make use of helpful placeholder text to suggest what the user should search for. Placeholder text should be short as to not increase the cognitive load.
+At its smallest width, the search input field should be able to accommodate at least 27 characters of text.
+When the search box component is a global search, it almost always appears in the middle of the global header for easy access.
+
+#### Related patterns and components
+
+- Small search
 
 ## Global search
 
+<Row>
+<Column colLg={8}>
+
 ![global search](/images/global-search.png)
 
-### Problem summary
+</Column>
+</Row>
 
-A collapsible search bar allows users to access search functionality in small areas so they can perform a search at any point in the experience.
+### When to use large search
 
-The most common use case for the collapsible search is the **Global Search** pattern, which allows users to launch a search from any point in the experience by triggering the search icon located in the product header.
+Use global level when a user is searching content within a page view.
 
-![global search user flow](/images/global-search-flow.png)
+### When not to use large search
 
-### User needs
+If large search is already in use at the top of a page, avoid using a large search within a page or component. This can confuse a user as they may percieve the embedded, focused search as a global search.
 
-- A user needs to quickly and easily discover information on-demand, at a product-wide level.
-- A user needs to perform a high-level search when they don't know where to find the content they're looking for.
+### How large search works
 
-### Uniqueness
+The results from a large search should be as exhaustive as possible. While you should avoid returning unrelated results, a large search should emcompass all possible results.
 
-Context sensitive, personalization
+When using this method, you should:
 
-### Constraints & challenges
+- Offer live search suggestions
+- Categorize the search results if they come from different areas
+- Give the user control over their viewing options and ability to sort results
+- Have a clear, “no results,” message and offer suggestions if possible
+- Include enough of a description in the results for users to make a judgement as to whether that particular result is relevant
+- Highlight the search term in the results, where appropriate
 
-- Search needs to be accessible throughout a user experience
-- Search needs to be responsive
-- Text should inform users what types of results to expect
+**Fuzzy search is critical to a user's experience when searching.** While you may believe the name you've applied to elements within your application or website are intuitive, a new user may have a totally different perception. Try to return any potential matches to a search result.
 
-### Behavior & transition
+#### Related patterns and components
 
-- The collapsed state of this search is the search icon-only button, which triggers the expanded state
-- The expanded state is the basic search bar component
-- The transition from collapsed to expanded state and vice versa is animated
-- When the user navigates away from the interface containing the search, the search bar is collapsed and the search input is cleared
-- When the search input is empty and the user interacts with a new element, the search bar is collapsed
-
-### Related patterns & components
-
-- [Text input](/components/text-input/usage)
-- [Icon-only button](/components/button/usage)
-- [Navigation](/components/ui-shell-header/usage)
-
-### Tags
-
-Insights, Discovery, Information on Demand
+- Text input
+- Icon-only button
+- UI Shell header
 
 ## Targeted search
 
+<Row>
+<Column colLg={8}>
+
 ![targeted search](/images/targeted-search.png)
 
-### Problem summary
+</Column>
+</Row>
+
+### When to use targeted search
 
 Targeted search allows users to quickly and easily search within a specific category so they can find more relevant content.
 
-As opposed to global searches, which are performed at a high level in order to locate unknown content, the targeted search should be used for scenarios when users understand what they need.
+### When not to use targeted search
+
+Don't use targeted search for global searches, which are performed at a high level in order to locate unknown content. The targeted search should be used for scenarios when users understand what they need.
+
+### How targeted search works
+
+Users often need to search for and find known items of interest in specific categories of data. Targeted search allows users to narrow the search to a specific category, avoiding the need to navigate irrelevant search results.
+
+When using targeted search, you should:
+
+- Limit search results to a small number of items
+- Keep the search field populated with the user’s input after the query is submitted
+- Clear the search field and results when the user navigates away from the interface containing the search field.
+
+<Row>
+<Column colLg={8}>
 
 ![targeted search user flow](/images/targeted-search-flow.png)
 
-### User needs
+</Column>
+</Row>
 
-- Users need to search for and find known items of interest in specific categories of data within healthcare domain.
-- Users need to narrow my search to a specific category so that they can spend less time navigating irrelevant search results.
+## Research on this pattern
 
-### Uniqueness
+Blog posts and a request for research and validation.
 
-Context sensitive, personalization
+## Help improve this page
 
-### Constraints and challenges
+To help make sure the _subject_ is useful, relevant, and up to date, you can:
 
-- Target content store list needs to be contained to a small number of items
-
-### Behavior and transition
-
-- The search input and related target input should remain populated with the user's input after the query is submitted
-- When the user navigates away from the interface containing the search, then the target input returns to the default selection and the input is cleared
-
-### Related patterns and components
-
-- [Text input](/components/text-input/usage)
-- [Select](/components/select/usage)
-
-## Faceted filtering
-
-![filter](/images/filter.png)
-
-### Guidelines
-
-- Faceted filtering should be used when users are frequently querying large result sets
-- In addition to allowing users to narrow down their results, faceted filtering should give users a better understanding of the data structure
-- Filters should be grouped by logical categories with clear labels
-- Filtering should always be paired with an ‘Apply’ button and a ‘Clear Filters’ button
+- Share research or feedback about the Dates pattern on GitHub
+- Propose a change to this page – read more about how to propose changes in GitHub
