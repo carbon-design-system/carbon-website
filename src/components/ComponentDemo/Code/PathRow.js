@@ -31,7 +31,6 @@ const PathRow = ({ src, path, live }) => {
         <CopyButton
           className={cx(button, copyButton)}
           onClick={() => {
-            console.log(code);
             copy(code);
           }}
         />

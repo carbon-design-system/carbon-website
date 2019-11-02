@@ -8,7 +8,7 @@ import { withLive } from 'react-live';
 import cx from 'classnames';
 import { button, sidebar, copyButton } from './Code.module.scss';
 
-const Sidebar = ({ src, path, live, ...props }) => {
+const Sidebar = ({ src, path, live }) => {
   const shouldShowSrcLink = !path && src;
   const shouldShowCopyButton = !path || src;
   const { code } = live;
@@ -18,7 +18,6 @@ const Sidebar = ({ src, path, live, ...props }) => {
         <CopyButton
           className={cx(button, copyButton)}
           onClick={() => {
-            console.log(props);
             copy(code);
           }}
         />

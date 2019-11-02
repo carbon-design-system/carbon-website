@@ -24,7 +24,7 @@ import Code from './Code';
 
 const { ContentSwitcher, Switch } = CarbonComponents;
 
-const ComponentDemo = ({ code, path, src }) => {
+const ComponentDemo = ({ code, path, src, scope }) => {
   const { current: content } = useRef(code);
   const [theme, setTheme] = useState(white);
   const isMobile = useMedia({ maxWidth: breakpoints.md.width });
@@ -47,7 +47,7 @@ const ComponentDemo = ({ code, path, src }) => {
       </ContentSwitcher>
       <LiveProvider
         theme={prismTheme}
-        scope={CarbonComponents}
+        scope={{ ...CarbonComponents, ...scope }}
         code={content.trim()}>
         <LivePreview className={cx(theme, previewContainer)} />
         <Code path={path} src={src}>
