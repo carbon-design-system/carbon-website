@@ -1,0 +1,93 @@
+.row {
+  font-family: 'IBM Plex Mono', 'Menlo', 'DejaVu Sans Mono',
+    'Bitstream Vera Sans Mono', Courier, monospace;
+  color: $inverse-01;
+  @include carbon--type-style('code-02');
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  padding: 6px; // 10px are hard-coded for react-simple-code-editor pointer events
+  background-color: $ui-05;
+}
+
+.sideBarMinHeight {
+  min-height: 96px;
+}
+
+// feedback tooltip adjustments
+.container :global(.bx--btn--copy__feedback) {
+  position: absolute;
+  &::before {
+    left: $spacing-07;
+  }
+  &::after {
+    left: $spacing-07;
+  }
+  &::before,
+  &::after {
+    z-index: z('floating');
+  }
+}
+
+.path-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: $spacing-09;
+  background: $ui-05;
+  padding-left: $spacing-05;
+  padding-right: $spacing-03;
+  border-bottom: 1px solid $inverse-02;
+}
+
+.sidebar {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 16px;
+  padding: 8px;
+  padding-left: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: visible;
+  background: linear-gradient(
+    90deg,
+    rgba(23, 23, 23, 0) 0%,
+    rgba(23, 23, 23, 1) 24px
+  );
+}
+
+// Copy button and src button
+.button,
+.copy-button.button {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  transition: background $duration--fast-02;
+  z-index: 1000;
+  &:hover {
+    background-color: $inverse-02;
+  }
+  svg {
+    fill: $inverse-01;
+  }
+}
+
+.path-row .button {
+  position: relative;
+  right: 0;
+  top: 0;
+}
+
+.sidebar .button {
+  position: static;
+  margin-bottom: $spacing-01;
+  flex-shrink: 0;
+}
