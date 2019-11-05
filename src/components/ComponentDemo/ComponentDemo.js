@@ -21,10 +21,11 @@ import {
 } from './ComponentDemo.module.scss';
 
 import Code from './Code';
+import KnobContainer from './KnobContainer';
 
 const { ContentSwitcher, Switch } = CarbonComponents;
 
-const ComponentDemo = ({ code, path, src, scope }) => {
+const ComponentDemo = ({ code, path, src, scope, knobs = {} }) => {
   const { current: content } = useRef(code);
   const [theme, setTheme] = useState(white);
   const isMobile = useMedia({ maxWidth: breakpoints.md.width });
@@ -55,6 +56,7 @@ const ComponentDemo = ({ code, path, src, scope }) => {
         </Code>
         <LiveError />
       </LiveProvider>
+      <KnobContainer knobs={knobs} />
     </div>
   );
 };

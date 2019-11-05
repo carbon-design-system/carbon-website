@@ -1,25 +1,3 @@
-const path = require('path');
+const req = require('esm')(module);
 
-exports.onCreateWebpackConfig = ({ actions }) => {
-  // Allows importing html files for component code examples
-  actions.setWebpackConfig({
-    module: {
-      rules: [
-        {
-          test: /\.md$/,
-          loaders: ['html-loader', 'markdown-loader'],
-        },
-        {
-          test: /\.html$/,
-          loader: 'html-loader',
-          options: {
-            minimize: false,
-          },
-        },
-      ],
-    },
-    resolve: {
-      modules: [path.resolve(__dirname, 'src'), 'node_modules'],
-    },
-  });
-};
+module.exports = req('./gatsby-node.esm.js');
