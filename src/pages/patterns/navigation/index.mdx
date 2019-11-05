@@ -20,11 +20,11 @@ description: Navigation patterns show how the UI Shell components can be used in
 
 These sets of terms are used to describe the position in hierarchy and the importance to a user's task. The top level global navigation may not be the primary navigation for most of your user's tasks.
 
-| Position in Hierarchy | Description                                                                                                                              |
-| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| Universal             | The highest level. The hub that connects other sites with their own global navigation.                                                   |
-| Global                | The level below universal. More focused information. Switch between applications. See navigating [between offerings](#between-offerings) |
-| Local                 | The lowest level. See navigating [within an offering](#within-an-offering)                                                               |
+| Position in Hierarchy | Description                                                                                                                          |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| Universal             | The highest level. The hub that connects separate sites which will have their own global navigation.                                 |
+| Global                | The level below universal. More focused information. Switch between areas in a site. See navigating [between areas ](#between-areas) |
+| Local                 | The lowest level of navigation. This is used to move within a category. See navigating [within an area](#within-an-area)             |
 
 | Importance to a user's task | Description                                                                                                                                                              |
 | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -39,7 +39,7 @@ The UI shell is designed to be configurable. A product or platform can choose wh
 
 ### Header only
 
-The UI Shell header can be used as standalone navigation for your UI when a small number of main sections do not require a secondary navigation. The header provides a place for a site title, navigation links and dropdowns, and header icons.
+The UI Shell header can be used as standalone navigation for your UI when a small number of main sections do not require a secondary navigation. The header provides a place for a site title, navigation links and dropdowns, and header icons. These elements are persistent and always in view as the user navigates around the site.
 
 This configuration gives more horizontal space for the page's content, but limits the space for navigation items in the header. This configuration also does not lend itself to sub-menus that can be persistently open as they can overlay and interfere with the page's content. Consider using a left panel if a sub-menu needs to remain open.
 
@@ -49,17 +49,19 @@ This configuration gives more horizontal space for the page's content, but limit
 
 ### Header and left panel
 
-The left panel allows for more navigational items and another level of hierarchy when paired with header navigation items. This arrangement means sub-menus can remain open without overlaying or interfering with the page's content. Compared to the navigation items in the header, the left nav is more forgiving for translating titles as the number of characters in one title does not shift the position of the rest.
+The left panel allows for more navigational items and another level of hierarchy when paired with header navigation items. Compared to a head-only site navigation, this arrangement means sub-menus can remain open without overlaying or interfering with the page's content.
 
 ![Example of different Shell configurations.](images/header-leftpanel-example.png)
 
-<Caption>Example of the left panel as the global navigation.</Caption>
+<Caption>Example of the left panel as the local navigation.</Caption>
 
 ## Navigation
 
-### Between offerings
+#### Universal
 
-Navigating between sites or platforms is made easy through the app switcher. The items and order of a global navigation should remain unchanged when switching between these different sites.
+A universal navigation allows for a user to discover and navigate to other sites that may have no other connection other than existing within the same organization's universe of offerings. The need for this highest level of navigation in your UI should be considered carefully and rarely be necessary. A task initiated in a site should note require your user to navigate to another to complete.
+
+The UI Shell's [switcher](https://www.carbondesignsystem.com/components/UI-shell-header/usage#header-elements) is the only component that is appropriate to use as universal navigation. These universal items should remain unchanged in order and when switching between these different sites.
 
 ![Diagram and image of the switcher being used to navigate between offerings.](images/between-offerings.png)
 
@@ -71,15 +73,15 @@ The global navigation lets your user navigate to the main sections of your site.
 
 ![Diagram and image of the header nav being used as a global navigation.](images/global.png)
 
-<Caption>The header links assuming the role of global navigation.</Caption>
+<Caption>The header links in the role of global navigation.</Caption>
 
 #### State memory: persistent data and UI state
 
-The app switcher (9 dot icon) makes it easy to pivot between different offerings in your UI. Consider maintaining or restoring the state of a page if your users pivot between different areas to complete tasks. Maintain states and filters brings the user back to where they were if they have gone through drill downs or welcome screens. An obvious way to drill back up the UI is crucial when bypassing drill down navigation in this way.
+The app switcher (9 dot icon) makes it easy to pivot between different offerings in your UI. Maintain or restore the state of a page if your users pivot between different areas to complete tasks. If state or progress will be lost, inform users of this consequence. Maintaining states and filters brings the user back to where they were if they have gone through drill downs or welcome screens. An obvious way to drill back up the UI is crucial when bypassing drill up navigation in this way.
 
-Use the Shell's menu items to track the essential state elements in the URL and return the user to that URL automatically when they return.
+A technique to maintain this state is to use the Shell's menu items to track the essential state elements in the URL and return the user to that URL automatically when they return. This capability is not part of the UI Shell component and must be added during implementation.
 
-### Within an offering
+#### Local
 
 The primary, or local, navigation takes users between areas of an offering. Generally, these ‘areas’ are collections of pages that should be grouped together so a user can undertake an end to end workflow without changing areas.
 
@@ -99,7 +101,7 @@ Breadcrumbs let your user see where they are in the hierarchy of the application
 
 <Caption>Breadcrumbs being used to navigate up a level.</Caption>
 
-In many cases users have a need to drill down into a new context (eg from an overview page to a particular project, device or asset view. For this kind of interaction of up or downwards navigation instead of lateral navigation a drill down pattern should be used.
+In many cases users have a need to drill up into a new context (eg from an overview page to a particular project, device or asset view. For this kind of interaction of up or downwards navigation instead of lateral navigation a drill up pattern should be used.
 
 A drill down can be triggered from any interactive element in an application, and will generally open a new page focussed purely on the object that was selected. This new page will then include a breadcrumb of the path back to the root level above the title.
 
@@ -240,9 +242,10 @@ This section needs to be completed.
 
 ## Touch interfaces
 
+Things to consider for devices with touch input. The nav may not always be visible on small screens. The hit area will need to be larger. You lose hover state.
+
 - Loss of hover states. Icons-only buttons miss their label if they only appear on hover. User has to click to understand the category.
 
-- Where do header links go? Hamburger in left nav or app switcher?
 - Touch target size. [Apple recommends](https://developer.apple.com/design/human-interface-guidelines/ios/visual-design/adaptivity-and-layout/) 44pt for touch targets and the W3c's [proposed target size](https://www.w3.org/WAI/GL/mobile-a11y-tf/wiki/Proposed_SC_Target_Size) is 48 x 48 css pixels for touch input.
 
 #### References:
@@ -252,3 +255,5 @@ This section needs to be completed.
 - Web Content Accessibility Guidelines, [_WCAG_](https://www.w3.org/WAI/standards-guidelines/wcag/) (2018)
 - WebAIM, [_"Skip Navigation" Links_](https://webaim.org/techniques/skipnav/) (2013)
 - IBM Design, [_Accessibility Handbook_](http://accessibility-handbook.mybluemix.net/design/a11y-handbook/) (2019)
+
+- James Kalbach, [\_Designing Web Navigation](https://www.oreilly.com/library/view/designing-web-navigation/9780596528102/ch04.html) (2007)
