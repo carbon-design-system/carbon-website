@@ -38,7 +38,7 @@ const ComponentDemo = ({ code, path, src, scope, knobs = {} }) => {
   ];
 
   return (
-    <div className={demoContainer}>
+    <>
       <ContentSwitcher
         className={themeSwitcher}
         onChange={({ name }) => setTheme(name)}>
@@ -50,14 +50,16 @@ const ComponentDemo = ({ code, path, src, scope, knobs = {} }) => {
         theme={prismTheme}
         scope={{ ...CarbonComponents, ...scope }}
         code={content.trim()}>
-        <LivePreview className={cx(theme, previewContainer)} />
+        <div className={demoContainer}>
+          <LivePreview className={cx(theme, previewContainer)} />
+          <KnobContainer knobs={knobs} />
+        </div>
         <Code path={path} src={src}>
           <LiveEditor className={editorContainer} />
         </Code>
         <LiveError />
       </LiveProvider>
-      <KnobContainer knobs={knobs} />
-    </div>
+    </>
   );
 };
 

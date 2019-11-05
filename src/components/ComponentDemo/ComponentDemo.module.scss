@@ -1,11 +1,39 @@
 .demo-container {
-  @include carbon--breakpoint('lg') {
-    max-width: calc(100% - 240px);
+  display: flex;
+  border: 1px solid $ui-03;
+  margin-top: 0;
+}
+
+.knob-form-item {
+  width: 100%;
+}
+
+.knob-form-item [class*='input'] {
+  width: 100%;
+}
+
+.knob-container {
+  width: 320px;
+  overflow: hidden;
+  background-color: $ui-background;
+  border-left: 1px solid $ui-03;
+}
+
+.knob-component-group-wrapper {
+  padding: $spacing-05;
+  border-bottom: 1px solid $ui-03;
+  &:last-of-type {
+    border-bottom: none;
   }
 }
 
+// custom classnames are being applied to both fieldset and label
+// https://github.com/carbon-design-system/carbon/issues/4572
+fieldset.knob-component-group {
+  margin-bottom: 0;
+}
+
 .theme-switcher {
-  border-bottom: 1px solid $ui-03;
   height: auto;
   @include carbon--theme(
     $theme: $carbon--theme--g10,
@@ -13,7 +41,7 @@
   );
 
   @include carbon--breakpoint('lg') {
-    max-width: 80%;
+    max-width: 70%;
   }
 }
 
@@ -26,16 +54,18 @@
 }
 
 .preview-container {
-  min-height: 16rem;
+  min-height: 32rem;
   padding: $spacing-05;
   border: $spacing-03 solid $ui-background;
   background-color: var(--cds-ui-background);
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .editor-container {
+  margin-top: 0;
   max-height: 320px;
 }
 
@@ -43,6 +73,7 @@
   white-space: pre !important;
 }
 
+// Themes
 .white {
   @include carbon--theme(
     $theme: $carbon--theme--white,

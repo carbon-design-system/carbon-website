@@ -1,5 +1,51 @@
 import React from 'react';
+import {
+  Form,
+  FormGroup,
+  // RadioButton,
+  // RadioButtonGroup,
+  Checkbox,
+} from 'carbon-components-react';
 import carbonReactDocgen from '../../data/react-docgen.json';
+
+import {
+  knobContainer,
+  knobComponentGroup,
+  knobComponentGroupWrapper,
+  knobFormItem,
+} from './ComponentDemo.module.scss';
+
+const ComponentKnobGroup = ({ component, knobs, ...rest }) => (
+  <div className={knobComponentGroupWrapper}>
+    <FormGroup className={knobComponentGroup} legendText={component} {...rest}>
+      {Object.entries(knobs).map(([name, info], i) => (
+        <Knob
+          key={name}
+          inputId={`${name}-knob-${i}`}
+          info={info}
+          name={name}
+        />
+      ))}
+    </FormGroup>
+  </div>
+);
+
+const Knob = ({ name, info, inputId }) => {
+  const { type, description, defaultValue } = info;
+  console.log(description);
+  if (type.name === 'bool') {
+    return (
+      <Checkbox
+        defaultChecked={defaultValue.value}
+        labelText={name}
+        className={knobFormItem}
+        id={inputId}
+      />
+    );
+  }
+  console.log(info);
+  return '';
+};
 
 const KnobContainer = ({ knobs }) => {
   const requestedKnobs = Object.keys(knobs).map(component => {
@@ -12,19 +58,11 @@ const KnobContainer = ({ knobs }) => {
   });
 
   return (
-    <div>
+    <Form className={knobContainer}>
       {requestedKnobs.map(([component, componentKnobs]) => (
-        <div>
-          <h1>{component}</h1>
-          {Object.entries(componentKnobs).map(([knob, knobInfo]) => (
-            <>
-              <p>{knob}</p>
-              <pre>{JSON.stringify(knobInfo, null, 2)}</pre>
-            </>
-          ))}
-        </div>
+        <ComponentKnobGroup component={component} knobs={componentKnobs} />
       ))}
-    </div>
+    </Form>
   );
 };
 
