@@ -1,11 +1,12 @@
+/* eslint-disable global-require */
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable import/no-dynamic-require */
 /* eslint-disable import/no-unresolved */
 const path = require('path');
-// const CarbonComponentsReact = require('carbon-components-react/es');
-// const babel = require('@babel/core');
 const { execSync } = require('child_process');
-// const reactDocgen = require('babel-plugin-react-docgen');
-// const transformCjs = require('babel-plugin-transform-es2015-modules-commonjs');
 const fs = require('fs');
+
+const rimraf = require('rimraf');
 
 exports.onCreateWebpackConfig = ({ actions }) => {
   // Allows importing html files for component code examples
@@ -32,12 +33,14 @@ exports.onCreateWebpackConfig = ({ actions }) => {
 };
 
 exports.onPreBootstrap = () => {
+  const { sep } = path;
+  const tmpDir = fs.mkdtempSync(`.cache${sep}`);
+
   execSync(
-    'babel ./node_modules/carbon-components-react/es --out-dir lib/ccr --plugins=babel-plugin-react-docgen,transform-es2015-modules-commonjs'
+    `babel ./node_modules/carbon-components-react/es --out-dir ${tmpDir} --plugins=babel-plugin-react-docgen,transform-es2015-modules-commonjs`
   );
 
-  // eslint-disable-next-line global-require
-  const CarbonComponentsReact = require('./lib/ccr');
+  const CarbonComponentsReact = require(`./${tmpDir}`);
   const components = Object.keys(CarbonComponentsReact);
   const docgen = {};
 
@@ -50,4 +53,6 @@ exports.onPreBootstrap = () => {
     'src/data/react-docgen.json',
     JSON.stringify(docgen, null, 2)
   );
+
+  rimraf.sync(tmpDir);
 };
