@@ -32,18 +32,17 @@ const ComponentKnobGroup = ({ component, knobs, ...rest }) => (
 
 const Knob = ({ name, info, inputId }) => {
   const { type, description, defaultValue } = info;
-  console.log(description);
   if (type.name === 'bool') {
     return (
       <Checkbox
-        defaultChecked={defaultValue.value}
+        title={description}
+        defaultChecked={defaultValue && defaultValue.value}
         labelText={name}
         className={knobFormItem}
         id={inputId}
       />
     );
   }
-  console.log(info);
   return '';
 };
 
