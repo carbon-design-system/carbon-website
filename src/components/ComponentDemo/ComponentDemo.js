@@ -23,6 +23,7 @@ import {
 
 import Code from './Code';
 import KnobContainer from './KnobContainer';
+import DemoContextProvider from './DemoContext';
 
 const { ContentSwitcher, Switch } = CarbonComponents;
 
@@ -39,8 +40,10 @@ const ComponentDemo = ({ code: codeProp, path, src, scope, knobs = {} }) => {
     { name: g100, text: isMobile ? 'G100' : 'Gray 100' },
   ];
 
+  // TODO max width editor handle multiple clicks use regex for individual props?
+
   return (
-    <>
+    <DemoContextProvider>
       <ContentSwitcher
         className={themeSwitcher}
         onChange={({ name }) => setTheme(name)}>
@@ -62,11 +65,16 @@ const ComponentDemo = ({ code: codeProp, path, src, scope, knobs = {} }) => {
               />
             </Code>
           </div>
-          <KnobContainer leftPaneHeight={editorHeight + 560} knobs={knobs} />
+          <KnobContainer
+            code={code}
+            setCode={setCode}
+            leftPaneHeight={editorHeight + 560}
+            knobs={knobs}
+          />
         </div>
         <LiveError />
       </LiveProvider>
-    </>
+    </DemoContextProvider>
   );
 };
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 // import PropTypes from 'prop-types';
 import {
   Form,
@@ -8,6 +8,7 @@ import {
   Checkbox,
 } from 'carbon-components-react';
 import carbonReactDocgen from '../../data/react-docgen.json';
+import { DemoContext } from './DemoContext';
 
 import {
   knobContainer,
@@ -16,11 +17,14 @@ import {
   knobFormItem,
 } from './ComponentDemo.module.scss';
 
-const ComponentKnobGroup = ({ component, knobs, ...rest }) => (
+const ComponentKnobGroup = ({ component, knobs, code, setCode, ...rest }) => (
   <div className={knobComponentGroupWrapper}>
     <FormGroup className={knobComponentGroup} legendText={component} {...rest}>
       {Object.entries(knobs).map(([name, info], i) => (
         <Knob
+          code={code}
+          setCode={setCode}
+          component={component}
           key={name}
           inputId={`${name}-knob-${i}`}
           info={info}
@@ -31,14 +35,36 @@ const ComponentKnobGroup = ({ component, knobs, ...rest }) => (
   </div>
 );
 
-const Knob = ({ name, info, inputId, key }) => {
+const Knob = ({ name, info, inputId, key, component, code, setCode }) => {
+  const { knobs, setKnobs } = useContext(DemoContext);
   const { type, description, defaultValue } = info;
+
+  const updateKnob = val => {
+    const newKnobs = {
+      ...knobs,
+      [component]: { ...knobs[component], [name]: val },
+    };
+
+    const propString = Object.entries(newKnobs[component]).reduce(
+      (acc, [prop, value]) => (value ? `${acc} ${prop}={${value}}` : acc),
+      ''
+    );
+
+    setKnobs(newKnobs);
+    setCode(
+      code.replace(
+        new RegExp(`<${component}.*?>`),
+        `<${component}${propString}>`
+      )
+    );
+  };
 
   if (type.name === 'bool') {
     const defaultChecked =
       (defaultValue && defaultValue.value !== 'false') || undefined;
     return (
       <Checkbox
+        onChange={val => updateKnob(val)}
         key={key}
         title={description}
         defaultChecked={defaultChecked}
@@ -63,6 +89,7 @@ const Knob = ({ name, info, inputId, key }) => {
     return (
       <FormGroup legendText={name}>
         <RadioButtonGroup
+          onChange={val => updateKnob(val)}
           defaultSelected={defaultSelected}
           orientation="vertical">
           {values.map(({ value }) => (
@@ -86,7 +113,7 @@ Knob.propTypes = {
   },
 };
 
-const KnobContainer = ({ knobs, leftPaneHeight }) => {
+const KnobContainer = ({ knobs, leftPaneHeight, code, setCode }) => {
   const requestedKnobs = Object.keys(knobs).map(component => {
     const fullComponent = carbonReactDocgen[component];
     const requestedProps = {};
@@ -99,7 +126,12 @@ const KnobContainer = ({ knobs, leftPaneHeight }) => {
   return (
     <Form style={{ maxHeight: leftPaneHeight }} className={knobContainer}>
       {requestedKnobs.map(([component, componentKnobs]) => (
-        <ComponentKnobGroup component={component} knobs={componentKnobs} />
+        <ComponentKnobGroup
+          code={code}
+          setCode={setCode}
+          component={component}
+          knobs={componentKnobs}
+        />
       ))}
     </Form>
   );
