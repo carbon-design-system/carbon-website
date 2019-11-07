@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import useMedia from 'use-media';
 
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import prismTheme from 'gatsby-theme-carbon/src/components/Code/prismTheme';
 import { breakpoints } from '@carbon/elements';
 import * as CarbonComponents from 'carbon-components-react';
@@ -9,7 +9,8 @@ import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
 import cx from 'classnames';
 
 import {
-  demoContainer,
+  container,
+  leftPane,
   previewContainer,
   editorContainer,
   themeSwitcher,
@@ -25,8 +26,9 @@ import KnobContainer from './KnobContainer';
 
 const { ContentSwitcher, Switch } = CarbonComponents;
 
-const ComponentDemo = ({ code, path, src, scope, knobs = {} }) => {
-  const { current: content } = useRef(code);
+const ComponentDemo = ({ code: codeProp, path, src, scope, knobs = {} }) => {
+  const [editorHeight, setEditorHeight] = useState();
+  const [code, setCode] = useState(codeProp);
   const [theme, setTheme] = useState(white);
   const isMobile = useMedia({ maxWidth: breakpoints.md.width });
 
@@ -49,14 +51,19 @@ const ComponentDemo = ({ code, path, src, scope, knobs = {} }) => {
       <LiveProvider
         theme={prismTheme}
         scope={{ ...CarbonComponents, ...scope }}
-        code={content.trim()}>
-        <div className={demoContainer}>
-          <LivePreview className={cx(theme, previewContainer)} />
-          <KnobContainer knobs={knobs} />
+        code={code}>
+        <div className={container}>
+          <div className={leftPane}>
+            <LivePreview className={cx(theme, previewContainer)} />
+            <Code setEditorHeight={setEditorHeight} path={path} src={src}>
+              <LiveEditor
+                onChange={updatedCode => setCode(updatedCode)}
+                className={editorContainer}
+              />
+            </Code>
+          </div>
+          <KnobContainer leftPaneHeight={editorHeight + 560} knobs={knobs} />
         </div>
-        <Code path={path} src={src}>
-          <LiveEditor className={editorContainer} />
-        </Code>
         <LiveError />
       </LiveProvider>
     </>

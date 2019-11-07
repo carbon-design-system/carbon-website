@@ -86,7 +86,7 @@ Knob.propTypes = {
   },
 };
 
-const KnobContainer = ({ knobs }) => {
+const KnobContainer = ({ knobs, leftPaneHeight }) => {
   const requestedKnobs = Object.keys(knobs).map(component => {
     const fullComponent = carbonReactDocgen[component];
     const requestedProps = {};
@@ -97,7 +97,7 @@ const KnobContainer = ({ knobs }) => {
   });
 
   return (
-    <Form className={knobContainer}>
+    <Form style={{ maxHeight: leftPaneHeight }} className={knobContainer}>
       {requestedKnobs.map(([component, componentKnobs]) => (
         <ComponentKnobGroup component={component} knobs={componentKnobs} />
       ))}
