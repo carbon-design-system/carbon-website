@@ -10,7 +10,6 @@ import cx from 'classnames';
 
 import {
   container,
-  leftPane,
   previewContainer,
   editorContainer,
   themeSwitcher,
@@ -29,7 +28,7 @@ const { ContentSwitcher, Switch } = CarbonComponents;
 
 const ComponentDemo = ({ code: codeProp, path, src, scope, knobs = {} }) => {
   const [editorHeight, setEditorHeight] = useState();
-  const [code, setCode] = useState(codeProp);
+  const [code, setCode] = useState(codeProp.trim());
   const [theme, setTheme] = useState(white);
   const isMobile = useMedia({ maxWidth: breakpoints.md.width });
 
@@ -41,6 +40,9 @@ const ComponentDemo = ({ code: codeProp, path, src, scope, knobs = {} }) => {
   ];
 
   // TODO max width editor handle multiple clicks use regex for individual props?
+  // allow for write-in props
+  // Tests/cleanup context
+  // handle true/false better
 
   return (
     <DemoContextProvider>
@@ -56,15 +58,15 @@ const ComponentDemo = ({ code: codeProp, path, src, scope, knobs = {} }) => {
         scope={{ ...CarbonComponents, ...scope }}
         code={code}>
         <div className={container}>
-          <div className={leftPane}>
-            <LivePreview className={cx(theme, previewContainer)} />
-            <Code setEditorHeight={setEditorHeight} path={path} src={src}>
-              <LiveEditor
-                onChange={updatedCode => setCode(updatedCode)}
-                className={editorContainer}
-              />
-            </Code>
-          </div>
+          <LivePreview className={cx(theme, previewContainer)} />
+          <Code setEditorHeight={setEditorHeight} path={path} src={src}>
+            <LiveEditor
+              padding={16}
+              style={{ overflowX: 'auto', whiteSpace: 'pre' }}
+              onChange={updatedCode => setCode(updatedCode)}
+              className={editorContainer}
+            />
+          </Code>
           <KnobContainer
             code={code}
             setCode={setCode}

@@ -1,10 +1,16 @@
 .container {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 240px;
+  grid-template-rows: 560px minmax(1fr, 320px);
+  grid-template-areas:
+    'preview knobs'
+    'editor knobs';
   border: 1px solid $ui-03;
   margin-top: 0;
 }
 
 .left-pane {
+  grid-area: preview;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -19,7 +25,7 @@
 }
 
 .knob-container {
-  width: 320px;
+  grid-area: knobs;
   overflow-y: auto;
   background-color: $ui-background;
   border-left: 1px solid $ui-03;
@@ -60,7 +66,8 @@ fieldset.knob-component-group {
 }
 
 .preview-container {
-  min-height: 35rem;
+  height: 35rem;
+  overflow: auto;
   padding: $spacing-05;
   border: $spacing-03 solid $ui-background;
   background-color: var(--cds-ui-background);
@@ -74,7 +81,8 @@ fieldset.knob-component-group {
   margin-top: 0;
 }
 
-.editor-container pre {
+.editor-container pre,
+.editor-container textarea {
   white-space: pre !important;
 }
 

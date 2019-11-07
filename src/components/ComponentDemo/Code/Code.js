@@ -27,10 +27,10 @@ const Code = ({ children, code, path, src, setEditorHeight }) => {
           [sideBarMinHeight]: !path && src,
         })}>
         {children}
-        <Sidebar path={path} src={src}>
-          {code}
-        </Sidebar>
       </div>
+      <Sidebar path={path} src={src}>
+        {code}
+      </Sidebar>
     </div>
   );
 };

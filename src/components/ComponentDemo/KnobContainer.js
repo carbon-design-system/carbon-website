@@ -46,7 +46,13 @@ const Knob = ({ name, info, inputId, key, component, code, setCode }) => {
     };
 
     const propString = Object.entries(newKnobs[component]).reduce(
-      (acc, [prop, value]) => (value ? `${acc} ${prop}={${value}}` : acc),
+      (accumulator, [prop, value]) => {
+        if (!value || value === `'default'`) return accumulator;
+        if (typeof value === 'boolean') {
+          return `${accumulator} ${prop}`;
+        }
+        return `${accumulator} ${prop}=${value}`;
+      },
       ''
     );
 
