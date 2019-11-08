@@ -13,8 +13,8 @@ import { DemoContext } from './DemoContext';
 import {
   formContainer,
   formGroup,
-  componentWrapper,
-  componentTitle,
+  componentKnobWrapper,
+  componentKnobTitle,
   formItem,
   checkboxWrapper,
 } from './ComponentDemo.module.scss';
@@ -36,13 +36,13 @@ const Component = ({ component, knobs, code, setCode }) => {
 
   return (
     <>
-      <div className={componentTitle} id={componentGroupId}>
+      <div className={componentKnobTitle} id={componentGroupId}>
         {component}
       </div>
       <div
         role="group"
         aria-labelledby={componentGroupId}
-        className={componentWrapper}>
+        className={componentKnobWrapper}>
         <FormGroup className={formGroup} legendText="Modifiers">
           {booleanKnobs.map(([name, info], i) => (
             <Knob

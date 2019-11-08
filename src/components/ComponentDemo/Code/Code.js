@@ -1,13 +1,10 @@
 import React, { useEffect } from 'react';
 
-import cx from 'classnames';
-
 import useResizeObserver from 'use-resize-observer';
 
-import { container, sideBarMinHeight, row } from './Code.module.scss';
+import { container, sidebar, row } from './Code.module.scss';
 
-import PathRow from './PathRow';
-import Sidebar from './Sidebar';
+import CodeBar from './CodeBar';
 
 const Code = ({ children, code, path, src, setEditorHeight }) => {
   // eslint-disable-next-line no-unused-vars
@@ -19,18 +16,11 @@ const Code = ({ children, code, path, src, setEditorHeight }) => {
 
   return (
     <div ref={ref} className={row}>
-      <PathRow src={src} path={path}>
-        {code}
-      </PathRow>
-      <div
-        className={cx(container, {
-          [sideBarMinHeight]: !path && src,
-        })}>
+      <CodeBar code={code} src={src} path={path} />
+      <div className={container}>
         {children}
+        <div className={sidebar} />
       </div>
-      <Sidebar path={path} src={src}>
-        {code}
-      </Sidebar>
     </div>
   );
 };

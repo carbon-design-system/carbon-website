@@ -33,6 +33,7 @@ exports.onCreateWebpackConfig = ({ actions }) => {
   });
 };
 
+// Generate docgen info from carbon-components-react
 exports.onPreBootstrap = () => {
   const { sep } = path;
   const tmpDir = fs.mkdtempSync(`.cache${sep}`);

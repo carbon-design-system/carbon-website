@@ -10,6 +10,7 @@ import cx from 'classnames';
 
 import {
   container,
+  knoblessContainer,
   previewContainer,
   editorContainer,
   themeSwitcher,
@@ -26,7 +27,7 @@ import DemoContextProvider from './DemoContext';
 
 const { ContentSwitcher, Switch } = CarbonComponents;
 
-const ComponentDemo = ({ code: codeProp, path, src, scope, knobs = {} }) => {
+const ComponentDemo = ({ code: codeProp, src, scope, knobs }) => {
   const [editorHeight, setEditorHeight] = useState();
   const [code, setCode] = useState(codeProp.trim());
   const [theme, setTheme] = useState(white);
@@ -57,9 +58,9 @@ const ComponentDemo = ({ code: codeProp, path, src, scope, knobs = {} }) => {
         theme={prismTheme}
         scope={{ ...CarbonComponents, ...scope }}
         code={code}>
-        <div className={container}>
+        <div className={cx(container, { [knoblessContainer]: !knobs })}>
           <LivePreview className={cx(theme, previewContainer)} />
-          <Code setEditorHeight={setEditorHeight} path={path} src={src}>
+          <Code code={code} setEditorHeight={setEditorHeight} src={src}>
             <LiveEditor
               padding={16}
               style={{ overflowX: 'auto', whiteSpace: 'pre' }}
@@ -67,12 +68,14 @@ const ComponentDemo = ({ code: codeProp, path, src, scope, knobs = {} }) => {
               className={editorContainer}
             />
           </Code>
-          <KnobContainer
-            code={code}
-            setCode={setCode}
-            leftPaneHeight={editorHeight + 560}
-            knobs={knobs}
-          />
+          {knobs && (
+            <KnobContainer
+              code={code}
+              setCode={setCode}
+              leftPaneHeight={editorHeight + 560}
+              knobs={knobs}
+            />
+          )}
         </div>
         <LiveError />
       </LiveProvider>
