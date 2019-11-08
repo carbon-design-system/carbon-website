@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable global-require */
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable import/no-dynamic-require */
@@ -41,6 +42,22 @@ exports.onPreBootstrap = () => {
   );
 
   const CarbonComponentsReact = require(`./${tmpDir}`);
+
+  // Button lacks proper docgen info until docgen 5.0 due to prop-type import abstraction
+  // related: https://github.com/carbon-design-system/carbon/issues/4580
+  CarbonComponentsReact.Button.__docgenInfo.props.kind.type = {
+    name: 'enum',
+    description: 'Specify the kind of Button you want to create',
+    value: [
+      { value: `'primary'` },
+      { value: `'secondary'` },
+      { value: `'danger'` },
+      { value: `'ghost'` },
+      { value: `'danger-primary'` },
+      { value: `'tertiary'` },
+    ],
+  };
+
   const components = Object.keys(CarbonComponentsReact);
   const docgen = {};
 

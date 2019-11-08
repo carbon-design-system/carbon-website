@@ -1,7 +1,7 @@
 .container {
   display: grid;
   grid-template-columns: 1fr 240px;
-  grid-template-rows: 560px minmax(1fr, 320px);
+  grid-template-rows: 35rem minmax(1fr, 320px);
   grid-template-areas:
     'preview knobs'
     'editor knobs';
@@ -9,39 +9,50 @@
   margin-top: 0;
 }
 
-.left-pane {
-  grid-area: preview;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+.container * {
+  scrollbar-width: none;
 }
 
-.knob-form-item {
-  width: 100%;
+// specificity
+.checkbox-wrapper.checkbox-wrapper:last-of-type {
+  margin-bottom: 0;
 }
 
-.knob-form-item [class*='input'] {
-  width: 100%;
-}
-
-.knob-container {
+.form-container {
   grid-area: knobs;
   overflow-y: auto;
   background-color: $ui-background;
   border-left: 1px solid $ui-03;
 }
 
-.knob-component-group-wrapper {
+.component-title {
+  height: 32px;
+  background-color: $ui-03;
+  padding-left: $spacing-05;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  font-family: 'IBM Plex Mono', 'Menlo', 'DejaVu Sans Mono',
+    'Bitstream Vera Sans Mono', Courier, monospace;
+  font-size: 12px;
+}
+
+.component-wrapper {
   padding: $spacing-05;
+  padding-bottom: $spacing-06;
   border-bottom: 1px solid $ui-03;
   &:last-of-type {
     border-bottom: none;
   }
 }
 
+.component-wrapper > * + * {
+  margin-top: $spacing-05;
+}
+
 // custom classnames are being applied to both fieldset and label
 // https://github.com/carbon-design-system/carbon/issues/4572
-fieldset.knob-component-group {
+fieldset.form-group {
   margin-bottom: 0;
 }
 
@@ -67,6 +78,7 @@ fieldset.knob-component-group {
 
 .preview-container {
   height: 35rem;
+  grid-area: preview;
   overflow: auto;
   padding: $spacing-05;
   border: $spacing-03 solid $ui-background;

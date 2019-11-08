@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef } from 'react';
 // import PropTypes from 'prop-types';
 import {
   Form,
@@ -11,33 +11,77 @@ import carbonReactDocgen from '../../data/react-docgen.json';
 import { DemoContext } from './DemoContext';
 
 import {
-  knobContainer,
-  knobComponentGroup,
-  knobComponentGroupWrapper,
-  knobFormItem,
+  formContainer,
+  formGroup,
+  componentWrapper,
+  componentTitle,
+  formItem,
+  checkboxWrapper,
 } from './ComponentDemo.module.scss';
 
-const ComponentKnobGroup = ({ component, knobs, code, setCode, ...rest }) => (
-  <div className={knobComponentGroupWrapper}>
-    <FormGroup className={knobComponentGroup} legendText={component} {...rest}>
-      {Object.entries(knobs).map(([name, info], i) => (
-        <Knob
-          code={code}
-          setCode={setCode}
-          component={component}
-          key={name}
-          inputId={`${name}-knob-${i}`}
-          info={info}
-          name={name}
-        />
-      ))}
-    </FormGroup>
-  </div>
-);
+const Component = ({ component, knobs, code, setCode }) => {
+  const booleanKnobs = [];
+  const radioKnobs = [];
+
+  Object.entries(knobs).forEach(knob => {
+    const [, { type }] = knob;
+    if (type.name === 'bool') {
+      booleanKnobs.push(knob);
+    } else {
+      radioKnobs.push(knob);
+    }
+  });
+
+  const componentGroupId = `${component}-knobs`;
+
+  return (
+    <>
+      <div className={componentTitle} id={componentGroupId}>
+        {component}
+      </div>
+      <div
+        role="group"
+        aria-labelledby={componentGroupId}
+        className={componentWrapper}>
+        <FormGroup className={formGroup} legendText="Modifiers">
+          {booleanKnobs.map(([name, info], i) => (
+            <Knob
+              code={code}
+              setCode={setCode}
+              component={component}
+              key={name}
+              inputId={`${name}-knob-${i}`}
+              info={info}
+              name={name}
+            />
+          ))}
+        </FormGroup>
+        {radioKnobs.map(([name, info], i) => (
+          <Knob
+            code={code}
+            setCode={setCode}
+            component={component}
+            key={name}
+            inputId={`${name}-knob-${i}`}
+            info={info}
+            name={name}
+          />
+        ))}
+      </div>
+    </>
+  );
+};
 
 const Knob = ({ name, info, inputId, key, component, code, setCode }) => {
+  const componentPropsRegex = new RegExp(`<${component}(.*?)>`);
+
+  // stores whatever props are provided in the inital code
+  const { current: defaultKnobProps } = useRef(
+    code.match(componentPropsRegex)[1]
+  );
+
   const { knobs, setKnobs } = useContext(DemoContext);
-  const { type, description, defaultValue } = info;
+  const { description, defaultValue, type } = info;
 
   const updateKnob = val => {
     const newKnobs = {
@@ -45,6 +89,7 @@ const Knob = ({ name, info, inputId, key, component, code, setCode }) => {
       [component]: { ...knobs[component], [name]: val },
     };
 
+    // Generates valid jsx props from a prop object
     const propString = Object.entries(newKnobs[component]).reduce(
       (accumulator, [prop, value]) => {
         if (!value || value === `'default'`) return accumulator;
@@ -53,16 +98,11 @@ const Knob = ({ name, info, inputId, key, component, code, setCode }) => {
         }
         return `${accumulator} ${prop}=${value}`;
       },
-      ''
+      defaultKnobProps
     );
 
     setKnobs(newKnobs);
-    setCode(
-      code.replace(
-        new RegExp(`<${component}.*?>`),
-        `<${component}${propString}>`
-      )
-    );
+    setCode(code.replace(componentPropsRegex, `<${component}${propString}>`));
   };
 
   if (type.name === 'bool') {
@@ -75,7 +115,8 @@ const Knob = ({ name, info, inputId, key, component, code, setCode }) => {
         title={description}
         defaultChecked={defaultChecked}
         labelText={name}
-        className={knobFormItem}
+        className={formItem}
+        wrapperClassName={checkboxWrapper}
         id={inputId}
       />
     );
@@ -84,8 +125,7 @@ const Knob = ({ name, info, inputId, key, component, code, setCode }) => {
   if (type.name === 'enum') {
     const values = type.value;
 
-    let defaultSelected =
-      (defaultValue && defaultValue.value !== 'false') || undefined;
+    let defaultSelected = (defaultValue && defaultValue.value) || undefined;
 
     // some props (Button size) declare a default prop-type with no effect
     if (values.map(({ value }) => value).includes(`'default'`)) {
@@ -93,7 +133,7 @@ const Knob = ({ name, info, inputId, key, component, code, setCode }) => {
     }
 
     return (
-      <FormGroup legendText={name}>
+      <FormGroup className={formGroup} legendText={name}>
         <RadioButtonGroup
           onChange={val => updateKnob(val)}
           defaultSelected={defaultSelected}
@@ -130,9 +170,9 @@ const KnobContainer = ({ knobs, leftPaneHeight, code, setCode }) => {
   });
 
   return (
-    <Form style={{ maxHeight: leftPaneHeight }} className={knobContainer}>
+    <Form style={{ maxHeight: leftPaneHeight }} className={formContainer}>
       {requestedKnobs.map(([component, componentKnobs]) => (
-        <ComponentKnobGroup
+        <Component
           code={code}
           setCode={setCode}
           component={component}
