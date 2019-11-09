@@ -90,16 +90,15 @@ const Knob = ({ name, info, inputId, key, component, code, setCode }) => {
     };
 
     // Generates valid jsx props from a prop object
-    const propString = Object.entries(newKnobs[component]).reduce(
-      (accumulator, [prop, value]) => {
+    const propString = Object.entries(newKnobs[component])
+      .reduce((accumulator, [prop, value]) => {
         if (!value || value === `'default'`) return accumulator;
         if (typeof value === 'boolean') {
           return `${accumulator} ${prop}`;
         }
         return `${accumulator} ${prop}=${value}`;
-      },
-      defaultKnobProps
-    );
+      }, '')
+      .concat(defaultKnobProps);
 
     setKnobs(newKnobs);
     setCode(code.replace(componentPropsRegex, `<${component}${propString}>`));
@@ -163,9 +162,16 @@ const KnobContainer = ({ knobs, leftPaneHeight, code, setCode }) => {
   const requestedKnobs = Object.keys(knobs).map(component => {
     const fullComponent = carbonReactDocgen[component];
     const requestedProps = {};
+
+    if (!fullComponent) {
+      console.error(`Error: no docgen data found for ${component}`);
+      return [component, []];
+    }
+
     knobs[component].forEach(knob => {
       requestedProps[knob] = fullComponent.props[knob];
     });
+
     return [component, requestedProps];
   });
 

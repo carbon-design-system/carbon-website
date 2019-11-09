@@ -24,6 +24,7 @@ import {
 import Code from './Code';
 import KnobContainer from './KnobContainer';
 import DemoContextProvider from './DemoContext';
+import ErrorBoundary from './ErrorBoundary';
 
 const { ContentSwitcher, Switch } = CarbonComponents;
 
@@ -46,40 +47,47 @@ const ComponentDemo = ({ code: codeProp, src, scope, knobs }) => {
   // handle true/false better
 
   return (
-    <DemoContextProvider>
-      <ContentSwitcher
-        className={themeSwitcher}
-        onChange={({ name }) => setTheme(name)}>
-        {themes.map(({ name, text }) => (
-          <Switch key={name} className={switchButton} name={name} text={text} />
-        ))}
-      </ContentSwitcher>
-      <LiveProvider
-        theme={prismTheme}
-        scope={{ ...CarbonComponents, ...scope }}
-        code={code}>
-        <div className={cx(container, { [knoblessContainer]: !knobs })}>
-          <LivePreview className={cx(theme, previewContainer)} />
-          <Code code={code} setEditorHeight={setEditorHeight} src={src}>
-            <LiveEditor
-              padding={16}
-              style={{ overflowX: 'auto', whiteSpace: 'pre' }}
-              onChange={updatedCode => setCode(updatedCode)}
-              className={editorContainer}
+    <ErrorBoundary>
+      <DemoContextProvider>
+        <ContentSwitcher
+          className={themeSwitcher}
+          onChange={({ name }) => setTheme(name)}>
+          {themes.map(({ name, text }) => (
+            <Switch
+              key={name}
+              className={switchButton}
+              name={name}
+              text={text}
             />
-          </Code>
-          {knobs && (
-            <KnobContainer
-              code={code}
-              setCode={setCode}
-              leftPaneHeight={editorHeight + 560}
-              knobs={knobs}
-            />
-          )}
-        </div>
-        <LiveError />
-      </LiveProvider>
-    </DemoContextProvider>
+          ))}
+        </ContentSwitcher>
+        <LiveProvider
+          theme={prismTheme}
+          scope={{ ...CarbonComponents, ...scope }}
+          code={code}>
+          <div className={cx(container, { [knoblessContainer]: !knobs })}>
+            <LivePreview className={cx(theme, previewContainer)} />
+            <Code code={code} setEditorHeight={setEditorHeight} src={src}>
+              <LiveEditor
+                padding={16}
+                style={{ overflowX: 'auto', whiteSpace: 'pre' }}
+                onChange={updatedCode => setCode(updatedCode)}
+                className={editorContainer}
+              />
+            </Code>
+            {knobs && (
+              <KnobContainer
+                code={code}
+                setCode={setCode}
+                leftPaneHeight={editorHeight + 560}
+                knobs={knobs}
+              />
+            )}
+          </div>
+          <LiveError />
+        </LiveProvider>
+      </DemoContextProvider>
+    </ErrorBoundary>
   );
 };
 

@@ -37,9 +37,10 @@ exports.onCreateWebpackConfig = ({ actions }) => {
 exports.onPreBootstrap = () => {
   const { sep } = path;
   const tmpDir = fs.mkdtempSync(`.cache${sep}`);
+  const babelPlugins = `babel-plugin-react-docgen,transform-es2015-modules-commonjs`;
 
   execSync(
-    `babel ./node_modules/carbon-components-react/es --out-dir ${tmpDir} --plugins=babel-plugin-react-docgen,transform-es2015-modules-commonjs`
+    `babel ./node_modules/carbon-components-react/es --out-dir ${tmpDir} --plugins=${babelPlugins}`
   );
 
   const CarbonComponentsReact = require(`./${tmpDir}`);
