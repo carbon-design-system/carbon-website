@@ -54,7 +54,7 @@ exports.onPreBootstrap = () => {
   });
 
   fs.writeFileSync(
-    'src/data/react-docgen.json',
+    'src/data/docgen/react-docgen.json',
     JSON.stringify(docgen, null, 2)
   );
 
