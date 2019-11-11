@@ -183,7 +183,7 @@ const typeScale = {
       font: 'IBM Plex Sans',
       'font-weight': '600',
       'font-size': 0.875,
-      'line-height': 1.43,
+      'line-height': 1.25,
       'letter-spacing': 0.16,
     },
   },
