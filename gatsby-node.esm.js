@@ -6,6 +6,7 @@
 const path = require('path');
 const { execSync } = require('child_process');
 const fs = require('fs');
+const git = require('simple-git/promise');
 
 const rimraf = require('rimraf');
 
@@ -34,13 +35,22 @@ exports.onCreateWebpackConfig = ({ actions }) => {
 };
 
 // Generate docgen info from carbon-components-react
-exports.onPreBootstrap = () => {
+// This could probably be a github action once the inital demos are written
+exports.onPreBootstrap = async () => {
   const { sep } = path;
   const tmpDir = fs.mkdtempSync(`.cache${sep}`);
-  const babelPlugins = `babel-plugin-react-docgen,transform-es2015-modules-commonjs`;
+
+  await git()
+    .silent(true)
+    .clone(
+      'https://github.com/carbon-design-system/carbon.git',
+      `${tmpDir}/carbon`
+    );
+
+  const ccrPath = `${tmpDir}/carbon/packages/react/src`;
 
   execSync(
-    `babel ./node_modules/carbon-components-react/es --out-dir ${tmpDir} --plugins=${babelPlugins}`
+    `babel ./${ccrPath} --out-dir ${tmpDir} --config-file ./docgen-babel.config.js`
   );
 
   const CarbonComponentsReact = require(`./${tmpDir}`);

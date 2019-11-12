@@ -870,7 +870,6 @@ class TypesetStyle extends React.Component {
   addScrollListener() {
     document.addEventListener('scroll', () => {
       if (this.refs.stickyBar) {
-        console.log(this.refs.stickyBar.getBoundingClientRect().top);
         if (this.refs.stickyBar.getBoundingClientRect().top <= 112) {
           this.setState({
             sticky: true,

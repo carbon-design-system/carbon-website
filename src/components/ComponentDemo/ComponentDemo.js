@@ -28,7 +28,7 @@ import ErrorBoundary from './ErrorBoundary';
 
 const { ContentSwitcher, Switch } = CarbonComponents;
 
-const ComponentDemo = ({ code: codeProp, src, scope, knobs }) => {
+const ComponentDemo = ({ code: codeProp, src, scope, knobs, noInline }) => {
   const [editorHeight, setEditorHeight] = useState();
   const [code, setCode] = useState(codeProp.trim());
   const [theme, setTheme] = useState(white);
@@ -62,6 +62,7 @@ const ComponentDemo = ({ code: codeProp, src, scope, knobs }) => {
           ))}
         </ContentSwitcher>
         <LiveProvider
+          noInline={noInline}
           theme={prismTheme}
           scope={{ ...CarbonComponents, ...scope }}
           code={code}>

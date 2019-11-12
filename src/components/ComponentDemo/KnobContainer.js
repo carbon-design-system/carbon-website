@@ -8,7 +8,10 @@ import {
   Checkbox,
 } from 'carbon-components-react';
 
+import { pascalCase } from 'change-case';
+
 import carbonReactDocgen from '../../data/docgen';
+import { components } from '../../data/components';
 import { DemoContext } from './DemoContext';
 
 import {
@@ -19,6 +22,13 @@ import {
   formItem,
   checkboxWrapper,
 } from './ComponentDemo.module.scss';
+
+const docgenComponents = Object.keys(carbonReactDocgen);
+const componentNames = components.map(({ component }) => component);
+
+const noInfo = componentNames.filter(
+  name => !docgenComponents.includes(pascalCase(name))
+);
 
 const Component = ({ component, knobs, code, setCode }) => {
   const booleanKnobs = [];
@@ -35,6 +45,17 @@ const Component = ({ component, knobs, code, setCode }) => {
 
   const componentGroupId = `${component}-knobs`;
 
+  if (!booleanKnobs.length && !radioKnobs.length) {
+    return (
+      <>
+        <div className={componentKnobTitle} id={componentGroupId}>
+          {component}
+        </div>
+        <p style={{ padding: '1rem' }}>No docgen data found</p>
+      </>
+    );
+  }
+
   return (
     <>
       <div className={componentKnobTitle} id={componentGroupId}>
@@ -44,19 +65,21 @@ const Component = ({ component, knobs, code, setCode }) => {
         role="group"
         aria-labelledby={componentGroupId}
         className={componentKnobWrapper}>
-        <FormGroup className={formGroup} legendText="Modifiers">
-          {booleanKnobs.map(([name, info], i) => (
-            <Knob
-              code={code}
-              setCode={setCode}
-              component={component}
-              key={name}
-              inputId={`${name}-knob-${i}`}
-              info={info}
-              name={name}
-            />
-          ))}
-        </FormGroup>
+        {booleanKnobs.length > 0 && (
+          <FormGroup className={formGroup} legendText="Modifiers">
+            {booleanKnobs.map(([name, info], i) => (
+              <Knob
+                code={code}
+                setCode={setCode}
+                component={component}
+                key={name}
+                inputId={`${name}-knob-${i}`}
+                info={info}
+                name={name}
+              />
+            ))}
+          </FormGroup>
+        )}
         {radioKnobs.map(([name, info], i) => (
           <Knob
             code={code}
@@ -74,7 +97,10 @@ const Component = ({ component, knobs, code, setCode }) => {
 };
 
 const Knob = ({ name, info, inputId, key, component, code, setCode }) => {
-  const componentPropsRegex = new RegExp(`<${component}(.*?)>`);
+  // eslint-disable-next-line no-useless-escape
+  const pattern = `<${component}([\\s\\S]*?)>`;
+  const componentPropsRegex = new RegExp(pattern);
+  console.log(pattern);
 
   // stores whatever props are provided in the inital code
   const { current: defaultKnobProps } = useRef(
@@ -170,7 +196,13 @@ const KnobContainer = ({ knobs, leftPaneHeight, code, setCode }) => {
     }
 
     knobs[component].forEach(knob => {
-      requestedProps[knob] = fullComponent.props[knob];
+      if (fullComponent.props[knob].type) {
+        requestedProps[knob] = fullComponent.props[knob];
+      } else {
+        console.error(
+          `Error: ${component} prop '${knob}' lacks sufficient docgen info.`
+        );
+      }
     });
 
     return [component, requestedProps];
