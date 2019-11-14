@@ -30,23 +30,20 @@ The close button contains an ARIA label of `aria-label="close"`, and the icon ha
 
 ## Accessibility considerations
 
-This component has been validated to meet the [WCAG 2.0 AA](https://www.w3.org/TR/WCAG20/) and [Section 508](http://www.section508.gov/) accessibility guidelines, however changes made by the content owner can affect accessibility compliance. Be sure to review and follow the guidance in this section when updating or adding new content to this component.
-
-1. After the modal opens, initial focus should be set on the first focusable element in the modal. See WAI-ARIA Authoring Practices [Modal Dialog Example, Accessibility Features section](https://www.w3.org/TR/wai-aria-practices-1.1/examples/dialog-modal/dialog.html) for best practices on setting focus.
-2. After a modal closes, focus should retain the user's point of regard and return to the element that invoked the modal.
-3. Focus must not move outside the modal until it is closed.
-4. It is strongly recommended that the tab sequence of all modal dialogs include a visible element with button role that closes the dialog, such as a close icon or cancel button.
-5. Use the Alert modal dialog for special case that interrupts user’s workflow to communicate a brief, important message and require a user’s response,
+1. Avoid using a toast notifiction for critical alerts or long messages because they are timed and will disappear automatically making it difficult for people with various disabilities to get the entire message. An alert that disappears too quickly can lead to failure of the optional [WCAG 2.0 success criterion 2.2.3 (AAA)](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits-no-exceptions.html).
+2. Provide a means to make nonessential alerts optional to enhance usability for people with visual and cognitive disabilities. which also make meeting the requirements of the optional [WCAG 2.0 success criterion 2.2.4 (AAA)](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits-postponed.html) more difficult.
+3. Ensure the use of color and hidden icons are not used as the only means of conveying the importance of the notification.
 
 ## Resources
 
 **Helpful resources for creating customized accessible implementations**
 
-- [W3C WAI-ARIA Authoring Practices Dialog Modal Design Pattern](https://www.w3.org/TR/wai-aria-practices-1.1/#dialog_modal) covers the usage of ARIA names, state and roles, as well as the expected keyboard intractions.
+- [W3C W3C WAI-ARIA Authoring Practices Alert Design Pattern](https://www.w3.org/TR/wai-aria-practices-1.1/#alert) covers the usage of ARIA names, state and roles.
+- [W3C W3C Web Accessibility Tutorial - User Notifications](https://www.w3.org/WAI/tutorials/forms/notifications/) provides a tutorial on notification accessibility.
 - [IBM Accessibility Checklist Checkpoint](https://www.ibm.com/able/guidelines/ci162/accessibility_checklist.html):
-  - [1.4.13 Content on Hover or Focus](https://www.ibm.com/able/guidelines/ci162/no_keyboard_trap.html) (WCAG Success Criteria [1.4.13](https://www.w3.org/WAI/WCAG21/Understanding/content-on-hover-or-focus.html))
-  - [2.1.2 No Keyboard Traps](https://www.ibm.com/able/guidelines/ci162/no_keyboard_trap.html) (WCAG Success Criteria [2.1.2](https://www.w3.org/TR/UNDERSTANDING-WCAG20/keyboard-operation-trapping.html))
-  - [2.4.3 Focus Order](https://www.ibm.com/able/guidelines/ci162/link_purpose.html) (WCAG Success Criteria [2.4.3](https://www.w3.org/WAI/WCAG21/Understanding/focus-order))
+  - [3.3.1 Error Identification](https://www.ibm.com/able/guidelines/ci162/error_id.html) (WCAG Success Criteria [3.3.1](https://www.w3.org/TR/UNDERSTANDING-WCAG20/minimize-error-identified.html))
+  - [3.3.2 Labels and Instructions](https://www.ibm.com/able/guidelines/ci162/labels_or_instructions.html) (WCAG Success Criteria [3.3.2](https://www.w3.org/TR/UNDERSTANDING-WCAG20/minimize-error-cues.html))
+  - [3.3.3 Error Suggestion](https://www.ibm.com/able/guidelines/ci162/error_suggestion.html) (WCAG Success Criteria [3.3.3](https://www.w3.org/TR/UNDERSTANDING-WCAG20/minimize-error-suggestions.html))
 
 ## Accessibility testing
 
@@ -78,7 +75,7 @@ Accessibility issues are tracked in the [Carbon Component GitHub repository](htt
           </StructuredListCell>
           <StructuredListCell>
             <strong>DAP Test</strong>
-            <br />- No Violations
+            <br />- Violations
           </StructuredListCell>
         </StructuredListRow>
       </StructuredListBody>
@@ -106,27 +103,17 @@ Accessibility issues are tracked in the [Carbon Component GitHub repository](htt
             <br />- Carbon React version 7.7.1
           </StructuredListCell>
           <StructuredListCell>
-            <strong>VoiceOver(VO) Test:</strong>
+            <strong>VoiceOver(VO) test:</strong>
             <OrderedList>
               <ListItem>
-                Tab to Launch Modal button. VO announces the button label.
+                Press Control-Option-Shift keys to enter the Web content.
               </ListItem>
               <ListItem>
-                Select Enter or Space key to launch the modal. VO announces the
-                Button label, headings, and text.
+                Press the Tab key. VO announces the notification text and the
+                close button.
               </ListItem>
               <ListItem>
-                Tab or Shift-Tab navigate through the modal buttons and
-                announces each label.
-              </ListItem>
-              <ListItem>
-                Select Control-Option-Right Arrow or Left Arrow to navigate
-                through the modal message.
-              </ListItem>
-              <ListItem>
-                Select the Esc key, Close button or Cancel button to close the
-                modal and return focus to the Launch Modal button in the primary
-                window.
+                Press the Space key or Enter key to close the notification.
               </ListItem>
             </OrderedList>
           </StructuredListCell>
@@ -139,27 +126,17 @@ Accessibility issues are tracked in the [Carbon Component GitHub repository](htt
             <br />- Carbon React version 7.7.1
           </StructuredListCell>
           <StructuredListCell>
-            <strong>VoiceOver(VO) Test:</strong>
+            <strong>VoiceOver(VO) test:</strong>
             <OrderedList>
               <ListItem>
-                Tab to Launch Modal button. VO announces the button label.
+                Press Control-Option-Shift keys to enter the Web content.
               </ListItem>
               <ListItem>
-                Select Enter or Space key to launch the modal. VO announces the
-                Button label.
+                Press the Tab key. VO announces the notification text and the
+                close button.
               </ListItem>
               <ListItem>
-                Tab or Shift-Tab navigate through the modal buttons and
-                announces each label.
-              </ListItem>
-              <ListItem>
-                Select Control-Option-Right Arrow or Left Arrow to navigate
-                through the modal message.
-              </ListItem>
-              <ListItem>
-                Select the Esc key, Close button or Cancel button to close the
-                modal and return focus to the Launch Modal button in the primary
-                window.
+                Press the Space key or Enter key to close the notification.
               </ListItem>
             </OrderedList>
           </StructuredListCell>
@@ -185,147 +162,26 @@ Accessibility issues are tracked in the [Carbon Component GitHub repository](htt
           <StructuredListCell>
             - Microsoft Windows 10
             <br />
-            - Firefox version 67
+            - Firefox version 68
             <br />
-            - JAWS version 19.1810.64
+            - JAWS version 18
             <br />- Carbon React version 7.7.1
           </StructuredListCell>
           <StructuredListCell>
             <strong>JAWS test:</strong>
             <OrderedList>
               <ListItem>
-                Tab to Launch Modal button. JAWS announces the button label.
+                Press H, JAWS announce the notification title.
               </ListItem>
               <ListItem>
-                Select Enter or Space key to launch the modal.
+                Press Alt-Down Arrow, JAWS announces each line of the
+                notification text.
               </ListItem>
               <ListItem>
-                Tab or Shift-Tab to navigate through the modal buttons and
-                announces each label. Focus does not move out of the modal when
-                tabbing.
+                Press the Tab, JAWS announces the close button.
               </ListItem>
               <ListItem>
-                Select Control-Option-Right Arrow or Left Arrow to navigate
-                through the modal message.
-              </ListItem>
-              <ListItem>
-                Press Close button or Cancel button to close the modal and
-                return focus to the Launch Modal button in the primary window.
-              </ListItem>
-            </OrderedList>
-          </StructuredListCell>
-        </StructuredListRow>
-        <StructuredListRow>
-          <StructuredListCell>
-            - Microsoft Windows 10
-            <br />
-            - Chrome version 73.0.3683.103 (Official Build) (64-bit)
-            <br />
-            - JAWS version 19.1810.64
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>JAWS test:</strong>
-            <OrderedList>
-              <ListItem>
-                Tab to Launch Modal button. JAWS announces the button label.
-              </ListItem>
-              <ListItem>
-                Select Enter or Space key to launch the modal.
-              </ListItem>
-              <ListItem>
-                Tab or Shift-Tab to navigate through the modal buttons and
-                announces each label. Focus does not move out of the modal when
-                tabbing.
-              </ListItem>
-              <ListItem>
-                Select Control-Option-Right Arrow or Left Arrow to navigate
-                through the modal message.
-              </ListItem>
-              <ListItem>
-                Press Close button or Cancel button to close the modal and
-                return focus to the Launch Modal button in the primary window.
-              </ListItem>
-            </OrderedList>
-          </StructuredListCell>
-        </StructuredListRow>
-        <StructuredListRow>
-          <StructuredListCell>
-            - Microsoft Windows 10
-            <br />
-            - Chrome version 73.0.3683.103 (Official Build) (64-bit)
-            <br />
-            - NVDA Version 2018.4.1
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>NVDA test:</strong>
-            <OrderedList>
-              <ListItem>
-                Tab to Launch Modal button. NVDA announces the button label
-              </ListItem>
-              <ListItem>
-                Select Enter or Space key to launch the modal. NVDA announces
-                the text and buttons automatically.
-              </ListItem>
-              <ListItem>
-                Tab or Shift-Tab to navigate through the modal buttons and
-                announces each label. Focus does not move out of the modal when
-                tabbing.
-              </ListItem>
-              <ListItem>
-                Select Control-Option-Right Arrow or Left Arrow to navigate
-                through the modal message.
-              </ListItem>
-              <ListItem>
-                Press Close button or Cancel button to close the modal and
-                return focus to the Launch Modal button in the primary window.
-              </ListItem>
-            </OrderedList>
-          </StructuredListCell>
-        </StructuredListRow>
-      </StructuredListBody>
-    </StructuredListWrapper>
-  </Column>
-</Row>
-
-### Android screen reader tests
-
-<Row>
-  <Column noGutterSm>
-    <StructuredListWrapper>
-      <StructuredListRow head>
-        <StructuredListCell head>Environment </StructuredListCell>
-        <StructuredListCell head>Results</StructuredListCell>
-      </StructuredListRow>
-      <StructuredListBody>
-        <StructuredListRow>
-          <StructuredListCell>
-            - Android version 9 with Talkback
-            <br />
-            - Chrome Version 73.0.3683.103 (Official Build) (64-bit)
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>Talkback Test:</strong>
-            <OrderedList>
-              <ListItem>
-                Swipe left or right, or use the Alt+Arrow keys in quick nav mode
-                until you find the Launch Modal button.
-              </ListItem>
-              <ListItem>
-                Double tap the button or press the Alt-Enter keys to launch the
-                modal. The close modal button is announces and has focus.
-              </ListItem>
-              <ListItem>
-                Swipe Left or Right to explore the modal. VO announces the text,
-                and focus on the Cancel and Save buttons.
-              </ListItem>
-              <ListItem>
-                Note: that navigation is not restricted to the modal only, after
-                the modal is open there is no way to know if there is an open
-                modal present, the user needs to remember it. Doubletap or press
-                Alt+Enter on the Close or Cancel buttons to close the modal.
+                Press the Space key or Enter key to close the notification.
               </ListItem>
             </OrderedList>
           </StructuredListCell>
@@ -353,25 +209,16 @@ Accessibility issues are tracked in the [Carbon Component GitHub repository](htt
             <br />- Carbon React version 7.7.1
           </StructuredListCell>
           <StructuredListCell>
-            <strong>VoiceOver Test:</strong>
+            <strong>VoiceOver test:</strong>
             <OrderedList>
               <ListItem>
-                Swipe left or right, or use the Arrow keys in quick nav mode
-                until you find the Launch Modal button.
+                Swipe right to the notification and to read the notification
+                text.
               </ListItem>
               <ListItem>
-                Double tap the button to launch the modal. The close modal
-                button is announces and has focus.
+                Swipe right to the X icon. VO announces the close button.
               </ListItem>
-              <ListItem>
-                Swipe Left or Right to explore the modal. VO announces the text,
-                and focus on the Cancel and Save buttons.
-              </ListItem>
-              <ListItem>
-                After Double tapping on the close or cancel button, the modal
-                closes but focus is stuck on the selected button. Touch the
-                screen anywhere to move out of the focus trap.
-              </ListItem>
+              <ListItem>Double tap to close the notification.</ListItem>
             </OrderedList>
           </StructuredListCell>
         </StructuredListRow>
