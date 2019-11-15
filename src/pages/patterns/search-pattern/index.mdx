@@ -24,7 +24,9 @@ Search is an essential pattern for navigation or discovery. We live in the age o
 
 Search takes a blank state and adds to it based on criteria that matches. It’s like a conversation between the user and system: the user expresses their information need as a query, and the system expresses its response as a set of results.
 
-**All searches are scoped searches.** To help users search effectively, ensure your search scope matches the location it is found in an application. A global search should help a user find any relevant data or content within an application, while a search within a component should search the data or information within that context.
+**The most important consideration when designing a search is scope.** To help users search effectively, ensure your search scope matches the location it is found in an application. A global search should help a user find any relevant data or content within an application, while a search within a component should search the data or information within that context.
+
+A user should be able to narrow the scope of a search as needed using advanced options and filters.
 
 <Row>
 <Column colLg={8}>
@@ -33,6 +35,12 @@ Search takes a blank state and adds to it based on criteria that matches. It’s
 
 </Column>
 </Row>
+
+FPO -- More detail about global with image.
+
+FPO -- More detail about targeted
+
+FPO -- MOre detial about faceted filtering
 
 ### When to use
 
@@ -50,33 +58,11 @@ Search shouldn’t be the only way to locate information. Especially when provid
 
 ## The solution
 
-Every search must be composed of an [input field](/components/search/usage) and a button to run the search query. The search input field should make use of helpful placeholder text to suggest what the user should search for. Placeholder text should be short and clear.
+![Overview image](/images/overview.png)
 
-### Behaviors, structure, and functionality
+Every search must be composed of an [input field](/components/search/usage) and a button to run the search query. The search input field should make use of helpful placeholder text to suggest what the user should search for.
 
-- The search input field should make use of helpful placeholder text to suggest what the user should search for. Placeholder text should be short as to not increase the cognitive load.
-- At its smallest width, the search input field should be able to accommodate at least 27 characters of text.
-- When the search box component is a global search, it almost always appears in the middle of the global header for easy access.
-
-### Best practices
-
-#### Type-ahead suggestions
-
-Type-ahead suggestions are a great way to give immediate feedback to the user on their search query. Without having to commit to a search, they can get a preview of results, suggestions of additional search terms, or just find exactly what they were looking for without having to visit a separate page first.
-
-If using type-ahead, it should become invoked from the second the search input field is activated. The initial state (when the user has clicked or tabbed into the search input field but hasn’t typed anything yet) is a great opportunity to surface the user’s recent search history and/or trending searches (depending on what is appropriate for the website/application).
-
-Once the user begins to type into the search input field, relevant suggestion results should display in the menu below the search bar. These should continue to update and refine as the user types. No more than 8 suggestions should be displayed at a time, and a scrollbar should never be used (the menu should expand/contract vertically as necessary).
-
-The order in which suggestions are displayed should be considered as well (what is the relevancy order?). If it makes sense for the website or application, type-ahead suggestions should be grouped into similar suggestions (example of grouped suggestions: IPs, Collections, and then Users).
-
-#### Localization
-
-Search should take place in the same language that the rest of the application or website is displayed in. The placeholder text in the search input field should also be translated accordingly.
-
-Languages that read RTL (instead of LTR) should consider flip-flopping the layout of the search box, where it reads Scope, Input, Button from right to left. Placeholder text and type-ahead suggestions should align right. The icon seems to be acceptable across languages and locales.
-
-### Other use cases
+FPO -- Do/Don't placeholder text.
 
 #### Targeted search
 
@@ -88,9 +74,9 @@ Languages that read RTL (instead of LTR) should consider flip-flopping the layou
 </Column>
 </Row>
 
-Targeted search allows users to quickly and easily search within a specific category so they can find more relevant content and filter out unwanted results.
+Targeted search allows users to quickly search within a specific category so they can find more relevant content and filter out unwanted results.
 
-As opposed to global searches, which are performed at a high level in order to locate unknown content, the targeted search should be used for scenarios when users understand what they need.
+Targeted search should be used for scenarios when users understand what they need. As opposed to global searches, which are performed at a high level in order to locate unknown content.
 
 Only one scope option can be selected at a time. If the architecture allows, the scope dropdown should also include an “All” option, which should be the default, to lessen the user’s cognitive load.
 
@@ -126,6 +112,37 @@ If there are more than 8 options within a facet group, they should be truncated 
 - In addition to allowing users to narrow down their results, faceted filtering should give users a better understanding of the data structure
 - Filters should be grouped by logical categories with clear labels
 - Filtering should always be paired with an ‘Apply’ button and a ‘Clear Filters’ button
+
+### Behaviors, structure, and functionality
+
+#### Type-ahead suggestions
+
+Type-ahead suggestions give a user immediate feedback to the user on their search query. Without having to commit to a search, they can get a preview of results, suggestions of additional search terms, or just find exactly what they were looking for without having to visit a separate page first.
+
+If using type-ahead, it should become invoked from the second the search input field is activated. The initial state (when the user has clicked or tabbed into the search input field but hasn’t typed anything yet) is a great opportunity to surface the user’s recent search history and/or trending searches (depending on what is appropriate for the website/application).
+
+Once the user begins to type into the search input field, relevant suggestion results should display in the menu below the search bar. These should continue to update and refine as the user types. No more than 8 suggestions should be displayed at a time, and a scrollbar should never be used (the menu should expand/contract vertically as necessary).
+
+The order in which suggestions are displayed should be considered as well (what is the relevancy order?). If it makes sense for the website or application, type-ahead suggestions should be grouped into similar suggestions (example of grouped suggestions: IPs, Collections, and then Users).
+
+- [DELETE]At its smallest width, the search input field should be able to accommodate at least 27 characters of text.[DELETE]
+- When the search box component is a global search, it almost always appears in the middle of the global header for easy access.
+
+#### Placeholder text vs. helper text
+
+Placeholder text should be short and clear.
+
+#### No results
+
+Users will often search for keywords that don't return any results. The way a search handles this depends on its scope. If a global search fails to return any results, provide suggestions and helpful resources to ensure the user finds what they are looking for.
+
+### Best practices
+
+#### Localization
+
+Search should take place in the same language that the rest of the application or website is displayed in. The placeholder text in the search input field should also be translated accordingly.
+
+Languages that read RTL (instead of LTR) should consider flip-flopping the layout of the search box, where it reads Scope, Input, Button from right to left. Placeholder text and type-ahead suggestions should align right. The icon seems to be acceptable across languages and locales.
 
 ## Related patterns and components
 
