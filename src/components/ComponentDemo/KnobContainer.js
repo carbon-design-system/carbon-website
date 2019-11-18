@@ -8,10 +8,7 @@ import {
   Checkbox,
 } from 'carbon-components-react';
 
-import { pascalCase } from 'change-case';
-
 import carbonReactDocgen from '../../data/docgen';
-import { components } from '../../data/components';
 import { DemoContext } from './DemoContext';
 
 import {
@@ -23,12 +20,15 @@ import {
   checkboxWrapper,
 } from './ComponentDemo.module.scss';
 
-const docgenComponents = Object.keys(carbonReactDocgen);
-const componentNames = components.map(({ component }) => component);
+// Components w/o react docgen data
+// import { pascalCase } from 'change-case';
+// import { components } from '../../data/components.json';
+// const docgenComponents = Object.keys(carbonReactDocgen);
+// const componentNames = components.map(({ component }) => component);
 
-const noInfo = componentNames.filter(
-  name => !docgenComponents.includes(pascalCase(name))
-);
+// const noInfo = componentNames.filter(
+//   name => !docgenComponents.includes(pascalCase(name))
+// );
 
 const Component = ({ component, knobs, code, setCode }) => {
   const booleanKnobs = [];
@@ -100,7 +100,6 @@ const Knob = ({ name, info, inputId, key, component, code, setCode }) => {
   // eslint-disable-next-line no-useless-escape
   const pattern = `<${component}([\\s\\S]*?)>`;
   const componentPropsRegex = new RegExp(pattern);
-  console.log(pattern);
 
   // stores whatever props are provided in the inital code
   const { current: defaultKnobProps } = useRef(
