@@ -96,15 +96,22 @@ const Component = ({ component, knobs, code, setCode }) => {
   );
 };
 
+const useDefaultProps = (code, componentPropsRegex) => {
+  const match = code.match(componentPropsRegex);
+  if (match !== null) {
+    return match[1];
+  }
+  return '';
+};
+
 const Knob = ({ name, info, inputId, key, component, code, setCode }) => {
   // eslint-disable-next-line no-useless-escape
   const pattern = `<${component}([\\s\\S]*?)>`;
   const componentPropsRegex = new RegExp(pattern);
 
   // stores whatever props are provided in the inital code
-  const { current: defaultKnobProps } = useRef(
-    code.match(componentPropsRegex)[1]
-  );
+  const { current: initialCode } = useRef(code);
+  const defaultKnobProps = useDefaultProps(initialCode, componentPropsRegex);
 
   const { knobs, setKnobs } = useContext(DemoContext);
   const { description, defaultValue, type } = info;
@@ -112,7 +119,7 @@ const Knob = ({ name, info, inputId, key, component, code, setCode }) => {
   const updateKnob = val => {
     const newKnobs = {
       ...knobs,
-      [component]: { ...knobs[component], [name]: val },
+      [component]: { ...knobs[component], ...{ [name]: val } },
     };
 
     // Generates valid jsx props from a prop object

@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useRef } from 'react';
 import { getParameters } from 'codesandbox/lib/api/define';
 import prettier from 'prettier/standalone';
 import parserBabylon from 'prettier/parser-babylon';
@@ -23,11 +23,18 @@ const getIndex = ({ code = '' }) => {
 };
 
 const useCodesandbox = code => {
+  const { current: originalCode } = useRef(code);
   const url = useMemo(() => {
-    const indexContent = prettier.format(getIndex({ code }), {
-      parser: 'babylon',
-      plugins: [parserBabylon],
-    });
+    let indexContent = getIndex({ code: originalCode });
+
+    try {
+      indexContent = prettier.format(getIndex({ code }), {
+        parser: 'babylon',
+        plugins: [parserBabylon],
+      });
+    } catch (e) {
+      console.warn(`Prettier error: ${e.message}`);
+    }
 
     const parameters = getParameters({
       files: {
