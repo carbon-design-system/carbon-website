@@ -120,6 +120,199 @@
       }
     }
   },
+  "Button": {
+    "description": "",
+    "props": {
+      "tabIndex": {
+        "defaultValue": { "value": "0", "computed": false },
+        "type": { "name": "number" },
+        "required": false,
+        "description": "Optional prop to specify the tabIndex of the Button"
+      },
+      "type": {
+        "defaultValue": { "value": "'button'", "computed": false },
+        "type": {
+          "name": "enum",
+          "value": [
+            { "value": "'button'", "computed": false },
+            { "value": "'reset'", "computed": false },
+            { "value": "'submit'", "computed": false }
+          ]
+        },
+        "required": false,
+        "description": "Optional prop to specify the type of the Button"
+      },
+      "disabled": {
+        "defaultValue": { "value": "false", "computed": false },
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Specify whether the Button should be disabled, or not"
+      },
+      "kind": {
+        "defaultValue": { "value": "'primary'", "computed": false },
+        "type": { "name": "enum", "computed": true, "value": "ButtonKinds" },
+        "required": false,
+        "description": "Specify the kind of Button you want to create"
+      },
+      "children": {
+        "type": { "name": "node" },
+        "required": false,
+        "description": "Specify the content of your Button"
+      },
+      "as": {
+        "type": {
+          "name": "union",
+          "value": [{ "name": "func" }, { "name": "string" }]
+        },
+        "required": false,
+        "description": "Specify how the button itself should be rendered.\nMake sure to apply all props to the root node and render children appropriately"
+      },
+      "className": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Specify an optional className to be added to your Button"
+      },
+      "size": {
+        "type": {
+          "name": "enum",
+          "value": [
+            { "value": "'default'", "computed": false },
+            { "value": "'field'", "computed": false },
+            { "value": "'small'", "computed": false }
+          ]
+        },
+        "required": false,
+        "description": "Specify the size of the button, from a list of available sizes.\nFor `default` buttons, this prop can remain unspecified."
+      },
+      "small": {
+        "type": {
+          "name": "custom",
+          "raw": "deprecate(\n  PropTypes.bool,\n  `\\nThe prop \\`small\\` for Button has been deprecated in favor of \\`size\\`. Please use \\`size=\"small\"\\` instead.`\n)"
+        },
+        "required": false,
+        "description": "Deprecated in v10 in favor of `size`.\nSpecify whether the Button should be a small variant"
+      },
+      "href": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Optionally specify an href for your Button to become an <a> element"
+      },
+      "role": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Optional prop to specify the role of the Button"
+      },
+      "renderIcon": {
+        "type": {
+          "name": "union",
+          "value": [{ "name": "func" }, { "name": "object" }]
+        },
+        "required": false,
+        "description": "Optional prop to allow overriding the icon rendering.\nCan be a React component class"
+      },
+      "iconDescription": {
+        "type": {
+          "name": "custom",
+          "raw": "props => {\n  if (props.renderIcon && !props.children && !props.iconDescription) {\n    return new Error(\n      'renderIcon property specified without also providing an iconDescription property.'\n    );\n  }\n  return undefined;\n}"
+        },
+        "required": false,
+        "description": "If specifying the `renderIcon` prop, provide a description for that icon that can\nbe read by screen readers"
+      },
+      "hasIconOnly": {
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Specify if the button is an icon-only button"
+      },
+      "tooltipPosition": {
+        "type": {
+          "name": "enum",
+          "value": [
+            { "value": "'top'", "computed": false },
+            { "value": "'right'", "computed": false },
+            { "value": "'bottom'", "computed": false },
+            { "value": "'left'", "computed": false }
+          ]
+        },
+        "required": false,
+        "description": "Specify the direction of the tooltip for icon-only buttons.\nCan be either top, right, bottom, or left."
+      },
+      "tooltipAlignment": {
+        "type": {
+          "name": "enum",
+          "value": [
+            { "value": "'start'", "computed": false },
+            { "value": "'center'", "computed": false },
+            { "value": "'end'", "computed": false }
+          ]
+        },
+        "required": false,
+        "description": "Specify the alignment of the tooltip to the icon-only button.\nCan be one of: start, center, or end."
+      }
+    }
+  },
+  "Checkbox": {
+    "description": "",
+    "displayName": "Checkbox",
+    "props": {
+      "onChange": {
+        "defaultValue": { "value": "() => {}", "computed": false },
+        "type": { "name": "func" },
+        "required": false,
+        "description": "Receives three arguments: true/false, the checkbox's id, and the dom event.\n`(value, id, event) => console.log({value, id, event})`"
+      },
+      "indeterminate": {
+        "defaultValue": { "value": "false", "computed": false },
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Specify whether the Checkbox is in an indeterminate state"
+      },
+      "checked": {
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Specify whether the underlying input should be checked"
+      },
+      "defaultChecked": {
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Specify whether the underlying input should be checked by default"
+      },
+      "className": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Specify an optional className to be applied to the <label> node"
+      },
+      "disabled": {
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Specify whether the Checkbox should be disabled"
+      },
+      "id": {
+        "type": { "name": "string" },
+        "required": true,
+        "description": "Provide an `id` to uniquely identify the Checkbox input"
+      },
+      "labelText": {
+        "type": { "name": "node" },
+        "required": true,
+        "description": "Provide a label to provide a description of the Checkbox input that you are\nexposing to the user"
+      },
+      "hideLabel": {
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Specify whether the label should be hidden, or not"
+      },
+      "title": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Specify a title for the <label> node for the Checkbox"
+      },
+      "wrapperClassName": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "The CSS class name to be placed on the wrapping element"
+      }
+    }
+  },
   "CodeSnippet": {
     "description": "",
     "displayName": "CodeSnippet",
@@ -900,6 +1093,27 @@
       }
     },
     "composes": ["../../prop-types/AriaPropTypes"]
+  },
+  "TableToolbarAction": {
+    "description": "",
+    "displayName": "TableToolbarAction",
+    "props": {
+      "children": {
+        "type": { "name": "node" },
+        "required": false,
+        "description": ""
+      },
+      "className": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": ""
+      },
+      "onClick": {
+        "type": { "name": "func" },
+        "required": true,
+        "description": ""
+      }
+    }
   },
   "TableToolbarSearch": {
     "description": "",
@@ -3069,6 +3283,98 @@
     }
   },
   "SecondaryButton": { "description": "", "displayName": "SecondaryButton" },
+  "Select": {
+    "description": "",
+    "displayName": "Select",
+    "props": {
+      "disabled": {
+        "defaultValue": { "value": "false", "computed": false },
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Specify whether the control is disabled"
+      },
+      "labelText": {
+        "defaultValue": { "value": "'Select'", "computed": false },
+        "type": { "name": "node" },
+        "required": false,
+        "description": "Provide label text to be read by screen readers when interacting with the\ncontrol"
+      },
+      "inline": {
+        "defaultValue": { "value": "false", "computed": false },
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Specify whether you want the inline version of this control"
+      },
+      "iconDescription": {
+        "defaultValue": {
+          "value": "'open list of options'",
+          "computed": false
+        },
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Provide a description for the twistie icon that can be read by screen readers"
+      },
+      "invalid": {
+        "defaultValue": { "value": "false", "computed": false },
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Specify if the currently value is invalid."
+      },
+      "invalidText": {
+        "defaultValue": { "value": "''", "computed": false },
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Message which is displayed if the value is invalid."
+      },
+      "helperText": {
+        "defaultValue": { "value": "''", "computed": false },
+        "type": { "name": "node" },
+        "required": false,
+        "description": "Provide text that is used alongside the control label for additional help"
+      },
+      "light": {
+        "defaultValue": { "value": "false", "computed": false },
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Specify whether you want the light version of this control"
+      },
+      "children": {
+        "type": { "name": "node" },
+        "required": false,
+        "description": "Provide the contents of your Select"
+      },
+      "className": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Specify an optional className to be applied to the node containing the label and the select box"
+      },
+      "id": {
+        "type": { "name": "string" },
+        "required": true,
+        "description": "Specify a custom `id` for the `<select>`"
+      },
+      "onChange": {
+        "type": { "name": "func" },
+        "required": false,
+        "description": "Provide an optional `onChange` hook that is called each time the value of\nthe underlying <input> changes"
+      },
+      "defaultValue": {
+        "type": { "name": "any" },
+        "required": false,
+        "description": "Optionally provide the default value of the `<select>`"
+      },
+      "hideLabel": {
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Specify whether the label should be hidden, or not"
+      },
+      "noLabel": {
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Reserved for use with <Pagination> component. Will not render a label for the\nselect since Pagination renders one for us."
+      }
+    }
+  },
   "SelectItem": {
     "description": "",
     "displayName": "SelectItem",
@@ -3129,6 +3435,54 @@
         "type": { "name": "string" },
         "required": false,
         "description": "Specify an optional className to be applied to the node"
+      }
+    }
+  },
+  "Switch": {
+    "description": "",
+    "displayName": "Switch",
+    "props": {
+      "selected": {
+        "defaultValue": { "value": "false", "computed": false },
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Whether your Switch is selected. Reserved for usage in ContentSwitcher"
+      },
+      "text": {
+        "defaultValue": { "value": "'Provide text'", "computed": false },
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Provide the contents of your Switch"
+      },
+      "onClick": {
+        "defaultValue": { "value": "() => {}", "computed": false },
+        "type": { "name": "func" },
+        "required": false,
+        "description": "A handler that is invoked when a user clicks on the control.\nReserved for usage in ContentSwitcher"
+      },
+      "onKeyDown": {
+        "defaultValue": { "value": "() => {}", "computed": false },
+        "type": { "name": "func" },
+        "required": false,
+        "description": "A handler that is invoked on the key down event for the control.\nReserved for usage in ContentSwitcher"
+      },
+      "className": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Specify an optional className to be added to your Switch"
+      },
+      "index": {
+        "type": { "name": "number" },
+        "required": false,
+        "description": "The index of your Switch in your ContentSwitcher that is used for event handlers.\nReserved for usage in ContentSwitcher"
+      },
+      "name": {
+        "type": {
+          "name": "union",
+          "value": [{ "name": "string" }, { "name": "number" }]
+        },
+        "required": false,
+        "description": "Provide the name of your Switch that is used for event handlers"
       }
     }
   },
@@ -3673,6 +4027,202 @@
         "type": { "name": "string" },
         "required": false,
         "description": "Text to show on clear filters"
+      }
+    }
+  },
+  "TextArea": {
+    "description": "",
+    "displayName": "TextArea",
+    "props": {
+      "disabled": {
+        "defaultValue": { "value": "false", "computed": false },
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Specify whether the control is disabled"
+      },
+      "onChange": {
+        "defaultValue": { "value": "() => {}", "computed": false },
+        "type": { "name": "func" },
+        "required": false,
+        "description": "Optionally provide an `onChange` handler that is called whenever <textarea>\nis updated"
+      },
+      "onClick": {
+        "defaultValue": { "value": "() => {}", "computed": false },
+        "type": { "name": "func" },
+        "required": false,
+        "description": "Optionally provide an `onClick` handler that is called whenever the\n<textarea> is clicked"
+      },
+      "placeholder": {
+        "defaultValue": { "value": "''", "computed": false },
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Specify the placeholder attribute for the <textarea>"
+      },
+      "rows": {
+        "defaultValue": { "value": "4", "computed": false },
+        "type": { "name": "number" },
+        "required": false,
+        "description": "Specify the rows attribute for the <textarea>"
+      },
+      "cols": {
+        "defaultValue": { "value": "50", "computed": false },
+        "type": { "name": "number" },
+        "required": false,
+        "description": "Specify the `cols` attribute for the underlying <textarea> node"
+      },
+      "invalid": {
+        "defaultValue": { "value": "false", "computed": false },
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Specify whether the control is currently invalid"
+      },
+      "invalidText": {
+        "defaultValue": { "value": "''", "computed": false },
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Provide the text that is displayed when the control is in an invalid state"
+      },
+      "helperText": {
+        "defaultValue": { "value": "''", "computed": false },
+        "type": { "name": "node" },
+        "required": false,
+        "description": "Provide text that is used alongside the control label for additional help"
+      },
+      "light": {
+        "defaultValue": { "value": "false", "computed": false },
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Specify whether you want the light version of this control"
+      },
+      "className": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Provide a custom className that is applied directly to the underlying\n<textarea> node"
+      },
+      "defaultValue": {
+        "type": {
+          "name": "union",
+          "value": [{ "name": "string" }, { "name": "number" }]
+        },
+        "required": false,
+        "description": "Optionally provide the default value of the <textarea>"
+      },
+      "id": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Provide a unique identifier for the control"
+      },
+      "labelText": {
+        "type": { "name": "node" },
+        "required": true,
+        "description": "Provide the text that will be read by a screen reader when visiting this\ncontrol"
+      },
+      "value": {
+        "type": {
+          "name": "union",
+          "value": [{ "name": "string" }, { "name": "number" }]
+        },
+        "required": false,
+        "description": "Provide the current value of the <textarea>"
+      },
+      "hideLabel": {
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Specify whether you want the underlying label to be visually hidden"
+      }
+    }
+  },
+  "TextInput": {
+    "description": "",
+    "props": {
+      "disabled": {
+        "defaultValue": { "value": "false", "computed": false },
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Specify whether the <input> should be disabled"
+      },
+      "type": {
+        "defaultValue": { "value": "'text'", "computed": false },
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Specify the type of the <input>"
+      },
+      "onChange": {
+        "defaultValue": { "value": "() => {}", "computed": false },
+        "type": { "name": "func" },
+        "required": false,
+        "description": "Optionally provide an `onChange` handler that is called whenever <input>\nis updated"
+      },
+      "onClick": {
+        "defaultValue": { "value": "() => {}", "computed": false },
+        "type": { "name": "func" },
+        "required": false,
+        "description": "Optionally provide an `onClick` handler that is called whenever the\n<input> is clicked"
+      },
+      "invalid": {
+        "defaultValue": { "value": "false", "computed": false },
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Specify whether the control is currently invalid"
+      },
+      "invalidText": {
+        "defaultValue": { "value": "''", "computed": false },
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Provide the text that is displayed when the control is in an invalid state"
+      },
+      "helperText": {
+        "defaultValue": { "value": "''", "computed": false },
+        "type": { "name": "node" },
+        "required": false,
+        "description": "Provide text that is used alongside the control label for additional help"
+      },
+      "light": {
+        "defaultValue": { "value": "false", "computed": false },
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "`true` to use the light version."
+      },
+      "className": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Specify an optional className to be applied to the <input> node"
+      },
+      "defaultValue": {
+        "type": {
+          "name": "union",
+          "value": [{ "name": "string" }, { "name": "number" }]
+        },
+        "required": false,
+        "description": "Optionally provide the default value of the <input>"
+      },
+      "id": {
+        "type": { "name": "string" },
+        "required": true,
+        "description": "Specify a custom `id` for the <input>"
+      },
+      "labelText": {
+        "type": { "name": "node" },
+        "required": true,
+        "description": "Provide the text that will be read by a screen reader when visiting this\ncontrol"
+      },
+      "placeholder": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Specify the placeholder attribute for the <input>"
+      },
+      "value": {
+        "type": {
+          "name": "union",
+          "value": [{ "name": "string" }, { "name": "number" }]
+        },
+        "required": false,
+        "description": "Specify the value of the <input>"
+      },
+      "hideLabel": {
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Specify whether you want the underlying label to be visually hidden"
       }
     }
   },
@@ -4241,6 +4791,27 @@
       }
     }
   },
+  "ToolbarTitle": {
+    "description": "",
+    "props": {
+      "title": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Specify the title of the Toolbar"
+      }
+    }
+  },
+  "ToolbarOption": {
+    "description": "",
+    "props": {
+      "children": {
+        "type": { "name": "node" },
+        "required": false,
+        "description": "Specify the contents of the ToolbarOption"
+      }
+    }
+  },
+  "ToolbarDivider": { "description": "" },
   "ToolbarSearch": {
     "description": "",
     "displayName": "ToolbarSearch",
@@ -4926,6 +5497,27 @@
     },
     "composes": ["../../prop-types/AriaPropTypes"]
   },
+  "HeaderMenuItem": {
+    "description": "",
+    "props": {
+      "className": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Optionally provide a custom class to apply to the underlying <li> node"
+      },
+      "children": {
+        "type": { "name": "node" },
+        "required": true,
+        "description": "Pass in children that are either a string or can be read as a string by\nscreen readers"
+      },
+      "role": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Optionally supply a role for the underlying <li> node. Useful for resetting\n<ul> semantics for menus."
+      }
+    },
+    "composes": ["./Link"]
+  },
   "HeaderName": {
     "description": "",
     "displayName": "HeaderName",
@@ -5005,6 +5597,38 @@
       }
     }
   },
+  "Switcher": {
+    "description": "",
+    "props": {
+      "className": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Optionally provide a custom class to apply to the underlying <ul> node"
+      },
+      "children": {
+        "type": { "name": "node" },
+        "required": true,
+        "description": "expects to receive <SwitcherItem />"
+      }
+    },
+    "composes": ["../../prop-types/AriaPropTypes"]
+  },
+  "SwitcherItem": {
+    "description": "",
+    "props": {
+      "className": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Optionally provide a custom class to apply to the underlying <li> node"
+      },
+      "children": {
+        "type": { "name": "node" },
+        "required": true,
+        "description": "Specify the text content for the link"
+      }
+    },
+    "composes": ["../../prop-types/AriaPropTypes"]
+  },
   "SwitcherDivider": {
     "description": "",
     "displayName": "SwitcherDivider",
@@ -5042,6 +5666,77 @@
         "description": "Optionally override the default tabindex of 0"
       }
     }
+  },
+  "SideNav": {
+    "description": "",
+    "props": {
+      "translateById": {
+        "defaultValue": {
+          "value": "id => {\n  const translations = {\n    'carbon.sidenav.state.open': 'Close',\n    'carbon.sidenav.state.closed': 'Open',\n  };\n  return translations[id];\n}",
+          "computed": false
+        },
+        "type": { "name": "func" },
+        "required": false,
+        "description": "Provide a custom function for translating all message ids within this\ncomponent. This function will take in two arguments: the mesasge Id and the\nstate of the component. From this, you should return a string representing\nthe label you want displayed or read by screen readers."
+      },
+      "defaultExpanded": {
+        "defaultValue": { "value": "false", "computed": false },
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "If `true`, the SideNav will be open on initial render."
+      },
+      "isChildOfHeader": {
+        "defaultValue": { "value": "true", "computed": false },
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Optionally provide a custom class to apply to the underlying <li> node"
+      },
+      "isFixedNav": {
+        "defaultValue": { "value": "false", "computed": false },
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Specify if sideNav is standalone"
+      },
+      "isPersistent": {
+        "defaultValue": { "value": "true", "computed": false },
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Specify if the sideNav will be persistent above the lg breakpoint"
+      },
+      "addFocusListeners": {
+        "defaultValue": { "value": "true", "computed": false },
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Specify whether focus and blur listeners are added. They are by default."
+      },
+      "addMouseListeners": {
+        "defaultValue": { "value": "true", "computed": false },
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Specify whether mouse entry/exit listeners are added. They are by default."
+      },
+      "expanded": {
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "If `true`, the SideNav will be expanded, otherwise it will be collapsed.\nUsing this prop causes SideNav to become a controled component."
+      },
+      "onToggle": {
+        "type": { "name": "func" },
+        "required": false,
+        "description": "An optional listener that is called when an event that would cause\ntoggling the SideNav occurs.\n\n@param {object} event\n@param {boolean} value"
+      },
+      "className": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Optionally provide a custom class to apply to the underlying <li> node"
+      },
+      "isRail": {
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Optional prop to display the side nav rail."
+      }
+    },
+    "composes": ["../../prop-types/AriaPropTypes"]
   },
   "SideNavDetails": {
     "description": "",
@@ -5236,6 +5931,51 @@
         "type": { "name": "string" },
         "required": false,
         "description": "Provide an optional class to be applied to the containing node"
+      }
+    }
+  },
+  "SideNavMenuItem": {
+    "description": "",
+    "props": {
+      "children": {
+        "type": { "name": "node" },
+        "required": false,
+        "description": "Specify the childrento be rendered inside of the `SideNavMenuItem`"
+      },
+      "className": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Provide an optional class to be applied to the containing node"
+      },
+      "isActive": {
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Optionally specify whether the link is \"active\". An active link is one that\nhas an href that is the same as the current page. Can also pass in\n`aria-current=\"page\"`, as well."
+      }
+    }
+  },
+  "SideNavSwitcher": {
+    "description": "",
+    "props": {
+      "className": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Provide an optional class to be applied to the containing node"
+      },
+      "labelText": {
+        "type": { "name": "string" },
+        "required": true,
+        "description": "Provide the label for the switcher. This will be the firt visible option\nwhen someone views this control"
+      },
+      "onChange": {
+        "type": { "name": "func" },
+        "required": false,
+        "description": "Provide a callback function that is called whenever the switcher value is\nupdated"
+      },
+      "options": {
+        "type": { "name": "arrayOf", "value": { "name": "string" } },
+        "required": true,
+        "description": "Provide an array of options to be rendered in the switcher as an\n`<option>`. The text value will be what is displayed to the user and is set\nas the `value` prop for each `<option>`."
       }
     }
   }
