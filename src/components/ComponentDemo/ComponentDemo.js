@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import prismTheme from 'gatsby-theme-carbon/src/components/Code/prismTheme';
 import { breakpoints } from '@carbon/elements';
 import * as CarbonComponents from 'carbon-components-react';
-import { LiveProvider, LiveEditor, LivePreview } from 'react-live';
+import { LiveProvider, LiveEditor, LivePreview, LiveError } from 'react-live';
 import cx from 'classnames';
 
 import {
@@ -85,7 +85,8 @@ const ComponentDemo = ({ code: codeProp, src, scope, knobs, noInline }) => {
               />
             )}
           </div>
-          {/* Eat syntax errors, rather than styling/displaying them: <LiveError /> */}
+          {/* Eat syntax errors in production but not development */}
+          {process.env.NODE_ENV === 'development' && <LiveError />}
         </LiveProvider>
       </DemoContextProvider>
     </ErrorBoundary>
