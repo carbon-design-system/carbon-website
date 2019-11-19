@@ -2,7 +2,6 @@ import React from 'react';
 import { Tag } from 'carbon-components-react';
 import Packages from '../../../package.json';
 import componentStatus from '../../data/components.json';
-import TableContainer from '../TableContainer/TableContainer';
 
 const tags = {
   stable: <Tag type="green">Stable</Tag>,
@@ -56,25 +55,23 @@ class ComponentStatus extends React.Component {
         <div className="bx--col-lg-12">
           <h2 className="page-h2">Current version: {vanillaVersion}</h2>
         </div>
-        <div className="bx--col-lg-12 bx--no-gutter">
-          <TableContainer>
-            <table className="page-table">
-              <thead>
-                <tr>
-                  <th>Component</th>
-                  <th>Vanilla</th>
-                  <th>React</th>
-                  <th>Angular</th>
-                  <th>Vue</th>
-                </tr>
-              </thead>
-              <tbody>
-                {Object.keys(componentStatus.components).map(component =>
-                  this.renderItems(componentStatus.components[component])
-                )}
-              </tbody>
-            </table>
-          </TableContainer>
+        <div className="bx--col-lg-12 bx--no-gutter bx--table-container">
+          <table className="page-table">
+            <thead>
+              <tr>
+                <th>Component</th>
+                <th>Vanilla</th>
+                <th>React</th>
+                <th>Angular</th>
+                <th>Vue</th>
+              </tr>
+            </thead>
+            <tbody>
+              {Object.keys(componentStatus.components).map(component =>
+                this.renderItems(componentStatus.components[component])
+              )}
+            </tbody>
+          </table>
         </div>
         <div className="bx--col-lg-8 component-status__key">
           <h4 className="page-h4">Key</h4>
