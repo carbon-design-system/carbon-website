@@ -39,7 +39,7 @@ Search helps users find what they are looking using keywords, often serving as a
 
 ### When not to use
 
-Search shouldn’t be the only way to locate information. Especially when providing a focused search, you should include the option to filter instead of search.
+Search shouldn’t be the only way to locate information. Small applications or websites with fifty pages or fewer don't need a search, as they should be easily navigable without one.
 
 ## The solution
 
@@ -47,9 +47,9 @@ Every search must be composed of an [input field](/components/search/usage) and 
 
 ![Overview image](/images/overview.png)
 
-FPO -- Do/Don't placeholder text.
-
 ### Global search
+
+To-be-written
 
 ### Targeted search
 
@@ -89,22 +89,44 @@ Faceted filters provide multiple filter groups, one for each different aspect of
 </Column>
 </Row>
 
-**Provide faceted filters to help users narrow down a list or table of content when the content is extensive.** Filters...
+**Provide faceted filters to help users narrow down a list or table of content when the content is extensive.** Filters offer a user the opportunity to narrow their search following
 
-**Avoid offering faceted filters for global searches until search results have been displayed.** Global searches are typically used for exploration by users, and they likely aren’t familiar enough with your content to effectively apply filters.
+**Filters should be grouped by logical categories with clear labels.** The filters panel should always be paired with an ‘Apply’ button and a ‘Clear Filters’ button.
+
+**For global searches, avoid offering faceted filters until search results have been displayed.** Global searches are typically used for exploration by users, and they likely aren’t familiar enough with your content to effectively apply filters.
+
+**Faceted filtering should give users a better understanding of the data structure.** It's a way to further refine search results, which encourages users to apply deductive reasoning to learn about available content and resources.
 
 **Truncate results if there are more than eight options within a facet group.** Provide an option to “View All” at the bottom of the group to expand the list.
 
-- Each facet should give a preview of results by displaying the number of matching results that corresponds to it.
-- The filters ‘panel’ should always appear left-aligned on the page (to the left of content) as this is the most common placement.
-- Faceted filtering should be used when users are frequently querying large result sets
-- In addition to allowing users to narrow down their results, faceted filtering should give users a better understanding of the data structure
-- Filters should be grouped by logical categories with clear labels
-- Filtering should always be paired with an ‘Apply’ button and a ‘Clear Filters’ button
+**Display the number of matching results next to each filter.** This avoids dead ends by preventing a user from selecting a set of filters with no results.
+
+**The filters ‘panel’ should always appear left-aligned on the page.** Avoid covering search results with the filters panel if possible, as the results will inform the filters a user selects.
 
 ### Behaviors, structure, and functionality
 
 **Provide useful placeholder text.** A search field should include placeholder text, serving as a hint that increases the liklihood that a user's search will be successful. Placeholder text should be short and clear—For example, "Search for bars and restaurants." Placeholder text should remain visible until the user begins typing in the search field.
+
+<Row>
+<Column colMd={4} colLg={4}>
+
+<DoDontExample
+type="do"
+aspectRatio="1:1"
+caption="Prompt the user to search for sommething relevant."
+text="Search for bars and restaurants" 
+/>
+</Column>
+<Column colMd={4} colLg={4}>
+
+<DoDontExample
+type="dont"
+aspectRatio="1:1"
+caption="Avoid overly tecnhical and non-specific language."
+text="Enter a valid search query here to locate desired results"
+/>
+</Column>
+</Row>
 
 **Avoid adding a label to your search field.** Users expect and understand search fields, and no label is necessary. A search icon along with useful placeholder text should clearly indicate that the field is intenteded for search.
 
@@ -120,24 +142,36 @@ Faceted filters provide multiple filter groups, one for each different aspect of
 
 ### Best practices
 
-#### Type-ahead suggestions
+**Provide type-ahead suggestions.** Suggestions give a user immediate feedback to the user on their search. Without having to commit to a search, they can get a preview of results, suggestions of additional search terms, or just find exactly what they were looking for without having to visit a separate page first. If using type-ahead, it should become invoked from the second the search input field is activated.
 
-Type-ahead suggestions give a user immediate feedback to the user on their search query. Without having to commit to a search, they can get a preview of results, suggestions of additional search terms, or just find exactly what they were looking for without having to visit a separate page first. If using type-ahead, it should become invoked from the second the search input field is activated.
+**Display the user’s recent search history or trending searches as soon as the user has clicked or tabbed into the search input field.** The recent search history should be displayed in a menu below the search bar, and should replaced by type-ahead suggestions as soon as the user begins typing. These should continue to update and refine as the user types. No more than eight suggestions should be displayed at a time, and a scrollbar should never be used.
 
-The initial state (when the user has clicked or tabbed into the search input field but hasn’t typed anything yet) is a great opportunity to surface the user’s recent search history and/or trending searches (depending on what is appropriate for the website or application).
+**The order in which suggestions are displayed should be considered as well, organizing by relevancy from top to bottom.** If it makes sense for the website or application, type-ahead suggestions should be grouped into similar suggestions.
 
-Once the user begins to type into the search input field, relevant suggestion results should display in the menu below the search bar. These should continue to update and refine as the user types. No more than 8 suggestions should be displayed at a time, and a scrollbar should never be used (the menu should expand/contract vertically as necessary).
+<Row>
+<Column colMd={4} colLg={4}>
 
-The order in which suggestions are displayed should be considered as well (what is the relevancy order?). If it makes sense for the website or application, type-ahead suggestions should be grouped into similar suggestions (example of grouped suggestions: IPs, Collections, and then Users).
+<DoDontExample
+type="do"
+aspectRatio="1:1"
+caption="Example of grouped suggestions: IPs, Collections, and then Users."
+text="Example of grouped suggestions: IPs, Collections, and then Users." 
+/>
+</Column>
+<Column colMd={4} colLg={4}>
 
-- [DELETE]At its smallest width, the search input field should be able to accommodate at least 27 characters of text.[DELETE]
-- When the search box component is a global search, it almost always appears in the middle of the global header for easy access.
+<DoDontExample
+type="dont"
+aspectRatio="1:1"
+caption="Example of poorly grouped or non-sorted search results."
+text="Example of poorly grouped or non-sorted search results"
+/>
+</Column>
+</Row>
 
-#### Localization
+**Search should take place in the same language that the rest of the application or website is displayed in.** The placeholder text in the search input field should also be translated accordingly.
 
-Search should take place in the same language that the rest of the application or website is displayed in. The placeholder text in the search input field should also be translated accordingly.
-
-Languages that read RTL (instead of LTR) should consider flip-flopping the layout of the search box, where it reads Scope, Input, Button from right to left. Placeholder text and type-ahead suggestions should align right. The icon seems to be acceptable across languages and locales.
+**Consider flip-flopping the layout of the search box for languages that read right to left (instead of left to right).** The search box would read Scope, Input, Button from right to left. Placeholder text and type-ahead suggestions should align right. The icon search icon is acceptable across languages and countries.
 
 ## Related patterns and components
 
@@ -183,4 +217,4 @@ Help designers understand your process by explaining your rationale for the way 
 
 ## Feedback
 
-We’ll include a feedback section here to gather questions and comments.
+Help us improve this pattern by providing feedback, asking questions, and leaving any other comments [on GitHub](https://github.com/carbon-design-system/carbon-website/issues/new?assignees=&labels=feedback&template=feedback.md).
