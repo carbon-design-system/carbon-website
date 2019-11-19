@@ -1,12 +1,21 @@
 .container {
+  // full width on mobile?
+  position: relative;
   display: grid;
-  grid-template-columns: 1fr 240px;
+  width: 100%;
+  grid-template-columns: 1fr;
   grid-template-rows: 35rem minmax(1fr, 320px);
   grid-template-areas:
-    'preview knobs'
-    'editor knobs';
+    'preview'
+    'editor';
   border: 1px solid $ui-03;
   margin-top: 0;
+  @include carbon--breakpoint('md') {
+    grid-template-columns: 1fr 240px;
+    grid-template-areas:
+      'preview knobs'
+      'editor knobs';
+  }
 }
 
 .container * {
@@ -19,6 +28,12 @@
     'editor editor';
 }
 
+.expand-knob-container-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
 // specificity
 .checkbox-wrapper.checkbox-wrapper:last-of-type {
   margin-bottom: 0;
@@ -29,6 +44,20 @@
   overflow-y: auto;
   background-color: $ui-background;
   border-left: 1px solid $ui-03;
+  position: absolute;
+  right: 0;
+  width: 240px;
+  box-shadow: -2px 2px 6px rgba(0, 0, 0, 0.2);
+  height: 100%;
+  transition: transform 2s ease-in-out;
+  @include carbon--breakpoint('md') {
+    position: static;
+    box-shadow: none;
+  }
+}
+
+.form-container--collapsed {
+  transform: translateX(240px);
 }
 
 .component-knob-title {

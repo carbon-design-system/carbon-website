@@ -1,4 +1,5 @@
 import React, { useContext, useRef } from 'react';
+
 // import PropTypes from 'prop-types';
 import {
   Form,
@@ -7,12 +8,14 @@ import {
   RadioButtonGroup,
   Checkbox,
 } from 'carbon-components-react';
+import cx from 'classnames';
 
 import carbonReactDocgen from '../../data/docgen';
 import { DemoContext } from './DemoContext';
 
 import {
   formContainer,
+  formContainerCollapsed,
   formGroup,
   componentKnobWrapper,
   componentKnobTitle,
@@ -191,7 +194,15 @@ Knob.propTypes = {
   },
 };
 
-const KnobContainer = ({ knobs, leftPaneHeight, code, setCode }) => {
+const KnobContainer = ({ knobs, maxHeight, code, setCode }) => {
+  const {
+    isMobile,
+    isKnobContainerExpanded,
+    setIsKnobContainerExpanded,
+  } = useContext(DemoContext);
+
+  console.log(isKnobContainerExpanded);
+
   const requestedKnobs = Object.keys(knobs).map(component => {
     const fullComponent = carbonReactDocgen[component];
     const requestedProps = {};
@@ -215,7 +226,16 @@ const KnobContainer = ({ knobs, leftPaneHeight, code, setCode }) => {
   });
 
   return (
-    <Form style={{ maxHeight: leftPaneHeight }} className={formContainer}>
+    <Form
+      style={{ maxHeight }}
+      className={cx(formContainer, {
+        [formContainerCollapsed]: !isKnobContainerExpanded,
+      })}>
+      {isMobile && (
+        <button type="button" onClick={() => setIsKnobContainerExpanded(false)}>
+          toggle expand
+        </button>
+      )}
       {requestedKnobs.map(([component, componentKnobs]) => (
         <Component
           code={code}
