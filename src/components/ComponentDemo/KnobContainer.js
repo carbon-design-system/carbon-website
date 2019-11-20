@@ -23,6 +23,7 @@ import {
   formItem,
   checkboxWrapper,
   iconButton,
+  iconButtonRow,
 } from './ComponentDemo.module.scss';
 
 // Components w/o react docgen data
@@ -233,12 +234,14 @@ const KnobContainer = ({ knobs, maxHeight, code, setCode }) => {
         [knobContainerCollapsed]: isMobile && isKnobContainerCollapsed,
       })}>
       {isMobile && (
-        <button
-          className={iconButton}
-          type="button"
-          onClick={() => setIsKnobContainerCollapsed(true)}>
-          <Close16 />
-        </button>
+        <div className={iconButtonRow}>
+          <button
+            className={iconButton}
+            type="button"
+            onClick={() => setIsKnobContainerCollapsed(true)}>
+            <Close16 />
+          </button>
+        </div>
       )}
       {requestedKnobs.map(([component, componentKnobs]) => (
         <Component
