@@ -30,10 +30,25 @@
     'editor editor';
 }
 
-.expand-knob-container-button {
+.icon-button {
+  border: none;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-self: flex-end;
+  align-items: center;
+  padding: $spacing-04;
+  outline: none;
+}
+
+.icon-button--expand {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: 0;
+  right: 0;
+}
+
+.icon-button svg {
+  fill: var(--cds-text-01);
 }
 
 // specificity
@@ -48,10 +63,12 @@
   border-left: 1px solid $ui-03;
   position: absolute;
   right: 0;
+  display: flex;
+  flex-direction: column;
   width: 240px;
   box-shadow: -2px 2px 6px rgba(0, 0, 0, 0.2);
   height: 100%;
-  transition: all $duration--fast-02 carbon--motion('exit');
+  transition: transform $duration--moderate-01 carbon--motion('entrance');
   @include carbon--breakpoint('md') {
     position: static;
     box-shadow: none;
@@ -61,7 +78,6 @@
 .knob-container--collapsed {
   box-shadow: none;
   transform: translateX(240px);
-  transition: all $duration--fast-02 carbon--motion('entrance');
 }
 
 .component-knob-title {

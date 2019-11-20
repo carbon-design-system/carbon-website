@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import React, { useContext, useRef } from 'react';
+import { Close16 } from '@carbon/icons-react';
 
-// import PropTypes from 'prop-types';
 import {
   Form,
   FormGroup,
@@ -22,9 +22,11 @@ import {
   componentKnobTitle,
   formItem,
   checkboxWrapper,
+  iconButton,
 } from './ComponentDemo.module.scss';
 
 // Components w/o react docgen data
+// TODO: remove after all components have base code set
 // import { pascalCase } from 'change-case';
 // import { components } from '../../data/components.json';
 // const docgenComponents = Object.keys(carbonReactDocgen);
@@ -231,8 +233,11 @@ const KnobContainer = ({ knobs, maxHeight, code, setCode }) => {
         [knobContainerCollapsed]: isMobile && isKnobContainerCollapsed,
       })}>
       {isMobile && (
-        <button type="button" onClick={() => setIsKnobContainerCollapsed(true)}>
-          collapse
+        <button
+          className={iconButton}
+          type="button"
+          onClick={() => setIsKnobContainerCollapsed(true)}>
+          <Close16 />
         </button>
       )}
       {requestedKnobs.map(([component, componentKnobs]) => (

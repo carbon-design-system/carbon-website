@@ -4,6 +4,7 @@ import prismTheme from 'gatsby-theme-carbon/src/components/Code/prismTheme';
 import * as CarbonComponents from 'carbon-components-react';
 import { LiveProvider, LiveEditor, LivePreview, LiveError } from 'react-live';
 import { Row } from 'gatsby-theme-carbon';
+import { TableOfContents16 } from '@carbon/icons-react';
 import cx from 'classnames';
 
 import {
@@ -13,7 +14,8 @@ import {
   editorContainer,
   themeSwitcher,
   switchButton,
-  expandKnobContainerButton,
+  iconButton,
+  iconButtonExpand,
   white,
   g10,
   g90,
@@ -75,9 +77,13 @@ const ComponentDemo = ({ code: codeProp, src, scope, knobs, noInline }) => {
             <LivePreview className={cx(theme, previewContainer)} />
             {isMobile && (
               <button
+                aria-labelledby="expand-knob-container-button"
                 onClick={() => setIsKnobContainerCollapsed(false)}
-                className={expandKnobContainerButton}>
-                expand
+                className={cx(theme, iconButton, iconButtonExpand)}>
+                <span id="expand-knob-container-button" hidden>
+                  Expand component knob container
+                </span>
+                <TableOfContents16 />
               </button>
             )}
             <Code code={code} setEditorHeight={setEditorHeight} src={src}>
