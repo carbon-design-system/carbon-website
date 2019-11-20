@@ -1,6 +1,6 @@
 ---
-title: Breadcrumb
-description: The breadcrumb component is a secondary navigation pattern that shows hierarchy among content or traces a user’s path.
+title: Link
+description: Checkboxes are used for a list of options where the user may select multiple options, including all or none.
 tabs: ['Code', 'Usage', 'Style', 'Accessibility']
 ---
 
@@ -24,26 +24,26 @@ import {
 
 ## How it works
 
-The Carbon breadcrumb Component provides a way for the user to navigate Web content by providing a group of links to the parent Web pages of the current page in a hierachical order. The breadcrumb is contained within a `<nav>` element labelled "breadcrumb" using an ARIA label attribute. The landmark region contains an ARIA label, to advise users of assistive technologies that they are navigating a breadcrumb trail. CSS is used for the visual separators between each link so they are not represented in the accessibility tree used by screen readers which helps to prevent redundancy and at times distracting verbosity.
+The link Carbon component is primarily a native HTML hyperlink navigational element. The `Enter` key activates the link and causes the user agent to move focus to the link destination. When you use the disabled link component the ARIA state is set to `aria-disabled="true"`, which changes the appearance and the `tabindex="-1"` which removes the link for the tab order. When the link becomes active the ARIA state changes to `aria-disabled="false"` and the link is present in the tab order.
 
 ## Accessibility considerations
 
 This component has been validated to meet the [WCAG 2.0 AA](https://www.w3.org/TR/WCAG20/) and [Section 508](http://www.section508.gov/) accessibility guidelines, however changes made by the content owner can affect accessibility compliance. Be sure to review and follow the guidance in this section when updating or adding new content to this component.
 
-1. The breadcrumb should remain in the same relative order and location on each web page.
-1. The link text should be clear, reflect the breadcrumb location accurately and easy to understand for all users.
-1. The link to the current page element in the breadcrumb has an ARIA current attribute. If the current page in the breadcrumb is not a link the ARIA current attribute is optional.
+1. Link text is the visible label for the native HTML link and is used to provide the purpose of the link which is clear and easy to understand for all users.
+2. The alt attribute for the img element is used to describe the purpose of a graphical link with an image inside the link.
+3. The title attribute can be used to supplement the link text with any additional useful description.
 
 ## Resources
 
-- [W3C WAI-ARIA Authoring Practices Breadcrumb Design Pattern](https://www.w3.org/TR/wai-aria-practices/#breadcrumb) covers the usage of ARIA names, state and roles.
-- [IBM Accessibility Checklist Checkpoint:](https://www.ibm.com/able/guidelines/ci162/accessibility_checklist.html)
-  - [2.4.4 Link Purpose (In Context)](https://www.ibm.com/able/guidelines/ci162/link_purpose.html) (WCAG Success Criteria [2.4.4](https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-refs.html))
-  - [3.2.3 Consistent Navigation](https://www.ibm.com/able/guidelines/ci162/consistent_navigation.html) (WCAG Success Criteria[3.2.3](https://www.w3.org/TR/UNDERSTANDING-WCAG20/consistent-behavior-consistent-locations.html))
+**Helpful resources for creating customized accessible implementations**
+
+- [W3C WAI-ARIA Authoring Practices Link Design Pattern](https://www.w3.org/TR/wai-aria-practices/#link) covers the usage of ARIA names, state and roles, as well as the expected keyboard interactions.
+- [IBM Accessibility Checklist - Checkpoint 2.4.4 Link Purpose (In Context)](https://www.ibm.com/able/guidelines/ci162/link_purpose.html)(WCAG Success Criteria [2.4.4](https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-refs.html))
 
 ## Accessibility testing
 
-Accessibility issues are tracked in the [Carbon Component GitHub repository](https://github.com/carbon-design-system/carbon/milestones).
+Accessibility issues are tracked in the [Carbon Component GitHub repository](https://github.com/carbon-design-system/carbon/milestones)
 
 ### Automated test
 
@@ -53,7 +53,7 @@ Accessibility issues are tracked in the [Carbon Component GitHub repository](htt
       <StructuredListHead>
         <StructuredListRow head>
           <StructuredListCell head>
-            Automated test Environment
+            Automated test environment
           </StructuredListCell>
           <StructuredListCell head>Results</StructuredListCell>
         </StructuredListRow>
@@ -70,7 +70,7 @@ Accessibility issues are tracked in the [Carbon Component GitHub repository](htt
             <br />- Carbon React version 7.7.1
           </StructuredListCell>
           <StructuredListCell>
-            <strong>DAP test:</strong>
+            <strong>DAP test</strong>
             <br />- No violations
           </StructuredListCell>
         </StructuredListRow>
@@ -99,16 +99,18 @@ Accessibility issues are tracked in the [Carbon Component GitHub repository](htt
             <br />- Carbon React version 7.7.1
           </StructuredListCell>
           <StructuredListCell>
-            <strong>VoiceOver(VO) Test:</strong>
+            <strong>VoiceOver(VO) test:</strong>
             <OrderedList>
               <ListItem>
-                Tab to the breadcrumb and VO announces, "Breadcrumb 1,
-                breadcrumb navigation."
+                Tab to the link. VO announces, that you are on a link, and the
+                link text.
               </ListItem>
               <ListItem>
-                The Tab key and shift-tab navigate between the links in the
-                breadcrumb. VO announces, "Link Breadcrumb #. You are currently
-                on a link to click this link press Control-Option-Space."
+                Press Control-Option-Space (or Enter) to navigate to the link
+                destination.
+              </ListItem>
+              <ListItem>
+                Note: Disabled link is not in the tab order as expected.
               </ListItem>
             </OrderedList>
           </StructuredListCell>
@@ -117,24 +119,21 @@ Accessibility issues are tracked in the [Carbon Component GitHub repository](htt
           <StructuredListCell>
             - macOS Mojave version 10.14.6 with VoiceOver
             <br />
-            - Safari version 12.14.6
-            <br />- Carbon React Version 7.7.1
+            - Safari version 13.0.2
+            <br />- Carbon React version 7.7.1
           </StructuredListCell>
           <StructuredListCell>
-            <strong>VoiceOver(VO) Test:</strong>
+            <strong>VoiceOver(VO) test:</strong>
             <OrderedList>
               <ListItem>
-                Tab to the breadcrumb and VO announces, "Breadcrumb 1,
-                breadcrumb navigation."
+                Press Control-Option-Right Arrow to read all content.
               </ListItem>
               <ListItem>
-                The Tab key and shift-tab navigate between the links in the
-                breadcrumb. VO announces, "Link Breadcrumb #. You are currently
-                on a link to click this link press Control-Option-Space."
+                Press Control-Option-Space to navigate to the link destination.
               </ListItem>
               <ListItem>
-                Note: In Safari > Preferences > Advanced > ensure "Press Tab to
-                highlight each item on a webpage" option is checked.
+                Note: The link is not in the tab order and the Enter key does
+                not navigate to the link destination.
               </ListItem>
             </OrderedList>
           </StructuredListCell>
@@ -160,28 +159,25 @@ Accessibility issues are tracked in the [Carbon Component GitHub repository](htt
           <StructuredListCell>
             - Microsoft Windows 10
             <br />
-            - Chrome: 71.0.3578.98 (Official Build) (64-bit)
+            - Firefox version 67
             <br />
             - JAWS 19.1810.64
             <br />- Carbon React version 7.7.1
           </StructuredListCell>
           <StructuredListCell>
-            <strong>JAWS Test:</strong>
+            <strong>JAWS test:</strong>
             <OrderedList>
               <ListItem>
-                Navigate the list with the Up and Down Arrow keys.
+                Navigate to an active link using the Tab key or Shift-Tab keys
+                and JAWS announces, "Link example link".
               </ListItem>
               <ListItem>
-                JAWS announces the beginning of the list, number of items in the
-                list, nesting level, content of the list item and end of the
-                list.
+                Navigate to an active link using the Arrow keys. JAWS announces,
+                "Link link example".
               </ListItem>
               <ListItem>
-                Information and the list item content are announced on two
-                separate lines on the virtual viewer.
-              </ListItem>
-              <ListItem>
-                Bullets and item numbers are also placed on a separate line.
+                It is not possible to Tab to the disabled link, but using the
+                Arrow keys JAWS announces, "Unavailable disabled link".
               </ListItem>
             </OrderedList>
           </StructuredListCell>
@@ -190,27 +186,52 @@ Accessibility issues are tracked in the [Carbon Component GitHub repository](htt
           <StructuredListCell>
             - Microsoft Windows 10
             <br />
-            - Chrome: 71.0.3578.98 (Official Build) (64-bit)
+            - Chrome version 71.0.3578.98 (Official Build) (64-bit)
             <br />
-            - NVDA 2018.4.1
+            - JAWS version 19.1810.64
+            <br />- Carbon React version 7.7.1
+          </StructuredListCell>
+          <StructuredListCell>
+            <strong>JAWS test:</strong>
+            <OrderedList>
+              <ListItem>
+                Navigate to an active link using the Tab key or Shift-Tab keys
+                and JAWS announces, "Link example link".
+              </ListItem>
+              <ListItem>
+                Navigate to an active link using the Arrow keys. JAWS announces,
+                "Link link example".
+              </ListItem>
+              <ListItem>
+                It is not possible to Tab to the disabled link, but using the
+                Arrow keys JAWS announces, "Unavailable disabled link".
+              </ListItem>
+            </OrderedList>
+          </StructuredListCell>
+        </StructuredListRow>
+        <StructuredListRow>
+          <StructuredListCell>
+            - Microsoft Windows 10
+            <br />
+            - Chrome version 71.0.3578.98 (Official Build) (64-bit)
+            <br />
+            - NVDA version 2018.4.1
             <br />- Carbon React version 7.7.1
           </StructuredListCell>
           <StructuredListCell>
             <strong>NVDA test:</strong>
             <OrderedList>
               <ListItem>
-                Navigate the list with the Up and Down Arrow keys.
+                Navigate to an active link using the Tab key or Shift-Tab keys
+                and NVDA announces, "Link example link".
               </ListItem>
               <ListItem>
-                NVDA announces the beginning of the list, number of items in the
-                list, nesting level, content of the list item.
+                Navigate to an active link using the Arrow keys. NVDA announces,
+                "Link link example".
               </ListItem>
               <ListItem>
-                End of list, when exiting the list from the top or bottom.
-              </ListItem>
-              <ListItem>
-                List item parameters are announced together with the list item
-                content.
+                It is not possible to Tab to the disabled link, but using the
+                Arrow keys JAWS announces, "Unavailable disabled link".
               </ListItem>
             </OrderedList>
           </StructuredListCell>
@@ -236,28 +257,20 @@ Accessibility issues are tracked in the [Carbon Component GitHub repository](htt
           <StructuredListCell>
             - Android version 9 with Talkback
             <br />
-            - Chrome: 71.0.3578.98 (Official Build) (64-bit)
+            - Chrome version 71.0.3578.98 (Official Build) (64-bit)
             <br />- Carbon React version 7.7.1
           </StructuredListCell>
           <StructuredListCell>
-            <strong>Talkback Test:</strong>
+            <strong>Talkback test:</strong>
             <OrderedList>
               <ListItem>
-                Navigate the list by swiping left or right or pressing the Alt
-                key with the Left or Right Arrow key.
+                Navigate to an active link by swiping left or right, or press
+                the Alt-Leftor Alt-Right keys and Talkback announces, "Link
+                example link".
               </ListItem>
               <ListItem>
-                Talkback announces, "in list" when entering the list and "out of
-                list" when exiting the list.
-              </ListItem>
-              <ListItem>
-                Talkback also announces entering and exiting the nested lists,
-                the number of list items, nesting level, and contnt of the list
-                item.
-              </ListItem>
-              <ListItem>
-                Bullets and numbers are announced separately from the list item
-                content.
+                Navigate to the disabled link. Talkback announces, "Disabled
+                link link disabled".
               </ListItem>
             </OrderedList>
           </StructuredListCell>
@@ -288,22 +301,13 @@ Accessibility issues are tracked in the [Carbon Component GitHub repository](htt
             <strong>VoiceOver test:</strong>
             <OrderedList>
               <ListItem>
-                Navigate list items by swiping left or right, or using the Left
-                and Right Arrow keys on the keyboard when the quick navigation
-                is turned on.
+                Navigate to an active link by swiping left or right, or press
+                the Left-Arrow or Right-Arrow keys and VO announces, "Link
+                example link".
               </ListItem>
               <ListItem>
-                VoiceOver announces the beginning of the list, nesting level,
-                content of the list item, the end of the list.
-              </ListItem>
-              <ListItem>
-                VoiceOver announces the beginning of the list, nesting level,
-                content of the list item, the end of the list.
-              </ListItem>
-              <ListItem>
-                Information about the list, bullets and numbers and list item
-                contents are pronounced separately, we have to navigate through
-                these one by one.
+                Navigate to the disabled link. VO announces, "Disabled link
+                dimmed link".
               </ListItem>
             </OrderedList>
           </StructuredListCell>
