@@ -1,16 +1,18 @@
 .container {
-  // full width on mobile?
   position: relative;
   display: grid;
   width: 100%;
+  overflow: hidden;
   grid-template-columns: 1fr;
   grid-template-rows: 35rem minmax(1fr, 320px);
   grid-template-areas:
     'preview'
     'editor';
-  border: 1px solid $ui-03;
   margin-top: 0;
+  border-top: 1px solid $ui-03;
+  border-bottom: 1px solid $ui-03;
   @include carbon--breakpoint('md') {
+    border: 1px solid $ui-03;
     grid-template-columns: 1fr 240px;
     grid-template-areas:
       'preview knobs'
@@ -39,7 +41,7 @@
   margin-bottom: 0;
 }
 
-.form-container {
+.knob-container {
   grid-area: knobs;
   overflow-y: auto;
   background-color: $ui-background;
@@ -56,7 +58,8 @@
   }
 }
 
-.form-container--collapsed {
+.knob-container--collapsed {
+  box-shadow: none;
   transform: translateX(240px);
   transition: all $duration--fast-02 carbon--motion('entrance');
 }

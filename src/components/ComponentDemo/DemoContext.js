@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 
 /* eslint-disable import/no-extraneous-dependencies */
 import useMedia from 'use-media';
@@ -9,9 +9,11 @@ export const DemoContext = React.createContext({});
 const DemoContextProvider = ({ children }) => {
   const [knobs, setKnobs] = useState({});
   const isMobile = useMedia({ maxWidth: breakpoints.md.width });
-  const [isKnobContainerExpanded, setIsKnobContainerExpanded] = useState(
-    !!isMobile
-  );
+  const [isKnobContainerCollapsed, setIsKnobContainerCollapsed] = useState();
+
+  useLayoutEffect(() => {
+    setIsKnobContainerCollapsed(isMobile);
+  }, [isMobile]);
 
   return (
     <DemoContext.Provider
@@ -19,8 +21,8 @@ const DemoContextProvider = ({ children }) => {
         knobs,
         setKnobs,
         isMobile,
-        isKnobContainerExpanded,
-        setIsKnobContainerExpanded,
+        isKnobContainerCollapsed,
+        setIsKnobContainerCollapsed,
       }}>
       {children}
     </DemoContext.Provider>

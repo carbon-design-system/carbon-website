@@ -33,7 +33,7 @@ const ComponentDemo = ({ code: codeProp, src, scope, knobs, noInline }) => {
   const [editorHeight, setEditorHeight] = useState();
   const [code, setCode] = useState(codeProp.trim());
   const [theme, setTheme] = useState(white);
-  const { isMobile, setIsKnobContainerExpanded } = useContext(DemoContext);
+  const { isMobile, setIsKnobContainerCollapsed } = useContext(DemoContext);
 
   const knobContainerHeight = isMobile
     ? PREVIEW_CONTAINER_HEIGHT
@@ -73,11 +73,13 @@ const ComponentDemo = ({ code: codeProp, src, scope, knobs, noInline }) => {
           code={code}>
           <div className={cx(container, { [knoblessContainer]: !knobs })}>
             <LivePreview className={cx(theme, previewContainer)} />
-            <button
-              onClick={() => setIsKnobContainerExpanded(true)}
-              className={expandKnobContainerButton}>
-              expand
-            </button>
+            {isMobile && (
+              <button
+                onClick={() => setIsKnobContainerCollapsed(false)}
+                className={expandKnobContainerButton}>
+                expand
+              </button>
+            )}
             <Code code={code} setEditorHeight={setEditorHeight} src={src}>
               <LiveEditor
                 padding={16}

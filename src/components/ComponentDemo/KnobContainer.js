@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useContext, useRef } from 'react';
 
 // import PropTypes from 'prop-types';
@@ -14,8 +15,8 @@ import carbonReactDocgen from '../../data/docgen';
 import { DemoContext } from './DemoContext';
 
 import {
-  formContainer,
-  formContainerCollapsed,
+  knobContainer,
+  knobContainerCollapsed,
   formGroup,
   componentKnobWrapper,
   componentKnobTitle,
@@ -197,11 +198,9 @@ Knob.propTypes = {
 const KnobContainer = ({ knobs, maxHeight, code, setCode }) => {
   const {
     isMobile,
-    isKnobContainerExpanded,
-    setIsKnobContainerExpanded,
+    isKnobContainerCollapsed,
+    setIsKnobContainerCollapsed,
   } = useContext(DemoContext);
-
-  console.log(isKnobContainerExpanded);
 
   const requestedKnobs = Object.keys(knobs).map(component => {
     const fullComponent = carbonReactDocgen[component];
@@ -228,12 +227,12 @@ const KnobContainer = ({ knobs, maxHeight, code, setCode }) => {
   return (
     <Form
       style={{ maxHeight }}
-      className={cx(formContainer, {
-        [formContainerCollapsed]: !isKnobContainerExpanded,
+      className={cx(knobContainer, {
+        [knobContainerCollapsed]: isMobile && isKnobContainerCollapsed,
       })}>
       {isMobile && (
-        <button type="button" onClick={() => setIsKnobContainerExpanded(false)}>
-          toggle expand
+        <button type="button" onClick={() => setIsKnobContainerCollapsed(true)}>
+          collapse
         </button>
       )}
       {requestedKnobs.map(([component, componentKnobs]) => (
