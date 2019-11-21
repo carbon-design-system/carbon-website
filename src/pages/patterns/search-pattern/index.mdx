@@ -18,42 +18,67 @@ Search is an essential pattern for navigation or discovery. We live in the age o
   <AnchorLink>Feedback</AnchorLink>
 </AnchorLinks>
 
-![Overview image](/images/general-search.png)
-
 ## Overview
 
-Search takes a blank state and adds to it based on criteria that matches. It’s like a conversation between the user and system: the user expresses their information need as a query, and the system expresses its response as a set of results.
+Searching is an intuitive method of discovery, offering users a way to explore a website or application using keywords. Most searches begin from a global perspective, with the scope narrowing filters are applied.
 
-To help users search effectively, ensure your search scope matches the location it is found in an application. A global search should help a user find any relevant data or content within an application, while a search within a component should search the data or information within that context.
+<Row>
+<Column colLg={8}>
+
+![Overview image](/images/general-search.png)
+
+<Caption>Example of an active search field</Caption>
+
+</Column>
+</Row>
 
 ### When to use
 
 A user should be able to narrow the scope of a search as needed using advanced options and filters.
+
 Search helps users find what they are looking using keywords, often serving as an intuitive discovery method.
 
 | Search type                             | Use cases                                                                                                                                    | Expected results                                                                   |
 | --------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| [Global search](#global-search)         | This is the first method of discovery, when a user is unfamiliar with the data within a system.                                              | Any close or exact matches to the search query.                                    |
-| [Targeted search](#targeted-search)     | When a user is searching a specific subset of information. This is the first method of filtering, allowing a user to avoid unwanted results. | Any close or exact matches existing with the designated category.                  |
+| [Basic search](#basic-search)           | This is the first method of discovery, when a user is unfamiliar with the data within a system.                                              | Any close or exact matches to the search query.                                    |
+| [Scoped search](#scoped-search)         | When a user is searching a specific subset of information. This is the first method of filtering, allowing a user to avoid unwanted results. | Any close or exact matches existing with the designated category.                  |
 | [Faceted filtering](#faceted-filtering) | When a user knows exactly what they are searching for and wants only highly relevant search results.                                         | Specific and highly relevant search results. Only exact matches unless none exist. |
 
 ### When not to use
 
-Search shouldn’t be the only way to locate information. Small applications or websites with fifty pages or fewer don't need a search, as they should be easily navigable without one.
+Search shouldn’t be the only way to locate information. Small applications or websites may not need a search, and should be easily navigable without one.
 
 ## The solution
+
+The power of each search is dependent on the search field’s location, its intended scope, and technical considerations. If possible, your search should provide live feedback as the user types, returning the most relevant results as the user refines their query.
 
 Every search must be composed of an [input field](/components/search/usage) and a button to run the search query. The search input field should make use of helpful placeholder text to suggest what the user should search for.
 
 ![Overview image](/images/overview.png)
 
-### Global search
+To help users search effectively, ensure your search scope matches the location it is found in an application. A global search should help a user find any relevant data or content within an application, while a search within a component should search the data or information within that context.
+
+In certain scenarios, the scope of the search is too large for a live query to be practical. Consider searches of a massive database, or web searches. In these instances, you should offer either trending searches that match the user’s keywords, recent user searches, or both. The search won’t actually run until the user clicks or taps the “Search” button.
+
+There are scenarios where a combination of the two should apply. The search returns the most likely matches as the user enters each key, but if the top eight results don’t match what the user is looking for, they can still run the “search” for more robust search results and additional filters and facets.
+
+### Basic search
 
 To-be-written
 
-### Targeted search
+<Row>
+<Column colLg={8}>
 
-A targeted search is composed of an input field, a button to run the search query, and a dropdown on the left side of the search field with a scope qualifiers. Adding a scope before running the search query lets a user avoid irrelevant results before beginning their search.
+![Example of a basic search](/images/basic-search.png)
+
+</Column>
+</Row>
+
+### Scoped search
+
+A scoped search is composed of an input field, a button to run the search query, and a dropdown on the left side of the search field with a scope qualifiers. Adding a scope before running the search query lets a user avoid irrelevant results before beginning their search.
+
+Scoped search allows users to quickly search within a specific category. The introduction of a top-level scope filter means they can find more relevant content and filter out unwanted results.
 
 <Row>
 <Column colLg={8}>
@@ -63,9 +88,7 @@ A targeted search is composed of an input field, a button to run the search quer
 </Column>
 </Row>
 
-**Targeted search allows users to quickly search within a specific category.** The introduction of a top-level scope filter means they can find more relevant content and filter out unwanted results.
-
-**Targeted search should be used when users understand what they are looking for.** In contrast, global searches are performed at a high level in order to locate unknown content.
+Scoped search should be used when users understand what they are looking for. In contrast, global searches are performed at a high level in order to locate unknown content.
 
 **Only one scope option can be selected at a time.** The scope dropdown should also include an “All” option, which should be the default to avoid confusing the user. This will function as a basic global search.
 
@@ -89,19 +112,15 @@ Faceted filters provide multiple filter groups, one for each different aspect of
 </Column>
 </Row>
 
-**Provide faceted filters to help users narrow down a list or table of content when the content is extensive.** Filters offer a user the opportunity to narrow their search following
+Provide faceted filters to help users narrow down a list or table of content when the content is extensive. Filters offer a user the opportunity to narrow their search following
 
-**Filters should be grouped by logical categories with clear labels.** The filters panel should always be paired with an ‘Apply’ button and a ‘Clear Filters’ button.
+Filters should be grouped by logical categories with clear labels. The filters panel should always be paired with an ‘Apply’ button and a ‘Clear Filters’ button.
 
-**For global searches, avoid offering faceted filters until search results have been displayed.** Global searches are typically used for exploration by users, and they likely aren’t familiar enough with your content to effectively apply filters.
+For global searches, avoid offering faceted filters until search results have been displayed. Global searches are typically used for exploration by users, and they likely aren’t familiar enough with your content to effectively apply filters.
 
-**Faceted filtering should give users a better understanding of the data structure.** It's a way to further refine search results, which encourages users to apply deductive reasoning to learn about available content and resources.
+Faceted filtering should give users a better understanding of the data structure. Applying filters encourages users to apply deductive reasoning to learn about available content and resources.
 
-**Truncate results if there are more than eight options within a facet group.** Provide an option to “View All” at the bottom of the group to expand the list.
-
-**Display the number of matching results next to each filter.** This avoids dead ends by preventing a user from selecting a set of filters with no results.
-
-**The filters ‘panel’ should always appear left-aligned on the page.** Avoid covering search results with the filters panel if possible, as the results will inform the filters a user selects.
+The filters ‘panel’ should always appear left-aligned on the page. Avoid covering search results with the filters panel if possible, as the results will inform the filters a user selects. Display the number of matching results next to each filter. This avoids dead ends by preventing a user from selecting a set of filters with no results.
 
 ### Behaviors, structure, and functionality
 
@@ -128,7 +147,13 @@ text="Enter a valid search query here to locate desired results"
 </Column>
 </Row>
 
-**Avoid adding a label to your search field.** Users expect and understand search fields, and no label is necessary. A search icon along with useful placeholder text should clearly indicate that the field is intenteded for search.
+### Best practices
+
+**Provide type-ahead suggestions.** Suggestions give a user immediate feedback to the user on their search. Without having to commit to a search, they can get a preview of results, suggestions of additional search terms, or just find exactly what they were looking for without having to visit a separate page first. If using type-ahead, it should become invoked from the second the search input field is activated.
+
+**Display the user’s recent search history or trending searches as soon as the user has clicked or tabbed into the search input field.** The recent search history should be displayed in a menu below the search bar, and should replaced by type-ahead suggestions as soon as the user begins typing. These should continue to update and refine as the user types. No more than eight suggestions should be displayed at a time, and a scrollbar should never be used.
+
+**The order in which suggestions are displayed should be considered as well, organizing by relevancy from top to bottom.** If it makes sense for the website or application, type-ahead suggestions should be grouped into similar suggestions.
 
 **Avoid returning "No results" if possible.** Users will often search for keywords that don't return any results. The way a search handles this depends on its scope. If a global search fails to return any results, provide suggestions and helpful resources to ensure the user finds what they are looking for. If searching within a data set doesn't return any results, clearly state that nothing matches the search and suggest widening the scope of the search.
 
@@ -140,13 +165,9 @@ text="Enter a valid search query here to locate desired results"
 </Column>
 </Row>
 
-### Best practices
+**Avoid adding a label to your search field.** Users expect and understand search fields, and no label is necessary. A search icon along with useful placeholder text should clearly indicate that the field is intenteded for search.
 
-**Provide type-ahead suggestions.** Suggestions give a user immediate feedback to the user on their search. Without having to commit to a search, they can get a preview of results, suggestions of additional search terms, or just find exactly what they were looking for without having to visit a separate page first. If using type-ahead, it should become invoked from the second the search input field is activated.
-
-**Display the user’s recent search history or trending searches as soon as the user has clicked or tabbed into the search input field.** The recent search history should be displayed in a menu below the search bar, and should replaced by type-ahead suggestions as soon as the user begins typing. These should continue to update and refine as the user types. No more than eight suggestions should be displayed at a time, and a scrollbar should never be used.
-
-**The order in which suggestions are displayed should be considered as well, organizing by relevancy from top to bottom.** If it makes sense for the website or application, type-ahead suggestions should be grouped into similar suggestions.
+**Truncate results if there are more than eight options within a facet group.** Provide an option to “View All” at the bottom of the group to expand the list.
 
 <Row>
 <Column colMd={4} colLg={4}>
@@ -171,7 +192,7 @@ text="Example of poorly grouped or non-sorted search results"
 
 **Search should take place in the same language that the rest of the application or website is displayed in.** The placeholder text in the search input field should also be translated accordingly.
 
-**Consider flip-flopping the layout of the search box for languages that read right to left (instead of left to right).** The search box would read Scope, Input, Button from right to left. Placeholder text and type-ahead suggestions should align right. The icon search icon is acceptable across languages and countries.
+**Consider flip-flopping the layout of the search box for languages that read right to left instead of left to right.** The search box would read Scope, Input, Button from right to left. Placeholder text and type-ahead suggestions should align right. The icon search icon is acceptable across languages and countries.
 
 ## Related patterns and components
 
@@ -207,13 +228,15 @@ For type-ahead suggestions, the `ARROW` keys should cycle through displayed sugg
 
 ### Faceted filtering
 
-Users should be able to `TAB` into the filter panel to cycle through the different groups. Pressing ENTER moves the selection to the facets inside a group, allowing the user to move through the facets with the `ARROW` keys. Pressing `ENTER` while a facet is in focus would toggle select/unselect the facet.
+Users should be able to `TAB` into the filter panel to cycle through the different groups. Pressing `ENTER` moves the selection to the facets inside a group, allowing the user to move through the facets with the `ARROW` keys. Pressing `ENTER` while a facet is in focus would toggle select or unselect the facet.
 
-After a facet is selected/deselected, the focus state should be retained as the content reloads, that way users don’t have to TAB through everything again as they move down the list.
+After a facet is selected or deselected, the focus state should be retained as the content reloads, that way users don’t have to `TAB` through everything again as they move down the list.
 
 ## References
 
-Help designers understand your process by explaining your rationale for the way you implemented the pattern. Include any research, citations, books or articles that you found helpful.
+- Apple Human Interface Guidelines, _[Search Fields](https://developer.apple.com/design/human-interface-guidelines/macos/fields-and-labels/search-fields/)_ (2019)
+- Nick Babich, _[Best Practices for Search Results](https://uxplanet.org/best-practices-for-search-results-1bbed9d7a311)_ (2017)
+- Think with Google, _[In-App Search](https://www.thinkwithgoogle.com/marketing-resources/experience-design/chapter-2-in-app-search/)_ (2016)
 
 ## Feedback
 
