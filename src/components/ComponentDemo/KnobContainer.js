@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React, { useContext, useRef } from 'react';
-import { Close16 } from '@carbon/icons-react';
+import { Close20 } from '@carbon/icons-react';
 
 import {
   Form,
@@ -239,7 +239,7 @@ const KnobContainer = ({ knobs, maxHeight, code, setCode }) => {
             className={iconButton}
             type="button"
             onClick={() => setIsKnobContainerCollapsed(true)}>
-            <Close16 />
+            <Close20 />
           </button>
         </div>
       )}

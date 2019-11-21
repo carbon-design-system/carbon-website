@@ -4,7 +4,7 @@ import prismTheme from 'gatsby-theme-carbon/src/components/Code/prismTheme';
 import * as CarbonComponents from 'carbon-components-react';
 import { LiveProvider, LiveEditor, LivePreview, LiveError } from 'react-live';
 import { Row } from 'gatsby-theme-carbon';
-import { TableOfContents16 } from '@carbon/icons-react';
+import { TableOfContents20 } from '@carbon/icons-react';
 import cx from 'classnames';
 
 import {
@@ -83,7 +83,7 @@ const ComponentDemo = ({ code: codeProp, src, scope, knobs, noInline }) => {
                 <span id="expand-knob-container-button" hidden>
                   Expand component knob container
                 </span>
-                <TableOfContents16 />
+                <TableOfContents20 />
               </button>
             )}
             <Code code={code} setEditorHeight={setEditorHeight} src={src}>
