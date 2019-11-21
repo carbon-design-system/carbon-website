@@ -22,6 +22,64 @@ Search is an essential pattern for navigation or discovery. We live in the age o
 
 Searching is an intuitive method of discovery, offering users a way to explore a website or application using keywords. Most searches begin from a global perspective, with the scope narrowing filters are applied.
 
+The power of each search is dependent on the search field’s location, its intended scope, and technical considerations. If possible, your search should provide live feedback as the user types, returning the most relevant results as the user refines their query.
+
+![Overview image](/images/general-search.png)
+
+<Caption>Example of an active search field</Caption>
+
+### When to use
+
+A user should be able to narrow the scope of a search as needed using advanced options and filters.
+
+To help users search effectively, ensure your search scope matches the location it is found in an application. A global search should help a user find any relevant data or content within an application, while a search within a component should search the data or information within that context.
+
+| Search type                       | Use cases                                                                                                                                                                                                                                                 | Expected results                                                                                                                          |
+| --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| [Basic search](#basic-search)     | When searching a large data set or collection of information, where it would be impractical or too resource intensive to run a query after every character. Also useful for global search, where a user doesn't know what information exists in a system. | A distinct page of search results. Optionally grouped by category.                                                                        |
+| [Active search](#active-search)   | When a user is searching a specific subset of information, or when the data set can be reasonably searched following each character entered. Useful for data tables and global search of small websites.                                                  | Any close or exact matches should be surfaced immediately in a panel under the search field. If practical, group the results by category. |
+| [Focused search](#focused-search) | When a user knows exactly what they are searching for and wants only highly relevant search results.                                                                                                                                                      | Specific and highly relevant search results. Only exact matches unless none exist.                                                        |
+
+## The solution
+
+### Basic search
+
+In certain scenarios, the scope of a search is too large for a live query to be practical. Consider searches of a massive database, or web searches. In these instances, offer either trending searches that match the user’s keywords, recent user searches, or both.
+
+The search won’t actually run until the user clicks or taps the “Search” button.
+
+#### Structure
+
+Every search must be composed of an [input field](/components/search/usage) and a button to run the search query. The search input field should make use of helpful placeholder text to suggest what the user should search for.
+
+<Row>
+<Column colLg={8}>
+
+![Example of a basic search](/images/basic-search.png)
+
+</Column>
+</Row>
+
+#### Behaviors and functionality
+
+As soon as a user clicks or tabs into the search field, they should be shown either recent searches, trending searches, or both. These should disappear as soon as the user begins typing in the field, and the menu should be replaced with suggestions based on their search query.
+
+The query does not run until the user clicks or taps the search button, at which point they are shown a list of search results on a distinct page. Once the search results are displayed, the user should have the option to select faceted filters to narrow their search result.
+
+If the results are sourced from distinct data sets or categories, consider grouping them. Also consider offering a "Search within this category" [filter](#scoped-search) beneath the category header.
+
+There are scenarios where a combination of the two should apply. The search returns the most likely matches as the user enters each key, but if the top eight results don’t match what the user is looking for, they can still run the “search” for more robust search results and additional filters and facets.
+
+### Active search
+
+An active search runs the search query following each added or removed character in the search field. The search is run instantly and progressively, revealing the top eight results in order of relevancy.
+
+#### Structure
+
+An active search is constructed from a search field, a search icon, and an X that serves as a clear or cancel button. There is no "Search" or "Go" button, as the search is run actively and the user is not routed to a results page.
+
+Search results are surfaced in order of relevancy, with the top eight results surfacing in a panel directly below the search field.
+
 <Row>
 <Column colLg={8}>
 
@@ -32,51 +90,35 @@ Searching is an intuitive method of discovery, offering users a way to explore a
 </Column>
 </Row>
 
-### When to use
+#### Behaviors and functionality
 
-A user should be able to narrow the scope of a search as needed using advanced options and filters.
+For active search, it's acceptable but not necessary to show recent searches. Do not show trending searches, as active search is typically used for more focused scenarios and its unlikely trending searches will meet the needs of a user.
 
-Search helps users find what they are looking using keywords, often serving as an intuitive discovery method.
+Recent searches should appear in a panel below the search field, and should be replaced by matching search results the second the user begins typing. Cluster or group results only if necessary.
 
-| Search type                             | Use cases                                                                                                                                    | Expected results                                                                   |
-| --------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| [Basic search](#basic-search)           | This is the first method of discovery, when a user is unfamiliar with the data within a system.                                              | Any close or exact matches to the search query.                                    |
-| [Scoped search](#scoped-search)         | When a user is searching a specific subset of information. This is the first method of filtering, allowing a user to avoid unwanted results. | Any close or exact matches existing with the designated category.                  |
-| [Faceted filtering](#faceted-filtering) | When a user knows exactly what they are searching for and wants only highly relevant search results.                                         | Specific and highly relevant search results. Only exact matches unless none exist. |
+Once the user selects a result, they should be taken to the selected page or resource immediately.
 
-### When not to use
+### Focused search
 
-Search shouldn’t be the only way to locate information. Small applications or websites may not need a search, and should be easily navigable without one.
+A focused search is a combination of basic search and active search. It's useful for user-centric search, where a user will be shown immediate results relating to their information or assigned tasks, with the option to widen their search to include all categories.
 
-## The solution
+#### Structure
 
-The power of each search is dependent on the search field’s location, its intended scope, and technical considerations. If possible, your search should provide live feedback as the user types, returning the most relevant results as the user refines their query.
-
-Every search must be composed of an [input field](/components/search/usage) and a button to run the search query. The search input field should make use of helpful placeholder text to suggest what the user should search for.
-
-![Overview image](/images/overview.png)
-
-To help users search effectively, ensure your search scope matches the location it is found in an application. A global search should help a user find any relevant data or content within an application, while a search within a component should search the data or information within that context.
-
-In certain scenarios, the scope of the search is too large for a live query to be practical. Consider searches of a massive database, or web searches. In these instances, you should offer either trending searches that match the user’s keywords, recent user searches, or both. The search won’t actually run until the user clicks or taps the “Search” button.
-
-There are scenarios where a combination of the two should apply. The search returns the most likely matches as the user enters each key, but if the top eight results don’t match what the user is looking for, they can still run the “search” for more robust search results and additional filters and facets.
-
-### Basic search
-
-To-be-written
+A focused search should query results related to the searches focus, whether that is a user, a category, or a dataset. The search results should be presented in a panel just like in active search, but below the results should be a button to widen the scope and see a full page of search results.
 
 <Row>
 <Column colLg={8}>
 
-![Example of a basic search](/images/basic-search.png)
+![](/images/focused-search.png)
 
 </Column>
 </Row>
 
-### Scoped search
+### Scope filter
 
 A scoped search is composed of an input field, a button to run the search query, and a dropdown on the left side of the search field with a scope qualifiers. Adding a scope before running the search query lets a user avoid irrelevant results before beginning their search.
+
+![Overview image](/images/overview.png)
 
 Scoped search allows users to quickly search within a specific category. The introduction of a top-level scope filter means they can find more relevant content and filter out unwanted results.
 
@@ -122,7 +164,7 @@ Faceted filtering should give users a better understanding of the data structure
 
 The filters ‘panel’ should always appear left-aligned on the page. Avoid covering search results with the filters panel if possible, as the results will inform the filters a user selects. Display the number of matching results next to each filter. This avoids dead ends by preventing a user from selecting a set of filters with no results.
 
-### Behaviors, structure, and functionality
+## Best practices
 
 **Provide useful placeholder text.** A search field should include placeholder text, serving as a hint that increases the liklihood that a user's search will be successful. Placeholder text should be short and clear—For example, "Search for bars and restaurants." Placeholder text should remain visible until the user begins typing in the search field.
 
@@ -133,7 +175,7 @@ The filters ‘panel’ should always appear left-aligned on the page. Avoid cov
 type="do"
 aspectRatio="1:1"
 caption="Prompt the user to search for sommething relevant."
-text="Search for bars and restaurants" 
+text="Search for bars and restaurants"
 />
 </Column>
 <Column colMd={4} colLg={4}>
@@ -146,8 +188,6 @@ text="Enter a valid search query here to locate desired results"
 />
 </Column>
 </Row>
-
-### Best practices
 
 **Provide type-ahead suggestions.** Suggestions give a user immediate feedback to the user on their search. Without having to commit to a search, they can get a preview of results, suggestions of additional search terms, or just find exactly what they were looking for without having to visit a separate page first. If using type-ahead, it should become invoked from the second the search input field is activated.
 
