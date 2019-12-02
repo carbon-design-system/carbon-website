@@ -1,59 +1,66 @@
 ---
 title: Login pattern
-description: The login pattern lets the user authenticate with a system for authorized access to product functionality.
+description: The login pattern grants access to resources based on the establishment of a user's identity.
 ---
 
 <PageDescription>
 
-The login pattern lets the user authenticate with a system for authorized access to product functionality.
+Logging in to a product, property, or system is a fundamental interaction users encounter whenever access to those resources is based on their identity.
 
 </PageDescription>
 
-#### Status:
-
-[Experimental](/experimental/overview)
-
-#### Maintainer:
-
-[Chris Reckling](https://github.com/creckling)
-
 ## Overview
 
-Login patterns ensure a user can authenticate into a system so they can access their data securely. Mobile login screens should follow the same pattern and illustration style as the desktop experience.
+Logging in to a product, property, or system is a fundamental interaction users encounter whenever access to those resources is based on the establishment of a user's identity via an identifier and an authorization method, such as a password. This is a pattern users encounter in a vast number of products, properties and experiences, and we take advantage of users' understanding of those patterns when we employ similar, common workflows they've come to expect and understand.
 
-The "Forgot Password" pattern is separate from the authentication and login pattern. If there are several products requiring a login, a user should be able to choose which product to log into.
+This guidance describes three variants of login pattern: A discrete page login; a modal dialog login, and a menu item login.
 
-## Login form variations
+The Create Account and Forgot Password patterns are related but separate from the login pattern. There are also extensions to the login patterns such as SSO sign in, Two Factor Identification, or Hardware Authentication; this document will highlight their points of extension but will reserve detailed articulation of those extensions for a future iteration of this pattern.
 
-### Centered login form
+## Discrete page login
 
-The centered login includes copyright information in the footer. Refer to your product content team for these details.
+This pattern presents the user with an entire page devoted to the login task. It is the most disruptive login pattern.
 
-![Wireframe of a centered login form](images/login-background-Image.png)
+### Use this pattern when:
 
-<Caption>Wireframe of a centered login form</Caption>
+- You want to isolate content from users until after they have successfully met the identification/authentication challenge
+- The login procedure is complex and requires the users' full attention, such as SSO or 2-Factor authorization workflows
+- A loss of context or state of work is not a consequence of the disruption
 
-![Example of a centered login form](images/login-pattern-example1.png)
+### Do not this pattern when:
 
-<Caption>Example of a centered login form</Caption>
+- Users have invested time in work prior to responding to the login call to action, such as configuring a device to understand pricing, assembling a travel itinerary, or composing a document, especially if you cannot return them to the prior state of completion
+- Any workflow where you want to convey a continuity of state
+
+### The Solution
+
+In this pattern the user has responded to a Login Call to Action to initiate the login workflow (or arrived at a URL that presents the login page to all unauthenticated users). The response is navigation to a complete, distinct screen where the login pattern begins. If the user successfully enters and Identifier (Frequently a User name or email address) and Authentication Token (a password) the will continue to the product or property protected by the login.
+
+This pattern supports Create Account and Forgot ID/Forgot password patterns as extensions to the basic login identity/authorization challenge flow, and can be extended to support authorization workflows such as Two factor authorization, Single Sign On, and even External Authentication Services such as Google or Facebook authentication. These topics are outside the scope of this document iteration, but will be addressed in future revisions.
+
+![Wireframe of a discrete page login, (centered)](images/login-background-Image.png)
+
+<Caption>Wireframe of a discrete page login, (centered)</Caption>
+
+![Example of a discrete page login, (centered)](images/login-pattern-example1.png)
+
+<Caption>Example of a discrete page login, (centered)</Caption>
 
 If you choose to include an illustration, ensure the art reflects the product. Keep it simple and aligned with the product's aesthetic.
 
-![Example of a centered login form with illustration](images/login-pattern-example2.png)
+![Example of a discrete page login, (centered) with illustration](images/login-pattern-example2.png)
 
-<Caption>Example of a centered login form with illustration</Caption>
+<Caption>
+  Example of a discrete page login, (centered) with illustration
+</Caption>
 
-### Login form on the right
+![Wireframe of discrete page login(right entry form)](images/login-split-screen.png)
 
-Right-side logins are ideal for editorial experiences and instances where there is visual content featured on the left side of the window.
+<Caption>Wireframe of discrete page login(right entry form)</Caption>
 
-![Wireframe of right-sided login form](images/login-split-screen.png)
+![Example of discrete page login(right entry form)](images/login-pattern-example3.png)
 
-<Caption>Wireframe of right-sided login form</Caption>
-
-![Example of right-sided login form](images/login-pattern-example3.png)
-
-<Caption>Example of right-sided login form</Caption>
+<Caption>Example of discrete page login(right entry form)</Caption>
 
 ### Login page with product selector
 
@@ -68,3 +75,87 @@ Use a dropdown component to display the options.
 ![Example of login page with product selector](images/login-pattern-example4.png)
 
 <Caption>Example of login page with product selector</Caption>
+
+### Best Practices
+
+- Plan for the successful login scenario and the unsuccessful scenarios.
+- Present to Username and Password entry fields in a single view, since Browser and 3rd party password managers tend to work best in this modality. In some scenarios the Username must be presented before the Password field (for example to determine whether it's an SSO account); this is acceptable but less desirable.
+- Avoid a barrage of upsell messaging.
+
+##Modal Dialog Login
+This pattern presents a Modal Dialog devoted to the login task. User has the ability to see much of where they were (depending on resolution) but must either complete the login flow or dismiss it to return to their Prior state. The pattern is less disruptive than a Discreet Page Login, but more disruptive than a Menu Item Login.
+
+###Use this pattern when:
+
+- You want to maintain both the current state and convey assurance to the user that the system knows where they were.
+- A loss of context or state of work is the consequence of the disruption of a Discrete Page Login. If it is difficult or impossible to maintain a state across the page loads, use this pattern.
+
+###Do not this pattern when:
+
+- You want to completely block or restrict access to your property or product. Use a discrete page rather than loading a view of your product covered by a modal, or having everything disabled until you complete the modal.
+
+###The solution
+In this pattern the user has responded to a Login Call to Action to initiate the login workflow. The response is to render a modal dialog over the current context where the login pattern begins. If the user successfully enters and Identifier (Frequently a User name or email address) and Authentication Token (a password) the will return to the prior state of product or property in a logged in or authenticated state.
+
+This pattern supports Create Account and Forgot ID/Forgot password patterns as extensions to the basic login identity/authorization challenge flow, and can be extended to support authorization workflows such as Two factor authorization, Single Sign On, and even External Authentication Services such as Google or Facebook authentication. These topics are outside the scope of this document iteration, but will be addressed in future revisions.
+
+![Wireframe of a modal dialog login](images/login-modal-dialog-wireframe.png)
+
+<Caption>Wireframe of a modal dialog login</Caption>
+
+![Example of a modal dialog login](images/login-modal-dialog-example.png)
+
+<Caption>Example of a modal dialog login</Caption>
+
+###Best Practices
+
+- Plan for the successful login scenario and the unsuccessful scenarios.
+- Present to Username and Password entry fields in a single view, since Browser and 3rd party password managers tend to work best in this modality. In some scenarios the Username must be presented before the Password field (for example to determine whether it's an SSO account); this is acceptable but less desirable.
+
+##Menu Item Login
+This pattern presents a Menu Item from the Global header devoted to the login task. User has the ability to see most in not all of where they were but must either complete the login flow or dismiss it to return to their prior state. The pattern is the least disruptive.
+
+###Use this pattern when:
+
+- You want to maintain both the current state and convey assurance to the user that the system knows where they were.
+- A loss of context or state of work is the consequence of the disruption of a Discrete Page Login. If it is difficult or impossible to maintain a state across the page loads, use this pattern.
+- Your authentication systems are sophisticated enough to resolve a user's account, whether it is SSO, etc. with just the Username and password.
+
+###Do not this pattern when:
+
+- You want to completely block or restrict access to your property or product. Use a discrete page.
+- You want to prominently feature either account creation or alternative authentication methods (such as SSO).
+
+###The solution
+In this pattern the user has responded to a Login Call to Action to initiate the login workflow, which is located in a Global Header or menu.head. The response is to render a modal dialog over the current context where the login pattern begins. If the user successfully enters and Identifier (Frequently a User name or email address) and Authentication Token (a password) the will return to the prior state of product or property in a logged in or authenticated state.
+
+This pattern usually supports Create Account and Forgot ID/Forgot password patterns as extensions to the basic login identity/authorization challenge flow, and can be extended to support authorization workflows such as Two factor authorization, Single Sign On, and even External Authentication Services such as Google or Facebook authentication through a specific link in the menu that transports the user to either the Discrete Page Login or at least a Modal Dialog Login. These topics are outside the scope of this document iteration, but will be addressed in future revisions.
+
+![Wireframe of a menu item login](images/login-menu-item-wireframe.png)
+
+<Caption>Wireframe of a menu item login</Caption>
+
+![Example of a menu item login](images/login-menu-item-example.png)
+
+<Caption>Example of a menu item login</Caption>
+
+###Best Practices
+
+- Plan for the successful login scenario and the unsuccessful scenarios.
+- Present to Username and Password entry fields in a single view, since Browser and 3rd party password managers tend to work best in this modality. In some scenarios the Username must be presented before the Password field (for example to determine whether it's an SSO account); this is acceptable but less desirable.
+
+##Related Topics
+SSO Authentication
+Two Factor Authentication
+Global Header
+Dialog Boxes
+
+##Accessibility
+
+<tbd>
+
+##References
+
+<tbd> other than that which lives in my head :)
+
+##Feedback
