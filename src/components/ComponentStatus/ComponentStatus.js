@@ -55,7 +55,7 @@ class ComponentStatus extends React.Component {
         <div className="bx--col-lg-12">
           <h2 className="page-h2">Current version: {vanillaVersion}</h2>
         </div>
-        <div className="bx--col-lg-12 bx--no-gutter">
+        <div className="bx--col-lg-12 bx--no-gutter bx--table-container">
           <table className="page-table">
             <thead>
               <tr>
