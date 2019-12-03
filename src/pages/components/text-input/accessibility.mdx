@@ -1,0 +1,374 @@
+---
+title: Text input
+description: Text inputs enable the user to interact with and input content and data. This component can be used for long and short form entries.
+tabs: ['Code', 'Usage', 'Style', 'Accessibility']
+---
+
+import {
+  StructuredListWrapper,
+  StructuredListHead,
+  StructuredListBody,
+  StructuredListRow,
+  StructuredListInput,
+  StructuredListCell,
+  OrderedList,
+  ListItem,
+} from 'carbon-components-react';
+
+<AnchorLinks>
+  <AnchorLink>How it works</AnchorLink>
+  <AnchorLink>Accessibility considerations</AnchorLink>
+  <AnchorLink>Resources</AnchorLink>
+  <AnchorLink>Accessibility testing</AnchorLink>
+</AnchorLinks>
+
+## How it works
+
+The text input components are form fields that are provided for user input of text information. The validation message should be included to advise the user of text that is input incorrectly or a required field that is missing. The optional helper text should be used to provide instructions to help users understand how to complete the text field as well as indicate any required and optional input, data formats, and other relevant information.
+
+## Accessibility considerations
+
+1. Provide labels and instructions that are clear and concise.
+2. Provide [instructions](https://www.w3.org/WAI/tutorials/forms/instructions/) for completing the field. For example, Passwords must contain at least 8 letters and/or numbers.
+3. If the text input is a required field include the [`aria-required` property](https://www.w3.org/TR/WCAG20-TECHS/ARIA2.html) and indicate that it is a required field and use the validation message for input errors.
+
+## Resources
+
+- [W3C Web Tutorial: Labeling Controls](https://www.w3.org/WAI/tutorials/forms/labels/)
+- [W3C Web Tutorial: Form Instructions](https://www.w3.org/WAI/tutorials/forms/instructions/)
+- [IBM Accessibility Checklist Checkpoint](https://www.ibm.com/able/guidelines/ci162/accessibility_checklist.html):
+  - [1.3.1 Information and Relationships](https://www.ibm.com/able/guidelines/ci162/info_and_relationships.html) (WCAG Success Criteria [1.3.1](http://www.w3.org/TR/2016/NOTE-UNDERSTANDING-WCAG20-20161007/content-structure-separation-programmatic.html))
+  - [3.3.1 Error Identification](https://www.ibm.com/able/guidelines/ci162/error_id.html) (WCAG Success Criteria [3.3.1](https://www.w3.org/TR/UNDERSTANDING-WCAG20/minimize-error-identified.html))
+  - [3.3.2 Labels and Instructions](https://www.ibm.com/able/guidelines/ci162/labels_or_instructions.html) (WCAG Success Criteria [3.3.2](http://www.w3.org/TR/UNDERSTANDING-WCAG20/minimize-error-cues.html))
+  - [3.3.3 Error Suggestion](https://www.ibm.com/able/guidelines/ci162/error_suggestion.html) (WCAG Success Criteria [3.3.3](http://www.w3.org/TR/UNDERSTANDING-WCAG20/minimize-error-suggestions.html))
+  - [4.1.2 Name, Role, Value](https://www.ibm.com/able/guidelines/ci162/name_role_value.html) (WCAG Success Criteria [4.2.1](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value))
+
+## Accessibility testing
+
+Accessibility issues are tracked in the [Carbon Component GitHub repository](https://github.com/carbon-design-system/carbon/milestones).
+
+### Automated test
+
+<Row>
+  <Column noGutterSm>
+    <StructuredListWrapper>
+      <StructuredListHead>
+        <StructuredListRow head>
+          <StructuredListCell head>
+            Automated test environment
+          </StructuredListCell>
+          <StructuredListCell head>Results</StructuredListCell>
+        </StructuredListRow>
+      </StructuredListHead>
+      <StructuredListBody>
+        <StructuredListRow>
+          <StructuredListCell>
+            - macOS Mojave version 10.14.6 with VoiceOver
+            <br />
+            - Chrome version 77.0.3865.90
+            <br />
+            - Dynamic Assessment Plugin (DAP) version 1.8.0.0 - IBM
+            Accessibility WCAG 2.1 Sept. 2019 Ruleset
+            <br />- Carbon React version 7.7.1
+          </StructuredListCell>
+          <StructuredListCell>
+            <strong>DAP test:</strong>
+            <br />- No violations
+          </StructuredListCell>
+        </StructuredListRow>
+      </StructuredListBody>
+    </StructuredListWrapper>
+  </Column>
+</Row>
+
+### macOS screen reader tests
+
+<Row>
+  <Column noGutterSm>
+    <StructuredListWrapper>
+      <StructuredListHead>
+        <StructuredListRow head>
+          <StructuredListCell head>Environment </StructuredListCell>
+          <StructuredListCell head>Results</StructuredListCell>
+        </StructuredListRow>
+      </StructuredListHead>
+      <StructuredListBody>
+        <StructuredListRow>
+          <StructuredListCell>
+            - macOS Mojave version 10.14.6 with VoiceOver
+            <br />
+            - Chrome version 77.0.3865.90
+            <br />- Carbon React version 7.7.1
+          </StructuredListCell>
+          <StructuredListCell>
+            <strong>
+              VoiceOver(VO) text input fully controlled toggle password
+              visibility test:
+            </strong>
+            <OrderedList>
+              <ListItem>
+                Control-Option-Shift Down Arrow to enter the Web area.
+              </ListItem>
+              <ListItem>
+                Control-Option-Right Arrow to the text input label. VO announces
+                the label and that its a text element.
+              </ListItem>
+              <ListItem>
+                Control-Option-Right Arrow to the optional helper text. VO
+                announces the label and that its a text element.
+              </ListItem>
+              <ListItem>
+                Control-Option-Right Arrow to the text input field. VO announces
+                the number of characters, and that it is a secure text field
+                that will not be spoken by VO.
+              </ListItem>
+              <ListItem>
+                Control-Option-Right Arrow to the icon and VO announces that it
+                is a show password button.
+              </ListItem>
+              <ListItem>Press Space and the password is displayed.</ListItem>
+              <ListItem>
+                Control-Option-Left Arrow to the Text Input field and VO
+                announces the password.
+              </ListItem>
+              <ListItem>
+                Tab to the Hide Password button. VO announces the label and that
+                it is a button.
+              </ListItem>
+              <ListItem>
+                Tab to the Show Password button. VO announces the label and that
+                it is a button.
+              </ListItem>
+            </OrderedList>
+          </StructuredListCell>
+        </StructuredListRow>
+        <StructuredListRow>
+          <StructuredListCell>
+            - macOS Mojave version 10.14.6 with VoiceOver
+            <br />
+            - Chrome version 77.0.3865.90
+            <br />- Carbon React version 7.7.1
+          </StructuredListCell>
+          <StructuredListCell>
+            <strong>VoiceOver(VO) text area test:</strong>
+            <OrderedList>
+              <ListItem>
+                Control-Option-Shift Down Arrow to enter the Web area.
+              </ListItem>
+              <ListItem>
+                Control-Option-Right Arrow to the Text Area label. VO announces
+                the label and that its a text element.
+              </ListItem>
+              <ListItem>
+                Control-Option-Right Arrow to the Optional helper text. VO
+                announces the label and that its a text element.
+              </ListItem>
+              <ListItem>
+                Control-Option-Right Arrow to the Text Area. VO announces the
+                placeholder text and that it is a text area.
+              </ListItem>
+              <ListItem>
+                Enter text in the text field. VO announces each character as it
+                is typed.
+              </ListItem>
+              <ListItem>
+                Tab out of the Text Area and then tab back. VO announces the
+                entered text.
+              </ListItem>
+            </OrderedList>
+          </StructuredListCell>
+        </StructuredListRow>
+      </StructuredListBody>
+    </StructuredListWrapper>
+  </Column>
+</Row>
+
+### Windows screen reader tests
+
+<Row>
+  <Column noGutterSm>
+    <StructuredListWrapper>
+      <StructuredListHead>
+        <StructuredListRow head>
+          <StructuredListCell head>Environment</StructuredListCell>
+          <StructuredListCell head>Results</StructuredListCell>
+        </StructuredListRow>
+      </StructuredListHead>
+      <StructuredListBody>
+        <StructuredListRow>
+          <StructuredListCell>
+            - Microsoft Windows 10
+            <br />
+            - Firefox version 68
+            <br />
+            - JAWS 18
+            <br />- Carbon React version 7.7.1
+          </StructuredListCell>
+          <StructuredListCell>
+            <strong>
+              JAWS text input fully controlled toggle password visibility test:
+            </strong>
+            <OrderedList>
+              <ListItem>Alt-Down area. JAWS announces the labels.</ListItem>
+              <ListItem>
+                Tab to the text input field. JAWS announces that it is the main
+                region, password, label, type and text.
+              </ListItem>
+              <ListItem>
+                Tab to the icon and JAWS announces that it is a show password
+                button.
+              </ListItem>
+              <ListItem>
+                Space and Enter key can be used to show and hide the password.
+              </ListItem>
+              <ListItem>
+                Shift-Tab to go back to the text input field and JAWS announces
+                the password when it is displayed.
+              </ListItem>
+              <ListItem>
+                Tab to the Show Password button. JAWS announces the label and
+                that it is a button.
+              </ListItem>
+              <ListItem>
+                Press Space on the Show Password button. The password displays.
+              </ListItem>
+              <ListItem>
+                Tab to the Hide Password button. JAWS announces the label and
+                that it is a button.
+              </ListItem>
+              <ListItem>
+                Press Space on the Hide Password button. The password is hidden.
+              </ListItem>
+            </OrderedList>
+          </StructuredListCell>
+        </StructuredListRow>
+        <StructuredListRow>
+          <StructuredListCell>
+            - Microsoft Windows 10
+            <br />
+            - Firefox 68
+            <br />
+            - JAWS 18
+            <br />- Carbon React version 7.7.1
+          </StructuredListCell>
+          <StructuredListCell>
+            <strong>JAWS text area test:</strong>
+            <OrderedList>
+              <ListItem>
+                Alt-Down Arrow. JAWS announces the label and that its a text
+                element.
+              </ListItem>
+              <ListItem>
+                Tab to the text area. JAWS announces the main region, text area
+                label and that it contains text.
+              </ListItem>
+              <ListItem>
+                Enter text in the text area. JAWS announces each character as it
+                is typed.
+              </ListItem>
+              <ListItem>
+                Tab to move out of the text area and then Shift-Tab to go back.
+                Press Insert-Up Arrow. VO announces the entered text.
+              </ListItem>
+            </OrderedList>
+          </StructuredListCell>
+        </StructuredListRow>
+      </StructuredListBody>
+    </StructuredListWrapper>
+  </Column>
+</Row>
+
+### iOS screen reader tests
+
+<Row>
+  <Column noGutterSm>
+    <StructuredListWrapper>
+      <StructuredListRow head>
+        <StructuredListCell head>Environment </StructuredListCell>
+        <StructuredListCell head>Results</StructuredListCell>
+      </StructuredListRow>
+      <StructuredListBody>
+        <StructuredListRow>
+          <StructuredListCell>
+            - iOS version 13.1.3 with VoiceOver
+            <br />
+            - Safari version 13.1.3
+            <br />- Carbon React version 7.7.1
+          </StructuredListCell>
+          <StructuredListCell>
+            <strong>
+              VoiceOver(VO) text input fully controlled toggle password
+              visibility Test:
+            </strong>
+            <OrderedList>
+              <ListItem>
+                Swipe Right to the text input label. VO announces the label and
+                that its a text element.
+              </ListItem>
+              <ListItem>
+                Swipe Right to the optional helper text. VO announces the label
+                and that its a text element.
+              </ListItem>
+              <ListItem>
+                Swipe Right to the text input field. VO announces the number of
+                characters, and that it is a secure text field that will not be
+                spoken by VO. As well as character mode and insertion point at
+                end of text.
+              </ListItem>
+              <ListItem>
+                Swipe Right to the icon and VO announces that it is a show
+                password button.
+              </ListItem>
+              <ListItem>Double Tap and the password is displayed.</ListItem>
+              <ListItem>
+                Swipe Left to go back to the text input field and VO announces
+                the password.
+              </ListItem>
+              <ListItem>
+                Swipe Right to the Hide Password button. VO announces the label
+                and that it is a button.
+              </ListItem>
+              <ListItem>
+                Swipe Right to the Show Password button. VO announces the label
+                and that it is a button.
+              </ListItem>
+            </OrderedList>
+          </StructuredListCell>
+        </StructuredListRow>
+        <StructuredListRow>
+          <StructuredListCell>
+            - iOS version 13.1.3 with VoiceOver
+            <br />
+            - Safari version 13.1.3
+            <br />- Carbon React version 7.7.1
+          </StructuredListCell>
+          <StructuredListCell>
+            <strong>VoiceOver(VO) text area test:</strong>
+            <OrderedList>
+              <ListItem>
+                Swipe Right to the text area label. VO announces the label and
+                that its a text element.
+              </ListItem>
+              <ListItem>
+                Swipe Right to the Optional helper text. VO announces the label
+                and that its a text element.
+              </ListItem>
+              <ListItem>
+                Swipe Right to the text area. VO announces the placeholder text
+                and that it is a text area.
+              </ListItem>
+              <ListItem>
+                Enter text in the text field. VO announces each character as it
+                is typed.
+              </ListItem>
+              <ListItem>
+                Swipe Right to move out of the text area and then Swipe Left to
+                go back. VO announces the entered text.
+              </ListItem>
+            </OrderedList>
+          </StructuredListCell>
+        </StructuredListRow>
+      </StructuredListBody>
+    </StructuredListWrapper>
+  </Column>
+</Row>
