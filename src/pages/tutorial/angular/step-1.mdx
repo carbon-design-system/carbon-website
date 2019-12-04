@@ -153,7 +153,7 @@ npm install
 After the dependencies are installed, you can start the app with:
 
 ```bash
-npm run start
+npm start
 ```
 
 Your app should now be running with the message: `** Angular Live Development Server is listening on localhost:4200, open your browser on http://localhost:4200/ **`
@@ -165,9 +165,9 @@ That's it! Your browser should now resemble our [starter-app](https://carbon-ang
 Let's update the UI Shell so it has a link to the repos page that we will create shortly. In `header.component.html` replace the code with:
 
 ```html path=src/app/header/header.component.html
-<ibm-header name="Carbon Tutorial Angular">
+<ibm-header [route]="['/']" name="Carbon Tutorial Angular">
   <ibm-header-navigation ariaLabel="Carbon Tutorial Angular">
-    <ibm-header-item href="/repos">Repositories</ibm-header-item>
+    <ibm-header-item [route]="'[/repos']">Repositories</ibm-header-item>
   </ibm-header-navigation>
   <ibm-header-global>
     <ibm-header-action title="action">
@@ -637,7 +637,7 @@ curl -o src/assets/icons/icon-512x512.png https://raw.githubusercontent.com/carb
 Now we can run our app for a quick preview inside the browser.
 
 ```bash
-npm run start
+npm start
 ```
 
 Your app should now be running with the message: `** Angular Live Development Server is listening on localhost:4200, open your browser on http://localhost:4200/ **`
@@ -821,7 +821,7 @@ src/app/repositories
 └── repositories.module.ts
 ```
 
-Now you can restart your server with `npm run server`.
+Now you can restart your server with `npm start`.
 
 ## Add routing
 
@@ -874,7 +874,7 @@ const routes: Routes = [
 After that we need to do a couple quick fixes to the UI Shell to have it route to the repo page.
 
 ```html path=src/app/header/header.component.html
-<ibm-header-item routerLink="/repos">Repositories</ibm-header-item>
+<ibm-header-item [route]="['/repos']">Repositories</ibm-header-item>
 ```
 
 You should now have a working header that routes to the repos pages without full page reload!
