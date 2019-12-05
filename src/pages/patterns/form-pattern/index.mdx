@@ -14,8 +14,9 @@ A form is a group of related input controls that allow users to provide data or 
   <AnchorLink>Basic usage</AnchorLink>
   <AnchorLink>Behaviors</AnchorLink>
   <AnchorLink>Designing a form</AnchorLink>
-  <AnchorLink>Form variants</AnchorLink>
+  <AnchorLink>Variants</AnchorLink>
   <AnchorLink>Accessibility</AnchorLink>
+  <AnchorLink>Related</AnchorLink>
   <AnchorLink>References</AnchorLink>
 </AnchorLinks>
 
@@ -23,23 +24,25 @@ A form is a group of related input controls that allow users to provide data or 
 
 ### When to use
 
-Forms are incredbily common in product and their design and usage continues to evolve as input methods get smarter. You might design a form for a user to:
+Forms are incredbily common in user interfaces and their design and usage continues to evolve as input methods get smarter and more and more people use mobile and tablet devices. You might design a form for a user to:
 
 - Sign up for / log into an account
 - Register for a service
 - Reconfigure settings, (e.g. enabling notifications)
 - Take a survey
-- Order something
+- Purchase a product
 - Provide feedback
 
 ### Respect the user
 
 Forms are meant to gather information and guide people with as little fuss as possible. To allow users to scan and complete the form quickly, forms should:
 
-- Respect the user’s time and privacy by only asking for information that  is absolutely necessary
-- Group related tasks under section titles to provide more context and make the  interface easier to scan
-- Follow a logical, predictable order— e.g first name first, last name second on
+- Respect the user’s GDPR and other privacy regulations by only asking for information that is absolutely necessary.
+- Group related tasks under section titles to provide more context and make the interface easier to scan.
+- Follow a logical, predictable order—e.g first name first, last name second on
 - Allow users to stay with a single interaction method for as long as possible (i.e. do not make users shift from keyboard to mouse numerous times in a single form).
+- When designing be mindful of password managers and browser capabilities that populate data for users.
+- Progressively disclose additional inputs only as they become relevant; see the [Designing for longer forms](#designing-for-longer-forms) section below.
 
 ### Elements (Anatomy of a form)
 
@@ -116,13 +119,13 @@ Free-form text inputs are the most commonly used components in forms.
 
 #### Deciding what to use
 
-| Control    | Usage                                            | Context                                                                 |
-| ---------- | ------------------------------------------------ | ----------------------------------------------------------------------- |
-| Text input | To capture several words maximum                 | Names; phone numbers; addresses                                         |
-| Password   | To collect private data by hiding the characters | Passwords, Social Security Numbers (SSN), PINs, credit card information |
-| Text area  | To capture multiple lines of text                | Feedback; support requests                                              |
+| Control                                                                                            | Usage                                            | Context                                                                 |
+| -------------------------------------------------------------------------------------------------- | ------------------------------------------------ | ----------------------------------------------------------------------- |
+| [Text input](<(/components/text-input/usage)>)                                                     | To capture several words maximum                 | Names; phone numbers; addresses                                         |
+| [Password](http://react.carbondesignsystem.com/?path=/story/textinput--toggle-password-visibility) | To collect private data by hiding the characters | Passwords, Social Security Numbers (SSN), PINs, credit card information |
+| [Text area](http://react.carbondesignsystem.com/?path=/story/textarea--default)                    | To capture multiple lines of text                | Feedback; support requests                                              |
 
-\*Usage highlights:
+#### Usage highlights:
 
 - The field widths should reflect the intended length of the content while still aligning to the responsive column or mini unit grid.
 - Make sure users can enter their information at smaller screen sizes.
@@ -148,16 +151,16 @@ Selection controls offer users a selection from pre-determined optoins. When des
 
 #### Deciding what to use
 
-| Control                                         | Usage                                                                    | Context                                                                  |
-| ----------------------------------------------- | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
-| [Checkbox](components/checkbox/usage)           | To select or deselect one or more choices                                | Agree to terms and conditions, add optional items, select all that apply |
-| [Radio button](components/radio-button/usage)   | To select only one option from two or more choices                       | Pick type, shipping method, etc.                                         |
-| [Toggle](components/toggle/usage)               | To choose one of two or more binary options                              | Changing user settings; On/off; Show/hide                                |
-| [File uploader](components/file-uploader/usage) | To upload / attach a file or multiple files to a form                    | Attaching SSl certificates; adding config files to support tickets       |
-| [Combobox](components/combobox/usage)           | To select a single item (with typeahead functionality from a longer list | Choosing a state, country or language preference                         |
-| [Multiselect](components/multiselect/usage)     | To select multiple items from a longer list                              | Add a product example for MultiSelect                                    |
+| Control                                                                              | Usage                                                                    | Context                                                                  |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| [Checkbox](components/checkbox/usage)                                                | To select or deselect one or more choices                                | Agree to terms and conditions, add optional items, select all that apply |
+| [Radio button](components/radio-button/usage)                                        | To select only one option from two or more choices                       | Pick type, shipping method, etc.                                         |
+| [Toggle](components/toggle/usage)                                                    | To choose one of two or more binary options                              | Changing user settings; On/off; Show/hide                                |
+| [File uploader](components/file-uploader/usage)                                      | To upload / attach a file or multiple files to a form                    | Attaching SSl certificates; adding config files to support tickets       |
+| [Combobox](http://react.carbondesignsystem.com/?path=/story/combobox--default)       | To select a single item (with typeahead functionality from a longer list | Choosing a state, country or language preference                         |
+| [Multiselect](http://react.carbondesignsystem.com/?path=/story/multiselect--default) | To select multiple items from a longer list                              | Add a product example for MultiSelect                                    |
 
-\*Usage hightlights:
+#### Usage hightlights
 
 Radio buttons:
 
@@ -166,7 +169,7 @@ Radio buttons:
 
 Radio buttons and checkboxes:
 
-- Radio button and checkbox labels fall to the right of the controls
+- Radio buttons and checkbox item text falls to the right of their controls
 - When possible, arrange the checkbox and radio button groups vertically for better scanability.
 
 Toggles:
@@ -193,30 +196,36 @@ Bound-entry controls allow users to input numeric data, like dates and times (e.
 
 #### Deciding what to use
 
-| Control                                       | Usage                                                                   | Context                                            |
-| --------------------------------------------- | ----------------------------------------------------------------------- | -------------------------------------------------- |
-| [Number input](components/number-input/usage) | To increase or decrease incremental values                              | Order quantities                                   |
-| [Slider](components/slider/usage)             | To select one number from a numerical range                             | Percentages, volume, timelines, data visualization |
-| [Date picker](components/date-picker/usage)   | To input/select a single localized date or a date range from a calendar | Scheduling trips, meetings and events              |
-| [Time picker](components/time-picker/usage)   | To input time in hours/minutes                                          | Scheduling meetings and travel times               |
+| Control                                                                             | Usage                                                                   | Context                                            |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------- | -------------------------------------------------- |
+| [Number input](components/number-input/usage)                                       | To increase or decrease incremental values                              | Order quantities                                   |
+| [Slider](components/slider/usage)                                                   | To select one number from a numerical range                             | Percentages, volume, timelines, data visualization |
+| [Date picker](components/date-picker/usage)                                         | To input/select a single localized date or a date range from a calendar | Scheduling trips, meetings and events              |
+| [Time picker](http://react.carbondesignsystem.com/?path=/story/timepicker--default) | To input time in hours/minutes                                          | Scheduling meetings and travel times               |
 
 ### Offering help
 
 #### Tooltips
 
-Tooltips can be very useful for providing additional explanation to users that may be unfamilair with a particular form field. They can also offer rationale for what may seem like an unusual request. However, users should not have to dig around for a tool tip to access information that’s essential for the completion of their task.
+Tooltips can be very useful for providing additional explanation to users that may be unfamilair with a particular form field. They can also offer rationale for what may seem like an unusual request. However, research suggests that users should not have to dig around for a tool tip to access information that’s essential for the completion of their task.
+
+In Carbon, we use the “i” icon instead of the “?” icon because it indicates additional rather than essential information.
 
 <Row>
 <Column colLg={8}>
 
 ![For placement only](/images/FPO.png)
 
+<Caption>
+  Tooltip appears on hover (desktop) and on click (tablet and mobile).
+</Caption>
+
 </Column>
 </Row>
 
 Do:
 
-- Use tooltips with the filled “i” (info) icon.
+- Use tooltips with the outlined “i” (info) icon.
 - Use tooltips for explanatory or added information.
 - Tootltips are microcontent; keep them concise.
 
@@ -248,6 +257,19 @@ Don’t:
 - Never use help text in place of field labels.
 - Help text should not run longer than the input area.
 
+<Row>
+<Column colLg={8}>
+
+![For placement only](/images/FPO.png)
+
+<Caption>
+  When fields appear side-by-side and one input has help text while the other
+  one doesn’t; always top align the input fields, not the labels.
+</Caption>
+
+</Column>
+</Row>
+
 #### Placeholder text
 
 Placeholder text provides hints or examples of what to enter (e.g. YYYY-MM-DD). Since placeholder text disappears once the user begins to input data, it should not contain crucial information. When the requested input may be unfamiliar to the user or formatting is in question, use placeholder text.
@@ -264,12 +286,13 @@ Do:
 
 - Limit placeholder text to unfamiliar input types or situations where syntax requirements may be in questions (e.g. date formats).
 - Keep hints as short as possible and never out run the input field.
+- Properly anonymize examples rather than using real values.
 
 Don’t:
 
-- Don’t use placeholder text to communicate complex and lengthy requirements like password requirements. Instead, use an infotip.
-- Don’t provide placeholder text when it isn't necessary.
-- Never use placeholder text as a replacement for field labels.
+- Use placeholder text to communicate complex and lengthy requirements like password requirements. Instead, use an infotip.
+- Provide placeholder text when it isn't necessary.
+- Ever use placeholder text as a replacement for field labels.
 
 ### Buttons
 
@@ -277,18 +300,65 @@ Use a primary button for the main action, a secondary button for secondary actio
 
 #### Button alignment
 
-Alignment refers to whether the buttons are aligned to the right or the left of the container or layout, or full bleed from edge to container bottom. Button alignment depends on the type of form that you are building. We’ll touch on alignment briefly here as it relates to the button component and offer more detailed information about form variations below.
+Alignment refers to whether the buttons are aligned to the right or the left of the container or layout, or full bleed from edge to container bottom. Button alignment depends on the type of form that you are building. We’ll touch on alignment briefly here as it relates to the button component and offer more detailed information about form variations [below](#variants).
+
+#### Margins vs. full bleed
+
+In side panels, dialogs and any other forms within containers, the button group should span the width of the container and buttons should bleed to the bottom edge. If the button content is too long for this arrangement, stack buttons vertically (with primary button on top) and maintain their margin and padding. See [button usage guidance](/components/button/usage) for more information.
 
 #### Button emphasis
 
-Emphasis refers to the position of the primary button in relation to secondary and tertiary actions. Generally, in our system, buttons are sorted by importance from right to left, however non-dialog / in-page forms are the exception. In these situations we recommend left-aligning primary buttons and button groups with the left side of the form field — regardless of the user‘s window width. Research suggests that this enhances scanability in these scenarios.
-
-Use only one primary button perform. If you’re integrating a component like file uploader that has it’s own primary action button, use a tertiary button in that situation.
+Emphasis refers to the position of the primary button in relation to secondary and tertiary actions. When using multiple buttons, the primary button appears to the right and any secondary buttons appear to the left. Research has shown that performance differences between secondary and primary button placement are negligible, however maintaining consistency throughout a product, offering, or platform is crucial. The Secondary / Primary button order (secondary to the left and primary to the right) is therefore our required guidance and should be followed at all times.
 
 <Row>
 <Column colLg={8}>
 
 ![For placement only](/images/FPO.png)
+
+<Caption>Dedicated page forms</Caption>
+
+</Column>
+</Row>
+
+<Row>
+<Column colLg={8}>
+
+![For placement only](/images/FPO.png)
+
+<Caption>Dialog and side-panel forms </Caption>
+
+</Column>
+</Row>
+
+#### Do not top-align buttons
+
+There is a trend among product teams to pin buttons at the top of a dedicated-page form. We want to discourage this arrangement for several reasons.
+
+First, we should only be asking the user for essential input and we should elicit that information concise, deliberate way. So we should assume that the user scrolls through the appropriate inputs before submitting a form.
+
+Second, the dedicated page form is not a modal and does not prevent the user from accessing their previous workflow. A back button will be available to them as part of the breadcrumb at the top of the page, or via the progress indicator component (if your form is part of a multi-step flow). The browser back button is also available. In short, back should never be an action on a secondary button. The secondary button is usually reserved for cancelling the task.
+
+Third, and most important, the top-pinned buttons create a very awkward relationship with the content when the user finishes the form and is ready to submit. If we feel it’s necessary to pursue pinned actions in the future, we should look into a pinned footer or tray to contain button groups.
+
+<Row>
+<Column colMd={4} colLg={4}>
+
+<DoDontExample
+type="do"
+caption="Do arrange primary and secondary buttons at the bottom of the form">
+
+![Do arrange primary and secondary buttons at the bottom of the form](./images/FPO.png)
+
+</DoDontExample>
+</Column>
+<Column colMd={4} colLg={4}>
+<DoDontExample
+type="dont"
+caption="Do not top align primary and secondary action buttons in your layouts">
+
+![Do not top align primary and secondary action buttons in your layouts](./images/FPO.png)
+
+</DoDontExample>
 
 </Column>
 </Row>
@@ -298,10 +368,6 @@ Use only one primary button perform. If you’re integrating a component like fi
 | Left-aligned  | Primary left  | Non-dialog, in-page forms                                                          |
 | Right-aligned | Primary right | Multi-step forms/wizards when the primary action implies a navigation step forward |
 | Full bleed    | Primary right | All forms that are presented in dialogs and side panels                            |
-
-<Caption>
-  \* A dialog form would normally have a minimum of two buttons.
-</Caption>
 
 #### Naming actions
 
@@ -330,23 +396,23 @@ caption="Do not use vague language to describe an action">
 </Column>
 </Row>
 
-## Behaviors
+## Behavior
 
 ### Errors and validation
 
 Effective and immediate error messaging can help the user to understand the problem and how to fix it. First, inform the user what has happened, then provide guidance on next steps or possible resolutions. Always present error states on the form, and use inline errors whenever possible.
 
-#### Real-time validation
+#### Client-side validation
 
-We recommend validating the users data before form submission. Real-time, inline validation should happen as soon as the field loses focus. This will help to easily identify the elements that need to be corrected.
+We recommend validating the users data before form submission. This type of real-time, inline validation (a.k.a. client-side validation) should happen as soon as the field loses focus. This will help to easily identify the elements that need to be corrected.
 
 The validation label below the field should be as informative as possible when describing the issue with the users data. For example, if password limitations require 16 characters, but the user inputs a password with only six characters, the text should read something like, “Password must be at least 16 characters.”
 
 Common user errors include:
 
-— Incorrectly formatting data
-— Leaving a mandatory field blank
-— Leaving a mandatory field incomplete
+- Incorrectly formatting data
+- Leaving a mandatory field blank
+- Leaving a mandatory field incomplete
 
 <Row>
 <Column colLg={8}>
@@ -356,11 +422,19 @@ Common user errors include:
 </Column>
 </Row>
 
-#### Inline notifications
+#### Server-side validation
 
-Notifications come into play when server-side errors are involved — i.e. the user tries to submit a form in it’s entirety and the page is reloaded with the detected errors.
+Inline notifications come into play when server-side errors are involved — i.e. the user tries to submit a form in it’s entirety and the page is reloaded with the detected errors.
 
 In these situations, use an inline notification as well as inline error messaging wherever possible to help users make the fix. Inline error messages should disappear when the form criteria is met.
+
+<Row>
+<Column colLg={8}>
+
+![For placement only](/images/FPO.png)
+
+</Column>
+</Row>
 
 ### Enabling and disabling buttons
 
@@ -371,7 +445,9 @@ In these situations, use an inline notification as well as inline error messagin
 
 ### In-line editing
 
-Carbon does not have consolidated guidance around inline editing. Since it’s something a lot of products approach in different ways, we’d like to offer more robust, centralized guidance in the new year.
+In-line editing enables users to edit form text in situ instead of taking users to another page to edit their entry—so users don’t have to refresh the the whole form in order to make an edit.
+
+Carbon does not have consolidated guidance around inline editing. Since it’s something a lot of products approach in different ways, we’d like to offer more robust, centralized guidance in the future.
 
 ### Designing for longer forms
 
@@ -391,15 +467,15 @@ Use progressive disclosure to reveal any additional content that may arise based
 
 #### Accordion forms
 
-Accordion forms allow users to dynamically expose and hide sections of related information. Like progressive disclosure, accordion forms allow users to focus on relevant information without having to navigate between pages.
+Accordion forms allow users to dynamically expose and hide sections of related information. Like progressive disclosure, accordion forms allow users to focus on relevant information without having to navigate between pages. As a general rule, this technique should not be used in dialog forms.
 
 In research that we’ve come across, accordion forms can greatly enhance completion speed and page load times. However the same reseach also suggests that confusion can arise for users when it comes primary action buttons and whether they apply only to sections vs. the full form.
 
-The IoT team has done some design explorations around accordion forms but more design iteration and user testing is needed before Carbon solidifies our guidance around this interaction. Keep an eye out for refined usage examples early next year.
+The IoT team has done some design explorations around accordion forms but more design iteration and user testing is needed before Carbon solidifies our guidance around this interaction. Keep an eye out for refined usage examples in the future.
 
 #### Multi-step forms
 
-A multi-step form spreads form fields across multiple screens and incorporates a progress indicator (vertical or horizontal) to track a user’s status step by step. There should be a logical relationship between the fields on each screen and a linear relationship between sections.
+A multi-step form spreads form fields across multiple screens and incorporates a [progress indicator](/components/progress-indicator/usage) (vertical or horizontal) to track a user’s status step by step. There should be a logical relationship between the fields on each screen and a linear relationship between sections.
 
 This approach is good for saving form progress along the journey and allows users to return to a previous step to review their submissions.
 
@@ -441,9 +517,9 @@ Group headings describe a group of controls and fields within a form. Their size
 
 ### Spacing
 
-To ensure there is sufficient spacing between single form elements as well as groups of inputs, use margins, spacers, gutters and key alignments to guide you. Individual input fields default to a 40px height in product and we recommend a margin bottom of 32px between them. However designers can revert to 24px in tighter situations.
+Users will be confused if inputs are too close together. To ensure sufficient spacing between single form elements as well as groups of inputs, use margins, spacers, gutters and key alignments to guide you. See the [2x Grid](/guidelines/2x-grid) for more information.
 
-On in-page forms, use the responsive grid to drive decisions about layout, gutter and margins. Consistency of alignments and geometries is key. Dialogs and forms within side panels will revert to a box model so designers will revert to mini units to guide field widths.
+Regardless of context, we recommend using a larger spacer between the heading and the first input; all subsequent inputs will have the same margin top unless the inputs are divided into sections.
 
 <Row>
 <Column colLg={8}>
@@ -452,10 +528,18 @@ On in-page forms, use the responsive grid to drive decisions about layout, gutte
 
 </Column>
 </Row>
+
+#### Form context
+
+Forms can appear as dedicated pages or within dialogs, tiles or side panels. The form’s context affects its layout and vertical spacing. As a general rule dedicated-page forms can handle more complexity. See [form variants](#variants) below for more detailed usage guidance.
+
+On dedicated-page forms, use the responsive grid to drive layout decisions. Dialogs and side panel forms will revert to a box model so designers will use mini units to guide field widths. Consistency of alignments and geometries in either scenario is key.
+
+Individual input fields default to a 40px height in product regardless of context. On dedicated-page forms, we recommend a 32px spacer between input fields. In contained forms, such as side panels or modals, designers can revert to 24px or even 16px between inputs.
 
 #### Separating sections
 
-Vertical spacing between sections form sections also depends on wheter the form is a dedicated page or a diaglog. Spacing between groups should be adjusted in relationship to spacing between individual items. For instance, if vetical spacing between individual inputs is 24px consider a 32px spacer between sections… if the former number is 32px consider 48px for the later etc.
+Vertical spacing between sections form sections also depends on wheter the form is a dedicated page or a container. Spacing between groups should be adjusted in relationship to spacing between individual items. For instance, if vertical spacing between individual inputs is 24px consider a 32px spacer between sections… if the former number is 32px consider 40px for the later etc.
 
 <Row>
 <Column colLg={8}>
@@ -464,6 +548,10 @@ Vertical spacing between sections form sections also depends on wheter the form 
 
 </Column>
 </Row>
+
+#### Rules
+
+Designers often use rules to separate groups of information within forms. Carbon does not have consolidated guidance around rules within forms (i.e. width, thickness, vertical margins). We intend to provide more detailed guidance around their use in the future.
 
 ### Columns
 
@@ -504,18 +592,35 @@ caption="Do not overload the user with too many input controls">
 </Column>
 </Row>
 
-## Form variants
+## Variants
 
-(behavior/interaction)
+As mentioned above, forms may be presented as dedicated pages, side panels or dialogs depending on the use case and the situation.
 
-— Instantly updating forms
-— Submitting with a button
-— Read only
+### Deciding what to use
 
-(format / context)
+| Form variant   | Usage                                                                                                   | Context\*                                                                   |
+| -------------- | ------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| Dedicated page | For more complex, lengthier or multi-step requests for user input                                       | Creating a new service, such as provisioning; more complex order forms etc. |
+| Dialog         | For critical, infrequent requests for user input often related to editing and management tasks          | User permissions; upgrading a service                                       |
+| Side panel     | For repeated requests for user input which require the user needs to reference the affected information | Calibrating row information in a data table                                 |
 
-— Dedicated page forms
-— Dialog forms
+<Caption>
+  * We are looking for more input from product teams here — please connect with
+  us about your use cases.
+</Caption>
+
+#### Usage highlights
+
+Dialog forms:
+
+- Use a dialog form when dealing with less than five inputs.
+- Do not hide information in accordions or tabs.
+- See the [dialog pattern](/patterns/dialog-pattern) for more detailed guidance.
+
+Side panel forms:
+
+- Use a side panel form when dealing with more than five inputs.
+- Do not hide information in accordions or tabs.
 
 ## Accessibility
 
@@ -524,5 +629,56 @@ caption="Do not overload the user with too many input controls">
 
 ## Related patterns
 
-- ??
-- ??
+<Row>
+<Column colSm={2} colMd={2} colLg={3}>
+
+**Free-form text controls** <br/>
+[Text input](/components/text-input/usage) <br/>
+[Password input](http://react.carbondesignsystem.com/?path=/story/textinput--toggle-password-visibility) <br/>
+[Text area](http://react.carbondesignsystem.com/?path=/story/textarea--default) <br/>
+
+</Column>
+<Column colSm={2} colMd={2} colLg={3}>
+
+**Selection controls** <br/>
+[Checkbox](/components/checkbox/usage) <br/>
+[Radio button](/components/radio-button/usage) <br/>
+[Toggle](<(/components/toggle/usage)>) <br/>
+[Button](<(/components/button/usage)>) <br/>
+[Multiselect](http://react.carbondesignsystem.com/?path=/story/multiselect--default) <br/>
+[Combobox](http://react.carbondesignsystem.com/?path=/story/combobox--default) <br/>
+
+</Column>
+<Column colSm={2} colMd={2} colLg={3}>
+
+**Bound entry controls** <br/>
+[Date picker](/components/date-picker/usage) <br/>
+[Time picker](http://react.carbondesignsystem.com/?path=/story/timepicker--default) <br/>
+[Number input](components/number-input/usage) <br/>
+[Slider](/components/slider/usage) <br/>
+
+</Column>
+</Row>
+
+### Patterns
+
+[Notifications](/patterns/notification-pattern)
+[Dialog](/patterns/dialog-pattern)
+
+## References
+
+Joyce, Alita, Tooltip Guidelines, (Nielsen Norman Group, 2019)
+
+Jakob Nielsen, OK-Cancel or Cancel-OK? The Trouble With Buttons, (Nielson Norman Group, 2008)
+
+Wroblewski, Luke, Testing Accordion Forms, (A List Apart, 2010)
+
+Whitenton, Kathryn, Website Forms Usability: Top 10 Recommendations,  (Nielson Norman Group, 2016)
+
+### Further reading
+
+Coyle, Andrew, Design Better Forms, (UX Collective, 2016)
+
+Loranger, Hoa, Form Design Quick Fix: Group Form Elements Effectively Using White Space, Nielsen Normal Group, 2013)
+
+McCloskey, Marieke, Accordions Are Not Always the Answer for Complex Content on Desktops, Nielsen Normal Group, 2014)
