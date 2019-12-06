@@ -14,8 +14,8 @@ Notifications are an important method of communicating with users and providing 
 <AnchorLink>Overview</AnchorLink>
 <AnchorLink>Designing with notifications</AnchorLink>
 <AnchorLink>Notification types</AnchorLink>
-<AnchorLink>Related patterns and components</AnchorLink>
 <AnchorLink>Accessibility</AnchorLink>
+<AnchorLink>Related patterns and components</AnchorLink>
 <AnchorLink>References</AnchorLink>
 <AnchorLink>Feedback</AnchorLink>
 </AnchorLinks>
@@ -57,13 +57,7 @@ Only send notifications where necessary. Confine each notification to the portio
 
 ### Notification status
 
-<Row>
-<Column colLg={8}>
-
-![Placeholder](/images/placeholder_guidance.png)
-
-</Column>
-</Row>
+![Example of status notifications](/images/notification-status.png)
 
 Notification status helps convey the information being communicated. These statuses correspond with a color and icon to provide a consistent, universal experience for users.
 
@@ -223,6 +217,18 @@ Modals interrupt the user and pause their current task. They are highly disrupti
 </Column>
 </Row>
 
+## Accessibility
+
+**Only move a screen reader's focus for the user when a notification is critical.** Use `aria-live` regions to update the user as notifications come in while also being conscious of the user's needs. Using `aria-live="assertive"` informs screen reader users that a notification is present without moving focus to the notification and is recommended for most high priority notifications. If a notification is not a priority, use `aria-live="polite"` instead. This delays the announcement of the notification until the user finishes their current task so they are not interrupted.
+
+**It should be easy to navigate to the notification using only a keyboard.** Using `TAB` moves the screen focus to the notification and pressing `SPACE` or `ENTER` dismiss the notification.
+
+**Don't use notifications that dismiss on a timer for critical or emergency messages.** Some users with disabilities need more time to read or interact with messages and timed toasts may not provide sufficient time.
+[WCAG 2.0 success criterion 2.2.4 (AAA)](https://www.w3.org/WAI/WCAG21/Understanding/no-timing.html)
+
+**Users should be able to manage or limit noncritical notifications.** This gives users the control to reduce the number of distractions or disruptions they receive, which is particularly helpful for users with cognitive limitations.
+[WCAG 2.0 success criterion 2.2.3 (AAA)](https://www.w3.org/WAI/WCAG21/Understanding/interruptions.html)
+
 ## Related patterns and components
 
 <Row>
@@ -247,18 +253,6 @@ Modals interrupt the user and pause their current task. They are highly disrupti
 </Row>
 
 The Error state pattern is currently being planned. If you would like to contribute, please see our [guidelines for contributions](https://www.carbondesignsystem.com/how-to-contribute/pattern).
-
-## Accessibility
-
-**Only move a screen reader's focus for the user when a notification is critical.** Use `aria-live` regions to update the user as notifications come in while also being conscious of the user's needs. Using `aria-live="assertive"` informs screen reader users that a notification is present without moving focus to the notification and is recommended for most high priority notifications. If a notification is not a priority, use `aria-live="polite"` instead. This delays the announcement of the notification until the user finishes their current task so they are not interrupted.
-
-**It should be easy to navigate to the notification using only a keyboard.** Using `TAB` moves the screen focus to the notification and pressing `SPACE` or `ENTER` dismiss the notification.
-
-**Don't use notifications that dismiss on a timer for critical or emergency messages.** Some users with disabilities need more time to read or interact with messages and timed toasts may not provide sufficient time.
-[WCAG 2.0 success criterion 2.2.4 (AAA)](https://www.w3.org/WAI/WCAG21/Understanding/no-timing.html)
-
-**Users should be able to manage or limit noncritical notifications.** This gives users the control to reduce the number of distractions or disruptions they receive, which is particularly helpful for users with cognitive limitations.
-[WCAG 2.0 success criterion 2.2.3 (AAA)](https://www.w3.org/WAI/WCAG21/Understanding/interruptions.html)
 
 ## References
 
