@@ -30,9 +30,6 @@ export const groupedBarOptions = {
       scaleType: 'labels',
       secondary: true,
     },
-    top: {
-      scaleType: 'labels',
-    },
   },
 };
 
