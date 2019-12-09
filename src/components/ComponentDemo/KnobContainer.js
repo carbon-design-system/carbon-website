@@ -111,7 +111,7 @@ const useDefaultProps = (code, componentPropsRegex) => {
   return '';
 };
 
-const Knob = ({ name, info, inputId, key, component, code, setCode }) => {
+const Knob = ({ name, info, inputId, component, code, setCode }) => {
   // eslint-disable-next-line no-useless-escape
   const pattern = `<${component}([\\s\\S]*?)>`;
   const componentPropsRegex = new RegExp(pattern);
@@ -150,7 +150,7 @@ const Knob = ({ name, info, inputId, key, component, code, setCode }) => {
     return (
       <Checkbox
         onChange={val => updateKnob(val)}
-        key={key}
+        key={`${name}-${inputId}`}
         title={description}
         defaultChecked={defaultChecked}
         labelText={name}
@@ -245,6 +245,7 @@ const KnobContainer = ({ knobs, maxHeight, code, setCode }) => {
       )}
       {requestedKnobs.map(([component, componentKnobs]) => (
         <Component
+          key={component}
           code={code}
           setCode={setCode}
           component={component}

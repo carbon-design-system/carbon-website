@@ -31,7 +31,7 @@ export const PREVIEW_CONTAINER_HEIGHT = 560;
 
 const { ContentSwitcher, Switch } = CarbonComponents;
 
-const ComponentDemo = ({ code: codeProp, src, scope, knobs, noInline }) => {
+const ComponentDemo = ({ children: codeProp, src, scope, knobs, noInline }) => {
   const [editorHeight, setEditorHeight] = useState();
   const [code, setCode] = useState(codeProp.trim());
   const [theme, setTheme] = useState(white);
@@ -98,7 +98,7 @@ const ComponentDemo = ({ code: codeProp, src, scope, knobs, noInline }) => {
               <KnobContainer
                 code={code}
                 setCode={setCode}
-                maxHeight={knobContainerHeight}
+                maxHeight={`${knobContainerHeight}px`}
                 knobs={knobs}
               />
             )}
