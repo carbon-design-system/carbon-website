@@ -21,7 +21,8 @@ exports.onCreateWebpackConfig = ({ actions }) => {
     resolve: {
       modules: [path.resolve(__dirname, 'src'), 'node_modules'],
       alias: {
-        buble: path.resolve('@philpl/buble'),
+        // forked buble dist from react-live team
+        buble: path.resolve(__dirname, 'node_modules', '@philpl/buble'),
       },
     },
   });
