@@ -1,11 +1,8 @@
-import { defaultColors } from '@carbon/charts';
-
 export const lineTimeSeriesData = {
   labels: ['Qty', 'More', 'Sold', 'Restocking', 'Misc'],
   datasets: [
     {
       label: 'Dataset 1',
-      backgroundColors: [defaultColors[0]],
       data: [
         {
           date: new Date(2019, 0, 1),
@@ -31,7 +28,6 @@ export const lineTimeSeriesData = {
     },
     {
       label: 'Dataset 2',
-      backgroundColors: [defaultColors[1]],
       data: [
         {
           date: new Date(2019, 0, 2),
@@ -57,7 +53,6 @@ export const lineTimeSeriesData = {
     },
     {
       label: 'Dataset 3',
-      backgroundColors: [defaultColors[2]],
       data: [
         {
           date: new Date(2019, 0, 1),
@@ -83,7 +78,6 @@ export const lineTimeSeriesData = {
     },
     {
       label: 'Dataset 4',
-      backgroundColors: [defaultColors[3]],
       data: [
         {
           date: new Date(2019, 0, 2),
@@ -111,13 +105,13 @@ export const lineTimeSeriesData = {
 };
 
 export const lineTimeSeriesOptions = {
-  title: 'Curved Line (time series)',
+  title: 'Line (time series)',
   axes: {
     left: {
       secondary: true,
     },
     bottom: {
-      type: 'time',
+      scaleType: 'time',
       primary: true,
     },
   },
@@ -129,32 +123,26 @@ export const lineData = {
   datasets: [
     {
       label: 'Dataset 1',
-      backgroundColors: [defaultColors[0]],
       data: [32100, 23500, 53100, 42300, 12300],
     },
     {
       label: 'Dataset 2',
-      backgroundColors: [defaultColors[1]],
       data: [34200, 53200, 42300, 21400, 0],
     },
     {
       label: 'Dataset 3 long name',
-      backgroundColors: [defaultColors[2]],
       data: [41200, 23400, 34210, 1400, 42100],
     },
     {
       label: 'Dataset 4 long name',
-      backgroundColors: [defaultColors[3]],
       data: [22000, 1200, 9000, 24000, 3000],
     },
     {
       label: 'Dataset 5 long name',
-      backgroundColors: [defaultColors[4]],
       data: [2412, 30000, 10000, 5000, 31000],
     },
     {
       label: 'Dataset 6 long name',
-      backgroundColors: [defaultColors[5]],
       data: [0, 20000, 40000, 60000, 80000],
     },
   ],
@@ -165,7 +153,7 @@ export const lineOptions = {
   axes: {
     bottom: {
       title: '2018 Annual Sales Figures',
-      type: 'labels',
+      scaleType: 'labels',
       secondary: true,
     },
     left: {
@@ -195,32 +183,26 @@ export const scatterData = {
   datasets: [
     {
       label: 'Dataset 1',
-      backgroundColors: [defaultColors[0]],
       data: [32100, 23500, 53100, 42300, 12300],
     },
     {
       label: 'Dataset 2',
-      backgroundColors: [defaultColors[1]],
       data: [34200, 53200, 42300, 21400, 0],
     },
     {
       label: 'Dataset 3 long name',
-      backgroundColors: [defaultColors[2]],
       data: [41200, 23400, 34210, 1400, 42100],
     },
     {
       label: 'Dataset 4 long name',
-      backgroundColors: [defaultColors[3]],
       data: [22000, 1200, 9000, 24000, 3000],
     },
     {
       label: 'Dataset 5 long name',
-      backgroundColors: [defaultColors[4]],
       data: [2412, 30000, 10000, 5000, 31000],
     },
     {
       label: 'Dataset 6 long name',
-      backgroundColors: [defaultColors[5]],
       data: [0, 20000, 40000, 60000, 80000],
     },
   ],
@@ -231,7 +213,7 @@ export const scatterOptions = {
   axes: {
     bottom: {
       title: '2018 Annual Sales Figures',
-      type: 'labels',
+      scaleType: 'labels',
       secondary: true,
     },
     left: {
@@ -246,8 +228,8 @@ export const scatterTimeSeriesOptions = {
   title: 'Scatter (time series)',
   axes: {
     bottom: {
-      title: '2018 Annual Sales Figures',
-      type: 'time',
+      title: '2019 Annual Sales Figures',
+      scaleType: 'time',
       secondary: true,
     },
     left: {

@@ -1,26 +1,20 @@
-import { defaultColors } from '@carbon/charts';
-
 export const groupedBarData = {
   labels: ['Qty', 'More', 'Sold', 'Restocking', 'Misc'],
   datasets: [
     {
       label: 'Dataset 1',
-      backgroundColors: [defaultColors[0]],
       data: [65000, -29123, -35213, 51213, 16932],
     },
     {
       label: 'Dataset 2',
-      backgroundColors: [defaultColors[1]],
       data: [32432, -21312, -56456, -21312, 34234],
     },
     {
       label: 'Dataset 3',
-      backgroundColors: [defaultColors[2]],
       data: [-12312, 23232, 34232, -12312, -34234],
     },
     {
       label: 'Dataset 4',
-      backgroundColors: [defaultColors[3]],
       data: [-32423, 21313, 64353, 24134, 32423],
     },
   ],
@@ -33,11 +27,11 @@ export const groupedBarOptions = {
       primary: true,
     },
     bottom: {
-      type: 'labels',
+      scaleType: 'labels',
       secondary: true,
     },
     top: {
-      type: 'labels',
+      scaleType: 'labels',
     },
   },
 };
@@ -48,7 +42,6 @@ export const simpleBarData = {
   datasets: [
     {
       label: 'Dataset 1',
-      backgroundColors: defaultColors,
       data: [65000, 29123, 35213, 51213, 16932],
     },
   ],
@@ -61,7 +54,7 @@ export const simpleBarOptions = {
       primary: true,
     },
     bottom: {
-      type: 'labels',
+      scaleType: 'labels',
       secondary: true,
     },
   },
@@ -72,7 +65,6 @@ export const simpleBarTimeSeriesData = {
   datasets: [
     {
       label: 'Dataset 1',
-      backgroundColors: defaultColors,
       data: [
         {
           date: new Date(2019, 0, 1),
@@ -106,7 +98,7 @@ export const simpleBarTimeSeriesOptions = {
       primary: true,
     },
     bottom: {
-      type: 'time',
+      scaleType: 'time',
       secondary: true,
     },
   },
@@ -118,22 +110,18 @@ export const stackedBarData = {
   datasets: [
     {
       label: 'Dataset 1',
-      backgroundColors: [defaultColors[0]],
       data: [65000, 29123, 35213, 51213, 16932],
     },
     {
       label: 'Dataset 2',
-      backgroundColors: [defaultColors[1]],
       data: [32432, 21312, 56456, 21312, 34234],
     },
     {
       label: 'Dataset 3',
-      backgroundColors: [defaultColors[2]],
       data: [12312, 23232, 34232, 12312, 34234],
     },
     {
       label: 'Dataset 4',
-      backgroundColors: [defaultColors[3]],
       data: [32423, 21313, 64353, 24134, 32423],
     },
   ],
@@ -147,7 +135,7 @@ export const stackedBarOptions = {
       stacked: true,
     },
     bottom: {
-      type: 'labels',
+      scaleType: 'labels',
       secondary: true,
     },
   },
@@ -158,7 +146,6 @@ export const stackedBarTimeSeriesData = {
   datasets: [
     {
       label: 'Dataset 1',
-      backgroundColors: [defaultColors[0]],
       data: [
         {
           date: new Date(2019, 0, 1),
@@ -184,7 +171,6 @@ export const stackedBarTimeSeriesData = {
     },
     {
       label: 'Dataset 2',
-      backgroundColors: [defaultColors[1]],
       data: [
         {
           date: new Date(2019, 0, 3),
@@ -210,7 +196,6 @@ export const stackedBarTimeSeriesData = {
     },
     {
       label: 'Dataset 3',
-      backgroundColors: [defaultColors[2]],
       data: [
         {
           date: new Date(2019, 0, 1),
@@ -236,7 +221,6 @@ export const stackedBarTimeSeriesData = {
     },
     {
       label: 'Dataset 4',
-      backgroundColors: [defaultColors[3]],
       data: [
         {
           date: new Date(2019, 0, 2),
@@ -271,7 +255,7 @@ export const stackedBarTimeSeriesOptions = {
       stacked: true,
     },
     bottom: {
-      type: 'time',
+      scaleType: 'time',
       secondary: true,
     },
   },
