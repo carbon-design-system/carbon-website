@@ -158,15 +158,15 @@ In `index.scss`, import the Carbon styles by adding the following at the top of 
 @import 'carbon-components/scss/globals/scss/styles.scss';
 ```
 
-This will take a moment for the Sass to compile. Once compiled, you'll notice that the Carbon base styling is applied (IBM Plex Sans font family, font size, weight, colors, etc.)
+Making this change to `index.scss` will cause all of the Carbon Sass to re-compile. Once finished re-compiling the Carbon base styling is applied (IBM Plex Sans font family, font size, weight, colors, etc.)
 
-Because any change to `index.scss` will re-compile all of the Carbon Sass, create an `app.scss` file in the `src` directory and in `App.js`, import that new file.
+Re-compiling all of the Carbon Sass takes a while, even on fast systems.  Let's speed this up by moving our custom app Sass into a separate file, `app.scss` in the 'src' directory, and import that from `App.js`.
 
 ```javascript path=src/App.js
 import './app.scss';
 ```
 
-_Note: To optimize our Sass compile time, we'll be adding app-specific styling to_ `app.scss` _and only modifying_ `index.scss` _when necessary._
+By modifying `index.scss` as little as possible and storing all app-specific styling in `app.scss` we will make compile times much quicker.  Storing the app-specific styling in a separate file also makes good organizational sense.
 
 Next we'll import a `Button` from Carbon to test that our dependencies are working properly. At the top of `App.js`, import the `Button` by adding the following:
 
