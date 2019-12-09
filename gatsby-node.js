@@ -20,6 +20,9 @@ exports.onCreateWebpackConfig = ({ actions }) => {
     },
     resolve: {
       modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+      alias: {
+        buble: path.resolve('@philpl/buble'),
+      },
     },
   });
 };
