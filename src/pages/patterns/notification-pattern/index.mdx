@@ -11,22 +11,60 @@ Notifications are an important method of communicating with users and providing 
 
 <AnchorLinks>
 
-<AnchorLink>Overview</AnchorLink>
+<AnchorLink>Summary</AnchorLink>
 <AnchorLink>Designing with notifications</AnchorLink>
+<AnchorLink>Notification status</AnchorLink>
 <AnchorLink>Notification types</AnchorLink>
+<AnchorLink>Additional considerations</AnchorLink>
 <AnchorLink>Accessibility</AnchorLink>
 <AnchorLink>Related patterns and components</AnchorLink>
 <AnchorLink>References</AnchorLink>
 <AnchorLink>Feedback</AnchorLink>
 </AnchorLinks>
 
-## Overview
+## Summary
 
-It's important to communicate with users and keep them informed about what is happening. This transparency is a core element of building user trust and is the first of Jakob Nielsen's [10 usability heuristics](https://www.nngroup.com/articles/ten-usability-heuristics/). Users should always be given appropriate and timely messages to help them understand whether they are moving towards their goal.
+It’s important to keep users informed and send notifications when there is an update or status change they should be aware of. Users should always be given appropriate and timely messages to help them understand whether they are moving towards their goal.
+
+Be considerate of your users when sending a notification. Notifications that are too frequent or disruptive create negative experiences and drive users from platforms.
+
+| Key principle | Definitoin                                                                                              |
+| ------------- | ------------------------------------------------------------------------------------------------------- |
+| Relevant      | Notifications should be related to the user's goals and presented in the context of what they are doing |
+| Timely        | Users should be kept up-to-date with prompt notifications and ensure they see critical immediately      |
+| Informative   | Provide users with the context and next-steps needed to understand and address the notification         |
+
+Notifications are comprised of status and type. Their status signifies the purpose of the information being conveyed. Notification types allow you to tailor the disruptiveness of the notification to the specific situation. Notification status and type options in Carbon should be combined to create notifications that are relevant, timely, and informative for each use case.
+
+<Row>
+<Column colSm={2} colMd={2} colLg={3}>
+
+#### Notificaiton status
+
+- Informational <br/>
+- Success <br/>
+- Warning <br/>
+- Error <br/>
+
+</Column>
+<Column colSm={2} colMd={2} colLg={3}>
+
+#### Notification type
+
+- Inline <br/>
+- Toast <br/>
+- Banner <br/>
+- Notification panel <br/>
+- Modal <br/>
+
+</Column>
+</Row>
+
+## Designing with notifications
 
 ### When to use
 
-Use notifications to inform users of important status changes and updates. They should be relevant to the user and as minimally disruptive as possible. There are two major use cases for notifications: task-generated and system-generated.
+Use notifications to inform users of important status changes and updates. Transparency is a core element of building user trust and is the first of Jakob Nielsen's [10 usability heuristics](https://www.nngroup.com/articles/ten-usability-heuristics/). They should be relevant to the user and as minimally disruptive as possible. There are two major use cases for notifications: task-generated and system-generated.
 
 #### Task-generated notifications
 
@@ -53,13 +91,11 @@ You might send a system-generated notification when:
 
 Only send notifications where necessary. Confine each notification to the portion of the interface and workflow it is relevant to. Being interrupted creates a frustrating and discouraging experience for users, so this should be limited as much as possible. Additionally, frequent distractions [lower productivity](https://link.springer.com/chapter/10.1007/978-1-4842-4221-6_9#Sec22) and can lead to [alert fatigue](https://psnet.ahrq.gov/primer/alert-fatigue).
 
-## Designing with notifications
-
-### Notification status
-
-![Example of status notifications](/images/notification-status.png)
+## Notification status
 
 Notification status helps convey the information being communicated. These statuses correspond with a color and icon to provide a consistent, universal experience for users.
+
+![Example of status notifications](/images/notification-status.png)
 
 | Status        | Usage                                                                                                                        | Action                                                                                                    | Color  | Icon               |
 | ------------- | ---------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | ------ | ------------------ |
@@ -67,32 +103,6 @@ Notification status helps convey the information being communicated. These statu
 | Success       | Confirm a task was completed as expected                                                                                     | Typically do not require further action and can dismiss automatically or persist in a nonintrusive manner | Green  | `checkmark filled` |
 | Warning       | Inform users that they are taking actions that are not desirable or might have unexpected results                            | Often persist until the user dismisses the notification or continues in their task                        | Yellow | `warning filled`   |
 | Error         | Inform users of an error or critical failure and optionally block the user from proceeding until the issue has been resolved | Always persist until the user dismisses them or resolves error                                            | Red    | `error filled`     |
-
-### Notification priority
-
-Notifications range in their priority and therefore should vary in their disruptiveness to users. It is important to match the urgency and priority of the information being communicated to the visual style and behavior of the notification.
-
-Carbon offers two visual styles for inline and toast notifications. The high-contrast style is more visually disruptive and should be used for notifications that are urgent or critical. The low-contrast style is better for supplemental messaging or other low priority use cases. Toast and inline notifications can use different styles, but you should never mix styles within the variations.
-
-### User action
-
-#### Optional action
-
-Notifications can include a ghost button that lets users interact with them. Taking action on these notifications should be optional and should not block the user from continuing with their current task. This action frequently takes users to a flow or page related to the message, where they can resolve the notification. All notifications should be dismissed when users interact with them.
-
-#### Required action
-
-Some notifications must block users from dismissing the notification or continuing with their task until the message has been addressed. This is common in forms when there are errors or empty input fields. Notifications that prevent users from continuing should be relevant to the current task and provide the user with the steps needed to resolve them or continue with their current task.
-
-Blocking users from continuing with a task is disruptive and hinders the overall experience, so these notifications should only be used when it is critical the user sees the notification or the user needs to take action right away.
-
-### Notification message
-
-It's important to consider the user's context when writing notification messages. Because task-generated notifications are sent in response to user action, it isn't necessary to give users extensive background information. Conversely, system-generated notifications are generally not relevant to the user's current task so you should ensure the user has sufficient context to understand the notification.
-
-Message content should be clear and concise. If a user is expected to take an action, ensure they know how to take that action.
-
-Error messages should be diagnosable and provide steps to resolve the issue. Avoid using technical language that is unfamiliar to the user.
 
 ## Notification types
 
@@ -217,6 +227,34 @@ Modals interrupt the user and pause their current task. They are highly disrupti
 </Column>
 </Row>
 
+## Additional considerations
+
+### Notification priority
+
+Notifications range in their priority and therefore should vary in their disruptiveness to users. It is important to match the urgency and priority of the information being communicated to the visual style and behavior of the notification.
+
+Carbon offers two visual styles for inline and toast notifications. The high-contrast style is more visually disruptive and should be used for notifications that are urgent or critical. The low-contrast style is better for supplemental messaging or other low priority use cases. Toast and inline notifications can use different styles, but you should never mix styles within the variations.
+
+### User action
+
+#### Optional action
+
+Notifications can include a ghost button that lets users interact with them. Taking action on these notifications should be optional and should not block the user from continuing with their current task. This action frequently takes users to a flow or page related to the message, where they can resolve the notification. All notifications should be dismissed when users interact with them.
+
+#### Required action
+
+Some notifications must block users from dismissing the notification or continuing with their task until the message has been addressed. This is common in forms when there are errors or empty input fields. Notifications that prevent users from continuing should be relevant to the current task and provide the user with the steps needed to resolve them or continue with their current task.
+
+Blocking users from continuing with a task is disruptive and hinders the overall experience, so these notifications should only be used when it is critical the user sees the notification or the user needs to take action right away.
+
+### Notification message
+
+It's important to consider the user's context when writing notification messages. Because task-generated notifications are sent in response to user action, it isn't necessary to give users extensive background information. Conversely, system-generated notifications are generally not relevant to the user's current task so you should ensure the user has sufficient context to understand the notification.
+
+Message content should be clear and concise. If a user is expected to take an action, ensure they know how to take that action.
+
+Error messages should be diagnosable and provide steps to resolve the issue. Avoid using technical language that is unfamiliar to the user.
+
 ## Accessibility
 
 **Only move a screen reader's focus for the user when a notification is critical.** Use `aria-live` regions to update the user as notifications come in while also being conscious of the user's needs. Using `aria-live="assertive"` informs screen reader users that a notification is present without moving focus to the notification and is recommended for most high priority notifications. If a notification is not a priority, use `aria-live="polite"` instead. This delays the announcement of the notification until the user finishes their current task so they are not interrupted.
@@ -224,10 +262,10 @@ Modals interrupt the user and pause their current task. They are highly disrupti
 **It should be easy to navigate to the notification using only a keyboard.** Using `TAB` moves the screen focus to the notification and pressing `SPACE` or `ENTER` dismiss the notification.
 
 **Don't use notifications that dismiss on a timer for critical or emergency messages.** Some users with disabilities need more time to read or interact with messages and timed toasts may not provide sufficient time.
-[WCAG 2.0 success criterion 2.2.4 (AAA)](https://www.w3.org/WAI/WCAG21/Understanding/no-timing.html)
+[WCAG 2.1 success criterion 2.2.4 (AAA)](https://www.w3.org/WAI/WCAG21/Understanding/no-timing.html)
 
 **Users should be able to manage or limit noncritical notifications.** This gives users the control to reduce the number of distractions or disruptions they receive, which is particularly helpful for users with cognitive limitations.
-[WCAG 2.0 success criterion 2.2.3 (AAA)](https://www.w3.org/WAI/WCAG21/Understanding/interruptions.html)
+[WCAG 2.1 success criterion 2.2.3 (AAA)](https://www.w3.org/WAI/WCAG21/Understanding/interruptions.html)
 
 ## Related patterns and components
 
