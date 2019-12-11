@@ -118,9 +118,7 @@ Scoped search should be used when users understand what they are looking for. In
 
 Only one scope option can be selected at a time. The scope dropdown should also include an 'All' option, which should selected by default. With 'All' selected, the field will function as a basic global search.
 
-### Presenting results
-
-#### Real-time results
+### Real-time results
 
 As soon as a user clicks or tabs into the search field, they should be shown either recent searches, trending searches, or both. These should disappear as soon as the user begins typing in the field, and the menu should be replaced with suggestions based on their search query.
 
@@ -142,7 +140,7 @@ There are scenarios where a combination of the two should apply. The search retu
 
 `Do: Show type-ahead suggestion visual example`
 
-**Truncate results if there are more than eight options within a facet group.** Provide an option to “View All” at the bottom of the group to expand the list.
+**Truncate results if there are more than eight options within a facet group.** Provide an option to “View all” at the bottom of the group to expand the list.
 
 <Row>
 <Column colMd={4} colLg={4}>
@@ -167,10 +165,6 @@ caption="Image of basic search bar with a label reading 'Search' next to it">
 </Column>
 </Row>
 
-#### Results page
-
-The query does not run until the user clicks or taps the search button, at which point they are shown a list of search results on a distinct page. Once the search results are displayed, the user should have the option to select faceted filters to narrow their search result.
-
 **Provide type-ahead suggestions.** Suggestions give a user immediate feedback to the user on their search. Without having to commit to a search, they can get a preview of results, suggestions of additional search terms, or just find exactly what they were looking for without having to visit a separate page first. If using type-ahead, it should become invoked from the second the search input field is activated.
 
 <Row>
@@ -178,23 +172,47 @@ The query does not run until the user clicks or taps the search button, at which
 
 <DoDontExample
 type="do"
-caption="basic search bar with placeholder text and search icon">
+caption="Image of type-ahead suggestions">
 
-![basic search bar with placeholder text and search icon](./images/do_placeholder.png)
+![Image of type-ahead suggestions](./images/do_placeholder.png)
 
 </DoDontExample>
 </Column>
 </Row>
 
-`Do: Image of type-ahead suggestions`
+### Results page
+
+Once the user clicks or taps the 'Search' button, they are directed to a distinct results page. On the results page, the user should have the option to select faceted filters to narrow their search result. If you want to offer filters before the user searches, consider adding a scope filter.
+
+**Faceted filters provide multiple filter groups, one for each different aspect of the content.** They help to prevent dead ends by only displaying results within relevant data sets.
+
+<Row>
+<Column colLg={8}>
+
+![FPO](/images/placeholder_guidance.png)
+
+</Column>
+</Row>
+
+Provide faceted filters to help users narrow down a list or table of content when the content is extensive. Filters offer a user the opportunity to narrow their search if results aren't specific enough.
+
+Filters should be grouped by logical categories with clear labels. The filters panel should always be paired with an ‘Apply’ button and a ‘Clear filters’ button. For more specific guidance on filtering, see [filtering](/patterns/filtering).
+
+The design of the results page will depend largely on the needs of your product, and more specific design guidance for a search results page will be covered in future pattern guidance.
 
 With the exception of active searches, you should always show the number of search results, including searches with no results. For basic searches, show the number of matching searches at the top of the results page, along with the number of results per page if results are paginated.
 
-For focused search, show number of results for all categories displayed in the results panel.
+**If a search returns "No results," suggest a follow-up action.** Users will often search for keywords that don't return any results. The way a search handles this depends on its scope. If a global search fails to return any results, provide suggestions and helpful resources to ensure the user finds what they are looking for. If searching within a data set doesn't return any results, clearly state that nothing matches the search and suggest widening the scope of the search.
 
-**If a search returns "No results" suggest a follow-up action.** Users will often search for keywords that don't return any results. The way a search handles this depends on its scope. If a global search fails to return any results, provide suggestions and helpful resources to ensure the user finds what they are looking for. If searching within a data set doesn't return any results, clearly state that nothing matches the search and suggest widening the scope of the search.
+<Row>
+<Column colLg={8}>
 
-See empty states.
+![FPO](/images/placeholder_guidance.png)
+
+</Column>
+</Row>
+
+For more guidance on empty states, see the [empty states pattern](/patterns/empty-states-pattern).
 
 ### Best practices
 
@@ -237,93 +255,49 @@ caption="Image of basic search bar with a label reading 'Search' next to it">
 
 `Don't: Image of search page with "Waiting" or "No results" even though page is still loading`
 
-#### Scope filter
-
-All searches are "scoped" searches, but allowing a user to define the scope before running a search is a great way to avoid unwanted results.
-
-A scoped search is composed of an input field, a button to run the search query, and a dropdown on the left side of the search field with a scope qualifier. Adding a scope before running the search query lets a user avoid irrelevant results before beginning their search.
-
-<Row>
-<Column colLg={8}>
-
-![FPO](/images/placeholder_guidance.png)
-
-</Column>
-</Row>
-
-Scoped search allows users to quickly search within a specific category. The introduction of a top-level scope filter means they can find more relevant content and filter out unwanted results.
-
-<Row>
-<Column colLg={8}>
-
-![FPO](/images/placeholder_guidance.png)
-
-</Column>
-</Row>
-
-Scoped search should be used when users understand what they are looking for. In contrast, global searches are performed at a high level in order to locate unknown content.
-
-**Only one scope option can be selected at a time.** The scope dropdown should also include an “All” option, which should be the default to avoid confusing the user. This will function as a basic global search.
-
-#### Faceted filters
-
-Faceted filters provide multiple filter groups, one for each different aspect of the content. They help to prevent dead ends by only displaying relevant metadata sets about results items.
-
-<Row>
-<Column colLg={8}>
-
-![FPO](/images/placeholder_guidance.png)
-
-</Column>
-</Row>
-
-Provide faceted filters to help users narrow down a list or table of content when the content is extensive. Filters offer a user the opportunity to narrow their search if results aren't specific enough.
-
-Filters should be grouped by logical categories with clear labels. The filters panel should always be paired with an ‘Apply’ button and a ‘Clear filters’ button.
-
-For more specific guidance on filtering, see [filtering](http://www.carbondesignsystem.com/patterns/filtering).
-
 ## Active search
 
-An active search runs the search query following each added or removed character in the search field. The search is run instantly and progressively, revealing the top eight results in order of relevancy.
+An active search is a rapid way to search an application or data set, providing users instant results as they enter a search. Active search should be used in instances where the search is likely to return an accurate result, like a small website or data table with limited data.
 
-Active search should only be used in instances where the search is almost guaranteed to return the desired result, like a small website or data table with limited data.
+An active search runs the search query following each added or removed character in the search field. The search is run instantly and progressively, revealing top results in order of relevancy.
 
 ### Search field
 
 An active search is constructed from a search field, a search icon, and an X that serves as a clear or cancel button. There is no "Search" or "Go" button, as the search is run actively and the user is not routed to a results page.
 
-Search results are surfaced in order of relevancy, with the top eight results surfacing in a panel directly below the search field.
+Active search placeholder text should be more specific than a basic search, and should remain visible until the user begins typing in the search field.
+
+You can optionally add a 'See all results' item to your results panel, which when clicked behaves as a [basic search](#basic-search).
 
 <Row>
 <Column colLg={8}>
 
 ![FPO](/images/placeholder_guidance.png)
 
+<Caption>Example of an active search field</Caption>
+
 </Column>
 </Row>
 
-Example of an active search field
-
-**Provide useful placeholder text.** Active searches are providing real-time results. Useful placeholder text will suggest a search specific to the data set. Active search placeholder text should be more specific than a basic search, and should remain visible until the user begins typing in the search field.
-
 ### Presenting results
 
-#### Real-time results
+Active search is intended to be a quicker search-in-place experience. The user should find what they're looking for in the results panel.
 
-Content
+Recent searches from the active user should appear in a panel below the search field, and should be replaced by matching search results the second the user begins typing. Do not show trending searches, as active search is typically used for more focused scenarios and its unlikely trending searches will meet the needs of a user.
 
-#### Results page
+<Row>
+<Column colLg={8}>
 
-Content
+![FPO](/images/placeholder_guidance.png)
 
-### Behaviors and functionality
+<Caption>Example of an active search field</Caption>
 
-For active search, it's acceptable but not necessary to show recent searches. Do not show trending searches, as active search is typically used for more focused scenarios and its unlikely trending searches will meet the needs of a user.
-
-Recent searches should appear in a panel below the search field, and should be replaced by matching search results the second the user begins typing. Cluster or group results only if necessary.
+</Column>
+</Row>
 
 Once the user selects a result, they should be taken to the selected page or resource immediately.
+
+You can cluster results by category or subset, however users searching within several categories may be better served by a [focused search](#focused-search).
 
 ## Focused search
 
@@ -341,35 +315,37 @@ A focused search should query results related to the searches focus, whether tha
 </Column>
 </Row>
 
-### Presenting results
+### Active results
 
-Once a user has clicked or tabbed into the focused search field, a menu should appear with recent searches, suggestions specific to the user or session, or both. Once the user begins typing, the suggestions should disappear and the results should refine following each character entered.
+Once a user has clicked or tabbed into the focused search field, a menu should appear with recent searches from the active user, suggestions specific to the user or session, or both. Once the user begins typing, the suggestions should disappear and the results should refine following each character entered.
 
-These results should be focused on information specific to the user, reducing the computational load and cost to actively search. If the user doesn't find what they are looking for in the top eight results, they can select a button below the results that widens the scope of the search and routes the user to a results page.
+You can also cluster active results by category with the option to 'Search within category.' This is ideal for a user who may be searching within several similar data sets without prior knowledge where the information lives. If the user is likely to know the location of their data, offer a scope filter.
+
+These results should be focused on information specific to the user, reducing the computational load and cost to actively search. If the user doesn't find what they are looking for in the top results, they can select 'See all results' to widen the scope of the search.
+
+### Results page
+
+A successful focused search will route a user directly to a page or resource. In the event the user does select 'See all results,' the user should land on a dedicated [results page](basic-search).
+
+If the user selected a subcategory from the results panel, the user arrives at the results page and the category they selected during their search is reflected as a selected faceted filter. The filter should persist during future searches until the user either discards the filter or begins a new session.
 
 ## Related patterns and components
 
-### Components
+#### Components
 
-**Search**
+- [Search](/components/search/usage)
+- [Text input](/components/text-input/usage)
+- [Select](/components/button/usage#icon-usage)
+- [UI shell](/components/ui-shell-header/usage)
+- [Pagination](/components/pagination/usage)
+- [Modal](/components/modal/usage)
+- [Date picker](/components/date-picker/usage)
+- [Checkbox](/components/checkbox/usage)
 
-- [Search](http://www.carbondesignsystem.com/components/search/usage)
-- [Text input](http://www.carbondesignsystem.com/components/text-input/usage)
-- [Select](http://www.carbondesignsystem.com/components/select/usage)
-- [Icon-only button](http://www.carbondesignsystem.com/components/button/usage#icon-usage)
-- [UI shell](http://www.carbondesignsystem.com/components/ui-shell-header/usage)
-- Pagination
+#### Patterns
 
-**Faceted filtering**
-
-- [Modal](http://www.carbondesignsystem.com/components/modal/usage)
-- [Date picker](http://www.carbondesignsystem.com/components/date-picker/usage)
-- [Checkbox](http://www.carbondesignsystem.com/components/checkbox/usage)
-
-### Patterns
-
-- [Filtering](http://www.carbondesignsystem.com/patterns/filtering)
-- Empty states
+- [Filtering](/patterns/filtering)
+- [Empty states](/patterns/empty-states-pattern)
 
 ## Accessibility
 
