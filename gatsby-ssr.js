@@ -22,16 +22,7 @@ export const onRenderBody = ({ setHeadComponents }) => {
       content="Carbon Design System logo"
     />,
     <meta property="og:type" content="website" />,
-    <meta
-      property="og:description"
-      content="Our style guide helps us collaborate across disciplines to build a great experience for all of Shopify’s merchants. It promotes consistency, but it’s not a blueprint. Be creative, explore, and evolve the system."
-    />,
-    <meta property="og:url" content="https://www.carbondesignsystem.com" />,
     <meta property="twitter:card" content="summary_large_image" />,
     <meta property="twitter:site" content="@_carbondesign" />,
-    <meta
-      property="twitter:description"
-      content="Carbon is the design system for IBM web and product. It is a series of individual styles, components, and guidelines used for creating unified UI."
-    />,
   ]);
 };
