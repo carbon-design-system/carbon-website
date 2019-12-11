@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { Search, Dropdown } from 'carbon-components-react';
 import { pickBy, groupBy, debounce } from 'lodash';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import * as iconsReact from '@carbon/icons-react';
 
 import iconMetaData from './iconMetaData';
