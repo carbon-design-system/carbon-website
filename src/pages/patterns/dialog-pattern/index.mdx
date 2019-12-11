@@ -1,6 +1,6 @@
 ---
 title: Dialogs
-description: insert description here
+description: A dialog is a “conversation” between the system and the user. It is prompted when the sytem needs input from the user or to give the user urgent information concerning their current workflow.
 ---
 
 ### A dialog is a “conversation” between the system and the user. It is prompted when the sytem needs input from the user or to give the user urgent information concerning their current workflow.
@@ -58,6 +58,23 @@ In contrast, when a _modeless_ dialog is active the user can continue viewing an
 
 <Caption>Modal dialog (left) and modeless dialog (right)</Caption>
 
+### Best practices
+
+#### Use dialog modals sparingly
+
+Don't over use modal dialog. Modals are disruptive and can easy annoy the user if used incorrectly or too frequently. When modals are used for non-workflow related task, it is likely a user will start ignoring or dismissing the modals without fully understanding the modals content. This can cause users to make hurried or impulsive choices when dealing with more critical modal dialogs.
+
+#### Modal dialogs should be user initiated
+
+A user action, such as clicking a button, should trigger the dialog to open. Don't interrupt the user by open a dialog when they aren't expecting it. Avoid system generated pop-ups that distract the user while working, like Net Promotor Score requests. Triggers can either be a direct or indirect consequence of a user's action.  An example of an indirect action, is a user closing a tab with unsaved content causing a dialog to ask if they want to save their changes before closing.
+
+If the system is autogenerating an alert that is not the a consequence of a user's action but a response to processes happening in the background then a toast notification should be used instead.
+
+#### Keep dialog tasks simple and focused
+
+For tasks that are too small to need a dedicated page and cannot be completed inline, a modal dialog can be used instead. Modal task should be direct and easy to complete without complicated choices and decisions.
+Examples include, updating account permissions or editing an apps information.
+
 ## Modal dialogs
 
 Use a modal dialog to present critical information or request user input needed to complete a user's workflow. Modal dialogs are disruptive and should be used sparingly. When active, a user is blocked from the on-page content and cannot return to their previous workflow until the modal task is completed or the user dismisses it. Any included information or requested input should be directly related to the user's task at hand.
@@ -67,56 +84,55 @@ Modal dialogs are commonly used for short and non-frequent tasks, such as editin
 <Row>
 <Column colLg={8}>
 
-![dialog overview](images/placeholder.png)
+![modal dialog example](images/dialog-2.png)
 
 </Column>
 </Row>
 
-**When to use a modal dialog**
+### When to use a modal dialog
 
-- Use when an immediate response is required from the user.
-- Use to request information required to continue the user's current workflow.
-- Use to alert the user about pertinent information about the user's current workflow.
-- Use to confirm destructive actions.
+#### An immediate response is required from the user
 
-**When not to use a modal dialog**
+Use a dialog to request information that is preventing the system from continuing a user-initiated process.
 
-- Don't use when a response from the user is optional.
-- Don't use if the content is not critical or unrelated to the user's current workflow.
-- Don't use when another modal is already open
-- Don't use if additional information outside the modal needs to be consulted.
+#### Notify the user to urgent information
+
+Use a modal dialog to notify the user of urgent information concerning their current work. Commonly used to report system errors or convey a consequence of a user's action.
+
+#### Confirm a user decision
+
+Use a modal dialog to confirm user decisions. Clearly describe the action being confirmed and explain any potential consequences that it may cause. Both the title and the button should be reflect the action that will occur. If the action is destructive or irreversible then use a transactional danger modal.
+
+### When not to use a modal dialog
+
+#### Modals prevent access to the main page
+
+Don't use if additional information outside the modal needs to be consulted. While a modal dialog is active a user cannot check content in the main page and is restricted to only the information in the modal for making decisions. Modal tasks should be easy to complete with the limited information presented in the dialog itself. If a user needs access to additional information or reference then consider using a full page instead.
+
+#### Don't nest modals
+
+One modal should never trigger another modal. If the first modal task is dependent on a confirmation modal to approve then that first task should not be preformed in a modal.
+
+#### Don't make modals full page
+
+If a modal dialog needs more space than the large modal component allows then the content should be displayed on a page of its own and not in a modal. A modal is not an alternative to page.
 
 ### Variants
 
 <Row>
 <Column colLg={8}>
 
-![dialog overview](images/placeholder.png)
+![modal dialog variants](images/dialog-3.png)
 
 </Column>
 </Row>
 
-| Name                                                          | Definiton                                                                                                                       |
+| Variant                                                       | Usage                                                                                                                           |
 | ------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
 | [Passive](/components/modal/usage/#passive-modal)             | Presents information the user needs to be aware of concerning their current workflow. Contains no actions for the user to take. |
 | [Transactional](/components/modal/usage/#transactional-modal) | Requires an action to be taken in order for the modal to be completed and closed. Contains a cancel and primary action buttons. |
-| Progress                                                      | Requires several steps to be completed before it can be closed. Contains a cancel, previous and next/completion buttons.        |
 | Acknowledgment                                                | System requires an acknowledgement of the information from the user. Contains only a single button, commonly "OK."              |
-
-### Anatomy
-
-<Row>
-<Column colLg={8}>
-
-![dialog overview](images/placeholder.png)
-
-</Column>
-</Row>
-
-1. **Header:** Includes a title, optional label and the close icon.
-2. **Body:** Contains the information and/or controls needed to for the modal's task.
-3. **Actions:** The main actions needed to complete or cancel the modal task. Button groupings change based on modal variant.
-4. **Overlay:** Screen overlay that obscures the on page content.
+| Progress                                                      | Requires several steps to be completed before it can be closed. Contains a cancel, previous and next/completion buttons.        |
 
 ### Behaviors
 
@@ -131,14 +147,6 @@ Once the dialog is open set the initial focus to the first location that accepts
 #### Scrolling
 
 The modal component has four set sizes and each size has a set max-height. If the modal content is longer than the modal height then the body section should scroll vertically with the header and footer remaining fixed in place.
-
-<Row>
-<Column colLg={8}>
-
-![scrolling example](images/placeholder.png)
-
-</Column>
-</Row>
 
 #### Validation
 
@@ -172,14 +180,6 @@ For passive modals:
 - **Click elsewhere**: Clicking outside the passive modal area will automatically close the modal.
 - **Esc**: Press `ESC` on the keyboard
 
-<Row>
-<Column colLg={8}>
-
-![dismissal highlights](images/placeholder.png)
-
-</Column>
-</Row>
-
 #### Task completion and loading
 
 The task completion action should take place immediately. If a short loading period is need then a loading spinner and overlay should appear on top of the modal body area with content disabled. The primary action button should be disabled while loading is in progress.
@@ -193,49 +193,6 @@ If the action requires more than a few seconds to complete, display progress inf
 
 </Column>
 </Row>
-
-### Best practices
-
-#### Use dialog modals sparingly
-
-Don't over use modal dialog. Modals are disruptive and can easy annoy the user if used incorrectly or too frequently. When modals are used for non-workflow related task, it is likely a user will start ignoring or dismissing the modals without fully understanding the modals content. This can cause users to make hurried or impulsive choices when dealing with more critical modal dialogs.
-
-#### Modal dialogs should be user initiated
-
-A user action, such as clicking a button, should trigger the dialog to open. Don't interrupt the user by open a dialog when they aren't expecting it. Avoid system generated pop-ups that distract the user while work, like Net Promotor Score requests. Pop-ups like, product promotions or feature showcases should only appear at the beginning or end of a users sessions or workflow and should not interrupt the user while working. This minimizes user annoyance and distractions.
-
-#### Request workflow relevant information from the user
-
-Use a dialog to request information that is preventing the system from continuing a user-initiated process.
-
-#### Notify the user to important information
-
-Use a modal dialog to notify the user of urgent information concerning their current work. Commonly used to report system errors or convey a consequence of a user's action.
-
-#### Confirm user decision
-
-Use a transactional modal dialog to confirm user decisions. Clearly describe the action that the user is trying to take and explain any potential consequences that it may cause. Both the title and the button should be reflect the action that will occur. Use descriptive words like Add, Delete, Save and avoid vague words like Done or OK. If the action is destructive or irreversible then use a transactional danger modal.
-
-#### Keep dialog tasks simple and focused
-
-For tasks that are too small to need a dedicated page and cannot be completed inline, a modal dialog can be used instead. Modal task should be direct and easy to complete without complicated choices and decisions.
-Examples include, updating account permissions or editing an apps information.
-
-#### Break longer task up into steps
-
-For longer tasks, use a progress modal to give the user a sense of completion and orientation within the focused flow. However, for complex flows with complex choices, consider using a full page instead of a modal. A progress modal is not a solution for excess modal content. It should only be used to present information in more consumable and focused chunks.
-
-#### Modals prevent access to the main page
-
-While a modal dialog is active a user cannot check content in the main page and is restricted to only the information in the modal for making decisions. Modal tasks should be easy to complete with the limited information presented in the dialog itself. If a user needs access to additional information or reference then consider using a full page instead.
-
-#### Don't nest modals
-
-One modal should never trigger another modal. If the first modal task is dependent on a confirmation modal to approve then that first task should not be preformed in a modal.
-
-#### Don't make modal full page
-
-If a modal dialog needs more space than the large modal component allows then the content should be displayed on a page of its own and not in a modal. A modal is not an alternative to page.
 
 ## Modeless dialogs
 
@@ -253,83 +210,7 @@ Modeless dialogs are useful when a user needs to quickly switch between areas of
 
 <br />
 
-**When to use a modeless dialog**
-
-- Use for optional or non-critical tasks
-- Use to display additional information
-- Use when access to the page content is necessary
-
-**When not to use a modeless dialog**
-
-- Don't use if the user's response is required
-
-### Variants
-
-<Row>
-<Column colLg={8}>
-
-![modeless types](images/placeholder.png)
-
-</Column>
-</Row>
-
-| Name          | Description                                                                                                                 |
-| ------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| Passive       | Presents additional information concerning the user's current workflow. Contains no actions for the user to take.           |
-| Transactional | Presents the user with optional action/s. Actions can be repeated without closing the dialog. Contains at least one button. |
-
-### Anatomy
-
-<Row>
-<Column colLg={8}>
-
-![modeless structure](images/placeholder.png)
-
-</Column>
-</Row>
-
-1. **Header:** Includes a title, optional label and the close icon.
-2. **Body:** Contains the information and/or controls needed to for the dialog's task.
-3. **Actions:** Contains any action needed to preform the dialog task. Content varies based on dialog type.
-
-### Behaviors
-
-#### Trigger
-
-Dialogs are triggered as a result of a user's action and are not automatically opened. A user must somehow prompt the system to start a dialog.
-
-#### Movable (optional)
-
-A modeless dialog window may be moved from its original placement on the screen. This allows the user to access information that might otherwise be covered up by the dialog.
-
-<Row>
-<Column colLg={8}>
-
-![modeless structure](images/placeholder.png)
-
-</Column>
-</Row>
-
-#### Scrolling
-
-If the modal content is longer than the modal height then the body section should scroll vertically with the header and footer remaining fixed in place
-
-#### Dismissal
-
-There are several possible ways to exit a modeless dialog and vary based on dialog type.
-
-For transactional dialogs:
-
-- **Close icon**: Clicking the close `x` icon in the upper right will close the modal.
-- **Cancel button**: If a cancel button is used then clicking the it will close the modal. Cancel undoes all applied changes.
-- **Esc**: Press `ESC` on the keyboard
-
-For passive dialogs:
-
-- **Close icon**: Clicking the close `x` icon in the upper right will close the modal.
-- **Esc**: Press `ESC` on the keyboard
-
-### Best Practices 
+### When to use a modeless dialog
 
 #### Use when access to the page is needed
 
@@ -343,35 +224,63 @@ Use to preform tasks or present informational along side the main page content t
 
 Use to display additional information that can help inform a user's decision or workflow. For example, use for in context help or tutorials such as a knowledge center.
 
+### When not to use a modeless dialog
+
+#### Don't use if the user's response is required
+
+Use for optional or non-critical tasks only, if a user's response or input is required to progress the workflow then use a modal dialog.
+
+### Modal variants
+
+| Name          | Description                                                                                                                 |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| Passive       | Presents additional information concerning the user's current workflow. Contains no actions for the user to take.           |
+| Transactional | Presents the user with optional action/s. Actions can be repeated without closing the dialog. Contains at least one button. |
+
+### Behaviors
+
+#### Trigger
+
+Dialogs are triggered as a result of a user's action and are not automatically opened. A user must somehow prompt the system to start a dialog.
+
+#### Movable (optional)
+
+A modeless dialog window may be moved from its original placement on the screen. This allows the user to access information that might otherwise be covered up by the dialog.
+
+<!---
+#### Scrolling
+
+If the modal content is longer than the modal height then the body section should scroll vertically with the header and footer remaining fixed in place
+--->
+
+#### Dismissal
+
+There are several possible ways to exit a modeless dialog.
+
+- **Close icon**: Clicking the close `x` icon in the upper right will close the modal.
+- **Cancel button**: If a cancel button is used then clicking the it will close the modal. Cancel undoes all applied changes.
+- **Esc**: Press `ESC` on the keyboard
+
 ## Designing with dialogs
 
-### Using components
-
-Appropriate components to use in a dialogs include form inputs and controls that aid in collecting information from the user. Other components like content switcher and structured list can be used to organize information. When possible, avoid using complex components that can complicate task completion or prolong a user's time in the modal. A user's journey through the modal should be direct and short.
+### Anatomy
 
 <Row>
 <Column colLg={8}>
 
-![modeless structure](images/placeholder.png)
+![dialog anatomy](images/dialog-4.png)
 
 </Column>
 </Row>
 
-#### Avoid using a data table
-
-When possible avoid using a data table in a dialog as it is a complex component with its own workflow and decision making that can overly complicate a user's choice and task completion in relation to the dialog. We recommend using a full page instead of a dialog for data table oriented tasks. If the purpose of the dialog task is to choose an item from a data set consider pairing down the presented data to only the relevant information needed to make a decision. Consider using a structured list, dropdown or tile set instead.
-
-#### Avoid components that hide information
-
-Components like accordion or tabs hide information from the user and require additional effort from the user to discover all the available information. Time spent in a modal should be minimal and only information needed to complete the task should be included. If there is too much information for a user to consume in a dialog context, consider using a full page instead.
-
-#### Avoid components the will direct the user away from the dialog
-
-Avoid components like links that will take the user away from the current context and the task at hand. A dialog's purpose is to focus the user's attention on a particular task and should not encourage any action that is not related to that task's completion.
+1. **Header:** Includes a title, optional label and the close icon. The title should be brief and clearly describe the modal's task or purpose. Use the optional label above the title to categories or context set the information in modal.
+2. **Body:** Contains the information and/or controls needed to for the modal's task. It can include message text and components.
+3. **Actions:** The main actions needed to complete or cancel the modal task. [Button groupings](/patterns/dialog-pattern#buttons-groups) change based on modal variant. Use descriptive words for the actions like Add, Delete, Save and avoid vague words like Done or OK.
+4. **Overlay:** Screen overlay that obscures the on page content.
 
 ### Buttons groups
 
-When placing buttons, Cancel is also be the furthest left button option and the primary action is always the furtherest right button. There should only ever be one primary actions per dialog. Dialog buttons are always full bleed and attached to the bottom of a dialog.
+When placing buttons, Cancel is always the furthest left button option and the primary action is always the furtherest right button. There should only ever be one primary actions per dialog. Dialog buttons are always full bleed and attached to the bottom of a dialog.
 
 #### One button
 
@@ -394,14 +303,31 @@ In the last step of the sequence the Next button label should change to reflect 
 <Row>
 <Column colLg={8}>
 
-![button placement examples](images/placeholder.png)
+![button placement examples](images/dialog-5.png)
 
 </Column>
 </Row>
 
-#### Stacking buttons
+<Caption>
+  One button (top left), two buttons (top right), three buttons (bottom left),
+  progress buttons (bottom right)
+</Caption>
 
-On small screens where buttons labels may be too long for the buttons when aligned horizontal, the two buttons can be stack vertically.
+### Using components
+
+Appropriate components to use in a dialogs include form inputs and controls that aid in collecting information from the user. Other components like content switcher and structured list can be used to organize information. When possible, avoid using complex components that can complicate task completion or prolong a user's time in the modal. A user's journey through the modal should be direct and short.
+
+#### Avoid using a data table
+
+When possible avoid using a data table in a dialog as it is a complex component with its own workflow and decision making that can overly complicate a user's choice and task completion in relation to the dialog. We recommend using a full page instead of a dialog for data table oriented tasks. If the purpose of the dialog task is to choose an item from a data set consider pairing down the presented data to only the relevant information needed to make a decision. Consider using a structured list, dropdown or tile set instead.
+
+#### Avoid components that hide information
+
+Components like accordion or tabs hide information from the user and require additional effort from the user to discover all the available information. Time spent in a modal should be minimal and only information needed to complete the task should be included. If there is too much information for a user to consume in a dialog context, consider using a full page instead.
+
+#### Avoid components the will direct the user away from the dialog
+
+Avoid components like links that will take the user away from the current context and the task at hand. A dialog's purpose is to focus the user's attention on a particular task and should not encourage any action that is not related to that task's completion.
 
 ## Related components and patterns
 
