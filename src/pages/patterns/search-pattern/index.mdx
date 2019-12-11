@@ -35,9 +35,15 @@ Search is an essential pattern for navigation or discovery. We live in the age o
 
 Searching is an intuitive method of discovery, offering users a way to explore a website or application using keywords. Most searches begin broad, with the scope narrowing as filters are applied.
 
-There are three primary types of search: Basic search, active search, and targeted search. You can decide which method of search is best depending on the size of the data set being searched and the location of the search within your product.
+There are three primary types of search:
 
-The placement of your search field depends on the construction of your application and the scope of the search. For global searches, see the [global header](/patterns/global-header-pattern) for placement guidance. See the [data table](/components/data-table/usage#search) component for search placement within a data table.
+- Basic search
+- Active search
+- Targeted search
+
+The method of search you should implement depends on the size of the data set being searched and the location of the search within your product.
+
+The placement of your search field depends on the construction of your application and the scope of the search. For global searches, see the [global header pattern](/patterns/global-header-pattern) for placement guidance. See the [data table](/components/data-table/usage#search) component for search placement within a data table.
 
 <Row>
 <Column colLg={8}>
@@ -118,6 +124,8 @@ The placement of your search field depends on the construction of your applicati
 
 ## Basic search
 
+Basic search entails any search that directs users to a dedicated results page.
+
 In certain scenarios, the scope of a search is too large for a live query to be practical. Consider searches of a massive database, or web searches. In these instances, offer either trending searches that match the user’s keywords, recent searches by the active user, or both.
 
 The search won’t run until the user clicks or taps the Search button.
@@ -159,11 +167,9 @@ caption="Image of basic search bar with a label reading 'Search' next to it">
 </Column>
 </Row>
 
-**A search field should include placeholder text, hinting to what a user can search for:**
+Every search must be composed of an input field and a way to run the search query—a clickable search icon or the ability to press ENTER.
 
-- Placeholder text should be short and clear
-- For example, "Search for bars and restaurants."
-- Placeholder text should remain visible until the user begins typing in the search field.
+Placeholder text should be short and clear, hinting at what the user can search for. For example, “Search for networks or devices.”
 
 <Row>
 <Column colMd={4} colLg={4}>
@@ -204,9 +210,9 @@ Only one scope option can be selected at a time. The scope dropdown should also 
 
 ### Real-time results
 
-As soon as a user clicks or tabs into the search field, they should be shown either recent searches, trending searches, or both. These should disappear as soon as the user begins typing in the field, and the menu should be replaced with suggestions based on their search query.
+Provide users with feedback as they type. As soon as a user clicks or tabs into the search field, they should be shown either recent searches, trending searches, or both. These should disappear as soon as the user begins typing in the field, and the menu should be replaced with suggestions based on their search query.
 
-The real-time feedback you give a user will depend on the capabilities of your application and the ability for your
+The real-time feedback you give a user depends on the data your application contains and the query load you're willing to place on your servers.
 
 <Row>
 <Column colLg={8}>
@@ -339,9 +345,9 @@ caption="Image of basic search bar with a label reading 'Search' next to it">
 
 ## Active search
 
-An active search is a rapid way to search an application or data set, providing users instant results as they enter a search. Active search should be used in instances where the search is likely to return an accurate result, like a small website or data table with limited data.
+An active search is a rapid way to search an application or data set, providing users instant results as they enter a search. You can think of active search as a way to filter a dataset through keywords.
 
-An active search runs the search query following each added or removed character in the search field. The search is run instantly and progressively, revealing top results in order of relevancy.
+Active search should be used in instances where the search is likely to return an accurate result, like a small website or data table with limited data. The search query runs following each added or removed character in the search field.
 
 ### Search field
 
@@ -364,6 +370,8 @@ You can optionally add a 'See all results' item to your results panel, which whe
 ### Presenting results
 
 Active search is intended to be a quicker search-in-place experience. The user should find what they're looking for in the results panel.
+
+You can also implement active search among a small set of information displayed on a full page, like a catalog of offerings. Before the search is run, all items should be displayed. Once the user begins typing, only show items on the page that match the user's search.
 
 Recent searches from the active user should appear in a panel below the search field and should be replaced by matching search results the second the user begins typing. Do not show trending searches, as active search is typically used for more focused scenarios and its unlikely trending searches will meet the needs of a user.
 
