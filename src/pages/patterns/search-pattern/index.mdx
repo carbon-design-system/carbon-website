@@ -125,9 +125,9 @@ The placement of your search field depends on the construction of your applicati
 
 ## Basic search
 
-Basic search entails any search that directs users to a dedicated results page.
+Basic search entails any search that directs users to a distinct results page.
 
-In certain scenarios, the scope of a search is too large for a live query to be practical. Consider searches of a massive database, or web searches. In these instances, offer either trending searches that match the user’s keywords, recent searches by the active user, or both.
+In certain scenarios, the scope of a search is too large for a [live query](#active-search) to be practical. Consider searches of a massive database, or web searches. In these instances, offer either trending searches that match the user’s keywords, recent searches by the active user, or both.
 
 The search won’t run until the user clicks or taps the Search button.
 
@@ -168,8 +168,6 @@ caption="Image of basic search bar with a label reading Search next to it">
 </Column>
 </Row>
 
-Every search must be composed of an input field and a way to run the search query—a clickable search icon or the ability to press ENTER.
-
 Placeholder text should be short and clear, hinting at what the user can search for. For example, “Search for networks or devices.”
 
 <Row>
@@ -195,7 +193,9 @@ caption="Search here">
 </Column>
 </Row>
 
-**Add a scope filter to your search field.** The optional scoped search allow users to limit their searches to within a section or category of content on a website, as opposed to a global search that searches everything at once.
+**Add a scope filter to your search field.** The optional scoped search allow users to limit their searches to a section or category of content on a website, as opposed to a global search that searches everything at once.
+
+Only one scoped category can be selected at a time. The dropdown should always include an ‘All’ option, and ‘All’ should be selected by default. With ‘All’ selected, the field will function as a [basic global search](#basic-search).
 
 <Row>
 <Column colLg={8}>
@@ -205,13 +205,11 @@ caption="Search here">
 </Column>
 </Row>
 
-Only one scoped category can be selected at a time. The dropdown should always include an ‘All’ option, and ‘All’ should be selected by default. With ‘All’ selected, the field will function as a [basic global search](#basic-search).
-
 ### Real-time results
 
-Provide users with feedback as they type. When a user clicks or tabs into a search field, they should be shown a menu of either recent searches, trending searches, or both. These will disappear when the user types in the field, and the menu will be replaced with suggestions based on their search query. These should continue to update and refine as the user types.
+Provide users with feedback as they type. When a user clicks or tabs into a search field, they should be shown a menu of either the user's recent searches, trending searches, or both. These will disappear when the user types in the field, and the menu will be replaced with suggestions based on their search query. These should continue to update and refine as the user types.
 
-The real-time feedback you give a user depends on the data your application contains and the load you're willing or able to place on your servers, though at minimum you should include type-ahead suggestions for likely search entries.
+The real-time feedback you give a user depends on the data your application contains and the load you're willing or able to place on your servers. At minimum, you should include type-ahead suggestions for likely search entries.
 
 If the results are sourced from distinct data sets or categories, consider grouping them. Also, consider offering a 'Search within this category' filter beneath the category header.
 
@@ -265,45 +263,28 @@ caption="Image of type-ahead suggestions">
 
 ### Results page
 
-Once the user clicks or taps the Search button, they are directed to a distinct results page. On this page, the user should have the option to select faceted filters to narrow their search results. If you’d prefer to offer filters before the user searches, consider adding a scope filter.
-
-**Faceted filters provide multiple filter groups, one for each different aspect of the content.** They help to prevent dead ends by only displaying results within relevant data sets.
-
-<Row>
-<Column colLg={8}>
-
-![FPO](/images/placeholder_guidance.png)
-
-</Column>
-</Row>
-
-Provide faceted filters to help users narrow down a list or table of content when the content is extensive. Filters offer a user the opportunity to narrow their search if results aren't specific enough.
-
-Filters should be grouped by logical categories with clear labels. The filters panel should always be paired with an ‘Apply’ button and a ‘Clear filters’ button. For more specific guidance on filtering, see [filtering](/patterns/filtering).
-
-The design of the results page will depend largely on the needs of your product, and more specific design guidance for a search results page will be covered in future pattern guidance.
-
-Always include the number of search results, including for searches with no results.
-
-**If a search returns "No results," suggest a follow-up action.** Users will often search for keywords that don't return any results. The way a search handles this depends on its scope. If a global search fails to return any results, provide suggestions and helpful resources to ensure the user finds what they are looking for. If searching within a data set doesn't return any results, clearly state that nothing matches the search and suggest widening the scope of the search.
-
-<Row>
-<Column colLg={8}>
-
-![FPO](/images/placeholder_guidance.png)
-
-</Column>
-</Row>
-
-For more guidance on empty states, see the [empty states pattern](/patterns/empty-states-pattern).
-
-### Best practices
+Once the user runs the search, they are directed to a distinct results page. On this page, the user should have the option to select filters to narrow their search results. If you’d prefer to offer filters before the user searches, consider adding a scope filter.
 
 **The order in which suggestions are displayed should be organized by relevancy from top to bottom.** If it makes sense for the website or application, type-ahead suggestions should be grouped in a similar order.
 
-**Search should take place in the same language that the rest of the application or website is displayed in.** The placeholder text in the search input field should also be translated accordingly.
+The design of the results page will depend largely on the needs of your product, and more specific design guidance for a search results page will be covered in future pattern guidance.
 
-**Flip the layout of the search box for languages that read right to left instead of left to right.** The search box would read Scope, Input, Button from right to left. Placeholder text and type-ahead suggestions should align right. The icon search icon is acceptable across languages and countries.
+<Row>
+<Column colLg={8}>
+
+![FPO](/images/placeholder_guidance.png)
+
+</Column>
+</Row>
+
+### Best practices
+
+- **If you choose to offer filters, they should be grouped by logical categories with clear labels.** For more specific guidance on filtering, see [filtering](/patterns/filtering).
+- **Always include the number of search results, including for searches with no results.**
+- **If a search returns "No results," suggest a follow-up action.** Provide suggestions and helpful resources to ensure the user finds what they are looking for. For more on failed searches, see the [empty states pattern](/patterns/empty-states-pattern).
+- **Include a progress bar for advanced, resource-intensive searches.** Let the user know how far along the search is, and roughly how long it will take.
+- **Flip the layout of the search box for languages that read right to left instead of left to right.** The search box would read Scope, Input, Button from right to left. The icon search icon is acceptable across languages and countries.
+- **Include a loading indicator if the search will take longer than a moment or two.** Your loading state should reflect your empty state with useful helper text signaling that the search is still ongoing.
 
 <Row>
 <Column colMd={4} colLg={4}>
@@ -331,8 +312,6 @@ caption="Image of basic search bar with a label reading Search next to it">
 `Do: Show flipped search in either Arabic or Simplified Chinese`
 
 `Don't: Show same example but structured left to right`
-
-**Include a loading indicator if the search will take longer than a moment or two.** Your loading state should reflect your empty state with useful helper text signaling that the search is still ongoing. For advanced, resource-intensive searches, include a progress bar to let the user know how far along the search is.
 
 `Do: Image of search page with a loading component`
 
@@ -425,7 +404,7 @@ If the user selected a subcategory from the results panel, the user arrives at t
 ## Related components and patterns
 
 <Row>
-<Column colSm={2} colMd={2} colLg={3}>
+<Column colSm={2} colMd={2} colLg={4}>
 
 #### Components
 
@@ -439,7 +418,7 @@ If the user selected a subcategory from the results panel, the user arrives at t
 - [UI shell](/components/ui-shell-header/usage)
 
 </Column>
-<Column colSm={2} colMd={2} colLg={3}>
+<Column colSm={2} colMd={2} colLg={4}>
 
 #### Patterns
 
