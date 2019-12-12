@@ -18,6 +18,23 @@ module.exports = {
           'Indicates the user agrees. In a business process, typically initiates the next step.',
         subtext: 'Compare [reject](#reject).',
       },
+      'artificial intelligence (AI)': {
+        desc:
+          'A system capable of simulating human intelligence and thought processes. Note that AI is a broad field of science that covers many sub-disciplines, including machine learning, visual recognition, and natural language processing.',
+        subtext:
+          'The acronym AI is widely understood to refer to artificial intelligence, so do not use this same acronym to refer to [augmented intelligence](#augmented-intelligence).',
+      },
+      assistant: {
+        desc:
+          'An AI-driven agent with domain knowledge that assists a human user with a task. Assistants may take the form of a chatbot or some other interface.',
+        subtext: null,
+      },
+      'augmented intelligence': {
+        desc:
+          "A similar term to artificial intelligence but with more of a focus on AI's assistive role, emphasizing the fact that cognitive technology is designed to enhance human intelligence rather than replace it.",
+        subtext:
+          'Compare [artificial intelligence](#artificial-intelligence%20(ai)).',
+      },
     },
   },
   B: {
@@ -31,6 +48,7 @@ module.exports = {
       browse: {
         desc:
           'Assists the user in selecting a file (for example, on a button or link next to an entry field). Typically opens a secondary window where the user can locate and select the desired directory and file.',
+        subtext: null,
       },
     },
   },
@@ -52,6 +70,11 @@ module.exports = {
           'Closes the current page or window (for example, closing a secondary window containing online help).',
         subtext:
           'Do not use close alongside OK or cancel actions. Compare [Cancel](#cancel) and [done](#done). See also the [Close pattern](/patterns/common-actions#close).',
+      },
+      'confidence score': {
+        desc:
+          'In AI contexts, the predicted probability of an answer being correct. This is often a numerical expression of certainty shown as a percentage.',
+        subtext: null,
       },
       copy: {
         desc:
@@ -110,7 +133,12 @@ module.exports = {
       'empty trash': {
         desc:
           'Permanently deletes all files or objects that have been placed into a trash container.',
-        subtext: 'Compare [move to trash](#move-to-trash).',
+        subtext: 'Compare [move to trash](#move-to%20trash).',
+      },
+      entity: {
+        desc:
+          'In AI contexts, a representation of a real-world object (such as a person, location, or bank account), used by a machine learning model. For example, in the chatbot utterance: "I’d like to order some tacos and beer", the entities would be tacos (food) and beer (drink). Typically, entities are nouns.',
+        subtext: 'Compare [intent](#intent).',
       },
       export: {
         desc:
@@ -168,6 +196,16 @@ module.exports = {
         subtext:
           'Context: Adding a picture to the body of a document or inserting a record into a table. Compare [add](#new) and [new](#new).',
       },
+      insight: {
+        desc:
+          'In AI contexts, an observation that a machine learning model makes about patterns or unique outliers in a set of data. This can be used, for example, to provide current snapshots and predictions of customer behaviors and attitudes.',
+        subtext: null,
+      },
+      intent: {
+        desc:
+          '1) Broadly, the goals, wants, needs, and values of users and businesses. Intent provides your solution’s purpose.<br/>2) In AI contexts, when a chatbot interprets a conversation, it identifies the action or purpose behind a user\'s utterance (usually expressed by the verbs). These are identified as the intents. For example, in the utterance: "Where is the bathroom", the intent is to find a location.',
+        subtext: 'Compare [entity](#entity).',
+      },
     },
   },
   L: {
@@ -195,6 +233,16 @@ module.exports = {
   },
   M: {
     'Action labels': {
+      'machine learning (ML)': {
+        desc:
+          'A subset of artificial intelligence in the field of computer science that often uses statistical techniques to give computers the ability to "learn" (that is, to progressively improve performance on a specific task) with data, without being explicitly programmed.',
+        subtext: null,
+      },
+      'model / ML model': {
+        desc:
+          'In machine learning contexts, a method for performing a function or making a decision by running data through a series of mathematical steps, i.e. algorithms. The model represents the steps an intelligent machine will take to arrive at a decision.',
+        subtext: null,
+      },
       move: {
         desc:
           'Transfers an object from one container (for example, folder, activity, or page) to another.',
@@ -237,6 +285,7 @@ module.exports = {
     'Action labels': {
       play: {
         desc: 'Starts audio, video, or an animation.',
+        subtext: null,
       },
       post: {
         desc:
@@ -247,10 +296,12 @@ module.exports = {
       preview: {
         desc:
           'Shows how an object or content will appear with formatting applied before the content is published or distributed. Alternatively, provides an incomplete display of an existing object without leaving the current context.',
+        subtext: null,
       },
       print: {
         desc:
           'Sends a copy of the currently selected object or the object in view to the printer.',
+        subtext: null,
       },
     },
   },
@@ -272,14 +323,15 @@ module.exports = {
           'Indicates the user does not approve. In a business process, typically blocks the process from proceeding to the next step.',
         subtext: 'Compare [approve](#approve).',
       },
-      reply: {
-        desc: 'Indicates or completes a response to an email or a comment.',
-      },
       remove: {
         desc:
           'Removes an object from the current context – but note that the object still exists (for example, removes a user from a group or removes an item from the cart).',
         subtext:
           'Where appropriate, combine remove with the object that will be removed (for example, Remove user or Remove role). Compare [clear](#clear) and [delete](#delete). See also the [Remove pattern](/patterns/common-actions#remove).',
+      },
+      reply: {
+        desc: 'Indicates or completes a response to an email or a comment.',
+        subtext: null,
       },
       reset: {
         desc:
@@ -317,6 +369,7 @@ module.exports = {
       'save as': {
         desc:
           'Creates a new object based on the state of the object currently being viewed. The user names the new object and typically identifies its location.',
+        subtext: null,
       },
       search: {
         desc:
@@ -325,6 +378,7 @@ module.exports = {
       },
       select: {
         desc: 'Selects data from a table.',
+        subtext: null,
       },
       'select all': {
         desc:
@@ -334,6 +388,7 @@ module.exports = {
       send: {
         desc:
           'Transfers an email or other information to the recipient or destination.',
+        subtext: null,
       },
       show: {
         desc:
@@ -344,15 +399,15 @@ module.exports = {
         desc: 'Creates a user account or registers a user in a system.',
         subtext: 'Use instead of `register`.',
       },
-      start: {
-        desc:
-          'Deploy an app or service to its development or production environment so that it can be used.',
-        subtext: 'Use instead of `launch`.',
-      },
       sort: {
         desc: 'Sorts a list or table column.',
         subtext:
           "Likely used only as a tooltip on an icon button. Can be used without 'ascending' or 'descending' only if the order can be provided to a screen reader in the code for accessibility.",
+      },
+      start: {
+        desc:
+          'Deploy an app or service to its development or production environment so that it can be used.',
+        subtext: 'Use instead of `launch`.',
       },
       'submit an idea': {
         desc: 'Opens a separate window containing the IBM Cloud Ideas portal.',
@@ -366,6 +421,11 @@ module.exports = {
       top: {
         desc: 'Returns to the top of the page.',
         subtext: 'Use instead of `back to top`.',
+      },
+      training: {
+        desc:
+          "In AI contexts, the process of building a model through learning from a data set. Humans teach machine learning models to identify entities and intents in data by showing them examples and correcting the computer's responses until they identify things with an acceptable degree of accuracy.",
+        subtext: null,
       },
     },
   },
@@ -392,6 +452,16 @@ module.exports = {
     'Action labels': {
       'view details': {
         desc: 'Presents additional information or properties for the object.',
+        subtext: null,
+      },
+    },
+  },
+  W: {
+    'Action labels': {
+      'Watson Machine Learning': {
+        desc:
+          'An IBM Cloud service that is available through IBM Watson Studio, which uses trusted data to put machine learning and deep learning models into production. It leverages an automated, collaborative workflow to grow intelligent business applications easily and with more confidence.',
+        subtext: null,
       },
     },
   },
