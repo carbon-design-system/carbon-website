@@ -227,6 +227,10 @@ When placing buttons, Cancel is always the outmost left button option and the pr
 </Column>
 </Row>
 
+<Caption>
+  Button groups: one button, two buttons, three buttons, and progress buttons.
+</Caption>
+
 #### One button
 
 Single buttons are placed on the right side, span 50% of the dialog, and bleed to the edge. The single button format is most commonly used for acknowledgment dialogs. In most scenarios, a primary button is used when only one button is needed.
@@ -297,17 +301,41 @@ If the action requires more than a few seconds to complete, display progress inf
 
 Appropriate components to use in a dialog include form inputs and controls that aid in collecting information from the user. Other components like content switcher and structured list can be used to organize information. When possible, avoid using complex components that can complicate task completion or prolong a user's time in the modal. A user's journey through the modal should be direct and short.
 
-#### Avoid complex interactions with data tables
+#### Avoid components the will direct the user away from the dialog
 
-When possible avoid using a data table in a dialog as it is a complex component with its own workflow and decision making that can overly complicate a user’s choice and task completion in relation to the dialog. If a data table is necessary then the tables should be kept as simple as possible with limited interactions. For example, you can use data table to make selections that will be incurred by the dialogs action but avoid preforming table functions like batch editing or batch actions inside the modal itself. For smaller sets of data or selections consider using a structured list, dropdown, or tile set instead.
+Avoid components like links that will take the user away from the current context and the task at hand. A dialog's purpose is to focus the user's attention on a particular task and should not encourage any action that is not related to that task's completion.
 
 #### Avoid components that hide information
 
 When possible avoid components that hide information or choices from the user—like accordion and tabs—and require additional effort from the user to discover all the available content. Time spent in a modal should be minimal and only information needed to complete the task should be included. If there is too much information for a user to consume in a dialog context, consider using a full page instead.
 
-#### Avoid components the will direct the user away from the dialog
+#### Avoid complex interactions with data tables
 
-Avoid components like links that will take the user away from the current context and the task at hand. A dialog's purpose is to focus the user's attention on a particular task and should not encourage any action that is not related to that task's completion.
+When possible avoid using a data table in a dialog as it is a complex component with its own workflow and decision making that can overly complicate a user’s choice and task completion in relation to the dialog. If a data table is necessary then the tables should be kept as simple as possible with limited interactions. For example, you can use data table to make selections that will be incurred by the dialogs action but avoid preforming table functions like batch editing or batch actions inside the modal itself. For smaller sets of data or selections consider using a structured list, dropdown, or tile set instead.
+
+<Row>
+<Column colMd={6} colLg={6}>
+
+<DoDontExample
+type="do"
+caption="Do: keep data table interaction simple.">
+
+![Do: keep data table interaction simple.](./images/dialog-table-do.png)
+
+</DoDontExample>
+</Column>
+
+<Column colMd={6} colLg={6}>
+<DoDontExample
+type="dont"
+caption="Don't include complex interactions in data tables that are not necessary to complete the task at hand.">
+
+![Don't include complex interactions in data tables that are not necessary to complete the task at hand.](./images/dialog-table-dont.png)
+
+</DoDontExample>
+
+</Column>
+</Row>
 
 ## Accessibility
 
@@ -320,11 +348,36 @@ Avoid components like links that will take the user away from the current contex
 
 Reference [WCAG 2.4.3 Focus order success criterion](https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-focus-order.html) for additional guidelines.
 
+<Row>
+<Column colMd={6} colLg={6}>
+
+<DoDontExample
+type="do"
+caption="Do: after the dialog is opened, set focus to first focusable element.">
+
+![Do: set focus to first focusable element.](./images/dialog-focus-do.png)
+
+</DoDontExample>
+</Column>
+
+<Column colMd={6} colLg={6}>
+<DoDontExample
+type="dont"
+caption="Don't set the first focus on the dialog button if there are input inside the dialog that need to be.">
+
+![Don't set the first focus on the dialog button if there are input inside the dialog that need to be](./images/dialog-focus-dont.png)
+
+</DoDontExample>
+
+</Column>
+</Row>
+
 ### Keyboard navigation
 
 - `ESC`: close the dialog
 - `tab`: navigates the user to the different interactive elements
 - `space bar`: triggers the selected element
+- `enter`: triggers the selected element
 
 ### Tab order
 
