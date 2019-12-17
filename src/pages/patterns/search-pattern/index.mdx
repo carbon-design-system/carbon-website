@@ -44,14 +44,14 @@ The placement of your search field depends on the construction of your applicati
 <Row>
 <Column colLg={8}>
 
-![An example of a basic search](/images/1.png)
+![An example of a basic search](/images/anatomy.png)
 
 </Column>
 </Row>
 
 1. **Text entry field:** The place where a user enters their search query.
-1. **Search icon:** Signifies a search field. Search icons are a universal way to indicate search. Can serve as a button that runs the search.
 1. **Placeholder text:** Useful and short text hinting at what the user can search for. For example, “Search for networks or devices.”
+1. **Search icon:** Signifies a search field. Search icons are a universal way to indicate search. Can serve as a button that runs the search.
 1. **Scope filter (optional):** The optional scoped search allow users to limit their searches to a section or category of content on a website.
 
 ### Types of search
@@ -214,6 +214,16 @@ Basic search entails any search that directs users to a distinct results page. I
 
 A basic search does not actually query a data set until the user runs the search.
 
+<Row>
+<Column colLg={8}>
+
+![FPO](/images/placeholder_guidance.png)
+
+<Caption>Example of an active search field</Caption>
+
+</Column>
+</Row>
+
 ### When to use
 
 #### Searching is expensive
@@ -234,8 +244,6 @@ When users are searching an application or website they're unfamiliar with, a de
 
 When a user clicks or tabs into a search field, they should be shown a menu of either the user's recent searches, trending searches, or both. Suggestions disappear when the user types in the field, and the menu is replaced with suggestions based on their search query.
 
-Consider grouping results sourced from distinct data sets or categories. If you group suggestions, consider offering a "Search within this category" option beneath the search category header, or use a [focused search](#focused-search) instead.
-
 <Row>
 <Column colLg={8}>
 
@@ -246,9 +254,9 @@ Consider grouping results sourced from distinct data sets or categories. If you 
 
 #### Type-ahead suggestions
 
-Type-ahead suggestions are search suggestions based on general search patterns from all users and place minimal load on servers. Without committing to a search, the user can see a preview of results, suggestions of additional search terms, or zero in on exactly what they were looking for.
+Type-ahead suggestions are based on general search patterns from all users and place minimal load on servers. Without committing to a search, the user can see a preview of results, suggestions of additional search terms, or zero in on exactly what they were looking for.
 
-Type-ahead suggestions should begin as soon as the user begins typing in the search field.
+Type-ahead suggestions should appear as soon as the user begins typing in the search field.
 
 <Row>
 <Column colLg={8}>
@@ -260,7 +268,7 @@ Type-ahead suggestions should begin as soon as the user begins typing in the sea
 </Column>
 </Row>
 
-### Results page
+#### Results page
 
 Once the user runs the search, they are directed to a distinct results page. On this page, the user should have the option to select filters to narrow their search results. If you’d prefer to offer filters before the user searches, consider adding a scope filter.
 
@@ -270,19 +278,7 @@ The design of the results page will depend largely on the needs of your product,
 
 An active search is a rapid way to search an application or data set. The search runs after each character is entered, and results are shown right below the search field. You can think of active search as a way to filter a dataset through keywords.
 
-Active searches should be used in instances where the search is likely to return an accurate result, like a small website or data table with limited data. The search query runs following each added or removed character in the search field.
-
-You can also use active search when looking through a catalog of items, like a product catalog or a library.
-
-### Search field
-
 An active search is constructed from a search field, a search icon, and an X that serves as a clear or cancel button. There is no Search or Go button, as the search is run actively and the user is not routed to a results page.
-
-Active search placeholder text should be more specific than a basic search and should remain visible until the user begins typing in the search field.
-
-You can optionally add a 'See all results' item to your results panel, which when clicked behaves as a [basic search](#basic-search).
-
-If you are using active search for a catalog or library, don't show a panel below the search field. The items on the page should update as the user enters their search.
 
 <Row>
 <Column colLg={8}>
@@ -294,13 +290,33 @@ If you are using active search for a catalog or library, don't show a panel belo
 </Column>
 </Row>
 
-### Presenting results
+### When to use
 
-Active search is intended to be a quicker search-in-place experience. The user should find what they're looking for in the results panel.
+#### When data is limited
+
+Active searches should be used in instances where the search is likely to return an accurate result, like a small website or data table with limited data. You can also use active search when looking through a catalog of items, like a product catalog or a library.
+
+#### When users know what to look for
+
+If users are familiar with a website or application, search will likely be used to find a resource the user knows exists. Actively returning results in the search results panel allows them to navigate directly to the page or resource.
+
+#### To filter an on-page catalog
+
+If your product presents a catalog on a page, you can use an active search to refine options based on the query.
+
+### Behaviors
+
+#### Search field
+
+Active search placeholder text should be more specific than a basic search and should remain visible until the user begins typing in the search field. You can optionally add a "See all results" item to your results panel, which when clicked behaves as a [basic search](#basic-search).
+
+If you are using active search for a catalog or library, don't show a panel below the search field. The items on the page should update as the user enters their search.
+
+#### Presenting results
+
+Active search is intended to be a quicker search-in-place experience. The user should find what they're looking for in the results panel. Recent searches from the active user should appear in a panel below the search field and should be replaced by matching search results when the user begins typing.
 
 You can also implement active search among a small set of information displayed on a full page, like a catalog of offerings. Before the search is run, all items should be displayed. Once the user begins typing, only show items on the page that match the user's search.
-
-Recent searches from the active user should appear in a panel below the search field and should be replaced by matching search results the second the user begins typing. Do not show trending searches, as active search is typically used for more focused scenarios and its unlikely trending searches will meet the needs of a user.
 
 <Row>
 <Column colLg={8}>
@@ -312,49 +328,47 @@ Recent searches from the active user should appear in a panel below the search f
 </Column>
 </Row>
 
-### Best practices
-
-- Once the user selects a result, they should be taken to the selected page or resource immediately.
-- You can cluster results by category or subset, however, users searching within several categories may be better served by a [focused search](#focused-search).
-
 ## Focused search
 
 A focused search is a combination of basic search and active search. The user is [actively shown results](#active-search) within their immediate page, product or scope. Below those results, they have the option to widen their scope to search all available data.
 
 Focused search is ideal for users who are using a specific tool that is part of a catalog or suite.
 
-### Search field
+![Example of focused search](/images/focused_search.png)
+
+### When to use
+
+#### Searching within a product suite
+
+A focused search can actively present results related to the active user. This limits the resources required for the search while still giving users the option to widen the scope of the search to an entire product catalog or database.
+
+#### Searching within a subset of information
+
+Focused searches are ideal for searching within a folder or bucket, as the user can either further focus or expand the search through a data structure. If the results panel doesn't deliver what the user needs, they can choose to search elsewhere without navigating away from the search field.
+
+### Behaviors
+
+#### Search field
 
 A focused search should query results related to the search's focus, whether that is a user, a category, or a data set. The search results should be presented in a panel just like in [active search](#active-search), but below the results should be a button to widen the scope and see a full page of search results.
 
 <Row>
 <Column colLg={8}>
 
-![FPO](/images/placeholder_guidance.png)
+![Example of focused search](/images/11_focused_search.png)
 
 </Column>
 </Row>
 
-### Presenting results
+If the user chooses a subcategory from the results panel, the search functions like a [basic search](#basic-search) with a filter applied. Any selected filter should persist during future searches until the user either discards the filter or begins a new session.
+
+#### Presenting results
 
 Once a user has clicked or tabbed into the focused search field, a menu should appear with recent searches from the active user, suggestions specific to the user or session, or both. Once the user begins typing, the suggestions should disappear and the results should refine following each character entered.
 
-You can also cluster active results by category with the option to 'Search within category.' This is ideal for a user who may be searching within several similar data sets without prior knowledge where the information lives. If the user is likely to know the location of their data, offer a scope filter.
+You can also cluster active results by category with the option to "View all" within the category. This is ideal for a user who may be searching within several similar data sets without knowing where the information lives. If the user is likely to know the location of their data, offer a scope filter.
 
-A successful focused search will route a user directly to a page or resource. In the event the user does select 'See all results,' the user should land on a dedicated [results page](basic-search). Always include the number of search results, including for searches with no results.
-
-### Best practices
-
-- If the user chooses a subcategory from the results panel, the search functions like a [basic search](#basic-search) with a filter applied.
-- Any selected filter should persist during future searches until the user either discards the filter or begins a new session.
-
-<Row>
-<Column colLg={8}>
-
-![FPO](/images/placeholder_guidance.png)
-
-</Column>
-</Row>
+A successful focused search will route a user directly to a page or resource. In the event the user does select "See all results," present a [results page](basic-search). Always include the number of search results, including for searches with no results.
 
 ## Related components and patterns
 
