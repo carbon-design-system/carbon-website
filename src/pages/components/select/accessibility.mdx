@@ -1,0 +1,231 @@
+---
+title: Select
+description: Select is a type of input that is used in forms, where a user is submitting data and chooses one option from a list.
+tabs: ['Code', 'Usage', 'Style', 'Accessibility']
+---
+
+import {
+  StructuredListWrapper,
+  StructuredListHead,
+  StructuredListBody,
+  StructuredListRow,
+  StructuredListInput,
+  StructuredListCell,
+  OrderedList,
+  ListItem,
+} from 'carbon-components-react';
+
+<AnchorLinks>
+  <AnchorLink>How it works</AnchorLink>
+  <AnchorLink>Accessibility considerations</AnchorLink>
+  <AnchorLink>Resources</AnchorLink>
+  <AnchorLink>Accessibility testing</AnchorLink>
+</AnchorLinks>
+
+## How it works
+
+The select Carbon component is a form input field, where a user is submitting data and chooses a single option from a list of options. The label element is used to explicitly associate a form control with a label. A label is attached to a specific form control through the use of the `for` attribute. The value of the `for` attribute must be the same as the value of the `id` attribute of the form control. Also note that the `id` attribute may have the same value as the name attribute, but both must be provided, and the id must be unique in the Web page.
+
+## Accessibility considerations
+
+1. Avoid very long option names to facilitate understandability and perceivability.
+2. Do not use the same word or phrase at the beginning of a set of options.
+3. Use a unique id for each option.
+4. If the select field is required include the [aria-required property](https://www.w3.org/TR/WCAG20-TECHS/ARIA2.html) and indicate that it is a required field and use the validation message for input errors.
+
+## Resources
+
+- [IBM Accessibility Checklist Checkpoint:](https://www.ibm.com/able/guidelines/ci162/accessibility_checklist.html)
+  - [1.3.1 Information and Relationships](https://www.ibm.com/able/guidelines/ci162/info_and_relationships.html) (WCAG Success Criteria [1.3.1](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships))
+  - [3.2.2 On Input](https://www.ibm.com/able/guidelines/ci162/on_input.html) (WCAG Success Criteria [3.2.2](http://www.w3.org/TR/2008/REC-WCAG20-20081211/#content-structure-separation-programmatic))
+  - [3.3.1 Error Identification](https://www.ibm.com/able/guidelines/ci162/error_id.html) (WCAG Success Criteria [3.3.1](https://www.w3.org/WAI/WCAG21/Understanding/error-identification))
+  - [3.3.2 Labels or Instructions](https://www.ibm.com/able/guidelines/ci162/labels_or_instructions.html) (WCAG Success Criteria [3.3.2](http://www.w3.org/TR/2008/REC-WCAG20-20081211/#minimize-error-cues))
+
+## Accessibility testing
+
+Accessibility issues are tracked in the [Carbon Component GitHub repository](https://github.com/carbon-design-system/carbon/milestones).
+
+### Automated test
+
+<Row>
+  <Column noGutterSm>
+    <StructuredListWrapper>
+      <StructuredListHead>
+        <StructuredListRow head>
+          <StructuredListCell head>
+            Automated test environment
+          </StructuredListCell>
+          <StructuredListCell head>Results</StructuredListCell>
+        </StructuredListRow>
+      </StructuredListHead>
+      <StructuredListBody>
+        <StructuredListRow>
+          <StructuredListCell>
+            - macOS Mojave version 10.14.6 with VoiceOver
+            <br />
+            - Chrome version 77.0.3865.90
+            <br />
+            - Dynamic Assessment Plugin (DAP) version 1.8.0.0 - IBM
+            Accessibility WCAG 2.1 Sept. 2019 Ruleset
+            <br />- Carbon React version 7.7.1
+          </StructuredListCell>
+          <StructuredListCell>
+            <strong>DAP test:</strong>
+            <br />- No violations
+          </StructuredListCell>
+        </StructuredListRow>
+      </StructuredListBody>
+    </StructuredListWrapper>
+  </Column>
+</Row>
+
+### macOS screen reader tests
+
+<Row>
+  <Column noGutterSm>
+    <StructuredListWrapper>
+      <StructuredListHead>
+        <StructuredListRow head>
+          <StructuredListCell head>Environment </StructuredListCell>
+          <StructuredListCell head>Results</StructuredListCell>
+        </StructuredListRow>
+      </StructuredListHead>
+      <StructuredListBody>
+        <StructuredListRow>
+          <StructuredListCell>
+            - macOS Mojave version 10.14.6 with VoiceOver
+            <br />
+            - Chrome version 77.0.3865.90
+            <br />- Carbon React version 7.7.1
+          </StructuredListCell>
+          <StructuredListCell>
+            <strong>VoiceOver(VO) Test:</strong>
+            <OrderedList>
+              <ListItem>
+                Control-Option-Right arrow to the "Select" text. VO announces
+                the label and that it is a text element.
+              </ListItem>
+              <ListItem>
+                Control-Option-Right arrow to the "Optional helper text". VO
+                announces the label and that it is a text element.
+              </ListItem>
+              <ListItem>
+                Control-Option-Right arrow to the select box. VO announces the
+                label, "Choose an Option" and that it is a select pop-up button.
+              </ListItem>
+              <ListItem>
+                Press the Space key. VO announces that you are on a dimmed menu
+                item.
+              </ListItem>
+              <ListItem>
+                Navigate up and down the menu using the arrow keys. VO announces
+                each menu item.
+              </ListItem>
+              <ListItem>Press the Space key to make a selection.</ListItem>
+              <ListItem>
+                Tab away from the select box and then back. VO announces the
+                selected option.
+              </ListItem>
+              <ListItem>
+                Press Space to open the menu and then press Esc to close the
+                menu.
+              </ListItem>
+            </OrderedList>
+          </StructuredListCell>
+        </StructuredListRow>
+      </StructuredListBody>
+    </StructuredListWrapper>
+  </Column>
+</Row>
+
+### Windows screen reader tests
+
+<Row>
+  <Column noGutterSm>
+    <StructuredListWrapper>
+      <StructuredListHead>
+        <StructuredListRow head>
+          <StructuredListCell head>Environment</StructuredListCell>
+          <StructuredListCell head>Results</StructuredListCell>
+        </StructuredListRow>
+      </StructuredListHead>
+      <StructuredListBody>
+        <StructuredListRow>
+          <StructuredListCell>
+            - Microsoft Windows 10
+            <br />
+            - JAWS 18
+            <br />
+            - Firefox version 68
+            <br />- Carbon React version 7.7.1
+          </StructuredListCell>
+          <StructuredListCell>
+            <strong>JAWS test:</strong>
+            <OrderedList>
+              <ListItem>
+                Press Alt-Down arrow . JAWS announces the text, "Select,
+                optional helper text".
+              </ListItem>
+              <ListItem>
+                Tab to the select box. JAWS announces the main region, the
+                select combo box and and that the arrow keys should be used to
+                make a selection.
+              </ListItem>
+              <ListItem>
+                Use the Up and Down arrow keys to navigate through the list.
+                JAWS announces each option.
+              </ListItem>
+              <ListItem>
+                Tab away from the select box and then back. JAWS announces the
+                selected option.
+              </ListItem>
+            </OrderedList>
+          </StructuredListCell>
+        </StructuredListRow>
+      </StructuredListBody>
+    </StructuredListWrapper>
+  </Column>
+</Row>
+
+### iOS screen reader tests
+
+<Row>
+  <Column noGutterSm>
+    <StructuredListWrapper>
+      <StructuredListRow head>
+        <StructuredListCell head>Environment </StructuredListCell>
+        <StructuredListCell head>Results</StructuredListCell>
+      </StructuredListRow>
+      <StructuredListBody>
+        <StructuredListRow>
+          <StructuredListCell>
+            - iOS version 13.1.3 with VoiceOver
+            <br />
+            - Safari version 13.1.3
+            <br />- Carbon React version 7.7.1
+          </StructuredListCell>
+          <StructuredListCell>
+            <strong>VoiceOver test:</strong>
+            <OrderedList>
+              <ListItem>
+                Swipe right, VO announces "Select main landmark".
+              </ListItem>
+              <ListItem>
+                Swipe right, VO announces "Optional helper text".
+              </ListItem>
+              <ListItem>
+                Swipe right to navigate to the select box. VO announces "Select.
+                Choose an option pop-up button, double tap to activate the
+                picker."
+              </ListItem>
+              <ListItem>
+                Double tap to open the menu, VO does not announce anything.
+                (Note: There is an open issue for VoiceOver on iOS.)
+              </ListItem>
+            </OrderedList>
+          </StructuredListCell>
+        </StructuredListRow>
+      </StructuredListBody>
+    </StructuredListWrapper>
+  </Column>
+</Row>
