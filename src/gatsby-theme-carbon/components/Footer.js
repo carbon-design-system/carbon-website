@@ -12,7 +12,7 @@ const Content = () => {
   const { site } = useStaticQuery(graphql`
     query BUILD_TIME_QUERY {
       site {
-        buildTime(formatString: "MMMM Do, YYYY")
+        buildTime(formatString: "DD MMMM YYYY")
       }
     }
   `);
