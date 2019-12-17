@@ -6,7 +6,7 @@ import mp4 from './carbon.mp4';
 import webm from './carbon.webm';
 import mp4Mobile from './carbon-mobile.mp4';
 import webmMobile from './carbon-mobile.webm';
-import poster from './poster.png';
+import poster from './poster.jpg';
 
 const HomepageVideo = () => {
   const videoRef = useRef();
