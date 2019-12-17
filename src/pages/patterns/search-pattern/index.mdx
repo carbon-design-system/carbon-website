@@ -35,21 +35,26 @@ Search is an essential pattern for navigation or discovery. We live in the age o
 
 Searching is an intuitive method of discovery, offering users a way to explore a website or application using keywords. Most searches begin broad, with the scope narrowing as filters are applied.
 
-There are three primary types of search:
-
-- Basic search
-- Active search
-- Focused search
-
-The method of search you should implement depends on the size of the data set being searched and the location of the search within your product.
+The method of search you should use depends on the size of the data set being searched and the location of the search within your product.
 
 The placement of your search field depends on the construction of your application and the scope of the search. For global searches, see the [global header pattern](/patterns/global-header-pattern) for placement guidance. See the [data table](/components/data-table/usage#search) component for search placement within a data table.
 
+### Anatomy of a search field
+
+<Row>
+<Column colLg={8}>
+
 ![An example of a basic search](/images/1.png)
 
-<Caption>An example of a basic search</Caption>
+</Column>
+</Row>
 
-**Primary search types**
+1. **Text entry field:** The place where a user enters their search query.
+1. **Search icon:** Signifies a search field. Search icons are a universal way to indicate search. Can serve as a button that runs the search.
+1. **Placeholder text:** Useful and short text hinting at what the user can search for. For example, “Search for networks or devices.”
+1. **Scope filter (optional):** The optional scoped search allow users to limit their searches to a section or category of content on a website.
+
+### Types of search
 
 <Row>
   <Column noGutterSm>
@@ -121,19 +126,23 @@ The placement of your search field depends on the construction of your applicati
   </Column>
 </Row>
 
-## Basic search
+### Best practices
 
-Basic search entails any search that directs users to a distinct results page.
+#### Avoid dead ends
 
-In certain scenarios, the scope of a search is too large for a [live query](#active-search) to be practical. Consider searches of a massive database or web searches. In these instances, offer either trending searches that match the user’s keywords, recent searches by the active user, or both.
+If a search returns "No results," suggest a follow-up action. Provide suggestions and helpful resources to ensure the user finds what they are looking for. For more on failed searches, see the [empty states pattern](/patterns/empty-states-pattern).
 
-The search won’t run until the user clicks or taps the Search button.
+#### Include a loading incicator
 
-### Search field
+Include a loading indicator if the search will take longer than a moment or two. Your loading state should reflect your empty state with useful helper text signaling that the search is still ongoing. Include a progress bar for advanced, resource-intensive searches. Let the user know how far along the search is, and roughly how long it will take.
 
-Every search must be composed of an [input field](/components/search/usage) and a way to run the search query, like a clickable search icon or pressing ENTER. The search input field should provide helpful placeholder text with search examples.
+#### Display the number of results
 
-Placeholder text should be short and clear, hinting at what the user can search for. For example, “Search for networks or devices.”
+Always include the number of search results, including for searches with no results. If you plan to offer a scope filter, also include the number of results for each scope selector.
+
+#### Don't include a label
+
+Avoid adding a label to your search field. Users expect and understand search fields, and no label is necessary. A search icon along with useful placeholder text should clearly indicate that the field is intended for search.
 
 <Row>
 <Column colLg={8}>
@@ -144,8 +153,6 @@ Placeholder text should be short and clear, hinting at what the user can search 
 
 </Column>
 </Row>
-
-**Avoid adding a label to your search field.** Users expect and understand search fields, and no label is necessary. A search icon along with useful placeholder text should clearly indicate that the field is intended for search.
 
 <Row>
 <Column colLg={8}>
@@ -160,66 +167,9 @@ Placeholder text should be short and clear, hinting at what the user can search 
 </Column>
 </Row>
 
-**Add a scope filter to your search field.** The optional scoped search allow users to limit their searches to a section or category of content on a website, as opposed to a global search that searches everything at once.
+#### Localize the search field
 
-<Row>
-<Column colLg={8}>
-
-![Example of a scope filter on a search field](/images/5.png)
-
-<Caption>Example of a scope filter on a search field</Caption>
-
-</Column>
-</Row>
-
-Only one scoped category can be selected at a time. The dropdown should always include an "All" option, and "All" should be selected by default. With "All" selected, the field will function as a [basic global search](#basic-search).
-
-### Real-time feedback
-
-Provide users with feedback as they type. When a user clicks or tabs into a search field, they should be shown a menu of either the user's recent searches, trending searches, or both. These will disappear when the user types in the field, and the menu will be replaced with suggestions based on their search query. These should continue to update and refine as the user types.
-
-The real-time feedback you give a user depends on the data your application contains and the load you're willing or able to place on your servers. At minimum, you should include type-ahead suggestions for likely search entries. Type-ahead suggestions are search suggestions based on general search patterns from all users and place minimal load on servers.
-
-If you want to run the query after each character, see [active search](#active-search).
-
-Consider grouping results sourced from distinct data sets or categories. If you group suggestions, consider offering a 'Search within this category' option beneath the search category header, or use a [focused search](#focused-search) instead.
-
-<Row>
-<Column colLg={8}>
-
-![FPO](/images/6.png)
-
-</Column>
-</Row>
-
-**Provide type-ahead suggestions.** Suggestions give a user immediate feedback on their search. Without committing to a search, they can see a preview of results, suggestions of additional search terms, or zero in on exactly what they were looking for. Type-ahead suggestions should begin as soon as the user begins typing in the search field.
-
-<Row>
-<Column colLg={8}>
-
-![Example of type-ahead suggestions](/images/7.png)
-
-<Caption>Example of type-ahead suggestions</Caption>
-
-</Column>
-</Row>
-
-### Results page
-
-Once the user runs the search, they are directed to a distinct results page. On this page, the user should have the option to select filters to narrow their search results. If you’d prefer to offer filters before the user searches, consider adding a scope filter.
-
-The order in which suggestions are displayed should be organized by relevancy from top to bottom. If it makes sense for the website or application, type-ahead suggestions should be grouped in a similar order.
-
-The design of the results page will depend largely on the needs of your product, and more specific design guidance for a search results page will be covered in future pattern guidance.
-
-### Best practices
-
-- **If you choose to offer filters, they should be grouped by logical categories with clear labels.** For more specific guidance on filtering, see [filtering](/patterns/filtering).
-- **Always include the number of search results, including for searches with no results.**
-- **If a search returns "No results," suggest a follow-up action.** Provide suggestions and helpful resources to ensure the user finds what they are looking for. For more on failed searches, see the [empty states pattern](/patterns/empty-states-pattern).
-- **Include a progress bar for advanced, resource-intensive searches.** Let the user know how far along the search is, and roughly how long it will take.
-- **Include a loading indicator if the search will take longer than a moment or two.** Your loading state should reflect your empty state with useful helper text signaling that the search is still ongoing.
-- **Flip the layout of the search box for languages that read right to left instead of left to right.**
+Flip the layout of the search box for languages that read right to left instead of left to right. All elements of the search field should be presented in reversed order.
 
 <Row>
 <Column colLg={8}>
@@ -243,6 +193,78 @@ The design of the results page will depend largely on the needs of your product,
 
 </Column>
 </Row>
+
+#### Add a scope filter to your search field
+
+The optional scoped search allow users to limit their searches to a section or category of content on a website, as opposed to a global search that searches everything at once. Only one scoped category can be selected at a time, but he dropdown should always include an "All" option, and "All" should be selected by default. With "All" selected, the field will function as a [basic global search](#basic-search).
+
+<Row>
+<Column colLg={8}>
+
+![Example of a scope filter on a search field](/images/5.png)
+
+<Caption>Example of a scope filter on a search field</Caption>
+
+</Column>
+</Row>
+
+## Basic search
+
+Basic search entails any search that directs users to a distinct results page. In these instances, offer either trending searches that match the active user’s keywords, recent searches by the active user, or both.
+
+A basic search does not actually query a data set until the user runs the search.
+
+### When to use
+
+#### Searching is expensive
+
+Searching a large body of information can be resource intensive and expensive, expecially in instances where many users are searching the information simultaneously. Actively running the search after every character is entered or removed can be impractical.
+
+#### Searching is slow
+
+If the body of information is massive, actively searching can become too slow to be practical. Extended processing time following each character entered results in an application or website seeming unresponsive.
+
+#### The information is unfamiliar to users
+
+When users are searching an application or website they're unfamiliar with, a dedicated search results page can give them a better idea of data structure and available resources.
+
+### Behaviors
+
+#### Recent search suggestions
+
+When a user clicks or tabs into a search field, they should be shown a menu of either the user's recent searches, trending searches, or both. Suggestions disappear when the user types in the field, and the menu is replaced with suggestions based on their search query.
+
+Consider grouping results sourced from distinct data sets or categories. If you group suggestions, consider offering a "Search within this category" option beneath the search category header, or use a [focused search](#focused-search) instead.
+
+<Row>
+<Column colLg={8}>
+
+![Example of recent search suggestions](/images/6.png)
+
+</Column>
+</Row>
+
+#### Type-ahead suggestions
+
+Type-ahead suggestions are search suggestions based on general search patterns from all users and place minimal load on servers. Without committing to a search, the user can see a preview of results, suggestions of additional search terms, or zero in on exactly what they were looking for.
+
+Type-ahead suggestions should begin as soon as the user begins typing in the search field.
+
+<Row>
+<Column colLg={8}>
+
+![Example of type-ahead suggestions](/images/7.png)
+
+<Caption>Example of type-ahead suggestions</Caption>
+
+</Column>
+</Row>
+
+### Results page
+
+Once the user runs the search, they are directed to a distinct results page. On this page, the user should have the option to select filters to narrow their search results. If you’d prefer to offer filters before the user searches, consider adding a scope filter.
+
+The design of the results page will depend largely on the needs of your product, and more specific design guidance for a search results page will be covered in future pattern guidance.
 
 ## Active search
 
