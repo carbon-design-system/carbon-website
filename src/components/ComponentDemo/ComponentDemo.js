@@ -20,6 +20,7 @@ import {
   g10,
   g90,
   g100,
+  zamboni,
 } from './ComponentDemo.module.scss';
 
 import Code from './Code';
@@ -32,14 +33,9 @@ export const PREVIEW_CONTAINER_HEIGHT = 560;
 const { ContentSwitcher, Switch } = CarbonComponents;
 
 const ComponentDemo = ({ children: codeProp, src, scope, knobs, noInline }) => {
-  const [editorHeight, setEditorHeight] = useState();
   const [code, setCode] = useState(codeProp.trim());
   const [theme, setTheme] = useState(white);
   const { isMobile, setIsKnobContainerCollapsed } = useContext(DemoContext);
-
-  const knobContainerHeight = isMobile
-    ? PREVIEW_CONTAINER_HEIGHT
-    : editorHeight + PREVIEW_CONTAINER_HEIGHT;
 
   const themes = [
     { name: white, text: 'White' },
@@ -86,7 +82,7 @@ const ComponentDemo = ({ children: codeProp, src, scope, knobs, noInline }) => {
                 <TableOfContents20 />
               </button>
             )}
-            <Code code={code} setEditorHeight={setEditorHeight} src={src}>
+            <Code code={code} src={src}>
               <LiveEditor
                 padding={16}
                 style={{ overflowX: 'auto', whiteSpace: 'pre' }}
@@ -95,12 +91,10 @@ const ComponentDemo = ({ children: codeProp, src, scope, knobs, noInline }) => {
               />
             </Code>
             {knobs && (
-              <KnobContainer
-                code={code}
-                setCode={setCode}
-                maxHeight={`${knobContainerHeight}px`}
-                knobs={knobs}
-              />
+              <>
+                <KnobContainer code={code} setCode={setCode} knobs={knobs} />
+                <span className={zamboni} />
+              </>
             )}
           </div>
           {/* Eat syntax errors in production but not development */}
