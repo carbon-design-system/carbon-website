@@ -23,7 +23,13 @@ The login page allows a user to gain access to an application by entering their 
 
 ## Overview
 
-This pattern covers the username and password screens seen by users as they log into IBM products. Error states, forgot username/password, and additional authentication methods will be covered in future iterations of this pattern.
+This pattern covers the username and password screens seen by users as they log into IBM products. Federated and non-federated authentication are included in this pattern. Error states, forgot username/password, and additional authentication methods will be covered in future iterations of this pattern.
+
+| Term                 | Definition                                                                                                  |
+| -------------------- | ----------------------------------------------------------------------------------------------------------- |
+| Federated users      | IBM employees and other enterprise users who use single sign on (SSO) to quickly sign in.                   |
+| Non-federated users  | Other users who have a unique username and password for the product.                                        |
+| Single sign on (SSO) | Directs users to their company's enterprise sign on and authenticates them using their company credentials. |
 
 ### Anatomy
 
@@ -54,7 +60,7 @@ The login page is presented to users in the following scenarios:
 
 ## Behavior
 
-The Login page should focus on the main task of accessing one’s account. The point of this page is to get the user into their account quickly without complicating the workflow. It’s not recommended to include any distracting information or imagery to the form. Consider the simplest approach to logging into an account on mobile and maintain that simplicity on tablet and desktop.
+The Login page should focus on the main task of accessing one’s account. The point of this page is to get the user into their account quickly without complicating the workflow. It’s not recommended to include any distracting information or imagery to the form. Simple illustrations can add personality and help differentiate the form from other products, but they should not pull the user's focus away from loggin in. Consider the simplest approach to logging into an account on mobile and maintain that simplicity on tablet and desktop.
 
 IBM uses multi-factor login for products. Users gain access to their applications by entering their authentication information progressively. Federated users log in with SSO (single sign-on) and non-federated users are required to provide both their IBMid and password.
 
@@ -75,7 +81,7 @@ On the first page, the user enters their username, then clicks Continue. The sys
 </Column>
 </Row>
 
-When users enter their authentication information progressively, the cognitive load is reduced. From this point, the user will either continue to their company’s SSO login experience or they’ll see a password field, a “Log in” button, and a way to return to the prior page in case they made a mistake while filling out their IBMid.
+From this point, the user will either continue to their company’s SSO login experience or they’ll see a password field and a “Log in” button. The password page should include a way to return to the prior page in case they made a mistake while filling out their IBMid and a “Forgot password” button. When users enter their authentication information progressively, the cognitive load is reduced.
 
 <Row>
 <Column colLg={8}>
@@ -95,8 +101,8 @@ When users enter their authentication information progressively, the cognitive l
 - Use Log in to [Product name], with Log in as two words.
 - Let users sign in quickly. Keep the login page uncluttered to reduce cognitive and visual loads.
 - Use a clear call to action, that is correctly sized, to reduce the motor load.
-- If you're using a split-screen, include a clear division between the types on content on each side. Marketing on one side, login details on the other. Do not mix the two.
-- What about considering a simple sign up link on the Log in side? Where Forgot password? and Forgot ID? are located.
+- If you're using a split-screen, include a clear division between the content on each side. Marketing on one side, login details on the other. Do not mix the two.
+- Include forgot password and forgot ID buttons near each of their respective text fields, rather than including them both on each page.
 
 **Don't:**
 
@@ -132,11 +138,13 @@ The single-column login form provides a simple entry point for users. Without an
 </Column>
 </Row>
 
-The split-screen page is an alternate design that has space to include marketing content. The login portion of this layout uses the same design and behavior as the single-column layout but is confined to the right half of the page. The left half of the page is used for simple marketing content about the product.
+The split-screen page is an alternate design if it necessary that you include marketing content. The login portion of this layout uses the same design and behavior as the single-column layout but is confined to the right half of the page. The left half of the page is used for simple marketing content about the product.
 
 The additional content on this page should be minimal and shouldn’t distract from the login form. The user’s primary goal is logging in and that should be reflected the visual design and emphasis on the page.
 
 Keep the marketing and login content separate. Testing has shown users don’t look outside of the login region to find related actions (like create account or SSO buttons) and often miss those actions if they are embedded in the marketing content.
+
+**simple sign up link on log in side**
 
 ## Related
 
