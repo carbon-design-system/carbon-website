@@ -7,7 +7,10 @@ tabs:
 
 import Preview from 'components/Preview';
 
-### This step takes what we've built so far and optimizes the app for a production environment. We'll be deploying the production build to IBM Cloud.
+<PageDescription>
+  This step takes what we've built so far and optimizes the app for a production
+  environment. We'll be deploying the production build to IBM Cloud.
+</PageDescription>
 
 <AnchorLinks>
 
@@ -157,9 +160,9 @@ After telling Cloud Foundry what to include, we can also specify what to ignore.
 node_modules/.cache
 ```
 
-You can speed up deploys by decreasing the files uploaded through cloud foundry. To accomplish this, ignore any folder not required by the production application on IBM Cloud. 
+You can speed up deploys by decreasing the files uploaded through cloud foundry. To accomplish this, ignore any folder not required by the production application on IBM Cloud.
 
-In our case we can ignore everything except the `build/` directory and `Staticfile`.  To speed up our deploys change `.cfignore` to:
+In our case we can ignore everything except the `build/` directory and `Staticfile`. To speed up our deploys change `.cfignore` to:
 
 ```bash path=.cfignore
 *
@@ -173,7 +176,7 @@ In our case we can ignore everything except the `build/` directory and `Staticfi
 Login to IBM Cloud with:
 
 ```bash
-$ cf login -a https://api.ng.bluemix.net --sso 
+$ cf login -a https://api.ng.bluemix.net --sso
 ```
 
 Deploy app using the `cf push` command. Since `manifest.yml` is in our root directory, we don't need to specify it in the push command. But, if you have multiple manifest files that target different environments, it's good practice to specify the file.
