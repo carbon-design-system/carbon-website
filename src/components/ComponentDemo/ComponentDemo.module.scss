@@ -13,7 +13,7 @@
     grid-template-columns: 1fr 240px;
     grid-template-areas:
       'preview knobs'
-      'editor knobs';
+      'editor editor';
   }
 }
 
@@ -70,11 +70,22 @@
   width: 240px;
   box-shadow: -2px 2px 6px rgba(0, 0, 0, 0.2);
   height: 100%;
+  max-height: 35rem;
   transition: transform $duration--moderate-01 carbon--motion('entrance');
   @include carbon--breakpoint('md') {
     position: static;
     box-shadow: none;
   }
+}
+
+// knob container fade-out effect
+.zamboni {
+  position: absolute;
+  top: 30rem;
+  right: 0;
+  width: 239px; // 240 - 1px border
+  padding-top: 5rem;
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), white);
 }
 
 .knob-container--collapsed {
