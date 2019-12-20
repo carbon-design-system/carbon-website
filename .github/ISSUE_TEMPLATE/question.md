@@ -2,7 +2,7 @@
 name: Question ❓
 about: Usage question or discussion about the Carbon Design System Website.
 title: ''
-labels: 'type: question :question:'
+labels: 'type: question ❓', 'squad: aux'
 assignees: ''
 ---
 
