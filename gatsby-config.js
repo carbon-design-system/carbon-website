@@ -30,7 +30,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-fathom',
       options: {
-        siteId: 'KSCXENTR',
+        siteId: 'VMSGXQRS',
       },
     },
     'gatsby-plugin-remove-serviceworker',
