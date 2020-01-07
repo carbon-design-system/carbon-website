@@ -37,11 +37,9 @@ Modal titles and labels should be set in sentence case. Keep all titles and labe
 | `.bx--modal-header__label` | margin-bottom             | 4 / 0.25 | `$spacing-02` |
 | `.bx--modal-header`        | padding top, padding left | 16 / 1   | `$spacing-05` |
 | `.bx--modal-header`        | margin-bottom             | 16 / 1   | `$spacing-05` |
-| `.bx--modal-content`       | width                     | 75%      | –             |
 | `.bx--modal-content`       | padding-left              | 16 / 1   | `$spacing-05` |
+| `.bx--modal-content`       | padding-right             | 20%      | –             |
 | `.bx--modal-content`       | margin-bottom             | 48 / 3   | `$spacing-09` |
-| `.bx--btn--primary`        | width                     | 50%      | –             |
-| `.bx--btn--secondary`      | width                     | 50%      | –             |
 
 <Row>
 <Column colLg={12}>
@@ -69,21 +67,41 @@ Modal titles and labels should be set in sentence case. Keep all titles and labe
 
 ### Margin-right
 
-Modals that are 36% width and larger (see [sizes](/components/modal/style#sizes)) have a `margin-right: 20%` (margin percentage is based off the width of the modal window). If the modal is smaller than 36% then it has a fixed `margin-right: 16px/1rem`. Body copy, including titles, in a modal alway follows the 20% margin-right rule. However, inputs and other components may still expanded the full width of modal window.
+Modals that are 36% width and larger have a `margin-right: 20%` (margin percentage is based off the width of the modal window). If the modal is smaller than 36% then it has a fixed `margin-right: 16px/1rem`. Body copy, including titles, in a modal alway follows the 20% margin-right rule. However, inputs and other components may still expanded the full width of modal window.
 
 <Row>
 <Column colLg={12}>
 
-![tructure and spacing measurements for a passive modal](images/modal-style-3.png)
+![Margin-right for modals less than 36% and greater than 36%](images/modal-style-3.png)
 
 </Column>
 </Row>
 
 <Caption>
-  Structure and spacing measurements for a passive modal | px / rem
+  Margin-right for modals less than 36% (left) and greater than 36% (right).
 </Caption>
 
-## Modal sizes
+<!--
+### Buttons widths
+
+| Number of buttons    | Percentage of modal     | Positioning    |
+| -------------------- | ----------------------- | -------------- | 
+| 1                    | 50%                     | Flush right    |
+| 2                    | 50% each                | Full bleed     |
+| 3                    | 25% each                | Flush right    |
+-->
+
+## Sizes
+
+There are four modal sizes: **xs, small, default, large**. Each modal size has a responsive width that changes based on the browser size. As the browser decreases, the modal width percentage increases thus maintaining a proper ratio between the modal and browser. Modal widths are defined as percentages of the browser but will still align to columns on the 2x grid.
+
+<Row>
+<Column colLg={8}>
+
+![Modal sizes](images/modal-usage-sizes.png)
+
+</Column>
+</Row>
 
 <Row>
 <Column colLg={8}>
@@ -130,12 +148,26 @@ Modals that are 36% width and larger (see [sizes](/components/modal/style#sizes)
 
 ### Max sizes
 
+Each modal size has a max height and width in order to maintain a proper window ratio.
+
 | Modal size  | Max-height | Max-width |
 | ----------- | ---------- | --------- |
 | **XS**      | 48%        | 420px     |
 | **Small**   | 72%        | 576px     |
 | **Default** | 84%        | 768px     |
 | **Large**   | 96%        | –         |
+
+</Column>
+</Row>
+
+### Mobile
+
+On mobile devices, at the smaller break points the max-height does not apply. The height may either be 100% of the screen or maintain the height defined by the content while sticking to the bottom of the mobile screen.
+
+<Row>
+<Column colLg={8}>
+
+![Modal sizes](images/modal-style-4.png)
 
 </Column>
 </Row>
