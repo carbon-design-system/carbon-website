@@ -2,7 +2,10 @@
 import React from 'react';
 import ogimage from './src/images/ogimage.png';
 
-export const onRenderBody = ({ setHeadComponents }) => {
+export const onRenderBody = ({ setHeadComponents, setBodyAttributes }) => {
+  setBodyAttributes({
+    class: 'body--preload',
+  });
   setHeadComponents([
     <link
       key="serif"
@@ -21,8 +24,16 @@ export const onRenderBody = ({ setHeadComponents }) => {
       property="twitter:image:alt"
       content="Carbon Design System logo"
     />,
-    <meta property="og:type" content="website" />,
-    <meta property="twitter:card" content="summary_large_image" />,
-    <meta property="twitter:site" content="@_carbondesign" />,
+    <meta key="og:type" property="og:type" content="website" />,
+    <meta
+      key="twitter:card"
+      property="twitter:card"
+      content="summary_large_image"
+    />,
+    <meta
+      key="twitter:site"
+      property="twitter:site"
+      content="@_carbondesign"
+    />,
   ]);
 };
