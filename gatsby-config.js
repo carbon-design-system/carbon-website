@@ -27,6 +27,12 @@ module.exports = {
         disable: !process.env.ANALYZE,
       },
     },
+    {
+      resolve: 'gatsby-plugin-fathom',
+      options: {
+        siteId: 'VMSGXQRS',
+      },
+    },
     'gatsby-plugin-remove-serviceworker',
   ],
 };
