@@ -13,8 +13,8 @@ Loading patterns are used when information takes an extended amount of time to p
 
 <AnchorLink>Overview</AnchorLink>
 <AnchorLink>Progressive loading</AnchorLink>
-<AnchorLink>Loading spinner</AnchorLink>
-<AnchorLink>Load more</AnchorLink>
+<AnchorLink>Loading indicators</AnchorLink>
+<AnchorLink>Load more options</AnchorLink>
 <AnchorLink>Accessibility</AnchorLink>
 <AnchorLink>Related</AnchorLink>
 <AnchorLink>References</AnchorLink>
@@ -47,8 +47,8 @@ Presenting motion and indicating progress are two effective ways to let a user k
 | Type                                        | When to use                                                                      | Use cases                                                                                                                                           |
 | ------------------------------------------- | -------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [Progressive loading](#progressive-loading) | When a page or application will take several moments to load all data            | When data must load into container components like tables and cards.                                                                                |
-| [Loading spinner](#loading-spinner)         | When a process must load in place and a user will not be directed to a new view. | — When data processing takes more than a few seconds but no longer than one minute <br />— When data from a user input is being saved or submitted. |
-| [Load more](#load-more)                     | When a view can only load a small fraction of options or information             | Dropdown menus with limited space for options,                                                                                                      |
+| [Loading indicators](#loading-indicators)   | When a process must load in place and a user will not be directed to a new view. | — When data processing takes more than a few seconds but no longer than one minute <br />— When data from a user input is being saved or submitted. |
+| [Load more options](#load-more-options)     | When a view can only load a small fraction of options or information             | Locations with limited space for options like dropdown menus                                                                                        |
 
 ## Progressive loading
 
@@ -60,12 +60,18 @@ Following batches will include images, content outside of the viewport, interact
 
 Not all items need a skeleton state and can be expressed as negative or white space until they load. For example, an image can be shown as an area of white space until the full image loads.
 
+<Row>
+<Column colLg={4}>
+
 ![First phase of a dashboard using skeleton states to demonstrate progressive loading](/images/prog-loading-1.png)
 
 <Caption>
   First phase of a dashboard using skeleton states to demonstrate progressive
   loading
 </Caption>
+
+</Column>
+<Column colLg={4}>
 
 ![Second phase of a dashboard using skeleton states to demonstrate progressive loading](/images/prog-loading-2.png)
 
@@ -74,12 +80,18 @@ Not all items need a skeleton state and can be expressed as negative or white sp
   loading
 </Caption>
 
+</Column>
+<Column colLg={4}>
+
 ![Third phase of a dashboard using skeleton states to demonstrate progressive loading](/images/prog-loading-3.png)
 
 <Caption>
   Third phase of a dashboard using skeleton states to demonstrate progressive
   loading
 </Caption>
+
+</Column>
+</Row>
 
 ### Skeleton states
 
@@ -95,11 +107,11 @@ Skeleton states are simplified versions of components used on an initial page lo
 
 Skeleton states improve a web app's perceived performance as the app appears to load faster than it actually does, and uses motion to convey that the page is not stuck loading.
 
-Only use skeleton states on container-based components (e.g. tiles and structured lists), data-based components (e.g. data tables and cards), and data-based text. In most cases, action components (e.g. buttons, input fields, checkboxes, toggles) do not need to have a skeleton state.
+Only use skeleton states on container-based components like tiles and structured lists or data-based components like data tables and cards. In most cases, action components (e.g. buttons, input fields, checkboxes, toggles) do not need to have a skeleton state.
 
 Never represent toast notifications, overflow menus, dropdown items, modals, and loaders with skeleton states. Elements inside a modal may have a skeleton state, but the modal itself should not.
 
-## Loading spinner
+## Loading indicators
 
 Loading spinners are a way to halt user action and clearly indicate that a process is taking place. Use a loading spinner if the user is not rerouted as the result of an action.
 
@@ -107,14 +119,22 @@ Loading spinners are a way to halt user action and clearly indicate that a proce
 
 If a user action requires the entire page or application to process, place an overlay over the entire page and display a loading spinner.
 
-If the process will take more than a few minutes, you may want to consider additional messaging.
+Let the user know if the process will take more than a few minutes.
 
-- When data processing takes more than a few seconds but no longer than one minute.
-- When data from a user input is being saved or submitted.
+<Row>
+<Column colLg={8}>
 
 ![Example of a large loader in an application](/images/larger-loader.png)
 
 <Caption>Example of a large loader in an application</Caption>
+
+</Column>
+</Row>
+
+| When to use                                             |                                                                                                                                                                              |
+| ------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _When processing takes more than a few seconds_         | If a loading process will require the application's full resources and will take longer than a moment or two, use a full screen loading indicator.                           |
+| _When data from user input is being saved or submitted_ | Saving data following with user input often takes a few moments. Using a loading indicator allows the application to finish processing before allowing the user to continue. |
 
 ### Inline loading
 
@@ -130,34 +150,37 @@ Use the inline loading component when a single component is processing. For exam
 </Column>
 </Row>
 
-## Load more
+## Load more options
 
 There may be times where your application only loads a small fraction of options. A Load more button should be used in these instances to extend the list. Load more buttons are ideal for limiting server load when querying a database is slow or expensive. Using Load more allows the data to load in progressive batches.
 
 <Row>
 <Column colLg={8}>
 
-![Example of a **Load more** button](/images/load-more.png)
+![Example of a Load more button](/images/load-more.png)
 
-<Caption>Example of a 'Load more' button</Caption>
+<Caption>Example of a Load more button</Caption>
 
 </Column>
 </Row>
 
 ## Accessibility
 
-STUB
+A screen reader should [notify a user](https://www.w3.org/WAI/GL/wiki/Notification_of_Loading/Busy) if an application is loading or busy. If the application gets stuck or a process fails, the user should also be notified.
+
+For specific loading accessibility concerns, see the WCAG documentation for [Notification of Loading/Busy](https://www.w3.org/WAI/GL/wiki/Notification_of_Loading/Busy) and adhere to accessibility guidelines for the [loading component](/components/loading/accessibility).
 
 ## Related
 
 #### Components
 
-- Pagination
-- Loading
+- [Loading](/components/loading/code)
+- [Pagination](/components/pagination/code)
 
 #### Patterns
 
-- Empty states
+- [Empty states](/patterns/empty-states-pattern)
+- [Forms](/patterns/forms-pattern)
 
 ## References
 
