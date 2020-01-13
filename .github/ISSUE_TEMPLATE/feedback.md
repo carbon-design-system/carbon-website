@@ -1,7 +1,7 @@
 ---
 name: Website feedback
 about: User feedback collected from the IBM Design Language Website.
-labels: feedback
+labels: 'type: discussion 💬'
 assignees: ''
 ---
 

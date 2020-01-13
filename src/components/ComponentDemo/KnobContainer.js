@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import React, { useContext, useRef } from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { Close20 } from '@carbon/icons-react';
 
 import {
@@ -24,6 +25,7 @@ import {
   checkboxWrapper,
   iconButton,
   iconButtonRow,
+  zamboni,
 } from './ComponentDemo.module.scss';
 
 // Components w/o react docgen data
@@ -198,7 +200,7 @@ Knob.propTypes = {
   },
 };
 
-const KnobContainer = ({ knobs, maxHeight, code, setCode }) => {
+const KnobContainer = ({ knobs, code, setCode }) => {
   const {
     isMobile,
     isKnobContainerCollapsed,
@@ -229,7 +231,6 @@ const KnobContainer = ({ knobs, maxHeight, code, setCode }) => {
 
   return (
     <Form
-      style={{ maxHeight }}
       className={cx(knobContainer, {
         [knobContainerCollapsed]: isMobile && isKnobContainerCollapsed,
       })}>
@@ -252,6 +253,7 @@ const KnobContainer = ({ knobs, maxHeight, code, setCode }) => {
           knobs={componentKnobs}
         />
       ))}
+      <div className={zamboni} />
     </Form>
   );
 };
