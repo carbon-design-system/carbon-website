@@ -13,7 +13,7 @@ module.exports = {
       options: {
         mdxExtensions: ['.mdx'],
         isSearchEnabled: true,
-        iconPath: './src/images/favicon-32.png',
+        iconPath: './src/images/favicon.svg',
         titleType: 'prepend',
         repository: {
           baseUrl: 'https://github.com/carbon-design-system/carbon-website',
