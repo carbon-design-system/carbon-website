@@ -52,13 +52,7 @@ Presenting motion and indicating progress are two effective ways to let a user k
 
 ## Progressive loading
 
-Loading a page in batches is an intuitive way to display loading progress. The simplest view of the page loads first, followed by progressively more detailed batches until the entire viewport has loaded.
-
-The first batch should show a page's basic structure and include any text not reliant on processing, like text in an application's shell. This simplified view of an application is called a [skeleton state](#skeleton-states).
-
-Following batches will include images, content outside of the viewport, interactive components, and data-based text.
-
-Not all items need a skeleton state and can be expressed as negative or white space until they load. For example, an image can be shown as an area of white space until the full image loads.
+When a user first loads a page, it may take several moments for all information and page elements to populate. To give the impression of progress, you can load the page in batches. Loading a page in batches is an intuitive way to display loading progress. The simplest view of the page loads first, followed by progressively more detailed batches until the entire viewport has loaded.
 
 <Row>
 <Column colLg={4}>
@@ -93,6 +87,19 @@ Not all items need a skeleton state and can be expressed as negative or white sp
 </Column>
 </Row>
 
+| When to use                                             |                                                                                                                                                         |
+| ------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _When a page view is slow to load_                      | Pages that heavily leverage containers, like dashboards, often source data from multiple sources and can be slow to load.                               |
+| _When a user changes filters or facets in a table view_ | Tables are often sourcing information from massive data sets. Processing may take a few moments before populating when a user changes selected filters. |
+
+### Behaviors
+
+The first batch should show a page's basic structure and include any text not reliant on processing, like text in an application's shell. This simplified view of an application is called a [skeleton state](#skeleton-states).
+
+Following batches will include images, content outside of the viewport, interactive components, and data-based text.
+
+Not all items need a skeleton state and can be expressed as negative or white space until they load. For example, an image can be shown as an area of white space until the full image loads.
+
 ### Skeleton states
 
 <Row>
@@ -113,7 +120,9 @@ Never represent toast notifications, overflow menus, dropdown items, modals, and
 
 ## Loading indicators
 
-Loading spinners are a way to halt user action and clearly indicate that a process is taking place. Use a loading spinner if the user is not rerouted as the result of an action.
+Loading indicators signal a user action is processing. Unlike progress bars, loading indicators only signal that loading is occurring and do not give any indication of progress.
+
+Full-screen loading indicators tell a user the entire application is processing, while inline indicators show that a specific selection or action is processing. Only use progress indicators if a process will take more than a moment or two to complete.
 
 ### Full-screen loading
 
@@ -133,6 +142,7 @@ Let the user know if the process will take more than a few minutes.
 
 | When to use                                             |                                                                                                                                                                              |
 | ------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _When an action disables the application_               | If a user's action temporarily disables the application while processing occurs, use a loading indicator and a full screen overlay.                                          |
 | _When processing takes more than a few seconds_         | If a loading process will require the application's full resources and will take longer than a moment or two, use a full screen loading indicator.                           |
 | _When data from user input is being saved or submitted_ | Saving data following with user input often takes a few moments. Using a loading indicator allows the application to finish processing before allowing the user to continue. |
 
@@ -152,7 +162,7 @@ Use the inline loading component when a single component is processing. For exam
 
 ## Load more options
 
-There may be times where your application only loads a small fraction of options. A Load more button should be used in these instances to extend the list. Load more buttons are ideal for limiting server load when querying a database is slow or expensive. Using Load more allows the data to load in progressive batches.
+There may be times when your application only loads a small fraction of options. A Load more button should be used in these instances to extend the list. Load more buttons are ideal for limiting server load when querying a database is slow or expensive. Using Load more allows the data to load in progressive batches.
 
 <Row>
 <Column colLg={8}>
@@ -174,6 +184,7 @@ For specific loading accessibility concerns, see the WCAG documentation for [Not
 
 #### Components
 
+- [Data table](/components/data-table/code)
 - [Loading](/components/loading/code)
 - [Pagination](/components/pagination/code)
 
@@ -181,6 +192,7 @@ For specific loading accessibility concerns, see the WCAG documentation for [Not
 
 - [Empty states](/patterns/empty-states-pattern)
 - [Forms](/patterns/forms-pattern)
+- [Notifications](/patterns/notification-pattern)
 
 ## References
 
