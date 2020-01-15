@@ -43,7 +43,6 @@ const links = {
   secondCol: [
     { href: 'https://medium.com/carbondesign', linkText: 'Medium' },
     { href: 'https://twitter.com/_carbondesign', linkText: 'Twitter' },
-    { href: 'https://www.netlify.com/', linkText: 'This site is powered by Netlify' },
   ],
 };
 
