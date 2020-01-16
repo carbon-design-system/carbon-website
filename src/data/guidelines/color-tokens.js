@@ -210,7 +210,7 @@ const colorTokens = {
           hex: '#8d8d8d',
         },
         g90: {
-          name: 'Gray 60',
+          name: 'Gray 50',
           hex: '#8d8d8d',
         },
         g100: {
