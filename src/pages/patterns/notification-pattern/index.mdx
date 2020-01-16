@@ -78,7 +78,7 @@ You might send a task-generated notification when:
 
 #### System-generated notifications
 
-These notifications are initiated by the system independent of user action. They provide updates on background system status or out-of-context events that have finished.
+These notifications are initiated by the application or system, independent of user action. They provide updates on background system status or out-of-context events that have finished.
 
 You might send a system-generated notification when:
 
@@ -128,7 +128,7 @@ Notification status helps convey the information being communicated. These statu
 
 **Deciding what to use**
 
-| Notification type  | Usage                                                                                                             | Duration and interaction                                                                                                                         |
+| Type               | Usage                                                                                                             | Duration and interaction                                                                                                                         |
 | ------------------ | ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Inline             | Provide users with nondisruptive feedback or the status of an action                                              | Persist until the message is resolved or dismissed by user and may include a ghost button action                                                 |
 | Toast              | Short, time-based messages that slide in and out of a page and provide nondisruptive information                  | Disappear automatically or can be dismissed by user                                                                                              |
@@ -202,11 +202,11 @@ Carbon currently does not have a banner component, but if your team has develope
 
 ### Notification panel
 
-Notification panels are helpful for users who receive a large number of system-generated notifications or may need to reference their notifications later. Notification panels are used in conjunction with toasts to alert users of notifications as they come in.
+Notification panels are helpful for users who receive a large number of system-generated notifications or may need to reference their notifications later. They are used in conjunction with toasts to alert users of notifications as they come in.
 
-Notification panels are a great solution to ensure that users can access and read all notifications without cluttering the screen with many persistent notifications. In addition to being useful, notification centers address some accessibility considerations with screen readers.
+Notification panels ensure that users can access and read all notifications without cluttering the screen with many persistent notifications. They also provide a consistent experience to users who need more time to read notifications, use a screen reader, or prefer to limit the notifications they receive.
 
-The [right panel](https://www.carbondesignsystem.com/components/UI-shell-right-panel/usage) in the Carbon UI shell supports a notification center. Carbon does not currently have a notification panel component, but if your team has developed one it can be contributed and made available to others.
+Carbon does not currently have a notification panel component, but if your team has developed one it can be contributed and made available to others.
 
 #### Best practices:
 
@@ -304,10 +304,6 @@ Because task-generated notifications are sent in response to user action, it isn
 </Row>
 
 ## Accessibility
-
-**Only move a screen reader's focus for the user when a notification is critical.** Use `aria-live` regions to update the user as notifications come in while also being conscious of the user's needs. Using `aria-live="assertive"` informs screen reader users that a notification is present without moving focus to the notification and is recommended for most high priority notifications. If a notification is not a priority, use `aria-live="polite"` instead. This delays the announcement of the notification until the user finishes their current task so they are not interrupted.
-
-**It should be easy to navigate to the notification using only a keyboard.** Using `TAB` moves the screen focus to the notification and pressing `SPACE` or `ENTER` dismiss the notification.
 
 **Don't use notifications that dismiss on a timer for critical or emergency messages.** Some users with disabilities need more time to read or interact with messages and timed toasts may not provide sufficient time.
 [WCAG 2.1 success criterion 2.2.4 (AAA)](https://www.w3.org/WAI/WCAG21/Understanding/no-timing.html)
