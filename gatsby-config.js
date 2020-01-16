@@ -16,7 +16,7 @@ module.exports = {
         iconPath: './src/images/favicon.svg',
         titleType: 'prepend',
         pngCompressionSpeed: 10,
-        imageQuality: 10,
+        imageQuality: 5,
         repository: {
           baseUrl: 'https://github.com/carbon-design-system/carbon-website',
           subDirectory: '',
