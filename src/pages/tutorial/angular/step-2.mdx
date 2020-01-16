@@ -241,7 +241,7 @@ Now we need to modify the second row to use the `Tab` component.
 
 _Note: We're using the grid for the page layout, but we also need to apply the grid within the tab content. When doing so, make sure the nested grid has the expected_ `grid` _>_ `row` _>_ `col` _DOM structure._
 
-Hold up! If you were to run [DAP](https://www.ibm.com/able/dynamic-assessment-plug-in.html) to check for accessibility violations, you'd see `Multiple navigation landmarks must have unique labels specified with aria-label or aria-labelledby` because both the `Breadcrumb` and `Tabs` components use `<nav>` elements. To fix, add `aria-label` to the `Breadcrumb` opening tag:
+Hold up! If you were to run [DAP](https://www.ibm.com/able/dynamic-assessment-plug-in.html) to check for accessibility violations, you'd see `Multiple navigation landmarks must have unique labels specified with aria-label or aria-labelledby` because both the `Breadcrumb` and `Tabs` components use `<nav>` elements. To fix, add `ariaLabel` to the `Breadcrumb` opening tag:
 
 <!-- prettier-ignore-start -->
 ```html path=src/app/home/landing-page/landing-page.component.html
@@ -257,19 +257,43 @@ Same goes for the `Tabs` opening tag:
 ```
 <!-- prettier-ignore-end -->
 
-Next, we'll need to add a styling override to move the tabs to the right on large viewports. Create a file `carbon-overrides.scss` in `src/assets` with this declaration block.
+Next, we'll need to add a styling override to move the tabs to the right on large viewports, and tidy up the alignment of the grid. Create a file `carbon-overrides.scss` in `src/assets/scss` with this declaration block.
 
 ```scss path=src/assets/carbon-overrides.scss
+// makes the grid fit the entire width of the page
+.bx--grid--full-width {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+// removes excess padding for nested full width grids
+.bx--grid--full-width .bx--grid--full-width {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+// removes extraneous row margins in the full width grid
+.bx--grid--full-width .bx--row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+// aligns the tabs to the right
 .landing-page__r2 .bx--tabs__nav {
   right: 0;
 }
+
+// forces the navigation items to be displayed at all viewport sizes
+.bx--header__nav {
+  display: block;
+}
 ```
 
-Then in `styles.scss` add this import at the top of the file.
+Then in `styles.scss` add this import after the Carbon `styles.scss` import.
 
 <!-- prettier-ignore-start -->
 ```scss path=src/styles.scss
-@import './assets/carbon-overrides.scss';
+@import './assets/scss/carbon-overrides.scss';
 ```
 <!-- prettier-ignore-end -->
 
