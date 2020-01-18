@@ -180,17 +180,32 @@ Login to IBM Cloud with:
 ```bash
 $ cf login -a https://api.ng.bluemix.net --sso
 ```
+**Note:** 
+If you are using a **Lite account** the cf/cli won't be able to target thre default org, in this case you should use the **ibmcloud/cli**, here is the [ibmcloud/cli installation page](https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started).
+
+```bash
+$ ibmcloud login -a https://api.ng.bluemix.net --sso
+```
 
 Deploy app using the `cf push` command. Since `manifest.yml` is in our root directory, we don't need to specify it in the push command. But, if you have multiple manifest files that target different environments, it's good practice to specify the file.
 
 ```bash
 $ cf push -f manifest.yml
 ```
+Lite accounts:
+```bash
+$ ibmcloud cf push -f manifest.yml
+```
+
 
 To make it easy on ourselves by not needing to remember that command, let's add a script in `package.json`. We can combine the build and deploy steps to make sure we only deploy immediately after running the build. In the `"scripts"` object in `package.json`, add:
 
 ```bash path=package.json
 "deploy": "rm -rf ./build && yarn build && cf push -f manifest.yml"
+```
+Lite accounts: 
+```bash path=package.json
+"deploy": "rm -rf ./build && yarn build && ibmcloud cf push -f manifest.yml"
 ```
 
 Next time you want to deploy, you can simply run `yarn deploy`.
