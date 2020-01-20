@@ -1,6 +1,6 @@
 ---
 title: Modal
-description: Modals communicate information via a secondary window and allow the user to maintain the context of a particular task. Modals interrupt user workflow by design.
+description: Modals focus the user’s attention exclusively on one task or piece of information via a window that sits on top of the page content.
 tabs: ['Code', 'Usage', 'Style', 'Accessibility']
 ---
 
@@ -36,51 +36,138 @@ Modal titles and labels should be set in sentence case. Keep all titles and labe
 | `.bx--modal-close__icon`   | height, width             | 16 x 16  | –             |
 | `.bx--modal-header__label` | margin-bottom             | 4 / 0.25 | `$spacing-02` |
 | `.bx--modal-header`        | padding top, padding left | 16 / 1   | `$spacing-05` |
-| `.bx--modal-header`        | margin-bottom             | 8 / 0.5  | `$spacing-03` |
-| `.bx--modal-content`       | width                     | 75%      | –             |
+| `.bx--modal-header`        | margin-bottom             | 16 / 1   | `$spacing-05` |
 | `.bx--modal-content`       | padding-left              | 16 / 1   | `$spacing-05` |
+| `.bx--modal-content`       | padding-right             | 20%      | –             |
 | `.bx--modal-content`       | margin-bottom             | 48 / 3   | `$spacing-09` |
-| `.bx--btn--primary`        | width                     | 50%      | –             |
-| `.bx--btn--secondary`      | width                     | 50%      | –             |
 
-<div className="image--fixed">
+<Row>
+<Column colLg={12}>
 
-![Structure and spacing measurements for passive modal](images/modal-style-1.png)
+![Structure and spacing measurements for a passive modal](images/modal-style-1.png)
 
-</div>
+</Column>
+</Row>
 
 <Caption>
   Structure and spacing measurements for a passive modal | px / rem
 </Caption>
 
-<div className="image--fixed">
+<Row>
+<Column colLg={12}>
 
-![Structure and spacing measurements for transactional modal elements](images/modal-style-2.png)
+![Structure and spacing measurements for a transactional modal](images/modal-style-2.png)
 
-</div>
+</Column>
+</Row>
 
 <Caption>
   Structure and spacing measurements for a transactional modal | px / rem
 </Caption>
 
-<div className="image--fixed">
+### Margin-right
 
-![Structure and spacing measurements for input modal elements](images/modal-style-4.png)
+Modals that are 36% width and larger have a `margin-right: 20%` (margin percentage is based off the width of the modal window). If the modal is smaller than 36% then it has a fixed `margin-right: 16px/1rem`. Body copy, including titles, in a modal alway follows the 20% margin-right rule. However, inputs and other components may still expanded the full width of modal window.
 
-</div>
+<Row>
+<Column colLg={12}>
+
+![Margin-right for modals less than 36% and greater than 36%](images/modal-style-3.png)
+
+</Column>
+</Row>
 
 <Caption>
-  Structure and spacing measurements for a input modal | px / rem
+  Margin-right for modals less than 36% (left) and greater than 36% (right).
 </Caption>
+
+<!--
+### Buttons widths
+
+| Number of buttons    | Percentage of modal     | Positioning    |
+| -------------------- | ----------------------- | -------------- | 
+| 1                    | 50%                     | Flush right    |
+| 2                    | 50% each                | Full bleed     |
+| 3                    | 25% each                | Flush right    |
+-->
+
+## Sizes
+
+There are four modal sizes: **xs, small, default, large**. Each modal size has a responsive width that changes based on the browser size. As the browser decreases, the modal width percentage increases thus maintaining a proper ratio between the modal and browser. Modal widths are defined as percentages of the browser but will still align to columns on the 2x grid.
+
+<Row>
+<Column colLg={8}>
+
+![Modal sizes](images/modal-usage-sizes.png)
+
+</Column>
+</Row>
+
+<Row>
+<Column colLg={8}>
+
+### XS
+
+| Breakpoint | Percentage width | Column span | Margin-right |
+| ---------- | ---------------- | ----------- | ------------ |
+| 1584       | 24%              | 4 of 16     | 16px / 1rem  |
+| 1312       | 24%              | 4 of 16     | 16px / 1rem  |
+| 1056       | 32%              | 5 of 16     | 16px / 1rem  |
+| 672        | 48%              | 4 of 8      | 16px / 1rem  |
+| 320        | 100%             | 4 of 4      | 16px / 1rem  |
+
+### Small
+
+| Breakpoint | Percentage width | Column span | Margin-right |
+| ---------- | ---------------- | ----------- | ------------ |
+| 1584       | 36%              | 6 of 16     | 20%          |
+| 1312       | 36%              | 6 of 16     | 20%          |
+| 1056       | 42%              | 7 of 16     | 16px / 1rem  |
+| 672        | 60%              | 5 of 8      | 16px / 1rem  |
+| 320        | 100%             | 4 of 4      | 16px / 1rem  |
+
+### Default
+
+| Breakpoint | Percentage width | Column span | Margin-right |
+| ---------- | ---------------- | ----------- | ------------ |
+| 1584       | 48%              | 8 of 16     | 20%          |
+| 1312       | 48%              | 8 of 16     | 20%          |
+| 1056       | 60%              | 10 of 16    | 20%          |
+| 672        | 84%              | 7 of 8      | 20%          |
+| 320        | 100%             | 4 of 4      | 16px / 1rem  |
+
+### Large
+
+| Breakpoint | Percentage width | Column span | Margin-right |
+| ---------- | ---------------- | ----------- | ------------ |
+| 1584       | 72%              | 12 of 16    | 20%          |
+| 1312       | 72%              | 12 of 16    | 20%          |
+| 1056       | 84%              | 14 of 16    | 20%          |
+| 672        | 96%              | 8 of 8      | 20%          |
+| 320        | 100%             | 4 of 4      | 16px / 1rem  |
+
+### Max sizes
+
+Each modal size has a max height and width in order to maintain a proper window ratio.
+
+| Modal size  | Max-height | Max-width |
+| ----------- | ---------- | --------- |
+| **XS**      | 48%        | 420px     |
+| **Small**   | 72%        | 576px     |
+| **Default** | 84%        | 768px     |
+| **Large**   | 96%        | –         |
+
+</Column>
+</Row>
 
 ### Mobile
 
-Modals should be full screen on mobile.
+On mobile devices, at the smaller break points the max-height does not apply. The height may either be 100% of the screen or maintain the height defined by the content while sticking to the bottom of the mobile screen.
 
-<div className="image--fixed">
+<Row>
+<Column colLg={8}>
 
-![Modal on mobile](images/modal-style-3.png)
+![Modal sizes](images/modal-style-4.png)
 
-</div>
-
-<Caption>Example of a modal on a mobile screen</Caption>
+</Column>
+</Row>
