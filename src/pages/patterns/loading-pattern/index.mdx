@@ -5,7 +5,7 @@ description: Loading patterns are used when information takes an extended amount
 
 <PageDescription>
 
-Loading patterns are used when information takes an extended amount of time to process and appear on screen. Skeleton states and the loading component are two interactions that communicate to users that data is loading and the screen is not frozen.
+Loading patterns are used when information takes an extended amount of time to process and appear on-screen. Skeleton states and the loading component are two interactions that communicate to users that data is loading and the screen is not frozen.
 
 </PageDescription>
 
@@ -24,68 +24,51 @@ Loading patterns are used when information takes an extended amount of time to p
 
 ## Overview
 
-The amount of time information takes to load depends on a number of factors, including processing speed and the quality of a user's connection. The way this loading is presented dramatically alters the perceived performance of an application, especially if the app is performing complex calculations or querying large data sets.
+The amount of time information takes to load depends on several factors, including processing speed and the quality of a user's connection. The way this loading is presented dramatically alters the perceived performance of an application, especially if the app is performing complex calculations or querying large data sets.
 
-Presenting motion and indicating progress are two effective ways to let a user know their request is successfully processing. The way you indicate loading depends on the amount of time the process will take and the location within an application the process is taking place.
+Presenting motion and indicating progress are two effective ways to let a user know their request is successfully processing. According to [research](https://www.nngroup.com/articles/progress-indicators/) conducted by the Nielsen Norman Group, skeleton states and other loading indicators improve user satisfaction.
 
-### Anatomy
-
-<Row>
-<Column colLg={8}>
-
-![Placeholder anatomy image](images/placeholder_guidance.png)
-
-</Column>
-</Row>
-
-1. **Skeleton state:** Words.
-1. **Filler:** Words.
-1. **Filler:** Words.
+The way you indicate loading depends on the amount of time the process will take and the location within an application the process is taking place.
 
 ### Types of loading
 
-| Type                                        | When to use                                                                      | Use cases                                                                                                                                           |
-| ------------------------------------------- | -------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Progressive loading](#progressive-loading) | When a page or application will take several moments to load all data            | When data must load into container components like tables and cards.                                                                                |
-| [Loading indicators](#loading-indicators)   | When a process must load in place and a user will not be directed to a new view. | — When data processing takes more than a few seconds but no longer than one minute <br />— When data from a user input is being saved or submitted. |
-| [Load more options](#load-more-options)     | When a view can only load a small fraction of options or information             | Locations with limited space for options like dropdown menus                                                                                        |
+| Type                                        | When to use                                                                      | Use cases                                                                                                                                         |
+| ------------------------------------------- | -------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Progressive loading](#progressive-loading) | When a page or application will take several moments to load all data            | When data must load into container components like tables and cards.                                                                              |
+| [Loading indicators](#loading-indicators)   | When a process must load in place and a user will not be directed to a new view. | — When data processing takes more than a few seconds but no longer than one minute <br />— When data from user input is being saved or submitted. |
+| [Load more options](#load-more-options)     | When a view can only load a small fraction of options or information             | Locations with limited space for options like dropdown menus                                                                                      |
 
 ## Progressive loading
 
 When a user first loads a page, it may take several moments for all information and page elements to populate. To give the impression of progress, you can load the page in batches. Loading a page in batches is an intuitive way to display loading progress. The simplest view of the page loads first, followed by progressively more detailed batches until the entire viewport has loaded.
+
+To indicate progress, you can use a [skeleton state](#skeleton-states) or simply present page elements as they load.
 
 <Row>
 <Column colLg={4}>
 
 ![First phase of a dashboard using skeleton states to demonstrate progressive loading](/images/prog-loading-1.png)
 
-<Caption>
-  First phase of a dashboard using skeleton states to demonstrate progressive
-  loading
-</Caption>
+<Caption>First phase of progressive loading</Caption>
 
 </Column>
 <Column colLg={4}>
 
 ![Second phase of a dashboard using skeleton states to demonstrate progressive loading](/images/prog-loading-2.png)
 
-<Caption>
-  Second phase of a dashboard using skeleton states to demonstrate progressive
-  loading
-</Caption>
+<Caption>Second phase of progressive loading</Caption>
 
 </Column>
 <Column colLg={4}>
 
 ![Third phase of a dashboard using skeleton states to demonstrate progressive loading](/images/prog-loading-3.png)
 
-<Caption>
-  Third phase of a dashboard using skeleton states to demonstrate progressive
-  loading
-</Caption>
+<Caption>Third phase of progressive loading</Caption>
 
 </Column>
 </Row>
+
+<br />
 
 | When to use                                             |                                                                                                                                                         |
 | ------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -96,11 +79,11 @@ When a user first loads a page, it may take several moments for all information 
 
 The first batch should show a page's basic structure and include any text not reliant on processing, like text in an application's shell. This simplified view of an application is called a [skeleton state](#skeleton-states).
 
-Following batches will include images, content outside of the viewport, interactive components, and data-based text.
+The next batches will include images, content outside of the viewport, interactive components, and data-based text.
 
 Not all items need a skeleton state and can be expressed as negative or white space until they load. For example, an image can be shown as an area of white space until the full image loads.
 
-### Skeleton states
+## Skeleton states
 
 <Row>
 <Column colLg={8}>
@@ -110,9 +93,9 @@ Not all items need a skeleton state and can be expressed as negative or white sp
 </Column>
 </Row>
 
-Skeleton states are simplified versions of components used on an initial page load to indicate that the information on the page has not fully loaded yet. They should only appear for only a few seconds, disappearing once the actual content populates the page.
+Skeleton states are simplified versions of components used on an initial page load to indicate that the information on the page has not fully loaded yet. They should only appear for only a few seconds, disappearing once components and content populate the page.
 
-Skeleton states improve a web app's perceived performance as the app appears to load faster than it actually does, and uses motion to convey that the page is not stuck loading.
+Skeleton states use motion to convey that the page is not stuck loading and [reduce user uncertainty](https://www.nngroup.com/articles/progress-indicators/).
 
 Only use skeleton states on container-based components like tiles and structured lists or data-based components like data tables and cards. In most cases, action components (e.g. buttons, input fields, checkboxes, toggles) do not need to have a skeleton state.
 
@@ -126,36 +109,36 @@ Full-screen loading indicators tell a user the entire application is processing,
 
 ### Full-screen loading
 
-If a user action requires the entire page or application to process, place an overlay over the entire page and display a loading spinner.
+If a user action requires the entire page or application to process, place an overlay over the entire page and display a [loading spinner](/components/loading/usage).
 
-Let the user know if the process will take more than a few minutes.
+[Let the user know](/patterns/notification-pattern) if the process will take more than a few minutes.
 
 <Row>
 <Column colLg={8}>
 
-![Example of a large loader in an application](/images/larger-loader.png)
+![Example of a progress indicator in an application](/images/larger-loader.png)
 
-<Caption>Example of a large loader in an application</Caption>
+<Caption>Example of a progress indicator in an application</Caption>
 
 </Column>
 </Row>
 
 | When to use                                             |                                                                                                                                                                              |
 | ------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| _When an action disables the application_               | If a user's action temporarily disables the application while processing occurs, use a loading indicator and a full screen overlay.                                          |
-| _When processing takes more than a few seconds_         | If a loading process will require the application's full resources and will take longer than a moment or two, use a full screen loading indicator.                           |
+| _When an action temporarily disables the application_   | If a user's action temporarily disables the application while processing occurs, use a loading indicator and a full-screen overlay.                                          |
+| _When processing takes more than a few seconds_         | If a loading process will require the application's full resources and will take longer than a moment or two, use a full-screen loading indicator.                           |
 | _When data from user input is being saved or submitted_ | Saving data following with user input often takes a few moments. Using a loading indicator allows the application to finish processing before allowing the user to continue. |
 
 ### Inline loading
 
-Use the inline loading component when a single component is processing. For example, when a user restarts a stopped application, an inline loading component indicates the system is processing the restart request.
+Use the inline loading component when a single component is processing. For example, when an administrator invites a user, an inline loading component indicates the system is processing the invite request.
 
 <Row>
 <Column colLg={8}>
 
-![Example of an inline loader](/images/inline-loading-animated.gif)
+![Example of an inline loading indicator](/images/inline-loading-animated.gif)
 
-<Caption>Example of an inline loader</Caption>
+<Caption>Example of an inline loading indicator</Caption>
 
 </Column>
 </Row>
@@ -182,11 +165,17 @@ For specific loading accessibility concerns, see the WCAG documentation for [Not
 
 ## Related
 
+<Row>
+<Column colSm={2} colMd={2} colLg={3}>
+
 #### Components
 
 - [Data table](/components/data-table/code)
 - [Loading](/components/loading/code)
 - [Pagination](/components/pagination/code)
+
+</Column>
+<Column colSm={2} colMd={2} colLg={3}>
 
 #### Patterns
 
@@ -194,9 +183,13 @@ For specific loading accessibility concerns, see the WCAG documentation for [Not
 - [Forms](/patterns/forms-pattern)
 - [Notifications](/patterns/notification-pattern)
 
+</Column>
+</Row>
+
 ## References
 
-STUB
+- Jakob Nielsen, [Progress Indicators Make a Slow System Less Insufferable](https://www.nngroup.com/articles/progress-indicators/) (Nielsen Norman Group, 2001)
+- Web Content Accessibility Guidelines, [Notification of Loading/Busy](https://www.w3.org/WAI/GL/wiki/Notification_of_Loading/Busy) (W3C, 2016)
 
 ## Feedback
 
