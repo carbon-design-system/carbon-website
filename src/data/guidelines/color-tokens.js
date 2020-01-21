@@ -354,8 +354,8 @@ const colorTokens = {
         },
       },
     },
-    '$text-06': {
-      role: ['Error text'],
+    '$text-error': {
+      role: ['Error message text'],
       value: {
         white: {
           name: 'Red 60',
