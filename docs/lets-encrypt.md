@@ -30,6 +30,7 @@ certbot certonly \
   --logs-dir logs \
   --manual \
   --preferred-challenges dns \
+  -d 'carbondesignsystem.com' \
   -d '*.carbondesignsystem.com'
 ```
 
@@ -46,6 +47,7 @@ certbot certonly \
   --config-dir ~/letsencrypt/config \
   --work-dir ~/letsencrypt/work \
   --logs-dir ~/letsencrypt/logs \
+  -d 'carbondesignsystem.com' \
   -d '*.carbondesignsystem.com'
 ```
 
