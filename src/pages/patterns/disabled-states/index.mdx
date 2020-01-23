@@ -1,6 +1,6 @@
 ---
 title: Disabled states
-description: A disabled state is applied to a component when the user is not allowed to interact with the component due to either permissions, dependencies, or pre-requisites.
+description: A disabled state is applied to a component when the user is not allowed to interact with the component due to either permissions, dependencies, or prerequisites.
 ---
 
 <PageDescription>
@@ -24,17 +24,17 @@ A disabled state is applied to a component when the user is not allowed to inter
 
 ### Types of disabled states
 
-| Variation               | Description                                                                                                                                                                                                                                     |
-| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Disabled](#disabled)   | Cannot be clicked, selected or interacted with. It is not read by a screen reader and takes on the default disabled visual style.                                                                                                               |
-| [Read-only](#read-only) | The user cannot interact with it but content is still readable and accessible to a screen reader. The visual style should contain no interactive indicators such as `$interactive-01`, hover states, or text embellishments (i.e., underlines). |
-| [Hidden](#hidden)       | The component is completely hidden from view. The user does not know the option is there.                                                                                                                                                       |
+| Variation               | Description                                                                                                                                                                                                           |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Disabled](#disabled)   | Cannot be clicked, selected or interacted with. It is not read by a screen reader and takes on the default disabled visual style.                                                                                     |
+| [Read-only](#read-only) | The user cannot interact with it but content is still readable and accessible to a screen reader. The visual style should contain no interactive indicators, hover states, or text embellishments (i.e., underlines). |
+| [Hidden](#hidden)       | The component is completely hidden from view. The user does not know the option is there.                                                                                                                             |
 
 ## The solution
 
 ### Disabled
 
-A default disabled state is used when a component is temporarily disabled due to dependencies (when one piece of software relies on another one) or prerequisites. This scenario is a temporary state change that is most commonly triggered by a user's action or inaction. Once the dependencies have been resolved and/or the pre-requisites have been fulfilled, the default disabled component returns to its enabled state. In a temporarily disabled scenario the component should never fully disappear from the user's view.
+Use a disabled state when a component is temporarily disabled due to dependencies (when one piece of software relies on another) or prerequisites. Components are only ever temporarily disabled. Once the dependencies have been resolved and the prerequisites have been met, the disabled component returns to its enabled state. If a component is permanantly disabled it should be [hidden](#hidden).
 
 <Row>
 <Column colLg={8}>
@@ -46,7 +46,7 @@ A default disabled state is used when a component is temporarily disabled due to
 
 #### Additional warning
 
-An [inline warning notification](/components/notification/code) can be shown in cases where a temporarily disabled item affects multiple items or the primary action of the flow. The notification should describe how the user can enable or re-enable the disabled component.
+An [inline warning notification](/components/notification/code) can be shown in cases where a temporarily disabled item affects multiple items or the primary action of the flow. The notification should describe how the user can enable or reenable the disabled component.
 
 <Row>
 <Column colLg={8}>
@@ -58,33 +58,57 @@ An [inline warning notification](/components/notification/code) can be shown in 
 
 ### Read-only
 
-In scenarios where the content of a disabled component or element is still relevant to the user or important to task completion, then the read-only variation is used. This allows the user to read the information but not interact with or change it. Read-only content should always be accessible to a screen reader.
+If the content of a disabled component or element is still relevant to the user or important to task completion, use the read-only variation. This allows the user to read the information but not change it. Read-only content should always be [accessible to a screen reader](https://www.w3.org/TR/html401/interact/forms.html#h-17.12).
 
 ### Hidden
 
-A hidden state is used when a user does not have permission to access a certain function of a UI. If a user doesn't have the ability to enable the functionality by addressing dependencies or prerequisites, the option should be completely hidden. An administrator must change the user's permissions to resurface the hidden item.
+If a user doesn't have the ability to enable a functionality by addressing dependencies or prerequisites, the option should be completely hidden. An administrator must change the user's permissions to resurface the hidden item.
 
-For example, when a user is the organization owner they are allowed to edit data routes and access. Any user that is not an organization owner would not be shown the “Edit routes and access” button on a team directory page. If the user is made an organization owner the button will be made visible.
+For example, when a user is the organization owner they are allowed to edit data routes and user access. Any user that is not an organization owner would not be shown the “Edit routes and access” button on a team directory page. If the user is made an organization owner the button will become visible.
 
 <Row>
 <Column colLg={8}>
 
-![Example of hidden disabled content on the right](images/disabled-4.png)
+![Example of a hidden menu item](images/disabled-4.png)
 
 </Column>
 </Row>
 
 ## Accessibility
 
-STUB
+Follow all Carbon accessibility guidance provided for [individual components](/components/overview) and follow [WCAG guidance](https://www.w3.org/TR/html401/interact/forms.html#h-17.12) for all other applications of disabled and read-only states.
+
+> In contexts where user input is either undesirable or irrelevant, it is important to be able to disable a control or render it read-only. For example, one may want to disable a form's submit button until the user has entered some required data. Similarly, an author may want to include a piece of read-only text that must be submitted as a value along with the form.
+>
+> <cite>- Web Content Accessibility Guidelines. (W3C, 2020)</cite>
 
 ## Related
 
-STUB
+<Row>
+<Column colSm={2} colMd={2} colLg={2}>
+
+#### Components
+
+- [Button](/components/button/usage)
+- [Dropdown](/components/dropdown/usage)
+- [Form](/components/form)
+- [Text input](/components/text-input/usage)
+- [Tooltip](/components/tooltip/usage)
+
+</Column>
+<Column colSm={2} colMd={2} colLg={3}>
+
+#### Patterns
+
+- [Forms](/patterns/forms-pattern)
+- [Notifications](/patterns/notification-pattern)
+
+</Column>
+</Row>
 
 ## References
 
-STUB
+- Web Content Accessibility Guidelines, [Forms](https://www.w3.org/TR/html401/interact/forms.html#h-17.12), (W3C, 2020)
 
 ## Feedback
 
