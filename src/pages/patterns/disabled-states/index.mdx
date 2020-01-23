@@ -26,17 +26,17 @@ Disabled states are a way to deemphasize a page element and limit a user's abili
 
 ### When to use
 
-| State                   | Description                                                                                                                                                                                                           |
-| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Disabled](#disabled)   | Cannot be clicked, selected or interacted with. It is not read by a screen reader and takes on the default disabled visual style.                                                                                     |
-| [Read-only](#read-only) | The user cannot interact with it but content is still readable and accessible to a screen reader. The visual style should contain no interactive indicators, hover states, or text embellishments (i.e., underlines). |
-| [Hidden](#hidden)       | The component is completely hidden from view due to permission settings. The user does not know the option is there, and can only gain accesss to the option if an administrator grants permission.                   |
+| State                             | Description                                                                                                                                                                                                           | When to use                                                                                                                                                         |
+| --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Disabled](#disabled)             | Cannot be clicked, selected or interacted with. It is not read by a screen reader and takes on the default disabled visual style.                                                                                     | When you want to deemphasize a page element without completely hiding it. Useful when missing prerequisites prevent a certain page function from working correctly. |
+| [Read-only](#read-only)           | The user cannot interact with it but content is still readable and accessible to a screen reader. The visual style should contain no interactive indicators, hover states, or text embellishments (i.e., underlines). | When you still want a reader to see the content contained within a page element but don't want the user to interact with or change the data                         |
+| [Hidden options](#hidden-options) | The component is completely hidden from view due to permission settings. The user does not know the option is there, and can only gain accesss to the option if an administrator grants permission.                   | When an option or function is permanantly disabled for a user and there is no possible action the user can take to enable it.                                       |
 
 ## The solution
 
 ### Disabled
 
-Use a disabled state when a component is temporarily disabled due to dependencies (when one piece of software relies on another) or prerequisites. Components are only ever temporarily disabled. Once the dependencies have been resolved and the prerequisites have been met, the disabled component returns to its enabled state.
+Use a disabled state when a component is temporarily disabled due to dependencies (when one piece of software relies on another) or prerequisites. Components are only ever temporarily disabled. Once the dependencies have been resolved and the prerequisites have been met, the disabled component returns to its enabled state. Disabled components receive a default disabled style that should not be overridden.
 
 If a component is permanantly disabled it should be [hidden](#hidden).
 
@@ -70,7 +70,11 @@ An [inline warning notification](/components/notification/code) can be shown in 
 
 If the content of a disabled component or element is still relevant to the user or important to task completion, use the read-only variation. This allows the user to read the information but not change it. Read-only content should always be [accessible to a screen reader](https://www.w3.org/TR/html401/interact/forms.html#h-17.12).
 
-### Hidden
+#### Style
+
+The visual style of the read-only states vary by component but should never contain any interactive indicators such as `$brand-01` color usage, hover states, or text embellishments (i.e., underlines).
+
+### Hidden options
 
 If a user doesn't have the ability to enable a functionality by addressing dependencies or prerequisites, the option should be completely hidden. An administrator must change the user's permissions to resurface the hidden item.
 
