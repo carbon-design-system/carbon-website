@@ -1,13 +1,19 @@
 name: Deploy website to IBM Cloud
 
+
+## scheduled deploy
+##on:
+  ##schedule:
+   ## - cron: '0 8 * * *'
+   
 on:
   push:
-    branches:
+    branches: 
       - master
 
 jobs:
   build:
-    runs-on: macOS-latest
+    runs-on: macos
 
     steps:
       - uses: actions/checkout@master
@@ -17,7 +23,7 @@ jobs:
           node-version: 12.x
       - name: Install and build
         run: |
-          yarn install
+          yarn install --verbose
           yarn build
       - name: Install ibmcloud cli
         run: |

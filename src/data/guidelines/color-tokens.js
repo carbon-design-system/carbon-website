@@ -1214,12 +1214,12 @@ const colorTokens = {
           hex: '#c6c6c6',
         },
         g90: {
-          name: 'Gray 70',
-          hex: '#525252',
+          name: 'Gray 60',
+          hex: '#6f6f6f',
         },
         g100: {
-          name: 'Gray 80',
-          hex: '#393939',
+          name: 'Gray 70',
+          hex: '#525252',
         },
       },
     },
