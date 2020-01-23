@@ -1,6 +1,6 @@
 ---
 name: Website feedback
-about: User feedback collected from the IBM Design Language Website.
+about: User feedback collected from the Carbon Design System Website.
 labels: 'type: discussion 💬'
 assignees: ''
 ---
