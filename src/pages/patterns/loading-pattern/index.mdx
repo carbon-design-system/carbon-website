@@ -25,52 +25,9 @@ Loading patterns are used when information takes an extended amount of time to p
 
 ## Overview
 
-Loading strategies assure users that their request is in progress and can create the illusion of shorter load times in apps. According to [research](https://www.nngroup.com/articles/progress-indicators/) conducted by the Nielsen Norman Group,skeleton states and other loading indicators improve user satisfaction.
+Loading strategies assure users that their request is in progress and can create the illusion of shorter load times in apps. According to [research](https://www.nngroup.com/articles/progress-indicators/) conducted by the Nielsen Norman Group, skeleton states and other loading indicators improve user satisfaction.
 
-In this pattern, we will look at progressive loading, skeleton states, and loading indicators.
-
-## Progressive loading
-
-Progressive loading is when a page loads in batches. The simplest view of the page loads first, followed by progressively more detailed batches until the entire viewport has loaded.
-
-The primary batch should show a page’s basic structure (the skeleton state versions of the container-based components), data-based text (the skeleton state version of text) and non-data text. Following batches can include images, content outside of the viewport, interactive (action-based) components, and data-based text.
-
-Not all items need a skeleton state and instead can be expressed as negative or white space until they load. For example, a 600 x 600px image can be shown as a 600 x 600px area of white space until the full image loads.
-
-<Row>
-<Column colLg={4}>
-
-![First phase of a dashboard using skeleton states to demonstrate progressive loading](/images/prog-loading-1.png)
-
-<Caption>Phases of progressive loading</Caption>
-
-</Column>
-<Column colLg={4}>
-
-![Second phase of a dashboard using skeleton states to demonstrate progressive loading](/images/prog-loading-2.png)
-
-</Column>
-<Column colLg={4}>
-
-![Third phase of a dashboard using skeleton states to demonstrate progressive loading](/images/prog-loading-3.png)
-
-</Column>
-</Row>
-
-<br />
-
-| When to use                                             |                                                                                                   |
-| ------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| _When a page view is slow to load_                      | Pages that source data from multiple sources, such as dashboards, and can be slow to load.        |
-| _When a user changes filters or facets in a table view_ | Tables may be sourcing information from large data sets and so processing may take a few moments. |
-
-### Behaviors
-
-The first batch should show a page's basic structure and include any text not reliant on processing, like text in an application's shell. This simplified view of an application is called a [skeleton state](#skeleton-states).
-
-The next batches will include images, content outside of the viewport, interactive components, and data-based text.
-
-Not all items need a skeleton state and can be expressed as negative or white space until they load. For example, an image can be shown as an area of white space until the full image loads.
+In this pattern, we will look at skeleton states, loading indicators, and progressive loading in general.
 
 ## Skeleton states
 
@@ -79,12 +36,14 @@ Not all items need a skeleton state and can be expressed as negative or white sp
 
 ![Example of a text skeleton state in a data table](images/skeleton.png)
 
+<Caption>Example of a skeleton state</Caption>
+
 </Column>
 </Row>
 
 Skeleton states are simplified versions of components used on an initial page load to indicate that the information on the page has not fully loaded yet. They should only appear for only a few seconds, disappearing once components and content populate the page.
 
-Skeleton states use motion to convey that the page is not stuck and that data is still being loaded. This [reduces user uncertainty](https://www.nngroup.com/articles/progress-indicators/).
+Skeleton states use motion to convey that the page is not stuck and that data is still being loaded. This can help to [reduce user uncertainty](https://www.nngroup.com/articles/progress-indicators/).
 
 Only use skeleton states on container-based components like tiles and structured lists or data-based components like data tables and cards. In most cases, action components (e.g. buttons, input fields, checkboxes, toggles) do not need to have a skeleton state.
 
@@ -131,6 +90,49 @@ Use the inline loading component when a single component is processing. For exam
 
 </Column>
 </Row>
+
+## Progressive loading
+
+Progressive loading is when a page loads in batches. The simplest view of the page loads first, followed by progressively more detailed batches until the entire viewport has loaded.
+
+The primary batch should show a page’s basic structure (the skeleton state versions of the container-based components), data-based text (the skeleton state version of text) and non-data text. Following batches can include images, content outside of the viewport, interactive (action-based) components, and data-based text.
+
+Not all items need a skeleton state and instead can be expressed as negative or white space until they load. For example, a 600 x 600px image can be shown as a 600 x 600px area of white space until the full image loads.
+
+<Row>
+<Column colLg={4}>
+
+![First phase of a dashboard using skeleton states to demonstrate progressive loading](/images/prog-loading-1.png)
+
+<Caption>Phases of progressive loading</Caption>
+
+</Column>
+<Column colLg={4}>
+
+![Second phase of a dashboard using skeleton states to demonstrate progressive loading](/images/prog-loading-2.png)
+
+</Column>
+<Column colLg={4}>
+
+![Third phase of a dashboard using skeleton states to demonstrate progressive loading](/images/prog-loading-3.png)
+
+</Column>
+</Row>
+
+<br />
+
+| When to use                                             |                                                                                                   |
+| ------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| _When a page view is slow to load_                      | Pages that source data from multiple sources, such as dashboards, and can be slow to load.        |
+| _When a user changes filters or facets in a table view_ | Tables may be sourcing information from large data sets and so processing may take a few moments. |
+
+### Behaviors
+
+The first batch should show a page's basic structure and include any text not reliant on processing, like text in an application's shell. This simplified view of an application is called a [skeleton state](#skeleton-states).
+
+The next batches will include images, content outside of the viewport, interactive components, and data-based text.
+
+Not all items need a skeleton state and can be expressed as negative or white space until they load. For example, an image can be shown as an area of white space until the full image loads.
 
 ## Load more options
 
