@@ -15,7 +15,13 @@ const FirstRightText = () => (
   </p>
 );
 
-const SecondLeftText = () => <p>Wondering how<br/>to contribute?</p>;
+const SecondLeftText = () => (
+  <p>
+    Wondering how
+    <br />
+    to contribute?
+  </p>
+);
 
 const SecondRightText = () => (
   <p>
@@ -44,6 +50,7 @@ const customProps = {
                 href="/updates/v10-migration/overview"
                 color="dark"
                 actionIcon="arrowRight"
+                onClick={() => fathom('trackGoal', '0GXPXZKE', 0)}
               />
             </div>
             <HomepageVideo />
