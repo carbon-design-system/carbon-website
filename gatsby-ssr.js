@@ -21,8 +21,16 @@ export const onRenderBody = ({ setHeadComponents }) => {
       property="twitter:image:alt"
       content="Carbon Design System logo"
     />,
-    <meta property="og:type" content="website" />,
-    <meta property="twitter:card" content="summary_large_image" />,
-    <meta property="twitter:site" content="@_carbondesign" />,
+    <meta property="og:type" key="og:type" content="website" />,
+    <meta
+      property="twitter:card"
+      key="twitter:card"
+      content="summary_large_image"
+    />,
+    <meta
+      property="twitter:site"
+      key="twitter:site"
+      content="@_carbondesign"
+    />,
   ]);
 };
