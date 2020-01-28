@@ -5,7 +5,7 @@ import React from 'react';
 import { CopyButton } from 'carbon-components-react';
 import { Launch16 } from '@carbon/icons-react';
 import cx from 'classnames';
-import { codeBar, button, copyButton } from './Code.module.scss';
+import { codeBar, button, copyButton, linkList } from './Code.module.scss';
 import useCodesandbox from './useCodesandbox';
 
 // If no path is given, don't render. We'll use the Sidebar for buttons
@@ -15,11 +15,27 @@ const CodeBar = ({ src, code }) => {
   const sandboxUrl = useCodesandbox(code);
   return (
     <div className={codeBar}>
-      <span>
+      <div className={linkList}>
         <a target="_blank" rel="noopener noreferrer" href={sandboxUrl}>
-          Edit in Codesandbox <Launch16 />
+          CodeSandbox <Launch16 />
         </a>
-      </span>
+
+        <a target="_blank" rel="noopener noreferrer" href={sandboxUrl}>
+          React <Launch16 />
+        </a>
+
+        <a target="_blank" rel="noopener noreferrer" href={sandboxUrl}>
+          Angular <Launch16 />
+        </a>
+
+        <a target="_blank" rel="noopener noreferrer" href={sandboxUrl}>
+          Vanilla <Launch16 />
+        </a>
+
+        <a target="_blank" rel="noopener noreferrer" href={sandboxUrl}>
+          Vue <Launch16 />
+        </a>
+      </div>
       {src ? (
         <a
           target="_blank"
