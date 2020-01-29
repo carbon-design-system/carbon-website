@@ -11,30 +11,25 @@ import useCodesandbox from './useCodesandbox';
 // If no path is given, don't render. We'll use the Sidebar for buttons
 // If a src url is given, the src Icon will display in this row, otherwise
 // The copy button will.
-const CodeBar = ({ src, code }) => {
+const StorybookLink = ({ framework, url }) => (
+  <a target="_blank" rel="noopener noreferrer" href={url}>
+    {framework} <Launch16 />
+  </a>
+);
+
+const CodeBar = ({ src, code, links }) => {
   const sandboxUrl = useCodesandbox(code);
+  const storybookLinks = Object.entries(links);
+
   return (
     <div className={codeBar}>
       <div className={linkList}>
         <a target="_blank" rel="noopener noreferrer" href={sandboxUrl}>
           CodeSandbox <Launch16 />
         </a>
-
-        <a target="_blank" rel="noopener noreferrer" href={sandboxUrl}>
-          React <Launch16 />
-        </a>
-
-        <a target="_blank" rel="noopener noreferrer" href={sandboxUrl}>
-          Angular <Launch16 />
-        </a>
-
-        <a target="_blank" rel="noopener noreferrer" href={sandboxUrl}>
-          Vanilla <Launch16 />
-        </a>
-
-        <a target="_blank" rel="noopener noreferrer" href={sandboxUrl}>
-          Vue <Launch16 />
-        </a>
+        {storybookLinks.map(([framework, url]) => (
+          <StorybookLink framework={framework} url={url} />
+        ))}
       </div>
       {src ? (
         <a
