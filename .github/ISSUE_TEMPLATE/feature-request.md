@@ -1,8 +1,8 @@
 ---
-name: "Feature request \U0001F4A1"
+name: 'Feature request 💡'
 about: Suggest an idea for this project
 title: ''
-labels: ''
+labels: 'type: enhancement 💡'
 assignees: ''
 ---
 

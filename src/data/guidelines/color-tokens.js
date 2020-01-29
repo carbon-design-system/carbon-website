@@ -210,7 +210,7 @@ const colorTokens = {
           hex: '#8d8d8d',
         },
         g90: {
-          name: 'Gray 60',
+          name: 'Gray 50',
           hex: '#8d8d8d',
         },
         g100: {
@@ -351,6 +351,27 @@ const colorTokens = {
         g100: {
           name: 'Gray 50',
           hex: '#8d8d8d',
+        },
+      },
+    },
+    '$text-error': {
+      role: ['Error message text'],
+      value: {
+        white: {
+          name: 'Red 60',
+          hex: '#da1e28',
+        },
+        g10: {
+          name: 'Red 60',
+          hex: '#da1e28',
+        },
+        g90: {
+          name: 'Red 30',
+          hex: '#ffb3b8',
+        },
+        g100: {
+          name: 'Red 40',
+          hex: '#ff8389',
         },
       },
     },
@@ -555,8 +576,8 @@ const colorTokens = {
           hex: '#da1e28',
         },
         g90: {
-          name: 'Red 50',
-          hex: '#fa4d56',
+          name: 'Red 40',
+          hex: '#ff8389',
         },
         g100: {
           name: 'Red 50',
@@ -1214,12 +1235,12 @@ const colorTokens = {
           hex: '#c6c6c6',
         },
         g90: {
-          name: 'Gray 70',
-          hex: '#525252',
+          name: 'Gray 60',
+          hex: '#6f6f6f',
         },
         g100: {
-          name: 'Gray 80',
-          hex: '#393939',
+          name: 'Gray 70',
+          hex: '#525252',
         },
       },
     },

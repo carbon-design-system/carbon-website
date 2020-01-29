@@ -7,7 +7,13 @@ tabs:
 
 import Preview from 'components/Preview';
 
-### This step takes our static components and populates them with data from the GitHub GraphQL API – loading states and all. We'll be displaying Carbon repository information in a data table.
+<PageDescription>
+
+This step takes our static components and populates them with data from the
+GitHub GraphQL API – loading states and all. We'll be displaying Carbon
+repository information in a data table.
+
+</PageDescription>
 
 <AnchorLinks>
 
@@ -361,12 +367,14 @@ Import React's [useState](https://reactjs.org/docs/hooks-state.html) by modifyin
 import React, { useState } from 'react';
 ```
 
-Then initialize the new state variables that we'll use for pagination as the first lines inside the `RepoPage` component, above the `return()`.
+Then initialize the new state variables that we'll use for pagination as the first lines inside the `RepoPage` component, above the outer `return()`.
 
 ```javascript path=src/content/RepoPage/RepoPage.js
-const [totalItems, setTotalItems] = useState(0);
-const [firstRowIndex, setFirstRowIndex] = useState(0);
-const [currentPageSize, setCurrentPageSize] = useState(10);
+const RepoPage = () => {
+  const [totalItems, setTotalItems] = useState(0);
+  const [firstRowIndex, setFirstRowIndex] = useState(0);
+  const [currentPageSize, setCurrentPageSize] = useState(10);
+...
 ```
 
 This initializes the total number of rows and the index of the first row to `0`, and the page size to `10` as we also specified in our loading skeleton.
