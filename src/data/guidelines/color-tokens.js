@@ -354,6 +354,27 @@ const colorTokens = {
         },
       },
     },
+    '$text-error': {
+      role: ['Error message text'],
+      value: {
+        white: {
+          name: 'Red 60',
+          hex: '#da1e28',
+        },
+        g10: {
+          name: 'Red 60',
+          hex: '#da1e28',
+        },
+        g90: {
+          name: 'Red 30',
+          hex: '#ffb3b8',
+        },
+        g100: {
+          name: 'Red 40',
+          hex: '#ff8389',
+        },
+      },
+    },
     '$link-01': {
       role: ['Primary links', 'Ghost button'],
       value: {
@@ -555,8 +576,8 @@ const colorTokens = {
           hex: '#da1e28',
         },
         g90: {
-          name: 'Red 50',
-          hex: '#fa4d56',
+          name: 'Red 40',
+          hex: '#ff8389',
         },
         g100: {
           name: 'Red 50',
