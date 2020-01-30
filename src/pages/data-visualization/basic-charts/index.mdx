@@ -22,17 +22,33 @@ import {
 } from '@carbon/charts-react';
 
 import {
+  addHeightToOptions,
   // Bar
   groupedBarOptions,
   groupedBarData,
+  groupedHorizontalBarOptions,
+  groupedHorizontalBarData,
   simpleBarOptions,
   simpleBarData,
+  simpleHorizontalBarOptions,
+  simpleHorizontalBarData,
   simpleBarTimeSeriesOptions,
   simpleBarTimeSeriesData,
-  stackedBarData,
+  simpleHorizontalBarTimeSeriesOptions,
+  simpleHorizontalBarTimeSeriesData,
   stackedBarOptions,
+  stackedBarData,
+  stackedHorizontalBarOptions,
+  stackedHorizontalBarData,
   stackedBarTimeSeriesOptions,
   stackedBarTimeSeriesData,
+  stackedHorizontalBarTimeSeriesOptions,
+  stackedHorizontalBarTimeSeriesData,
+  // Pie & donut
+  pieOptions,
+  pieData,
+  donutOptions,
+  donutData,
   // Line
   lineTimeSeriesOptions,
   lineTimeSeriesData,
@@ -48,11 +64,6 @@ import {
   scatterTimeSeriesData,
   scatterOptions,
   scatterData,
-  // Pie & donut
-  pieOptions,
-  pieData,
-  donutOptions,
-  donutData,
 } from '../../../data/charts/index';
 
 <AnchorLinks>
@@ -74,16 +85,12 @@ Bar charts use vertical or horizontal data markers to compare individual values.
 
 <SimpleBarChart
   data={simpleBarData}
-  options={simpleBarOptions}
-  width="100%"
-  height={400}
+  options={addHeightToOptions(simpleBarOptions)}
 />
 
 <SimpleBarChart
   data={simpleBarTimeSeriesData}
-  options={simpleBarTimeSeriesOptions}
-  width="100%"
-  height={400}
+  options={addHeightToOptions(simpleBarTimeSeriesOptions)}
 />
 
 ### Grouped bar chart
@@ -92,9 +99,7 @@ A grouped bar chart, also known as a clustered bar graph, multi-set bar chart, o
 
 <GroupedBarChart
   data={groupedBarData}
-  options={groupedBarOptions}
-  width="100%"
-  height={400}
+  options={addHeightToOptions(groupedBarOptions)}
 />
 
 ### Stacked bar
@@ -103,35 +108,52 @@ Stacked bar charts are useful for comparing proportional contributions within a 
 
 <StackedBarChart
   data={stackedBarData}
-  options={stackedBarOptions}
-  width="100%"
-  height={400}
+  options={addHeightToOptions(stackedBarOptions)}
 />
 
 <StackedBarChart
   data={stackedBarTimeSeriesData}
-  options={stackedBarTimeSeriesOptions}
-  width="100%"
-  height={400}
+  options={addHeightToOptions(stackedBarTimeSeriesOptions)}
 />
 
 ### Horizontal bar
 
-The horizontal bar chart follows the same principles as a vertical column chart, only the x- and y-axis are switched.
+### Default
 
-<InlineNotification>
+Bar charts use vertical or horizontal data markers to compare individual values. You can use them to compare discrete data or show trends over time.
 
-**Note:** This chart is currently a concept and not included in the Carbon Charts repository yet. For more information, please go to the carbon-charts [GitHub repository](https://github.com/carbon-design-system/carbon-charts).
+<SimpleBarChart
+  data={simpleHorizontalBarData}
+  options={addHeightToOptions(simpleHorizontalBarOptions)}
+/>
 
-</InlineNotification>
+<SimpleBarChart
+  data={simpleHorizontalBarTimeSeriesData}
+  options={addHeightToOptions(simpleHorizontalBarTimeSeriesOptions)}
+/>
 
-<Row>
-<Column  colLg={8} colMd={6} colSm={4}>
+### Grouped bar chart
 
-![Horizontal bar chart](images/charts-basic-horizontalbar.png)
+A grouped bar chart, also known as a clustered bar graph, multi-set bar chart, or grouped column chart, is a type of bar graph that is used to compare values across multiple categories.
 
-</Column>
-</Row>
+<GroupedBarChart
+  data={groupedHorizontalBarData}
+  options={addHeightToOptions(groupedHorizontalBarOptions)}
+/>
+
+### Stacked bar
+
+Stacked bar charts are useful for comparing proportional contributions within a category. They plot the relative value that each data series contributes to the total.
+
+<StackedBarChart
+  data={stackedHorizontalBarData}
+  options={addHeightToOptions(stackedHorizontalBarOptions)}
+/>
+
+<StackedBarChart
+  data={stackedHorizontalBarTimeSeriesData}
+  options={addHeightToOptions(stackedHorizontalBarTimeSeriesOptions)}
+/>
 
 ## Line chart
 
@@ -139,28 +161,24 @@ The horizontal bar chart follows the same principles as a vertical column chart,
 
 Line charts plot data at regular intervals connected by lines. You can use line visualizations to show trends over time and compare several data sets.
 
-<LineChart data={lineData} options={lineOptions} width="100%" height={400} />
+<LineChart data={lineData} options={addHeightToOptions(lineOptions)} />
 
 <LineChart
   data={lineTimeSeriesData}
-  options={lineTimeSeriesOptions}
-  width="100%"
-  height={400}
+  options={addHeightToOptions(lineTimeSeriesOptions)}
 />
 
 ### Stepped line chart
 
 Stepped line charts plot data at regular intervals, forming a series of steps between data points. You can use line visualizations to show trends over time and compare several data sets.
 
-<LineChart data={stepData} options={stepOptions} width="100%" height={400} />
+<LineChart data={stepData} options={addHeightToOptions(stepOptions)} />
 
 ### Curved line chart
 
 <LineChart
   data={lineTimeSeriesData}
-  options={lineTimeSeriesOptions}
-  width="100%"
-  height={400}
+  options={addHeightToOptions(lineTimeSeriesOptions)}
 />
 
 ## Area chart
@@ -199,11 +217,11 @@ Note: This chart is currently a work-in-progress. To see our roadmap, request mi
 
 ### Pie
 
-<PieChart data={pieData} options={pieOptions} width="100%" height={400} />
+<PieChart data={pieData} options={addHeightToOptions(pieOptions)} />
 
 ### Donut
 
-<DonutChart data={donutData} options={donutOptions} width="100%" height={400} />
+<DonutChart data={donutData} options={addHeightToOptions(donutOptions)} />
 
 ## Scatter plots
 
@@ -211,18 +229,11 @@ Note: This chart is currently a work-in-progress. To see our roadmap, request mi
 
 Scatter plot visualizations use data points to plot two measures anywhere along a scale, not only at regular tick marks. You can use scatter plots to explore correlations between different measures.
 
-<ScatterChart
-  data={scatterData}
-  options={scatterOptions}
-  width="100%"
-  height={400}
-/>
+<ScatterChart data={scatterData} options={addHeightToOptions(scatterOptions)} />
 
 <ScatterChart
   data={scatterTimeSeriesData}
-  options={scatterTimeSeriesOptions}
-  width="100%"
-  height={400}
+  options={addHeightToOptions(scatterTimeSeriesOptions)}
 />
 
 ### Bubble chart
