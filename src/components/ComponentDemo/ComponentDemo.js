@@ -32,7 +32,14 @@ export const PREVIEW_CONTAINER_HEIGHT = 560;
 
 const { ContentSwitcher, Switch } = CarbonComponents;
 
-const ComponentDemo = ({ children: codeProp, src, scope, knobs, noInline }) => {
+const ComponentDemo = ({
+  children: codeProp,
+  src,
+  scope,
+  knobs,
+  noInline,
+  links,
+}) => {
   const [code, setCode] = useState(codeProp.trim());
   const [theme, setTheme] = useState(white);
   const { isMobile, setIsKnobContainerCollapsed } = useContext(DemoContext);
@@ -82,7 +89,7 @@ const ComponentDemo = ({ children: codeProp, src, scope, knobs, noInline }) => {
                 <TableOfContents20 />
               </button>
             )}
-            <Code code={code} src={src}>
+            <Code links={links} code={code} src={src}>
               <LiveEditor
                 padding={16}
                 style={{ overflowX: 'auto', whiteSpace: 'pre' }}
