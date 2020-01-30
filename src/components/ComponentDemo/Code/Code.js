@@ -4,11 +4,11 @@ import { container, sidebar, row } from './Code.module.scss';
 
 import CodeBar from './CodeBar';
 
-const Code = ({ children, code, path, src }) => (
+const Code = ({ children, code, path, src, links }) => (
   // eslint-disable-next-line no-unused-vars
 
   <div className={row}>
-    <CodeBar code={code} src={src} path={path} />
+    <CodeBar links={links} code={code} src={src} path={path} />
     <div className={container}>
       {children}
       <div className={sidebar} />
