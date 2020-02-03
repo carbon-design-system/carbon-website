@@ -33,6 +33,21 @@ export const groupedBarOptions = {
   },
 };
 
+// Horizontal Grouped
+export const groupedHorizontalBarData = groupedBarData;
+export const groupedHorizontalBarOptions = {
+  title: 'Grouped horizontal bar (discrete)',
+  axes: {
+    left: {
+      scaleType: 'labels',
+      primary: true,
+    },
+    bottom: {
+      secondary: true,
+    },
+  },
+};
+
 // Simple bar
 export const simpleBarData = {
   labels: ['Qty', 'More', 'Sold', 'Restocking', 'Misc'],
@@ -42,6 +57,21 @@ export const simpleBarData = {
       data: [65000, 29123, 35213, 51213, 16932],
     },
   ],
+};
+
+// Horizontal Simple
+export const simpleHorizontalBarData = simpleBarData;
+export const simpleHorizontalBarOptions = {
+  title: 'Simple horizontal bar (discrete)',
+  axes: {
+    left: {
+      primary: true,
+      scaleType: 'labels',
+    },
+    bottom: {
+      secondary: true,
+    },
+  },
 };
 
 export const simpleBarOptions = {
@@ -101,6 +131,21 @@ export const simpleBarTimeSeriesOptions = {
   },
 };
 
+// Horizontal simple time series
+export const simpleHorizontalBarTimeSeriesOptions = {
+  title: 'Simple horizontal bar (time series)',
+  axes: {
+    left: {
+      scaleType: 'time',
+      primary: true,
+    },
+    bottom: {
+      secondary: true,
+    },
+  },
+};
+export const simpleHorizontalBarTimeSeriesData = simpleBarTimeSeriesData;
+
 // Stacked bar
 export const stackedBarData = {
   labels: ['Qty', 'More', 'Sold', 'Restocking', 'Misc'],
@@ -122,6 +167,22 @@ export const stackedBarData = {
       data: [32423, 21313, 64353, 24134, 32423],
     },
   ],
+};
+
+// horizontal stacked bar
+export const stackedHorizontalBarData = stackedBarData;
+export const stackedHorizontalBarOptions = {
+  title: 'Stacked horizontal bar (discrete)',
+  axes: {
+    left: {
+      scaleType: 'labels',
+      primary: true,
+    },
+    bottom: {
+      stacked: true,
+      secondary: true,
+    },
+  },
 };
 
 export const stackedBarOptions = {
@@ -257,3 +318,19 @@ export const stackedBarTimeSeriesOptions = {
     },
   },
 };
+
+// Stacked horizontal bar (time series)
+export const stackedHorizontalBarTimeSeriesOptions = {
+  title: 'Stacked horizontal bar (time series)',
+  axes: {
+    left: {
+      primary: true,
+      scaleType: 'time',
+    },
+    bottom: {
+      stacked: true,
+      secondary: true,
+    },
+  },
+};
+export const stackedHorizontalBarTimeSeriesData = stackedBarTimeSeriesData;
