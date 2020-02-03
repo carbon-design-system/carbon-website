@@ -81,9 +81,7 @@ Before we get started, [create an IBM Cloud account](https://cloud.ibm.com/regis
 
 So far we've been developing in a, well, development environment where static asset optimization hasn't been a priority. If you reference `/src/styles/_carbon.scss`, you'll see one `@import` that is pulling in Carbon's full Sass build.
 
-##### src/styles/\_carbon.scss
-
-```scss
+```scss path=src/styles/_carbon.scss
 $feature-flags: (
   grid-columns-16: true,
 );
@@ -93,9 +91,7 @@ $feature-flags: (
 
 To give you an idea of what's all included, open up `node_modules/carbon-components/scss/globals/scss/styles.scss`. You'll see imports for components like accordion, slider, tooltip, etc. Since we aren't using those components, let's exclude them from our built stylesheets. Keeping the `$feature-flags` Sass map, replace the `styles.scss` import only with:
 
-##### src/styles/\_carbon.scss
-
-```scss
+```scss path=src/styles/_carbon.scss
 // Feature flags
 $css--font-face: true;
 $css--plex: true;
@@ -138,9 +134,7 @@ _Note: If unfamiliar with buildpacks, the [staticfile buildpack docs](https://do
 
 With the IBM Cloud CLI installed, next, we need to create a `manifest.yml` file in the root of the project. To prevent multiple apps trying to use the `carbon-tutorial-vue` name, replace `USERNAME` with your GitHub username below to make sure our apps are uniquely named.
 
-##### manifest.yml
-
-```bash
+```bash path=manifest.yml
 ---
 applications:
   - name: carbon-tutorial-vue-USERNAME
@@ -154,9 +148,7 @@ _Note: With this set-up we're still using a GitHub personal access token saved i
 
 Create a new static file in the root of the project named `Staticfile`. This tells the app to deploy from the `dist` folder and not the root of the project.
 
-##### Staticfile
-
-```bash
+```bash path=Staticfile
 root: dist
 ```
 
@@ -164,9 +156,7 @@ root: dist
 
 After telling Cloud Foundry what to include, we can also specify what to ignore. Create a top-level `.cfignore` file. Cloud Foundry doesn't let you push read-only files (specifically, files with permissions <`400`), so to prevent issues with the deploy, add:
 
-##### .cfignore
-
-```bash
+```bash path=.cfignore
 node_modules/.cache
 ```
 
