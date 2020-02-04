@@ -4,62 +4,222 @@ description: The data table component allows for the flexible display and sortin
 tabs: ['Code', 'Usage', 'Style', 'Accessibility']
 ---
 
-## Data table
+import { rowData, headerData } from './data.js';
 
-<ComponentCode
-  name="Data table"
-  component="data-table"
-  variation="data-table"
-  hasReactVersion="datatable--default"
-  hasVueVersion="datatable--default"
-  hasAngularVersion="?path=/story/table--default"
-  codepen="jRWbZZ"></ComponentCode>
+## Default
 
-## Expandable data table
+<ComponentDemo
+  scope={{ rowData, headerData, React }}
+  links={{
+    React:
+      'http://react.carbondesignsystem.com/?path=/story/contentswitcher--default',
+    Angular:
+      'https://angular.carbondesignsystem.com/?path=/story/components-content-switcher--basic',
+    Vue:
+      'http://vue.carbondesignsystem.com/?path=/story/components-cvcontentswitcher--default',
+    Vanilla: 'https://the-carbon-components.netlify.com/?nav=content-switcher',
+  }}>{`<DataTable 
+  rows={rowData} 
+  headers={headerData} 
+  render={({ rows, headers, getHeaderProps }) => (
+  <TableContainer title="DataTable">
+    <Table>
+      <TableHead>
+        <TableRow>
+          {headers.map(header => (
+            <TableHeader {...getHeaderProps({ header })}>
+              {header.header}
+            </TableHeader>
+          ))}
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        {rows.map(row => (
+          <TableRow key={row.id}>
+            {row.cells.map(cell => (
+              <TableCell key={cell.id}>{cell.value}</TableCell>
+            ))}
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
+  </TableContainer>)}
+/>`}</ComponentDemo>
 
-<ComponentCode
-  name="Expandable data table"
-  component="data-table"
-  variation="data-table--expandable"
-  hasReactVersion="datatable--with-expansion"
-  hasVueVersion="datatable--slotted-expanding-data"
-  hasAngularVersion="?path=/story/table--with-expansion"
-  codepen="wZMKme"></ComponentCode>
+## With expansion
 
-## Data table with pagination
+<ComponentDemo
+  scope={{ rowData, headerData }}
+  links={{
+    React:
+      'http://react.carbondesignsystem.com/?path=/story/contentswitcher--default',
+    Angular:
+      'https://angular.carbondesignsystem.com/?path=/story/components-content-switcher--basic',
+    Vue:
+      'http://vue.carbondesignsystem.com/?path=/story/components-cvcontentswitcher--default',
+    Vanilla: 'https://the-carbon-components.netlify.com/?nav=content-switcher',
+  }}>{`<DataTable 
+  rows={rowData} 
+  headers={headerData} 
+  render={({ rows, headers, getHeaderProps, getRowProps, getTableProps }) => (
+  <TableContainer title="DataTable with expansion">
+    <Table {...getTableProps()}>
+      <TableHead>
+        <TableRow>
+          <TableExpandHeader />
+          {headers.map(header => (
+            <TableHeader {...getHeaderProps({ header })}>
+              {header.header}
+            </TableHeader>
+          ))}
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        {rows.map(row => (
+          <React.Fragment key={row.id}>
+            <TableExpandRow {...getRowProps({ row })}>
+              {row.cells.map(cell => (
+                <TableCell key={cell.id}>{cell.value}</TableCell>
+              ))}
+            </TableExpandRow>
+            {row.isExpanded && (
+              <TableExpandedRow colSpan={headers.length + 1}>
+                <p>Aux squad rules</p>
+              </TableExpandedRow>
+            )}
+          </React.Fragment>
+        ))}
+      </TableBody>
+    </Table>
+  </TableContainer>
+)}/>`}</ComponentDemo>
 
-<ComponentCode
-  name="Data table with pagination"
-  component="data-table"
-  variation="data-table--with-pager"
-  hasVueVersion="datatable--default"
-  hasAngularVersion="?path=/story/table--with-pagination"
-  codepen="MRKaBq"></ComponentCode>
+## With selection
 
-<!--
+<ComponentDemo
+  scope={{ rowData, headerData }}
+  links={{
+    React:
+      'http://react.carbondesignsystem.com/?path=/story/contentswitcher--default',
+    Angular:
+      'https://angular.carbondesignsystem.com/?path=/story/components-content-switcher--basic',
+    Vue:
+      'http://vue.carbondesignsystem.com/?path=/story/components-cvcontentswitcher--default',
+    Vanilla: 'https://the-carbon-components.netlify.com/?nav=content-switcher',
+  }}>{`<DataTable 
+  rows={rowData} 
+  headers={headerData} 
+  render={({ rows, headers, getHeaderProps, getSelectionProps }) => (
+  <TableContainer title="DataTable">
+    <Table>
+      <TableHead>
+        <TableRow>
+          <TableSelectAll {...getSelectionProps()} />
+          {headers.map(header => (
+            <TableHeader {...getHeaderProps({ header })}>
+              {header.header}
+            </TableHeader>
+          ))}
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        {rows.map(row => (
+          <TableRow key={row.id}>
+            <TableSelectRow {...getSelectionProps({ row })} />
+            {row.cells.map(cell => (
+              <TableCell key={cell.id}>{cell.value}</TableCell>
+            ))}
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
+  </TableContainer>)}
+/>`}</ComponentDemo>
 
-## Small data table
+## Sample Data
 
-<ComponentCode
-    name="Small data table"
-    component="data-table"
-    variation="data-table--small"
-    hasAngularVersion="?path=/story/table--default&knob-size=sm&knob-showSelectionColumn=true&knob-striped=true&knob-sortable=true&knob-Data grid keyboard interactions=
-    >
-</ComponentCode>
+```javascript
+const headerData = [
+  {
+    header: 'Name',
+    key: 'name',
+  },
+  {
+    header: 'Protocol',
+    key: 'protocol',
+  },
+  {
+    header: 'Port',
+    key: 'port',
+  },
+  {
+    header: 'Rule',
+    key: 'rule',
+  },
+  {
+    header: 'Attached Groups',
+    key: 'attached_groups',
+  },
+  {
+    header: 'Status',
+    key: 'status',
+  },
+];
 
-## Toolbar
-
-<ComponentCode
-    name="Toolbar"
-    component="toolbar"
-    variation="toolbar"
-    hasVueVersion="toolbar--default"
-    hasAngularVersion="?path=/story/table--with-toolbar"
-    >
-</ComponentCode>
--->
-
-## Documentation
-
-<ComponentDocs component="data-table" />
+const rowData = [
+  {
+    attached_groups: 'Kevins VM Groups',
+    id: 'a',
+    name: 'Load Balancer 3',
+    port: 3000,
+    protocol: 'HTTP',
+    rule: 'Round robin',
+    status: 'Disabled',
+  },
+  {
+    attached_groups: 'Maureens VM Groups',
+    id: 'b',
+    name: 'Load Balancer 1',
+    port: 443,
+    protocol: 'HTTP',
+    rule: 'Round robin',
+    status: 'Starting',
+  },
+  {
+    attached_groups: 'Andrews VM Groups',
+    id: 'c',
+    name: 'Load Balancer 2',
+    port: 80,
+    protocol: 'HTTP',
+    rule: 'DNS delegation',
+    status: 'Active',
+  },
+  {
+    attached_groups: 'Marcs VM Groups',
+    id: 'd',
+    name: 'Load Balancer 6',
+    port: 3000,
+    protocol: 'HTTP',
+    rule: 'Round robin',
+    status: 'Disabled',
+  },
+  {
+    attached_groups: 'Mels VM Groups',
+    id: 'e',
+    name: 'Load Balancer 4',
+    port: 443,
+    protocol: 'HTTP',
+    rule: 'Round robin',
+    status: 'Starting',
+  },
+  {
+    attached_groups: 'Ronjas VM Groups',
+    id: 'f',
+    name: 'Load Balancer 5',
+    port: 80,
+    protocol: 'HTTP',
+    rule: 'DNS delegation',
+    status: 'Active',
+  },
+];
+```
