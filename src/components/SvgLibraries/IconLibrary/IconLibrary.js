@@ -24,7 +24,8 @@ const IconLibrary = () => {
 
   const debouncedSetSearchInputValue = debounce(setSearchInputValue, 200);
 
-  useEffect(() => {
+  useEffect(async () => {
+    // const iconsReact = await import('@carbon/icons-react');
     const iconComponentList = pickBy(
       iconsReact,
       (val, key) => key.slice(-2) === '32'

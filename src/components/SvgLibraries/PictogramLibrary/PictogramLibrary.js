@@ -23,7 +23,8 @@ const IconLibrary = () => {
 
   const debouncedSetSearchInputValue = debounce(setSearchInputValue, 200);
 
-  useEffect(() => {
+  useEffect(async () => {
+    // const pictogramsReact = await import('@carbon/pictograms-react');
     const iconArray = Object.keys(pictogramMetaData).map(icon => ({
       ...pictogramMetaData[icon],
       // If the icon is unprefixed and starts with a number, add an underscore
