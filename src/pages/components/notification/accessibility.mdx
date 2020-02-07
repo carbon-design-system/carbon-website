@@ -1,0 +1,229 @@
+---
+title: Notification
+description: Notifications are messages that communicate information to the user. The two main types of notificaitons are toast notifications and inline notifications.
+tabs: ['Code', 'Usage', 'Style', 'Accessibility']
+---
+
+import {
+  StructuredListWrapper,
+  StructuredListHead,
+  StructuredListBody,
+  StructuredListRow,
+  StructuredListInput,
+  StructuredListCell,
+  OrderedList,
+  ListItem,
+} from 'carbon-components-react';
+
+<AnchorLinks>
+  <AnchorLink>How it works</AnchorLink>
+  <AnchorLink>Accessibility considerations</AnchorLink>
+  <AnchorLink>Resources</AnchorLink>
+  <AnchorLink>Accessibility testing</AnchorLink>
+</AnchorLinks>
+
+## How it works
+
+Notification Carbon components are messages that communicate information to a user. The WAI-ARIA `role="alert"` is equivalent to `aria-live="assertive"`. It is used to display a message to the user in a way that attracts the user's attention without receiving focus to communicate the message without interrupting the users current task. If the notification does not contain an urgent message, consider changing it to `aria-live="polite"` so the notification is queued until whatever task the user is currently working on is complete.
+
+The close button contains an ARIA label of `aria-label="close"`, and the icon has `aria-hidden="true"` so it is ignored by assistive technologies. The `Tab` key is used to move focus to the close button within the notification and the `Space` key or `Enter` key activate the button to close the notification.
+
+## Accessibility considerations
+
+1. Avoid using a toast notification for critical alerts or long messages because they are timed and will disappear automatically making it difficult for people with various disabilities to get the entire message. An alert that disappears too quickly can lead to failure of the optional [WCAG 2.0 success criterion 2.2.3 (AAA)](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits-no-exceptions.html).
+2. Provide a means to turn off nonessential alerts to enhance usability for people with visual and cognitive disabilities. Additional information is available in [WCAG 2.0 success criterion 2.2.4 (AAA)](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits-postponed.html). Note: Providing this functionality is optional.
+
+3. Ensure the use of color and hidden icons are not used as the only means of conveying the importance of the notification.
+
+## Resources
+
+#### Helpful resources for creating customized accessible implementations
+
+- [W3C W3C WAI-ARIA Authoring Practices Alert Design Pattern](https://www.w3.org/TR/wai-aria-practices-1.1/#alert) covers the usage of ARIA names, state and roles.
+- [W3C W3C Web Accessibility Tutorial - User Notifications](https://www.w3.org/WAI/tutorials/forms/notifications/) provides a tutorial on notification accessibility.
+- [IBM Accessibility Checklist Checkpoint](https://www.ibm.com/able/guidelines/ci162/accessibility_checklist.html):
+  - [3.3.1 Error Identification](https://www.ibm.com/able/guidelines/ci162/error_id.html) (WCAG Success Criteria [3.3.1](https://www.w3.org/TR/UNDERSTANDING-WCAG20/minimize-error-identified.html))
+  - [3.3.2 Labels and Instructions](https://www.ibm.com/able/guidelines/ci162/labels_or_instructions.html) (WCAG Success Criteria [3.3.2](https://www.w3.org/TR/UNDERSTANDING-WCAG20/minimize-error-cues.html))
+  - [3.3.3 Error Suggestion](https://www.ibm.com/able/guidelines/ci162/error_suggestion.html) (WCAG Success Criteria [3.3.3](https://www.w3.org/TR/UNDERSTANDING-WCAG20/minimize-error-suggestions.html))
+
+## Accessibility testing
+
+Accessibility issues are tracked in the [Carbon Component GitHub repository](https://github.com/carbon-design-system/carbon/milestones).
+
+### Automated test
+
+<Row>
+  <Column noGutterSm>
+    <StructuredListWrapper>
+      <StructuredListHead>
+        <StructuredListRow head>
+          <StructuredListCell head>
+            Automated test environment
+          </StructuredListCell>
+          <StructuredListCell head>Results</StructuredListCell>
+        </StructuredListRow>
+      </StructuredListHead>
+      <StructuredListBody>
+        <StructuredListRow>
+          <StructuredListCell>
+            - macOS Mojave version 10.14.6 with VoiceOver
+            <br />
+            - Chrome version 77.0.3865.90
+            <br />
+            - Dynamic Assessment Plugin version 1.8.0.0 - IBM Accessibility WCAG
+            2.1 Sept. 2019 Ruleset
+            <br />- Carbon React version 7.7.1
+          </StructuredListCell>
+          <StructuredListCell>
+            <strong>DAP Test</strong>
+            <br />- Violations
+          </StructuredListCell>
+        </StructuredListRow>
+      </StructuredListBody>
+    </StructuredListWrapper>
+  </Column>
+</Row>
+
+### macOS screen reader tests
+
+<Row>
+  <Column noGutterSm>
+    <StructuredListWrapper>
+      <StructuredListHead>
+        <StructuredListRow head>
+          <StructuredListCell head>Environment </StructuredListCell>
+          <StructuredListCell head>Results</StructuredListCell>
+        </StructuredListRow>
+      </StructuredListHead>
+      <StructuredListBody>
+        <StructuredListRow>
+          <StructuredListCell>
+            - macOS Mojave version 10.14.6 with VoiceOver
+            <br />
+            - Chrome version 77.0.3865.90
+            <br />- Carbon React version 7.7.1
+          </StructuredListCell>
+          <StructuredListCell>
+            <strong>VoiceOver(VO) test:</strong>
+            <OrderedList>
+              <ListItem>
+                Press Control-Option-Shift keys to enter the Web content.
+              </ListItem>
+              <ListItem>
+                Press the Tab key. VO announces the notification text and the
+                close button.
+              </ListItem>
+              <ListItem>
+                Press the Space key or Enter key to close the notification.
+              </ListItem>
+            </OrderedList>
+          </StructuredListCell>
+        </StructuredListRow>
+        <StructuredListRow>
+          <StructuredListCell>
+            - macOS Mojave version 10.14.6 with VoiceOver
+            <br />
+            - Safari version 13.0.2
+            <br />- Carbon React version 7.7.1
+          </StructuredListCell>
+          <StructuredListCell>
+            <strong>VoiceOver(VO) test:</strong>
+            <OrderedList>
+              <ListItem>
+                Press Control-Option-Shift keys to enter the Web content.
+              </ListItem>
+              <ListItem>
+                Press the Tab key. VO announces the notification text and the
+                close button.
+              </ListItem>
+              <ListItem>
+                Press the Space key or Enter key to close the notification.
+              </ListItem>
+            </OrderedList>
+          </StructuredListCell>
+        </StructuredListRow>
+      </StructuredListBody>
+    </StructuredListWrapper>
+  </Column>
+</Row>
+
+### Windows screen reader tests
+
+<Row>
+  <Column noGutterSm>
+    <StructuredListWrapper>
+      <StructuredListHead>
+        <StructuredListRow head>
+          <StructuredListCell head>Environment</StructuredListCell>
+          <StructuredListCell head>Results</StructuredListCell>
+        </StructuredListRow>
+      </StructuredListHead>
+      <StructuredListBody>
+        <StructuredListRow>
+          <StructuredListCell>
+            - Microsoft Windows 10
+            <br />
+            - Firefox version 68
+            <br />
+            - JAWS version 18
+            <br />- Carbon React version 7.7.1
+          </StructuredListCell>
+          <StructuredListCell>
+            <strong>JAWS test:</strong>
+            <OrderedList>
+              <ListItem>
+                Press H, JAWS announce the notification title.
+              </ListItem>
+              <ListItem>
+                Press Alt-Down Arrow, JAWS announces each line of the
+                notification text.
+              </ListItem>
+              <ListItem>
+                Press the Tab, JAWS announces the close button.
+              </ListItem>
+              <ListItem>
+                Press the Space key or Enter key to close the notification.
+              </ListItem>
+            </OrderedList>
+          </StructuredListCell>
+        </StructuredListRow>
+      </StructuredListBody>
+    </StructuredListWrapper>
+  </Column>
+</Row>
+
+### iOS screen reader tests
+
+<Row>
+  <Column noGutterSm>
+    <StructuredListWrapper>
+      <StructuredListRow head>
+        <StructuredListCell head>Environment </StructuredListCell>
+        <StructuredListCell head>Results</StructuredListCell>
+      </StructuredListRow>
+      <StructuredListBody>
+        <StructuredListRow>
+          <StructuredListCell>
+            - iOS version 13.1.3 with VoiceOver
+            <br />
+            - Safari version 13.1.3
+            <br />- Carbon React version 7.7.1
+          </StructuredListCell>
+          <StructuredListCell>
+            <strong>VoiceOver test:</strong>
+            <OrderedList>
+              <ListItem>
+                Swipe right to the notification and to read the notification
+                text.
+              </ListItem>
+              <ListItem>
+                Swipe right to the X icon. VO announces the close button.
+              </ListItem>
+              <ListItem>Double tap to close the notification.</ListItem>
+            </OrderedList>
+          </StructuredListCell>
+        </StructuredListRow>
+      </StructuredListBody>
+    </StructuredListWrapper>
+  </Column>
+</Row>

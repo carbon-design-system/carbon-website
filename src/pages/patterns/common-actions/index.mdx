@@ -5,79 +5,169 @@ description: Common actions are frequently used actions that appear across diffe
 
 <PageDescription>
 
-Common actions are frequently used actions that appear across different components and workflows. For platform consistency, these actions should only be applied in the ways described below.
+Common actions frequently appear across different components and workflows. For platform consistency, these actions should only be applied in the ways described below.
 
 </PageDescription>
 
-## Regressive actions
+<AnchorLinks>
 
-<AnchorLinks small>
-
+<AnchorLink>Add</AnchorLink>
 <AnchorLink>Cancel</AnchorLink>
 <AnchorLink>Clear</AnchorLink>
 <AnchorLink>Close</AnchorLink>
+<AnchorLink>Copy</AnchorLink>
 <AnchorLink>Delete</AnchorLink>
+<AnchorLink>Edit</AnchorLink>
 <AnchorLink>Errors</AnchorLink>
+<AnchorLink>Next</AnchorLink>
+<AnchorLink>Refresh</AnchorLink>
 <AnchorLink>Remove</AnchorLink>
 <AnchorLink>Reset</AnchorLink>
 
 </AnchorLinks>
 
-### Cancel
+## Add
 
-Cancel stops the current action and closes the component or item. Warn the user of any negative consequences of stopping the action from progressing, such as data corruption or data loss.
+Add inserts an existing object to a list, set, or system. For example, adding a document to a folder.
+
+<Row>
+<Column colLg={8}>
+
+![Example of add as a button with an icon in a data table](images/common-action-7.png)
+
+</Column>
+</Row>
+
+### Hierarchy and placement
+
+Depending on the importance of the add action on the page, the emphasis can be high, medium, or low. For example, a high emphasis action should use a single primary button with all others being secondary.
+
+### Considerations
+
+Small adjustments in your messaging will reduce user uncertainty. Consider the following:
+
+- What are the implications of the add action for the user? Are there financial, access, or legal considerations?
+- Does the user have the correct permissions for this action?
+- Is the action permanent?
+- What timeframe will the action take (seconds, minutes, hours, days)?
+- What should a user do if the action fails?
+- Is this a single or bulk action?
+
+## Cancel
+
+Cancel stops the current action and closes the component or item. Warn the user of any negative consequences if the process doesn't progress, such as data corruption or data loss.
 
 Use a secondary button or a link for cancel actions.
 
+<Row>
+<Column colLg={8}>
+
 ![Example of cancel in a modal](images/common-action-1.png)
 
-### Clear
+</Column>
+</Row>
 
-Clear removes data from a field or removes selections. Clear can also delete the contents of a document, such as a log. Typically, the default selection or value is reset for controls that have a default selection or value, such as radio buttons.
+## Clear
 
-Use the `x` icon on the right side of a field, item, or value.
+Clear removes data from a field or removes selections. Clear can also delete the contents of a document, such as a log. For controls that have a default selection or value, such as radio buttons, the default selection or value is reset.
 
-![Example of clear in Multi-select Dropdown and in Search](images/common-action-2.png)
+Use the `close` icon on the right side of a field, item, or value.
 
-### Close
+<Row>
+<Column colLg={8}>
+
+![Example of clear in multi-select dropdown and in a search field](images/common-action-2.png)
+
+</Column>
+</Row>
+
+## Close
 
 Close terminates the current page, window, or menu. Close is also used to dismiss information, such as notifications.
 
 Use the `close` icon, which is typically placed on the upper right side of the element. Do not use close in a button.
 
-![Example of close in an inline notification](images/common-action-3.png)
+<Row>
+<Column colLg={8}>
 
-### Delete
+![Example of close in an toast notification](images/common-action-3.png)
 
-Delete destroys an object. Delete actions cannot be easily undone and are typically permanent. The user should be warned of the negative consequences of destroying an object, such as loss of data. Use either the `delete` or `trash can` icon, a danger button, or a danger option in a menu. A danger modal is used when a warning is needed to confirm an action.
+</Column>
+</Row>
 
-![Example of delete in a Modal and Overflow Menu](images/common-action-4.png)
+## Copy
 
-#### Non-dangerous deletion (~5% of cases)
+Copy creates a new identical instance of the selected object(s).
 
-Use when it's trivial to undo deletion or re-create the item. Delete the item upon click or tap without further warning.
+Use the `copy` icon with a confirmation "copied" tooltip appearing post-click or tap.
 
-#### Moderate danger deletion (~80% of cases)
+<Row>
+<Column colLg={8}>
 
-Use when an action cannot be undone or the item cannot be recreated easily. This pattern is also useful if you're deleting more than one thing.
+![Example of copy in a code snippet](images/common-action-8.png)
+
+</Column>
+</Row>
+
+## Delete
+
+Delete destroys an object. Delete actions cannot be easily undone and are typically permanent. Warn the user of any negative consequences if an object is destroyed, such as loss of data. Use either the `delete` or `trash can` icon, a danger button, or a danger option in a menu. A danger modal is used when a warning is needed to confirm an action.
+
+<Row>
+<Column colLg={8}>
+
+![Example of delete in a modal and overflow menu](images/common-action-4.png)
+
+</Column>
+</Row>
+
+### Low-impact deletion
+
+Use when it's trivial to undo deletion or recreate the data. Delete the data upon click or tap without further warning.
+
+### Moderate-impact deletion
+
+Use when an action cannot be undone or the data cannot be recreated easily. This pattern is also useful if you're deleting more than one thing.
 
 Ask for confirmation of the delete, with guidance about what will occur if they delete.
 
-#### High danger deletion (~15% of cases)
+### High-impact deletion
 
-Use when it would be very expensive or time-consuming to recreate an item. Also use if the action deletes a large number of items, or if other important items would be deleted as a result of the action.
+Use when it would be very expensive or time-consuming to recreate data. Also use if the action deletes a large amount of data, or if other important items would be deleted as a result of the action.
 
 In addition to presenting a dialog, have the user type the name of the resource they are deleting (manual confirmation).
 
-#### Post-deletion flow
+### Post-deletion
 
-After the user deletes an item, return to the page that lists the item deleted. Animate the removal of the item from the list or page and present a success notification.
+After the user deletes data, return to the page that lists the data deleted. Animate the removal of the data from the list or page and present a success notification.
 
-If the deletion fails, raise a notification to tell the user that deletion failed. Send a second notification on another communication channel, like email, if possible. Animate the item back onto the page if possible.
+If the deletion fails, raise a notification to tell the user that deletion failed. Send a second notification on another communication channel, like email, if possible. Animate the data back onto the page if possible.
 
-### Errors
+## Edit
 
-Errors occur when an action or process does not succeed. Error notifications can occupy full pages, form fields, notifications (toast, inline, etc.), and modals. Ultimately, all should provide context of what happened and a clear path to continue.
+Edit allows data or values to be changed. Edit commonly triggers a state change to the targeted object or input item.
+
+Offer edit as an option in a menu, or as a button or `edit` icon.
+
+<Row>
+<Column colLg={8}>
+
+![Example of edit in a data table cell](images/common-action-9.png)
+
+</Column>
+</Row>
+
+<Row>
+<Column colLg={8}>
+
+![Example of edit in an overflow menu](images/common-action-10.png)
+
+</Column>
+</Row>
+
+## Errors
+
+Errors occur when an action or process does not succeed. Error notifications can occupy full pages, form fields, notifications, and modals. Error notifications should provide context of what happened and a clear path to continue.
 
 <Row>
 <Column colLg={8}>
@@ -87,29 +177,63 @@ Errors occur when an action or process does not succeed. Error notifications can
 </Column>
 </Row>
 
-Consider redirecting the user to a previous state, a support page, or by offering helpful recommendations. Be honest and helpful.
+Consider redirecting the user to a previous state, a support page, or offering recommendations. Be honest and helpful.
 
 Some components, like text input and form field errors, are quite small and require more thoughtful approaches to the space and placement of error handling. Consider inline error notifications for these instances.
 
-#### Copy guidelines
+### Content guidelines
 
-Be brief, honest, supportive, and human. Explain what happened and what can the user do to resolve the error.
+Be brief, honest, and supportive. Explain what happened and what can the user do to resolve the error.
 
 For full-page and large modals, keep error messages no longer than three paragraph lines. For form errors, keep error messages no longer than two lines.
 
-### Remove
+## Next
 
-This action removes an object from a list or item; however, the object is not destroyed as a result of the action. Multiple objects can be removed at once.
+Next advances the user to the next step in a sequence of steps, like in a wizard.
 
-![Example of Remove in a Structured List](images/common-action-5.png)
+Represent next with a [button with icon](/components/button/usage) or a standalone `forward` icon.
 
-#### Hierarchy and placement
+<Row>
+<Column colLg={8}>
+
+![Example of next as a button with icon](images/common-action-11.png)
+
+</Column>
+</Row>
+
+## Refresh
+
+This action reloads the view of an object, list, or data set when the displayed view has become unsynchronized with the source.
+
+Use the `refresh` icon or a button.
+
+<Row>
+<Column colLg={8}>
+
+![Example of edit in a data table cell](images/common-action-12.png)
+
+</Column>
+</Row>
+
+## Remove
+
+This action removes an object from a list or item. Remove is distinct from delete, as a removed item is not destroyed. Multiple objects can be removed at once.
+
+<Row>
+<Column colLg={8}>
+
+![Example of remove in a structured list](images/common-action-5.png)
+
+</Column>
+</Row>
+
+### Hierarchy and placement
 
 Represent remove as a button or `subtract` icon or glyph. The remove action is rarely the primary action on the page and should not be overly emphasized.
 
-#### Considerations
+### Considerations
 
-- What are the implications of the add action for the user? Are there financial, access, or legal considerations?
+- What are the implications of the remove action for the user? Are there financial, access, or legal considerations?
 - This action can be confused with deleting.
 - A user may not have the correct permissions for this action.
 - Inform the user if the result is permanent.
@@ -117,77 +241,16 @@ Represent remove as a button or `subtract` icon or glyph. The remove action is r
 - What should the user do if the removal fails?
 - Is this a single or bulk action?
 
-### Reset
+## Reset
 
 Reset reverts values back to their last saved state. The last saved state includes the values stored the last time the user clicked or triggered **Apply**.
+
+<Row>
+<Column colLg={8}>
 
 Reset is typically applied as a link.
 
 ![Example of reset in a filter](images/common-action-6.png)
 
-## Progressive actions
-
-<AnchorLinks small>
-
-<AnchorLink>Add</AnchorLink>
-<AnchorLink>Copy</AnchorLink>
-<AnchorLink>Edit</AnchorLink>
-<AnchorLink>Next</AnchorLink>
-<AnchorLink>Refresh</AnchorLink>
-
-</AnchorLinks>
-
-### Add
-
-Add inserts an existing object to a list, set, or system. For example, adding a document to a folder.
-
-![Example of add as a Button with an con in a Data Table](images/common-action-7.png)
-
-#### Hierarchy and placement
-
-Represent add with a primary button, button with an icon, `add--glyph` or `add--outline` icon.
-
-Depending on the relevance of the add action on the page, the emphasis can be high, medium or low. For example, a high emphasis action should use a single prominent button that makes it clear that other buttons have less importance in the hierarchy.
-
-#### Considerations
-
-- What are the implications of the add action for the user? Are there financial, access, or legal considerations?
-- A user may not have the correct permissions for this action
-- Inform the user if the action is permanent
-- What timeframe will the action take (seconds, minutes, hours, days)?
-- What should a user do if the addition fails?
-- Is this a single or bulk action?
-
-### Copy
-
-Copy creates a new identical instance of the selected object(s) in a distinct destination.
-
-Use the `copy` icon with a confirmation "copied" tooltip appearing post-click.
-
-![Example of copy in a code snippet](images/common-action-8.png)
-
-### Edit
-
-Edit allows data or values to be changed. Edit commonly triggers a state change to the targeted object or input item.
-
-Offer edit as an option in a menu, or as a button or `edit` icon.
-
-![Example of edit in a data table cell](images/common-action-9.png)
-
-![Example of edit in an overflow menu](images/common-action-10.png)
-
-### Next
-
-Next advances the user to the next step in a sequence of steps, such as in a wizard.
-
-Represent next with a button with icon or a standalone `forward` icon.
-
-![Example of next as a button with icon](images/common-action-11.png)
-
-### Refresh
-
-This action reloads the view of an object, list, or data set when the displayed view has become unsynchronized with the source.
-
-Use the `refresh` icon or a button.
-
-![Example of edit in a data table cell](images/common-action-12.png)
+</Column>
+</Row>

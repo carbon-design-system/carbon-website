@@ -13,12 +13,24 @@ module.exports = {
       options: {
         mdxExtensions: ['.mdx'],
         isSearchEnabled: true,
-        iconPath: './src/images/favicon-32.png',
+        iconPath: './src/images/favicon.svg',
         titleType: 'prepend',
         repository: {
           baseUrl: 'https://github.com/carbon-design-system/carbon-website',
           subDirectory: '',
         },
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-webpack-bundle-analyser-v2',
+      options: {
+        disable: !process.env.ANALYZE,
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-fathom',
+      options: {
+        siteId: 'VMSGXQRS',
       },
     },
     'gatsby-plugin-remove-serviceworker',

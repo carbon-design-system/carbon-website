@@ -8,7 +8,13 @@ tabs:
 
 import Preview from 'components/Preview';
 
-### Now that we have a Vue app using the UI Shell, it's time to build a few static pages. In this step, we'll become comfortable with the Carbon grid and various Carbon components.
+<PageDescription>
+
+Now that we have a Vue app using the UI Shell, it's time to build a few static
+pages. In this step, we'll become comfortable with the Carbon grid and various
+Carbon components.
+
+</PageDescription>
 
 <AnchorLinks>
 
@@ -79,9 +85,7 @@ $ yarn add @carbon/grid
 
 In `_carbon.scss`, we need to configure our grid to use 16 columns instead of the default 12 columns. We do this by adding `grid-columns-16: true` in our `$feature-flags`.
 
-##### src/styles/\_carbon.scss
-
-```css
+```css path=src/styles/_carbon.scss
 $feature-flags: (
   grid-columns-16: true
 );
@@ -111,9 +115,7 @@ We'll break this down into three rows. The first row with the gray background do
 
 We'll make rows like so:
 
-##### src/views/LandingPage/LandingPage.vue
-
-```html
+```html path=src/views/LandingPage/LandingPage.vue
 <template>
   <div class="bx--grid bx--grid--full-width landing-page">
     <div class="bx--row landing-page__banner">
@@ -147,9 +149,7 @@ In our first row we'll use a `CvBreadcrumb` component.
 
 We can now add our component to the first row, along with a header, like so:
 
-##### src/views/LandingPage/LandingPage.vue
-
-```html
+```html path=src/views/LandingPage/LandingPage.vue
 <div class="bx--row landing-page__banner">
   <div class="bx--col-lg-16">
     <cv-breadcrumb noTrailingSlash>
@@ -168,28 +168,24 @@ You may notice that the styles look off. Don't worry, we'll fix these later.
 
 In our second row we'll use `CvTabs` and `CvButton` components.
 
-<!-- ##### src/views/LandingPage/LandingPage.vue
-
-```javascript
+```javascript path=src/views/LandingPage/LandingPage.vue
 const props = {
   tabs: {
     selected: 0,
-    triggerHref: "#",
-    role: "navigation"
+    triggerHref: '#',
+    role: 'navigation',
   },
   tab: {
-    href: "#",
-    role: "presentation",
-    tabIndex: 0
-  }
+    href: '#',
+    role: 'presentation',
+    tabIndex: 0,
+  },
 };
-``` -->
+```
 
 Modify the second row to use the `Tab` component.
 
-##### src/views/LandingPage/LandingPage.vue
-
-```html
+```html path=src/views/LandingPage/LandingPage.vue
 <div class="bx--row landing-page__r2">
   <div class="bx--col bx--no-gutter">
     <cv-tabs selected="0">
@@ -217,7 +213,7 @@ Modify the second row to use the `Tab` component.
         <div class="bx--grid bx--grid--no-gutter bx--grid--full-width">
           <div class="bx--row landing-page__tab-content">
             <div class="bx--col-lg-16">
-              Carbon provides styles and components in Vanilla, Vue, Angular,
+              Carbon provides styles and components in Vanilla, React, Angular,
               and Vue for anyone building on the web.
             </div>
           </div>
@@ -250,9 +246,7 @@ Give yourself a pat on the back if you actually ran the DAP tool. We'll install 
 
 Next, we'll need to add a styling override to move the tabs to the right on large viewports. Create a file `_carbon-overrides.scss` in `src/views/LandingPage` with this declaration block.
 
-##### src/views/LandingPage/\_carbon-overrides.scss
-
-```scss
+```scss path=src/views/LandingPage/_carbon-overrides.scss
 .landing-page__r2 .bx--tabs__nav {
   right: 0;
 }
@@ -260,10 +254,8 @@ Next, we'll need to add a styling override to move the tabs to the right on larg
 
 Then in `LandingPage.vue` add a style section with this import.
 
-##### src/views/LandingPage/LandingPage.vue
-
 <!-- prettier-ignore-start -->
-```scss
+```scss path=src/views/LandingPage/LandingPage.vue
 <style lang="scss">
 @import "./carbon-overrides";
 </style>
@@ -275,10 +267,8 @@ application's styling so when migrating to future Carbon versions and if there a
 names, you have a consolidated list of styling declaration blocks to review._ We can now add our images and text for
 each column in the first `CvTab` in `LandingPage.vue`._
 
-##### src/views/LandingPage/LandingPage.vue
-
 <!-- prettier-ignore-start -->
-```html
+```html path=src/views/LandingPage/LandingPage.vue
 <cv-tab label="About">
   <div class="bx--grid bx--grid--no-gutter bx--grid--full-width">
     <div class="bx--row landing-page__tab-content">
@@ -309,9 +299,7 @@ each column in the first `CvTab` in `LandingPage.vue`._
 
 Now let's set the image size in the style section of `LandingPage.vue`:
 
-##### src/views/LandingPage/LandingPage.vue
-
-```scss
+```scss path=src/views/LandingPage/LandingPage.vue
 .landing-page__illo {
   max-width: 100%;
 }
@@ -323,9 +311,7 @@ Assuming that the second and third tab would have a similar design, we would set
 
 The third row will be created in a later tutorial, so we'll just add the headers for now.
 
-##### src/views/LandingPage/LandingPage.vue
-
-```html
+```html path=src/views/LandingPage/LandingPage.vue
 <div class="bx--row landing-page__r3">
   <div class="bx--col-md-4 bx--col-lg-4">
     <h3 class="landing-page__label">The Principles</h3>
@@ -340,9 +326,7 @@ The third row will be created in a later tutorial, so we'll just add the headers
 
 We've added basic layout styles in `LandingPage.vue`, so now let's add type, color and spacing styles to match the design. We'll be using our [spacing tokens](https://www.carbondesignsystem.com/guidelines/spacing). In a new file `src/styles/_carbon-utils.scss`, add these imports at the **top** of the file so we can use Carbon breakpoints, tokens, and typography Sass mixins and functions:
 
-##### src/styles/\_carbon-utils.scss
-
-```scss
+```scss path=src/styles/_carbon-utils.scss
 @import 'carbon-components/scss/globals/scss/vendor/@carbon/type/scss/font-family.scss';
 @import 'carbon-components/scss/globals/scss/vendor/@carbon/layout/scss/breakpoint.scss';
 @import 'carbon-components/scss/globals/scss/typography.scss';
@@ -367,9 +351,7 @@ _Pro tip:_ `CTRL-G` _toggles the grid in Sketch._
 
 Back to `LandingPage.vue`, we need to add space above the breadcrumb and below the heading. For that, add:
 
-##### src/views/LandingPage/LandingPage.vue
-
-```scss
+```scss path=src/views/LandingPage/LandingPage.vue
 @import '../../styles/carbon-utils';
 ```
 
@@ -388,9 +370,7 @@ Looking at the design, we need a wall-to-wall light gray background behind the b
 
 Add the following in `_mixins.scss`. Per the design we need to use Gray 10 for our banner background color, which can be set with the `$ui-01` [color token](https://www.carbondesignsystem.com/guidelines/color/usage). Also, we want the background to extend into the grid's outermost gutters to go the full width of the viewport, so given the DOM structure, we can achieve that by setting the background in an absolutely positioned pseudo element.
 
-##### src/views/LandingPage/\_mixins.scss
-
-```scss
+```scss path=src/views/LandingPage/_mixins.scss
 @mixin landing-page-background() {
   background-color: $ui-01;
   position: relative;
@@ -410,9 +390,7 @@ Add the following in `_mixins.scss`. Per the design we need to use Gray 10 for o
 
 After you have created `_mixins.scss`, import it at the **top** of `LandingPage.vue`. By now you should have three imports:
 
-##### src/views/LandingPage/LandingPage.vue
-
-```scss
+```scss path=src/views/LandingPage/LandingPage.vue
 @import '../../styles/carbon-utils';
 @import './carbon-overrides';
 @import './mixins';
@@ -420,9 +398,7 @@ After you have created `_mixins.scss`, import it at the **top** of `LandingPage.
 
 Now to use the new mixin, update the `.landing-page__banner` declaration block to:
 
-##### src/views/LandingPage/LandingPage.vue
-
-```scss
+```scss path=src/views/LandingPage/LandingPage.vue
 .landing-page__banner {
   padding-top: $spacing-05;
   padding-bottom: $spacing-07 * 4;
@@ -444,9 +420,7 @@ Next, we can see that the `h1` is using the `heading-05` type token.
 
 The Sketch symbol naming is consistent with the development Sass tokens to help translate design to development. So, looking up the [type token](https://www.carbondesignsystem.com/guidelines/typography/productive), we know to use `productive-heading-05`:
 
-##### src/views/LandingPage/LandingPage.vue
-
-```scss
+```scss path=src/views/LandingPage/LandingPage.vue
 .landing-page__heading {
   @include carbon--type-style('productive-heading-05');
 }
@@ -456,9 +430,7 @@ The Sketch symbol naming is consistent with the development Sass tokens to help 
 
 For our second row, we need to fix the tabs vertical positioning to match the design. By inspecting the tabs component, you can see that the tab height computes to `40px`. We can use that to create our negative top margin in rem units.
 
-##### src/views/LandingPage/LandingPage.vue
-
-```scss
+```scss path=src/views/LandingPage/LandingPage.vue
 .landing-page__r2 {
   margin-top: rem(-40px);
 }
@@ -478,9 +450,7 @@ We also need to adust our vertical spacing and type treatment. Like before, it's
 
 _Note: You may be wondering why there are vertical gaps between the type and spacers. Each type token has a line height that's suited for its font size. The vertical spacers adjacently touch the line height boundaries and not the baseline, for consistency as well as development ease so_ `margins` _and_ `paddings` _don't need to offset line heights._
 
-##### src/views/LandingPage/LandingPage.vue
-
-```scss
+```scss path=src/views/LandingPage/LandingPage.vue
 .landing-page__tab-content {
   padding-top: $layout-05;
   padding-bottom: $layout-05;
@@ -516,9 +486,7 @@ _Note: You may be wondering why there are vertical gaps between the type and spa
 
 Let's also add some styles for the last row, even though that will get used later in the tutorial. You'll notice that we get to re-use the `landing-page-background` mixin that we just created.
 
-##### src/views/LandingPage/LandingPage.vue
-
-```scss
+```scss path=src/views/LandingPage/LandingPage.vue
 .landing-page__r3 {
   padding-top: $spacing-09;
   padding-bottom: $spacing-09;
@@ -536,9 +504,7 @@ Ta-da! You should see a finished landing page! Now we can move on to the repo pa
 
 Now in our `RepoPage.vue` we'll add our grid containers in the template section.
 
-##### src/views/RepoPage/RepoPage.vue
-
-```html
+```html path=src/views/RepoPage/RepoPage.vue
 <template>
   <div class="bx--grid bx--grid--full-width bx--grid--no-gutter repo-page">
     <div class="bx--row repo-page__r1">
@@ -558,9 +524,7 @@ First, let's pretend we've already built our table component and update `RepoPag
 
 Import `RepoTable` in `RepoPage.vue`.
 
-##### src/views/RepoPage/RepoPage.vue
-
-```javascript
+```javascript path=src/views/RepoPage/RepoPage.vue
 <script>
 import RepoTable from "./RepoTable";
 
@@ -572,9 +536,7 @@ export default {
 
 Then below the import, include the following arrays to pass into the `RepoTable` component. We'll be setting the `rows` array from an API in the next tutorial step, but for now, static example rows will suffice.
 
-##### src/views/RepoPage/RepoPage.vue
-
-```javascript
+```javascript path=src/views/RepoPage/RepoPage.vue
 const headers = [
   {
     key: 'name',
@@ -635,9 +597,7 @@ const rows = [
 
 Next we need to make sure the RepoTable component and these arrays are available to our `RepoPage` component template. Your component export should look like the following to achieve this.
 
-##### src/views/RepoPage/RepoPage.vue
-
-```javascript
+```javascript path=src/views/RepoPage/RepoPage.vue
 export default {
   name: 'RepoPage',
   components: { RepoTable },
@@ -654,10 +614,8 @@ Here we used the data method of the component as the values logically are data i
 
 Lastly in the `RepoPage.vue` template, we need to simply replace `Data table will go here` with:
 
-##### src/views/RepoPage/RepoPage.vue
-
 <!-- prettier-ignore-start -->
-```html
+```html path=src/views/RepoPage/RepoPage.vue
 <repo-table
   :headers="headers"
   :rows="rows"
@@ -671,9 +629,7 @@ OK. So now our `RepoPage.vue` component is ready to use a component called 'Repo
 
 First create a script section as follows:
 
-##### src/views/RepoPage/RepoTable.vue
-
-```javascript
+```javascript path=src/views/RepoPage/RepoTable.vue
 <script>
   export default {
     name: 'RepoTable',
@@ -713,9 +669,7 @@ In this component script we:
 
 Next, let's create the `RepoTable` template starting with the cv-data-table component.
 
-##### src/views/RepoPage/RepoTable.vue
-
-```html
+```html path=src/views/RepoPage/RepoTable.vue
 <template>
   <cv-data-table :columns="columns" :title="title" :helper-text="helperText">
   </cv-data-table>
@@ -770,9 +724,7 @@ Our styles for the repo page are mostly fine. We just need to update a few verti
 
 In `RepoPage.vue`, add the following style section:
 
-##### src/views/RepoPage/RepoPage.vue
-
-```scss
+```scss path=src/views/RepoPage/RepoPage.vue
 <style lang="scss">
 @import '../../styles/carbon-utils';
 

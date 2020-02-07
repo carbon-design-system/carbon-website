@@ -7,7 +7,13 @@ tabs:
 
 import Preview from 'components/Preview';
 
-### This step takes our static components and populates them with data from the GitHub GraphQL API – loading states and all. We'll be displaying Carbon repository information in a data table.
+<PageDescription>
+
+This step takes our static components and populates them with data from the
+GitHub GraphQL API – loading states and all. We'll be displaying Carbon
+repository information in a data table.
+
+</PageDescription>
 
 <AnchorLinks>
 
@@ -263,7 +269,7 @@ Notice how we're passing the `REPO_QUERY` that we previously defined into the `q
 
 ```javascript path=src/content/RepoPage/RepoPage.js
 <Query query={REPO_QUERY}>
-  {({ loading, error, data: { organization } }) => {
+  {({ loading, error, data }) => {
     // Wait for the request to complete
     if (loading) return 'Loading...';
 
@@ -271,7 +277,7 @@ Notice how we're passing the `REPO_QUERY` that we previously defined into the `q
     if (error) return `Error! ${error.message}`;
 
     // If we're here, we've got our data!
-    console.log(organization);
+    console.log(data.organization);
 
     return (
       <>
@@ -286,11 +292,14 @@ The page will look the same as we're still rendering our static example rows, bu
 
 ## Populate data table
 
-Now that we have that data, let's populate the data table. Replace `console.log(organization);` with the following that destructures the `organization` object. Once we have the repositories, we can call our `getRowItems()` helper to build the data table rows.
+Now that we have that data, let's populate the data table. Replace
+`console.log(data.organization);` with the following that destructures
+the `data.organization` object. Once we have the repositories, we can
+call our `getRowItems()` helper to build the data table rows.
 
 ```javascript path=src/content/RepoPage/RepoPage.js
 // If we're here, we've got our data!
-const { repositories } = organization;
+const { repositories } = data.organization;
 const rows = getRowItems(repositories.nodes);
 ```
 
@@ -358,21 +367,26 @@ Import React's [useState](https://reactjs.org/docs/hooks-state.html) by modifyin
 import React, { useState } from 'react';
 ```
 
-Then initialize the new state variables that we'll use for pagination as the first lines inside the `RepoPage` component, above the `return()`.
+Then initialize the new state variables that we'll use for pagination as the first lines inside the `RepoPage` component, above the outer `return()`.
 
 ```javascript path=src/content/RepoPage/RepoPage.js
-const [totalItems, setTotalItems] = useState(0);
-const [firstRowIndex, setFirstRowIndex] = useState(0);
-const [currentPageSize, setCurrentPageSize] = useState(10);
+const RepoPage = () => {
+  const [totalItems, setTotalItems] = useState(0);
+  const [firstRowIndex, setFirstRowIndex] = useState(0);
+  const [currentPageSize, setCurrentPageSize] = useState(10);
+...
 ```
 
 This initializes the total number of rows and the index of the first row to `0`, and the page size to `10` as we also specified in our loading skeleton.
 
-Next we need to use the function that updates the `totalItems` state, `setTotalItems()`, after we destructure our `organization.repositories`. Your block that transforms row data should look like:
+Next we need to use the function that updates the `totalItems` state,
+`setTotalItems()`, after we destructure our
+`data.organization.repositories`. Your block that transforms row data
+should look like:
 
 ```javascript path=src/content/RepoPage/RepoPage.js
 // If we're here, we've got our data!
-const { repositories } = organization;
+const { repositories } = data.organization;
 setTotalItems(repositories.totalCount);
 const rows = getRowItems(repositories.nodes);
 ```

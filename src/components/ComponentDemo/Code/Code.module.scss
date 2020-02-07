@@ -1,0 +1,131 @@
+.row {
+  grid-area: editor;
+  max-width: 100%;
+  overflow-x: auto;
+  margin-top: 0;
+  position: relative;
+  color: $inverse-01;
+}
+
+.container {
+  font-family: 'IBM Plex Mono', 'Menlo', 'DejaVu Sans Mono',
+    'Bitstream Vera Sans Mono', Courier, monospace;
+  position: relative;
+  max-height: 320px;
+  overflow-y: auto;
+  width: 100%;
+  background-color: $ui-05;
+}
+
+// feedback tooltip adjustments
+.container :global(.bx--btn--copy__feedback) {
+  position: absolute;
+  &::before {
+    left: $spacing-07;
+  }
+  &::after {
+    left: $spacing-07;
+  }
+  &::before,
+  &::after {
+    z-index: z('floating');
+  }
+}
+
+.code-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: $spacing-09;
+  background: $ui-05;
+  padding-left: $spacing-05;
+  padding-right: $spacing-03;
+  border-bottom: 1px solid $inverse-02;
+}
+
+.link-list {
+  display: flex;
+  overflow-x: scroll;
+  @include carbon--breakpoint('md') {
+    overflow-x: visible;
+  }
+}
+
+.link-list a {
+  display: flex;
+  align-items: center;
+  @include carbon--type-style('body-short-01');
+  color: $inverse-01;
+  text-decoration: none;
+  margin-right: $spacing-06;
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  &:focus {
+    outline: 1px solid $inverse-focus-ui;
+    outline-offset: 2px;
+  }
+}
+
+.link-list a svg {
+  fill: currentColor;
+  margin-left: $spacing-03;
+  margin-bottom: $spacing-02;
+}
+
+.sidebar {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  padding: 8px;
+  padding-left: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: visible;
+  background: linear-gradient(
+    90deg,
+    rgba(23, 23, 23, 0) 0%,
+    rgba(23, 23, 23, 1) 24px
+  );
+}
+
+// Copy button and src button
+.button,
+.copy-button.button {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  flex-shrink: 0;
+  transition: background $duration--fast-02;
+  z-index: 1000;
+  &:hover {
+    background-color: $inverse-02;
+  }
+  svg {
+    fill: $inverse-01;
+  }
+}
+
+.copy-button:global(.bx--copy-btn--animating) span {
+  display: inline-block;
+  left: -$spacing-03;
+}
+
+.code-bar .button {
+  position: relative;
+  right: 0;
+  top: 0;
+}
+
+.sidebar .button {
+  position: static;
+  margin-bottom: $spacing-01;
+  flex-shrink: 0;
+}

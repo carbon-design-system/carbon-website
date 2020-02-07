@@ -133,7 +133,10 @@ const colorTokens = {
       },
     },
     '$ui-01': {
-      role: ['Primary container background', 'Secondary page background'],
+      role: [
+        'Container background on $ui-background',
+        'Secondary page background',
+      ],
       value: {
         white: {
           name: 'Gray 10',
@@ -154,7 +157,7 @@ const colorTokens = {
       },
     },
     '$ui-02': {
-      role: ['Primary page background', 'Secondary container background'],
+      role: ['Container background on $ui-01', '`Light` variant background'],
       value: {
         white: {
           name: 'White',
@@ -175,7 +178,7 @@ const colorTokens = {
       },
     },
     '$ui-03': {
-      role: ['Subtle border', 'Tertiary background color'],
+      role: ['Subtle border', 'Tertiary background'],
       value: {
         white: {
           name: 'Gray 20',
@@ -207,7 +210,7 @@ const colorTokens = {
           hex: '#8d8d8d',
         },
         g90: {
-          name: 'Gray 60',
+          name: 'Gray 50',
           hex: '#8d8d8d',
         },
         g100: {
@@ -246,7 +249,7 @@ const colorTokens = {
         'Primary text',
         'Body copy',
         'Headers',
-        'Hover text color for text-02',
+        'Hover text color for $text-02',
       ],
       value: {
         white: {
@@ -348,6 +351,27 @@ const colorTokens = {
         g100: {
           name: 'Gray 50',
           hex: '#8d8d8d',
+        },
+      },
+    },
+    '$text-error': {
+      role: ['Error message text'],
+      value: {
+        white: {
+          name: 'Red 60',
+          hex: '#da1e28',
+        },
+        g10: {
+          name: 'Red 60',
+          hex: '#da1e28',
+        },
+        g90: {
+          name: 'Red 30',
+          hex: '#ffb3b8',
+        },
+        g100: {
+          name: 'Red 40',
+          hex: '#ff8389',
         },
       },
     },
@@ -457,7 +481,7 @@ const colorTokens = {
       },
     },
     '$field-01': {
-      role: ['Default input fields', 'Field color on $ui-backgrounds'],
+      role: ['Default input fields', 'Fields on $ui-backgrounds'],
       value: {
         white: {
           name: 'Gray 10',
@@ -478,7 +502,7 @@ const colorTokens = {
       },
     },
     '$field-02': {
-      role: ['Input field color on $ui-02 backgrounds'],
+      role: ['`Light` variant input fields', 'Fields on $ui-02 backgrounds'],
       value: {
         white: {
           name: 'White',
@@ -552,8 +576,8 @@ const colorTokens = {
           hex: '#da1e28',
         },
         g90: {
-          name: 'Red 50',
-          hex: '#fa4d56',
+          name: 'Red 40',
+          hex: '#ff8389',
         },
         g100: {
           name: 'Red 50',
@@ -1211,12 +1235,12 @@ const colorTokens = {
           hex: '#c6c6c6',
         },
         g90: {
-          name: 'Gray 70',
-          hex: '#525252',
+          name: 'Gray 60',
+          hex: '#6f6f6f',
         },
         g100: {
-          name: 'Gray 80',
-          hex: '#393939',
+          name: 'Gray 70',
+          hex: '#525252',
         },
       },
     },

@@ -9,10 +9,12 @@ Basic charts offer a way to visualize data sets in an intuitive, easy to underst
 
 </PageDescription>
 
-import '@carbon/charts/style.css';
+import '@carbon/charts/styles.css';
 
 import {
-  BarChart,
+  SimpleBarChart,
+  GroupedBarChart,
+  StackedBarChart,
   PieChart,
   DonutChart,
   LineChart,
@@ -20,22 +22,49 @@ import {
 } from '@carbon/charts-react';
 
 import {
-  groupedBarData,
+  addHeightToOptions,
+  // Bar
   groupedBarOptions,
-  simpleBarData,
+  groupedBarData,
+  groupedHorizontalBarOptions,
+  groupedHorizontalBarData,
   simpleBarOptions,
-  stackedBarData,
+  simpleBarData,
+  simpleHorizontalBarOptions,
+  simpleHorizontalBarData,
+  simpleBarTimeSeriesOptions,
+  simpleBarTimeSeriesData,
+  simpleHorizontalBarTimeSeriesOptions,
+  simpleHorizontalBarTimeSeriesData,
   stackedBarOptions,
-  curvedLineData,
-  curvedLineOptions,
+  stackedBarData,
+  stackedHorizontalBarOptions,
+  stackedHorizontalBarData,
+  stackedBarTimeSeriesOptions,
+  stackedBarTimeSeriesData,
+  stackedHorizontalBarTimeSeriesOptions,
+  stackedHorizontalBarTimeSeriesData,
+  // Pie & donut
+  pieOptions,
+  pieData,
+  donutOptions,
+  donutData,
+  // Line
+  lineTimeSeriesOptions,
+  lineTimeSeriesData,
   lineData,
   lineOptions,
-  demoPieData,
-  demoPieOptions,
-  demoDonutOptions,
-  scatterData,
+  // Step
+  stepOptions,
+  stepData,
+  stepTimeSeriesOptions,
+  stepTimeSeriesData,
+  // Scatter
+  scatterTimeSeriesOptions,
+  scatterTimeSeriesData,
   scatterOptions,
-} from '../../../data/charts/demo-chart-data';
+  scatterData,
+} from '../../../data/charts/index';
 
 <AnchorLinks>
 
@@ -54,52 +83,77 @@ import {
 
 Bar charts use vertical or horizontal data markers to compare individual values. You can use them to compare discrete data or show trends over time.
 
-<BarChart
+<SimpleBarChart
   data={simpleBarData}
-  options={simpleBarOptions}
-  width="100%"
-  height={400}
+  options={addHeightToOptions(simpleBarOptions)}
+/>
+
+<SimpleBarChart
+  data={simpleBarTimeSeriesData}
+  options={addHeightToOptions(simpleBarTimeSeriesOptions)}
 />
 
 ### Grouped bar chart
 
 A grouped bar chart, also known as a clustered bar graph, multi-set bar chart, or grouped column chart, is a type of bar graph that is used to compare values across multiple categories.
 
-<BarChart
+<GroupedBarChart
   data={groupedBarData}
-  options={groupedBarOptions}
-  width="100%"
-  height={400}
+  options={addHeightToOptions(groupedBarOptions)}
 />
 
 ### Stacked bar
 
 Stacked bar charts are useful for comparing proportional contributions within a category. They plot the relative value that each data series contributes to the total.
 
-<BarChart
+<StackedBarChart
   data={stackedBarData}
-  options={stackedBarOptions}
-  width="100%"
-  height={400}
+  options={addHeightToOptions(stackedBarOptions)}
+/>
+
+<StackedBarChart
+  data={stackedBarTimeSeriesData}
+  options={addHeightToOptions(stackedBarTimeSeriesOptions)}
 />
 
 ### Horizontal bar
 
-The horizontal bar chart follows the same principles as a vertical column chart, only the x- and y-axis are switched.
+### Default
 
-<InlineNotification>
+Bar charts use vertical or horizontal data markers to compare individual values. You can use them to compare discrete data or show trends over time.
 
-**Note:** This chart is currently a concept and not included in the Carbon Charts repository yet. For more information, please go to the carbon-charts [GitHub repository](https://github.com/carbon-design-system/carbon-charts).
+<SimpleBarChart
+  data={simpleHorizontalBarData}
+  options={addHeightToOptions(simpleHorizontalBarOptions)}
+/>
 
-</InlineNotification>
+<SimpleBarChart
+  data={simpleHorizontalBarTimeSeriesData}
+  options={addHeightToOptions(simpleHorizontalBarTimeSeriesOptions)}
+/>
 
-<Row>
-<Column  colLg={8} colMd={6} colSm={4}>
+### Grouped bar chart
 
-![Horizontal bar chart](images/charts-basic-horizontalbar.png)
+A grouped bar chart, also known as a clustered bar graph, multi-set bar chart, or grouped column chart, is a type of bar graph that is used to compare values across multiple categories.
 
-</Column>
-</Row>
+<GroupedBarChart
+  data={groupedHorizontalBarData}
+  options={addHeightToOptions(groupedHorizontalBarOptions)}
+/>
+
+### Stacked bar
+
+Stacked bar charts are useful for comparing proportional contributions within a category. They plot the relative value that each data series contributes to the total.
+
+<StackedBarChart
+  data={stackedHorizontalBarData}
+  options={addHeightToOptions(stackedHorizontalBarOptions)}
+/>
+
+<StackedBarChart
+  data={stackedHorizontalBarTimeSeriesData}
+  options={addHeightToOptions(stackedHorizontalBarTimeSeriesOptions)}
+/>
 
 ## Line chart
 
@@ -107,26 +161,24 @@ The horizontal bar chart follows the same principles as a vertical column chart,
 
 Line charts plot data at regular intervals connected by lines. You can use line visualizations to show trends over time and compare several data sets.
 
-<LineChart data={lineData} options={lineOptions} width="100%" height={400} />
+<LineChart data={lineData} options={addHeightToOptions(lineOptions)} />
+
+<LineChart
+  data={lineTimeSeriesData}
+  options={addHeightToOptions(lineTimeSeriesOptions)}
+/>
 
 ### Stepped line chart
 
 Stepped line charts plot data at regular intervals, forming a series of steps between data points. You can use line visualizations to show trends over time and compare several data sets.
 
-<LineChart
-  data={lineData}
-  options={Object.assign({}, lineOptions, { curve: 'curveStepAfter' })}
-  width="100%"
-  height={400}
-/>
+<LineChart data={stepData} options={addHeightToOptions(stepOptions)} />
 
 ### Curved line chart
 
 <LineChart
-  data={curvedLineData}
-  options={curvedLineOptions}
-  width="100%"
-  height={400}
+  data={lineTimeSeriesData}
+  options={addHeightToOptions(lineTimeSeriesOptions)}
 />
 
 ## Area chart
@@ -165,21 +217,11 @@ Note: This chart is currently a work-in-progress. To see our roadmap, request mi
 
 ### Pie
 
-<PieChart
-  data={demoPieData}
-  options={demoPieOptions}
-  width="100%"
-  height={400}
-/>
+<PieChart data={pieData} options={addHeightToOptions(pieOptions)} />
 
 ### Donut
 
-<DonutChart
-  data={demoPieData}
-  options={demoDonutOptions}
-  width="100%"
-  height={400}
-/>
+<DonutChart data={donutData} options={addHeightToOptions(donutOptions)} />
 
 ## Scatter plots
 
@@ -187,11 +229,11 @@ Note: This chart is currently a work-in-progress. To see our roadmap, request mi
 
 Scatter plot visualizations use data points to plot two measures anywhere along a scale, not only at regular tick marks. You can use scatter plots to explore correlations between different measures.
 
+<ScatterChart data={scatterData} options={addHeightToOptions(scatterOptions)} />
+
 <ScatterChart
-  data={scatterData}
-  options={scatterOptions}
-  width="100%"
-  height={400}
+  data={scatterTimeSeriesData}
+  options={addHeightToOptions(scatterTimeSeriesOptions)}
 />
 
 ### Bubble chart
