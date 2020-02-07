@@ -469,9 +469,6 @@ Starting with layout, add the following to `src/app/info/info-card/info-card.com
 .info-card {
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
-  padding: 0 $spacing-05;
-  height: 100%;
 
   .info-card__heading {
     @include carbon--type-style("productive-heading-03");
@@ -555,10 +552,6 @@ Then, add some styling for the icons within our `InfoCard` component:
 .info-card {
   ... .info-card__icon {
     margin-top: $spacing-09;
-
-    @include carbon--breakpoint(lg) {
-      margin-top: $layout-06;
-    }
   }
 }
 ```
@@ -567,30 +560,32 @@ Then, add some styling for the icons within our `InfoCard` component:
 Finally, we need styles for the `InfoCard` borders. We will use the `InfoSection` to apply styles using the children selectors. Update the `InfoSection` stylesheet to include styles targeting the `InfoCard`:
 
 ```scss path=src/app/info/info-section/info-section.component.scss
-app-info-card {
-  margin-top: $spacing-09;
-}
-
-// top border in only small breakpoints to prevent overrides
-@include carbon--breakpoint-down(md) {
-  app-info-card:not(:nth-child(2)) {
-    border-top: 1px solid $ui-03;
-    padding-top: $spacing-09;
+.info-section {
+  ... app-info-card {
+    margin-top: $spacing-09;
   }
-}
 
-// left border in just the 2nd column items
-@include carbon--breakpoint(md) {
-  app-info-card:nth-child(even) {
-    border-left: 1px solid $ui-03;
+  // top border in only small breakpoints to prevent overrides
+  @include carbon--breakpoint-down(md) {
+    app-info-card:not(:nth-child(2)) {
+      border-top: 1px solid $ui-03;
+      padding-top: $spacing-09;
+    }
   }
-}
 
-// left border in all items
-@include carbon--breakpoint(lg) {
-  app-info-card {
-    margin-top: 0;
-    border-left: 1px solid $ui-03;
+  // left border in just the 2nd column items
+  @include carbon--breakpoint(md) {
+    app-info-card:nth-child(odd) {
+      border-left: 1px solid $ui-03;
+    }
+  }
+
+  // left border in all items
+  @include carbon--breakpoint(lg) {
+    app-info-card {
+      margin-top: 0;
+      border-left: 1px solid $ui-03;
+    }
   }
 }
 ```

@@ -78,7 +78,7 @@ You might send a task-generated notification when:
 
 #### System-generated notifications
 
-These notifications are initiated by the system independent of user action. They provide updates on background system status or out-of-context events that have finished.
+These notifications are initiated by the application or system, independent of user action. They provide updates on background system status or out-of-context events that have finished.
 
 You might send a system-generated notification when:
 
@@ -95,7 +95,19 @@ Only send notifications where necessary. Confine each notification to the portio
 
 Notification status helps convey the information being communicated. These statuses correspond with a color and icon to provide a consistent, universal experience for users.
 
-![Example of notification status](/images/Status_1120.png)
+<Row>
+<Column colLg={12}>
+
+![Example of notification status](/images/1_notification_status_1120.png)
+
+<Caption>Notification status using the inline notification component</Caption>
+
+</Column>
+</Row>
+
+<br />
+
+<Title> Deciding what to use </Title>
 
 | Status        | Usage                                                                                                                        | Action                                                                                                         | Color  | Icon               |
 | ------------- | ---------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ------ | ------------------ |
@@ -107,14 +119,18 @@ Notification status helps convey the information being communicated. These statu
 ## Notification types
 
 <Row>
-<Column colLg={8}>
+<Column colLg={12}>
 
-![Examples of basic notification types](/images/Notification_types_1120.png)
+![Examples of basic notification types](/images/2_Notification_types_1120.png)
 
 </Column>
 </Row>
 
-| Notification type  | Usage                                                                                                             | Duration and interaction                                                                                                                         |
+<br />
+
+<Title> Deciding what to use </Title>
+
+| Type               | Usage                                                                                                             | Duration and interaction                                                                                                                         |
 | ------------------ | ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Inline             | Provide users with nondisruptive feedback or the status of an action                                              | Persist until the message is resolved or dismissed by user and may include a ghost button action                                                 |
 | Toast              | Short, time-based messages that slide in and out of a page and provide nondisruptive information                  | Disappear automatically or can be dismissed by user                                                                                              |
@@ -131,68 +147,83 @@ Carbon offers low-contrast and high-contrast inline notifications. All inline no
 #### Best practices:
 
 - Place inline notifications near their related items.
-- Inline notifications can appear at either the top or bottom of forms.
+- In forms, inline notifications can be placed either at the top or bottom.
 - Keep the message under two lines.
+- Do not cover other content with inline notifications.
 - The notification width varies based on the context and page layout.
 - Be descriptive and give users clear next steps.
 
 <Row>
 <Column colLg={8}>
 
-![Inline notification in a product](/images/Inline_1120.png)
+![Inline notification in a product](/images/3_Inline_736.png)
+
+<Caption>Low-contrast inline notification</Caption>
 
 </Column>
 </Row>
 
 ### Toast
 
-[Toasts](https://www.carbondesignsystem.com/components/notification/usage/) are notifications that slide in and out, typically in the top right of the page. They are more disruptive than inline notifications and are best used with system-generated messages that do not correspond to a specific section of the UI. Toasts disappear automatically after a set amount of time but can also be dismissed by the user.
+[Toasts](https://www.carbondesignsystem.com/components/notification/usage/) are notifications that slide in and out, typically in the top right of the page. They are more disruptive than inline notifications and are best used with system-generated messages that do not correspond to a specific section of the UI. Toasts disappear automatically after a set amount of time but can also be dismissed by the user.
 
 Carbon toasts can be either low-contrast or high-contrast. Their color should correspond with the message intent and they can also use an icon to convey the message intent.
+
+#### Long messages
+
+Removing the timestamp provides space for a third line of content for longer toast messages. Toasts are intended to be at-a-glance messages confined to a small region of the screen so their messages should not exceed three lines.
+
+If it is possible a toast will have a message longer than three lines, include a short message with a "View more" link that takes the user to a view of the full notification message. This can be either a full page with more details or a modal.
 
 #### Best practices:
 
 - Multiple toasts stack horizontally, with the newest appearing at the top of the list.
-- Keep messages clear and concise and only show two lines of content.
-- Toasts dismiss after 5 seconds.
-- Limit toasts to two lines of content.
-- When necessary, give toasts an "expand" or "show more" option to accommodate longer content.
+- Keep messages clear and concise
+- Toasts dismiss after five seconds.
+- The timestamp is optional and can be removed.
+- Toast notifications have a fixed width and should not be expanded to fit the content area.
 
 <Row>
 <Column colLg={8}>
 
-![Toast notification in a product](/images/Toast_1120.png)
+![Toast notification in a product](/images/4_Toast_736.png)
+
+<Caption>Low-contrast toast noticiation</Caption>
 
 </Column>
 </Row>
 
 ### Banner
 
-Banners take over the top of an interface to show notifications general to the product or system, not a specific task. They persist until they are dismissed by the user. Banners can include a ghost button or link. Depending on the message, the user resolving a product or system issue may also dismiss the banner (e.g. updating necessary account information). Banners may also persist across multiple sessions.
+Banners take over the top of an interface to show general notifications for the product or system, not a specific task. They persist until they are dismissed by the user. Banners can include a ghost button or link. Depending on the message, the user resolving a product or system issue (for example, updating necessary account information), may also dismiss the banner. Banners may also persist across multiple sessions.
 
 #### Best practices:
 
 - Banners should be placed at the top of the content area they relate to.
+- Do not cover other content with a banner notification.
 - Place system-wide messages directly below the main header or navigation bar.
+- Banners are not sticky and should scroll with the other content on the page.
 - Only show one banner at a time.
 
-Carbon currently does not have a banner component, but if your team has developed one it can be contributed and made available to others.
+More design iteration and user testing is needed before Carbon solidifies our guidance for banners and creates a banner component. Keep an eye out for refined usage examples in the future. If your team has developed a banner component, consider contributing it to Carbon so that it can be made available to others.
 
 <Row>
 <Column colLg={8}>
 
-![Banner notification in a product](/images/Banner_1120.png)
+![Banner notification in a product](/images/5_Banner_736.png)
+
+<Caption>Low-contrast banner notification</Caption>
 
 </Column>
 </Row>
 
 ### Notification panel
 
-Notification panels are helpful for users who receive a large number of system-generated notifications or may need to reference their notifications later. Notification panels are used in conjunction with toasts to alert users of notifications as they come in.
+Notification panels are helpful for users who receive a large number of system-generated notifications or may need to reference their notifications later. They are used in conjunction with toasts to alert users of notifications as they come in.
 
-Notification panels are a great solution to ensure that users can access and read all notifications without cluttering the screen with many persistent notifications. In addition to being useful, notification centers address some accessibility considerations with screen readers.
+Notification panels ensure that users can access and read all notifications without cluttering the screen with many persistent notifications. They also provide a consistent experience to users who need more time to read notifications, use a screen reader, or prefer to limit the notifications they receive.
 
-The [right panel](https://www.carbondesignsystem.com/components/UI-shell-right-panel/usage) in the Carbon UI shell supports a notification center. Carbon does not currently have a notification panel component, but if your team has developed one it can be contributed and made available to others.
+More design iteration and user testing is needed before Carbon solidifies our guidance for notification panel and creates a notification panel component. Keep an eye out for refined usage examples in the future. If your team has developed a notification panel component, consider contributing it to Carbon so that it can be made available to others.
 
 #### Best practices:
 
@@ -204,7 +235,9 @@ The [right panel](https://www.carbondesignsystem.com/components/UI-shell-right-p
 <Row>
 <Column colLg={8}>
 
-![Notification panel in a product](/images/Panel_1120.png)
+![Notification panel in a product](/images/6_Panel_736.png)
+
+<Caption>Notification panel with the Gray 100 theme</Caption>
 
 </Column>
 </Row>
@@ -222,7 +255,9 @@ Modals interrupt the user and pause their current task. They are highly disrupti
 <Row>
 <Column colLg={8}>
 
-![Modal notification in a product](/images/Modal_1120.png)
+![Modal notification in a product](/images/7_Modal_736.png)
+
+<Caption>Danger modal notification</Caption>
 
 </Column>
 </Row>
@@ -249,17 +284,38 @@ Blocking users from continuing with a task is disruptive and hinders the overall
 
 ### Notification message
 
-It's important to consider the user's context when writing notification messages. Because task-generated notifications are sent in response to user action, it isn't necessary to give users extensive background information. Conversely, system-generated notifications are generally not relevant to the user's current task so you should ensure the user has sufficient context to understand the notification.
+It's important to consider the user's context when writing notification messages. Use language that is accessible to the user and that will be easily understood. Use a tone that is appropriate for the situation and notification.
 
-Message content should be clear and concise. If a user is expected to take an action, ensure they know how to take that action.
+Because task-generated notifications are sent in response to user action, it isn't necessary to give users extensive background information. Conversely, system-generated notifications are generally not relevant to the user's current task so you should ensure the user has sufficient context to understand the notification.
 
-Error messages should be diagnosable and provide steps to resolve the issue. Avoid using technical language that is unfamiliar to the user.
+<DoDontRow>
+  <DoDont
+    caption="Do use clear and concise language."
+    text="Success! Your resource has been created."
+    aspectRatio="1:1"
+  />
+  <DoDont
+    type="dont"
+    caption="Do not use technical jargon or language unfamiliar to the user."
+    text="503 Service Unavailable"
+    aspectRatio="1:1"
+  />
+</DoDontRow>
+<DoDontRow>
+  <DoDont
+    caption="Do ensure users konw how to take action if it is necessary."
+    text="Script failed to run. Check the log for more detail."
+    aspectRatio="1:1"
+  />
+  <DoDont
+    tyoe="dont"
+    caption="Do not leave users without next steps."
+    text="Instance was not created."
+    aspectRatio="1:1"
+  />
+</DoDontRow>
 
 ## Accessibility
-
-**Only move a screen reader's focus for the user when a notification is critical.** Use `aria-live` regions to update the user as notifications come in while also being conscious of the user's needs. Using `aria-live="assertive"` informs screen reader users that a notification is present without moving focus to the notification and is recommended for most high priority notifications. If a notification is not a priority, use `aria-live="polite"` instead. This delays the announcement of the notification until the user finishes their current task so they are not interrupted.
-
-**It should be easy to navigate to the notification using only a keyboard.** Using `TAB` moves the screen focus to the notification and pressing `SPACE` or `ENTER` dismiss the notification.
 
 **Don't use notifications that dismiss on a timer for critical or emergency messages.** Some users with disabilities need more time to read or interact with messages and timed toasts may not provide sufficient time.
 [WCAG 2.1 success criterion 2.2.4 (AAA)](https://www.w3.org/WAI/WCAG21/Understanding/no-timing.html)
@@ -283,9 +339,9 @@ Error messages should be diagnosable and provide steps to resolve the issue. Avo
 
 #### Patterns
 
-- Dialogs
+- [Dialogs](https://www.carbondesignsystem.com/patterns/dialog-pattern/)
 - Error states (future)
-- Forms
+- [Forms](/patterns/forms-pattern/)
 
 </Column>
 </Row>
