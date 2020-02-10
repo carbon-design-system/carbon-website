@@ -171,13 +171,13 @@ Let's update the UI Shell so it has a link to the repos page that we will create
   </ibm-header-navigation>
   <ibm-header-global>
     <ibm-header-action title="action">
-      <svg ibmIconNotification20></svg>
+      <svg icon ibmIconNotification20></svg>
     </ibm-header-action>
     <ibm-header-action title="action">
-      <svg ibmIconUserAvatar20></svg>
+      <svg icon ibmIconUserAvatar20></svg>
     </ibm-header-action>
     <ibm-header-action title="action">
-      <svg ibmIconAppSwitcher20></svg>
+      <svg icon ibmIconAppSwitcher20></svg>
     </ibm-header-action>
   </ibm-header-global>
 </ibm-header>
@@ -737,13 +737,13 @@ Then we need to add the template code. Populate `header.component.html` with:
 	</ibm-header-navigation>
 	<ibm-header-global>
 		<ibm-header-action title="action">
-			<svg ibmIconNotification20></svg>
+			<svg icon ibmIconNotification20></svg>
 		</ibm-header-action>
 		<ibm-header-action title="action">
-			<svg ibmIconUserAvatar20></svg>
+			<svg icon ibmIconUserAvatar20></svg>
 		</ibm-header-action>
 		<ibm-header-action title="action">
-			<svg ibmIconAppSwitcher20></svg>
+			<svg icon ibmIconAppSwitcher20></svg>
 		</ibm-header-action>
 	</ibm-header-global>
 </ibm-header>
@@ -769,7 +769,7 @@ declarations: [HeaderComponent];
 </main>
 ```
 
-Let's add some padding to the top of the document, so the content is below the header. We are going to do this by using the `bx--header` class provided by carbon. So in `hedaer.component.ts` lets hostbind that class.
+Let's add some padding to the top of the document, so the content is below the header. We are going to do this by using the `bx--header` class provided by carbon. So in `header.component.ts` lets hostbind that class.
 
 ```javascript
 import { Component, HostBinding } from '@angular/core';
@@ -841,6 +841,16 @@ const routes: Routes = [
       ),
   },
 ];
+```
+
+And modify the `NgModule` declaration to use the hash router:
+
+```javascript path=src/app-routing.module.ts
+@NgModule({
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
+  exports: [RouterModule],
+})
+export class AppRoutingModule {}
 ```
 
 And add routes for the landing and repo pages:
