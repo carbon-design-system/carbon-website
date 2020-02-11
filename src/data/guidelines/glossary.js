@@ -204,7 +204,7 @@ module.exports = {
       },
       intent: {
         desc:
-          '1) Broadly, the goals, wants, needs, and values of users and businesses. Intent provides your solution’s purpose.<br/>2) In AI contexts, when a chatbot interprets a conversation, it identifies the action or purpose behind a user\'s utterance (usually expressed by the verbs). These are identified as the intents. For example, in the utterance: "Where is the bathroom", the intent is to find a location.',
+          '1. Broadly, the goals, wants, needs, and values of users and businesses. Intent provides your solution’s purpose.<br/>2. In AI contexts, when a chatbot interprets a conversation, it identifies the action or purpose behind a user\'s utterance (usually expressed by the verbs). These are identified as the intents. For example, in the utterance: "Where is the bathroom", the intent is to find a location.',
         subtext: 'Compare [entity](#entity).',
       },
     },
