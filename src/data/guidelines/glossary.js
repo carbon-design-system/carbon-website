@@ -12,7 +12,7 @@ module.exports = {
         desc:
           'Saves changes without closing the dialog. These properties often affect subsequent system behavior.',
         subtext:
-          'Use instead of `Save changes`. Compare [Save](#save) and [Save as](#save-as).',
+          'Use instead of Save changes. Compare [Save](#save) and [Save as](#save-as).',
       },
       Approve: {
         desc:
@@ -44,7 +44,7 @@ module.exports = {
         desc:
           'Returns the user to the previous step in a sequence of steps, such as in a wizard.',
         subtext:
-          'Use instead of `Previous`. Compare [Next](#next) and [Finish](#finish).',
+          'Use instead of Previous. Compare [Next](#next) and [Finish](#finish).',
       },
       Browse: {
         desc:
@@ -213,24 +213,24 @@ module.exports = {
     'Action labels': {
       Launch: {
         desc: null,
-        subtext: 'Do not use `Launch`; use [Start](#start).',
+        subtext: 'Do not use Launch; use [Start](#start).',
       },
       'Learn more': {
         desc:
           'Opens additional, highly contextual information. Insert at the end of inline text or hover text where more information follows but does not fit in the current context.',
         subtext:
-          "If space permits, combine `Learn more` with meaningful text that describes the content you're pointing to. For example, if your user needs some best practices to manage apps in multiple regions, you could use `Learn more about regions`.",
+          "If space permits, combine Learn more with meaningful text that describes the content you're pointing to. For example, if your user needs some best practices to manage apps in multiple regions, you could use Learn more about regions.",
       },
       'Log in': {
         desc:
           'Enters a site or application. This choice typically opens a form for entry of credentials. Also used on the submission button after users enter their credentials.',
         subtext:
-          'Use instead of `Sign in`. This is to make it visually distinct from `Sign up`. These options are often side by side and the different words allow for quick recognition. Compare [Log out](#log-out). See also the [Login pattern](/patterns/login-pattern).',
+          'Use instead of Sign in. This is to make it visually distinct from Sign up. These options are often side by side and the different words allow for quick recognition. Compare [Log out](#log-out). See also the [Login pattern](/patterns/login-pattern).',
       },
       'Log out': {
         desc: 'Exits an application or site.',
         subtext:
-          'Use instead of `Sign out`. Compare [Log in](#log-in). See also the [Login pattern](/patterns/login-pattern).',
+          'Use instead of Sign out. Compare [Log in](#log-in). See also the [Login pattern](/patterns/login-pattern).',
       },
     },
   },
@@ -358,7 +358,7 @@ module.exports = {
       },
       Run: {
         desc: 'Initiates a procedure.',
-        subtext: 'Use Run instead of `Execute`.',
+        subtext: 'Use Run instead of Execute.',
       },
     },
   },
@@ -400,7 +400,7 @@ module.exports = {
       },
       'Sign up': {
         desc: 'Creates a user account or registers a user in a system.',
-        subtext: 'Use instead of `Register`.',
+        subtext: 'Use instead of Register.',
       },
       Sort: {
         desc: 'Sorts a list or table column.',
@@ -410,7 +410,7 @@ module.exports = {
       Start: {
         desc:
           'Deploy an app or service to its development or production environment so that it can be used.',
-        subtext: 'Use instead of `Launch`.',
+        subtext: 'Use instead of Launch.',
       },
       'Submit an idea': {
         desc: 'Opens a separate window containing the IBM Cloud Ideas portal.',
@@ -423,7 +423,7 @@ module.exports = {
     'Action labels': {
       Top: {
         desc: 'Returns to the top of the page.',
-        subtext: 'Use instead of `Back to top`.',
+        subtext: 'Use instead of Back to top.',
       },
       training: {
         desc:
