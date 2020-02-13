@@ -15,6 +15,8 @@ const NoResult = ({
   setSelectedCategory,
   selectedCategory,
   type = 'icons',
+  pageName,
+  pageUrl,
 }) => (
   <div className={noResult}>
     {allIconResults ? (
@@ -44,14 +46,19 @@ const NoResult = ({
         </p>
         <Row className="resource-card-group">
           <Column colMd={4} colLg={4} noGutterSm>
-            <ResourceCard subTitle="Submit an icon design">
+            <ResourceCard
+              subTitle={`Submit ${
+                pageName === 'icon' ? 'an icon' : 'a pictogram'
+              } design`}
+              href="https://github.ibm.com/brand/pictograms/issues/new">
               <MdxIcon name="github" />
             </ResourceCard>
           </Column>
           <Column colMd={4} colLg={4} noGutterSm>
             <ResourceCard
               actionIcon="download"
-              subTitle="Download the icon grid">
+              href={pageUrl}
+              subTitle={`Download the ${pageName} grid`}>
               <MdxIcon name="illustrator" />
             </ResourceCard>
           </Column>

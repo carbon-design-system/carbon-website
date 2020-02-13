@@ -1,17 +1,13 @@
+/* eslint-disable no-restricted-globals */
 /* eslint-disable no-debugger */
 import React, { useEffect, useState } from 'react';
-import { Search, Dropdown } from 'carbon-components-react';
 import { pickBy, groupBy, debounce } from 'lodash';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import * as iconsReact from '@carbon/icons-react';
 
 import iconMetaData from './iconMetaData';
-import {
-  svgPage,
-  filterRow,
-  svgLibrary,
-} from '../shared/SvgLibrary.module.scss';
+import { svgPage, svgLibrary } from '../shared/SvgLibrary.module.scss';
 
+import FilterRow from '../shared/FilterRow';
 import IconCategory from './IconCategory';
 import NoResult from '../shared/NoResult';
 
@@ -76,42 +72,36 @@ const IconLibrary = () => {
 
   const filteredIcons = getFilteredIcons();
 
-  const categories = Object.entries(
+  const allCategories = Object.entries(
     groupBy(filteredIcons, 'categories[0].name')
   );
 
   const filteredCategories =
     selectedCategory === 'All icons'
-      ? categories
-      : categories.filter(([category]) => category === selectedCategory);
+      ? allCategories
+      : allCategories.filter(([category]) => category === selectedCategory);
 
   const shouldShowNoResult = categoriesLoaded && filteredCategories.length < 1;
 
   return (
     <div className={svgPage}>
-      <div className={filterRow}>
-        <Search
-          small
-          light
-          labelText="filter icons by searching for their name or subcategory"
-          onChange={e => debouncedSetSearchInputValue(e.currentTarget.value)}
-          placeHolderText={`Search by descriptors like “add”, or “check”`}
-        />
-        <Dropdown
-          id="category-filter"
-          direction="bottom"
-          light
-          selectedItem={selectedCategory}
-          onChange={({ selectedItem }) => setSelectedCategory(selectedItem)}
-          label="Filter icons by category"
-          items={['All icons', ...categoryList]}
-        />
-      </div>
+      <FilterRow
+        categoryList={categoryList}
+        selectedCategory={selectedCategory}
+        onSearchChange={e =>
+          debouncedSetSearchInputValue(e.currentTarget.value)
+        }
+        onDropdownChange={({ selectedItem }) =>
+          setSelectedCategory(selectedItem)
+        }
+      />
       {shouldShowNoResult ? (
         <NoResult
           selectedCategory={selectedCategory}
           setSelectedCategory={setSelectedCategory}
           allIconResults={filteredIcons.length}
+          pageName="icon"
+          pageUrl="https://github.com/carbon-design-system/carbon/blob/master/packages/icons/master/ui-icon-master.ai"
         />
       ) : (
         <div className={svgLibrary}>

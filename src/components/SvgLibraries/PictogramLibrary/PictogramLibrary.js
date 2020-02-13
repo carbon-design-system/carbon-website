@@ -1,15 +1,12 @@
 /* eslint-disable no-debugger */
 import React, { useEffect, useState } from 'react';
-import { Search, Dropdown } from 'carbon-components-react';
+
 import { groupBy, debounce } from 'lodash';
 import * as pictogramsReact from '@carbon/pictograms-react';
 
+import FilterRow from '../shared/FilterRow';
 import pictogramMetaData from './pictogramMetaData';
-import {
-  svgPage,
-  filterRow,
-  svgLibrary,
-} from '../shared/SvgLibrary.module.scss';
+import { svgPage, svgLibrary } from '../shared/SvgLibrary.module.scss';
 
 import PictogramCategory from './PictogramCategory';
 import NoResult from '../shared/NoResult';
@@ -63,43 +60,40 @@ const IconLibrary = () => {
 
   const filteredPictograms = getFilteredPictorams();
 
-  const categories = Object.entries(
+  const allCategories = Object.entries(
     groupBy(filteredPictograms, 'categories[0].name')
   );
 
   const filteredCategories =
     selectedCategory === 'All pictograms'
-      ? categories
-      : categories.filter(([category]) => category === selectedCategory);
+      ? allCategories
+      : allCategories.filter(([category]) => category === selectedCategory);
 
   const shouldShowNoResult = categoriesLoaded && filteredCategories.length < 1;
 
   return (
     <div className={svgPage}>
-      <div className={filterRow}>
-        <Search
-          small
-          light
-          labelText="filter pictograms by searching for their name or subcategory"
-          onChange={e => debouncedSetSearchInputValue(e.currentTarget.value)}
-          placeHolderText={`Search by descriptors like “electronics”, or “weather”`}
-        />
-        <Dropdown
-          id="category-filter"
-          direction="bottom"
-          light
-          selectedItem={selectedCategory}
-          onChange={({ selectedItem }) => setSelectedCategory(selectedItem)}
-          label="Filter pictograms by category"
-          items={['All pictograms', ...categoryList]}
-        />
-      </div>
+      <FilterRow
+        type="pictogram"
+        categoryList={categoryList}
+        selectedCategory={selectedCategory}
+        onSearchChange={e =>
+          debouncedSetSearchInputValue(e.currentTarget.value)
+        }
+        onDropdownChange={({ selectedItem }) =>
+          setSelectedCategory(selectedItem)
+        }
+      />
       {shouldShowNoResult ? (
         <NoResult
           type="pictograms"
           selectedCategory={selectedCategory}
           setSelectedCategory={setSelectedCategory}
           allIconResults={filteredPictograms.length}
+          pageName={'pictogram'}
+          pageUrl={
+            'https://github.com/carbon-design-system/carbon/blob/master/packages/pictograms/master/pictogram-master.ai'
+          }
         />
       ) : (
         <div className={svgLibrary}>

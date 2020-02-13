@@ -7,6 +7,7 @@ module.exports = {
       'IBM, design, system, Carbon, design system, Bluemix, styleguide, style, guide, components, library, pattern, kit, component, cloud',
   },
   plugins: [
+    'gatsby-plugin-carbon-icon-library',
     'gatsby-plugin-lodash',
     {
       resolve: 'gatsby-theme-carbon',

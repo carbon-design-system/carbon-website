@@ -1,6 +1,8 @@
 /* eslint-disable camelcase */
-import React from 'react';
+import React, { useState } from 'react';
 import { pascal } from 'change-case';
+import ActionBar from './ActionBar';
+
 import {
   svgCard,
   svgCardInside,
@@ -8,21 +10,39 @@ import {
   triggerText,
 } from './SvgLibrary.module.scss';
 
-const SvgCard = ({ icon, ...rest }) => (
-  <li className={svgCard}>
-    <div className={svgCardInside}>
-      <span className={triggerText}>{icon.friendly_name}</span>
-      <div className={flexContainer}>
-        {icon.Component ? (
-          <icon.Component {...rest}>
-            <title>{icon.friendly_name}</title>
-          </icon.Component>
-        ) : (
-          <p>Error: no component found for {pascal(icon.friendly_name)}</p>
-        )}
+const SvgCard = ({ icon, ...rest }) => {
+  const [isActionBarVisible, setIsActionBarVisible] = useState(false);
+  const { name, Component, friendly_name: friendlyName } = icon;
+
+  return (
+    <li
+      onMouseEnter={() => {
+        setIsActionBarVisible(true);
+      }}
+      onMouseLeave={() => {
+        setIsActionBarVisible(false);
+      }}
+      className={svgCard}>
+      <div className={svgCardInside}>
+        <span className={triggerText}>{friendlyName}</span>
+        <div className={flexContainer}>
+          {Component ? (
+            <Component {...rest}>
+              <title>{friendlyName}</title>
+            </Component>
+          ) : (
+            <p>Error: no component found for {pascal(friendlyName)}</p>
+          )}
+        </div>
+        <ActionBar
+          name={name}
+          friendlyName={friendlyName}
+          isActionBarVisible={isActionBarVisible}
+          setIsActionBarVisible={setIsActionBarVisible}
+        />
       </div>
-    </div>
-  </li>
-);
+    </li>
+  );
+};
 
 export default SvgCard;
