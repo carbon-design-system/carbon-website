@@ -39,7 +39,7 @@ const IconSubcategory = ({ subcategory, icons }) => (
     <h3 className={cx(h3, subcategoryTitle)}>{subcategory}</h3>
     <ul className={svgGrid}>
       {icons.map(icon => (
-        <SvgCard key={icon.name} icon={icon} />
+        <SvgCard type="icon" key={icon.name} icon={icon} />
       ))}
     </ul>
   </li>

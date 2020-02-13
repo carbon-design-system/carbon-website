@@ -4,8 +4,8 @@ const { join } = require(`path`);
 const isDirectory = source => lstatSync(source).isDirectory();
 
 exports.onPreBootstrap = async ({ pathPrefix }) => {
-  const destination = `./public/${pathPrefix}/icons`;
-
+  // Transfer icons to public directory
+  const destination = `./public${pathPrefix}/icons`;
   await copy('./node_modules/@carbon/icons/svg/32', destination, {
     overwrite: true,
   });
@@ -19,5 +19,11 @@ exports.onPreBootstrap = async ({ pathPrefix }) => {
       overwrite: true,
     });
     remove(dir);
+  });
+
+  // Transfer pictograms to public directory
+  const pictoDestination = `./public${pathPrefix}/pictograms`;
+  await copy('./node_modules/@carbon/pictograms/svg', pictoDestination, {
+    overwrite: true,
   });
 };

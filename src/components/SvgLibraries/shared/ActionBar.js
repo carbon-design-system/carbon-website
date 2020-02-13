@@ -11,8 +11,11 @@ const ActionBar = ({
   friendlyName,
   setIsActionBarVisible,
   isActionBarVisible,
+  type,
 }) => {
-  const component = `<${pascal(friendlyName)}32 />`;
+  const component = `<${
+    pascal(friendlyName) + (type === 'pictogram' ? '' : '32')
+  } />`;
   const actionBarRef = useRef();
 
   const handleBlurEvent = e => {
@@ -29,7 +32,7 @@ const ActionBar = ({
       <a
         onFocus={() => setIsActionBarVisible(true)}
         download={`${name}.svg`}
-        href={`/icons/${name}.svg`}>
+        href={`/${type}s/${name}.svg`}>
         <Download16 title={`download ${name}.svg`}>
           <title>Download {name}.svg</title>
         </Download16>
@@ -37,6 +40,7 @@ const ActionBar = ({
       <Copy
         onClick={() => copy(component)}
         onFocus={() => setIsActionBarVisible(true)}
+        feedback={`Copied component`}
         className="bx--copy-btn"
         aria-label={`Copy the ${pascal(friendlyName)} React component`}>
         <Code16 />
