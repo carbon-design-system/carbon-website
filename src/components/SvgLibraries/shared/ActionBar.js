@@ -3,6 +3,7 @@ import { pascal } from 'change-case';
 import { Code16, Download16 } from '@carbon/icons-react';
 import { Copy } from 'carbon-components-react';
 import copy from 'copy-to-clipboard';
+import { withPrefix } from 'gatsby';
 
 import styles from './ActionBar.module.scss';
 
@@ -17,6 +18,9 @@ const ActionBar = ({
     pascal(friendlyName) + (type === 'pictogram' ? '' : '32')
   } />`;
   const actionBarRef = useRef();
+
+  // Don't show copy button on IDL deployment
+  const shouldShowCopyButton = withPrefix() !== '/design/language/';
 
   const handleBlurEvent = e => {
     const isStillFocusedWithin = actionBarRef.current.contains(e.relatedTarget);
@@ -37,14 +41,16 @@ const ActionBar = ({
           <title>Download {name}.svg</title>
         </Download16>
       </a>
-      <Copy
-        onClick={() => copy(component)}
-        onFocus={() => setIsActionBarVisible(true)}
-        feedback={`Copied component`}
-        className="bx--copy-btn"
-        aria-label={`Copy the ${pascal(friendlyName)} React component`}>
-        <Code16 />
-      </Copy>
+      {shouldShowCopyButton && (
+        <Copy
+          onClick={() => copy(component)}
+          onFocus={() => setIsActionBarVisible(true)}
+          feedback={`Copied component`}
+          className="bx--copy-btn"
+          aria-label={`Copy the ${pascal(friendlyName)} React component`}>
+          <Code16 />
+        </Copy>
+      )}
     </div>
   );
 };
