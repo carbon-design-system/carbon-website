@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import { Location } from '@reach/router';
 import { withPrefix } from 'gatsby';
