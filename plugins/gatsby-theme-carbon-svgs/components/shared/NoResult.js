@@ -7,7 +7,7 @@ import {
   paragraph,
 } from 'gatsby-theme-carbon/src/components/markdown/Markdown.module.scss';
 
-import MdxIcon from '../../MdxIcon';
+import { Illustrator, Github } from './Icons';
 import { noResult, allSvgs, searchLabel } from './SvgLibrary.module.scss';
 
 const NoResult = ({
@@ -51,7 +51,7 @@ const NoResult = ({
                 pageName === 'icon' ? 'an icon' : 'a pictogram'
               } design`}
               href="https://github.ibm.com/brand/pictograms/issues/new">
-              <MdxIcon name="github" />
+              <Github />
             </ResourceCard>
           </Column>
           <Column colMd={4} colLg={4} noGutterSm>
@@ -59,7 +59,7 @@ const NoResult = ({
               actionIcon="download"
               href={pageUrl}
               subTitle={`Download the ${pageName} grid`}>
-              <MdxIcon name="illustrator" />
+              <Illustrator />
             </ResourceCard>
           </Column>
         </Row>

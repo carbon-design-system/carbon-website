@@ -1,7 +1,7 @@
 import React from 'react';
 import { Search, Dropdown } from 'carbon-components-react';
 import cx from 'classnames';
-import { useSticky } from '../../hooks';
+import useSticky from './useSticky';
 import { filterRow, pictograms } from './SvgLibrary.module.scss';
 
 const FilterRow = ({

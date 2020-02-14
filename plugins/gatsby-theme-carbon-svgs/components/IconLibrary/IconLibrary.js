@@ -1,19 +1,19 @@
+/* eslint-disable no-restricted-globals */
 /* eslint-disable no-debugger */
 import React, { useEffect, useState } from 'react';
+import { pickBy, groupBy, debounce } from 'lodash-es';
+import * as iconsReact from '@carbon/icons-react';
 
-import { groupBy, debounce } from 'lodash';
-import * as pictogramsReact from '@carbon/pictograms-react';
-
-import FilterRow from '../shared/FilterRow';
-import pictogramMetaData from './pictogramMetaData';
+import iconMetaData from './iconMetaData';
 import { svgPage, svgLibrary } from '../shared/SvgLibrary.module.scss';
 
-import PictogramCategory from './PictogramCategory';
+import FilterRow from '../shared/FilterRow';
+import IconCategory from './IconCategory';
 import NoResult from '../shared/NoResult';
 
 const IconLibrary = () => {
-  const [pictogramComponents, setPictogramComponents] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState('All pictograms');
+  const [iconComponents, setIconComponents] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState('All icons');
   const [searchInputValue, setSearchInputValue] = useState('');
   const [categoryList, setCategoryList] = useState([]);
   const [categoriesLoaded, setCategoriesLoaded] = useState(false);
@@ -21,23 +21,35 @@ const IconLibrary = () => {
   const debouncedSetSearchInputValue = debounce(setSearchInputValue, 200);
 
   useEffect(() => {
-    const iconArray = Object.keys(pictogramMetaData).map(icon => ({
-      ...pictogramMetaData[icon],
+    const iconComponentList = pickBy(
+      iconsReact,
+      (val, key) => key.slice(-2) === '32'
+    );
+
+    const iconArray = Object.keys(iconMetaData).map(icon => ({
+      ...iconMetaData[icon],
       // If the icon is unprefixed and starts with a number, add an underscore
-      Component: pictogramsReact[icon],
+      Component:
+        iconComponentList[isNaN(icon[0]) ? `${icon}32` : `_${icon}32`] ||
+        iconComponentList[`WatsonHealth${icon}32`] ||
+        iconComponentList[`Q${icon}32`],
     }));
+
+    const filteredIcons = iconArray.filter(({ deprecated }) => !deprecated);
+
     setCategoryList(
-      Object.keys(groupBy(iconArray, 'categories[0].name')).sort()
+      Object.keys(groupBy(filteredIcons, 'categories[0].name')).sort()
     );
     setCategoriesLoaded(true);
-    setPictogramComponents(iconArray);
+
+    setIconComponents(filteredIcons);
   }, []);
 
-  const getFilteredPictorams = () => {
+  const getFilteredIcons = () => {
     if (!searchInputValue) {
-      return pictogramComponents;
+      return iconComponents;
     }
-    return pictogramComponents.filter(
+    return iconComponents.filter(
       // eslint-disable-next-line camelcase
       ({ friendly_name, categories, aliases = [], name }) => {
         const searchValue = searchInputValue.toLowerCase();
@@ -52,20 +64,23 @@ const IconLibrary = () => {
           (categories &&
             categories[0] &&
             categories[0].name.toLowerCase().includes(searchValue)) ||
+          (categories &&
+            categories[0] &&
+            categories[0].subcategory.toLowerCase().includes(searchValue)) ||
           name.toLowerCase().includes(searchValue)
         );
       }
     );
   };
 
-  const filteredPictograms = getFilteredPictorams();
+  const filteredIcons = getFilteredIcons();
 
   const allCategories = Object.entries(
-    groupBy(filteredPictograms, 'categories[0].name')
+    groupBy(filteredIcons, 'categories[0].name')
   );
 
   const filteredCategories =
-    selectedCategory === 'All pictograms'
+    selectedCategory === 'All icons'
       ? allCategories
       : allCategories.filter(([category]) => category === selectedCategory);
 
@@ -74,7 +89,6 @@ const IconLibrary = () => {
   return (
     <div className={svgPage}>
       <FilterRow
-        type="pictogram"
         categoryList={categoryList}
         selectedCategory={selectedCategory}
         onSearchChange={e =>
@@ -86,23 +100,16 @@ const IconLibrary = () => {
       />
       {shouldShowNoResult ? (
         <NoResult
-          type="pictograms"
           selectedCategory={selectedCategory}
           setSelectedCategory={setSelectedCategory}
-          allIconResults={filteredPictograms.length}
-          pageName={'pictogram'}
-          pageUrl={
-            'https://github.com/carbon-design-system/carbon/blob/master/packages/pictograms/master/pictogram-master.ai'
-          }
+          allIconResults={filteredIcons.length}
+          pageName="icon"
+          pageUrl="https://github.com/carbon-design-system/carbon/blob/master/packages/icons/master/ui-icon-master.ai"
         />
       ) : (
         <div className={svgLibrary}>
-          {filteredCategories.map(([category, pictograms]) => (
-            <PictogramCategory
-              key={category}
-              category={category}
-              pictograms={pictograms}
-            />
+          {filteredCategories.map(([category, icons]) => (
+            <IconCategory key={category} category={category} icons={icons} />
           ))}
         </div>
       )}

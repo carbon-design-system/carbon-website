@@ -1,5 +1,5 @@
-import { keyBy } from 'lodash';
-import { icons as iconMetaData } from '@carbon/pictograms/metadata.json';
+import { keyBy } from 'lodash-es';
+import { icons as iconMetaData } from '@carbon/icons/metadata.json';
 import { pascal } from 'change-case';
 
 const flattenedIconMetaData = iconMetaData.flatMap(
