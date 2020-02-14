@@ -11,13 +11,12 @@ const ActionBar = ({
   friendlyName,
   setIsActionBarVisible,
   isActionBarVisible,
-  type,
 }) => {
+  const { site, type } = useContext(LibraryContext);
   const component = `<${
     pascal(friendlyName) + (type === 'pictogram' ? '' : '32')
   } />`;
   const actionBarRef = useRef();
-  const { site, baseUrl } = useContext(LibraryContext);
 
   // Don't show copy button on IDL deployment
   const shouldShowCopyButton = site === 'carbon';
@@ -36,7 +35,7 @@ const ActionBar = ({
       <a
         onFocus={() => setIsActionBarVisible(true)}
         download={`${name}.svg`}
-        href={`${baseUrl + name}.svg`}>
+        href={`/${type}s/${name}.svg`}>
         <Download16 title={`download ${name}.svg`}>
           <title>Download {name}.svg</title>
         </Download16>
