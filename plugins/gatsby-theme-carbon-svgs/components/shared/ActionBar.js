@@ -1,5 +1,5 @@
 import React, { useRef, useContext } from 'react';
-import { pascal } from 'change-case';
+import { pascalCase } from 'change-case';
 import { Code16, Download16 } from '@carbon/icons-react';
 import { Copy } from 'carbon-components-react';
 import copy from 'copy-to-clipboard';
@@ -15,7 +15,7 @@ const ActionBar = ({
 }) => {
   const { site, type } = useContext(LibraryContext);
   const component = `<${
-    pascal(friendlyName) + (type === 'pictogram' ? '' : '32')
+    pascalCase(friendlyName) + (type === 'pictogram' ? '' : '32')
   } />`;
   const actionBarRef = useRef();
 
@@ -47,7 +47,7 @@ const ActionBar = ({
           onFocus={() => setIsActionBarVisible(true)}
           feedback={`Copied component`}
           className="bx--copy-btn"
-          aria-label={`Copy the ${pascal(friendlyName)} React component`}>
+          aria-label={`Copy the ${pascalCase(friendlyName)} React component`}>
           <Code16 />
         </Copy>
       )}

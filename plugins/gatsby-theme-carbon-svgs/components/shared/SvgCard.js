@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 import React, { useState } from 'react';
-import { pascal } from 'change-case';
+import { pascalCase } from 'change-case';
 import ActionBar from './ActionBar';
 
 import {
@@ -31,7 +31,7 @@ const SvgCard = ({ icon, ...rest }) => {
               <title>{friendlyName}</title>
             </Component>
           ) : (
-            <p>Error: no component found for {pascal(friendlyName)}</p>
+            <p>Error: no component found for {pascalCase(friendlyName)}</p>
           )}
         </div>
         <ActionBar
