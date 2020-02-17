@@ -202,7 +202,11 @@ Congratulations, you've imported your first component! You should see a Carbon s
 
 ## Add UI Shell
 
-_Note: The UI Shell has experimental status at the moment. We do not recommend using it for production until it is stable, but if doing so, know that there may be breaking changes in the future._
+<InlineNotification>
+
+**Note:** The UI Shell has experimental status at the moment. We do not recommend using it for production until it is stable, but if doing so, know that there may be breaking changes in the future.
+
+</InlineNotification>
 
 Next we're going to create a React component called `TutorialHeader` to use with the UI Shell Carbon component. In the `src` directory, create a `components` directory and inside of that, a `TutorialHeader` directory. Create the following files inside `src/components/TutorialHeader`:
 
@@ -270,11 +274,23 @@ const TutorialHeader = () => (
 export default TutorialHeader;
 ```
 
-_Note: you can find a description of the different components used UI Shell in our [carbon-components-react](https://github.com/carbon-design-system/carbon/tree/master/packages/react/src/components/UIShell) package._
+<InlineNotification>
 
-_Note: When creating navigation headers, it's important to have a_ `Skip to content` _link so keyboard users can skip the navigation items and go straight to the main content._
+**Note:** you can find a description of the different components used UI Shell in our [carbon-components-react](https://github.com/carbon-design-system/carbon/tree/master/packages/react/src/components/UIShell) package.
 
-_Note: It's important that the_ `TutorialHeader` _returns the Carbon_ `Header` _as it's containing element, as we'll later be rendering_ `TutorialHeader` _in_ `App.js` _as a preceeding sibling of_ `Content`_, another UI Shell component. Those components need to live one after another for the UI Shell to properly render._
+</InlineNotification>
+
+<InlineNotification>
+
+**Note:** When creating navigation headers, it's important to have a `Skip to content` link so keyboard users can skip the navigation items and go straight to the main content.
+
+</InlineNotification>
+
+<InlineNotification>
+
+**Note:** It's important that the `TutorialHeader` returns the Carbon `Header` as it's containing element, as we'll later be rendering `TutorialHeader` in `App.js` as a preceeding sibling of `Content`, another UI Shell component. Those components need to live one after another for the UI Shell to properly render.
+
+</InlineNotification>
 
 ### Import icons
 
@@ -440,7 +456,11 @@ First, we need to wrap our app in the `Router` component. In the root `index.js`
 import { HashRouter as Router } from 'react-router-dom';
 ```
 
-_Note: We're using_ `HashRouter` _instead of_ `BrowserRouter` _to simplify deployments in upcoming tutorial steps. Learn more about the React Router [here](https://reacttraining.com/react-router/web/api/BrowserRouter)._
+<InlineNotification>
+
+**Note:** We're using `HashRouter` instead of `BrowserRouter` to simplify deployments in upcoming tutorial steps. Learn more about the React Router [here](https://reacttraining.com/react-router/web/api/BrowserRouter).
+
+</InlineNotification>
 
 Then, update the `render()` function to include the `Router`.
 
@@ -514,7 +534,11 @@ We have a `ci-check` script defined in `package.json` that verifies file formatt
 $ yarn ci-check
 ```
 
-_Note: If the_ `ci-check` _is giving an error, it's likely that some of your source files are not properly formatted. This could happen if your text editor isn't formatting with Prettier on save. To get_ `ci-check` _to pass, run_ `yarn format`_ then re-run_ `yarn ci-check`_._
+<InlineNotification>
+
+**Note:** If the `ci-check` is giving an error, it's likely that some of your source files are not properly formatted. This could happen if your text editor isn't formatting with Prettier on save. To get `ci-check` to pass, run `yarn format` then re-run `yarn ci-check`.
+
+</InlineNotification>
 
 ### Git commit and push
 
@@ -524,7 +548,11 @@ Before we can create a pull request, stage and commit all of your changes:
 $ git add --all && git commit -m "feat(tutorial): complete step 1"
 ```
 
-_Note: You'll notice that your commit includes binaries in the _`.yarn-offline-mirror`_ folder. That's expected as the repository is configured to run [Yarn offline](https://yarnpkg.com/blog/2016/11/24/offline-mirror) for more reliable builds. Future tutorial steps that don't install new packages won't have _`.yarn-offline-mirror`_ commit changes._
+<InlineNotification>
+
+**Note:** You'll notice that your commit includes binaries in the `.yarn-offline-mirror` folder. That's expected as the repository is configured to run [Yarn offline](https://yarnpkg.com/blog/2016/11/24/offline-mirror) for more reliable builds. Future tutorial steps that don't install new packages won't have `.yarn-offline-mirror` commit changes.
+
+</InlineNotification>
 
 Then, push to your repository:
 
@@ -532,12 +560,24 @@ Then, push to your repository:
 $ git push origin react-step-1
 ```
 
-_Note: If your Git remote protocol is HTTPS instead of SSH, you may be prompted to authenticate with GitHub when you push changes. If your GitHub account has two-factor authentication enabled, we recommend that you follow these instructions to [create a personal access token for the command line](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line). That lets you use your token instead of password when performing Git operations over HTTPS._
+<InlineNotification>
 
-_Note: If you receive a_ `non-fast-forward` _error, it's likely that your forked repository is behind the original repository and needs updated. This can happen if the tutorial was updated after you began working on it. To fix, run_ `git pull upstream react-step-1` _to merge the changes into your branch, then you can try pushing again. Or, you can [manually merge](https://help.github.com/en/articles/syncing-a-fork) in the upstream changes._
+**Note:** If your Git remote protocol is HTTPS instead of SSH, you may be prompted to authenticate with GitHub when you push changes. If your GitHub account has two-factor authentication enabled, we recommend that you follow these instructions to [create a personal access token for the command line](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line). That lets you use your token instead of password when performing Git operations over HTTPS.
+
+</InlineNotification>
+
+<InlineNotification>
+
+**Note:** If you receive a `non-fast-forward` error, it's likely that your forked repository is behind the original repository and needs updated. This can happen if the tutorial was updated after you began working on it. To fix, run `git pull upstream react-step-1` to merge the changes into your branch, then you can try pushing again. Or, you can [manually merge](https://help.github.com/en/articles/syncing-a-fork) in the upstream changes.
+
+</InlineNotification>
 
 ### Pull request (PR)
 
 Finally, visit [carbon-tutorial](https://github.com/carbon-design-system/carbon-tutorial) to "Compare & pull request". In doing so, make sure that you are comparing to `react-step-1` into `base: react-step-1`. Take notice of the [Netlify](https://www.netlify.com) bot that deploys a preview of your PR every time that you push new commits. These previews can be shared and viewed by anybody to assist the PR review process.
 
-_Note: Expect your tutorial step PRs to be reviewed by the Carbon team but not merged. We'll close your PR so we can keep the repository's remote branches pristine and ready for the next person!_
+<InlineNotification>
+
+**Note:** Expect your tutorial step PRs to be reviewed by the Carbon team but not merged. We'll close your PR so we can keep the repository's remote branches pristine and ready for the next person!
+
+</InlineNotification>
