@@ -1,5 +1,5 @@
 import React from 'react';
-import { groupBy } from 'lodash';
+import { groupBy } from 'lodash-es';
 import {
   h2,
   h3,
