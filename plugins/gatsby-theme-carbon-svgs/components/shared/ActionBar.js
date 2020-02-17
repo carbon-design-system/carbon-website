@@ -1,4 +1,4 @@
-import React, { useRef, useContext, useState } from 'react';
+import React, { useRef, useContext, useState, useEffect } from 'react';
 import { pascalCase } from 'change-case';
 import { Code16, Download16 } from '@carbon/icons-react';
 import { TooltipDefinition } from 'carbon-components-react';
@@ -31,10 +31,15 @@ const ActionBar = ({
   const handleCopy = () => {
     setCopyText('Copied!');
     copy(component);
-    setTimeout(() => {
-      setCopyText(`Copy ${component}`);
-    }, 2000);
   };
+
+  useEffect(() => {
+    if (copyText === 'Copied!') {
+      setTimeout(() => {
+        setCopyText(`Copy ${component}`);
+      }, 2000);
+    }
+  }, [copyText]);
 
   return (
     <div
