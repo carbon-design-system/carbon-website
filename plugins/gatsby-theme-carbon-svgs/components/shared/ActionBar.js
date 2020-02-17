@@ -28,6 +28,14 @@ const ActionBar = ({
     setIsActionBarVisible(isStillFocusedWithin);
   };
 
+  const handleDownload = () => {
+    const a = document.body.appendChild(document.createElement('a'));
+    a.download = `${name}.svg`;
+    a.href = withPrefix(`/${type}s/${name}.svg`);
+    a.click();
+    document.body.removeChild(a);
+  };
+
   const handleCopy = () => {
     setCopyText('Copied!');
     copy(component);
@@ -48,28 +56,25 @@ const ActionBar = ({
       hidden={!isActionBarVisible}
       className={styles.container}>
       <TooltipDefinition
+        onFocus={() => setIsActionBarVisible(true)}
+        onClick={handleDownload}
         align="center"
         direction="top"
         tooltipText="Download SVG"
+        className={styles.tooltip}
         triggerClassName={styles.trigger}>
-        <a
-          onFocus={() => setIsActionBarVisible(true)}
-          download={`${name}.svg`}
-          href={withPrefix(`/${type}s/${name}.svg`)}>
-          <Download16 />
-        </a>
+        <Download16 />
       </TooltipDefinition>
       {shouldShowCopyButton && (
         <TooltipDefinition
           align="center"
           direction="top"
           tooltipText={copyText}
+          onClick={handleCopy}
+          onFocus={() => setIsActionBarVisible(true)}
+          className={styles.tooltip}
           triggerClassName={styles.trigger}>
-          <button
-            onClick={handleCopy}
-            onFocus={() => setIsActionBarVisible(true)}>
-            <Code16 />
-          </button>
+          <Code16 />
         </TooltipDefinition>
       )}
     </div>
