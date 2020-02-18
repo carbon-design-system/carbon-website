@@ -1,7 +1,7 @@
-import React, { useRef, useContext } from 'react';
+import React, { useRef, useContext, useState, useEffect } from 'react';
 import { pascalCase } from 'change-case';
 import { Code16, Download16 } from '@carbon/icons-react';
-import { Copy } from 'carbon-components-react';
+import { TooltipDefinition } from 'carbon-components-react';
 import copy from 'copy-to-clipboard';
 import { withPrefix } from 'gatsby';
 import { LibraryContext } from './LibraryProvider';
@@ -17,6 +17,7 @@ const ActionBar = ({
   const component = `<${
     pascalCase(friendlyName) + (type === 'pictogram' ? '' : '32')
   } />`;
+  const [copyText, setCopyText] = useState(`Copy ${component}`);
   const actionBarRef = useRef();
 
   // Don't show copy button on IDL deployment
@@ -27,29 +28,54 @@ const ActionBar = ({
     setIsActionBarVisible(isStillFocusedWithin);
   };
 
+  const handleDownload = () => {
+    const a = document.body.appendChild(document.createElement('a'));
+    a.download = `${name}.svg`;
+    a.href = withPrefix(`/${type}s/${name}.svg`);
+    a.click();
+    document.body.removeChild(a);
+  };
+
+  const handleCopy = () => {
+    setCopyText('Copied!');
+    copy(component);
+  };
+
+  useEffect(() => {
+    if (copyText === 'Copied!') {
+      setTimeout(() => {
+        setCopyText(`Copy ${component}`);
+      }, 2000);
+    }
+  }, [copyText]);
+
   return (
     <div
       ref={actionBarRef}
       onBlur={handleBlurEvent}
       hidden={!isActionBarVisible}
       className={styles.container}>
-      <a
+      <TooltipDefinition
         onFocus={() => setIsActionBarVisible(true)}
-        download={`${name}.svg`}
-        href={withPrefix(`/${type}s/${name}.svg`)}>
-        <Download16 title={`download ${name}.svg`}>
-          <title>Download {name}.svg</title>
-        </Download16>
-      </a>
+        onClick={handleDownload}
+        align="center"
+        direction="top"
+        tooltipText="Download SVG"
+        className={styles.tooltip}
+        triggerClassName={styles.trigger}>
+        <Download16 />
+      </TooltipDefinition>
       {shouldShowCopyButton && (
-        <Copy
-          onClick={() => copy(component)}
+        <TooltipDefinition
+          align="center"
+          direction="top"
+          tooltipText={copyText}
+          onClick={handleCopy}
           onFocus={() => setIsActionBarVisible(true)}
-          feedback={`Copied component`}
-          className="bx--copy-btn"
-          aria-label={`Copy the ${pascalCase(friendlyName)} React component`}>
+          className={styles.tooltip}
+          triggerClassName={styles.trigger}>
           <Code16 />
-        </Copy>
+        </TooltipDefinition>
       )}
     </div>
   );
