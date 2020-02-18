@@ -28,7 +28,7 @@ const CodeBar = ({ src, code, links }) => {
           CodeSandbox <Launch16 />
         </a>
         {storybookLinks.map(([framework, url]) => (
-          <StorybookLink framework={framework} url={url} />
+          <StorybookLink key={framework} framework={framework} url={url} />
         ))}
       </div>
       {src ? (
