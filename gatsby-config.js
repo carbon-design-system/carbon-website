@@ -34,6 +34,6 @@ module.exports = {
         siteId: 'VMSGXQRS',
       },
     },
-    'gatsby-plugin-remove-serviceworker',
+    'gatsby-plugin-offline',
   ],
 };
