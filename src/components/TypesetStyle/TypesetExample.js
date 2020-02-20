@@ -1,7 +1,7 @@
 import React from 'react';
 import { settings } from 'carbon-components';
 import classnames from 'classnames';
-import { findKey, values } from 'lodash';
+import { findKey, values } from 'lodash-es';
 import {
   baseFontSize,
   breakpoints as carbonBreakpoints,
@@ -98,12 +98,13 @@ const TypesetExample = props => (
           currentBreakpointSpecs['font-weight'],
           currentBreakpointSpecs['font-style']
         ),
-        fontSize: `${`${calculateFluidTypeSize('font-size')}px` +
-          ' / '}${currentBreakpointSpecs['font-size']
+        fontSize: `${`${calculateFluidTypeSize(
+          'font-size'
+        )}px / `}${currentBreakpointSpecs['font-size']
           .toString()
           .replace('0.', '.')}rem`,
         // eslint-disable-next-line no-useless-concat
-        lineHeight: `${`${calculateFluidLineHeight('line-height')}px` + ` / `}${
+        lineHeight: `${`${calculateFluidLineHeight('line-height')}px / `}${
           currentBreakpointSpecs['line-height']
         }rem`,
         letterSpacing: currentBreakpointSpecs['letter-spacing']

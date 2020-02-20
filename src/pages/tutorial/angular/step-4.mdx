@@ -35,10 +35,13 @@ A [preview](https://angular-step-5-carbon-tutorial.netlify.com) of what you'll b
   frameborder="no"
   allowtransparency="true"
   allowfullscreen="true"
-  class="bx--iframe bx--iframe--border"
 />
 
-_Note: If you get lint errors when you copy the code from the snippets, run_ `ng lint --fix` _to fix them._
+<InlineNotification>
+
+**Note:** If you get lint errors when you copy the code from the snippets, run `ng lint --fix` to fix them.
+
+</InlineNotification>
 
 ## Fork, clone and branch
 
@@ -53,7 +56,11 @@ git fetch upstream
 git checkout -b angular-step-4 upstream/angular-step-4
 ```
 
-_Note: This builds on top of step 3, but be sure to check out the upstream step 4 branch because it includes the static assets required to get through this step._
+<InlineNotification>
+
+**Note:** This builds on top of step 3, but be sure to check out the upstream step 4 branch because it includes the static assets required to get through this step.
+
+</InlineNotification>
 
 ### Build and start app
 
@@ -101,7 +108,11 @@ ng generate component info/info-card --lint-fix
 ng generate component info/info-section --lint-fix
 ```
 
-_Note: the `--lint-fix` flag will automatically resolve lint issues in the newly generated files._
+<InlineNotification>
+
+**Note:** The `--lint-fix` flag will automatically resolve lint issues in the newly generated files.
+
+</InlineNotification>
 
 Running the above commands should get you the folder structure below:
 
@@ -469,9 +480,6 @@ Starting with layout, add the following to `src/app/info/info-card/info-card.com
 .info-card {
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
-  padding: 0 $spacing-05;
-  height: 100%;
 
   .info-card__heading {
     @include carbon--type-style("productive-heading-03");
@@ -555,10 +563,6 @@ Then, add some styling for the icons within our `InfoCard` component:
 .info-card {
   ... .info-card__icon {
     margin-top: $spacing-09;
-
-    @include carbon--breakpoint(lg) {
-      margin-top: $layout-06;
-    }
   }
 }
 ```
@@ -567,30 +571,32 @@ Then, add some styling for the icons within our `InfoCard` component:
 Finally, we need styles for the `InfoCard` borders. We will use the `InfoSection` to apply styles using the children selectors. Update the `InfoSection` stylesheet to include styles targeting the `InfoCard`:
 
 ```scss path=src/app/info/info-section/info-section.component.scss
-app-info-card {
-  margin-top: $spacing-09;
-}
-
-// top border in only small breakpoints to prevent overrides
-@include carbon--breakpoint-down(md) {
-  app-info-card:not(:nth-child(2)) {
-    border-top: 1px solid $ui-03;
-    padding-top: $spacing-09;
+.info-section {
+  ... app-info-card {
+    margin-top: $spacing-09;
   }
-}
 
-// left border in just the 2nd column items
-@include carbon--breakpoint(md) {
-  app-info-card:nth-child(even) {
-    border-left: 1px solid $ui-03;
+  // top border in only small breakpoints to prevent overrides
+  @include carbon--breakpoint-down(md) {
+    app-info-card:not(:nth-child(2)) {
+      border-top: 1px solid $ui-03;
+      padding-top: $spacing-09;
+    }
   }
-}
 
-// left border in all items
-@include carbon--breakpoint(lg) {
-  app-info-card {
-    margin-top: 0;
-    border-left: 1px solid $ui-03;
+  // left border in just the 2nd column items
+  @include carbon--breakpoint(md) {
+    app-info-card:nth-child(odd) {
+      border-left: 1px solid $ui-03;
+    }
+  }
+
+  // left border in all items
+  @include carbon--breakpoint(lg) {
+    app-info-card {
+      margin-top: 0;
+      border-left: 1px solid $ui-03;
+    }
   }
 }
 ```
@@ -613,10 +619,18 @@ Then, push to your repository:
 git push origin angular-step-4
 ```
 
-_Note: Having issues pushing your changes? [Step 1](/tutorial/angular/step-1#git-commit-and-push) has troubleshooting notes that may help._
+<InlineNotification>
+
+**Note:** Having issues pushing your changes? [Step 1](/tutorial/angular/step-1#git-commit-and-push) has troubleshooting notes that may help.
+
+</InlineNotification>
 
 ### Pull request (PR)
 
 Finally, visit [carbon-tutorial](https://github.com/carbon-design-system/carbon-tutorial) to "Compare & pull request". In doing so, make sure that you are comparing to `angular-step-4` into `base: angular-step-4`.
 
-_Note: Expect your tutorial step PRs to be reviewed by the Carbon team but not merged. We'll close your PR so we can keep the repository's remote branches pristine and ready for the next person!_
+<InlineNotification>
+
+**Note:** Expect your tutorial step PRs to be reviewed by the Carbon team but not merged. We'll close your PR so we can keep the repository's remote branches pristine and ready for the next person!
+
+</InlineNotification>
