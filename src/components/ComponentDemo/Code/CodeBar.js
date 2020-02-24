@@ -5,21 +5,32 @@ import React from 'react';
 import { CopyButton } from 'carbon-components-react';
 import { Launch16 } from '@carbon/icons-react';
 import cx from 'classnames';
-import { codeBar, button, copyButton } from './Code.module.scss';
+import { codeBar, button, copyButton, linkList } from './Code.module.scss';
 import useCodesandbox from './useCodesandbox';
 
 // If no path is given, don't render. We'll use the Sidebar for buttons
 // If a src url is given, the src Icon will display in this row, otherwise
 // The copy button will.
-const CodeBar = ({ src, code }) => {
+const StorybookLink = ({ framework, url }) => (
+  <a target="_blank" rel="noopener noreferrer" href={url}>
+    {framework} <Launch16 />
+  </a>
+);
+
+const CodeBar = ({ src, code, links }) => {
   const sandboxUrl = useCodesandbox(code);
+  const storybookLinks = Object.entries(links);
+
   return (
     <div className={codeBar}>
-      <span>
+      <div className={linkList}>
         <a target="_blank" rel="noopener noreferrer" href={sandboxUrl}>
-          Edit in Codesandbox <Launch16 />
+          CodeSandbox <Launch16 />
         </a>
-      </span>
+        {storybookLinks.map(([framework, url]) => (
+          <StorybookLink key={framework} framework={framework} url={url} />
+        ))}
+      </div>
       {src ? (
         <a
           target="_blank"

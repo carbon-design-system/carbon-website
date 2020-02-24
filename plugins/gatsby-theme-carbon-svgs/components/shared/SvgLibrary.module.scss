@@ -1,0 +1,344 @@
+.svg-page {
+  margin-left: -$spacing-05;
+  margin-right: -$spacing-05;
+
+  // prevent jank when icons load
+  min-height: 60vh;
+}
+
+.filter-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: sticky;
+  z-index: z('dropdown');
+  top: 7rem;
+  border-bottom: 1px solid $ui-03;
+  transition: box-shadow $duration--fast-02 ease;
+  @include carbon--breakpoint('md') {
+    align-items: flex-end;
+    flex-direction: row;
+  }
+}
+
+.filter-row[data-stuck] {
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
+}
+
+.filter-row :global(.bx--search) {
+  @include carbon--breakpoint('md') {
+    width: calc(50% + 1px);
+    border-right: 1px solid $ui-03;
+  }
+  @include carbon--breakpoint('lg') {
+    width: calc(66.666% + 1px);
+    border-right: 1px solid $ui-03;
+  }
+}
+
+.filter-row.pictograms :global(.bx--search) {
+  @include carbon--breakpoint('lg') {
+    width: calc(75% + 1px);
+  }
+}
+
+.filter-row::before {
+  content: '';
+  position: absolute;
+  z-index: z('dropdown');
+  height: 1rem;
+  width: 100%;
+  top: -1rem;
+  background: #f3f3f3;
+}
+
+.filter-row :global(.bx--search-input) {
+  border-bottom: 1px solid $ui-03;
+  @include carbon--breakpoint('md') {
+    border-bottom: none;
+  }
+}
+
+.filter-row :global(.bx--list-box__menu) {
+  background-color: $ui-background;
+  max-height: 220px; // 4.5 x result height to demonstrate scrollability
+  z-index: z('dropdown');
+}
+
+// menu item height
+.filter-row :global(.bx--list-box__menu-item) {
+  height: auto;
+}
+
+.filter-row :global(.bx--list-box__menu-item__option) {
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  @include carbon--type-style('body-short-02');
+  padding: 0;
+}
+
+.filter-row :global(.bx--dropdown__wrapper) {
+  flex-grow: 1;
+  width: 100%;
+  height: 3rem;
+  @include carbon--breakpoint('md') {
+    width: auto;
+  }
+}
+
+.filter-row :global(.bx--dropdown) {
+  // handled by filter-row
+  height: 3rem;
+  max-height: 3rem;
+  border-bottom: none;
+}
+
+.filter-row :global(.bx--list-box__field) {
+  height: 100%;
+}
+
+.filter-row :global(.bx--list-box__label) {
+  @include carbon--type-style('body-short-02');
+  position: relative;
+  top: 1px;
+}
+
+.svg-library {
+  overflow: hidden;
+  @include carbon--breakpoint('md') {
+    overflow: visible;
+  }
+}
+
+.svg-category .category-title {
+  margin: 0;
+  margin-left: $spacing-05;
+  margin-top: $spacing-11;
+}
+
+.svg-category .subcategory-title {
+  margin: 0;
+  margin-top: $spacing-09;
+  margin-left: $spacing-05;
+}
+
+// i.e. fallback
+.svg-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.svg-grid {
+  margin-top: $spacing-05;
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(2, 1fr);
+
+  @include carbon--breakpoint('md') {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @include carbon--breakpoint('lg') {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+$svg-card-border: 1px solid $ui-03;
+
+.svg-card {
+  height: 0;
+  padding-top: 100%;
+  background-color: $ui-background;
+  position: relative;
+  border-left: $svg-card-border;
+  border-top: $svg-card-border;
+  &:first-child {
+    border-left: none;
+  }
+
+  // first row
+  &:nth-child(-n + 2) {
+    border-top: none;
+  }
+
+  // every other card
+  &:nth-child(odd) {
+    border-left: none;
+  }
+}
+
+@include carbon--breakpoint('md') {
+  .svg-card {
+    // reset 2 column borders
+    &:nth-child(-n + 2) {
+      border-top: $svg-card-border;
+    }
+    &:nth-child(odd) {
+      border-left: $svg-card-border;
+    }
+
+    // first row of 4
+    &:nth-child(-n + 4) {
+      border-top: none;
+    }
+    // every 4th card (starting with 5th)
+    &:nth-child(4n + 1) {
+      border-left: none;
+    }
+  }
+}
+
+@include carbon--breakpoint('lg') {
+  .svg-card {
+    // reset 4 column borders
+    &:nth-child(-n + 4) {
+      border-top: $svg-card-border;
+    }
+    &:nth-child(4n + 1) {
+      border-left: $svg-card-border;
+    }
+
+    // first row of 6
+    &:nth-child(-n + 6) {
+      border-top: none;
+    }
+
+    // every 6th card (starting with 7th)
+    &:nth-child(6n + 1) {
+      border-left: none;
+    }
+  }
+}
+
+.svg-grid.pictograms {
+  grid-template-columns: repeat(2, 1fr);
+
+  @include carbon--breakpoint('lg') {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.pictograms .svg-card {
+  border-left: $svg-card-border;
+  border-top: $svg-card-border;
+
+  // reset 2 column borders
+  &:nth-child(-n + 2) {
+    border-top: $svg-card-border;
+  }
+  &:nth-child(odd) {
+    border-left: $svg-card-border;
+  }
+
+  // first row of 4
+  &:nth-child(-n + 2) {
+    border-top: none;
+  }
+  // every 2nd card (starting with 4th)
+  &:nth-child(2n + 1) {
+    border-left: none;
+  }
+}
+
+@include carbon--breakpoint('lg') {
+  .pictograms .svg-card {
+    // reset 4 column borders
+    &:nth-child(odd) {
+      border-left: $svg-card-border;
+    }
+    &:nth-child(-n + 4) {
+      border-top: $svg-card-border;
+    }
+    &:nth-child(4n + 1) {
+      border-left: $svg-card-border;
+    }
+
+    // first row of 4
+    &:nth-child(-n + 4) {
+      border-top: none;
+    }
+
+    // every 4th card (starting with 5th)
+    &:nth-child(4n + 1) {
+      border-left: none;
+    }
+  }
+}
+
+.svg-card-inside {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.flex-container svg {
+  fill: $icon-01;
+}
+
+.svg-card .trigger-text {
+  @include carbon--type-style('label-01');
+  color: $text-01;
+  top: $spacing-04;
+  left: $spacing-05;
+  position: absolute;
+  max-width: calc(100% - #{$spacing-07});
+  width: 100%;
+}
+
+.no-result .search-label {
+  margin-left: $spacing-05;
+  margin-top: $spacing-03;
+  display: inline-block;
+}
+
+.no-result .all-svgs {
+  font-size: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.no-result h2 {
+  margin: 0;
+  margin-left: $spacing-05;
+  margin-top: $spacing-11;
+}
+
+.no-result p {
+  margin: 0;
+  margin-top: $spacing-06;
+  margin-left: $spacing-05;
+  max-width: 400px;
+}
+
+.no-result :global(.resource-card-group) {
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: $spacing-06;
+}
+
+.no-result :global(.resource-card-group) img {
+  width: 32px;
+}
+
+.icon {
+  width: 32px;
+  object-fit: contain;
+  position: relative;
+  display: inline-block;
+  user-select: none;
+  vertical-align: text-bottom;
+}
+
+.icon-inverse {
+  fill: $inverse-01;
+}
