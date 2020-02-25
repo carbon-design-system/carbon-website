@@ -45,7 +45,6 @@ A [preview](https://vue-step-4--carbon-tutorial-vue.netlify.com) of what you wil
   frameborder="no"
   allowtransparency="true"
   allowfullscreen="true"
-  class="bx--iframe bx--iframe--border"
 />
 
 ## Fork, clone and branch
@@ -81,7 +80,11 @@ You should see something similar to where the [previous step](/tutorial/vue/step
 
 We'll shortcut this using the Vue CLI, if you'd like more information head over to [Vue Apollo Installation](https://vue-apollo.netlify.com/guide/installation.html#vue-cli-plugin) for details.
 
-_Note: If you have not yet installed the Vue CLI, you will need to [install the Vue CLI](https://cli.vuejs.org/) before running the Vue Apollo Installation._
+<InlineNotification>
+
+**Note:** If you have not yet installed the Vue CLI, you will need to [install the Vue CLI](https://cli.vuejs.org/) before running the Vue Apollo Installation.
+
+</InlineNotification>
 
 Install the following
 
@@ -111,13 +114,15 @@ Once you have your token, we need to put it in a place where `create-vue-app` ca
 
 One caveat is that we need to start our variables with `VUE_APP_`. You can read more about environmental variables in [create-vue-app's guide](https://cli.vuejs.org/guide/mode-and-env.html#environment-variables).
 
-_Note: If you already have a valid GitHub Personal Access Token, you can use that token here._
+<InlineNotification>
+
+**Note:** If you already have a valid GitHub Personal Access Token, you can use that token here.
+
+</InlineNotification>
 
 Since we don't want to commit this file to Git, we can put it in `.env.local` which is in our `.gitignore` list. Your file should just have a single line like this one, where the `x`s are replaced with your unique token.
 
-##### .env.local
-
-```bash
+```bash path=.env.local
 VUE_APP_GITHUB_PERSONAL_ACCESS_TOKEN=xxxxxx
 ```
 
@@ -129,9 +134,7 @@ The `vue-apollo` plugin has made a number of changes to our project.
 
 If you open `src/main.js` you will see that the CLI has updated this file with the following:.
 
-##### src/main.js
-
-```javascript
+```javascript path=src/main.js
 import { createProvider } from 'vue-apollo';
 
 new Vue({
@@ -143,11 +146,9 @@ new Vue({
 
 This is loading from a file the CLI created for you `src/vue-apollo.js` which we need to update to target the github api.
 
-#### src/vue-apollo.js
-
 Update the following values:
 
-```javascript
+```javascript path=src/vue-apollo.js
 // Use our access token
 const AUTH_TOKEN = process.env.VUE_APP_GITHUB_PERSONAL_ACCESS_TOKEN;
 
@@ -174,9 +175,7 @@ const defaultOptions = {
 
 Add the following imports to the top of the script section of `RepoPage.vue`:
 
-##### src/views/RepoPage/RepoPage.vue
-
-```javascript
+```javascript path=src/views/RepoPage/RepoPage.vue
 import gql from 'graphql-tag';
 ```
 
@@ -190,9 +189,7 @@ If you'd like some more information regarding writing queries and using the Quer
 
 Add this after your imports:
 
-##### src/views/RepoPage/RepoPage.vue
-
-```graphql
+```graphql path=src/views/RepoPage/RepoPage.vue
 const REPO_QUERY = gql`
   query REPO_QUERY {
     # Let's use carbon as our organization
@@ -230,9 +227,7 @@ const REPO_QUERY = gql`
 
 Next, we need to configure apollo in our component script, adding the following after the data() declaration.
 
-##### src/views/RepoPage/RepoPage.vue
-
-```javascript
+```javascript path=src/views/RepoPage/RepoPage.vue
 apollo: {
   organization: REPO_QUERY
 },
@@ -242,9 +237,7 @@ At this point, we should run our query view the raw the results to verify that t
 
 In RepoPage.vue add the following before the `RepoTable` tag.
 
-##### src/views/RepoPage/RepoPage.vue
-
-```html
+```html path=src/views/RepoPage/RepoPage.vue
 {{ this.organization }}
 ```
 
@@ -256,9 +249,7 @@ This data is not quite in the format our `RepoTable` component is expecting so w
 
 Remove the 'rows' constant and its use in the data declaration, and add this computed property.
 
-##### src/views/RepoPage/RepoPage.vue
-
-```javascript
+```javascript path=src/views/RepoPage/RepoPage.vue
 computed: {
   rows() {
       if (!this.organization) {
@@ -288,9 +279,7 @@ Add the following to create your component:
 
 A template section:
 
-##### src/views/RepoPage/LinkList.vue
-
-```html
+```html path=src/views/RepoPage/LinkList.vue
 <ul class="link-list">
   <li>
     <cv-link :href="url">GitHub</cv-link>
@@ -305,9 +294,7 @@ A template section:
 
 A script section:
 
-##### src/views/RepoPage/LinkList.vue
-
-```javascript
+```javascript path=src/views/RepoPage/LinkList.vue
 export default {
   name: 'LinkList',
   props: {
@@ -319,9 +306,7 @@ export default {
 
 And a style section:
 
-##### src/views/RepoPage/LinkList.vue
-
-```scss
+```scss path=src/views/RepoPage/LinkList.vue
 .link-list {
   display: flex;
 }
@@ -331,26 +316,20 @@ Now let's make use of this component in our `RepoTable` component.
 
 At the top of the script section import the link list component:
 
-##### src/views/RepoPage/RepoTable.vue
-
-```javascript
+```javascript path=src/views/RepoPage/RepoTable.vue
 import LinkList from './LinkList';
 ```
 
 And below the name of the component add:
 
-##### src/views/RepoPage/RepoTable.vue
-
-```javascript
+```javascript path=src/views/RepoPage/RepoTable.vue
   components: { LinkList },
 ```
 
 Then make use of it in our template replacing:
 
-##### src/views/RepoPage/RepoTable.vue
-
 <!-- prettier-ignore-start -->
-```html
+```html path=src/views/RepoPage/RepoTable.vue
 <cv-data-table-cell
   v-for="(cell, cellIndex) in row.data"
   :key="`${cellIndex}`"
@@ -360,10 +339,8 @@ Then make use of it in our template replacing:
 
 with
 
-##### src/views/RepoPage/RepoTable.vue
-
 <!-- prettier-ignore-start -->
-```html
+```html path=src/views/RepoPage/RepoTable.vue
 <cv-data-table-cell v-for="(cell, cellIndex) in row.data" :key="`${cellIndex}`">
   <template v-if="!cell.url">
     {{cell}}
@@ -381,10 +358,8 @@ Checking our output again, you should now see the LinkList component rendering t
 
 Next we'll update our row description. Update the computed property data() in `RepoTable.vue` to have the following description:
 
-##### src/views/RepoPage/RepoTable.vue
-
 <!-- prettier-ignore-start -->
-```javascript
+```javascript path=src/views/RepoPage/RepoTable.vue
   description: row.description
 ```
 <!-- prettier-ignore-end -->
@@ -397,11 +372,9 @@ We can use the property to react to [loading state](https://vue-apollo.netlify.c
 
 First let's demonstrate that this works.
 
-#### src/views/RepoPage/RepoPage.vue
-
 Pass the loading state into our `RepoTable` component by updating the template with the following:
 
-```html
+```html path=src/views/RepoPage/RepoPage.vue
 <repo-table
   :headers="headers"
   :rows="rows"
@@ -413,9 +386,7 @@ Pass the loading state into our `RepoTable` component by updating the template w
 
 Next add this property to the `RepoTable` component:
 
-##### src/views/RepoPage/RepoTable.vue
-
-```javascript
+```javascript path=src/views/RepoPage/RepoTable.vue
   props: {
     headers: Array,
     rows: Array,
@@ -429,9 +400,7 @@ Making use of the property to display a loading message.
 
 Replace:
 
-##### src/views/RepoPage/RepoTable.vue
-
-```html
+```html path=src/views/RepoPage/RepoTable.vue
 <cv-data-table
   :columns="columns"
   :title="title"
@@ -441,9 +410,7 @@ Replace:
 
 with:
 
-##### src/views/RepoPage/RepoTable.vue
-
-```html
+```html path=src/views/RepoPage/RepoTable.vue
 <div v-if="loading">Loading...</div>
 <cv-data-table
   v-else
@@ -457,10 +424,8 @@ Here we have made use of the v-if and v-else directives to switch content based 
 
 Now that we know this is works let's try something a bit more sophisticated and replace the div containing our loading message with use of the `CvDataTableSkeleton` component.
 
-##### src/views/RepoPage/RepoTable.vue
-
 <!-- prettier-ignore-start -->
-```html
+```html path=src/views/RepoPage/RepoTable.vue
 <cv-data-table-skeleton
   v-if="loading"
   :columns="columns"
@@ -479,10 +444,8 @@ Pagination! Instead of rendering every repository, let's add pagination to the d
 
 Let's start by adjusting our `PageTable` component template to add pagination. If you review the [storybook notes](http://vue.carbondesignsystem.com/?path=/info/components-cvdatatable--default) you'll see that pagination is added to the data table by supplying a pagination object and listening for pagination events as follows.
 
-##### src/views/RepoPage/RepoTable.vue
-
 <!-- prettier-ignore-start -->
-```html
+```html path=src/views/RepoPage/RepoTable.vue
   <cv-data-table
     v-else
     :columns="columns"
@@ -494,25 +457,24 @@ Let's start by adjusting our `PageTable` component template to add pagination. I
 ```
 <!-- prettier-ignore-end -->
 
-_Note: `:prop` is an abbreviation of `v-bind:prop`_
-_Note: `@event` is an abbreviation of `v-on:event`_
+<InlineNotification>
+
+**Note:** `:prop` is an abbreviation of `v-bind:prop`. `@event` is an abbreviation of `v-on:event`.
+
+</InlineNotification>
 
 In the pagination event we've used $emit and $event to re-raise the pagination event to our `RepoPage` component so that it can arrange to pass only the rows we want to see to the `RepoTable` component.
 
 We also need to add the `totalRows` property used in the data tables pagination property.
 
-##### src/views/RepoPage/RepoTable.vue
-
-```javascript
+```javascript path=src/views/RepoPage/RepoTable.vue
 totalRows: Number,
 ```
 
 Next to our `RepoPage` component, let's first update our template by updating our `RepoTable` use with the following attributes.
 
-##### src/views/RepoPage/RepoPage.vue
-
 <!-- prettier-ignore-start -->
-```html
+```html path=src/views/RepoPage/RepoPage.vue
 :rows="pagedRows"
 :totalRows="rows.length"
 @pagination="onPagination"
@@ -521,17 +483,13 @@ Next to our `RepoPage` component, let's first update our template by updating ou
 
 replacing
 
-##### src/views/RepoPage/RepoPage.vue
-
-```html
+```html path=src/views/RepoPage/RepoPage.vue
 :rows="rows"
 ```
 
 Next in the data property of our component add values for `pageSize`, `pageStart` and `page` into the data method return to support our pagination.
 
-##### src/views/RepoPage/RepoPage.vue
-
-```javascript
+```javascript path=src/views/RepoPage/RepoPage.vue
   data() {
     return {
       headers,
@@ -542,13 +500,15 @@ Next in the data property of our component add values for `pageSize`, `pageStart
   },
 ```
 
-_Note: We could have passed values for `pageSize` and `page` into our pagination component if we had a specific page or page size we wanted to start with. Instead we are relying on the pagination component to set some sensible defaults and provide us with the details through an event._
+<InlineNotification>
+
+**Note:** We could have passed values for `pageSize` and `page` into our pagination component if we had a specific page or page size we wanted to start with. Instead we are relying on the pagination component to set some sensible defaults and provide us with the details through an event.
+
+</InlineNotification>
 
 Then before we can see our paginated table we need to add: a `pagedRows` computed property to select the slice of input rows we are interested in, and a method to handle the pagination event.
 
-##### src/views/RepoPage/RepoPage.vue
-
-```javascript
+```javascript path=src/views/RepoPage/RepoPage.vue
   computed: {
     // other computed properties
     // ...
@@ -565,7 +525,11 @@ Then before we can see our paginated table we need to add: a `pagedRows` compute
   }
 ```
 
-_Note: Like the other Carbon Vue components,_ `Pagination` _component examples can be found in [Storybook](http://vue.carbondesignsystem.com/?path=/story/components-cvpagination--default) by browsing the story and knobs._
+<InlineNotification>
+
+**Note:** Like the other Carbon Vue components, `Pagination` component examples can be found in [Storybook](http://vue.carbondesignsystem.com/?path=/story/components-cvpagination--default) by browsing the story and knobs.
+
+</InlineNotification>
 
 That does it! Your data table should fetch GitHub data on first render. You can expand each row to see the repository's description. You can modify the pagination items per page and cycle through pages or jump to a specific page of repositories.
 
@@ -605,7 +569,11 @@ Run the CI check to make sure we're all set to submit a pull request.
 $ yarn ci-check
 ```
 
-_Note: Having issues running the CI check? [Step 1](/tutorial/vue/step-1#continuous-integration-ci-check) has troubleshooting notes that may help._
+<InlineNotification>
+
+**Note:** Having issues running the CI check? [Step 1](/tutorial/vue/step-1#continuous-integration-ci-check) has troubleshooting notes that may help.
+
+</InlineNotification>
 
 ### Git commit and push
 
@@ -621,10 +589,18 @@ Then, push to your repository:
 $ git push origin vue-step-3
 ```
 
-_Note: Having issues pushing your changes? [Step 1](/tutorial/vue/step-1#git-commit-and-push) has troubleshooting notes that may help._
+<InlineNotification>
+
+**Note:** Having issues pushing your changes? [Step 1](/tutorial/vue/step-1#git-commit-and-push) has troubleshooting notes that may help.
+
+</InlineNotification>
 
 ### Pull request (PR)
 
 Finally, visit [carbon-tutorial-vue](https://github.com/carbon-design-system/carbon-tutorial-vue) to "Compare & pull request". In doing so, make sure that you are comparing to `vue-step-3` into `base: vue-step-3`.
 
-_Note: Expect your tutorial step PRs to be reviewed by the Carbon team but not merged. We'll close your PR so we can keep the repository's remote branches pristine and ready for the next person!_
+<InlineNotification>
+
+**Note:** Expect your tutorial step PRs to be reviewed by the Carbon team but not merged. We'll close your PR so we can keep the repository's remote branches pristine and ready for the next person!
+
+</InlineNotification>

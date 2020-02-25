@@ -4,11 +4,6 @@ import ogimage from './src/images/ogimage.png';
 
 export const onRenderBody = ({ setHeadComponents }) => {
   setHeadComponents([
-    <link
-      key="serif"
-      href="https://fonts.googleapis.com/css?family=IBM+Plex+Serif&display=swap"
-      rel="stylesheet"
-    />,
     <meta key="og:image" property="og:image" content={ogimage} />,
     <meta
       key="og:image:alt"
@@ -21,8 +16,16 @@ export const onRenderBody = ({ setHeadComponents }) => {
       property="twitter:image:alt"
       content="Carbon Design System logo"
     />,
-    <meta property="og:type" content="website" />,
-    <meta property="twitter:card" content="summary_large_image" />,
-    <meta property="twitter:site" content="@_carbondesign" />,
+    <meta property="og:type" key="og:type" content="website" />,
+    <meta
+      property="twitter:card"
+      key="twitter:card"
+      content="summary_large_image"
+    />,
+    <meta
+      property="twitter:site"
+      key="twitter:site"
+      content="@_carbondesign"
+    />,
   ]);
 };
