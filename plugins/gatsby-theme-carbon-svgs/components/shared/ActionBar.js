@@ -1,15 +1,17 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
+import ReactDOMServer from 'react-dom/server';
 import React, { useRef, useContext, useState, useEffect } from 'react';
 import { pascalCase } from 'change-case';
 import { Code16, Download16 } from '@carbon/icons-react';
 import { TooltipDefinition } from 'carbon-components-react';
 import copy from 'copy-to-clipboard';
-import { withPrefix } from 'gatsby';
 import { LibraryContext } from './LibraryProvider';
 import styles from './ActionBar.module.scss';
 
 const ActionBar = ({
   name,
   friendlyName,
+  component: Element,
   setIsActionBarVisible,
   isActionBarVisible,
 }) => {
@@ -30,8 +32,11 @@ const ActionBar = ({
 
   const handleDownload = () => {
     const a = document.body.appendChild(document.createElement('a'));
+    const string = ReactDOMServer.renderToStaticMarkup(<Element />);
+    const blob = new Blob([string], { type: 'image/svg+xml' });
+    const url = window.URL.createObjectURL(blob);
     a.download = `${name}.svg`;
-    a.href = withPrefix(`/${type}s/${name}.svg`);
+    a.href = url;
     a.click();
     document.body.removeChild(a);
   };
