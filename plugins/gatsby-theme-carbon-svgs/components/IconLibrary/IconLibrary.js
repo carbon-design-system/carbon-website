@@ -2,6 +2,7 @@
 /* eslint-disable no-debugger */
 import React, { useEffect, useState } from 'react';
 import { groupBy, debounce } from 'lodash-es';
+import loadable from '@loadable/component';
 
 import {
   icons as iconMetaData,
@@ -34,7 +35,7 @@ const IconLibrary = () => {
         ...accumulator,
         {
           ...icon,
-          Component: React.lazy(() =>
+          Component: loadable(() =>
             import(`@carbon/icons-react/es/${path}/32`)
           ),
         },

@@ -1,6 +1,6 @@
 const path = require('path');
 
-exports.onCreateWebpackConfig = ({ actions, stage, getConfig }) => {
+exports.onCreateWebpackConfig = ({ actions }) => {
   // Allows importing html files for component code examples
   actions.setWebpackConfig({
     module: {
@@ -26,14 +26,14 @@ exports.onCreateWebpackConfig = ({ actions, stage, getConfig }) => {
       },
     },
   });
-  if (stage === `build-javascript`) {
-    const config = getConfig();
-    config.optimization.splitChunks.cacheGroups.carbon = {
-      name: `carbon`,
-      chunks: `all`,
-      test: /[\\/]node_modules[\\/]@?carbon/,
-    };
-    // This will completely replace the webpack config with the modified object.
-    actions.replaceWebpackConfig(config);
-  }
+  // if (stage === `build-javascript`) {
+  //   const config = getConfig();
+  //   config.optimization.splitChunks.cacheGroups.carbon = {
+  //     name: `carbon`,
+  //     chunks: `all`,
+  //     test: /[\\/]node_modules[\\/]@?carbon/,
+  //   };
+  //   // This will completely replace the webpack config with the modified object.
+  //   actions.replaceWebpackConfig(config);
+  // }
 };

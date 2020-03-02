@@ -1,5 +1,6 @@
 /* eslint-disable no-debugger */
 import React, { useEffect, useState } from 'react';
+import loadable from '@loadable/component';
 
 import { groupBy, debounce } from 'lodash-es';
 
@@ -36,7 +37,7 @@ const IconLibrary = () => {
           ...accumulator,
           {
             ...pictogram,
-            Component: React.lazy(() =>
+            Component: loadable(() =>
               import(`@carbon/pictograms-react/es/${path}`)
             ),
           },
