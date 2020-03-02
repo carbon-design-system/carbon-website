@@ -12,7 +12,7 @@ import {
 
 const SvgCard = ({ icon, ...rest }) => {
   const [isActionBarVisible, setIsActionBarVisible] = useState(false);
-  const { name, Component, friendly_name: friendlyName } = icon;
+  const { name, Component, friendlyName } = icon;
 
   return (
     <li
