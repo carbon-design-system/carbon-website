@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import React, { useState } from 'react';
+import React, { useState, Suspense } from 'react';
 import { pascalCase } from 'change-case';
 import ActionBar from './ActionBar';
 
@@ -26,13 +26,15 @@ const SvgCard = ({ icon, ...rest }) => {
       <div className={svgCardInside}>
         <span className={triggerText}>{friendlyName}</span>
         <div className={flexContainer}>
-          {Component ? (
-            <Component {...rest}>
-              <title>{friendlyName}</title>
-            </Component>
-          ) : (
-            <p>Error: no component found for {pascalCase(friendlyName)}</p>
-          )}
+          <Suspense fallback={null}>
+            {Component ? (
+              <Component {...rest}>
+                <title>{friendlyName}</title>
+              </Component>
+            ) : (
+              <p>Error: no component found for {pascalCase(friendlyName)}</p>
+            )}
+          </Suspense>
         </div>
         <ActionBar
           name={name}

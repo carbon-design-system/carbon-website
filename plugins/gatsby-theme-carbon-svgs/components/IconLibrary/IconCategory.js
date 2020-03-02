@@ -15,9 +15,7 @@ import {
 } from '../shared/SvgLibrary.module.scss';
 
 const IconCategory = ({ category, icons }) => {
-  const subcategories = Object.entries(
-    groupBy(icons, 'categories[0].subcategory')
-  );
+  const subcategories = Object.entries(groupBy(icons, 'subcategory'));
   return (
     <section className={svgCategory}>
       <h2 className={cx(h2, categoryTitle)}>{category}</h2>
