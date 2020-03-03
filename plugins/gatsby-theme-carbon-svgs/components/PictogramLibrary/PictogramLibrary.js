@@ -38,7 +38,7 @@ const IconLibrary = () => {
           {
             ...pictogram,
             Component: loadable(() =>
-              import(`@carbon/pictograms-react/es/${path}`)
+              import(`@carbon/pictograms-react/lib/${path}`)
             ),
           },
         ];
