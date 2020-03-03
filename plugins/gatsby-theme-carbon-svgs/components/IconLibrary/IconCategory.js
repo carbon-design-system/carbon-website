@@ -7,6 +7,8 @@ import {
 import cx from 'classnames';
 
 import SvgCard from '../shared/SvgCard';
+import useIntersectionObserver from '../shared/useIntersectionObserver';
+
 import {
   svgGrid,
   categoryTitle,
@@ -16,6 +18,7 @@ import {
 
 const IconCategory = ({ category, icons }) => {
   const subcategories = Object.entries(groupBy(icons, 'subcategory'));
+
   return (
     <section className={svgCategory}>
       <h2 className={cx(h2, categoryTitle)}>{category}</h2>
@@ -32,15 +35,22 @@ const IconCategory = ({ category, icons }) => {
   );
 };
 
-const IconSubcategory = ({ subcategory, icons }) => (
-  <li>
-    <h3 className={cx(h3, subcategoryTitle)}>{subcategory}</h3>
-    <ul className={svgGrid}>
-      {icons.map(icon => (
-        <SvgCard key={icon.name} icon={icon} />
-      ))}
-    </ul>
-  </li>
-);
+const IconSubcategory = ({ subcategory, icons }) => {
+  const [subCategoryRef, containerIsVisible] = useIntersectionObserver();
+  return (
+    <li ref={subCategoryRef}>
+      <h3 className={cx(h3, subcategoryTitle)}>{subcategory}</h3>
+      <ul className={svgGrid}>
+        {icons.map(icon => (
+          <SvgCard
+            containerIsVisible={containerIsVisible}
+            key={icon.name}
+            icon={icon}
+          />
+        ))}
+      </ul>
+    </li>
+  );
+};
 
 export default IconCategory;
