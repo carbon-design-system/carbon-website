@@ -26,14 +26,4 @@ exports.onCreateWebpackConfig = ({ actions }) => {
       },
     },
   });
-  // if (stage === `build-javascript`) {
-  //   const config = getConfig();
-  //   config.optimization.splitChunks.cacheGroups.carbon = {
-  //     name: `carbon`,
-  //     chunks: `all`,
-  //     test: /[\\/]node_modules[\\/]@?carbon/,
-  //   };
-  //   // This will completely replace the webpack config with the modified object.
-  //   actions.replaceWebpackConfig(config);
-  // }
 };
