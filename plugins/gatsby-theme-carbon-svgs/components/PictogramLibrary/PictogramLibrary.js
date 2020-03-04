@@ -46,7 +46,7 @@ const IconLibrary = () => {
       []
     );
 
-    setCategoryList(pictogramCatagoryMetadata.map(({ name }) => name));
+    setCategoryList(pictogramCatagoryMetadata.map(({ name }) => name)).sort();
     setCategoriesLoaded(true);
 
     setPictogramComponents(pictogramArray);

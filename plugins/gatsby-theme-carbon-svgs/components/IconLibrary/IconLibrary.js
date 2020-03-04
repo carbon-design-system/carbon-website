@@ -43,9 +43,11 @@ const IconLibrary = () => {
     }, []);
 
     setCategoryList(
-      iconCategoryMetadata.flatMap(({ subcategories }) =>
-        subcategories.flatMap(({ name }) => name)
-      )
+      iconCategoryMetadata
+        .flatMap(({ subcategories }) =>
+          subcategories.flatMap(({ name }) => name)
+        )
+        .sort()
     );
 
     setCategoriesLoaded(true);
