@@ -26,23 +26,25 @@ const SvgCard = ({ icon, containerIsVisible, ...rest }) => {
       <div className={svgCardInside}>
         <span className={triggerText}>{friendlyName}</span>
         {containerIsVisible && (
-          <div className={flexContainer}>
-            {Component ? (
-              <Component {...rest}>
-                <title>{friendlyName}</title>
-              </Component>
-            ) : (
-              <p>Error: no component found for {pascalCase(friendlyName)}</p>
-            )}
-          </div>
+          <>
+            <div className={flexContainer}>
+              {Component ? (
+                <Component {...rest}>
+                  <title>{friendlyName}</title>
+                </Component>
+              ) : (
+                <p>Error: no component found for {pascalCase(friendlyName)}</p>
+              )}
+            </div>
+            <ActionBar
+              name={name}
+              component={Component}
+              friendlyName={friendlyName}
+              isActionBarVisible={isActionBarVisible}
+              setIsActionBarVisible={setIsActionBarVisible}
+            />
+          </>
         )}
-        <ActionBar
-          name={name}
-          component={Component}
-          friendlyName={friendlyName}
-          isActionBarVisible={isActionBarVisible}
-          setIsActionBarVisible={setIsActionBarVisible}
-        />
       </div>
     </li>
   );
