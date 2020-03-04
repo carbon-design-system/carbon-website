@@ -77,7 +77,9 @@ const IconLibrary = () => {
 
   const filteredPictograms = getFilteredPictorams();
 
-  const allCategories = Object.entries(groupBy(filteredPictograms, 'category'));
+  const allCategories = Object.entries(
+    groupBy(filteredPictograms, 'category')
+  ).sort(([catagoryA], [catagoryB]) => catagoryA > catagoryB);
 
   const filteredCategories =
     selectedCategory === 'All pictograms'

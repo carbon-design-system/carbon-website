@@ -42,7 +42,12 @@ const IconLibrary = () => {
       ];
     }, []);
 
-    setCategoryList(iconCategoryMetadata.map(({ name }) => name));
+    setCategoryList(
+      iconCategoryMetadata.flatMap(({ subcategories }) =>
+        subcategories.flatMap(({ name }) => name)
+      )
+    );
+
     setCategoriesLoaded(true);
 
     setIconComponents(iconArray);
@@ -64,8 +69,8 @@ const IconLibrary = () => {
               .toLowerCase()
               .includes(searchValue)
           ) ||
-          category.toLowerCase().includes(searchValue) ||
           subcategory.toLowerCase().includes(searchValue) ||
+          category.toLowerCase().includes(searchValue) ||
           name.toLowerCase().includes(searchValue)
         );
       }
@@ -74,7 +79,9 @@ const IconLibrary = () => {
 
   const filteredIcons = getFilteredIcons();
 
-  const allCategories = Object.entries(groupBy(filteredIcons, 'category'));
+  const allCategories = Object.entries(
+    groupBy(filteredIcons, 'subcategory')
+  ).sort(([catagoryA], [catagoryB]) => catagoryA > catagoryB);
 
   const filteredCategories =
     selectedCategory === 'All icons'
