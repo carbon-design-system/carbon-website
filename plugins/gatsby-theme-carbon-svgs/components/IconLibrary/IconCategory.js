@@ -23,8 +23,9 @@ const IconCategory = ({ category, icons }) => {
     <section className={svgCategory}>
       <h2 className={cx(h2, categoryTitle)}>{category}</h2>
       <ul>
-        {subcategories.map(([subcategory, subcategoryIcons]) => (
+        {subcategories.map(([subcategory, subcategoryIcons], index) => (
           <IconSubcategory
+            first={index === 0}
             key={subcategory}
             subcategory={subcategory}
             icons={subcategoryIcons}
@@ -35,7 +36,7 @@ const IconCategory = ({ category, icons }) => {
   );
 };
 
-const IconSubcategory = ({ subcategory, icons }) => {
+const IconSubcategory = ({ subcategory, icons, first }) => {
   const [subCategoryRef, containerIsVisible] = useIntersectionObserver();
   return (
     <li ref={subCategoryRef}>
@@ -43,7 +44,7 @@ const IconSubcategory = ({ subcategory, icons }) => {
       <ul className={svgGrid}>
         {icons.map(icon => (
           <SvgCard
-            containerIsVisible={containerIsVisible}
+            containerIsVisible={first || containerIsVisible}
             key={icon.name}
             icon={icon}
           />
