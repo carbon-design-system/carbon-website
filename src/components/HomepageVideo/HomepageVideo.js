@@ -3,6 +3,8 @@ import React, { useRef, useState } from 'react';
 import ToggleIcon from './ToggleIcon';
 
 import webm from './carbon.webm';
+import mp4 from './carbon.mp4';
+
 import poster from './poster.jpg';
 
 const HomepageVideo = () => {
@@ -27,6 +29,7 @@ const HomepageVideo = () => {
       <div className="homepage-video--wrapper">
         <video poster={poster} ref={videoRef} muted autoPlay playsInline loop>
           <source src={webm} type="video/webm" />
+          <source src={mp4} type="video/mp4" />
         </video>
       </div>
       <div className="homepage--video--overlay" />
