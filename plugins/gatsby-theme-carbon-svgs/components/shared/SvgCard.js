@@ -10,9 +10,9 @@ import {
   triggerText,
 } from './SvgLibrary.module.scss';
 
-const SvgCard = ({ icon, ...rest }) => {
+const SvgCard = ({ icon, containerIsVisible, ...rest }) => {
+  const { name, Component, friendlyName } = icon;
   const [isActionBarVisible, setIsActionBarVisible] = useState(false);
-  const { name, Component, friendly_name: friendlyName } = icon;
 
   return (
     <li
@@ -25,22 +25,26 @@ const SvgCard = ({ icon, ...rest }) => {
       className={svgCard}>
       <div className={svgCardInside}>
         <span className={triggerText}>{friendlyName}</span>
-        <div className={flexContainer}>
-          {Component ? (
-            <Component {...rest}>
-              <title>{friendlyName}</title>
-            </Component>
-          ) : (
-            <p>Error: no component found for {pascalCase(friendlyName)}</p>
-          )}
-        </div>
-        <ActionBar
-          name={name}
-          component={Component}
-          friendlyName={friendlyName}
-          isActionBarVisible={isActionBarVisible}
-          setIsActionBarVisible={setIsActionBarVisible}
-        />
+        {containerIsVisible && (
+          <>
+            <div className={flexContainer}>
+              {Component ? (
+                <Component {...rest}>
+                  <title>{friendlyName}</title>
+                </Component>
+              ) : (
+                <p>Error: no component found for {pascalCase(friendlyName)}</p>
+              )}
+            </div>
+            <ActionBar
+              name={name}
+              component={Component}
+              friendlyName={friendlyName}
+              isActionBarVisible={isActionBarVisible}
+              setIsActionBarVisible={setIsActionBarVisible}
+            />
+          </>
+        )}
       </div>
     </li>
   );
