@@ -7,7 +7,7 @@ import {
   baseFontSize,
   breakpoints as carbonBreakpoints,
 } from '@carbon/elements';
-import { findLastIndex, values } from 'lodash';
+import { findLastIndex, values } from 'lodash-es';
 
 import InputRange from './InputRange';
 import StickyContainer from './StickyContainer';

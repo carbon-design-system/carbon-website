@@ -2,6 +2,7 @@
 import React, { useContext, useRef } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Close20 } from '@carbon/icons-react';
+import nanoid from 'nanoid';
 
 import {
   Form,
@@ -42,6 +43,7 @@ import {
 const Component = ({ component, knobs, code, setCode }) => {
   const booleanKnobs = [];
   const radioKnobs = [];
+  const { current: uid } = useRef(nanoid());
 
   Object.entries(knobs).forEach(knob => {
     const [, { type }] = knob;
@@ -76,26 +78,26 @@ const Component = ({ component, knobs, code, setCode }) => {
         className={componentKnobWrapper}>
         {booleanKnobs.length > 0 && (
           <FormGroup className={formGroup} legendText="Modifiers">
-            {booleanKnobs.map(([name, info], i) => (
+            {booleanKnobs.map(([name, info]) => (
               <Knob
                 code={code}
                 setCode={setCode}
                 component={component}
-                key={name}
-                inputId={`${name}-knob-${i}`}
+                key={`${name}-${uid}`}
+                inputId={`${name}-${uid}`}
                 info={info}
                 name={name}
               />
             ))}
           </FormGroup>
         )}
-        {radioKnobs.map(([name, info], i) => (
+        {radioKnobs.map(([name, info]) => (
           <Knob
             code={code}
             setCode={setCode}
             component={component}
-            key={name}
-            inputId={`${name}-knob-${i}`}
+            key={`${name}-${uid}`}
+            inputId={`${name}-${uid}`}
             info={info}
             name={name}
           />
@@ -115,7 +117,7 @@ const useDefaultProps = (code, componentPropsRegex) => {
 
 const Knob = ({ name, info, inputId, component, code, setCode }) => {
   // eslint-disable-next-line no-useless-escape
-  const pattern = `<${component}([\\s\\S]*?)>`;
+  const pattern = `<${component}(\\s?>|\\s[\\s\\S]*?>)`;
   const componentPropsRegex = new RegExp(pattern);
 
   // stores whatever props are provided in the inital code
@@ -143,7 +145,7 @@ const Knob = ({ name, info, inputId, component, code, setCode }) => {
       .concat(defaultKnobProps);
 
     setKnobs(newKnobs);
-    setCode(code.replace(componentPropsRegex, `<${component}${propString}>`));
+    setCode(code.replace(componentPropsRegex, `<${component}${propString}`));
   };
 
   if (type.name === 'bool') {
@@ -152,7 +154,7 @@ const Knob = ({ name, info, inputId, component, code, setCode }) => {
     return (
       <Checkbox
         onChange={val => updateKnob(val)}
-        key={`${name}-${inputId}`}
+        key={inputId}
         title={description}
         defaultChecked={defaultChecked}
         labelText={name}
@@ -178,9 +180,14 @@ const Knob = ({ name, info, inputId, component, code, setCode }) => {
         <RadioButtonGroup
           onChange={val => updateKnob(val)}
           defaultSelected={defaultSelected}
+          name={name}
           orientation="vertical">
           {values.map(({ value }) => (
-            <RadioButton value={value} labelText={value.replace(/'/g, '')} />
+            <RadioButton
+              key={`${inputId}-${value}`}
+              value={value}
+              labelText={value.replace(/'/g, '')}
+            />
           ))}
         </RadioButtonGroup>
       </FormGroup>

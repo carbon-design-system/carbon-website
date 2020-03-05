@@ -7,6 +7,7 @@ module.exports = {
       'IBM, design, system, Carbon, design system, Bluemix, styleguide, style, guide, components, library, pattern, kit, component, cloud',
   },
   plugins: [
+    'gatsby-theme-carbon-svgs',
     'gatsby-plugin-lodash',
     {
       resolve: 'gatsby-theme-carbon',
@@ -24,6 +25,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-webpack-bundle-analyser-v2',
       options: {
+        analyzerMode: 'static',
         disable: !process.env.ANALYZE,
       },
     },
