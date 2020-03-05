@@ -1,6 +1,4 @@
-export * from './bar';
-export * from './pie-donut';
-export * from './line';
+export * from '@carbon/charts/demo/demo-data';
 
 export const addHeightToOptions = options => ({
   ...options,

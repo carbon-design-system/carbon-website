@@ -2,6 +2,9 @@
 import React, { useState, useContext } from 'react';
 import prismTheme from 'gatsby-theme-carbon/src/components/Code/prismTheme';
 import * as CarbonComponents from 'carbon-components-react';
+import * as CarbonChartsComponents from '@carbon/charts-react';
+import * as chartingDemoDataAndOptions from '@carbon/charts/demo/demo-data';
+
 import { LiveProvider, LiveEditor, LivePreview, LiveError } from 'react-live';
 import { Row } from 'gatsby-theme-carbon';
 import { TableOfContents20 } from '@carbon/icons-react';
@@ -55,7 +58,7 @@ const ComponentDemo = ({
   // allow for write-in props
   // Tests/cleanup context
   // handle true/false better
-
+  console.log('theme', theme, theme.indexOf('g100') > -1);
   return (
     <ErrorBoundary>
       <Row>
@@ -74,7 +77,12 @@ const ComponentDemo = ({
         <LiveProvider
           noInline={noInline}
           theme={prismTheme}
-          scope={{ ...CarbonComponents, ...scope }}
+          scope={{
+            ...CarbonComponents,
+            ...CarbonChartsComponents,
+            ...chartingDemoDataAndOptions,
+            ...scope,
+          }}
           code={code}>
           <div className={cx(container, { [knoblessContainer]: !knobs })}>
             <LivePreview className={cx(theme, previewContainer)} />
@@ -91,6 +99,7 @@ const ComponentDemo = ({
             )}
             <Code links={links} code={code} src={src}>
               <LiveEditor
+                disabled
                 padding={16}
                 style={{ overflowX: 'auto', whiteSpace: 'pre' }}
                 onChange={updatedCode => setCode(updatedCode)}
