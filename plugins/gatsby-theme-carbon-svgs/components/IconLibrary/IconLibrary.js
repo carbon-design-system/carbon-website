@@ -83,7 +83,7 @@ const IconLibrary = () => {
 
   const allCategories = Object.entries(
     groupBy(filteredIcons, 'subcategory')
-  ).sort(([catagoryA], [catagoryB]) => catagoryA > catagoryB);
+  ).sort();
 
   const filteredCategories =
     selectedCategory === 'All icons'

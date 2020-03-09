@@ -1,5 +1,4 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import ReactDOMServer from 'react-dom/server';
 import React, { useRef, useContext, useState } from 'react';
 import { pascalCase } from 'change-case';
 import { Code16, Download16 } from '@carbon/icons-react';
@@ -33,7 +32,7 @@ const ActionBar = ({
 
   const handleDownload = () => {
     const a = document.body.appendChild(document.createElement('a'));
-    const string = ReactDOMServer.renderToStaticMarkup(<Element />);
+    const string = Element.outerHTML;
     const blob = new Blob([string], { type: 'image/svg+xml' });
     const url = window.URL.createObjectURL(blob);
     a.download = `${name}.svg`;
