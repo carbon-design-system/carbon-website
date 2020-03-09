@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { pascalCase } from 'change-case';
 import ActionBar from './ActionBar';
 
@@ -13,6 +13,7 @@ import {
 const SvgCard = ({ icon, containerIsVisible, ...rest }) => {
   const { name, Component, friendlyName } = icon;
   const [isActionBarVisible, setIsActionBarVisible] = useState(false);
+  const svgRef = useRef();
 
   return (
     <li
@@ -29,7 +30,7 @@ const SvgCard = ({ icon, containerIsVisible, ...rest }) => {
           <>
             <div className={flexContainer}>
               {Component ? (
-                <Component {...rest}>
+                <Component ref={svgRef} {...rest}>
                   <title>{friendlyName}</title>
                 </Component>
               ) : (
@@ -38,7 +39,7 @@ const SvgCard = ({ icon, containerIsVisible, ...rest }) => {
             </div>
             <ActionBar
               name={name}
-              component={Component}
+              component={svgRef.current}
               friendlyName={friendlyName}
               isActionBarVisible={isActionBarVisible}
               setIsActionBarVisible={setIsActionBarVisible}
