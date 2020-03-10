@@ -9,29 +9,36 @@
     "clean": "gatsby clean",
     "build": "gatsby build",
     "build:clean": "gatsby clean && yarn build",
-    "build:analyze": "ANALYZE=true yarn build",
+    "build:analyze": "yarn install --force && yarn clean && ANALYZE=true yarn build",
     "serve": "gatsby serve",
     "lint:js": "eslint src --fix",
     "format": "prettier --write 'src/**/*.{js,json,css,scss,md,mdx,yaml}'",
     "update-browserslist": "npx browserslist-ga"
   },
   "engines": {
-    "node": "10.x || 12.x"
+    "node": "10.x || 12.x || 13.x"
   },
   "browserslist": [
-    "> 0.5% in my stats"
+    "last 1 edge version",
+    "last 1 firefox version",
+    "last 1 safari version",
+    "last 1 chrome version"
   ],
   "dependencies": {
     "@carbon/charts": "^0.28.1",
     "@carbon/charts-react": "^0.28.1",
     "@carbon/elements": "^10.9.2",
-    "@carbon/icons": "^10.8.1",
-    "@carbon/icons-react": "^10.8.1",
-    "@carbon/pictograms": "^10.8.1",
-    "@carbon/pictograms-react": "^10.8.1",
+    "@carbon/icons": "^10.9.1",
+    "@carbon/icons-react": "^10.9.1",
+    "@carbon/pictograms": "^10.9.0",
+    "@carbon/pictograms-react": "^10.9.0",
+    "@loadable/babel-plugin": "^5.12.0",
+    "@loadable/component": "^5.12.0",
+    "@loadable/webpack-plugin": "^5.12.0",
     "@philpl/buble": "^0.19.7",
-    "carbon-components": "^10.9.2",
-    "carbon-components-react": "^7.9.2",
+    "babel-preset-gatsby": "^0.2.29",
+    "carbon-components": "^10.10.1",
+    "carbon-components-react": "^7.10.1",
     "change-case": "^4.1.1",
     "classnames": "^2.2.6",
     "codesandbox": "^2.1.10",
@@ -69,6 +76,7 @@
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-prettier": "^2.1.2",
     "eslint-plugin-react": "^7.1.0",
+    "eslint-plugin-react-hooks": "^2.5.0",
     "gatsby-plugin-webpack-bundle-analyser-v2": "^1.1.8",
     "husky": ">=1",
     "lint-staged": ">=8",
@@ -81,12 +89,10 @@
   },
   "lint-staged": {
     "*.js": [
-      "eslint --fix",
-      "git add"
+      "eslint --fix"
     ],
     "*.{js,json,css,scss,md,mdx,yaml}": [
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ]
   }
 }
