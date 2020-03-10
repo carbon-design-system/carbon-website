@@ -6,22 +6,28 @@ export const onClientEntry = () => {
     window.addEventListener('load', () => {
       switch (window.navigator.language.slice(0, 2)) {
         case 'en':
-          window.fathom('trackGoal', 'U8CTWM12', 0);
+          window.fathom('trackGoal', 'VIWQLLAA', 0);
           break;
         case 'zh':
-          window.fathom('trackGoal', 'U2CWMKXS', 0);
+          window.fathom('trackGoal', 'GTB7NIQZ', 0);
           break;
         case 'es':
-          window.fathom('trackGoal', 'KWIV8NQH', 0);
+          window.fathom('trackGoal', '3FC1DPEL', 0);
           break;
         case 'ar':
-          window.fathom('trackGoal', 'GM8KBYWH', 0);
+          window.fathom('trackGoal', 'C8ODCSVW', 0);
           break;
         case 'pt':
-          window.fathom('trackGoal', '2PYNY8FF', 0);
+          window.fathom('trackGoal', 'JW5BELDY', 0);
+          break;
+        case 'de':
+          window.fathom('trackGoal', 'WRXNAWW6', 0);
+          break;
+        case 'fr':
+          window.fathom('trackGoal', 'SXUCR6V6', 0);
           break;
         default:
-          window.fathom('trackGoal', 'XBZNHQHJ', 0);
+          window.fathom('trackGoal', 'OQLWLPHN', 0);
       }
     });
   }
