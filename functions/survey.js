@@ -13,7 +13,7 @@ exports.handler = async function survey(event, _, callback) {
   });
 
   const res = await fetch(
-    `https://restapi.surveygizmo.com/v5/survey/${process.env.SURVEY_ID}/surveyresponse?api_token=${process.env.API_TOKEN}&api_token_secret=${process.env.API_TOKEN_SECRET}`,
+    `https://restapi.surveygizmo.com/v5/survey/${process.env.SURVEY_ID}/surveyresponse?api_token=${process.env.SURVEYGIZMO_API_TOKEN}&api_token_secret=${process.env.SURVEYGIZMO_API_TOKEN_SECRET}`,
     {
       method: 'PUT',
       body,
