@@ -5,7 +5,7 @@ description: The login page allows a user to gain access to an application by en
 
 <PageDescription>
 
-The login page allows a user to gain access to an application by entering their user ID and password or, in some cases, by using another method of authentication.
+The login page allows a user to gain access to an application by entering their user ID and password, or by using another method of authentication.
 
 </PageDescription>
 
@@ -38,8 +38,8 @@ Login is often the first interaction a user has with your product. This entry po
 1. **Title:** Located at the top of the log in flow. For consistency, the title should include the words “Log in,” rather than “Sign in” or another variant. The title can also include the product name if that makes sense for your situation. If necessary the title can wrap to the next line.
 2. **Create account (optional):** Link to URX form to create an account; location of this element can vary with layout.
 3. **Required fields:** The user ID and password fields are both required although, in IBM’s preferred log in flow, the password field is progressively disclosed, because it has a dependency on the user ID. User IDs are usually in the form of an email address. Depending on the product, this area may also include a filter to specify the ID type.
-4. **Forgot username/password link:** Takes users to a page where they can recove their username and/or password.
-5. **Remember ID (optional):** Saves the user ID and presents the completed input field the next time the user logs in; it is located under the required field. Clarify what is being remembered (i.e. “user ID) to avoid confusion.
+4. **Forgot username/password link:** Takes users to a page where they can recover their username and/or password.
+5. **Remember ID (optional):** Saves the user ID and presents the completed input field the next time the user logs in; it is located under the required field. Clarify what is being remembered (i.e. “user ID") to avoid confusion.
 6. **Alternative logins (optional):** Displays alternative login methods in order.
 7. **Continue button:** Button label should be “Continue” for the primary call to action. When clicked, the email address is validated and routes the user to either the single sign-on or password flow.
 8. **Need help? (optional):** Help link specifically for user ID questions and issues.
@@ -71,7 +71,7 @@ When users input an SSO email and click “Continue” they are taken to their o
 
 If a user inputs an email or that does not use SSO, they are taken to the password flow. The password page includes a way to return to the prior page in case they make a mistake while filling out their user ID and a “Forgot password” link.
 
-Do not give users an error if they input an email or username that is not valid until they have clicked “Log in” on the password page. This protects valid email addresses and usernames from being exposed and helps keep your product secure.
+Do not give users an error if they enter an email or username that is not valid until after they have clicked “Log in” on the password page. This protects valid email addresses and usernames from being exposed and helps keep your product secure.
 
 <Row>
 <Column colLg={12}>
@@ -83,9 +83,9 @@ Do not give users an error if they input an email or username that is not valid 
 
 #### Multi-factor authentication
 
-Multi-factor Authentication (MFA) requires a user to present more than one credential, in order to verify their identity. This method provides an added layer of security, while still maintaining ease of use. This often includes a password and an additional additional credential, like an SMS code or known backup code.
+Multi-Factor Authentication (MFA) requires a user to present more than one credential, in order to verify their identity. This method provides an added layer of security, while still maintaining ease of use. This often includes a password and an additional additional credential, like an SMS code or known backup code.
 
-Carbon does not have consolidated guidance around multi-factor authentication. Since it’s something that products approach in different ways, we’d like to offer more robust, centralized guidance in the future.
+Carbon does not have consolidated guidance around multi-factor authentication. Since it’s something that products approach in different ways, we'd like to conduct more research with a view to offering more robust, centralized guidance in the future.
 
 #### Separate authentication methods
 
@@ -103,7 +103,7 @@ Also, please refer to brand guidelines when using logos for alternative logins. 
 
 ![Example of login form with alternate login options](./images/3_Login_alternates_1120.png)
 
-<Caption>Example of login form with alternate login options</Caption>
+<Caption>Example of a login form with alternate login options</Caption>
 
 </Column>
 </Row>
@@ -118,7 +118,7 @@ Always present error states on the login screen, and use inline errors whenever 
 
 #### Client-side validation
 
-Validate as much of the user's data before submission as possible. This real-time validation should happen when the input field loses focus and checks for input errors like invalid characters and empty fields. This helps users to easily identify mistakes and fix them before submitting the login form.
+Validate as much of the user's data before submission as possible. This real-time validation should happen when the input field loses focus and checks for input errors like invalid characters and empty fields. This helps users easily identify mistakes and fix them before submitting the login form.
 
 Common client-side errors:
 
@@ -136,7 +136,7 @@ Common client-side errors:
 </Column>
 </Row>
 
-Whether you are using fixed or fluid text inputs in your login flow, inline error messages should be displayed below any required field that is empty once the field loses focus or an action button (Continue or Log in) is clicked. See the fluid text input specs for more information on error states. Once the field is filled, the error message should disappear.
+Whether you are using fixed or fluid text inputs in your login flow, inline error messages should be displayed below any required field that is empty once the field loses focus or an action button (“Continue” or “Log in”) is clicked. See the fluid text input specs for more information on error states. Once the field is filled, the error message should disappear.
 
 The following error messages are suggested:
 
@@ -149,7 +149,7 @@ The following error messages are suggested:
 
 #### Server-side errors
 
-If there are server-side errors when the user submits the login form, the page should be reloaded, clear the password field, and return to the username input field. Use an inline notification to display the errors and provide clear direction on how users should resolve the issue. If there are multiple server errors, the inline notifications should stack.
+If there are server-side errors when the user submits the login form, the page should be reloaded, the password field cleared, and the user returned to the username input field. Use an inline notification to display the errors and provide clear direction on how users should resolve the issue. If there are multiple server errors, the inline notifications should stack.
 
 <Row>
 <Column colLg={8}>
@@ -161,7 +161,7 @@ If there are server-side errors when the user submits the login form, the page s
 </Column>
 </Row>
 
-Incorrect username or password are the most common server errors. The application should wait until both the username and password have been submitted before checking they are valid. The same generic error message is suggested for incorrect usernames or passwords. By not telling users which field is incorrect, the application protects valid usernames from being confirmed. This is the most secure approach.
+Incorrect username and/or password are the most common server errors. The application should wait until both the username and password have been submitted before checking they are valid. The same generic error message is suggested for incorrect usernames or passwords. As mentioned earlier, this protects valid email addresses and usernames from being exposed and helps keep your product secure.
 
 The following error messages are suggested:
 
@@ -174,7 +174,7 @@ The following error messages are suggested:
 
 ### Fluid vs. fixed components
 
-Although the fluid inputs have not been added as a variant to Carbon core components yet, they have complete [design specs](https://github.com/carbon-design-system/carbon/issues/5416) and are currently under development. Since many product teams have expressed interest in using the fluid inputs for Login and Sign up flows, the Carbon team wanted to consolidate exploration and present a clear path forward. What we presented above is the ideal future state of the login pattern.
+Although the fluid inputs have not been added as a variant to Carbon core components yet, they have complete [design specs](https://github.com/carbon-design-system/carbon/issues/5416) and are currently under development. Since many product teams have expressed interest in using the fluid inputs for Login and Sign up flows, the Carbon team wanted to consolidate exploration and present a clear path forward. What we have presented above is the ideal future state of the login pattern.
 
 However, since a coded variant does not exist for fluid inputs, many teams may choose to proceed with the fixed inputs. Below are several alternate examples illustrating the login flow with fixed inputs.
 
@@ -194,7 +194,7 @@ Fluid buttons and inputs require floating containers, whereas fixed buttons and 
 
 As mentioned above, we prefer that the system distinguishes the path a user needs to take in the background rather than making them choose in the UI. However, with certain products, that’s not an option. In order to present multiple alternate logins to the user up front, designers must use fixed text inputs and fixed buttons so that the primary button can remain close to the input field.
 
-Avoid layouts that emphasize alternate logins over the preferred login path.
+Be mindful of the hierarchy and avoid layouts that emphasize alternate logins over the preferred login path.
 
 <Row>
 <Column colLg={12}>
@@ -203,7 +203,7 @@ Avoid layouts that emphasize alternate logins over the preferred login path.
 
 <Caption>
   Keep the primary button closest to the text input when presenting multiple
-  alternate logins
+  alternate logins.
 </Caption>
 
 </Column>
@@ -229,13 +229,13 @@ caption="Do not put alternate login buttons at the top of the login form.">
 
 ### Position
 
-Carbon provides best practice advice on the login pattern but will leave more specific design guidance to the subsystem. For instance, decisions like where to position the login flow on a page (i.e. left, right or center), or whether to use fluid or fixed inputs, can be made at the subsystem level as long as the fields remain on the grid. Designers can also choose whether to incorporate brand-approved subsystem background textures, illustrations and/or marketing content. Vist the [IBM Brand Center](https://www.ibm.com/brand/) for specific guidance and approved assets relating to your subsystem.
+Carbon provides best practice advice on the login pattern but will leave more specific design guidance to the subsystem. For instance, decisions like where to position the login flow on a page (i.e. left, right, or center), or whether to use fluid or fixed inputs, can be made at the subsystem level as long as the fields remain on the grid. Designers can also choose whether to incorporate brand-approved subsystem background textures, illustrations and/or marketing content. Visit the [IBM Brand Center](https://www.ibm.com/brand/) for specific guidance and approved assets relating to your subsystem.
 
 #### Centered layout
 
 Placing the fluid login form in the center of the screen creates a simple entry point for users. Without any distractions on the page, users can focus on their primary goal of logging in to the application or product. Through navigating to the login page, users have already shown intent to log in so additional content about the product isn’t necessary.
 
-This type of login is often paired with a solid color background or a subsystem approved background texture. Because the form is the focal point, complex illustrations are not appropriate in this situation.
+This type of login is often paired with a solid color background or a subsystem-approved background texture. Because the form is the focal point, complex illustrations are not appropriate in this situation.
 
 <Row>
 <Column colLg={8}>
@@ -255,7 +255,7 @@ The split-screen page is an alternate design that can be used to include some ma
 
 Any additional content on this page should be minimal and easy to scan. It shouldn’t distract from the login form. The user’s primary goal is logging in and that should be reflected in the visual design and emphasis on the page.
 
-Subsytem approved background textures or illustrations are appropriate for use with the login form as long as the pairing is accessible and enhances the experience. When choosing colors for your illustrations, consider their association with your particular product or communication. Lean on IBM Design Language layout principles along with the type scale to achieve a clear hierarchy.
+Subsytem-approved background textures or illustrations are appropriate for use with the login form as long as the pairing is accessible and enhances the experience. When choosing colors for your illustrations, consider their association with your particular product or communication. Lean on IBM Design Language layout principles along with the type scale to achieve a clear hierarchy.
 
 Please note that the fluid login form can also be side-aligned to create space for marketing content or an illustration.
 
@@ -279,7 +279,7 @@ There may be a need to include some marketing content on this page. When includi
 ![Example of split-screen login form paired with marketing content](./images/12_Login_split_1120.png)
 
 <Caption>
-  Keep marketing content, including links and CTAs separate from the login
+  Keep marketing content, including links and CTAs separate from the login.
 </Caption>
 
 </Column>
@@ -287,7 +287,7 @@ There may be a need to include some marketing content on this page. When includi
 
 ### Spacing
 
-Since login forms can apear as the central focus of the screen or in conjunction with markting content in a split-screen layout. Margins and vertical spacing can vary according to context.
+Since login forms can appear as the central focus of the screen or in conjunction with marketing content in a split-screen layout, margins and vertical spacing can vary according to context.
 
 #### Fluid login form
 
@@ -323,7 +323,7 @@ Even if your team chooses not to incorporate the “Remember ID” piece, please
 
 #### Fixed login form
 
-The fixed login form may or may not appear within a container and margins will vary according to its location on the grid. Adhere to the vertical spacing in the specs below regardless of the the container.
+The fixed login form may or may not appear within a container and margins will vary according to its location on the grid. Adhere to the vertical spacing in the specs below regardless of the container.
 
 If teams choose not to use the “Remember ID” piece (which is optional), they can just remove the 16px margin top along with it, to adjust the spacing.
 
