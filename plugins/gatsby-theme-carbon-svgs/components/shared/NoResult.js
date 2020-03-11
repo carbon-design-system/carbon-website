@@ -58,7 +58,7 @@ const NoResult = ({
             <ResourceCard
               actionIcon="download"
               href={pageUrl}
-              subTitle={`Download the ${pageName} grid`}>
+              subTitle={`Download the ${pageName} master`}>
               <Illustrator />
             </ResourceCard>
           </Column>
