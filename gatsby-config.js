@@ -35,6 +35,7 @@ module.exports = {
         siteId: 'VMSGXQRS',
       },
     },
+    'gatsby-plugin-netlify-cache',
     'gatsby-plugin-remove-serviceworker',
   ],
 };
