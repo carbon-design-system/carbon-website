@@ -2,10 +2,11 @@ require('dotenv').config();
 const fetch = require('node-fetch');
 const cookie = require('cookie');
 
-// const permittedOrigins = ['https://www.carbondesignsystem.com'];
+const permittedOrigins = ['https://www.carbondesignsystem.com'];
 
 exports.handler = async function survey(event) {
-  // const { httpMethod, origin } = event;
+  const { httpMethod, origin } = event;
+
   if (event.headers.cookie) {
     const { SURVEY_RECENTLY_SUBMITTED } = cookie.parse(event.headers.cookie);
     if (SURVEY_RECENTLY_SUBMITTED) {
@@ -16,13 +17,13 @@ exports.handler = async function survey(event) {
     }
   }
 
-  // if (httpMethod !== 'POST') {
-  //   return { statusCode: 405, body: 'Method Not Allowed' };
-  // }
+  if (httpMethod !== 'POST') {
+    return { statusCode: 405, body: 'Method Not Allowed' };
+  }
 
-  // if (!permittedOrigins.includes(origin)) {
-  //   return { statusCode: 403, body: 'Invalid origin' };
-  // }
+  if (!permittedOrigins.includes(origin)) {
+    return { statusCode: 403, body: 'Invalid origin' };
+  }
 
   const { experience, comment, path } = JSON.parse(event.body);
 
@@ -48,10 +49,7 @@ exports.handler = async function survey(event) {
     statusCode: 200,
     body: JSON.stringify('Feedback submitted! Thank you.'),
     headers: {
-      'Set-Cookie': `SURVEY_RECENTLY_SUBMITTED=true`,
-      'Max-Age': 120,
-      Secure: true,
-      SameSite: 'None'
+      'Set-Cookie': `SURVEY_RECENTLY_SUBMITTED=true; Max-Age=90; Secure; SameSite=None`,
     },
   };
 };
