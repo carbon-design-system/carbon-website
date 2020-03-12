@@ -51,8 +51,7 @@ exports.handler = async function survey(event) {
       'Set-Cookie': `SURVEY_RECENTLY_SUBMITTED=true`,
       'Max-Age': 120,
       Secure: true,
-      SameSite: 'None',
-      HttpOnly: true,
+      SameSite: 'None'
     },
   };
 };
