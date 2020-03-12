@@ -28,7 +28,7 @@ It’s important to keep users informed and send notifications when there is an 
 
 | Key principle | Definition                                                                                              |
 | ------------- | ------------------------------------------------------------------------------------------------------- |
-| Relevant      | Notifications should be related to the user's goals and presented in the context of what they are doing |
+| Relevant      | Notifications should be related to the user’s goals and presented in the context of what they are doing |
 | Timely        | Ensure users are kept up to date with prompt notifications and see critical notifications immediately   |
 | Informative   | Provide users with the context and next steps needed to understand and address the notification         |
 
@@ -64,17 +64,17 @@ Notifications are comprised of status and type. Their status signifies the purpo
 
 ### When to use
 
-Use notifications to inform users of important status changes and updates. Transparency is a core element of building user trust and is the first of Jakob Nielsen's [10 usability heuristics](https://www.nngroup.com/articles/ten-usability-heuristics/). They should be relevant to the user and as minimally disruptive as possible. There are two major use cases for notifications: task-generated and system-generated.
+Use notifications to inform users of important status changes and updates. Transparency is a core element of building user trust and is the first of Jakob Nielsen’s [10 usability heuristics](https://www.nngroup.com/articles/ten-usability-heuristics/). They should be relevant to the user and as minimally disruptive as possible. There are two major use cases for notifications: task-generated and system-generated.
 
 #### Task-generated notifications
 
-Task-generated notifications are initiated in response to user action during a specific task. They give users direct, immediate feedback. They should be placed in the region of the page the user is working in and be related to the user's action.
+Task-generated notifications are initiated in response to user action during a specific task. They give users direct, immediate feedback. They should be placed in the region of the page the user is working in and be related to the user’s action.
 
 You might send a task-generated notification when:
 
 - A form is successfully submitted
 - There is a problem uploading a file
-- Credentials can't be found
+- Credentials can’t be found
 
 #### System-generated notifications
 
@@ -85,7 +85,7 @@ You might send a system-generated notification when:
 - A user loses network connection
 - Planned system maintenance is coming soon
 - A new report is ready
-- The user's login session is about to expire
+- The user’s login session is about to expire
 
 ### When not to use
 
@@ -100,12 +100,14 @@ Notification status helps convey the information being communicated. These statu
 
 ![Example of notification status](/images/1_notification_status_1120.png)
 
+<Caption>Notification status using the inline notification component</Caption>
+
 </Column>
 </Row>
 
 <br />
 
-**Deciding what to use**
+<Title> Deciding what to use </Title>
 
 | Status        | Usage                                                                                                                        | Action                                                                                                         | Color  | Icon               |
 | ------------- | ---------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ------ | ------------------ |
@@ -126,7 +128,7 @@ Notification status helps convey the information being communicated. These statu
 
 <br />
 
-**Deciding what to use**
+<Title> Deciding what to use </Title>
 
 | Type               | Usage                                                                                                             | Duration and interaction                                                                                                                         |
 | ------------------ | ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -145,8 +147,9 @@ Carbon offers low-contrast and high-contrast inline notifications. All inline no
 #### Best practices:
 
 - Place inline notifications near their related items.
-- Inline notifications can appear at either the top or bottom of forms.
+- In forms, inline notifications can be placed either at the top or bottom.
 - Keep the message under two lines.
+- Do not cover other content with inline notifications.
 - The notification width varies based on the context and page layout.
 - Be descriptive and give users clear next steps.
 
@@ -155,47 +158,61 @@ Carbon offers low-contrast and high-contrast inline notifications. All inline no
 
 ![Inline notification in a product](/images/3_Inline_736.png)
 
+<Caption>Low-contrast inline notification</Caption>
+
 </Column>
 </Row>
 
 ### Toast
 
-[Toasts](https://www.carbondesignsystem.com/components/notification/usage/) are notifications that slide in and out, typically in the top right of the page. They are more disruptive than inline notifications and are best used with system-generated messages that do not correspond to a specific section of the UI. Toasts disappear automatically after a set amount of time but can also be dismissed by the user.
+[Toasts](https://www.carbondesignsystem.com/components/notification/usage/) are notifications that slide in and out, typically in the top right of the page. They are more disruptive than inline notifications and are best used with system-generated messages that do not correspond to a specific section of the UI. Toasts disappear automatically after a set amount of time but can also be dismissed by the user.
 
 Carbon toasts can be either low-contrast or high-contrast. Their color should correspond with the message intent and they can also use an icon to convey the message intent.
+
+#### Long messages
+
+Removing the timestamp provides space for a third line of content for longer toast messages. Toasts are intended to be at-a-glance messages confined to a small region of the screen so their messages should not exceed three lines.
+
+If it is possible a toast will have a message longer than three lines, include a short message with a "View more" link that takes the user to a view of the full notification message. This can be either a full page with more details or a modal.
 
 #### Best practices:
 
 - Multiple toasts stack horizontally, with the newest appearing at the top of the list.
-- Keep messages clear and concise and only show two lines of content.
-- When necessary, give toasts an "expand" or "show more" option to accommodate longer content.
+- Keep messages clear and concise
 - Toasts dismiss after five seconds.
+- The timestamp is optional and can be removed.
+- Toast notifications have a fixed width and should not be expanded to fit the content area.
 
 <Row>
 <Column colLg={8}>
 
 ![Toast notification in a product](/images/4_Toast_736.png)
 
+<Caption>Low-contrast toast noticiation</Caption>
+
 </Column>
 </Row>
 
 ### Banner
 
-Banners take over the top of an interface to show notifications general to the product or system, not a specific task. They persist until they are dismissed by the user. Banners can include a ghost button or link. Depending on the message, the user resolving a product or system issue may also dismiss the banner (e.g. updating necessary account information). Banners may also persist across multiple sessions.
+Banners take over the top of an interface to show general notifications for the product or system, not a specific task. They persist until they are dismissed by the user. Banners can include a ghost button or link. Depending on the message, the user resolving a product or system issue (for example, updating necessary account information), may also dismiss the banner. Banners may also persist across multiple sessions.
 
 #### Best practices:
 
 - Banners should be placed at the top of the content area they relate to.
+- Do not cover other content with a banner notification.
 - Place system-wide messages directly below the main header or navigation bar.
 - Banners are not sticky and should scroll with the other content on the page.
 - Only show one banner at a time.
 
-Carbon currently does not have a banner component, but if your team has developed one it can be contributed and made available to others.
+More design iteration and user testing is needed before Carbon solidifies our guidance for banners and creates a banner component. Keep an eye out for refined usage examples in the future. If your team has developed a banner component, consider contributing it to Carbon so that it can be made available to others.
 
 <Row>
 <Column colLg={8}>
 
 ![Banner notification in a product](/images/5_Banner_736.png)
+
+<Caption>Low-contrast banner notification</Caption>
 
 </Column>
 </Row>
@@ -206,12 +223,12 @@ Notification panels are helpful for users who receive a large number of system-g
 
 Notification panels ensure that users can access and read all notifications without cluttering the screen with many persistent notifications. They also provide a consistent experience to users who need more time to read notifications, use a screen reader, or prefer to limit the notifications they receive.
 
-Carbon does not currently have a notification panel component, but if your team has developed one it can be contributed and made available to others.
+More design iteration and user testing is needed before Carbon solidifies our guidance for notification panel and creates a notification panel component. Keep an eye out for refined usage examples in the future. If your team has developed a notification panel component, consider contributing it to Carbon so that it can be made available to others.
 
 #### Best practices:
 
 - Give users the ability to manage notification preferences.
-- Don't send the same notification multiple times if users don't interact with it.
+- Don’t send the same notification multiple times if users don’t interact with it.
 - List notifications in chronological order.
 - Notifications can be grouped by source or urgency.
 
@@ -220,23 +237,27 @@ Carbon does not currently have a notification panel component, but if your team 
 
 ![Notification panel in a product](/images/6_Panel_736.png)
 
+<Caption>Notification panel with the Gray 100 theme</Caption>
+
 </Column>
 </Row>
 
 ### Modal
 
-Modals interrupt the user and pause their current task. They are highly disruptive to users and should be used sparingly. Only use a modal when the message is critical and needs the user's immediate attention or action. Modals persist until users engage with them and only disappear when dismissed by the user.
+Modals interrupt the user and pause their current task. They are highly disruptive to users and should be used sparingly. Only use a modal when the message is critical and needs the user’s immediate attention or action. Modals persist until users engage with them and only disappear when dismissed by the user.
 
 #### Best practices:
 
 - Only display one modal notification at a time.
-- Use modals when you need to immediately interrupt a user's task.
+- Use modals when you need to immediately interrupt a user’s task.
 - Give users clear steps to resolve and dismiss the notification.
 
 <Row>
 <Column colLg={8}>
 
 ![Modal notification in a product](/images/7_Modal_736.png)
+
+<Caption>Danger modal notification</Caption>
 
 </Column>
 </Row>
@@ -263,49 +284,40 @@ Blocking users from continuing with a task is disruptive and hinders the overall
 
 ### Notification message
 
-It's important to consider the user's context when writing notification messages. Use language that is accessible to the user and that will be easily understood. Use a tone that is appropriate for the situation and notification.
+It’s important to consider the user’s context when writing notification messages. Use language that is accessible to the user and that will be easily understood. Use a tone that is appropriate for the situation and notification.
 
-Because task-generated notifications are sent in response to user action, it isn't necessary to give users extensive background information. Conversely, system-generated notifications are generally not relevant to the user's current task so you should ensure the user has sufficient context to understand the notification.
+Because task-generated notifications are sent in response to user action, it isn’t necessary to give users extensive background information. Conversely, system-generated notifications are generally not relevant to the user’s current task so you should ensure the user has sufficient context to understand the notification.
 
-<Row>
-  <Column colMd={4} colLg={4}>
-    <DoDontExample
-      type="do"
-      caption="Do use clear and concise language."
-      text="Success! Your resource has been created."
-      aspectRatio="1:1"
-    />
-  </Column>
-  <Column colMd={4} colLg={4}>
-    <DoDontExample
-      caption="Do not use technical jargon or language unfamiliar to the user."
-      text="503 Service Unavailable"
-      aspectRatio="1:1"
-    />
-  </Column>
-</Row>
-
-<Row>
-  <Column colMd={4} colLg={4}>
-    <DoDontExample
-      type="do"
-      caption="Do ensure users konw how to take action if it is necessary."
-      text="Script failed to run. Check the log for more detail."
-      aspectRatio="1:1"
-    />
-  </Column>
-  <Column colMd={4} colLg={4}>
-    <DoDontExample
-      caption="Do not leave users without next steps."
-      text="Instance was not created."
-      aspectRatio="1:1"
-    />
-  </Column>
-</Row>
+<DoDontRow>
+  <DoDont
+    caption="Do use clear and concise language."
+    text="Success! Your resource has been created."
+    aspectRatio="1:1"
+  />
+  <DoDont
+    type="dont"
+    caption="Do not use technical jargon or language unfamiliar to the user."
+    text="503 Service Unavailable"
+    aspectRatio="1:1"
+  />
+</DoDontRow>
+<DoDontRow>
+  <DoDont
+    caption="Do ensure users konw how to take action if it is necessary."
+    text="Script failed to run. Check the log for more detail."
+    aspectRatio="1:1"
+  />
+  <DoDont
+    type="dont"
+    caption="Do not leave users without next steps."
+    text="Instance was not created."
+    aspectRatio="1:1"
+  />
+</DoDontRow>
 
 ## Accessibility
 
-**Don't use notifications that dismiss on a timer for critical or emergency messages.** Some users with disabilities need more time to read or interact with messages and timed toasts may not provide sufficient time.
+**Don’t use notifications that dismiss on a timer for critical or emergency messages.** Some users with disabilities need more time to read or interact with messages and timed toasts may not provide sufficient time.
 [WCAG 2.1 success criterion 2.2.4 (AAA)](https://www.w3.org/WAI/WCAG21/Understanding/no-timing.html)
 
 **Users should be able to manage or limit noncritical notifications.** This gives users the control to reduce the number of distractions or disruptions they receive, which is particularly helpful for users with cognitive limitations.

@@ -15,7 +15,13 @@ const FirstRightText = () => (
   </p>
 );
 
-const SecondLeftText = () => <p>Wondering how to contribute?</p>;
+const SecondLeftText = () => (
+  <p>
+    Wondering how
+    <br />
+    to contribute?
+  </p>
+);
 
 const SecondRightText = () => (
   <p>
@@ -40,10 +46,11 @@ const customProps = {
             <div className="bx--col-lg-4 bx--col-md-4 bx--col-sm-2 bx--offset-lg-8 bx--offset-md-4 bx--offset-sm-2 homepage--tile-header">
               <ResourceCard
                 subTitle="Read"
-                title="Migrate to v10"
-                href="/updates/v10-migration/overview"
+                title="Migration guide"
+                href="/updates/migration-guide/overview"
                 color="dark"
                 actionIcon="arrowRight"
+                onClick={() => fathom('trackGoal', '0GXPXZKE', 0)}
               />
             </div>
             <HomepageVideo />

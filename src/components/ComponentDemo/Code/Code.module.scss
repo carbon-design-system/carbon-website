@@ -44,15 +44,32 @@
   border-bottom: 1px solid $inverse-02;
 }
 
-.code-bar a {
+.link-list {
+  display: flex;
+  overflow-x: scroll;
+  @include carbon--breakpoint('md') {
+    overflow-x: visible;
+  }
+}
+
+.link-list a {
   display: flex;
   align-items: center;
   @include carbon--type-style('body-short-01');
   color: $inverse-01;
   text-decoration: none;
+  margin-right: $spacing-06;
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  &:focus {
+    outline: 1px solid $inverse-focus-ui;
+    outline-offset: 2px;
+  }
 }
 
-.code-bar a svg {
+.link-list a svg {
   fill: currentColor;
   margin-left: $spacing-03;
   margin-bottom: $spacing-02;
@@ -85,6 +102,7 @@
   justify-content: center;
   align-items: center;
   background: transparent;
+  flex-shrink: 0;
   transition: background $duration--fast-02;
   z-index: 1000;
   &:hover {
@@ -93,6 +111,11 @@
   svg {
     fill: $inverse-01;
   }
+}
+
+.copy-button:global(.bx--copy-btn--animating) span {
+  display: inline-block;
+  left: -$spacing-03;
 }
 
 .code-bar .button {
