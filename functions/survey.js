@@ -49,7 +49,7 @@ exports.handler = async function survey(event) {
     statusCode: 200,
     body: JSON.stringify('Feedback submitted! Thank you.'),
     headers: {
-      'Set-Cookie': `SURVEY_RECENTLY_SUBMITTED=true; Max-Age=90; Secure; SameSite=None`,
+      'Set-Cookie': `SURVEY_RECENTLY_SUBMITTED=true; Max-Age=120; Secure; SameSite=None`,
     },
   };
 };
