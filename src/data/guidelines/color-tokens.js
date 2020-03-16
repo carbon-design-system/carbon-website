@@ -502,7 +502,7 @@ const colorTokens = {
       },
     },
     '$field-02': {
-      role: ['`Light` variant input fields', 'Fields on $ui-02 backgrounds'],
+      role: ['“Light” variant input fields', 'Fields on $ui-01 backgrounds'],
       value: {
         white: {
           name: 'White',
