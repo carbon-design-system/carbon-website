@@ -3,7 +3,7 @@ import ThemeFeedbackDialog from 'gatsby-theme-carbon/src/components/FeedbackDial
 
 const FeedbackDialog = ({ props }) => {
   const onSubmit = data => {
-    fetch(process.env.SURVEYGIZMO_REQUEST_URI, {
+    fetch('https://carbon-website.netlify.com/.netlify/functions/survey', {
       method: 'POST',
       body: JSON.stringify(data),
       credentials: 'include',
