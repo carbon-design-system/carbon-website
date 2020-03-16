@@ -5,11 +5,12 @@ const cookie = require('cookie');
 const permittedOrigins = ['https://www.carbondesignsystem.com'];
 
 exports.handler = async function survey(event) {
-  const { httpMethod, origin } = event;
+  const { httpMethod, headers } = event;
 
-  if (event.headers.cookie) {
-    const { SURVEY_RECENTLY_SUBMITTED } = cookie.parse(event.headers.cookie);
+  if (headers.cookie) {
+    const { SURVEY_RECENTLY_SUBMITTED } = cookie.parse(headers.cookie);
     if (SURVEY_RECENTLY_SUBMITTED) {
+      console.log(event);
       return {
         statusCode: 429,
         body: 'Survey recently submitted. Try again in 2 minutes.',
@@ -18,11 +19,13 @@ exports.handler = async function survey(event) {
   }
 
   if (httpMethod !== 'POST') {
+    console.log(event);
     return { statusCode: 405, body: 'Method Not Allowed' };
   }
 
-  if (!permittedOrigins.includes(origin)) {
-    return { statusCode: 403, body: `Invalid origin: ${origin}` };
+  if (!permittedOrigins.includes(headers.origin)) {
+    console.log(event);
+    return { statusCode: 403, body: `Invalid origin: ${headers.origin}` };
   }
 
   const { experience, comment, path } = JSON.parse(event.body);
