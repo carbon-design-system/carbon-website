@@ -22,7 +22,7 @@ exports.handler = async function survey(event) {
   }
 
   if (!permittedOrigins.includes(origin)) {
-    return { statusCode: 403, body: 'Invalid origin' };
+    return { statusCode: 403, body: `Invalid origin: ${origin}` };
   }
 
   const { experience, comment, path } = JSON.parse(event.body);
