@@ -72,7 +72,6 @@
   height: 100%;
   max-height: 35rem;
   transition: transform $duration--moderate-01 carbon--motion('entrance');
-  padding-bottom: 3rem; //needed for demos that have a lot of knobs, the ones closest to the fade-out are unclickable without
   @include carbon--breakpoint('md') {
     position: static;
     box-shadow: none;
@@ -82,11 +81,17 @@
 // knob container fade-out effect
 .zamboni {
   position: absolute;
-  top: 30rem;
+  pointer-events: none;
+  top: 25rem;
   right: 0;
   width: 239px; // 240 - 1px border
-  padding-top: 5rem;
-  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), white);
+  padding-top: 10rem;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.7) 50%,
+    rgba(255, 255, 255, 1) 100%
+  );
 }
 
 .knob-container--collapsed {
@@ -109,9 +114,11 @@
 .component-knob-wrapper {
   padding: $spacing-05;
   padding-bottom: $spacing-06;
-  &:last-child {
-    border-bottom: 1px solid $ui-03;
-  }
+}
+
+.component-knob-wrapper:last-of-type {
+  margin-bottom: 10rem;
+  border-bottom: 1px solid $ui-03;
 }
 
 .component-knob-wrapper > * + * {
