@@ -46,7 +46,7 @@ const ActionBar = ({
     setTimeout(() => {
       setCopyText(`Copy ${component}`);
     }, 2000);
-    copy(component);
+    copy(component, { format: 'text/plain' });
   };
 
   return (
