@@ -21,6 +21,7 @@ import {
   g90,
   g100,
   zamboni,
+  dropdown,
 } from './ComponentDemo.module.scss';
 
 import Code from './Code';
@@ -30,19 +31,29 @@ import { DemoContext } from './DemoContext';
 
 export const PREVIEW_CONTAINER_HEIGHT = 560;
 
-const { ContentSwitcher, Switch } = CarbonComponents;
+const { Dropdown, ContentSwitcher, Switch } = CarbonComponents;
 
 const ComponentDemo = ({
-  children: codeProp,
+  children,
   src,
   scope,
   knobs,
   noInline,
   links,
+  items,
+  initialSelectedItem,
 }) => {
-  const [code, setCode] = useState(codeProp.trim());
   const [theme, setTheme] = useState(white);
   const { isMobile, setIsKnobContainerCollapsed } = useContext(DemoContext);
+
+  // dropdown selected state
+  const [dropdownSelected, setDropdownSelected] = useState(initialSelectedItem);
+  // component variant selected state
+  const childrenArray = React.Children.toArray(children);
+  const initialMatchingChild = childrenArray.filter(
+    child => child.props.id === dropdownSelected.id
+  );
+  const [code, setCode] = useState(initialMatchingChild[0].props.children);
 
   const themes = [
     { name: white, text: 'White' },
@@ -50,6 +61,16 @@ const ComponentDemo = ({
     { name: g90, text: isMobile ? 'G90' : 'Gray 90' },
     { name: g100, text: isMobile ? 'G100' : 'Gray 100' },
   ];
+
+  const onDropdownChange = event => {
+    setDropdownSelected(event.selectedItem);
+
+    const matchingChild = childrenArray.filter(
+      child => child.props.id === event.selectedItem.id
+    );
+
+    setCode(matchingChild[0].props.children);
+  };
 
   // TODO max width editor handle multiple clicks use regex for individual props?
   // allow for write-in props
@@ -59,6 +80,15 @@ const ComponentDemo = ({
   return (
     <ErrorBoundary>
       <Row>
+        <Dropdown
+          onChange={onDropdownChange}
+          className={dropdown}
+          light
+          initialSelectedItem={dropdownSelected}
+          id="component-variant"
+          items={items}
+          size="xl"
+        />
         <ContentSwitcher
           className={themeSwitcher}
           onChange={({ name }) => setTheme(name)}>

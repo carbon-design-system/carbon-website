@@ -6,9 +6,25 @@ tabs: ['Code', 'Usage', 'Style', 'Accessibility']
 
 import { rowData, headerData } from '../../../data/components/data-table.js';
 
-## Default
-
 <ComponentDemo
+  items={[
+    {
+      id: 'default-table',
+      label: 'Default',
+    },
+    {
+      id: 'with-selection',
+      label: 'With selection',
+    },
+    {
+      id: 'with-expansion',
+      label: 'With expansion',
+    },
+  ]}
+  initialSelectedItem={{
+    id: 'default-table',
+    label: 'Default',
+  }}
   scope={{ rowData, headerData, React }}
   knobs={{ DataTable: ['isSortable'], Table: ['size', 'useZebraStyles'] }}
   links={{
@@ -19,125 +35,105 @@ import { rowData, headerData } from '../../../data/components/data-table.js';
     Vue:
       'http://vue.carbondesignsystem.com/?path=/story/components-cvdatatable--default',
     Vanilla: 'https://the-carbon-components.netlify.com/?nav=data-table',
-  }}>{`<DataTable 
-  rows={rowData} 
-  headers={headerData} 
-  render={({ rows, headers, getHeaderProps }) => (
-  <TableContainer title="DataTable">
-    <Table>
-      <TableHead>
-        <TableRow>
-          {headers.map(header => (
-            <TableHeader {...getHeaderProps({ header })}>
-              {header.header}
-            </TableHeader>
-          ))}
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        {rows.map(row => (
-          <TableRow key={row.id}>
-            {row.cells.map(cell => (
-              <TableCell key={cell.id}>{cell.value}</TableCell>
+  }}>
+  <ComponentVariant id="default-table">
+    {`<DataTable
+    rows={rowData}
+    headers={headerData}
+    render={({ rows, headers, getHeaderProps }) => (
+    <TableContainer title="DataTable">
+      <Table>
+        <TableHead>
+          <TableRow>
+            {headers.map(header => (
+              <TableHeader {...getHeaderProps({ header })}>
+                {header.header}
+              </TableHeader>
             ))}
           </TableRow>
-        ))}
-      </TableBody>
-    </Table>
-  </TableContainer>)}
-/>`}</ComponentDemo>
-
-## With expansion
-
-<ComponentDemo
-  scope={{ rowData, headerData }}
-  knobs={{ DataTable: ['isSortable'], Table: ['size', 'useZebraStyles'] }}
-  links={{
-    React:
-      'https://react.carbondesignsystem.com/?path=/story/datatable--default',
-    Angular:
-      'https://angular.carbondesignsystem.com/?path=/story/components-table--basic',
-    Vue:
-      'http://vue.carbondesignsystem.com/?path=/story/components-cvdatatable--default',
-    Vanilla: 'https://the-carbon-components.netlify.com/?nav=data-table',
-  }}>{`<DataTable 
-  rows={rowData} 
-  headers={headerData} 
-  render={({ rows, headers, getHeaderProps, getRowProps, getTableProps }) => (
-  <TableContainer title="DataTable with expansion">
-    <Table {...getTableProps()}>
-      <TableHead>
-        <TableRow>
-          <TableExpandHeader />
-          {headers.map(header => (
-            <TableHeader {...getHeaderProps({ header })}>
-              {header.header}
-            </TableHeader>
-          ))}
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        {rows.map(row => (
-          <React.Fragment key={row.id}>
-            <TableExpandRow {...getRowProps({ row })}>
+        </TableHead>
+        <TableBody>
+          {rows.map(row => (
+            <TableRow key={row.id}>
               {row.cells.map(cell => (
                 <TableCell key={cell.id}>{cell.value}</TableCell>
               ))}
-            </TableExpandRow>
-            {row.isExpanded && (
-              <TableExpandedRow colSpan={headers.length + 1}>
-                <p>Aux squad rules</p>
-              </TableExpandedRow>
-            )}
-          </React.Fragment>
-        ))}
-      </TableBody>
-    </Table>
-  </TableContainer>
-)}/>`}</ComponentDemo>
-
-## With selection
-
-<ComponentDemo
-  scope={{ rowData, headerData }}
-  knobs={{ DataTable: ['isSortable'], Table: ['size', 'useZebraStyles'] }}
-  links={{
-    React:
-      'https://react.carbondesignsystem.com/?path=/story/datatable--default',
-    Angular:
-      'https://angular.carbondesignsystem.com/?path=/story/components-table--basic',
-    Vue:
-      'http://vue.carbondesignsystem.com/?path=/story/components-cvdatatable--default',
-    Vanilla: 'https://the-carbon-components.netlify.com/?nav=data-table',
-  }}>{`<DataTable 
-  rows={rowData} 
-  headers={headerData} 
-  render={({ rows, headers, getHeaderProps, getSelectionProps, getRowProps }) => (
-  <TableContainer title="DataTable with selection">
-    <Table>
-      <TableHead>
-        <TableRow>
-          <TableSelectAll {...getSelectionProps()} />
-          {headers.map(header => (
-            <TableHeader {...getHeaderProps({ header })}>
-              {header.header}
-            </TableHeader>
+            </TableRow>
           ))}
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        {rows.map(row => (
-          <TableRow {...getRowProps({ row })}>
-            <TableSelectRow {...getSelectionProps({ row })} />
-            {row.cells.map(cell => (
-              <TableCell key={cell.id}>{cell.value}</TableCell>
+        </TableBody>
+      </Table>
+    </TableContainer>)}
+    />`}
+  </ComponentVariant>
+  <ComponentVariant id="with-selection">
+    {`<DataTable
+      rows={rowData}
+      headers={headerData}
+      render={({ rows, headers, getHeaderProps, getSelectionProps, getRowProps }) => (
+      <TableContainer title="DataTable with selection">
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableSelectAll {...getSelectionProps()} />
+              {headers.map(header => (
+                <TableHeader {...getHeaderProps({ header })}>
+                  {header.header}
+                </TableHeader>
+              ))}
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows.map(row => (
+              <TableRow {...getRowProps({ row })}>
+                <TableSelectRow {...getSelectionProps({ row })} />
+                {row.cells.map(cell => (
+                  <TableCell key={cell.id}>{cell.value}</TableCell>
+                ))}
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>)}
+    />`}
+  </ComponentVariant>
+  <ComponentVariant id="with-expansion">
+    {`<DataTable
+    rows={rowData}
+    headers={headerData}
+    render={({ rows, headers, getHeaderProps, getRowProps, getTableProps }) => (
+    <TableContainer title="DataTable with expansion">
+      <Table {...getTableProps()}>
+        <TableHead>
+          <TableRow>
+            <TableExpandHeader />
+            {headers.map(header => (
+              <TableHeader {...getHeaderProps({ header })}>
+                {header.header}
+              </TableHeader>
             ))}
           </TableRow>
-        ))}
-      </TableBody>
-    </Table>
-  </TableContainer>)}
-/>`}</ComponentDemo>
+        </TableHead>
+        <TableBody>
+          {rows.map(row => (
+            <React.Fragment key={row.id}>
+              <TableExpandRow {...getRowProps({ row })}>
+                {row.cells.map(cell => (
+                  <TableCell key={cell.id}>{cell.value}</TableCell>
+                ))}
+              </TableExpandRow>
+              {row.isExpanded && (
+                <TableExpandedRow colSpan={headers.length + 1}>
+                  <p>Aux squad rules</p>
+                </TableExpandedRow>
+              )}
+            </React.Fragment>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  )}/>`}
+  </ComponentVariant>
+</ComponentDemo>
 
 ## Sample data
 
