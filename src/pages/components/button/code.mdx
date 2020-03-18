@@ -4,7 +4,28 @@ description: Buttons are used to initialize an action. Button labels express wha
 tabs: ['Code', 'Usage', 'Style']
 ---
 
+import { Add16 } from '@carbon/icons-react';
+
 <ComponentDemo
+  scope={{ Add16 }}
+  items={[
+    {
+      id: 'button',
+      label: 'Button',
+    },
+    {
+      id: 'button-with-icon',
+      label: 'Button with icon',
+    },
+    {
+      id: 'icon-only',
+      label: 'Icon only',
+    },
+  ]}
+  initialSelectedItem={{
+    id: 'button',
+    label: 'Button',
+  }}
   links={{
     React: 'http://react.carbondesignsystem.com/?path=/story/buttons--default',
     Angular:
@@ -15,4 +36,20 @@ tabs: ['Code', 'Usage', 'Style']
   }}
   knobs={{
     Button: ['kind', 'disabled', 'size'],
-  }}>{`<Button>Hello World!</Button>`}</ComponentDemo>
+  }}>
+  <ComponentVariant id="button">{`
+      <Button>Button</Button>
+    `}</ComponentVariant>
+  <ComponentVariant id="button-with-icon">{`
+      <Button renderIcon={Add16}>Button</Button>
+    `}</ComponentVariant>
+  <ComponentVariant id="icon-only">{`
+      <Button
+        hasIconOnly
+        renderIcon={Add16}
+        tooltipAlignment="center"
+        tooltipPosition="bottom"
+        iconDescription="Button description here"
+      />
+  `}</ComponentVariant>
+</ComponentDemo>
