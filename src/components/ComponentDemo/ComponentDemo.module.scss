@@ -134,32 +134,31 @@ fieldset.form-group {
   margin-bottom: 0;
 }
 
-.dropdown {
-  min-width: 12rem;
-}
-
-.theme-switcher {
-  height: auto;
-  @include carbon--theme(
-    $theme: $carbon--theme--g10,
-    $emit-custom-properties: true
-  );
-
-  @include carbon--breakpoint('lg') {
-    max-width: 70%;
+.dropdownRow {
+  margin-right: 14rem;
+  @include carbon--breakpoint-down('md') {
+    margin-right: -1rem;
   }
 }
 
-.theme-switcher .switch-button {
-  padding: $spacing-05;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  border-bottom: 1px solid $ui-03;
-  &::-moz-focus-inner {
-    border: 0;
-  }
+.dropdownRow + * {
+  --space: 0;
+}
+
+.dropdownRow :global(.bx--dropdown__wrapper) {
+  width: 50%;
+}
+
+.dropdownRow :global(.bx--dropdown__wrapper:first-of-type) {
+  border-right: 1px solid $ui-03;
+}
+
+.dropdownRow :global(.bx--dropdown) {
+  border-color: $ui-03;
+}
+
+.dropdownRow :global(.bx--list-box__menu) {
+  max-height: 20rem;
 }
 
 .preview-container {

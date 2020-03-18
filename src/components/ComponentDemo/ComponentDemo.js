@@ -12,8 +12,6 @@ import {
   knoblessContainer,
   previewContainer,
   editorContainer,
-  themeSwitcher,
-  switchButton,
   iconButton,
   iconButtonExpand,
   white,
@@ -21,7 +19,7 @@ import {
   g90,
   g100,
   zamboni,
-  dropdown,
+  dropdownRow,
 } from './ComponentDemo.module.scss';
 
 import Code from './Code';
@@ -31,7 +29,7 @@ import { DemoContext } from './DemoContext';
 
 export const PREVIEW_CONTAINER_HEIGHT = 560;
 
-const { Dropdown, ContentSwitcher, Switch } = CarbonComponents;
+const { Dropdown } = CarbonComponents;
 
 const ComponentDemo = ({
   children,
@@ -43,27 +41,27 @@ const ComponentDemo = ({
   items,
   initialSelectedItem,
 }) => {
+  // theme selected state
   const [theme, setTheme] = useState(white);
   const { isMobile, setIsKnobContainerCollapsed } = useContext(DemoContext);
 
-  // dropdown selected state
-  const [dropdownSelected, setDropdownSelected] = useState(initialSelectedItem);
   // component variant selected state
+  const [variantSelected, setVariantSelected] = useState(initialSelectedItem);
   const childrenArray = React.Children.toArray(children);
   const initialMatchingChild = childrenArray.filter(
-    child => child.props.id === dropdownSelected.id
+    child => child.props.id === variantSelected.id
   );
   const [code, setCode] = useState(initialMatchingChild[0].props.children);
 
   const themes = [
-    { name: white, text: 'White' },
-    { name: g10, text: isMobile ? 'G10' : 'Gray 10' },
-    { name: g90, text: isMobile ? 'G90' : 'Gray 90' },
-    { name: g100, text: isMobile ? 'G100' : 'Gray 100' },
+    { id: white, label: 'White' },
+    { id: g10, label: isMobile ? 'G10' : 'Gray 10' },
+    { id: g90, label: isMobile ? 'G90' : 'Gray 90' },
+    { id: g100, label: isMobile ? 'G100' : 'Gray 100' },
   ];
 
-  const onDropdownChange = event => {
-    setDropdownSelected(event.selectedItem);
+  const onVariantChange = event => {
+    setVariantSelected(event.selectedItem);
 
     const matchingChild = childrenArray.filter(
       child => child.props.id === event.selectedItem.id
@@ -79,28 +77,25 @@ const ComponentDemo = ({
 
   return (
     <ErrorBoundary>
-      <Row>
+      <Row className={dropdownRow}>
         <Dropdown
-          onChange={onDropdownChange}
-          className={dropdown}
+          onChange={onVariantChange}
           light
-          initialSelectedItem={dropdownSelected}
+          initialSelectedItem={variantSelected}
           id="component-variant"
           items={items}
           size="xl"
         />
-        <ContentSwitcher
-          className={themeSwitcher}
-          onChange={({ name }) => setTheme(name)}>
-          {themes.map(({ name, text }) => (
-            <Switch
-              key={name}
-              className={switchButton}
-              name={name}
-              text={text}
-            />
-          ))}
-        </ContentSwitcher>
+        <Dropdown
+          onChange={event => setTheme(event.selectedItem.id)}
+          light
+          initialSelectedItem={{ id: white, label: 'White' }}
+          id="theme-variant"
+          items={themes}
+          size="xl"
+        />
+      </Row>
+      <Row>
         <LiveProvider
           noInline={noInline}
           theme={prismTheme}
