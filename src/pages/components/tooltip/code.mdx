@@ -6,9 +6,26 @@ tabs: ['Code', 'Usage', 'Style', 'Accessibility']
 
 import { Filter16 } from '@carbon/icons-react';
 
-## Tooltip
-
 <ComponentDemo
+  items={[
+    {
+      id: 'tooltip',
+      label: 'Tooltip',
+    },
+    {
+      id: 'icon-tooltip',
+      label: 'Icon tooltip',
+    },
+    {
+      id: 'definition-tooltip',
+      label: 'Definition tooltip',
+    },
+  ]}
+  initialSelectedItem={{
+    id: 'tooltip',
+    label: 'Tooltip',
+  }}
+  scope={{ Filter16 }}
   links={{
     React:
       'https://react.carbondesignsystem.com/?path=/story/tooltip--default-bottom',
@@ -18,66 +35,43 @@ import { Filter16 } from '@carbon/icons-react';
       'http://vue.carbondesignsystem.com/?path=/story/components-cvtooltip--default-interactive-tootlip',
     Vanilla: 'https://the-carbon-components.netlify.com/?nav=tooltip',
   }}>
-  {`
-  <Tooltip
-    direction="bottom"
-    tabIndex={0}
-    triggerText="Tooltip label"
-  >
-    <p>
-      This is some tooltip text. This box shows the maximum amount of text that should appear inside. If more room is needed please use a modal instead.
-    </p>
-    <div className="bx--tooltip__footer">
-      <Link href="#">Learn More</Link>
-      <Button size="small">
-        Create
-      </Button>
-    </div>
-  </Tooltip>
-  `}
-</ComponentDemo>
-
-## Icon tooltip
-
-<ComponentDemo
-  scope={{ Filter16 }}
-  links={{
-    React:
-      'https://react.carbondesignsystem.com/?path=/story/tooltipicon--default',
-    Angular:
-      'https://angular.carbondesignsystem.com/?path=/story/components-tooltip-icon--basic',
-    Vue:
-      'http://vue.carbondesignsystem.com/?path=/story/components-cvtooltip--default-interactive-tootlip',
-    Vanilla: 'https://the-carbon-components.netlify.com/?nav=tooltip',
-  }}
-  knobs={{ TooltipIcon: ['direction', 'align'] }}>
-  {`
-  <TooltipIcon
-    tooltipText="Filter"
-  >
-    <Filter16/>
-  </TooltipIcon>
-  `}
-</ComponentDemo>
-
-## Definition tooltip
-
-<ComponentDemo
-  links={{
-    React:
-      'https://react.carbondesignsystem.com/?path=/story/tooltipdefinition--default',
-    Angular:
-      'https://angular.carbondesignsystem.com/?path=/story/components-tooltip-definition--basic',
-    Vue:
-      'http://vue.carbondesignsystem.com/?path=/story/components-cvtooltip--minimal-definition-tootlip',
-    Vanilla: 'https://the-carbon-components.netlify.com/?nav=tooltip',
-  }}
-  knobs={{ TooltipDefinition: ['direction', 'align'] }}>
-  {`
-  <TooltipDefinition
-    tooltipText="Brief description of the dotted, underlined word above."
-  >
-    Definition Tooltip
-  </TooltipDefinition>
-  `}
+  <ComponentVariant id="tooltip">{`
+    <Tooltip
+      direction="bottom"
+      tabIndex={0}
+      triggerText="Tooltip label"
+    >
+      <p>
+        This is some tooltip text. This box shows the maximum amount of text that should appear inside. If more room is needed please use a modal instead.
+      </p>
+      <div className="bx--tooltip__footer">
+        <Link href="#">Learn More</Link>
+        <Button size="small">
+          Create
+        </Button>
+      </div>
+    </Tooltip>
+  `}</ComponentVariant>
+  <ComponentVariant
+    id="icon-tooltip"
+    knobs={{
+      TooltipIcon: ['direction', 'align'],
+    }}>{`
+    <TooltipIcon
+      tooltipText="Filter"
+    >
+      <Filter16/>
+    </TooltipIcon>
+  `}</ComponentVariant>
+  <ComponentVariant
+    id="definition-tooltip"
+    knobs={{
+      TooltipDefinition: ['direction', 'align'],
+    }}>{`
+    <TooltipDefinition
+      tooltipText="Brief description of the dotted, underlined word above."
+    >
+      Definition Tooltip
+    </TooltipDefinition>
+  `}</ComponentVariant>
 </ComponentDemo>
