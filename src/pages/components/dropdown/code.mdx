@@ -6,11 +6,30 @@ tabs: ['Code', 'Usage', 'Style', 'Accessibility']
 
 import items from '../../../data/components/dropdown.js';
 
-## Default
-
 <ComponentDemo
+  items={[
+    {
+      id: 'default-dropdown',
+      label: 'Default',
+    },
+    {
+      id: 'combo-box',
+      label: 'Combo box',
+    },
+    {
+      id: 'multiselect',
+      label: 'Multiselect',
+    },
+    {
+      id: 'filter-multiselect',
+      label: 'Filterable multiselect',
+    },
+  ]}
+  initialSelectedItem={{
+    id: 'default-dropdown',
+    label: 'Default',
+  }}
   scope={{ items }}
-  knobs={{ Dropdown: ['light', 'disabled'] }}
   links={{
     React:
       'https://react.carbondesignsystem.com/?path=/story/dropdown--default',
@@ -19,83 +38,56 @@ import items from '../../../data/components/dropdown.js';
     Vue:
       'http://vue.carbondesignsystem.com/?path=/story/components-cvdropdown--default',
     Vanilla: 'https://the-carbon-components.netlify.com/?nav=dropdown',
-  }}>{`
-<Dropdown
-  ariaLabel="Dropdown"
-  id="carbon-dropdown-example"
-  items={items}
-  label="Dropdown menu options"
-  titleText="This is a dropdown title."
-/>
-`}</ComponentDemo>
-
-## ComboBox
-
-<ComponentDemo
-  scope={{ items }}
-  knobs={{ ComboBox: ['light', 'disabled'] }}
-  links={{
-    React: 'http://react.carbondesignsystem.com/?path=/story/combobox--default',
-    Angular:
-      'https://angular.carbondesignsystem.com/?path=/story/components-combobox--basic',
-    Vue:
-      'http://vue.carbondesignsystem.com/?path=/story/components-cvcombobox--default',
-    Vanilla: 'https://the-carbon-components.netlify.com/?nav=combo-box',
-  }}>{`
-<ComboBox
-  ariaLabel="ComboBox"
-  id="carbon-combobox-example"
-  items={items}
-  label="ComboBox menu options"
-  titleText="This is a dropdown title."
-/>
-`}</ComponentDemo>
-
-## MultiSelect
-
-<ComponentDemo
-  scope={{ items }}
-  knobs={{ MultiSelect: ['light', 'disabled'] }}
-  links={{
-    React:
-      'http://react.carbondesignsystem.com/?path=/story/multiselect--default',
-    Angular:
-      'https://angular.carbondesignsystem.com/?path=/story/components-combobox--multi-select',
-    Vue:
-      'http://vue.carbondesignsystem.com/?path=/story/components-cvmultiselect--default',
-    Vanilla: 'https://the-carbon-components.netlify.com/?nav=multi-select',
-  }}>{`
-<MultiSelect
-  ariaLabel="MultiSelect"
-  id="carbon-multiselect-example"
-  items={items}
-  label="MultiSelect menu options"
-  titleText="This is a dropdown title."
-/>
-`}</ComponentDemo>
-
-## Filterable MultiSelect
-
-<ComponentDemo
-  scope={{ items }}
-  knobs={{ MultiSelect: ['light', 'disabled'] }}
-  links={{
-    React:
-      'http://react.carbondesignsystem.com/?path=/story/multiselect--default',
-    Angular:
-      'https://angular.carbondesignsystem.com/?path=/story/components-combobox--multi-select',
-    Vue:
-      'http://vue.carbondesignsystem.com/?path=/story/components-cvmultiselect--default',
-    Vanilla: 'https://the-carbon-components.netlify.com/?nav=multi-select',
-  }}>{`
-<MultiSelect.Filterable
-  ariaLabel="Filterable MultiSelect"
-  id="carbon--filterable-multiselect-example"
-  items={items}
-  label="Filterable MultiSelect options"
-  titleText="This is a MultiSelect title."
-/>
-`}</ComponentDemo>
+  }}>
+  <ComponentVariant
+    id="default-dropdown"
+    knobs={{
+      Dropdown: ['light', 'disabled'],
+    }}>{`
+    <Dropdown
+      ariaLabel="Dropdown"
+      id="carbon-dropdown-example"
+      items={items}
+      label="Dropdown menu options"
+      titleText="This is a dropdown title."
+    />
+  `}</ComponentVariant>
+  <ComponentVariant
+    id="combo-box"
+    knobs={{
+      ComboBox: ['light', 'disabled'],
+    }}>{`
+    <ComboBox
+      ariaLabel="ComboBox"
+      id="carbon-combobox-example"
+      items={items}
+      label="ComboBox menu options"
+      titleText="This is a dropdown title."
+    />
+  `}</ComponentVariant>
+  <ComponentVariant
+    id="multiselect"
+    knobs={{
+      MultiSelect: ['light', 'disabled'],
+    }}>{`
+    <MultiSelect
+      ariaLabel="MultiSelect"
+      id="carbon-multiselect-example"
+      items={items}
+      label="MultiSelect menu options"
+      titleText="This is a dropdown title."
+    />
+  `}</ComponentVariant>
+  <ComponentVariant id="filter-multiselect">{`
+    <MultiSelect.Filterable
+      ariaLabel="Filterable MultiSelect"
+      id="carbon--filterable-multiselect-example"
+      items={items}
+      label="Filterable MultiSelect options"
+      titleText="This is a MultiSelect title."
+    />
+ `}</ComponentVariant>
+</ComponentDemo>
 
 ## Sample data
 
