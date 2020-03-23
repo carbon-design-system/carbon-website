@@ -4,22 +4,25 @@ import prismTheme from 'gatsby-theme-carbon/src/components/Code/prismTheme';
 import * as CarbonComponents from 'carbon-components-react';
 import { LiveProvider, LiveEditor, LivePreview, LiveError } from 'react-live';
 import { Row } from 'gatsby-theme-carbon';
-import { TableOfContents20 } from '@carbon/icons-react';
+import { TableOfContents20, Maximize16, Minimize16 } from '@carbon/icons-react';
 import cx from 'classnames';
 
 import {
+  fullscreen,
   container,
   knoblessContainer,
   previewContainer,
   editorContainer,
   iconButton,
   iconButtonExpand,
+  fullscreenButton,
   white,
   g10,
   g90,
   g100,
   zamboni,
   dropdownRow,
+  containerRow,
 } from './ComponentDemo.module.scss';
 
 import Code from './Code';
@@ -60,6 +63,8 @@ const ComponentDemo = ({
     { id: g100, label: isMobile ? 'G100' : 'Gray 100' },
   ];
 
+  const [isFullscreen, setFullscreen] = useState(false);
+
   const onVariantChange = event => {
     setVariantSelected(event.selectedItem);
 
@@ -78,62 +83,72 @@ const ComponentDemo = ({
 
   return (
     <ErrorBoundary>
-      <Row className={dropdownRow}>
-        <Dropdown
-          onChange={onVariantChange}
-          light
-          initialSelectedItem={variantSelected}
-          id="component-variant"
-          items={items}
-          size="xl"
-        />
-        <Dropdown
-          onChange={event => setTheme(event.selectedItem.id)}
-          light
-          initialSelectedItem={{ id: white, label: 'White' }}
-          id="theme-variant"
-          items={themes}
-          size="xl"
-        />
-      </Row>
-      <Row>
-        <LiveProvider
-          noInline={noInline}
-          theme={prismTheme}
-          scope={{ ...CarbonComponents, ...scope }}
-          code={code}>
-          <div className={cx(container, { [knoblessContainer]: !knobs })}>
-            <LivePreview className={cx(theme, previewContainer)} />
-            {isMobile && (
+      <div className={cx({ [fullscreen]: isFullscreen })}>
+        <Row className={dropdownRow}>
+          <Dropdown
+            onChange={onVariantChange}
+            light
+            initialSelectedItem={variantSelected}
+            id="component-variant"
+            items={items}
+            size="xl"
+          />
+          <Dropdown
+            onChange={event => setTheme(event.selectedItem.id)}
+            light
+            initialSelectedItem={{ id: white, label: 'White' }}
+            id="theme-variant"
+            items={themes}
+            size="xl"
+          />
+        </Row>
+        <Row className={containerRow}>
+          <LiveProvider
+            noInline={noInline}
+            theme={prismTheme}
+            scope={{ ...CarbonComponents, ...scope }}
+            code={code}>
+            <div className={cx(container, { [knoblessContainer]: !knobs })}>
               <button
-                aria-labelledby="expand-knob-container-button"
-                onClick={() => setIsKnobContainerCollapsed(false)}
-                className={cx(theme, iconButton, iconButtonExpand)}>
-                <span id="expand-knob-container-button" hidden>
-                  Expand component knob container
-                </span>
-                <TableOfContents20 />
+                className={fullscreenButton}
+                onClick={() => {
+                  setFullscreen(!isFullscreen);
+                }}>
+                {isFullscreen ? <Minimize16 /> : <Maximize16 />}
               </button>
-            )}
-            <Code links={links} code={code} src={src}>
-              <LiveEditor
-                padding={16}
-                style={{ overflowX: 'auto', whiteSpace: 'pre' }}
-                onChange={updatedCode => setCode(updatedCode)}
-                className={editorContainer}
-              />
-            </Code>
-            {knobs && (
-              <>
-                <KnobContainer code={code} setCode={setCode} knobs={knobs} />
-                <span className={zamboni} />
-              </>
-            )}
-          </div>
-          {/* Eat syntax errors in production but not development */}
-          {process.env.NODE_ENV === 'development' && <LiveError />}
-        </LiveProvider>
-      </Row>
+              <LivePreview className={cx(theme, previewContainer)} />
+              {isMobile && (
+                <button
+                  aria-labelledby="expand-knob-container-button"
+                  onClick={() => setIsKnobContainerCollapsed(false)}
+                  className={cx(theme, iconButton, iconButtonExpand)}>
+                  <span id="expand-knob-container-button" hidden>
+                    Expand component knob container
+                  </span>
+                  <TableOfContents20 />
+                </button>
+              )}
+
+              <Code links={links} code={code} src={src}>
+                <LiveEditor
+                  padding={16}
+                  style={{ overflowX: 'auto', whiteSpace: 'pre' }}
+                  onChange={updatedCode => setCode(updatedCode)}
+                  className={editorContainer}
+                />
+              </Code>
+              {knobs && (
+                <>
+                  <KnobContainer code={code} setCode={setCode} knobs={knobs} />
+                  <span className={zamboni} />
+                </>
+              )}
+            </div>
+            {/* Eat syntax errors in production but not development */}
+            {process.env.NODE_ENV === 'development' && <LiveError />}
+          </LiveProvider>
+        </Row>
+      </div>
     </ErrorBoundary>
   );
 };
