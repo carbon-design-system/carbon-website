@@ -4,9 +4,21 @@ description: Notifications are messages that communicate information to the user
 tabs: ['Code', 'Usage', 'Style', 'Accessibility']
 ---
 
-## Toast notification
-
 <ComponentDemo
+  items={[
+    {
+      id: 'toast',
+      label: 'Toast notification',
+    },
+    {
+      id: 'inline',
+      label: 'Inline notification',
+    },
+  ]}
+  initialSelectedItem={{
+    id: 'toast',
+    label: 'Toast notification',
+  }}
   links={{
     React:
       'https://react.carbondesignsystem.com/?path=/story/notifications--toast',
@@ -15,35 +27,27 @@ tabs: ['Code', 'Usage', 'Style', 'Accessibility']
     Vue:
       'http://vue.carbondesignsystem.com/?path=/story/components-cvtoastnotification--default',
     Vanilla: 'https://the-carbon-components.netlify.com/?nav=notification',
-  }}
-  knobs={{ ToastNotification: ['hideCloseButton', 'kind', 'lowContrast'] }}>
-  {`
-  <div>
-    <ToastNotification
-      caption="Time stamp [00:00:00]"
-      iconDescription="describes the close button"
-      subtitle={<span>Subtitle text goes here. <a href="#example">Example link</a></span>}
-      timeout={0}
-      title="Notification title"
-    />
-  </div>
-`}
-</ComponentDemo>
-
-## Inline notification
-
-<ComponentDemo
-  links={{
-    React:
-      'https://react.carbondesignsystem.com/?path=/story/notifications--inline',
-    Angular:
-      'https://angular.carbondesignsystem.com/?path=/story/components-notification--basic',
-    Vue:
-      'http://vue.carbondesignsystem.com/?path=/story/components-cvinlinenotification--default',
-    Vanilla: 'https://the-carbon-components.netlify.com/?nav=notification',
-  }}
-  knobs={{ InlineNotification: ['hideCloseButton', 'lowContrast'] }}>
-  {`
+  }}>
+  <ComponentVariant
+    id="toast"
+    knobs={{
+      ToastNotification: ['hideCloseButton', 'kind', 'lowContrast'],
+    }}>{`
+    <div>
+      <ToastNotification
+        caption="Time stamp [00:00:00]"
+        iconDescription="describes the close button"
+        subtitle={<span>Subtitle text goes here. <a href="#example">Example link</a></span>}
+        timeout={0}
+        title="Notification title"
+      />
+    </div>
+`}</ComponentVariant>
+  <ComponentVariant
+    id="inline"
+    knobs={{
+      InlineNotification: ['hideCloseButton', 'lowContrast'],
+    }}>{`
   <div>
     <InlineNotification
       kind="info"
@@ -53,5 +57,5 @@ tabs: ['Code', 'Usage', 'Style', 'Accessibility']
       title="Notification title"
     />
   </div>
-  `}
+`}</ComponentVariant>
 </ComponentDemo>
