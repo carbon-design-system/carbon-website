@@ -35,7 +35,6 @@ const ComponentDemo = ({
   children,
   src,
   scope,
-  knobs,
   noInline,
   links,
   items,
@@ -52,6 +51,7 @@ const ComponentDemo = ({
     child => child.props.id === variantSelected.id
   );
   const [code, setCode] = useState(initialMatchingChild[0].props.children);
+  const [knobs, setKnobs] = useState(initialMatchingChild[0].props.knobs);
 
   const themes = [
     { id: white, label: 'White' },
@@ -68,6 +68,7 @@ const ComponentDemo = ({
     );
 
     setCode(matchingChild[0].props.children);
+    setKnobs(matchingChild[0].props.knobs);
   };
 
   // TODO max width editor handle multiple clicks use regex for individual props?
