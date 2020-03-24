@@ -26,7 +26,6 @@ import {
   checkboxWrapper,
   iconButton,
   iconButtonRow,
-  zamboni,
 } from './ComponentDemo.module.scss';
 
 // Components w/o react docgen data
@@ -260,7 +259,6 @@ const KnobContainer = ({ knobs, code, setCode }) => {
           knobs={componentKnobs}
         />
       ))}
-      <div className={zamboni} />
     </Form>
   );
 };
