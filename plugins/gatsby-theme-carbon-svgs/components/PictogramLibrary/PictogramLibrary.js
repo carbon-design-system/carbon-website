@@ -62,11 +62,8 @@ const IconLibrary = () => {
         const searchValue = searchInputValue.toLowerCase();
         return (
           friendlyName.toLowerCase().includes(searchValue) ||
-          aliases.some(alias =>
-            alias
-              .toString()
-              .toLowerCase()
-              .includes(searchValue)
+          aliases.some((alias) =>
+            alias.toString().toLowerCase().includes(searchValue)
           ) ||
           category.toLowerCase().includes(searchValue) ||
           name.toLowerCase().includes(searchValue)
@@ -94,7 +91,7 @@ const IconLibrary = () => {
         type="pictogram"
         categoryList={categoryList}
         selectedCategory={selectedCategory}
-        onSearchChange={e =>
+        onSearchChange={(e) =>
           debouncedSetSearchInputValue(e.currentTarget.value)
         }
         onDropdownChange={({ selectedItem }) =>
