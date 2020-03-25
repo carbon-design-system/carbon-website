@@ -82,6 +82,7 @@ const ComponentDemo = ({
             <LivePreview className={cx(theme, previewContainer)} />
             {isMobile && (
               <button
+                type="button"
                 aria-labelledby="expand-knob-container-button"
                 onClick={() => setIsKnobContainerCollapsed(false)}
                 className={cx(theme, iconButton, iconButtonExpand)}

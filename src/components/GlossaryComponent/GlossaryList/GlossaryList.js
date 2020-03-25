@@ -8,10 +8,6 @@ const md = new Markdown({
 });
 
 class Glossary extends Component {
-  static propTypes = {
-    glossary: PropTypes.object,
-  };
-
   renderGlossaryEntry = (glossary, glossaryEntry) => {
     const entry = glossary[glossaryEntry];
     let counter = 0;
@@ -72,5 +68,9 @@ class Glossary extends Component {
     return <div className="glossary">{navItems}</div>;
   }
 }
+
+Glossary.propTypes = {
+  glossary: PropTypes.object,
+};
 
 export default Glossary;

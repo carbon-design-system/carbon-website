@@ -34,6 +34,7 @@ const HomepageVideo = () => {
       </div>
       <div className="homepage--video--overlay" />
       <button
+        type="button"
         onMouseEnter={() => setHovering(true)}
         onMouseLeave={() => setHovering(false)}
         aria-label="play pause toggle"

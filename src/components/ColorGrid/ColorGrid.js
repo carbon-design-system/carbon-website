@@ -1,9 +1,15 @@
 import React from 'react';
-import { colors } from '@carbon/elements';
+import {
+  colors,
+  black100,
+  green50,
+  orange40,
+  red60,
+  white0,
+  yellow20,
+} from '@carbon/elements';
 
 import PropTypes from 'prop-types';
-
-const { black100, green50, orange40, red60, white0, yellow20 } = colors;
 
 console.log(black100, white0);
 
