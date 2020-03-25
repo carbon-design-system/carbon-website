@@ -1,14 +1,11 @@
 import React from 'react';
-import {
-  colors,
-  black,
-  green50,
-  orange40,
-  red60,
-  white,
-  yellow20,
-} from '@carbon/colors';
+import { colors } from '@carbon/elements';
+
 import PropTypes from 'prop-types';
+
+const { black100, green50, orange40, red60, white0, yellow20 } = colors;
+
+console.log(black100, white0);
 
 function ColorSwatch({ hex, ...rest }) {
   return (
@@ -39,13 +36,13 @@ export default function ColorGrid({ colorFamily, ...rest }) {
   }
   return (
     <div {...rest} className="color-grid">
-      <ColorSwatch hex={black} />
+      <ColorSwatch hex={black100} />
       {Object.values(colors[colorFamily])
         .reverse()
         .map((hex, i) => (
           <ColorSwatch key={i} hex={hex} />
         ))}
-      <ColorSwatch hex={white} />
+      <ColorSwatch hex={white0} />
     </div>
   );
 }

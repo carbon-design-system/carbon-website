@@ -60,7 +60,7 @@ export default class OverviewCard extends React.Component {
       <>
         <h4 className="overview-card__title">{title}</h4>
         {tag && <Tag type="teal">{tag}</Tag>}
-        <div className={`overview-card__img`}>{children}</div>
+        <div className="overview-card__img">{children}</div>
       </>
     );
 
@@ -79,7 +79,8 @@ export default class OverviewCard extends React.Component {
           target="_blank"
           rel="noopener noreferrer"
           href={href}
-          className={carbonTileclassNames}>
+          className={carbonTileclassNames}
+        >
           {cardContent}
         </a>
       );

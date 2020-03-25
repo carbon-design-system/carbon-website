@@ -61,7 +61,8 @@ const ComponentDemo = ({
       <Row>
         <ContentSwitcher
           className={themeSwitcher}
-          onChange={({ name }) => setTheme(name)}>
+          onChange={({ name }) => setTheme(name)}
+        >
           {themes.map(({ name, text }) => (
             <Switch
               key={name}
@@ -75,14 +76,16 @@ const ComponentDemo = ({
           noInline={noInline}
           theme={prismTheme}
           scope={{ ...CarbonComponents, ...scope }}
-          code={code}>
+          code={code}
+        >
           <div className={cx(container, { [knoblessContainer]: !knobs })}>
             <LivePreview className={cx(theme, previewContainer)} />
             {isMobile && (
               <button
                 aria-labelledby="expand-knob-container-button"
                 onClick={() => setIsKnobContainerCollapsed(false)}
-                className={cx(theme, iconButton, iconButtonExpand)}>
+                className={cx(theme, iconButton, iconButtonExpand)}
+              >
                 <span id="expand-knob-container-button" hidden>
                   Expand component knob container
                 </span>
@@ -93,7 +96,7 @@ const ComponentDemo = ({
               <LiveEditor
                 padding={16}
                 style={{ overflowX: 'auto', whiteSpace: 'pre' }}
-                onChange={updatedCode => setCode(updatedCode)}
+                onChange={(updatedCode) => setCode(updatedCode)}
                 className={editorContainer}
               />
             </Code>

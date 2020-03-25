@@ -22,7 +22,7 @@ class Glossary extends Component {
           <span>{glossaryEntry}</span>
         </h2>
         {Object.keys(entry).map((list, i) => {
-          const listItems = Object.keys(entry[list]).map(word => {
+          const listItems = Object.keys(entry[list]).map((word) => {
             counter += 1;
             const currentWord = entry[list][word];
             let wordId = word.toLowerCase().replace(' ', '-');
@@ -62,7 +62,7 @@ class Glossary extends Component {
   render() {
     const { glossary } = this.props;
 
-    const navItems = Object.keys(glossary).map(glossaryEntry => {
+    const navItems = Object.keys(glossary).map((glossaryEntry) => {
       if (!(glossaryEntry === '__content')) {
         return this.renderGlossaryEntry(glossary, glossaryEntry);
       }

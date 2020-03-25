@@ -38,7 +38,8 @@ const HomepageVideo = () => {
         onMouseLeave={() => setHovering(false)}
         aria-label="play pause toggle"
         className="homepage-video--controls"
-        onClick={onClick}>
+        onClick={onClick}
+      >
         <ToggleIcon hovering={hovering} paused={paused} />
       </button>
     </div>
