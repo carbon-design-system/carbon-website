@@ -34,10 +34,10 @@ class GlossaryNav extends Component {
     window.removeEventListener('scroll', this.handleScroll);
   }
 
-  getActiveItem = windowScroll => {
+  getActiveItem = (windowScroll) => {
     let scrollLetter = this.state.activeLetter;
 
-    this.state.letters.forEach(letter => {
+    this.state.letters.forEach((letter) => {
       if (windowScroll <= letter.bottom && windowScroll >= letter.top) {
         scrollLetter = letter.id;
       }
@@ -48,7 +48,7 @@ class GlossaryNav extends Component {
 
   getEntryPositions() {
     const letters = [];
-    document.querySelectorAll('.glossary-entry').forEach(entry => {
+    document.querySelectorAll('.glossary-entry').forEach((entry) => {
       letters.push({
         id: entry.id,
         top: entry.offsetTop,
@@ -61,7 +61,7 @@ class GlossaryNav extends Component {
     });
   }
 
-  updateActive = evt => {
+  updateActive = (evt) => {
     this.setState({
       activeLetter: evt.target.textContent,
       isReverseScroll: true,
@@ -113,9 +113,9 @@ class GlossaryNav extends Component {
     return window.scrollY;
   };
 
-  renderGlossaryNavItems = letters => {
+  renderGlossaryNavItems = (letters) => {
     const glossaryNavItems = [];
-    letters.forEach(letter => {
+    letters.forEach((letter) => {
       const isActiveItem = letter.id === this.state.activeLetter;
       const classNames = classnames({
         'glossary-nav__item': true,
