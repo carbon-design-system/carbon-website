@@ -11,8 +11,6 @@ import {
 
 import PropTypes from 'prop-types';
 
-console.log(black100, white0);
-
 function ColorSwatch({ hex, ...rest }) {
   return (
     <div
