@@ -29,12 +29,12 @@ export default () => {
     observe();
 
     // Bind events
-    eventsToBind.forEach(eventPair => {
+    eventsToBind.forEach((eventPair) => {
       eventPair[0].addEventListener(eventPair[1], observe);
     });
 
     return () => {
-      eventsToBind.forEach(eventPair => {
+      eventsToBind.forEach((eventPair) => {
         eventPair[0].removeEventListener(eventPair[1], observe);
       });
     };
