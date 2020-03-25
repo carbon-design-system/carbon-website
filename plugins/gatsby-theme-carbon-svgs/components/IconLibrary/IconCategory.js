@@ -18,7 +18,7 @@ const IconCategory = ({ category, icons }) => {
       <h2 className={cx(h2, categoryTitle)}>{category}</h2>
       <ul ref={subCategoryRef}>
         <ul className={svgGrid}>
-          {icons.map(icon => (
+          {icons.map((icon) => (
             <SvgCard
               containerIsVisible={containerIsVisible}
               key={icon.name}
