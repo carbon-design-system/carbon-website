@@ -4,7 +4,7 @@ import { getParameters } from 'codesandbox/lib/api/define';
 const getIndex = ({ code = '' }) => {
   const uniqueComponents = Array.from(
     new Set(code.match(/<[A-Z]\w+/g))
-  ).map(component => component.slice(1));
+  ).map((component) => component.slice(1));
 
   return `
       import React from 'react';
@@ -20,7 +20,7 @@ const getIndex = ({ code = '' }) => {
     `;
 };
 
-const useCodesandbox = code => {
+const useCodesandbox = (code) => {
   const { current: originalCode } = useRef(code);
   const url = useMemo(() => {
     const indexContent = getIndex({ code: originalCode });
@@ -46,7 +46,7 @@ const useCodesandbox = code => {
       },
     });
     return `https://codesandbox.io/api/v1/sandboxes/define?parameters=${parameters}`;
-  }, [code]);
+  }, [originalCode]);
 
   return url;
 };

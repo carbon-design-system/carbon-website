@@ -38,7 +38,8 @@ const CodeBar = ({ src, code, links }) => {
           title="View source"
           className={button}
           href={src}
-          style={{ position: 'relative', zIndex: 200 }}>
+          style={{ position: 'relative', zIndex: 200 }}
+        >
           <Launch16 />
         </a>
       ) : (
