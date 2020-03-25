@@ -34,6 +34,7 @@ const useCodesandbox = (code) => {
               'react-dom': 'latest',
               'carbon-components-react': 'latest',
               'carbon-components': 'latest',
+              'carbon-icons': 'latest',
             },
           },
         },
