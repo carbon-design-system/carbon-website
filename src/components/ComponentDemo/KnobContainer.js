@@ -44,7 +44,7 @@ const Component = ({ component, knobs, code, setCode }) => {
   const radioKnobs = [];
   const { current: uid } = useRef(nanoid());
 
-  Object.entries(knobs).forEach(knob => {
+  Object.entries(knobs).forEach((knob) => {
     const [, { type }] = knob;
     if (type.name === 'bool') {
       booleanKnobs.push(knob);
@@ -74,7 +74,8 @@ const Component = ({ component, knobs, code, setCode }) => {
       <div
         role="group"
         aria-labelledby={componentGroupId}
-        className={componentKnobWrapper}>
+        className={componentKnobWrapper}
+      >
         {booleanKnobs.length > 0 && (
           <FormGroup className={formGroup} legendText="Modifiers">
             {booleanKnobs.map(([name, info]) => (
@@ -126,7 +127,7 @@ const Knob = ({ name, info, inputId, component, code, setCode }) => {
   const { knobs, setKnobs } = useContext(DemoContext);
   const { description, defaultValue, type } = info;
 
-  const updateKnob = val => {
+  const updateKnob = (val) => {
     const newKnobs = {
       ...knobs,
       [component]: { ...knobs[component], ...{ [name]: val } },
@@ -152,7 +153,7 @@ const Knob = ({ name, info, inputId, component, code, setCode }) => {
       (defaultValue && defaultValue.value !== 'false') || undefined;
     return (
       <Checkbox
-        onChange={val => updateKnob(val)}
+        onChange={(val) => updateKnob(val)}
         key={inputId}
         title={description}
         defaultChecked={defaultChecked}
@@ -177,10 +178,11 @@ const Knob = ({ name, info, inputId, component, code, setCode }) => {
     return (
       <FormGroup className={formGroup} legendText={name}>
         <RadioButtonGroup
-          onChange={val => updateKnob(val)}
+          onChange={(val) => updateKnob(val)}
           defaultSelected={defaultSelected}
           name={name}
-          orientation="vertical">
+          orientation="vertical"
+        >
           {values.map(({ value }) => (
             <RadioButton
               key={`${inputId}-${value}`}
@@ -213,7 +215,7 @@ const KnobContainer = ({ knobs, code, setCode }) => {
     setIsKnobContainerCollapsed,
   } = useContext(DemoContext);
 
-  const requestedKnobs = Object.keys(knobs).map(component => {
+  const requestedKnobs = Object.keys(knobs).map((component) => {
     const fullComponent = carbonReactDocgen[component];
     const requestedProps = {};
 
@@ -222,7 +224,7 @@ const KnobContainer = ({ knobs, code, setCode }) => {
       return [component, []];
     }
 
-    knobs[component].forEach(knob => {
+    knobs[component].forEach((knob) => {
       if (fullComponent.props[knob].type) {
         requestedProps[knob] = fullComponent.props[knob];
       } else {
@@ -239,13 +241,15 @@ const KnobContainer = ({ knobs, code, setCode }) => {
     <Form
       className={cx(knobContainer, {
         [knobContainerCollapsed]: isMobile && isKnobContainerCollapsed,
-      })}>
+      })}
+    >
       {isMobile && (
         <div className={iconButtonRow}>
           <button
             className={iconButton}
             type="button"
-            onClick={() => setIsKnobContainerCollapsed(true)}>
+            onClick={() => setIsKnobContainerCollapsed(true)}
+          >
             <Close20 />
           </button>
         </div>

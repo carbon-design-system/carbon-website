@@ -44,9 +44,7 @@ exports.handler = async function survey(event) {
     headers: {
       'Content-Type': 'application/json',
     },
-  }).catch(({ statusCode, message }) => {
-    return { statusCode, body: message };
-  });
+  }).catch(({ statusCode, message }) => ({ statusCode, body: message }));
 
   return {
     statusCode: 200,
