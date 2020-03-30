@@ -1,34 +1,28 @@
 ---
 title: Develop
 description: The Carbon Design System is built React first. We also support core parts of the system in vanilla JS, Angular, and Vue.
-tabs: ['React', 'Vanilla', 'Angular', 'Vue', 'Other frameworks']
+tabs: ["React", "Vanilla", "Angular", "Vue", "Other frameworks"]
 ---
 
+<PageDescription>
+
+The Carbon Design System is built React first. We also support core parts of the system in vanilla JS, Angular, and Vue. If you’re you’re using a different framework, you can still build components by following the guidelines below.
+
+</PageDescription>
+
 <AnchorLinks>
-
-<AnchorLink>Development options</AnchorLink>
-<AnchorLink>Other frameworks?</AnchorLink>
-
-</AnchorLinks>
-
-## Development options
-
-The Carbon Design System is built [React](/get-started/develop/react) first. We also support core parts of the system in [vanilla JS](/get-started/develop/vanilla), [Angular](/get-started/develop/angular), and [Vue](/get-started/develop/vue). If you’re you’re using a different framework, you can still build components by following the guidelines below.
-
-<AnchorLinks small>
   <AnchorLink>Using just the styles</AnchorLink>
-  <AnchorLink>
-    Wrapping a component with a JavaScript framework of your choice
-  </AnchorLink>
+  <AnchorLink>Wrapping a component</AnchorLink>
   <AnchorLink>Examples</AnchorLink>
   <AnchorLink>Troubleshooting</AnchorLink>
+  <AnchorLink>Other frameworks</AnchorLink>
 </AnchorLinks>
 
-### Using just the styles
+## Using just the styles
 
 Developers wanting to build in different ways, follow the instructions for the [vanilla JS](/get-started/develop/vanilla) library to access the styles and build out their own components.
 
-### Wrapping components with JavaScript frameworks
+## Wrapping a component
 
 Many JavaScript frameworks have a mechanism to dynamically create/destroy DOM elements, for example, upon change in array.
 This often makes it unclear when the DOM element to instantiate a Carbon component is available, which often depends on the JavaScript framework you use.
@@ -43,9 +37,9 @@ class BXLoading extends HTMLElement {
   connectedCallback() {
     // "this" here is "<bx-loading>" element
     this.innerHTML =
-      '(e.g. snippet from http://carbondesignsystem.com/components/loading/code)';
+      "(e.g. snippet from http://carbondesignsystem.com/components/loading/code)";
     this.loading = CarbonComponents.Loading.create(
-      this.querySelector('[data-loading]')
+      this.querySelector("[data-loading]")
     );
   }
   // Called when this custom element gets out of render tree
@@ -53,18 +47,18 @@ class BXLoading extends HTMLElement {
     this.loading.release();
   }
 }
-customElements.define('bx-loading', BXLoading);
+customElements.define("bx-loading", BXLoading);
 ```
 
-### Examples
+## Examples
 
 [Angular 4 wrapper for Carbon](https://codepen.io/asudoh/pen/VryJBO?editors=1010) (We use this just as an example. [Angular](https://github.com/IBM/carbon-components-angular) is now supported by the Carbon Design System.)
 
-### Troubleshooting
+## Troubleshooting
 
 If you experience any issues while getting set up with Carbon Components, please head over to the [Carbon Components GitHub repo](https://github.com/carbon-design-system/carbon-components) for more guidelines and support. Please [create an issue](https://github.com/carbon-design-system/carbon/issues) if your issue does not already exist.
 
-## Other frameworks?
+## Other frameworks
 
 We are open to the idea of providing core support for additional frameworks in future. We added Angular support in the summer of 2018 and Vue in early 2019.
 
