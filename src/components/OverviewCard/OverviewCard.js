@@ -5,39 +5,6 @@ import { Link } from 'gatsby';
 import { Tag } from 'carbon-components-react';
 
 export default class OverviewCard extends React.Component {
-  static propTypes = {
-    children: PropTypes.node,
-
-    /**
-     * Add tag
-     */
-    tag: PropTypes.string,
-
-    /**
-     * Set url for card
-     */
-    href: PropTypes.string,
-
-    /**
-     * LTitle
-     */
-    title: PropTypes.string,
-
-    /**
-     * Use for disabled card
-     */
-    disabled: PropTypes.bool,
-
-    /**
-     * Specify a custom class
-     */
-    className: PropTypes.string,
-  };
-
-  static defaultProps = {
-    disabled: false,
-  };
-
   render() {
     const { children, href, title, disabled, className, tag } = this.props;
 
@@ -60,7 +27,7 @@ export default class OverviewCard extends React.Component {
       <>
         <h4 className="overview-card__title">{title}</h4>
         {tag && <Tag type="teal">{tag}</Tag>}
-        <div className={`overview-card__img`}>{children}</div>
+        <div className="overview-card__img">{children}</div>
       </>
     );
 
@@ -79,7 +46,8 @@ export default class OverviewCard extends React.Component {
           target="_blank"
           rel="noopener noreferrer"
           href={href}
-          className={carbonTileclassNames}>
+          className={carbonTileclassNames}
+        >
           {cardContent}
         </a>
       );
@@ -94,3 +62,36 @@ export default class OverviewCard extends React.Component {
     );
   }
 }
+
+OverviewCard.propTypes = {
+  children: PropTypes.node,
+
+  /**
+   * Add tag
+   */
+  tag: PropTypes.string,
+
+  /**
+   * Set url for card
+   */
+  href: PropTypes.string,
+
+  /**
+   * LTitle
+   */
+  title: PropTypes.string,
+
+  /**
+   * Use for disabled card
+   */
+  disabled: PropTypes.bool,
+
+  /**
+   * Specify a custom class
+   */
+  className: PropTypes.string,
+};
+
+OverviewCard.defaultProps = {
+  disabled: false,
+};
