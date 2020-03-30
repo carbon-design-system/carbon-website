@@ -11,8 +11,10 @@ const frontmatter = {
   tabs: ['Library', 'Usage', 'Contribute'],
 };
 
-export default ({ pageContext, ...rest }) => (
+const PictogramPage = ({ pageContext, ...rest }) => (
   <Layout pageContext={{ ...pageContext, frontmatter }} {...rest}>
     <PictogramLibrary />
   </Layout>
 );
+
+export default PictogramPage;

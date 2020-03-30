@@ -11,8 +11,10 @@ const frontmatter = {
   tabs: ['Library', 'Usage', 'Contribute'],
 };
 
-export default ({ pageContext, ...rest }) => (
+const IconPage = ({ pageContext, ...rest }) => (
   <Layout pageContext={{ ...pageContext, frontmatter }} {...rest}>
     <IconLibrary />
   </Layout>
 );
+
+export default IconPage;

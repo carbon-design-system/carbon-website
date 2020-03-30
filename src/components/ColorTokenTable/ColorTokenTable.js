@@ -57,13 +57,13 @@ export default class ColorTokenTable extends React.Component {
     });
   }
 
-  switchTheme = theme => {
+  switchTheme = (theme) => {
     this.setState({
       theme: theme.name,
     });
   };
 
-  hexToRgb = hex => {
+  hexToRgb = (hex) => {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     return result
       ? {
@@ -76,7 +76,7 @@ export default class ColorTokenTable extends React.Component {
 
   renderValue = (token, tokenInfo) => {
     const currentTheme = this.state.theme;
-    const value = tokenInfo.value;
+    const { value } = tokenInfo;
     let bgColor = value[currentTheme].hex;
     if (bgColor.substring(bgColor.length - 3, bgColor.length) === '50%') {
       const hex = bgColor.substring(0, bgColor.length - 6);
@@ -148,7 +148,8 @@ export default class ColorTokenTable extends React.Component {
         <div className="bx--col-lg-12 bx--no-gutter">
           <ContentSwitcher
             className={themeSwitcherClasses}
-            onChange={this.switchTheme}>
+            onChange={this.switchTheme}
+          >
             <Switch name="white" text={this.state.mobile ? 'Wte' : 'White'} />
             <Switch name="g10" text={this.state.mobile ? 'G10' : 'Gray 10'} />
             <Switch name="g90" text={this.state.mobile ? 'G90' : 'Gray 90'} />
