@@ -3,10 +3,10 @@ title: 1. Installing Carbon
 description: Welcome to Carbon! This tutorial will guide you in creating a Vue app with the Carbon Design System.
 internal: false
 tabs:
-  ['Overview', 'Step 1', 'Step 2', 'Step 3', 'Step 4', 'Step 5', 'Wrapping up']
+  ["Overview", "Step 1", "Step 2", "Step 3", "Step 4", "Step 5", "Wrapping up"]
 ---
 
-import Preview from 'components/Preview';
+import Preview from "components/Preview";
 
 <PageDescription>
 
@@ -174,7 +174,7 @@ In the `src` directory, create a sub-directory `styles` and add a new file `_car
 In `styles/_carbon.scss`, import the Carbon styles by adding the following at the top of the file:
 
 ```scss path=src/styles/_carbon.scss
-@import 'carbon-components/scss/globals/scss/styles';
+@import "carbon-components/scss/globals/scss/styles";
 ```
 
 This will take a moment for the Sass to compile. Once compiled, you'll notice that the Carbon base styling is applied (IBM Plex Sans font family, font size, weight, colors, etc.)
@@ -253,7 +253,7 @@ src/components/TutorialHeader
 In `src/components/TutorialHeader/index.js`, import and export our `TutorialHeader` component like so:
 
 ```javascript path=src/components/TutorialHeader/index.js
-import TutorialHeader from './TutorialHeader';
+import TutorialHeader from "./TutorialHeader";
 export default TutorialHeader;
 ```
 
@@ -470,7 +470,7 @@ src/view/RepoPage
 Starting with `LandingPage`, just like with our header, we need to export the component in `src/view/LandingPage/index.js` by adding:
 
 ```javascript path=src/view/LandingPage/index.js
-import LandingPage from './LandingPage';
+import LandingPage from "./LandingPage";
 export default LandingPage;
 ```
 
@@ -487,7 +487,7 @@ We'll repeat this process with `RepoPage`.
 In `src/view/RepoPage/index.js`, import and export the `RepoPage` component like so:
 
 ```javascript path=src/view/RepoPage/index.js
-import RepoPage from './RepoPage';
+import RepoPage from "./RepoPage";
 export default RepoPage;
 ```
 
@@ -508,27 +508,27 @@ Lucky for you, as part of the Vue CLI project set up we added vue-router. This c
 We need to adjust it by replacing the contents of `src/router.js` with:
 
 ```javascript path=src/router.js
-import Vue from 'vue';
-import Router from 'vue-router';
-import LandingPage from './views/LandingPage';
+import Vue from "vue";
+import Router from "vue-router";
+import LandingPage from "./views/LandingPage";
 
 Vue.use(Router);
 
 export default new Router({
   routes: [
     {
-      path: '/',
-      name: 'landing-page',
+      path: "/",
+      name: "landing-page",
       component: LandingPage,
     },
     {
-      path: '/repos',
-      name: 'repo-page',
+      path: "/repos",
+      name: "repo-page",
       // route level code-splitting
       // this generates a separate chunk (repo-page.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () =>
-        import(/* webpackChunkName: "repo-page" */ './views/RepoPage'),
+        import(/* webpackChunkName: "repo-page" */ "./views/RepoPage"),
     },
   ],
 });
