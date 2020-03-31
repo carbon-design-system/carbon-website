@@ -39,7 +39,7 @@ import {
 //   name => !docgenComponents.includes(pascalCase(name))
 // );
 
-const Component = ({ component, knobs, code, setCode }) => {
+const Component = ({ component, knobs, code, setCode, initialCode }) => {
   const booleanKnobs = [];
   const radioKnobs = [];
   const { current: uid } = useRef(nanoid());
@@ -86,6 +86,7 @@ const Component = ({ component, knobs, code, setCode }) => {
                 inputId={`${name}-${uid}`}
                 info={info}
                 name={name}
+                initialCode={initialCode}
               />
             ))}
           </FormGroup>
@@ -99,6 +100,7 @@ const Component = ({ component, knobs, code, setCode }) => {
             inputId={`${name}-${uid}`}
             info={info}
             name={name}
+            initialCode={initialCode}
           />
         ))}
       </div>
@@ -114,16 +116,25 @@ const useDefaultProps = (code, componentPropsRegex) => {
   return '';
 };
 
-const Knob = ({ name, info, inputId, component, code, setCode }) => {
+const Knob = ({
+  name,
+  info,
+  inputId,
+  component,
+  code,
+  setCode,
+  initialCode,
+}) => {
   // eslint-disable-next-line no-useless-escape
   const pattern = `<${component}(\\s?>|\\s[\\s\\S]*?>)`;
   const componentPropsRegex = new RegExp(pattern);
 
   // stores whatever props are provided in the inital code
-  const { current: initialCode } = useRef(code);
+  // const { current: initialCode } = useRef(code);
   const defaultKnobProps = useDefaultProps(initialCode, componentPropsRegex);
 
   const { knobs, setKnobs } = useContext(DemoContext);
+
   const { description, defaultValue, type } = info;
 
   const updateKnob = val => {
@@ -206,7 +217,7 @@ Knob.propTypes = {
   },
 };
 
-const KnobContainer = ({ knobs, code, setCode }) => {
+const KnobContainer = ({ knobs, code, setCode, initialCode }) => {
   const {
     isMobile,
     isKnobContainerCollapsed,
@@ -257,6 +268,7 @@ const KnobContainer = ({ knobs, code, setCode }) => {
           setCode={setCode}
           component={component}
           knobs={componentKnobs}
+          initialCode={initialCode}
         />
       ))}
     </Form>

@@ -4,7 +4,12 @@ import prismTheme from 'gatsby-theme-carbon/src/components/Code/prismTheme';
 import * as CarbonComponents from 'carbon-components-react';
 import { LiveProvider, LiveEditor, LivePreview, LiveError } from 'react-live';
 import { Row } from 'gatsby-theme-carbon';
-import { TableOfContents20, Maximize16, Minimize16 } from '@carbon/icons-react';
+import {
+  TableOfContents20,
+  Maximize16,
+  Minimize16,
+  Close16,
+} from '@carbon/icons-react';
 import cx from 'classnames';
 
 import {
@@ -16,13 +21,16 @@ import {
   iconButton,
   iconButtonExpand,
   fullscreenButton,
+  exitFullscreenButton,
   white,
   g10,
   g90,
   g100,
   zamboni,
   dropdownRow,
-  containerRow,
+  codeRow,
+  hiddenDropdown,
+  variantDropdown,
 } from './ComponentDemo.module.scss';
 
 import Code from './Code';
@@ -39,13 +47,13 @@ const ComponentDemo = ({
   src,
   scope,
   noInline,
-  links,
   items,
   initialSelectedItem,
 }) => {
   // theme selected state
   const [theme, setTheme] = useState(white);
   const { isMobile, setIsKnobContainerCollapsed } = useContext(DemoContext);
+  const [isFullscreen, setFullscreen] = useState(false);
 
   // component variant selected state
   const [variantSelected, setVariantSelected] = useState(initialSelectedItem);
@@ -54,7 +62,9 @@ const ComponentDemo = ({
     child => child.props.id === variantSelected.id
   );
   const [code, setCode] = useState(initialMatchingChild[0].props.children);
+  const [initialCode, setInitialCode] = useState(code);
   const [knobs, setKnobs] = useState(initialMatchingChild[0].props.knobs);
+  const [links, setLinks] = useState(initialMatchingChild[0].props.links);
 
   const themes = [
     { id: white, label: 'White' },
@@ -63,8 +73,6 @@ const ComponentDemo = ({
     { id: g100, label: isMobile ? 'G100' : 'Gray 100' },
   ];
 
-  const [isFullscreen, setFullscreen] = useState(false);
-
   const onVariantChange = event => {
     setVariantSelected(event.selectedItem);
 
@@ -72,8 +80,12 @@ const ComponentDemo = ({
       child => child.props.id === event.selectedItem.id
     );
 
-    setCode(matchingChild[0].props.children);
+    setCode(() => {
+      setInitialCode(matchingChild[0].props.children);
+      return matchingChild[0].props.children;
+    });
     setKnobs(matchingChild[0].props.knobs);
+    setLinks(matchingChild[0].props.links);
   };
 
   // TODO max width editor handle multiple clicks use regex for individual props?
@@ -86,23 +98,37 @@ const ComponentDemo = ({
       <div className={cx({ [fullscreen]: isFullscreen })}>
         <Row className={dropdownRow}>
           <Dropdown
-            onChange={onVariantChange}
-            light
-            initialSelectedItem={variantSelected}
-            id="component-variant"
-            items={items}
-            size="xl"
-          />
-          <Dropdown
             onChange={event => setTheme(event.selectedItem.id)}
             light
             initialSelectedItem={{ id: white, label: 'White' }}
             id="theme-variant"
+            label="Theme variant selection"
             items={themes}
             size="xl"
           />
+          <Dropdown
+            onChange={onVariantChange}
+            light
+            initialSelectedItem={variantSelected}
+            id="component-variant"
+            label="Component variant selection"
+            items={items}
+            size="xl"
+            className={cx(variantDropdown, {
+              [hiddenDropdown]: childrenArray.length === 1,
+            })}
+          />
+          {isFullscreen && (
+            <button
+              className={exitFullscreenButton}
+              onClick={() => {
+                setFullscreen(false);
+              }}>
+              <Close16 />
+            </button>
+          )}
         </Row>
-        <Row className={containerRow}>
+        <Row>
           <LiveProvider
             noInline={noInline}
             theme={prismTheme}
@@ -110,7 +136,7 @@ const ComponentDemo = ({
             code={code}>
             <div className={cx(container, { [knoblessContainer]: !knobs })}>
               <button
-                className={fullscreenButton}
+                className={cx(theme, fullscreenButton)}
                 onClick={() => {
                   setFullscreen(!isFullscreen);
                 }}>
@@ -129,7 +155,7 @@ const ComponentDemo = ({
                 </button>
               )}
 
-              <Code links={links} code={code} src={src}>
+              <Code links={links} code={code} src={src} className={codeRow}>
                 <LiveEditor
                   padding={16}
                   style={{ overflowX: 'auto', whiteSpace: 'pre' }}
@@ -139,7 +165,12 @@ const ComponentDemo = ({
               </Code>
               {knobs && (
                 <>
-                  <KnobContainer code={code} setCode={setCode} knobs={knobs} />
+                  <KnobContainer
+                    code={code}
+                    setCode={setCode}
+                    knobs={knobs}
+                    initialCode={initialCode}
+                  />
                   <span className={zamboni} />
                 </>
               )}

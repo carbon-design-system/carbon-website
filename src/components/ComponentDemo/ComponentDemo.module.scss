@@ -15,12 +15,15 @@
   }
 }
 
-.fullscreen .knob-container,
-.fullscreen .preview-container,
-.fullscreen .container-row {
+.fullscreen .preview-container {
   @include carbon--breakpoint('md') {
-    height: 100%;
-    max-height: 100%;
+    height: calc(100vh - 8rem);
+  }
+}
+
+.fullscreen .codeRow {
+  @include carbon--breakpoint('md') {
+    display: none;
   }
 }
 
@@ -37,8 +40,22 @@
     border: none;
     position: absolute;
     top: 0.5rem;
-    right: 15.5rem; //to-do: figure out better way to position this for responsiveness
+    right: 15.5rem; //TO-DO: figure out better way to position this for responsiveness
   }
+}
+
+.exitFullscreenButton {
+  display: block;
+  height: 2rem;
+  width: 2rem;
+  padding: 0;
+  padding-top: 2px;
+  background: none;
+  outline: none;
+  border: none;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
 }
 
 .knobless-container .fullscreenButton {
@@ -46,14 +63,20 @@
 }
 
 .fullscreenButton svg {
-  fill: $icon-02;
+  fill: $icon-02; //TO-DO: make this themeable
 }
 
-.fullscreenButton:hover {
+.exitFullscreenButton svg {
+  fill: $icon-01;
+}
+
+.fullscreenButton:hover,
+.exitFullscreenButton:hover {
   background: $ui-03;
 }
 
-.fullscreenButton:focus {
+.fullscreenButton:focus,
+.exitFullscreenButton:focus {
   outline: 2px solid $focus;
 }
 
@@ -206,16 +229,8 @@ fieldset.form-group:last-of-type {
   }
 }
 
-.dropdownRow + * {
-  --space: 0;
-}
-
 .dropdownRow :global(.bx--dropdown__wrapper) {
   width: 50%;
-}
-
-.dropdownRow :global(.bx--dropdown__wrapper:first-of-type) {
-  border-right: 1px solid $ui-03;
 }
 
 .dropdownRow :global(.bx--dropdown) {
@@ -223,7 +238,16 @@ fieldset.form-group:last-of-type {
 }
 
 .dropdownRow :global(.bx--list-box__menu) {
-  max-height: 20rem;
+  max-height: 20rem; //shows all theme items w/o scroll
+}
+
+.dropdownRow .variantDropdown {
+  border-left: 1px solid $ui-03;
+}
+
+.hiddenDropdown {
+  display: none;
+  border: none;
 }
 
 .preview-container {
