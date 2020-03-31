@@ -163,17 +163,19 @@ export const lineOptions = {
 };
 
 // Step
-export const stepOptions = Object.assign({}, lineOptions, {
+export const stepOptions = {
+  ...lineOptions,
   title: 'Step (discrete)',
   curve: 'curveStepAfter',
-});
+};
 
 export const stepData = lineData;
 
-export const stepTimeSeriesOptions = Object.assign({}, lineTimeSeriesOptions, {
+export const stepTimeSeriesOptions = {
+  ...lineTimeSeriesOptions,
   title: 'Step (time series)',
   curve: 'curveStepAfter',
-});
+};
 
 export const stepTimeSeriesData = lineTimeSeriesData;
 

@@ -24,13 +24,6 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-webpack-bundle-analyser-v2',
-      options: {
-        analyzerMode: 'static',
-        disable: !process.env.ANALYZE,
-      },
-    },
-    {
       resolve: 'gatsby-plugin-fathom',
       options: {
         siteId: 'VMSGXQRS',

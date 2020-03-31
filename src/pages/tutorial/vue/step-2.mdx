@@ -3,10 +3,10 @@ title: 2. Building pages
 description: Welcome to Carbon! This tutorial will guide you in creating a Vue app with the Carbon Design System.
 internal: false
 tabs:
-  ['Overview', 'Step 1', 'Step 2', 'Step 3', 'Step 4', 'Step 5', 'Wrapping up']
+  ["Overview", "Step 1", "Step 2", "Step 3", "Step 4", "Step 5", "Wrapping up"]
 ---
 
-import Preview from 'components/Preview';
+import Preview from "components/Preview";
 
 <PageDescription>
 
@@ -183,12 +183,12 @@ In our second row we'll use `CvTabs` and `CvButton` components.
 const props = {
   tabs: {
     selected: 0,
-    triggerHref: '#',
-    role: 'navigation',
+    triggerHref: "#",
+    role: "navigation",
   },
   tab: {
-    href: '#',
-    role: 'presentation',
+    href: "#",
+    role: "presentation",
     tabIndex: 0,
   },
 };
@@ -344,10 +344,10 @@ The third row will be created in a later tutorial, so we'll just add the headers
 We've added basic layout styles in `LandingPage.vue`, so now let's add type, color and spacing styles to match the design. We'll be using our [spacing tokens](https://www.carbondesignsystem.com/guidelines/spacing). In a new file `src/styles/_carbon-utils.scss`, add these imports at the **top** of the file so we can use Carbon breakpoints, tokens, and typography Sass mixins and functions:
 
 ```scss path=src/styles/_carbon-utils.scss
-@import 'carbon-components/scss/globals/scss/vendor/@carbon/type/scss/font-family.scss';
-@import 'carbon-components/scss/globals/scss/vendor/@carbon/layout/scss/breakpoint.scss';
-@import 'carbon-components/scss/globals/scss/typography.scss';
-@import 'carbon-components/scss/globals/scss/vars.scss';
+@import "carbon-components/scss/globals/scss/vendor/@carbon/type/scss/font-family.scss";
+@import "carbon-components/scss/globals/scss/vendor/@carbon/layout/scss/breakpoint.scss";
+@import "carbon-components/scss/globals/scss/typography.scss";
+@import "carbon-components/scss/globals/scss/vars.scss";
 ```
 
 Adding these tokesn, mixins etc. here means we can import them with a single line into any component that needs them.
@@ -373,7 +373,7 @@ Adding these tokesn, mixins etc. here means we can import them with a single lin
 Back to `LandingPage.vue`, we need to add space above the breadcrumb and below the heading. For that, add:
 
 ```scss path=src/views/LandingPage/LandingPage.vue
-@import '../../styles/carbon-utils';
+@import "../../styles/carbon-utils";
 ```
 
 with the other imports and
@@ -397,7 +397,7 @@ Add the following in `_mixins.scss`. Per the design we need to use Gray 10 for o
   position: relative;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     left: -$spacing-05;
     top: 0;
@@ -412,9 +412,9 @@ Add the following in `_mixins.scss`. Per the design we need to use Gray 10 for o
 After you have created `_mixins.scss`, import it at the **top** of `LandingPage.vue`. By now you should have three imports:
 
 ```scss path=src/views/LandingPage/LandingPage.vue
-@import '../../styles/carbon-utils';
-@import './carbon-overrides';
-@import './mixins';
+@import "../../styles/carbon-utils";
+@import "./carbon-overrides";
+@import "./mixins";
 ```
 
 Now to use the new mixin, update the `.landing-page__banner` declaration block to:
@@ -443,7 +443,7 @@ The Sketch symbol naming is consistent with the development Sass tokens to help 
 
 ```scss path=src/views/LandingPage/LandingPage.vue
 .landing-page__heading {
-  @include carbon--type-style('productive-heading-05');
+  @include carbon--type-style("productive-heading-05");
 }
 ```
 
@@ -482,12 +482,12 @@ We also need to adust our vertical spacing and type treatment. Like before, it's
 }
 
 .landing-page__subheading {
-  @include carbon--type-style('productive-heading-03');
-  @include carbon--font-weight('semibold');
+  @include carbon--type-style("productive-heading-03");
+  @include carbon--font-weight("semibold");
 }
 
 .landing-page__p {
-  @include carbon--type-style('productive-heading-03');
+  @include carbon--type-style("productive-heading-03");
   margin-top: $spacing-06;
   margin-bottom: $spacing-08;
 
@@ -519,7 +519,7 @@ Let's also add some styles for the last row, even though that will get used late
 }
 
 .landing-page__label {
-  @include carbon--type-style('heading-01');
+  @include carbon--type-style("heading-01");
 }
 ```
 
@@ -564,58 +564,58 @@ Then below the import, include the following arrays to pass into the `RepoTable`
 ```javascript path=src/views/RepoPage/RepoPage.vue
 const headers = [
   {
-    key: 'name',
-    header: 'Name',
+    key: "name",
+    header: "Name",
   },
   {
-    key: 'createdAt',
-    header: 'Created',
+    key: "createdAt",
+    header: "Created",
   },
   {
-    key: 'updatedAt',
-    header: 'Updated',
+    key: "updatedAt",
+    header: "Updated",
   },
   {
-    key: 'issueCount',
-    header: 'Open Issues',
+    key: "issueCount",
+    header: "Open Issues",
   },
   {
-    key: 'stars',
-    header: 'Stars',
+    key: "stars",
+    header: "Stars",
   },
   {
-    key: 'links',
-    header: 'Links',
+    key: "links",
+    header: "Links",
   },
 ];
 
 const rows = [
   {
-    id: '1',
-    name: 'Repo 1',
-    createdAt: 'Date',
-    updatedAt: 'Date',
-    issueCount: '123',
-    stars: '456',
-    links: 'Links',
+    id: "1",
+    name: "Repo 1",
+    createdAt: "Date",
+    updatedAt: "Date",
+    issueCount: "123",
+    stars: "456",
+    links: "Links",
   },
   {
-    id: '2',
-    name: 'Repo 2',
-    createdAt: 'Date',
-    updatedAt: 'Date',
-    issueCount: '123',
-    stars: '456',
-    links: 'Links',
+    id: "2",
+    name: "Repo 2",
+    createdAt: "Date",
+    updatedAt: "Date",
+    issueCount: "123",
+    stars: "456",
+    links: "Links",
   },
   {
-    id: '3',
-    name: 'Repo 3',
-    createdAt: 'Date',
-    updatedAt: 'Date',
-    issueCount: '123',
-    stars: '456',
-    links: 'Links',
+    id: "3",
+    name: "Repo 3",
+    createdAt: "Date",
+    updatedAt: "Date",
+    issueCount: "123",
+    stars: "456",
+    links: "Links",
   },
 ];
 ```
@@ -624,7 +624,7 @@ Next we need to make sure the RepoTable component and these arrays are available
 
 ```javascript path=src/views/RepoPage/RepoPage.vue
 export default {
-  name: 'RepoPage',
+  name: "RepoPage",
   components: { RepoTable },
   data() {
     return {

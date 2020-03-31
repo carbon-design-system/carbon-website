@@ -3,13 +3,6 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 export default class ColorBlock extends React.Component {
-  static propTypes = {
-    /**
-     * should the hex be displayed? this will also prescribe a particular layout
-     */
-    showhex: PropTypes.bool,
-  };
-
   static renderHex(showhex, hex) {
     let hexLabel = '';
     if (showhex) {
@@ -39,3 +32,10 @@ export default class ColorBlock extends React.Component {
     );
   }
 }
+
+ColorBlock.propTypes = {
+  /**
+   * should the hex be displayed? this will also prescribe a particular layout
+   */
+  showhex: PropTypes.bool,
+};

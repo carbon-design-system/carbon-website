@@ -1,9 +1,11 @@
 import React from 'react';
-import IconLibrary from './IconLibrary';
+import Library from './IconLibrary';
 import LibraryProvider from '../shared/LibraryProvider';
 
-export default ({ site }) => (
+const IconLibrary = ({ site }) => (
   <LibraryProvider site={site} type="icon">
-    <IconLibrary />
+    <Library />
   </LibraryProvider>
 );
+
+export default IconLibrary;
