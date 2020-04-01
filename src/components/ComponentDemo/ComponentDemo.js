@@ -68,15 +68,22 @@ const ComponentDemo = ({
   const [knobs, setKnobs] = useState(initialMatchingChild[0].props.knobs);
   const [links, setLinks] = useState(initialMatchingChild[0].props.links);
 
-  const themes = [
-    { id: white, label: 'White' },
-    { id: g10, label: isMobile ? 'G10' : 'Gray 10' },
-    { id: g90, label: isMobile ? 'G90' : 'Gray 90' },
-    { id: g100, label: isMobile ? 'G100' : 'Gray 100' },
-  ];
+  // const themes = [
+  //   { id: white, label: 'White' },
+  //   { id: g10, label: 'Gray 10' },
+  //   { id: g90, label: 'Gray 90' },
+  //   { id: g100, label: 'Gray 100' },
+  // ];
+
+  const themes = {
+    White: white,
+    'Gray 10': g10,
+    'Gray 90': g90,
+    'Gray 100': g100,
+  };
 
   const onThemeChange = (event) => {
-    setTheme(event.selectedItem.id);
+    setTheme(themes[event.selectedItem]);
   };
 
   const onVariantChange = (event) => {
@@ -106,10 +113,13 @@ const ComponentDemo = ({
           <Dropdown
             onChange={onThemeChange}
             light
-            initialSelectedItem={{ id: white, label: 'White' }}
+            itemToString={(item) =>
+              isMobile ? item.replace('ray ', '') : item
+            }
+            initialSelectedItem="White"
             id="theme-variant"
             label="Theme variant selection"
-            items={themes}
+            items={Object.keys(themes)}
             size="xl"
           />
           <Dropdown
