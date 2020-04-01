@@ -1,5 +1,5 @@
 .fullscreen {
-  @include carbon--breakpoint('md') {
+  @include carbon--breakpoint("md") {
     position: fixed;
     margin: 0;
     z-index: 9999;
@@ -16,20 +16,20 @@
 }
 
 .fullscreen .preview-container {
-  @include carbon--breakpoint('md') {
+  @include carbon--breakpoint("md") {
     height: calc(100vh - 8rem);
   }
 }
 
 .fullscreen .codeRow {
-  @include carbon--breakpoint('md') {
+  @include carbon--breakpoint("md") {
     display: none;
   }
 }
 
 .fullscreenButton {
   display: none;
-  @include carbon--breakpoint('md') {
+  @include carbon--breakpoint("md") {
     display: block;
     height: 2rem;
     width: 2rem;
@@ -63,19 +63,25 @@
 }
 
 .fullscreenButton svg {
-  fill: $icon-02; //TO-DO: make this themeable
+  fill: var(--cds-icon-02);
 }
 
 .exitFullscreenButton svg {
   fill: $icon-01;
 }
 
-.fullscreenButton:hover,
+.fullscreenButton:hover {
+  background: var(--cds-ui-03);
+}
+
 .exitFullscreenButton:hover {
   background: $ui-03;
 }
 
-.fullscreenButton:focus,
+.fullscreenButton:focus {
+  outline: 2px solid var(--cds-focus);
+}
+
 .exitFullscreenButton:focus {
   outline: 2px solid $focus;
 }
@@ -88,14 +94,14 @@
   grid-template-columns: 1fr;
   grid-template-rows: 35rem minmax(1fr, 320px);
   grid-template-areas:
-    'preview'
-    'editor';
+    "preview"
+    "editor";
   margin-top: 0;
-  @include carbon--breakpoint('md') {
+  @include carbon--breakpoint("md") {
     grid-template-columns: 1fr 240px;
     grid-template-areas:
-      'preview knobs'
-      'editor editor';
+      "preview knobs"
+      "editor editor";
   }
 }
 
@@ -108,8 +114,8 @@
 
 .knobless-container {
   grid-template-areas:
-    'preview preview'
-    'editor editor';
+    "preview preview"
+    "editor editor";
 }
 
 .icon-button-row {
@@ -156,8 +162,8 @@
   box-shadow: -2px 2px 6px rgba(0, 0, 0, 0.2);
   height: 100%;
   max-height: 35rem;
-  transition: transform $duration--moderate-01 carbon--motion('entrance');
-  @include carbon--breakpoint('md') {
+  transition: transform $duration--moderate-01 carbon--motion("entrance");
+  @include carbon--breakpoint("md") {
     position: static;
     box-shadow: none;
   }
@@ -191,8 +197,8 @@
   width: 100%;
   display: flex;
   align-items: center;
-  font-family: 'IBM Plex Mono', 'Menlo', 'DejaVu Sans Mono',
-    'Bitstream Vera Sans Mono', Courier, monospace;
+  font-family: "IBM Plex Mono", "Menlo", "DejaVu Sans Mono",
+    "Bitstream Vera Sans Mono", Courier, monospace;
   font-size: 12px;
 }
 
@@ -224,7 +230,7 @@ fieldset.form-group:last-of-type {
 
 .dropdownRow {
   margin-right: 14rem;
-  @include carbon--breakpoint-down('md') {
+  @include carbon--breakpoint-down("md") {
     margin-right: -1rem;
   }
 }
@@ -279,7 +285,7 @@ fieldset.form-group:last-of-type {
 .editor-container pre,
 .editor-container textarea {
   // important to override react-live inline styles
-  font-family: 'IBM Plex Mono', monospace !important;
+  font-family: "IBM Plex Mono", monospace !important;
   white-space: pre !important;
 }
 
