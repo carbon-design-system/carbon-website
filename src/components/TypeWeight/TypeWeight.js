@@ -1,11 +1,9 @@
+/* eslint-disable react/no-danger */
+/* eslint-disable global-require */
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default class typeWeight extends React.Component {
-  static propTypes = {
-    type: PropTypes.string,
-  };
-
+export default class TypeWeight extends React.Component {
   render() {
     const { type } = this.props;
     const typeWeight = require('../../pages/guidelines/typography/_type-weight.md');
@@ -41,3 +39,7 @@ export default class typeWeight extends React.Component {
     );
   }
 }
+
+TypeWeight.propTypes = {
+  type: PropTypes.string,
+};
