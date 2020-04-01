@@ -1,109 +1,110 @@
 ---
 title: Code snippet
 description: Code snippets are small blocks of reusable code that can be inserted in a code file.
-tabs: ['Code', 'Usage', 'Style', 'Accessibility']
+tabs: ["Code", "Usage", "Style", "Accessibility"]
 ---
 
-<!-- TO-DO: this is not working
+import {
+  codeSnippet,
+  codeSnippetSingle,
+} from "../../../data/components/code-snippet.js";
 
 <ComponentDemo
+  scope={{ codeSnippet, codeSnippetSingle }}
   items={[
     {
-      id: 'code-snippet-single',
-      label: 'Single line',
+      id: "code-snippet-single",
+      label: "Single line",
     },
     {
-      id: 'code-snippet-multi',
-      label: 'Multi line',
+      id: "code-snippet-multi",
+      label: "Multi line",
     },
     {
-      id: 'code-snippet-inline',
-      label: 'Inline',
+      id: "code-snippet-inline",
+      label: "Inline",
     },
   ]}
   initialSelectedItem={{
-    id: 'code-snippet-single',
-    label: 'Single line',
-  }}>
+    id: "code-snippet-single",
+    label: "Single line",
+  }}
+>
   <ComponentVariant
     id="code-snippet-single"
-    knobs={{ CodeSnippet: ['light'] }}
+    knobs={{ CodeSnippet: ["light"] }}
     links={{
       React:
-        'http://react.carbondesignsystem.com/?path=/story/codesnippet--inline',
+        "http://react.carbondesignsystem.com/?path=/story/codesnippet--inline",
       Angular:
-        'https://angular.carbondesignsystem.com/?path=/story/components-code-snippet--basic',
+        "https://angular.carbondesignsystem.com/?path=/story/components-code-snippet--basic",
       Vue:
-        'http://vue.carbondesignsystem.com/?path=/story/components-cvcodesnippet--default',
-      Vanilla: 'https://the-carbon-components.netlify.com/?nav=code-snippet',
-    }}>{`
+        "http://vue.carbondesignsystem.com/?path=/story/components-cvcodesnippet--default",
+      Vanilla: "https://the-carbon-components.netlify.com/?nav=code-snippet",
+    }}
+  >{`
     <CodeSnippet type="single">
-    {`
-      @mixin grid-container {
-          width: 100%;
-          padding-right: padding(mobile);
-          padding-left: padding(mobile);
-      }
-​
-      $z-indexes: (
-      modal : 9000,
-      overlay : 8000,
-      dropdown : 7000,
-      header : 6000,
-      footer : 5000,
-      hidden : - 1,
-      overflowHidden: - 1,
-      floating: 10000
-      );
-    `}</CodeSnippet>
+    {codeSnippet}
+    </CodeSnippet>
 `}</ComponentVariant>
   <ComponentVariant
     id="code-snippet-multi"
-    knobs={{ CodeSnippet: ['light'] }}
+    knobs={{ CodeSnippet: ["light"] }}
     links={{
       React:
-        'http://react.carbondesignsystem.com/?path=/story/codesnippet--inline',
+        "http://react.carbondesignsystem.com/?path=/story/codesnippet--inline",
       Angular:
-        'https://angular.carbondesignsystem.com/?path=/story/components-code-snippet--basic',
+        "https://angular.carbondesignsystem.com/?path=/story/components-code-snippet--basic",
       Vue:
-        'http://vue.carbondesignsystem.com/?path=/story/components-cvcodesnippet--default',
-      Vanilla: 'https://the-carbon-components.netlify.com/?nav=code-snippet',
-    }}>{`
-    <CodeSnippet type="multi">{`
-      @mixin grid-container {
-          width: 100%;
-          padding-right: padding(mobile);
-          padding-left: padding(mobile);
-      }
-​
-      $z-indexes: (
-      modal : 9000,
-      overlay : 8000,
-      dropdown : 7000,
-      header : 6000,
-      footer : 5000,
-      hidden : - 1,
-      overflowHidden: - 1,
-      floating: 10000
-      );
-    `}</CodeSnippet>
+        "http://vue.carbondesignsystem.com/?path=/story/components-cvcodesnippet--default",
+      Vanilla: "https://the-carbon-components.netlify.com/?nav=code-snippet",
+    }}
+  >{`
+    <CodeSnippet type="multi">
+    {codeSnippet}
+    </CodeSnippet>
 `}</ComponentVariant>
   <ComponentVariant
     id="code-snippet-inline"
-    knobs={{ CodeSnippet: ['light'] }}
+    knobs={{ CodeSnippet: ["light"] }}
     links={{
       React:
-        'http://react.carbondesignsystem.com/?path=/story/codesnippet--inline',
+        "http://react.carbondesignsystem.com/?path=/story/codesnippet--inline",
       Angular:
-        'https://angular.carbondesignsystem.com/?path=/story/components-code-snippet--basic',
+        "https://angular.carbondesignsystem.com/?path=/story/components-code-snippet--basic",
       Vue:
-        'http://vue.carbondesignsystem.com/?path=/story/components-cvcodesnippet--default',
-      Vanilla: 'https://the-carbon-components.netlify.com/?nav=code-snippet',
-    }}>{`
-    <CodeSnippet type="inline">{`
-      node -v
-    `}</CodeSnippet>
+        "http://vue.carbondesignsystem.com/?path=/story/components-cvcodesnippet--default",
+      Vanilla: "https://the-carbon-components.netlify.com/?nav=code-snippet",
+    }}
+  >{`
+    <CodeSnippet type="inline">{codeSnippetSingle}</CodeSnippet>
 `}</ComponentVariant>
 </ComponentDemo>
 
--->
+## Sample data
+
+```javascript
+const codeSnippet = `@mixin grid-container {
+  width: 100%;
+  padding-right: padding(mobile);
+  padding-left: padding(mobile);
+
+  @include breakpoint(bp--xs--major) {
+    padding-right: padding(xs);
+    padding-left: padding(xs);
+  }
+}
+
+$z-indexes: (
+  modal : 9000,
+  overlay : 8000,
+  dropdown : 7000,
+  header : 6000,
+  footer : 5000,
+  hidden : - 1,
+  overflowHidden: - 1,
+  floating: 10000
+);`;
+
+const codeSnippetSingle = `node -v`;
+```
