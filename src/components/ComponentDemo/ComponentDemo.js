@@ -55,12 +55,14 @@ const ComponentDemo = ({
   const { isMobile, setIsKnobContainerCollapsed } = useContext(DemoContext);
   const [isFullscreen, setFullscreen] = useState(false);
 
-  // component variant selected state
+  // dropdown selected item
   const [variantSelected, setVariantSelected] = useState(initialSelectedItem);
   const childrenArray = React.Children.toArray(children);
   const initialMatchingChild = childrenArray.filter(
-    child => child.props.id === variantSelected.id
+    (child) => child.props.id === variantSelected.id
   );
+
+  // selected component variant state
   const [code, setCode] = useState(initialMatchingChild[0].props.children);
   const [initialCode, setInitialCode] = useState(code);
   const [knobs, setKnobs] = useState(initialMatchingChild[0].props.knobs);
@@ -73,11 +75,15 @@ const ComponentDemo = ({
     { id: g100, label: isMobile ? 'G100' : 'Gray 100' },
   ];
 
-  const onVariantChange = event => {
+  const onThemeChange = (event) => {
+    setTheme(event.selectedItem.id);
+  };
+
+  const onVariantChange = (event) => {
     setVariantSelected(event.selectedItem);
 
     const matchingChild = childrenArray.filter(
-      child => child.props.id === event.selectedItem.id
+      (child) => child.props.id === event.selectedItem.id
     );
 
     setCode(() => {
@@ -98,7 +104,7 @@ const ComponentDemo = ({
       <div className={cx({ [fullscreen]: isFullscreen })}>
         <Row className={dropdownRow}>
           <Dropdown
-            onChange={event => setTheme(event.selectedItem.id)}
+            onChange={onThemeChange}
             light
             initialSelectedItem={{ id: white, label: 'White' }}
             id="theme-variant"
@@ -120,10 +126,12 @@ const ComponentDemo = ({
           />
           {isFullscreen && (
             <button
+              type="button"
               className={exitFullscreenButton}
               onClick={() => {
                 setFullscreen(false);
-              }}>
+              }}
+            >
               <Close16 />
             </button>
           )}
@@ -133,21 +141,26 @@ const ComponentDemo = ({
             noInline={noInline}
             theme={prismTheme}
             scope={{ ...CarbonComponents, ...scope }}
-            code={code}>
+            code={code}
+          >
             <div className={cx(container, { [knoblessContainer]: !knobs })}>
               <button
+                type="button"
                 className={cx(theme, fullscreenButton)}
                 onClick={() => {
                   setFullscreen(!isFullscreen);
-                }}>
+                }}
+              >
                 {isFullscreen ? <Minimize16 /> : <Maximize16 />}
               </button>
               <LivePreview className={cx(theme, previewContainer)} />
               {isMobile && (
                 <button
+                  type="button"
                   aria-labelledby="expand-knob-container-button"
                   onClick={() => setIsKnobContainerCollapsed(false)}
-                  className={cx(theme, iconButton, iconButtonExpand)}>
+                  className={cx(theme, iconButton, iconButtonExpand)}
+                >
                   <span id="expand-knob-container-button" hidden>
                     Expand component knob container
                   </span>
@@ -159,7 +172,7 @@ const ComponentDemo = ({
                 <LiveEditor
                   padding={16}
                   style={{ overflowX: 'auto', whiteSpace: 'pre' }}
-                  onChange={updatedCode => setCode(updatedCode)}
+                  onChange={(updatedCode) => setCode(updatedCode)}
                   className={editorContainer}
                 />
               </Code>
