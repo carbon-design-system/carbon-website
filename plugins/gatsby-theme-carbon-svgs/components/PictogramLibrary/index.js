@@ -1,9 +1,11 @@
 import React from 'react';
-import PictogramLibrary from './PictogramLibrary';
+import Library from './PictogramLibrary';
 import LibraryProvider from '../shared/LibraryProvider';
 
-export default ({ site }) => (
+const PictogramLibrary = ({ site }) => (
   <LibraryProvider site={site} type="pictogram">
-    <PictogramLibrary />
+    <Library />
   </LibraryProvider>
 );
+
+export default PictogramLibrary;

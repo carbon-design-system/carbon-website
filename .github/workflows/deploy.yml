@@ -1,14 +1,13 @@
 name: Deploy website to IBM Cloud
 
-
 ## scheduled deploy
 ##on:
-  ##schedule:
-   ## - cron: '0 8 * * *'
-   
+##schedule:
+## - cron: '0 8 * * *'
+
 on:
   push:
-    branches: 
+    branches:
       - master
 
 jobs:
@@ -21,13 +20,24 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
-      - name: Install and build
-        run: |
-          yarn install
-          yarn build
-      - name: Install ibmcloud cli
-        run: |
-          curl -fsSL https://clis.cloud.ibm.com/install/osx | sh
+
+      - name: node_modules Cache
+        uses: actions/cache@v1
+        with:
+          path: ~/.cache/yarn
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install
+        run: yarn install
+      - name: Build
+        run: yarn build
+
+      - name: Install IBM Cloud CLI
+        run: curl -fsSL https://clis.cloud.ibm.com/install/osx | sh
+      - name: Install Cloud Foundry CLI
+        run: ibmcloud cf install
       - name: Login to ibmcloud
         env:
           API_KEY: ${{ secrets.API_KEY }}

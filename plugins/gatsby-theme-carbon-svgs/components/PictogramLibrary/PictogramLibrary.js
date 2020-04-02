@@ -1,11 +1,15 @@
 /* eslint-disable no-debugger */
 import React, { useEffect, useState } from 'react';
+import loadable from '@loadable/component';
 
 import { groupBy, debounce } from 'lodash-es';
-import * as pictogramsReact from '@carbon/pictograms-react';
+
+import {
+  icons as pictogramMetaData,
+  categories as pictogramCatagoryMetadata,
+} from '@carbon/pictograms/metadata.json';
 
 import FilterRow from '../shared/FilterRow';
-import pictogramMetaData from './pictogramMetaData';
 import { svgPage, svgLibrary } from '../shared/SvgLibrary.module.scss';
 
 import PictogramCategory from './PictogramCategory';
@@ -21,16 +25,31 @@ const IconLibrary = () => {
   const debouncedSetSearchInputValue = debounce(setSearchInputValue, 200);
 
   useEffect(() => {
-    const iconArray = Object.keys(pictogramMetaData).map(icon => ({
-      ...pictogramMetaData[icon],
-      // If the icon is unprefixed and starts with a number, add an underscore
-      Component: pictogramsReact[icon],
-    }));
-    setCategoryList(
-      Object.keys(groupBy(iconArray, 'categories[0].name')).sort()
+    const pictogramArray = pictogramMetaData.reduce(
+      (accumulator, pictogram) => {
+        if (pictogram.deprecated) return accumulator;
+
+        const path = pictogram.namespace
+          ? `${pictogram.namespace}/${pictogram.name}`
+          : pictogram.name;
+
+        return [
+          ...accumulator,
+          {
+            ...pictogram,
+            Component: loadable(() =>
+              import(`@carbon/pictograms-react/lib/${path}`)
+            ),
+          },
+        ];
+      },
+      []
     );
+
+    setCategoryList(pictogramCatagoryMetadata.map(({ name }) => name).sort());
     setCategoriesLoaded(true);
-    setPictogramComponents(iconArray);
+
+    setPictogramComponents(pictogramArray);
   }, []);
 
   const getFilteredPictorams = () => {
@@ -39,19 +58,14 @@ const IconLibrary = () => {
     }
     return pictogramComponents.filter(
       // eslint-disable-next-line camelcase
-      ({ friendly_name, categories, aliases = [], name }) => {
+      ({ friendlyName, category, aliases = [], name }) => {
         const searchValue = searchInputValue.toLowerCase();
         return (
-          friendly_name.toLowerCase().includes(searchValue) ||
-          aliases.some(alias =>
-            alias
-              .toString()
-              .toLowerCase()
-              .includes(searchValue)
+          friendlyName.toLowerCase().includes(searchValue) ||
+          aliases.some((alias) =>
+            alias.toString().toLowerCase().includes(searchValue)
           ) ||
-          (categories &&
-            categories[0] &&
-            categories[0].name.toLowerCase().includes(searchValue)) ||
+          category.toLowerCase().includes(searchValue) ||
           name.toLowerCase().includes(searchValue)
         );
       }
@@ -61,8 +75,8 @@ const IconLibrary = () => {
   const filteredPictograms = getFilteredPictorams();
 
   const allCategories = Object.entries(
-    groupBy(filteredPictograms, 'categories[0].name')
-  );
+    groupBy(filteredPictograms, 'category')
+  ).sort(([catagoryA], [catagoryB]) => catagoryA > catagoryB);
 
   const filteredCategories =
     selectedCategory === 'All pictograms'
@@ -77,7 +91,7 @@ const IconLibrary = () => {
         type="pictogram"
         categoryList={categoryList}
         selectedCategory={selectedCategory}
-        onSearchChange={e =>
+        onSearchChange={(e) =>
           debouncedSetSearchInputValue(e.currentTarget.value)
         }
         onDropdownChange={({ selectedItem }) =>
@@ -90,10 +104,8 @@ const IconLibrary = () => {
           selectedCategory={selectedCategory}
           setSelectedCategory={setSelectedCategory}
           allIconResults={filteredPictograms.length}
-          pageName={'pictogram'}
-          pageUrl={
-            'https://github.com/carbon-design-system/carbon/blob/master/packages/pictograms/master/pictogram-master.ai'
-          }
+          pageName="pictogram"
+          pageUrl="https://github.com/carbon-design-system/carbon/blob/master/packages/pictograms/master/pictogram-master.ai"
         />
       ) : (
         <div className={svgLibrary}>
