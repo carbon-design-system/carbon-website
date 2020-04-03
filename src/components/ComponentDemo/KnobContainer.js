@@ -131,7 +131,6 @@ const Knob = ({
   const componentPropsRegex = new RegExp(pattern);
 
   // stores whatever props are provided in the inital code
-  // const { current: initialCode } = useRef(code);
   const defaultKnobProps = useDefaultProps(initialCode, componentPropsRegex);
 
   const { knobs, setKnobs } = useContext(DemoContext);
