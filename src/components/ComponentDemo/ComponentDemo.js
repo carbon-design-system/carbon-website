@@ -42,38 +42,21 @@ export const PREVIEW_CONTAINER_HEIGHT = 560;
 
 const { Dropdown } = CarbonComponents;
 
-const ComponentDemo = ({
-  children,
-  src,
-  scope,
-  noInline,
-  items,
-  initialSelectedItem,
-}) => {
+const ComponentDemo = ({ children, src, scope, noInline, components }) => {
   // theme selected state
   const [theme, setTheme] = useState(white);
   const { isMobile, setIsKnobContainerCollapsed } = useContext(DemoContext);
   const [isFullscreen, setFullscreen] = useState(false);
 
-  // dropdown selected item
-  const [variantSelected, setVariantSelected] = useState(initialSelectedItem);
+  // selected variant
   const childrenArray = React.Children.toArray(children);
   const initialMatchingChild = childrenArray.filter(
-    (child) => child.props.id === variantSelected.id
+    (child) => child.props.id === components[0].id
   );
-
-  // selected component variant state
   const [code, setCode] = useState(initialMatchingChild[0].props.children);
   const [initialCode, setInitialCode] = useState(code);
   const [knobs, setKnobs] = useState(initialMatchingChild[0].props.knobs);
   const [links, setLinks] = useState(initialMatchingChild[0].props.links);
-
-  // const themes = [
-  //   { id: white, label: 'White' },
-  //   { id: g10, label: 'Gray 10' },
-  //   { id: g90, label: 'Gray 90' },
-  //   { id: g100, label: 'Gray 100' },
-  // ];
 
   const themes = {
     White: white,
@@ -87,8 +70,6 @@ const ComponentDemo = ({
   };
 
   const onVariantChange = (event) => {
-    setVariantSelected(event.selectedItem);
-
     const matchingChild = childrenArray.filter(
       (child) => child.props.id === event.selectedItem.id
     );
@@ -125,10 +106,10 @@ const ComponentDemo = ({
           <Dropdown
             onChange={onVariantChange}
             light
-            initialSelectedItem={variantSelected}
+            initialSelectedItem={components[0]}
             id="component-variant"
             label="Component variant selection"
-            items={items}
+            items={components}
             size="xl"
             className={cx(variantDropdown, {
               [hiddenDropdown]: childrenArray.length === 1,
