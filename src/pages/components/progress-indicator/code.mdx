@@ -1,29 +1,59 @@
 ---
 title: Progress indicator
-tabs: ['Code', 'Usage', 'Style']
+description: A progress indicator is a visual representation of a user's progress through a set of steps. It guides the user through a number of steps in order to complete a specified process.
+tabs: ['Code', 'Usage', 'Style', 'Accessibility']
 ---
 
 ## Progress indicator
 
-<ComponentCode
-  name="Progress indicator"
-  component="progress-indicator"
-  variation="progress-indicator"
-  hasReactVersion
-  hasVueVersion="progress--default"
-  hasAngularVersion="?path=/story/progress-indicator--basic"
-  codepen="dLMppM"></ComponentCode>
+<ComponentDemo
+  links={{
+    React: 'https://react.carbondesignsystem.com/?path=/story/progressindicator--default',
+    Angular:
+      'https://angular.carbondesignsystem.com/?path=/story/components-progress-indicator--basic',
+    Vue: 'http://vue.carbondesignsystem.com/?path=/story/components-cvprogress--default',
+    Vanilla: 'https://the-carbon-components.netlify.com/?nav=progress-indicator',
+  }}
+  knobs={{ProgressStep: ['complete', 'current', 'disabled', 'invalid'], ProgressIndicator: ['vertical']}}>
+  {`
+  <div className="some-container">
+    <ProgressIndicator currentIndex={1}>
+        <ProgressStep
+          label="First step"
+          description="Step 1: Getting started with Carbon Design System"
+        />
+        <ProgressStep
+          current
+          label="Second step with tooltip"
+          description="Step 2: Getting started with Carbon Design System"
+          renderLabel={() => (
+            <Tooltip
+              direction="bottom"
+              showIcon={false}
+              triggerClassName="bx--progress-label"
+              triggerText="Second step with tooltip"
+              tooltipId="tooltipId-0">
+              <p>Second step with tooltip</p>
+            </Tooltip>
+          )}
+        />
+        <ProgressStep
+          label="Third step"
+          description="Step 3: Getting started with Carbon Design System"
+          secondaryLabel="Optional label"
+        />
+        <ProgressStep
+          invalid
+          label="Fourth step"
+          description="Step 4: Getting started with Carbon Design System"
+        />
+        <ProgressStep
+          disabled
+          label="Fifth step"
+          description="Step 5: Getting started with Carbon Design System"
+        />
+      </ProgressIndicator>
+  </div>
+`}
 
-## Progress indicator vertical
-
-<ComponentCode
-  name="Progress indicator vertical"
-  component="progress-indicator"
-  variation="progress-indicator--vertical"
-  hasReactVersion
-  hasAngularVersion="?path=/story/progress-indicator--vertical"
-  codepen="QPNKpB"></ComponentCode>
-
-## Documentation
-
-<ComponentDocs component="progress-indicator"></ComponentDocs>
+</ComponentDemo>

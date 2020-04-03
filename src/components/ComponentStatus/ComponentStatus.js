@@ -14,34 +14,34 @@ const tags = {
 };
 
 class ComponentStatus extends React.Component {
-  renderItems = currentItem => (
+  renderItems = (currentItem) => (
     <tr key={currentItem.component}>
       <td>{currentItem.component}</td>
       <td>
         {Object.keys(currentItem.vanilla)
-          .filter(key => currentItem.vanilla[key])
-          .map(key => (
+          .filter((key) => currentItem.vanilla[key])
+          .map((key) => (
             <React.Fragment key={key}>{tags[key]}</React.Fragment>
           ))}
       </td>
       <td>
         {Object.keys(currentItem.react)
-          .filter(key => currentItem.react[key])
-          .map(key => (
+          .filter((key) => currentItem.react[key])
+          .map((key) => (
             <React.Fragment key={key}>{tags[key]}</React.Fragment>
           ))}
       </td>
       <td>
         {Object.keys(currentItem.angular)
-          .filter(key => currentItem.angular[key])
-          .map(key => (
+          .filter((key) => currentItem.angular[key])
+          .map((key) => (
             <React.Fragment key={key}>{tags[key]}</React.Fragment>
           ))}
       </td>
       <td>
         {Object.keys(currentItem.vue)
-          .filter(key => currentItem.vue[key])
-          .map(key => (
+          .filter((key) => currentItem.vue[key])
+          .map((key) => (
             <React.Fragment key={key}>{tags[key]}</React.Fragment>
           ))}
       </td>
@@ -55,7 +55,7 @@ class ComponentStatus extends React.Component {
         <div className="bx--col-lg-12">
           <h2 className="page-h2">Current version: {vanillaVersion}</h2>
         </div>
-        <div className="bx--col-lg-12 bx--no-gutter">
+        <div className="bx--col-lg-12 bx--no-gutter bx--table-container">
           <table className="page-table">
             <thead>
               <tr>
@@ -67,7 +67,7 @@ class ComponentStatus extends React.Component {
               </tr>
             </thead>
             <tbody>
-              {Object.keys(componentStatus.components).map(component =>
+              {Object.keys(componentStatus.components).map((component) =>
                 this.renderItems(componentStatus.components[component])
               )}
             </tbody>

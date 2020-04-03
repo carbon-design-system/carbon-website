@@ -1,12 +1,19 @@
 ---
 title: 3. Using APIs
+description: Welcome to Carbon! This tutorial will guide you in creating a React app with the Carbon Design System.
 tabs:
   ['Overview', 'Step 1', 'Step 2', 'Step 3', 'Step 4', 'Step 5', 'Wrapping up']
 ---
 
 import Preview from 'components/Preview';
 
-### This step takes our static components and populates them with data from the GitHub GraphQL API – loading states and all. We'll be displaying Carbon repository information in a data table.
+<PageDescription>
+
+This step takes our static components and populates them with data from the
+GitHub GraphQL API – loading states and all. We'll be displaying Carbon
+repository information in a data table.
+
+</PageDescription>
 
 <AnchorLinks>
 
@@ -262,7 +269,7 @@ Notice how we're passing the `REPO_QUERY` that we previously defined into the `q
 
 ```javascript path=src/content/RepoPage/RepoPage.js
 <Query query={REPO_QUERY}>
-  {({ loading, error, data: { organization } }) => {
+  {({ loading, error, data }) => {
     // Wait for the request to complete
     if (loading) return 'Loading...';
 
@@ -270,7 +277,7 @@ Notice how we're passing the `REPO_QUERY` that we previously defined into the `q
     if (error) return `Error! ${error.message}`;
 
     // If we're here, we've got our data!
-    console.log(organization);
+    console.log(data.organization);
 
     return (
       <>
@@ -285,11 +292,14 @@ The page will look the same as we're still rendering our static example rows, bu
 
 ## Populate data table
 
-Now that we have that data, let's populate the data table. Replace `console.log(organization);` with the following that destructures the `organization` object. Once we have the repositories, we can call our `getRowItems()` helper to build the data table rows.
+Now that we have that data, let's populate the data table. Replace
+`console.log(data.organization);` with the following that destructures
+the `data.organization` object. Once we have the repositories, we can
+call our `getRowItems()` helper to build the data table rows.
 
 ```javascript path=src/content/RepoPage/RepoPage.js
 // If we're here, we've got our data!
-const { repositories } = organization;
+const { repositories } = data.organization;
 const rows = getRowItems(repositories.nodes);
 ```
 
@@ -357,21 +367,26 @@ Import React's [useState](https://reactjs.org/docs/hooks-state.html) by modifyin
 import React, { useState } from 'react';
 ```
 
-Then initialize the new state variables that we'll use for pagination as the first lines inside the `RepoPage` component, above the `return()`.
+Then initialize the new state variables that we'll use for pagination as the first lines inside the `RepoPage` component, above the outer `return()`.
 
 ```javascript path=src/content/RepoPage/RepoPage.js
-const [totalItems, setTotalItems] = useState(0);
-const [firstRowIndex, setFirstRowIndex] = useState(0);
-const [currentPageSize, setCurrentPageSize] = useState(10);
+const RepoPage = () => {
+  const [totalItems, setTotalItems] = useState(0);
+  const [firstRowIndex, setFirstRowIndex] = useState(0);
+  const [currentPageSize, setCurrentPageSize] = useState(10);
+...
 ```
 
 This initializes the total number of rows and the index of the first row to `0`, and the page size to `10` as we also specified in our loading skeleton.
 
-Next we need to use the function that updates the `totalItems` state, `setTotalItems()`, after we destructure our `organization.repositories`. Your block that transforms row data should look like:
+Next we need to use the function that updates the `totalItems` state,
+`setTotalItems()`, after we destructure our
+`data.organization.repositories`. Your block that transforms row data
+should look like:
 
 ```javascript path=src/content/RepoPage/RepoPage.js
 // If we're here, we've got our data!
-const { repositories } = organization;
+const { repositories } = data.organization;
 setTotalItems(repositories.totalCount);
 const rows = getRowItems(repositories.nodes);
 ```
@@ -390,7 +405,11 @@ Then we need to update our `RepoTable` `rows` prop to only render the subset of 
 ```
 <!-- prettier-ignore-end -->
 
-_Note: We only pass the rows that we want our table to display. We can do this by slicing the our array of rows depending on the first item and the page size._
+<InlineNotification>
+
+**Note:** We only pass the rows that we want our table to display. We can do this by slicing the our array of rows depending on the first item and the page size.
+
+</InlineNotification>
 
 Finally, let's add the `Pagination` to update our state variables and cause the data table to render new rows.
 
@@ -419,9 +438,17 @@ Immediately after the `RepoTable` closing tag (`/>`), add the `Pagination` compo
 />
 ```
 
-_Note: The_ `Pagination` _component isn't inherently connected in any way to the_ `DataTable` _- we need to tell it what to do when a change occurs using the_ `onChange` _prop. This includes both page size changes and displaying different rows._
+<InlineNotification>
 
-_Note: Like the other Carbon React components,_ `Pagination` _component examples can be found in [Storybook](http://react.carbondesignsystem.com/?selectedKind=Pagination) by browsing the story and knobs._
+**Note:** The `Pagination` component isn't inherently connected in any way to the `DataTable` - we need to tell it what to do when a change occurs using the `onChange` prop. This includes both page size changes and displaying different rows.
+
+</InlineNotification>
+
+<InlineNotification>
+
+**Note:** Like the other Carbon React components, `Pagination` component examples can be found in [Storybook](http://react.carbondesignsystem.com/?selectedKind=Pagination) by browsing the story and knobs.
+
+</InlineNotification>
 
 That does it! Your data table should fetch GitHub data on first render. You can expand each row to see the repository's description. You can modify the pagination items per page and cycle through pages or jump to a specific page of repositories.
 
@@ -437,7 +464,11 @@ Run the CI check to make sure we're all set to submit a pull request.
 $ yarn ci-check
 ```
 
-_Note: Having issues running the CI check? [Step 1](</tutorial/react/step-1#continuous-integration-(ci)-check>) has troubleshooting notes that may help._
+<InlineNotification>
+
+**Note:** Having issues running the CI check? [Step 1](</tutorial/react/step-1#continuous-integration-(ci)-check>) has troubleshooting notes that may help.
+
+</InlineNotification>
 
 ### Git commit and push
 
@@ -453,10 +484,18 @@ Then, push to your repository:
 $ git push origin react-step-3
 ```
 
-_Note: Having issues pushing your changes? [Step 1](/tutorial/react/step-1#git-commit-and-push) has troubleshooting notes that may help._
+<InlineNotification>
+
+**Note:** Having issues pushing your changes? [Step 1](/tutorial/react/step-1#git-commit-and-push) has troubleshooting notes that may help.
+
+</InlineNotification>
 
 ### Pull request (PR)
 
 Finally, visit [carbon-tutorial](https://github.com/carbon-design-system/carbon-tutorial) to "Compare & pull request". In doing so, make sure that you are comparing to `react-step-3` into `base: react-step-3`.
 
-_Note: Expect your tutorial step PRs to be reviewed by the Carbon team but not merged. We'll close your PR so we can keep the repository's remote branches pristine and ready for the next person!_
+<InlineNotification>
+
+**Note:** Expect your tutorial step PRs to be reviewed by the Carbon team but not merged. We'll close your PR so we can keep the repository's remote branches pristine and ready for the next person!
+
+</InlineNotification>

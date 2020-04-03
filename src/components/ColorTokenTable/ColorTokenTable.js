@@ -9,11 +9,7 @@ import {
 import { CopyToClipboard } from 'react-copy-to-clipboard/lib/Component';
 import colorTokens from '../../data/guidelines/color-tokens';
 
-const themes = ['white', 'g10', 'g90', 'g100'];
-
 export default class ColorTokenTable extends React.Component {
-  static propTypes = {};
-
   state = {
     theme: 'white',
     sticky: false,
@@ -29,6 +25,23 @@ export default class ColorTokenTable extends React.Component {
     this.addResizeListener();
     this.addScrollListener();
   }
+
+  switchTheme = (theme) => {
+    this.setState({
+      theme: theme.name,
+    });
+  };
+
+  hexToRgb = (hex) => {
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result
+      ? {
+          r: parseInt(result[1], 16),
+          g: parseInt(result[2], 16),
+          b: parseInt(result[3], 16),
+        }
+      : null;
+  };
 
   addScrollListener() {
     document.addEventListener('scroll', () => {
@@ -59,29 +72,9 @@ export default class ColorTokenTable extends React.Component {
     });
   }
 
-  switchTheme = theme => {
-    this.setState({
-      theme,
-    });
-  };
-
-  hexToRgb = hex => {
-    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result
-      ? {
-          r: parseInt(result[1], 16),
-          g: parseInt(result[2], 16),
-          b: parseInt(result[3], 16),
-        }
-      : null;
-  };
-
   renderValue = (token, tokenInfo) => {
-    const currentTheme =
-      typeof this.state.theme === 'string'
-        ? this.state.theme
-        : themes[this.state.theme];
-    const value = tokenInfo.value;
+    const currentTheme = this.state.theme;
+    const { value } = tokenInfo;
     let bgColor = value[currentTheme].hex;
     if (bgColor.substring(bgColor.length - 3, bgColor.length) === '50%') {
       const hex = bgColor.substring(0, bgColor.length - 6);
@@ -153,11 +146,15 @@ export default class ColorTokenTable extends React.Component {
         <div className="bx--col-lg-12 bx--no-gutter">
           <ContentSwitcher
             className={themeSwitcherClasses}
-            onChange={this.switchTheme}>
-            <Switch text={this.state.mobile ? 'Wte' : 'White'} />
-            <Switch text={this.state.mobile ? 'G10' : 'Gray 10'} />
-            <Switch text={this.state.mobile ? 'G90' : 'Gray 90'} />
-            <Switch text={this.state.mobile ? 'G100' : 'Gray 100'} />
+            onChange={this.switchTheme}
+          >
+            <Switch name="white" text={this.state.mobile ? 'Wte' : 'White'} />
+            <Switch name="g10" text={this.state.mobile ? 'G10' : 'Gray 10'} />
+            <Switch name="g90" text={this.state.mobile ? 'G90' : 'Gray 90'} />
+            <Switch
+              name="g100"
+              text={this.state.mobile ? 'G100' : 'Gray 100'}
+            />
           </ContentSwitcher>
         </div>
         <div className="bx--col-lg-7">

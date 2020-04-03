@@ -15,7 +15,13 @@ const FirstRightText = () => (
   </p>
 );
 
-const SecondLeftText = () => <p>Wondering how to contribute?</p>;
+const SecondLeftText = () => (
+  <p>
+    Wondering how
+    <br />
+    to contribute?
+  </p>
+);
 
 const SecondRightText = () => (
   <p>
@@ -24,7 +30,8 @@ const SecondRightText = () => (
     check out our contributing guidelines to get started.
     <a
       className={calloutLink}
-      href="https://www.carbondesignsystem.com/contributions/overview/">
+      href="https://www.carbondesignsystem.com/how-to-contribute/overview/"
+    >
       Start contributing →
     </a>
   </p>
@@ -40,20 +47,14 @@ const customProps = {
             <div className="bx--col-lg-4 bx--col-md-4 bx--col-sm-2 bx--offset-lg-8 bx--offset-md-4 bx--offset-sm-2 homepage--tile-header">
               <ResourceCard
                 subTitle="Read"
-                title="Migrate to v10"
-                href="/updates/v10-migration/overview"
+                title="Migration guide"
+                href="/updates/migration-guide/overview"
                 color="dark"
                 actionIcon="arrowRight"
+                onClick={() => fathom('trackGoal', '0GXPXZKE', 0)}
               />
             </div>
-            <HomepageVideo>
-              <iframe
-                title="homepage video"
-                src="https://player.vimeo.com/video/322021187?muted=1&autoplay=1&loop=1&background=1"
-                width="100%"
-                height="100%"
-              />
-            </HomepageVideo>
+            <HomepageVideo />
           </div>
         </div>
       </section>

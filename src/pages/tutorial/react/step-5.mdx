@@ -1,12 +1,18 @@
 ---
 title: 5. Deploying to IBM Cloud
+description: Welcome to Carbon! This tutorial will guide you in creating a React app with the Carbon Design System.
 tabs:
   ['Overview', 'Step 1', 'Step 2', 'Step 3', 'Step 4', 'Step 5', 'Wrapping up']
 ---
 
 import Preview from 'components/Preview';
 
-### This step takes what we've built so far and optimizes the app for a production environment. We'll be deploying the production build to IBM Cloud.
+<PageDescription>
+
+This step takes what we've built so far and optimizes the app for a production
+environment. We'll be deploying the production build to IBM Cloud.
+
+</PageDescription>
 
 <AnchorLinks>
 
@@ -32,7 +38,6 @@ A [preview](https://react-step-6--carbon-tutorial.netlify.com) of what you'll bu
   frameborder="no"
   allowtransparency="true"
   allowfullscreen="true"
-  class="bx--iframe bx--iframe--border"
 />
 
 ## Fork, clone and branch
@@ -48,7 +53,11 @@ $ git fetch upstream
 $ git checkout -b react-step-5 upstream/react-step-5
 ```
 
-_Note: This builds on top of step 4, but be sure to check out the upstream step 5 branch because it includes the static assets required to get through this step._
+<InlineNotification>
+
+**Note:** This builds on top of step 4, but be sure to check out the upstream step 5 branch because it includes the static assets required to get through this step.
+
+</InlineNotification>
 
 ### Build and start app
 
@@ -104,7 +113,9 @@ $css--plex: true;
 @import 'carbon-components/scss/components/ui-shell/ui-shell';
 ```
 
-In comparing to the included `styles.scss`, you may be asking what happened to importing `_vars.scss`, `_colors.scss`, `_theme.scss`, etc.? Many of those global Sass partials get imported through the components. For example, open `node_modules/carbon-components/scss/components/button/_button.scss` to see its dependencies. No harm in importing them as `styles.scss` does, but for simplicity here, we'll let the components pull them in.
+In comparing to the included `carbon-components/scss/globals/scss/styles.scss`, you may be asking what happened to importing `_vars.scss`, `_colors.scss`, `_theme.scss`, etc.?
+
+Many of those global Sass partials get imported through the components. For example, open `node_modules/carbon-components/scss/components/button/_button.scss` to see its dependencies. No harm in importing them as `carbon-components/scss/globals/scss/styles.scss` does, but for simplicity here, we'll let the components pull them in.
 
 You can read more about optimizing Carbon's Sass in the [Carbon Design System publication](https://medium.com/carbondesign/minimal-css-with-carbon-b0c089ccfa71) on Medium.
 
@@ -124,7 +135,11 @@ As a lot of this may seem like magic since the build configuration came from Cre
 
 Now that we have a production build, let's get it on the cloud. We're going to use [staticfile-buildpack](https://github.com/cloudfoundry/staticfile-buildpack.git) to deploy our webapp. Since this is a Cloud Foundry buildpack, we'll be using the `cf` command line interface (CLI). If running `cf --help` doesn't work for you, chances are you need to [install the CLI](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html).
 
-_Note: If unfamiliar with buildpacks, the [staticfile buildpack docs](https://docs.cloudfoundry.org/buildpacks/staticfile/index.html) has good definitions and configuration documentation._
+<InlineNotification>
+
+**Note:** If unfamiliar with buildpacks, the [staticfile buildpack docs](https://docs.cloudfoundry.org/buildpacks/staticfile/index.html) has good definitions and configuration documentation.
+
+</InlineNotification>
 
 With the Cloud Foundry CLI installed, next, we need to create a `manifest.yml` file in the root of the project. To prevent multiple apps trying to use the `carbon-tutorial` name, replace `USERNAME` with your GitHub username below to make sure our apps are uniquely named.
 
@@ -136,7 +151,11 @@ applications:
     buildpack: https://github.com/cloudfoundry/staticfile-buildpack.git
 ```
 
-_Note: With this set-up we're still using a GitHub personal access token saved in _`.env.local`_. If you haven't created a GitHub access token yet, see [step 3](/tutorial/react/step-3#create-access-token). You can put the environment variable in the manifest file, or manually add it in the IBM Cloud dashboard, but since we're building off previous tutorial steps nothing more is needed._
+<InlineNotification>
+
+**Note:** With this set-up we're still using a GitHub personal access token saved in `.env.local`. If you haven't created a GitHub access token yet, see [step 3](/tutorial/react/step-3#create-access-token). You can put the environment variable in the manifest file, or manually add it in the IBM Cloud dashboard, but since we're building off previous tutorial steps nothing more is needed.
+
+</InlineNotification>
 
 ## Create static file
 
@@ -154,17 +173,28 @@ After telling Cloud Foundry what to include, we can also specify what to ignore.
 node_modules/.cache
 ```
 
-You can speed up deploys by decreasing the files uploaded through cloud foundry. To accomplish this, ignore any folder not required by the production application on IBM Cloud. For example, in the case of serving static files, you can ignore `node_modules/` and `src/` because the only folder being served is `build/`.
+You can speed up deploys by decreasing the files uploaded through cloud foundry. To accomplish this, ignore any folder not required by the production application on IBM Cloud.
+
+In our case we can ignore everything except the `build/` directory and `Staticfile`. To speed up our deploys change `.cfignore` to:
+
+```bash path=.cfignore
+*
+
+!Staticfile
+!build
+```
 
 ## Deploy app
 
 Login to IBM Cloud with:
 
 ```bash
-$ cf login -a https://api.ng.bluemix.net -sso
+$ cf login -a https://api.ng.bluemix.net --sso
 ```
 
 Deploy app using the `cf push` command. Since `manifest.yml` is in our root directory, we don't need to specify it in the push command. But, if you have multiple manifest files that target different environments, it's good practice to specify the file.
+
+_Note: To successfully deploy, you might need to update the region code (e.g. `api.[REGION].bluemix.net`). [Learn more.](https://developer.ibm.com/answers/answers/166990/view.html)_
 
 ```bash
 $ cf push -f manifest.yml
@@ -190,7 +220,11 @@ Run the CI check to make sure we're all set to submit a pull request.
 $ yarn ci-check
 ```
 
-_Note: Having issues running the CI check? [Step 1](</tutorial/react/step-1#continuous-integration-(ci)-check>) has troubleshooting notes that may help._
+<InlineNotification>
+
+**Note:** Having issues running the CI check? [Step 1](</tutorial/react/step-1#continuous-integration-(ci)-check>) has troubleshooting notes that may help.
+
+</InlineNotification>
 
 ### Git commit and push
 
@@ -206,10 +240,18 @@ Then, push to your repository:
 $ git push origin react-step-5
 ```
 
-_Note: Having issues pushing your changes? [Step 1](/tutorial/react/step-1#git-commit-and-push) has troubleshooting notes that may help._
+<InlineNotification>
+
+**Note:** Having issues pushing your changes? [Step 1](/tutorial/react/step-1#git-commit-and-push) has troubleshooting notes that may help.
+
+</InlineNotification>
 
 ### Pull request (PR)
 
 Finally, visit [carbon-tutorial](https://github.com/carbon-design-system/carbon-tutorial) to "Compare & pull request". In doing so, make sure that you are comparing to `react-step-5` into `base: react-step-5`.
 
-_Note: Expect your tutorial step PRs to be reviewed by the Carbon team but not merged. We'll close your PR so we can keep the repository's remote branches pristine and ready for the next person!_
+<InlineNotification>
+
+**Note:** Expect your tutorial step PRs to be reviewed by the Carbon team but not merged. We'll close your PR so we can keep the repository's remote branches pristine and ready for the next person!
+
+</InlineNotification>

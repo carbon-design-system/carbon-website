@@ -1,6 +1,6 @@
 # Carbon Design System
 
-This is the [Carbon Design System website](http://www.carbondesignsystem.com). It's built using the [gatsby-theme-carbon](https://gatsby-theme-carbon.now.sh/) with GatsbyJS.
+This is the [Carbon Design System website](http://www.carbondesignsystem.com). It's built using the [gatsby-theme-carbon](https://gatsby-theme-carbon.now.sh/) with [GatsbyJS](https://www.gatsbyjs.org/).
 
 ## 📂 Structure
 

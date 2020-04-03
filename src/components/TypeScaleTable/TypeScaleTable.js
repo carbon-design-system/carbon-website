@@ -1,3 +1,5 @@
+/* eslint-disable react/no-danger */
+/* eslint-disable global-require */
 import React, { Component } from 'react';
 
 class TypeScaleTable extends Component {

@@ -1,12 +1,19 @@
 ---
 title: 2. Building pages
+description: Welcome to Carbon! This tutorial will guide you in creating a React app with the Carbon Design System.
 tabs:
   ['Overview', 'Step 1', 'Step 2', 'Step 3', 'Step 4', 'Step 5', 'Wrapping up']
 ---
 
 import Preview from 'components/Preview';
 
-### Now that we have a React app using the UI Shell, it's time to build a few static pages. In this step, we'll become comfortable with the Carbon grid and various Carbon components.
+<PageDescription>
+
+Now that we have a React app using the UI Shell, it's time to build a few
+static pages. In this step, we'll become comfortable with the Carbon grid and
+various Carbon components.
+
+</PageDescription>
 
 <AnchorLinks>
 
@@ -33,7 +40,7 @@ A [preview](https://react-step-3--carbon-tutorial.netlify.com) of what you'll bu
   frameborder="no"
   allowtransparency="true"
   allowfullscreen="true"
-  class="bx--iframe bx--iframe--border"
+  className="bx--iframe bx--iframe--border"
 />
 
 ## Fork, clone and branch
@@ -49,7 +56,11 @@ $ git fetch upstream
 $ git checkout -b react-step-2 upstream/react-step-2
 ```
 
-_Note: This builds on top of step 1, but be sure to check out the upstream step 2 branch because it includes the static assets required to get through this step._
+<InlineNotification>
+
+**Note:** This builds on top of step 1, but be sure to check out the upstream step 2 branch because it includes the static assets required to get through this step.
+
+</InlineNotification>
 
 ### Build and start app
 
@@ -79,7 +90,11 @@ import 'core-js/modules/es6.string.trim';
 import 'core-js/modules/es7.object.values';
 ```
 
-_Note: You may be wondering where_ `core-js`_came from because it's not a Carbon package and we haven't explicitly installed it. Run_ `yarn why core-js` _and you'll see there are a number of packages that have brought it in as a dependency._
+<InlineNotification>
+
+**Note:** You may be wondering where `core-js`came from because it's not a Carbon package and we haven't explicitly installed it. Run `yarn why core-js` and you'll see there are a number of packages that have brought it in as a dependency.
+
+</InlineNotification>
 
 ## Install grid
 
@@ -98,7 +113,11 @@ $feature-flags: (
 );
 ```
 
-_Note: Like before, the feature flag still needs to come before the Carbon_ `styles.scss` _import._
+<InlineNotification>
+
+**Note:** Like before, the feature flag still needs to come before the Carbon `styles.scss` import.
+
+</InlineNotification>
 
 Run `yarn start` so we can begin building.
 
@@ -116,7 +135,11 @@ We've included the designs for this tutorial app in the `design.sketch` file fou
 
 <Caption>Landing page grid</Caption>
 
-_Pro tip:_ `CTRL-L` _toggles the layout in Sketch._
+<InlineNotification>
+
+**Pro tip:** `CTRL-L` toggles the layout in Sketch.
+
+</InlineNotification>
 
 We'll break this down into three rows. The first row with the gray background doesn't appear to need any columns. The second row with the white background looks like it has two columns of different widths. The third row with the gray background looks like it has four columns of equal width.
 
@@ -249,12 +272,16 @@ Modify the second row to use the `Tab` component.
 </div>
 ```
 
-_Note: We're using the grid for the page layout, but we also need to apply the grid within the tab content. When doing so, make sure the nested grid has the expected_ `grid` _>_ `row` _>_ `col` _DOM structure._
+<InlineNotification>
+
+**Note:** We're using the grid for the page layout, but we also need to apply the grid within the tab content. When doing so, make sure the nested grid has the expected `grid` > `row` > `col` DOM structure.
+
+</InlineNotification>
 
 Hold up! If you were to run [DAP](https://www.ibm.com/able/dynamic-assessment-plug-in.html) to check for accessibility violations, you'd see `Multiple navigation landmarks must have unique labels specified with aria-label or aria-labelledby` because both the `Breadcrumb` and `Tabs` components use `<nav>` elements. To fix, add `aria-label` to the `Breadcrumb` opening tag:
 
 <!-- prettier-ignore-start -->
-```html 
+```html
 <Breadcrumb noTrailingSlash aria-label="Page navigation">
 ```
 <!-- prettier-ignore-end -->
@@ -262,7 +289,7 @@ Hold up! If you were to run [DAP](https://www.ibm.com/able/dynamic-assessment-pl
 Same goes for the `Tabs` opening tag:
 
 <!-- prettier-ignore-start -->
-```html 
+```html
 <Tabs {...props.tabs} aria-label="Tab navigation">
 ```
 <!-- prettier-ignore-end -->
@@ -281,7 +308,11 @@ Then in `_landing-page.scss` add this import at the top of the file.
 @import './overrides.scss';
 ```
 
-_Note: We don't have to include this in a separate file, but it's nice to keep overrides separate from your application's styling so when migrating to future Carbon versions and if there are breaking changes via different class names, you have a consolidated list of styling declaration blocks to review._
+<InlineNotification>
+
+**Note:** We don't have to include this in a separate file, but it's nice to keep overrides separate from your application's styling so when migrating to future Carbon versions and if there are breaking changes via different class names, you have a consolidated list of styling declaration blocks to review.
+
+</InlineNotification>
 
 We can now add our images and text for each column in the first `Tab` in `LandingPage.js`.
 
@@ -364,7 +395,11 @@ We've added basic layout styles in `_landing-page.scss`, so now let's add type, 
 </Column>
 </Row>
 
-_Pro tip:_ `CTRL-G` _toggles the grid in Sketch._
+<InlineNotification>
+
+**Pro tip:** `CTRL-G` toggles the grid in Sketch.
+
+</InlineNotification>
 
 Back to `_landing-page.scss`, we need to add space above the breadcrumb and below the heading. For that, add:
 
@@ -458,7 +493,11 @@ We also need to adjust our vertical spacing and type treatment. Like before, it'
 </Column>
 </Row>
 
-_Note: You may be wondering why there are vertical gaps between the type and spacers. Each type token has a line height that's suited for its font size. The vertical spacers adjacently touch the line height boundaries and not the baseline, for consistency as well as development ease so_ `margins` _and_ `paddings` _don't need to offset line heights._
+<InlineNotification>
+
+**Note:** You may be wondering why there are vertical gaps between the type and spacers. Each type token has a line height that's suited for its font size. The vertical spacers adjacently touch the line height boundaries and not the baseline, for consistency as well as development ease so `margins` and `paddings` don't need to offset line heights.
+
+</InlineNotification>
 
 ```scss path=src/content/LandingPage/_landing-page.scss
 .landing-page__tab-content {
@@ -549,7 +588,7 @@ import {
 } from 'carbon-components-react';
 ```
 
-Then, let's create the `RepoTable` component and export it at the very bottom of the page.
+Then, let's create the `RepoTable` component and export it at the very bottom of `RepoTable.js`.
 
 <!-- prettier-ignore-start -->
 ```javascript path=src/content/RepoPage/RepoTable.js
@@ -606,7 +645,11 @@ export default RepoTable;
 
 This component uses two props, `rows` and `headers`, and returns a Carbon `DataTable`. As for where the various `Table*` components came from? The [DataTable story](http://react.carbondesignsystem.com/?selectedKind=DataTable&selectedStory=with%20expansion) in Storybook was used to put together the data table structure.
 
-_Note: The_ `getTableProps`_,_ `getHeaderProps`_, and_ `getRowProps` _functions each tell the_ `DataTable` _component to process and return the necessary props that are needed by the_ `Table`_,_ `Header` _and_ `Row` _components respectively. We take the return of that function (an object containing the props) and [spread it out](https://reactjs.org/docs/jsx-in-depth.html#spread-attributes) into the component._
+<InlineNotification>
+
+**Note:** The `getTableProps`, `getHeaderProps`, and `getRowProps` functions each tell the `DataTable` component to process and return the necessary props that are needed by the `Table`, `Header` and `Row` components respectively. We take the return of that function (an object containing the props) and [spread it out](https://reactjs.org/docs/jsx-in-depth.html#spread-attributes) into the component.
+
+</InlineNotification>
 
 At this point, return to `RepoPage.js` because now we need to render a static `RepoTable`.
 
@@ -714,7 +757,11 @@ Run the CI check to make sure we're all set to submit a pull request.
 $ yarn ci-check
 ```
 
-_Note: Having issues running the CI check? [Step 1](</tutorial/react/step-1#continuous-integration-(ci)-check>) has troubleshooting notes that may help._
+<InlineNotification>
+
+**Note:** Having issues running the CI check? [Step 1](</tutorial/react/step-1#continuous-integration-(ci)-check>) has troubleshooting notes that may help.
+
+</InlineNotification>
 
 ### Git commit and push
 
@@ -730,10 +777,18 @@ Then, push to your repository:
 $ git push origin react-step-2
 ```
 
-_Note: Having issues pushing your changes? [Step 1](/tutorial/react/step-1#git-commit-and-push) has troubleshooting notes that may help._
+<InlineNotification>
+
+**Note:** Having issues pushing your changes? [Step 1](/tutorial/react/step-1#git-commit-and-push) has troubleshooting notes that may help.
+
+</InlineNotification>
 
 ### Pull request (PR)
 
 Finally, visit [carbon-tutorial](https://github.com/carbon-design-system/carbon-tutorial) to "Compare & pull request". In doing so, make sure that you are comparing to `react-step-2` into `base: react-step-2`.
 
-_Note: Expect your tutorial step PRs to be reviewed by the Carbon team but not merged. We'll close your PR so we can keep the repository's remote branches pristine and ready for the next person!_
+<InlineNotification>
+
+**Note:** Expect your tutorial step PRs to be reviewed by the Carbon team but not merged. We'll close your PR so we can keep the repository's remote branches pristine and ready for the next person!
+
+</InlineNotification>

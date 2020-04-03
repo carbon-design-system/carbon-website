@@ -1,0 +1,228 @@
+.container {
+  position: relative;
+  display: grid;
+  width: 100%;
+  overflow: hidden;
+  grid-template-columns: 1fr;
+  grid-template-rows: 35rem minmax(1fr, 320px);
+  grid-template-areas:
+    'preview'
+    'editor';
+  margin-top: 0;
+  @include carbon--breakpoint('md') {
+    grid-template-columns: 1fr 240px;
+    grid-template-areas:
+      'preview knobs'
+      'editor editor';
+  }
+}
+
+.container * {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    width: 0 !important;
+  }
+}
+
+.knobless-container {
+  grid-template-areas:
+    'preview preview'
+    'editor editor';
+}
+
+.icon-button-row {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: nowrap;
+}
+
+.icon-button {
+  border: none;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-self: flex-end;
+  align-items: center;
+  padding: $spacing-04;
+  outline: none;
+}
+
+.icon-button--expand {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.icon-button svg {
+  fill: var(--cds-text-01);
+}
+
+// specificity
+.checkbox-wrapper.checkbox-wrapper:last-of-type {
+  margin-bottom: 0;
+}
+
+.knob-container {
+  --space: 0;
+  grid-area: knobs;
+  overflow-y: auto;
+  background-color: $ui-background;
+  border-left: 1px solid $ui-03;
+  position: absolute;
+  right: 0;
+  width: 240px;
+  box-shadow: -2px 2px 6px rgba(0, 0, 0, 0.2);
+  height: 100%;
+  max-height: 35rem;
+  transition: transform $duration--moderate-01 carbon--motion('entrance');
+  @include carbon--breakpoint('md') {
+    position: static;
+    box-shadow: none;
+  }
+}
+
+// knob container fade-out effect
+.zamboni {
+  position: absolute;
+  pointer-events: none;
+  top: 25rem;
+  right: 0;
+  width: 239px; // 240 - 1px border
+  padding-top: 10rem;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.7) 50%,
+    rgba(255, 255, 255, 1) 100%
+  );
+}
+
+.knob-container--collapsed {
+  box-shadow: none;
+  transform: translateX(240px);
+}
+
+.component-knob-title {
+  height: 32px;
+  background-color: $ui-03;
+  padding-left: $spacing-05;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  font-family: 'IBM Plex Mono', 'Menlo', 'DejaVu Sans Mono',
+    'Bitstream Vera Sans Mono', Courier, monospace;
+  font-size: 12px;
+}
+
+.component-knob-wrapper {
+  padding: $spacing-05;
+  padding-bottom: $spacing-06;
+}
+
+.component-knob-wrapper:last-of-type {
+  margin-bottom: 10rem;
+  border-bottom: 1px solid $ui-03;
+}
+
+.component-knob-wrapper > * + * {
+  margin-top: $spacing-05;
+}
+
+// custom classnames are being applied to both fieldset and label
+// https://github.com/carbon-design-system/carbon/issues/4572
+fieldset.form-group {
+  margin-bottom: 0;
+}
+
+.theme-switcher {
+  height: auto;
+  @include carbon--theme(
+    $theme: $carbon--theme--g10,
+    $emit-custom-properties: true
+  );
+
+  @include carbon--breakpoint('lg') {
+    max-width: 70%;
+  }
+}
+
+.theme-switcher .switch-button {
+  padding: $spacing-05;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom: 1px solid $ui-03;
+  &::-moz-focus-inner {
+    border: 0;
+  }
+}
+
+.preview-container {
+  height: 35rem;
+  grid-area: preview;
+  overflow: auto;
+  padding: $spacing-05;
+  border: $spacing-03 solid $ui-background;
+  background-color: var(--cds-ui-background);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // prevents chrome from moving page around the component
+  overflow-anchor: none;
+}
+
+// aligns our inline components (form inputs)
+.preview-container > * {
+  justify-content: center;
+  align-items: center;
+}
+
+.editor-container {
+  margin-top: 0;
+  font-size: 14px;
+}
+
+.editor-container pre,
+.editor-container textarea {
+  // important to override react-live inline styles
+  font-family: 'IBM Plex Mono', monospace !important;
+  white-space: pre !important;
+}
+
+// Themes
+.white {
+  @include carbon--theme(
+    $theme: $carbon--theme--white,
+    $emit-custom-properties: true
+  );
+}
+
+.g10 {
+  @include carbon--theme(
+    $theme: $carbon--theme--g10,
+    $emit-custom-properties: true
+  );
+}
+
+.g90 {
+  @include carbon--theme(
+    $theme: $carbon--theme--g90,
+    $emit-custom-properties: true
+  );
+}
+
+.g100 {
+  @include carbon--theme(
+    $theme: $carbon--theme--g100,
+    $emit-custom-properties: true
+  );
+}
+
+//---------------------------------------
+// Demo modal
+//---------------------------------------
+.container :global(.bx--modal) {
+  z-index: 99999;
+}

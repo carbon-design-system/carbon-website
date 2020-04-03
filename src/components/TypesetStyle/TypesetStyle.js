@@ -1,4 +1,4 @@
-/* eslint-disable react/no-string-refs */
+/* eslint-disable */
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
@@ -7,7 +7,7 @@ import {
   baseFontSize,
   breakpoints as carbonBreakpoints,
 } from '@carbon/elements';
-import { findLastIndex, values } from 'lodash';
+import { findLastIndex, values } from 'lodash-es';
 
 import InputRange from './InputRange';
 import StickyContainer from './StickyContainer';
@@ -41,7 +41,6 @@ const typeScale = {
       step: 1,
       font: 'IBM Plex Sans',
       'font-weight': '400',
-      'font-style': 'italic',
       'font-size': 0.75,
       'line-height': 1,
       'letter-spacing': 0.32,
@@ -108,7 +107,7 @@ const typeScale = {
       'letter-spacing': 0.32,
     },
   },
-  'heading-01': {
+  'productive-heading-01': {
     sm: {
       step: 2,
       font: 'IBM Plex Sans',
@@ -118,7 +117,7 @@ const typeScale = {
       'letter-spacing': 0.16,
     },
   },
-  'heading-02': {
+  'productive-heading-02': {
     sm: {
       step: 3,
       font: 'IBM Plex Sans',
@@ -176,6 +175,26 @@ const typeScale = {
       'font-size': 3.375,
       'line-height': 4,
       'letter-spacing': '0',
+    },
+  },
+  'expressive-heading-01': {
+    sm: {
+      step: 2,
+      font: 'IBM Plex Sans',
+      'font-weight': '600',
+      'font-size': 0.875,
+      'line-height': 1.25,
+      'letter-spacing': 0.16,
+    },
+  },
+  'expressive-heading-02': {
+    sm: {
+      step: 3,
+      font: 'IBM Plex Sans',
+      'font-weight': '600',
+      'font-size': 1,
+      'line-height': 1.5,
+      'letter-spacing': 0,
     },
   },
   'expressive-heading-03': {
@@ -721,12 +740,12 @@ const typeSets = {
   fixedHeadings: [
     {
       description: 'This is for component and layout headings.',
-      key: 'heading-01',
+      key: 'productive-heading-01',
       name: 'productive-heading-01',
     },
     {
       description: 'This is for component and layout headings.',
-      key: 'heading-02',
+      key: 'productive-heading-02',
       name: 'productive-heading-02',
     },
     {
@@ -758,13 +777,13 @@ const typeSets = {
   headings: [
     {
       description: 'This is for component and layout headings.',
-      key: 'heading-01',
-      name: 'expressive-heading-01 (fixed)',
+      key: 'expressive-heading-01',
+      name: 'expressive-heading-01',
     },
     {
       description: 'This is for component and layout headings.',
-      key: 'heading-02',
-      name: 'expressive-heading-02 (fixed)',
+      key: 'expressive-heading-02',
+      name: 'expressive-heading-02',
     },
     {
       description: 'This is for component and layout headings.',
@@ -871,11 +890,11 @@ class TypesetStyle extends React.Component {
   addScrollListener() {
     document.addEventListener('scroll', () => {
       if (this.refs.stickyBar) {
-        if (this.refs.stickyBar.getBoundingClientRect().top <= 104) {
+        if (this.refs.stickyBar.getBoundingClientRect().top <= 112) {
           this.setState({
             sticky: true,
           });
-        } else if (this.refs.stickyBar.getBoundingClientRect().top > 104) {
+        } else if (this.refs.stickyBar.getBoundingClientRect().top > 112) {
           this.setState({
             sticky: false,
           });
