@@ -2,7 +2,10 @@ require('dotenv').config();
 const fetch = require('node-fetch');
 const cookie = require('cookie');
 
-const permittedOrigins = ['https://www.carbondesignsystem.com'];
+const permittedOrigins = [
+  'https://www.carbondesignsystem.com',
+  'https://w3.ibm.com',
+];
 
 exports.handler = async function survey(event) {
   const { httpMethod, headers } = event;
