@@ -2,10 +2,10 @@
 title: 2. Building pages
 description: Welcome to Carbon! This tutorial will guide you in creating a React app with the Carbon Design System.
 tabs:
-  ['Overview', 'Step 1', 'Step 2', 'Step 3', 'Step 4', 'Step 5', 'Wrapping up']
+  ["Overview", "Step 1", "Step 2", "Step 3", "Step 4", "Step 5", "Wrapping up"]
 ---
 
-import Preview from 'components/Preview';
+import Preview from "components/Preview";
 
 <PageDescription>
 
@@ -83,11 +83,11 @@ You should see something similar to where the [previous step](/tutorial/react/st
 Before we get started with this step, we'll be adding some components that require IE11 polyfills. As shown in the [Carbon React documentation](https://github.com/carbon-design-system/carbon/blob/master/packages/react/.storybook/polyfills.js), go ahead and add these imports to the top of the root `index.js`. They aren't all needed, but we'll add them all to play it safe for the duration of the tutorial.
 
 ```javascript path=src/index.js
-import 'core-js/modules/es7.array.includes';
-import 'core-js/modules/es6.array.fill';
-import 'core-js/modules/es6.string.includes';
-import 'core-js/modules/es6.string.trim';
-import 'core-js/modules/es7.object.values';
+import "core-js/modules/es7.array.includes";
+import "core-js/modules/es6.array.fill";
+import "core-js/modules/es6.string.includes";
+import "core-js/modules/es6.string.trim";
+import "core-js/modules/es7.object.values";
 ```
 
 <InlineNotification>
@@ -178,7 +178,7 @@ We'll start adding HTML elements and components by row.
 In our first row we'll need a `BreadCrumb` component. First, let's import the components we need. Because we'll be importing several components for this page, we'll import them directly from the `carbon-components-react` package instead of the direct path for each one.
 
 ```javascript path=src/content/LandingPage/LandingPage.js
-import { Breadcrumb, BreadcrumbItem } from 'carbon-components-react';
+import { Breadcrumb, BreadcrumbItem } from "carbon-components-react";
 ```
 
 We can now add our component to the first row, along with a header, like so:
@@ -211,7 +211,7 @@ import {
   Button,
   Tabs,
   Tab,
-} from 'carbon-components-react';
+} from "carbon-components-react";
 ```
 
 Before we can render the tabs, we need to add some props for the component after the import. These example props came from the [React Tabs Story](http://react.carbondesignsystem.com/?selectedKind=Tabs) in Storybook.
@@ -220,12 +220,12 @@ Before we can render the tabs, we need to add some props for the component after
 const props = {
   tabs: {
     selected: 0,
-    triggerHref: '#',
-    role: 'navigation',
+    triggerHref: "#",
+    role: "navigation",
   },
   tab: {
-    href: '#',
-    role: 'presentation',
+    href: "#",
+    role: "presentation",
     tabIndex: 0,
   },
 };
@@ -305,7 +305,7 @@ Next, we'll need to add a styling override to move the tabs to the right on larg
 Then in `_landing-page.scss` add this import at the top of the file.
 
 ```scss path=src/content/LandingPage/_landing-page.scss
-@import './overrides.scss';
+@import "./overrides.scss";
 ```
 
 <InlineNotification>
@@ -377,10 +377,10 @@ The third row will be created in a later tutorial, so we'll just add the headers
 We've added basic layout styles in `_landing-page.scss`, so now let's add type, color and spacing styles to match the design. We'll be using our [spacing tokens](https://www.carbondesignsystem.com/guidelines/spacing). In `app.scss`, add these imports at the **top** of the file so we can use Carbon breakpoints, tokens, and typography Sass mixins and functions:
 
 ```scss path=src/app.scss
-@import 'carbon-components/scss/globals/scss/vendor/@carbon/type/scss/font-family.scss';
-@import 'carbon-components/scss/globals/scss/vendor/@carbon/layout/scss/breakpoint.scss';
-@import 'carbon-components/scss/globals/scss/typography.scss';
-@import 'carbon-components/scss/globals/scss/vars.scss';
+@import "carbon-components/scss/globals/scss/vendor/@carbon/type/scss/font-family.scss";
+@import "carbon-components/scss/globals/scss/vendor/@carbon/layout/scss/breakpoint.scss";
+@import "carbon-components/scss/globals/scss/typography.scss";
+@import "carbon-components/scss/globals/scss/vars.scss";
 ```
 
 ### Banner
@@ -422,7 +422,7 @@ Add the following in `_mixins.scss`. Per the design we need to use Gray 10 for o
   position: relative;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     left: -$spacing-05;
     top: 0;
@@ -437,8 +437,8 @@ Add the following in `_mixins.scss`. Per the design we need to use Gray 10 for o
 After you have created `_mixins.scss`, import it at the **top** of `_landing-page.scss`. By now you should have two imports:
 
 ```scss path=src/content/LandingPage/_landing-page.scss
-@import './mixins.scss';
-@import './overrides.scss';
+@import "./mixins.scss";
+@import "./overrides.scss";
 ```
 
 Now to use the new mixin, update the `.landing-page__banner` declaration block to:
@@ -467,7 +467,7 @@ The Sketch symbol naming is consistent with the development Sass tokens to help 
 
 ```scss path=src/content/LandingPage/_landing-page.scss
 .landing-page__heading {
-  @include carbon--type-style('productive-heading-05');
+  @include carbon--type-style("productive-heading-05");
 }
 ```
 
@@ -506,12 +506,12 @@ We also need to adjust our vertical spacing and type treatment. Like before, it'
 }
 
 .landing-page__subheading {
-  @include carbon--type-style('productive-heading-03');
-  @include carbon--font-weight('semibold');
+  @include carbon--type-style("productive-heading-03");
+  @include carbon--font-weight("semibold");
 }
 
 .landing-page__p {
-  @include carbon--type-style('productive-heading-03');
+  @include carbon--type-style("productive-heading-03");
   margin-top: $spacing-06;
   margin-bottom: $spacing-08;
 
@@ -543,7 +543,7 @@ Let's also add some styles for the last row, even though that will get used late
 }
 
 .landing-page__label {
-  @include carbon--type-style('heading-01');
+  @include carbon--type-style("heading-01");
 }
 ```
 
@@ -572,7 +572,7 @@ We currently have `RepoPage.js` that just contains a grid and placeholder conten
 First, we'll add our data table by importing a few components in `RepoTable.js`:
 
 ```javascript path=src/content/RepoPage/RepoTable.js
-import React from 'react';
+import React from "react";
 import {
   DataTable,
   TableContainer,
@@ -585,7 +585,7 @@ import {
   TableExpandRow,
   TableCell,
   TableExpandedRow,
-} from 'carbon-components-react';
+} from "carbon-components-react";
 ```
 
 Then, let's create the `RepoTable` component and export it at the very bottom of `RepoTable.js`.
@@ -658,7 +658,7 @@ At this point, return to `RepoPage.js` because now we need to render a static `R
 Import `RepoTable` in `RepoPage.js`.
 
 ```javascript path=src/content/RepoPage/RepoPage.js
-import RepoTable from './RepoTable';
+import RepoTable from "./RepoTable";
 ```
 
 Then below the imports, include the following arrays to pass into the `RepoTable` component. We'll be setting the `rows` array from an API in the next tutorial step, but for now, static example rows will suffice.
@@ -666,58 +666,58 @@ Then below the imports, include the following arrays to pass into the `RepoTable
 ```javascript path=src/content/RepoPage/RepoPage.js
 const headers = [
   {
-    key: 'name',
-    header: 'Name',
+    key: "name",
+    header: "Name",
   },
   {
-    key: 'createdAt',
-    header: 'Created',
+    key: "createdAt",
+    header: "Created",
   },
   {
-    key: 'updatedAt',
-    header: 'Updated',
+    key: "updatedAt",
+    header: "Updated",
   },
   {
-    key: 'issueCount',
-    header: 'Open Issues',
+    key: "issueCount",
+    header: "Open Issues",
   },
   {
-    key: 'stars',
-    header: 'Stars',
+    key: "stars",
+    header: "Stars",
   },
   {
-    key: 'links',
-    header: 'Links',
+    key: "links",
+    header: "Links",
   },
 ];
 
 const rows = [
   {
-    id: '1',
-    name: 'Repo 1',
-    createdAt: 'Date',
-    updatedAt: 'Date',
-    issueCount: '123',
-    stars: '456',
-    links: 'Links',
+    id: "1",
+    name: "Repo 1",
+    createdAt: "Date",
+    updatedAt: "Date",
+    issueCount: "123",
+    stars: "456",
+    links: "Links",
   },
   {
-    id: '2',
-    name: 'Repo 2',
-    createdAt: 'Date',
-    updatedAt: 'Date',
-    issueCount: '123',
-    stars: '456',
-    links: 'Links',
+    id: "2",
+    name: "Repo 2",
+    createdAt: "Date",
+    updatedAt: "Date",
+    issueCount: "123",
+    stars: "456",
+    links: "Links",
   },
   {
-    id: '3',
-    name: 'Repo 3',
-    createdAt: 'Date',
-    updatedAt: 'Date',
-    issueCount: '123',
-    stars: '456',
-    links: 'Links',
+    id: "3",
+    name: "Repo 3",
+    createdAt: "Date",
+    updatedAt: "Date",
+    issueCount: "123",
+    stars: "456",
+    links: "Links",
   },
 ];
 ```
