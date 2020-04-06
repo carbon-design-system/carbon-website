@@ -3,8 +3,10 @@ import React from 'react';
 
 export const LibraryContext = React.createContext();
 
-export default ({ children, type, site = 'carbon' }) => (
+const LibraryProvider = ({ children, type, site = 'carbon' }) => (
   <LibraryContext.Provider value={{ site, type }}>
     {children}
   </LibraryContext.Provider>
 );
+
+export default LibraryProvider;

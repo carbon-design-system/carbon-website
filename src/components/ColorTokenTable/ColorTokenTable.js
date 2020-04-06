@@ -10,8 +10,6 @@ import { CopyToClipboard } from 'react-copy-to-clipboard/lib/Component';
 import colorTokens from '../../data/guidelines/color-tokens';
 
 export default class ColorTokenTable extends React.Component {
-  static propTypes = {};
-
   state = {
     theme: 'white',
     sticky: false,
@@ -27,6 +25,23 @@ export default class ColorTokenTable extends React.Component {
     this.addResizeListener();
     this.addScrollListener();
   }
+
+  switchTheme = (theme) => {
+    this.setState({
+      theme: theme.name,
+    });
+  };
+
+  hexToRgb = (hex) => {
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result
+      ? {
+          r: parseInt(result[1], 16),
+          g: parseInt(result[2], 16),
+          b: parseInt(result[3], 16),
+        }
+      : null;
+  };
 
   addScrollListener() {
     document.addEventListener('scroll', () => {
@@ -56,23 +71,6 @@ export default class ColorTokenTable extends React.Component {
       }
     });
   }
-
-  switchTheme = (theme) => {
-    this.setState({
-      theme: theme.name,
-    });
-  };
-
-  hexToRgb = (hex) => {
-    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result
-      ? {
-          r: parseInt(result[1], 16),
-          g: parseInt(result[2], 16),
-          b: parseInt(result[3], 16),
-        }
-      : null;
-  };
 
   renderValue = (token, tokenInfo) => {
     const currentTheme = this.state.theme;
