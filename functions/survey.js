@@ -2,7 +2,10 @@ require('dotenv').config();
 const fetch = require('node-fetch');
 const cookie = require('cookie');
 
-const permittedOrigins = ['https://www.carbondesignsystem.com'];
+const permittedOrigins = [
+  'https://www.carbondesignsystem.com',
+  'https://w3.ibm.com',
+];
 
 exports.handler = async function survey(event) {
   const { httpMethod, headers } = event;
@@ -44,9 +47,7 @@ exports.handler = async function survey(event) {
     headers: {
       'Content-Type': 'application/json',
     },
-  }).catch(({ statusCode, message }) => {
-    return { statusCode, body: message };
-  });
+  }).catch(({ statusCode, message }) => ({ statusCode, body: message }));
 
   return {
     statusCode: 200,
