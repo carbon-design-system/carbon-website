@@ -1,9 +1,9 @@
 ---
-name: 'Bug report 🐛'
+name: "Bug report 🐛"
 about: Create a report to help us improve
-title: ''
-labels: 'type: bug 🐛'
-assignees: ''
+title: ""
+labels: "type: bug 🐛"
+assignees: ""
 ---
 
 <!-- Feel free to remove sections that aren't relevant.
