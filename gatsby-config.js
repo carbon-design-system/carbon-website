@@ -1,6 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: 'Carbon Design System',
+    siteUrl: 'https://www.carbondesignsystem.com',
     description:
       'Carbon is the design system for IBM web and product. It is a series of individual styles, components, and guidelines used for creating unified UI.',
     keywords:
@@ -23,18 +24,13 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-webpack-bundle-analyser-v2',
-      options: {
-        analyzerMode: 'static',
-        disable: !process.env.ANALYZE,
-      },
-    },
-    {
       resolve: 'gatsby-plugin-fathom',
       options: {
         siteId: 'VMSGXQRS',
       },
     },
+    'gatsby-plugin-netlify-cache',
+    'gatsby-plugin-sitemap',
     'gatsby-plugin-remove-serviceworker',
   ],
 };
