@@ -1,6 +1,6 @@
-import * as de from '@carbon/charts/demo/demo-data';
+import * as de from '@carbon/charts/demo/data';
 
-export * from '@carbon/charts/demo/demo-data';
+export * from '@carbon/charts/demo/data';
 
 console.log('de', de);
 export const addHeightToOptions = options => ({

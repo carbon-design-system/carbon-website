@@ -3,7 +3,7 @@ import React, { useState, useContext } from 'react';
 import prismTheme from 'gatsby-theme-carbon/src/components/Code/prismTheme';
 import * as CarbonComponents from 'carbon-components-react';
 import * as CarbonChartsComponents from '@carbon/charts-react';
-import * as chartingDemoDataAndOptions from '@carbon/charts/demo/demo-data';
+import * as chartingDemoDataAndOptions from '@carbon/charts/demo/data';
 
 import { LiveProvider, LiveEditor, LivePreview, LiveError } from 'react-live';
 import { Row } from 'gatsby-theme-carbon';
