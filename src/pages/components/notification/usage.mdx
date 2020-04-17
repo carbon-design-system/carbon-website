@@ -1,82 +1,207 @@
 ---
 title: Notification
-description: Notifications are messages that communicate information to the user. The two main types of notificaitons are toast notifications and inline notifications.
+description: Notifications are messages that communicate information to the user. The two main types of notifications are toast notifications and inline notifications.
 tabs: ["Code", "Usage", "Style", " Accessibility"]
 ---
 
-## General guidance
+<PageDescription>
 
-_Notifications_ are messages that communicate information to the user.
+Notifications are messages that communicate information to the user. The two main types of notifications are toast notifications and inline notifications.
 
-## Format
+</PageDescription>
+
+<AnchorLinks>
+
+<AnchorLink>Overview</AnchorLink>
+<AnchorLink>Formatting</AnchorLink>
+<AnchorLink>Content</AnchorLink>
+<AnchorLink>Inline notifications</AnchorLink>
+<AnchorLink>Toast notifications</AnchorLink>
+<AnchorLink>Modifiers</AnchorLink>
+<AnchorLink>Related</AnchorLink>
+<AnchorLink>Feedback</AnchorLink>
+
+</AnchorLinks>
+
+## Overview
+
+### When to use
+
+Use notifications to inform users of updates or changes to system status. Communicating with users and providing immediate feedback are important for building trust. While notifications are an effective method of communicating with users, they are disruptive and should be used sparingly.
+
+For more context on when to use each notification type, including modals, refer to the [notifications pattern](/patterns/notification-pattern/). Carbon currently only supports inline, toast, and modal notification types, although some product teams also support banners and notification centers.
+
+### Types
+
+| Type   | Purpose                                                                                                                                                          |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Inline | Inline notifications show up in task flows, to notify users of the status of an action. They usually appear at the top of the primary content area.              |
+| Toast  | Toasts are non-modal, time-based window elements used to display short messages; they usually appear at the top of the screen and disappear after a few seconds. |
+
+## Formatting
+
+### Anatomy
+
+<Row>
+<Column colLg={8}>
+
+![notification anatomy image](images/01_notification_anatomy.png)
+
+</Column>
+</Row>
+
+1. **Icon:** Informs users of the type of notification at a glance.
+2. **Title:** Gives users a quick overview of the notification.
+3. **Message (optional):** Provides additional detail and actionable steps for the user to take.
+4. **Inline notification action (optional):** Ghost button that allows users to address the notification or navigates them to a page with further details.
+5. **Close button (optional):** Closes the notification.
+6. **Time stamp (optional):** Shows the time the toast notification was sent.
+
+## Content
+
+Notifications provide limited space for content, and therefore the content must be short and concise. A user should be able to quickly scan the notification, be apprised of the situation, and know what to do next.
+
+### Main elements
 
 #### Title
 
-All notifications have subject titles, which should be short and descriptive. (Example: “Tester-app-02 has crashed.”)
+- The title should be short and descriptive, explaining the most important piece of information.
+- When possible, communicate the main message using just the title.
+- Use a period only if the title is a full sentence.
 
-#### Message
+#### Body content
 
-We recommend the body of the notification be contained within two lines. Be descriptive and include any troubleshooting actions or next steps. When possible, communicate the main message using just the title. You can include [links](/components/link/code) within the notification body that redirect the user to next steps.
+- Be concise and avoid repeating or paraphrasing the title.
+- Limit content to one or two short sentences.
+- Explain how to resolve the issue by including any troubleshooting actions or next steps. You can include links within the notification body that redirect the user to next steps.
+
+#### Action
+
+- Keep labels concise and clearly indicate the action the user can take.
+- Limit action labels to one or two words. For a list of recommended action labels, see Carbon's [content guidelines](https://www.carbondesignsystem.com/guidelines/content/action-labels).
+
+### Overflow
+
+If a toast or inline notification requires a message longer than two lines, include a short message with a “View more” link that takes the user to a view of the full notification message. This can be either a full page with more details or a modal.
+
+For further content guidance, see Carbon's [content guidelines](/guidelines/content/general).
+
+## Inline notifications
+
+### Formatting
+
+<Row>
+<Column colLg={12}>
+
+![Example of inline notification with action button](images/02_notification_format_928_4up.png)
+
+</Column>
+</Row>
+
+#### Action
+
+Inline notifications have an optional ghost button action that is adjacent to the title and body content. On mobile screens the action button wraps under the body content. This button should allow users to take further action on the notification.
+
+#### Sizing
+
+The width of inline notifications varies based on content and layout. They can expand to the fill the container or content area they relate to. Their height is based on the content length, which should not exceed two lines of text.
+
+#### Placement
+
+Inline notifications appear near their related items. They can expand to fill the width of the container or content area they are in and should align to the grid columns.
+
+We recommend placing inline notifications at the bottom of forms, just above the submission and cancel buttons. When error notifications apply to individual text inputs, they should supplement the error state on that specific input field.
+
+<Row>
+<Column colLg={8}>
+
+![Example of inline notification placement](images/03_notification_placement_inline_608.png)
+
+<Caption>
+  Example of an inline notification supporting an error message on a form
+</Caption>
+
+</Column>
+</Row>
+
+### Behavior
 
 #### Dismissal
 
-We recommend that toast notifications automatically disappear after five seconds. Inline notifications are persistent until the user dismisses them. All notifications have at least one method of dismissal (typically, it is a small “x” in the upper right hand corner).
+Inline notifications do not dismiss automatically. They persist on the page until the user dismisses them or takes action that resolves the notification.
 
-#### Icons
+A small "x" in the top right corner is used to dismiss inline notifications. Including the close button is optional and should not be included if it is critical for a user to read or interact with the notification.
 
-Icons may provide additional clarity. Icons should be placed to the left of a title. These glyphs (16x16) can be found in the [icons](/guidelines/icons/library) library.
+## Toast notifications
+
+### Formatting
 
 <Row>
-<Column colLg={8}>
+<Column colLg={12}>
 
-![The three icon states](images/notification-usage-1.png)
+![Example of toast notification with action button and time stamp](images/04_toast_format_928.png)
 
 </Column>
 </Row>
 
-## Variations
+#### Action
 
-| Notification type     | Purpose                                                                                                                                                               |
-| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| _Toast notification_  | Toasts are a non-modal, time-based window elements used to display short messages; they usually appear at the bottom of the screen and disappear after a few seconds. |
-| _Inline notification_ | Inline notifications show up in task flows, to notify users of the status of an action. They usually appear at the top of the primary content area.                   |
+Carbon toast notifications are not fully accessible when they include interactive content. Using links and other interactive content in toasts breaks WCAG 2.1 compliance and should therefore be avoided. The Carbon team is aware of the accessibility concerns and is currently working on deprecating this functionality.
 
-### High vs. low contrast
+#### Time stamp
 
-Use high-contrast style notifications for critical messaging. Low-contrast notifications are best used for supplemental messaging and are less visually disruptive to users. When in doubt, use the low contrast style.
+Toast notifications include a time stamp at the bottom the container. The time stamp shows the time the notification was sent. Using time stamps is optional but toasts should be consistent across the product so either all toasts should include time stamps or none of them should. The time stamp is optional and can be removed if a third line of content is needed.
 
-Inline and toast notifications can use different styles but you should never mix styles within the variations.
+#### Sizing
 
-<Row>
-<Column colLg={8}>
+Toast notifications use a fixed width and their height depends on the length of the notification message. As noted in the content guidelines, limit toast notifications to two lines of text.
 
-![High vs. low contrast](images/notification-usage-4.png)
+#### Placement
 
-</Column>
-</Row>
+Toast notifications slide in and out from the top right of the screen. They stack with `$spacing-03` in-between. New toast notifications should appear at the top of the list, with older notifications being pushed down until they are dismissed.
 
-## Placement
-
-#### Toast notifications
-
-Toast notifications slide in and out a page from the top-right corner. Actionable notifications do not appear on mobile screen widths.
+Actionable toast notifications do not appear on mobile screen widths.
 
 <Row>
 <Column colLg={8}>
 
-![Toast notification example](images/notification-usage-2.png)
+![Example of toast notification placement](images/05_toast_context_608.png)
 
 </Column>
 </Row>
 
-#### Inline notifications
+### Behavior
 
-Inline notifications appear near its related item. In [forms](/components/form/code), we recommend placing the inline notification at the bottom of the form, right before the submission buttons. Depending on the context of the page, inline notifications can appear above the content as well.
+#### Dismissal
+
+Toasts dismiss automatically after five seconds on the screen. They can also include a close button so users can dismiss them sooner. Toasts cover content on the screen so they should always be easily dismissed. Because toast notifications dismiss automatically, users must be able to access them elsewhere after the toast disappears. This allows them to be accessible for users who need more time reading the notification or who may want to refer back to the notification.
+
+## Modifiers
+
+### High and low contrast
+
+Carbon supports high and low contrast style notifications. High-contrast notifications are best for critical messaging while low-contrast notifications are less visually disruptive for users.
+
+It's up to the product team to decide which notification style to use in their product. Inline and toast notifications can use different styles but you should never mix styles within each notification type. When in doubt, use low-contrast notifications.
 
 <Row>
 <Column colLg={8}>
 
-![Form example with inline notification](images/notification-usage-3.png)
+![High and low contrast inline notifications](images/06_notification_contrast_608.png)
 
+<Caption>
+    High contrast notification (top); low contrast notification (bottom)
+</Caption>
 </Column>
 </Row>
+
+## Related
+
+- [Modal component](https://www.carbondesignsystem.com/components/modal/usage/)
+- [Notifications pattern](https://www.carbondesignsystem.com/patterns/notification-pattern)
+
+## Feedback
+
+Help us improve this pattern by providing feedback, asking questions, and leaving any other comments on [GitHub](https://github.com/carbon-design-system/carbon-website/issues/new?assignees=&labels=feedback&template=feedback.md).
+
+
