@@ -83,11 +83,11 @@ You should see something similar to where the [previous step](/tutorial/react/st
 Before we get started with this step, we'll be adding some components that require IE11 polyfills. As shown in the [Carbon React documentation](https://github.com/carbon-design-system/carbon/blob/master/packages/react/.storybook/polyfills.js), go ahead and add these imports to the top of the root `index.js`. They aren't all needed, but we'll add them all to play it safe for the duration of the tutorial.
 
 ```javascript path=src/index.js
-import "core-js/modules/es7.array.includes";
-import "core-js/modules/es6.array.fill";
-import "core-js/modules/es6.string.includes";
-import "core-js/modules/es6.string.trim";
-import "core-js/modules/es7.object.values";
+import "core-js/modules/es.array.includes";
+import "core-js/modules/es.array.fill";
+import "core-js/modules/es.string.includes";
+import "core-js/modules/es.string.trim";
+import "core-js/modules/es.object.values";
 ```
 
 <InlineNotification>
@@ -104,9 +104,11 @@ In our last step we added our styles, component and icon packages. Now that we'r
 $ yarn add @carbon/grid
 ```
 
-In `index.scss`, we need to configure our grid to use 16 columns instead of the default 12 columns. We do this by adding `grid-columns-16: true` in our `$feature-flags`.
+In `index.scss`, we need to configure our grid to use 16 columns instead of the default 12 columns. We do this by importing the grid and adding `grid-columns-16: true` in our `$feature-flags`.
 
 ```scss path=src/index.scss
+@import "@carbon/grid/scss/grid";
+
 $feature-flags: (
   ui-shell: true,
   grid-columns-16: true,
