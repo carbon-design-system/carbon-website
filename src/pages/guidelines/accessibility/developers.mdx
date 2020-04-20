@@ -2,7 +2,7 @@
 label: IBM firmly believes that web and software experiences should be accessible for everyone, regardless of abilities or impairments.
 title: Accessibility
 description: IBM firmly believes that web and software experiences should be accessible for everyone. Carbon is committed to following best practices when it comes to accessibility.
-tabs: ["Overview", "Color", "Keyboard", "Developers"]
+tabs: ["Overview", "Color", "Developers", "Keyboard"]
 ---
 
 <PageDescription>
@@ -23,11 +23,11 @@ Write code that is clear and logical. Be detailed in alt text and image descript
 
 ### Structuring code and navigation
 
-Think of code hierarchy when structuring your content so that screen readers and keyboard-only users can access interactive elements in a logical and predictable order via tabbing. Create the tab flow hierarchy by using the source code to arrange the keyboard navigation. Begin with the header, followed by the main navigation, then page navigation (from left to right, top to bottom), and end with the footer. The objective is to give keyboard users an intentional experience that is comparable to the experience of mouse users.
+Think of code hierarchy when structuring your content. Be sure screen readers and keyboard-only users can access interactive elements in a logical and predictable order via tabbing. Begin with the header, followed by the main navigation, then page navigation (from left to right, top to bottom), and end with the footer. Keyboard users should encounter an intentional experience that is comparable to the experience of mouse users.
 
 ### Use semantic HTML
 
-Use native HTML elements as much as you can, and use them for their correct purpose. These elements have built-in accessibility benefits. They inform screen readers what they are and what they do, and standard interactive elements, such as a button, include keyboard functionality. Aside from making it accessible, this will also make it easier to develop and maintain, better on mobile, and good for search engine optimization.
+Use native HTML elements as much as you can. These elements have built-in accessibility benefits. They inform screen readers what they are and what they do, and standard interactive elements, such as a button, include keyboard functionality. Aside from making a page accessible, native HTML is easier to develop and maintain, better on mobile, and improves search engine optimization.
 
 ```html
 <button>Play Video</button>
@@ -64,7 +64,7 @@ Consider visually impaired people when labeling elements. Make sure there is tex
 <a>Click here</a>
 ```
 
-### Making accessible data tables
+### Designing accessible data tables
 
 Always specify table headers with `<th />` elements, and make sure they stand out. Utilize `scope` attribute if necessary to specify if they are headers for rows or columns. Utilize alternative text along with tables for visually impaired users. `<caption />` is preferred, but `<table />` summary works too.
 
@@ -95,9 +95,9 @@ Always specify table headers with `<th />` elements, and make sure they stand ou
 </table>
 ```
 
-### Making accessible data visualizations
+### Designing accessible data visualizations
 
-It is important to take into account visually impaired users when including data visualizations. Consider accompanying visuals with a data table as another alternative for users who rely on screen readers. It is also important to take into account color choices for color-blind users.
+Consider visually impaired users when including data visualizations. Consider accompanying visuals with a data table as an alternative for users who rely on screen readers. Also consider color choices for color-blind users.
 
 ### Multimedia text alternatives
 
@@ -130,7 +130,7 @@ Provide closed-captioning with videos or transcriptions of audio files.
 
 ### Avoid font icon libraries
 
-Use SVG's instead of font icon libraries, as those are not accessible.
+Use SVG's instead of font icon libraries.
 
 ```html
 <svg width="80" height="10">
@@ -177,9 +177,11 @@ When hiding content from a screen reader, consider source order. Use `visibility
 
 ## JavaScript best practices
 
-Don't rely too much on JavaScript to generate HTML and CSS. Follow the "Unobtrusive JavaScript" principle, which means that JavaScript should be used to enhance functionality not build it entirely. Use your built-in browser functionality as much as possible. If you're utilizing JavaScript to make complex UI features, use WAI-ARIA to make elements accessible. Examples of unobtrusive JavaScript include providing client-side form validation and custom controls for HTML5 `<video />` elements that are accessible to keyboards.
+Don't rely too much on JavaScript to generate HTML and CSS. Follow the "Unobtrusive JavaScript" principle, using JavaScript to enhance functionality without relying on it to build your experience. Use your browser's built-in functionality as much as possible. If you're utilizing JavaScript to make complex UI features, use WAI-ARIA to make elements accessible.
 
-### Accessible mouse-specific events
+Examples of unobtrusive JavaScript include providing client-side form validation and custom controls for HTML5 `<video />` elements that are accessible to keyboards.
+
+### Mouse-specific events
 
 Double up mouse-specific events with other events for keyboard-only users.
 
