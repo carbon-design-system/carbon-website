@@ -38,7 +38,7 @@ const ComponentDemo = ({
   scope,
   knobs,
   noInline,
-  links,
+  links = [],
 }) => {
   const [code, setCode] = useState(codeProp.trim());
   const [theme, setTheme] = useState(white);
