@@ -13,6 +13,9 @@ You can also use `modalLabel`, `modalHeading`, `secondaryButtonText` and `primar
 
 <ComponentDemo
   scope={{ ModalStateManager, React }}
+  knobs={{
+    Modal: ["passiveModal", "danger", "hasScrollingContent", "size"],
+  }}
   links={{
     React: "https://react.carbondesignsystem.com/?path=/story/modal--default",
     Angular:
@@ -57,6 +60,11 @@ You can also use `modalLabel`, `modalHeading`, `secondaryButtonText` and `primar
 
 <ComponentDemo
   scope={{ ModalStateManager, React }}
+  knobs={{
+    ComposedModal: ["size"],
+    ModalBody: ["hasScrollingContent"],
+    ModalFooter: ["danger"],
+  }}
   links={{
     React:
       "https://react.carbondesignsystem.com/?path=/story/composedmodal--using-child-nodes",
@@ -146,14 +154,20 @@ function ModalStateManager() {
 You can create an abstract version of such state manager, like:
 
 ```javascript
-const ModalStateManager = ({ renderLauncher, children }) => {
+const ModalStateManager = ({
+  renderLauncher: LauncherContent,
+  children: ModalContent,
+}) => {
   const [open, setOpen] = useState(false);
   return (
     <>
-      {!children || typeof document === "undefined"
+      {!ModalContent || typeof document === "undefined"
         ? null
-        : ReactDOM.createPortal(children({ open, setOpen }), document.body)}
-      {renderLauncher && renderLauncher({ open, setOpen })}
+        : ReactDOM.createPortal(
+            <ModalContent open={open} setOpen={setOpen} />,
+            document.body
+          )}
+      {LauncherContent && <LauncherContent open={open} setOpen={setOpen} />}
     </>
   );
 };

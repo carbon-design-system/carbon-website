@@ -225,7 +225,7 @@ const KnobContainer = ({ knobs, code, setCode }) => {
     }
 
     knobs[component].forEach((knob) => {
-      if (fullComponent.props[knob].type) {
+      if (fullComponent.props[knob]?.type) {
         requestedProps[knob] = fullComponent.props[knob];
       } else {
         console.error(

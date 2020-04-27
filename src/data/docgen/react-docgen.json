@@ -3,6 +3,18 @@
     "description": "",
     "displayName": "Accordion",
     "props": {
+      "align": {
+        "defaultValue": { "value": "'end'", "computed": false },
+        "type": {
+          "name": "enum",
+          "value": [
+            { "value": "'start'", "computed": false },
+            { "value": "'end'", "computed": false }
+          ]
+        },
+        "required": false,
+        "description": "Specify the alignment of the accordion heading title and chevron."
+      },
       "children": {
         "type": { "name": "node" },
         "required": false,
@@ -162,7 +174,11 @@
       "as": {
         "type": {
           "name": "union",
-          "value": [{ "name": "func" }, { "name": "string" }]
+          "value": [
+            { "name": "func" },
+            { "name": "string" },
+            { "name": "elementType" }
+          ]
         },
         "required": false,
         "description": "Specify how the button itself should be rendered.\nMake sure to apply all props to the root node and render children appropriately"
@@ -254,6 +270,12 @@
     "description": "",
     "displayName": "Checkbox",
     "props": {
+      "title": {
+        "defaultValue": { "value": "''", "computed": false },
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Specify a title for the <label> node for the Checkbox"
+      },
       "onChange": {
         "defaultValue": { "value": "() => {}", "computed": false },
         "type": { "name": "func" },
@@ -300,11 +322,6 @@
         "type": { "name": "bool" },
         "required": false,
         "description": "Specify whether the label should be hidden, or not"
-      },
-      "title": {
-        "type": { "name": "string" },
-        "required": false,
-        "description": "Specify a title for the <label> node for the Checkbox"
       },
       "wrapperClassName": {
         "type": { "name": "string" },
@@ -433,6 +450,18 @@
         "required": false,
         "description": "should use \"light theme\" (white background)?"
       },
+      "direction": {
+        "defaultValue": { "value": "'bottom'", "computed": false },
+        "type": {
+          "name": "enum",
+          "value": [
+            { "value": "'top'", "computed": false },
+            { "value": "'bottom'", "computed": false }
+          ]
+        },
+        "required": false,
+        "description": "Specify the direction of the combobox dropdown. Can be either top or bottom."
+      },
       "className": {
         "type": { "name": "string" },
         "required": false,
@@ -489,6 +518,11 @@
         "required": false,
         "description": "Specify a custom translation function that takes in a message identifier\nand returns the localized string for the message"
       },
+      "size": {
+        "type": { "name": "custom", "raw": "ListBoxPropTypes.ListBoxSize" },
+        "required": false,
+        "description": "Specify the size of the ListBox. Currently supports either `sm`, `lg` or `xl` as an option."
+      },
       "onInputChange": {
         "type": { "name": "func" },
         "required": false,
@@ -505,6 +539,214 @@
       }
     }
   },
+  "ComposedModal": {
+    "description": "",
+    "displayName": "ComposedModal",
+    "props": {
+      "onKeyDown": {
+        "defaultValue": { "value": "() => {}", "computed": false },
+        "type": { "name": "func" },
+        "required": false,
+        "description": "Specify an optional handler for the `onKeyDown` event. Called for all\n`onKeyDown` events that do not close the modal"
+      },
+      "selectorPrimaryFocus": {
+        "defaultValue": {
+          "value": "'[data-modal-primary-focus]'",
+          "computed": false
+        },
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Specify a CSS selector that matches the DOM element that should be\nfocused when the Modal opens"
+      },
+      "className": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Specify an optional className to be applied to the modal root node"
+      },
+      "containerClassName": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Specify an optional className to be applied to the modal node"
+      },
+      "onClose": {
+        "type": { "name": "func" },
+        "required": false,
+        "description": "Specify an optional handler for closing modal.\nReturning `false` here prevents closing modal."
+      },
+      "open": {
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Specify whether the Modal is currently open"
+      },
+      "size": {
+        "type": {
+          "name": "enum",
+          "value": [
+            { "value": "'xs'", "computed": false },
+            { "value": "'sm'", "computed": false },
+            { "value": "'lg'", "computed": false }
+          ]
+        },
+        "required": false,
+        "description": "Specify the size variant."
+      }
+    }
+  },
+  "ModalHeader": {
+    "description": "",
+    "displayName": "ModalHeader",
+    "props": {
+      "iconDescription": {
+        "defaultValue": { "value": "'Close'", "computed": false },
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Specify a description for the close icon that can be read by screen\nreaders"
+      },
+      "buttonOnClick": {
+        "defaultValue": { "value": "() => {}", "computed": false },
+        "type": { "name": "func" },
+        "required": false,
+        "description": "Provide an optional function to be called when the close button is\nclicked"
+      },
+      "className": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Specify an optional className to be applied to the modal header"
+      },
+      "labelClassName": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Specify an optional className to be applied to the modal header label"
+      },
+      "titleClassName": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Specify an optional className to be applied to the modal heading"
+      },
+      "closeClassName": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Specify an optional className to be applied to the modal close node"
+      },
+      "closeIconClassName": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Specify an optional className to be applied to the modal close icon node"
+      },
+      "label": {
+        "type": { "name": "node" },
+        "required": false,
+        "description": "Specify an optional label to be displayed"
+      },
+      "title": {
+        "type": { "name": "node" },
+        "required": false,
+        "description": "Specify an optional title to be displayed"
+      },
+      "children": {
+        "type": { "name": "node" },
+        "required": false,
+        "description": "Specify the content to be placed in the ModalHeader"
+      },
+      "closeModal": {
+        "type": { "name": "func" },
+        "required": false,
+        "description": "Provide an optional function to be called when the modal is closed"
+      }
+    }
+  },
+  "ModalBody": {
+    "description": "",
+    "displayName": "ModalBody",
+    "props": {
+      "className": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Specify an optional className to be added to the Modal Body node"
+      },
+      "hasForm": {
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Provide whether the modal content has a form element.\nIf `true` is used here, non-form child content should have `bx--modal-content__regular-content` class."
+      },
+      "hasScrollingContent": {
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Specify whether the modal contains scrolling content"
+      },
+      "aria-label": {
+        "type": {
+          "name": "custom",
+          "raw": "requiredIfGivenPropExists(\n  'hasScrollingContent',\n  PropTypes.string\n)"
+        },
+        "required": false,
+        "description": "Required props for the accessibility label of the header"
+      }
+    }
+  },
+  "ModalFooter": {
+    "description": "",
+    "displayName": "ModalFooter",
+    "props": {
+      "onRequestClose": {
+        "defaultValue": { "value": "() => {}", "computed": false },
+        "type": { "name": "func" },
+        "required": false,
+        "description": "Specify an optional function for when the modal is requesting to be\nclosed"
+      },
+      "onRequestSubmit": {
+        "defaultValue": { "value": "() => {}", "computed": false },
+        "type": { "name": "func" },
+        "required": false,
+        "description": "Specify an optional function for when the modal is requesting to be\nsubmitted"
+      },
+      "className": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Specify a custom className to be applied to the Modal Footer container"
+      },
+      "primaryClassName": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Specify a custom className to be applied to the primary button"
+      },
+      "primaryButtonText": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Specify the text for the primary button"
+      },
+      "primaryButtonDisabled": {
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Specify whether the primary button should be disabled"
+      },
+      "secondaryClassName": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Specify a custom className to be applied to the secondary button"
+      },
+      "secondaryButtonText": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Specify the text for the secondary button"
+      },
+      "danger": {
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Specify whether the primary button should be replaced with danger button.\nNote that this prop is not applied if you render primary/danger button by yourself"
+      },
+      "closeModal": {
+        "type": { "name": "func" },
+        "required": false,
+        "description": "Specify an optional function that is called whenever the modal is closed"
+      },
+      "children": {
+        "type": { "name": "node" },
+        "required": false,
+        "description": "Pass in content that will be rendered in the Modal Footer"
+      }
+    }
+  },
   "ContentSwitcher": {
     "description": "",
     "displayName": "ContentSwitcher",
@@ -514,6 +756,18 @@
         "type": { "name": "number" },
         "required": false,
         "description": "Specify a selected index for the initially selected content"
+      },
+      "selectionMode": {
+        "defaultValue": { "value": "'automatic'", "computed": false },
+        "type": {
+          "name": "enum",
+          "value": [
+            { "value": "'automatic'", "computed": false },
+            { "value": "'manual'", "computed": false }
+          ]
+        },
+        "required": false,
+        "description": "Choose whether or not to automatically change selection on focus"
       },
       "children": {
         "type": { "name": "node" },
@@ -624,6 +878,26 @@
         "required": false,
         "description": "Provide a string for the current locale"
       },
+      "size": {
+        "defaultValue": { "value": "'normal'", "computed": false },
+        "type": {
+          "name": "enum",
+          "value": [
+            { "value": "'compact'", "computed": false },
+            { "value": "'short'", "computed": false },
+            { "value": "'normal'", "computed": false },
+            { "value": "'tall'", "computed": false }
+          ]
+        },
+        "required": false,
+        "description": "`normal` Change the row height of table"
+      },
+      "overflowMenuOnHover": {
+        "defaultValue": { "value": "true", "computed": false },
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Specify whether the overflow menu (if it exists) should be shown always, or only on hover"
+      },
       "translateWithId": {
         "defaultValue": {
           "value": "id => defaultTranslations[id]",
@@ -689,6 +963,12 @@
         "type": { "name": "bool" },
         "required": false,
         "description": "`false` If true, will apply sorting styles"
+      },
+      "overflowMenuOnHover": {
+        "defaultValue": { "value": "true", "computed": false },
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Specify whether the overflow menu (if it exists) should be shown always, or only on hover"
       },
       "className": {
         "type": { "name": "string" },
@@ -855,7 +1135,48 @@
   },
   "TableExpandHeader": {
     "description": "",
-    "displayName": "TableExpandHeader"
+    "displayName": "TableExpandHeader",
+    "props": {
+      "className": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": ""
+      },
+      "children": {
+        "type": { "name": "node" },
+        "required": false,
+        "description": ""
+      },
+      "ariaLabel": {
+        "type": {
+          "name": "custom",
+          "raw": "requiredIfGivenPropExists('enableExpando', PropTypes.string)"
+        },
+        "required": false,
+        "description": "Specify the string read by a voice reader when the expand trigger is\nfocused"
+      },
+      "isExpanded": {
+        "type": {
+          "name": "custom",
+          "raw": "requiredIfGivenPropExists('enableExpando', PropTypes.bool)"
+        },
+        "required": false,
+        "description": "Specify whether this row is expanded or not. This helps coordinate data\nattributes so that `TableExpandRow` and `TableExapndedRow` work together"
+      },
+      "onExpand": {
+        "type": {
+          "name": "custom",
+          "raw": "requiredIfGivenPropExists('enableExpando', PropTypes.func)"
+        },
+        "required": false,
+        "description": "Hook for when a listener initiates a request to expand the given row"
+      },
+      "expandIconDescription": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "The description of the chevron right icon, to be put in its SVG `<title>` element."
+      }
+    }
   },
   "TableExpandRow": {
     "description": "",
@@ -954,6 +1275,11 @@
         "type": { "name": "node" },
         "required": false,
         "description": "Pass in children that will be embedded in the table header label"
+      },
+      "colSpan": {
+        "type": { "name": "number" },
+        "required": false,
+        "description": "Specify `colSpan` as a non-negative integer value to indicate how\nmany columns the TableHeader cell extends in a table"
       },
       "isSortHeader": {
         "type": { "name": "bool" },
@@ -1090,6 +1416,17 @@
         "type": { "name": "node" },
         "required": false,
         "description": "Pass in the children that will be rendered inside the TableToolbar"
+      },
+      "size": {
+        "type": {
+          "name": "enum",
+          "value": [
+            { "value": "'small'", "computed": false },
+            { "value": "'normal'", "computed": false }
+          ]
+        },
+        "required": false,
+        "description": "`normal` Change the row height of table"
       }
     },
     "composes": ["../../prop-types/AriaPropTypes"]
@@ -1119,6 +1456,15 @@
     "description": "",
     "displayName": "TableToolbarSearch",
     "props": {
+      "tabIndex": {
+        "defaultValue": { "value": "'0'", "computed": false },
+        "type": {
+          "name": "union",
+          "value": [{ "name": "number" }, { "name": "string" }]
+        },
+        "required": false,
+        "description": "Optional prop to specify the tabIndex of the <Search> (in expanded state) or the container (in collapsed state)"
+      },
       "translateWithId": {
         "defaultValue": {
           "value": "id => {\n  return translationKeys[id];\n}",
@@ -1379,27 +1725,42 @@
           "value": "'\\\\d{1,2}\\\\/\\\\d{1,2}\\\\/\\\\d{4}'",
           "computed": false
         },
-        "required": false
+        "type": {
+          "name": "custom",
+          "raw": "(props, propName, componentName) => {\n  if (props[propName] === undefined) {\n    return;\n  }\n  try {\n    new RegExp(props[propName]);\n  } catch (e) {\n    return new Error(\n      `Invalid value of prop '${propName}' supplied to '${componentName}', it should be a valid regular expression`\n    );\n  }\n}"
+        },
+        "required": false,
+        "description": "Provide a regular expression that the input value must match"
       },
       "type": {
         "defaultValue": { "value": "'text'", "computed": false },
-        "required": false
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Specify the type of the <input>"
       },
       "disabled": {
         "defaultValue": { "value": "false", "computed": false },
-        "required": false
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Specify whether or not the input should be disabled"
       },
       "invalid": {
         "defaultValue": { "value": "false", "computed": false },
-        "required": false
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Specify whether or not the input should be invalid"
       },
       "onClick": {
         "defaultValue": { "value": "() => {}", "computed": false },
-        "required": false
+        "type": { "name": "func" },
+        "required": false,
+        "description": "Provide a function to be called when the input field is clicked"
       },
       "onChange": {
         "defaultValue": { "value": "() => {}", "computed": false },
-        "required": false
+        "type": { "name": "func" },
+        "required": false,
+        "description": "Specify an `onChange` handler that is called whenever a change in the\ninput field has occurred"
       },
       "id": {
         "type": { "name": "string" },
@@ -1415,6 +1776,17 @@
         "type": { "name": "node" },
         "required": true,
         "description": "Provide the text that will be read by a screen reader when visiting this\ncontrol"
+      },
+      "size": {
+        "type": {
+          "name": "enum",
+          "value": [
+            { "value": "'sm'", "computed": false },
+            { "value": "'xl'", "computed": false }
+          ]
+        },
+        "required": false,
+        "description": "Specify the size of the Date Picker Input. Currently supports either `sm` or `xl` as an option."
       }
     }
   },
@@ -1473,6 +1845,18 @@
         "required": false,
         "description": "Provide helper text that is used alongside the control label for\nadditional help"
       },
+      "direction": {
+        "defaultValue": { "value": "'bottom'", "computed": false },
+        "type": {
+          "name": "enum",
+          "value": [
+            { "value": "'top'", "computed": false },
+            { "value": "'bottom'", "computed": false }
+          ]
+        },
+        "required": false,
+        "description": "Specify the direction of the dropdown. Can be either top or bottom."
+      },
       "items": {
         "type": { "name": "array" },
         "required": true,
@@ -1526,6 +1910,11 @@
         "required": false,
         "description": "'aria-label' of the ListBox component."
       },
+      "size": {
+        "type": { "name": "custom", "raw": "ListBoxPropTypes.ListBoxSize" },
+        "required": false,
+        "description": "Specify the size of the ListBox. Currently supports either `sm` or `xl` as an option."
+      },
       "selectedItem": {
         "type": {
           "name": "union",
@@ -1542,6 +1931,22 @@
         },
         "required": false,
         "description": "Additional props passed to Downshift"
+      }
+    }
+  },
+  "ErrorBoundary": {
+    "description": "React introduced additional lifecycle methods in v16 for capturing errors\nthat occur in a specific sub-tree of components. This component helps to\nconsolidate some of the duplication that occurs when using these lifecycle\nmethods across a codebase. In addition, it allows you to specify the fallback\nUI to display when an error occurs in the sub-tree through the `fallback`\nprop.\n\nThis component roughly follows the React.js docs example code for these\nmethods. In addition, it takes advantage of an `ErrorBoundaryContext` so that\nconsumers can specify their own logic for logging errors. For example,\nreporting an error in the UI to an external service for every `ErrorBoundary`\nused.\n\nReference:\nhttps://reactjs.org/docs/error-boundaries.html#introducing-error-boundaries",
+    "displayName": "ErrorBoundary",
+    "props": {
+      "children": {
+        "type": { "name": "node" },
+        "required": false,
+        "description": ""
+      },
+      "fallback": {
+        "type": { "name": "node" },
+        "required": false,
+        "description": ""
       }
     }
   },
@@ -1616,10 +2021,27 @@
         "required": false,
         "description": "Provide a name for the underlying <input> node"
       },
+      "onChange": {
+        "type": { "name": "func" },
+        "required": false,
+        "description": "Provide an optional `onChange` hook that is called each time the input is\nchanged"
+      },
       "className": {
         "type": { "name": "string" },
         "required": false,
         "description": "Provide a custom className to be applied to the container node"
+      },
+      "size": {
+        "type": {
+          "name": "enum",
+          "value": [
+            { "value": "'default'", "computed": false },
+            { "value": "'field'", "computed": false },
+            { "value": "'small'", "computed": false }
+          ]
+        },
+        "required": false,
+        "description": "Specify the size of the FileUploaderButton, from a list of available\nsizes. For `default` buttons, this prop can remain unspecified."
       }
     }
   },
@@ -1737,6 +2159,18 @@
         "type": { "name": "string" },
         "required": false,
         "description": "Provide a name for the underlying <input> node"
+      },
+      "size": {
+        "type": {
+          "name": "enum",
+          "value": [
+            { "value": "'default'", "computed": false },
+            { "value": "'field'", "computed": false },
+            { "value": "'small'", "computed": false }
+          ]
+        },
+        "required": false,
+        "description": "Specify the size of the button, from a list of available sizes.\nFor `default` buttons, this prop can remain unspecified."
       }
     }
   },
@@ -1805,12 +2239,6 @@
     "description": "",
     "displayName": "FileUploaderItem",
     "props": {
-      "uuid": {
-        "defaultValue": { "value": "uid()", "computed": true },
-        "type": { "name": "string" },
-        "required": false,
-        "description": "Unique identifier for the file object"
-      },
       "status": {
         "defaultValue": { "value": "'uploading'", "computed": false },
         "type": {
@@ -1829,6 +2257,11 @@
         "type": { "name": "func" },
         "required": false,
         "description": "Event handler that is called after removing a file from the file uploader\nThe event handler signature looks like `onDelete(evt, { uuid })`"
+      },
+      "uuid": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Unique identifier for the file object"
       },
       "name": {
         "type": { "name": "string" },
@@ -1946,6 +2379,124 @@
         "type": { "name": "string" },
         "required": false,
         "description": "Provide a unique id for the given <FormLabel>"
+      }
+    }
+  },
+  "Grid": {
+    "description": "",
+    "displayName": "Grid",
+    "props": {
+      "as": {
+        "defaultValue": { "value": "'div'", "computed": false },
+        "type": {
+          "name": "union",
+          "value": [{ "name": "string" }, { "name": "elementType" }]
+        },
+        "required": false,
+        "description": "Provide a custom element to render instead of the default <div>"
+      },
+      "condensed": {
+        "defaultValue": { "value": "false", "computed": false },
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Collapse the gutter to 2px. Useful for fluid layouts.\nRows have 2px of margin between them to match gutter."
+      },
+      "fullWidth": {
+        "defaultValue": { "value": "false", "computed": false },
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Remove the default max width that the grid has set"
+      },
+      "className": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Specify a custom className to be applied to the `Grid`"
+      },
+      "children": {
+        "type": { "name": "node" },
+        "required": false,
+        "description": "Pass in content that will be rendered within the `Grid`"
+      }
+    }
+  },
+  "Row": {
+    "description": "",
+    "displayName": "Row",
+    "props": {
+      "as": {
+        "defaultValue": { "value": "'div'", "computed": false },
+        "type": {
+          "name": "union",
+          "value": [{ "name": "string" }, { "name": "elementType" }]
+        },
+        "required": false,
+        "description": "Provide a custom element to render instead of the default <div>"
+      },
+      "condensed": {
+        "defaultValue": { "value": "false", "computed": false },
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Specify a single row as condensed.Rows that are adjacent\nand are condensed will have 2px of margin between them to match gutter."
+      },
+      "className": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Specify a custom className to be applied to the `Row`"
+      },
+      "children": {
+        "type": { "name": "node" },
+        "required": false,
+        "description": "Pass in content that will be rendered within the `Row`"
+      }
+    }
+  },
+  "Column": {
+    "description": "",
+    "displayName": "Column",
+    "props": {
+      "as": {
+        "defaultValue": { "value": "'div'", "computed": false },
+        "type": {
+          "name": "union",
+          "value": [{ "name": "string" }, { "name": "elementType" }]
+        },
+        "required": false,
+        "description": "Provide a custom element to render instead of the default <div>"
+      },
+      "sm": {
+        "type": { "name": "custom", "raw": "spanPropType" },
+        "required": false,
+        "description": "Specify column span for the `sm` breakpoint (Default breakpoint up to 672px)\nThis breakpoint supports 4 columns by default.\n\n@see https://www.carbondesignsystem.com/guidelines/layout#breakpoints"
+      },
+      "md": {
+        "type": { "name": "custom", "raw": "spanPropType" },
+        "required": false,
+        "description": "Specify column span for the `md` breakpoint (Default breakpoint up to 1056px)\nThis breakpoint supports 8 columns by default.\n\n@see https://www.carbondesignsystem.com/guidelines/layout#breakpoints"
+      },
+      "lg": {
+        "type": { "name": "custom", "raw": "spanPropType" },
+        "required": false,
+        "description": "Specify column span for the `lg` breakpoint (Default breakpoint up to 1312px)\nThis breakpoint supports 16 columns by default.\n\n@see https://www.carbondesignsystem.com/guidelines/layout#breakpoints"
+      },
+      "xlg": {
+        "type": { "name": "custom", "raw": "spanPropType" },
+        "required": false,
+        "description": "Specify column span for the `xlg` breakpoint (Default breakpoint up to\n1584px) This breakpoint supports 16 columns by default.\n\n@see https://www.carbondesignsystem.com/guidelines/layout#breakpoints"
+      },
+      "max": {
+        "type": { "name": "custom", "raw": "spanPropType" },
+        "required": false,
+        "description": "Specify column span for the `max` breakpoint. This breakpoint supports 16\ncolumns by default.\n\n@see https://www.carbondesignsystem.com/guidelines/layout#breakpoints"
+      },
+      "className": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Specify a custom className to be applied to the `Column`"
+      },
+      "children": {
+        "type": { "name": "node" },
+        "required": false,
+        "description": "Pass in content that will be rendered within the `Column`"
       }
     }
   },
@@ -2110,6 +2661,11 @@
         "type": { "name": "bool" },
         "required": false,
         "description": "Specify whether you want the inline version of this control"
+      },
+      "visited": {
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Specify whether you want the link to receive visited styles after the link has been clicked"
       }
     }
   },
@@ -2160,10 +2716,172 @@
         "required": false,
         "description": "Specify an description that would be used to best describe the loading state"
       },
+      "id": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Provide an `id` to uniquely identify the label"
+      },
       "className": {
         "type": { "name": "string" },
         "required": false,
         "description": "Provide an optional className to be applied to the containing node"
+      }
+    }
+  },
+  "Modal": {
+    "description": "",
+    "displayName": "Modal",
+    "props": {
+      "onRequestClose": {
+        "defaultValue": { "value": "() => {}", "computed": false },
+        "type": { "name": "func" },
+        "required": false,
+        "description": "Specify a handler for closing modal.\nThe handler should care of closing modal, e.g. changing `open` prop."
+      },
+      "onRequestSubmit": {
+        "defaultValue": { "value": "() => {}", "computed": false },
+        "type": { "name": "func" },
+        "required": false,
+        "description": "Specify a handler for \"submitting\" modal.\nThe handler should care of closing modal, e.g. changing `open` prop, if necessary."
+      },
+      "primaryButtonDisabled": {
+        "defaultValue": { "value": "false", "computed": false },
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Specify whether the Button should be disabled, or not"
+      },
+      "onKeyDown": {
+        "defaultValue": { "value": "() => {}", "computed": false },
+        "type": { "name": "func" },
+        "required": false,
+        "description": "Specify a handler for keypresses."
+      },
+      "passiveModal": {
+        "defaultValue": { "value": "false", "computed": false },
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Specify whether the modal should be button-less"
+      },
+      "iconDescription": {
+        "defaultValue": { "value": "'Close'", "computed": false },
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Provide a description for \"close\" icon that can be read by screen readers"
+      },
+      "modalHeading": {
+        "defaultValue": { "value": "''", "computed": false },
+        "type": { "name": "node" },
+        "required": false,
+        "description": "Specify the content of the modal header title."
+      },
+      "modalLabel": {
+        "defaultValue": { "value": "''", "computed": false },
+        "type": { "name": "node" },
+        "required": false,
+        "description": "Specify the content of the modal header label."
+      },
+      "selectorPrimaryFocus": {
+        "defaultValue": {
+          "value": "'[data-modal-primary-focus]'",
+          "computed": false
+        },
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Specify a CSS selector that matches the DOM element that should\nbe focused when the Modal opens"
+      },
+      "hasScrollingContent": {
+        "defaultValue": { "value": "false", "computed": false },
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Specify whether the modal contains scrolling content"
+      },
+      "children": {
+        "type": { "name": "node" },
+        "required": false,
+        "description": "Provide the contents of your Modal"
+      },
+      "className": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Specify an optional className to be applied to the modal root node"
+      },
+      "hasForm": {
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Provide whether the modal content has a form element.\nIf `true` is used here, non-form child content should have `bx--modal-content__regular-content` class."
+      },
+      "id": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Specify the DOM element ID of the top-level node."
+      },
+      "modalAriaLabel": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Specify a label to be read by screen readers on the modal root node"
+      },
+      "secondaryButtonText": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Specify the text for the secondary button"
+      },
+      "primaryButtonText": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Specify the text for the primary button"
+      },
+      "open": {
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Specify whether the Modal is currently open"
+      },
+      "onSecondarySubmit": {
+        "type": { "name": "func" },
+        "required": false,
+        "description": "Specify a handler for the secondary button.\nUseful if separate handler from `onRequestClose` is desirable"
+      },
+      "danger": {
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Specify whether the Modal is for dangerous actions"
+      },
+      "shouldSubmitOnEnter": {
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Specify if Enter key should be used as \"submit\" action"
+      },
+      "selectorsFloatingMenus": {
+        "type": { "name": "arrayOf", "value": { "name": "string" } },
+        "required": false,
+        "description": "Specify CSS selectors that match DOM elements working as floating menus.\nFocusing on those elements won't trigger \"focus-wrap\" behavior"
+      },
+      "size": {
+        "type": {
+          "name": "enum",
+          "value": [
+            { "value": "'xs'", "computed": false },
+            { "value": "'sm'", "computed": false },
+            { "value": "'lg'", "computed": false }
+          ]
+        },
+        "required": false,
+        "description": "Specify the size variant."
+      },
+      "focusTrap": {
+        "type": {
+          "name": "custom",
+          "raw": "deprecate(\n  PropTypes.bool,\n  `\\nThe prop \\`focusTrap\\` for Modal has been deprecated, as the feature of \\`focusTrap\\` runs by default.`\n)"
+        },
+        "required": false,
+        "description": "Deprecated; Used for advanced focus-wrapping feature using 3rd party library,\nbut it's now achieved without a 3rd party library."
+      },
+      "aria-label": {
+        "type": {
+          "name": "custom",
+          "raw": "requiredIfGivenPropExists(\n  'hasScrollingContent',\n  PropTypes.string\n)"
+        },
+        "required": false,
+        "description": "Required props for the accessibility label of the header"
       }
     }
   },
@@ -2372,6 +3090,18 @@
         "required": false,
         "description": "Specify feedback (mode) of the selection.\n`top`: selected item jumps to top\n`fixed`: selected item stays at it's position\n`top-after-reopen`: selected item jump to top after reopen dropdown"
       },
+      "direction": {
+        "defaultValue": { "value": "'bottom'", "computed": false },
+        "type": {
+          "name": "enum",
+          "value": [
+            { "value": "'top'", "computed": false },
+            { "value": "'bottom'", "computed": false }
+          ]
+        },
+        "required": false,
+        "description": "Specify the direction of the multiselect dropdown. Can be either top or bottom."
+      },
       "id": {
         "type": { "name": "string" },
         "required": true,
@@ -2391,6 +3121,11 @@
         "type": { "name": "func" },
         "required": false,
         "description": "`onChange` is a utility for this controlled component to communicate to a\nconsuming component what kind of internal state changes are occuring."
+      },
+      "size": {
+        "type": { "name": "custom", "raw": "ListBoxPropTypes.ListBoxSize" },
+        "required": false,
+        "description": "Specify the size of the ListBox. Currently supports either `sm`, `lg` or `xl` as an option."
       },
       "useTitleInItem": {
         "type": { "name": "bool" },
@@ -2509,6 +3244,11 @@
         "type": { "name": "node" },
         "required": false,
         "description": "Specify the sub-title"
+      },
+      "statusIconDescription": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Provide a description for \"status\" icon that can be read by screen readers"
       }
     }
   },
@@ -2588,6 +3328,11 @@
         "type": { "name": "node" },
         "required": false,
         "description": "Specify the sub-title"
+      },
+      "statusIconDescription": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Provide a description for \"status\" icon that can be read by screen readers"
       }
     }
   },
@@ -2990,6 +3735,16 @@
         "type": { "name": "func" },
         "required": false,
         "description": "Optional callback called if a ProgressStep is clicked on.  Returns the index of the step."
+      },
+      "vertical": {
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Determines whether or not the ProgressIndicator should be rendered vertically."
+      },
+      "spaceEqually": {
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Specify whether the progress steps should be split equally in size in the div"
       }
     }
   },
@@ -3005,6 +3760,15 @@
         "type": { "name": "func" },
         "required": false,
         "description": ""
+      },
+      "translateWithId": {
+        "defaultValue": {
+          "value": "function translateWithId(messageId) {\n  return defaultTranslations[messageId];\n}",
+          "computed": false
+        },
+        "type": { "name": "func" },
+        "required": false,
+        "description": "Optional method that takes in a message id and returns an\ninternationalized string."
       },
       "index": {
         "type": { "name": "number" },
@@ -3305,15 +4069,6 @@
         "required": false,
         "description": "Specify whether you want the inline version of this control"
       },
-      "iconDescription": {
-        "defaultValue": {
-          "value": "'open list of options'",
-          "computed": false
-        },
-        "type": { "name": "string" },
-        "required": false,
-        "description": "Provide a description for the twistie icon that can be read by screen readers"
-      },
       "invalid": {
         "defaultValue": { "value": "false", "computed": false },
         "type": { "name": "bool" },
@@ -3363,6 +4118,14 @@
         "required": false,
         "description": "Optionally provide the default value of the `<select>`"
       },
+      "iconDescription": {
+        "type": {
+          "name": "custom",
+          "raw": "deprecate(\n  PropTypes.string,\n  'The `iconDescription` prop for `Select` is no longer needed and has ' +\n    'been deprecated. It will be moved in the next major release.'\n)"
+        },
+        "required": false,
+        "description": "Provide a description for the twistie icon that can be read by screen readers"
+      },
       "hideLabel": {
         "type": { "name": "bool" },
         "required": false,
@@ -3372,6 +4135,17 @@
         "type": { "name": "bool" },
         "required": false,
         "description": "Reserved for use with <Pagination> component. Will not render a label for the\nselect since Pagination renders one for us."
+      },
+      "size": {
+        "type": {
+          "name": "enum",
+          "value": [
+            { "value": "'sm'", "computed": false },
+            { "value": "'xl'", "computed": false }
+          ]
+        },
+        "required": false,
+        "description": "Specify the size of the Select Input. Currently supports either `sm` or `xl` as an option."
       }
     }
   },
@@ -3502,11 +4276,11 @@
         "required": false,
         "description": "A value determining how much the value should increase/decrease by moving the thumb by mouse."
       },
-      "stepMuliplier": {
+      "stepMultiplier": {
         "defaultValue": { "value": "4", "computed": false },
         "type": { "name": "number" },
         "required": false,
-        "description": "A value determining how much the value should increase/decrease by Shift+arrow keys,\nwhich will be `(max - min) / stepMuliplier`."
+        "description": "A value determining how much the value should increase/decrease by Shift+arrow keys,\nwhich will be `(max - min) / stepMultiplier`."
       },
       "disabled": {
         "defaultValue": { "value": "false", "computed": false },
@@ -3589,6 +4363,14 @@
         "required": false,
         "description": "The label for the slider."
       },
+      "stepMuliplier": {
+        "type": {
+          "name": "custom",
+          "raw": "deprecate(\n  PropTypes.number,\n  ' The `stepMuliplier` prop has been deprecated in favor of `stepMultiplier`. It will be removed in the next major release.'\n)"
+        },
+        "required": false,
+        "description": "A value determining how much the value should increase/decrease by Shift+arrow keys,\nwhich will be `(max - min) / stepMuliplier`."
+      },
       "children": {
         "type": { "name": "node" },
         "required": false,
@@ -3605,12 +4387,6 @@
     "description": "",
     "displayName": "StructuredListWrapper",
     "props": {
-      "border": {
-        "defaultValue": { "value": "false", "computed": false },
-        "type": { "name": "bool" },
-        "required": false,
-        "description": "Specify whether a border should be added to your StructuredListWrapper"
-      },
       "selection": {
         "defaultValue": { "value": "false", "computed": false },
         "type": { "name": "bool" },
@@ -3635,6 +4411,14 @@
         "type": { "name": "string" },
         "required": false,
         "description": "Specify an optional className to be applied to the container node"
+      },
+      "border": {
+        "type": {
+          "name": "custom",
+          "raw": "deprecate(\n  PropTypes.bool,\n  `\\nThe prop \\`border\\` will be removed in the next major version of Carbon.`\n)"
+        },
+        "required": false,
+        "description": "Specify whether a border should be added to your StructuredListWrapper"
       }
     }
   },
@@ -3848,6 +4632,11 @@
         "required": false,
         "description": "Provide a handler that is invoked on the key down event for the control"
       },
+      "id": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "The element ID for the top-level element."
+      },
       "className": {
         "type": { "name": "string" },
         "required": false,
@@ -3857,11 +4646,6 @@
         "type": { "name": "func" },
         "required": false,
         "description": "A handler that is invoked when a user clicks on the control.\nReserved for usage in Tabs"
-      },
-      "handleTabAnchorFocus": {
-        "type": { "name": "func" },
-        "required": false,
-        "description": "A handler that is invoked when a user presses left/right key.\nReserved for usage in Tabs"
       },
       "handleTabKeyDown": {
         "type": { "name": "func" },
@@ -3895,6 +4679,11 @@
         "required": false,
         "description": "Specify whether the TabContent is selected"
       },
+      "className": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Provide a className for the tab content container"
+      },
       "children": {
         "type": { "name": "node" },
         "required": false,
@@ -3916,7 +4705,7 @@
         "defaultValue": { "value": "'navigation'", "computed": false },
         "type": { "name": "string" },
         "required": false,
-        "description": "Specify whether the Tab content is hidden\n    hidden: PropTypes.bool,\n\n    /**\nBy default, this value is \"navigation\". You can also provide an alternate\nrole if it makes sense from the accessibility-side"
+        "description": "By default, this value is \"navigation\". You can also provide an alternate\nrole if it makes sense from the accessibility-side"
       },
       "type": {
         "defaultValue": { "value": "'default'", "computed": false },
@@ -3948,6 +4737,18 @@
         "required": false,
         "description": "Specify the text to be read by screen-readers when visiting the <Tabs>\ncomponent"
       },
+      "selectionMode": {
+        "defaultValue": { "value": "'automatic'", "computed": false },
+        "type": {
+          "name": "enum",
+          "value": [
+            { "value": "'automatic'", "computed": false },
+            { "value": "'manual'", "computed": false }
+          ]
+        },
+        "required": false,
+        "description": "Choose whether or not to automatically change selection on focus"
+      },
       "children": {
         "type": { "name": "node" },
         "required": false,
@@ -3957,6 +4758,11 @@
         "type": { "name": "string" },
         "required": false,
         "description": "Provide a className that is applied to the root <nav> component for the\n<Tabs>"
+      },
+      "hidden": {
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Specify whether the Tab content is hidden"
       },
       "onClick": {
         "type": { "name": "func" },
@@ -4010,7 +4816,7 @@
             { "value": "\"warm-gray\"", "computed": false }
           ]
         },
-        "required": true,
+        "required": false,
         "description": "Specify the type of the <Tag>"
       },
       "disabled": {
@@ -4027,6 +4833,11 @@
         "type": { "name": "string" },
         "required": false,
         "description": "Text to show on clear filters"
+      },
+      "onClose": {
+        "type": { "name": "func" },
+        "required": false,
+        "description": "Click handler for filter tag close button."
       }
     }
   },
@@ -4135,6 +4946,15 @@
   "TextInput": {
     "description": "",
     "props": {
+      "className": {
+        "defaultValue": {
+          "value": "`${prefix}--text__input`",
+          "computed": false
+        },
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Specify an optional className to be applied to the <input> node"
+      },
       "disabled": {
         "defaultValue": { "value": "false", "computed": false },
         "type": { "name": "bool" },
@@ -4183,11 +5003,6 @@
         "required": false,
         "description": "`true` to use the light version."
       },
-      "className": {
-        "type": { "name": "string" },
-        "required": false,
-        "description": "Specify an optional className to be applied to the <input> node"
-      },
       "defaultValue": {
         "type": {
           "name": "union",
@@ -4210,6 +5025,17 @@
         "type": { "name": "string" },
         "required": false,
         "description": "Specify the placeholder attribute for the <input>"
+      },
+      "size": {
+        "type": {
+          "name": "enum",
+          "value": [
+            { "value": "'sm'", "computed": false },
+            { "value": "'xl'", "computed": false }
+          ]
+        },
+        "required": false,
+        "description": "Specify the size of the Text Input. Currently supports either `sm` or `xl` as an option."
       },
       "value": {
         "type": {
@@ -4311,12 +5137,6 @@
         "required": false,
         "description": "The `title` of the `<input>`."
       },
-      "iconDescription": {
-        "defaultValue": { "value": "'Tile checkmark'", "computed": false },
-        "type": { "name": "string" },
-        "required": false,
-        "description": "The description of the checkmark icon."
-      },
       "selected": {
         "defaultValue": { "value": "false", "computed": false },
         "type": { "name": "bool" },
@@ -4368,6 +5188,14 @@
         "type": { "name": "string" },
         "required": false,
         "description": "The `name` of the `<input>`."
+      },
+      "iconDescription": {
+        "type": {
+          "name": "custom",
+          "raw": "deprecate(\n  PropTypes.string,\n  'The `iconDescription` prop for `RadioTile` is no longer needed and has ' +\n    'been deprecated. It will be moved in the next major release.'\n)"
+        },
+        "required": false,
+        "description": "The description of the checkmark icon."
       }
     }
   },
@@ -4472,12 +5300,6 @@
     "description": "",
     "displayName": "RadioTile",
     "props": {
-      "iconDescription": {
-        "defaultValue": { "value": "'Tile checkmark'", "computed": false },
-        "type": { "name": "string" },
-        "required": false,
-        "description": "The description of the tile checkmark icon."
-      },
       "onChange": {
         "defaultValue": { "value": "() => {}", "computed": false },
         "type": { "name": "func" },
@@ -4520,6 +5342,14 @@
         "type": { "name": "string" },
         "required": false,
         "description": "The `name` of the `<input>`."
+      },
+      "iconDescription": {
+        "type": {
+          "name": "custom",
+          "raw": "deprecate(\n  PropTypes.string,\n  'The `iconDescription` prop for `RadioTile` is no longer needed and has ' +\n    'been deprecated. It will be moved in the next major release.'\n)"
+        },
+        "required": false,
+        "description": "The description of the tile checkmark icon."
       },
       "value": {
         "type": {
@@ -4719,7 +5549,10 @@
       },
       "hideLabel": {
         "defaultValue": { "value": "true", "computed": false },
-        "type": { "name": "bool" },
+        "type": {
+          "name": "custom",
+          "raw": "deprecate(\n  PropTypes.bool,\n  'The `hideLabel` prop for `TimePickerSelect` is no longer needed and has ' +\n    'been deprecated. It will be removed in the next major release.'\n)"
+        },
         "required": false,
         "description": "Specify whether the label should be hidden, or not"
       },
@@ -4747,6 +5580,117 @@
         "type": { "name": "node" },
         "required": true,
         "description": "Provide label text to be read by screen readers when interacting with the\ncontrol"
+      }
+    }
+  },
+  "Toggle": {
+    "description": "",
+    "displayName": "Toggle",
+    "props": {
+      "defaultToggled": {
+        "defaultValue": { "value": "false", "computed": false },
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Specify whether the toggle should be on by default"
+      },
+      "aria-label": {
+        "defaultValue": { "value": "'Toggle'", "computed": false },
+        "type": { "name": "string" },
+        "required": false,
+        "description": ""
+      },
+      "labelA": {
+        "defaultValue": { "value": "'Off'", "computed": false },
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Specify the label for the \"off\" position"
+      },
+      "labelB": {
+        "defaultValue": { "value": "'On'", "computed": false },
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Specify the label for the \"on\" position"
+      },
+      "onToggle": {
+        "defaultValue": { "value": "() => {}", "computed": false },
+        "type": { "name": "func" },
+        "required": false,
+        "description": "Provide an optional hook that is called when the control is toggled"
+      },
+      "className": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Specify a custom className to apply to the form-item node"
+      },
+      "id": {
+        "type": { "name": "string" },
+        "required": true,
+        "description": "Provide an id that unique represents the underlying <input>"
+      },
+      "toggled": {
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Specify whether the control is toggled"
+      },
+      "labelText": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Provide the text that will be read by a screen reader when visiting this\ncontrol\n`aria-label` is always required but will be null if `labelText` is also\nprovided"
+      }
+    }
+  },
+  "ToggleSmall": {
+    "description": "",
+    "displayName": "ToggleSmall",
+    "props": {
+      "defaultToggled": {
+        "defaultValue": { "value": "false", "computed": false },
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "`true` to make it toggled on by default."
+      },
+      "onToggle": {
+        "defaultValue": { "value": "() => {}", "computed": false },
+        "type": { "name": "func" },
+        "required": false,
+        "description": "The event handler for the `onChange` event."
+      },
+      "labelA": {
+        "defaultValue": { "value": "'Off'", "computed": false },
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Specify the label for the \"off\" position"
+      },
+      "labelB": {
+        "defaultValue": { "value": "'On'", "computed": false },
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Specify the label for the \"on\" position"
+      },
+      "className": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "The CSS class for the toggle"
+      },
+      "id": {
+        "type": { "name": "string" },
+        "required": true,
+        "description": "The `id` attribute for the toggle"
+      },
+      "toggled": {
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "`true` to make it toggled on"
+      },
+      "labelText": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "The `aria-label` attribute for the toggle"
+      },
+      "aria-label": {
+        "type": { "name": "string" },
+        "required": true,
+        "description": ""
       }
     }
   },
@@ -4926,6 +5870,8 @@
           "name": "enum",
           "value": [
             { "value": "'top'", "computed": false },
+            { "value": "'right'", "computed": false },
+            { "value": "'left'", "computed": false },
             { "value": "'bottom'", "computed": false }
           ]
         },
@@ -5066,10 +6012,7 @@
             { "name": "array" },
             {
               "name": "shape",
-              "value": {
-                "key": { "name": "string", "required": false },
-                "header": { "name": "node", "required": false }
-              }
+              "value": { "key": { "name": "string", "required": false } }
             }
           ]
         },
@@ -5098,6 +6041,18 @@
         "type": { "name": "number" },
         "required": false,
         "description": "Set number of items to render"
+      },
+      "align": {
+        "defaultValue": { "value": "'end'", "computed": false },
+        "type": {
+          "name": "enum",
+          "value": [
+            { "value": "'start'", "computed": false },
+            { "value": "'end'", "computed": false }
+          ]
+        },
+        "required": false,
+        "description": "Specify the alignment of the accordion heading title and chevron."
       },
       "uid": {
         "type": { "name": "custom", "raw": "deprecate(PropTypes.any)" },
@@ -5169,7 +6124,7 @@
           ]
         },
         "required": false,
-        "description": "The type of code snippet\ncan be single or multi"
+        "description": "The type of the code snippet, including single or multi"
       },
       "className": {
         "type": { "name": "string" },
@@ -5219,6 +6174,17 @@
         "type": { "name": "string" },
         "required": false,
         "description": "Specify an optional className to add to the form item wrapper."
+      }
+    }
+  },
+  "PaginationSkeleton": {
+    "description": "",
+    "displayName": "PaginationSkeleton",
+    "props": {
+      "className": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Specify an optional className to add."
       }
     }
   },
@@ -5370,6 +6336,60 @@
       }
     }
   },
+  "ToggleSkeleton": {
+    "description": "",
+    "displayName": "ToggleSkeleton",
+    "props": {
+      "aria-label": {
+        "defaultValue": { "value": "'Toggle is loading'", "computed": false },
+        "type": { "name": "string" },
+        "required": false,
+        "description": ""
+      },
+      "id": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Provide an id that unique represents the underlying <input>"
+      },
+      "labelText": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Provide the text that will be read by a screen reader when visiting this\ncontrol\n`aria-label` is always required but will be null if `labelText` is also\nprovided"
+      },
+      "className": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Specify an optional className to add to the form item wrapper."
+      }
+    }
+  },
+  "ToggleSmallSkeleton": {
+    "description": "",
+    "displayName": "ToggleSmallSkeleton",
+    "props": {
+      "aria-label": {
+        "defaultValue": { "value": "'Toggle is loading'", "computed": false },
+        "type": { "name": "string" },
+        "required": false,
+        "description": ""
+      },
+      "id": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Provide an id that unique represents the underlying <input>"
+      },
+      "labelText": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Provide the text that will be read by a screen reader when visiting this\ncontrol\n`aria-label` is always required but will be null if `labelText` is also\nprovided"
+      },
+      "className": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Specify an optional className to add to the form item wrapper."
+      }
+    }
+  },
   "IconSkeleton": {
     "description": "",
     "displayName": "IconSkeleton",
@@ -5475,6 +6495,7 @@
     },
     "composes": ["../../prop-types/AriaPropTypes"]
   },
+  "HeaderMenu": { "description": "", "displayName": "HeaderMenu" },
   "HeaderMenuButton": {
     "description": "",
     "displayName": "HeaderMenuButton",
@@ -5514,6 +6535,11 @@
         "type": { "name": "string" },
         "required": false,
         "description": "Optionally supply a role for the underlying <li> node. Useful for resetting\n<ul> semantics for menus."
+      },
+      "isCurrentPage": {
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Applies selected styles to the item if a user sets this to true and aria-current !== 'page'."
       }
     },
     "composes": ["./Link"]
@@ -5651,7 +6677,7 @@
         },
         "type": { "name": "string" },
         "required": false,
-        "description": "Provide an optional class to be applied to the containing node"
+        "description": "Provide text to display in the SkipToContent `a` tag"
       },
       "href": {
         "defaultValue": { "value": "'#main-content'", "computed": false },
@@ -5906,7 +6932,7 @@
         "description": "Provide an icon to render in the side navigation link. Should be a React class."
       },
       "children": {
-        "type": { "name": "string" },
+        "type": { "name": "node" },
         "required": true,
         "description": "Specify the text content for the link"
       },
@@ -5934,6 +6960,7 @@
       }
     }
   },
+  "SideNavMenu": { "description": "", "displayName": "SideNavMenu" },
   "SideNavMenuItem": {
     "description": "",
     "props": {

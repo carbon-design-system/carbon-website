@@ -5,14 +5,20 @@ import ReactDOM from 'react-dom';
 /**
  * Simple state manager for modals.
  */
-const ModalStateManager = ({ renderLauncher, children }) => {
+const ModalStateManager = ({
+  renderLauncher: LauncherContent,
+  children: ModalContent,
+}) => {
   const [open, setOpen] = useState(false);
   return (
     <>
-      {!children || typeof document === 'undefined'
+      {!ModalContent || typeof document === 'undefined'
         ? null
-        : ReactDOM.createPortal(children({ open, setOpen }), document.body)}
-      {renderLauncher && renderLauncher({ open, setOpen })}
+        : ReactDOM.createPortal(
+            <ModalContent open={open} setOpen={setOpen} />,
+            document.body
+          )}
+      {LauncherContent && <LauncherContent open={open} setOpen={setOpen} />}
     </>
   );
 };
