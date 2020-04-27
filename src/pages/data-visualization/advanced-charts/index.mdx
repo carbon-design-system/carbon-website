@@ -17,39 +17,84 @@ Advanced charts are a powerful way to display complex data sets. While less intu
 
 <AnchorLinks>
 
-<AnchorLink>Alluvial diagram</AnchorLink>
-<AnchorLink>Heatmap</AnchorLink>
-<AnchorLink>Tree diagram</AnchorLink>
-<AnchorLink>Geography with overlays</AnchorLink>
+<AnchorLink>Alluvial diagrams</AnchorLink>
+<AnchorLink>Heatmaps</AnchorLink>
+<AnchorLink>Network diagrams</AnchorLink>
+<AnchorLink>Geospatial charts</AnchorLink>
 
 </AnchorLinks>
 
 ## Alluvial diagram
 
-Alluvial diagrams are a type of flow diagram that represents changes in network structure over time.
+Alluvial, or Sankey diagrams, are a type flow diagram designed to show two indicators of a dataset and how records distribute among them, highlighting correlations.
+
+Multiple blocks of two indicators can be placed next to each other creating a wider alluvial diagram but it’s crucial to consider that this specific kind of chart does not show correlations between indicators that are not directly connected. This is usually emphasized using different set of colors for each block.
 
 <Row>
-<Column  colLg={8} colMd={6} colSm={4} >
+<Column  colLg={12} colMd={8} colSm={4} >
 
-![Alluvial diagram](images/charts-adv-alluvial.png)
+![Alluvial diagram](images/01_adv_alluvial_928.png)
 
-<Caption>Example of an alluvial diagram</Caption>
+<Caption>Example of alluvial diagram made with two blocks</Caption>
+
+</Column>
+</Row>
+
+<Row>
+<Column  colLg={4} colMd={4} colSm={4} >
+
+![Alluvial node hover detail](images/02_adv_alluvial_detail_288.png)
+
+<Caption>Detail of an alluvial diagram on node hover</Caption>
+
+</Column>
+
+<Column  colLg={4} colMd={4} colSm={4} >
+
+![Alluvial link hover detail](images/03_adv_alluvial_288.png)
+
+<Caption>Detail of an alluvial diagram on link hover</Caption>
 
 </Column>
 </Row>
 
 ## Heat maps
 
-A heat map is a graphical representation of data where individual values contained in a matrix are represented as colors. In light themes, the darkest color denotes the largest value. In dark themes, the lightest color denotes the largest value.
+A heat map is a graphical representation of data where the individual values contained in a matrix are represented as colors. When it comes to heat maps, the most common color ranges are expressed in either sequential and diverging color scales according to the typology of data represented.
 
-Heat maps can leverage the full range of the palette (from 10-100) to maximize contrast. When there is no inflection point in the data (for example, a 0 value midway between -100 and +100), a one directional, sequential heat scale such as light cyan to dark cyan is the best visualization practice.
+#### Sequential scales
 
-The 1px stroke between the values helps add clarity and contrast — especially when the data is complex. However, generally speaking, the 3:1 min contrast requirement does not apply to heat maps.
+Sequential scales use a blended progression, typically of a single color, from the lightest to the darkest values, representing lows to highs. It’s best practice to use a sequential scale with values that are all positive or all negative. Sequential  heat maps can leverage the full range of the palette (from 10-100) to maximize contrast. Please note that the 3:1 minimum contrast requirement does not apply to heat maps.
 
 <Row>
-<Column  colLg={8} colMd={6} colSm={4} >
+<Column  colLg={12} colMd={8} colSm={4} >
 
-![Horizontal bar chart](images/charts-adv-heatmap.png)
+![Sequential heat map](images/04_adv_heatmap_928.png)
+
+<Caption>
+  When cells get extremely small, a white boarder can hinder the intended
+  affect.
+</Caption>
+
+</Column>
+</Row>
+
+#### Divergent scales
+
+Diverging scales show color progression in two directions: dialing down the first value from one end to a neutral color at the inflection point (for example, a 0 value midway between -100 and +100), then increasing the opacity of the second value to the darker end of the scale.
+
+Divergent scales require 3 colors for their 3 correspondent values (min, max and inflection point) and they are referred to as “symmetrical” when the min/max values match and “assymetrical” otherwise. Although some examples use the stepped scale provided by the Carbon palette, divergent heat maps often leverage continous values to accomodate situations that require more than 10 values.
+
+#### Inflection points
+
+While min/max values can be automatically detected from data, inflection points can vary depending on data type. We default to zero in order to accomodate the most common cases and include a feature flag within the code to specify exceptions.
+
+<Row>
+<Column  colLg={12} colMd={8} colSm={4} >
+
+![Divergent heat map](images/05_adv_heatmap_928.png)
+
+<Caption>Example of a symmetrical divergent heat map with cell borders</Caption>
 
 </Column>
 </Row>
