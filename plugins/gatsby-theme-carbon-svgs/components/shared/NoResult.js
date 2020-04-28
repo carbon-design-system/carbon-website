@@ -26,14 +26,13 @@ const NoResult = ({
         </span>
         <h2 className={h2}>
           {allIconResults} matches found in{' '}
-          <span
-            role="button"
-            tabIndex="0"
+          <button
+            type="button"
             onClick={() => setSelectedCategory(`All ${type}`)}
-            href="#"
-            className={cx(allSvgs, 'bx--link')}>
+            className={cx(allSvgs, 'bx--link')}
+          >
             all {type}.
-          </span>
+          </button>
         </h2>
       </>
     ) : (
@@ -50,7 +49,8 @@ const NoResult = ({
               subTitle={`Submit ${
                 pageName === 'icon' ? 'an icon' : 'a pictogram'
               } design`}
-              href="https://github.ibm.com/brand/pictograms/issues/new">
+              href="https://github.ibm.com/brand/pictograms/issues/new"
+            >
               <Github />
             </ResourceCard>
           </Column>
@@ -58,7 +58,8 @@ const NoResult = ({
             <ResourceCard
               actionIcon="download"
               href={pageUrl}
-              subTitle={`Download the ${pageName} grid`}>
+              subTitle={`Download the ${pageName} master`}
+            >
               <Illustrator />
             </ResourceCard>
           </Column>

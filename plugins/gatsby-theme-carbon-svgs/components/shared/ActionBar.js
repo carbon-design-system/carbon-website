@@ -1,10 +1,10 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import ReactDOMServer from 'react-dom/server';
-import React, { useRef, useContext, useState, useEffect } from 'react';
+import React, { useRef, useContext, useState } from 'react';
 import { pascalCase } from 'change-case';
 import { Code16, Download16 } from '@carbon/icons-react';
 import { TooltipDefinition } from 'carbon-components-react';
 import copy from 'copy-to-clipboard';
+import cx from 'classnames';
 import { LibraryContext } from './LibraryProvider';
 import styles from './ActionBar.module.scss';
 
@@ -25,14 +25,14 @@ const ActionBar = ({
   // Don't show copy button on IDL deployment
   const shouldShowCopyButton = site === 'carbon';
 
-  const handleBlurEvent = e => {
+  const handleBlurEvent = (e) => {
     const isStillFocusedWithin = actionBarRef.current.contains(e.relatedTarget);
     setIsActionBarVisible(isStillFocusedWithin);
   };
 
   const handleDownload = () => {
     const a = document.body.appendChild(document.createElement('a'));
-    const string = ReactDOMServer.renderToStaticMarkup(<Element />);
+    const string = Element.outerHTML;
     const blob = new Blob([string], { type: 'image/svg+xml' });
     const url = window.URL.createObjectURL(blob);
     a.download = `${name}.svg`;
@@ -43,23 +43,21 @@ const ActionBar = ({
 
   const handleCopy = () => {
     setCopyText('Copied!');
-    copy(component);
+    setTimeout(() => {
+      setCopyText(`Copy ${component}`);
+    }, 2000);
+    copy(component, { format: 'text/plain' });
   };
-
-  useEffect(() => {
-    if (copyText === 'Copied!') {
-      setTimeout(() => {
-        setCopyText(`Copy ${component}`);
-      }, 2000);
-    }
-  }, [copyText]);
 
   return (
     <div
       ref={actionBarRef}
       onBlur={handleBlurEvent}
-      hidden={!isActionBarVisible}
-      className={styles.container}>
+      aria-hidden={!isActionBarVisible}
+      className={cx(styles.container, {
+        [styles.hidden]: !isActionBarVisible,
+      })}
+    >
       <TooltipDefinition
         onFocus={() => setIsActionBarVisible(true)}
         onClick={handleDownload}
@@ -67,7 +65,8 @@ const ActionBar = ({
         direction="top"
         tooltipText="Download SVG"
         className={styles.tooltip}
-        triggerClassName={styles.trigger}>
+        triggerClassName={styles.trigger}
+      >
         <Download16 />
       </TooltipDefinition>
       {shouldShowCopyButton && (
@@ -78,7 +77,8 @@ const ActionBar = ({
           onClick={handleCopy}
           onFocus={() => setIsActionBarVisible(true)}
           className={styles.tooltip}
-          triggerClassName={styles.trigger}>
+          triggerClassName={styles.trigger}
+        >
           <Code16 />
         </TooltipDefinition>
       )}

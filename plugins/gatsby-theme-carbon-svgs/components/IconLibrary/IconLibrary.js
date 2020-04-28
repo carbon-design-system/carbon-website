@@ -1,10 +1,13 @@
 /* eslint-disable no-restricted-globals */
 /* eslint-disable no-debugger */
 import React, { useEffect, useState } from 'react';
-import { pickBy, groupBy, debounce } from 'lodash-es';
-import * as iconsReact from '@carbon/icons-react';
+import { groupBy, debounce } from 'lodash-es';
+import loadable from '@loadable/component';
 
-import iconMetaData from './iconMetaData';
+import {
+  icons as iconMetaData,
+  categories as iconCategoryMetadata,
+} from '@carbon/icons/metadata.json';
 import { svgPage, svgLibrary } from '../shared/SvgLibrary.module.scss';
 
 import FilterRow from '../shared/FilterRow';
@@ -21,28 +24,35 @@ const IconLibrary = () => {
   const debouncedSetSearchInputValue = debounce(setSearchInputValue, 200);
 
   useEffect(() => {
-    const iconComponentList = pickBy(
-      iconsReact,
-      (val, key) => key.slice(-2) === '32'
-    );
+    const iconArray = iconMetaData.reduce((accumulator, icon) => {
+      if (icon.deprecated) return accumulator;
 
-    const iconArray = Object.keys(iconMetaData).map(icon => ({
-      ...iconMetaData[icon],
-      // If the icon is unprefixed and starts with a number, add an underscore
-      Component:
-        iconComponentList[isNaN(icon[0]) ? `${icon}32` : `_${icon}32`] ||
-        iconComponentList[`WatsonHealth${icon}32`] ||
-        iconComponentList[`Q${icon}32`],
-    }));
+      const path = icon.namespace
+        ? `${icon.namespace}/${icon.name}`
+        : icon.name;
 
-    const filteredIcons = iconArray.filter(({ deprecated }) => !deprecated);
+      return [
+        ...accumulator,
+        {
+          ...icon,
+          Component: loadable(() =>
+            import(`@carbon/icons-react/lib/${path}/32`)
+          ),
+        },
+      ];
+    }, []);
 
     setCategoryList(
-      Object.keys(groupBy(filteredIcons, 'categories[0].name')).sort()
+      iconCategoryMetadata
+        .flatMap(({ subcategories }) =>
+          subcategories.flatMap(({ name }) => name)
+        )
+        .sort()
     );
+
     setCategoriesLoaded(true);
 
-    setIconComponents(filteredIcons);
+    setIconComponents(iconArray);
   }, []);
 
   const getFilteredIcons = () => {
@@ -51,22 +61,15 @@ const IconLibrary = () => {
     }
     return iconComponents.filter(
       // eslint-disable-next-line camelcase
-      ({ friendly_name, categories, aliases = [], name }) => {
+      ({ friendlyName, category, subcategory, aliases = [], name }) => {
         const searchValue = searchInputValue.toLowerCase();
         return (
-          friendly_name.toLowerCase().includes(searchValue) ||
-          aliases.some(alias =>
-            alias
-              .toString()
-              .toLowerCase()
-              .includes(searchValue)
+          friendlyName.toLowerCase().includes(searchValue) ||
+          aliases.some((alias) =>
+            alias.toString().toLowerCase().includes(searchValue)
           ) ||
-          (categories &&
-            categories[0] &&
-            categories[0].name.toLowerCase().includes(searchValue)) ||
-          (categories &&
-            categories[0] &&
-            categories[0].subcategory.toLowerCase().includes(searchValue)) ||
+          subcategory.toLowerCase().includes(searchValue) ||
+          category.toLowerCase().includes(searchValue) ||
           name.toLowerCase().includes(searchValue)
         );
       }
@@ -76,8 +79,8 @@ const IconLibrary = () => {
   const filteredIcons = getFilteredIcons();
 
   const allCategories = Object.entries(
-    groupBy(filteredIcons, 'categories[0].name')
-  );
+    groupBy(filteredIcons, 'subcategory')
+  ).sort();
 
   const filteredCategories =
     selectedCategory === 'All icons'
@@ -91,7 +94,7 @@ const IconLibrary = () => {
       <FilterRow
         categoryList={categoryList}
         selectedCategory={selectedCategory}
-        onSearchChange={e =>
+        onSearchChange={(e) =>
           debouncedSetSearchInputValue(e.currentTarget.value)
         }
         onDropdownChange={({ selectedItem }) =>

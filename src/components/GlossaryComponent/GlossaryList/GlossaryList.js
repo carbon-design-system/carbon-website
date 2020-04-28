@@ -8,10 +8,6 @@ const md = new Markdown({
 });
 
 class Glossary extends Component {
-  static propTypes = {
-    glossary: PropTypes.object,
-  };
-
   renderGlossaryEntry = (glossary, glossaryEntry) => {
     const entry = glossary[glossaryEntry];
     let counter = 0;
@@ -22,7 +18,7 @@ class Glossary extends Component {
           <span>{glossaryEntry}</span>
         </h2>
         {Object.keys(entry).map((list, i) => {
-          const listItems = Object.keys(entry[list]).map(word => {
+          const listItems = Object.keys(entry[list]).map((word) => {
             counter += 1;
             const currentWord = entry[list][word];
             let wordId = word.toLowerCase().replace(' ', '-');
@@ -62,7 +58,7 @@ class Glossary extends Component {
   render() {
     const { glossary } = this.props;
 
-    const navItems = Object.keys(glossary).map(glossaryEntry => {
+    const navItems = Object.keys(glossary).map((glossaryEntry) => {
       if (!(glossaryEntry === '__content')) {
         return this.renderGlossaryEntry(glossary, glossaryEntry);
       }
@@ -72,5 +68,9 @@ class Glossary extends Component {
     return <div className="glossary">{navItems}</div>;
   }
 }
+
+Glossary.propTypes = {
+  glossary: PropTypes.object,
+};
 
 export default Glossary;

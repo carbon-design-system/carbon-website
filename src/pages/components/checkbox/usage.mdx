@@ -1,71 +1,261 @@
 ---
 title: Checkbox
-description: Checkboxes are used for a list of options where the user may select multiple options, including all or none.
-tabs: ['Code', 'Usage', 'Style', 'Accessibility']
+description: Checkboxes are used when there are multiple items to select in a list. Users can select zero, one, or any number of items.
+tabs: ["Code", "Usage", "Style", "Accessibility"]
 ---
+
+<PageDescription>
+
+Checkboxes are used when there are multiple items to select in a list. Users can select zero, one, or any number of items.
+
+</PageDescription>
 
 <AnchorLinks>
 
-<AnchorLink>General guidance</AnchorLink>
-<AnchorLink>Related components</AnchorLink>
+<AnchorLink>Overview</AnchorLink>
+<AnchorLink>Formatting</AnchorLink>
 <AnchorLink>Content</AnchorLink>
-<AnchorLink>Tables</AnchorLink>
+<AnchorLink>Behaviors</AnchorLink>
+<AnchorLink>Related</AnchorLink>
+<AnchorLink>Feedback</AnchorLink>
+<AnchorLink>References</AnchorLink>
 
 </AnchorLinks>
 
-## General guidance
+## Overview
 
-Checkboxes are used for a list of options where the user may select multiple options, including all or none.
+Checkboxes are used for multiple choices, not for mutually exclusive choices. Each checkbox works independently from other checkboxes in the list, therefore checking an additional box does not affect any other selections.
 
-#### Checkbox states
+### When to use
 
-The checkbox control allows for three states: **selected**, **unselected**, and **indeterminate**. The indeterminate state comes into play when the checkbox contains a sublist of selections, some of which are selected, and some unselected.
+#### Forms
 
-#### Click target
+Can be used in forms on a full page, in modals, or on side panels.
 
-Users should be able to select the checkbox by clicking on the box directly or by clicking on its label.
+#### Filtering and batch action
 
-#### Default selection
+Used to filter data either on a page, in a menu, or within a component. Checkboxes are found in [Data table](https://www.carbondesignsystem.com/components/data-table/code) for batch editing purposes.
 
-The default view of a set of checkboxes is having no option selected.
+#### Terms and conditions
+
+Turning the checkbox input on or off can indicate whether you agree to the terms.
+
+#### Lists with sub-selections
+
+Used when there is a parent and child relationship. You can use a parent checkbox to make a bulk selection of all list items. Unchecking the parent deselects all of the list items. Alternatively, you can select children individually when the parent is not selected, which is where the indeterminate state comes in to play.
 
 <Row>
 <Column colLg={8}>
 
-![The default state for checkboxes is unchecked.](images/checkbox-usage-1.png)
+![Example of a full page filter list](images/checkbox-usage-1.png)
 
 </Column>
 </Row>
 
-<Caption>By default, checkboxes are unchecked.</Caption>
+<Caption>Example of a full page filter list</Caption>
 
-## Related components
+### When not to use
 
-#### Checkbox vs. radio button
+If a user can select only one option from a list, radio buttons should be used instead of checkboxes. Checkboxes allow the user to select multiple items in a set whereas radio buttons allow the user to select only one option.
 
-Whereas radio buttons represent a group of _mutually exclusive_ choices, users can select one or more checkboxes from a group. In use cases where only one selection of a group is allowed, use the radio button component instead of the checkbox.
+<DoDontRow>
+  <DoDont caption="Do use radio buttons when only one item can be selected.">
 
-#### Checkbox vs. toggle switch
+![Do use radio buttons when only one item can be selected.](images/checkbox-usage-2-do.png)
 
-Generally, toggle switches are preferred when the resulting action will be instantaneously applied, without the need for further confirmation. Checkboxes generally represent one input in a larger flow which requires a final confirmation step.
+  </DoDont>
+  <DoDont type="dont" caption="Don't use checkboxes when only one item can be selected.">
 
-#### References
+![Don't use checkboxes when only one item can be selected.](images/checkbox-usage-2-dont.png)
 
-- [Toggle](/components/toggle/code)
-- [Radio button](/components/radio-button/code)
-- [Form](/components/form/code)
-- _Data table (coming soon)_
+  </DoDont>
+</DoDontRow>
+
+## Formatting
+
+### Anatomy
+
+The checkbox component is comprised of a checkbox label and a checkbox input. If there is a group of checkboxes, a group label can be added.
+
+<Row>
+<Column colLg={8}>
+
+![Anatomy of a group of checkboxes.](images/checkbox-usage-3.png)
+
+</Column>
+</Row>
+
+1. **Group label (optional):** Communicates what needs to be selected below.
+2. **Checkbox input:** A checkbox input indicating the appropriate state. By default it is unselected.
+3. **Checkbox label:** Describes the information you want to select or unselect.
+
+### Alignment
+
+Checkbox labels are positioned to the right of their inputs. If there is a checkbox grouping, they can be laid out vertically or horizontally depending on the use case and the structure of the UI. When possible, arrange the checkbox and radio button groups vertically for easier reading.
+
+<Row>
+<Column colLg={8}>
+
+![Vertically stacked versus horizontal alignment](images/checkbox-usage-4.png)
+
+</Column>
+</Row>
+
+<Caption>Vertically stacked versus horizontal alignment</Caption>
+
+### Placement
+
+The checkbox component is often used in forms. Forms can be placed on a full page, in a modal or in a side panel. A checkbox can also be used for agreeing to terms and conditions or to filter information.
+
+<Row>
+<Column colLg={8}>
+
+![Placement of checkboxes in different UI scenarios.](images/checkbox-usage-5.png)
+
+</Column>
+</Row>
+
+Checkboxes in a form should be placed at least 32px (`layout-03`) below or before the next component. Spacing of 24px (`layout-02`) or 16px (`layout-01`) can also be used when space is more restricted or if the form is more complex.
+
+For more information on spacing in forms, see our [form style guidance](https://www.carbondesignsystem.com/components/form/style).
+
+<Row>
+<Column colLg={8}>
+
+![The default state for checkboxes is unchecked.](images/checkbox-usage-6.png)
+
+</Column>
+</Row>
+
+<Caption>Spacing between a checkbox and other components in a form</Caption>
+
+For more information about spacing for the checkbox component itself, see the [style tab](https://www.carbondesignsystem.com/components/checkbox/style#structure).
 
 ## Content
 
-#### Headings
+### Main elements
 
-If necessary, a heading can accompany a set of checkboxes to provide further context or clarity. Use sentence case for checkbox headings. In the example below, “IBM designers” would be the heading for the set of checkboxes.
+#### Group labels (optional)
 
-#### Labels
+- If necessary, a heading can accompany a set of checkboxes to provide further context or clarity.
+- A group label can either state the category of the grouping or describe what actions to take below.
+- Use sentence case for group labels.
+- In some cases, a group of checkboxes may be within a larger group of components that already have a group label. In this case, an additional group label for the checkbox component itself is not needed.
+- Regardless of whether the label is visible in the interface, a group label is always needed in code, whether it's for one checkbox or a group of them. See the [checkbox code tab](https://www.carbondesignsystem.com/components/checkbox/code) for more information.
 
-Always use clear and concise labels for checkboxes. Be explicit about the results that will follow if the checkbox is selected. Labels appear to the right of checkboxes.
+#### Checkbox labels
 
-## Tables
+- Always use clear and concise labels for checkboxes.
+- Be explicit about the results that will follow if the checkbox is selected.
+- Labels appear to the right of checkbox inputs.
 
-See the [data table](/components/data-table/usage) section for guidance on how to use checkboxes within a table.
+### Overflow content
+
+- We recommend checkbox labels being fewer than three words.
+- If you are tight on space, consider rewording the label. Do not truncate checkbox label text with an ellipsis.
+- Long labels may wrap to a second line, and this is preferable to truncation.
+- Text should wrap beneath the checkbox so the control and label are top aligned.
+
+<Row>
+<Column colLg={8}>
+
+![Text wrapping for checkboxes.](images/checkbox-usage-10.png)
+
+</Column>
+</Row>
+
+<DoDontRow>
+  <DoDont caption="Do let text wrap beneath the checkbox so the control and label are top aligned.">
+
+![Do let text wrap beneath the checkbox so the control and label are top aligned.](images/checkbox-usage-11-do.png)
+
+  </DoDont>
+  <DoDont type="dont" caption="Do not vertically center wrapped text with the checkbox.">
+
+![Do not vertically center wrapped text with the checkbox.](images/checkbox-usage-11-don't.png)
+
+  </DoDont>
+</DoDontRow>
+
+### Further guidance
+
+For further content guidance, see Carbon's [content guidelines](notion://www.notion.so/guidelines/content/general).
+
+## Behaviors
+
+### States
+
+The checkbox input allows for a series of states: **unselected**, **selected**, and **indeterminate**. The default view of a set of checkboxes is having no option selected.
+
+<Row>
+<Column colLg={8}>
+
+![Unselected, selected and indeterminate states of checkbox.](images/checkbox-usage-7.png)
+
+</Column>
+</Row>
+
+Use the indeterminate state when the checkbox contains a sublist of selections, some of which are selected, and some unselected. In addition to unselected, selected, and indeterminate states, checkboxes also have states for focus and disabled.
+
+<Row>
+<Column colLg={8}>
+
+![Focus and disabled states of checkbox.](images/checkbox-usage-8.png)
+
+</Column>
+</Row>
+
+### Interactions
+
+#### Mouse
+
+Users can trigger an item by clicking the checkbox input directly or by clicking the checkbox label. Having both regions interactive creates a more accessible click target.
+
+<Row>
+<Column colLg={8}>
+
+![Click targets for checkbox.](images/checkbox-usage-9.png)
+
+</Column>
+</Row>
+
+#### Keyboard
+
+Users can trigger a state change by pressing `Space` while the checkbox input has focus. For additional keyboard interactions, see the [accessibility tab](https://www.carbondesignsystem.com/components/checkbox/accessibility).
+
+Users can navigate between checkbox inputs by pressing `Tab` or `Shift-Tab`.
+
+#### Screen readers
+
+VoiceOver: Users can trigger a state change by pressing `Control-Option-Space` or `Space` while the checkbox input has screen reader focus.
+
+JAWS: Users can trigger a state change by pressing `Space` while the checkbox input has screen reader focus.
+
+NVDA: Users can trigger a state change by pressing `Space` while the checkbox input has screen reader focus.
+
+For additional information, see [screen reader tests](https://www.carbondesignsystem.com/components/checkbox/accessibility#ios-screen-reader-tests).
+
+## Related
+
+#### Checkbox versus radio button
+
+Radio buttons represent a group of _mutually exclusive_ choices, while checkboxes allow users to select one or more checkboxes from a group. In use cases where only one selection of a group is allowed, use the radio button component instead of the checkbox.
+
+#### Checkbox versus toggle switch
+
+Toggle switches are preferred when the resulting action will be instantaneously applied, without the need for further confirmation. By comparison, checkboxes represent one input in a larger flow which usually requires a final confirmation step.
+
+#### Tables
+
+See the [data table component](https://www.carbondesignsystem.com/components/data-table/usage#multiselect-batch-action) for guidance on how to use checkboxes within a table.
+
+## References
+
+- [Data table](https://www.carbondesignsystem.com/components/data-table/code)
+- [Form](https://www.carbondesignsystem.com/components/form/code)
+- [Radio button](https://www.carbondesignsystem.com/components/radio-button/code)
+- [Toggle](https://www.carbondesignsystem.com/components/toggle/code)
+
+## Feedback
+
+Help us improve this pattern by providing feedback, asking questions, and leaving any other comments on [GitHub](https://github.com/carbon-design-system/carbon-website/issues/new?assignees=&labels=feedback&template=feedback.md).
