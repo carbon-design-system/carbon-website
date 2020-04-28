@@ -1,12 +1,12 @@
 ---
 title: Button
-description: Buttons are used to initialize an action. Button labels express what action will occur when the user interacts with it.
+description: Buttons are used to initialize an action.
 tabs: ["Code", "Usage", "Style", "Accessibility"]
 ---
 
 <PageDescription>
 
-Buttons are used to initialize an action. Button labels express what action will occur when the user interacts with it. Examples include Add, Save, Delete, and Sign up.
+Buttons are used to initialize an action.
 
 </PageDescription>
 
@@ -14,9 +14,10 @@ Buttons are used to initialize an action. Button labels express what action will
 
 <AnchorLink>Overview</AnchorLink>
 <AnchorLink>Formatting</AnchorLink>
-<AnchorLink>Behavior</AnchorLink>
 <AnchorLink>Content</AnchorLink>
-<AnchorLink>Variations</AnchorLink>
+<AnchorLink>Behavior</AnchorLink>
+<AnchorLink>Button types</AnchorLink>
+<AnchorLink>Modifiers</AnchorLink>
 <AnchorLink>Related</AnchorLink>
 <AnchorLink>Feedback</AnchorLink>
 
@@ -24,11 +25,15 @@ Buttons are used to initialize an action. Button labels express what action will
 
 ## Overview
 
+Buttons are clickable elements that are used to trigger actions. They communicate calls to action to the user and allow users to with pages in a variety of ways. Button labels express what action will occur when the user interacts with it.
+
 ### When to use
 
 Each page should have one primary button, and a Return or Enter keyboard event should trigger it. Any remaining calls-to-action should be represented as secondary buttons.
 
-Do not use buttons as navigational elements. Instead, use [links](/components/link/code) when the desired action is to take the user to a new page.
+### When not to use
+
+Do not use buttons as navigational elements. Instead, use links when the desired action is to take the user to a new page.
 
 ### Button types
 
@@ -40,13 +45,13 @@ Do not use buttons as navigational elements. Instead, use [links](/components/li
 </Column>
 </Row>
 
-| Type      | Purpose                                                                                                                                                                                                                  |
-| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Primary   | For the principal call to action on the page. Primary buttons should only appear once per screen (not including the application header or in a modal dialog). Keep in mind that not every screen needs a primary button. |
-| Secondary | For secondary actions on each page; these can only be used in conjunction with a primary button.                                                                                                                         |
-| Tertiary  | For less prominent actions; tertiary buttons can be used in isolation or pair with a primary / secondary button when there are multiple CTAs.                                                                            |
-| Danger    | For actions that could have destructive effects on the user’s data (delete, remove, etc.).                                                                                                                               |
-| Ghost     | For the least pronounced actions; often used in conjunction with primary / secondary buttons. (Often used on cards). Because text buttons don’t have a container, they don’t distract from nearby content.               |
+| Type      | Purpose                                                                                                                                      |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| Primary   | For the principal call to action on the page.                                                                                                |
+| Secondary | For secondary actions on each page; these can only be used in conjunction with a primary button.                                             |
+| Tertiary  | For less prominent actions; tertiary buttons can be used in isolation or pair with a primary button when there are multiple calls-to-action. |
+| Danger    | For actions that could have destructive effects on the user’s data (delete, remove, etc.).                                                   |
+| Ghost     | For the least pronounced actions; often used in conjunction with primary buttons.                                                            |
 
 ## Formatting
 
@@ -66,20 +71,9 @@ If a text label is not used, an icon should be present to signify what the butto
 </Column>
 </Row>
 
-1. Contained button
-   1. Text label
-   2. Container
-   3. Icon
-2. Outlined button
-   1. Text label
-   2. Container
-   3. Icon (optional)
-3. Ghost button
-   1. Text label
-   2. Icon
-4. Icon button
-   2. Container (optional)
-   3. Icon
+1. Text label
+2. Container
+3. Icon
 
 #### Buttons with icons
 
@@ -121,6 +115,41 @@ Icon buttons allow users to take actions, and make choices, with a single tap. I
 
 </Column>
 </Row>
+
+### Emphasis
+
+#### A single, prominent button
+
+A layout should contain a single prominent button that makes it clear that other buttons have less importance in the hierarchy. This high-emphasis button commands the most attention.
+
+#### Multiple button emphasis
+
+A UI can have more than one button in a layout at a time, so a high-emphasis button can be accompanied by medium- and low-emphasis buttons that perform less important actions. Only group together calls to action that have a relationship to one another.
+
+<Row>
+<Column colLg={8}>
+
+![Example of button emphasis](images/button_emphasis.png)
+
+</Column>
+</Row>
+
+<DoDontRow>
+<DoDont
+type="do"
+caption="Do use high emphasis and medium emphasis buttons in a button group.">
+
+![Do use high emphasis and medium emphasis buttons in a button group](/images/button_emphasis_do.png)
+
+</DoDont>
+<DoDont
+type="dont"
+caption="Do use high emphasis and medium emphasis buttons in a button group.">
+
+![Do use high emphasis and medium emphasis buttons in a button group](/images/button_emphasis_dont.png)
+
+</DoDont>
+</DoDontRow>
 
 ### Alignment
 
@@ -185,14 +214,7 @@ caption="Do not choose a button width that doen’t align to the grid structure.
 
 ### Button groups
 
-#### Best practices:
-
-- Only group together calls to action that have a relationship
-- Avoid too many calls to action because it will confuse users
-- Group buttons logically into sets based on usage and importance
-- Be thoughtful about how multiple buttons will look and work on small screens
-- ??? (talk with Anna about modal guidance)
-- Is there a max?
+Button groups are a useful way of aligning buttons that have a relationship. Group the buttons logically into sets based on usage and importance. Too many calls to action will overwhelm and confuse users so they should be avoided.
 
 #### Horizontally arranged groups
 
@@ -218,18 +240,6 @@ Typical landing pages for product has buttons side by side. However vertical but
 </Column>
 </Row>
 
-#### Groups with danger buttons
-
-Danger buttons have a different visual style to inform users of potentially destructive actions they are about to take. Within a set, the danger button should be styled as a primary button.
-
-<Row>
-<Column colLg={12}>
-
-![Examples of a button group with a danger button](/images/Danger_button_groups.png)
-
-</Column>
-</Row>
-
 <DoDontRow>
 <DoDont
 type="do"
@@ -247,92 +257,6 @@ caption="Do not make buttons in a group different widths.">
 </DoDont>
 </DoDontRow>
 
-### Emphasis
-
-#### A single, prominent button
-
-A layout should contain a single prominent button that makes it clear that other buttons have less importance in the hierarchy. This high-emphasis button commands the most attention.
-
-#### Multiple button emphasis
-
-A UI can have more than one button in a layout at a time, so a high-emphasis button can be accompanied by medium- and low-emphasis buttons that perform less important actions. Only group together calls to action that have a relationship to one another.
-
-<Row>
-<Column colLg={8}>
-
-![Include something about contrast rationale, people have been bitching about lack of contrast between primary and secondary.](images/button_emphasis.png)
-
-<Caption>
-  Include something about contrast rationale, people have been bitching about
-  lack of contrast between primary and secondary.
-</Caption>
-
-</Column>
-</Row>
-
-<DoDontRow>
-<DoDont
-type="do"
-caption="Do use high emphasis and medium emphasis buttons in a button group.">
-
-![Do use high emphasis and medium emphasis buttons in a button group](/images/button_emphasis_do.png)
-
-</DoDont>
-<DoDont
-type="dont"
-caption="Do use high emphasis and medium emphasis buttons in a button group.">
-
-![Do use high emphasis and medium emphasis buttons in a button group](/images/button_emphasis_dont.png)
-
-</DoDont>
-</DoDontRow>
-
-## Behavior
-
-Colors irrelevant here… because they are applied programmatically using opactity — so all interactive color tokens have been deprecated. There are really only three structural types of button within our system. Contained buttons… outlined buttons… ghost buttons… Colors get programmatically darker on lighter themes and lighter on darker themes.
-
-### Filled buttons
-
-#### States
-
-The primary and danger buttons are the only components whose interactive color values remain the same throughout all four themes (except for focus state). In the future, we’re doing interactive states programmatically so we’re deprecating all of those tokens.
-
-<Row>
-<Column colLg={8}>
-
-![Examples of filled button states](/images/states_container.png)
-
-</Column>
-</Row>
-
-### Outlined buttons
-
-#### States
-
-Tertiary buttons can be placed on top of a variety of backgrounds. Say something about maintaining accessibility etc.
-
-<Row>
-<Column colLg={8}>
-
-![Examples of outlined button states](/images/states_outline.png)
-
-</Column>
-</Row>
-
-### Text (ghost) buttons
-
-#### States
-
-Ghost buttons can be placed on top of a variety of backgrounds. Until the button is interacted with, its container isn’t visible. Say something about maintaining accessibility etc.
-
-<Row>
-<Column colLg={8}>
-
-![Examples of ghost button states](/images/states_ghost.png)
-
-</Column>
-</Row>
-
 ## Content
 
 ### Text labels
@@ -341,7 +265,7 @@ A button’s text label is the most important element on a button, as it communi
 
 Button labels should clearly indicate the action of the button. To provide enough context, use the {verb} + {noun} content formula on buttons except in the case of common actions like “Done”, “Close”, “Cancel”, “Add” or “Delete.”
 
-For cross-product consistency, see the approved list of [action labels](/guidelines/content/action-labels).
+For consistency, see Carbon's [content guidelines](/guidelines/content/action-labels) for a list of recommended action labels.
 
 <DoDontRow>
   <DoDont
@@ -357,26 +281,55 @@ For cross-product consistency, see the approved list of [action labels](/guideli
   />
 </DoDontRow>
 
-#### Sentence case
+## Behavior
 
-Use sentence-style capitalization, which means that only the first word in a phrase and any proper nouns is capitalized.
+### Interaction
 
-#### Length
+**Mouse**
 
-Buttons should be short and concise. Use no more than three words for button labels to avoid wrapping and eliminate unnecessary words and articles such as the, an, or a.
+Users can trigger a button by clicking anywhere within the button container.
 
-## Variations
+**Keyboard**
+
+Users can trigger a button by pressing `Enter` or `Space` while the button has focus. For additional keyboard interactions, see the accessibility tab.
+
+**Screen readers**
+
+VoiceOver: Users can trigger a button by pressing `Enter` or `Space` while the button has focus.
+
+JAWS: Users can trigger a button by pressing `Enter` or `Space` while the button has focus.
+
+NVDA: Users can trigger a button by pressing `Enter` or `Space` while the button has focus.
+
+## Button types
+
+### Primary
+
+Primary buttons are high emphasis elements that are used to indicate the principal call to action on the page. They should be limited to one primary button per page. Keep in mind that not every screen needs a primary button.
+
+### Secondary
+
+Secondary buttons are medium emphasis elements that are used for secondary actions on each page. They can only be used in conjunction with a primary button.
+
+### Tertiary
+
+Tertiary buttons are low emphases elements that are used for less prominent actions. They can be used in insolation or in a pair with a primary button when there are multiple calls to action.
+
+### Danger
+
+Danger buttons are high emphasis elements that have a different visual style to inform users of potentially destructive actions they are about to take. Within a set, the danger button should be styled as a primary button.
+
+For more guidance on destructive actions, refer to the [common actions](https://www.carbondesignsystem.com/patterns/common-actions/) pattern.
+
+### Ghost
+
+Ghost buttons are low emphasis elements that are used for least pronounced actions. They are often used in conjunction with primary and secondary buttons. Since the enabled state does not have a visual container, ghost buttons do not distract from nearby content.
+
+## Modifiers
 
 ### Button height
 
-There are three common button sizes: default, inline, and small. Each button type can use any of these three sizes based on need. The fourth button size, full bleed, has a more reserved application and should rarely be used.
-
-| Button size | Height (px / rem) | Use case                                                                           |
-| ----------- | ----------------- | ---------------------------------------------------------------------------------- |
-| Full bleed  | 64 / 4            | Use when buttons bleed to the edge of a component, like in side panels and modals. |
-| Default     | 48 / 3            | Use as primary page actions and other standalone actions.                          |
-| Inline      | 40 / 2.5          | Use when buttons are paired with input fields.                                     |
-| Small       | 32 / 2            | Use when there is not enough vertical space for the default sized button.          |
+There are four common button sizes: default, inline, and small. Each button type can use any of these three sizes based on need. The fourth button size, full bleed, has a more reserved application and should rarely be used.
 
 <Row>
 <Column colLg={8}>
@@ -386,8 +339,17 @@ There are three common button sizes: default, inline, and small. Each button typ
 </Column>
 </Row>
 
+| Button size | Height (px / rem) | Use case                                                                           |
+| ----------- | ----------------- | ---------------------------------------------------------------------------------- |
+| Full bleed  | 64 / 4            | Use when buttons bleed to the edge of a component, like in side panels and modals. |
+| Default     | 48 / 3            | Use as primary page actions and other standalone actions.                          |
+| Inline      | 40 / 2.5          | Use when buttons are paired with input fields.                                     |
+| Small       | 32 / 2            | Use when there is not enough vertical space for the default sized button.          |
+
 ## Related
 
-- If the desired action is to take the user to a new page, use a [link](/components/link/code) instead.
+- [Link component](https://www.carbondesignsystem.com/components/link/usage/)
 
 ## Feedback
+
+Help us improve this pattern by providing feedback, asking questions, and leaving any other comments on [GitHub](https://github.com/carbon-design-system/carbon-website/issues/new?assignees=&labels=feedback&template=feedback.md).
