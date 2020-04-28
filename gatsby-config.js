@@ -32,5 +32,11 @@ module.exports = {
     'gatsby-plugin-netlify-cache',
     'gatsby-plugin-sitemap',
     'gatsby-plugin-remove-serviceworker',
+    {
+      resolve: 'gatsby-plugin-exclude',
+      options: {
+        paths: ['**/components/**/snippets/**'],
+      },
+    },
   ],
 };
