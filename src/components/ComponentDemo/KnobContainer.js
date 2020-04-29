@@ -39,7 +39,14 @@ import {
 //   name => !docgenComponents.includes(pascalCase(name))
 // );
 
-const Component = ({ component, knobs, code, setCode, initialCode }) => {
+const Component = ({
+  component,
+  knobs,
+  code,
+  setCode,
+  initialCode,
+  variantId,
+}) => {
   const booleanKnobs = [];
   const radioKnobs = [];
   const { current: uid } = useRef(nanoid());
@@ -83,8 +90,8 @@ const Component = ({ component, knobs, code, setCode, initialCode }) => {
                 code={code}
                 setCode={setCode}
                 component={component}
-                key={`${name}-${uid}`}
-                inputId={`${name}-${uid}`}
+                key={`${name}-${variantId}-${uid}`}
+                inputId={`${name}-${variantId}-${uid}`}
                 info={info}
                 name={name}
                 initialCode={initialCode}
@@ -97,8 +104,8 @@ const Component = ({ component, knobs, code, setCode, initialCode }) => {
             code={code}
             setCode={setCode}
             component={component}
-            key={`${name}-${uid}`}
-            inputId={`${name}-${uid}`}
+            key={`${name}-${variantId}-${uid}`}
+            inputId={`${name}-${variantId}-${uid}`}
             info={info}
             name={name}
             initialCode={initialCode}
@@ -218,7 +225,7 @@ Knob.propTypes = {
   },
 };
 
-const KnobContainer = ({ knobs, code, setCode, initialCode }) => {
+const KnobContainer = ({ knobs, code, setCode, initialCode, variantId }) => {
   const {
     isMobile,
     isKnobContainerCollapsed,
@@ -272,6 +279,7 @@ const KnobContainer = ({ knobs, code, setCode, initialCode }) => {
           component={component}
           knobs={componentKnobs}
           initialCode={initialCode}
+          variantId={variantId}
         />
       ))}
     </Form>

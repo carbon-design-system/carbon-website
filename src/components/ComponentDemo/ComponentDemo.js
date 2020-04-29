@@ -50,13 +50,14 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
 
   // selected variant
   const childrenArray = React.Children.toArray(children);
-  const initialMatchingChild = childrenArray.filter(
-    (child) => child.props.id === components[0].id
+  const initialVariant = childrenArray.find(
+    (variant) => variant.props.id === components[0].id
   );
-  const [code, setCode] = useState(initialMatchingChild[0].props.children);
+  const [id, setId] = useState(initialVariant.props.id);
+  const [code, setCode] = useState(initialVariant.props.children);
   const [initialCode, setInitialCode] = useState(code);
-  const [knobs, setKnobs] = useState(initialMatchingChild[0].props.knobs);
-  const [links, setLinks] = useState(initialMatchingChild[0].props.links);
+  const [knobs, setKnobs] = useState(initialVariant.props.knobs);
+  const [links, setLinks] = useState(initialVariant.props.links);
 
   const themes = {
     White: white,
@@ -70,16 +71,17 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
   };
 
   const onVariantChange = (event) => {
-    const matchingChild = childrenArray.filter(
-      (child) => child.props.id === event.selectedItem.id
+    const currentVariant = childrenArray.find(
+      (variant) => event.selectedItem.id === variant.props.id
     );
+    setKnobs(currentVariant.props.knobs);
+    setId(currentVariant.props.id);
+    setLinks(currentVariant.props.links);
 
     setCode(() => {
-      setInitialCode(matchingChild[0].props.children);
-      return matchingChild[0].props.children;
+      setInitialCode(currentVariant.props.children);
+      return currentVariant.props.children;
     });
-    setKnobs(matchingChild[0].props.knobs);
-    setLinks(matchingChild[0].props.links);
   };
 
   // TODO max width editor handle multiple clicks use regex for individual props?
@@ -174,6 +176,7 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
                     setCode={setCode}
                     knobs={knobs}
                     initialCode={initialCode}
+                    variantId={id}
                   />
                   <span className={zamboni} />
                 </>
