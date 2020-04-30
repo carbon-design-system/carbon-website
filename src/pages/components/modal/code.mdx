@@ -6,7 +6,18 @@ tabs: ["Code", "Usage", "Style", "Accessibility"]
 
 import ModalStateManager from "../../../components/ModalStateManager";
 
-## Modal
+## Usage
+
+This section explains usage with our React variant. For usage with other frameworks, please follow a link in component live demo above.
+
+There are two choices for you to use Carbon modals:
+
+| Modal type        | Purpose                              |
+| ----------------- | ------------------------------------ |
+| `<Modal>`         | For putting simple contents in       |
+| `<ComposedModal>` | For more flexibility in the contents |
+
+### Modal
 
 `<Modal>` allows you to use its bespoke set of contents. `children` prop maps to the modal body content.
 You can also use `modalLabel`, `modalHeading`, `secondaryButtonText` and `primaryButtonText` props to change the corresponding text:
@@ -54,7 +65,7 @@ You can also use `modalLabel`, `modalHeading`, `secondaryButtonText` and `primar
 `}
 </ComponentDemo>
 
-## ComposedModal
+### ComposedModal
 
 `<ComposedModal>` provides you with more flexibility in the contents. You can provide the contents via `<ModalHeader>`, `<ModalBody>` and `<ModalFooter>` with your contents in them:
 
@@ -98,33 +109,6 @@ You can also use `modalLabel`, `modalHeading`, `secondaryButtonText` and `primar
 </>
 `}
 </ComponentDemo>
-
-## Installation
-
-To use styles:
-
-```scss
-@import "carbon-components/scss/components/modal/modal";
-```
-
-To import React components:
-
-```javascript
-// For using `<Modal>`
-import { Modal } from "carbon-components-react";
-
-// For using `<ComposedModal>`
-import {
-  ComposedModal,
-  ModalHeder,
-  ModalBody,
-  ModalFooter,
-} from "carbon-components-react";
-```
-
-## Usage
-
-This section explains usage with our React variant. For usage with other frameworks, please follow a link in component live demo above.
 
 ### Opening/closing modal
 
@@ -198,16 +182,13 @@ There are four responsive <a href="https://www.carbondesignsystem.com/components
 </ComposedModal>
 ```
 
-<InlineNotification>
-  <h5>Form elements in modal body</h5>
-  Depending on the modal size of your choice and the viewport size, <code>{`<Modal>`}</code>
-  /<code>{`<ComposedModal>`}</code> adds 20% padding at the right of the modal
-  body content. Carbon design specifies that such 20% padding shouldn't be
-  applied to form elements. You can set <code>hasForm</code>
-  prop to <code>{`<Modal>`}</code>/<code>{`<ModalBody>`}</code> to remove the padding,
-  and use <code>bx--modal-content__regular-content</code> class to apply the 20% padding
-  to non-form contents, like below:
-</InlineNotification>
+Depending on the modal size of your choice and the viewport size,
+`<Modal>`/`<ComposedModal>` adds 20% padding at the right of the modal
+body content. Carbon design specifies that such 20% padding shouldn't be
+applied to form elements. You can set `hasForm`
+prop to `<Modal>`/`<ModalBody>` to remove the padding,
+and use `bx--modal-content__regular-content` class to apply the 20%
+padding to non-form contents, like below:
 
 ```javascript
 <ComposedModal>
@@ -225,14 +206,11 @@ There are four responsive <a href="https://www.carbondesignsystem.com/components
 </ComposedModal>
 ```
 
-<InlineNotification>
-  <h5>Scrolling behavior</h5>
-  In case where the largest modal size cannot fit your modal body content in,
-  Carbon design specifies to have a "visual fade" look at the end of the modal body
-  area to indicate there is additional content out of view. You can set
-  <code>hasScrollingContent</code> prop to <code>{`<Modal>`}</code>/<code>{`<ModalBody>`}</code>
-  to do that, like below:
-</InlineNotification>
+In case where the largest modal size cannot fit your modal body content in, Carbon
+design specifies to have a "visual fade" look at the end of the modal body area
+to indicate there is additional content out of view. You can set
+`hasScrollingContent` prop to `<Modal>`/`<ModalBody>`
+to do that, like below:
 
 ```javascript
 <ComposedModal size="large">
@@ -247,9 +225,12 @@ There are four responsive <a href="https://www.carbondesignsystem.com/components
 
 With `<Modal>`, you have limited control over the set of buttons. Supported patterns are the following:
 
-- No button ([passive modal](https://www.carbondesignsystem.com/components/modal/usage#passive-modal)): With `passiveModal` prop in `<Modal>`
-- [Transactional modals](https://www.carbondesignsystem.com/components/modal/usage#transactional-modal): Only supports two buttons variant. For others, use `<ComposedModal>`
-- Danger modal: With `danger` prop in `<Modal>` (like below)
+| Button group variant                                                                                 | Usage                                     |
+| ---------------------------------------------------------------------------------------------------- | ----------------------------------------- |
+| No button ([passive modal](https://www.carbondesignsystem.com/components/modal/usage#passive-modal)) | Use `passiveModal` prop in `<Modal>`      |
+| One button                                                                                           | Use `<ComposedModal>`                     |
+| Two buttons                                                                                          | Use `<Modal>` without `passiveModal` prop |
+| Two buttons with danger button                                                                       | Use `danger` prop in `<Modal>`            |
 
 ```javascript
 <Modal danger>
@@ -260,12 +241,13 @@ With `<Modal>`, you have limited control over the set of buttons. Supported patt
 
 With `<ComposedModal>`, you can control the buttons with the following:
 
-- No button ([passive modal](https://www.carbondesignsystem.com/components/modal/usage#passive-modal)): By not putting `<ModalFooter>`
-- [Transactional modals](https://www.carbondesignsystem.com/components/modal/usage#transactional-modal):
-  - One button ([acknowledgement modal](https://www.carbondesignsystem.com/components/modal/usage#acknowledgment-modal)): By setting `primaryButtonText` prop to `<ModalFooter>`
-  - Two buttons: By setting `secondaryButtonText` prop to `<ModalFooter>` in addition to `primaryButtonText` prop
-  - Three buttons: Put three buttons as children of `<ModalFooter>`, instead of using `primaryButtonText` or `secondaryButtonText`. Using this option requires style adjustment defined in application-level CSS for `<ModalFooter>`, e.g. `.bx--modal-footer { padding: 25%; }`.
-- Danger modal: By setting `danger` prop in `<ModalFooter>` (like below)
+| Button group variant                                                                                 | Usage                                                                                                                                                                                                                                                          |
+| ---------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| No button ([passive modal](https://www.carbondesignsystem.com/components/modal/usage#passive-modal)) | Use `<ComposedModal>` without `<ModalFooter>`                                                                                                                                                                                                                  |
+| One button                                                                                           | Use `primaryButtonText` in `<ModalFooter>`                                                                                                                                                                                                                     |
+| Two buttons                                                                                          | Use `primaryButtonText` and `secondaryButtonText` in `<ModalFooter>`                                                                                                                                                                                           |
+| Three buttons                                                                                        | Put three buttons as children of `<ModalFooter>`, instead of using `primaryButtonText` or `secondaryButtonText`. Using this option requires style adjustment defined in application-level CSS for `<ModalFooter>`, e.g. `.bx--modal-footer { padding: 25%; }`. |
+| Two buttons with danger button                                                                       | Set `danger` prop in `<ModalFooter>` (like below)                                                                                                                                                                                                              |
 
 ```javascript
 <ComposedModal>
@@ -275,10 +257,10 @@ With `<ComposedModal>`, you can control the buttons with the following:
 ```
 
 <InlineNotification kind="warning">
-  As the instruction for the three buttons implies, <code>{`<ModalFooter>`}</code>{" "}
-  is flexible on the buttons as you render <code>{`<Button>`}</code> s by
-  yourself, like below. In this case, application code needs to care of running
-  action upon those buttons, e.g. closing the modal:
+  As the instruction for the three buttons implies, <code>{`<ModalFooter>`}</code>
+  is flexible on the buttons as you render <code>{`<Button>`}</code> s by yourself,
+  like below. In this case, application code needs to care of running action upon
+  those buttons, e.g. closing the modal:
 </InlineNotification>
 
 ```javascript
@@ -343,22 +325,9 @@ For both modal variants, once modal gets open, keyboard focus will be restricted
 - If you hit tab key at the last keyboard-focusable element in modal, the first keyboard-focusable element in modal will get focus.
 - If you hit shift-tab key at the first keyboard-focusable element in modal, the last keyboard-focusable element in modal will get focus.
 
-<InlineNotification>
-  We take extra step here to ensure such behavior works with floating menus,
-  given floating menu is placed outside of modal in DOM. If you use any
-  non-Carbon floating menus in your application, set{" "}
-  <code>
-    selectorsFloatingMenus=
-    {[
-      ".bx--overflow-menu-options",
-      ".bx--tooltip",
-      ".flatpickr-calendar",
-      ".your-floating-menu-foo",
-      ".your-floating-menu-bar",
-    ]}`
-  </code>{" "}
-  to <code>{`<Modal>`}</code>/<code>{`<ComposedModal>`}</code>.
-</InlineNotification>
+We take extra step here to ensure such behavior works with floating menus,
+given floating menu is placed outside of modal in DOM. If you use any
+non-Carbon floating menus in your application, set `selectorsFloatingMenus={['.bx--overflow-menu-options', '.bx--tooltip', '.flatpickr-calendar', '.your-floating-menu-foo', '.your-floating-menu-bar']}` to `<Modal>`/`<ComposedModal>`.
 
 Also for both modal variants, you can set the DOM element that gets focus when the modal gets open, by either of the following ways:
 
