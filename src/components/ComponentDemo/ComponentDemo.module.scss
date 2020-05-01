@@ -328,12 +328,37 @@ fieldset.form-group:last-of-type {
 }
 
 //---------------------------------------
-// Demo overrides
+// Some style overrides for theming
 //---------------------------------------
-.container :global(.bx--modal) {
-  z-index: 99999;
-}
+.container :global {
+  // Modal within demo
+  [class*="--modal"] {
+    z-index: 99999;
+  }
 
-.container :global(.bx--content-switcher-btn) {
-  height: 2.5rem;
+  // Checkbox uses body text
+  // https://github.com/carbon-design-system/carbon/issues/4545
+  [class*="--checkbox-label"],
+  [class*="accordion__content"],
+  [class*="--pagination__left"],
+  [class*="--pagination__text"],
+  [class*="--radio-button__label"] {
+    color: var(--cds-text-01, #161616);
+  }
+
+  [class*="--snippet--multi"],
+  [class*="--snippet--single"] {
+    background: var(--cds-ui-01, #f4f4f4);
+    color: var(--cds-text-01, #161616);
+  }
+
+  [class*="--data-table--zebra"] tbody tr:nth-child(odd) td {
+    background-color: var(--cds-ui-02, #fffff);
+    border-bottom: var(--cds-ui-02, #fffff);
+    border-top: var(--cds-ui-02, #fffff);
+  }
+
+  [class*="--content-switcher-btn"] {
+    height: 2.5rem;
+  }
 }
