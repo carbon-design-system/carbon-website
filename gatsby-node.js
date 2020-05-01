@@ -1,6 +1,6 @@
 const path = require('path');
 
-exports.onCreateWebpackConfig = ({ actions }) => {
+exports.onCreateWebpackConfig = ({ actions, getConfig }) => {
   // Allows importing html files for component code examples
   actions.setWebpackConfig({
     module: {
@@ -26,4 +26,11 @@ exports.onCreateWebpackConfig = ({ actions }) => {
       },
     },
   });
+
+  // Disable sourcemaps in production
+  if (getConfig().mode === 'production') {
+    actions.setWebpackConfig({
+      devtool: false,
+    });
+  }
 };
