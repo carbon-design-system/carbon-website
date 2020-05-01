@@ -55,7 +55,7 @@ export default class OverviewCard extends React.Component {
 
     return (
       <div className={OverviewCardClassNames}>
-        <div className="bx--aspect-ratio--1x1">
+        <div className="bx--aspect-ratio bx--aspect-ratio--1x1">
           <div className="bx--aspect-ratio--object">{cardContainer}</div>
         </div>
       </div>
