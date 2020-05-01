@@ -13,6 +13,7 @@ module.exports = {
     {
       resolve: 'gatsby-theme-carbon',
       options: {
+        gatsbyRemarkPlugins: ['gatsby-remark-widows'],
         mdxExtensions: ['.mdx'],
         isSearchEnabled: true,
         iconPath: './src/images/favicon.svg',
