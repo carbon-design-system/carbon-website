@@ -2,7 +2,7 @@ import defaultComponents from 'gatsby-theme-carbon/src/components/MDXProvider/de
 
 import MdxIcon from '../../../components/MdxIcon';
 import ComponentDemo from '../../../components/ComponentDemo';
-import { ComponentVariant } from '../../../components/ComponentDemo/ComponentVariant';
+import ComponentVariant from '../../../components/ComponentDemo/ComponentVariant';
 
 export default {
   ...defaultComponents,

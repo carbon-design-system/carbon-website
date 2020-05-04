@@ -7,7 +7,7 @@ const permittedOrigins = [
   'https://w3.ibm.com',
 ];
 
-exports.handler = async function survey(event) {
+exports.survey = async function (event) {
   const { httpMethod, headers } = event;
 
   if (headers.cookie) {
