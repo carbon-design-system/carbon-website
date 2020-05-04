@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useRef } from 'react';
 import prismTheme from 'gatsby-theme-carbon/src/components/Code/prismTheme';
 import * as CarbonComponents from 'carbon-components-react';
 import { LiveProvider, LiveEditor, LivePreview, LiveError } from 'react-live';
@@ -31,6 +31,7 @@ import {
   codeRow,
   hiddenDropdown,
   variantDropdown,
+  previewContainerInner,
 } from './ComponentDemo.module.scss';
 
 import Code from './Code';
@@ -45,6 +46,7 @@ const { Dropdown } = CarbonComponents;
 const ComponentDemo = ({ children, src, scope, noInline, components }) => {
   // theme selected state
   const [theme, setTheme] = useState(white);
+  const componentDemoRef = useRef();
   const { isMobile, setIsKnobContainerCollapsed } = useContext(DemoContext);
   const [isFullscreen, setFullscreen] = useState(false);
 
@@ -133,10 +135,18 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
           <LiveProvider
             noInline={noInline}
             theme={prismTheme}
-            scope={{ ...CarbonComponents, ...scope }}
+            scope={{
+              ...CarbonComponents,
+              ...scope,
+              componentDemoRef: componentDemoRef.current,
+            }}
             code={code}
           >
-            <div className={cx(container, { [knoblessContainer]: !knobs })}>
+            <div
+              data-floating-menu-container
+              ref={componentDemoRef}
+              className={cx(container, theme, { [knoblessContainer]: !knobs })}
+            >
               <button
                 type="button"
                 className={cx(theme, fullscreenButton)}
@@ -146,7 +156,7 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
               >
                 {isFullscreen ? <Minimize16 /> : <Maximize16 />}
               </button>
-              <LivePreview className={cx(theme, previewContainer)} />
+              <LivePreview className={previewContainer} />
               {isMobile && (
                 <button
                   type="button"
@@ -160,7 +170,6 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
                   <TableOfContents20 />
                 </button>
               )}
-
               <Code links={links} code={code} src={src} className={codeRow}>
                 <LiveEditor
                   padding={16}

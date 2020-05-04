@@ -26,6 +26,7 @@ import {
   checkboxWrapper,
   iconButton,
   iconButtonRow,
+  white,
 } from './ComponentDemo.module.scss';
 
 // Components w/o react docgen data
@@ -256,7 +257,7 @@ const KnobContainer = ({ knobs, code, setCode, initialCode, variantId }) => {
 
   return (
     <Form
-      className={cx(knobContainer, {
+      className={cx(knobContainer, white, {
         [knobContainerCollapsed]: isMobile && isKnobContainerCollapsed,
       })}
     >
