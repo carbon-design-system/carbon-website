@@ -4,15 +4,17 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "gatsby develop -H 0.0.0.0",
-    "dev:clean": "gatsby clean && yarn dev",
-    "clean": "gatsby clean",
     "build": "gatsby build",
     "build:clean": "gatsby clean && yarn build",
     "build:analyze": "yarn install --force && yarn clean && ANALYZE=true yarn build",
+    "ci-check": "yarn format:diff && yarn lint:js",
+    "clean": "gatsby clean",
+    "dev": "gatsby develop -H 0.0.0.0",
+    "dev:clean": "gatsby clean && yarn dev",
+    "format": "prettier --write 'src/**/*.{css,scss,json,html,yaml,md,mdx}'",
+    "format:diff": "yarn format --list-different",
     "serve": "gatsby serve",
     "lint:js": "eslint . --fix",
-    "format": "prettier --write 'src/**/*.{css,scss,json,html,yaml,md,mdx}'",
     "update-browserslist": "npx browserslist-ga"
   },
   "engines": {
@@ -103,5 +105,12 @@
     "*.{css,scss,json,html,yaml,md,mdx}": [
       "prettier --write"
     ]
+  },
+  "prettier": {
+    "jsxBracketSameLine": true,
+    "printWidth": 80,
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "proseWrap": "always"
   }
 }
