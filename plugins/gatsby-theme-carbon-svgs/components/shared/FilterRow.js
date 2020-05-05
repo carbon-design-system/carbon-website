@@ -22,8 +22,7 @@ const FilterRow = ({
       ref={filterRowRef}
       className={cx(filterRow, {
         [pictograms]: type !== 'icon',
-      })}
-    >
+      })}>
       <Search
         light
         labelText={`filter ${type}s by searching for their name or category`}

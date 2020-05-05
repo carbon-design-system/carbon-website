@@ -56,8 +56,7 @@ const ActionBar = ({
       aria-hidden={!isActionBarVisible}
       className={cx(styles.container, {
         [styles.hidden]: !isActionBarVisible,
-      })}
-    >
+      })}>
       <TooltipDefinition
         onFocus={() => setIsActionBarVisible(true)}
         onClick={handleDownload}
@@ -65,8 +64,7 @@ const ActionBar = ({
         direction="top"
         tooltipText="Download SVG"
         className={styles.tooltip}
-        triggerClassName={styles.trigger}
-      >
+        triggerClassName={styles.trigger}>
         <Download16 />
       </TooltipDefinition>
       {shouldShowCopyButton && (
@@ -77,8 +75,7 @@ const ActionBar = ({
           onClick={handleCopy}
           onFocus={() => setIsActionBarVisible(true)}
           className={styles.tooltip}
-          triggerClassName={styles.trigger}
-        >
+          triggerClassName={styles.trigger}>
           <Code16 />
         </TooltipDefinition>
       )}

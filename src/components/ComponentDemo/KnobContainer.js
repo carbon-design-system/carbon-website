@@ -81,8 +81,7 @@ const Component = ({
       <div
         role="group"
         aria-labelledby={componentGroupId}
-        className={componentKnobWrapper}
-      >
+        className={componentKnobWrapper}>
         {booleanKnobs.length > 0 && (
           <FormGroup className={formGroup} legendText="Modifiers">
             {booleanKnobs.map(([name, info]) => (
@@ -198,8 +197,7 @@ const Knob = ({
           onChange={(val) => updateKnob(val)}
           defaultSelected={defaultSelected}
           name={name}
-          orientation="vertical"
-        >
+          orientation="vertical">
           {values.map(({ value }) => (
             <RadioButton
               key={`${inputId}-${value}`}
@@ -258,15 +256,13 @@ const KnobContainer = ({ knobs, code, setCode, initialCode, variantId }) => {
     <Form
       className={cx(knobContainer, {
         [knobContainerCollapsed]: isMobile && isKnobContainerCollapsed,
-      })}
-    >
+      })}>
       {isMobile && (
         <div className={iconButtonRow}>
           <button
             className={iconButton}
             type="button"
-            onClick={() => setIsKnobContainerCollapsed(true)}
-          >
+            onClick={() => setIsKnobContainerCollapsed(true)}>
             <Close20 />
           </button>
         </div>

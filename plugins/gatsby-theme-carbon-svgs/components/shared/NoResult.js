@@ -29,8 +29,7 @@ const NoResult = ({
           <button
             type="button"
             onClick={() => setSelectedCategory(`All ${type}`)}
-            className={cx(allSvgs, 'bx--link')}
-          >
+            className={cx(allSvgs, 'bx--link')}>
             all {type}.
           </button>
         </h2>
@@ -49,8 +48,7 @@ const NoResult = ({
               subTitle={`Submit ${
                 pageName === 'icon' ? 'an icon' : 'a pictogram'
               } design`}
-              href="https://github.ibm.com/brand/pictograms/issues/new"
-            >
+              href="https://github.ibm.com/brand/pictograms/issues/new">
               <Github />
             </ResourceCard>
           </Column>
@@ -58,8 +56,7 @@ const NoResult = ({
             <ResourceCard
               actionIcon="download"
               href={pageUrl}
-              subTitle={`Download the ${pageName} master`}
-            >
+              subTitle={`Download the ${pageName} master`}>
               <Illustrator />
             </ResourceCard>
           </Column>
