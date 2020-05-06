@@ -24,7 +24,9 @@ import {
 
 ## How it works
 
-The Carbon breadcrumb Component provides a way for the user to navigate Web content by providing a group of links to the parent Web pages of the current page in a hierachical order. The breadcrumb is contained within a `<nav>` element labelled "breadcrumb" using an ARIA label attribute. The landmark region contains an ARIA label, to advise users of assistive technologies that they are navigating a breadcrumb trail. CSS is used for the visual separators between each link so they are not represented in the accessibility tree used by screen readers which helps to prevent redundancy and at times distracting verbosity.
+The `Breadcrumb` component implements the [Breadcrumb design pattern from WAI ARIA](https://www.w3.org/TR/wai-aria-practices-1.1/#breadcrumb) for Carbon. It establishes a landmark on the page which assists the user in understanding where they currently are and which pages exist in the current page's hierarchical order.
+
+The landmark is provided through the `<nav>` element which contains a list of links. The `<nav>` element is labeled by the `aria-label`attribute, providing a chance to describe to the user the type of navigation provided by the list of links. The current page is identified with the `aria-current="page"` attribute on the appropriate link.
 
 ## Accessibility considerations
 
@@ -32,7 +34,7 @@ This component has been validated to meet the [WCAG 2.0 AA](https://www.w3.org/T
 
 1. The breadcrumb should remain in the same relative order and location on each web page.
 1. The link text should be clear, reflect the breadcrumb location accurately and easy to understand for all users.
-1. The link to the current page element in the breadcrumb has an ARIA current attribute. If the current page in the breadcrumb is not a link the ARIA current attribute is optional.
+1. The link to the current page element in the breadcrumb has the `aria-current="page"` attribute.
 
 ## Resources
 
@@ -43,7 +45,7 @@ This component has been validated to meet the [WCAG 2.0 AA](https://www.w3.org/T
 
 ## Accessibility testing
 
-Accessibility issues are tracked in the [Carbon Component GitHub repository](https://github.com/carbon-design-system/carbon/milestones).
+Accessibility issues are tracked in the [Carbon Design System GitHub repository](https://github.com/carbon-design-system/carbon/labels/type%3A%20a11y%20%E2%99%BF).
 
 ### Automated test
 
