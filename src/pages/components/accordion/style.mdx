@@ -13,6 +13,15 @@ tabs: ["Usage", "Style", "Code", "Accessibility"]
 | `.bx--accordion__arrow`   | fill       | `$icon-01`  |
 | `.bx--accordion__item`    | border-top | `$ui-03`    |
 
+### Interactive states
+
+| Class                            | Property   | Color token    |
+| -------------------------------- | ---------- | -------------- |
+| `.bx--accordion__heading:hover`  | background | `$hover-ui`    |
+| `.bx--accordion__title:focus`    | border     | `$focus`       |
+| `.bx--accordion__title:disabled` | background | `$disabled-02` |
+| `.bx--accordion__arrow:disabled` | fill       | `$disabled-02` |
+
 <Row>
 <Column colLg={12}>
 
@@ -25,7 +34,7 @@ tabs: ["Usage", "Style", "Code", "Accessibility"]
 
 ## Typography
 
-All accordion labels are set in sentence case and should not exceed three words. Set body text appropriately based on content.
+All accordion titles are set in sentence case. See the accordion [content guidelines](/components/accordion/usage#content) for more details.
 
 | Class                     | Font-size (px/rem) | Font-weight   | Type token      |
 | ------------------------- | ------------------ | ------------- | --------------- |
@@ -34,7 +43,7 @@ All accordion labels are set in sentence case and should not exceed three words.
 
 ## Structure
 
-There is no limit to the height of an open row, however, follow the other padding specs below. The width of an accordion varies based on the content, layout, and page design. The chevron icon can be found on the [icons](/guidelines/icons/library) library page. Avoid having any text within 16px / 1rem of the accordion's sides. Additionally, include padding between labels, body copy, and separation lines to provide breathing room between elements.
+There is no max-height for an open panel but an accordion may [scroll](/components/accordion/usage#scrolling-content) if constrained by vertical space. The width of an accordion varies based on the content, layout, and page design. The icon used in the header is a `chevron`.
 
 | Class                          | Property       | px/rem   | Spacing token |
 | ------------------------------ | -------------- | -------- | ------------- |
@@ -50,8 +59,20 @@ There is no limit to the height of an open row, however, follow the other paddin
 
 <div className="image--fixed">
 
-![Structure and spacing measurements for accordion](images/accordion-style-3.png)
+![Structure and spacing measurements for accordion](images/accordion-style-1.png)
 
 </div>
 
 <Caption>Structure and spacing measurements for accordion | px / rem</Caption>
+
+### Margin right
+
+Accordions have a variable right margin that changes based on its width. Accordions that are 640px and wider have a `margin-right: 25%` with the percentage being based off the width of the container it is placed in. At smaller widths, the `margin-right` is a fixed size.
+
+Body copy, including titles, in an accordion always follows the margin-right rules. However, inputs and other components may still expand to the full width of the accordion panel.
+
+| Accordion width | Margin-right | Spacing token |
+| --------------- | ------------ | ------------- |
+| > 640           | 25%          | –             |
+| 420-640px       | 64px / 4rem  | `$spacing-10` |
+| < 420           | 16px / 1rem  | `$spacing-05` |
