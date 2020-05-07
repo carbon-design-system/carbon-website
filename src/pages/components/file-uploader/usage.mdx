@@ -1,7 +1,7 @@
 ---
 title: File uploader
 description: File uploaders allow the user to transfer a file or submit content of their own.
-tabs: ["Code", "Usage", "Style", "Accessibility"]
+tabs: ["Usage", "Style", "Code", "Accessibility"]
 ---
 
 <AnchorLinks>
@@ -13,13 +13,110 @@ tabs: ["Code", "Usage", "Style", "Accessibility"]
 
 </AnchorLinks>
 
+<ComponentDemo
+  components={[
+    {
+      id: "file-uploader",
+      label: "File uploader",
+    },
+    {
+      id: "drag-and-drop",
+      label: "Drag and drop",
+    },
+    {
+      id: "upload-states",
+      label: "Upload states",
+    },
+  ]}
+>
+  <ComponentVariant
+    id="file-uploader"
+    knobs={{
+      FileUploader: ["multiple"],
+    }}
+    links={{
+      React:
+        "https://react.carbondesignsystem.com/?path=/story/fileuploader--fileuploader",
+      Angular:
+        "https://angular.carbondesignsystem.com/?path=/story/components-file-uploader--basic",
+      Vue:
+        "http://vue.carbondesignsystem.com/?path=/story/components-cvfileuploader--default",
+      Vanilla: "https://the-carbon-components.netlify.com/?nav=file-uploader",
+    }}
+  >{`
+      <div className="bx--file__container">
+        <FileUploader
+          accept={[
+            '.jpg',
+            '.png'
+          ]}
+          buttonKind="primary"
+          buttonLabel="Add files"
+          filenameStatus="edit"
+          iconDescription="Clear file"
+          labelDescription="only .jpg files at 500mb or less"
+          labelTitle="Upload"
+        />
+      </div>
+    `}</ComponentVariant>
+  <ComponentVariant
+    id="drag-and-drop"
+    knobs={{
+      FileUploaderDropContainer: ["multiple", "disabled"],
+    }}
+    links={{
+      React:
+        "https://react.carbondesignsystem.com/?path=/story/fileuploader--drag-and-drop-upload-container-example-application",
+      Angular:
+        "https://angular.carbondesignsystem.com/?path=/story/components-file-uploader--drag-and-drop",
+      Vue:
+        "http://vue.carbondesignsystem.com/?path=/story/components-cvfileuploader--default",
+      Vanilla: "https://the-carbon-components.netlify.com/?nav=file-uploader",
+    }}
+  >{`
+      <div className="bx--file__container">
+        <strong className='bx--file--label'>Account photo</strong>
+        <p className='bx--label-description'>
+          Only .jpg and .png files. 500kb max file size
+        </p>
+        <FileUploaderDropContainer
+          accept={[
+            'image/jpeg',
+            'image/png'
+          ]}
+          labelText="Drag and drop files here or click to upload"
+          tabIndex={0}
+        />
+      </div>
+    `}</ComponentVariant>
+  <ComponentVariant
+    id="upload-states"
+    knobs={{
+      FileUploaderItem: ["status", "invalid"],
+    }}
+    links={{
+      React:
+        "https://react.carbondesignsystem.com/?path=/story/fileuploader--fileuploaderitem",
+      Angular:
+        "https://angular.carbondesignsystem.com/?path=/story/components-file-uploader--basic",
+      Vue:
+        "http://vue.carbondesignsystem.com/?path=/story/components-cvfileuploader--default",
+      Vanilla: "https://the-carbon-components.netlify.com/?nav=file-uploader",
+    }}
+  >{`
+      <div className="bx--file__container">
+        <FileUploaderItem name='color.jpg' errorSubject='File size exceeds limits' errorBody='500 kb max file size. Select a new file and try again.'/>
+      </div>
+    `}</ComponentVariant>
+</ComponentDemo>
+
 ## General guidance
 
 _File uploader_ allows the user to transfer a file or submit content of their own.
 
 - A file uploader is commonly found in forms, but they can also live as stand alone elements.
 - **Add files** is the default text that appears with the file uploader.
-- A file uploader should always be accompanied by **Submit** or **Upload**, which is to be styled as a [Primary Button](/components/button/code).
+- A file uploader should always be accompanied by **Submit** or **Upload**, which is to be styled as a [Primary Button](/components/button/usage).
 - Use an ellipsis (...) if the filename extends beyond the width of its parent element.
 
 <Row>
@@ -36,8 +133,7 @@ _File uploader_ allows the user to transfer a file or submit content of their ow
 2. The action of clicking **Add files** will trigger a browser-specific upload window.
 3. Once the user chooses files to upload, the browser-specific upload window closes and the files will appear below the **Add files** button.
 4. User clicks **Submit** or **Upload** to submit their data.
-5. Any errors that may occur with the file should appear as an inline error
-   [Notification](/components/notification/code).
+5. Any errors that may occur with the file should appear as an inline error [Notification](/components/notification/usage).
 
 <Row>
 <Column colLg={8}>
