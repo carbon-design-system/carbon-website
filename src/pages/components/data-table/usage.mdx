@@ -1,10 +1,281 @@
 ---
 title: Data table
-description:
-  The data table component allows for the flexible display and sorting of
-  information.
-tabs: ['Code', 'Usage', 'Style', 'Accessibility']
+description: The data table component allows for the flexible display and sorting of information.
+tabs: ["Usage", "Style", "Code", "Accessibility"]
 ---
+
+<PageDescription>
+
+Data tables are used to organize and display data efficiently. The data table component allows for customization with additional functionality, as needed by your product's users.
+
+</PageDescription>
+
+<AnchorLinks>
+
+<AnchorLink>Basic data table</AnchorLink>
+<AnchorLink>Additional functionality</AnchorLink>
+<AnchorLink>Feedback</AnchorLink>
+
+</AnchorLinks>
+
+import { rowData, headerData } from "../../../data/components/data-table.js";
+import {
+  Delete16 as Delete,
+  Save16 as Save,
+  Download16 as Download,
+} from "@carbon/icons-react";
+
+<ComponentDemo
+  components={[
+    {
+      id: "default-table",
+      label: "Default",
+    },
+    {
+      id: "with-selection",
+      label: "With selection",
+    },
+    {
+      id: "with-expansion",
+      label: "With expansion",
+    },
+    {
+      id: "with-batch-actions",
+      label: "With batch actions",
+    },
+  ]}
+  scope={{ rowData, headerData, React, Delete, Save, Download }}
+>
+  <ComponentVariant
+    id="default-table"
+    knobs={{ DataTable: ["isSortable"], Table: ["size", "useZebraStyles"] }}
+    links={{
+      React:
+        "https://react.carbondesignsystem.com/?path=/story/datatable--default",
+      Angular:
+        "https://angular.carbondesignsystem.com/?path=/story/components-table--basic",
+      Vue:
+        "http://vue.carbondesignsystem.com/?path=/story/components-cvdatatable--minimal",
+      Vanilla: "https://the-carbon-components.netlify.com/?nav=data-table",
+    }}
+  >
+    {`<DataTable
+    rows={rowData}
+    headers={headerData}
+    render={({ rows, headers, getHeaderProps }) => (
+    <TableContainer title="DataTable">
+      <Table>
+        <TableHead>
+          <TableRow>
+            {headers.map(header => (
+              <TableHeader {...getHeaderProps({ header })}>
+                {header.header}
+              </TableHeader>
+            ))}
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map(row => (
+            <TableRow key={row.id}>
+              {row.cells.map(cell => (
+                <TableCell key={cell.id}>{cell.value}</TableCell>
+              ))}
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>)}
+    />`}
+  </ComponentVariant>
+  <ComponentVariant
+    id="with-selection"
+    knobs={{ DataTable: ["isSortable"], Table: ["size", "useZebraStyles"] }}
+    links={{
+      React:
+        "https://react.carbondesignsystem.com/?path=/story/datatable--with-selection",
+      Angular:
+        "https://angular.carbondesignsystem.com/?path=/story/components-table--basic",
+      Vue:
+        "http://vue.carbondesignsystem.com/?path=/story/components-cvdatatable--default",
+      Vanilla: "https://the-carbon-components.netlify.com/?nav=data-table",
+    }}
+  >
+    {`<DataTable
+  rows={rowData}
+  headers={headerData}
+  render={({ rows, headers, getHeaderProps, getSelectionProps, getRowProps }) => (
+  <TableContainer title="DataTable with selection">
+    <Table>
+      <TableHead>
+        <TableRow>
+          <TableSelectAll {...getSelectionProps()} />
+          {headers.map(header => (
+            <TableHeader {...getHeaderProps({ header })}>
+              {header.header}
+            </TableHeader>
+          ))}
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        {rows.map(row => (
+          <TableRow {...getRowProps({ row })}>
+            <TableSelectRow {...getSelectionProps({ row })} />
+            {row.cells.map(cell => (
+              <TableCell key={cell.id}>{cell.value}</TableCell>
+            ))}
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
+  </TableContainer>)}
+/>`}
+  </ComponentVariant>
+  <ComponentVariant
+    id="with-expansion"
+    knobs={{ DataTable: ["isSortable"] }}
+    links={{
+      React:
+        "https://react.carbondesignsystem.com/?path=/story/datatable--with-expansion",
+      Angular:
+        "https://angular.carbondesignsystem.com/?path=/story/components-table--with-expansion",
+      Vue:
+        "http://vue.carbondesignsystem.com/?path=/story/components-cvdatatable--slotted-expanding-data",
+      Vanilla: "https://the-carbon-components.netlify.com/?nav=data-table",
+    }}
+  >
+    {`<DataTable
+  rows={rowData}
+  headers={headerData}
+  render={({ rows, headers, getHeaderProps, getRowProps, getTableProps }) => (
+  <TableContainer title="DataTable with expansion">
+    <Table {...getTableProps()}>
+      <TableHead>
+        <TableRow>
+          <TableExpandHeader />
+          {headers.map(header => (
+            <TableHeader {...getHeaderProps({ header })}>
+              {header.header}
+            </TableHeader>
+          ))}
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        {rows.map(row => (
+          <React.Fragment key={row.id}>
+            <TableExpandRow {...getRowProps({ row })}>
+              {row.cells.map(cell => (
+                <TableCell key={cell.id}>{cell.value}</TableCell>
+              ))}
+            </TableExpandRow>
+            {row.isExpanded && (
+              <TableExpandedRow colSpan={headers.length + 1}>
+                <p>Aux squad rules</p>
+              </TableExpandedRow>
+            )}
+          </React.Fragment>
+        ))}
+      </TableBody>
+    </Table>
+  </TableContainer>
+)}/>`}
+  </ComponentVariant>
+  <ComponentVariant
+    id="with-batch-actions"
+    links={{
+      React:
+        "https://react.carbondesignsystem.com/?path=/story/datatable--with-batch-actions",
+      Angular:
+        "https://angular.carbondesignsystem.com/?path=/story/components-table--with-toolbar",
+      Vue:
+        "http://vue.carbondesignsystem.com/?path=/story/components-cvdatatable--default",
+      Vanilla: "https://the-carbon-components.netlify.com/?nav=data-table",
+    }}
+  >
+    {`<DataTable
+  rows={rowData}
+  headers={headerData}
+  render={({ rows,
+      headers,
+      getHeaderProps,
+      getRowProps,
+      getSelectionProps,
+      getBatchActionProps,
+      onInputChange,
+      selectedRows,}) => (
+  <TableContainer title="DataTable with batch actions">
+    <TableToolbar>
+          <TableBatchActions {...getBatchActionProps()}>
+            <TableBatchAction
+              tabIndex={getBatchActionProps().shouldShowBatchActions ? 0 : -1}
+              renderIcon={Delete}
+              onClick={()=>console.log('clicked')}>
+              Delete
+            </TableBatchAction>
+            <TableBatchAction
+              tabIndex={getBatchActionProps().shouldShowBatchActions ? 0 : -1}
+              renderIcon={Save}
+              onClick={()=>console.log('clicked')}>
+              Save
+            </TableBatchAction>
+            <TableBatchAction
+              tabIndex={getBatchActionProps().shouldShowBatchActions ? 0 : -1}
+              renderIcon={Download}
+              onClick={()=>console.log('clicked')}>
+              Download
+            </TableBatchAction>
+          </TableBatchActions>
+          <TableToolbarContent>
+            <TableToolbarSearch
+              tabIndex={getBatchActionProps().shouldShowBatchActions ? -1 : 0}
+              onChange={onInputChange}
+            />
+            <TableToolbarMenu
+              tabIndex={getBatchActionProps().shouldShowBatchActions ? -1 : 0}>
+              <TableToolbarAction primaryFocus onClick={() => alert('Alert 1')}>
+                Action 1
+              </TableToolbarAction>
+              <TableToolbarAction onClick={() => alert('Alert 2')}>
+                Action 2
+              </TableToolbarAction>
+              <TableToolbarAction onClick={() => alert('Alert 3')}>
+                Action 3
+              </TableToolbarAction>
+            </TableToolbarMenu>
+            <Button
+              tabIndex={getBatchActionProps().shouldShowBatchActions ? -1 : 0}
+              onClick={()=> console.log('clicked')}
+              size="small"
+              kind="primary">
+              Add new
+            </Button>
+          </TableToolbarContent>
+        </TableToolbar>
+    <Table>
+      <TableHead>
+        <TableRow>
+          <TableSelectAll {...getSelectionProps()} />
+          {headers.map(header => (
+            <TableHeader {...getHeaderProps({ header })}>
+              {header.header}
+            </TableHeader>
+          ))}
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        {rows.map(row => (
+          <TableRow {...getRowProps({ row })}>
+            <TableSelectRow {...getSelectionProps({ row })} />
+            {row.cells.map(cell => (
+              <TableCell key={cell.id}>{cell.value}</TableCell>
+            ))}
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
+  </TableContainer>)}
+/>`}
+  </ComponentVariant>
+</ComponentDemo>
 
 ## Basic data table
 
@@ -31,9 +302,7 @@ The following can be added to the data table to increase its functionality.
 
 ### Pagination
 
-Pagination divides table data into separate pages. Pagination is accompanied by
-an option that enables the user to change the number of items per page. See the
-[pagination](/components/pagination/code) component for further guidelines.
+Pagination divides table data into separate pages. Pagination is accompanied by an option that enables the user to change the number of items per page. See the [pagination](/components/pagination/usage) component for further guidelines.
 
 <div className="image--fixed">
 
@@ -45,10 +314,7 @@ an option that enables the user to change the number of items per page. See the
 
 ### Search
 
-Search returns results based on matches. It is used to locate and display a set
-of results. Search functionality within a table follows
-[small search](/components/search/code) conventions. Search should be closed by
-default, and live below the table title.
+Search returns results based on matches. It is used to locate and display a set of results. Search functionality within a table follows [small search](/components/search/usage) conventions. Search should be closed by default, and live below the table title.
 
 <div className="image--fixed">
 
@@ -111,9 +377,7 @@ the items.
 
 ### Inline actions
 
-Inline actions are functions that may be performed on a specific table item.
-Each row is accompanied by an [overflow menu](/components/overflow-menu/code)
-that contains actions related specifically to that table row.
+Inline actions are functions that may be performed on a specific table item. Each row is accompanied by an [overflow menu](/components/overflow-menu/usage) that contains actions related specifically to that table row.
 
 <div className="image--fixed">
 
@@ -179,4 +443,8 @@ information, use skeleton states instead of spinners.
 
 </div>
 
-<Caption>Expandabling all rows with skeleton states</Caption>
+<Caption>Expanding all rows with skeleton states</Caption>
+
+## Feedback
+
+Help us improve this component by providing feedback, asking questions, and leaving any other comments on [GitHub](https://github.com/carbon-design-system/carbon-website/issues/new?assignees=&labels=feedback&template=feedback.md).
