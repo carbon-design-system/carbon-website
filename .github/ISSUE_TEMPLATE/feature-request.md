@@ -1,9 +1,9 @@
 ---
-name: 'Feature request 💡'
+name: "Feature request 💡"
 about: Suggest an idea for this project
-title: ''
-labels: 'type: enhancement 💡'
-assignees: ''
+title: ""
+labels: "type: enhancement 💡"
+assignees: ""
 ---
 
 Use this template if you want to request a new feature, or a change to an existing feature.
