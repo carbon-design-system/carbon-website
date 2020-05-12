@@ -4,10 +4,10 @@ const cookie = require('cookie');
 
 const permittedOrigins = [
   'https://www.carbondesignsystem.com',
-  'https://w3.ibm.com/design',
+  'https://w3.ibm.com',
 ];
 
-exports.handler = async function survey(event) {
+exports.survey = async function (event) {
   const { httpMethod, headers } = event;
 
   if (headers.cookie) {

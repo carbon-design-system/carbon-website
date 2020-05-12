@@ -27,9 +27,7 @@ const IconLibrary = () => {
     const iconArray = iconMetaData.reduce((accumulator, icon) => {
       if (icon.deprecated) return accumulator;
 
-      const path = icon.namespace
-        ? `${icon.namespace}/${icon.name}`
-        : icon.name;
+      const path = [...icon.namespace, icon.name].join('/');
 
       return [
         ...accumulator,

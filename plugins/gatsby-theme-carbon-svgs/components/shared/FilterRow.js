@@ -2,7 +2,7 @@ import React from 'react';
 import { Search, Dropdown } from 'carbon-components-react';
 import cx from 'classnames';
 import useSticky from './useSticky';
-import { filterRow, pictograms } from './SvgLibrary.module.scss';
+import { filterRow, pictograms, dropdown } from './SvgLibrary.module.scss';
 
 const FilterRow = ({
   onSearchChange,
@@ -31,7 +31,9 @@ const FilterRow = ({
         placeHolderText={placeHolderText}
       />
       <Dropdown
+        className={dropdown}
         id="category-filter"
+        size="xl"
         direction="bottom"
         light
         selectedItem={selectedCategory}
