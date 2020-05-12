@@ -4,33 +4,74 @@ description: The breadcrumb component is a secondary navigation pattern that sho
 tabs: ["Usage", "Style", "Code", "Accessibility"]
 ---
 
-<ComponentDemo
-  components={[
-    {
-      id: "breadcrumb",
-      label: "Breadcrumb",
-    },
-  ]}
->
-  <ComponentVariant
-    id="breadcrumb"
-    knobs={{
-      Breadcrumb: ["noTrailingSlash"],
-    }}
-    links={{
-      React:
-        "http://react.carbondesignsystem.com/?path=/story/breadcrumb--default",
-      Angular:
-        "https://angular.carbondesignsystem.com/?path=/story/components-breadcrumb--basic",
-      Vue:
-        "http://vue.carbondesignsystem.com/?path=/story/components-cvbreadcrumb--default",
-      Vanilla: "https://the-carbon-components.netlify.com/?nav=breadcrumb",
-    }}
-  >{`
-<Breadcrumb>
-  <BreadcrumbItem href="/">Breadcrumb 1</BreadcrumbItem>
-  <BreadcrumbItem href="/">Breadcrumb 2</BreadcrumbItem>
-  <BreadcrumbItem isCurrentPage href="/">Breadcrumb 3</BreadcrumbItem>
+<AnchorLinks>
+
+<AnchorLink>Code Usage</AnchorLink>
+<AnchorLink>Component API</AnchorLink>
+
+</AnchorLinks>
+
+## Code Usage
+
+You can build an accordion using a combination of the `Breadcrumb` and
+`BreadcrumbItem` components. The `Breadcrumb` component accepts a list of
+`BreadcrumbItem` components as `children` and each `BreadcrumbItem` is responsible
+for displaying the page links in the hierarchy.
+
+### Skeleton
+
+You can use the `BreadcrumbSkeleton` component to render a skeleton variant of an
+accordion. This is useful to display while content in your accordion is being
+fetched from an external resource like an API.
+
+## Component API
+
+### Breadcrumb props
+
+| Prop            | Type     | Required |
+| --------------- | -------- | -------- |
+| aria-label      | `string` | `false`  |
+| children        | `node`   | `true`   |
+| className       | `string` | `false`  |
+| noTrailingSlash | `bool`   | `false`  |
+
+### Breadcrumb noTrailingSlash
+
+You can use the `noTrailingSlash` prop to omit the slash from the end of the current page.
+
+```jsx
+<Breadcrumb noTrailingSlash>
+  <BreadcrumbItem href="#">Breadcrumb 1</BreadcrumbItem>
+  <BreadcrumbItem href="#">Breadcrumb 2</BreadcrumbItem>
+  <BreadcrumbItem href="#">Breadcrumb 3</BreadcrumbItem>
 </Breadcrumb>
-`}</ComponentVariant>
-</ComponentDemo>
+```
+
+### BreadcrumbItem props
+
+| Prop          | Type     | Required |
+| ------------- | -------- | -------- |
+| children      | `node`   | `true`   |
+| className     | `string` | `false`  |
+| href          | `string` | `false`  |
+| isCurrentPage | `bool`   | `false`  |
+
+### BreadcrumbItem isCurrentPage
+
+You can use the `isCurrentPage` prop on a `BreadcrumbItem` to represent the current page.
+
+```jsx
+<Breadcrumb>
+  <BreadcrumbItem href="#">Breadcrumb 1</BreadcrumbItem>
+  <BreadcrumbItem href="#">Breadcrumb 2</BreadcrumbItem>
+  <BreadcrumbItem href="#" isCurrentPage>
+    Breadcrumb 3
+  </BreadcrumbItem>
+</Breadcrumb>
+```
+
+### BreadcrumbSkeleton props
+
+| Prop      | Type     | Required |
+| --------- | -------- | -------- |
+| className | `string` | `false`  |
