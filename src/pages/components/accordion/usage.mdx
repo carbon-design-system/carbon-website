@@ -1,7 +1,7 @@
 ---
 title: Accordion
-description: The accordion component delivers large amounts of content in a small space through progressive disclosure. The user gets key details about the underlying content and can choose to expand that content.
-tabs: ["Code", "Usage", "Style", "Accessibility"]
+description: An accordion is a vertically stacked list of headers that reveal or hide associated sections of content.
+tabs: ["Usage", "Style", "Code", "Accessibility"]
 ---
 
 <PageDescription>
@@ -13,9 +13,10 @@ An accordion is a vertically stacked list of headers that reveal or hide associa
 <AnchorLinks>
 
 <AnchorLink>Overview</AnchorLink>
+<AnchorLink>Live demo</AnchorLink>
 <AnchorLink>Formatting</AnchorLink>
-<AnchorLink>Behavior</AnchorLink>
 <AnchorLink>Content</AnchorLink>
+<AnchorLink>Behaviors</AnchorLink>
 <AnchorLink>Related</AnchorLink>
 <AnchorLink>References</AnchorLink>
 <AnchorLink>Feedback</AnchorLink>
@@ -33,6 +34,39 @@ Accordions can make information processing and discovering more effective. Howev
 - To organize related information.
 - To shorten pages and reduce scrolling when content is not crucial to read in full.
 - When space is at a premium and long content cannot be displayed all at once, like on a mobile interface or in a side panel.
+
+## Live demo
+
+<ComponentDemo
+  components={[
+    {
+      id: "accordion",
+      label: "Accordion",
+    },
+  ]}
+>
+  <ComponentVariant
+    id="accordion"
+    knobs={{ Accordion: ["align"], AccordionItem: ["open"] }}
+    links={{
+      React:
+        "http://react.carbondesignsystem.com/?path=/story/accordion--default",
+      Angular:
+        "https://angular.carbondesignsystem.com/?path=/story/components-accordion--basic",
+      Vue:
+        "http://vue.carbondesignsystem.com/?path=/story/components-cvaccordion--default",
+      Vanilla: "https://the-carbon-components.netlify.com/?nav=accordion",
+    }}
+  >
+    {`
+  <Accordion>
+    <AccordionItem title="Title 1"><p>The accordion component delivers large amounts of content in a small space through progressive disclosure. The user gets key details about the underlying content and can choose to expand that content within the constraints of the accordion. Accordions work especially well on mobile interfaces or whenever vertical space is at a premium.</p></AccordionItem>
+    <AccordionItem title="Title 2"><p>The accordion component delivers large amounts of content in a small space through progressive disclosure. The user gets key details about the underlying content and can choose to expand that content within the constraints of the accordion. Accordions work especially well on mobile interfaces or whenever vertical space is at a premium.</p></AccordionItem>
+    <AccordionItem title="Title 3"><p>The accordion component delivers large amounts of content in a small space through progressive disclosure. The user gets key details about the underlying content and can choose to expand that content within the constraints of the accordion. Accordions work especially well on mobile interfaces or whenever vertical space is at a premium.</p></AccordionItem>
+  </Accordion>
+  `}
+  </ComponentVariant>
+</ComponentDemo>
 
 ## Formatting
 
@@ -81,10 +115,14 @@ In rare scenarios, the accordion can be modified to place the icon in front of t
 Accordions can be placed with main page content or placed inside of a container such as a side panel or tile.
 
 <Row>
-<Column colLg={12}>
+<Column  colLg={12} colMd={12} colSm={4}>
+<ArtDirection>
 
+![accordion placement](images/accordion-placement-2m.png)
+![accordion placement](images/accordion-placement-2.png)
 ![accordion placement](images/accordion-placement-2.png)
 
+</ArtDirection>
 </Column>
 </Row>
 
@@ -100,7 +138,24 @@ When placing an accordion on the 2x Grid the indented title aligns to the grid c
 </Column>
 </Row>
 
-## Behavior
+## Content
+
+### Main elements
+
+#### Title
+
+- The title should be as brief as possible while still being clear and descriptive.
+- Each title should be wrapped in a [role heading](https://www.w3.org/TR/wai-aria-practices-1.1/#wai-aria-roles-states-and-properties) (h1-h6) that is appropriate for the information architecture of the page.
+
+#### Body copy
+
+- Content inside of a section may be split into paragraphs and include sub-headers if needed.
+
+### Scrolling content
+
+When the accordion content is longer than the viewport the whole accordion should vertically scroll. Content should not scroll inside of an individual panel. Content should never scroll horizontally in an accordion.
+
+## Behaviors
 
 ### States
 
@@ -166,31 +221,14 @@ NVDA: Users can trigger a state change by pressing `Enter` or `Space` while the 
 
 For additional information, see [screen reader tests](https://www.carbondesignsystem.com/components/accordion/accessibility#macos-screen-reader-tests).
 
-## Content
-
-### Main elements
-
-#### Title
-
-- The title should be as brief as possible while still being clear and descriptive.
-- Each title should be wrapped in a [role heading](https://www.w3.org/TR/wai-aria-practices-1.1/#wai-aria-roles-states-and-properties) (h1-h6) that is appropriate for the information architecture of the page.
-
-#### Body copy
-
-- Content inside of a section may be split into paragraphs and include sub-headers if needed.
-
-### Scrolling content
-
-When the accordion content is longer than the viewport the whole accordion should vertically scroll. Content should not scroll inside of an individual panel. Content should never scroll horizontally in an accordion.
-
 ## Related
 
 The following components are additional ways to organize content. Consider the type and length of content you are working with when choosing a content container. Longer form content may benefit from tabs or a content switcher while very short content might do better in a structured list.
 
-- [Content switcher](/components/content-switcher/code/)
-- [Progress indicator](/components/progress-indicator/code)
-- [Structured list](/components/structured-list/code)
-- [Tabs](/components/tabs/code)
+- [Content switcher](/components/content-switcher/usage)
+- [Progress indicator](/components/progress-indicator/usage)
+- [Structured list](/components/structured-list/usage)
+- [Tabs](/components/tabs/usage)
 - Tree view
 
 ## References
@@ -199,4 +237,4 @@ The following components are additional ways to organize content. Consider the t
 
 ## Feedback
 
-Help us improve this pattern by providing feedback, asking questions, and leaving any other comments on [GitHub](https://github.com/carbon-design-system/carbon-website/issues/new?assignees=&labels=feedback&template=feedback.md).
+Help us improve this component by providing feedback, asking questions, and leaving any other comments on [GitHub](https://github.com/carbon-design-system/carbon-website/issues/new?assignees=&labels=feedback&template=feedback.md).

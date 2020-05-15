@@ -1,33 +1,100 @@
 ---
 title: Data table
 description: The data table component allows for the flexible display and sorting of information.
-tabs: ["Code", "Usage", "Style", "Accessibility"]
+tabs: ["Usage", "Style", "Code", "Accessibility"]
 ---
 
 import { rowData, headerData } from "../../../data/components/data-table.js";
-
-## Default
+import {
+  Delete16 as Delete,
+  Save16 as Save,
+  Download16 as Download,
+} from "@carbon/icons-react";
 
 <ComponentDemo
-  scope={{ rowData, headerData, React }}
-  knobs={{ DataTable: ["isSortable"], Table: ["size", "useZebraStyles"] }}
-  links={{
-    React:
-      "https://react.carbondesignsystem.com/?path=/story/datatable--default",
-    Angular:
-      "https://angular.carbondesignsystem.com/?path=/story/components-table--basic",
-    Vue:
-      "http://vue.carbondesignsystem.com/?path=/story/components-cvdatatable--default",
-    Vanilla: "https://the-carbon-components.netlify.com/?nav=data-table",
-  }}
->{`<DataTable 
-  rows={rowData} 
-  headers={headerData} 
-  render={({ rows, headers, getHeaderProps }) => (
-  <TableContainer title="DataTable">
+  components={[
+    {
+      id: "default-table",
+      label: "Default",
+    },
+    {
+      id: "with-selection",
+      label: "With selection",
+    },
+    {
+      id: "with-expansion",
+      label: "With expansion",
+    },
+    {
+      id: "with-batch-actions",
+      label: "With batch actions",
+    },
+  ]}
+  scope={{ rowData, headerData, React, Delete, Save, Download }}
+>
+  <ComponentVariant
+    id="default-table"
+    knobs={{ DataTable: ["isSortable"], Table: ["size", "useZebraStyles"] }}
+    links={{
+      React:
+        "https://react.carbondesignsystem.com/?path=/story/datatable--default",
+      Angular:
+        "https://angular.carbondesignsystem.com/?path=/story/components-table--basic",
+      Vue:
+        "http://vue.carbondesignsystem.com/?path=/story/components-cvdatatable--minimal",
+      Vanilla: "https://the-carbon-components.netlify.com/?nav=data-table",
+    }}
+  >
+    {`<DataTable
+    rows={rowData}
+    headers={headerData}
+    render={({ rows, headers, getHeaderProps }) => (
+    <TableContainer title="DataTable">
+      <Table>
+        <TableHead>
+          <TableRow>
+            {headers.map(header => (
+              <TableHeader {...getHeaderProps({ header })}>
+                {header.header}
+              </TableHeader>
+            ))}
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map(row => (
+            <TableRow key={row.id}>
+              {row.cells.map(cell => (
+                <TableCell key={cell.id}>{cell.value}</TableCell>
+              ))}
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>)}
+    />`}
+  </ComponentVariant>
+  <ComponentVariant
+    id="with-selection"
+    knobs={{ DataTable: ["isSortable"], Table: ["size", "useZebraStyles"] }}
+    links={{
+      React:
+        "https://react.carbondesignsystem.com/?path=/story/datatable--with-selection",
+      Angular:
+        "https://angular.carbondesignsystem.com/?path=/story/components-table--basic",
+      Vue:
+        "http://vue.carbondesignsystem.com/?path=/story/components-cvdatatable--default",
+      Vanilla: "https://the-carbon-components.netlify.com/?nav=data-table",
+    }}
+  >
+    {`<DataTable
+  rows={rowData}
+  headers={headerData}
+  render={({ rows, headers, getHeaderProps, getSelectionProps, getRowProps }) => (
+  <TableContainer title="DataTable with selection">
     <Table>
       <TableHead>
         <TableRow>
+          <TableSelectAll {...getSelectionProps()} />
           {headers.map(header => (
             <TableHeader {...getHeaderProps({ header })}>
               {header.header}
@@ -37,7 +104,8 @@ import { rowData, headerData } from "../../../data/components/data-table.js";
       </TableHead>
       <TableBody>
         {rows.map(row => (
-          <TableRow key={row.id}>
+          <TableRow {...getRowProps({ row })}>
+            <TableSelectRow {...getSelectionProps({ row })} />
             {row.cells.map(cell => (
               <TableCell key={cell.id}>{cell.value}</TableCell>
             ))}
@@ -46,25 +114,24 @@ import { rowData, headerData } from "../../../data/components/data-table.js";
       </TableBody>
     </Table>
   </TableContainer>)}
-/>`}</ComponentDemo>
-
-## With expansion
-
-<ComponentDemo
-  scope={{ rowData, headerData }}
-  knobs={{ DataTable: ["isSortable"], Table: ["size", "useZebraStyles"] }}
-  links={{
-    React:
-      "https://react.carbondesignsystem.com/?path=/story/datatable--default",
-    Angular:
-      "https://angular.carbondesignsystem.com/?path=/story/components-table--basic",
-    Vue:
-      "http://vue.carbondesignsystem.com/?path=/story/components-cvdatatable--default",
-    Vanilla: "https://the-carbon-components.netlify.com/?nav=data-table",
-  }}
->{`<DataTable 
-  rows={rowData} 
-  headers={headerData} 
+/>`}
+  </ComponentVariant>
+  <ComponentVariant
+    id="with-expansion"
+    knobs={{ DataTable: ["isSortable"] }}
+    links={{
+      React:
+        "https://react.carbondesignsystem.com/?path=/story/datatable--with-expansion",
+      Angular:
+        "https://angular.carbondesignsystem.com/?path=/story/components-table--with-expansion",
+      Vue:
+        "http://vue.carbondesignsystem.com/?path=/story/components-cvdatatable--slotted-expanding-data",
+      Vanilla: "https://the-carbon-components.netlify.com/?nav=data-table",
+    }}
+  >
+    {`<DataTable
+  rows={rowData}
+  headers={headerData}
   render={({ rows, headers, getHeaderProps, getRowProps, getTableProps }) => (
   <TableContainer title="DataTable with expansion">
     <Table {...getTableProps()}>
@@ -96,27 +163,79 @@ import { rowData, headerData } from "../../../data/components/data-table.js";
       </TableBody>
     </Table>
   </TableContainer>
-)}/>`}</ComponentDemo>
-
-## With selection
-
-<ComponentDemo
-  scope={{ rowData, headerData }}
-  knobs={{ DataTable: ["isSortable"], Table: ["size", "useZebraStyles"] }}
-  links={{
-    React:
-      "https://react.carbondesignsystem.com/?path=/story/datatable--default",
-    Angular:
-      "https://angular.carbondesignsystem.com/?path=/story/components-table--basic",
-    Vue:
-      "http://vue.carbondesignsystem.com/?path=/story/components-cvdatatable--default",
-    Vanilla: "https://the-carbon-components.netlify.com/?nav=data-table",
-  }}
->{`<DataTable 
-  rows={rowData} 
-  headers={headerData} 
-  render={({ rows, headers, getHeaderProps, getSelectionProps, getRowProps }) => (
-  <TableContainer title="DataTable with selection">
+)}/>`}
+  </ComponentVariant>
+  <ComponentVariant
+    id="with-batch-actions"
+    links={{
+      React:
+        "https://react.carbondesignsystem.com/?path=/story/datatable--with-batch-actions",
+      Angular:
+        "https://angular.carbondesignsystem.com/?path=/story/components-table--with-toolbar",
+      Vue:
+        "http://vue.carbondesignsystem.com/?path=/story/components-cvdatatable--default",
+      Vanilla: "https://the-carbon-components.netlify.com/?nav=data-table",
+    }}
+  >
+    {`<DataTable
+  rows={rowData}
+  headers={headerData}
+  render={({ rows,
+      headers,
+      getHeaderProps,
+      getRowProps,
+      getSelectionProps,
+      getBatchActionProps,
+      onInputChange,
+      selectedRows,}) => (
+  <TableContainer title="DataTable with batch actions">
+    <TableToolbar>
+          <TableBatchActions {...getBatchActionProps()}>
+            <TableBatchAction
+              tabIndex={getBatchActionProps().shouldShowBatchActions ? 0 : -1}
+              renderIcon={Delete}
+              onClick={()=>console.log('clicked')}>
+              Delete
+            </TableBatchAction>
+            <TableBatchAction
+              tabIndex={getBatchActionProps().shouldShowBatchActions ? 0 : -1}
+              renderIcon={Save}
+              onClick={()=>console.log('clicked')}>
+              Save
+            </TableBatchAction>
+            <TableBatchAction
+              tabIndex={getBatchActionProps().shouldShowBatchActions ? 0 : -1}
+              renderIcon={Download}
+              onClick={()=>console.log('clicked')}>
+              Download
+            </TableBatchAction>
+          </TableBatchActions>
+          <TableToolbarContent>
+            <TableToolbarSearch
+              tabIndex={getBatchActionProps().shouldShowBatchActions ? -1 : 0}
+              onChange={onInputChange}
+            />
+            <TableToolbarMenu
+              tabIndex={getBatchActionProps().shouldShowBatchActions ? -1 : 0}>
+              <TableToolbarAction primaryFocus onClick={() => alert('Alert 1')}>
+                Action 1
+              </TableToolbarAction>
+              <TableToolbarAction onClick={() => alert('Alert 2')}>
+                Action 2
+              </TableToolbarAction>
+              <TableToolbarAction onClick={() => alert('Alert 3')}>
+                Action 3
+              </TableToolbarAction>
+            </TableToolbarMenu>
+            <Button
+              tabIndex={getBatchActionProps().shouldShowBatchActions ? -1 : 0}
+              onClick={()=> console.log('clicked')}
+              size="small"
+              kind="primary">
+              Add new
+            </Button>
+          </TableToolbarContent>
+        </TableToolbar>
     <Table>
       <TableHead>
         <TableRow>
@@ -140,7 +259,9 @@ import { rowData, headerData } from "../../../data/components/data-table.js";
       </TableBody>
     </Table>
   </TableContainer>)}
-/>`}</ComponentDemo>
+/>`}
+  </ComponentVariant>
+</ComponentDemo>
 
 ## Sample data
 
