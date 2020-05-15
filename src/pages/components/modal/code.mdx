@@ -1,7 +1,7 @@
 ---
 title: Modal
 description: Modals focus the user’s attention exclusively on one task or piece of information via a window that sits on top of the page content.
-tabs: ["Code", "Usage", "Style", "Accessibility"]
+tabs: ["Usage", "Style", "Code", "Accessibility"]
 ---
 
 import ModalStateManager from "../../../components/ModalStateManager";
@@ -24,19 +24,32 @@ You can also use `modalLabel`, `modalHeading`, `secondaryButtonText` and `primar
 
 <ComponentDemo
   scope={{ ModalStateManager, React }}
-  knobs={{
-    Modal: ["passiveModal", "danger", "hasScrollingContent", "size"],
-  }}
-  links={{
-    React: "https://react.carbondesignsystem.com/?path=/story/modal--default",
-    Angular:
-      "https://angular.carbondesignsystem.com/?path=/story/components-modal--basic",
-    Vue:
-      "http://vue.carbondesignsystem.com/?path=/story/components-cvmodal--default",
-    Vanilla: "https://the-carbon-components.netlify.com/?nav=modal",
-  }}
+  components={[
+    {
+      id: "modal",
+      label: "Modal",
+    },
+    {
+      id: "modal-scrolling-content",
+      label: "With scrolling content",
+    },
+  ]}
 >
-  {`
+  <ComponentVariant
+    id="modal"
+    knobs={{
+      Modal: ["passiveModal", "danger", "size"],
+    }}
+    links={{
+      React: "https://react.carbondesignsystem.com/?path=/story/modal--default",
+      Angular:
+        "https://angular.carbondesignsystem.com/?path=/story/components-modal--basic",
+      Vue:
+        "http://vue.carbondesignsystem.com/?path=/story/components-cvmodal--default",
+      Vanilla: "https://the-carbon-components.netlify.com/?nav=modal",
+    }}
+  >
+    {`
 <>
   {/*
     <ModalStateManager> is something application writes to implement a launcher button with its state.
@@ -49,7 +62,6 @@ You can also use `modalLabel`, `modalHeading`, `secondaryButtonText` and `primar
   >
     {({ open, setOpen }) => (
       <Modal
-        buttonTriggerText="Launch modal"
         modalHeading="Modal heading"
         modalLabel="Label"
         primaryButtonText="OK"
@@ -62,7 +74,73 @@ You can also use `modalLabel`, `modalHeading`, `secondaryButtonText` and `primar
     )}
   </ModalStateManager>
 </>
-`}
+    `}
+  </ComponentVariant>
+  <ComponentVariant
+    id="modal-scrolling-content"
+    links={{
+      React: "https://react.carbondesignsystem.com/?path=/story/modal--default",
+      Angular:
+        "https://angular.carbondesignsystem.com/?path=/story/components-modal--basic",
+      Vue:
+        "http://vue.carbondesignsystem.com/?path=/story/components-cvmodal--default",
+      Vanilla: "https://the-carbon-components.netlify.com/?nav=modal",
+    }}
+  >
+    {`
+<>
+  {/*
+    <ModalStateManager> is something application writes to implement a launcher button with its state.
+    See "Opening/closing modal" section for more details.
+  */}
+  <ModalStateManager
+    renderLauncher={({ open, setOpen }) => (
+      <Button onClick={() => setOpen(true)}>Launch modal</Button>
+    )}
+  >
+    {({ open, setOpen }) => (
+      <Modal
+        hasScrollingContent
+        modalHeading="Modal heading"
+        modalLabel="Label"
+        primaryButtonText="OK"
+        secondaryButtonText="Cancel"
+        size="sm"
+        open={open}
+        onRequestClose={() => setOpen(false)}
+      >
+        <>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id accumsan augue. Phasellus consequat augue vitae tellus tincidunt posuere. Curabitur justo urna, consectetur vel elit iaculis, ultrices condimentum risus. Nulla facilisi. Etiam venenatis molestie tellus. Quisque consectetur non risus eu rutrum. 
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id accumsan augue. Phasellus consequat augue vitae tellus tincidunt posuere. Curabitur justo urna, consectetur vel elit iaculis, ultrices condimentum risus. Nulla facilisi. Etiam venenatis molestie tellus. Quisque consectetur non risus eu rutrum. 
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id accumsan augue. Phasellus consequat augue vitae tellus tincidunt posuere. Curabitur justo urna, consectetur vel elit iaculis, ultrices condimentum risus. Nulla facilisi. Etiam venenatis molestie tellus. Quisque consectetur non risus eu rutrum. 
+          </p>
+          <h3>
+            Lorem ipsum
+          </h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id accumsan augue. Phasellus consequat augue vitae tellus tincidunt posuere. Curabitur justo urna, consectetur vel elit iaculis, ultrices condimentum risus. Nulla facilisi. Etiam venenatis molestie tellus. Quisque consectetur non risus eu rutrum. 
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id accumsan augue. Phasellus consequat augue vitae tellus tincidunt posuere. Curabitur justo urna, consectetur vel elit iaculis, ultrices condimentum risus. Nulla facilisi. Etiam venenatis molestie tellus. Quisque consectetur non risus eu rutrum. 
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id accumsan augue. Phasellus consequat augue vitae tellus tincidunt posuere. Curabitur justo urna, consectetur vel elit iaculis, ultrices condimentum risus. Nulla facilisi. Etiam venenatis molestie tellus. Quisque consectetur non risus eu rutrum. 
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id accumsan augue. Phasellus consequat augue vitae tellus tincidunt posuere. Curabitur justo urna, consectetur vel elit iaculis, ultrices condimentum risus. Nulla facilisi. Etiam venenatis molestie tellus. Quisque consectetur non risus eu rutrum. 
+          </p>
+        </>
+      </Modal>
+    )}
+  </ModalStateManager>
+</>
+    `}
+  </ComponentVariant>
 </ComponentDemo>
 
 ### ComposedModal
@@ -71,17 +149,29 @@ You can also use `modalLabel`, `modalHeading`, `secondaryButtonText` and `primar
 
 <ComponentDemo
   scope={{ ModalStateManager, React }}
-  knobs={{
-    ComposedModal: ["size"],
-    ModalBody: ["hasScrollingContent"],
-    ModalFooter: ["danger"],
-  }}
-  links={{
-    React:
-      "https://react.carbondesignsystem.com/?path=/story/composedmodal--using-child-nodes",
-  }}
+  components={[
+    {
+      id: "composed-modal",
+      label: "Composed modal",
+    },
+    {
+      id: "composed-modal-scrolling-content",
+      label: "With scrolling content",
+    },
+  ]}
 >
-  {`
+  <ComponentVariant
+    id="composed-modal"
+    knobs={{
+      ComposedModal: ["size"],
+      ModalFooter: ["danger"],
+    }}
+    links={{
+      React:
+        "https://react.carbondesignsystem.com/?path=/story/composedmodal--using-child-nodes",
+    }}
+  >
+    {`
 <>
   {/*
     <ModalStateManager> is something application writes to implement a launcher button with its state.
@@ -107,7 +197,68 @@ You can also use `modalLabel`, `modalHeading`, `secondaryButtonText` and `primar
     )}
   </ModalStateManager>
 </>
-`}
+  `}
+  </ComponentVariant>
+  <ComponentVariant
+    id="composed-modal-scrolling-content"
+    links={{
+      React:
+        "https://react.carbondesignsystem.com/?path=/story/composedmodal--using-child-nodes",
+    }}
+  >
+    {`
+<>
+  {/*
+    <ModalStateManager> is something application writes to implement a launcher button with its state.
+    See "Opening/closing modal" section for more details.
+  */}
+  <ModalStateManager
+    renderLauncher={({ open, setOpen }) => (
+      <Button onClick={() => setOpen(true)}>Launch modal</Button>
+    )}
+  >
+    {({ open, setOpen }) => (
+      <ComposedModal open={open} size="sm" onClose={() => setOpen(false)}>
+        <ModalHeader label="Modal label">
+          <h1>Modal heading</h1>
+        </ModalHeader>
+        <ModalBody>
+          <p className=".bx--modal-content__text">
+            <>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id accumsan augue. Phasellus consequat augue vitae tellus tincidunt posuere. Curabitur justo urna, consectetur vel elit iaculis, ultrices condimentum risus. Nulla facilisi. Etiam venenatis molestie tellus. Quisque consectetur non risus eu rutrum. 
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id accumsan augue. Phasellus consequat augue vitae tellus tincidunt posuere. Curabitur justo urna, consectetur vel elit iaculis, ultrices condimentum risus. Nulla facilisi. Etiam venenatis molestie tellus. Quisque consectetur non risus eu rutrum. 
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id accumsan augue. Phasellus consequat augue vitae tellus tincidunt posuere. Curabitur justo urna, consectetur vel elit iaculis, ultrices condimentum risus. Nulla facilisi. Etiam venenatis molestie tellus. Quisque consectetur non risus eu rutrum. 
+              </p>
+              <h3>
+                Lorem ipsum
+              </h3>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id accumsan augue. Phasellus consequat augue vitae tellus tincidunt posuere. Curabitur justo urna, consectetur vel elit iaculis, ultrices condimentum risus. Nulla facilisi. Etiam venenatis molestie tellus. Quisque consectetur non risus eu rutrum. 
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id accumsan augue. Phasellus consequat augue vitae tellus tincidunt posuere. Curabitur justo urna, consectetur vel elit iaculis, ultrices condimentum risus. Nulla facilisi. Etiam venenatis molestie tellus. Quisque consectetur non risus eu rutrum. 
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id accumsan augue. Phasellus consequat augue vitae tellus tincidunt posuere. Curabitur justo urna, consectetur vel elit iaculis, ultrices condimentum risus. Nulla facilisi. Etiam venenatis molestie tellus. Quisque consectetur non risus eu rutrum. 
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id accumsan augue. Phasellus consequat augue vitae tellus tincidunt posuere. Curabitur justo urna, consectetur vel elit iaculis, ultrices condimentum risus. Nulla facilisi. Etiam venenatis molestie tellus. Quisque consectetur non risus eu rutrum. 
+              </p>
+            </>
+          </p>
+        </ModalBody>
+        <ModalFooter primaryButtonText="OK" secondaryButtonText="Cancel" />
+      </ComposedModal>
+    )}
+  </ModalStateManager>
+</>
+  `}
+  </ComponentVariant>
 </ComponentDemo>
 
 ### Opening/closing modal

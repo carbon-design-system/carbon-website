@@ -2,6 +2,7 @@ import defaultComponents from 'gatsby-theme-carbon/src/components/MDXProvider/de
 
 import MdxIcon from '../../../components/MdxIcon';
 import ComponentDemo from '../../../components/ComponentDemo';
+import ComponentVariant from '../../../components/ComponentDemo/ComponentVariant';
 
 const { code: Code, ...rest } = defaultComponents;
 
@@ -10,5 +11,6 @@ export default {
   code: 'code',
   'pre.code': Code,
   ComponentDemo,
+  ComponentVariant,
   MdxIcon,
 };

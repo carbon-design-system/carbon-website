@@ -1,4 +1,4 @@
-const codeSnippet = `@mixin grid-container {
+export const codeSnippet = `@mixin grid-container {
   width: 100%;
   padding-right: padding(mobile);
   padding-left: padding(mobile);
@@ -20,4 +20,4 @@ $z-indexes: (
   floating: 10000
 );`;
 
-export default codeSnippet;
+export const codeSnippetSingle = `node -v`;
