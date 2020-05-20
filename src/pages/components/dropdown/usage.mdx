@@ -1,111 +1,492 @@
 ---
 title: Dropdown
-description: Dropdowns present a list of options that can be used to filter or sort existing content. They can also be used as menus.
+description: Dropdowns present a list of options that can be used to filter or sort existing content.
 tabs: ["Code", "Usage", "Style", "Accessibility"]
 ---
 
 <AnchorLinks>
 
-<AnchorLink>General guidance</AnchorLink>
-<AnchorLink>Variations</AnchorLink>
+<AnchorLink>Types</AnchorLink>
+<AnchorLink>Formatting</AnchorLink>
 <AnchorLink>Content</AnchorLink>
-<AnchorLink>Interaction</AnchorLink>
+<AnchorLink>Universal behaviors</AnchorLink>
+<AnchorLink>Dropdown</AnchorLink>
+<AnchorLink>Multiselect</AnchorLink>
+<AnchorLink>Combobox</AnchorLink>
+<AnchorLink>Modifiers</AnchorLink>
+<AnchorLink>Related</AnchorLink>
+<AnchorLink>References</AnchorLink>
+<AnchorLink>Feedback</AnchorLink>
 
 </AnchorLinks>
 
-## General guidance
+## Types
 
-_Dropdowns_ present a list of options that can be used to filter or sort existing content.
+There are three different types of dropdowns that support various kinds of functionality. \*\*
 
-They can also be used as menus. Their use as menus can be seen in [tabs](/components/tabs/code). At a smaller screen size, the tabs collapse into a dropdown.
+| Type                   | Purpose                                                                                                                                            |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _Dropdown_             | Allows the user to select one option from a list.                                                                                                  |
+| _Multiselect dropdown_ | Allows the user to select multiple options from a list and filter.                                                                                 |
+| _Combobox_             | Allows the the user to make a selection from a predefined list of options either by typing a value directly or by selecting a value from the list. |
 
-### Dropdown versus Select
+### When to use
+
+Dropdowns can be used in forms on full pages, in modals, or on side panels. The dropdown component is used to filter or sort contents on a page. It is a stylized version of the select component, and can be styled as needed.
+
+### When not to use
+
+- It is best practice not to use a dropdown if there are two or less options to choose from. In this case, use a [radio button](https://www.carbondesignsystem.com/components/radio-button/code) group instead.
+- Do not nest dropdowns or use them to display overly complex information. Keep option selections as straight forward as possible.
+- If your user is selecting from a list of options and submitting data inside a form, use the [select component](https://www.carbondesignsystem.com/components/select/usage) instead.
+
+## Formatting
+
+### Anatomy
+
+Dropdowns are composed of four distinct sections—assistive text like labels or helper text, a field, a menu, and options contained within the menu. Labels and help text are optional but can guide the user to make an informed decision when making a selection.
+
+<Row>
+<Column colLg={8}>
+
+![dropdown anatomy](images/dropdown-usage-1.png)
+
+</Column>
+</Row>
+
+1. **Labels and help text (optional):** Assistive text to help the user complete a selection.
+2. **Field:** Persists when the dropdown is open or closed.
+3. **Option:** A list of multiple options to select from within a menu.
+4. **Menu:** Displayed as an open state and contains a list of options to select from.
+
+### Sizing
+
+**Height**
+
+There are three dropdown height sizes: Large, medium (default) and small. Use a consistent dropdown height when it is being used alongside other form components on the same page. Supporting three different dropdown sizes gives you more flexibility when structuring layouts. When in doubt, use the default medium size height.
+
+<Row>
+<Column colLg={8}>
+
+![dropdown sizes](images/dropdown-usage-2.png)
+
+</Column>
+</Row>
+
+| Dropdown size     | Height (rem / px) | Usecase                                                                                                                                                                            |
+| ----------------- | ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _Large_           | 48 /3             | Choose this size when there is a lot of space to work with. This size is typically used in simple forms or when a dropdown is placed by itself on a page, for example as a filter. |  |
+| _Medium(default)_ | 40 / 2.5          | This is our default size and should be used whenever possible.                                                                                                                     |
+| _Small_           | 32 /2             | Use when space is constricted or when placing a dropdown in a form that is long and complex.                                                                                       |
+
+When the menu is open, each option in the menu should reflect the same height as the field. Use a consistent size of form components on the same page. For example if you are using a medium size dropdown also use the same size text inputs, buttons, etc.
+
+<Row>
+<Column colLg={8}>
+
+![dropdown field and option container size relationship](images/dropdown-usage-3.png)
+
+</Column>
+</Row>
+
+**Width**
+
+There is no minimum or maximum width for a dropdown. The width can be customized appropriately for its context.
+
+### Placement
+
+Field containers should vertically align to the grid and with other form components on a page.
+
+<DoDontRow>
+<DoDont
+colMd={4} colLg={4}
+caption="Do align field containers to the grid">
+
+![Do: align field containers to the grid](./images/dropdown-usage-4-do.png)
+
+</DoDont>
+<DoDont
+colMd={4} colLg={4}
+type="dont"
+caption="Don't align field input text to the grid and hang the container">
+
+![Don’t: align field input text to the grid and hang the container](./images/dropdown-usage-4-dont.png)
+
+</DoDont>
+</DoDontRow>
+
+## Content
+
+### Main elements
+
+**Labels**
+
+- Labels inform users what to expect in the list of dropdown options.
+- Keep the label short and concise by limiting it to a single line of text.
+
+**Help text**
+
+- Help text is pertinent information that assists the user in choosing the right selection from the dropdown menu.
+- Help text is always available when the dropdown field is focused and appears underneath the label.
+- Use sentence-style capitalization, and in most cases, write the text as full sentences with punctuation.
+
+<Row>
+<Column colLg={8}>
+
+![Dropdown assitive labels, help text or none.](images/dropdown-usage-5.png)
+
+</Column>
+</Row>
+
+**Field prompt text**
+
+- Prompt text is presented in the field by default if no selection has been made from the dropdown. This is important to have in case the dropdown does not have a label above it.
+- Use clear prompt text for the dropdown trigger so that users understand the purpose.
+
+**Options in a menu**
+
+- Describe the dropdown option succinctly in one line of text.
+- Never use decorative images or icons within a dropdown.
+- We recommend presenting the options in alphabetical order.
+
+### Optional versus required fields
+
+All fields in a form are assumed required, and optional fields are tagged. For more information, see the f[orm](https://www.carbondesignsystem.com/components/form/usage) component usage guidance.
+
+### Overflow content
+
+Avoid having multiple lines of text in a dropdown. If the text is too long for one line, add an ellipsis (…) for overflow content, and accompany with a browser-based tooltip to show the full string of text.
+
+<Row>
+<Column colLg={8}>
+
+![Dropdown overflow text truncation.](images/dropdown-usage-6.png)
+
+</Column>
+</Row>
+
+### Further guidance
+
+For further content guidance, see Carbon's [content guidelines](notion://www.notion.so/guidelines/content/general).
+
+## Universal behaviors
+
+The behaviors listed in this section are universal across all of the types. For behaviors that are unique to each type, see the sections below.
+
+### **Direction**
+
+A dropdown can open up or down depending on its position on the screen. For example, if the dropdown appears at the bottom and close to the edge of the interface, the menu expands upward to avoid being cropped. By default, our dropdowns open downward.
+
+### **Elevation**
+
+Carbon has one layer style called a `box-shadow`. The box-shadow is placed behind the dropdown menu when open. Box-shadow is also used in other components that have overlayed menus, such as the overflow menu and date picker calendar. The SCSS for box-shadow is `0 2px 6px 0 rgba(0,0,0,.2)`.
+
+### Scrolling behavior
+
+Scroll bars may not always be enabled so we recommend showing 50% of the container height of the last option before scrolling to indicate there is more to see within the menu. We recommend starting a scroll at the fifth option in the menu list, but this may vary based on your specific use case.
+
+<Row>
+<Column colLg={8}>
+
+![Scrolling behavior for a long dropdown list.](images/dropdown-usage-7.png)
+
+</Column>
+</Row>
+
+### Interactions
+
+**Mouse**
+
+- Users trigger a `dropdown` menu to open or close by clicking the chevron icon or clicking anywhere within the field. \*Note: You can only open or close a combobox by clicking the chevron icon. \*\*\*
+
+<Row>
+<Column colLg={8}>
+
+![Dropdown closed and open click targets.](images/dropdown-usage-8a.png)
+
+</Column>
+</Row>
+
+- To select an option the user can click anywhere inside an option container.
+
+<Row>
+<Column colLg={8}>
+
+![Dropdown option row click target.](images/dropdown-usage-8b.png)
+
+</Column>
+</Row>
+
+- To clear all selected options from a list in a `multiselect dropdown`, click the “x” icon next to the value inside the tag.
+
+<Row>
+<Column colLg={8}>
+
+![Multiselect dropdown tag "close" click target.](images/dropdown-usage-8c.png)
+
+</Column>
+</Row>
+
+- To clear a selected value in a `combobox` for a `filterable multiselect` dropdown, click the “x” icon to the right of the field input text.
+
+<Row>
+<Column colLg={8}>
+
+![Combobox and Fitlerable multiselect dropdown "close" click target.](images/dropdown-usage-8d.png)
+
+</Column>
+</Row>
+
+**Keyboard**
+
+Dropdown field receives focus:
+
+- If none of the options are selected before the listbox receives focus, the first option receives focus. Optionally, the first option may be automatically selected.
+- If an option is selected before the listbox receives focus, focus is set on the selected option.
+- Multiselect field receives focus:
+  - If none of the options are selected before the listbox receives focus, focus is set on the first option and there is no automatic change in the selection state.
+  - If one or more options are selected before the listbox receives focus, focus is set on the first option in the list that is selected.
+- `Down Arrow`: Moves focus to the next option.
+- `Up Arrow`: Moves focus to the previous option.
+
+**Type ahead functionality:**
+
+- Type a character: focus moves to the next item with a name that starts with the typed character.
+- Type multiple characters in rapid succession: focus moves to the next item with a name that starts with the string of characters typed.
+
+**Multiple selection:**
+
+`Return`: Once an option in the dropdown menu receives focus, pressing `return` selects or deselects that option.
+
+- Recommended selection model -- holding modifier keys is not necessary:
+  - Space: opens and closes the dropdown menu.
+  - Shift + Space (Optional): Selects contiguous items from the most recently selected item to the focused item.
+
+**Screen readers**
+
+Labels must be announced to the screen reader on focus.
+
+Ensure the helper text that appears under an input is read when an assistive technology user stops at an input using ARIA.
+
+- VoiceOver:
+- JAWS:
+- NVDA:
+- For additional information, see screen reader tests.
+
+## Dropdown
+
+Use when you can select only one option from a list at a time.
+
+- By default, the dropdown displays prompt text in the field when closed.
+- Clicking on a closed field opens a menu of options.
+
+<Row>
+<Column colLg={8}>
+
+![Open and closed state of a dropdown.](images/dropdown-usage-9a.png)
+
+</Column>
+</Row>
+
+- Selecting an option from the menu closes it and the selected option text replaces the prompt text in the field and also remains as an option in place if the menu is open.
+
+<Row>
+<Column colLg={8}>
+
+![Selected option and closed state of a dropdown.](images/dropdown-usage-9b.png)
+
+</Column>
+</Row>
+
+## Multiselect
+
+Use when you can select multiple options from a list or to filter information.
+
+**Making a selection**
+
+- By default, the dropdown displays prompt text in the field when closed.
+- Clicking on a closed field opens a menu of options. Each option contains a checkbox input to the left of the option text.
+- The menu stays open while options are being selected. The menu closes by clicking on the field or outside of the dropdown.
+
+<Row>
+<Column colLg={8}>
+
+![Open and closed state of a multiselect dropdown.](images/dropdown-usage-10a.png)
+
+</Column>
+</Row>
+
+- Once options have been selected from the menu, a tag appears to the left of the text in the field containing the total number of selected options. The prompt text can change to text that better reflects what is selected.
+- Selected options shift to the top of the menu in alphanumeric order.
+- Unlike dropdown and combobox, the menu does not close once the user makes selections. Because multiple selections are possible, the user needs to click outside of the dropdown or on the parent element to close the menu.
+
+<Row>
+<Column colLg={8}>
+
+![Selected options state of a multiselect dropdown.](images/dropdown-usage-10b.png)
+
+</Column>
+</Row>
+
+**Clear all**
+
+To clear all selected options from a list, hover over the filterable tag and click the “x” (or `close`) icon next to the value. To help with clarity, a browser tooltip appears when the user hovers over the “x” icon to indicate the click action results. If you want to unselect individual options, you can do so by unselecting the checkbox of each option.
+
+<Row>
+<Column colLg={8}>
+
+![Clearing a multiselect dropdown tag.](images/dropdown-usage-10c.png)
+
+</Column>
+</Row>
+
+**Filtering**
+
+Use filtering to narrow down a long list of options to find the option you want to select.
+
+- By default, the filterable multiselect dropdown displays prompt text in the field when closed.
+- When hovering over the field, a text cursor appears.
+
+<Row>
+<Column colLg={8}>
+
+![Open and closed state of a filterable multiseelct dropdown.](images/dropdown-usage-10d.png)
+
+</Column>
+</Row>
+
+- The menu opens by clicking anywhere in the field and you can start typing to filter the list of options.
+- After typing text in the field, the close (x) icon appears to the right of the text in the field. This clears any user-inputted text. The options that start to match your entry remain in the list while other existing options are temporarily removed.
+
+<Row>
+<Column colLg={8}>
+
+![Typing and filtering a multiseelct dropdown menu.](images/dropdown-usage-10e.png)
+
+</Column>
+</Row>
+
+- Once options have been selected from the menu, a tag appears to the left of the text in the field containing the total number of selected options. The prompt text can change to text that better reflects what is selected.
+- Selected options shift to the top of the menu in alphanumeric order.
+- Like the default multiselect dropdown, the menu does not close once the user makes selections.
+
+<Row>
+<Column colLg={8}>
+
+![Selecting an option in a filterable multiseelct dropdown.](images/dropdown-usage-10f.png)
+
+</Column>
+</Row>
+
+## Combobox
+
+Allows the the user to make a selection from a predefined list of options and is typically used when there are a large amount of options to choose from.
+
+- By default, the combobox displays prompt text in the field when closed.
+- When hovering over the field, a text cursor appears.
+
+<Row>
+<Column colLg={8}>
+
+![Closed enabled and hover state of a combobox.](images/dropdown-usage-11a.png)
+
+</Column>
+</Row>
+
+- The menu opens by clicking anywhere in the field and you can start typing to sort through the list of options.
+- After typing text in the field, the close (x) icon appears to the right of the text in the field. The close icon clears any user-inputted text. The option that matches your entry receives a hover and comes into view.
+
+<Row>
+<Column colLg={8}>
+
+![Typing and hover state jumping to the matched option in the menu of a combobox.](images/dropdown-usage-11b.png)
+
+</Column>
+</Row>
+
+- Selecting an option closes the menu and the selected option replaces the prompt text.
+
+<Row>
+<Column colLg={8}>
+
+![Selecting an option in a combobox.](images/dropdown-usage-11c.png)
+
+</Column>
+</Row>
+
+## Modifiers
+
+**Inline**
+
+When placing a dropdown inline with other content use the inline modifier. If adding a visual label to an inline dropdown it should appear inline to the left of the dropdown. If there is no visual label present we recommend applying an ARIA label to the inline dropdown. \*Note: Inline is only a modifier for dropdown and does not have filtering functionality. \*\*\*
+
+<Row>
+<Column colLg={8}>
+
+![An open inline dropdown with a label on a dashboard.](images/dropdown-usage-12.png)
+
+</Column>
+</Row>
+
+**Light**
+
+Use the `light` prop modifier when using a dropdown on a background other than the UI background for that theme. The light prop changes the background color token of the dropdown from `field-01` to `field-02`. This is frequently used in form modals, or when a dropdown sits on top of a tile on a page.
+[fix image]
+
+**Invalid**
+
+Real time validation helps to streamline the process of filling out a form. We have three indicators of an invalid state: a border, an icon indicator, and an error message. Having text, color, and weight differentiation as invalid indicators help meet accessibility requirements. For full guidelines, refer to the [form component](https://www.carbondesignsystem.com/components/form/usage) usage page.
+
+<Row>
+<Column colLg={8}>
+
+![Invalid state of a dropdown.](images/dropdown-usage-14.png)
+
+</Column>
+</Row>
+
+**Disabled**
+
+A dropdown cannot be clicked, selected, or interacted with if it is disabled. It is not read by a screen reader and takes on the default disabled visual style. Tooltips on a disabled state are also not read by screen readers and we recommend having an alternative way to show descriptive text if needed.
+
+<Row>
+<Column colLg={8}>
+
+![Disabled state of a dropdown.](images/dropdown-usage-15.png)
+
+</Column>
+</Row>
+
+## Related
+
+**Dropdown versus Select**
 
 While the dropdown and select components look similar, they have different functions.
 
 - Use the dropdown component to filter or sort content on a page.
 - Use the select component inside a form where users are selecting from a list of options and submitting data.
 
-Another important difference between the two components is the underlying code. The dropdown component is styled to match the design system, while the select component's appearance will be determined by the browser being used.
+Another important difference between the two components is the underlying code. The dropdown component is styled to match the design system, while the select component’s appearance is determined by the browser being used. \*\*
 
-## Variations
+**Dropdown versus Combobox**
 
-| Type                          | Purpose                                                                                                                                                                                 |
-| ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| _Dropdown_                    | User needs to pick one option from a list.                                                                                                                                              |
-| _Filter dropdown_             | When a list contains more than 25 items, use filtering to help find options from the list. May only be used with dropdown or multiselect dropdown. Cannot be used with inline dropdown. |
-| _Multiselect dropdown_        | User needs to select multiple options from a dropdown.                                                                                                                                  |
-| _Inline dropdown_             | A stylized dropdown that can be formatted to appear inline with other content and allows the user to select one option.                                                                 |
-| _Inline multiselect dropdown_ | A stylized dropdown that can be formatted to appear inline with other content and allows the user to select more than one option.                                                       |
+While the dropdown and combobox look similar they have different functions.
 
-## Content
+- With a dropdown list, the selected option is always visible, and the other options are visible by clicking and opening the list.
+- A combobox is a combination of a standard list box or a dropdown list and an editable text box and users are able to enter a value that isn't in the list.
 
-#### Labels
+## References
 
-Labels inform users what to expect in the list of dropdown options. Use clear labels for the dropdown trigger so that users understand the purpose. Keep the label short and concise by limiting it to a single line of text.
+Angie Li, [Dropdown: Design Guidelines](https://www.nngroup.com/articles/drop-down-menus/) (Nielsen Norman Group, 2017)
 
-#### Dropdown options
+-[Checkbox](https://www.carbondesignsystem.com/components/checkbox/code)
 
-Describe the dropdown option succinctly in one line of text. Never use images or icons within a dropdown. Avoid having multiple lines of text in a dropdown, but if text wrapping is necessary, limit it to two lines and an ellipsis (...) for overflow content. We recommend presenting the options in alphabetical order.
+-[Form](https://www.carbondesignsystem.com/components/form/code)
 
-## Interaction
+-[Radio button](https://www.carbondesignsystem.com/components/radio-button/code)
 
-By default, the dropdown displays a label when closed. An open dropdown appears on click rather than on hover. Open dropdown drawers should appear above all other UI elements. They can be dismissed by clicking outside of the dropdown item or on the parent element.
+-[Select](https://www.carbondesignsystem.com/components/select/code)
 
-Interactions for _inline dropdown_ are the same as above, however we currently don't support an _inline filter dropdown_ (single or multiselect).
+## Feedback
 
-### Dropdown
-
-Selecting an item from the dropdown will close the drawer and the selected option will replace the label.
-
-### Multiselect dropdown
-
-The label remains persistent within the dropdown. Once the user chooses an option from the list, a number badge will appear to the left of the label containing the total number of selected items. Selected options float to the top of the list in alphanumeric order.
-
-<Row>
-<Column colLg={8}>
-
-![multiselect dropdown](images/dropdown-usage-1.png)
-
-</Column>
-</Row>
-
-#### Clear all
-
-To clear all selected items from a list, hover over the number badge and click the "x" icon next to the value. To help with clarity, a browser tooltip appears when the user hovers over the "x" (or `close`) icon to indicate the click action results.
-
-<Row>
-<Column colLg={8}>
-
-![clear all on multiselect dropdown](images/dropdown-usage-2.png)
-
-</Column>
-</Row>
-
-### Filter dropdown
-
-By default, the dropdown displays a label when closed. When the user hovers over the label area, a text cursor will appear. The drawer opens on click (anywhere in the field) and the user can type to filter through the list of options below. Once the user begins typing, the `close` (x) icon will appear to the right of the label. This will clear any user-inputted text. Selecting an item from the dropdown will close the drawer and the selected option will replace the default label.
-
-<Row>
-<Column colLg={8}>
-
-![filter dropdown interactions](images/dropdown-usage-3.png)
-
-</Column>
-</Row>
-
-### Multiselect filter dropdown
-
-This variation of dropdown follows the same interaction patterns described above with the following exceptions:
-
-- The label will remain persistent except when the user is inputting text.
-- Selected options will appear at the top of the list.
-- The drawer does not close once the user makes a selection. The user will need to click outside of the dropdown or on the parent element to close the drawer.
-
-<Row>
-<Column colLg={8}>
-
-![multiselect filter dropdown interactions](images/dropdown-usage-4.png)
-
-</Column>
-</Row>
+Help us improve this pattern by providing feedback, asking questions, and leaving any other comments on [GitHub](https://github.com/carbon-design-system/carbon-website/issues/new?assignees=&labels=feedback&template=feedback.md).
