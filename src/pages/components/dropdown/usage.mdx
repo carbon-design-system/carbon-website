@@ -28,7 +28,7 @@ Dropdowns present a list of options that can be used to filter or sort existing 
 
 ## Types
 
-There are three different types of dropdowns that support various kinds of functionality. \*\*
+There are three different types of dropdowns that support various kinds of functionality—dropdown, multiselect dropdown, and combobox.
 
 | Type                   | Purpose                                                                                                                                            |
 | ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -36,16 +36,11 @@ There are three different types of dropdowns that support various kinds of funct
 | _Multiselect dropdown_ | Allows the user to select multiple options from a list and filter.                                                                                 |
 | _Combobox_             | Allows the the user to make a selection from a predefined list of options either by typing a value directly or by selecting a value from the list. |
 
-=======
-import items from "../../../data/components/dropdown.js";
-
 ## Overview
 
 Dropdowns present a list of options that can be used to filter or sort existing content.
 
 They can also be used as menus. Their use as menus can be seen in [tabs](/components/tabs/usage). At a smaller screen size, the tabs collapse into a dropdown.
-
-> > > > > > > 0179a5762121c297dda8245fc573c0f083d7d476
 
 ### When to use
 
@@ -80,7 +75,7 @@ Dropdowns are composed of four distinct sections—assistive text like labels or
 
 **Height**
 
-There are three dropdown height sizes: Large, medium (default) and small. Use a consistent dropdown height when it is being used alongside other form components on the same page. Supporting three different dropdown sizes gives you more flexibility when structuring layouts. When in doubt, use the default medium size height.
+There are three dropdown height sizes: Large, medium (default) and small. (In code these sizes are currently called Extra large, default, and small.) Use a consistent dropdown height when it is being used alongside other form components on the same page. Supporting three different dropdown sizes gives you more flexibility when structuring layouts. When in doubt, use the default medium size height.
 
 <Row>
 <Column colLg={8}>
@@ -92,7 +87,7 @@ There are three dropdown height sizes: Large, medium (default) and small. Use a 
 
 | Dropdown size     | Height (rem / px) | Usecase                                                                                                                                                                            |
 | ----------------- | ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| _Large_           | 48 /3             | Choose this size when there is a lot of space to work with. This size is typically used in simple forms or when a dropdown is placed by itself on a page, for example as a filter. |  |
+| _Large_           | 48 /3             | Choose this size when there is a lot of space to work with. This size is typically used in simple forms or when a dropdown is placed by itself on a page, for example as a filter. |
 | _Medium(default)_ | 40 / 2.5          | This is our default size and should be used whenever possible.                                                                                                                     |
 | _Small_           | 32 /2             | Use when space is constricted or when placing a dropdown in a form that is long and complex.                                                                                       |
 
@@ -114,13 +109,25 @@ There is no minimum or maximum width for a dropdown. The width can be customized
 
 Field containers should vertically align to the grid and with other form components on a page.
 
-<<<<<<< HEAD
-
 <DoDontRow>
 <DoDont
+
 colMd={4} colLg={4}
 caption="Do align field containers to the grid">
-=======
+
+![Do: align field containers to the grid](./images/dropdown-usage-4-do.png)
+
+</DoDont>
+<DoDont
+colMd={4} colLg={4}
+type="dont"
+caption="Don't align field input text to the grid and hang the container">
+
+![Don’t: align field input text to the grid and hang the container](./images/dropdown-usage-4-dont.png)
+
+</DoDont>
+</DoDontRow>
+
 ## Live demo
 
 <ComponentDemo
@@ -235,46 +242,6 @@ caption="Do align field containers to the grid">
  `}</ComponentVariant>
 </ComponentDemo>
 
-## Sample data
-
-```javascript
-const items = [
-  {
-    id: "option-1",
-    text: "Option 1",
-  },
-  {
-    id: "option-2",
-    text: "Option 2",
-  },
-  {
-    id: "option-3",
-    text: "Option 3",
-  },
-  {
-    id: "option-4",
-    text: "Option 4",
-  },
-];
-```
-
-## Variations
-
-> > > > > > > 0179a5762121c297dda8245fc573c0f083d7d476
-
-![Do: align field containers to the grid](./images/dropdown-usage-4-do.png)
-
-</DoDont>
-<DoDont
-colMd={4} colLg={4}
-type="dont"
-caption="Don't align field input text to the grid and hang the container">
-
-![Don’t: align field input text to the grid and hang the container](./images/dropdown-usage-4-dont.png)
-
-</DoDont>
-</DoDontRow>
-
 ## Content
 
 ### Main elements
@@ -331,13 +298,9 @@ For further content guidance, see Carbon's [content guidelines](notion://www.not
 
 ## Universal behaviors
 
-<<<<<<< HEAD
 The behaviors listed in this section are universal across all of the types. For behaviors that are unique to each type, see the sections below.
-=======
 
 ## Interactions
-
-> > > > > > > 0179a5762121c297dda8245fc573c0f083d7d476
 
 ### **Direction**
 
@@ -405,39 +368,33 @@ Scroll bars may not always be enabled so we recommend showing 50% of the contain
 
 **Keyboard**
 
-Dropdown field receives focus:
+Dropdown:
 
-- If none of the options are selected before the listbox receives focus, the first option receives focus. Optionally, the first option may be automatically selected.
-- If an option is selected before the listbox receives focus, focus is set on the selected option.
-- Multiselect field receives focus:
-  - If none of the options are selected before the listbox receives focus, focus is set on the first option and there is no automatic change in the selection state.
-  - If one or more options are selected before the listbox receives focus, focus is set on the first option in the list that is selected.
-- `Down Arrow`: Moves focus to the next option.
-- `Up Arrow`: Moves focus to the previous option.
+- The dropdown field receives focus if none of the options are selected in the menu.
+- Users can move focus to the next option by pressing the `Down Arrow`.
+- Users can move focus to the previous option by pressing the `Up Arrow`.
+- Users can open the dropdown menu by pressing the `Spacebar`, `Return`, `Down arrow` or `Up Arrow`.
+- Users can close the dropdown menu by pressing the `Spacebar` or `Return`.
 
-**Type ahead functionality:**
+Combobox and filtering:
 
 - Type a character: focus moves to the next item with a name that starts with the typed character.
 - Type multiple characters in rapid succession: focus moves to the next item with a name that starts with the string of characters typed.
 
-**Multiple selection:**
+Multiple selection:
 
-`Return`: Once an option in the dropdown menu receives focus, pressing `return` selects or deselects that option.
-
-- Recommended selection model -- holding modifier keys is not necessary:
-  - Space: opens and closes the dropdown menu.
-  - Shift + Space (Optional): Selects contiguous items from the most recently selected item to the focused item.
+- The multiselect field receives focus if none of the options are selected in the menu.
+- Once an option in the dropdown menu receives focus, users can press `Return` to select or deselect the option.
+- Users can open and close a dropdown menu by pressing the `Spacebar`.
 
 **Screen readers**
 
-Labels must be announced to the screen reader on focus.
+- Labels must be announced to the screen reader on focus.
+- Ensure the help text that appears under an input is read when an assistive technology user stops at an input using ARIA.
 
-Ensure the helper text that appears under an input is read when an assistive technology user stops at an input using ARIA.
-
-- VoiceOver:
-- JAWS:
-- NVDA:
-- For additional information, see screen reader tests.
+- VoiceOver: Users can trigger a state change by pressing `Control-Option-Space` or the `Spacebar` while the dropdown field has screen reader focus.
+- JAWS: Users can trigger a state change by pressing the `Spacebar` while the dropdown field has screen reader focus.
+- NVDA: Users can trigger a state change by pressing the `Spacebar` while the dropdown field has screen reader focus.
 
 ## Dropdown
 
@@ -481,8 +438,6 @@ Use when you can select multiple options from a list or to filter information.
 
 </Column>
 </Row>
-
-<<<<<<< HEAD
 
 - Once options have been selected from the menu, a tag appears to the left of the text in the field containing the total number of selected options. The prompt text can change to text that better reflects what is selected.
 - Selected options shift to the top of the menu in alphanumeric order.
