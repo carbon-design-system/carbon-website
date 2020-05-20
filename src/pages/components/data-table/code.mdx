@@ -20,11 +20,11 @@ compliant tables in React
 </AnchorLinks>
 
 The `carbon-components-react` package exports a collection of components used to
-build a table in React, in addition to a `DataTable` that helps you add sorting, row
+build a table in React. In addition to these presentational components, we also offer a `DataTable` component that helps you add sorting, row
 expansion, selection, filtering, and more to your table.
 
-To build a table, you can use the following set of
-components. Each one matches one-to-one with the structure of a table in HTML.
+To build a default table without any interaction, you can use the following set of
+table components. Each one matches one-to-one with the structure of a table in HTML.
 
 ```jsx
 import {
@@ -58,15 +58,12 @@ function MyComponent() {
 }
 ```
 
-These components provide you with a way to build a table that looks and feels like the
-default table for the Carbon Design System.
-
 If you want additional functionality for your table, like sorting or filtering,
 then you can use our `DataTable` component. This component follows the [render
 prop pattern](https://reactjs.org/docs/render-props.html) to provide helpers
-that you then use to add functionality to your table.
+that you then use to add your desired functionality to the table.
 
-As an example, we will use the `getHeaderProps` helper to create a
+As an example, we will use the `getHeaderProps` function to create a
 sortable table.
 
 ```jsx
@@ -128,26 +125,34 @@ function MyComponent() {
 
 The `getHeaderProps` function is an example of a [prop getter](https://blog.kentcdodds.com/how-to-give-rendering-control-to-users-with-prop-getters-549eaef76acf) which provides the `TableHeader` component with the appropriate props for sorting.
 
-There are other functions available that are also examples of prop getters which
-help you add additional behavior to your tables.
-
-For a full list of what is available, check out the [DataTable
+There are other functions available which you can use to add additional behavior to your tables. For a full list of what is available, check out the [DataTable
 render](#datatable-render) section below.
 
 ## Use-cases
 
+The `DataTable` component offers support for sorting, expansion, selection, and
+more. However, you can also build functionality on top of the `DataTable`
+component if you need to add new behavior, or want to modify the default behavior of one of the helpers we provide.
+
 ### Sorting
 
-In order to enable the sort behavior for a given `DataTable`, all you need to do
-is apply the `getHeaderProps` prop getter to each individual `TableHeader` that
-you want the sort actions hooked up for. In practice, this looks like the
-following:
+In order to enable the sort behavior for a given `DataTable`, you will need to apply the `getHeaderProps` prop getter to each `TableHeader` that
+you want to be sortable.
 
 ```jsx
-<DataTable
-  rows={initialRows}
-  headers={headers}
-  render={({ rows, headers, getHeaderProps }) => (
+import {
+  DataTable,
+  TableContainer,
+  Table,
+  TableHead,
+  TableRow,
+  TableHeader,
+  TableBody,
+  TableCell,
+} from "carbon-components-react";
+
+<DataTable rows={initialRows} headers={headers}>
+  {({ rows, headers, getHeaderProps }) => (
     <TableContainer title="DataTable with sorting">
       <Table>
         <TableHead>
@@ -171,7 +176,7 @@ following:
       </Table>
     </TableContainer>
   )}
-/>
+</DataTable>;
 ```
 
 #### Programmatic sorting
@@ -873,6 +878,73 @@ const filterRows = ({ rowIds, headers, cellsById, inputValue }) => {
 
 Provide a string for the current locale. Defaults to `en`. This helps our
 default comparison methods better sort numeric inputs.
+
+### Table props
+
+| Prop                  | Type                                                           | Required | Default | Description                                                                                    |
+| --------------------- | -------------------------------------------------------------- | -------- | ------- | ---------------------------------------------------------------------------------------------- |
+| `className`           | `string`                                                       |          |         | Specify a custom class name for the `<table>`                                                  |
+| `isSortable`          | `boolean`                                                      |          | `false` | Specify whether the table is sortable by its columns                                           |
+| `overflowMenuOnHover` | `boolean`                                                      |          | `true`  | Specify whether the overflow menu should appear on hover, by default it will always be visible |
+| `size`                | `'compact'` &#124; `'short'` &#124; `'normal'` &#124; `'tall'` |          |         | Set the row height for the table                                                               |
+| `shouldShowBorder`    | `boolean`                                                      |          |         | Specify whether the table border should be visible                                             |
+| `stickyHeader`        | `boolean`                                                      |          |         | Specify whether the header for the table should be sticky                                      |
+| `useStaticWidth`      | `boolean`                                                      |          |         | Set `width: auto` on the `<table>` instead of the default `width: 100%`                        |
+| `useZebraStyles`      | `boolean`                                                      |          |         | Set to `true` to enable zebra striping in the table                                            |
+
+### TableActionList props
+
+| Prop        | Type     |
+| ----------- | -------- |
+| `className` | `string` |
+
+### TableBatchAction props
+
+| Prop              | Type                       | Default       | Description                                                                                                 |
+| ----------------- | -------------------------- | ------------- | ----------------------------------------------------------------------------------------------------------- |
+| `hasIconOnly`     | `boolean`                  |               | Specify if the button is an icon-only button                                                                |
+| `iconDescription` | `string`                   |               | If specifying the `renderIcon` prop, provide a description for that icon that can be read by screen readers |
+| `renderIcon`      | `function` &#124; `object` | `AddFilled16` | Optional function to render your own icon in the underlying button                                          |
+
+### TableBatchActions props
+
+| Prop                     | Type       | Default | Description                                              |
+| ------------------------ | ---------- | ------- | -------------------------------------------------------- |
+| `children`               | `node`     |         |                                                          |
+| `className`              | `string`   |         |                                                          |
+| `onCancel`               | `function` |         |                                                          |
+| `shouldShowBatchActions` | `boolean`  |         | Specify whether the batch action bar should be displayed |
+| `totalSelected`          | `number`   |         | Specify the total number of items selected in the table  |
+
+### TableBody props
+
+### TableCell props
+
+### TableContainer props
+
+### TableExpandHeader props
+
+### TableExpandRow props
+
+### TableExpandedRow props
+
+### TableHead props
+
+### TableRow props
+
+### TableSelectAll props
+
+### TableSelectRow props
+
+### TableToolbar props
+
+### TableToolbarAction props
+
+### TableToolbarContent props
+
+### TableToolbarSearch props
+
+### TableToolbarMenu props
 
 ## Reference
 
