@@ -13,11 +13,17 @@ compliant tables in React
 
 <AnchorLinks>
 
-<AnchorLink>Use-cases</AnchorLink>
+<AnchorLink>Overview</AnchorLink>
+<AnchorLink>Sorting</AnchorLink>
+<AnchorLink>Filtering</AnchorLink>
+<AnchorLink>Expansion</AnchorLink>
+<AnchorLink>Batch actions</AnchorLink>
 <AnchorLink>Component API</AnchorLink>
-<AnchorLink>Reference</AnchorLink>
+<AnchorLink>References</AnchorLink>
 
 </AnchorLinks>
+
+## Overview
 
 The `carbon-components-react` package exports a collection of components used to
 build a table in React. In addition to these presentational components, we also offer a `DataTable` component that helps you add sorting, row
@@ -128,13 +134,7 @@ The `getHeaderProps` function is an example of a [prop getter](https://blog.kent
 There are other functions available which you can use to add additional behavior to your tables. For a full list of what is available, check out the [DataTable
 render](#datatable-render) section below.
 
-## Use-cases
-
-The `DataTable` component offers support for sorting, expansion, selection, and
-more. However, you can also build functionality on top of the `DataTable`
-component if you need to add new behavior, or want to modify the default behavior of one of the helpers we provide.
-
-### Sorting
+## Sorting
 
 In order to enable the sort behavior for a given `DataTable`, you will need to apply the `getHeaderProps` prop getter to each `TableHeader` that
 you want to be sortable.
@@ -179,7 +179,7 @@ import {
 </DataTable>;
 ```
 
-#### Programmatic sorting
+### Programmatic sorting
 
 In addition to the prop getter specified in the previous section, you can also
 change the sort status of the table by using the `sortBy` action made available
@@ -187,7 +187,7 @@ in your `render` prop function. This `sortBy` utility takes in the `key` of the
 header you want to sort by as an argument. After invoking this method with the
 given `key`, the table should be sorted by the header that you've specified.
 
-#### Custom sorting
+### Custom sorting
 
 If the default sorting logic doesn't match your use-case, you can provide a
 custom sort method as a `sortRow` prop to `DataTable`.
@@ -213,7 +213,7 @@ const customSortRow = (cellA, cellB, { sortDirection, sortStates, locale }) => {
 };
 ```
 
-### Expansion
+## Expansion
 
 `DataTable` introduces the following components to help out with doing row
 expansion:
@@ -284,13 +284,13 @@ Some things to note:
     `headers.length + 1` in order to span the whole table
   - `TableExpandedRow` should not have a `TableCell` child
 
-#### Programmatic expansion
+### Programmatic expansion
 
 You can use the `expandRow` action made available through your `render` prop
 function to toggle the expansion state of a given row. This method takes in the
 row id as a single argument.
 
-### Selection
+## Selection
 
 Selection in a `DataTable` has two parts:
 
@@ -342,7 +342,7 @@ Some items to note:
 You can access all the selected rows through the `selectedRows` property passed
 into your `render` prop function.
 
-#### Programmatic selection
+### Programmatic selection
 
 You can use either of the following actions from your `render` prop function to
 update the selection status of a row:
@@ -352,7 +352,7 @@ update the selection status of a row:
 - `selectRow`: invoking this will toggle the selection of a specific row. Takes
   in a valid row id as an argument
 
-### Filtering
+## Filtering
 
 Filtering in a `DataTable` is provided through usage of the `TableToolbar` and
 the `TableToolbarSearch` component. Any input entered through
@@ -423,7 +423,7 @@ All you need to do to make sure filtering is hooked up is provide the
 `onInputChange` handler as the `onChange` prop to `TableToolbarSearch` in your
 `TableToolbar` component.
 
-### Batch Actions
+## Batch Actions
 
 Batch actions are typically used when you want to the user to select multiple
 rows in your table and then allow them to perform a single action on the
@@ -883,70 +883,202 @@ default comparison methods better sort numeric inputs.
 
 | Prop                  | Type                                                           | Required | Default | Description                                                                                    |
 | --------------------- | -------------------------------------------------------------- | -------- | ------- | ---------------------------------------------------------------------------------------------- |
-| `className`           | `string`                                                       |          |         | Specify a custom class name for the `<table>`                                                  |
-| `isSortable`          | `boolean`                                                      |          | `false` | Specify whether the table is sortable by its columns                                           |
-| `overflowMenuOnHover` | `boolean`                                                      |          | `true`  | Specify whether the overflow menu should appear on hover, by default it will always be visible |
-| `size`                | `'compact'` &#124; `'short'` &#124; `'normal'` &#124; `'tall'` |          |         | Set the row height for the table                                                               |
-| `shouldShowBorder`    | `boolean`                                                      |          |         | Specify whether the table border should be visible                                             |
-| `stickyHeader`        | `boolean`                                                      |          |         | Specify whether the header for the table should be sticky                                      |
-| `useStaticWidth`      | `boolean`                                                      |          |         | Set `width: auto` on the `<table>` instead of the default `width: 100%`                        |
-| `useZebraStyles`      | `boolean`                                                      |          |         | Set to `true` to enable zebra striping in the table                                            |
+| `className`           | `string`                                                       | –        | –       | Specify a custom class name for the `<table>`                                                  |
+| `isSortable`          | `boolean`                                                      | –        | `false` | Specify whether the table is sortable by its columns                                           |
+| `overflowMenuOnHover` | `boolean`                                                      | –        | `true`  | Specify whether the overflow menu should appear on hover, by default it will always be visible |
+| `size`                | `'compact'` &#124; `'short'` &#124; `'normal'` &#124; `'tall'` | –        | –       | Set the row height for the table                                                               |
+| `shouldShowBorder`    | `boolean`                                                      | –        | –       | Specify whether the table border should be visible                                             |
+| `stickyHeader`        | `boolean`                                                      | –        | –       | Specify whether the header for the table should be sticky                                      |
+| `useStaticWidth`      | `boolean`                                                      | –        | –       | Set `width: auto` on the `<table>` instead of the default `width: 100%`                        |
+| `useZebraStyles`      | `boolean`                                                      | –        | –       | Set to `true` to enable zebra striping in the table                                            |
 
 ### TableActionList props
 
-| Prop        | Type     |
-| ----------- | -------- |
-| `className` | `string` |
+| Prop        | Type     | Required | Default | Description |
+| ----------- | -------- | -------- | ------- | ----------- |
+| `children`  | `node`   | –        | –       | –           |
+| `className` | `string` | –        | –       | –           |
 
 ### TableBatchAction props
 
-| Prop              | Type                       | Default       | Description                                                                                                 |
-| ----------------- | -------------------------- | ------------- | ----------------------------------------------------------------------------------------------------------- |
-| `hasIconOnly`     | `boolean`                  |               | Specify if the button is an icon-only button                                                                |
-| `iconDescription` | `string`                   |               | If specifying the `renderIcon` prop, provide a description for that icon that can be read by screen readers |
-| `renderIcon`      | `function` &#124; `object` | `AddFilled16` | Optional function to render your own icon in the underlying button                                          |
+| Prop              | Type                       | Required | Default       | Description                                                                                                 |
+| ----------------- | -------------------------- | -------- | ------------- | ----------------------------------------------------------------------------------------------------------- |
+| `hasIconOnly`     | `boolean`                  | –        | –             | Specify if the button is an icon-only button                                                                |
+| `iconDescription` | `string`                   | –        | –             | If specifying the `renderIcon` prop, provide a description for that icon that can be read by screen readers |
+| `renderIcon`      | `function` &#124; `object` | –        | `AddFilled16` | Optional function to render your own icon in the underlying button                                          |
 
 ### TableBatchActions props
 
-| Prop                     | Type       | Default | Description                                              |
-| ------------------------ | ---------- | ------- | -------------------------------------------------------- |
-| `children`               | `node`     |         |                                                          |
-| `className`              | `string`   |         |                                                          |
-| `onCancel`               | `function` |         |                                                          |
-| `shouldShowBatchActions` | `boolean`  |         | Specify whether the batch action bar should be displayed |
-| `totalSelected`          | `number`   |         | Specify the total number of items selected in the table  |
+| Prop                     | Type       | Required | Default | Description                                              |
+| ------------------------ | ---------- | -------- | ------- | -------------------------------------------------------- |
+| `children`               | `node`     | –        | –       | –                                                        |
+| `className`              | `string`   | –        | –       | –                                                        |
+| `onCancel`               | `function` | –        | –       | –                                                        |
+| `shouldShowBatchActions` | `boolean`  | –        | –       | Specify whether the batch action bar should be displayed |
+| `totalSelected`          | `number`   | –        | –       | Specify the total number of items selected in the table  |
 
 ### TableBody props
 
+| Prop        | Type                                           | Required | Default    | Description                                                   |
+| ----------- | ---------------------------------------------- | -------- | ---------- | ------------------------------------------------------------- |
+| `aria-live` | `'polite'` &#124; `'assertive'` &#124; `'off'` | –        | `'polite'` | Set the notification behavior of the table for screen readers |
+| `children`  | `node`                                         | –        | –          | –                                                             |
+| `className` | `string`                                       | –        | –          | –                                                             |
+
 ### TableCell props
+
+| Prop        | Type     | Required | Default | Description |
+| ----------- | -------- | -------- | ------- | ----------- |
+| `children`  | `node`   | –        | –       | –           |
+| `className` | `string` | –        | –       | –           |
 
 ### TableContainer props
 
+| Prop          | Type     | Required | Default | Description                         |
+| ------------- | -------- | -------- | ------- | ----------------------------------- |
+| `children`    | `node`   | –        | –       | –                                   |
+| `className`   | `string` | –        | –       | –                                   |
+| `description` | `node`   | –        | –       | Provide a description for the table |
+| `title`       | `node`   | –        | –       | Provide a title for the table       |
+
 ### TableExpandHeader props
+
+| Prop        | Type     | Required | Default | Description |
+| ----------- | -------- | -------- | ------- | ----------- |
+| `children`  | `node`   | –        | –       | –           |
+| `className` | `string` | –        | –       | –           |
 
 ### TableExpandRow props
 
+| Prop         | Type      | Required | Default | Description                                                                                   |
+| ------------ | --------- | -------- | ------- | --------------------------------------------------------------------------------------------- |
+| `ariaLabel`  | `string`  | `true`   | –       | Provide a string that is read by a voice reader when the expand trigger is focused            |
+| `children`   | `node`    | –        | –       | –                                                                                             |
+| `className`  | `string`  | –        | –       | –                                                                                             |
+| `isExpanded` | `boolean` | `true`   | `false` | Specify whether this row is expanded or not. This helps to coordinate with `TableExpandedRow` |
+| `onExpand`   | `func`    | `true`   | –       | Provide a function that is called when a user interacts to expand the current row             |
+
 ### TableExpandedRow props
+
+| Prop        | Type     | Required | Default | Description                                                          |
+| ----------- | -------- | -------- | ------- | -------------------------------------------------------------------- |
+| `children`  | `node`   | –        | –       | –                                                                    |
+| `className` | `string` | –        | –       | –                                                                    |
+| `colSpan`   | `number` | –        | –       | Provide a `colSpan` value that is applied to the expanded row's cell |
 
 ### TableHead props
 
+| Prop        | Type     | Required | Default | Description |
+| ----------- | -------- | -------- | ------- | ----------- |
+| `children`  | `node`   | –        | –       | –           |
+| `className` | `string` | –        | –       | –           |
+
+### TableHeader props
+
+| Prop              | Type                                    | Required | Default | Description                                                                                                                                                  |
+| ----------------- | --------------------------------------- | -------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `children`        | `node`                                  | –        | –       | Pass in children that will be embedded in the table header label                                                                                             |
+| `className`       | `string`                                | –        | –       | Specify an optional className to be applied to the container node                                                                                            |
+| `colSpan`         | `number`                                | –        | –       | Specify `colSpan` as a non-negative integer value to indicate how many columns the TableHeader cell extends in a table                                       |
+| `isSortable`      | `bool`                                  | –        | `false` | Specify whether this header is one through which a user can sort the table                                                                                   |
+| `isSortHeader`    | `bool`                                  | –        | –       | Specify whether this header is the header by which a table is sorted                                                                                         |
+| `scope`           | `string`                                | `true`   | `'col'` | –                                                                                                                                                            |
+| `sortDirection`   | `'DESC'` &#124; `'ASC'` &#124; `'NONE'` | –        | –       | Specify which direction we are currently sorting by                                                                                                          |
+| `translateWithId` | `function`                              | –        | –       | Supply a method to translate internal strings with your i18n tool of choice. Translation keys are avabile on the `translationKeys` field for this component. |
+
+#### TableHeader translateWithId
+
+You can localize what is announced to a user by a screen reader with the
+`translateWithId` prop. This function will take in the current key to translate,
+along with state, in order to generate the appropriate label.
+
+Below is a list of the translation ids for `TableHeader`:
+
+| id                                     | Description                                     |
+| -------------------------------------- | ----------------------------------------------- |
+| `carbon.table.header.icon.description` | Specify a description used in a sortable header |
+
+You can use the translation ids for `TableHeader` along with the provided state
+information in your custom `translateWithId` function.
+
 ### TableRow props
+
+| Prop        | Type     | Required | Default | Description |
+| ----------- | -------- | -------- | ------- | ----------- |
+| `children`  | `node`   | –        | –       | –           |
+| `className` | `string` | –        | –       | –           |
 
 ### TableSelectAll props
 
+| Prop            | Type       | Required | Default                          | Description                                                                      |
+| --------------- | ---------- | -------- | -------------------------------- | -------------------------------------------------------------------------------- |
+| `ariaLabel`     | `string`   | `true`   | `'Select all rows in the table'` | Provide an aria label for the underlying input control                           |
+| `checked`       | `boolean`  | `true`   | –                                | Specify whether all items are selected, or not                                   |
+| `className`     | `string`   | –        | –                                | Provide a custom class name for the cell that wraps the underlying input control |
+| `id`            | `string`   | `true`   | –                                | Provide an `id` for the underlying input control                                 |
+| `indeterminate` | `boolean`  | –        | –                                | Specify whether the selection only has a subset of all items                     |
+| `name`          | `string`   | `true`   | –                                | Provide a `name` for the underlying input control                                |
+| `onSelect`      | `function` | `true`   | –                                | Provide a handler to listen to when a user clicks on the input                   |
+
 ### TableSelectRow props
+
+| Prop        | Type       | Required | Default | Description                                                             |
+| ----------- | ---------- | -------- | ------- | ----------------------------------------------------------------------- |
+| `ariaLabel` | `string`   | `true`   | –       | Provide an aria label for the underlying input control                  |
+| `checked`   | `boolean`  | `true`   | –       | Specify whether the row is selected                                     |
+| `className` | `string`   | –        | –       | –                                                                       |
+| `id`        | `string`   | `true`   | –       | Provide an `id` for the underlying input control                        |
+| `name`      | `string`   | `true`   | –       | Provide a `name` for the underlying input control                       |
+| `onSelect`  | `function` | `true`   | –       | Provide a handler to listen to when a user clicks on the input          |
+| `radio`     | `boolean`  | –        | –       | Specify whether the control should be a radio button or inline checkbox |
 
 ### TableToolbar props
 
+| Prop         | Type                        | Required | Default                | Description |
+| ------------ | --------------------------- | -------- | ---------------------- | ----------- |
+| `aria-label` | `string`                    | `true`   | `'data table toolbar'` | –           |
+| `children`   | `node`                      | –        | –                      | –           |
+| `size`       | `'small'` &#124; `'normal'` | –        | –                      | –           |
+
 ### TableToolbarAction props
+
+This component is a wrapper for `OverflowMenuItem`.
 
 ### TableToolbarContent props
 
-### TableToolbarSearch props
+| Prop        | Type     | Required | Default | Description |
+| ----------- | -------- | -------- | ------- | ----------- |
+| `children`  | `node`   | –        | –       | –           |
+| `className` | `string` | –        | –       | –           |
 
 ### TableToolbarMenu props
 
-## Reference
+This component is a wrapper for `OverflowMenu`.
+
+### TableToolbarSearch props
+
+| Prop                     | Type                     | Required | Default           | Description                                                                                                       |
+| ------------------------ | ------------------------ | -------- | ----------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `children`               | `node`                   | –        | –                 | –                                                                                                                 |
+| `className`              | `string`                 | –        | –                 | –                                                                                                                 |
+| `defaultValue`           | `string`                 | –        | –                 | Provide the optional default value for the Search component                                                       |
+| `id`                     | `string`                 | –        | –                 | Provide an optional id for the search container                                                                   |
+| `labelText`              | `string`                 | –        | –                 | Provide the optional label text for the Search component icon                                                     |
+| `onChange`               | `function`               | –        | –                 | Provide an optional hook that is called each time the input is updated                                            |
+| `persistent`             | `boolean`                | –        | `false`           | Specify whether the search should be allowed to expand                                                            |
+| `placeHolderText`        | `string`                 | –        | –                 | Provide the optional placeholder text for the Search component                                                    |
+| `searchContainerClasses` | `string`                 | –        | –                 | Provide an optional className for the overal container of the Search                                              |
+| `tabIndex`               | `string` &#124; `number` | –        | `'0'`             | Optional prop to specify the tabIndex of the `<Search>` (in expanded state) or the container (in collapsed state) |
+| `translateWithId`        | `function`               | `true`   | `translateWithId` | Provide custom text for the component for each translation id                                                     |
+
+#### TableToolbarSearch translateWithId
+
+| id                                        | Description                                       |
+| ----------------------------------------- | ------------------------------------------------- |
+| `carbon.table.toolbar.search.label`       | Specify the label for the search field            |
+| `carbon.table.toolbar.search.placeholder` | Specify the placeholder text for the search field |
+
+## References
 
 ## Feedback
 
