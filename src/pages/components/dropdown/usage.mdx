@@ -1,23 +1,33 @@
 ---
 title: Dropdown
 description: Dropdowns present a list of options that can be used to filter or sort existing content. They can also be used as menus.
-tabs: ["Code", "Usage", "Style", "Accessibility"]
+tabs: ["Usage", "Style", "Code", "Accessibility"]
 ---
+
+<PageDescription>
+
+Dropdowns present a list of options that can be used to filter or sort existing content.
+
+</PageDescription>
 
 <AnchorLinks>
 
-<AnchorLink>General guidance</AnchorLink>
+<AnchorLink>Overview</AnchorLink>
+<AnchorLink>Live demo</AnchorLink>
 <AnchorLink>Variations</AnchorLink>
 <AnchorLink>Content</AnchorLink>
-<AnchorLink>Interaction</AnchorLink>
+<AnchorLink>Interactions</AnchorLink>
+<AnchorLink>Feedback</AnchorLink>
 
 </AnchorLinks>
 
-## General guidance
+import items from "../../../data/components/dropdown.js";
 
-_Dropdowns_ present a list of options that can be used to filter or sort existing content.
+## Overview
 
-They can also be used as menus. Their use as menus can be seen in [tabs](/components/tabs/code). At a smaller screen size, the tabs collapse into a dropdown.
+Dropdowns present a list of options that can be used to filter or sort existing content.
+
+They can also be used as menus. Their use as menus can be seen in [tabs](/components/tabs/usage). At a smaller screen size, the tabs collapse into a dropdown.
 
 ### Dropdown versus Select
 
@@ -27,6 +37,143 @@ While the dropdown and select components look similar, they have different funct
 - Use the select component inside a form where users are selecting from a list of options and submitting data.
 
 Another important difference between the two components is the underlying code. The dropdown component is styled to match the design system, while the select component's appearance will be determined by the browser being used.
+
+## Live demo
+
+<ComponentDemo
+  components={[
+    {
+      id: "default-dropdown",
+      label: "Default",
+    },
+    {
+      id: "combo-box",
+      label: "Combo box",
+    },
+    {
+      id: "multiselect",
+      label: "Multiselect",
+    },
+    {
+      id: "filter-multiselect",
+      label: "Filterable multiselect",
+    },
+  ]}
+  scope={{ items }}
+>
+  <ComponentVariant
+    id="default-dropdown"
+    knobs={{
+      Dropdown: ["light", "disabled"],
+    }}
+    links={{
+      React:
+        "https://react.carbondesignsystem.com/?path=/story/dropdown--default",
+      Angular:
+        "https://angular.carbondesignsystem.com/?path=/story/components-dropdown--basic",
+      Vue:
+        "http://vue.carbondesignsystem.com/?path=/story/components-cvdropdown--default",
+      Vanilla: "https://the-carbon-components.netlify.com/?nav=dropdown",
+    }}
+  >{`
+    <Dropdown
+      ariaLabel="Dropdown"
+      id="carbon-dropdown-example"
+      items={items}
+      label="Dropdown menu options"
+      titleText="This is a dropdown title."
+    />
+  `}</ComponentVariant>
+  <ComponentVariant
+    id="combo-box"
+    knobs={{
+      ComboBox: ["light", "disabled"],
+    }}
+    links={{
+      React:
+        "https://react.carbondesignsystem.com/?path=/story/combobox--default",
+      Angular:
+        "https://angular.carbondesignsystem.com/?path=/story/components-dropdown--basic",
+      Vue:
+        "http://vue.carbondesignsystem.com/?path=/story/components-cvcombobox--default",
+      Vanilla: "https://the-carbon-components.netlify.com/?nav=dropdown",
+    }}
+  >{`
+    <ComboBox
+      ariaLabel="ComboBox"
+      id="carbon-combobox-example"
+      items={items}
+      label="ComboBox menu options"
+      titleText="This is a dropdown title."
+    />
+  `}</ComponentVariant>
+  <ComponentVariant
+    id="multiselect"
+    knobs={{
+      MultiSelect: ["light", "disabled"],
+    }}
+    links={{
+      React:
+        "https://react.carbondesignsystem.com/?path=/story/multiselect--default",
+      Angular:
+        "https://angular.carbondesignsystem.com/?path=/story/components-dropdown--basic",
+      Vue:
+        "http://vue.carbondesignsystem.com/?path=/story/components-cvmultiselect--default",
+      Vanilla: "https://the-carbon-components.netlify.com/?nav=dropdown",
+    }}
+  >{`
+    <MultiSelect
+      ariaLabel="MultiSelect"
+      id="carbon-multiselect-example"
+      items={items}
+      label="MultiSelect menu options"
+      titleText="This is a dropdown title."
+    />
+  `}</ComponentVariant>
+  <ComponentVariant
+    id="filter-multiselect"
+    links={{
+      React:
+        "https://react.carbondesignsystem.com/?path=/story/multiselect--filterable",
+      Angular:
+        "https://angular.carbondesignsystem.com/?path=/story/components-dropdown--basic",
+      Vue:
+        "http://vue.carbondesignsystem.com/?path=/story/components-cvmultiselect--user-filter-and-or-highlight",
+      Vanilla: "https://the-carbon-components.netlify.com/?nav=dropdown",
+    }}
+  >{`
+    <MultiSelect.Filterable
+      ariaLabel="Filterable MultiSelect"
+      id="carbon--filterable-multiselect-example"
+      items={items}
+      label="Filterable MultiSelect options"
+      titleText="This is a MultiSelect title."
+    />
+ `}</ComponentVariant>
+</ComponentDemo>
+
+## Sample data
+
+```javascript
+const items = [
+  {
+    id: "option-1",
+    text: "Option 1",
+  },
+  {
+    id: "option-2",
+    text: "Option 2",
+  },
+  {
+    id: "option-3",
+    text: "Option 3",
+  },
+  {
+    id: "option-4",
+    text: "Option 4",
+  },
+];
+```
 
 ## Variations
 
@@ -48,7 +195,7 @@ Labels inform users what to expect in the list of dropdown options. Use clear la
 
 Describe the dropdown option succinctly in one line of text. Never use images or icons within a dropdown. Avoid having multiple lines of text in a dropdown, but if text wrapping is necessary, limit it to two lines and an ellipsis (...) for overflow content. We recommend presenting the options in alphabetical order.
 
-## Interaction
+## Interactions
 
 By default, the dropdown displays a label when closed. An open dropdown appears on click rather than on hover. Open dropdown drawers should appear above all other UI elements. They can be dismissed by clicking outside of the dropdown item or on the parent element.
 
@@ -109,3 +256,7 @@ This variation of dropdown follows the same interaction patterns described above
 
 </Column>
 </Row>
+
+## Feedback
+
+Help us improve this component by providing feedback, asking questions, and leaving any other comments on [GitHub](https://github.com/carbon-design-system/carbon-website/issues/new?assignees=&labels=feedback&template=feedback.md).
