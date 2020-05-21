@@ -4,14 +4,22 @@ description: The breadcrumb component is a secondary navigation pattern that sho
 tabs: ["Usage", "Style", "Code", "Accessibility"]
 ---
 
+<PageDescription>
+
+How to build a breadcrumb using React.
+
+</PageDescription>
+
 <AnchorLinks>
 
-<AnchorLink>Code usage</AnchorLink>
+<AnchorLink>Overview</AnchorLink>
+<AnchorLink>Skeleton state</AnchorLink>
 <AnchorLink>Component API</AnchorLink>
+<AnchorLink>Feedback</AnchorLink>
 
 </AnchorLinks>
 
-## Code usage
+## Overview
 
 You can build a breadcrumb using a combination of the `Breadcrumb` and
 `BreadcrumbItem` components. The `Breadcrumb` component accepts a list of
@@ -19,33 +27,57 @@ You can build a breadcrumb using a combination of the `Breadcrumb` and
 for displaying the page links in the hierarchy.
 
 ```jsx
-<Breadcrumb>
-  <BreadcrumbItem href="#">Breadcrumb 1</BreadcrumbItem>
-  <BreadcrumbItem href="#">Breadcrumb 2</BreadcrumbItem>
-  <BreadcrumbItem href="#">Breadcrumb 3</BreadcrumbItem>
-</Breadcrumb>
+import { Breadcrumb, BreadcrumbItem } from "carbon-components-react";
+
+function MyComponent() {
+  return (
+    <Breadcrumb>
+      <BreadcrumbItem href="#">Breadcrumb 1</BreadcrumbItem>
+      <BreadcrumbItem href="#">Breadcrumb 2</BreadcrumbItem>
+      <BreadcrumbItem href="#">Breadcrumb 3</BreadcrumbItem>
+    </Breadcrumb>
+  );
+}
 ```
 
-### Skeleton
+## Skeleton state
 
 You can use the `BreadcrumbSkeleton` component to render a skeleton variant of an
 breadcrumb. This is useful to display while content in your breadcrumb is being
 fetched from an external resource like an API.
 
 ```jsx
-<BreadcrumbSkeleton />
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbSkeleton,
+} from "carbon-components-react";
+
+function MyComponent({ isLoading }) {
+  if (isLoading) {
+    return <BreadcrumbSkeleton />;
+  }
+
+  return (
+    <Breadcrumb>
+      <BreadcrumbItem href="#">Breadcrumb 1</BreadcrumbItem>
+      <BreadcrumbItem href="#">Breadcrumb 2</BreadcrumbItem>
+      <BreadcrumbItem href="#">Breadcrumb 3</BreadcrumbItem>
+    </Breadcrumb>
+  );
+}
 ```
 
 ## Component API
 
 ### Breadcrumb props
 
-| Prop            | Type     | Required |
-| --------------- | -------- | -------- |
-| aria-label      | `string` | `false`  |
-| children        | `node`   | `true`   |
-| className       | `string` | `false`  |
-| noTrailingSlash | `bool`   | `false`  |
+| Prop            | Type     | Required | Default | Description                                                       |
+| --------------- | -------- | -------- | ------- | ----------------------------------------------------------------- |
+| aria-label      | `string` | –        | –       | Specify the label for the breadcrumb container                    |
+| children        | `node`   | `true`   | –       | Pass in the BreadcrumbItem's for your Breadcrumb                  |
+| className       | `string` | –        | –       | Specify an optional className to be applied to the container node |
+| noTrailingSlash | `bool`   | –        | –       | Optional prop to omit the trailing slash for the breadcrumbs      |
 
 ### Breadcrumb noTrailingSlash
 
@@ -61,12 +93,12 @@ You can use the `noTrailingSlash` prop to omit the slash from the end of the cur
 
 ### BreadcrumbItem props
 
-| Prop          | Type     | Required |
-| ------------- | -------- | -------- |
-| children      | `node`   | `true`   |
-| className     | `string` | `false`  |
-| href          | `string` | `false`  |
-| isCurrentPage | `bool`   | `false`  |
+| Prop          | Type     | Required | Default | Description                                                           |
+| ------------- | -------- | -------- | ------- | --------------------------------------------------------------------- |
+| children      | `node`   | `true`   | –       | Pass in content that will be inside of the BreadcrumbItem             |
+| className     | `string` | –        | –       | Specify an optional className to be applied to the container node     |
+| href          | `string` | –        | –       | Optional string representing the link location for the BreadcrumbItem |
+| isCurrentPage | `bool`   | –        | –       | Provide if this breadcrumb item represents the current page           |
 
 ### BreadcrumbItem isCurrentPage
 
@@ -84,6 +116,10 @@ You can use the `isCurrentPage` prop on a `BreadcrumbItem` to represent the curr
 
 ### BreadcrumbSkeleton props
 
-| Prop      | Type     | Required |
-| --------- | -------- | -------- |
-| className | `string` | `false`  |
+| Prop      | Type     | Required | Default | Description                          |
+| --------- | -------- | -------- | ------- | ------------------------------------ |
+| className | `string` | –        | –       | Specify an optional className to add |
+
+## Feedback
+
+Help us improve this component by providing feedback, asking questions, and leaving any other comments on [GitHub](https://github.com/carbon-design-system/carbon-website/issues/new?assignees=&labels=feedback&template=feedback.md).
