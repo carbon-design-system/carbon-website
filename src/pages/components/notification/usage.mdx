@@ -13,6 +13,7 @@ Notifications are messages that communicate information to the user. The two mai
 <AnchorLinks>
 
 <AnchorLink>Overview</AnchorLink>
+<AnchorLink>Live demo</AnchorLink>
 <AnchorLink>Formatting</AnchorLink>
 <AnchorLink>Content</AnchorLink>
 <AnchorLink>Inline notifications</AnchorLink>
@@ -29,7 +30,7 @@ Notifications are messages that communicate information to the user. The two mai
 
 Use notifications to inform users of updates or changes to system status. Communicating with users and providing immediate feedback are important for building trust. While notifications are an effective method of communicating with users, they are disruptive and should be used sparingly.
 
-For more context on when to use each notification type, including modals, refer to the [notifications pattern](/patterns/notification-pattern/). Carbon currently only supports inline, toast, and modal notification types, although some product teams also support banners and notification centers.
+For more context on when to use each notification type, including modals, refer to the [notifications pattern](/patterns/notification-pattern/). Carbon only supports inline, toast, and modal notification types, although some product teams also support banners and notification centers.
 
 ### Types
 
@@ -37,6 +38,72 @@ For more context on when to use each notification type, including modals, refer 
 | ------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [Inline](#inline-notifications) | Inline notifications show up in task flows, to notify users of the status of an action. They usually appear at the top of the primary content area.              |
 | [Toast](#toast-notifications)   | Toasts are non-modal, time-based window elements used to display short messages; they usually appear at the top of the screen and disappear after a few seconds. |
+
+## Live demo
+
+<ComponentDemo
+  components={[
+    {
+      id: "toast",
+      label: "Toast notification",
+    },
+    {
+      id: "inline",
+      label: "Inline notification",
+    },
+  ]}
+>
+  <ComponentVariant
+    id="toast"
+    knobs={{
+      ToastNotification: ["hideCloseButton", "kind", "lowContrast"],
+    }}
+    links={{
+      React:
+        "https://react.carbondesignsystem.com/?path=/story/notifications--toast",
+      Angular:
+        "https://angular.carbondesignsystem.com/?path=/story/components-notification--toast",
+      Vue:
+        "http://vue.carbondesignsystem.com/?path=/story/components-cvtoastnotification--default",
+      Vanilla: "https://the-carbon-components.netlify.com/?nav=notification",
+    }}
+  >{`
+    <div>
+      <ToastNotification
+        caption="00:00:00 AM"
+        iconDescription="describes the close button"
+        subtitle={<span>Subtitle text goes here. <a href="#example">Example link</a></span>}
+        timeout={0}
+        title="Notification title"
+      />
+    </div>
+`}</ComponentVariant>
+  <ComponentVariant
+    id="inline"
+    knobs={{
+      InlineNotification: ["hideCloseButton", "lowContrast"],
+    }}
+    links={{
+      React:
+        "https://react.carbondesignsystem.com/?path=/story/notifications--inline",
+      Angular:
+        "https://angular.carbondesignsystem.com/?path=/story/components-notification--basic",
+      Vue:
+        "http://vue.carbondesignsystem.com/?path=/story/components-cvinlinenotification--default",
+      Vanilla: "https://the-carbon-components.netlify.com/?nav=notification",
+    }}
+  >{`
+  <div>
+    <InlineNotification
+      kind="info"
+      actions={<NotificationActionButton>Action</NotificationActionButton>}
+      iconDescription="describes the close button"
+      subtitle={<span>Subtitle text goes here. <a href="#example">Example link</a></span>}
+      title="Notification title"
+    />
+  </div>
+`}</ComponentVariant>
+</ComponentDemo>
 
 ## Formatting
 
@@ -204,4 +271,4 @@ It's up to the product team to decide which notification style to use in their p
 
 ## Feedback
 
-Help us improve this pattern by providing feedback, asking questions, and leaving any other comments on [GitHub](https://github.com/carbon-design-system/carbon-website/issues/new?assignees=&labels=feedback&template=feedback.md).
+Help us improve this component by providing feedback, asking questions, and leaving any other comments on [GitHub](https://github.com/carbon-design-system/carbon-website/issues/new?assignees=&labels=feedback&template=feedback.md).
