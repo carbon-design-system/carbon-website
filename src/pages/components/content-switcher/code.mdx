@@ -4,34 +4,52 @@ description: Content switchers manipulate the content shown following an exclusi
 tabs: ["Usage", "Style", "Code", "Accessibility"]
 ---
 
-<ComponentDemo
-  components={[
-    {
-      id: "content-switcher",
-      label: "Content switcher",
-    },
-  ]}
->
-  <ComponentVariant
-    id="content-switcher"
-    knobs={{
-      Switch: ["disabled"],
-    }}
-    links={{
-      React:
-        "http://react.carbondesignsystem.com/?path=/story/contentswitcher--default",
-      Angular:
-        "https://angular.carbondesignsystem.com/?path=/story/components-content-switcher--basic",
-      Vue:
-        "http://vue.carbondesignsystem.com/?path=/story/components-cvcontentswitcher--default",
-      Vanilla:
-        "https://the-carbon-components.netlify.com/?nav=content-switcher",
-    }}
-  >{`
-<ContentSwitcher onChange={console.log}>
-  <Switch name={'first'} text='First section' />
-  <Switch name={'second'} text='Second section' />
-  <Switch name={'third'} text='Third section' />
-</ContentSwitcher>
-`}</ComponentVariant>
-</ComponentDemo>
+<PageDescription>
+
+How to build a content switcher using React.
+
+</PageDescription>
+
+<AnchorLinks>
+
+<AnchorLink>Overview</AnchorLink>
+<AnchorLink>Component API</AnchorLink>
+<AnchorLink>References</AnchorLink>
+<AnchorLink>Feedback</AnchorLink>
+
+</AnchorLinks>
+
+## Overview
+
+You can build content switcher by using a combination of the `ContentSwitcher` and `Switch` components. The `ContentSwitcher` components accepts a list of `Switch` components as children and each `Switch` is responsible for displaying the section heading.
+
+You can configure the `Switch` heading using the `text` prop.
+
+```jsx
+import { ContentSwitcher, Switch } from "carbon-components-react";
+
+function MyComponent() {
+  return (
+    <ContentSwitcher onChange={function noRefCheck() {}}>
+      <Switch
+        name="one"
+        onClick={function noRefCheck() {}}
+        onKeyDown={function noRefCheck() {}}
+        text="First section"
+      />
+      <Switch
+        name="two"
+        onClick={function noRefCheck() {}}
+        onKeyDown={function noRefCheck() {}}
+        text="Second section"
+      />
+      <Switch
+        name="three"
+        onClick={function noRefCheck() {}}
+        onKeyDown={function noRefCheck() {}}
+        text="Third section"
+      />
+    </ContentSwitcher>
+  );
+}
+```
