@@ -6,7 +6,7 @@ tabs: ["Usage", "Style", "Code", "Accessibility"]
 
 <PageDescription>
 
-How to build a content switcher using React.
+How to build a content switcher using React. For code usage with other frameworks, please follow the links in the [live demo](https://www.carbondesignsystem.com/components/content-switcher/usage#live-demo).
 
 </PageDescription>
 
@@ -32,19 +32,16 @@ function MyComponent() {
   return (
     <ContentSwitcher onChange={function noRefCheck() {}}>
       <Switch
-        name="one"
         onClick={function noRefCheck() {}}
         onKeyDown={function noRefCheck() {}}
         text="First section"
       />
       <Switch
-        name="two"
         onClick={function noRefCheck() {}}
         onKeyDown={function noRefCheck() {}}
         text="Second section"
       />
       <Switch
-        name="three"
         onClick={function noRefCheck() {}}
         onKeyDown={function noRefCheck() {}}
         text="Third section"
@@ -53,3 +50,134 @@ function MyComponent() {
   );
 }
 ```
+
+## Component API
+
+### ContentSwitcher props
+
+| Prop          | Type                         | Required | Default     | Description                                                                                              |
+| ------------- | ---------------------------- | -------- | ----------- | -------------------------------------------------------------------------------------------------------- |
+| selectedIndex | `number`                     | –        | 0           | Specify a selected index for the initially selected content                                              |
+| selectionMode | oneOf 'automatic' / 'manual' | –        | 'automatic' | Choose whether or not to automatically change selection on focus                                         |
+| children      | `node`                       | `true`   | –           | Pass in Switch components to be rendered in the ContentSwitcher                                          |
+| className     | `string`                     | –        | –           | Specify an optional className to be added to the container node                                          |
+| onChange      | `func`                       | 'true'   | –           | Specify an `onChange` handler that is called whenever the ContentSwitcher changes which item is selected |
+
+### ContentSwitcher selectedIndex
+
+You can render the content switcher with a different section automatically selected by using `selectedIndex`.
+
+```jsx
+<ContentSwitcher onChange={function noRefCheck() {}} selectedIndex={1}>
+  <Switch
+    onClick={function noRefCheck() {}}
+    onKeyDown={function noRefCheck() {}}
+    text="First section"
+  />
+  <Switch
+    onClick={function noRefCheck() {}}
+    onKeyDown={function noRefCheck() {}}
+    text="Second section"
+  />
+  <Switch
+    onClick={function noRefCheck() {}}
+    onKeyDown={function noRefCheck() {}}
+    text="Third section"
+  />
+</ContentSwitcher>
+```
+
+### ContentSwitcher selectionMode
+
+The `selectionMode` prop can be used to allow a user to change focus without changing the selection by passing in `manual`.
+
+```jsx
+<ContentSwitcher onChange={function noRefCheck() {}} selectionMode="manual">
+  <Switch
+    onClick={function noRefCheck() {}}
+    onKeyDown={function noRefCheck() {}}
+    text="First section"
+  />
+  <Switch
+    onClick={function noRefCheck() {}}
+    onKeyDown={function noRefCheck() {}}
+    text="Second section"
+  />
+  <Switch
+    onClick={function noRefCheck() {}}
+    onKeyDown={function noRefCheck() {}}
+    text="Third section"
+  />
+</ContentSwitcher>
+```
+
+### Switch props
+
+| Prop      | Type                | Required | Default        | Description                                                                                                             |
+| --------- | ------------------- | -------- | -------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| selected  | `bool`              | –        | `false`        | Whether your Switch is selected. Reserved for usage in ContentSwitcher                                                  |
+| text      | `string`            | `true`   | 'Provide text' | Provide the contents of your Switch                                                                                     |
+| onClick   | `func`              | –        | –              | A handler that is invoked when a user clicks on the control. Reserved for usage in ContentSwitcher                      |
+| onKeyDown | `func`              | –        | –              | A handler that is invoked on the key down event for the control. Reserved for usage in ContentSwitcher                  |
+| className | `string`            | –        | –              | Specify an optional className to be added to your Switch                                                                |
+| index     | `number`            | –        | –              | The index of your Switch in your ContentSwitcher that is used for event handlers. Reserved for usage in ContentSwitcher |
+| name      | 'string' / 'number' | –        | –              | Provide the name of your Switch that is used for event handlers                                                         |
+
+### Switch selected
+
+The `selected` is used to specify weather the specific `Switch` is selected.
+
+```jsx
+<ContentSwitcher onChange={function noRefCheck() {}} selectionMode="manual">
+  <Switch
+    selected={false}
+    onClick={function noRefCheck() {}}
+    onKeyDown={function noRefCheck() {}}
+    text="First section"
+  />
+  <Switch
+    selected={false}
+    onClick={function noRefCheck() {}}
+    onKeyDown={function noRefCheck() {}}
+    text="Second section"
+  />
+  <Switch
+    selected={false}
+    onClick={function noRefCheck() {}}
+    onKeyDown={function noRefCheck() {}}
+    text="Third section"
+  />
+</ContentSwitcher>
+```
+
+### Switch text
+
+The `text` prop is used to provide the label displayed within a `Switch` component.
+
+```jsx
+<ContentSwitcher onChange={function noRefCheck() {}} selectionMode="manual">
+  <Switch
+    onClick={function noRefCheck() {}}
+    onKeyDown={function noRefCheck() {}}
+    text="First section"
+  />
+  <Switch
+    onClick={function noRefCheck() {}}
+    onKeyDown={function noRefCheck() {}}
+    text="Second section"
+  />
+  <Switch
+    onClick={function noRefCheck() {}}
+    onKeyDown={function noRefCheck() {}}
+    text="Third section"
+  />
+</ContentSwitcher>
+```
+
+## References
+
+Each section component itself is rendered as a <button> and is considered an interactive element. If you render an interactive element inside of this component, then it becomes nested inside of the <button>. Common examples of this are links. Rendering interactive content inside of the `Switch` is not reachable via a keyboard or screen reader.
+
+## Feedback
+
+Help us improve this component by providing feedback, asking questions, and leaving any other comments on GitHub.
