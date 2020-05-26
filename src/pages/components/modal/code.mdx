@@ -9,13 +9,13 @@ import ModalStateManager from "../../../components/ModalStateManager";
 <PageDescription>
 
 How to build a Modal using React. For code usage with other frameworks, please
-follow the links in the live demo.
+follow the links in the [live demo](/components/modal/usage#live-demo).
 
 </PageDescription>
 
 <AnchorLinks>
 
-<AnchorLink>Usage</AnchorLink>
+<AnchorLink>Overview</AnchorLink>
 <AnchorLink>Modal</AnchorLink>
 <AnchorLink>ComposedModal</AnchorLink>
 <AnchorLink>Opening/closing modal</AnchorLink>
@@ -28,11 +28,9 @@ follow the links in the live demo.
 
 </AnchorLinks>
 
-## Usage
+## Overview
 
-This section explains usage with our React variant. For usage with other frameworks, please follow a link in component live demo above.
-
-There are two choices for you to use Carbon modals:
+There are two choices for you to use Carbon modals.
 
 | Modal type        | Purpose                              |
 | ----------------- | ------------------------------------ |
@@ -42,7 +40,7 @@ There are two choices for you to use Carbon modals:
 ## Modal
 
 `<Modal>` allows you to use its bespoke set of contents. `children` prop maps to the modal body content.
-You can also use `modalLabel`, `modalHeading`, `secondaryButtonText` and `primaryButtonText` props to change the corresponding text:
+You can also use `modalLabel`, `modalHeading`, `secondaryButtonText` and `primaryButtonText` props to change the corresponding text.
 
 <ComponentDemo
   scope={{ ModalStateManager, React }}
@@ -167,7 +165,7 @@ You can also use `modalLabel`, `modalHeading`, `secondaryButtonText` and `primar
 
 ## ComposedModal
 
-`<ComposedModal>` provides you with more flexibility in the contents. You can provide the contents via `<ModalHeader>`, `<ModalBody>` and `<ModalFooter>` with your contents in them:
+`<ComposedModal>` provides you with more flexibility in the contents. You can provide the contents via `<ModalHeader>`, `<ModalBody>` and `<ModalFooter>` with your contents in them.
 
 <ComponentDemo
   scope={{ ModalStateManager, React }}
@@ -308,7 +306,7 @@ function ModalStateManager() {
 }
 ```
 
-You can create an abstract version of such state manager, like:
+You can create an abstract version of such state manager, as shown below.
 
 ```javascript
 const ModalStateManager = ({
@@ -332,13 +330,13 @@ const ModalStateManager = ({
 
 <InlineNotification kind="warning">
   <code>{`<Modal>`}</code>/<code>{`<ComposedModal>`}</code> has to be put at the
-  top-level in a React tree. The easiest way to ensure that is using React
+  top level in a React tree. The easiest way to ensure that is using React
   portal as shown in above example.
 </InlineNotification>
 
 ## Modal sizes
 
-There are four responsive <a href="https://www.carbondesignsystem.com/components/modal/usage/#modal-sizes">modal sizes</a>: `xs`, `small`, default, and `large`. You can set it via `size` prop:
+There are four responsive <a href="https://www.carbondesignsystem.com/components/modal/usage/#modal-sizes">modal sizes</a>: `xs`, `small`, default, and `large`. You can set it via `size` prop.
 
 ```javascript
 <ComposedModal size="lg">
@@ -363,7 +361,7 @@ body content. Carbon design specifies that such 20% padding shouldn't be
 applied to form elements. You can set `hasForm`
 prop to `<Modal>`/`<ModalBody>` to remove the padding,
 and use `bx--modal-content__regular-content` class to apply the 20%
-padding to non-form contents, like below:
+padding to non-form contents, as shown below.
 
 ```javascript
 <ComposedModal>
@@ -383,11 +381,11 @@ padding to non-form contents, like below:
 
 #### Overflow content
 
-In case where the largest modal size cannot fit your modal body content in, Carbon
+In cases where the largest modal size cannot fit your modal body content in, Carbon
 design specifies to have a "visual fade" look at the end of the modal body area
 to indicate there is additional content out of view. You can set
 `hasScrollingContent` prop to `<Modal>`/`<ModalBody>`
-to do that, like below:
+to do that, as shown below.
 
 ```javascript
 <ComposedModal size="large">
@@ -400,7 +398,7 @@ to do that, like below:
 
 ## Modal button variants
 
-With `<Modal>`, you have limited control over the set of buttons. Supported patterns are the following:
+With `<Modal>`, you have limited control over the set of buttons. The following table shows the supported patterns.
 
 | Button group variant                                                                                 | Usage                                     |
 | ---------------------------------------------------------------------------------------------------- | ----------------------------------------- |
@@ -416,7 +414,7 @@ With `<Modal>`, you have limited control over the set of buttons. Supported patt
 </Modal>
 ```
 
-With `<ComposedModal>`, you can control the buttons with the following:
+With `<ComposedModal>`, you can control the buttons with the following code.
 
 | Button group variant                                                                                 | Usage                                                                                                                                                                                                                                                          |
 | ---------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -436,8 +434,8 @@ With `<ComposedModal>`, you can control the buttons with the following:
 <InlineNotification kind="warning">
   As the instruction for the three buttons implies, <code>{`<ModalFooter>`}</code>
   is flexible on the buttons as you render <code>{`<Button>`}</code> s by yourself,
-  like below. In this case, application code needs to care of running action upon
-  those buttons, e.g. closing the modal:
+  as shown below. In this case, the application code needs to take care of running
+  actions upon clicking those buttons, e.g. closing the modal:
 </InlineNotification>
 
 ```javascript
@@ -467,7 +465,7 @@ With `<ComposedModal>`, you can control the buttons with the following:
 
 For short, direct messages the title can include the whole message to add visual clarity to an otherwise repetitive title and body message.
 
-To use this pattern with `<Modal>`, you can omit `children` prop:
+To use this pattern with `<Modal>`, you can omit the `children` prop.
 
 ```javascript
 const modalHeadding =
@@ -481,7 +479,7 @@ const modalHeadding =
 />
 ```
 
-To use this pattern with `<ComposedModal>`, you can omit `<ModalBody>`:
+To use this pattern with `<ComposedModal>`, you can omit `<ModalBody>`.
 
 ```javascript
 <ComposedModal>
@@ -497,10 +495,10 @@ To use this pattern with `<ComposedModal>`, you can omit `<ModalBody>`:
 
 ## Focus management
 
-For both modal variants, once modal gets open, keyboard focus will be restricted inside modal. It means:
+For both modal variants, once the modal is open, keyboard focus will be restricted inside modal. This means:
 
-- If you hit tab key at the last keyboard-focusable element in modal, the first keyboard-focusable element in modal will get focus.
-- If you hit shift-tab key at the first keyboard-focusable element in modal, the last keyboard-focusable element in modal will get focus.
+- If you press `Tab` at the last keyboard-focusable element in modal, the first keyboard-focusable element in modal will get focus.
+- If you press `Shift-Tab` at the first keyboard-focusable element in the modal, the last keyboard-focusable element in the modal will get focus.
 
 We take extra step here to ensure such behavior works with floating menus,
 given floating menu is placed outside of modal in DOM. If you use any
@@ -566,7 +564,7 @@ Also for both modal variants, you can set the DOM element that gets focus when t
 | `shouldSubmitOnEnter`    | `boolean`                          | –                                             | –                            | Specify if Enter key should be used as "submit" action                                                                                                       |
 | `size`                   | `'xs'` &#124; `'md'` &#124; `'lg'` | –                                             | –                            | Specify the size variant                                                                                                                                     |
 
-Please see Show Info button at [our storybook](https://react.carbondesignsystem.com/?path=/story/modal--default), or follow a link in component live demo above for other frameworks.
+Click the `Show Info` button in [our storybook](https://react.carbondesignsystem.com/?path=/story/modal--default), or follow the links in the component [live demo](/components/modal/usage#live-demo) for other frameworks.
 
 ## Feedback
 
