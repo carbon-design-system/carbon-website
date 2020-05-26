@@ -9,13 +9,13 @@ class ComponentOverview extends React.Component {
     const { component } = currentItem;
     let componentUrl;
     if (component === 'Multiselect') {
-      componentUrl = '/components/dropdown/code';
+      componentUrl = '/components/dropdown/usage';
     } else if (component === 'UI shell') {
-      componentUrl = '/components/UI-shell-header/code';
+      componentUrl = '/components/UI-shell-header/usage';
     } else {
       componentUrl = `/components/${component
         .toLowerCase()
-        .replace(' ', '-')}/code`;
+        .replace(' ', '-')}/usage`;
     }
 
     let componentImg;
