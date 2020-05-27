@@ -2,10 +2,10 @@
 title: 4. Creating components
 description: Welcome to Carbon! This tutorial will guide you in creating a React app with the Carbon Design System.
 tabs:
-  ['Overview', 'Step 1', 'Step 2', 'Step 3', 'Step 4', 'Step 5', 'Wrapping up']
+  ["Overview", "Step 1", "Step 2", "Step 3", "Step 4", "Step 5", "Wrapping up"]
 ---
 
-import Preview from 'components/Preview';
+import Preview from "components/Preview";
 
 <PageDescription>
 
@@ -103,13 +103,13 @@ src/components/Info
 Import `_info.scss` in `app.scss` after all of the `carbon-component` imports.
 
 ```scss path=src/app.scss
-@import './components/Info/info.scss';
+@import "./components/Info/info.scss";
 ```
 
 Like our other components, `index.js` will serve as an entrypoint. Since `Info.js` will export mutliple components, we'll use the `*` wildcard in the entrypoint export.
 
 ```javascript path=src/components/Info/index.js
-export * from './Info';
+export * from "./Info";
 ```
 
 ### InfoSection component
@@ -140,9 +140,9 @@ We'll also:
 Using `props` we can render any heading and any number of children components (`InfoCard` that we'll build soon.)
 
 ```javascript path=src/components/Info/Info.js
-import React from 'react';
+import React from "react";
 
-const InfoSection = props => (
+const InfoSection = (props) => (
   <section className={`bx--row ${props.className} info-section`}>
     <div className="bx--col-md-8 bx--col-lg-4 bx--col-xlg-3">
       <h3 className="info-section__heading">{props.heading}</h3>
@@ -156,7 +156,7 @@ At this point let's add styling for the new class names that we just added.
 
 ```scss path=src/components/Info/_info.scss
 .info-section__heading {
-  @include carbon--type-style('heading-01');
+  @include carbon--type-style("heading-01");
 }
 ```
 
@@ -165,7 +165,7 @@ At this point let's add styling for the new class names that we just added.
 Next up we're going to build a component for columns 2 - 4, which currently looks like `<div className="bx--col-md-4 bx--col-lg-4">Carbon is Open</div>`. At the bottom of `Info.js`, add:
 
 ```javascript path=src/components/Info/Info.js
-const InfoCard = props => {
+const InfoCard = (props) => {
   return (
     <article className="info-card bx--col-md-4 bx--col-lg-4 bx--col-xlg-3 bx--offset-xlg-1">
       <h4 className="info-card__heading">{props.heading}</h4>
@@ -202,15 +202,15 @@ In doing so, we:
 Nothing is styled yet, but with our components built let's put them to use. In `LandingPage.js`, import the components towards the top of the file.
 
 ```javascript path=src/content/LandingPage/LandingPage.js
-import { InfoSection, InfoCard } from '../../components/Info';
+import { InfoSection, InfoCard } from "../../components/Info";
 ```
 
 While we're at the top of `LandingPage.js`, import the icons that we'll need as well.
 
 ```javascript path=src/content/LandingPage/LandingPage.js
-import Globe32 from '@carbon/icons-react/lib/globe/32';
-import PersonFavorite32 from '@carbon/icons-react/lib/person--favorite/32';
-import Application32 from '@carbon/icons-react/lib/application/32';
+import Globe32 from "@carbon/icons-react/lib/globe/32";
+import PersonFavorite32 from "@carbon/icons-react/lib/person--favorite/32";
+import Application32 from "@carbon/icons-react/lib/application/32";
 ```
 
 <InlineNotification>
@@ -317,7 +317,7 @@ Our `InfoCard` headings look to be too small. We need to increase their font siz
 
 ```scss path=src/components/Info/_info.scss
 .info-card__heading {
-  @include carbon--type-style('productive-heading-03');
+  @include carbon--type-style("productive-heading-03");
 }
 ```
 
@@ -326,16 +326,16 @@ Also, the design has the last word in each subheading as bold. To accomplish tha
 ```javascript path=src/components/Info/Info.js
 // Take in a phrase and separate the third word in an array
 function createArrayFromPhrase(phrase) {
-  const splitPhrase = phrase.split(' ');
+  const splitPhrase = phrase.split(" ");
   const thirdWord = splitPhrase.pop();
-  return [splitPhrase.join(' '), thirdWord];
+  return [splitPhrase.join(" "), thirdWord];
 }
 ```
 
 Then, update `InfoCard` to use `createArrayFromPhrase`.
 
 ```javascript path=src/components/Info/Info.js
-const InfoCard = props => {
+const InfoCard = (props) => {
   const splitHeading = createArrayFromPhrase(props.heading);
 
   return (
@@ -357,7 +357,7 @@ Finally, add the declaration block in `_info.scss` to set `InfoCard` body copy s
 .info-card__body {
   margin-top: $spacing-06;
   flex-grow: 1; // fill space so icons are bottom aligned
-  @include type-style('body-long-01');
+  @include type-style("body-long-01");
 
   // prevent large line lengths between small and medium viewports
   @include carbon--breakpoint-between(321px, md) {

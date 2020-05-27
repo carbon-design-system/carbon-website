@@ -1,22 +1,134 @@
 ---
 title: Code snippet
 description: Code snippets are small blocks of reusable code that can be inserted in a code file.
-tabs: ['Code', 'Usage', 'Style', 'Accessibility']
+tabs: ["Usage", "Style", "Code", "Accessibility"]
 ---
 
-## General guidance
+<PageDescription>
 
-_Code snippets_ are small blocks of reusable code that can be inserted in a code file.
+Code snippets are small blocks of reusable code that can be inserted in a code file.
 
-Our code snippets are built with basic styling. We recommend using [Base16](https://github.com/chriskempson/base16) for more complex syntax highlighting. Base16 provides carefully chosen syntax highlighting and a default set of sixteen colors suitable for a wide range of applications. The theme we recommend using is **Solarflare**.
+</PageDescription>
 
-#### Overflow
+<AnchorLinks>
 
-If there are more than nine lines of code, apply vertical scrolling to the code snippet.
+<AnchorLink>Overview</AnchorLink>
+<AnchorLink>Live demo</AnchorLink>
+<AnchorLink>Interactions</AnchorLink>
+<AnchorLink>Feedback</AnchorLink>
 
-Terminal commands are often longer strings and should only appear on one line. Apply horizontal scrolling to maintain the set width of the box for those longer strings.
+</AnchorLinks>
 
-## Interaction
+import {
+  codeSnippet,
+  codeSnippetSingle,
+} from "../../../data/components/code-snippet.js";
+
+## Overview
+
+The code snippet component is built with basic styling. We recommend using [Base16](https://github.com/chriskempson/base16) for more complex syntax highlighting. Base16 provides carefully chosen syntax highlighting and a default set of sixteen colors suitable for a wide range of applications. The theme we recommend using is **Solarflare**.
+
+## Live demo
+
+<ComponentDemo
+  scope={{ codeSnippet, codeSnippetSingle }}
+  components={[
+    {
+      id: "code-snippet-single",
+      label: "Single line",
+    },
+    {
+      id: "code-snippet-multi",
+      label: "Multi line",
+    },
+    {
+      id: "code-snippet-inline",
+      label: "Inline",
+    },
+  ]}
+>
+  <ComponentVariant
+    id="code-snippet-single"
+    knobs={{ CodeSnippet: ["light"] }}
+    links={{
+      React:
+        "http://react.carbondesignsystem.com/?path=/story/codesnippet--inline",
+      Angular:
+        "https://angular.carbondesignsystem.com/?path=/story/components-code-snippet--basic",
+      Vue:
+        "http://vue.carbondesignsystem.com/?path=/story/components-cvcodesnippet--default",
+      Vanilla: "https://the-carbon-components.netlify.com/?nav=code-snippet",
+    }}
+  >{`
+    <CodeSnippet type="single">
+    {codeSnippet}
+    </CodeSnippet>
+`}</ComponentVariant>
+  <ComponentVariant
+    id="code-snippet-multi"
+    knobs={{ CodeSnippet: ["light"] }}
+    links={{
+      React:
+        "http://react.carbondesignsystem.com/?path=/story/codesnippet--inline",
+      Angular:
+        "https://angular.carbondesignsystem.com/?path=/story/components-code-snippet--basic",
+      Vue:
+        "http://vue.carbondesignsystem.com/?path=/story/components-cvcodesnippet--default",
+      Vanilla: "https://the-carbon-components.netlify.com/?nav=code-snippet",
+    }}
+  >{`
+    <CodeSnippet type="multi">
+    {codeSnippet}
+    </CodeSnippet>
+`}</ComponentVariant>
+  <ComponentVariant
+    id="code-snippet-inline"
+    knobs={{ CodeSnippet: ["light"] }}
+    links={{
+      React:
+        "http://react.carbondesignsystem.com/?path=/story/codesnippet--inline",
+      Angular:
+        "https://angular.carbondesignsystem.com/?path=/story/components-code-snippet--basic",
+      Vue:
+        "http://vue.carbondesignsystem.com/?path=/story/components-cvcodesnippet--default",
+      Vanilla: "https://the-carbon-components.netlify.com/?nav=code-snippet",
+    }}
+  >{`
+    <CodeSnippet type="inline">{codeSnippetSingle}</CodeSnippet>
+`}</ComponentVariant>
+</ComponentDemo>
+
+## Sample data
+
+```javascript
+const codeSnippet = `@mixin grid-container {
+  width: 100%;
+  padding-right: padding(mobile);
+  padding-left: padding(mobile);
+
+  @include breakpoint(bp--xs--major) {
+    padding-right: padding(xs);
+    padding-left: padding(xs);
+  }
+}
+
+$z-indexes: (
+  modal : 9000,
+  overlay : 8000,
+  dropdown : 7000,
+  header : 6000,
+  footer : 5000,
+  hidden : - 1,
+  overflowHidden: - 1,
+  floating: 10000
+);`;
+
+const codeSnippetSingle = `node -v`;
+```
+
+## Interactions
+
+#### Copy to clipboard
 
 Code snippets are accompanied by a **copy icon**, which allows users to copy the provided code to their clipboard. The copy icon must be accompanied by a confirmation that states the successful action of copying an item to the users clipboard.
 
@@ -27,3 +139,13 @@ Code snippets are accompanied by a **copy icon**, which allows users to copy the
 
 </Column>
 </Row>
+
+#### Overflow and scrolling
+
+If there are more than nine lines of code, apply vertical scrolling to the code snippet.
+
+Terminal commands are often longer strings and should only appear on one line. Apply horizontal scrolling to maintain the set width of the box for those longer strings.
+
+## Feedback
+
+Help us improve this component by providing feedback, asking questions, and leaving any other comments on [GitHub](https://github.com/carbon-design-system/carbon-website/issues/new?assignees=&labels=feedback&template=feedback.md).
