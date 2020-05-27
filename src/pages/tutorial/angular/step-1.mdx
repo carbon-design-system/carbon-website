@@ -15,7 +15,7 @@ Starting with the Carbon Angular, there are two ways to begin working with Carbo
 <AnchorLinks>
 
 <AnchorLink>Prerequisites</AnchorLink>
-<AnchorLink>Use starter app - recommended</AnchorLink>
+<AnchorLink>Use starter app (recommended)</AnchorLink>
 <AnchorLink>Start from scratch</AnchorLink>
 
 </AnchorLinks>
@@ -102,7 +102,7 @@ git checkout -b angular-step-1 upstream/angular-step-1
 
 ## Use starter app (recommended)
 
-<AnchorLinks>
+<AnchorLinks small>
 
 <AnchorLink>Add starter remote</AnchorLink>
 <AnchorLink>Pull starter code</AnchorLink>
@@ -150,7 +150,7 @@ Remove the temporary remote called `starter` since we have no use for it anymore
 git remote remove starter
 ```
 
-## Build and start
+### Build and start
 
 We have the repository forked to your GitHub account, cloned down to your machine, and the starting branch checked out. Next, install the Carbon app's dependencies with:
 
@@ -168,7 +168,7 @@ Your app should now be running with the message: `** Angular Live Development Se
 
 That's it! Your browser should now resemble our [starter-app](https://carbon-angular-starter.netlify.com/).
 
-## Update UI Shell
+### Update UI Shell
 
 Let's update the UI Shell so it has a link to the repos page that we will create shortly. In `header.component.html` replace the code with:
 
@@ -200,11 +200,11 @@ Before we continue on to the next step, we want to begin developing with a clean
 },
 ```
 
-Now you can skip most of [Start from scratch](#start-from-scratch) and jump straight to [Create pages](#create-pages).
+From here you can continue the steps in [Start from scratch](#start-from-scratch) from [Create pages](#create-pages) onwards.
 
 ## Start from scratch
 
-<AnchorLinks>
+<AnchorLinks small>
 
 <AnchorLink>Install Angular CLI</AnchorLink>
 <AnchorLink>Create an Angular App</AnchorLink>
@@ -219,11 +219,10 @@ Now you can skip most of [Start from scratch](#start-from-scratch) and jump stra
 
 </AnchorLinks>
 
-## Install Angular CLI
+### Install Angular CLI
 
-Since we are starting from scratch, we need to first install Angular CLI. 
+Since we are starting from scratch, we need to first install Angular CLI.
 Currently you need to install Angular CLI Version 8.x to work through this tutorial.
-
 
 ```bash
 npm install -g @angular/cli
@@ -235,7 +234,7 @@ npm install -g @angular/cli
 
 </InlineNotification>
 
-## Create an Angular App
+### Create an Angular App
 
 Now that we have our environment set up, starting a new Angular app is easy! If you haven't set up the environment yet, please do so using the steps provided in Prerequisites (above). We will be using the Angular CLI to create and generate our components. It can also generate services, router, components, and directives.
 
@@ -278,7 +277,7 @@ carbon-angular-tutorial
     └── test.ts
 ```
 
-## Install Carbon
+### Install Carbon
 
 Even though we installed some dependencies while creating the new app, we've yet to install the Carbon packages.
 
@@ -290,7 +289,7 @@ Even though we installed some dependencies while creating the new app, we've yet
 npm install carbon-components carbon-components-angular @carbon/icons-angular
 ```
 
-### Import carbon-component styles
+#### Import carbon-component styles
 
 In `src/styles.scss`, import the Carbon styles by adding the following to the top of the file:
 
@@ -298,7 +297,7 @@ In `src/styles.scss`, import the Carbon styles by adding the following to the to
 @import "~carbon-components/scss/globals/scss/styles";
 ```
 
-## Code style
+### Code style
 
 Next, we will edit the code style to match Carbon Angular recommendations. Through the conventions listed in our `tslint.js`, the app will look clean and easier to read and maintain. So replace your code in `tslint.json` with the code below.
 
@@ -480,7 +479,7 @@ trim_trailing_whitespace = false
 
 </InlineNotification>
 
-## Progressive web app
+### Progressive web app
 
 Before we start adding components, let's explore progressive web app, or PWA. PWA is a web application that has a set of capabilities (similar to native apps) which provide an app-like experience to users. Some other capabilities include full responsiveness and browser compatibility, connectivity independence and self-updates. In the `src` directory create a file called `sw.js` and paste the code below.
 
@@ -650,7 +649,7 @@ curl -o src/assets/icons/icon-384x384.png https://raw.githubusercontent.com/carb
 curl -o src/assets/icons/icon-512x512.png https://raw.githubusercontent.com/carbon-design-system/carbon-angular-starter/master/src/assets/icons/icon-512x512.png
 ```
 
-## Run the app
+### Run the app
 
 Now we can run our app for a quick preview inside the browser.
 
@@ -662,7 +661,7 @@ Your app should now be running with the message: `** Angular Live Development Se
 
 Before we start adding components we want to start with an empty project, so delete everything in `app.component.html` except for the `router-outler`. We will also have to delete the test that was associated with this code. So in `app.component.spec.ts`, delete the `should render title` and `should have as title 'carbon-angular-tutorial'` test.
 
-## Add UI Shell
+### Add UI Shell
 
 Next, we're going to create an Angular component called `Header` to use with the UI Shell Carbon component. Using Angular CLI we will create this component inside the `src/app` directory.
 
@@ -680,7 +679,7 @@ src/app/header
 └── header.component.ts
 ```
 
-### Import UI Shell
+#### Import UI Shell
 
 Next we'll import our Carbon UI Shell components into `app.module.ts`, `app.component.spec.ts` and `header.component.spec.ts`. Set up the file like so:
 
@@ -733,7 +732,7 @@ TestBed.configureTestingModule({
 
 </InlineNotification>
 
-### Import icons
+#### Import icons
 
 Now let's import the icons from our `@carbon/icons-angular` package. In `app.module.ts`, `app.component.spec.ts` and `header.component.spec.ts`, we need to import each individual icon we will use.
 
@@ -799,7 +798,7 @@ import { Component, HostBinding } from '@angular/core';
 	@HostBinding('class.bx--header') headerClass = true;
 ```
 
-## Create pages
+### Create pages
 
 Next thing we need to do is create the files for our content. These files will be located in the `app` folder inside of `src`. It should be a sibling of `header`.
 
@@ -845,7 +844,7 @@ src/app/repositories
 
 Now you can restart your server with `npm start`.
 
-## Add routing
+### Add routing
 
 We need to update routing functionality to enable the loading of `repositories`. Inside `app-routing.module.ts` we'll add the following code in the routes array:
 
@@ -911,11 +910,11 @@ After that we need to do a couple quick fixes to the UI Shell to have it route t
 
 You should now have a working header that routes to the repos pages without full page reload!
 
-## Submit pull request
+### Submit pull request
 
 We're going to submit a pull request to verify completion of this tutorial step and demonstrate a couple related concepts.
 
-### Continuous integration (CI) check
+#### Continuous integration (CI) check
 
 <InlineNotification>
 
@@ -936,7 +935,7 @@ npm run lint && npm test
 
 </InlineNotification>
 
-### Git commit and push
+#### Git commit and push
 
 Before we can create a pull request, we need to stage and commit all of our changes:
 
@@ -962,7 +961,7 @@ git push origin angular-step-1
 
 </InlineNotification>
 
-### Pull request (PR)
+#### Pull request (PR)
 
 Finally, visit [carbon-tutorial-angular](https://github.com/carbon-design-system/carbon-tutorial-angular) to "Compare & pull request". In doing so, make sure that you are comparing to `angular-step-1` into `base: angular-step-1`. Take notice of the [Netlify](https://www.netlify.com) bot that deploys a preview of your PR every time that you push new commits. These previews can be shared and viewed by anybody to assist the PR review process.
 

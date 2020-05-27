@@ -29,9 +29,7 @@ const IconLibrary = () => {
       (accumulator, pictogram) => {
         if (pictogram.deprecated) return accumulator;
 
-        const path = pictogram.namespace
-          ? `${pictogram.namespace}/${pictogram.name}`
-          : pictogram.name;
+        const path = [...pictogram.namespace, pictogram.name].join('/');
 
         return [
           ...accumulator,
