@@ -15,6 +15,8 @@ How to build a notification using React.
 <AnchorLink>Overview</AnchorLink>
 <AnchorLink>Component API</AnchorLink>
 <AnchorLink>Feedback</AnchorLink>
+<AnchorLink>Toast notification</AnchorLink>
+<AnchorLink>Inline notification</AnchorLink>
 
 </AnchorLinks>
 
@@ -24,7 +26,7 @@ Carbon Notifications come in two variants: toast, and inline. They are created b
 
 ## Toast notification
 
-You can use the `ToastNotification` component to display a non-modal, time-based short message that appears at the bottom or the top of the screen.
+You can use the `ToastNotification` component to display a non–modal, time–based short message that appears at the bottom or the top of the screen.
 
 ```jsx
 import { ToastNotification } from "carbon-components-react";
@@ -33,12 +35,8 @@ function MyComponent() {
   return (
     <ToastNotification
       caption="00:00:00 AM"
-      iconDescription="describes the close button"
-      subtitle={
-        <span>
-          Subtitle text goes here. <a href="#example">Example link</a>
-        </span>
-      }
+      iconDescription="Dismiss notification"
+      subtitle="Notification subtitle"
       timeout={0}
       title="Notification title"
     />
@@ -57,12 +55,8 @@ function MyComponent() {
   return (
     <InlineNotification
       kind="info"
-      iconDescription="describes the close button"
-      subtitle={
-        <span>
-          Subtitle text goes here. <a href="#example">Example link</a>
-        </span>
-      }
+      iconDescription="Dismiss notification"
+      subtitle="Notification subtitle"
       title="Notification title"
     />
   );
@@ -73,40 +67,36 @@ function MyComponent() {
 
 ### Inline Notification props
 
-| Prop                  | Type       | Required | Default               | Description                                                            |
-| --------------------- | ---------- | -------- | --------------------- | ---------------------------------------------------------------------- |
-| actions               | `node`     | -        | -                     | Pass in the action nodes that will be rendered inside the notification |
-| children              | `node`     | -        | -                     | Pass in the children that will be rendered inside the notification     |
-| className             | `string`   | `true`   | `error`               | Optional class names to be applied to the notification                 |
-| kind                  | `string`   | `true`   | `error`               | Specify what state the notification represents                         |
-| lowContrast           | `bool`     | -        | –                     | Specify whether you are using the low contrast variant styles          |
-| title                 | `string`   | `true`   | `provide a caption`   | Specify notification title                                             |
-| subtitle              | `node`     | –        |                       | Specify notification subtitle                                          |
-| role                  | `string`   | –        | `alert`               | Provide an alternative role for the notification                       |
-| onCloseButtonClick    | `function` | –        | `() => {}`            | Function that is called when notification closes                       |
-| iconDescription       | `string`   | `true`   | `closes notification` | Provide screen reader accessible description for close icon            |
-| statusIconDescription | `string`   | –        | –                     | Provide screen reader accessible description for status icon           |
-| notificationType      | `string`   | –        | `inline`              | Specify the type of the button                                         |
-| hideCloseButton       | `bool`     | –        | `false`               | Optional prop to disable the close button                              |
+| Prop                  | Type       | Required | Default               | Description                                                                              |
+| --------------------- | ---------- | -------- | --------------------- | ---------------------------------------------------------------------------------------- |
+| actions               | `node`     | –        | –                     | Pass in the action nodes that will be rendered inside the notification                   |
+| children              | `node`     | –        | –                     | Pass in the children that will be rendered inside the notification                       |
+| className             | `string`   | `true`   | `error`               | Optional class names to be applied to the notification                                   |
+| kind                  | `string`   | `true`   | `error`               | Specify what state the notification represents: `error`, `success`, `warning`, or `info` |
+| lowContrast           | `bool`     | –        | –                     | Specify whether you are using the low contrast variant styles                            |
+| title                 | `string`   | `true`   | `provide a caption`   | Specify notification title                                                               |
+| subtitle              | `node`     | –        |                       | Specify notification subtitle                                                            |
+| role                  | `string`   | –        | `alert`               | Provide an alternative role for the notification                                         |
+| onCloseButtonClick    | `function` | –        | `() => {}`            | Function that is called when notification closes                                         |
+| iconDescription       | `string`   | `true`   | `closes notification` | Provide screen reader accessible description for close icon                              |
+| statusIconDescription | `string`   | –        | –                     | Provide screen reader accessible description for status icon                             |
+| notificationType      | `string`   | –        | `inline`              | Specify the type of the button                                                           |
+| hideCloseButton       | `bool`     | –        | `false`               | Optional prop to disable the close button                                                |
 
 ## Inline notifications with action button
 
 An inline notification optionally can have a ghost button that allows the user to take further action.
 
 ```jsx
-import { inlinenotification } from "carbon-components-react";
+import { InlineNotification } from "carbon-components-react";
 
-function mycomponent() {
+function Mycomponent() {
   return (
-    <inlinenotification
+    <InlineNotification
       kind="info"
-      actions={<notificationactionbutton>action</notificationactionbutton>}
-      icondescription="describes the close button"
-      subtitle={
-        <span>
-          subtitle text goes here. <a href="#example">example link</a>
-        </span>
-      }
+      actions={<NotificationActionButton>Action</NotificationActionButton>}
+      icondescription="Dismiss notification"
+      subtitle="Notification subtitle"
       title="notification title"
     />
   );
@@ -115,20 +105,20 @@ function mycomponent() {
 
 ### Notification action button props
 
-| prop      | type       | required | default | description                                   |
+| Prop      | Type       | Required | Default | Description                                   |
 | --------- | ---------- | -------- | ------- | --------------------------------------------- |
 | classname | `string`   | –        | –       | class name to be applied to the action button |
-| children  | `node`     | -        | –       | the content of teh notification button        |
+| children  | `node`     | –        | –       | the content of the notification button        |
 | onclick   | `function` | –        | –       | click handler for the notification button     |
 
 ### Toast notification props
 
 | prop                  | type       | required | default               | description                                                                           |
 | --------------------- | ---------- | -------- | --------------------- | ------------------------------------------------------------------------------------- |
-| children              | `node`     | -        | -                     | Pass in the children that will be rendered inside the notification                    |
-| className             | `string`   | `true`   | -                     | Optional class names to be applied to the notification                                |
+| children              | `node`     | –        | –                     | Pass in the children that will be rendered inside the notification                    |
+| className             | `string`   | `true`   | –                     | Optional class names to be applied to the notification                                |
 | kind                  | `string`   | `true`   | `error`               | Specify what state the notification represents: 'error', 'info', 'success', 'warning' |
-| lowContrast           | `bool`     | -        | –                     | Specify whether you are using the low contrast variant styles                         |
+| lowContrast           | `bool`     | –        | –                     | Specify whether you are using the low contrast variant styles                         |
 | title                 | `string`   | `true`   | `provide a title`     | Specify notification title                                                            |
 | subtitle              | `node`     | –        |                       | Specify notification subtitle                                                         |
 | role                  | `string`   | –        | `alert`               | Provide an alternative role for the notification                                      |
