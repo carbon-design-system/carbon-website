@@ -13,6 +13,7 @@ Checkboxes are used when there are multiple items to select in a list. Users can
 <AnchorLinks>
 
 <AnchorLink>Overview</AnchorLink>
+<AnchorLink>Live demo</AnchorLink>
 <AnchorLink>Formatting</AnchorLink>
 <AnchorLink>Content</AnchorLink>
 <AnchorLink>Behaviors</AnchorLink>
@@ -21,35 +22,6 @@ Checkboxes are used when there are multiple items to select in a list. Users can
 <AnchorLink>Feedback</AnchorLink>
 
 </AnchorLinks>
-
-<ComponentDemo
-  components={[
-    {
-      id: "checkbox",
-      label: "Checkbox",
-    },
-  ]}
->
-  <ComponentVariant
-    id="checkbox"
-    knobs={{ Checkbox: ["indeterminate", "disabled", "hideLabel"] }}
-    links={{
-      React:
-        "http://react.carbondesignsystem.com/?path=/story/checkbox--checked",
-      Angular:
-        "https://angular.carbondesignsystem.com/?path=/story/components-checkbox--basic",
-      Vue:
-        "http://vue.carbondesignsystem.com/?path=/story/components-cvcheckbox--default",
-      Vanilla: "https://the-carbon-components.netlify.com/?nav=checkbox",
-    }}
-  >{`
-<fieldset className="bx--fieldset">
-  <legend className="bx--label">Checkbox heading</legend>
-  <Checkbox defaultChecked labelText="Checkbox label" id="checked" />
-  <Checkbox labelText="Checkbox label" id="checked-2" />
-</fieldset>
-`}</ComponentVariant>
-</ComponentDemo>
 
 ## Overview
 
@@ -99,6 +71,37 @@ If a user can select only one option from a list, radio buttons should be used i
 
   </DoDont>
 </DoDontRow>
+
+## Live demo
+
+<ComponentDemo
+  components={[
+    {
+      id: "checkbox",
+      label: "Checkbox",
+    },
+  ]}
+>
+  <ComponentVariant
+    id="checkbox"
+    knobs={{ Checkbox: ["indeterminate", "disabled", "hideLabel"] }}
+    links={{
+      React:
+        "http://react.carbondesignsystem.com/?path=/story/checkbox--checked",
+      Angular:
+        "https://angular.carbondesignsystem.com/?path=/story/components-checkbox--basic",
+      Vue:
+        "http://vue.carbondesignsystem.com/?path=/story/components-cvcheckbox--default",
+      Vanilla: "https://the-carbon-components.netlify.com/?nav=checkbox",
+    }}
+  >{`
+<fieldset className="bx--fieldset">
+  <legend className="bx--label">Checkbox heading</legend>
+  <Checkbox defaultChecked labelText="Checkbox label" id="checked" />
+  <Checkbox labelText="Checkbox label" id="checked-2" />
+</fieldset>
+`}</ComponentVariant>
+</ComponentDemo>
 
 ## Formatting
 
@@ -230,6 +233,30 @@ Use the indeterminate state when the checkbox contains a sublist of selections, 
 <Column colLg={8}>
 
 ![Focus and disabled states of checkbox.](images/checkbox-usage-8.png)
+
+</Column>
+</Row>
+
+### Nesting
+
+Checkboxes can be nested when a parent and child relationship is needed. Users can either select an entire set of options or only a subset.
+
+Checking the parent checkbox automatically selects all of the nested children checkboxes. Unchecking the parent checkbox automatically deselects all of the children checkboxes.
+
+<Row>
+<Column colLg={8}>
+
+![Checking and unchecking the parent checkbox.](images/checkbox-usage-9a.png)
+
+</Column>
+</Row>
+
+Checking a child checkbox, if at least one other child checkbox is not selected, automatically puts the parent checkbox into the indeterminate state. Unchecking a child checkbox, when all other children checkboxes remain selected, switches the parent checkbox from the default checked state to the indeterminate state.
+
+<Row>
+<Column colLg={8}>
+
+![Checking and unchecking a child checkbox.](images/checkbox-usage-9b.png)
 
 </Column>
 </Row>

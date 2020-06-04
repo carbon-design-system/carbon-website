@@ -3,7 +3,7 @@ import ThemeFeedbackDialog from 'gatsby-theme-carbon/src/components/FeedbackDial
 
 const FeedbackDialog = ({ props }) => {
   const onSubmit = (data) => {
-    fetch('https://carbondesignsystem.now.sh/api/survey', {
+    fetch(process.env.BACKEND_URI, {
       method: 'POST',
       body: JSON.stringify(data),
       credentials: 'include',
