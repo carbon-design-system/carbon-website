@@ -47,7 +47,7 @@ const Layout = ({
         pageKeywords={pageKeywords}
       />
       <header className={banner}>
-        Black lives matter.&nbsp;
+        Black Lives Matter.&nbsp;
         <a href="https://support.eji.org/give/153413/#!/donation/checkout">
           Support the Equal Justice Initiative.
         </a>
