@@ -12,7 +12,7 @@ import Container from 'gatsby-theme-carbon/src/components/Container';
 
 import 'gatsby-theme-carbon/src/styles/index.scss';
 
-import { layout, banner } from './Layout.module.scss';
+import { layout, banner } from '../../styles/Layout.module.scss';
 
 const Layout = ({
   children,
