@@ -17,21 +17,24 @@ const StorybookLink = ({ framework, url }) => (
   </a>
 );
 
-const CodeBar = ({ src, code, links }) => {
+const CodeBar = ({ src, code, links, showSandboxURL }) => {
   const sandboxUrl = useCodesandbox(code);
   const storybookLinks = Object.entries(links);
 
   return (
     <div className={codeBar}>
       <div className={linkList}>
-        <a target="_blank" rel="noopener noreferrer" href={sandboxUrl}>
-          CodeSandbox <Launch16 />
-        </a>
+        {showSandboxURL &&
+          <a target="_blank" rel="noopener noreferrer" href={sandboxUrl}>
+            CodeSandbox <Launch16 />
+          </a>
+        }
         {storybookLinks.map(([framework, url]) => (
           <StorybookLink key={framework} framework={framework} url={url} />
         ))}
       </div>
-      {src ? (
+
+      {src &&
         <a
           target="_blank"
           rel="noopener noreferrer"
@@ -42,14 +45,16 @@ const CodeBar = ({ src, code, links }) => {
         >
           <Launch16 />
         </a>
-      ) : (
+      }
+
+      {!src && code &&
         <CopyButton
           className={cx(button, copyButton)}
           onClick={() => {
             copy(code);
           }}
         />
-      )}
+      }
     </div>
   );
 };

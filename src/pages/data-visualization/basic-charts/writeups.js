@@ -1,4 +1,5 @@
 export default {
+    "Area": "Area charts are similar to line charts, but the areas below the lines are filled with colors or patterns. Stacked charts are useful for comparing proportional contributions within a category. They plot the relative value that each data series contributes to the total.",
     "Bar (vertical)": "Bar charts use vertical or horizontal data markers to compare individual values. You can use them to compare discrete data or show trends over time.",
     "Bubble": "Bubble charts use data points and bubbles to plot measures anywhere along a scale. One measure is plotted along each axis. The size of the bubble represents the third measure. You can use bubble charts to represent financial data or any data where measured values are related.",
     "Grouped bar (discrete)": "A grouped bar chart, also known as a clustered bar graph, multi-set bar chart, or grouped column chart, is a type of bar graph that is used to compare values across multiple categories.",

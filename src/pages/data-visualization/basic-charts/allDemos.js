@@ -3,7 +3,7 @@ import React from 'react';
 import * as ChartComponents from '@carbon/charts-react';
 import { demoGroups } from '@carbon/charts/demo/data';
 
-import { Launch16 } from '@carbon/icons-react';
+import CodeBar from "../../../components/ComponentDemo/Code/CodeBar.js";
 
 import WRITEUPS from "./writeups";
 
@@ -19,54 +19,33 @@ export default () => (
 
           {WRITEUPS[demoGroup.title] && <p>{WRITEUPS[demoGroup.title]}</p>}
 
-          {demoGroup.demos.map(demo => {
-            const DemoComponent = ChartComponents[demo.chartType.vanilla];
-            return (
-              <>
-                {WRITEUPS[demo.title] && <p>{WRITEUPS[demo.title]}</p>}
-                <div className="charting-demo with-margin-bottom">
-                  <DemoComponent
-                    data={demo.data}
-                    options={demo.options}
-                    style={{ maxWidth: 400 }}
-                  />
-
-                  <div className="component-toolbar" style={{ marginTop: 0 }}>
-                    <div className="component-toolbar__current">CodeSandbox:</div>
-                    <div className="component-toolbar__links">
-                      <a
-                        href={demo.codesandbox.vanilla}
-                        target="_blank"
-                        rel="noopener noreferrer">
-                        vanilla <Launch16 />
-                      </a>
-
-                      <a
-                        href={demo.codesandbox.react}
-                        target="_blank"
-                        rel="noopener noreferrer">
-                        React <Launch16 />
-                      </a>
-
-                      <a
-                        href={`https://carbon-design-system.github.io/carbon-charts/angular/?path=/story/${demo.id}`}
-                        target="_blank"
-                        rel="noopener noreferrer">
-                        Angular <Launch16 />
-                      </a>
-
-                      <a
-                        href={demo.codesandbox.vue}
-                        target="_blank"
-                        rel="noopener noreferrer">
-                        Vue <Launch16 />
-                      </a>
+          {demoGroup.demos.filter(demo => demo.isDemoExample === true)
+            .map(demo => {
+              const DemoComponent = ChartComponents[demo.chartType.vanilla];
+              return (
+                <>
+                  {WRITEUPS[demo.title] && <p>{WRITEUPS[demo.title]}</p>}
+                  <div className="chart-demo-wrapper">
+                    <div className="chart-demo">
+                      <DemoComponent
+                        data={demo.data}
+                        options={demo.options}
+                        style={{ maxWidth: 400 }}
+                      />
                     </div>
+                    <CodeBar
+                      links={{
+                        React: demo.codesandbox.react,
+                        Angular: `https://carbon-design-system.github.io/carbon-charts/angular/?path=/story/${demo.id}`,
+                        Vue: demo.codesandbox.vue,
+                        Vanilla: demo.codesandbox.vanilla,
+                      }}
+                    />
                   </div>
-                </div>
-              </>
-            );
-          })}
+                </>
+              );
+            })
+          }
         </>
       );
     })}

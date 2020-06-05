@@ -1,3 +1,91 @@
+.fullscreen {
+  @include carbon--breakpoint("md") {
+    position: fixed;
+    margin: 0;
+    z-index: 9999;
+    top: 3rem;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    background: $ui-01;
+    padding: 1rem 2rem;
+    overflow: hidden;
+  }
+}
+
+.fullscreen .preview-container {
+  @include carbon--breakpoint("md") {
+    height: calc(100vh - 8rem);
+  }
+}
+
+.fullscreen .codeRow {
+  @include carbon--breakpoint("md") {
+    display: none;
+  }
+}
+
+.fullscreenButton {
+  display: none;
+  @include carbon--breakpoint("md") {
+    display: block;
+    height: 2rem;
+    width: 2rem;
+    padding: 0;
+    padding-top: 2px;
+    background: none;
+    outline: none;
+    border: none;
+    position: absolute;
+    top: 0.5rem;
+    right: 15.5rem; //TO-DO: figure out better way to position this for responsiveness
+  }
+}
+
+.exitFullscreenButton {
+  display: block;
+  height: 2rem;
+  width: 2rem;
+  padding: 0;
+  padding-top: 2px;
+  background: none;
+  outline: none;
+  border: none;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.knobless-container .fullscreenButton {
+  right: 1rem;
+}
+
+.fullscreenButton svg {
+  fill: var(--cds-icon-02);
+}
+
+.exitFullscreenButton svg {
+  fill: $icon-01;
+}
+
+.fullscreenButton:hover {
+  background: var(--cds-ui-03);
+}
+
+.exitFullscreenButton:hover {
+  background: $ui-03;
+}
+
+.fullscreenButton:focus {
+  outline: 2px solid var(--cds-focus);
+}
+
+.exitFullscreenButton:focus {
+  outline: 2px solid $focus;
+}
+
 .container {
   position: relative;
   display: grid;
@@ -17,7 +105,8 @@
   }
 }
 
-.container * {
+.container .preview-container,
+.container .knob-container {
   scrollbar-width: none;
   &::-webkit-scrollbar {
     width: 0 !important;
@@ -97,6 +186,10 @@
   );
 }
 
+.knob-container--collapsed + .zamboni {
+  width: 0;
+}
+
 .knob-container--collapsed {
   box-shadow: none;
   transform: translateX(240px);
@@ -115,47 +208,63 @@
 }
 
 .component-knob-wrapper {
-  padding: $spacing-05;
+  padding-top: $spacing-05;
   padding-bottom: $spacing-06;
-}
-
-.component-knob-wrapper:last-of-type {
-  margin-bottom: 10rem;
-  border-bottom: 1px solid $ui-03;
 }
 
 .component-knob-wrapper > * + * {
   margin-top: $spacing-05;
 }
 
+.component-knob-wrapper:last-of-type {
+  margin-bottom: 10rem;
+}
+
 // custom classnames are being applied to both fieldset and label
 // https://github.com/carbon-design-system/carbon/issues/4572
 fieldset.form-group {
+  padding: 1rem;
+  padding-top: 0;
   margin-bottom: 0;
-}
-
-.theme-switcher {
-  height: auto;
-  @include carbon--theme(
-    $theme: $carbon--theme--g10,
-    $emit-custom-properties: true
-  );
-
-  @include carbon--breakpoint("lg") {
-    max-width: 70%;
-  }
-}
-
-.theme-switcher .switch-button {
-  padding: $spacing-05;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
   border-bottom: 1px solid $ui-03;
-  &::-moz-focus-inner {
-    border: 0;
+}
+
+fieldset.form-group:last-of-type {
+  border-bottom: 0;
+}
+
+.dropdownRow {
+  margin-right: 14rem;
+  @include carbon--breakpoint-down("md") {
+    margin-right: -1rem;
   }
+}
+
+.dropdownRow :global {
+  [class*="--dropdown--open"] [class*="--list-box__menu"] {
+    max-height: 20rem; //shows all theme items w/o scroll
+  }
+
+  [class*="--dropdown__wrapper"] {
+    width: 50%;
+  }
+
+  [class*="--dropdown"] {
+    border-color: $ui-03;
+  }
+
+  [class*="--list-box--light"][class*="--list-box--expanded"] {
+    border-bottom-width: 1px;
+  }
+}
+
+.dropdownRow .variantDropdown {
+  border-left: 1px solid $ui-03;
+}
+
+.hiddenDropdown {
+  display: none;
+  border: none;
 }
 
 .preview-container {
@@ -221,8 +330,37 @@ fieldset.form-group {
 }
 
 //---------------------------------------
-// Demo modal
+// Some style overrides for theming
 //---------------------------------------
-.container :global(.bx--modal) {
-  z-index: 99999;
+.container :global {
+  // Modal within demo
+  [class*="--modal"] {
+    z-index: 99999;
+  }
+
+  // Checkbox uses body text
+  // https://github.com/carbon-design-system/carbon/issues/4545
+  [class*="--checkbox-label"],
+  [class*="accordion__content"],
+  [class*="--pagination__left"],
+  [class*="--pagination__text"],
+  [class*="--radio-button__label"] {
+    color: var(--cds-text-01, #161616);
+  }
+
+  [class*="--snippet--multi"],
+  [class*="--snippet--single"] {
+    background: var(--cds-ui-01, #f4f4f4);
+    color: var(--cds-text-01, #161616);
+  }
+
+  [class*="--data-table--zebra"] tbody tr:nth-child(odd) td {
+    background-color: var(--cds-ui-02, #fffff);
+    border-bottom: var(--cds-ui-02, #fffff);
+    border-top: var(--cds-ui-02, #fffff);
+  }
+
+  [class*="--content-switcher-btn"] {
+    height: 2.5rem;
+  }
 }
