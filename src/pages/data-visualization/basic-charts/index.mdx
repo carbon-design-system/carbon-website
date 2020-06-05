@@ -11,10 +11,21 @@ Basic charts offer a way to visualize data sets in an intuitive, easy to underst
 
 import "@carbon/charts/styles.css";
 
-import BasicChartsAnchorLinks from "./anchorLinks";
-import AllDemos from "./allDemos";
+import { storybookDemoGroups } from "@carbon/charts/demo/data";
 
-<BasicChartsAnchorLinks />
+import { AnchorLinks, AnchorLink } from "gatsby-theme-carbon";
+import AllDemos from "../../../components/data-visualization/AllDemos.js";
+
+<AnchorLinks>
+  {
+    storybookDemoGroups.map(storybookDemoGroup => (
+      <AnchorLink>{storybookDemoGroup.title}</AnchorLink>
+    ))
+  }
+
+  <AnchorLink>Design-only</AnchorLink>
+</AnchorLinks>
+
 <AllDemos />
 
 ## Design-only
