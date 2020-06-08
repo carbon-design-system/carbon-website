@@ -24,17 +24,17 @@ const CodeBar = ({ src, code, links, showSandboxURL }) => {
   return (
     <div className={codeBar}>
       <div className={linkList}>
-        {showSandboxURL &&
+        {showSandboxURL && (
           <a target="_blank" rel="noopener noreferrer" href={sandboxUrl}>
             CodeSandbox <Launch16 />
           </a>
-        }
+        )}
         {storybookLinks.map(([framework, url]) => (
           <StorybookLink key={framework} framework={framework} url={url} />
         ))}
       </div>
 
-      {src &&
+      {src && (
         <a
           target="_blank"
           rel="noopener noreferrer"
@@ -45,16 +45,16 @@ const CodeBar = ({ src, code, links, showSandboxURL }) => {
         >
           <Launch16 />
         </a>
-      }
+      )}
 
-      {!src && code &&
+      {!src && code && (
         <CopyButton
           className={cx(button, copyButton)}
           onClick={() => {
             copy(code);
           }}
         />
-      }
+      )}
     </div>
   );
 };
