@@ -230,7 +230,9 @@ When dealing with large amounts of data in a constrained space, tree structured 
 
 #### "Trheat" maps
 
-"Trheat" maps combine the divergent color scale of a heat map and a tree map. The "trheat" map is identical in terms of structure to the basic tree map, but the countries can be colored independently accordingly to an additional indicator or variation of an indicator. Again, the diverging palette shows color progression in either direction from an inflection point (for example, a 0 value midway between -100 and +100),
+"Trheat" maps combine the divergent color scale of a heat map and a tree map. The "trheat" map is identical in terms of structure to the basic tree map, but the countries can be colored independently accordingly to an additional indicator or variation of an indicator.
+
+Again, the diverging palette shows color progression in either direction from an inflection point (for example, a 0 value midway between -10 and +10). In the example below, the inflection point is simply an average. Tourism can be mapped by the number of visitors to a certain country, but the visualization can also compare this data to a yearly average. For instance, even though one country may have a lot of visitors compared to another country, tourism for that country may fall below its annual average.
 
 <Row>
 <Column  colLg={12} colMd={8} colSm={4} >
@@ -388,3 +390,32 @@ These styles can be used as is, or as a backdrop for other geospatial data sets.
 
 </Column>
 </Row>
+
+#### Applying the Carbon Mapbox themes
+
+For instructions on how to use Mapbox GL JS please read this [Mapbox quickstart documentation](https://docs.mapbox.com/mapbox-gl-js/api/#quickstart).
+
+In addition to the instructions above, when initializing a new map you can apply any of the 4 Carbon themes by providing the stylesheet location to the library.
+
+| Theme      | Style sheet location                                           |
+| ---------- | -------------------------------------------------------------- |
+| _White_    | `mapbox://styles/carbondesignsystem/ck7c8cfpp08h61irrudv7f1xg` |
+| _Gray 10_  | `mapbox://styles/carbondesignsystem/ck7c8ce1y05h61ipb2fixfe76` |
+| _Gray 90_  | `mapbox://styles/carbondesignsystem/ck7c8ccac08jj1imhvd2g4qfb` |
+| _Gray 100_ | `mapbox://styles/carbondesignsystem/ck7c89g8708gy1imlz9g5o6h9` |
+
+<Title>Example</Title>
+
+```html
+<script>
+  mapboxgl.accessToken = "YOUR_MAPBOX_ACCESS_TOKEN";
+  var map = new mapboxgl.Map({
+    // Applying the G100 theme below
+    style: "mapbox://styles/carbondesignsystem/ck7c89g8708gy1imlz9g5o6h9",
+    // Include existing options below
+    // ...
+    // ...
+    // ...
+  });
+</script>
+```
