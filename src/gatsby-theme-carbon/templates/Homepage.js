@@ -1,7 +1,7 @@
 import React from 'react';
 import { HomepageCallout, ResourceCard } from 'gatsby-theme-carbon';
 import HomepageTemplate from 'gatsby-theme-carbon/src/templates/Homepage';
-import { calloutLink } from './Homepage.module.scss';
+import styles from './Homepage.module.scss';
 import HomepageVideo from '../../components/HomepageVideo/HomepageVideo';
 
 const FirstLeftText = () => <p>Carbon Design System</p>;
@@ -29,7 +29,7 @@ const SecondRightText = () => (
     possible experience for our users. If you’re interested in contributing,
     check out our contributing guidelines to get started.
     <a
-      className={calloutLink}
+      className={styles.calloutLink}
       href="https://www.carbondesignsystem.com/how-to-contribute/overview/"
     >
       Start contributing →
@@ -46,12 +46,12 @@ const customProps = {
           <div className="bx--row">
             <div className="bx--col-lg-4 bx--col-md-4 bx--col-sm-2 bx--offset-lg-8 bx--offset-md-4 bx--offset-sm-2 homepage--tile-header">
               <ResourceCard
+                className={styles.callToAction}
                 subTitle="Read"
                 title="Migration guide"
                 href="/updates/migration-guide/overview"
                 color="dark"
                 actionIcon="arrowRight"
-                onClick={() => fathom('trackGoal', '0GXPXZKE', 0)}
               />
             </div>
             <HomepageVideo />
