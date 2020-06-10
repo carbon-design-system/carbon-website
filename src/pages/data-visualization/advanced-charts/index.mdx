@@ -62,11 +62,11 @@ Multiple blocks of two indicators can be placed next to each other creating a wi
 
 ## Heat maps
 
-A heat map is a graphical representation of data where the individual values contained in a matrix are represented as colors. When it comes to heat maps, the most common color ranges are expressed in either sequential and diverging color scales according to the typology of data represented.
+A heat map is a two-dimensional visualization in which individual values contained in a matrix are represented as colors. This technique makes it easy to visualize complex data at a glance. When it comes to heat maps, the most common color ranges are expressed in either sequential and diverging color scales according to the type of data represented.
 
 #### Sequential scales
 
-Sequential scales use a blended progression, typically of a single color, from the lightest to the darkest values, representing lows to highs. It’s best practice to use a sequential scale with values that are all positive or all negative. Sequential  heat maps can leverage the full range of the palette (from 10-100) to maximize contrast. Please note that the 3:1 minimum contrast requirement does not apply to heat maps.
+Sequential scales use a blended progression, typically of a single color, from the lowest contrast to the highest contrast values, representing lows to highs. It’s best practice to use a sequential scale with values that are all positive or all negative. Sequential heat maps can leverage the full range of the palette (from 10-100) to maximize contrast. Please note that the 3:1 minimum contrast requirement does not apply to heat maps.
 
 <Row>
 <Column  colLg={12} colMd={8} colSm={4} >
@@ -105,13 +105,13 @@ Axis ticks and legend can be used to leverage the chart potential giving the use
 
 #### Divergent scales
 
-Diverging scales show color progression in two directions: dialing down the first value from one end to a neutral color at the inflection point (for example, a 0 value midway between -100 and +100), then increasing the opacity of the second value to the darker end of the scale.
+Diverging scales show color progression in two directions: dialing down the contrast of the first hue from one end to a neutral color at the midpoint, then increasing the contrast of the second hue to the other end of the scale. The neutral midpoint is often referred to as the "inflection point" (for example, a 0 value midway between -100 and +100).
 
-[Divergent scales](../data-visualization/color-palettes#diverging-palettes) require 3 colors for their 3 correspondent values (min, max and inflection point) and they are referred to as “symmetrical” when the min/max values match and “assymetrical” otherwise. Although some examples use the stepped scale provided by the Carbon palette, divergent heat maps often leverage continous values to accomodate situations that require more than 10 values.
+[Divergent scales](../data-visualization/color-palettes#diverging-palettes) require 3 colors for their correspondent values (min, max and inflection point) and Carbon has provided two approved palettes for divergent visualizations. Although the examples here use the "discrete" (stepped scale) provided by the Carbon palette, divergent heat maps often leverage "continous" values (gradients) to accomodate situations that require more than 10 values.
 
 #### Inflection points
 
-While min/max values can be automatically detected from data, inflection points can vary depending on data type. We default to zero in order to accomodate the most common cases and include a feature flag within the code to specify exceptions.
+While min/max values can be automatically detected from data, inflection points can vary depending on data type. We default to zero in order to accomodate the most common cases and include a feature flag within the code to specify exceptions. The data for a divergent heat map does not need to be symmetrical on either side of the inflection point. For example, the data set could have a zero value between -20 and +100 as well.
 
 <Row>
 <Column  colLg={12} colMd={8} colSm={4} >
