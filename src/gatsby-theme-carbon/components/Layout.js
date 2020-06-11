@@ -49,7 +49,7 @@ const Layout = ({
       <header className={banner}>
         Black Lives Matter.&nbsp;
         <a href="https://support.eji.org/give/153413/#!/donation/checkout">
-          Support Equal Justice Initiative.
+          Support the Equal Justice Initiative.
         </a>
       </header>
       <Header />
