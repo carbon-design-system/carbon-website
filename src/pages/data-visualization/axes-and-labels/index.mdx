@@ -26,7 +26,11 @@ Axes and labels provide critical context for the information within a chart. Use
 
 ## Starting at zero
 
-**Always start numerical axes at zero for part-to-whole and comparisons charts.** For bar and area charts, a truncated Y-axis can distort the perceived scale of a chart, making a small difference appear more significant than it is.
+To start at zero, or not to start at zero. This is potentially history’s longest debate. As a charting library, we would like to support both directions, with the following recommendation.
+
+#### When starting at non-zero is bad
+
+Always start numerical axis at zero for part-to-whole and comparisons charts, such as bar and area chart. Truncating the Y axis can distortion the perception, making a small difference look big and significant.
 
 <DoDontRow>
 <DoDont caption="For bar charts, the numerical axis should start at zero.">
@@ -41,7 +45,9 @@ Axes and labels provide critical context for the information within a chart. Use
 </DoDont>
 </DoDontRow>
 
-**It's acceptable to start line charts and scatter plots at a value higher than zero.** These types of visualizations are less sensitive to distortion because they communicate trends rather than difference in size or quantity. In these cases, cropping the Y-axis helps users better identify the direction of change.
+#### When starting at non-zero is good
+
+Line charts and scatter plots are less sensitive to this distortion because they are intended to communicate trends and not relative size of the difference. In these cases, cropping the Y axis helps users more easily identify the direction of change.
 
 <Row>
 <Column  colLg={8} colMd={4} colSm={4}>
@@ -58,7 +64,7 @@ Axes and labels provide critical context for the information within a chart. Use
 
 ## Gaps in data
 
-Use the designated texture to denote the range or period when data is not available. Always label both start and end points where data is not available.
+Never interpolate between periods when data is unavailable. Always label both the start and end point during which data is not available.
 
 <Row>
 <Column  colLg={8} colMd={4} colSm={4}>
@@ -70,29 +76,21 @@ Use the designated texture to denote the range or period when data is not availa
 
 ## Breaks in axes
 
-Sometimes it's useful to skip part of the axis to bring data on the extreme ends into view without distortion. When axes contain a break, use a sinusoidal line to replace the straight axis line.
+Sometimes it is useful to skip part of the axis to bring data on the extreme ends into view without distortion. When the axis contains a break, use a sinusoidal line to replace the straight axis line.
 
-On the X-axis, the break may be fluid with graph area size, with a minimum width of 16px. On the Y-axis, we recommend fixing the distance break at 16px.
+On the X axis, the break can be fluid with graph area size, with a minimum width of 16px. On the Y axis, we recommend using a fixed distance of 16px for the break.
 
-<Row>
-<Column  colLg={8} colMd={4} colSm={4}>
-
-![Gap in data bar chart](images/axislabel-break-3.png)
-
-</Column>
-</Row>
-
-If data is available during an axis break, restyle line segments to use 0.5px stroke and hide circles representing data points.
+If data is available during an axis break, re-style line segments to use 0.5px stroke and hide circles representing data points.
 
 <Row>
 <Column  colLg={8} colMd={4} colSm={4}>
 
-![Gap in data denoted by texture](images/axislabel-break-1.png)
+![Gap in data bar chart](images/axislabel-break-1.png)
 
 </Column>
 </Row>
 
-If data isn't available between break points, denote the data gap with a texture.
+If data isn’t available between axis break points, leave the area empty.
 
 <Row>
 <Column  colLg={8} colMd={4} colSm={4}>
@@ -106,7 +104,7 @@ If data isn't available between break points, denote the data gap with a texture
 
 #### Consistent increments
 
-If any form of axis compression is required, use the provided [axis break](#breaks-in-axes) styling to visually denote the compression.
+Never change axis ticks increments to accomodate data availability. If any form of axis compression is required, use the provided [axis break styling](#breaks-in-axes) to visually denote the compression.
 
 #### Localization
 
@@ -114,7 +112,7 @@ In time series, X-axis labels reflect the time increment in the data. When possi
 
 #### Landmark labels
 
-Whenever data cross into a new time cycle, such as a new day, month, or year, semibold the label to emphasize the transition.
+Whenever data crosses into a new time cycle, such as a new day, month, or year, semibold the label to make it a “landmark” label to provide additional context for the labels following it.
 
 <Row>
 <Column  colLg={12} colMd={4} colSm={4}>
