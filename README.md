@@ -1,4 +1,4 @@
-# Carbon Design System
+# Carbon Design System website
 
 This is the [Carbon Design System website](http://www.carbondesignsystem.com). It's built using the [gatsby-theme-carbon](https://gatsby-theme-carbon.now.sh/) with [GatsbyJS](https://www.gatsbyjs.org/).
 
