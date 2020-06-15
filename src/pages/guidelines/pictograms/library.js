@@ -8,7 +8,7 @@ const frontmatter = {
   title: 'Pictograms',
   description:
     'Pictograms are visual symbols used to represent ideas, objects, or actions. They communicate messages at a glance, afford interactivity, and draw attention to important information.',
-  tabs: ['Library', 'Usage', 'Contribute'],
+  tabs: ['Library', 'Usage', 'Code', 'Contribute'],
 };
 
 const PictogramPage = ({ pageContext, ...rest }) => (
