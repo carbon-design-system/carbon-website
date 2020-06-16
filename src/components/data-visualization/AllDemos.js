@@ -17,13 +17,17 @@ const AllDemos = () => (
       <>
         <h2 id={generateHeadingID(demoGroup.title)}>{demoGroup.title}</h2>
 
-        {demoGroup.description && <p>{demoGroup.description}</p>}
+        {demoGroup.description && (
+          <p className="dataviz-copy">{demoGroup.description}</p>
+        )}
 
         {demoGroup.demos.map((demo) => {
           const DemoComponent = ChartComponents[demo.chartType.vanilla];
           return (
             <>
-              {demo.description && <p>{demo.description}</p>}
+              {demo.description && (
+                <p className="dataviz-copy">{demo.description}</p>
+              )}
               <div
                 className="chart-demo-wrapper"
                 id={generateHeadingID(demo.title)}
