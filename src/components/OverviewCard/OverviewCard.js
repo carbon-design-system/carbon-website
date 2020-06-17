@@ -25,8 +25,10 @@ export default class OverviewCard extends React.Component {
 
     const cardContent = (
       <>
-        <h4 className="overview-card__title">{title}</h4>
-        {tag && <Tag type="teal">{tag}</Tag>}
+        <div className="overview-card__info">
+          <h4 className="overview-card__title">{title}</h4>
+          {tag && <Tag type="teal">{tag}</Tag>}
+        </div>
         <div className="overview-card__img">{children}</div>
       </>
     );
