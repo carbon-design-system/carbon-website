@@ -13,13 +13,42 @@ Data tables are used to organize and display data efficiently. The data table co
 <AnchorLinks>
 
 <AnchorLink>Overview</AnchorLink>
+<AnchorLink>Live demo</AnchorLink>
 <AnchorLink>Formatting</AnchorLink>
-<AnchorLink>Behavior</AnchorLink>
 <AnchorLink>Content</AnchorLink>
+<AnchorLink>Behavior</AnchorLink>
 <AnchorLink>Related</AnchorLink>
+<AnchorLink>Modifiers</AnchorLink>
 <AnchorLink>Feedback</AnchorLink>
 
 </AnchorLinks>
+
+## Overview
+
+The data table's features are ideal for organizing and displaying data in a UI. The column headers can sort data in ascending or descending order, rows can be expanded to progressively disclose information, and single or batch actions can be taken on rows.
+
+The data table toolbar gives a location for primary buttons, search, filtering, table display settings, and other utilities.
+
+### When to use
+
+- To organize and display data.
+- If your user must navigate to a specific piece of data to complete a task.
+- Displaying all of a user's resources.
+
+### When not to use
+
+- When a more complex display of the data or interactions are required.
+- As a replacement for a spreadsheet application.
+
+### Types
+
+| Type             | Purpose                                                                                                                                                                                                                             |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _Default_        | The default data table comes with a base style with only the title, header, and table elements. rows.                                                                                                                               |
+| _With selection_ | Batch actions are functions that may be performed on multiple items within a table. This type of table enables the user to select individual rows and apply an action. A batch action toolbar appears when table rows are selected. |
+| _With expansion_ | The expandable data table is useful for presenting large amounts of data in a small space. Rows are collapsed and can be expanded to reveal extra information.                                                                      |
+
+## Live demo
 
 import { rowData, headerData } from "../../../data/components/data-table.js";
 import {
@@ -280,32 +309,6 @@ import {
   </ComponentVariant>
 </ComponentDemo>
 
-## Overview
-
-The data table's features are ideal for organizing and displaying data in a UI. The column headers can sort data in ascending or descending order, rows can be expanded to progressively disclose information, and single or batch actions can be taken on rows.
-
-The data table toolbar gives a location for primary buttons, search, filtering, table display settings, and other utilities.
-
-### When to use
-
-- To organize and display data.
-- If your user must navigate to a specific piece of data to complete a task.
-- Displaying all of a user's resources.
-
-### When not to use
-
-- When a more complex display of the data or interactions are required.
-- As a replacement for a spreadsheet application.
-
-### Variations
-
-| Type             | Purpose                                                                                                                                                                                                                             |
-| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| _Basic_          | The basic data table comes with a base style with only the title, header, and table elements. rows.                                                                                                                                 |
-| _Zebra_          | The zebra data table features alternating colored rows to make scanning horizontal information easier for the user.                                                                                                                 |
-| _With selection_ | Batch actions are functions that may be performed on multiple items within a table. This type of table enables the user to select individual rows and apply an action. A batch action toolbar appears when table rows are selected. |
-| _With expansion_ | The expandable data table is useful for presenting large amounts of data in a small space. Rows are collapsed and can be expanded to reveal extra information.                                                                      |
-
 ## Formatting
 
 ### Anatomy
@@ -326,7 +329,7 @@ The data table toolbar gives a location for primary buttons, search, filtering, 
 
 ### Sizing
 
-The data table is available in 4 different row sizes: compact, short, normal, tall.
+The data table is available in [4 different row sizes](/data-table/style#row-sizes): tall, normal, short, compact.
 
 <Row>
 <Column colLg={8}>
@@ -355,6 +358,21 @@ caption="Don’t mix row heights for in the table and header rows.">
 
 </DoDont>
 </DoDontRow>
+
+Two heights are available to be paired with the row heights of the data table. The tall toolbar should only be paired with the normal and tall row heights and the small toolbar should only be used with the small and compact row heights.
+
+<Row>
+<Column colLg={12}>
+
+![data table toolbar size](images/datatable-toolbar-sizes.png)
+
+<Caption>
+  A small toolbar on a short data table and a tall toolbar on a normal data
+  table{" "}
+</Caption>
+
+</Column>
+</Row>
 
 ### Placement
 
@@ -406,6 +424,28 @@ The data table can be used on a condensed grid, but care should be taken to avoi
 </Column>
 </Row>
 
+## Content
+
+### Main elements
+
+#### Data table title and description
+
+- The table title should make it clear to the user what this the data has in common and what purpose it serves in the UI.
+- A description can be added under the title to provide more information about the data or its source.
+- A data table's title and description should use [sentence-case capitalization.](/guidelines/content/guidance#use-sentence-case-capitalization)
+
+#### Column titles
+
+- Column titles should stick to one or two words that describe the data in that column.
+- In cases where a column title is too long, wrap the text to two lines and then truncate the rest of the text. The full text should be shown in a tooltip on hover.
+- Column titles should use [sentence-case capitalization.](/guidelines/content/guidance#use-sentence-case-capitalization)
+
+#### Primary button
+
+- A data table using a primary action should follow the guidance for [primary button](/components/button/usage#labels) usage and [action labels.](/guidelines/content/action-labels)
+
+For further content guidance, see Carbon's [content guidelines](guidelines/content/general).
+
 ## Behavior
 
 ### Interactions
@@ -438,7 +478,7 @@ A row's hover state can help your user visually scan the columns of data in a ro
 
 ### Pagination
 
-Pagination divides table data into separate pages. Pagination is accompanied by an option that enables the user to change the number of items per page. The pagination component is always placed at the bottom of the data table. See the [pagination](/components/pagination/code) component for further guidelines and configurations.
+Pagination divides table data into separate pages. Simple pagination indicates the current page in view and offers controls to incrementally navigate to the previous or next page. Advanced pagination is accompanied by an option that enables the user to change the number of items per page and to jump to a specific page number. The pagination component is always placed at the bottom of the data table. See the [pagination](/components/pagination/code) component for further guidelines and configurations.
 
 <Row>
 <Column colLg={12}>
@@ -552,27 +592,17 @@ By default, the expand-all chevron is not shown. Keeping detailed information in
 </Column>
 </Row>
 
-## Content
+## Modifiers
 
-### Main elements
+The data table features a zebra stripes modifier that styles the table rows with alternating colors to make scanning horizontal information easier for the user.
 
-#### Data table title and description
+<Row>
+<Column colLg={8}>
 
-- The table title should make it clear to the user what this the data has in common and what purpose it serves in the UI.
-- A description can be added under the title to provide more information about the data or its source.
-- A data table's title and description should use [sentence-case capitalization.](/guidelines/content/guidance#use-sentence-case-capitalization)
+![data table with zebra stripes](images/datatable-zebra.png)
 
-#### Column titles
-
-- Column titles should stick to one or two words that describe the data in that column.
-- In cases where a column title is too long, wrap the text to two lines and then truncate the rest of the text. The full text should be shown in a tooltip on hover.
-- Column titles should use [sentence-case capitalization.](/guidelines/content/guidance#use-sentence-case-capitalization)
-
-#### Primary button
-
-- A data table using a primary action should follow the guidance for [primary button](/components/button/usage#labels) usage and [action labels.](/guidelines/content/action-labels)
-
-For further content guidance, see Carbon's [content guidelines](guidelines/content/general).
+</Column>
+</Row>
 
 ### Related
 
