@@ -1,9 +1,11 @@
 import React from 'react';
 
 import * as ChartComponents from '@carbon/charts-react';
-import { demoGroups } from '@carbon/charts/demo/data';
 
+import H2 from 'gatsby-theme-carbon/src/components/markdown/H2';
 import CodeBar from '../ComponentDemo/Code/CodeBar.js';
+
+import demoGroups from '../../data/data-visualization';
 
 const generateHeadingID = (title) =>
   title
@@ -15,10 +17,14 @@ const AllDemos = () => (
   <>
     {demoGroups.map((demoGroup) => (
       <>
-        <h2 id={generateHeadingID(demoGroup.title)}>{demoGroup.title}</h2>
+        <H2>{demoGroup.title}</H2>
 
         {demoGroup.description && (
-          <p className="dataviz-copy">{demoGroup.description}</p>
+          <div className="bx--row">
+            <div className="bx--col-sm-4 bx--col-md-8 bx--col-lg-8">
+              <p className="dataviz-copy">{demoGroup.description}</p>
+            </div>
+          </div>
         )}
 
         {demoGroup.demos.map((demo) => {
@@ -26,27 +32,35 @@ const AllDemos = () => (
           return (
             <>
               {demo.description && (
-                <p className="dataviz-copy">{demo.description}</p>
-              )}
-              <div
-                className="chart-demo-wrapper"
-                id={generateHeadingID(demo.title)}
-              >
-                <div className="chart-demo">
-                  <DemoComponent
-                    data={demo.data}
-                    options={demo.options}
-                    style={{ maxWidth: 400 }}
-                  />
+                <div className="bx--row">
+                  <div className="bx--col-sm-4 bx--col-md-8 bx--col-lg-8">
+                    <p className="dataviz-copy">{demo.description}</p>
+                  </div>
                 </div>
-                <CodeBar
-                  links={{
-                    React: demo.codesandbox.react,
-                    Angular: `https://carbon-design-system.github.io/carbon-charts/angular/?path=/story/${demo.id}`,
-                    Vue: demo.codesandbox.vue,
-                    Vanilla: demo.codesandbox.vanilla,
-                  }}
-                />
+              )}
+              <div className="bx--row">
+                <div className="bx--col-sm-4 bx--col-md-8 bx--col-lg-8">
+                  <div
+                    className="chart-demo-wrapper"
+                    id={generateHeadingID(demo.title)}
+                  >
+                    <div className="chart-demo">
+                      <DemoComponent
+                        data={demo.data}
+                        options={demo.options}
+                        style={{ maxWidth: 400 }}
+                      />
+                    </div>
+                    <CodeBar
+                      links={{
+                        React: demo.codesandbox.react,
+                        Angular: `https://carbon-design-system.github.io/carbon-charts/angular/?path=/story/${demo.id}`,
+                        Vue: demo.codesandbox.vue,
+                        Vanilla: demo.codesandbox.vanilla,
+                      }}
+                    />
+                  </div>
+                </div>
               </div>
             </>
           );
