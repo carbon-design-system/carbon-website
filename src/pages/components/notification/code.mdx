@@ -4,66 +4,133 @@ description: Notifications are messages that communicate information to the user
 tabs: ["Usage", "Style", "Code", "Accessibility"]
 ---
 
-<ComponentDemo
-  components={[
-    {
-      id: "toast",
-      label: "Toast notification",
-    },
-    {
-      id: "inline",
-      label: "Inline notification",
-    },
-  ]}
->
-  <ComponentVariant
-    id="toast"
-    knobs={{
-      ToastNotification: ["hideCloseButton", "kind", "lowContrast"],
-    }}
-    links={{
-      React:
-        "https://react.carbondesignsystem.com/?path=/story/notifications--toast",
-      Angular:
-        "https://angular.carbondesignsystem.com/?path=/story/components-notification--toast",
-      Vue:
-        "http://vue.carbondesignsystem.com/?path=/story/components-cvtoastnotification--default",
-      Vanilla: "https://the-carbon-components.netlify.com/?nav=notification",
-    }}
-  >{`
-    <div>
-      <ToastNotification
-        caption="00:00:00 AM"
-        iconDescription="describes the close button"
-        subtitle={<span>Subtitle text goes here. <a href="#example">Example link</a></span>}
-        timeout={0}
-        title="Notification title"
-      />
-    </div>
-`}</ComponentVariant>
-  <ComponentVariant
-    id="inline"
-    knobs={{
-      InlineNotification: ["hideCloseButton", "lowContrast"],
-    }}
-    links={{
-      React:
-        "https://react.carbondesignsystem.com/?path=/story/notifications--inline",
-      Angular:
-        "https://angular.carbondesignsystem.com/?path=/story/components-notification--basic",
-      Vue:
-        "http://vue.carbondesignsystem.com/?path=/story/components-cvinlinenotification--default",
-      Vanilla: "https://the-carbon-components.netlify.com/?nav=notification",
-    }}
-  >{`
-  <div>
+<PageDescription>
+
+How to build a notification using React. For code usage with other frameworks, please follow the links in the live demo on the usage tab.
+
+</PageDescription>
+
+<AnchorLinks>
+
+<AnchorLink>Overview</AnchorLink>
+<AnchorLink>Toast notification</AnchorLink>
+<AnchorLink>Inline notification</AnchorLink>
+<AnchorLink>Inline notifications with action button</AnchorLink>
+<AnchorLink>Component API</AnchorLink>
+<AnchorLink>Feedback</AnchorLink>
+
+</AnchorLinks>
+
+## Overview
+
+Carbon Notifications come in two variants: toast, and inline. They are created by using the `ToastNotification` or `InlineNotification` components.
+
+## Toast notification
+
+You can use the `ToastNotification` component to display a non–modal, time–based short message that appears at the bottom or the top of the screen.
+
+```jsx
+import { ToastNotification } from "carbon-components-react";
+
+function MyComponent() {
+  return (
+    <ToastNotification
+      caption="00:00:00 AM"
+      iconDescription="Dismiss notification"
+      subtitle="Notification subtitle"
+      timeout={0}
+      title="Notification title"
+    />
+  );
+}
+```
+
+## Inline notification
+
+You can use the `InlineNotification` to notify users of the status of an action. Unlike `ToastNotification` these appear at the top of the primary content area.
+
+```jsx
+import { InlineNotification } from "carbon-components-react";
+
+function MyComponent() {
+  return (
+    <InlineNotification
+      kind="info"
+      iconDescription="Dismiss notification"
+      subtitle="Notification subtitle"
+      title="Notification title"
+    />
+  );
+}
+```
+
+## Inline notifications with action button
+
+An inline notification optionally can have a ghost button that allows the user to take further action.
+
+```jsx
+import { InlineNotification } from "carbon-components-react";
+
+function Mycomponent() {
+  return (
     <InlineNotification
       kind="info"
       actions={<NotificationActionButton>Action</NotificationActionButton>}
-      iconDescription="describes the close button"
-      subtitle={<span>Subtitle text goes here. <a href="#example">Example link</a></span>}
-      title="Notification title"
+      icondescription="Dismiss notification"
+      subtitle="Notification subtitle"
+      title="notification title"
     />
-  </div>
-`}</ComponentVariant>
-</ComponentDemo>
+  );
+}
+```
+
+## Component API
+
+### Inline Notification props
+
+| Prop                  | Type       | Required | Default               | Description                                                                              |
+| --------------------- | ---------- | -------- | --------------------- | ---------------------------------------------------------------------------------------- |
+| actions               | `node`     | –        | –                     | Pass in the action nodes that will be rendered inside the notification                   |
+| children              | `node`     | –        | –                     | Pass in the children that will be rendered inside the notification                       |
+| className             | `string`   | `true`   | `error`               | Optional class names to be applied to the notification                                   |
+| kind                  | `string`   | `true`   | `error`               | Specify what state the notification represents: `error`, `success`, `warning`, or `info` |
+| lowContrast           | `bool`     | –        | –                     | Specify whether you are using the low contrast variant styles                            |
+| title                 | `string`   | `true`   | `provide a caption`   | Specify notification title                                                               |
+| subtitle              | `node`     | –        |                       | Specify notification subtitle                                                            |
+| role                  | `string`   | –        | `alert`               | Provide an alternative role for the notification                                         |
+| onCloseButtonClick    | `function` | –        | `() => {}`            | Function that is called when notification closes                                         |
+| iconDescription       | `string`   | `true`   | `closes notification` | Provide screen reader accessible description for close icon                              |
+| statusIconDescription | `string`   | –        | –                     | Provide screen reader accessible description for status icon                             |
+| notificationType      | `string`   | –        | `inline`              | Specify the type of the button                                                           |
+| hideCloseButton       | `bool`     | –        | `false`               | Optional prop to disable the close button                                                |
+
+### Notification action button props
+
+| Prop      | Type       | Required | Default | Description                                   |
+| --------- | ---------- | -------- | ------- | --------------------------------------------- |
+| classname | `string`   | –        | –       | class name to be applied to the action button |
+| children  | `node`     | –        | –       | the content of the notification button        |
+| onclick   | `function` | –        | –       | click handler for the notification button     |
+
+### Toast notification props
+
+| prop                  | type       | required | default               | description                                                                           |
+| --------------------- | ---------- | -------- | --------------------- | ------------------------------------------------------------------------------------- |
+| children              | `node`     | –        | –                     | Pass in the children that will be rendered inside the notification                    |
+| className             | `string`   | `true`   | –                     | Optional class names to be applied to the notification                                |
+| kind                  | `string`   | `true`   | `error`               | Specify what state the notification represents: 'error', 'info', 'success', 'warning' |
+| lowContrast           | `bool`     | –        | –                     | Specify whether you are using the low contrast variant styles                         |
+| title                 | `string`   | `true`   | `provide a title`     | Specify notification title                                                            |
+| subtitle              | `node`     | –        |                       | Specify notification subtitle                                                         |
+| role                  | `string`   | –        | `alert`               | Provide an alternative role for the notification                                      |
+| caption               | `node`     | –        | `provide a caption`   | The caption for the notification                                                      |
+| onCloseButtonClick    | `function` | –        | `() => {}`            | The function called when the close button is clicked                                  |
+| iconDescription       | `string`   | `true`   | `closes notification` | Provide screen reader accessible description for close icon                           |
+| statusIconDescription | `string`   | –        | –                     | Provide screen reader accessible description for status icon                          |
+| notificationType      | `string`   | –        | `toast`               | The type of notification                                                              |
+| hideCloseButton       | `bool`     | –        | `false`               | Optional prop to disable the close button                                             |
+| timeout               | `number`   | –        | `0`                   | Time until the notification is closed                                                 |
+
+## Feedback
+
+Help us improve this component by providing feedback, asking questions, and leaving any other comments on [GitHub](https://github.com/carbon-design-system/carbon-website/issues/new?assignees=&labels=feedback&template=feedback.md).
