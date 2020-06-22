@@ -17,14 +17,15 @@ const StorybookLink = ({ framework, url }) => (
   </a>
 );
 
-const CodeBar = ({ src, code, links, showSandboxURL }) => {
+const CodeBar = ({ src, code, links }) => {
   const sandboxUrl = useCodesandbox(code);
   const storybookLinks = Object.entries(links);
+  const shouldShowCopyButton = !src && code;
 
   return (
     <div className={codeBar}>
       <div className={linkList}>
-        {showSandboxURL && (
+        {sandboxUrl && (
           <a target="_blank" rel="noopener noreferrer" href={sandboxUrl}>
             CodeSandbox <Launch16 />
           </a>
@@ -47,7 +48,7 @@ const CodeBar = ({ src, code, links, showSandboxURL }) => {
         </a>
       )}
 
-      {!src && code && (
+      {shouldShowCopyButton && (
         <CopyButton
           className={cx(button, copyButton)}
           onClick={() => {
