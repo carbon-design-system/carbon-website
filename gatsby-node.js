@@ -1,5 +1,14 @@
 const path = require('path');
 
+// gatsby-node.js
+exports.createSchemaCustomization = ({ actions }) => {
+  actions.createTypes(`
+    type SitePage implements Node @dontInfer {
+      path: String!
+    }
+  `);
+};
+
 exports.onCreateWebpackConfig = ({ actions, getConfig }) => {
   // Allows importing html files for component code examples
   actions.setWebpackConfig({
