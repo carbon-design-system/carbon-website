@@ -7,7 +7,7 @@ import loadable from '@loadable/component';
 import {
   icons as iconMetaData,
   categories as iconCategoryMetadata,
-} from '@carbon/icons/metadata.json';
+} from './metadata.json';
 import { svgPage, svgLibrary } from '../shared/SvgLibrary.module.scss';
 
 import FilterRow from '../shared/FilterRow';

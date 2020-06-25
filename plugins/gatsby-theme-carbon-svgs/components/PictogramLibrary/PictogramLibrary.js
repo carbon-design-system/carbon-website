@@ -7,7 +7,7 @@ import { groupBy, debounce } from 'lodash-es';
 import {
   icons as pictogramMetaData,
   categories as pictogramCatagoryMetadata,
-} from '@carbon/pictograms/metadata.json';
+} from './metadata.json';
 
 import FilterRow from '../shared/FilterRow';
 import { svgPage, svgLibrary } from '../shared/SvgLibrary.module.scss';
