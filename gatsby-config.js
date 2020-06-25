@@ -17,6 +17,7 @@ module.exports = {
         gatsbyPluginSharpOptions: {
           srcSetBreakpoints: [600],
           pngCompressionSpeed: 10,
+          quality: 50,
         },
         isSearchEnabled: true,
         iconPath: './src/images/favicon.svg',
