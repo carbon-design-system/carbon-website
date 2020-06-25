@@ -16,6 +16,7 @@ module.exports = {
         mdxExtensions: ['.mdx'],
         gatsbyPluginSharpOptions: {
           srcSetBreakpoints: [600],
+          pngCompressionSpeed: 10,
         },
         isSearchEnabled: true,
         iconPath: './src/images/favicon.svg',
