@@ -23,7 +23,7 @@ src
 
 - `yarn install` – install dependencies
 - `yarn dev` – start the development server
-- `yarn dev:clean` – use this if you have cache issues
+- `yarn dev:clean` – use this if you get weird errors that metion `.cache`
 - `lint:js` – lint your JavaScript files
 - `format` - run Prettier
 
