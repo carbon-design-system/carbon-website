@@ -14,6 +14,9 @@ module.exports = {
       resolve: 'gatsby-theme-carbon',
       options: {
         mdxExtensions: ['.mdx'],
+        gatsbyPluginSharpOptions: {
+          srcSetBreakpoints: [600],
+        },
         isSearchEnabled: true,
         iconPath: './src/images/favicon.svg',
         titleType: 'prepend',
