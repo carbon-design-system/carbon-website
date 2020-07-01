@@ -23,6 +23,10 @@ const getIndex = ({ code = '' }) => {
 const useCodesandbox = (code) => {
   const { current: originalCode } = useRef(code);
   const url = useMemo(() => {
+    if (!originalCode) {
+      return null;
+    }
+
     const indexContent = getIndex({ code: originalCode });
 
     const parameters = getParameters({

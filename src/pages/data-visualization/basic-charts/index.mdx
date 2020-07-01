@@ -11,199 +11,47 @@ Basic charts offer a way to visualize data sets in an intuitive, easy to underst
 
 import "@carbon/charts/styles.css";
 
-import {
-  SimpleBarChart,
-  GroupedBarChart,
-  StackedBarChart,
-  PieChart,
-  DonutChart,
-  LineChart,
-  ScatterChart,
-} from "@carbon/charts-react";
+import demoGroups from "../../../data/data-visualization";
 
-import {
-  addHeightToOptions,
-  // Bar
-  groupedBarOptions,
-  groupedBarData,
-  groupedHorizontalBarOptions,
-  groupedHorizontalBarData,
-  simpleBarOptions,
-  simpleBarData,
-  simpleHorizontalBarOptions,
-  simpleHorizontalBarData,
-  simpleBarTimeSeriesOptions,
-  simpleBarTimeSeriesData,
-  simpleHorizontalBarTimeSeriesOptions,
-  simpleHorizontalBarTimeSeriesData,
-  stackedBarOptions,
-  stackedBarData,
-  stackedHorizontalBarOptions,
-  stackedHorizontalBarData,
-  stackedBarTimeSeriesOptions,
-  stackedBarTimeSeriesData,
-  stackedHorizontalBarTimeSeriesOptions,
-  stackedHorizontalBarTimeSeriesData,
-  // Pie & donut
-  pieOptions,
-  pieData,
-  donutOptions,
-  donutData,
-  // Line
-  lineTimeSeriesOptions,
-  lineTimeSeriesData,
-  lineData,
-  lineOptions,
-  // Step
-  stepOptions,
-  stepData,
-  stepTimeSeriesOptions,
-  stepTimeSeriesData,
-  // Scatter
-  scatterTimeSeriesOptions,
-  scatterTimeSeriesData,
-  scatterOptions,
-  scatterData,
-} from "../../../data/charts/index";
+import { AnchorLinks, AnchorLink } from "gatsby-theme-carbon";
+import AllDemos from "../../../components/data-visualization/AllDemos.js";
 
 <AnchorLinks>
+  {
+    demoGroups.map(storybookDemoGroup => (
+      <AnchorLink>{storybookDemoGroup.title}</AnchorLink>
+    ))
+  }
 
-<AnchorLink>Bar chart</AnchorLink>
-<AnchorLink>Line chart</AnchorLink>
-<AnchorLink>Area chart</AnchorLink>
-<AnchorLink>Polar charts</AnchorLink>
-<AnchorLink>Scatter plots</AnchorLink>
-<AnchorLink>Meter and gauge</AnchorLink>
-
+  <AnchorLink>Design-only</AnchorLink>
 </AnchorLinks>
 
-## Bar chart
+## Resources
 
-### Default
-
-Bar charts use vertical or horizontal data markers to compare individual values. You can use them to compare discrete data or show trends over time.
-
-<SimpleBarChart
-  data={simpleBarData}
-  options={addHeightToOptions(simpleBarOptions)}
-/>
-
-<SimpleBarChart
-  data={simpleBarTimeSeriesData}
-  options={addHeightToOptions(simpleBarTimeSeriesOptions)}
-/>
-
-### Grouped bar chart
-
-A grouped bar chart, also known as a clustered bar graph, multi-set bar chart, or grouped column chart, is a type of bar graph that is used to compare values across multiple categories.
-
-<GroupedBarChart
-  data={groupedBarData}
-  options={addHeightToOptions(groupedBarOptions)}
-/>
-
-### Stacked bar
-
-Stacked bar charts are useful for comparing proportional contributions within a category. They plot the relative value that each data series contributes to the total.
-
-<StackedBarChart
-  data={stackedBarData}
-  options={addHeightToOptions(stackedBarOptions)}
-/>
-
-<StackedBarChart
-  data={stackedBarTimeSeriesData}
-  options={addHeightToOptions(stackedBarTimeSeriesOptions)}
-/>
-
-### Horizontal bar
-
-### Default
-
-Bar charts use vertical or horizontal data markers to compare individual values. You can use them to compare discrete data or show trends over time.
-
-<SimpleBarChart
-  data={simpleHorizontalBarData}
-  options={addHeightToOptions(simpleHorizontalBarOptions)}
-/>
-
-<SimpleBarChart
-  data={simpleHorizontalBarTimeSeriesData}
-  options={addHeightToOptions(simpleHorizontalBarTimeSeriesOptions)}
-/>
-
-### Grouped bar chart
-
-A grouped bar chart, also known as a clustered bar graph, multi-set bar chart, or grouped column chart, is a type of bar graph that is used to compare values across multiple categories.
-
-<GroupedBarChart
-  data={groupedHorizontalBarData}
-  options={addHeightToOptions(groupedHorizontalBarOptions)}
-/>
-
-### Stacked bar
-
-Stacked bar charts are useful for comparing proportional contributions within a category. They plot the relative value that each data series contributes to the total.
-
-<StackedBarChart
-  data={stackedHorizontalBarData}
-  options={addHeightToOptions(stackedHorizontalBarOptions)}
-/>
-
-<StackedBarChart
-  data={stackedHorizontalBarTimeSeriesData}
-  options={addHeightToOptions(stackedHorizontalBarTimeSeriesOptions)}
-/>
-
-## Line chart
-
-### Default
-
-Line charts plot data at regular intervals connected by lines. You can use line visualizations to show trends over time and compare several data sets.
-
-<LineChart data={lineData} options={addHeightToOptions(lineOptions)} />
-
-<LineChart
-  data={lineTimeSeriesData}
-  options={addHeightToOptions(lineTimeSeriesOptions)}
-/>
-
-### Stepped line chart
-
-Stepped line charts plot data at regular intervals, forming a series of steps between data points. You can use line visualizations to show trends over time and compare several data sets.
-
-<LineChart data={stepData} options={addHeightToOptions(stepOptions)} />
-
-### Curved line chart
-
-<LineChart
-  data={lineTimeSeriesData}
-  options={addHeightToOptions(lineTimeSeriesOptions)}
-/>
-
-## Area chart
-
-### Default
-
-Area charts are similar to line charts, but the areas below the lines are filled with colors or patterns. Stacked charts are useful for comparing proportional contributions within a category. They plot the relative value that each data series contributes to the total.
-
-<Row>
-<Column  colLg={8} colMd={6} colSm={4}>
-
-![Horizontal bar chart](images/charts-basic-area.png)
-
-</Column>
+<Row className="resource-card-group">
+  <Column colMd={4} colLg={4} noGutterSm>
+    <ResourceCard
+      subTitle="Carbon Charts demo site"
+      href="https://carbon-design-system.github.io/carbon-charts/"
+    >
+      <MdxIcon name="codesandbox" />
+    </ResourceCard>
+  </Column>
 </Row>
+
+<AllDemos />
+
+## Design-only
+
+<InlineNotification>
+
+Note: These charts are currently a work-in-progress. To see our roadmap, request missing guidance, or contribute content, please go to the carbon-charts [GitHub repository](https://github.com/carbon-design-system/carbon-charts).
+
+</InlineNotification>
 
 ### Stacked area chart
 
 Stacked area charts are useful for comparing proportional contributions within a category. They plot the relative value that each data series contributes to the total.
-
-<InlineNotification>
-
-Note: This chart is currently a work-in-progress. To see our roadmap, request missing guidance, or contribute content, please go to the carbon-charts [GitHub repository](https://github.com/carbon-design-system/carbon-charts).
-
-</InlineNotification>
 
 <Row>
 <Column  colLg={8} colMd={6} colSm={4}>
@@ -213,42 +61,7 @@ Note: This chart is currently a work-in-progress. To see our roadmap, request mi
 </Column>
 </Row>
 
-## Polar charts
-
-### Pie
-
-<PieChart data={pieData} options={addHeightToOptions(pieOptions)} />
-
-### Donut
-
-<DonutChart data={donutData} options={addHeightToOptions(donutOptions)} />
-
-## Scatter plots
-
-### Default
-
-Scatter plot visualizations use data points to plot two measures anywhere along a scale, not only at regular tick marks. You can use scatter plots to explore correlations between different measures.
-
-<ScatterChart data={scatterData} options={addHeightToOptions(scatterOptions)} />
-
-<ScatterChart
-  data={scatterTimeSeriesData}
-  options={addHeightToOptions(scatterTimeSeriesOptions)}
-/>
-
-### Bubble chart
-
-Bubble charts use data points and bubbles to plot measures anywhere along a scale. One measure is plotted along each axis. The size of the bubble represents the third measure. You can use bubble charts to represent financial data or any data where measured values are related.
-
-<Row>
-<Column  colLg={8} colMd={6} colSm={4}>
-
-![Horizontal bar chart](images/charts-basic-bubble.png)
-
-</Column>
-</Row>
-
-## Meter and gauge
+### Meter and gauge
 
 <InlineNotification>
 
