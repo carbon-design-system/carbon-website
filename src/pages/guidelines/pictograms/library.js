@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from 'gatsby-theme-carbon/src/templates/Default';
-import { PictogramLibrary } from '../../../../plugins/gatsby-theme-carbon-svgs';
+import PictogramLibrary from '../../../components/SVGLibraries/PictogramLibrary';
 
 const frontmatter = {
   label:
