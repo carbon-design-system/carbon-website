@@ -13,16 +13,54 @@ Buttons are used to initialize an action. Button labels express what action will
 <AnchorLinks>
 
 <AnchorLink>Overview</AnchorLink>
-<AnchorLink>Button order</AnchorLink>
-<AnchorLink>Button alignment</AnchorLink>
-<AnchorLink>Labels</AnchorLink>
-<AnchorLink>Icon usage</AnchorLink>
-<AnchorLink>Danger button usage</AnchorLink>
-<AnchorLink>Variations</AnchorLink>
+<AnchorLink>Live demo</AnchorLink>
+<AnchorLink>Formatting</AnchorLink>
+<AnchorLink>Content</AnchorLink>
+<AnchorLink>Behaviors</AnchorLink>
+<AnchorLink>Modifiers</AnchorLink>
+<AnchorLink>Related</AnchorLink>
 <AnchorLink>References</AnchorLink>
 <AnchorLink>Feedback</AnchorLink>
 
 </AnchorLinks>
+
+## Overview
+
+Buttons are clickable elements that are used to trigger actions. They communicate calls to action to the user and allow users to interact with pages in a variety of ways. Button labels express what action will occur when the user interacts with it.
+
+<InlineNotification>
+
+**Note:** Some of the examples we discuss here include fluid (full-span) and hanging buttons which are not available for production use. This guidance reflects our current understanding of these topics and we are working towards releasing this work in a future version of Carbon.
+
+</InlineNotification>
+
+#### When to use
+
+Use buttons to communicate actions users can take and to allow users to interact with the page. Each page should have one primary button, and any remaining calls to action should be represented as lower emphasis buttons.
+
+#### When not to use
+
+Do not use buttons as navigational elements. Instead, use [links](https://www.carbondesignsystem.com/components/link/usage) when the desired action is to take the user to a new page.
+
+### Button types
+
+<Row>
+<Column colLg={12}>
+
+![Button types](images/button_usage_1.png)
+
+</Column>
+</Row>
+
+| Type        | Purpose                                                                                                                                                       |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _Primary_   | For the principal call to action on the page. Primary buttons should only appear once per screen (not including the application header or in a modal dialog). |
+| _Secondary_ | For secondary actions on each page; these can only be used  in conjunction with a primary button.                                                             |
+| _Tertiary_  | For less prominent actions; tertiary buttons can be used in isolation  or paired with a primary button when there are multiple calls to action.               |
+| _Danger_    | For actions that could have destructive effects on the user’s data  (delete, remove, etc.).                                                                   |
+| _Ghost_     | For the least pronounced actions; often used in conjunction with a primary button.                                                                            |
+
+## Live demo
 
 import { Add16 } from "@carbon/icons-react";
 
@@ -102,186 +140,419 @@ import { Add16 } from "@carbon/icons-react";
   `}</ComponentVariant>
 </ComponentDemo>
 
-## Overview
+## Formatting
 
-Buttons are used primarily for actions. Examples include Add, Save, Delete, and Sign up. Each page should have one primary button, and a **Return** or **Enter** keyboard event should trigger it. Any remaining calls-to-action should be represented as secondary buttons.
+### Anatomy
 
-Do not use buttons as navigational elements. Instead, use [links](/components/link/usage) when the desired action is to take the user to a new page.
+A button’s text label is the most important element on a button, as it communicates the action that will be performed when the user interacts with it. In a contained button the text is always left-aligned, not centered. By default Carbon uses sentence case for all button labels.
 
-Primary buttons always appear to the right. Secondary buttons appear to the left of the primary button.
-
-## Button order
-
-When using multiple buttons, the primary button appears to the right and any secondary buttons appear to the left. Research has shown that performance differences between secondary and primary button placement are negligible, however [maintaining consistency](https://www.nngroup.com/articles/ok-cancel-or-cancel-ok/) throughout a product, offering, or platform is crucial. The Secondary / Primary button order (secondary to the left and primary to the right) is therefore our required guidance and should be followed at all times.
+If a text label is not used, an icon should be present to signify what the button does.
 
 <Row>
 <Column colLg={8}>
 
-![Secondary/Primary button order in Modals](images/button-usage-4.png)
-
-<Caption>Secondary / Primary button order in a modal</Caption>
-
-</Column>
-</Row>
-
-## Button alignment
-
-Button alignment depends on where the buttons appear.
-
-- Use full-bleed or full-justified buttons for modals and side panels.
-- Use left-justified buttons for forms on their own page (not in a modal or side panel).
-- Use right-justified buttons if the primary response advances the user through a multistep configuration such as a wizard.
-
-### Modal button alignment
-
-Single buttons or button groups in modals use full-bleed, full-width buttons. Single buttons span the full width of the modal.
-
-Full-width buttons provide significant advantages in time-to-target evaluations using [Fitts’ Law](https://www.interaction-design.org/literature/book/the-glossary-of-human-computer-interaction/fitts-s-law), and are increasingly common in other contexts users are likely to encounter.
-
-<Row>
-<Column colLg={8}>
-
-![Primary button in a modal](images/button-usage-3.png)
-
-<Caption>Single primary button in a modal</Caption>
+![Button anatomy](images/button_usage_2.png)
 
 </Column>
 </Row>
 
 <Row>
-<Column colLg={8}>
+<Column colSm={2} colMd={4} colLg={4}>
 
-![Secondary / Primary button order in a modal](images/button-usage-4.png)
+#### 1. Contained button
 
-<Caption>Secondary / Primary button pair in a modal</Caption>
+A. Text label <br />
+B. Container <br />
+C. Icon (optional)
+
+#### 3. Ghost button
+
+A. Text label <br />
+C. Icon (optional)
+
+</Column>
+<Column colSm={2} colMd={4} colLg={4}>
+
+#### 2. Outlined button
+
+A. Text label <br />
+B. Container <br />
+C. Icon (optional)
+
+#### 4. Icon button
+
+B. Container (optional) <br />
+C. Icon
 
 </Column>
 </Row>
 
-If there is a third action, place this within the modal itself as a link, rather than alongside the Secondary / Primary buttons.
+<DoDontRow>
+  <DoDont caption="Do left-align text in a button, even if the button is wide.">
+
+![Do left-align text in a button, even if the button is wide.](images/button_usage_5.png)
+
+  </DoDont>
+  <DoDont type="dont" caption="Do not center text in a button, even if the button is wide.">
+
+![Do not center text in a button, even if the button is wide.](images/button_usage_6.png)
+
+  </DoDont>
+</DoDontRow>
+
+### Button size
+
+Buttons are named according to their size and usage in the Carbon Sketch kit and in the code. The table below adds more context around the use case for each size.
 
 <Row>
 <Column colLg={8}>
 
-![Secondary / Primary button order with a third action in a modals](images/button-usage-5.png)
+![Button sizes](images/button_usage_3.png)
+
+</Column>
+</Row>
+
+| Name         | Height (px/rem) | Use Case                                                                                                                                                                                                                                                                           |
+| ------------ | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _Full bleed_ | 64/4            | Use when buttons bleed to the edge of a larger component, like side panels or modals. _Note: This variant is not offered in the kit because it does not have a coded counterpart. Carbon only offers this button in the context of the [modal component](components/modal/usage)._ |
+| _Default_    | 48/3            | Use as primary page actions and other standalone actions.                                                                                                                                                                                                                          |
+| _Field_      | 40/2.5          | Use when buttons are paired with input fields.                                                                                                                                                                                                                                     |
+| _Small_      | 32/2            | Use when there is not enough vertical space for the default or field-sized button.                                                                                                                                                                                                 |
+
+### Emphasis
+
+You don’t necessarily need to use the buttons in the order that their labels imply. For example, you don’t always need to use the secondary button as the second button in your layout. The most important thing is to establish a visual hierarchy between the buttons in your UI. Keep these best practices in mind.
+
+#### A single, high-emphasis button
+
+As a general rule, a layout should contain a single high-emphasis button that makes it clear that other buttons have less importance in the hierarchy. This high-emphasis button commands the most attention.
+
+#### Multiple button emphasis
+
+A high-emphasis button can be accompanied by medium- and low-emphasis buttons that perform less important actions. Keep in mind that you should only group together calls to action that have a relationship to one another.
+
+Although secondary buttons have less visual prominence because they are less saturated than their primary counterparts, they are still tonally heavy. If your layout requires multiple actions—as is the case with some toolbars, data lists and dashboards—low emphasis buttons (tertiary or ghost) may be a better choice.
+
+<Row>
+<Column colLg={8}>
+
+![Button emphasis](images/button_usage_7.png)
+
+</Column>
+</Row>
+
+<DoDontRow>
+  <DoDont caption="Do use high-emphasis and medium-emphasis buttons in a button group.">
+
+![Do use high-emphasis and medium-emphasis buttons in a button group.](images/button_usage_8_test.png)
+
+  </DoDont>
+  <DoDont type="dont" caption="Do not use two high-emphasis buttons in a button group.">
+
+![Do not use two high-emphasis buttons in a button group.](images/button_usage_9_test.png)
+
+  </DoDont>
+</DoDontRow>
+
+### Alignment
+
+Alignment refers to whether the buttons are aligned to the right or the left of a window, container, or layout. Buttons are unique, more so than any other component, in that their alignment depends on where they appear and whether or not they’re contained within another component.
+
+As a general rule, on full-page designs, the primary button is on the left side of the page. When the browser window is large and the user is scrolling to read, it’s best to have the primary button where the user’s attention has been focused all along. Whereas in wizards, where a user is progressing through a series of steps or dialog windows, the primary action traditionally sits at the bottom right. Buttons within components such as notifications, search fields, and data tables are also right-aligned.
+
+In some cases a button group—or even a single button in the case of a side panel or small tile—may span the entire width of a window or container. Typical nested button locations include:
+
+- Banner calls to action
+- Dialog windows
+- Wizards
+- Forms
+- Cards
+- Toolbars
+
+<Row>
+<Column colLg={8}>
+
+![Primary button context](images/button_usage_10.png)
+
+</Column>
+</Row>
+
+| Alignment         | Use case                                                                                                                                                        |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _Left-justified_  | Banner call to actions, in-page forms, and nested buttons in components like tiles                                                                              |
+| _Right-justified_ | Inline notifications, inline field buttons and  data tables, progressive forms, wizards, and single-button dialogs                                              |
+| _Full-span_       | Dialogs, side panels, and small tiles; currently Carbon does not offer a way to implement full-span buttons in code, without an override, they max out at 320px |
+
+#### Fluid versus fixed buttons
+
+Button alignment is also closely related to whether the button is treated as a fixed or a fluid element within a layout. When we say “fluid”, we mean that the button becomes a part of a larger, compound component by bleeding to two or more edges of its container. Rather than defining the a fluid button’s width in columns or mini units, its width is defined as a percentage (often 50%) of the container’s width. Also, as a general rule, fluid buttons are never left-aligned in a layout or a container—they’re always either right-aligned, or span the full width of the container.
+
+Fluid components like button never exist in isolation. As you can see in the examples above, they are always part of another component, like modal or form. Other fluid components include tiles and most recently, [text inputs](/components/text-input/usage).
+
+<Row>
+<Column colLg={8}>
+
+![Example of a fluid input field and fluid button](images/button_usage_11.png)
 
 <Caption>
-  Secondary / Primary button pair with a tertiary action in a modal
+  Example of a login screen using a fluid input field and a fluid button
 </Caption>
 
 </Column>
 </Row>
 
-Use this same layout for buttons in side panels. Use full-width single buttons or full-width Secondary / Primary button pairs. If there is a third action, considering placing it within the side panel itself, rather than as part of the button group.
+<DoDontRow>
+  <DoDont caption="Do bleed ghost button hovers when they are paired with other fluid buttons.">
 
-Side panel buttons should be visible without scrolling. They should be visible if they’re at the top, the bottom (without scrolling), or sticky and at the bottom of the view if the content is longer than the viewport.
+![Do bleed ghost button hovers when they are paired with other fluid buttons.](images/button_usage_12.png)
 
-### Non-modal forms
+  </DoDont>
+  <DoDont type="dont" caption="Do not use a tertiary button in a fluid application.">
 
-On non-modal or in-page forms, align single buttons or Secondary / Primary button groups to the left. Buttons should align with the form controls regardless of the user‘s window width.
+![Do not use a tertiary button in a fluid application.](images/button_usage_13.png)
 
-<Row>
-<Column colLg={8}>
+  </DoDont>
+</DoDontRow>
 
-![Primary button alignment in Forms](images/button-usage-6.png)
+#### Fluid button border
 
-<Caption>Single button alignment in forms</Caption>
-
-</Column>
-</Row>
-
-<Row>
-<Column colLg={8}>
-
-![Secondary / Primary button alignment in forms](images/button-usage-7.png)
-
-<Caption>Secondary / Primary button alignment in forms</Caption>
-
-</Column>
-</Row>
-
-### Multistep forms
-
-When the primary action implies a navigation step forward, as in a wizard, align single buttons or Secondary/Primary button groups to the right. This position conveys the “next step” intention.
+Many product designers have approached us looking for more guidance around borders between all fluid buttons. Although we haven’t made [this update](https://github.com/carbon-design-system/carbon/issues/5638) yet, we plan to add a 1px border between all fluid buttons that calls the `$ui-03` token for subtle borders. This feature will add a 3:1 distinction between the two interactive UI elements. The border is a recommended feature to improve accessibility in data visualizations and the same logic should apply here.
 
 <Row>
 <Column colLg={8}>
 
-![Primary button alignment in a wizard](images/button-usage-8.png)
+![Example of $ui-03 token border between fluid buttons](images/button_usage_14.png)
 
-<Caption>Single button alignment in a wizard</Caption>
+<Caption>Example of $ui-03 token border between fluid buttons</Caption>
 
 </Column>
 </Row>
+
+#### Using the grid
+
+By default the container’s width is set to the size of the text label with 64px fixed padding on the right side and 16px fixed padding on the left. However, when possible set the button container’s relative position to the responsive layout grid and match buttton width to the other elements on the page. Ideally, when using groups of related buttons (not including ghost buttons), they should all be the same width.
+See [button groups](#Button-groups) below for more detailed information.
 
 <Row>
 <Column colLg={8}>
 
-![Secondary / Primary button alignment in a wizard](images/button-usage-9.png)
+![Example of a primary button matching the width of a card in a layout](images/button_usage_15_test.png)
 
-<Caption>Secondary / Primary button pair alignment in a wizard</Caption>
+<Caption>
+  Example of a primary button matching the width of a card in a layout
+</Caption>
 
 </Column>
 </Row>
 
-## Labels
+### Button groups
 
-Button labels should clearly indicate the action of the button. Use active verbs, such as **Add** or **Delete**. Use sentence-style capitalization (only the first word in a phrase and any proper nouns capitalized) and no more than three words for button labels.
+Button groups are a useful way of aligning buttons that have a relationship. Group the buttons logically into sets based on usage and importance. Too many calls to action will overwhelm and confuse users so they should be avoided.
 
-For sets of buttons, use specific labels, such as **Save** or **Discard**, instead of using **OK** and **Cancel**. This is particularly helpful when the user is confirming an action.
-
-For consistency, see [labels and idioms](/guidelines/content/glossary) for the approved list of action labels.
-
-## Icon usage
-
-- Use glyphs (16px) within buttons.
-- Glyphs are distinguished by their solid shape and knocked-out details.
-- Glyphs should always appear to the right of the text.
-- Glyphs used in buttons must be directly related to the action that the user is taking.
-- Glyphs must be the same color value as the text within a button.
-- Ghost buttons require a glyph icon.
+As mentioned in the [Emphasis section](#Emphasis), you don’t necessarily need to use the buttons in the order that their labels imply. Either a secondary or a tertiary button can be used in conjunction with a primary button. In fact, due to the visual weight of the secondary button, it’s recommended to use tertiary or ghost buttons in layouts with more than three calls to action.
 
 <Row>
 <Column colLg={8}>
 
-![button with glyph](images/button-usage-1.png)
-
-<Caption>Glyph usage in buttons</Caption>
+![multiple buttons in a layout](images/button_usage_16.png)
 
 </Column>
 </Row>
 
-## Danger button usage
+<DoDontRow>
+  <DoDont caption="Do use a primary and two of the same lower emphasis buttons in a button group.">
 
-Danger buttons have a different visual style to inform users of potentially destructive actions they are about to take. If using the danger button as a standalone, we recommend styling it as a **secondary button**. Within a set, the danger button should be styled as a **primary button.**
+![Do use a primary and two of the same lower emphasis buttons in a button group.](images/button_usage_17.png)
+
+  </DoDont>
+  <DoDont type="dont" caption="Do not mix primary, secondary, and tertiary buttons in the same button group.">
+
+![Do not mix primary, secondary, and tertiary buttons in the same button group.](images/button_usage_18.png)
+
+  </DoDont>
+</DoDontRow>
+
+#### Button groups and the grid
+
+Ideally, when using groups of related buttons (not including ghost buttons), they should all be the same width. This can be achieved in one of two ways, both of which are acceptable. The first approach involves using the [narrow grid mode](/guidelines/2x-grid/code). In this situation each button would be set individually on the column grid. _Note: Carbon developers are working on the narrow grid mode, currently left-hanging buttons can only be achieved with an override._
 
 <Row>
 <Column colLg={8}>
 
-![danger button set in modal](images/button-usage-2.png)
+![Example of hanging buttons on the grid](images/button_usage_19.png)
 
-<Caption>Danger button set</Caption>
+<Caption>Example of hanging buttons</Caption>
 
 </Column>
 </Row>
 
-## Variations
+Some products don’t want to hang their buttons into the gutter, but still want a 16px distance between buttons. This can be achieved while maintaining same-width buttons by treating the button group as a single object (rather than two separate entities) on the grid. Each button will essentially span 50% of their container with a programmatic 16px gutter between them.
 
-| Button type        | Purpose                                                                                                                                                                                                                                                                                                                                                                           |
-| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| _Primary_          | For the principal call to action on the page.                                                                                                                                                                                                                                                                                                                                     |
-| _Secondary_        | For secondary actions on each page.                                                                                                                                                                                                                                                                                                                                               |
-| _Button with icon_ | When words are not enough, icons can be used in buttons to better communicate what the button does. Icons are always paired with text.                                                                                                                                                                                                                                            |
-| _Disabled button_  | Use when the user cannot proceed until an input is collected.                                                                                                                                                                                                                                                                                                                     |
-| _Set of buttons_   | When an action required by the user has more than one option, always use a a negative action button (secondary) paired with a positive action button (primary) in that order. Negative action buttons will be on the left; positive action buttons on the right. When these two types of buttons are paired in the correct order, they will automatically space themselves apart. |
-| _Small button_     | Use when there is not enough vertical space for a regular sized button.                                                                                                                                                                                                                                                                                                           |
-| _Ghost button_     | When an action does not require primary dominance on the page.                                                                                                                                                                                                                                                                                                                    |
-| _Danger button_    | When an action has potentially destructive effects on the user‘s data (delete, remove, etc).                                                                                                                                                                                                                                                                                      |
+<Row>
+<Column colLg={8}>
+
+![Button group as single grid element](images/button_usage_20.png)
+
+<Caption>
+  Here the button group is treated as one element on the grid to achieve a 16px
+  gutter between the two, without gutter hang.
+</Caption>
+
+</Column>
+</Row>
+
+<DoDontRow>
+  <DoDont caption="Do apply the same width to all buttons in a group, even if they don’t bleed.">
+
+![Do apply the same width to all buttons in a group](images/button_usage_21.png)
+
+  </DoDont>
+  <DoDont type="dont" caption="Do not make buttons in a group different widths.">
+
+![Do not make buttons in a group different widths.](images/button_usage_22.png)
+
+  </DoDont>
+</DoDontRow>
+
+#### Horizontally arranged groups
+
+When using multiple buttons, the position of the primary button adheres to the [alignment guidance](#Alignment) above. To sum up, a primary button will be left-aligned and positioned to the left of the secondary/tertiary button on full-page designs. The primary button will be right-aligned and appear to the right of the secondary/tertiary button within wizards and dialog windows.
+
+<InlineNotification>
+
+**Note:** This guidance has changed. Previously we advocated maintaining the primary button position to the right of the secondary button when the button group was left-aligned. After talking to teams and doing more research, we’ve revised our position.
+
+</InlineNotification>
+
+<Row>
+<Column colLg={8}>
+
+![Button groups in context](images/button_usage_23.png)
+
+</Column>
+</Row>
+
+#### Stacked button groups
+
+Typical landing pages for product have buttons side by side. However vertical button groups are also common in products, to save real estate in narrow columns and occasionally side panels. In these instances, the primary button is always on top and the secondary or tertiary button is below.
+
+Generally, when designers stack buttons, they tend to use the fixed buttons. However, stacked fluid buttons are also an option in desktop side panels with especially long calls to action. _Note: experimenting with stacked fluid buttons would require an override to the existing code._
+
+<Row>
+<Column colLg={12}>
+
+![Fluid and fixed stacked button group examples](images/button_usage_24.png)
+
+</Column>
+</Row>
+
+#### Groups with Danger buttons
+
+Danger buttons have a different visual style to inform users of potentially destructive actions they are about to take. Within a set, the danger button should be styled as a primary button.
+
+<Row>
+<Column colLg={8}>
+
+![Danger button treated as Primary button in a modal](images/button_usage_25.png)
+
+</Column>
+</Row>
+
+## Content
+
+### Text labels
+
+A button’s text label is the most important element on a button, as it communicates the action that will be performed when the user interacts with it. Buttons need to be clear and predictable.
+
+Button labels should clearly indicate the action of the button. To provide enough context, use the {verb} + {noun} content formula on buttons except in the case of common actions like “Done”, “Close”, “Cancel”, “Add”, or “Delete.”
+
+There are exceptions to this rule for situations in which button length could cause problems in compact UIs or negatively impact translation, but the {verb} + {noun} formula is still best practice.
+
+For consistency, see Carbon’s [content guidelines](guidelines/content/overview) for a list of recommended action labels.
+
+<DoDontRow>
+  <DoDont caption="Do use the {verb} + {noun} content formula in buttons whenever possible.">
+
+![Do use the verb + noun content formula in buttons whenever possible](images/button_usage_26.png)
+
+  </DoDont>
+  <DoDont type="dont" caption="Do not use only a noun as a button label.">
+
+![Do not use only a noun as a button label](images/button_usage_27.png)
+
+  </DoDont>
+</DoDontRow>
+
+## Behaviors
+
+### Interactions
+
+#### Mouse
+
+Users can trigger a button by clicking anywhere within the button container.
+
+#### Keyboard
+
+Users can trigger a button by pressing `Enter` or `Space` while the button has focus. For additional keyboard interactions, see the accessibility tab.
+
+#### Screen readers
+
+VoiceOver: Users can trigger a button by pressing `Enter` or `Space` while the button has focus.
+
+JAWS: Users can trigger a button by pressing `Enter` or `Space` while the button has focus.
+
+NVDA: Users can trigger a button by pressing `Enter` or `Space` while the button has focus.
+
+## Modifiers
+
+### Buttons with icons
+
+Icons can be placed next to labels to both clarify an action and call attention to a button. There are certain instances where an icon will suffice in place of a text label, but use icon buttons cautiously.
+
+- Use glyphs (16px) within buttons
+- Glyphs are distinguished by their solid shape and knocked-out details
+- Glyphs should always appear to the right of the text
+- Glyphs used in buttons must be directly related to the action that the user is taking
+- Glyphs must be the same color value as the text within a button
+
+<DoDontRow>
+  <DoDont caption="Do place the icon on the right side of the button after the text.">
+
+![Do place the icon on the right side of the button after the text](images/button_usage_28.png)
+
+  </DoDont>
+  <DoDont type="dont" caption="Do not place the icon on the left side of the button before the text.">
+
+![Do not place the icon on the left side of the button before the text](images/button_usage_29.png)
+
+  </DoDont>
+</DoDontRow>
+
+### Icon-only buttons
+
+Icon buttons allow users to take actions, and make choices, with a single tap. Icon buttons can take the form of any of the five types above but most commonly will be styled as primary or ghost buttons.
+
+<Row>
+<Column colLg={8}>
+
+![Example of an icon-only ghost button in a data table](images/button_usage_30.png)
+
+<Caption>Example of an icon-only ghost button in a data table</Caption>
+
+</Column>
+</Row>
+
+## Related
+
+- [Link component](/components/link/usage)
+- [Modal component](/components/modal/usage)
+- [Form pattern](/patterns/forms-pattern)
 
 ## References
 
-- Jakob Nielsen, [_OK-Cancel or Cancel-OK? The Trouble With Buttons_](https://www.nngroup.com/articles/ok-cancel-or-cancel-ok/) (2008)
-- The Interaction Design Foundation, [_The Glossary of Human Computer Interaction, Chapter 37_](https://www.interaction-design.org/literature/book/the-glossary-of-human-computer-interaction/fitts-s-law)
+- Mehmet Goktürk, [_The Glossary of Human Computer Interaction, Chapter 37_](https://www.interaction-design.org/literature/book/the-glossary-of-human-computer-interaction/fitts-s-law) (The Interaction Design Foundation)
+- Jakob Nielsen, [_OK-Cancel or Cancel-OK? The Trouble With Buttons_](https://www.nngroup.com/articles/ok-cancel-or-cancel-ok/) (Nielsen Norman Group, 2008)
+- Artem Syzonenko [_Buttons on the web: placement and order_](https://uxdesign.cc/buttons-placement-and-order-bb1c4abadfcb) (UX Collective, 2019)
 
 ## Feedback
 
