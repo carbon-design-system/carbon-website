@@ -12,6 +12,10 @@ module.exports = {
     {
       resolve: 'gatsby-theme-carbon',
       options: {
+        gatsbyPluginSharpOptions: {
+          srcSetBreakpoints: [600],
+          pngCompressionSpeed: 10,
+        },
         mdxExtensions: ['.mdx'],
         isSearchEnabled: true,
         iconPath: './src/images/favicon.svg',
