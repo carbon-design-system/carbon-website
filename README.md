@@ -1,5 +1,7 @@
 # Carbon Design System
 
+![Last merge deployment status](https://github.com/carbon-design-system/carbon-website/workflows/Deploy%20website%20to%20IBM%20Cloud/badge.svg)
+
 This is the [Carbon Design System website](http://www.carbondesignsystem.com). It's built using the [gatsby-theme-carbon](https://gatsby-theme-carbon.now.sh/) with [GatsbyJS](https://www.gatsbyjs.org/).
 
 ## 📂 Structure
