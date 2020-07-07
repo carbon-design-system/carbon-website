@@ -2,8 +2,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable import/no-unresolved */
 import React, { useLayoutEffect } from 'react';
-import useMedia from 'use-media';
-import { breakpoints } from '@carbon/layout';
 
 import LeftNav from 'gatsby-theme-carbon/src/components/LeftNav';
 import Meta from 'gatsby-theme-carbon/src/components/Meta';
@@ -32,7 +30,6 @@ const Layout = ({
   tabs,
 }) => {
   const is404 = children.key === null;
-  const isMobile = useMedia({ maxWidth: breakpoints.md.width });
 
   useLayoutEffect(() => {
     const scroll = require('smooth-scroll')('a[href*="#"]', {
