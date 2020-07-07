@@ -14,7 +14,12 @@ import Container from 'gatsby-theme-carbon/src/components/Container';
 
 import 'gatsby-theme-carbon/src/styles/index.scss';
 
-import { layout, banner } from '../../styles/Layout.module.scss';
+import {
+  layout,
+  banner,
+  initialism,
+  fullName,
+} from '../../styles/Layout.module.scss';
 
 const Layout = ({
   children,
@@ -52,7 +57,8 @@ const Layout = ({
       <header className={banner}>
         Black Lives Matter.&nbsp;
         <a href="https://support.eji.org/give/153413/#!/donation/checkout">
-          {`Support the ${isMobile ? 'EJI' : 'Equal Justice Initiative'}.`}
+          Support the <span className={initialism}>EJI</span>
+          <span className={fullName}>Equal Justice Initiative</span>
         </a>
       </header>
       <Header />
