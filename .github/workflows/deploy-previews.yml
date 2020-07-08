@@ -1,19 +1,8 @@
-name: Deployment status
-
-## scheduled deploy
-##on:
-##schedule:
-## - cron: '0 8 * * *'
-
-on:
-  push:
-    branches:
-      - master
-
+name: Vercel deploy previews
+on: [pull_request]
 jobs:
-  build:
+  deploy:
     runs-on: macos-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -63,27 +52,10 @@ jobs:
       - name: Build site
         run: yarn build
 
-      - name: Install IBM Cloud CLI
-        run: curl -fsSL https://clis.cloud.ibm.com/install/osx | sh
-
-      - name: Install Cloud Foundry CLI
-        run: ibmcloud cf install
-
-      - name: Login to ibmcloud
-        env:
-          API_KEY: ${{ secrets.API_KEY }}
-        run: ibmcloud login -a "https://cloud.ibm.com" -u apikey -p "$API_KEY" -o "carbon-design-system" -s "production" -r "us-south"
-
-      - name: Deploy to IBM Cloud
-        run: |
-          ibmcloud cf v3-zdt-push carbon-website -b https://github.com/cloudfoundry/nginx-buildpack.git
-
-      - name: Deploy to Vercel
-        uses: amondnet/vercel-action@v19
+      - uses: amondnet/vercel-action@v19
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          vercel-args: "--prod"
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID}}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID}}
           scope: carbon-design-system

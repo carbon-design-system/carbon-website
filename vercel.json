@@ -1,10 +1,15 @@
 {
   "alias": "carbondesignsystem",
   "public": true,
+  "github": {
+    "enabled": false
+  },
+  "builds": [{ "src": "./public/**", "use": "@now/static" }],
   "routes": [
     {
       "src": "/api/survey.ts",
       "methods": ["POST"]
-    }
+    },
+    { "src": "/(.*)", "dest": "public/$1" }
   ]
 }
