@@ -15,33 +15,54 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v2
       - name: Use Node.js 12.x
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2-beta
         with:
           node-version: 12.x
 
-      - name: node_modules Cache
-        uses: actions/cache@v1
+      - name: Store yarn directory
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - name: Check yarn cache
+        uses: actions/cache@v2
+        id: yarn-cache
         with:
-          path: ~/.cache/yarn
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
 
-      - name: Install
-        run: yarn install
-      - name: Build
-        run: NODE_OPTIONS=--max_old_space_size=8192 yarn build
+      - name: Check node_modules cache
+        id: node-modules-cache
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-${{ matrix.node-version }}-nodemodules-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ matrix.node-version }}-nodemodules-
+
+      - name: Install packages
+        if: |
+          steps.yarn-cache.outputs.cache-hit != 'true' ||
+          steps.node-modules-cache.outputs.cache-hit != 'true'
+        run: yarn install --frozen-lockfile
+
+      - name: Build site
+        run: yarn build
 
       - name: Install IBM Cloud CLI
         run: curl -fsSL https://clis.cloud.ibm.com/install/osx | sh
+
       - name: Install Cloud Foundry CLI
         run: ibmcloud cf install
+
       - name: Login to ibmcloud
         env:
           API_KEY: ${{ secrets.API_KEY }}
         run: ibmcloud login -a "https://cloud.ibm.com" -u apikey -p "$API_KEY" -o "carbon-design-system" -s "production" -r "us-south"
+
       - name: Deploy website
         run: |
           ibmcloud cf v3-zdt-push carbon-website -b https://github.com/cloudfoundry/nginx-buildpack.git
