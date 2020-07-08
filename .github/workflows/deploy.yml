@@ -34,19 +34,17 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
 
-      - name: Check node_modules cache
-        id: node-modules-cache
+      - name: Check Gatsby cache
+        id: gatsby-cache
         uses: actions/cache@v2
         with:
-          path: node_modules
-          key: ${{ runner.os }}-${{ matrix.node-version }}-nodemodules-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-${{ matrix.node-version }}-nodemodules-
+          path: |
+            .cache
+            public
+          key: ${{ runner.os }}-${{ hashFiles('gatsby-*.js') }}-${{ hashFiles('package.json') }}
 
       - name: Install packages
-        if: |
-          steps.yarn-cache.outputs.cache-hit != 'true' ||
-          steps.node-modules-cache.outputs.cache-hit != 'true'
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn install --frozen-lockfile
 
       - name: Build site
