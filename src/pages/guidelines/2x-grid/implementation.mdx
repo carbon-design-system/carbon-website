@@ -1,0 +1,1279 @@
+---
+title: 2x Grid
+description: The grid is the framework for all the visual elements and typography at IBM. It’s fundamental to everything we design.
+tabs: ["Overview", "Implementation"]
+---
+
+<PageDescription>
+
+The IBM 2x Grid system is a fully responsive, robust, 16 column layout system with five default breakpoints and dozens of predefined classes.
+
+</PageDescription>
+
+<InlineNotification>
+
+If you’re using carbon-components there’s no reason to install the grid package separately. See our [get started](/get-started/develop/react) guide to start building.
+
+</InlineNotification>
+
+<AnchorLinks>
+
+<AnchorLink>Under the hood</AnchorLink>
+<AnchorLink>Get started</AnchorLink>
+<AnchorLink>How it works</AnchorLink>
+<AnchorLink>Grid modes</AnchorLink>
+<AnchorLink>Incorporating the shell</AnchorLink>
+<AnchorLink>Alignments</AnchorLink>
+<AnchorLink>Techniques</AnchorLink>
+<AnchorLink>Resources</AnchorLink>
+
+</AnchorLinks>
+
+## Under the hood
+
+Our grid is built with Flexbox and closely mirrors Bootstrap's grid in that it uses containers, rows and columns to layout and align content. Below is an in-depth look at how it all comes together.
+
+If you’re new to Flexbox, this [CSS Tricks Flexbox guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) will provide more detail around everything from basic terminology to code.
+
+## Getting started
+
+### With Carbon-components
+
+We provide multiple ways for you to use the grid for the Carbon Design System. By default, the grid code is included when you use `carbon-components`. To get started, you'll need to install this package using `npm`:
+
+```bash
+npm install carbon-components --save
+```
+
+<br />
+
+Or, if you prefer Yarn:
+
+```bash
+yarn add carbon-components
+```
+
+<br />
+
+You can include the grid in one of two ways:
+
+```scss
+// If you're including all the styles for Carbon
+@import "carbon-components/scss/globals/scss/styles.scss";
+
+// If you're wanting to import the grid
+@import "carbon-components/scss/globals/grid/grid";
+```
+
+<br />
+
+To use 16 column variant of the grid, you need to enable the `grid-columns-16` feature flag before including any imports in your Sass files. For example:
+
+```scss
+$feature-flags: (
+  grid-columns-16: true,
+);
+
+// If you're including all the styles for Carbon
+@import "carbon-components/scss/globals/scss/styles.scss";
+
+// If you want to import the grid
+@import "carbon-components/scss/globals/grid/grid";
+```
+
+<InlineNotification>
+
+**Note:** By default, Carbon loads with 12 columns. In a later release this will change and the grid will default to 16 columns. Until then we ask you to enable the feature flag.
+
+</InlineNotification>
+
+### Without Carbon-components
+
+If you'd like to use the grid without including `carbon-components`, we offer the `@carbon/grid` package. You can install this with `npm`:
+
+```bash
+npm install @carbon/grid --save
+```
+
+<br />
+
+Or, if you prefer Yarn:
+
+```bash
+yarn add @carbon/grid
+```
+
+<br />
+
+You can then include the 16 column grid by doing the following in your Sass files:
+
+```scss
+@import "@carbon/grid/scss/grid";
+```
+
+## How it works
+
+We won't spend a lot of time here recapping the basics of the [Bootstrap grid](https://getbootstrap.com/docs/4.0/layout/grid/). Instead we'll emphasize the features that make this system unique, especially concerning gutter structure, type alignment, and the UI Shell.
+
+### Basic grid explainer
+
+The below example creates four equal-width columns at small, medium, large, and extra large breakpoints using our predefined grid classes. The columns are centered in the page within the parent container.
+
+<Row>
+  <Column noGutterSm>
+    <div className="grid-demo">
+      <div class="bx-demo--grid">
+        <div class="bx-demo--row">
+          <div class="bx-demo--col">1 of 4</div>
+          <div class="bx-demo--col">2 of 4</div>
+          <div class="bx-demo--col">3 of 4</div>
+          <div class="bx-demo--col">4 of 4</div>
+        </div>
+      </div>
+    </div>
+
+```html
+<div class="bx--grid">
+  <div class="bx--row">
+    <div class="bx--col">1 of 4</div>
+    <div class="bx--col">2 of 4</div>
+    <div class="bx--col">3 of 4</div>
+    <div class="bx--col">4 of 4</div>
+  </div>
+</div>
+```
+
+  </Column>
+</Row>
+
+<br />
+
+#### Container
+
+`bx--grid` defines the overall grid context at the top level and applies the proper margin and our default max-width (1584px.) You can also remove this max width, by using a grid modifier class. See the full width example below.
+
+#### Rows
+
+`bx--row` defines a row of items inside the grid — think of rows as wrappers for columns. Each column has horizontal padding (aka a gutter) that defines the space between them. You can negate this padding at the row level with negative margins, allowing the content within your columns to be aligned along the left side.
+
+#### Columns
+
+`bx--col` defines individual columns inside a row. Use as many columns as you’d like out of the possible 16 per row. With Flexbox columns widths are set in percentages relative to their parent element so columns without a spec’d width will automatically be equal. For example, four instances of `bx--col` will will give you four equal width columns — each 25% of the parent from the small breakpoint on up. See the auto-layout columns for more on this.
+
+### Responsive options
+
+| Breakpoints     | Class prefix    | # of cols | Gutter width\* |
+| --------------- | --------------- | --------- | -------------- |
+| Small (<320)    | `.bx--col-sm-`  | 4         | 32px           |
+| Medium (≥672)   | `.bx--col-md-`  | 8         | 32px           |
+| Large (≥1056)   | `.bx--col-lg-`  | 16        | 32px           |
+| X-Large (≥1312) | `.bx--col-xlg-` | 16        | 32px           |
+| Max (≥1584)     | `.bx--col-max-` | 16        | 32px           |
+
+<Caption>
+  * Gutter width is 32px — with 16px on each side of a column — at every
+  breakpoint.
+</Caption>
+
+<br />
+<br />
+
+#### Responsive classes
+
+Here's a look at all the width classes available for our 16 column grid. Use the column helpers to specify different column spans at different widths.
+
+If you want to change it up, use a combination of different classes for each grid tier as needed. See the markup below. Note: 3 and 5 column arrangements are discouraged, however, in specific instances, you are allowed to generate a three columns within our system.
+
+<Row>
+  <Column noGutterSm>
+    <div className="grid-demo">
+      <div class="bx-demo--grid">
+        <div class="bx-demo--row">
+          <div class="bx-demo--col-lg-16">
+            <div class="bx-demo-lg">16</div>
+            <div class="bx-demo-md">8</div>
+            <div class="bx-demo-sm">4</div>
+          </div>
+        </div>
+        <div class="bx-demo--row">
+          <div class="bx-demo--col-lg-15 bx-demo--col-md-7 bx-demo--col-sm-3">
+            <div class="bx-demo-lg">15</div>
+            <div class="bx-demo-md">7</div>
+            <div class="bx-demo-sm">3</div>
+          </div>
+          <div class="bx-demo--col-sm-1 bx-demo--col-md-1 bx-demo--col-lg-1">1</div>
+        </div>
+        <div class="bx-demo--row">
+          <div class="bx-demo--col-lg-14 bx-demo--col-md-6 hide-sm">
+            <div class="bx-demo-lg">14</div>
+            <div class="bx-demo-md">6</div>
+          </div>
+          <div class="bx-demo--col-lg-2 bx-demo--col-md-2 hide-sm">2</div>
+        </div>
+        <div class="bx-demo--row">
+          <div class="bx-demo--col-lg-13 bx-demo--col-md-5 hide-sm">
+            <div class="bx-demo-lg">13</div>
+            <div class="bx-demo-md">5</div>
+          </div>
+          <div class="bx-demo--col-lg-3 bx-demo--col-md-3 hide-sm">3</div>
+        </div>
+        <div class="bx-demo--row">
+          <div class="bx-demo--col-lg-12 hide-md">12</div>
+          <div class="bx-demo--col-lg-4 hide-md">4</div>
+        </div>
+        <div class="bx-demo--row">
+          <div class="bx-demo--col-lg-11 hide-md">11</div>
+          <div class="bx-demo--col-lg-5 hide-md">5</div>
+        </div>
+        <div class="bx-demo--row">
+          <div class="bx-demo--col-lg-10 hide-md">10</div>
+          <div class="bx-demo--col-lg-6 hide-md">6</div>
+        </div>
+        <div class="bx-demo--row">
+          <div class="bx-demo--col-lg-9 hide-md">9</div>
+          <div class="bx-demo--col-lg-7 hide-md">7</div>
+        </div>
+        <div class="bx-demo--row">
+          <div class="bx-demo--col-lg-8 bx-demo--col-md-4 bx-demo--col-sm-2">
+            <div class="bx-demo-lg">8</div>
+            <div class="bx-demo-md">4</div>
+            <div class="bx-demo-sm">2</div>
+          </div>
+          <div class="bx-demo--col-lg-8 bx-demo--col-md-4 bx-demo--col-sm-2">
+            <div class="bx-demo-lg">8</div>
+            <div class="bx-demo-md">4</div>
+            <div class="bx-demo-sm">2</div>
+          </div>
+        </div>
+        <div class="bx-demo--row">
+          <div class="bx-demo--col-lg-4 bx-demo--col-md-2 bx-demo--col-sm-1">
+            <div class="bx-demo-lg">4</div>
+            <div class="bx-demo-md">2</div>
+            <div class="bx-demo-sm">1</div>
+          </div>
+          <div class="bx-demo--col-lg-4 bx-demo--col-md-2 bx-demo--col-sm-1">
+            <div class="bx-demo-lg">4</div>
+            <div class="bx-demo-md">2</div>
+            <div class="bx-demo-sm">1</div>
+          </div>
+          <div class="bx-demo--col-lg-4 bx-demo--col-md-2 bx-demo--col-sm-1">
+            <div class="bx-demo-lg">4</div>
+            <div class="bx-demo-md">2</div>
+            <div class="bx-demo-sm">1</div>
+          </div>
+          <div class="bx-demo--col-lg-4 bx-demo--col-md-2 bx-demo--col-sm-1">
+            <div class="bx-demo-lg">4</div>
+            <div class="bx-demo-md">2</div>
+            <div class="bx-demo-sm">1</div>
+          </div>
+        </div>
+        <div class="bx-demo--row">
+          <div class="bx-demo--col-lg-2 bx-demo--col-md-1 hide-sm">
+            <div class="bx-demo-lg">2</div>
+            <div class="bx-demo-md">1</div>
+          </div>
+          <div class="bx-demo--col-lg-2 bx-demo--col-md-1 hide-sm">
+            <div class="bx-demo-lg">2</div>
+            <div class="bx-demo-md">1</div>
+          </div>
+          <div class="bx-demo--col-lg-2 bx-demo--col-md-1 hide-sm">
+            <div class="bx-demo-lg">2</div>
+            <div class="bx-demo-md">1</div>
+          </div>
+         <div class="bx-demo--col-lg-2 bx-demo--col-md-1 hide-sm">
+            <div class="bx-demo-lg">2</div>
+            <div class="bx-demo-md">1</div>
+          </div>
+          <div class="bx-demo--col-lg-2 bx-demo--col-md-1 hide-sm">
+            <div class="bx-demo-lg">2</div>
+            <div class="bx-demo-md">1</div>
+          </div>
+          <div class="bx-demo--col-lg-2 bx-demo--col-md-1 hide-sm">
+            <div class="bx-demo-lg">2</div>
+            <div class="bx-demo-md">1</div>
+          </div>
+          <div class="bx-demo--col-lg-2 bx-demo--col-md-1 hide-sm">
+            <div class="bx-demo-lg">2</div>
+            <div class="bx-demo-md">1</div>
+          </div>
+          <div class="bx-demo--col-lg-2 bx-demo--col-md-1 hide-sm">
+            <div class="bx-demo-lg">2</div>
+            <div class="bx-demo-md">1</div>
+          </div>
+        </div>
+        <div class="bx-demo--row">
+          <div class="bx-demo--col-lg-1 hide-md">1</div>
+          <div class="bx-demo--col-lg-1 hide-md">1</div>
+          <div class="bx-demo--col-lg-1 hide-md">1</div>
+          <div class="bx-demo--col-lg-1 hide-md">1</div>
+          <div class="bx-demo--col-lg-1 hide-md">1</div>
+          <div class="bx-demo--col-lg-1 hide-md">1</div>
+          <div class="bx-demo--col-lg-1 hide-md">1</div>
+          <div class="bx-demo--col-lg-1 hide-md">1</div>
+          <div class="bx-demo--col-lg-1 hide-md">1</div>
+          <div class="bx-demo--col-lg-1 hide-md">1</div>
+          <div class="bx-demo--col-lg-1 hide-md">1</div>
+          <div class="bx-demo--col-lg-1 hide-md">1</div>
+          <div class="bx-demo--col-lg-1 hide-md">1</div>
+          <div class="bx-demo--col-lg-1 hide-md">1</div>
+          <div class="bx-demo--col-lg-1 hide-md">1</div>
+          <div class="bx-demo--col-lg-1 hide-md">1</div>
+        </div>
+    </div>
+  </div>
+
+```html
+<div class="bx--grid">
+  <div class="bx--row">
+    <div class="bx--col-lg-16">16</div>
+  </div>
+  <div class="bx--row">
+    <div class="bx--col-lg-15 bx--col-md-7 bx--col-sm-3">15</div>
+    <div class="bx--col-sm-1 bx--col-md-1 bx--col-lg-1">1</div>
+  </div>
+  <div class="bx--row">
+    <div class="bx--col-lg-14 bx--col-md-6">14</div>
+    <div class="bx--col-lg-2 bx--col-md-2">2</div>
+  </div>
+  <div class="bx--row">
+    <div class="bx--col-lg-13 bx--col-md-5">13</div>
+    <div class="bx--col-lg-3 bx--col-md-3">3</div>
+  </div>
+  <div class="bx--row">
+    <div class="bx--col-lg-12">12</div>
+    <div class="bx--col-lg-4">4</div>
+  </div>
+  <div class="bx--row">
+    <div class="bx--col-lg-11">11</div>
+    <div class="bx--col-lg-5">5</div>
+  </div>
+  <div class="bx--row">
+    <div class="bx--col-lg-10">10</div>
+    <div class="bx--col-lg-6">6</div>
+  </div>
+  <div class="bx--row">
+    <div class="bx--col-lg-9">9</div>
+    <div class="bx--col-lg-7">7</div>
+  </div>
+  <div class="bx--row">
+    <div class="bx--col-lg-8 bx--col-md-4 bx--col-sm-2">8</div>
+    <div class="bx--col-lg-8 bx--col-md-4 bx--col-sm-2">8</div>
+  </div>
+  <div class="bx--row">
+    <div class="bx--col-lg-4 bx--col-md-2 bx--col-sm-1">4</div>
+    <div class="bx--col-lg-4 bx--col-md-2 bx--col-sm-1">4</div>
+    <div class="bx--col-lg-4 bx--col-md-2 bx--col-sm-1">4</div>
+    <div class="bx--col-lg-4 bx--col-md-2 bx--col-sm-1">4</div>
+  </div>
+  <div class="bx--row">
+    <div class="bx--col-lg-2 bx--col-md-1">2</div>
+    <div class="bx--col-lg-2 bx--col-md-1">2</div>
+    <div class="bx--col-lg-2 bx--col-md-1">2</div>
+    <div class="bx--col-lg-2 bx--col-md-1">2</div>
+    <div class="bx--col-lg-2 bx--col-md-1">2</div>
+    <div class="bx--col-lg-2 bx--col-md-1">2</div>
+    <div class="bx--col-lg-2 bx--col-md-1">2</div>
+    <div class="bx--col-lg-2 bx--col-md-1">2</div>
+  </div>
+  <div class="bx--row">
+    <div class="bx--col-lg-1">1</div>
+    <div class="bx--col-lg-1">1</div>
+    <div class="bx--col-lg-1">1</div>
+    <div class="bx--col-lg-1">1</div>
+    <div class="bx--col-lg-1">1</div>
+    <div class="bx--col-lg-1">1</div>
+    <div class="bx--col-lg-1">1</div>
+    <div class="bx--col-lg-1">1</div>
+    <div class="bx--col-lg-1">1</div>
+    <div class="bx--col-lg-1">1</div>
+    <div class="bx--col-lg-1">1</div>
+    <div class="bx--col-lg-1">1</div>
+    <div class="bx--col-lg-1">1</div>
+    <div class="bx--col-lg-1">1</div>
+    <div class="bx--col-lg-1">1</div>
+    <div class="bx--col-lg-1">1</div>
+  </div>
+</div>
+```
+
+  </Column>
+</Row>
+
+<DoDontRow>
+  <DoDont caption="Do feel free to mix and match column structure.">
+
+![Do feel free to mix and match column structure.](images/Responsive_classes_do.png)
+
+  </DoDont>
+  <DoDont type="dont" caption="As a general rule, don’t mix with 3 or 5 columns.">
+
+![As a general rule, don’t mix with 3 or 5 columns.](images/Responsive_classes_dont.png)
+
+  </DoDont>
+</DoDontRow>
+
+#### Equal width columns
+
+Use these classes for easy column sizing when you want to maintain the same grid tiers at every breakpoint. In the example below, the grid layouts apply to every breakpoint: from `sm` to `max`. Add any number of unit-less classes per row you need and every column will be the same width.
+
+<Row>
+  <Column noGutterSm>
+    <div className="grid-demo">
+      <div class="bx-demo--grid">
+        <div class="bx-demo--row">
+          <div class="bx-demo--col hide-sm">1 of 8</div>
+          <div class="bx-demo--col hide-md">1 of 8</div>
+          <div class="bx-demo--col hide-md">1 of 8</div>
+          <div class="bx-demo--col hide-md">1 of 8</div>
+          <div class="bx-demo--col hide-md">1 of 8</div>
+          <div class="bx-demo--col hide-md">1 of 8</div>
+          <div class="bx-demo--col hide-md">1 of 8</div>
+          <div class="bx-demo--col hide-md">1 of 8</div>
+        </div>
+        <div class="bx-demo--row">
+          <div class="bx-demo--col">1 of 4</div>
+          <div class="bx-demo--col">1 of 4</div>
+          <div class="bx-demo--col">1 of 4</div>
+          <div class="bx-demo--col">1 of 4</div>
+        </div>
+        <div class="bx-demo--row">
+          <div class="bx-demo--col">1 of 2</div>
+          <div class="bx-demo--col">1 of 2</div>
+        </div>
+        <div class="bx-demo--row">
+          <div class="bx-demo--col">1 of 1</div>
+        </div>
+      </div>
+    </div>
+
+```html
+<div class="bx--grid">
+  <div class="bx--row">
+    <div class="bx--col">1 of 8</div>
+    <div class="bx--col">1 of 8</div>
+    <div class="bx--col">1 of 8</div>
+    <div class="bx--col">1 of 8</div>
+    <div class="bx--col">1 of 8</div>
+    <div class="bx--col">1 of 8</div>
+    <div class="bx--col">1 of 8</div>
+    <div class="bx--col">1 of 8</div>
+  </div>
+  <div class="bx--row">
+    <div class="bx--col">1 of 4</div>
+    <div class="bx--col">1 of 4</div>
+    <div class="bx--col">1 of 4</div>
+    <div class="bx--col">1 of 4</div>
+  </div>
+  <div class="bx--row">
+    <div class="bx--col">1 of 2</div>
+    <div class="bx--col">1 of 2</div>
+  </div>
+  <div class="bx--row">
+    <div class="bx--col">1 of 1</div>
+  </div>
+</div>
+```
+
+  </Column>
+</Row>
+
+## Grid modes
+
+Carbon’s Sketch templates always have a 32px gutter by default, regardless of breakpoint. The default gutter width is 32px because type, within or without containers, never has less than a 32px gutter. For containers and components, however, there are three different gutter structures: Wide (default), Narrow and Condensed. These three gutter scenarios enable typographic alignment by allowing containers and certain components to “hang” into the gutter.
+
+<br />
+
+<Row class="grid-modes">
+<Column colLg={2} colMd={2}>
+
+**Wide (default)**<br/>
+32px gutter
+
+</Column>
+<Column colLg={10} colMd={6}>
+
+![Wide grid mode](images/Wide.png)
+
+</Column>
+</Row>
+<Row>
+<Column colLg={2} colMd={2}>
+
+**Narrow**<br/>
+16px gutter
+
+</Column>
+<Column colLg={10} colMd={6}>
+
+![Narrow grid mode](images/Narrow.png)
+
+</Column>
+</Row>
+<Row>
+<Column colLg={2} colMd={2}>
+
+**Condensed**<br/>
+2px gutter
+
+</Column>
+<Column colLg={10} colMd={6}>
+
+![Condensed grid mode](images/Condensed.png)
+
+</Column>
+</Row>
+
+### The Wide grid
+
+This is our default grid mode, with 16 columns and 32px gutters. Unless your design specifies something different, this is the grid you should go with — it’s also arguably the easiest to use. Here, the container edge does not extend into the gutter, so the type within the container does not sit on the columns.
+
+Rows that are adjacent will have 32px of margin between them to match gutter. Use vertical helpers here.
+
+<Row>
+  <Column noGutterSm>
+    <div className="grid-demo grid-demo--wide">
+      <div class="bx-demo--grid">
+        <div class="bx-demo--row">
+          <div class="bx-demo--col"><div class="grid-demo-content"></div></div>
+          <div class="bx-demo--col"><div class="grid-demo-content"></div></div>
+          <div class="bx-demo--col"><div class="grid-demo-content"></div></div>
+          <div class="bx-demo--col"><div class="grid-demo-content"></div></div>
+        </div>
+      </div>
+    </div>
+
+```html
+<div class="bx--grid">
+  <div class="bx--row">
+    <div class="bx--col"></div>
+    <div class="bx--col"></div>
+    <div class="bx--col"></div>
+    <div class="bx--col"></div>
+  </div>
+</div>
+```
+
+  </Column>
+</Row>
+
+<br />
+
+#### Usage
+
+Use the Wide grid mode when you are dealing with separate pieces of information with separate destinations. This grid mode is also good for text-heavy situations, where maximum breathing room helps provide clarity and legibility. Also, basic images (without text on them) always use this grid mode.
+
+<InlineNotification>
+
+**Note:** Fixed components with labels such as input fields and dropdowns must use the Wide grid mode. One overarching rule — applicable to each grid mode — is that type never hangs into the gutter. So we don't want to push label type into the gutter in order to get field type to align.
+
+</InlineNotification>
+
+![32px gutter](images/32px_gutter.png)
+
+<DoDontRow>
+  <DoDont caption="Do align type (outside of a container), components, and tiles to the columns.">
+
+![Do align type (outside of a container), components and tiles to the columns.](images/32px_do.png)
+
+  </DoDont>
+  <DoDont type="dont" caption="Do not take type off the column structure to achieve alignment.">
+
+![Do not take type off of the column structure to achieve alignment.](images/32px_dont.png)
+
+  </DoDont>
+</DoDontRow>
+
+### The Narrow grid
+
+This is the gutter scenario that requires the most explanation. Although it's caused a lot of confusion, the intent is simply to enable more typographic alignment. With the Narrow grid, the container, not the type, hangs 16px into the gutter; allowing headings and copy outside of containers to align with the copy within containers and components. This arrangement can easily be mirrored to accomodate languages that read right to left, like Arabic or Hebrew.
+
+Rows that are adjacent will have 16px of margin between them to match gutter. Use vertical helpers here.
+
+<InlineNotification>
+
+**Note:** Code for the Narrow grid mode is currently using an outdated naming convention. We've disabled the attached code snippet until the class name can be updated to avoid confusion.
+
+</InlineNotification>
+
+<Row>
+  <Column noGutterSm>
+    <div className="grid-demo grid-demo--narrow">
+      <div class="bx-demo--grid">
+        <div class="bx-demo--row">
+          <div class="bx-demo--col bx-demo--no-gutter--left"><div class="grid-demo-content"></div></div>
+          <div class="bx-demo--col bx-demo--no-gutter--left"><div class="grid-demo-content"></div></div>
+          <div class="bx-demo--col bx-demo--no-gutter--left"><div class="grid-demo-content"></div></div>
+          <div class="bx-demo--col bx-demo--no-gutter--left"><div class="grid-demo-content"></div></div>
+        </div>
+      </div>
+    </div>
+
+  </Column>
+</Row>
+
+<br />
+
+#### Usage
+
+Use the Narrow grid mode when you are dealing with separate pieces of information with separate destinations, but would like to save more real estate. This grid mode will give your compositions a sleeker look and maximize type alignment, within and without containers.
+
+As mentioned above, fixed components with labels, such as input fields and dropdowns, should not hang into the gutter. See an example of how to combine a Wide and a Narrow grid scenario in the [Mix and match](#mix-and-match) section.
+
+![16px gutter](images/16px_gutter.png)
+
+<DoDontRow>
+  <DoDont caption="Do align components within containers flush to the columns.">
+
+![Do align components within containers flush to the columns.](images/16px_do.png)
+
+  </DoDont>
+  <DoDont type="dont" caption="Do not hang type into the gutter under any circumstances.">
+
+![Do not hang type into the gutter under any circumstances.](images/16px_dont.png)
+
+  </DoDont>
+</DoDontRow>
+
+### The Condensed grid
+
+The Condensed grid collapses the gutter to 2px. To achieve this, containers and components bleed 16px into the gutter on either side of the column. This grid mode is most often used in conjunction with another grid mode and arguably requires the most design skill to incorporate into layouts.
+
+Rows that are adjacent will have a 2px of margin between them to match gutter. Use vertical helpers here.
+
+<Row>
+  <Column noGutterSm>
+    <div className="grid-demo grid-demo--condensed">
+      <div class="bx-demo--grid bx-demo--grid--condensed">
+        <div class="bx-demo--row">
+          <div class="bx-demo--col"><div class="grid-demo-content"></div></div>
+          <div class="bx-demo--col"><div class="grid-demo-content"></div></div>
+          <div class="bx-demo--col"><div class="grid-demo-content"></div></div>
+          <div class="bx-demo--col "><div class="grid-demo-content"></div></div>
+        </div>
+      </div>
+    </div>
+
+```html
+<div class="bx--grid bx--grid--condensed">
+  <div class="bx--row">
+    <div class="bx--col"></div>
+    <div class="bx--col"></div>
+    <div class="bx--col"></div>
+    <div class="bx--col"></div>
+  </div>
+</div>
+```
+
+  </Column>
+</Row>
+
+<br />
+
+#### Usage
+
+When you have separate pieces of information that form a larger picture, like a dashboard or an overview page, that’s a good time to use the Condensed grid.
+You'll also see this grid mode in portals, resource tiles and other introductory UI. See it in action on the [IBM Design Language homepage](https://www.ibm.com/design/language/).
+
+As mentioned above, fixed components with labels, such as input fields and dropdowns, should not hang into the gutter.
+
+![2px gutter](images/2px_gutter.png)
+
+<DoDontRow>
+  <DoDont caption="Do keep all type (inside and outside containers) aligned with the column grid.">
+
+![Do keep all type (inside and outside containers) aligned with the column grid.](images/2px_do.png)
+
+  </DoDont>
+  <DoDont type="dont" caption="Do not hang type into the gutter under any circumstances.">
+
+![Do not hang type into the gutter under any circumstances.](images/2px_dont.png)
+
+  </DoDont>
+</DoDontRow>
+
+### Mix and match
+
+You can use rows to mix and match grid modes. In this situation, margin bottom between the rows can vary. Because of scenarios like input fields where the label text doesn't align to the input text — both the Narrow grid mode and the Condensed grid are most often used in conjunction with the Wide grid mode.
+
+#### Usage
+
+Unless you're using the Wide grid mode exclusively, mixing and matching is going to be the rule rather than the exception on most platforms — especially since our labeled components (input fields, dropdowns etc.) require a 32px gutter. We've provided a couple of examples below and will keep adding helpful uses cases as we find them.
+
+![Mixed use](images/Mixed_use_revised.png)
+
+<Caption>
+  1. Condensed grid mode <br /> 2. Wide grid mode{" "}
+</Caption>
+
+<br />
+<br />
+
+<DoDontRow>
+  <DoDont caption="Do apply different grid modes to different components (like input fields with labels and tiles).">
+
+![Do apply different grid modes to different components (like input fields with labels and tiles).](images/Mixed_use_do.png)
+
+  </DoDont>
+  <DoDont type="dont" caption="Do not apply different grid modes to the same component on the same page.">
+
+![Do not apply different grid modes to the same component on the same page.](images/Mixed_use_dont.png)
+
+  </DoDont>
+</DoDontRow>
+
+![Mixed use 2](images/Mixed_use_2.png)
+
+<Caption>
+  1. Condensed grid mode <br /> 2. Wide grid mode{" "}
+</Caption>
+
+<br />
+<br />
+
+<DoDontRow>
+  <DoDont caption="Do apply different grid modes to different components (like input fields with labels and tiles).">
+
+![Do apply different grid modes to different components (like input fields with labels and tiles).](images/Mixed_use_do_2.png)
+
+  </DoDont>
+  <DoDont type="dont" caption="Do not apply different grid modes to the same component on the same page.">
+
+![Do not apply different grid modes to the same component on the same page.](images/MIxed_use_dont_new.png)
+
+  </DoDont>
+</DoDontRow>
+
+## Incorporating the Shell
+
+We cover more about shell behavior on the 2x Grid Basics tab in the [Grid influencers](/guidelines/2x-grid/basics#grid-influencers) section. However, we've had a lot of questions about how the shell works in conjunction with our grid. That's why we recently incorporated the shell into our grid tooling as a Sketch template. We'd also like to show it in action here in a product.
+
+<Title> Collapsed state </Title>
+
+<Row>
+  <Column noGutterSm>
+    <div className="grid-demo">
+      <aside class="side-nav"></aside>
+      <div class="bx-demo--grid">
+        <div class="bx-demo--row hide-sm">
+          <div class="bx-demo--col hide-sm">1 of 8</div>
+          <div class="bx-demo--col hide-sm">1 of 8</div>
+          <div class="bx-demo--col hide-sm">1 of 8</div>
+          <div class="bx-demo--col hide-sm">1 of 8</div>
+          <div class="bx-demo--col hide-sm">1 of 8</div>
+          <div class="bx-demo--col hide-sm">1 of 8</div>
+          <div class="bx-demo--col hide-sm">1 of 8</div>
+          <div class="bx-demo--col hide-sm">1 of 8</div>
+        </div>
+        <div class="bx-demo--row">
+          <div class="bx-demo--col">1 of 4</div>
+          <div class="bx-demo--col">1 of 4</div>
+          <div class="bx-demo--col">1 of 4</div>
+          <div class="bx-demo--col">1 of 4</div>
+        </div>
+        <div class="bx-demo--row">
+          <div class="bx-demo--col">1 of 2</div>
+          <div class="bx-demo--col">1 of 2</div>
+        </div>
+        <div class="bx-demo--row">
+          <div class="bx-demo--col">1 of 1</div>
+        </div>
+      </div>
+    </div>
+
+```html
+<aside class="side-nav">
+  <!-- Toggle side-nav--expanded class above -->
+</aside>
+<div class="bx--grid">
+  <!-- ... -->
+</grid>
+```
+
+  </Column>
+</Row>
+
+<Title> Expanded state</Title>
+
+<Row>
+  <Column noGutterSm>
+    <div className="grid-demo">
+      <aside class="side-nav side-nav--expanded"></aside>
+      <div class="bx-demo--grid">
+        <div class="bx-demo--row">
+          <div class="bx-demo--col hide-sm">1 of 8</div>
+          <div class="bx-demo--col hide-sm">1 of 8</div>
+          <div class="bx-demo--col hide-sm">1 of 8</div>
+          <div class="bx-demo--col hide-sm">1 of 8</div>
+          <div class="bx-demo--col hide-sm">1 of 8</div>
+          <div class="bx-demo--col hide-sm">1 of 8</div>
+          <div class="bx-demo--col hide-sm">1 of 8</div>
+          <div class="bx-demo--col hide-sm">1 of 8</div>
+        </div>
+        <div class="bx-demo--row">
+          <div class="bx-demo--col">1 of 4</div>
+          <div class="bx-demo--col">1 of 4</div>
+          <div class="bx-demo--col">1 of 4</div>
+          <div class="bx-demo--col">1 of 4</div>
+        </div>
+        <div class="bx-demo--row">
+          <div class="bx-demo--col">1 of 2</div>
+          <div class="bx-demo--col">1 of 2</div>
+        </div>
+        <div class="bx-demo--row">
+          <div class="bx-demo--col">1 of 1</div>
+        </div>
+      </div>
+    </div>
+
+```html
+<aside class="side-nav--expanded">
+  <!-- Toggle side-nav--expanded class above -->
+</aside>
+<div class="bx--grid">
+  <!-- ... -->
+</grid>
+```
+
+  </Column>
+</Row>
+
+<br />
+
+#### Usage
+
+The most commonly used product shell is the flexible panel. The collapsed flexible panel expands when the user hovers over any portion of it. When flexible panels expand, they either condense both the content and the grid or they push content beyond the edge of the browser.
+
+<Video vimeoId="363369752" />
+
+## Alignments
+
+### Offsetting
+
+Use offset classes to offset content by a given column span. These classes increase the left margin of a column by \* columns. For example, `bx--offset-lg-8` moves `bx--col-lg-8` over eight columns.
+
+<Row>
+  <Column noGutterSm>
+    <div className="grid-demo">
+      <div class="bx-demo--grid">
+        <div class="bx-demo--row">
+          <div class="bx-demo--offset-lg-15 bx-demo--col-lg-1 bx-demo--offset-md-7 bx-demo--col-md-1 bx-demo--offset-sm-3 bx-demo--col-sm-1">1</div>
+        </div>
+        <div class="bx-demo--row">
+          <div class="bx-demo--offset-lg-14 bx-demo--col-lg-2 bx-demo--offset-md-6 bx-demo--col-md-2 bx-demo--offset-sm-2 bx-demo--col-sm-2">2</div>
+        </div>
+        <div class="bx-demo--row">
+          <div class="bx-demo--offset-lg-13 bx-demo--col-lg-3 bx-demo--offset-md-5 bx-demo--col-md-3 bx-demo--offset-sm-1 bx-demo--col-sm-3">3</div>
+        </div>
+        <div class="bx-demo--row">
+          <div class="bx-demo--offset-lg-12 bx-demo--col-lg-4 bx-demo--offset-md-4 bx-demo--col-md-4 bx-demo--col-sm-4">4</div>
+        </div>
+        <div class="bx-demo--row">
+          <div class="bx-demo--offset-lg-11 bx-demo--col-lg-5 bx-demo--offset-md-3 bx-demo--col-md-5 hide-sm">5</div>
+        </div>
+        <div class="bx-demo--row">
+          <div class="bx-demo--offset-lg-10 bx-demo--col-lg-6 bx-demo--offset-md-2 bx-demo--col-md-6 hide-sm">6</div>
+        </div>
+        <div class="bx-demo--row">
+          <div class="bx-demo--offset-lg-9 bx-demo--col-lg-7 bx-demo--offset-md-1 bx-demo--col-md-7 hide-sm">7</div>
+        </div>
+        <div class="bx-demo--row">
+          <div class="bx-demo--offset-lg-8 bx-demo--col-lg-8 hide-sm">8</div>
+        </div>
+        <div class="bx-demo--row">
+          <div class="bx-demo--offset-lg-7 bx-demo--col-lg-9 hide-md">9</div>
+        </div>
+        <div class="bx-demo--row">
+          <div class="bx-demo--offset-lg-6 bx-demo--col-lg-10 hide-md">10</div>
+        </div>
+        <div class="bx-demo--row">
+          <div class="bx-demo--offset-lg-5 bx-demo--col-lg-11 hide-md">11</div>
+        </div>
+        <div class="bx-demo--row">
+          <div class="bx-demo--offset-lg-4 bx-demo--col-lg-12 hide-md">12</div>
+        </div>
+        <div class="bx-demo--row">
+          <div class="bx-demo--offset-lg-3 bx-demo--col-lg-13 hide-md">13</div>
+        </div>
+        <div class="bx-demo--row">
+          <div class="bx-demo--offset-lg-2 bx-demo--col-lg-14 hide-md">14</div>
+        </div>
+        <div class="bx-demo--row">
+          <div class="bx-demo--offset-lg-1 bx-demo--col-lg-15 hide-md">15</div>
+        </div>
+        <div class="bx-demo--row">
+          <div class="bx-demo--col-lg-16 hide-md">16</div>
+        </div>
+      </div>
+    </div>
+
+```html
+<div class="bx--grid">
+  <div class="bx--row">
+    <div
+      class="bx--offset-lg-15 bx--col-lg-1 bx--offset-md-7 bx--col-md-1 bx--offset-sm-3 bx--col-sm-1"
+    >
+      1
+    </div>
+  </div>
+  <div class="bx--row">
+    <div
+      class="bx--offset-lg-14 bx--col-lg-2 bx--offset-md-6 bx--col-md-2 bx--offset-sm-2 bx--col-sm-2"
+    >
+      2
+    </div>
+  </div>
+  <div class="bx--row">
+    <div
+      class="bx--offset-lg-13 bx--col-lg-3 bx--offset-md-5 bx--col-md-3 bx--offset-sm-1 bx--col-sm-3"
+    >
+      3
+    </div>
+  </div>
+  <div class="bx--row">
+    <div
+      class="bx--offset-lg-12 bx--col-lg-4 bx--offset-md-4 bx--col-md-4 bx--col-sm-4"
+    >
+      4
+    </div>
+  </div>
+  <div class="bx--row">
+    <div class="bx--offset-lg-11 bx--col-lg-5 bx--offset-md-3 bx--col-md-5">
+      5
+    </div>
+  </div>
+  <div class="bx--row">
+    <div class="bx--offset-lg-10 bx--col-lg-6 bx--offset-md-2 bx--col-md-6">
+      6
+    </div>
+  </div>
+  <div class="bx--row">
+    <div class="bx--offset-lg-9 bx--col-lg-7 bx--offset-md-1 bx--col-md-7">
+      7
+    </div>
+  </div>
+  <div class="bx--row">
+    <div class="bx--offset-lg-8 bx--col-lg-8">8</div>
+  </div>
+  <div class="bx--row">
+    <div class="bx--offset-lg-7 bx--col-lg-9">9</div>
+  </div>
+  <div class="bx--row">
+    <div class="bx--offset-lg-6 bx--col-lg-10">10</div>
+  </div>
+  <div class="bx--row">
+    <div class="bx--offset-lg-5 bx--col-lg-11">11</div>
+  </div>
+  <div class="bx--row">
+    <div class="bx--offset-lg-4 bx--col-lg-12">12</div>
+  </div>
+  <div class="bx--row">
+    <div class="bx--offset-lg-3 bx--col-lg-13">13</div>
+  </div>
+  <div class="bx--row">
+    <div class="bx--offset-lg-2 bx--col-lg-14">14</div>
+  </div>
+  <div class="bx--row">
+    <div class="bx--offset-lg-1 bx--col-lg-15">15</div>
+  </div>
+  <div class="bx--row">
+    <div class="bx--col-lg-16">16</div>
+  </div>
+</div>
+```
+
+</Column>
+</Row>
+
+### Vertical spacing
+
+We intend to add a demo on vertical spacing soon, along with more guidance and examples around key heights and spacers.
+
+## Techniques
+
+### Full bleed content
+
+By default, the grid maintains a max width of 1584px, but allows content to span infinitely. When you want background colors or an image to go edge-to-edge, you will need to create a wrapping node around your grid with the color that you are looking to apply. In this example, we create an outer div and give it the class name bleed which we then style with a background color.
+
+If you want to remove the default max width, you can do it by using a grid modifier class. This will allow your grid to span infinitely.
+
+<Row>
+  <Column noGutterSm>
+    <div className="grid-demo--bleed">
+      <div className="grid-demo grid-demo--wide">
+        <div class="bx-demo--grid">
+          <div class="bx-demo--row">
+            <div class="bx-demo--col"><div class="grid-demo-content"></div></div>
+            <div class="bx-demo--col"><div class="grid-demo-content"></div></div>
+            <div class="bx-demo--col"><div class="grid-demo-content"></div></div>
+            <div class="bx-demo--col "><div class="grid-demo-content"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+```html
+<div class="bleed">
+  <div class="bx--grid">
+    <div class="bx--row">
+      <div class="bx--col"></div>
+      <div class="bx--col"></div>
+      <div class="bx--col"></div>
+      <div class="bx--col"></div>
+    </div>
+  </div>
+</div>
+```
+
+  </Column>
+</Row>
+
+<br />
+
+#### Usage
+
+<br />
+
+![Full bleed](images/Full_bleed.png)
+
+### Aspect ratios
+
+When designing fluid layouts, it’s helpful for an asset or card to be a specific aspect ratio. We offer several classes for specifying aspect ratio for given content. We use these classes to maintain consistency throughout our UI.
+
+We discuss aspect ratios and various grid behaviors more in depth on the 2x Grid Basics tab, both in the [Aspect ratios](/guidelines/2x-grid/basics#aspect-ratio) section and in the [Grid behaviors](/guidelines/2x-grid/basics#grid-behaviors) section.
+
+<InlineNotification>
+
+**Note:** As of now, the 3:2 aspect ratio is not included in the grid package but there is an issue to add it.
+
+</InlineNotification>
+
+<Row>
+  <Column noGutterSm>
+    <div className="grid-demo aspect-ratio-demo">
+      <div class="bx-demo--grid">
+        <div class="bx-demo--row">
+          <div class="bx-demo--col">
+            <div class="bx-demo--aspect-ratio bx-demo--aspect-ratio--2x1">
+              <div class="bx-demo--aspect-ratio--object">
+                <div class="aspect-ratio-content">2:1</div>
+              </div>
+            </div>
+          </div>
+          <div class="bx-demo--col">
+            <div class="bx-demo--aspect-ratio bx-demo--aspect-ratio--2x1">
+              <div class="bx-demo--aspect-ratio--object">
+                <div class="aspect-ratio-content">2:1</div>
+              </div>
+            </div>
+          </div>
+          <div class="bx-demo--col">
+            <div class="bx-demo--aspect-ratio bx-demo--aspect-ratio--2x1">
+              <div class="bx-demo--aspect-ratio--object">
+                <div class="aspect-ratio-content">2:1</div>
+              </div>
+            </div>
+          </div>
+          <div class="bx-demo--col">
+            <div class="bx-demo--aspect-ratio bx-demo--aspect-ratio--2x1">
+              <div class="bx-demo--aspect-ratio--object">
+                <div class="aspect-ratio-content">2:1</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bx-demo--grid">
+        <div class="bx-demo--row">
+          <div class="bx-demo--col">
+            <div class="bx-demo--aspect-ratio bx-demo--aspect-ratio--16x9">
+              <div class="bx-demo--aspect-ratio--object">
+                <div class="aspect-ratio-content">16:9</div>
+              </div>
+            </div>
+          </div>
+          <div class="bx-demo--col">
+            <div class="bx-demo--aspect-ratio bx-demo--aspect-ratio--16x9">
+              <div class="bx-demo--aspect-ratio--object">
+                <div class="aspect-ratio-content">16:9</div>
+              </div>
+            </div>
+          </div>
+          <div class="bx-demo--col">
+            <div class="bx-demo--aspect-ratio bx-demo--aspect-ratio--16x9">
+              <div class="bx-demo--aspect-ratio--object">
+                <div class="aspect-ratio-content">16:9</div>
+              </div>
+            </div>
+          </div>
+          <div class="bx-demo--col">
+            <div class="bx-demo--aspect-ratio bx-demo--aspect-ratio--16x9">
+              <div class="bx-demo--aspect-ratio--object">
+                <div class="aspect-ratio-content">16:9</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bx-demo--grid">
+        <div class="bx-demo--row">
+          <div class="bx-demo--col">
+             <div class="bx-demo--aspect-ratio bx-demo--aspect-ratio--4x3">
+              <div class="bx-demo--aspect-ratio--object">
+                <div class="aspect-ratio-content">4:3</div>
+              </div>
+            </div>
+          </div>
+          <div class="bx-demo--col">
+             <div class="bx-demo--aspect-ratio bx-demo--aspect-ratio--4x3">
+              <div class="bx-demo--aspect-ratio--object">
+                <div class="aspect-ratio-content">4:3</div>
+              </div>
+            </div>
+          </div>
+          <div class="bx-demo--col">
+             <div class="bx-demo--aspect-ratio bx-demo--aspect-ratio--4x3">
+              <div class="bx-demo--aspect-ratio--object">
+                <div class="aspect-ratio-content">4:3</div>
+              </div>
+            </div>
+          </div>
+          <div class="bx-demo--col">
+            <div class="bx-demo--aspect-ratio bx-demo--aspect-ratio--4x3">
+              <div class="bx-demo--aspect-ratio--object">
+                <div class="aspect-ratio-content">4:3</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+       <div class="bx-demo--grid">
+        <div class="bx-demo--row">
+          <div class="bx-demo--col">
+            <div class="bx-demo--aspect-ratio bx-demo--aspect-ratio--1x1">
+              <div class="bx-demo--aspect-ratio--object">
+                <div class="aspect-ratio-content">1:1</div>
+              </div>
+            </div>
+          </div>
+          <div class="bx-demo--col">
+            <div class="bx-demo--aspect-ratio bx-demo--aspect-ratio--1x1">
+              <div class="bx-demo--aspect-ratio--object">
+                <div class="aspect-ratio-content">1:1</div>
+              </div>
+            </div>
+          </div>
+          <div class="bx-demo--col">
+            <div class="bx-demo--aspect-ratio bx-demo--aspect-ratio--1x1">
+              <div class="bx-demo--aspect-ratio--object">
+                <div class="aspect-ratio-content">1:1</div>
+              </div>
+            </div>
+          </div>
+          <div class="bx-demo--col">
+            <div class="bx-demo--aspect-ratio bx-demo--aspect-ratio--1x1">
+              <div class="bx-demo--aspect-ratio--object">
+                <div class="aspect-ratio-content">1:1</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+```html
+<div class="bx--aspect-ratio bx--aspect-ratio--2x1">
+  <div class="bx--aspect-ratio--object">2x1</div>
+</div>
+
+<div class="bx--aspect-ratio bx--aspect-ratio--16x9">
+  <div class="bx--aspect-ratio--object">16:19</div>
+</div>
+
+<div class="bx--aspect-ratio bx--aspect-ratio--4x3">
+  <div class="bx--aspect-ratio--object">4:3</div>
+</div>
+
+<div class="bx--aspect-ratio bx--aspect-ratio--1x1">
+  <div class="bx--aspect-ratio--object">1:1</div>
+</div>
+```
+
+  </Column>
+</Row>
+
+<br />
+
+#### Basic usage
+
+We understand that when using responsive grid classes, it's not always possible for every image or container to be one of these sizes. However it's important to use them to set the foundation of your layouts, especially in the case of same size tiles.
+
+![Aspect ratio](images/Aspect_Ratio.png)
+
+<br />
+
+#### Adaptability
+
+Image size can change ratios when the breakpoint changes.
+
+![Aspect ratio flexible](images/Aspect_Ratio_flexible.png)
+
+<DoDontRow>
+  <DoDont caption="When combining tiles, or tiles and images, do give each a designated aspect ratio.">
+
+![When combining tiles, or tiles and images, do give each a designated aspect ratio.](images/AR_do_1.png)
+
+  </DoDont>
+  <DoDont type="dont" caption="Do not shoe-horn each tile / tile and image into a combined aspect ratio.">
+
+![Do not shoe-horn each tile / tile and image into a combined aspect ratio.](images/AR_dont_1.png)
+
+  </DoDont>
+</DoDontRow>
+
+<DoDontRow>
+  <DoDont caption="Do use a designated aspect ratio for a grid of same-size fixed ratio tiles.">
+
+![Do use a designated aspect ratio for a grid of same-size fixed ratio tiles.](images/AR_do_2.png)
+
+  </DoDont>
+  <DoDont type="dont" caption="Do not start with a random aspect ratio for a grid of same-size fixed ratio tiles.">
+
+![Don’t start with a random aspect ratio for a grid of same-size fixed ratio tiles.](images/AR_dont_2.png)
+
+  </DoDont>
+</DoDontRow>
+
+## Resources
+
+<Row className="resource-card-group">
+  <Column colMd={4} colLg={4} noGutterSm>
+    <ResourceCard
+      subTitle="Carbon grid package"
+      href="https://github.com/carbon-design-system/carbon/blob/master/packages/grid"
+    >
+
+<MdxIcon name="bee" />
+
+  </ResourceCard>
+  </Column>
+  <Column colMd={4} colLg={4} noGutterSm>
+    <ResourceCard
+      subTitle="Grid demo"
+      href="https://carbon-elements.netlify.app/grid/examples/preview/"
+    >
+
+<MdxIcon name="bee" />
+
+  </ResourceCard>
+  </Column>
+  <Column colMd={4} colLg={4} noGutterSm>
+    <ResourceCard
+      subTitle="React Storybook"
+      href="https://react.carbondesignsystem.com/?path=/story/grid--auto-columns"
+    >
+
+<MdxIcon name="bee" />
+
+  </ResourceCard>
+  </Column>
+</Row>
