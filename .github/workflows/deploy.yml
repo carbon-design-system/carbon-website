@@ -56,7 +56,7 @@ jobs:
         if: |
           steps.yarn-cache.outputs.cache-hit != 'true' ||
           steps.node-modules-cache.outputs.cache-hit != 'true'
-        run: yarn install --frozen-lockfile --network-timeout 300000
+        run: yarn install --frozen-lockfile --network-timeout 300000 && yarn clean
 
       - name: Build site
         run: yarn build
