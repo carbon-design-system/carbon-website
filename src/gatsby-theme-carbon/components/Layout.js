@@ -2,8 +2,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable import/no-unresolved */
 import React, { useLayoutEffect } from 'react';
-import useMedia from 'use-media';
-import { breakpoints } from '@carbon/layout';
 
 import LeftNav from 'gatsby-theme-carbon/src/components/LeftNav';
 import Meta from 'gatsby-theme-carbon/src/components/Meta';
@@ -14,7 +12,12 @@ import Container from 'gatsby-theme-carbon/src/components/Container';
 
 import 'gatsby-theme-carbon/src/styles/index.scss';
 
-import { layout, banner } from '../../styles/Layout.module.scss';
+import {
+  layout,
+  banner,
+  initialism,
+  fullName,
+} from '../../styles/Layout.module.scss';
 
 const Layout = ({
   children,
@@ -27,7 +30,6 @@ const Layout = ({
   tabs,
 }) => {
   const is404 = children.key === null;
-  const isMobile = useMedia({ maxWidth: breakpoints.md.width });
 
   useLayoutEffect(() => {
     const scroll = require('smooth-scroll')('a[href*="#"]', {
@@ -52,7 +54,8 @@ const Layout = ({
       <header className={banner}>
         Black Lives Matter.&nbsp;
         <a href="https://support.eji.org/give/153413/#!/donation/checkout">
-          {`Support the ${isMobile ? 'EJI' : 'Equal Justice Initiative'}.`}
+          Support the <span className={initialism}>EJI</span>
+          <span className={fullName}>Equal Justice Initiative</span>
         </a>
       </header>
       <Header />

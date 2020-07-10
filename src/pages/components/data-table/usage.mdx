@@ -12,11 +12,43 @@ Data tables are used to organize and display data efficiently. The data table co
 
 <AnchorLinks>
 
-<AnchorLink>Basic data table</AnchorLink>
-<AnchorLink>Additional functionality</AnchorLink>
+<AnchorLink>Overview</AnchorLink>
+<AnchorLink>Live demo</AnchorLink>
+<AnchorLink>Formatting</AnchorLink>
+<AnchorLink>Content</AnchorLink>
+<AnchorLink>Behaviors</AnchorLink>
+<AnchorLink>Modifiers</AnchorLink>
+<AnchorLink>Related</AnchorLink>
 <AnchorLink>Feedback</AnchorLink>
 
 </AnchorLinks>
+
+## Overview
+
+The data table's features are ideal for organizing and displaying data in a UI. The column headers can sort data in ascending or descending order, rows can be expanded to progressively disclose information, and single or batch actions can be taken on rows.
+
+The data table toolbar gives a location for primary buttons, search, filtering, table display settings, and other utilities.
+
+### When to use
+
+- To organize and display data.
+- If your user must navigate to a specific piece of data to complete a task.
+- Displaying all of a user's resources.
+
+### When not to use
+
+- When a more complex display of the data or interactions are required.
+- As a replacement for a spreadsheet application.
+
+### Types
+
+| Type             | Purpose                                                                                                                                                                                                                             |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _Default_        | The default data table comes with a base style with only the title, header, and table elements. rows.                                                                                                                               |
+| _With selection_ | Batch actions are functions that may be performed on multiple items within a table. This type of table enables the user to select individual rows and apply an action. A batch action toolbar appears when table rows are selected. |
+| _With expansion_ | The expandable data table is useful for presenting large amounts of data in a small space. Rows are collapsed and can be expanded to reveal extra information.                                                                      |
+
+## Live demo
 
 import { rowData, headerData } from "../../../data/components/data-table.js";
 import {
@@ -277,148 +309,315 @@ import {
   </ComponentVariant>
 </ComponentDemo>
 
-## Basic data table
+## Formatting
 
-The data table component is designed in a way for additional functionality to be added on to fit your team's needs.
+### Anatomy
 
-The basic data table is shipped with a base style, which includes:
+<Row>
+<Column colLg={12}>
 
-- Borders
-- No zebra striping, row dividers instead.
-- No Pagination, search, table toolbar, or multiselect
+![data table anatomy](images/datatable-anatomy.png)
 
-<div className="image--fixed">
+</Column>
+</Row>
 
-![basic data table](images/data-table-usage-1.png)
+1. **Title and description**: contains the data table title and an optional description.
+2. **Toolbar**: global data table controls including search and table settings.
+3. **Column header**: title for the row header with the optional sorting behavior.
+4. **Table row**: can be configured to show different types of data. Rows can be selectable, expandable, and modified to show alternating zebra stripe background colors.
+5. **Pagination table bar**: an optional component that lets a user navigate data as pages when the amount of data it too large to be shown at once.
 
-</div>
+### Sizing
 
-<Caption>Basic data table</Caption>
+The data table is available in four different [row sizes](/data-table/style#row-sizes): tall, normal, short, compact.
 
-## Additional functionality
+<Row>
+<Column colLg={8}>
 
-The following can be added to the data table to increase its functionality.
+![data table size](images/datatable-sizes.png)
+
+</Column>
+</Row>
+
+The column header row `.bx--data-table thead` should always match the row size of the table. Tall row heights are only recommended if your data is expected to have 2 lines of content in a single row.
+
+<DoDontRow>
+<DoDont
+colMd={4} colLg={4}
+caption="Do use the same row height for the table and header rows.">
+
+![Do: uDo use the same row height for the table and header rows.](./images/datatable-header-size-do.png)
+
+</DoDont>
+<DoDont
+colMd={4} colLg={4}
+type="dont"
+caption="Don’t mix row heights for in the table and header rows.">
+
+![Don’t: mix row heights for in the table and header rows.](./images/datatable-header-size-dont.png)
+
+</DoDont>
+</DoDontRow>
+
+Two heights are available to be paired with the row heights of the data table. The tall toolbar should only be paired with the normal and tall row heights and the small toolbar should only be used with the small and compact row heights.
+
+<Row>
+<Column colLg={12}>
+
+![data table toolbar size](images/datatable-toolbar-sizes.png)
+
+<Caption>
+  A small toolbar on a short data table and a tall toolbar on a normal data
+  table{" "}
+</Caption>
+
+</Column>
+</Row>
+
+### Placement
+
+Data tables should be placed in a page's main content area and given plenty of space to display data without truncation. Avoid placing data tables inside modals or smaller containers where the information can feel cramped or needs truncation.
+
+The data table can be placed on the grid following the three different [grid modes](/guidelines/2x-grid/implementation#grid-modes) outlined in the 2x grid guidelines. Although, the data table can share horizontal space with other components and content, consider giving your data table the most width on the page to help your user view dense data.
+
+These three examples show the data table on the wide (default), narrow, and condensed grid modes. Note the different type alignments and gutter sizes.
+
+#### Wide grid mode
+
+The wide grid mode is the default and gives the most breathing room between the data table and the other components or content.
+
+<Row>
+<Column colLg={12}>
+
+![data table wide ](images/datatable-alignment-wide.png)
+
+<Caption>Data table on a wide (default) grid</Caption>
+
+</Column>
+</Row>
+
+#### Narrow grid mode
+
+Using the data table on a narrow grid will hang the component into the gutter and create a desirable type alignment between the the data table's title and other type on the page.
+
+<Row>
+<Column colLg={12}>
+
+![data table narrow ](images/datatable-alignment-narrow.png)
+
+<Caption>Data table on a narrow grid</Caption>
+
+</Column>
+</Row>
+
+#### Condensed grid mode
+
+The data table can be used on a condensed grid, but care should be taken to avoid any unintentional relationships with other UI elements. Use a hybrid grid or a dissimilar background color to avoid the components blending in to each other.
+
+<Row>
+<Column colLg={12}>
+
+![data table condensed ](images/datatable-alignment-condensed.png)
+
+<Caption>Data table on a condensed grid</Caption>
+
+</Column>
+</Row>
+
+## Content
+
+### Main elements
+
+#### Data table title and description
+
+- The table title should make it clear to the user what this the data has in common and what purpose it serves in the UI.
+- A description can be added under the title to provide more information about the data or its source.
+- A data table's title and description should use [sentence-case capitalization.](/guidelines/content/guidance#use-sentence-case-capitalization)
+
+#### Column titles
+
+- Column titles should stick to one or two words that describe the data in that column.
+- In cases where a column title is too long, wrap the text to two lines and then truncate the rest of the text. The full text should be shown in a tooltip on hover.
+- Column titles should use [sentence-case capitalization.](/guidelines/content/guidance#use-sentence-case-capitalization)
+
+#### Primary button
+
+- A data table using a primary action should follow the guidance for [primary button](/components/button/usage#labels) usage and [action labels.](/guidelines/content/action-labels)
+
+For further content guidance, see Carbon's [content guidelines](guidelines/content/general).
+
+## Behaviors
+
+### Interactions
+
+#### Mouse
+
+The data table's toolbar and rows follow interaction conventions found in other Carbon components. Buttons, checkboxes, radio buttons, overflow menus, search, and expanding elements can be found in the data table and all behave the same way across Carbon components. See the style tab for detailed visual information about the various states.
+
+<Row>
+<Column colLg={12}>
+
+![data table target areas](images/datatable-target.png)
+
+<Caption>Highlighted target areas for data table mouse interactions</Caption>
+
+</Column>
+</Row>
+
+### Hover
+
+The data table's row hover state can help your user visually scan the columns of data in a row even if the row is not interactive.
+
+<Row>
+<Column colLg={8}>
+
+![data table row hover](images/datatable-hover.png)
+
+</Column>
+</Row>
 
 ### Pagination
 
-Pagination divides table data into separate pages. Pagination is accompanied by an option that enables the user to change the number of items per page. See the [pagination](/components/pagination/usage) component for further guidelines.
+Pagination divides table data into separate pages. Simple pagination indicates the current page in view and offers controls to incrementally navigate to the previous or next page. Advanced pagination is accompanied by an option that enables the user to change the number of items per page and to jump to a specific page number. The pagination component is always placed at the bottom of the data table. See the [pagination](/components/pagination/code) component for further guidelines and configurations.
 
-<div className="image--fixed">
+<Row>
+<Column colLg={12}>
 
-![data table with pagination](images/data-table-usage-2.png)
+![data table target areas](images/datatable-pagination.png)
 
-</div>
+<Caption>Simple (top) and advanced (bottom) pagination configurations</Caption>
 
-<Caption>Data table with various Pagination methods</Caption>
+</Column>
+</Row>
 
 ### Search
 
-Search returns results based on matches. It is used to locate and display a set of results. Search functionality within a table follows [small search](/components/search/usage) conventions. Search should be closed by default, and live below the table title.
+A search field can be triggered through an icon button in the data table toolbar. By default the search functionality follows the [active search](/patterns/search-pattern/#active-search) pattern. The search should be closed by default, and placed below the table title.
 
-<div className="image--fixed">
+<Row>
+<Column colLg={12}>
 
-![data table with search](images/data-table-usage-3.png)
+![data table search](images/datatable_search.gif)
 
-</div>
-
-<Caption>Search on data tables.</Caption>
+</Column>
+</Row>
 
 ### Sorting
 
-Make data sortable to improve table usability. Sorting controls are located in the column headers and indicated with an arrow icon.
+Columns can be sorted in ascending or descending order. Sorting controls are located in the column headers and indicated with an arrow icon on hover and when a column has been sorted.
 
-A sorted data table has three states: unsorted (`arrows`), sorted-up (`arrow--up`) or sorted-down (`arrow--down`). The icon indicates the current sorted state and is only shown if sorting is activated. Only the column being sorted should display an icon, and unsorted icons are only visible on hover. You can see a demo of table sorting in Carbon’s [React Storybook](http://react.carbondesignsystem.com/?path=/story/datatable--with-sorting).
+A sorted data table has three states: unsorted (`arrows`), sorted-up (`arrow--up`) or sorted-down (`arrow--down`). The icon indicates the current sorted state and is only shown if sorting is activated. Only the column being sorted should display an icon, and unsorted icons are only visible on hover. You can see a demo of table sorting in Carbon’s [React Storybook](http://react.carbondesignsystem.com/?path=/story/datatable--with-sorting).
 
-<div className="image--fixed">
+<Row>
+<Column colLg={12}>
 
-![Data table with sorting](images/data-table-usage-13.png)
+![data table unsorted](images/datatable-sorting.png)
 
-</div>
-
-<Caption>Sorting on data tables</Caption>
+</Column>
+</Row>
 
 ### Table toolbar
 
-The table toolbar is reserved for global table actions such as table settings, complex filter, export, or editing table data. Additional options can be added if you have an icon to support that function. Icons should be 16x16 px (glyphs). We recommend using no more than 5 icons within the table toolbar.
+The table toolbar is reserved for global table actions such as table settings, complex filters, exporting, or editing table data. Additional options can be added if you have an icon to support that function. Icons should be 16x16 px (glyphs). We recommend using no more than 5 icons within the table toolbar.
 
-<div className="image--fixed">
+<Row>
+<Column colLg={8}>
 
-![Table toolbar](images/data-table-usage-6.png)
+![data table sorting in descending order](images/datatable-toolbar.png)
 
-</div>
+</Column>
+</Row>
 
-<Caption>Table toolbar: table settings</Caption>
+### Multi-select / batch action
 
-### Multiselect / batch action
+Batch actions are functions that may be performed on multiple items within a table. Once the user selects at least one row from the table, the batch action bar appears at the top of the table, presenting the user with actions they can take. To exit or escape “batch action mode,” the user can cancel out or deselect the items.
 
-Batch actions are functions that may be performed on multiple items within a table. Once the user selects at least one row from the table, the **batch action bar** appears at the top of the table, presenting the user with actions they can take. To exit or escape "batch action mode," the user can cancel out or deselect the items.
+<Row>
+<Column colLg={12}>
 
-<div className="image--fixed">
+![data table multi select](images/datatable-multi-select.png)
 
-![Batch action mode](images/data-table-usage-7.png)
-
-</div>
-
-<Caption>Batch action mode on data tables</Caption>
+</Column>
+</Row>
 
 ### Inline actions
 
-Inline actions are functions that may be performed on a specific table item. Each row is accompanied by an [overflow menu](/components/overflow-menu/usage) that contains actions related specifically to that table row.
+Inline actions are functions that may be performed on a specific table row. Each row is accompanied by an [overflow menu](https://www.carbondesignsystem.com/components/overflow-menu/code) that contains actions related specifically to that row.
 
-<div className="image--fixed">
+<Row>
+<Column colLg={8}>
 
-![Overflow menu example](images/data-table-usage-8.png)
+![data table inline actions](images/datatable-inline-actions.png)
 
-</div>
+</Column>
+</Row>
 
-<Caption>Overflow menu example</Caption>
+When the overflow menu contains less than three options, keep the actions inline as icon buttons instead. This reduces a click and makes available actions visible at a glance.
 
-When the overflow menu contains less than three options, keep the actions inline as icon buttons instead. This reduces 1 click and makes available actions visible to users at a glance.
+### Overflow menu
 
-<div className="image--fixed">
+By default, the overflow menu icons are persistent on each row. Having the overflow menus always visible signals to the user actions can be taken on the table rows. Alternatively, a product team may use the `overflowMenuOnHover` prop to only show the overflow menu on hover and focus to reduce the visual clutter of an overflow menu on every row.
 
-![Inline actions without overflow](images/data-table-usage-10.png)
+For mobile and touch devices the data table will detect if the user agent supports hover-over and persist the overflow menus even if the `overflowMenuOnHover` prop is enabled.
 
-</div>
+<Row>
+<Column colLg={8}>
 
-<Caption>Overflow menu example</Caption>
+![data table inline actions](images/datatable-persistent-hover.png)
 
-#### Persistent overflow menu
-
-By default, the overflow menu icon appears on hover or focus. This reduces visual clutter and drives user interactions with clear context and results.
-
-Data table also supports persistent overflow menu icons. Overflow icons should only persist if the actions contained within them are core to the function of your table. Enabling persistent overflow icons may complicate data presentation and impact general usability.
-
-<div className="image--fixed">
-
-![Persistent overflow icon example](images/data-table-usage-9.png)
-
-</div>
-
-<Caption>Overflow menu example</Caption>
+</Column>
+</Row>
 
 ### Expandable
 
-The expandable data table is useful for presenting large amounts of data in a small space. Use the expanded section for supplementary information or data that needs additional query time.
+The expandable data table is useful for presenting large amounts of data in a small space. Use the expanded section for supplementary information or data that needs additional query time. When the content in the expanded area begins to feel cramped, consider taking the user to a dedicated page or opening a modal to view the information and complete tasks.
 
-<div className="image--fixed">
+<Row>
+<Column colLg={12}>
 
-![Expandable data table with one row expanded.](images/data-table-usage-11.png)
-
-</div>
+![data table in expanded and collapsed state](images/datatable-expand.png)
 
 <Caption>Expandable data table with one row expanded</Caption>
 
+</Column>
+</Row>
+
 By default, the expand-all chevron is not shown. Keeping detailed information in expanded section saves user loading time by postponing some data queries until needed. Expanding all rows at once will typically negate this advantages of the expandable table. If additional load time is expected to display expanded information, use skeleton states instead of spinners.
 
-<div className="image--fixed">
+<Row>
+<Column colLg={12}>
 
-![Expandabling all rows with skeleton states](images/data-table-usage-12.png)
-
-</div>
+![data table in expanded and collapsed state](images/datatable-skeleton.png)
 
 <Caption>Expanding all rows with skeleton states</Caption>
 
-## Feedback
+</Column>
+</Row>
 
-Help us improve this component by providing feedback, asking questions, and leaving any other comments on [GitHub](https://github.com/carbon-design-system/carbon-website/issues/new?assignees=&labels=feedback&template=feedback.md).
+## Modifiers
+
+The data table features a zebra stripes modifier that styles the table rows with alternating colors to make scanning horizontal information easier for the user.
+
+<Row>
+<Column colLg={8}>
+
+![data table with zebra stripes](images/datatable-zebra.png)
+
+</Column>
+</Row>
+
+### Related
+
+The following components are additional ways to organize and navigate data.
+
+- [Accordion](/components/accordion/code/)
+
+- [List](/components/list/code/)
+
+- [Pagination](/components/pagination/code/)
+
+- [Structured list](/components/structured-list/code/)
+
+### Feedback
+
+Help us improve this pattern by providing feedback, asking questions, and leaving any other comments on [GitHub](https://github.com/carbon-design-system/carbon-website/issues/new?assignees=&labels=feedback&template=feedback.md).
