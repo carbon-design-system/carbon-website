@@ -274,12 +274,12 @@ const colorTokens = {
       role: ['Secondary text', 'Input labels'],
       value: {
         white: {
-          name: 'Gray 80',
-          hex: '#393939',
+          name: 'Gray 70',
+          hex: '#525252',
         },
         g10: {
-          name: 'Gray 80',
-          hex: '#393939',
+          name: 'Gray 70',
+          hex: '#525252',
         },
         g90: {
           name: 'Gray 30',
