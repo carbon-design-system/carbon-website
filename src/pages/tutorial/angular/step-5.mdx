@@ -175,7 +175,7 @@ You can speed up deploys by decreasing the files uploaded through cloud foundry.
 Login to IBM Cloud with:
 
 ```bash
-$ cf login -a https://api.ng.bluemix.net -sso
+cf login -a https://api.ng.bluemix.net -sso
 ```
 
 Deploy app using the `cf push` command. Since `manifest.yml` is in our root directory, we don't need to specify it in the push command. But, if you have multiple manifest files that target different environments, it's good practice to specify the file.
@@ -183,7 +183,7 @@ Deploy app using the `cf push` command. Since `manifest.yml` is in our root dire
 _Note: To successfully deploy, you might need to update the region code (e.g. `api.[REGION].bluemix.net`). [Learn more.](https://developer.ibm.com/answers/answers/166990/view.html)_
 
 ```bash
-$ cf push -f manifest.yml
+cf push -f manifest.yml
 ```
 
 To make it easy on ourselves by not needing to remember that command, let's add a script in `package.json`. We can combine the build and deploy steps to make sure we only deploy immediately after running the build. In the `"scripts"` object in `package.json`, add:
