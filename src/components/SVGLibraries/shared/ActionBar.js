@@ -11,7 +11,7 @@ import styles from './ActionBar.module.scss';
 const ActionBar = ({
   name,
   friendlyName,
-  component: Element,
+  source,
   setIsActionBarVisible,
   isActionBarVisible,
 }) => {
@@ -32,8 +32,7 @@ const ActionBar = ({
 
   const handleDownload = () => {
     const a = document.body.appendChild(document.createElement('a'));
-    const string = Element.outerHTML;
-    const blob = new Blob([string], { type: 'image/svg+xml' });
+    const blob = new Blob([source], { type: 'image/svg+xml' });
     const url = window.URL.createObjectURL(blob);
     a.download = `${name}.svg`;
     a.href = url;
