@@ -246,7 +246,7 @@ const colorTokens = {
     },
     '$decorative-01': {
       role: [
-        '"Light" variant elements',
+        '“Light” variant elements',
       ],
       value: {
         white: {
@@ -926,7 +926,7 @@ const colorTokens = {
       },
     },
     '$hover-ui-light': {
-      role: ['$“Light” variant hover'],
+      role: ['“Light” variant hover'],
       value: {
         white: {
           name: 'Gray 10 hover',
