@@ -49,8 +49,8 @@ This tutorial has an accompanying GitHub repository called [carbon-tutorial-vue]
 With your repository all set up, let's check out the branch for this tutorial step's starting point.
 
 ```bash
-$ git fetch upstream
-$ git checkout -b vue-step-5 upstream/vue-step-5
+git fetch upstream
+git checkout -b vue-step-5 upstream/vue-step-5
 ```
 
 <InlineNotification>
@@ -64,13 +64,13 @@ $ git checkout -b vue-step-5 upstream/vue-step-5
 Install the app's dependencies (in case you're starting fresh in your current directory and not continuing from the previous step):
 
 ```bash
-$ yarn
+yarn
 ```
 
 Then, start the app:
 
 ```bash
-$ yarn serve
+yarn serve
 ```
 
 You should see something similar to where the [previous step](/tutorial/vue/step-4) left off.
@@ -121,7 +121,7 @@ You can read more about optimizing Carbon's Sass in the [Carbon Design System pu
 Before we deploy our app, we need to create an optimized production build with this command. You may need to `CTRL-C` to stop the development environment first.
 
 ```bash
-$ yarn build
+yarn build
 ```
 
 Looking at `package.json`, you'll find `yarn build` to run `vue-cli-service build`. This builds the app for production to the `dist` folder. It bundles Vue in production mode and optimizes the build for the best performance. It even goes so far to minify files and include hashes in filenames for caching.
@@ -177,7 +177,7 @@ You can speed up deploys by decreasing the files uploaded through IBM Cloud. To 
 Login to IBM Cloud.
 
 ```bash
-$ cf login -sso
+cf login -sso
 ```
 
 Deploy app using the `cf push` command. Since `manifest.yml` is in our root directory, we don't need to specify it in the push command. But, if you have multiple manifest files that target different environments, it's good practice to specify the file.
@@ -185,7 +185,7 @@ Deploy app using the `cf push` command. Since `manifest.yml` is in our root dire
 _Note: To successfully deploy, you might need to update the region code (e.g. `api.[REGION].bluemix.net`). [Learn more.](https://developer.ibm.com/answers/answers/166990/view.html)_
 
 ```bash
-$ cf push -f manifest.yml
+cf push -f manifest.yml
 ```
 
 To make it easy on ourselves by not needing to remember that command, let's add a script in `package.json`. We can combine the build and deploy steps to make sure we only deploy immediately after running the build. In the `"scripts"` object in `package.json`, add:
@@ -207,7 +207,7 @@ That does it! We're going to submit a pull request to verify completion of this 
 Run the CI check to make sure we're all set to submit a pull request.
 
 ```bash
-$ yarn ci-check
+yarn ci-check
 ```
 
 <InlineNotification>
@@ -221,13 +221,13 @@ $ yarn ci-check
 Before we can create a pull request, stage and commit all of your changes:
 
 ```bash
-$ git add --all && git commit -m "feat(tutorial): complete step 5"
+git add --all && git commit -m "feat(tutorial): complete step 5"
 ```
 
 Then, push to your repository:
 
 ```bash
-$ git push origin vue-step-5
+git push origin vue-step-5
 ```
 
 <InlineNotification>
