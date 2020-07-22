@@ -7,16 +7,14 @@ import {
   threeColorLight,
   fourColorLight,
   fiveColorLight,
-  monoSequentialTwo,
-  monoSequentialOne,
-  divergingSequentialOne,
-  divergingSequentialTwo,
   categoricalDark,
   oneColorDark,
   twoColorDark,
   threeColorDark,
   fourColorDark,
   fiveColorDark,
+  monoColors,
+  divergingColors,
 } from '../../data/data-visualization/palettes';
 import ColorPaletteColor from './ColorPaletteColor';
 import PalettesContainer from './PalettesContainer';
@@ -28,28 +26,6 @@ const ColorPalette = ({ type, isMono, isDiverging }) => {
   const [groupNumber, setGroupNumber] = useState(1);
 
   // SET COLORS
-  const monoColors = [
-    {
-      color: 'blue',
-      data: monoSequentialOne,
-    },
-    {
-      color: 'purple',
-      data: monoSequentialTwo,
-    },
-  ];
-
-  const divergingColors = [
-    {
-      color: 'red',
-      data: divergingSequentialOne,
-    },
-    {
-      color: 'teal',
-      data: divergingSequentialTwo,
-    },
-  ];
-
   const categorical = dark ? categoricalDark : categoricalLight;
   const oneColor = dark ? oneColorDark : oneColorLight;
   const twoColor = dark ? twoColorDark : twoColorLight;
