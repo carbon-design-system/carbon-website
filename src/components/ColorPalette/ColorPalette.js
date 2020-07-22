@@ -1,244 +1,225 @@
 import React, { useState } from 'react';
-import { ContentSwitcher, Switch } from 'carbon-components-react';
-import cx from 'classnames';
+import { ContentSwitcher, Switch, Dropdown } from 'carbon-components-react';
+import {
+  categoricalLight,
+  oneColorLight,
+  twoColorLight,
+  threeColorLight,
+  fourColorLight,
+  fiveColorLight,
+  monoSequentialTwo,
+  monoSequentialOne,
+  divergingSequentialOne,
+  divergingSequentialTwo,
+  categoricalDark,
+  oneColorDark,
+  twoColorDark,
+  threeColorDark,
+  fourColorDark,
+  fiveColorDark,
+} from '../../data/data-visualization/palettes';
+import ColorPaletteColor from './ColorPaletteColor';
+import PalettesContainer from './PalettesContainer';
 
-const ColorPalette = ({ type }) => {
-  const categorical = [
-    {
-      name: 'Purple 70',
-      hex: '6929c4',
-      light: true,
-    },
-    {
-      name: 'Cyan 50',
-      hex: '1192e8',
-      light: false,
-    },
-    {
-      name: 'Teal 70',
-      hex: '005d5d',
-      light: true,
-    },
-    {
-      name: 'Magenta 70',
-      hex: '9f1853',
-      light: true,
-    },
-    {
-      name: 'Red 50',
-      hex: 'fa4d56',
-      light: false,
-    },
-    {
-      name: 'Red 90',
-      hex: '570408',
-      light: true,
-    },
-    {
-      name: 'Green 60',
-      hex: '198038',
-      light: true,
-    },
-    {
-      name: 'Blue 80',
-      hex: '002d9c',
-      light: true,
-    },
-    {
-      name: 'Magenta 50',
-      hex: 'ee538b',
-      light: false,
-    },
-  ];
-
-  const monoSequentialOne = [
-    {
-      name: 'Blue 10',
-      hex: 'edf5ff',
-      light: false,
-    },
-    {
-      name: 'Blue 20',
-      hex: 'd0e2ff',
-      light: false,
-    },
-    {
-      name: 'Blue 30',
-      hex: 'a6c8ff',
-      light: false,
-    },
-    {
-      name: 'Blue 40',
-      hex: '78a9ff',
-      light: false,
-    },
-    {
-      name: 'Blue 50',
-      hex: '4589ff',
-      light: false,
-    },
-    {
-      name: 'Blue 60',
-      hex: '0f62fe',
-      light: true,
-    },
-    {
-      name: 'Blue 70',
-      hex: '0043ce',
-      light: true,
-    },
-    {
-      name: 'Blue 80',
-      hex: '002d9c',
-      light: true,
-    },
-    {
-      name: 'Blue 90',
-      hex: '001d6c',
-      light: true,
-    },
-    {
-      name: 'Blue 100',
-      hex: '001141',
-      light: true,
-    },
-  ];
-
-  const monoSequentialTwo = [
-    {
-      name: 'Purple 10',
-      hex: 'f6f2ff',
-      light: false,
-    },
-    {
-      name: 'Purple 20',
-      hex: 'e8daff',
-      light: false,
-    },
-    {
-      name: 'Purple 30',
-      hex: 'd4bbff',
-      light: false,
-    },
-    {
-      name: 'Purple 40',
-      hex: 'be95ff',
-      light: false,
-    },
-    {
-      name: 'Purple 50',
-      hex: 'a56eff',
-      light: false,
-    },
-    {
-      name: 'Purple 60',
-      hex: '8a3ffc',
-      light: true,
-    },
-    {
-      name: 'Purple 70',
-      hex: '6929c4',
-      light: true,
-    },
-    {
-      name: 'Purple 80',
-      hex: '491d8b',
-      light: true,
-    },
-    {
-      name: 'Purple 90',
-      hex: '31135e',
-      light: true,
-    },
-    {
-      name: 'Purple 100',
-      hex: '1c0f30',
-      light: true,
-    },
-  ];
-
+const ColorPalette = ({ type, isMono, isDiverging }) => {
+  // STATES
   const [continuous, setContinuous] = useState(false);
-  console.log('initial state', continuous);
+  const [dark, setDark] = useState(false);
+  const [groupNumber, setGroupNumber] = useState(1);
+
+  // SET COLORS
+  const monoColors = [
+    {
+      color: 'blue',
+      data: monoSequentialOne,
+    },
+    {
+      color: 'purple',
+      data: monoSequentialTwo,
+    },
+  ];
+
+  const divergingColors = [
+    {
+      color: 'red',
+      data: divergingSequentialOne,
+    },
+    {
+      color: 'teal',
+      data: divergingSequentialTwo,
+    },
+  ];
+
+  const categorical = dark ? categoricalDark : categoricalLight;
+  const oneColor = dark ? oneColorDark : oneColorLight;
+  const twoColor = dark ? twoColorDark : twoColorLight;
+  const threeColor = dark ? threeColorDark : threeColorLight;
+  const fourColor = dark ? fourColorDark : fourColorLight;
+  const fiveColor = dark ? fiveColorDark : fiveColorLight;
+
+  // grouped colors won't update "light" / "dark" versions if selectedGroup is a state
+  // for this reason, I made it into a switch case. Light/dark switcher works if it's a variable.
+  // however, when the dropdown is then updated, the rendered groups don't change.
+  // for this reason, I made a state (groupNumber), which will change on dropdown change,
+  // and the selectedGroup variable is switched based on the groupNumber state.
+  // this way both switcher and dropdown changes work.
+  let selectedGroup;
+  if (type === 'grouped') {
+    switch (groupNumber) {
+      case 1:
+        selectedGroup = oneColor;
+        break;
+      case 2:
+        selectedGroup = twoColor;
+        break;
+      case 3:
+        selectedGroup = threeColor;
+        break;
+      case 4:
+        selectedGroup = fourColor;
+        break;
+      case 5:
+        selectedGroup = fiveColor;
+        break;
+      default:
+    }
+  } else if (type === 'sequential' && isMono) {
+    selectedGroup = monoColors;
+  } else if (type === 'sequential' && isDiverging) {
+    selectedGroup = divergingColors;
+  }
+
+  // DROPDOWN STUFF
+  const dropdownItems = [
+    {
+      id: 1,
+      label: '1-Color group',
+    },
+    {
+      id: 2,
+      label: '2-Color group',
+    },
+    {
+      id: 3,
+      label: '3-Color group',
+    },
+    {
+      id: 4,
+      label: '4-Color group',
+    },
+    {
+      id: 5,
+      label: '5-Color group',
+    },
+  ];
+
+  const onDropdownChange = (e) => {
+    setGroupNumber(e.selectedItem.id);
+  };
+
+  // SWITCHER STUFF
+
+  // dont really need this function, but switcher won't work without it
+  const onSwitcherChange = () => {
+    console.log('something');
+  };
 
   const setTrue = () => {
-    setContinuous(true);
+    if (type === 'sequential') {
+      setContinuous(true); // for sequential palettes
+    } else {
+      setDark(true); // for all other palettes
+    }
   };
 
   const setFalse = () => {
-    setContinuous(false);
+    if (type === 'sequential') {
+      setContinuous(false); // for sequential palettes
+    } else {
+      setDark(false); // for all other palettes
+    }
   };
 
+  const switcherOne = type === 'sequential' ? 'Discrete' : 'Light';
+  const switcherTwo = type === 'sequential' ? 'Continuous' : 'Dark';
+
   return (
-    <div className="color-palette-container">
-      <ContentSwitcher
-        onChange={() => {
-          console.log('changed');
-        }}
-        className="palette-switcher"
-        selectionMode="automatic"
-        selectedIndex={0}
-      >
-        <Switch
-          text={type === 'categorical' ? 'Light' : 'Discrete'}
-          onClick={setFalse}
-        />
-        <Switch
-          text={type === 'categorical' ? 'Dark' : 'Continuous'}
-          onClick={setTrue}
-        />
-      </ContentSwitcher>
-      {type === 'categorical' && (
-        <div className="palettes-container">
-          {categorical.map((i, index) => (
-            <div
-              className={cx('color-palette-color', { 'light-text': i.light })}
-              style={{ background: `#${i.hex}` }}
-            >
-              <span>
-                {`0${index + 1}.`} {i.name}
-              </span>{' '}
-              <span>{i.hex}</span>
+    <div>
+      <div className="palette-controls">
+        <ContentSwitcher
+          onChange={onSwitcherChange}
+          className="palette-switcher"
+          selectionMode="automatic"
+          selectedIndex={0}
+        >
+          <Switch text={switcherOne} onClick={setFalse} />
+          <Switch text={switcherTwo} onClick={setTrue} />
+        </ContentSwitcher>
+        {type === 'grouped' && (
+          <Dropdown
+            label="Color group selection"
+            id="color-group-dropdown"
+            size="xl"
+            light
+            items={dropdownItems}
+            onChange={onDropdownChange}
+            initialSelectedItem={dropdownItems[0]}
+          />
+        )}
+      </div>
+
+      {type === 'grouped' && (
+        <PalettesContainer dark={dark}>
+          {selectedGroup.map((i, index) => (
+            <div className="group-container" key={index}>
+              <div className="group-option">Option {index + 1}</div>
+              {i.map((j, jIndex) => (
+                <ColorPaletteColor
+                  index={jIndex}
+                  lightText={j.light}
+                  hex={j.hex}
+                  name={j.name}
+                />
+              ))}
             </div>
           ))}
-        </div>
+        </PalettesContainer>
+      )}
+
+      {type === 'categorical' && (
+        <PalettesContainer dark={dark}>
+          {categorical.map((i, index) => (
+            <ColorPaletteColor
+              isNumbered
+              index={index}
+              lightText={i.light}
+              hex={i.hex}
+              name={i.name}
+            />
+          ))}
+        </PalettesContainer>
       )}
 
       {type === 'sequential' && (
         <div className="sequential-container">
-          <div
-            className={cx('palettes-container sequential', {
-              'gradient-blue': continuous,
-            })}
-          >
-            {monoSequentialOne.map((i, index) => (
-              <div
-                className={cx('color-palette-color', {
-                  'light-text': i.light,
-                })}
-                style={!continuous ? { background: `#${i.hex}` } : null}
-              >
-                <span>{i.name}</span> <span>{i.hex}</span>
-              </div>
-            ))}
-            )}
-          </div>
-          <div
-            className={cx('palettes-container sequential', {
-              'gradient-purple': continuous,
-            })}
-          >
-            {monoSequentialTwo.map((i, index) => (
-              <div
-                className={cx('color-palette-color', {
-                  'light-text': i.light,
-                })}
-                style={!continuous ? { background: `#${i.hex}` } : null}
-              >
-                <span>{i.name}</span> <span>{i.hex}</span>
-              </div>
-            ))}
-            )}
-          </div>
+          {selectedGroup.map((i, index) => (
+            <PalettesContainer
+              color={i.color}
+              index={index}
+              continuous={continuous}
+            >
+              {i.data.map((j, jIndex) => (
+                <ColorPaletteColor
+                  index={jIndex}
+                  lightText={j.light}
+                  hex={j.hex}
+                  name={j.name}
+                  isSequential
+                  continuous={continuous}
+                />
+              ))}
+            </PalettesContainer>
+          ))}
         </div>
       )}
     </div>
