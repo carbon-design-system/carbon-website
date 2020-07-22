@@ -118,12 +118,6 @@ const ColorPalette = ({ type, isMono, isDiverging }) => {
   };
 
   // SWITCHER STUFF
-
-  // dont really need this function, but switcher won't work without it
-  const onSwitcherChange = () => {
-    console.log('something');
-  };
-
   const setTrue = () => {
     if (type === 'sequential') {
       setContinuous(true); // for sequential palettes
@@ -147,7 +141,7 @@ const ColorPalette = ({ type, isMono, isDiverging }) => {
     <div>
       <div className="palette-controls">
         <ContentSwitcher
-          onChange={onSwitcherChange}
+          onChange={() => {}} // switcher won't work w/o func
           className="palette-switcher"
           selectionMode="automatic"
           selectedIndex={0}
