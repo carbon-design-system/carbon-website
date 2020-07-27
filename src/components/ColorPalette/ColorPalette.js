@@ -16,6 +16,7 @@ import {
   fiveColorDark,
   monoColors,
   divergingColors,
+  alert,
 } from '../../data/data-visualization/palettes';
 import ColorPaletteColor from './ColorPaletteColor';
 import PalettesContainer from './PalettesContainer';
@@ -64,6 +65,10 @@ const ColorPalette = ({ type, isMono, isDiverging }) => {
     selectedGroup = monoColors;
   } else if (type === 'sequential' && isDiverging) {
     selectedGroup = divergingColors;
+  } else if (type === 'categorical') {
+    selectedGroup = categorical;
+  } else if (type === 'alert') {
+    selectedGroup = alert;
   }
 
   // DROPDOWN STUFF
@@ -162,9 +167,9 @@ const ColorPalette = ({ type, isMono, isDiverging }) => {
         </PalettesContainer>
       )}
 
-      {type === 'categorical' && (
-        <PalettesContainer dark={dark}>
-          {categorical.map((i, index) => (
+      {(type === 'categorical' || type === 'alert') && (
+        <PalettesContainer dark={dark} type={type}>
+          {selectedGroup.map((i, index) => (
             <ColorPaletteColor
               isNumbered
               index={index}

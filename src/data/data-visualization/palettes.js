@@ -1058,3 +1058,26 @@ export const divergingColors = [
     data: divergingSequentialTwo,
   },
 ];
+
+export const alert = [
+  {
+    name: 'Red 60',
+    hex: 'da1e28',
+    light: true,
+  },
+  {
+    name: 'Orange 40',
+    hex: 'ff832b',
+    light: false,
+  },
+  {
+    name: 'Green 50',
+    hex: '24a148',
+    light: false,
+  },
+  {
+    name: 'Yellow 30',
+    hex: 'f1c21b',
+    light: false,
+  },
+];
