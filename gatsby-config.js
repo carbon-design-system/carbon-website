@@ -31,6 +31,5 @@ module.exports = {
     'gatsby-plugin-netlify-cache',
     'gatsby-plugin-sitemap',
     'gatsby-plugin-remove-serviceworker',
-    'gatsby-plugin-percy',
   ],
 };
