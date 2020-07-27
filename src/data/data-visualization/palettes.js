@@ -866,6 +866,112 @@ const monoSequentialTwo = [
   },
 ];
 
+const monoSequentialThree = [
+  {
+    name: 'Cyan 10',
+    hex: 'e5f6ff',
+    light: false,
+  },
+  {
+    name: 'Cyan 20',
+    hex: 'bae6ff',
+    light: false,
+  },
+  {
+    name: 'Cyan 30',
+    hex: '82cfff',
+    light: false,
+  },
+  {
+    name: 'Cyan 40',
+    hex: '33b1ff',
+    light: false,
+  },
+  {
+    name: 'Cyan 50',
+    hex: '1192e8',
+    light: false,
+  },
+  {
+    name: 'Cyan 60',
+    hex: '0072c3',
+    light: true,
+  },
+  {
+    name: 'Cyan 70',
+    hex: '00539a',
+    light: true,
+  },
+  {
+    name: 'Cyan 80',
+    hex: '003a6d',
+    light: true,
+  },
+  {
+    name: 'Cyan 90',
+    hex: '012749',
+    light: true,
+  },
+  {
+    name: 'Cyan 100',
+    hex: '1c0f30',
+    light: true,
+  },
+];
+
+const monoSequentialFour = [
+  {
+    name: 'Teal 10',
+    hex: 'd9fbfb',
+    light: false,
+  },
+  {
+    name: 'Teal 20',
+    hex: '9ef0f0',
+    light: false,
+  },
+  {
+    name: 'Teal 30',
+    hex: '3ddbd9',
+    light: false,
+  },
+  {
+    name: 'Teal 40',
+    hex: '08bdba',
+    light: false,
+  },
+  {
+    name: 'Teal 50',
+    hex: '009d9a',
+    light: false,
+  },
+  {
+    name: 'Teal 60',
+    hex: '007d79',
+    light: true,
+  },
+  {
+    name: 'Teal 70',
+    hex: '005d5d',
+    light: true,
+  },
+  {
+    name: 'Teal 80',
+    hex: '004144',
+    light: true,
+  },
+  {
+    name: 'Teal 90',
+    hex: '022b30',
+    light: true,
+  },
+  {
+    name: 'Teal 100',
+    hex: '081a1c',
+    light: true,
+  },
+];
+
 const divergingSequentialOne = [
   {
     name: 'Red 80',
@@ -1040,6 +1146,14 @@ export const monoColors = [
   {
     color: 'purple',
     data: monoSequentialTwo,
+  },
+  {
+    color: 'cyan',
+    data: monoSequentialThree,
+  },
+  {
+    color: 'teal-only',
+    data: monoSequentialFour,
   },
 ];
 

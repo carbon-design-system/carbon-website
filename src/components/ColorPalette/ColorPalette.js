@@ -124,6 +124,7 @@ const ColorPalette = ({ type, isMono, isDiverging }) => {
       <div
         className={cx('palette-controls', {
           'group-controls': type === 'grouped',
+          'sequential-controls': type === 'sequential',
           'dark-controls': dark,
         })}
       >
@@ -189,6 +190,7 @@ const ColorPalette = ({ type, isMono, isDiverging }) => {
               index={index}
               continuous={continuous}
             >
+              <div className="group-option">Option {index + 1}</div>
               {i.data.map((j, jIndex) => (
                 <ColorPaletteColor
                   index={jIndex}

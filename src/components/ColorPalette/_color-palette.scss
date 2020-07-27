@@ -158,6 +158,14 @@
 }
 
 // SEQUENTIAL
+.sequential-controls {
+  margin-bottom: 0;
+}
+
+.sequential-controls .palette-switcher {
+  border-bottom: 1px solid $ui-03;
+}
+
 .sequential-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -180,6 +188,22 @@
 
 .sequential:last-of-type {
   border-left: 1px solid white;
+}
+
+.sequential-container
+  .palettes-container:nth-child(even)
+  .group-option::before {
+  position: absolute;
+  content: "";
+  width: 1px;
+  height: calc(100% + 1px);
+  top: -1px;
+  left: -1px;
+  background-color: $ui-03;
+
+  @include carbon--breakpoint-down("sm") {
+    display: none; //all indiv rows, so don't need a left "border"
+  }
 }
 
 .gradient-purple {
@@ -255,5 +279,37 @@
     #007d79,
     #005d5d,
     #004144
+  );
+}
+
+.gradient-cyan {
+  background: linear-gradient(
+    to bottom,
+    #e5f6ff,
+    #bae6ff,
+    #82cfff,
+    #33b1ff,
+    #1192e8,
+    #0072c3,
+    #00539a,
+    #003a6d,
+    #012749,
+    #1c0f30
+  );
+}
+
+.gradient-teal-only {
+  background: linear-gradient(
+    to bottom,
+    #d9fbfb,
+    #9ef0f0,
+    #3ddbd9,
+    #08bdba,
+    #009d9a,
+    #007d79,
+    #005d5d,
+    #004144,
+    #022b30,
+    #081a1c
   );
 }
