@@ -10,8 +10,9 @@ const reactVersion = Packages.dependencies['carbon-components-react'];
 const Content = ({ buildTime }) => (
   <>
     <p>
-      Have questions? Email us or open
-      <br /> an issue on{' '}
+      Have questions? Email us <br />
+      at <a href="mailto:carbon@us.ibm.com">carbon@us.ibm.com</a> <br />
+      or open an issue on{' '}
       <a
         style={{ textDecoration: 'underline' }}
         href="https://github.com/carbon-design-system/carbon-website/issues/new"
