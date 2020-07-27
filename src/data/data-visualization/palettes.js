@@ -52,12 +52,7 @@ export const categoricalLight = [
   {
     name: 'Teal 50',
     hex: '009d9a',
-    light: true,
-  },
-  {
-    name: 'Green 60',
-    hex: '198038',
-    light: true,
+    light: false,
   },
   {
     name: 'Cyan 90',
@@ -67,7 +62,7 @@ export const categoricalLight = [
   {
     name: 'Orange 70',
     hex: '8a3800',
-    light: false,
+    light: true,
   },
   {
     name: 'Purple 50',
