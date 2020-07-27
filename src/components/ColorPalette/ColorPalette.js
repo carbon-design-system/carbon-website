@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ContentSwitcher, Switch, Dropdown } from 'carbon-components-react';
+import cx from 'classnames';
 import {
   categoricalLight,
   oneColorLight,
@@ -115,7 +116,12 @@ const ColorPalette = ({ type, isMono, isDiverging }) => {
 
   return (
     <div>
-      <div className="palette-controls">
+      <div
+        className={cx('palette-controls', {
+          'group-controls': type === 'grouped',
+          'dark-controls': dark,
+        })}
+      >
         <ContentSwitcher
           onChange={() => {}} // switcher won't work w/o func
           className="palette-switcher"
