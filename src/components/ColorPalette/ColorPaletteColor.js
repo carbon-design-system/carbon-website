@@ -12,14 +12,9 @@ const ColorPaletteColor = ({
   isSequential,
   continuous,
 }) => {
-  const [hover, setHover] = useState(false);
-
   // determine styles
   const defaultStyle = { background: `#${hex}` };
   const sequentialStyle = !continuous ? defaultStyle : null;
-  const copyStyle = hover
-    ? { background: `#${hex}`, filter: `brightness(125%)` }
-    : { background: `#${hex}` };
 
   // determine number
   const checkDigit = index >= 9 ? `${index + 1}. ` : `0${index + 1}. `;
@@ -27,10 +22,6 @@ const ColorPaletteColor = ({
 
   const handleCopy = () => {
     copy(hex, { format: 'text/plain' });
-  };
-
-  const handleHover = () => {
-    setHover(!hover);
   };
 
   return (
@@ -46,13 +37,10 @@ const ColorPaletteColor = ({
       <div>
         <span>{hex}</span>
         <CopyButton
-          style={isSequential ? sequentialStyle : copyStyle}
           feedback="Copied!"
           feedbackTimeout={3000}
           iconDescription="Copy to clipboard"
           onClick={handleCopy}
-          onMouseEnter={handleHover}
-          onMouseLeave={handleHover}
           className={cx('palette-copy', { 'light-copy': lightText })}
         />
       </div>
