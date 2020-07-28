@@ -106,7 +106,7 @@ const TypesetExample = (props) => (
         // eslint-disable-next-line no-useless-concat
         lineHeight: `${`${calculateFluidLineHeight('line-height')}px / `}${
           currentBreakpointSpecs['line-height']
-        }rem`,
+        }em`,
         letterSpacing: currentBreakpointSpecs['letter-spacing']
           .toString()
           .replace('0.', '.'),
