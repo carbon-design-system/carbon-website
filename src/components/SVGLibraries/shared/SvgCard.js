@@ -17,7 +17,7 @@ const SvgCard = ({ icon, containerIsVisible, ...rest }) => {
   let { source } = assets[0];
 
   if (assets.length > 1) {
-    source = assets.find(({ size }) => size === 32);
+    source = assets.find(({ size }) => size === 32).source;
   }
 
   return (
