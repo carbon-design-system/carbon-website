@@ -8,9 +8,9 @@ import ase from './icons/ase.png';
 import codesandbox from './icons/codesandbox.svg';
 import codepen from './icons/codepen.svg';
 import illustrator from './icons/illustrator.svg';
-import react from './icons/react.svg';
-import vue from './icons/vue.svg';
-import angular from './icons/angular.svg';
+import react from './icons/react.png';
+import vue from './icons/vue.png';
+import angular from './icons/angular.png';
 
 const localIcons = {
   sketch,
