@@ -1,3 +1,5 @@
+const { ENABLE_COMPONENT_INDEX_PAGE } = process.env;
+
 module.exports = {
   siteMetadata: {
     title: 'Carbon Design System',
@@ -31,5 +33,13 @@ module.exports = {
     'gatsby-plugin-netlify-cache',
     'gatsby-plugin-sitemap',
     'gatsby-plugin-remove-serviceworker',
+    {
+      resolve: 'gatsby-plugin-feature-flags',
+      options: {
+        featureFlags: {
+          'enable-component-index-page': !!ENABLE_COMPONENT_INDEX_PAGE,
+        },
+      },
+    },
   ],
 };
