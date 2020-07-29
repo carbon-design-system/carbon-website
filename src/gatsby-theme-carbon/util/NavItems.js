@@ -37,6 +37,4 @@ export function useNavItems() {
       }),
     };
   });
-
-  return navItems;
 }
