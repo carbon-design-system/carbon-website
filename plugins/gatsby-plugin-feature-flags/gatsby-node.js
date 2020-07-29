@@ -1,4 +1,7 @@
 exports.onCreatePage = ({ page, actions }, pluginOptions) => {
+  console.log();
+  console.log('DEBUG', JSON.stringify(pluginOptions, null, 2));
+  console.log();
   if (!page.context.frontmatter) {
     return;
   }
