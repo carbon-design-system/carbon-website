@@ -1,10 +1,5 @@
 name: Deployment status
 
-## scheduled deploy
-##on:
-##schedule:
-## - cron: '0 8 * * *'
-
 on:
   workflow_dispatch:
     inputs:
@@ -13,6 +8,11 @@ on:
   push:
     branches:
       - master
+    paths-ignore: 
+      - docs/**
+      - .vscode/**
+      - .gitub/**
+      - !.github/workflows/deploy.yml # re-deploy after changes to deployment workflow
 
 jobs:
   build:
