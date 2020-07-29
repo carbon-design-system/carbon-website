@@ -1,7 +1,4 @@
 exports.onCreatePage = ({ page, actions }, pluginOptions) => {
-  console.log();
-  console.log('DEBUG', JSON.stringify(pluginOptions, null, 2));
-  console.log();
   if (!page.context.frontmatter) {
     return;
   }
@@ -14,7 +11,7 @@ exports.onCreatePage = ({ page, actions }, pluginOptions) => {
   const { featureFlags } = pluginOptions;
   const { flag } = page.context.frontmatter;
 
-  if (!featureFlags[flag]) {
+  if (featureFlags[flag] === undefined) {
     throw new Error(`Unable to find a feature flag named: \`${flag}\``);
   }
 
