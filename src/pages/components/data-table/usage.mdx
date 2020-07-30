@@ -94,9 +94,9 @@ import {
     {`<DataTable
     rows={rowData}
     headers={headerData}
-    render={({ rows, headers, getHeaderProps }) => (
+    render={({ rows, headers, getHeaderProps, getTableProps }) => (
     <TableContainer title="DataTable">
-      <Table>
+      <Table {...getTableProps()}>
         <TableHead>
           <TableRow>
             {headers.map(header => (
@@ -135,9 +135,16 @@ import {
     {`<DataTable
   rows={rowData}
   headers={headerData}
-  render={({ rows, headers, getHeaderProps, getSelectionProps, getRowProps }) => (
+  render={({
+    rows,
+    headers,
+    getHeaderProps,
+    getSelectionProps,
+    getRowProps,
+    getTableProps
+  }) => (
   <TableContainer title="DataTable with selection">
-    <Table>
+    <Table {...getTableProps()}>
       <TableHead>
         <TableRow>
           <TableSelectAll {...getSelectionProps()} />
