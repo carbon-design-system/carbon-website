@@ -6,131 +6,43 @@ tabs: ["Usage", "Style", "Code", "Accessibility"]
 
 <PageDescription>
 
-How to build a notification using React. For code usage with other frameworks, please follow the links in the live demo on the usage tab.
+Preview the notification component with the React live demo. For detailed code usage documentation, see the Storybooks for each framework below.
 
 </PageDescription>
 
-<AnchorLinks>
+## Documentation
 
-<AnchorLink>Overview</AnchorLink>
-<AnchorLink>Toast notification</AnchorLink>
-<AnchorLink>Inline notification</AnchorLink>
-<AnchorLink>Inline notifications with action button</AnchorLink>
-<AnchorLink>Component API</AnchorLink>
-<AnchorLink>Feedback</AnchorLink>
+<Row className="resource-card-group">
+<Column colLg={4} colMd={4} noGutterSm>
+  <ResourceCard
+    subTitle="React"
+    href="http://react.carbondesignsystem.com/?path=/story/notification--toast"
+    >
 
-</AnchorLinks>
+<MdxIcon name="react" />
 
-## Overview
+  </ResourceCard>
+</Column>
+<Column colLg={4} colMd={4} noGutterSm>
+  <ResourceCard
+      subTitle="Angular (Community)"
+      href="https://angular.carbondesignsystem.com/?path=/story/components-notification--toast"
+      >
 
-Carbon Notifications come in two variants: toast, and inline. They are created by using the `ToastNotification` or `InlineNotification` components.
+<MdxIcon name="angular" />
 
-## Toast notification
+  </ResourceCard>
+</Column>
+<Column colLg={4} colMd={4} noGutterSm>
+  <ResourceCard
+      subTitle="Vue (Community)"
+      href="http://vue.carbondesignsystem.com/?path=/story/components-cvtoastnotification--default"
+      >
 
-You can use the `ToastNotification` component to display a non–modal, time–based short message that appears at the bottom or the top of the screen.
+<MdxIcon name="vue" />
 
-```jsx
-import { ToastNotification } from "carbon-components-react";
+  </ResourceCard>
+</Column>
+</Row>
 
-function MyComponent() {
-  return (
-    <ToastNotification
-      caption="00:00:00 AM"
-      iconDescription="Dismiss notification"
-      subtitle="Notification subtitle"
-      timeout={0}
-      title="Notification title"
-    />
-  );
-}
-```
-
-## Inline notification
-
-You can use the `InlineNotification` to notify users of the status of an action. Unlike `ToastNotification` these appear at the top of the primary content area.
-
-```jsx
-import { InlineNotification } from "carbon-components-react";
-
-function MyComponent() {
-  return (
-    <InlineNotification
-      kind="info"
-      iconDescription="Dismiss notification"
-      subtitle="Notification subtitle"
-      title="Notification title"
-    />
-  );
-}
-```
-
-## Inline notifications with action button
-
-An inline notification optionally can have a ghost button that allows the user to take further action.
-
-```jsx
-import { InlineNotification } from "carbon-components-react";
-
-function Mycomponent() {
-  return (
-    <InlineNotification
-      kind="info"
-      actions={<NotificationActionButton>Action</NotificationActionButton>}
-      icondescription="Dismiss notification"
-      subtitle="Notification subtitle"
-      title="notification title"
-    />
-  );
-}
-```
-
-## Component API
-
-### Inline Notification props
-
-| Prop                  | Type       | Required | Default               | Description                                                                              |
-| --------------------- | ---------- | -------- | --------------------- | ---------------------------------------------------------------------------------------- |
-| actions               | `node`     | –        | –                     | Pass in the action nodes that will be rendered inside the notification                   |
-| children              | `node`     | –        | –                     | Pass in the children that will be rendered inside the notification                       |
-| className             | `string`   | `true`   | `error`               | Optional class names to be applied to the notification                                   |
-| kind                  | `string`   | `true`   | `error`               | Specify what state the notification represents: `error`, `success`, `warning`, or `info` |
-| lowContrast           | `bool`     | –        | –                     | Specify whether you are using the low contrast variant styles                            |
-| title                 | `string`   | `true`   | `provide a caption`   | Specify notification title                                                               |
-| subtitle              | `node`     | –        |                       | Specify notification subtitle                                                            |
-| role                  | `string`   | –        | `alert`               | Provide an alternative role for the notification                                         |
-| onCloseButtonClick    | `function` | –        | `() => {}`            | Function that is called when notification closes                                         |
-| iconDescription       | `string`   | `true`   | `closes notification` | Provide screen reader accessible description for close icon                              |
-| statusIconDescription | `string`   | –        | –                     | Provide screen reader accessible description for status icon                             |
-| notificationType      | `string`   | –        | `inline`              | Specify the type of the button                                                           |
-| hideCloseButton       | `bool`     | –        | `false`               | Optional prop to disable the close button                                                |
-
-### Notification action button props
-
-| Prop      | Type       | Required | Default | Description                                   |
-| --------- | ---------- | -------- | ------- | --------------------------------------------- |
-| classname | `string`   | –        | –       | class name to be applied to the action button |
-| children  | `node`     | –        | –       | the content of the notification button        |
-| onclick   | `function` | –        | –       | click handler for the notification button     |
-
-### Toast notification props
-
-| prop                  | type       | required | default               | description                                                                           |
-| --------------------- | ---------- | -------- | --------------------- | ------------------------------------------------------------------------------------- |
-| children              | `node`     | –        | –                     | Pass in the children that will be rendered inside the notification                    |
-| className             | `string`   | `true`   | –                     | Optional class names to be applied to the notification                                |
-| kind                  | `string`   | `true`   | `error`               | Specify what state the notification represents: 'error', 'info', 'success', 'warning' |
-| lowContrast           | `bool`     | –        | –                     | Specify whether you are using the low contrast variant styles                         |
-| title                 | `string`   | `true`   | `provide a title`     | Specify notification title                                                            |
-| subtitle              | `node`     | –        |                       | Specify notification subtitle                                                         |
-| role                  | `string`   | –        | `alert`               | Provide an alternative role for the notification                                      |
-| caption               | `node`     | –        | `provide a caption`   | The caption for the notification                                                      |
-| onCloseButtonClick    | `function` | –        | `() => {}`            | The function called when the close button is clicked                                  |
-| iconDescription       | `string`   | `true`   | `closes notification` | Provide screen reader accessible description for close icon                           |
-| statusIconDescription | `string`   | –        | –                     | Provide screen reader accessible description for status icon                          |
-| notificationType      | `string`   | –        | `toast`               | The type of notification                                                              |
-| hideCloseButton       | `bool`     | –        | `false`               | Optional prop to disable the close button                                             |
-| timeout               | `number`   | –        | `0`                   | Time until the notification is closed                                                 |
-
-## Feedback
-
-Help us improve this component by providing feedback, asking questions, and leaving any other comments on [GitHub](https://github.com/carbon-design-system/carbon-website/issues/new?assignees=&labels=feedback&template=feedback.md).
+## Live demo
