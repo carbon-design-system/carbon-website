@@ -1,125 +1,80 @@
 ---
 title: Breadcrumb
-description: The breadcrumb component is a secondary navigation pattern that shows hierarchy among content or traces a user’s path.
-tabs: ["Usage", "Style", "Code", "Accessibility"]
+description:
+  The breadcrumb component is a secondary navigation pattern that shows
+  hierarchy among content or traces a user’s path.
+tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 ---
 
 <PageDescription>
 
-How to build a breadcrumb using React. For code usage with other frameworks, please follow the links in the live demo on the usage tab.
+Preview the breadcrumb component with the React live demo. For detailed code
+usage documentation, see the Storybooks for each framework below.
 
 </PageDescription>
 
-<AnchorLinks>
+## Documentation
 
-<AnchorLink>Overview</AnchorLink>
-<AnchorLink>Skeleton state</AnchorLink>
-<AnchorLink>Component API</AnchorLink>
-<AnchorLink>Feedback</AnchorLink>
+<Row className="resource-card-group">
+<Column colLg={4} colMd={4} noGutterSm>
+  <ResourceCard
+    subTitle="React"
+    href="http://react.carbondesignsystem.com/?path=/story/breadcrumb--default"
+    >
 
-</AnchorLinks>
+<MdxIcon name="react" />
 
-## Overview
+  </ResourceCard>
+</Column>
+<Column colLg={4} colMd={4} noGutterSm>
+  <ResourceCard
+      subTitle="Angular (Community)"
+      href="https://angular.carbondesignsystem.com/?path=/story/components-breadcrumb--basic"
+      >
 
-You can build a breadcrumb using a combination of the `Breadcrumb` and
-`BreadcrumbItem` components. The `Breadcrumb` component accepts a list of
-`BreadcrumbItem` components as `children` and each `BreadcrumbItem` is responsible
-for displaying the page links in the hierarchy.
+<MdxIcon name="angular" />
 
-```jsx
-import { Breadcrumb, BreadcrumbItem } from "carbon-components-react";
+  </ResourceCard>
+</Column>
+<Column colLg={4} colMd={4} noGutterSm>
+  <ResourceCard
+      subTitle="Vue (Community)"
+      href="http://vue.carbondesignsystem.com/?path=/story/components-cvbreadcrumb--default"
+      >
 
-function MyComponent() {
-  return (
-    <Breadcrumb>
-      <BreadcrumbItem href="#">Breadcrumb 1</BreadcrumbItem>
-      <BreadcrumbItem href="#">Breadcrumb 2</BreadcrumbItem>
-      <BreadcrumbItem href="#">Breadcrumb 3</BreadcrumbItem>
-    </Breadcrumb>
-  );
-}
-```
+<MdxIcon name="vue" />
 
-## Skeleton state
+  </ResourceCard>
+</Column>
+</Row>
 
-You can use the `BreadcrumbSkeleton` component to render a skeleton variant of an
-breadcrumb. This is useful to display while content in your breadcrumb is being
-fetched from an external resource like an API.
+## Live demo
 
-```jsx
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbSkeleton,
-} from "carbon-components-react";
-
-function MyComponent({ isLoading }) {
-  if (isLoading) {
-    return <BreadcrumbSkeleton />;
-  }
-
-  return (
-    <Breadcrumb>
-      <BreadcrumbItem href="#">Breadcrumb 1</BreadcrumbItem>
-      <BreadcrumbItem href="#">Breadcrumb 2</BreadcrumbItem>
-      <BreadcrumbItem href="#">Breadcrumb 3</BreadcrumbItem>
-    </Breadcrumb>
-  );
-}
-```
-
-## Component API
-
-### Breadcrumb props
-
-| Prop            | Type     | Required | Default | Description                                                       |
-| --------------- | -------- | -------- | ------- | ----------------------------------------------------------------- |
-| aria-label      | `string` | –        | –       | Specify the label for the breadcrumb container                    |
-| children        | `node`   | `true`   | –       | Pass in the BreadcrumbItem's for your Breadcrumb                  |
-| className       | `string` | –        | –       | Specify an optional className to be applied to the container node |
-| noTrailingSlash | `bool`   | –        | –       | Optional prop to omit the trailing slash for the breadcrumbs      |
-
-### Breadcrumb noTrailingSlash
-
-You can use the `noTrailingSlash` prop to omit the slash from the end of the current page.
-
-```jsx
-<Breadcrumb noTrailingSlash>
-  <BreadcrumbItem href="#">Breadcrumb 1</BreadcrumbItem>
-  <BreadcrumbItem href="#">Breadcrumb 2</BreadcrumbItem>
-  <BreadcrumbItem href="#">Breadcrumb 3</BreadcrumbItem>
-</Breadcrumb>
-```
-
-### BreadcrumbItem props
-
-| Prop          | Type     | Required | Default | Description                                                           |
-| ------------- | -------- | -------- | ------- | --------------------------------------------------------------------- |
-| children      | `node`   | `true`   | –       | Pass in content that will be inside of the BreadcrumbItem             |
-| className     | `string` | –        | –       | Specify an optional className to be applied to the container node     |
-| href          | `string` | –        | –       | Optional string representing the link location for the BreadcrumbItem |
-| isCurrentPage | `bool`   | –        | –       | Provide if this breadcrumb item represents the current page           |
-
-### BreadcrumbItem isCurrentPage
-
-You can use the `isCurrentPage` prop on a `BreadcrumbItem` to represent the current page.
-
-```jsx
+<ComponentDemo
+  components={[
+    {
+      id: 'breadcrumb',
+      label: 'Breadcrumb',
+    },
+  ]}>
+  <ComponentVariant
+    id="breadcrumb"
+    knobs={{
+      Breadcrumb: ['noTrailingSlash'],
+    }}
+    links={{
+      React:
+        'http://react.carbondesignsystem.com/?path=/story/breadcrumb--default',
+      Angular:
+        'https://angular.carbondesignsystem.com/?path=/story/components-breadcrumb--basic',
+      Vue:
+        'http://vue.carbondesignsystem.com/?path=/story/components-cvbreadcrumb--default',
+      Vanilla: 'https://the-carbon-components.netlify.com/?nav=breadcrumb',
+    }}>{`
 <Breadcrumb>
-  <BreadcrumbItem href="#">Breadcrumb 1</BreadcrumbItem>
-  <BreadcrumbItem href="#">Breadcrumb 2</BreadcrumbItem>
-  <BreadcrumbItem href="#" isCurrentPage>
-    Breadcrumb 3
-  </BreadcrumbItem>
+  <BreadcrumbItem href="/">Breadcrumb 1</BreadcrumbItem>
+  <BreadcrumbItem href="/">Breadcrumb 2</BreadcrumbItem>
+  <BreadcrumbItem isCurrentPage href="/">Breadcrumb 3</BreadcrumbItem>
 </Breadcrumb>
-```
-
-### BreadcrumbSkeleton props
-
-| Prop      | Type     | Required | Default | Description                          |
-| --------- | -------- | -------- | ------- | ------------------------------------ |
-| className | `string` | –        | –       | Specify an optional className to add |
-
-## Feedback
-
-Help us improve this component by providing feedback, asking questions, and leaving any other comments on [GitHub](https://github.com/carbon-design-system/carbon-website/issues/new?assignees=&labels=feedback&template=feedback.md).
+`}</ComponentVariant>
+</ComponentDemo>
