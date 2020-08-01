@@ -1,6 +1,3 @@
-.container-component-index {
-  width: 72%;
-}
 .component-index-search {
   width: 72%;
   height: 48px;
@@ -18,18 +15,19 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  width: 100%;
+  width: 72%;
   background: $carbon--white-0;
   border-bottom: 1px solid $carbon--gray-20;
 }
-.component-index-card {
+.component-image-card {
   display: flex;
   flex-direction: column;
   flex: 1;
-  height: 11.25rem;
+  height: 11.175rem;
+  display: block;
 }
+
 .index-image {
-  height: 11rem;
   background-color: $carbon--white-0;
 }
 .component-index-text {
@@ -51,7 +49,10 @@
   color: $text-01;
   font-size: 14px;
   padding: 0 1rem 1rem 1rem;
-  max-height: 3.375rem;
+  max-height: 3.5em; /* (Number of lines you want visible) * (line-height) */
+  line-height: 1.2em;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .links-row {
   @include carbon--type-style('body-short-01');
@@ -71,4 +72,20 @@
 .link-storybook {
   padding-left: $spacing-05;
   cursor: pointer;
+}
+
+@media all and (max-width: 480px) {
+  .component-index-search {
+    width: 100%;
+  }
+  .placeholder-sort {
+    width: 100%;
+  }
+  .component-image-card {
+    display: none;
+  }
+  .row {
+    width: 100%;
+    height: 11.175rem;
+  }
 }

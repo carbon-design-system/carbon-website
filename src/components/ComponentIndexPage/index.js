@@ -1,5 +1,6 @@
 import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
+import { Link, Search, Dropdown } from 'carbon-components-react';
 
 const ALL_COMPONENTS_QUERY = graphql`
   {
@@ -20,21 +21,70 @@ function ComponentIndexPage() {
     ALL_COMPONENTS_QUERY
   );
 
+  const href = '/get-started/about-carbon';
+
+  const items = [];
+
+  let componentImg;
+  try {
+    componentImg = './images/placeholderCompIndex.svg';
+  } catch (e) {
+    // eslint-disable-next-line global-require
+    componentImg = './images/placeholderCompIndex.svg';
+  }
+
   return (
-    <dl>
-      {components.edges.map(({ node }) => {
-        const { name, description, maintainer } = node;
-        const key = `${name}:${maintainer}`;
-        return (
-          <React.Fragment key={key}>
-            <dt>
-              {maintainer}: {name}
-            </dt>
-            {description ? <dd>{description}</dd> : null}
-          </React.Fragment>
-        );
-      })}
-    </dl>
+    <>
+      <Search
+        className="component-index-search"
+        id="search-1"
+        placeHolderText="Search"
+      />
+      <Dropdown
+        ariaLabel="Dropdown"
+        id="carbon-dropdown-example"
+        items={items}
+        label="Sort by A to Z"
+        className="placeholder-sort"
+      />
+
+      <dl>
+        {components.edges.map(({ node }) => {
+          const { name, description, maintainer } = node;
+          const key = `${name}:${maintainer}`;
+
+          return (
+            <div key={key} className="row">
+              <div className="component-image-card">
+                <img
+                  src={componentImg}
+                  alt="some-img"
+                  className="index-image"
+                />
+              </div>
+              <div className="component-index-text">
+                <div>
+                  <p className="component-index-name">
+                    {maintainer}:{name}
+                  </p>
+                  <p className="component-index-description">
+                    {description ? <dd>{description}</dd> : null}
+                  </p>
+                </div>
+                <div className="links-row">
+                  <Link to={href} className="link-website">
+                    Website
+                  </Link>
+                  <Link to={href} className="link-storybook">
+                    GitHub/Storybook
+                  </Link>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </dl>
+    </>
   );
 }
 
