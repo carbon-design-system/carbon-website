@@ -2,6 +2,8 @@ import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import { Link, Search, Dropdown } from 'carbon-components-react';
 
+const componentImg = require('./images/placeholderCompIndex.svg');
+
 const ALL_COMPONENTS_QUERY = graphql`
   {
     allComponentIndexEntry {
@@ -24,14 +26,6 @@ function ComponentIndexPage() {
   const href = '/get-started/about-carbon';
 
   const items = [];
-
-  let componentImg;
-  try {
-    componentImg = './images/placeholderCompIndex.svg';
-  } catch (e) {
-    // eslint-disable-next-line global-require
-    componentImg = './images/placeholderCompIndex.svg';
-  }
 
   return (
     <>
