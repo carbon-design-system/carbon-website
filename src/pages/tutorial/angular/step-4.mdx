@@ -1,14 +1,16 @@
 ---
 title: 4. Creating components
 tabs:
-  ["Overview", "Step 1", "Step 2", "Step 3", "Step 4", "Step 5", "Wrapping up"]
+  ['Overview', 'Step 1', 'Step 2', 'Step 3', 'Step 4', 'Step 5', 'Wrapping up']
 ---
 
-import Preview from "components/Preview";
+import Preview from 'components/Preview';
 
 <PageDescription>
 
-With two pages comprised entirely of Carbon components, let's revisit the landing page and build a couple components of our own by using Carbon icons and tokens.
+With two pages comprised entirely of Carbon components, let's revisit the
+landing page and build a couple components of our own by using Carbon icons and
+tokens.
 
 </PageDescription>
 
@@ -25,11 +27,17 @@ With two pages comprised entirely of Carbon components, let's revisit the landin
 
 ## Preview
 
-Carbon provides a solid foundation for building web applications through its color palette, layout, spacing, type, as well as common building blocks in the form of components. So far, we've only used Carbon components to build out two pages.
+Carbon provides a solid foundation for building web applications through its
+color palette, layout, spacing, type, as well as common building blocks in the
+form of components. So far, we've only used Carbon components to build out two
+pages.
 
-Next, we're going to use Carbon assets to build application-specific components. We'll create our components with considerations for accessibility and responsiveness.
+Next, we're going to use Carbon assets to build application-specific components.
+We'll create our components with considerations for accessibility and
+responsiveness.
 
-A [preview](https://angular-step-5-carbon-tutorial.netlify.com) of what you'll build (see bottom of page):
+A [preview](https://angular-step-5-carbon-tutorial.netlify.com) of what you'll
+build (see bottom of page):
 
 <Preview
   height="400"
@@ -42,17 +50,24 @@ A [preview](https://angular-step-5-carbon-tutorial.netlify.com) of what you'll b
 
 <InlineNotification>
 
-**Note:** If you get lint errors when you copy the code from the snippets, run `ng lint --fix` to fix them.
+**Note:** If you get lint errors when you copy the code from the snippets, run
+`ng lint --fix` to fix them.
 
 </InlineNotification>
 
 ## Fork, clone and branch
 
-This tutorial has an accompanying GitHub repository called [carbon-tutorial-angular](https://github.com/carbon-design-system/carbon-tutorial-angular) that we'll use as a starting point for each step. If you haven't forked and cloned that repository yet, and haven't added the upstream remote, go ahead and do so by following the [step 1 instructions](/tutorial/angular/step-1#fork-clone--branch).
+This tutorial has an accompanying GitHub repository called
+[carbon-tutorial-angular](https://github.com/carbon-design-system/carbon-tutorial-angular)
+that we'll use as a starting point for each step. If you haven't forked and
+cloned that repository yet, and haven't added the upstream remote, go ahead and
+do so by following the
+[step 1 instructions](/tutorial/angular/step-1#fork-clone--branch).
 
 ### Branch
 
-With your repository all set up, let's check out the branch for this tutorial step's starting point.
+With your repository all set up, let's check out the branch for this tutorial
+step's starting point.
 
 ```bash
 git fetch upstream
@@ -61,13 +76,16 @@ git checkout -b angular-step-4 upstream/angular-step-4
 
 <InlineNotification>
 
-**Note:** This builds on top of step 3, but be sure to check out the upstream step 4 branch because it includes the static assets required to get through this step.
+**Note:** This builds on top of step 3, but be sure to check out the upstream
+step 4 branch because it includes the static assets required to get through this
+step.
 
 </InlineNotification>
 
 ### Build and start app
 
-Install the app's dependencies (in case you're starting fresh in your current directory and not continuing from the previous step):
+Install the app's dependencies (in case you're starting fresh in your current
+directory and not continuing from the previous step):
 
 ```bash
 npm install
@@ -79,11 +97,16 @@ Then, start the app:
 npm start
 ```
 
-You should see something similar to where the [previous step](/tutorial/angular/step-3) left off.
+You should see something similar to where the
+[previous step](/tutorial/angular/step-3) left off.
 
 ## Review design
 
-Here's what we're building – an informational section that has a heading and three subheadings. Each subheading has accompanying copy and a pictogram. We'll assume that this informational section is used elsewhere on the site, meaning it's a great opportunity to build it as a resusable component. As for naming, we'll call it an `InfoSection` with three `InfoCard`s as children.
+Here's what we're building – an informational section that has a heading and
+three subheadings. Each subheading has accompanying copy and a pictogram. We'll
+assume that this informational section is used elsewhere on the site, meaning
+it's a great opportunity to build it as a resusable component. As for naming,
+we'll call it an `InfoSection` with three `InfoCard`s as children.
 
 ![Info section layout](../shared/step-4/images/info-layout.png)
 
@@ -91,11 +114,15 @@ Here's what we're building – an informational section that has a heading and t
 
 ## Create components
 
-First we need files for the components, so create an `Info` folder in `src/components`. Even though we're building multiple components, their names all start with `Info`, so it makes sense to have them share one folder in components. Create these files:
+First we need files for the components, so create an `Info` folder in
+`src/components`. Even though we're building multiple components, their names
+all start with `Info`, so it makes sense to have them share one folder in
+components. Create these files:
 
 ### Generate modules & components using the Angular CLI
 
-Let's generate a new module that'll handle our `InfoCard` and `InfoSection` components:
+Let's generate a new module that'll handle our `InfoCard` and `InfoSection`
+components:
 
 ```bash
 ng generate module info
@@ -113,7 +140,8 @@ ng generate component info/info-section --lint-fix
 
 <InlineNotification>
 
-**Note:** The `--lint-fix` flag will automatically resolve lint issues in the newly generated files.
+**Note:** The `--lint-fix` flag will automatically resolve lint issues in the
+newly generated files.
 
 </InlineNotification>
 
@@ -134,7 +162,8 @@ src/app/info
 	└──info-section.component.html
 ```
 
-Now let's create a JSON file that'll include our content to be shown in the components:
+Now let's create a JSON file that'll include our content to be shown in the
+components:
 
 ```json path=src/app/info/info.json
 {
@@ -156,7 +185,8 @@ Now let's create a JSON file that'll include our content to be shown in the comp
 }
 ```
 
-Now we also need to tell typescript to resolve JSON files as modules when compiling:
+Now we also need to tell typescript to resolve JSON files as modules when
+compiling:
 
 ```json path=src/tsconfig.app.json
 {
@@ -172,7 +202,8 @@ Now we also need to tell typescript to resolve JSON files as modules when compil
 
 ### InfoSection component
 
-Let's create the parent component that includes the "The Principles" heading. That markup currently looks like this in `landing-page.component.html`:
+Let's create the parent component that includes the "The Principles" heading.
+That markup currently looks like this in `landing-page.component.html`:
 
 ```html path=src/app/home/landing-page/landing-page.component.html
 <div ibmRow class="landing-page__r3">
@@ -185,7 +216,14 @@ Let's create the parent component that includes the "The Principles" heading. Th
 </div>
 ```
 
-We want to do a few things when abstracting it to a component. Firstly, we want to encapsulate the component's styles within it's dedicated stylesheet. We don't want to include `landing-page__r3` within the component template as that's specific to the landing page. In order to allow the landing page to have access to styling this specific instance of an `InfoSection` component we could pass the class into the instance of the component. However, we won't need to do any additional styling from the `landing-page` so we can just go ahead use the component as is.
+We want to do a few things when abstracting it to a component. Firstly, we want
+to encapsulate the component's styles within it's dedicated stylesheet. We don't
+want to include `landing-page__r3` within the component template as that's
+specific to the landing page. In order to allow the landing page to have access
+to styling this specific instance of an `InfoSection` component we could pass
+the class into the instance of the component. However, we won't need to do any
+additional styling from the `landing-page` so we can just go ahead use the
+component as is.
 
 We'll also:
 
@@ -211,7 +249,12 @@ We'll also:
 </section>
 ```
 
-As you can see we've added instances of the `InfoCard` component. There is a few things that we need to do to resolve the errors in the browser. Firstly we need to update `InfoModule` to be able to use the `GridModule`. At the same time we will export the `InfoSection` and `InfoCard` components from the `InfoModule` so that we can use them in the `HomeModule` components (specifically `landing-page`).
+As you can see we've added instances of the `InfoCard` component. There is a few
+things that we need to do to resolve the errors in the browser. Firstly we need
+to update `InfoModule` to be able to use the `GridModule`. At the same time we
+will export the `InfoSection` and `InfoCard` components from the `InfoModule` so
+that we can use them in the `HomeModule` components (specifically
+`landing-page`).
 
 ```ts path=src/app/info/info.module.ts
 import { NgModule } from "@angular/core";
@@ -231,7 +274,8 @@ export class InfoModule { }
 
 ```
 
-We also need to import `InfoModule` into `HomeModule` otherwise we cannot use the `InfoSection` component within `landing-page`.
+We also need to import `InfoModule` into `HomeModule` otherwise we cannot use
+the `InfoSection` component within `landing-page`.
 
 ```ts path=src/app/home/home.module.ts
 ...
@@ -255,18 +299,19 @@ import {
 export class HomeModule { }
 ```
 
-Now we're going to go into the `InfoSection` component to add content from `info.json`.
+Now we're going to go into the `InfoSection` component to add content from
+`info.json`.
 
 <!-- prettier-ignore-end -->
 
 ```ts path=src/app/info/info-section/info-section.component.ts
-import { Component, OnInit } from "@angular/core";
-import * as data from "../info.json";
+import { Component, OnInit } from '@angular/core';
+import * as data from '../info.json';
 
 @Component({
-  selector: "app-info-section",
-  templateUrl: "./info-section.component.html",
-  styleUrls: ["./info-section.component.scss"],
+  selector: 'app-info-section',
+  templateUrl: './info-section.component.html',
+  styleUrls: ['./info-section.component.scss'],
 })
 export class InfoSectionComponent implements OnInit {
   heading = data.title;
@@ -326,7 +371,13 @@ We've also added class names that are specific to this component that we'll targ
 
 ### InfoCard component
 
-Next up we're going to build a component for columns 2 - 4, which currently looks like `<div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">Carbon is Open</div>`. We've added the data into the parent component but we have not told `snfo-section` component to give any data to the `InfoCard` because we first need to tell `InfoCard` that it will have data to display. In `src/app/info/info-card/info-card.component.html`, add:
+Next up we're going to build a component for columns 2 - 4, which currently
+looks like
+`<div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">Carbon is Open</div>`. We've
+added the data into the parent component but we have not told `snfo-section`
+component to give any data to the `InfoCard` because we first need to tell
+`InfoCard` that it will have data to display. In
+`src/app/info/info-card/info-card.component.html`, add:
 
 ```html path=src/app/info/info-card/info-card.component.html
 <div class="info-card">
@@ -337,7 +388,9 @@ Next up we're going to build a component for columns 2 - 4, which currently look
 </div>
 ```
 
-Now we've setup our `InfoCard` to display a heading and some content. We will setup the component `.ts` file to accept a `heading` and `content` input to be displayed.
+Now we've setup our `InfoCard` to display a heading and some content. We will
+setup the component `.ts` file to accept a `heading` and `content` input to be
+displayed.
 
 <!-- prettier-ignore-start -->
 ```ts path=src/app/info/info-card/info-card.component.ts
@@ -392,7 +445,9 @@ Finally, we'll update `InfoSection` to use the new `InfoCard` component.
 
 ## Use components
 
-Next we're going to use Carbon Icon components in our custom components. We're going to place the icons within the `InfoCard` components as children. In the `InfoModule` we will import the modules we need for the Carbon Angular Icons:
+Next we're going to use Carbon Icon components in our custom components. We're
+going to place the icons within the `InfoCard` components as children. In the
+`InfoModule` we will import the modules we need for the Carbon Angular Icons:
 
 <!-- prettier-ignore-start -->
 ```ts path=src/info/info.module.ts
@@ -419,7 +474,8 @@ export class InfoModule {}
 ```
 <!-- prettier-ignore-end -->
 
-Next we will use `<ng-content>` so that we can inject icons into the `InfoCard` from it's parent component (`InfoSection`)
+Next we will use `<ng-content>` so that we can inject icons into the `InfoCard`
+from it's parent component (`InfoSection`)
 
 ```html path=src/app/info/info-card/info-card.component.html
 <div class="info-card">
@@ -467,13 +523,16 @@ We also need to update `InfoSection` with the icon components:
 
 ## Add styling
 
-We currently have the components displaying the content we created. We need to add more styling for Carbon breakpoints, icon alignments, as well as the `InfoCard` title styling.
+We currently have the components displaying the content we created. We need to
+add more styling for Carbon breakpoints, icon alignments, as well as the
+`InfoCard` title styling.
 
 ![Info section spacing](../shared/step-4/images/info-spacing.png)
 
 ### Layout
 
-Starting with layout, add the following to `src/app/info/info-card/info-card.component.scss`.
+Starting with layout, add the following to
+`src/app/info/info-card/info-card.component.scss`.
 
 <!-- prettier-ignore-start -->
 ```scss path=src/app/info/info-card/info-card.component.scss
@@ -502,11 +561,18 @@ Starting with layout, add the following to `src/app/info/info-card/info-card.com
 ```
 <!-- prettier-ignore-end -->
 
-Once you save, go ahead and resize your browser to see the responsive layout at the different breakpoints. Make sure to review these color and spacing tokens. There are also a few breakpoint mixins that may be new to you. The `@carbon/layout` [SassDoc](https://github.com/carbon-design-system/carbon/blob/master/packages/layout/docs/sass.md) is a great reference to see what all is available.
+Once you save, go ahead and resize your browser to see the responsive layout at
+the different breakpoints. Make sure to review these color and spacing tokens.
+There are also a few breakpoint mixins that may be new to you. The
+`@carbon/layout`
+[SassDoc](https://github.com/carbon-design-system/carbon/blob/master/packages/layout/docs/sass.md)
+is a great reference to see what all is available.
 
 ### Type
 
-Our `InfoCard` headings have to be updated to match the specs. We need to make the last word of each heading bold. Add the below custom function (`createArrayFromPhrase`) to `src/app/info/info-card/info-card.component.ts`:
+Our `InfoCard` headings have to be updated to match the specs. We need to make
+the last word of each heading bold. Add the below custom function
+(`createArrayFromPhrase`) to `src/app/info/info-card/info-card.component.ts`:
 
 <!-- prettier-ignore-start -->
 ```ts path=src/app/info/info-card/info-card.component.ts
@@ -539,7 +605,9 @@ export class InfoCardComponent implements OnInit {
 ```
 <!-- prettier-ignore-end -->
 
-This'll allow us to still accept `heading` as an input to the component, but we'll need to change the template to use `splitHeading` rather than `heading` to display our heading content.
+This'll allow us to still accept `heading` as an input to the component, but
+we'll need to change the template to use `splitHeading` rather than `heading` to
+display our heading content.
 
 Update the component template to use `splitHeading`:
 
@@ -571,7 +639,9 @@ Then, add some styling for the icons within our `InfoCard` component:
 ```
 <!-- prettier-ignore-end -->
 
-Finally, we need styles for the `InfoCard` borders. We will use the `InfoSection` to apply styles using the children selectors. Update the `InfoSection` stylesheet to include styles targeting the `InfoCard`:
+Finally, we need styles for the `InfoCard` borders. We will use the
+`InfoSection` to apply styles using the children selectors. Update the
+`InfoSection` stylesheet to include styles targeting the `InfoCard`:
 
 ```scss path=src/app/info/info-section/info-section.component.scss
 .info-section {
@@ -624,16 +694,23 @@ git push origin angular-step-4
 
 <InlineNotification>
 
-**Note:** Having issues pushing your changes? [Step 1](/tutorial/angular/step-1#git-commit-and-push) has troubleshooting notes that may help.
+**Note:** Having issues pushing your changes?
+[Step 1](/tutorial/angular/step-1#git-commit-and-push) has troubleshooting notes
+that may help.
 
 </InlineNotification>
 
 ### Pull request (PR)
 
-Finally, visit [carbon-tutorial](https://github.com/carbon-design-system/carbon-tutorial-angular) to "Compare & pull request". In doing so, make sure that you are comparing to `angular-step-4` into `base: angular-step-4`.
+Finally, visit
+[carbon-tutorial](https://github.com/carbon-design-system/carbon-tutorial-angular)
+to "Compare & pull request". In doing so, make sure that you are comparing to
+`angular-step-4` into `base: angular-step-4`.
 
 <InlineNotification>
 
-**Note:** Expect your tutorial step PRs to be reviewed by the Carbon team but not merged. We'll close your PR so we can keep the repository's remote branches pristine and ready for the next person!
+**Note:** Expect your tutorial step PRs to be reviewed by the Carbon team but
+not merged. We'll close your PR so we can keep the repository's remote branches
+pristine and ready for the next person!
 
 </InlineNotification>
