@@ -42,18 +42,36 @@
   @include carbon--type-style('heading-01');
   color: $text-01;
   font-size: 14px;
+  font-weight: 600px;
   padding: 1rem 1rem 0 1rem;
 }
+
+@mixin trim($numLines: null) {
+  @if $numLines != null {
+    display: -webkit-box;
+    -webkit-line-clamp: $numLines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  } @else {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: block;
+  }
+}
+
 .component-index-description {
   @include carbon--type-style('body-short-01');
   color: $text-01;
   font-size: 14px;
+  font-weight: 400px;
   padding: 0 1rem 1rem 1rem;
+  overflow: hidden;
   max-height: 3.5em; /* (Number of lines you want visible) * (line-height) */
   line-height: 1.2em;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  @include trim(3);
 }
+
 .links-row {
   @include carbon--type-style('body-short-01');
   color: $link-01;
