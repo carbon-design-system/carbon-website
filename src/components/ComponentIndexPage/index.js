@@ -42,42 +42,43 @@ function ComponentIndexPage() {
         className="placeholder-sort"
       />
 
-      <dl>
+      <section aria-label="Component index">
         {components.edges.map(({ node }) => {
           const { name, description, maintainer } = node;
           const key = `${name}:${maintainer}`;
 
           return (
-            <div key={key} className="row">
-              <div className="component-image-card">
+            <article key={key} className="component-index-item">
+              <div className="component-index-item__image">
                 <img
                   src={componentImg}
                   alt="some-img"
                   className="index-image"
                 />
               </div>
-              <div className="component-index-text">
-                <div>
-                  <p className="component-index-name">
-                    {maintainer}:{name}
-                  </p>
-                  <p className="component-index-description">
-                    {description ? <dd>{description}</dd> : null}
-                  </p>
-                </div>
-                <div className="links-row">
-                  <Link to={href} className="link-website">
+
+              <div className="component-index-item__content">
+                <header className="component-index-item__name">{name}</header>
+
+                <p className="component-index-item__description">
+                  {description}
+                </p>
+
+                <footer className="component-index-item__info">
+                  <a className="component-index-item__web-link" href={href}>
                     Website
-                  </Link>
-                  <Link to={href} className="link-storybook">
-                    GitHub/Storybook
-                  </Link>
-                </div>
+                  </a>
+                  <a
+                    className="component-index-item__storybook-link"
+                    href={href}>
+                    Storybook/GitHub
+                  </a>
+                </footer>
               </div>
-            </div>
+            </article>
           );
         })}
-      </dl>
+      </section>
     </>
   );
 }
