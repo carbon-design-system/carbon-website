@@ -1,6 +1,6 @@
 import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
-import { Link, Search, Dropdown } from 'carbon-components-react';
+import { Search, Dropdown, Row, Column } from 'carbon-components-react';
 
 const componentImg = require('./images/placeholderCompIndex.svg');
 
@@ -29,18 +29,22 @@ function ComponentIndexPage() {
 
   return (
     <>
-      <Search
-        className="component-index-search"
-        id="search-1"
-        placeHolderText="Search"
-      />
-      <Dropdown
-        ariaLabel="Dropdown"
-        id="carbon-dropdown-example"
-        items={items}
-        label="Sort by A to Z"
-        className="placeholder-sort"
-      />
+      <Row>
+        <Column lg={9}>
+          <Search
+            className="component-index-search"
+            id="search-1"
+            placeHolderText="Search"
+          />
+          <Dropdown
+            ariaLabel="Dropdown"
+            id="carbon-dropdown-example"
+            items={items}
+            label="Sort by A to Z"
+            className="placeholder-sort"
+          />
+        </Column>
+      </Row>
 
       <section aria-label="Component index">
         {components.edges.map(({ node }) => {
@@ -48,34 +52,40 @@ function ComponentIndexPage() {
           const key = `${name}:${maintainer}`;
 
           return (
-            <article key={key} className="component-index-item">
-              <div className="component-index-item__image">
-                <img
-                  src={componentImg}
-                  alt="some-img"
-                  className="index-image"
-                />
-              </div>
+            <Row key={key}>
+              <Column lg={9}>
+                <article className="component-index-item">
+                  <div className="component-index-item__image">
+                    <img
+                      src={componentImg}
+                      alt="some-img"
+                      className="index-image"
+                    />
+                  </div>
 
-              <div className="component-index-item__content">
-                <header className="component-index-item__name">{name}</header>
+                  <div className="component-index-item__content">
+                    <header className="component-index-item__name">
+                      {name}
+                    </header>
 
-                <p className="component-index-item__description">
-                  {description}
-                </p>
+                    <p className="component-index-item__description">
+                      {description}
+                    </p>
 
-                <footer className="component-index-item__info">
-                  <a className="component-index-item__web-link" href={href}>
-                    Website
-                  </a>
-                  <a
-                    className="component-index-item__storybook-link"
-                    href={href}>
-                    Storybook/GitHub
-                  </a>
-                </footer>
-              </div>
-            </article>
+                    <footer className="component-index-item__info">
+                      <a className="component-index-item__web-link" href={href}>
+                        Website
+                      </a>
+                      <a
+                        className="component-index-item__storybook-link"
+                        href={href}>
+                        Storybook/GitHub
+                      </a>
+                    </footer>
+                  </div>
+                </article>
+              </Column>
+            </Row>
           );
         })}
       </section>
