@@ -2,6 +2,19 @@ import { Row, Column } from 'carbon-components-react';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+// <Search
+// className="component-index-search"
+// id="search-1"
+// placeHolderText="Search"
+// />
+// <Dropdown
+// ariaLabel="Dropdown"
+// id="carbon-dropdown-example"
+// items={items}
+// label="Sort by A to Z"
+// className="placeholder-sort"
+// />
+
 function ComponentIndexSearch({ value, onChange }) {
   return (
     <Row>
