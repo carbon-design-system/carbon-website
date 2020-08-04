@@ -1,12 +1,16 @@
 ---
 title: Data table
-description: The data table component allows for the flexible display and sorting of information.
-tabs: ["Usage", "Style", "Code", "Accessibility"]
+description:
+  The data table component allows for the flexible display and sorting of
+  information.
+tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 ---
 
 <PageDescription>
 
-Data tables are used to organize and display data efficiently. The data table component allows for customization with additional functionality, as needed by your product's users.
+Data tables are used to organize and display data efficiently. The data table
+component allows for customization with additional functionality, as needed by
+your product's users.
 
 </PageDescription>
 
@@ -25,9 +29,13 @@ Data tables are used to organize and display data efficiently. The data table co
 
 ## Overview
 
-The data table's features are ideal for organizing and displaying data in a UI. The column headers can sort data in ascending or descending order, rows can be expanded to progressively disclose information, and single or batch actions can be taken on rows.
+The data table's features are ideal for organizing and displaying data in a UI.
+The column headers can sort data in ascending or descending order, rows can be
+expanded to progressively disclose information, and single or batch actions can
+be taken on rows.
 
-The data table toolbar gives a location for primary buttons, search, filtering, table display settings, and other utilities.
+The data table toolbar gives a location for primary buttons, search, filtering,
+table display settings, and other utilities.
 
 ### When to use
 
@@ -50,53 +58,51 @@ The data table toolbar gives a location for primary buttons, search, filtering, 
 
 ## Live demo
 
-import { rowData, headerData } from "../../../data/components/data-table.js";
+import { rowData, headerData } from '../../../data/components/data-table.js';
 import {
   Delete16 as Delete,
   Save16 as Save,
   Download16 as Download,
-} from "@carbon/icons-react";
+} from '@carbon/icons-react';
 
 <ComponentDemo
   components={[
     {
-      id: "default-table",
-      label: "Default",
+      id: 'default-table',
+      label: 'Default',
     },
     {
-      id: "with-selection",
-      label: "With selection",
+      id: 'with-selection',
+      label: 'With selection',
     },
     {
-      id: "with-expansion",
-      label: "With expansion",
+      id: 'with-expansion',
+      label: 'With expansion',
     },
     {
-      id: "with-batch-actions",
-      label: "With batch actions",
+      id: 'with-batch-actions',
+      label: 'With batch actions',
     },
   ]}
-  scope={{ rowData, headerData, React, Delete, Save, Download }}
->
+  scope={{ rowData, headerData, React, Delete, Save, Download }}>
   <ComponentVariant
     id="default-table"
-    knobs={{ DataTable: ["isSortable"], Table: ["size", "useZebraStyles"] }}
+    knobs={{ DataTable: ['isSortable'], Table: ['size', 'useZebraStyles'] }}
     links={{
       React:
-        "https://react.carbondesignsystem.com/?path=/story/datatable--default",
+        'https://react.carbondesignsystem.com/?path=/story/datatable--default',
       Angular:
-        "https://angular.carbondesignsystem.com/?path=/story/components-table--basic",
+        'https://angular.carbondesignsystem.com/?path=/story/components-table--basic',
       Vue:
-        "http://vue.carbondesignsystem.com/?path=/story/components-cvdatatable--minimal",
-      Vanilla: "https://the-carbon-components.netlify.com/?nav=data-table",
-    }}
-  >
+        'http://vue.carbondesignsystem.com/?path=/story/components-cvdatatable--minimal',
+      Vanilla: 'https://the-carbon-components.netlify.com/?nav=data-table',
+    }}>
     {`<DataTable
     rows={rowData}
     headers={headerData}
-    render={({ rows, headers, getHeaderProps }) => (
+    render={({ rows, headers, getHeaderProps, getTableProps }) => (
     <TableContainer title="DataTable">
-      <Table>
+      <Table {...getTableProps()}>
         <TableHead>
           <TableRow>
             {headers.map(header => (
@@ -121,23 +127,29 @@ import {
   </ComponentVariant>
   <ComponentVariant
     id="with-selection"
-    knobs={{ DataTable: ["isSortable"], Table: ["size", "useZebraStyles"] }}
+    knobs={{ DataTable: ['isSortable'], Table: ['size', 'useZebraStyles'] }}
     links={{
       React:
-        "https://react.carbondesignsystem.com/?path=/story/datatable--with-selection",
+        'https://react.carbondesignsystem.com/?path=/story/datatable--with-selection',
       Angular:
-        "https://angular.carbondesignsystem.com/?path=/story/components-table--basic",
+        'https://angular.carbondesignsystem.com/?path=/story/components-table--basic',
       Vue:
-        "http://vue.carbondesignsystem.com/?path=/story/components-cvdatatable--default",
-      Vanilla: "https://the-carbon-components.netlify.com/?nav=data-table",
-    }}
-  >
+        'http://vue.carbondesignsystem.com/?path=/story/components-cvdatatable--default',
+      Vanilla: 'https://the-carbon-components.netlify.com/?nav=data-table',
+    }}>
     {`<DataTable
   rows={rowData}
   headers={headerData}
-  render={({ rows, headers, getHeaderProps, getSelectionProps, getRowProps }) => (
+  render={({
+    rows,
+    headers,
+    getHeaderProps,
+    getSelectionProps,
+    getRowProps,
+    getTableProps
+  }) => (
   <TableContainer title="DataTable with selection">
-    <Table>
+    <Table {...getTableProps()}>
       <TableHead>
         <TableRow>
           <TableSelectAll {...getSelectionProps()} />
@@ -164,17 +176,16 @@ import {
   </ComponentVariant>
   <ComponentVariant
     id="with-expansion"
-    knobs={{ DataTable: ["isSortable"] }}
+    knobs={{ DataTable: ['isSortable'] }}
     links={{
       React:
-        "https://react.carbondesignsystem.com/?path=/story/datatable--with-expansion",
+        'https://react.carbondesignsystem.com/?path=/story/datatable--with-expansion',
       Angular:
-        "https://angular.carbondesignsystem.com/?path=/story/components-table--with-expansion",
+        'https://angular.carbondesignsystem.com/?path=/story/components-table--with-expansion',
       Vue:
-        "http://vue.carbondesignsystem.com/?path=/story/components-cvdatatable--slotted-expanding-data",
-      Vanilla: "https://the-carbon-components.netlify.com/?nav=data-table",
-    }}
-  >
+        'http://vue.carbondesignsystem.com/?path=/story/components-cvdatatable--slotted-expanding-data',
+      Vanilla: 'https://the-carbon-components.netlify.com/?nav=data-table',
+    }}>
     {`<DataTable
   rows={rowData}
   headers={headerData}
@@ -215,14 +226,13 @@ import {
     id="with-batch-actions"
     links={{
       React:
-        "https://react.carbondesignsystem.com/?path=/story/datatable--with-batch-actions",
+        'https://react.carbondesignsystem.com/?path=/story/datatable--with-batch-actions',
       Angular:
-        "https://angular.carbondesignsystem.com/?path=/story/components-table--with-toolbar",
+        'https://angular.carbondesignsystem.com/?path=/story/components-table--with-toolbar',
       Vue:
-        "http://vue.carbondesignsystem.com/?path=/story/components-cvdatatable--default",
-      Vanilla: "https://the-carbon-components.netlify.com/?nav=data-table",
-    }}
-  >
+        'http://vue.carbondesignsystem.com/?path=/story/components-cvdatatable--default',
+      Vanilla: 'https://the-carbon-components.netlify.com/?nav=data-table',
+    }}>
     {`<DataTable
   rows={rowData}
   headers={headerData}
@@ -321,15 +331,21 @@ import {
 </Column>
 </Row>
 
-1. **Title and description**: contains the data table title and an optional description.
+1. **Title and description**: contains the data table title and an optional
+   description.
 2. **Toolbar**: global data table controls including search and table settings.
-3. **Column header**: title for the row header with the optional sorting behavior.
-4. **Table row**: can be configured to show different types of data. Rows can be selectable, expandable, and modified to show alternating zebra stripe background colors.
-5. **Pagination table bar**: an optional component that lets a user navigate data as pages when the amount of data it too large to be shown at once.
+3. **Column header**: title for the row header with the optional sorting
+   behavior.
+4. **Table row**: can be configured to show different types of data. Rows can be
+   selectable, expandable, and modified to show alternating zebra stripe
+   background colors.
+5. **Pagination table bar**: an optional component that lets a user navigate
+   data as pages when the amount of data it too large to be shown at once.
 
 ### Sizing
 
-The data table is available in four different [row sizes](/data-table/style#row-sizes): tall, normal, short, compact.
+The data table is available in four different
+[row sizes](/data-table/style#row-sizes): tall, normal, short, compact.
 
 <Row>
 <Column colLg={8}>
@@ -339,7 +355,9 @@ The data table is available in four different [row sizes](/data-table/style#row-
 </Column>
 </Row>
 
-The column header row `.bx--data-table thead` should always match the row size of the table. Tall row heights are only recommended if your data is expected to have 2 lines of content in a single row.
+The column header row `.bx--data-table thead` should always match the row size
+of the table. Tall row heights are only recommended if your data is expected to
+have 2 lines of content in a single row.
 
 <DoDontRow>
 <DoDont
@@ -359,7 +377,9 @@ caption="Don’t mix row heights for in the table and header rows.">
 </DoDont>
 </DoDontRow>
 
-Two heights are available to be paired with the row heights of the data table. The tall toolbar should only be paired with the normal and tall row heights and the small toolbar should only be used with the small and compact row heights.
+Two heights are available to be paired with the row heights of the data table.
+The tall toolbar should only be paired with the normal and tall row heights and
+the small toolbar should only be used with the small and compact row heights.
 
 <Row>
 <Column colLg={12}>
@@ -368,7 +388,7 @@ Two heights are available to be paired with the row heights of the data table. T
 
 <Caption>
   A small toolbar on a short data table and a tall toolbar on a normal data
-  table{" "}
+  table{' '}
 </Caption>
 
 </Column>
@@ -376,15 +396,24 @@ Two heights are available to be paired with the row heights of the data table. T
 
 ### Placement
 
-Data tables should be placed in a page's main content area and given plenty of space to display data without truncation. Avoid placing data tables inside modals or smaller containers where the information can feel cramped or needs truncation.
+Data tables should be placed in a page's main content area and given plenty of
+space to display data without truncation. Avoid placing data tables inside
+modals or smaller containers where the information can feel cramped or needs
+truncation.
 
-The data table can be placed on the grid following the three different [grid modes](/guidelines/2x-grid/implementation#grid-modes) outlined in the 2x grid guidelines. Although, the data table can share horizontal space with other components and content, consider giving your data table the most width on the page to help your user view dense data.
+The data table can be placed on the grid following the three different
+[grid modes](/guidelines/2x-grid/implementation#grid-modes) outlined in the 2x
+grid guidelines. Although, the data table can share horizontal space with other
+components and content, consider giving your data table the most width on the
+page to help your user view dense data.
 
-These three examples show the data table on the wide (default), narrow, and condensed grid modes. Note the different type alignments and gutter sizes.
+These three examples show the data table on the wide (default), narrow, and
+condensed grid modes. Note the different type alignments and gutter sizes.
 
 #### Wide grid mode
 
-The wide grid mode is the default and gives the most breathing room between the data table and the other components or content.
+The wide grid mode is the default and gives the most breathing room between the
+data table and the other components or content.
 
 <Row>
 <Column colLg={12}>
@@ -398,7 +427,9 @@ The wide grid mode is the default and gives the most breathing room between the 
 
 #### Narrow grid mode
 
-Using the data table on a narrow grid will hang the component into the gutter and create a desirable type alignment between the the data table's title and other type on the page.
+Using the data table on a narrow grid will hang the component into the gutter
+and create a desirable type alignment between the the data table's title and
+other type on the page.
 
 <Row>
 <Column colLg={12}>
@@ -412,7 +443,10 @@ Using the data table on a narrow grid will hang the component into the gutter an
 
 #### Condensed grid mode
 
-The data table can be used on a condensed grid, but care should be taken to avoid any unintentional relationships with other UI elements. Use a hybrid grid or a dissimilar background color to avoid the components blending in to each other.
+The data table can be used on a condensed grid, but care should be taken to
+avoid any unintentional relationships with other UI elements. Use a hybrid grid
+or a dissimilar background color to avoid the components blending in to each
+other.
 
 <Row>
 <Column colLg={12}>
@@ -430,21 +464,31 @@ The data table can be used on a condensed grid, but care should be taken to avoi
 
 #### Data table title and description
 
-- The table title should make it clear to the user what this the data has in common and what purpose it serves in the UI.
-- A description can be added under the title to provide more information about the data or its source.
-- A data table's title and description should use [sentence-case capitalization.](/guidelines/content/guidance#use-sentence-case-capitalization)
+- The table title should make it clear to the user what this the data has in
+  common and what purpose it serves in the UI.
+- A description can be added under the title to provide more information about
+  the data or its source.
+- A data table's title and description should use
+  [sentence-case capitalization.](/guidelines/content/guidance#use-sentence-case-capitalization)
 
 #### Column titles
 
-- Column titles should stick to one or two words that describe the data in that column.
-- In cases where a column title is too long, wrap the text to two lines and then truncate the rest of the text. The full text should be shown in a tooltip on hover.
-- Column titles should use [sentence-case capitalization.](/guidelines/content/guidance#use-sentence-case-capitalization)
+- Column titles should stick to one or two words that describe the data in that
+  column.
+- In cases where a column title is too long, wrap the text to two lines and then
+  truncate the rest of the text. The full text should be shown in a tooltip on
+  hover.
+- Column titles should use
+  [sentence-case capitalization.](/guidelines/content/guidance#use-sentence-case-capitalization)
 
 #### Primary button
 
-- A data table using a primary action should follow the guidance for [primary button](/components/button/usage#labels) usage and [action labels.](/guidelines/content/action-labels)
+- A data table using a primary action should follow the guidance for
+  [primary button](/components/button/usage#labels) usage and
+  [action labels.](/guidelines/content/action-labels)
 
-For further content guidance, see Carbon's [content guidelines](guidelines/content/general).
+For further content guidance, see Carbon's
+[content guidelines](guidelines/content/general).
 
 ## Behaviors
 
@@ -452,7 +496,11 @@ For further content guidance, see Carbon's [content guidelines](guidelines/conte
 
 #### Mouse
 
-The data table's toolbar and rows follow interaction conventions found in other Carbon components. Buttons, checkboxes, radio buttons, overflow menus, search, and expanding elements can be found in the data table and all behave the same way across Carbon components. See the style tab for detailed visual information about the various states.
+The data table's toolbar and rows follow interaction conventions found in other
+Carbon components. Buttons, checkboxes, radio buttons, overflow menus, search,
+and expanding elements can be found in the data table and all behave the same
+way across Carbon components. See the style tab for detailed visual information
+about the various states.
 
 <Row>
 <Column colLg={12}>
@@ -466,7 +514,8 @@ The data table's toolbar and rows follow interaction conventions found in other 
 
 ### Hover
 
-The data table's row hover state can help your user visually scan the columns of data in a row even if the row is not interactive.
+The data table's row hover state can help your user visually scan the columns of
+data in a row even if the row is not interactive.
 
 <Row>
 <Column colLg={8}>
@@ -478,7 +527,13 @@ The data table's row hover state can help your user visually scan the columns of
 
 ### Pagination
 
-Pagination divides table data into separate pages. Simple pagination indicates the current page in view and offers controls to incrementally navigate to the previous or next page. Advanced pagination is accompanied by an option that enables the user to change the number of items per page and to jump to a specific page number. The pagination component is always placed at the bottom of the data table. See the [pagination](/components/pagination/code) component for further guidelines and configurations.
+Pagination divides table data into separate pages. Simple pagination indicates
+the current page in view and offers controls to incrementally navigate to the
+previous or next page. Advanced pagination is accompanied by an option that
+enables the user to change the number of items per page and to jump to a
+specific page number. The pagination component is always placed at the bottom of
+the data table. See the [pagination](/components/pagination/code) component for
+further guidelines and configurations.
 
 <Row>
 <Column colLg={12}>
@@ -492,7 +547,10 @@ Pagination divides table data into separate pages. Simple pagination indicates t
 
 ### Search
 
-A search field can be triggered through an icon button in the data table toolbar. By default the search functionality follows the [active search](/patterns/search-pattern/#active-search) pattern. The search should be closed by default, and placed below the table title.
+A search field can be triggered through an icon button in the data table
+toolbar. By default the search functionality follows the
+[active search](/patterns/search-pattern/#active-search) pattern. The search
+should be closed by default, and placed below the table title.
 
 <Row>
 <Column colLg={12}>
@@ -504,9 +562,16 @@ A search field can be triggered through an icon button in the data table toolbar
 
 ### Sorting
 
-Columns can be sorted in ascending or descending order. Sorting controls are located in the column headers and indicated with an arrow icon on hover and when a column has been sorted.
+Columns can be sorted in ascending or descending order. Sorting controls are
+located in the column headers and indicated with an arrow icon on hover and when
+a column has been sorted.
 
-A sorted data table has three states: unsorted (`arrows`), sorted-up (`arrow--up`) or sorted-down (`arrow--down`). The icon indicates the current sorted state and is only shown if sorting is activated. Only the column being sorted should display an icon, and unsorted icons are only visible on hover. You can see a demo of table sorting in Carbon’s [React Storybook](http://react.carbondesignsystem.com/?path=/story/datatable--with-sorting).
+A sorted data table has three states: unsorted (`arrows`), sorted-up
+(`arrow--up`) or sorted-down (`arrow--down`). The icon indicates the current
+sorted state and is only shown if sorting is activated. Only the column being
+sorted should display an icon, and unsorted icons are only visible on hover. You
+can see a demo of table sorting in
+Carbon’s [React Storybook](http://react.carbondesignsystem.com/?path=/story/datatable--with-sorting).
 
 <Row>
 <Column colLg={12}>
@@ -518,7 +583,10 @@ A sorted data table has three states: unsorted (`arrows`), sorted-up (`arrow--up
 
 ### Table toolbar
 
-The table toolbar is reserved for global table actions such as table settings, complex filters, exporting, or editing table data. Additional options can be added if you have an icon to support that function. Icons should be 16x16 px (glyphs). We recommend using no more than 5 icons within the table toolbar.
+The table toolbar is reserved for global table actions such as table settings,
+complex filters, exporting, or editing table data. Additional options can be
+added if you have an icon to support that function. Icons should be 16x16 px
+(glyphs). We recommend using no more than 5 icons within the table toolbar.
 
 <Row>
 <Column colLg={8}>
@@ -530,7 +598,11 @@ The table toolbar is reserved for global table actions such as table settings, c
 
 ### Multi-select / batch action
 
-Batch actions are functions that may be performed on multiple items within a table. Once the user selects at least one row from the table, the batch action bar appears at the top of the table, presenting the user with actions they can take. To exit or escape “batch action mode”, the user can cancel out or deselect the items.
+Batch actions are functions that may be performed on multiple items within a
+table. Once the user selects at least one row from the table, the batch action
+bar appears at the top of the table, presenting the user with actions they can
+take. To exit or escape “batch action mode”, the user can cancel out or deselect
+the items.
 
 <Row>
 <Column colLg={12}>
@@ -542,7 +614,10 @@ Batch actions are functions that may be performed on multiple items within a tab
 
 ### Inline actions
 
-Inline actions are functions that may be performed on a specific table row. Each row is accompanied by an [overflow menu](https://www.carbondesignsystem.com/components/overflow-menu/code) that contains actions related specifically to that row.
+Inline actions are functions that may be performed on a specific table row. Each
+row is accompanied by
+an [overflow menu](https://www.carbondesignsystem.com/components/overflow-menu/code) that
+contains actions related specifically to that row.
 
 <Row>
 <Column colLg={8}>
@@ -552,13 +627,21 @@ Inline actions are functions that may be performed on a specific table row. Each
 </Column>
 </Row>
 
-When the overflow menu contains less than three options, keep the actions inline as icon buttons instead. This reduces a click and makes available actions visible at a glance.
+When the overflow menu contains less than three options, keep the actions inline
+as icon buttons instead. This reduces a click and makes available actions
+visible at a glance.
 
 ### Overflow menu
 
-By default, the overflow menu icons are persistent on each row. Having the overflow menus always visible signals to the user actions can be taken on the table rows. Alternatively, a product team may use the `overflowMenuOnHover` prop to only show the overflow menu on hover and focus to reduce the visual clutter of an overflow menu on every row.
+By default, the overflow menu icons are persistent on each row. Having the
+overflow menus always visible signals to the user actions can be taken on the
+table rows. Alternatively, a product team may use the `overflowMenuOnHover` prop
+to only show the overflow menu on hover and focus to reduce the visual clutter
+of an overflow menu on every row.
 
-For mobile and touch devices the data table will detect if the user agent supports hover-over and persist the overflow menus even if the `overflowMenuOnHover` prop is enabled.
+For mobile and touch devices the data table will detect if the user agent
+supports hover-over and persist the overflow menus even if the
+`overflowMenuOnHover` prop is enabled.
 
 <Row>
 <Column colLg={8}>
@@ -570,7 +653,11 @@ For mobile and touch devices the data table will detect if the user agent suppor
 
 ### Expandable
 
-The expandable data table is useful for presenting large amounts of data in a small space. Use the expanded section for supplementary information or data that needs additional query time. When the content in the expanded area begins to feel cramped, consider taking the user to a dedicated page or opening a modal to view the information and complete tasks.
+The expandable data table is useful for presenting large amounts of data in a
+small space. Use the expanded section for supplementary information or data that
+needs additional query time. When the content in the expanded area begins to
+feel cramped, consider taking the user to a dedicated page or opening a modal to
+view the information and complete tasks.
 
 <Row>
 <Column colLg={12}>
@@ -582,7 +669,11 @@ The expandable data table is useful for presenting large amounts of data in a sm
 </Column>
 </Row>
 
-By default, the expand-all chevron is not shown. Keeping detailed information in expanded section saves user loading time by postponing some data queries until needed. Expanding all rows at once will typically negate this advantages of the expandable table. If additional load time is expected to display expanded information, use skeleton states instead of spinners.
+By default, the expand-all chevron is not shown. Keeping detailed information in
+expanded section saves user loading time by postponing some data queries until
+needed. Expanding all rows at once will typically negate this advantages of the
+expandable table. If additional load time is expected to display expanded
+information, use skeleton states instead of spinners.
 
 <Row>
 <Column colLg={12}>
@@ -596,7 +687,8 @@ By default, the expand-all chevron is not shown. Keeping detailed information in
 
 ## Modifiers
 
-The data table features a zebra stripes modifier that styles the table rows with alternating colors to make scanning horizontal information easier for the user.
+The data table features a zebra stripes modifier that styles the table rows with
+alternating colors to make scanning horizontal information easier for the user.
 
 <Row>
 <Column colLg={8}>
@@ -620,4 +712,6 @@ The following components are additional ways to organize and navigate data.
 
 ### Feedback
 
-Help us improve this pattern by providing feedback, asking questions, and leaving any other comments on [GitHub](https://github.com/carbon-design-system/carbon-website/issues/new?assignees=&labels=feedback&template=feedback.md).
+Help us improve this pattern by providing feedback, asking questions, and
+leaving any other comments on
+[GitHub](https://github.com/carbon-design-system/carbon-website/issues/new?assignees=&labels=feedback&template=feedback.md).
