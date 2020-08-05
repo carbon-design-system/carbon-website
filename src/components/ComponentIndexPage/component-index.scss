@@ -1,0 +1,111 @@
+.component-index-search {
+  width: 100%;
+  height: 48px;
+  .bx--search-input {
+    background-color: $carbon--white-0;
+    border-bottom: 1px solid $carbon--gray-20;
+  }
+}
+.bx--dropdown__wrapper {
+  margin-top: 0px !important;
+}
+.placeholder-sort {
+  width: 100%;
+  border-bottom-width: 0px;
+  background-color: $carbon--white-0;
+  height: 48px;
+}
+.component-index-item {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  background: $carbon--white-0;
+  border-bottom: 1px solid $carbon--gray-20;
+}
+.component-index-item__image {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 11.175rem;
+  display: block;
+  background-color: $carbon--white-0;
+}
+
+.component-index-item__content {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  flex: 2;
+  border-left: 1px solid $carbon--gray-20;
+  background-color: $carbon--white-0;
+}
+.component-index-item__name {
+  @include carbon--type-style('heading-01');
+  color: $text-01;
+  font-size: 14px;
+  font-weight: 600px;
+  padding: 1rem 1rem 0 1rem;
+}
+
+@mixin trim($numLines: null) {
+  @if $numLines != null {
+    display: -webkit-box;
+    -webkit-line-clamp: $numLines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  } @else {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: block;
+  }
+}
+
+.component-index-item__description {
+  @include carbon--type-style('body-short-01');
+  color: $text-01;
+  font-size: 14px;
+  font-weight: 400px;
+  padding: 0 3rem 1rem 1rem;
+  overflow: hidden;
+  max-height: 3.5em; /* (Number of lines you want visible) * (line-height) */
+  line-height: 1.2em;
+  @include trim(3);
+}
+
+.component-index-item__info {
+  @include carbon--type-style('body-short-01');
+  color: $link-01;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  position: absolute;
+  bottom: $spacing-05;
+  padding: 0 1rem 0 1rem;
+}
+.component-index-item__web-link {
+  padding-right: $spacing-05;
+  border-right: 1px solid $carbon--gray-20;
+  cursor: pointer;
+}
+.component-index-item__storybook-link {
+  padding-left: $spacing-05;
+  cursor: pointer;
+}
+
+@media all and (max-width: 480px) {
+  .component-index-search {
+    width: 100%;
+  }
+  .placeholder-sort {
+    width: 100%;
+  }
+  .component-index-item__image {
+    display: none;
+  }
+  .component-index-item {
+    width: 100%;
+    height: 11.175rem;
+  }
+}
