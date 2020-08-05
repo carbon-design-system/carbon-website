@@ -22,6 +22,7 @@ const ALL_COMPONENTS_QUERY = graphql`
           name
           description
           maintainer
+          date_added
         }
       }
     }
@@ -51,7 +52,11 @@ function sortByMaintainer(a, b) {
   }
   return a.node.maintainer.localeCompare(b.node.maintainer);
 }
-function sortByNewest(a, b) {}
+function sortByNewest(a, b) {
+  const dateA = new Date(a.node.date_added);
+  const dateB = new Date(b.node.date_added);
+  return dateA - dateB;
+}
 
 function ComponentIndexPage() {
   const { allComponentIndexEntry: components } = useStaticQuery(
@@ -66,17 +71,21 @@ function ComponentIndexPage() {
   }, [components]);
 
   useEffect(() => {
-    if (debouncedSearchValue === '' && items !== components) {
-      setItems(components.edges);
-      return;
-    }
+    setItems((currentItems) => {
+      if (debouncedSearchValue === '') {
+        if (currentItems !== components) {
+          return components.edges;
+        }
+        return currentItems;
+      }
 
-    const searchResults = searchClient
-      .search(debouncedSearchValue)
-      .map((result) => result.item);
+      const searchResults = searchClient
+        .search(debouncedSearchValue)
+        .map((result) => result.item);
 
-    setItems(searchResults);
-  }, [debouncedSearchValue]);
+      return searchResults;
+    });
+  }, [components, debouncedSearchValue, searchClient]);
 
   return (
     <>
@@ -88,14 +97,17 @@ function ComponentIndexPage() {
       />
       {items.length > 0 ? (
         <ComponentIndexList
-          items={items.sort(sortBy[activeSortOption]).map(({ node }) => {
-            const { name, description, maintainer } = node;
-            return {
-              name,
-              description,
-              maintainer,
-            };
-          })}
+          items={items
+            .slice()
+            .sort(sortBy[activeSortOption])
+            .map(({ node }) => {
+              const { name, description, maintainer } = node;
+              return {
+                name,
+                description,
+                maintainer,
+              };
+            })}
         />
       ) : (
         <ComponentIndexNotFound />
