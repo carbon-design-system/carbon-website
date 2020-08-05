@@ -1,8 +1,18 @@
-import React from 'react';
-import { graphql, useStaticQuery } from 'gatsby';
-import { Search, Dropdown, Row, Column } from 'carbon-components-react';
+/**
+ * Copyright IBM Corp. 2016, 2020
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 
-const componentImg = require('./images/placeholderCompIndex.svg');
+import Fuse from 'fuse.js';
+import React, { useEffect, useState, useMemo } from 'react';
+import { graphql, useStaticQuery } from 'gatsby';
+import ComponentIndexList from './ComponentIndexList';
+import ComponentIndexNotFound from './ComponentIndexNotFound';
+import ComponentIndexSearch from './ComponentIndexSearch';
+import ComponentIndexSort from './ComponentIndexSort';
+import { useDebounce } from '../../hooks/useDebounce';
 
 const ALL_COMPONENTS_QUERY = graphql`
   {
@@ -12,83 +22,97 @@ const ALL_COMPONENTS_QUERY = graphql`
           name
           description
           maintainer
+          date_added
+          aliases
         }
       }
     }
   }
 `;
 
+const searchOptions = {
+  includeScore: true,
+  threshold: 0.4,
+  keys: ['node.name', 'node.description', 'node.maintainer', 'node.aliases'],
+};
+
+const sortOptions = ['Sort by A to Z', 'Sort by Maintainer', 'Sort by Newest'];
+const initialSortOption = 'Sort by A to Z';
+const sortBy = {
+  'Sort by A to Z': sortByName,
+  'Sort by Maintainer': sortByMaintainer,
+  'Sort by Newest': sortByNewest,
+};
+
+function sortByName(a, b) {
+  return a.node.name.localeCompare(b.node.name);
+}
+function sortByMaintainer(a, b) {
+  if (a.node.maintainer === b.node.maintainer) {
+    return sortByName(a, b);
+  }
+  return a.node.maintainer.localeCompare(b.node.maintainer);
+}
+function sortByNewest(a, b) {
+  const dateA = new Date(a.node.date_added);
+  const dateB = new Date(b.node.date_added);
+  return dateA - dateB;
+}
+
 function ComponentIndexPage() {
   const { allComponentIndexEntry: components } = useStaticQuery(
     ALL_COMPONENTS_QUERY
   );
+  const [items, setItems] = useState(components.edges);
+  const [activeSortOption, setActiveSortOption] = useState(initialSortOption);
+  const [searchValue, setSearchValue] = useState('');
+  const [debouncedSearchValue] = useDebounce(searchValue, 300);
+  const searchClient = useMemo(() => {
+    return new Fuse(components.edges, searchOptions);
+  }, [components]);
 
-  const href = '/get-started/about-carbon';
+  useEffect(() => {
+    setItems((currentItems) => {
+      if (debouncedSearchValue === '') {
+        if (currentItems !== components) {
+          return components.edges;
+        }
+        return currentItems;
+      }
 
-  const items = [];
+      const searchResults = searchClient
+        .search(debouncedSearchValue)
+        .map((result) => result.item);
+
+      return searchResults;
+    });
+  }, [components, debouncedSearchValue, searchClient]);
 
   return (
     <>
-      <Row>
-        <Column lg={9}>
-          <Search
-            className="component-index-search"
-            id="search-1"
-            placeHolderText="Search"
-          />
-          <Dropdown
-            ariaLabel="Dropdown"
-            id="carbon-dropdown-example"
-            items={items}
-            label="Sort by A to Z"
-            className="placeholder-sort"
-          />
-        </Column>
-      </Row>
-
-      <section aria-label="Component index">
-        {components.edges.map(({ node }) => {
-          const { name, description, maintainer } = node;
-          const key = `${name}:${maintainer}`;
-
-          return (
-            <Row key={key}>
-              <Column lg={9}>
-                <article className="component-index-item">
-                  <div className="component-index-item__image">
-                    <img
-                      src={componentImg}
-                      alt="some-img"
-                      className="index-image"
-                    />
-                  </div>
-
-                  <div className="component-index-item__content">
-                    <header className="component-index-item__name">
-                      {name}
-                    </header>
-
-                    <p className="component-index-item__description">
-                      {description}
-                    </p>
-
-                    <footer className="component-index-item__info">
-                      <a className="component-index-item__web-link" href={href}>
-                        Website
-                      </a>
-                      <a
-                        className="component-index-item__storybook-link"
-                        href={href}>
-                        Storybook/GitHub
-                      </a>
-                    </footer>
-                  </div>
-                </article>
-              </Column>
-            </Row>
-          );
-        })}
-      </section>
+      <ComponentIndexSearch value={searchValue} onChange={setSearchValue} />
+      <ComponentIndexSort
+        initialSortOption={initialSortOption}
+        options={sortOptions}
+        onChange={setActiveSortOption}
+      />
+      {items.length > 0 ? (
+        <ComponentIndexList
+          items={items
+            .slice()
+            .sort(sortBy[activeSortOption])
+            .map(({ node }) => {
+              const { name, description, maintainer } = node;
+              return {
+                name,
+                description,
+                maintainer,
+              };
+            })}
+        />
+      ) : (
+        <ComponentIndexNotFound />
+      )}
     </>
   );
 }
