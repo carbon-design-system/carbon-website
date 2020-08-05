@@ -23,6 +23,7 @@ const ALL_COMPONENTS_QUERY = graphql`
           description
           maintainer
           date_added
+          aliases
         }
       }
     }
@@ -32,7 +33,7 @@ const ALL_COMPONENTS_QUERY = graphql`
 const searchOptions = {
   includeScore: true,
   threshold: 0.4,
-  keys: ['node.name', 'node.description', 'node.maintainer'],
+  keys: ['node.name', 'node.description', 'node.maintainer', 'node.aliases'],
 };
 
 const sortOptions = ['Sort by A to Z', 'Sort by Maintainer', 'Sort by Newest'];
