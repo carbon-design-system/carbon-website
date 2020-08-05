@@ -1,4 +1,4 @@
-import { Row, Column } from 'carbon-components-react';
+import { Link, Row, Column, Tag } from 'carbon-components-react';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -12,9 +12,9 @@ function ComponentIndexList({ items }) {
         const key = `${name}:${maintainer}`;
         return (
           <Row key={key}>
-            <Column lg={9}>
+            <Column sm={4} md={8} lg={9}>
               <article className="component-index-item">
-                <div className="component-index-item__image">
+                <div className="component-index-item__image bx--aspect-ratio bx--aspect-ratio--4x3">
                   <img
                     src={componentImg}
                     alt="some-img"
@@ -30,16 +30,25 @@ function ComponentIndexList({ items }) {
                   </p>
 
                   <footer className="component-index-item__info">
-                    <a className="component-index-item__web-link" href={href}>
-                      Website
-                    </a>
-                    <a
-                      className="component-index-item__storybook-link"
-                      href={href}>
-                      Storybook/GitHub
-                    </a>
-                    <ul>
-                      <li>{maintainer}</li>
+                    <div className="component-index-item__links">
+                      <Link
+                        className="component-index-item__link"
+                        href={href}
+                        rel="noopener noreferrer">
+                        Website
+                      </Link>
+                      <div className="component-index-item__divider"></div>
+                      <Link
+                        className="component-index-item__link"
+                        href={href}
+                        rel="noopener noreferrer">
+                        Code
+                      </Link>
+                    </div>
+                    <ul className="component-index-item__tags">
+                      <li className="component-index-item__tag component-index-item__tag--maintainer">
+                        <Tag>{maintainer}</Tag>
+                      </li>
                     </ul>
                   </footer>
                 </div>

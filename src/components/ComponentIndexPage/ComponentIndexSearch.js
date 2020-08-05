@@ -1,37 +1,27 @@
-import { Row, Column } from 'carbon-components-react';
+import { Search, Row, Column } from 'carbon-components-react';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-// <Search
-// className="component-index-search"
-// id="search-1"
-// placeHolderText="Search"
-// />
-// <Dropdown
-// ariaLabel="Dropdown"
-// id="carbon-dropdown-example"
-// items={items}
-// label="Sort by A to Z"
-// className="placeholder-sort"
-// />
-
 function ComponentIndexSearch({ value, onChange }) {
+  function handleOnChange(event) {
+    onChange(event.target.value);
+  }
+
   return (
-    <Row>
-      <Column lg={8}>
-        <label htmlFor="seach-index">Search</label>
-        <input
-          id="search-index"
-          type="text"
-          value={value}
-          onChange={(event) => {
-            if (onChange) {
-              onChange(event.target.value);
-            }
-          }}
-        />
-      </Column>
-    </Row>
+    <div className="component-index-search">
+      <Row>
+        <Column sm={4} md={8} lg={9}>
+          <Search
+            light
+            id="component-index-search"
+            labelText="Search component index by name, keyword, or domain"
+            placeHolderText="Component name, keyword, domain"
+            value={value}
+            onChange={handleOnChange}
+          />
+        </Column>
+      </Row>
+    </div>
   );
 }
 

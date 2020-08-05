@@ -1,111 +1,95 @@
+//
+// Copyright IBM Corp. 2016, 2020
+//
+// This source code is licensed under the Apache-2.0 license found in the
+// LICENSE file in the root directory of this source tree.
+//
+
+//----------------------------------------------------------------------------
+// Component Index Search
+//----------------------------------------------------------------------------
 .component-index-search {
-  width: 100%;
-  height: 48px;
-  .bx--search-input {
-    background-color: $carbon--white-0;
-    border-bottom: 1px solid $carbon--gray-20;
-  }
-}
-.bx--dropdown__wrapper {
-  margin-top: 0px !important;
-}
-.placeholder-sort {
-  width: 100%;
-  border-bottom-width: 0px;
-  background-color: $carbon--white-0;
-  height: 48px;
-}
-.component-index-item {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 100%;
-  background: $carbon--white-0;
-  border-bottom: 1px solid $carbon--gray-20;
-}
-.component-index-item__image {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  height: 11.175rem;
-  display: block;
-  background-color: $carbon--white-0;
+  margin-top: 5rem;
 }
 
-.component-index-item__content {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  flex: 2;
-  border-left: 1px solid $carbon--gray-20;
-  background-color: $carbon--white-0;
+// Sort
+.component-index-sort-container {
+  margin-bottom: $spacing-07;
+  margin-top: 0;
 }
+
+.component-index-sort {
+  background-color: $white-0;
+}
+
+//----------------------------------------------------------------------------
+// Component Index item
+//----------------------------------------------------------------------------
+.component-index-item {
+  display: flex;
+  margin-bottom: 1px;
+}
+
+.component-index-item .component-index-item__image,
+.component-index-item .component-index-item__content {
+  background-color: $white-0;
+}
+
+// Image
+.component-index-item__image {
+  display: none;
+
+  @include carbon--breakpoint(md) {
+    display: block;
+    margin-right: 1px;
+    // TODO: replace with appropriate aspect ratio handling
+    width: 238px;
+  }
+}
+
+// Name
 .component-index-item__name {
   @include carbon--type-style('heading-01');
   color: $text-01;
-  font-size: 14px;
-  font-weight: 600px;
-  padding: 1rem 1rem 0 1rem;
 }
 
-@mixin trim($numLines: null) {
-  @if $numLines != null {
-    display: -webkit-box;
-    -webkit-line-clamp: $numLines;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  } @else {
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    display: block;
-  }
-}
-
+// Description
 .component-index-item__description {
   @include carbon--type-style('body-short-01');
   color: $text-01;
-  font-size: 14px;
-  font-weight: 400px;
-  padding: 0 3rem 1rem 1rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
   overflow: hidden;
-  max-height: 3.5em; /* (Number of lines you want visible) * (line-height) */
-  line-height: 1.2em;
-  @include trim(3);
+  margin-bottom: $spacing-07;
 }
 
+// Content
+.component-index-item__content {
+  padding: 1rem;
+  flex: 1 1 100%;
+}
+
+// Info
 .component-index-item__info {
   @include carbon--type-style('body-short-01');
-  color: $link-01;
+
+  flex: 1 1 0%;
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  position: absolute;
-  bottom: $spacing-05;
-  padding: 0 1rem 0 1rem;
-}
-.component-index-item__web-link {
-  padding-right: $spacing-05;
-  border-right: 1px solid $carbon--gray-20;
-  cursor: pointer;
-}
-.component-index-item__storybook-link {
-  padding-left: $spacing-05;
-  cursor: pointer;
+  align-items: center;
+  justify-content: space-between;
 }
 
-@media all and (max-width: 480px) {
-  .component-index-search {
-    width: 100%;
-  }
-  .placeholder-sort {
-    width: 100%;
-  }
-  .component-index-item__image {
-    display: none;
-  }
-  .component-index-item {
-    width: 100%;
-    height: 11.175rem;
-  }
+// Links
+.component-index-item__links {
+  display: flex;
+  align-items: center;
+}
+
+// Divider
+.component-index-item__divider {
+  width: 2px;
+  height: 1rem;
+  background-color: $ui-03;
+  margin: 0 $spacing-05;
 }
