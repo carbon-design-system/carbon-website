@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 /* eslint-disable global-require */
 /* eslint-disable import/no-dynamic-require */
 /* eslint-disable no-undef */
@@ -8,29 +7,17 @@ import React from 'react';
 
 const componentImg = require('./images/placeholderCompIndex.svg');
 
+// TODO: Render icons dynamically based on framework & designAsset info.
+const reactIcon = require('./images/React.svg');
+const sketchIcon = require('./images/Sketch.svg');
+
 const href = '/get-started/about-carbon';
 
 function ComponentIndexList({ items }) {
-  let frameworkIcon;
-  try {
-    frameworkIcon = require(`./images/${framework}.svg`);
-  } catch (e) {
-    // eslint-disable-next-line global-require
-    frameworkIcon = require('./images/React.svg');
-  }
-
-  let designAssetIcon;
-  try {
-    designAssetIcon = require(`./images/${design_asset}.svg`);
-  } catch (e) {
-    // eslint-disable-next-line global-require
-    designAssetIcon = require('./images/Sketch.svg');
-  }
-
   return (
     <section aria-label="Component index">
       {items.map(
-        ({ name, description, maintainer, framework, design_asset }) => {
+        ({ name, description, maintainer, framework, designAsset }) => {
           const key = `${name}:${maintainer}`;
           return (
             <Row key={key}>
@@ -72,18 +59,14 @@ function ComponentIndexList({ items }) {
                       <ul className="component-index-item__tags">
                         <li className="component-index-item__tag component-index-item__tag--framework">
                           <TooltipIcon direction="top" tooltipText={framework}>
-                            <img
-                              // eslint-disable-next-line global-require
-                              src={frameworkIcon}
-                              alt={framework}
-                            />
+                            <img src={reactIcon} alt={framework} />
                           </TooltipIcon>
                         </li>
                         <li className="component-index-item__tag component-index-item__tag--design-asset">
                           <TooltipIcon
                             direction="top"
-                            tooltipText={design_asset}>
-                            <img src={designAssetIcon} alt={design_asset} />
+                            tooltipText={designAsset}>
+                            <img src={sketchIcon} alt={designAsset} />
                           </TooltipIcon>
                         </li>
                         <li className="component-index-item__tag component-index-item__tag--maintainer">

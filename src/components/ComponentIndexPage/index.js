@@ -117,15 +117,14 @@ function ComponentIndexPage() {
                 description,
                 maintainer,
                 framework,
-                // eslint-disable-next-line camelcase
-                design_asset,
+                design_asset: designAsset,
               } = node;
               return {
                 name,
                 description,
                 maintainer,
                 framework,
-                design_asset,
+                designAsset,
               };
             })}
         />
