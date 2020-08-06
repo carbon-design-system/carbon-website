@@ -16,30 +16,22 @@ interaction patterns that persist between and across products.
 
 <AnchorLinks>
 
-<AnchorLink>General guidance</AnchorLink>
-<AnchorLink>Anatomy</AnchorLink>
-<AnchorLink>Icon placement</AnchorLink>
-<AnchorLink>Behavior</AnchorLink>
+<AnchorLink>Overview</AnchorLink>
+<AnchorLink>Live demo</AnchorLink>
+<AnchorLink>Formatting</AnchorLink>
+<AnchorLink>Content</AnchorLink>
+<AnchorLink>Behaviors</AnchorLink>
+<AnchorLink>Related</AnchorLink>
+<AnchorLink>References</AnchorLink>
+<AnchorLink>Feedback</AnchorLink>
 
 </AnchorLinks>
 
-![UI shell header](images/zones-platform.png)
+## Overview
 
-<Caption>UI shell header</Caption>
-
-## Resources
-
-<Row className="resource-card-group">
-  <Column colLg={4} colMd={4} noGutterSm>
-    <ResourceCard
-      subTitle="UI Shell template"
-      href="https://sketch.cloud/s/EjVmA">
-      <MdxIcon name="sketch" />
-    </ResourceCard>
-  </Column>
-</Row>
-
-## General guidance
+The UI shell header is the foundation for navigating and orienting your user to
+your UI. The UI shell header can be used by itself or combined with the UI shell
+left and right panels for more complex UI navigation.
 
 The UI shell is made up of three components: The header, the
 [left panel](/components/UI-shell-left-panel/usage), and the
@@ -52,9 +44,42 @@ independently, but the components were designed to work together.
 | Left panel         | An optional panel that is used for a product's navigation.                                                                              |
 | Right panel        | An optional panel that shows additional system level actions or content associated with a system icon in the header.                    |
 
-![UI shell components.](images/shell-usage-1.png)
+### When to use
 
-<Caption>UI shell components</Caption>
+The UI shell header is a globally persistent element in your UI that can be used
+to identify the UI by name and can include navigational links and other
+utilities.
+
+## Live demo
+
+<Row>
+  <Column>
+    <iframe
+      loading="lazy"
+      src="https://codesandbox.io/embed/header-with-actions-and-nav-m0lo2?fontsize=14&hidenavigation=1&view=preview"
+      title="header-with-actions-and-nav"
+      allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media"
+      style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+      sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
+    />
+  </Column>
+</Row>
+
+## Formatting
+
+### Anatomy
+
+The header spans the full width of the viewport and is the topmost element in
+the browser window. Header elements are persistent throughout the product
+experience.
+
+<Row>
+<Column colLg={12}>
+
+![Header anatomy](images/header-anatomy.png)
+
+</Column>
+</Row>
 
 For each UI shell component, left-to-right translates to product-to-global. The
 left side of the header contains items relevant at the product level. Moving to
@@ -63,59 +88,35 @@ middle of the header should represent system-level controls. Elements on the
 right side of the header, such as the switcher, are the most global in their
 scope and span multiple products.
 
-## Anatomy
+1. **Hamburger menu**: The hamburger icon is used to open product navigation
+   such as the [left panel.](/components/UI-shell-left-panel/usage) The
+   hamburger menu is only needed when there is a collapsable left navigation.
 
-The header spans the full width of the viewport and is the topmost element in
-the browser window. Header elements are persistent throughout the product
-experience.
+2. **Header name**: For IBM products, the header name is always preceded by
+   “IBM.”
 
-![Primary header](images/header-usage-2.png)
+3. **Header links**: Links in the header are supported as product navigation, if
+   required. These links move to the side menu in narrow screen widths.
 
-<Caption>Primary header</Caption>
+4. **Sub-menu**: Sub-menus are supported as product navigation, if required.
+   Include the down-pointing chevron after the link label. Sub-menus open on
+   click and are closed by either selecting an item in the menu, clicking
+   outside the menu area, or clicking on the menu label. When open, the chevron
+   should point up. Sub-menu labels serve only to open the dropdown; they cannot
+   link to another page in the product.
 
-### Header elements
+5. **Header utilities**: These utilities are reserved for universal,
+   system-level functions such as profile, search, notifications, and similar
+   functions. Not every product on a system is required to show the same
+   utilities, but it is recommended for a better cross-product user experience.
 
-#### Hamburger menu
+6. **Switcher**: The switcher provides a way for the user to easily navigate
+   _between_ products and systems. Recommended uses for this component include
+   recently used apps, frequently used apps, or all apps attached to the user’s
+   account. If the list is a manageable size, include all apps or products
+   available on the system.
 
-The hamburger icon is used to open product navigation such as the
-[left panel.](/components/UI-shell-left-panel/usage)
-
-#### Header name
-
-For IBM products, the header name is always preceded by “IBM”.
-
-#### Header links
-
-Links in the header are supported as product navigation, if required. These
-links move to the side menu in narrow screen widths.
-
-#### Sub-menu
-
-Sub-menus are supported as product navigation, if required. Include the
-down-pointing chevron after the link label. Sub-menus open on click and are
-closed by either selecting an item in the menu, clicking outside the menu area,
-or clicking on the menu label. When open, the chevron should point up. Sub-menu
-labels serve only to open the dropdown; they cannot link to another page in the
-product.
-
-#### Header utilities
-
-These utilities are reserved for universal, system-level functions such as
-profile, search, notifications, and similar functions. Not every product on a
-system is required to show the same utilities, but it is recommended for a
-better cross-product user experience.
-
-#### Switcher
-
-The switcher provides a way for the user to easily navigate _between_ products
-and systems. Recommended uses for this component include recently used apps,
-frequently used apps, or all apps attached to the user’s account. If the list is
-a manageable size, include all apps or products available on the system.
-
-Links to related systems should also live in the switcher. If you’re building a
-product for IBM, your switcher should include a link to [IBM.](http://ibm.com/)
-
-## Icon placement
+### Placement
 
 Icons are not a required element of the header and a product may choose to use
 any set of icons for their UI. Icons should always be aligned to the right of
@@ -124,12 +125,12 @@ the header with no gaps between icons.
 <DoDontRow>
   <DoDont caption="Header utilities are right aligned with no gaps">
 
-![Example of header icons right aligned with no gaps.](images/header-usage-5.png)
+![Example of header icons right aligned with no gaps.](images/utility_placemet_do.png)
 
   </DoDont>
   <DoDont type="dont" caption="Header utilities with a gap between the account and help icons.">
 
-![Example of the header icons with a gap between the account and help icons.](images/header-usage-6.png)
+![Example of the header icons with a gap between the account and help icons.](images/utility_placement_dont.png)
 
   </DoDont>
 </DoDontRow>
@@ -142,7 +143,7 @@ icon, and search.
 <Row>
 <Column colLg={8}>
 
-![icon placement.](images/header-usage-4.png)
+![icon placement.](images/example_placement.png)
 
 </Column>
 </Row>
@@ -156,7 +157,13 @@ icon, and search.
 | Account       | 2nd from the right                     |                                                                                                                                                                                                              |
 | Switcher      | Right                                  | The switcher should always be positioned as the furthest right icon. This ensures the icon does not shift when navigating across systems.                                                                    |
 
-## Behavior
+## Content
+
+### Main elements
+
+### Overflow content
+
+## Behaviors
 
 As a header scales down to fit smaller screen sizes, header links and menus
 should collapse into a left-panel hamburger menu. See the examples below to
@@ -165,6 +172,40 @@ better understand the header's responsive behavior.
 If your UI includes a left panel, the header links should be added above the
 left panel items, pushing them down accordingly.
 
-![An example of the header responding to different screen sizes.](images/header-usage-3.png)
+<Row>
+<Column colLg={12}>
 
-<Caption>Header responsive behavior</Caption>
+![An example of the header responding to different screen sizes.](images/responsive_header.png)
+
+</Column>
+<Row>
+
+### States
+
+### Interactions
+
+### Validation
+
+### Responsive behavior
+
+### Default selection
+
+### Clickable areas
+
+### Loading
+
+## Modifiers
+
+## Related
+
+## References
+
+- Susan Farrell,
+  [Utility Navigation: What It Is and How to Design It](https://www.nngroup.com/articles/utility-navigation/)
+  (Nielsen Norman Group, 2015)
+
+## Feedback
+
+Help us improve this component by providing feedback, asking questions, and
+leaving any other comments on
+[GitHub](https://github.com/carbon-design-system/carbon-website/issues/new?assignees=&labels=feedback&template=feedback.md).
