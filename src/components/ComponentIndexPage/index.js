@@ -24,6 +24,8 @@ const ALL_COMPONENTS_QUERY = graphql`
           maintainer
           date_added
           aliases
+          framework
+          design_asset
         }
       }
     }
@@ -33,7 +35,14 @@ const ALL_COMPONENTS_QUERY = graphql`
 const searchOptions = {
   includeScore: true,
   threshold: 0.4,
-  keys: ['node.name', 'node.description', 'node.maintainer', 'node.aliases'],
+  keys: [
+    'node.name',
+    'node.description',
+    'node.maintainer',
+    'node.aliases',
+    'node.framework',
+    'node.design_asset',
+  ],
 };
 
 const sortOptions = ['Sort by A to Z', 'Sort by Maintainer', 'Sort by Newest'];
@@ -67,9 +76,10 @@ function ComponentIndexPage() {
   const [activeSortOption, setActiveSortOption] = useState(initialSortOption);
   const [searchValue, setSearchValue] = useState('');
   const [debouncedSearchValue] = useDebounce(searchValue, 300);
-  const searchClient = useMemo(() => {
-    return new Fuse(components.edges, searchOptions);
-  }, [components]);
+  const searchClient = useMemo(
+    () => new Fuse(components.edges, searchOptions),
+    [components]
+  );
 
   useEffect(() => {
     setItems((currentItems) => {
@@ -102,11 +112,19 @@ function ComponentIndexPage() {
             .slice()
             .sort(sortBy[activeSortOption])
             .map(({ node }) => {
-              const { name, description, maintainer } = node;
+              const {
+                name,
+                description,
+                maintainer,
+                framework,
+                design_asset: designAsset,
+              } = node;
               return {
                 name,
                 description,
                 maintainer,
+                framework,
+                designAsset,
               };
             })}
         />
