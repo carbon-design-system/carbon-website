@@ -1,9 +1,11 @@
 /* eslint-disable no-undef */
-import { Link, Row, Column, Tag, Tooltip } from 'carbon-components-react';
+import { Link, Row, Column, Tag, TooltipIcon } from 'carbon-components-react';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 const componentImg = require('./images/placeholderCompIndex.svg');
+const reactIcon = require('./images/reactIcon.svg');
+const sketchIcon = require('./images/sketchIcon.svg');
 
 const href = '/get-started/about-carbon';
 
@@ -26,7 +28,7 @@ function ComponentIndexList({ items }) {
                 <div className="component-index-item__image bx--aspect-ratio bx--aspect-ratio--4x3">
                   <img
                     src={componentImg}
-                    alt="some-img"
+                    alt="component-img"
                     className="index-image"
                   />
                 </div>
@@ -55,15 +57,20 @@ function ComponentIndexList({ items }) {
                       </Link>
                     </div>
                     <ul className="component-index-item__tags">
+                      <li className="component-index-item__tag component-index-item__tag--framework">
+                        <TooltipIcon direction="top" tooltipText="React">
+                          <img src={reactIcon} alt="framework-icon" />
+                        </TooltipIcon>
+                      </li>
+                      <li className="component-index-item__tag component-index-item__tag--design-asset">
+                        <TooltipIcon direction="top" tooltipText="Sketch">
+                          <img src={sketchIcon} alt="design-asset-icon" />
+                        </TooltipIcon>
+                      </li>
                       <li className="component-index-item__tag component-index-item__tag--maintainer">
-                        <Tooltip
-                          {...props.withoutIcon()}
-                          direction="top"
-                          selectorPrimaryFocus=""
-                          tabIndex={0}
-                          triggerText={<Tag>{maintainer}</Tag>}>
-                          <div>Maintainer</div>
-                        </Tooltip>
+                        <TooltipIcon direction="top" tooltipText="Maintainer">
+                          <Tag>{maintainer}</Tag>
+                        </TooltipIcon>
                       </li>
                     </ul>
                   </footer>
