@@ -1,11 +1,20 @@
-import { Link, Row, Column, Tag } from 'carbon-components-react';
+/* eslint-disable no-undef */
+import { Link, Row, Column, Tag, Tooltip } from 'carbon-components-react';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 const componentImg = require('./images/placeholderCompIndex.svg');
+
 const href = '/get-started/about-carbon';
 
+const props = {
+  withoutIcon: () => ({
+    showIcon: false,
+  }),
+};
+
 function ComponentIndexList({ items }) {
+  console.log(items);
   return (
     <section aria-label="Component index">
       {items.map(({ name, description, maintainer }) => {
@@ -37,7 +46,7 @@ function ComponentIndexList({ items }) {
                         rel="noopener noreferrer">
                         Website
                       </Link>
-                      <div className="component-index-item__divider"></div>
+                      <div className="component-index-item__divider" />
                       <Link
                         className="component-index-item__link"
                         href={href}
@@ -47,7 +56,14 @@ function ComponentIndexList({ items }) {
                     </div>
                     <ul className="component-index-item__tags">
                       <li className="component-index-item__tag component-index-item__tag--maintainer">
-                        <Tag>{maintainer}</Tag>
+                        <Tooltip
+                          {...props.withoutIcon()}
+                          direction="top"
+                          selectorPrimaryFocus=""
+                          tabIndex={0}
+                          triggerText={<Tag>{maintainer}</Tag>}>
+                          <div>Maintainer</div>
+                        </Tooltip>
                       </li>
                     </ul>
                   </footer>

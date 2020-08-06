@@ -67,9 +67,10 @@ function ComponentIndexPage() {
   const [activeSortOption, setActiveSortOption] = useState(initialSortOption);
   const [searchValue, setSearchValue] = useState('');
   const [debouncedSearchValue] = useDebounce(searchValue, 300);
-  const searchClient = useMemo(() => {
-    return new Fuse(components.edges, searchOptions);
-  }, [components]);
+  const searchClient = useMemo(
+    () => new Fuse(components.edges, searchOptions),
+    [components]
+  );
 
   useEffect(() => {
     setItems((currentItems) => {
@@ -90,6 +91,7 @@ function ComponentIndexPage() {
 
   return (
     <>
+      {console.log(components)}
       <ComponentIndexSearch value={searchValue} onChange={setSearchValue} />
       <ComponentIndexSort
         initialSortOption={initialSortOption}
