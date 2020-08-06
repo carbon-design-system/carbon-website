@@ -24,6 +24,8 @@ const ALL_COMPONENTS_QUERY = graphql`
           maintainer
           date_added
           aliases
+          framework
+          design_asset
         }
       }
     }
@@ -33,7 +35,14 @@ const ALL_COMPONENTS_QUERY = graphql`
 const searchOptions = {
   includeScore: true,
   threshold: 0.4,
-  keys: ['node.name', 'node.description', 'node.maintainer', 'node.aliases'],
+  keys: [
+    'node.name',
+    'node.description',
+    'node.maintainer',
+    'node.aliases',
+    'node.framework',
+    'node.design_asset',
+  ],
 };
 
 const sortOptions = ['Sort by A to Z', 'Sort by Maintainer', 'Sort by Newest'];
@@ -91,7 +100,6 @@ function ComponentIndexPage() {
 
   return (
     <>
-      {console.log(components)}
       <ComponentIndexSearch value={searchValue} onChange={setSearchValue} />
       <ComponentIndexSort
         initialSortOption={initialSortOption}
@@ -104,11 +112,20 @@ function ComponentIndexPage() {
             .slice()
             .sort(sortBy[activeSortOption])
             .map(({ node }) => {
-              const { name, description, maintainer } = node;
+              const {
+                name,
+                description,
+                maintainer,
+                framework,
+                // eslint-disable-next-line camelcase
+                design_asset,
+              } = node;
               return {
                 name,
                 description,
                 maintainer,
+                framework,
+                design_asset,
               };
             })}
         />
