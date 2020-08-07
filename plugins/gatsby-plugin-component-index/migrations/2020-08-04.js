@@ -7,6 +7,7 @@ const fs = require('fs-extra');
 const path = require('path');
 const csv = require('csvtojson');
 const yml = require('js-yaml');
+const schema = require('../src/schema');
 
 const CSV_FILEPATH = path.resolve(__dirname, '../data/index.csv');
 const renames = {
@@ -17,6 +18,10 @@ const renames = {
   'Design asset': 'design_asset',
   'Maintainer team': 'maintainer',
   Image: 'image_url',
+
+  // New
+  'Website link': 'website_url',
+  'Storybook/GitHub': 'code_url',
 };
 const maintainerRenames = {
   'Cloud PAL': 'cloud-pal',
@@ -96,6 +101,22 @@ async function main() {
     })
     .filter((component) => {
       return component.name !== 'Not included';
+    })
+    .map((component) => {
+      const result = {};
+      for (const key of Object.keys(component)) {
+        if (component[key] === 'n/a') {
+          continue;
+        }
+        result[key] = component[key];
+      }
+      return result;
+    })
+    .map((component) => {
+      return {
+        ...component,
+        date_added: '2020-08-04',
+      };
     });
 
   const maintainers = new Map();
@@ -151,7 +172,11 @@ async function main() {
         }
       }
 
-      const data = yml.safeDump(entry);
+      const { value, error } = schema.component.validate(entry);
+      if (error) {
+        throw error;
+      }
+      const data = yml.safeDump(value);
       await fs.writeFile(filepath, data, 'utf8');
     }
   }
