@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { ContentSwitcher, Switch, Dropdown } from 'carbon-components-react';
 import cx from 'classnames';
 import {
