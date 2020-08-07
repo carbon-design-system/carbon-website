@@ -20,6 +20,7 @@
 
 .component-index-sort {
   background-color: $white-0;
+  height: 2.5rem;
 }
 
 //----------------------------------------------------------------------------
@@ -27,12 +28,14 @@
 //----------------------------------------------------------------------------
 .component-index-item {
   display: flex;
+  flex-wrap: wrap;
   margin-bottom: 1px;
 }
 
 .component-index-item .component-index-item__image,
 .component-index-item .component-index-item__content {
   background-color: $white-0;
+  height: 11.25rem;
 }
 
 // Image
@@ -40,7 +43,9 @@
   display: none;
 
   @include carbon--breakpoint(md) {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-right: 1px;
     // TODO: replace with appropriate aspect ratio handling
     width: 238px;
@@ -56,27 +61,29 @@
 // Description
 .component-index-item__description {
   @include carbon--type-style('body-short-01');
+  padding-right: 3rem;
   color: $text-01;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
   overflow: hidden;
-  margin-bottom: $spacing-07;
 }
 
 // Content
 .component-index-item__content {
   padding: 1rem;
-  flex: 1 1 100%;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 // Info
 .component-index-item__info {
   @include carbon--type-style('body-short-01');
 
-  flex: 1 1 0%;
+  margin-top: auto;
   display: flex;
-  align-items: center;
   justify-content: space-between;
 }
 
@@ -88,10 +95,33 @@
 
 // Divider
 .component-index-item__divider {
-  width: 2px;
+  width: 1px;
   height: 1rem;
   background-color: $ui-03;
   margin: 0 $spacing-05;
+}
+
+// Info Tags
+.component-index-item__tags {
+  display: flex;
+  align-items: center;
+}
+
+.component-index-item__tag--framework {
+  padding-right: $spacing-02;
+}
+
+.component-index-item__tag--design-asset {
+  padding-right: $spacing-02;
+}
+
+.component-index-item__tag--maintainer {
+  @include carbon--type-style('body-short-01');
+  color: $text-01;
+}
+
+.component-index-item__tags li {
+  display: inline-block;
 }
 
 //----------------------------------------------------------------------------
