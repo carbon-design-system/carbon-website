@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ContentSwitcher, Switch, Dropdown } from 'carbon-components-react';
 import cx from 'classnames';
 import {
@@ -25,9 +25,10 @@ const ColorPalette = ({ type, isMono, isDiverging }) => {
   // STATES
   const [continuous, setContinuous] = useState(false);
   const [dark, setDark] = useState(false);
-  const [groupNumber, setGroupNumber] = useState(1);
+  const [groupNumber, setGroupNumber] = useState(1); // used for selected dropdown item
+  let colors;
 
-  // SET COLORS
+  // DETERMINE LIGHT/DARK
   const categorical = dark ? categoricalDark : categoricalLight;
   const oneColor = dark ? oneColorDark : oneColorLight;
   const twoColor = dark ? twoColorDark : twoColorLight;
@@ -35,40 +36,16 @@ const ColorPalette = ({ type, isMono, isDiverging }) => {
   const fourColor = dark ? fourColorDark : fourColorLight;
   const fiveColor = dark ? fiveColorDark : fiveColorLight;
 
-  // grouped colors won't update "light" / "dark" versions if selectedGroup is a state
-  // for this reason, I made it into a switch case. Light/dark switcher works if it's a variable.
-  // however, when the dropdown is then updated, the rendered groups don't change.
-  // for this reason, I made a state (groupNumber), which will change on dropdown change,
-  // and the selectedGroup variable is switched based on the groupNumber state.
-  // this way both switcher and dropdown changes work.
-  let selectedGroup;
-  if (type === 'grouped') {
-    switch (groupNumber) {
-      case 1:
-        selectedGroup = oneColor;
-        break;
-      case 2:
-        selectedGroup = twoColor;
-        break;
-      case 3:
-        selectedGroup = threeColor;
-        break;
-      case 4:
-        selectedGroup = fourColor;
-        break;
-      case 5:
-        selectedGroup = fiveColor;
-        break;
-      default:
-    }
-  } else if (type === 'sequential' && isMono) {
-    selectedGroup = monoColors;
+  // SET RENDERED COLORS
+  const [colorGroup, setColorGroup] = useState(oneColor); // used to render type === "grouped" colors
+  if (type === 'sequential' && isMono) {
+    colors = monoColors;
   } else if (type === 'sequential' && isDiverging) {
-    selectedGroup = divergingColors;
+    colors = divergingColors;
   } else if (type === 'categorical') {
-    selectedGroup = categorical;
+    colors = categorical;
   } else if (type === 'alert') {
-    selectedGroup = alert;
+    colors = alert;
   }
 
   // DROPDOWN STUFF
@@ -96,7 +73,28 @@ const ColorPalette = ({ type, isMono, isDiverging }) => {
   ];
 
   const onDropdownChange = (e) => {
+    // update selected option
     setGroupNumber(e.selectedItem.id);
+
+    // update colors rendered
+    switch (e.selectedItem.id) {
+      case 1:
+        setColorGroup(oneColor);
+        break;
+      case 2:
+        setColorGroup(twoColor);
+        break;
+      case 3:
+        setColorGroup(threeColor);
+        break;
+      case 4:
+        setColorGroup(fourColor);
+        break;
+      case 5:
+        setColorGroup(fiveColor);
+        break;
+      default:
+    }
   };
 
   // SWITCHER STUFF
@@ -116,6 +114,16 @@ const ColorPalette = ({ type, isMono, isDiverging }) => {
     }
   };
 
+  const handleKeyboard = (e) => {
+    if (e.key === 'ArrowRight') {
+      setTrue();
+    }
+
+    if (e.key === 'ArrowLeft') {
+      setFalse();
+    }
+  };
+
   const switcherOne = type === 'sequential' ? 'Discrete' : 'Light';
   const switcherTwo = type === 'sequential' ? 'Continuous' : 'Dark';
 
@@ -129,7 +137,7 @@ const ColorPalette = ({ type, isMono, isDiverging }) => {
         })}
       >
         <ContentSwitcher
-          onChange={() => {}} // switcher won't work w/o func
+          onChange={handleKeyboard}
           className="palette-switcher"
           selectionMode="automatic"
           selectedIndex={0}
@@ -145,6 +153,7 @@ const ColorPalette = ({ type, isMono, isDiverging }) => {
             light
             items={dropdownItems}
             onChange={onDropdownChange}
+            selectedItem={dropdownItems[groupNumber - 1]}
             initialSelectedItem={dropdownItems[0]}
           />
         )}
@@ -152,7 +161,7 @@ const ColorPalette = ({ type, isMono, isDiverging }) => {
 
       {type === 'grouped' && (
         <PalettesContainer dark={dark}>
-          {selectedGroup.map((i, index) => (
+          {colorGroup.map((i, index) => (
             <div className="group-container" key={index}>
               <div className="group-option">Option {index + 1}</div>
               {i.map((j, jIndex) => (
@@ -170,7 +179,7 @@ const ColorPalette = ({ type, isMono, isDiverging }) => {
 
       {(type === 'categorical' || type === 'alert') && (
         <PalettesContainer dark={dark} type={type}>
-          {selectedGroup.map((i, index) => (
+          {colors.map((i, index) => (
             <ColorPaletteColor
               isNumbered
               index={index}
@@ -184,7 +193,7 @@ const ColorPalette = ({ type, isMono, isDiverging }) => {
 
       {type === 'sequential' && (
         <div className="sequential-container">
-          {selectedGroup.map((i, index) => (
+          {colors.map((i, index) => (
             <PalettesContainer
               color={i.color}
               index={index}
