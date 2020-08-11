@@ -1,20 +1,22 @@
 const Joi = require('joi');
 
 const component = Joi.object({
-  name: Joi.string().required(),
-  link: Joi.string().uri().required(),
-  description: Joi.string(),
-  framework: Joi.string().valid('React', 'Angular', 'Vue'),
-  design_asset: Joi.string().valid('Sketch', 'Adobe XD', 'Figma'),
-  platform: Joi.string().valid('Web', 'iOS', 'Android'),
   aliases: Joi.array().items(Joi.string()).required(),
+  availability: Joi.string().valid('IBM Internal', 'Open Source'),
+  code_url: Joi.string().uri(),
+  date_added: Joi.date(),
+  description: Joi.string(),
+  design_asset: Joi.string().valid('Sketch', 'Adobe XD', 'Figma'),
+  framework: Joi.string().valid('React', 'Angular', 'Vanilla', 'Vue'),
   maintainer: Joi.string().valid(
     'CD&AI',
     'Cloud PAL',
     'Watson Health',
     'Watson IoT'
   ),
-  availability: Joi.string().valid('IBM Internal'),
+  name: Joi.string().required(),
+  platform: Joi.string().valid('Web', 'iOS', 'Android'),
+  website_url: Joi.string().uri(),
 });
 
 const maintainer = Joi.object({
