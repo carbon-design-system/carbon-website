@@ -1,11 +1,34 @@
 /* eslint-disable global-require */
-/* eslint-disable import/no-dynamic-require */
 /* eslint-disable no-undef */
 import { Link, Row, Column, Tag, TooltipIcon } from 'carbon-components-react';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 const componentImg = require('./images/placeholderCompIndex.svg');
+
+const angularIcon = require('./images/Angular.svg');
+const reactIcon = require('./images/React.svg');
+const vanillaIcon = require('./images/Vanilla.svg');
+const vueIcon = require('./images/Vue.svg');
+
+const axureIcon = require('./images/Axure.svg');
+const figmaIcon = require('./images/Figma.svg');
+const sketchIcon = require('./images/Sketch.svg');
+const xdIcon = require('./images/XD.svg');
+
+const frameworkIcons = {
+  Angular: angularIcon,
+  React: reactIcon,
+  Vanilla: vanillaIcon,
+  Vue: vueIcon,
+};
+
+const designAssetIcons = {
+  Axure: axureIcon,
+  Figma: figmaIcon,
+  Sketch: sketchIcon,
+  XD: xdIcon,
+};
 
 const href = '/get-started/about-carbon';
 
@@ -15,7 +38,6 @@ function ComponentIndexList({ items }) {
       {items.map(
         ({ name, description, maintainer, framework, designAsset }) => {
           const key = `${name}:${maintainer}`;
-          console.log(designAsset);
           return (
             <Row key={key}>
               <Column sm={4} md={8} lg={9}>
@@ -57,11 +79,8 @@ function ComponentIndexList({ items }) {
                         <li className="component-index-item__tag component-index-item__tag--framework">
                           <TooltipIcon direction="top" tooltipText={framework}>
                             <img
-                              src={
-                                framework
-                                  ? require(`./images/${framework}.svg`)
-                                  : null
-                              }
+                              img
+                              src={frameworkIcons[framework] || null}
                               alt={framework}
                             />
                           </TooltipIcon>
@@ -71,11 +90,8 @@ function ComponentIndexList({ items }) {
                             direction="top"
                             tooltipText={designAsset}>
                             <img
-                              src={
-                                designAsset
-                                  ? require(`./images/${designAsset}.svg`)
-                                  : null
-                              }
+                              img
+                              src={designAssetIcons[designAsset] || null}
                               alt={designAsset}
                             />
                           </TooltipIcon>
