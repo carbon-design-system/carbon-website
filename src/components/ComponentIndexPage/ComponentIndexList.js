@@ -15,7 +15,6 @@ function ComponentIndexList({ items }) {
       {items.map(
         ({ name, description, maintainer, framework, designAsset }) => {
           const key = `${name}:${maintainer}`;
-          console.log(designAsset);
           return (
             <Row key={key}>
               <Column sm={4} md={8} lg={9}>
