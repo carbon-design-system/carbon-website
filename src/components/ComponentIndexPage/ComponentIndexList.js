@@ -30,13 +30,19 @@ const designAssetIcons = {
   XD: xdIcon,
 };
 
-const href = '/get-started/about-carbon';
-
 function ComponentIndexList({ items }) {
   return (
     <section aria-label="Component index">
       {items.map(
-        ({ name, description, maintainer, framework, designAsset }) => {
+        ({
+          name,
+          description,
+          maintainer,
+          framework,
+          designAsset,
+          codeUrl,
+          websiteUrl,
+        }) => {
           const key = `${name}:${maintainer}`;
           return (
             <Row key={key}>
@@ -63,14 +69,14 @@ function ComponentIndexList({ items }) {
                       <div className="component-index-item__links">
                         <Link
                           className="component-index-item__link"
-                          href={href}
+                          href={websiteUrl}
                           rel="noopener noreferrer">
                           Website
                         </Link>
                         <div className="component-index-item__divider" />
                         <Link
                           className="component-index-item__link"
-                          href={href}
+                          href={codeUrl}
                           rel="noopener noreferrer">
                           Code
                         </Link>
