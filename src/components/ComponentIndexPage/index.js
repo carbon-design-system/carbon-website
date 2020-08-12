@@ -26,6 +26,8 @@ const ALL_COMPONENTS_QUERY = graphql`
           aliases
           framework
           design_asset
+          code_url
+          website_url
         }
       }
     }
@@ -42,6 +44,8 @@ const searchOptions = {
     'node.aliases',
     'node.framework',
     'node.design_asset',
+    'node.code_url',
+    'node.website_url',
   ],
 };
 
@@ -118,6 +122,8 @@ function ComponentIndexPage() {
                 maintainer,
                 framework,
                 design_asset: designAsset,
+                code_url: codeUrl,
+                website_url: websiteUrl,
               } = node;
               return {
                 name,
@@ -125,6 +131,8 @@ function ComponentIndexPage() {
                 maintainer,
                 framework,
                 designAsset,
+                codeUrl,
+                websiteUrl,
               };
             })}
         />
