@@ -1,17 +1,19 @@
 ---
 title: 4. Creating components
-description: Welcome to Carbon! This tutorial will guide you in creating a React app with the Carbon Design System.
+description:
+  Welcome to Carbon! This tutorial will guide you in creating a React app with
+  the Carbon Design System.
 tabs:
-  ["Overview", "Step 1", "Step 2", "Step 3", "Step 4", "Step 5", "Wrapping up"]
+  ['Overview', 'Step 1', 'Step 2', 'Step 3', 'Step 4', 'Step 5', 'Wrapping up']
 ---
 
-import Preview from "components/Preview";
+import Preview from 'components/Preview';
 
 <PageDescription>
 
 With two pages comprised entirely of Carbon components, let's revisit the
-landing page and build a couple components of our own by using Carbon icons
-and tokens.
+landing page and build a couple components of our own by using Carbon icons and
+tokens.
 
 </PageDescription>
 
@@ -29,11 +31,17 @@ and tokens.
 
 ## Preview
 
-Carbon provides a solid foundation for building web applications through its color palette, layout, spacing, type, as well as common building blocks in the form of components. So far, we've only used Carbon components to build out two pages.
+Carbon provides a solid foundation for building web applications through its
+color palette, layout, spacing, type, as well as common building blocks in the
+form of components. So far, we've only used Carbon components to build out two
+pages.
 
-Next, we're going to use Carbon assets to build application-specific components. We'll do so by including accessibility and responsive considerations all throughout.
+Next, we're going to use Carbon assets to build application-specific components.
+We'll do so by including accessibility and responsive considerations all
+throughout.
 
-A [preview](https://react-step-5--carbon-tutorial.netlify.com) of what you'll build (see bottom of page):
+A [preview](https://react-step-5--carbon-tutorial.netlify.com) of what you'll
+build (see bottom of page):
 
 <Preview
   height="400"
@@ -46,42 +54,56 @@ A [preview](https://react-step-5--carbon-tutorial.netlify.com) of what you'll bu
 
 ## Fork, clone and branch
 
-This tutorial has an accompanying GitHub repository called [carbon-tutorial](https://github.com/carbon-design-system/carbon-tutorial) that we'll use as a starting point for each step. If you haven't forked and cloned that repository yet, and haven't added the upstream remote, go ahead and do so by following the [step 1 instructions](/tutorial/react/step-1#fork-clone--branch).
+This tutorial has an accompanying GitHub repository called
+[carbon-tutorial](https://github.com/carbon-design-system/carbon-tutorial) that
+we'll use as a starting point for each step. If you haven't forked and cloned
+that repository yet, and haven't added the upstream remote, go ahead and do so
+by following the
+[step 1 instructions](/tutorial/react/step-1#fork-clone--branch).
 
 ### Branch
 
-With your repository all set up, let's check out the branch for this tutorial step's starting point.
+With your repository all set up, let's check out the branch for this tutorial
+step's starting point.
 
 ```bash
-$ git fetch upstream
-$ git checkout -b react-step-4 upstream/react-step-4
+git fetch upstream
+git checkout -b react-step-4 upstream/react-step-4
 ```
 
 <InlineNotification>
 
-**Note:** This builds on top of step 3, but be sure to check out the upstream step 4 branch because it includes the static assets required to get through this step.
+**Note:** This builds on top of step 3, but be sure to check out the upstream
+step 4 branch because it includes the static assets required to get through this
+step.
 
 </InlineNotification>
 
 ### Build and start app
 
-Install the app's dependencies (in case you're starting fresh in your current directory and not continuing from the previous step):
+Install the app's dependencies (in case you're starting fresh in your current
+directory and not continuing from the previous step):
 
 ```bash
-$ yarn
+yarn
 ```
 
 Then, start the app:
 
 ```bash
-$ yarn start
+yarn start
 ```
 
-You should see something similar to where the [previous step](/tutorial/react/step-3) left off.
+You should see something similar to where the
+[previous step](/tutorial/react/step-3) left off.
 
 ## Review design
 
-Here's what we're building – an informational section that has a heading and three subheadings. Each subheading has accompanying copy and a pictogram. We'll assume that this informational section is used elsewhere on the site, meaning it's a great opportunity to build it as a resusable component. As for naming, we'll call it an `InfoSection` with three `InfoCard`s as children.
+Here's what we're building – an informational section that has a heading and
+three subheadings. Each subheading has accompanying copy and a pictogram. We'll
+assume that this informational section is used elsewhere on the site, meaning
+it's a great opportunity to build it as a resusable component. As for naming,
+we'll call it an `InfoSection` with three `InfoCard`s as children.
 
 ![Info section layout](../shared/step-4/images/info-layout.png)
 
@@ -89,7 +111,10 @@ Here's what we're building – an informational section that has a heading and t
 
 ## Create components
 
-First we need files for the components, so create an `Info` folder in `src/components`. Even though we're building multiple components, their names all start with `Info`, so it makes sense to have them share one folder in components. Create these files:
+First we need files for the components, so create an `Info` folder in
+`src/components`. Even though we're building multiple components, their names
+all start with `Info`, so it makes sense to have them share one folder in
+components. Create these files:
 
 ### Add files
 
@@ -103,18 +128,21 @@ src/components/Info
 Import `_info.scss` in `app.scss` after all of the `carbon-component` imports.
 
 ```scss path=src/app.scss
-@import "./components/Info/info.scss";
+@import './components/Info/info.scss';
 ```
 
-Like our other components, `index.js` will serve as an entrypoint. Since `Info.js` will export mutliple components, we'll use the `*` wildcard in the entrypoint export.
+Like our other components, `index.js` will serve as an entrypoint. Since
+`Info.js` will export mutliple components, we'll use the `*` wildcard in the
+entrypoint export.
 
 ```javascript path=src/components/Info/index.js
-export * from "./Info";
+export * from './Info';
 ```
 
 ### InfoSection component
 
-Let's create the parent component that includes the "The Principles" heading. That markup currently looks like this in `LandingPage.js`:
+Let's create the parent component that includes the "The Principles" heading.
+That markup currently looks like this in `LandingPage.js`:
 
 ```html path=src/content/LandingPage/LandingPage.js
 <div className="bx--row landing-page__r3">
@@ -127,7 +155,10 @@ Let's create the parent component that includes the "The Principles" heading. Th
 </div>
 ```
 
-We want to do a few things when abstracting it to a component. First, we only want Carbon (`bx--`) and this component's class names; we don't want to include `landing-page__r3` as that's specific to the landing page. For that we'll use React `props` so we can pass in and use `props.className`.
+We want to do a few things when abstracting it to a component. First, we only
+want Carbon (`bx--`) and this component's class names; we don't want to include
+`landing-page__r3` as that's specific to the landing page. For that we'll use
+React `props` so we can pass in and use `props.className`.
 
 We'll also:
 
@@ -137,10 +168,11 @@ We'll also:
 - Replace `The Principles` with `{props.heading}`
 - Replace columns 2 - 4 with `{props.children}`
 
-Using `props` we can render any heading and any number of children components (`InfoCard` that we'll build soon.)
+Using `props` we can render any heading and any number of children components
+(`InfoCard` that we'll build soon.)
 
 ```javascript path=src/components/Info/Info.js
-import React from "react";
+import React from 'react';
 
 const InfoSection = (props) => (
   <section className={`bx--row ${props.className} info-section`}>
@@ -156,13 +188,15 @@ At this point let's add styling for the new class names that we just added.
 
 ```scss path=src/components/Info/_info.scss
 .info-section__heading {
-  @include carbon--type-style("heading-01");
+  @include carbon--type-style('heading-01');
 }
 ```
 
 ### InfoCard component
 
-Next up we're going to build a component for columns 2 - 4, which currently looks like `<div className="bx--col-md-4 bx--col-lg-4">Carbon is Open</div>`. At the bottom of `Info.js`, add:
+Next up we're going to build a component for columns 2 - 4, which currently
+looks like `<div className="bx--col-md-4 bx--col-lg-4">Carbon is Open</div>`. At
+the bottom of `Info.js`, add:
 
 ```javascript path=src/components/Info/Info.js
 const InfoCard = (props) => {
@@ -193,29 +227,35 @@ In doing so, we:
 
 <InlineNotification>
 
-**Note:** At extra large viewports, we are using `bx--col-xlg-3 bx--offset-xlg-1` so each column takes up 3 of the 16 grid columns, with a 1 column offset.
+**Note:** At extra large viewports, we are using
+`bx--col-xlg-3 bx--offset-xlg-1` so each column takes up 3 of the 16 grid
+columns, with a 1 column offset.
 
 </InlineNotification>
 
 ## Use components
 
-Nothing is styled yet, but with our components built let's put them to use. In `LandingPage.js`, import the components towards the top of the file.
+Nothing is styled yet, but with our components built let's put them to use. In
+`LandingPage.js`, import the components towards the top of the file.
 
 ```javascript path=src/content/LandingPage/LandingPage.js
-import { InfoSection, InfoCard } from "../../components/Info";
+import { InfoSection, InfoCard } from '../../components/Info';
 ```
 
-While we're at the top of `LandingPage.js`, import the icons that we'll need as well.
+While we're at the top of `LandingPage.js`, import the icons that we'll need as
+well.
 
 ```javascript path=src/content/LandingPage/LandingPage.js
-import Globe32 from "@carbon/icons-react/lib/globe/32";
-import PersonFavorite32 from "@carbon/icons-react/lib/person--favorite/32";
-import Application32 from "@carbon/icons-react/lib/application/32";
+import Globe32 from '@carbon/icons-react/lib/globe/32';
+import PersonFavorite32 from '@carbon/icons-react/lib/person--favorite/32';
+import Application32 from '@carbon/icons-react/lib/application/32';
 ```
 
 <InlineNotification>
 
-**Note:** You'll notice that these 32px icons aren't the pictograms as designed. The Carbon team is currently working on adding pictograms to the icons packages. Until then, we'll use the biggest SVGs.
+**Note:** You'll notice that these 32px icons aren't the pictograms as designed.
+The Carbon team is currently working on adding pictograms to the icons packages.
+Until then, we'll use the biggest SVGs.
 
 </InlineNotification>
 
@@ -258,13 +298,16 @@ With the new components:
 
 <InlineNotification>
 
-**Note:** Now is a good time to resize your browser from phone to extra large viewport widths to see how the responsive grid is working before we add further styling.
+**Note:** Now is a good time to resize your browser from phone to extra large
+viewport widths to see how the responsive grid is working before we add further
+styling.
 
 </InlineNotification>
 
 ## Add styling
 
-Here's our design showing the spacing tokens that we need to add. We also need to set type style and borders.
+Here's our design showing the spacing tokens that we need to add. We also need
+to set type style and borders.
 
 ![Info section spacing](../shared/step-4/images/info-spacing.png)
 
@@ -309,26 +352,33 @@ Starting with layout, add the following to `src/components/Info/_info.scss`.
 }
 ```
 
-Once you save, go ahead and resize your browser to see the responsive layout at the different breakpoints. Make sure to review these color and spacing tokens. There are also a few breakpoint mixins that may be new to you. The `@carbon/layout` [SassDoc](https://github.com/carbon-design-system/carbon/blob/master/packages/layout/docs/sass.md) is a great reference to see what all is available.
+Once you save, go ahead and resize your browser to see the responsive layout at
+the different breakpoints. Make sure to review these color and spacing tokens.
+There are also a few breakpoint mixins that may be new to you. The
+`@carbon/layout`
+[SassDoc](https://github.com/carbon-design-system/carbon/blob/master/packages/layout/docs/sass.md)
+is a great reference to see what all is available.
 
 ### Type
 
-Our `InfoCard` headings look to be too small. We need to increase their font sizes according to the design spec with:
+Our `InfoCard` headings look to be too small. We need to increase their font
+sizes according to the design spec with:
 
 ```scss path=src/components/Info/_info.scss
 .info-card__heading {
-  @include carbon--type-style("productive-heading-03");
+  @include carbon--type-style('productive-heading-03');
 }
 ```
 
-Also, the design has the last word in each subheading as bold. To accomplish that, add this helper function after the import in `Info.js`.
+Also, the design has the last word in each subheading as bold. To accomplish
+that, add this helper function after the import in `Info.js`.
 
 ```javascript path=src/components/Info/Info.js
 // Take in a phrase and separate the third word in an array
 function createArrayFromPhrase(phrase) {
-  const splitPhrase = phrase.split(" ");
+  const splitPhrase = phrase.split(' ');
   const thirdWord = splitPhrase.pop();
-  return [splitPhrase.join(" "), thirdWord];
+  return [splitPhrase.join(' '), thirdWord];
 }
 ```
 
@@ -351,13 +401,14 @@ const InfoCard = (props) => {
 };
 ```
 
-Finally, add the declaration block in `_info.scss` to set `InfoCard` body copy styles and to bottom-align the icons.
+Finally, add the declaration block in `_info.scss` to set `InfoCard` body copy
+styles and to bottom-align the icons.
 
 ```scss path=src/components/Info/_info.scss
 .info-card__body {
   margin-top: $spacing-06;
   flex-grow: 1; // fill space so icons are bottom aligned
-  @include type-style("body-long-01");
+  @include type-style('body-long-01');
 
   // prevent large line lengths between small and medium viewports
   @include carbon--breakpoint-between(321px, md) {
@@ -368,19 +419,27 @@ Finally, add the declaration block in `_info.scss` to set `InfoCard` body copy s
 
 ## Check accessibility
 
-We've added new markup and styles, so it's a good practice to check [DAP](https://www.ibm.com/able/dynamic-assessment-plug-in.html) and make sure our rendered markup is on the right track for accessibility.
+We've added new markup and styles, so it's a good practice to check
+[DAP](https://www.ibm.com/able/dynamic-assessment-plug-in.html) and make sure
+our rendered markup is on the right track for accessibility.
 
-With the browser extension installed, Chrome in this example, open Dev Tools and run DAP.
+With the browser extension installed, Chrome in this example, open Dev Tools and
+run DAP.
 
 ![DAP violations](../shared/step-4/images/DAP-violations.png)
 
 <Caption>DAP violations</Caption>
 
-That first violation is for the off-screen "skip to content" link. This link isn't shown and is used to assist screen reading, so the color contrast violation can be ignored.
+That first violation is for the off-screen "skip to content" link. This link
+isn't shown and is used to assist screen reading, so the color contrast
+violation can be ignored.
 
-But, those three other violations came from the `<article>` element used in new `InfoCard`. Since the `<article>` element requires a label, it seems like we may be using the wrong semantic element. A humble `<div>` will suffice.
+But, those three other violations came from the `<article>` element used in new
+`InfoCard`. Since the `<article>` element requires a label, it seems like we may
+be using the wrong semantic element. A humble `<div>` will suffice.
 
-In `Info.js`, replace the `<article>` opening and closing tags with `<div>` tags.
+In `Info.js`, replace the `<article>` opening and closing tags with `<div>`
+tags.
 
 ## Submit pull request
 
@@ -391,12 +450,14 @@ We're going to submit a pull request to verify completion of this tutorial step.
 Run the CI check to make sure we're all set to submit a pull request.
 
 ```bash
-$ yarn ci-check
+yarn ci-check
 ```
 
 <InlineNotification>
 
-**Note:** Having issues running the CI check? [Step 1](</tutorial/react/step-1#continuous-integration-(ci)-check>) has troubleshooting notes that may help.
+**Note:** Having issues running the CI check?
+[Step 1](</tutorial/react/step-1#continuous-integration-(ci)-check>) has
+troubleshooting notes that may help.
 
 </InlineNotification>
 
@@ -405,27 +466,34 @@ $ yarn ci-check
 Before we can create a pull request, stage and commit all of your changes:
 
 ```bash
-$ git add --all && git commit -m "feat(tutorial): complete step 4"
+git add --all && git commit -m "feat(tutorial): complete step 4"
 ```
 
 Then, push to your repository:
 
 ```bash
-$ git push origin react-step-4
+git push origin react-step-4
 ```
 
 <InlineNotification>
 
-**Note:** Having issues pushing your changes? [Step 1](/tutorial/react/step-1#git-commit-and-push) has troubleshooting notes that may help.
+**Note:** Having issues pushing your changes?
+[Step 1](/tutorial/react/step-1#git-commit-and-push) has troubleshooting notes
+that may help.
 
 </InlineNotification>
 
 ### Pull request (PR)
 
-Finally, visit [carbon-tutorial](https://github.com/carbon-design-system/carbon-tutorial) to "Compare & pull request". In doing so, make sure that you are comparing to `react-step-4` into `base: react-step-4`.
+Finally, visit
+[carbon-tutorial](https://github.com/carbon-design-system/carbon-tutorial) to
+"Compare & pull request". In doing so, make sure that you are comparing to
+`react-step-4` into `base: react-step-4`.
 
 <InlineNotification>
 
-**Note:** Expect your tutorial step PRs to be reviewed by the Carbon team but not merged. We'll close your PR so we can keep the repository's remote branches pristine and ready for the next person!
+**Note:** Expect your tutorial step PRs to be reviewed by the Carbon team but
+not merged. We'll close your PR so we can keep the repository's remote branches
+pristine and ready for the next person!
 
 </InlineNotification>
