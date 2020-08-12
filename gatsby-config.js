@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   siteMetadata: {
     title: 'Carbon Design System',
@@ -31,5 +33,11 @@ module.exports = {
     'gatsby-plugin-netlify-cache',
     'gatsby-plugin-sitemap',
     'gatsby-plugin-remove-serviceworker',
+    {
+      resolve: 'gatsby-plugin-component-index',
+      options: {
+        directory: path.resolve(__dirname, './src/data/index'),
+      },
+    },
   ],
 };

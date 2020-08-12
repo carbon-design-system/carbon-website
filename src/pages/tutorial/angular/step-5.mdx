@@ -1,14 +1,15 @@
 ---
 title: 5. Deploying to IBM Cloud
 tabs:
-  ["Overview", "Step 1", "Step 2", "Step 3", "Step 4", "Step 5", "Wrapping up"]
+  ['Overview', 'Step 1', 'Step 2', 'Step 3', 'Step 4', 'Step 5', 'Wrapping up']
 ---
 
-import Preview from "components/Preview";
+import Preview from 'components/Preview';
 
 <PageDescription>
 
-This step takes what we've built so far and optimizes the app for a production environment. We'll be deploying the production build to IBM Cloud.
+This step takes what we've built so far and optimizes the app for a production
+environment. We'll be deploying the production build to IBM Cloud.
 
 </PageDescription>
 
@@ -27,7 +28,8 @@ This step takes what we've built so far and optimizes the app for a production e
 
 ## Preview
 
-A [preview](https://angular-step-6-carbon-tutorial.netlify.com) of what you'll build (visually no different, but built for production):
+A [preview](https://angular-step-6-carbon-tutorial.netlify.com) of what you'll
+build (visually no different, but built for production):
 
 <Preview
   height="400"
@@ -40,11 +42,17 @@ A [preview](https://angular-step-6-carbon-tutorial.netlify.com) of what you'll b
 
 ## Fork, clone and branch
 
-This tutorial has an accompanying GitHub repository called [carbon-tutorial-angular](https://github.com/carbon-design-system/carbon-tutorial-angular) that we'll use as a starting point for each step. If you haven't forked and cloned that repository yet, and haven't added the upstream remote, go ahead and do so by following the [step 1 instructions](/tutorial/angular/step-1#fork-clone--branch).
+This tutorial has an accompanying GitHub repository called
+[carbon-tutorial-angular](https://github.com/carbon-design-system/carbon-tutorial-angular)
+that we'll use as a starting point for each step. If you haven't forked and
+cloned that repository yet, and haven't added the upstream remote, go ahead and
+do so by following the
+[step 1 instructions](/tutorial/angular/step-1#fork-clone--branch).
 
 ### Branch
 
-With your repository all set up, let's check out the branch for this tutorial step's starting point.
+With your repository all set up, let's check out the branch for this tutorial
+step's starting point.
 
 ```bash
 git fetch upstream
@@ -53,13 +61,16 @@ git checkout -b angular-step-5 upstream/angular-step-5
 
 <InlineNotification>
 
-**Note:** This builds on top of step 4, but be sure to check out the upstream step 5 branch because it includes the static assets required to get through this step.
+**Note:** This builds on top of step 4, but be sure to check out the upstream
+step 5 branch because it includes the static assets required to get through this
+step.
 
 </InlineNotification>
 
 ### Build and start app
 
-Install the app's dependencies (in case you're starting fresh in your current directory and not continuing from the previous step):
+Install the app's dependencies (in case you're starting fresh in your current
+directory and not continuing from the previous step):
 
 ```bash
 npm install
@@ -71,15 +82,20 @@ Then, start the app:
 npm start
 ```
 
-You should see something similar to where the [previous step](/tutorial/angular/step-4) left off.
+You should see something similar to where the
+[previous step](/tutorial/angular/step-4) left off.
 
 ## Create IBM Cloud account
 
-Before we get started, [create an IBM Cloud account](https://cloud.ibm.com/registration) if you don't already have one, as we'll be deploying there in a bit.
+Before we get started,
+[create an IBM Cloud account](https://cloud.ibm.com/registration) if you don't
+already have one, as we'll be deploying there in a bit.
 
 ## Optimize Sass
 
-So far we've been developing in a, well, development environment where static asset optimization hasn't been a priority. If you reference `/src/styles.scss`, you'll see one `@import` that is pulling in Carbon's full Sass build.
+So far we've been developing in a, well, development environment where static
+asset optimization hasn't been a priority. If you reference `/src/styles.scss`,
+you'll see one `@import` that is pulling in Carbon's full Sass build.
 
 <!-- prettier-ignore-start -->
 ```scss path=src/styles.scss
@@ -87,7 +103,12 @@ So far we've been developing in a, well, development environment where static as
 ```
 <!-- prettier-ignore-end -->
 
-To give you an idea of what's all included, open up `node_modules/carbon-components/scss/globals/scss/styles.scss`. You'll see imports for components like accordion, slider, tooltip, etc. Since we aren't using those components, let's exclude them from our built stylesheets. Keeping the `$feature-flags` Sass map, and `carbon-overrides.scss`, replace the `styles.scss` import with:
+To give you an idea of what's all included, open up
+`node_modules/carbon-components/scss/globals/scss/styles.scss`. You'll see
+imports for components like accordion, slider, tooltip, etc. Since we aren't
+using those components, let's exclude them from our built stylesheets. Keeping
+the `$feature-flags` Sass map, and `carbon-overrides.scss`, replace the
+`styles.scss` import with:
 
 <!-- prettier-ignore-start -->
 ```scss path=src/styles.scss
@@ -110,33 +131,59 @@ $css--plex: true;
 ```
 <!-- prettier-ignore-end -->
 
-Looking at the new `styles.scss` file, you may be asking what happened to importing `_vars.scss`, `_colors.scss`, `_theme.scss`, etc.? Many of those global Sass partials get imported through the components. For example, open `node_modules/carbon-components/scss/components/button/_button.scss` to see its dependencies. No harm in importing them as `styles.scss` does, but for simplicity here, we'll let the components pull them in.
+Looking at the new `styles.scss` file, you may be asking what happened to
+importing `_vars.scss`, `_colors.scss`, `_theme.scss`, etc.? Many of those
+global Sass partials get imported through the components. For example, open
+`node_modules/carbon-components/scss/components/button/_button.scss` to see its
+dependencies. No harm in importing them as `styles.scss` does, but for
+simplicity here, we'll let the components pull them in.
 
-You can read more about optimizing Carbon's Sass in the [Carbon Design System publication](https://medium.com/carbondesign/minimal-css-with-carbon-b0c089ccfa71) on Medium.
+You can read more about optimizing Carbon's Sass in the
+[Carbon Design System publication](https://medium.com/carbondesign/minimal-css-with-carbon-b0c089ccfa71)
+on Medium.
 
 ## Build for production
 
-Before we deploy our app, we need to create an optimized production build with this command. You may need to `CTRL-C` to stop the development environment first.
+Before we deploy our app, we need to create an optimized production build with
+this command. You may need to `CTRL-C` to stop the development environment
+first.
 
 ```bash
 npm run build
 ```
 
-Looking at `package.json`, you'll find `yarn build` to run `ng build`. This builds the app for production to the `dist` folder. It bundles Angular in production mode and optimizes the build for the best performance. It even goes so far to minify files and include hashes in filenames for caching.
+Looking at `package.json`, you'll find `yarn build` to run `ng build`. This
+builds the app for production to the `dist` folder. It bundles Angular in
+production mode and optimizes the build for the best performance. It even goes
+so far to minify files and include hashes in filenames for caching.
 
-As a lot of this may seem like magic since the build configuration came from Create React App, go ahead and check out their [production build guidelines](https://facebook.github.io/create-react-app/docs/production-build) for a full description of what's happening.
+As a lot of this may seem like magic since the build configuration came from
+Create React App, go ahead and check out their
+[production build guidelines](https://facebook.github.io/create-react-app/docs/production-build)
+for a full description of what's happening.
 
 ## Create manifest file
 
-Now that we have a production build, let's get it on the cloud. We're going to use [staticfile-buildpack](https://github.com/cloudfoundry/staticfile-buildpack.git) to deploy our webapp. Since this is a Cloud Foundry buildpack, we'll be using the `cf` command line interface (CLI). If running `cf --help` doesn't work for you, chances are you need to [install the CLI](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html).
+Now that we have a production build, let's get it on the cloud. We're going to
+use
+[staticfile-buildpack](https://github.com/cloudfoundry/staticfile-buildpack.git)
+to deploy our webapp. Since this is a Cloud Foundry buildpack, we'll be using
+the `cf` command line interface (CLI). If running `cf --help` doesn't work for
+you, chances are you need to
+[install the CLI](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html).
 
 <InlineNotification>
 
-**Note:** If unfamiliar with buildpacks, the [staticfile buildpack docs](https://docs.cloudfoundry.org/buildpacks/staticfile/index.html) has good definitions and configuration documentation.
+**Note:** If unfamiliar with buildpacks, the
+[staticfile buildpack docs](https://docs.cloudfoundry.org/buildpacks/staticfile/index.html)
+has good definitions and configuration documentation.
 
 </InlineNotification>
 
-With the Cloud Foundry CLI installed, next, we need to create a `manifest.yml` file in the root of the project. To prevent multiple apps trying to use the `carbon-tutorial-angular` name, replace `USERNAME` with your GitHub username below to make sure our apps are uniquely named.
+With the Cloud Foundry CLI installed, next, we need to create a `manifest.yml`
+file in the root of the project. To prevent multiple apps trying to use the
+`carbon-tutorial-angular` name, replace `USERNAME` with your GitHub username
+below to make sure our apps are uniquely named.
 
 ```bash path=manifest.yml
 ---
@@ -148,13 +195,19 @@ applications:
 
 <InlineNotification>
 
-**Note:** With this set-up we're still using a GitHub personal access token saved in `.env.local`. If you haven't created a GitHub access token yet, see [step 3](/tutorial/react/step-3#create-access-token). You can put the environment variable in the manifest file, or manually add it in the IBM Cloud dashboard, but since we're building off previous tutorial steps nothing more is needed.
+**Note:** With this set-up we're still using a GitHub personal access token
+saved in `.env.local`. If you haven't created a GitHub access token yet, see
+[step 3](/tutorial/react/step-3#create-access-token). You can put the
+environment variable in the manifest file, or manually add it in the IBM Cloud
+dashboard, but since we're building off previous tutorial steps nothing more is
+needed.
 
 </InlineNotification>
 
 ## Create static file
 
-Create a new static file in the root of the project named `Staticfile`. This tells the app to deploy from the `dist` folder and not the root of the project.
+Create a new static file in the root of the project named `Staticfile`. This
+tells the app to deploy from the `dist` folder and not the root of the project.
 
 ```bash path=Staticfile
 root: dist
@@ -162,31 +215,45 @@ root: dist
 
 ### Cloud Foundry ignore
 
-After telling Cloud Foundry what to include, we can also specify what to ignore. Create a top-level `.cfignore` file. Cloud Foundry doesn't let you push read-only files (specifically, files with permissions <`400`), so to prevent issues with the deploy, add:
+After telling Cloud Foundry what to include, we can also specify what to ignore.
+Create a top-level `.cfignore` file. Cloud Foundry doesn't let you push
+read-only files (specifically, files with permissions <`400`), so to prevent
+issues with the deploy, add:
 
 ```bash path=.cfignore
 node_modules/.cache
 ```
 
-You can speed up deploys by decreasing the files uploaded through cloud foundry. To accomplish this, ignore any folder not required by the production application on IBM Cloud. For example, in the case of serving static files, you can ignore `node_modules/` and `src/` because the only folder being served is `build/`.
+You can speed up deploys by decreasing the files uploaded through cloud foundry.
+To accomplish this, ignore any folder not required by the production application
+on IBM Cloud. For example, in the case of serving static files, you can ignore
+`node_modules/` and `src/` because the only folder being served is `build/`.
 
 ## Deploy app
 
 Login to IBM Cloud with:
 
 ```bash
-$ cf login -a https://api.ng.bluemix.net -sso
+cf login -a https://api.ng.bluemix.net -sso
 ```
 
-Deploy app using the `cf push` command. Since `manifest.yml` is in our root directory, we don't need to specify it in the push command. But, if you have multiple manifest files that target different environments, it's good practice to specify the file.
+Deploy app using the `cf push` command. Since `manifest.yml` is in our root
+directory, we don't need to specify it in the push command. But, if you have
+multiple manifest files that target different environments, it's good practice
+to specify the file.
 
-_Note: To successfully deploy, you might need to update the region code (e.g. `api.[REGION].bluemix.net`). [Learn more.](https://developer.ibm.com/answers/answers/166990/view.html)_
+_Note: To successfully deploy, you might need to update the region code (e.g.
+`api.[REGION].bluemix.net`).
+[Learn more.](https://developer.ibm.com/answers/answers/166990/view.html)_
 
 ```bash
-$ cf push -f manifest.yml
+cf push -f manifest.yml
 ```
 
-To make it easy on ourselves by not needing to remember that command, let's add a script in `package.json`. We can combine the build and deploy steps to make sure we only deploy immediately after running the build. In the `"scripts"` object in `package.json`, add:
+To make it easy on ourselves by not needing to remember that command, let's add
+a script in `package.json`. We can combine the build and deploy steps to make
+sure we only deploy immediately after running the build. In the `"scripts"`
+object in `package.json`, add:
 
 ```bash path=package.json
 "deploy": "rm -rf ./dist && yarn build && cf push -f manifest.yml"
@@ -196,7 +263,9 @@ Next time you want to deploy, you can simply run `yarn deploy`.
 
 ## Submit pull request
 
-That does it! We're going to submit a pull request to verify completion of this tutorial step. In doing so, **please include the mybluemix.net URL for your deployed app in your pull request description**.
+That does it! We're going to submit a pull request to verify completion of this
+tutorial step. In doing so, **please include the mybluemix.net URL for your
+deployed app in your pull request description**.
 
 ### Git commit and push
 
@@ -214,16 +283,23 @@ git push origin angular-step-5
 
 <InlineNotification>
 
-**Note:** Having issues pushing your changes? [Step 1](/tutorial/angular/step-1#git-commit-and-push) has troubleshooting notes that may help.
+**Note:** Having issues pushing your changes?
+[Step 1](/tutorial/angular/step-1#git-commit-and-push) has troubleshooting notes
+that may help.
 
 </InlineNotification>
 
 ### Pull request (PR)
 
-Finally, visit [carbon-tutorial-angular](https://github.com/carbon-design-system/carbon-tutorial-angular) to "Compare & pull request". In doing so, make sure that you are comparing to `angular-step-5` into `base: angular-step-5`.
+Finally, visit
+[carbon-tutorial-angular](https://github.com/carbon-design-system/carbon-tutorial-angular)
+to "Compare & pull request". In doing so, make sure that you are comparing to
+`angular-step-5` into `base: angular-step-5`.
 
 <InlineNotification>
 
-**Note:** Expect your tutorial step PRs to be reviewed by the Carbon team but not merged. We'll close your PR so we can keep the repository's remote branches pristine and ready for the next person!
+**Note:** Expect your tutorial step PRs to be reviewed by the Carbon team but
+not merged. We'll close your PR so we can keep the repository's remote branches
+pristine and ready for the next person!
 
 </InlineNotification>
