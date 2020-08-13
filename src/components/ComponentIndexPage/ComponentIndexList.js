@@ -13,17 +13,28 @@ function ComponentIndexList({ items }) {
   return (
     <section aria-label="Component index">
       {items.map(
-        ({ name, description, maintainer, framework, designAsset, image }) => {
+        ({
+          codeUrl,
+          description,
+          designAsset,
+          framework,
+          image,
+          maintainer,
+          name,
+          websiteUrl,
+        }) => {
           const key = `${name}:${maintainer}`;
           return (
             <ComponentIndexListItem
               key={key}
+              codeUrl={codeUrl}
               description={description}
               designAsset={designAsset}
               framework={framework}
               image={image}
               maintainer={maintainer}
               name={name}
+              websiteUrl={websiteUrl}
             />
           );
         }

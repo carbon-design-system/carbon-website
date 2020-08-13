@@ -58,7 +58,6 @@ function sortByNewest(a, b) {
   return dateA - dateB;
 }
 
-let count = 0;
 function ComponentIndexPage() {
   const components = useComponentIndexData();
   const [activeSortOption, setActiveSortOption] = useState(initialSortOption);

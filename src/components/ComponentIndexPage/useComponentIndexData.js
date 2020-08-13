@@ -24,13 +24,15 @@ const COMPONENT_INDEX_DATA = graphql`
     allComponentIndexEntry {
       edges {
         node {
-          name
-          friendly_name
-          description
-          date_added
           aliases
-          framework
+          code_url
+          date_added
+          description
           design_asset
+          framework
+          friendly_name
+          name
+          website_url
 
           maintainer {
             name
@@ -71,6 +73,8 @@ export function useComponentIndexData() {
       image: image?.childImageSharp,
       designAsset: node.design_asset,
       dateAdded: node.date_added,
+      codeUrl: node.code_url,
+      websiteUrl: node.website_url,
     };
   });
 
