@@ -8,15 +8,18 @@ const component = Joi.object({
   description: Joi.string(),
   design_asset: Joi.string().valid('Sketch', 'Adobe XD', 'Figma'),
   framework: Joi.string().valid('React', 'Angular', 'Vanilla', 'Vue'),
-  maintainer: Joi.string().valid(
-    'CD&AI',
-    'Cloud PAL',
-    'Watson Health',
-    'Watson IoT'
-  ),
-  name: Joi.string().required(),
   platform: Joi.string().valid('Web', 'iOS', 'Android'),
   website_url: Joi.string().uri(),
+
+  // Mapped from `name`
+  friendly_name: Joi.string().required(),
+
+  // Generated
+  name: Joi.string().required(),
+  maintainer: Joi.object({
+    name: Joi.string().required(),
+    friendly_name: Joi.string().required(),
+  }).required(),
 });
 
 const maintainer = Joi.object({
