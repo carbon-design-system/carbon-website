@@ -7,41 +7,31 @@
 
 import Fuse from 'fuse.js';
 import React, { useEffect, useState, useMemo } from 'react';
-import { graphql, useStaticQuery } from 'gatsby';
 import ComponentIndexList from './ComponentIndexList';
 import ComponentIndexNotFound from './ComponentIndexNotFound';
 import ComponentIndexSearch from './ComponentIndexSearch';
 import ComponentIndexSort from './ComponentIndexSort';
 import { useDebounce } from '../../hooks/useDebounce';
-
-const ALL_COMPONENTS_QUERY = graphql`
-  {
-    allComponentIndexEntry {
-      edges {
-        node {
-          name
-          description
-          maintainer
-          date_added
-          aliases
-          framework
-          design_asset
-        }
-      }
-    }
-  }
-`;
+import { useComponentIndexData } from './useComponentIndexData';
 
 const searchOptions = {
   includeScore: true,
   threshold: 0.4,
   keys: [
-    'node.name',
-    'node.description',
-    'node.maintainer',
-    'node.aliases',
-    'node.framework',
-    'node.design_asset',
+    {
+      name: 'friendly_name',
+      weight: 2,
+    },
+    {
+      name: 'name',
+      weight: 2,
+    },
+    'description',
+    'maintainer.name',
+    'maintainer.friendly_name',
+    'aliases',
+    'framework',
+    'design_asset',
   ],
 };
 
@@ -54,49 +44,47 @@ const sortBy = {
 };
 
 function sortByName(a, b) {
-  return a.node.name.localeCompare(b.node.name);
+  return a.name.localeCompare(b.name);
 }
 function sortByMaintainer(a, b) {
-  if (a.node.maintainer === b.node.maintainer) {
+  if (a.maintainer === b.maintainer) {
     return sortByName(a, b);
   }
-  return a.node.maintainer.localeCompare(b.node.maintainer);
+  return a.maintainer.localeCompare(b.maintainer);
 }
 function sortByNewest(a, b) {
-  const dateA = new Date(a.node.date_added);
-  const dateB = new Date(b.node.date_added);
+  const dateA = new Date(a.date_added);
+  const dateB = new Date(b.date_added);
   return dateA - dateB;
 }
 
+let count = 0;
 function ComponentIndexPage() {
-  const { allComponentIndexEntry: components } = useStaticQuery(
-    ALL_COMPONENTS_QUERY
-  );
-  const [items, setItems] = useState(components.edges);
+  const components = useComponentIndexData();
   const [activeSortOption, setActiveSortOption] = useState(initialSortOption);
   const [searchValue, setSearchValue] = useState('');
   const [debouncedSearchValue] = useDebounce(searchValue, 300);
-  const searchClient = useMemo(
-    () => new Fuse(components.edges, searchOptions),
-    [components]
-  );
+  const searchClient = useMemo(() => new Fuse(components, searchOptions), [
+    components,
+  ]);
 
-  useEffect(() => {
-    setItems((currentItems) => {
-      if (debouncedSearchValue === '') {
-        if (currentItems !== components) {
-          return components.edges;
-        }
-        return currentItems;
-      }
+  let searchResults = components;
+  if (debouncedSearchValue !== '') {
+    searchResults = searchClient
+      .search(debouncedSearchValue)
+      .map((result) => result.item);
+  }
 
-      const searchResults = searchClient
-        .search(debouncedSearchValue)
-        .map((result) => result.item);
-
-      return searchResults;
-    });
-  }, [components, debouncedSearchValue, searchClient]);
+  let results = undefined;
+  if (searchResults.length > 0) {
+    results = (
+      <ComponentIndexList
+        items={searchResults.slice().sort(sortBy[activeSortOption])}
+      />
+    );
+  } else {
+    results = <ComponentIndexNotFound />;
+  }
 
   return (
     <>
@@ -106,31 +94,7 @@ function ComponentIndexPage() {
         options={sortOptions}
         onChange={setActiveSortOption}
       />
-      {items.length > 0 ? (
-        <ComponentIndexList
-          items={items
-            .slice()
-            .sort(sortBy[activeSortOption])
-            .map(({ node }) => {
-              const {
-                name,
-                description,
-                maintainer,
-                framework,
-                design_asset: designAsset,
-              } = node;
-              return {
-                name,
-                description,
-                maintainer,
-                framework,
-                designAsset,
-              };
-            })}
-        />
-      ) : (
-        <ComponentIndexNotFound />
-      )}
+      {results}
     </>
   );
 }
