@@ -51,13 +51,13 @@ const Layout = ({
         pageDescription={pageDescription}
         pageKeywords={pageKeywords}
       />
-      <header className={banner}>
+      <div className={banner} role="contentinfo">
         Black Lives Matter.&nbsp;
         <a href="https://support.eji.org/give/153413/#!/donation/checkout">
           Support the <span className={initialism}>EJI</span>
           <span className={fullName}>Equal Justice Initiative</span>
         </a>
-      </header>
+      </div>
       <Header />
       <Switcher />
       <LeftNav homepage={homepage} is404Page={is404} theme={theme} />
