@@ -1,0 +1,32 @@
+name: Another ONe
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Set Node.js
+        uses: actions/setup-node@master
+        with:
+          node-version: 12.x
+
+      - name: Install packages
+        run: yarn install 
+
+      - name: Build site
+        run: gatsby build --prefix-paths
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@3.5.9
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: public # The folder the action should deploy.
+
