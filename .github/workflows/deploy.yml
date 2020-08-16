@@ -65,17 +65,10 @@ jobs:
       - name: Build site
         run: yarn build
 
-      - name: Install IBM Cloud CLI
-        run: curl -fsSL https://clis.cloud.ibm.com/install/osx | sh
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@3.5.9
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: public # The folder the action should deploy.
 
-      - name: Install Cloud Foundry CLI
-        run: ibmcloud cf install
-
-      - name: Login to ibmcloud
-        env:
-          API_KEY: ${{ secrets.API_KEY }}
-        run: ibmcloud login -a "https://cloud.ibm.com" -u apikey -p "$API_KEY" -o "carbon-design-system" -s "production" -r "us-south"
-
-      - name: Deploy website
-        run: |
-          ibmcloud cf v3-zdt-push carbon-website -b https://github.com/cloudfoundry/nginx-buildpack.git

@@ -9,6 +9,7 @@ module.exports = {
     keywords:
       'IBM, design, system, Carbon, design system, Bluemix, styleguide, style, guide, components, library, pattern, kit, component, cloud',
   },
+  pathPrefix: `/carbon-website`,
   plugins: [
     {
       resolve: 'gatsby-source-filesystem',
