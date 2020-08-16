@@ -1,10 +1,14 @@
-name: Deploy Sitex
+name: Deployment status
 
-on: push
+on:
+  push:
+    branches:
+      - master
 
 jobs:
-  update:
+  build:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v1
 
@@ -12,16 +16,18 @@ jobs:
         uses: actions/setup-node@master
         with:
           node-version: 12.x
+      - uses: actions/checkout@v1
 
-      - name: Install dependencies
-        run: npm install
+      - name: Install packages
+        run: npm run 
 
-      - name: Build
-        run: npm run builda
+      - name: Build site
+        run: yarn build
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.5.9
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages # The branch the action should deploy to.
-          FOLDER: docs # The folder the action should deploy.
+          FOLDER: public # The folder the action should deploy.
+
