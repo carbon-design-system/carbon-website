@@ -1,4 +1,4 @@
-name: Another ONe
+name: Create Binaries
 
 on:
   push:
@@ -24,7 +24,13 @@ jobs:
         run: yarn install 
 
       - name: Build site
-        run: node --max-old-space-size=4096 ./node_modules/.bin/gatsby build --prefix-paths
+        run: node --max-old-space-size=4096 ./node_modules/.bin/gatsby build #--prefix-paths
+      
+      - name: package
+        run: |
+          mv public docs
+          mkdir public
+          mv docs public/docs
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@3.5.9
