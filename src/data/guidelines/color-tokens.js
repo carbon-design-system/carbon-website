@@ -244,6 +244,53 @@ const colorTokens = {
         },
       },
     },
+    '$button-separator': {
+      role: [
+        '3:1 aa element contrast',
+        'Fluid button separator',
+      ],
+      value: {
+        white: {
+          name: 'Gray 20',
+          hex: '#e0e0e0',
+        },
+        g10: {
+          name: 'Gray 20',
+          hex: '#e0e0e0',
+        },
+        g90: {
+          name: 'Gray 100',
+          hex: '#161616',
+        },
+        g100: {
+          name: 'Gray 100',
+          hex: '#161616',
+        },
+      },
+    },
+    '$decorative-01': {
+      role: [
+        '“Light” variant elements',
+      ],
+      value: {
+        white: {
+          name: 'Gray 20',
+          hex: '#e0e0e0',
+        },
+        g10: {
+          name: 'Gray 20',
+          hex: '#e0e0e0',
+        },
+        g90: {
+          name: 'Gray 60',
+          hex: '#6f6f6f',
+        },
+        g100: {
+          name: 'Gray 70',
+          hex: '#525252',
+        },
+      },
+    },
     '$text-01': {
       role: [
         'Primary text',
@@ -274,12 +321,12 @@ const colorTokens = {
       role: ['Secondary text', 'Input labels'],
       value: {
         white: {
-          name: 'Gray 80',
-          hex: '#393939',
+          name: 'Gray 70',
+          hex: '#525252',
         },
         g10: {
-          name: 'Gray 80',
-          hex: '#393939',
+          name: 'Gray 70',
+          hex: '#525252',
         },
         g90: {
           name: 'Gray 30',
@@ -899,6 +946,27 @@ const colorTokens = {
         g100: {
           name: 'Gray 90 hover',
           hex: '#353535',
+        },
+      },
+    },
+    '$hover-ui-light': {
+      role: ['“Light” variant hover'],
+      value: {
+        white: {
+          name: 'Gray 10 hover',
+          hex: '#e5e5e5',
+        },
+        g10: {
+          name: 'Gray 10 hover',
+          hex: '#e5e5e5',
+        },
+        g90: {
+          name: 'Gray 60',
+          hex: '#6f6f6f',
+        },
+        g100: {
+          name: 'Gray 70',
+          hex: '#525252',
         },
       },
     },

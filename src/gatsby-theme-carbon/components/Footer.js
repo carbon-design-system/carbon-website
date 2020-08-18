@@ -1,28 +1,29 @@
 import React from 'react';
 import Footer from 'gatsby-theme-carbon/src/components/Footer';
-import Packages from '../../../package.json';
+import packageJson from '../../../package.json';
 
 const currentYear = new Date().getFullYear();
-
-const version = Packages.dependencies['carbon-components'];
-const reactVersion = Packages.dependencies['carbon-components-react'];
+const versions = {
+  components: packageJson.devDependencies['carbon-components'],
+  react: packageJson.devDependencies['carbon-components-react'],
+};
 
 const Content = ({ buildTime }) => (
   <>
     <p>
-      Have questions? Email us or open
-      <br /> an issue on{' '}
+      Have questions? Email us <br />
+      at <a href="mailto:carbon@us.ibm.com">carbon@us.ibm.com</a> <br />
+      or open an issue on{' '}
       <a
         style={{ textDecoration: 'underline' }}
-        href="https://github.com/carbon-design-system/carbon-website/issues/new"
-      >
+        href="https://github.com/carbon-design-system/carbon-website/issues/new">
         GitHub.
       </a>
     </p>
     <p>
-      Vanilla Components version {version}
+      Vanilla Components version {versions.components}
       <br />
-      React Components version {reactVersion}
+      React Components version {versions.react}
       <br />
       Last updated {buildTime}
       <br />

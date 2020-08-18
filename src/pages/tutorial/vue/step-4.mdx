@@ -1,16 +1,20 @@
 ---
 title: 4. Creating components
-description: Welcome to Carbon! This tutorial will guide you in creating a Vue app with the Carbon Design System.
+description:
+  Welcome to Carbon! This tutorial will guide you in creating a Vue app with the
+  Carbon Design System.
 internal: false
 tabs:
-  ["Overview", "Step 1", "Step 2", "Step 3", "Step 4", "Step 5", "Wrapping up"]
+  ['Overview', 'Step 1', 'Step 2', 'Step 3', 'Step 4', 'Step 5', 'Wrapping up']
 ---
 
-import Preview from "components/Preview";
+import Preview from 'components/Preview';
 
 <PageDescription>
 
-With two pages comprised entirely of Carbon components, let's revisit the landing page and build a couple components of our own by using Carbon icons and tokens.
+With two pages comprised entirely of Carbon components, let's revisit the
+landing page and build a couple components of our own by using Carbon icons and
+tokens.
 
 </PageDescription>
 
@@ -28,11 +32,17 @@ With two pages comprised entirely of Carbon components, let's revisit the landin
 
 ## Preview
 
-Carbon provides a solid foundation for building web applications through its color palette, layout, spacing, type, as well as common building blocks in the form of components. So far, we've only used Carbon components to build out two pages.
+Carbon provides a solid foundation for building web applications through its
+color palette, layout, spacing, type, as well as common building blocks in the
+form of components. So far, we've only used Carbon components to build out two
+pages.
 
-Next, we're going to use Carbon assets to build application-specific components. We'll do so by including accessibility and responsive considerations all throughout.
+Next, we're going to use Carbon assets to build application-specific components.
+We'll do so by including accessibility and responsive considerations all
+throughout.
 
-A [preview](https://vue-step-5--carbon-tutorial-vue.netlify.com) of what you'll build (see bottom of page):
+A [preview](https://vue-step-5--carbon-tutorial-vue.netlify.com) of what you'll
+build (see bottom of page):
 
 <Preview
   height="400"
@@ -45,42 +55,56 @@ A [preview](https://vue-step-5--carbon-tutorial-vue.netlify.com) of what you'll 
 
 ## Fork, clone and branch
 
-This tutorial has an accompanying GitHub repository called [carbon-tutorial](https://github.com/carbon-design-system/carbon-tutorial-vue) that we'll use as a starting point for each step. If you haven't forked and cloned that repository yet, and haven't added the upstream remote, go ahead and do so by following the [step 1 instructions](/tutorial/vue/step-1#fork-clone--branch).
+This tutorial has an accompanying GitHub repository called
+[carbon-tutorial](https://github.com/carbon-design-system/carbon-tutorial-vue)
+that we'll use as a starting point for each step. If you haven't forked and
+cloned that repository yet, and haven't added the upstream remote, go ahead and
+do so by following the
+[step 1 instructions](/tutorial/vue/step-1#fork-clone--branch).
 
 ### Branch
 
-With your repository all set up, let's check out the branch for this tutorial step's starting point.
+With your repository all set up, let's check out the branch for this tutorial
+step's starting point.
 
 ```bash
-$ git fetch upstream
-$ git checkout -b vue-step-4 upstream/vue-step-4
+git fetch upstream
+git checkout -b vue-step-4 upstream/vue-step-4
 ```
 
 <InlineNotification>
 
-**Note:** This builds on top of step 3, but be sure to check out the upstream step 4 branch because it includes the static assets required to get through this step.
+**Note:** This builds on top of step 3, but be sure to check out the upstream
+step 4 branch because it includes the static assets required to get through this
+step.
 
 </InlineNotification>
 
 ### Build and start app
 
-Install the app's dependencies (in case you're starting fresh in your current directory and not continuing from the previous step):
+Install the app's dependencies (in case you're starting fresh in your current
+directory and not continuing from the previous step):
 
 ```bash
-$ yarn
+yarn
 ```
 
 Then, start the app:
 
 ```bash
-$ yarn serve
+yarn serve
 ```
 
-You should see something similar to where the [previous step](/tutorial/vue/step-3) left off.
+You should see something similar to where the
+[previous step](/tutorial/vue/step-3) left off.
 
 ## Review design
 
-Here's what we're building – an informational section that has a heading and three subheadings. Each subheading has accompanying copy and a pictogram. We'll assume that this informational section is used elsewhere on the site, meaning it's a great opportunity to build it as a resusable component. As for naming, we'll call it an `InfoSection` with three `InfoCard`s as children.
+Here's what we're building – an informational section that has a heading and
+three subheadings. Each subheading has accompanying copy and a pictogram. We'll
+assume that this informational section is used elsewhere on the site, meaning
+it's a great opportunity to build it as a resusable component. As for naming,
+we'll call it an `InfoSection` with three `InfoCard`s as children.
 
 ![Info section layout](../shared/step-4/images/info-layout.png)
 
@@ -88,7 +112,10 @@ Here's what we're building – an informational section that has a heading and t
 
 ## Create components
 
-First we need files for the components, so create an `InfoSection` folder in `src/components`. Even though we're building multiple components, their names all start with `Info`, so it makes sense to have them share one folder in components. Create these files:
+First we need files for the components, so create an `InfoSection` folder in
+`src/components`. Even though we're building multiple components, their names
+all start with `Info`, so it makes sense to have them share one folder in
+components. Create these files:
 
 ### Add files
 
@@ -103,20 +130,23 @@ Like our other components, `index.js` will serve as an entrypoint.
 
 <InlineNotification>
 
-**Note:** To adhere to the [Vue style guide](https://vuejs.org/v2/style-guide/) we have used multi word component names. This style guide stipulation is why all `@carbon/vue` components have a `cv` prefix.
+**Note:** To adhere to the [Vue style guide](https://vuejs.org/v2/style-guide/)
+we have used multi word component names. This style guide stipulation is why all
+`@carbon/vue` components have a `cv` prefix.
 
 </InlineNotification>
 
 ```javascript path=src/components/InfoSection/index.js
-import InfoSection from "./InfoSection";
-import InfoCard from "./InfoCard";
+import InfoSection from './InfoSection';
+import InfoCard from './InfoCard';
 
 export { InfoSection, InfoCard };
 ```
 
 ### InfoSection component
 
-Let's create the parent component that includes the "The Principles" heading. That markup currently looks like this in `LandingPage.vue`:
+Let's create the parent component that includes the "The Principles" heading.
+That markup currently looks like this in `LandingPage.vue`:
 
 ```html path=src/views/LandingPage/LandingPage.vue
 <div class="bx--row landing-page__r3">
@@ -129,7 +159,10 @@ Let's create the parent component that includes the "The Principles" heading. Th
 </div>
 ```
 
-We want to do a few things when abstracting it to a component. First, we only want Carbon (`bx--`) and this component's class names; we don't want to include `landing-page__r3` as that's specific to the landing page. That will be passed in as a property to the component.
+We want to do a few things when abstracting it to a component. First, we only
+want Carbon (`bx--`) and this component's class names; we don't want to include
+`landing-page__r3` as that's specific to the landing page. That will be passed
+in as a property to the component.
 
 We'll also:
 
@@ -139,7 +172,8 @@ We'll also:
 - Replace `The Principles` with `{{heading}}`
 - Replace columns 2 - 4 with a slot.
 
-Using `props` we can render any heading and any number of children components (`InfoCard` that we'll build soon.)
+Using `props` we can render any heading and any number of children components
+(`InfoCard` that we'll build soon.)
 
 ```html path=src/components/InfoSection/InfoSection.vue
 <template>
@@ -179,7 +213,9 @@ At this point let's add styling for the new class names that we just added.
 
 ### InfoCard component
 
-Next up we're going to build a component for columns 2 - 4, which currently looks like `<div class="bx--col-md-4 bx--col-lg-4">Carbon is Open</div>`. Create a new file InfoCard.vue, add:
+Next up we're going to build a component for columns 2 - 4, which currently
+looks like `<div class="bx--col-md-4 bx--col-lg-4">Carbon is Open</div>`. Create
+a new file InfoCard.vue, add:
 
 ```html path=src/components/InfoSection/InfoCard.vue
 <template>
@@ -223,13 +259,17 @@ In doing so, we:
 
 <InlineNotification>
 
-**Note:** At extra large viewports, we are using `bx--col-xlg-3 bx--offset-xlg-1` so each column takes up 3 of the 16 grid columns, with a 1 column offset.
+**Note:** At extra large viewports, we are using
+`bx--col-xlg-3 bx--offset-xlg-1` so each column takes up 3 of the 16 grid
+columns, with a 1 column offset.
 
 </InlineNotification>
 
 ## Use components
 
-Our styling is not complete yet, but with our components built let's put them to use. In `LandingPage.vue`, import the components towards the top of the script section. If you haven't added a script section, do so now.
+Our styling is not complete yet, but with our components built let's put them to
+use. In `LandingPage.vue`, import the components towards the top of the script
+section. If you haven't added a script section, do so now.
 
 ```javascript path=src/views/LandingPage/LandingPage.vue
 <script>
@@ -242,23 +282,34 @@ export default {
 </script>
 ```
 
-While we're here next to the component imports, let's import the icons that we'll need as well.
+While we're here next to the component imports, let's import the icons that
+we'll need as well.
 
 ```javascript path=src/views/LandingPage/LandingPage.vue
-import Globe32 from "@carbon/icons-vue/lib/globe/32";
-import PersonFavorite32 from "@carbon/icons-vue/lib/person--favorite/32";
-import Application32 from "@carbon/icons-vue/lib/application/32";
+import Globe32 from '@carbon/icons-vue/lib/globe/32';
+import PersonFavorite32 from '@carbon/icons-vue/lib/person--favorite/32';
+import Application32 from '@carbon/icons-vue/lib/application/32';
 ```
 
 <InlineNotification>
 
-**Note:** You'll notice that these 32px icons aren't the pictograms as designed. The Carbon team is currently working on adding pictograms to the icons packages. Until then, we'll use the biggest SVGs.
+**Note:** You'll notice that these 32px icons aren't the pictograms as designed.
+The Carbon team is currently working on adding pictograms to the icons packages.
+Until then, we'll use the biggest SVGs.
 
 </InlineNotification>
 
-Don't forget to add the icons to the list of components used in our template. Wait a minute, are they being used by our template? Well, yes and no. The components are going to be passed as an attribute rather than being used as a DOM element. Vue treats this use case differently and instead of adding to the components property, we need to assign the icons directly to the `this` object. We can achieve this in a number of different ways, for example as data or computed properties. The following is our preferred method when reactivity is not needed.
+Don't forget to add the icons to the list of components used in our template.
+Wait a minute, are they being used by our template? Well, yes and no. The
+components are going to be passed as an attribute rather than being used as a
+DOM element. Vue treats this use case differently and instead of adding to the
+components property, we need to assign the icons directly to the `this` object.
+We can achieve this in a number of different ways, for example as data or
+computed properties. The following is our preferred method when reactivity is
+not needed.
 
-In the script section of the component add the lifecycle method `created()` to add the icons to the component.
+In the script section of the component add the lifecycle method `created()` to
+add the icons to the component.
 
 ```javascript path=src/views/LandingPage/LandingPage.vue
   created() {
@@ -319,13 +370,16 @@ Then slot the `InfoCard` content inside the `InfoSection` tag to give.
 
 <InlineNotification>
 
-**Note:** Now is a good time to resize your browser from phone to extra large viewport widths to see how the responsive grid is working before we add further styling.
+**Note:** Now is a good time to resize your browser from phone to extra large
+viewport widths to see how the responsive grid is working before we add further
+styling.
 
 </InlineNotification>
 
 ## Add styling
 
-Here's our design showing the spacing tokens that we need to add. We also need to set the type style and borders.
+Here's our design showing the spacing tokens that we need to add. We also need
+to set the type style and borders.
 
 ![Info section spacing](../shared/step-4/images/info-spacing.png)
 
@@ -333,7 +387,8 @@ Here's our design showing the spacing tokens that we need to add. We also need t
 
 ### Layout
 
-Starting with layout, add the style section to `src/components/InfoSection/InfoCard.vue`.
+Starting with layout, add the style section to
+`src/components/InfoSection/InfoCard.vue`.
 
 ```scss path=src/components/InfoSection/InfoCard.vue
 <style lang="scss">
@@ -376,19 +431,26 @@ Starting with layout, add the style section to `src/components/InfoSection/InfoC
 </style>
 ```
 
-Once you save, go ahead and resize your browser to see the responsive layout at the different breakpoints. Make sure to review these color and spacing tokens. There are also a few breakpoint mixins that may be new to you. The `@carbon/layout` [SassDoc](https://github.com/carbon-design-system/carbon/blob/master/packages/layout/docs/sass.md) is a great reference to see what all is available.
+Once you save, go ahead and resize your browser to see the responsive layout at
+the different breakpoints. Make sure to review these color and spacing tokens.
+There are also a few breakpoint mixins that may be new to you. The
+`@carbon/layout`
+[SassDoc](https://github.com/carbon-design-system/carbon/blob/master/packages/layout/docs/sass.md)
+is a great reference to see what all is available.
 
 ### Type
 
-Our `InfoCard` headings look to be too small. We need to increase their font sizes according to the design spec with:
+Our `InfoCard` headings look to be too small. We need to increase their font
+sizes according to the design spec with:
 
 ```scss path=src/components/InfoSection/InfoCard.vue
 .info-card__heading {
-  @include carbon--type-style("productive-heading-03");
+  @include carbon--type-style('productive-heading-03');
 }
 ```
 
-Also, the design has the last word in each subheading as bold. To accomplish that, add this computed property to `InfoCard.vue`.
+Also, the design has the last word in each subheading as bold. To accomplish
+that, add this computed property to `InfoCard.vue`.
 
 ```javascript path=src/components/InfoSection/InfoCard.vue
 computed: {
@@ -420,13 +482,14 @@ with
 </h4>
 ```
 
-Finally, add the following declaration block in the style section of `InfoCard.vue` to set body copy styles and to bottom-align the icons.
+Finally, add the following declaration block in the style section of
+`InfoCard.vue` to set body copy styles and to bottom-align the icons.
 
 ```scss path=src/components/InfoSection/InfoCard.vue
 .info-card__body {
   margin-top: $spacing-06;
   flex-grow: 1; // fill space so icons are bottom aligned
-  @include type-style("body-long-01");
+  @include type-style('body-long-01');
 
   // prevent large line lengths between small and medium viewports
   @include carbon--breakpoint-between(321px, md) {
@@ -437,21 +500,30 @@ Finally, add the following declaration block in the style section of `InfoCard.v
 
 ## Check accessibility
 
-We've added new markup and styles, so it's a good practice to check [DAP](https://www.ibm.com/able/dynamic-assessment-plug-in.html) and make sure our rendered markup is on the right track for accessibility.
+We've added new markup and styles, so it's a good practice to check
+[DAP](https://www.ibm.com/able/dynamic-assessment-plug-in.html) and make sure
+our rendered markup is on the right track for accessibility.
 
-With the browser extension installed, Chrome in this example, open Dev Tools and run DAP.
+With the browser extension installed, Chrome in this example, open Dev Tools and
+run DAP.
 
 ![DAP violations](../shared/step-4/images/DAP-violations.png)
 
 <Caption>DAP violations</Caption>
 
-That first violation is for the off-screen "skip to content" link. This link isn't shown and is used to assist screen reading, so the color contrast violation can be ignored.
+That first violation is for the off-screen "skip to content" link. This link
+isn't shown and is used to assist screen reading, so the color contrast
+violation can be ignored.
 
-But, those three other violations came from the `<article>` element used in new `InfoCard`. Since the `<article>` element requires a label, it seems like we may be using the wrong semantic element. A humble `<div>` will suffice.
+But, those three other violations came from the `<article>` element used in new
+`InfoCard`. Since the `<article>` element requires a label, it seems like we may
+be using the wrong semantic element. A humble `<div>` will suffice.
 
-In `InfoCard.vue`, replace the `<article>` opening and closing tags with `<div>` tags.
+In `InfoCard.vue`, replace the `<article>` opening and closing tags with `<div>`
+tags.
 
-Also it's time to fix it if you didn't but I'm sure you can manage that by yourself.
+Also it's time to fix it if you didn't but I'm sure you can manage that by
+yourself.
 
 ## Submit pull request
 
@@ -462,12 +534,14 @@ We're going to submit a pull request to verify completion of this tutorial step.
 Run the CI check to make sure we're all set to submit a pull request.
 
 ```bash
-$ yarn ci-check
+yarn ci-check
 ```
 
 <InlineNotification>
 
-**Note:** Having issues running the CI check? [Step 1](/tutorial/vue/step-1#continuous-integration-ci-check) has troubleshooting notes that may help.
+**Note:** Having issues running the CI check?
+[Step 1](/tutorial/vue/step-1#continuous-integration-ci-check) has
+troubleshooting notes that may help.
 
 </InlineNotification>
 
@@ -476,27 +550,34 @@ $ yarn ci-check
 Before we can create a pull request, stage and commit all of your changes:
 
 ```bash
-$ git add --all && git commit -m "feat(tutorial): complete step 4"
+git add --all && git commit -m "feat(tutorial): complete step 4"
 ```
 
 Then, push to your repository:
 
 ```bash
-$ git push origin vue-step-4
+git push origin vue-step-4
 ```
 
 <InlineNotification>
 
-**Note:** Having issues pushing your changes? [Step 1](/tutorial/vue/step-1#git-commit-and-push) has troubleshooting notes that may help.
+**Note:** Having issues pushing your changes?
+[Step 1](/tutorial/vue/step-1#git-commit-and-push) has troubleshooting notes
+that may help.
 
 </InlineNotification>
 
 ### Pull request (PR)
 
-Finally, visit [carbon-tutorial](https://github.com/carbon-design-system/carbon-tutorial) to "Compare & pull request". In doing so, make sure that you are comparing to `vue-step-4` into `base: vue-step-4`.
+Finally, visit
+[carbon-tutorial](https://github.com/carbon-design-system/carbon-tutorial) to
+"Compare & pull request". In doing so, make sure that you are comparing to
+`vue-step-4` into `base: vue-step-4`.
 
 <InlineNotification>
 
-**Note:** Expect your tutorial step PRs to be reviewed by the Carbon team but not merged. We'll close your PR so we can keep the repository's remote branches pristine and ready for the next person!
+**Note:** Expect your tutorial step PRs to be reviewed by the Carbon team but
+not merged. We'll close your PR so we can keep the repository's remote branches
+pristine and ready for the next person!
 
 </InlineNotification>
