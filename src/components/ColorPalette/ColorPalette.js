@@ -128,7 +128,7 @@ const ColorPalette = ({ type, isMono, isDiverging }) => {
   const switcherTwo = type === 'sequential' ? 'Continuous' : 'Dark';
 
   return (
-    <div>
+    <div className="color-palette-wrapper">
       <div
         className={cx('palette-controls', {
           'group-controls': type === 'grouped',
