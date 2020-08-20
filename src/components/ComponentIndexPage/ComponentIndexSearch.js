@@ -10,7 +10,7 @@ function ComponentIndexSearch({ value, onChange }) {
   return (
     <div className="component-index-search">
       <Row>
-        <Column sm={4} md={8} lg={9}>
+        <Column sm={4} md={6} lg={9}>
           <Search
             light
             id="component-index-search"

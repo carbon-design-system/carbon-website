@@ -25,7 +25,6 @@ import figmaIcon from './images/Figma.svg';
 import sketchIcon from './images/Sketch.svg';
 import xdIcon from './images/XD.svg';
 
-const href = '/get-started/about-carbon';
 const frameworkIcons = {
   Angular: angularIcon,
   React: reactIcon,
@@ -51,7 +50,7 @@ const ComponentIndexListItem = React.memo(
     name,
     websiteUrl,
   }) => {
-    let img = undefined;
+    let img;
 
     if (image?.fluid) {
       img = (
@@ -72,7 +71,7 @@ const ComponentIndexListItem = React.memo(
 
     return (
       <Row>
-        <Column sm={4} md={8} lg={9}>
+        <Column sm={4} md={6} lg={9}>
           <article className="component-index-item">
             <div className="component-index-item__image bx--aspect-ratio bx--aspect-ratio--4x3">
               {img}

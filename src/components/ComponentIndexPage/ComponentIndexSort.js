@@ -12,7 +12,7 @@ import React from 'react';
 function ComponentIndexSort({ initialSortOption, options, onChange }) {
   return (
     <Row className="component-index-sort-container">
-      <Column sm={4} md={8} lg={9}>
+      <Column sm={4} md={6} lg={9}>
         <div className="component-index-sort">
           <Dropdown
             id="component-index-sort"

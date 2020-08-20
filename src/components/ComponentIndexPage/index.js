@@ -59,12 +59,24 @@ function sortByNewest(a, b) {
   return dateA - dateB;
 }
 
-const filterOptions = {
-  Framework: ['React', 'Angular', 'Vue', 'Vanilla'],
-  'Design asset': ['Sketch', 'Azure', 'Adobe XD', 'Figma'],
-  Availability: ['Open Source', 'IBM Internal'],
-  Maintainer: ['Cloud Data & AI', 'Cloud PAL', 'Watson Health', 'Watson IoT'],
-};
+const filterOptions = [
+  {
+    title: 'Framework',
+    options: ['React', 'Angular', 'Vue', 'Vanilla'],
+  },
+  {
+    title: 'Design asset',
+    options: ['Sketch', 'Azure', 'Adobe XD', 'Figma'],
+  },
+  {
+    title: 'Availability',
+    options: ['Open Source', 'IBM Internal'],
+  },
+  {
+    title: 'Maintainer',
+    options: ['Cloud Data & AI', 'Cloud PAL', 'Watson Health', 'Watson IoT'],
+  },
+];
 
 function ComponentIndexPage() {
   const components = useComponentIndexData();
@@ -117,7 +129,7 @@ function ComponentIndexPage() {
 
   return (
     <Row>
-      <Column sm={4} md={8} lg={9} className="component-index-container">
+      <Column sm={4} md={6} lg={9} className="component-index-container">
         <ComponentIndexSearch value={searchValue} onChange={setSearchValue} />
         <ComponentIndexSort
           initialSortOption={initialSortOption}
@@ -128,17 +140,17 @@ function ComponentIndexPage() {
       </Column>
       <Column sm={0} md={2} lg={3} className="component-index-filter-container">
         <header className="component-index-filter__header">Filters</header>
-        <fieldset className="bx--fieldset">
-          {Object.entries(filterOptions).map((key) => (
-            <div className="component-index-filter__option">
-              <legend className="bx--label">{key[0]}</legend>
-              {key[1].map((selectedFilter) => (
+        <fieldset className="component-index-filter__fieldset">
+          {filterOptions.map(({ title, options, key }) => (
+            <div key={key} className="component-index-filter__option">
+              <legend className="component-index-filter__label">{title}</legend>
+              {options.map((option) => (
                 <Checkbox
-                  labelText={selectedFilter}
-                  id={selectedFilter}
-                  checked={selected.includes(selectedFilter)}
+                  labelText={option}
+                  id={option}
+                  checked={selected.includes(option)}
                   onChange={(filterOption) =>
-                    handleOnChange(filterOption, selectedFilter)
+                    handleOnChange(filterOption, option)
                   }
                 />
               ))}

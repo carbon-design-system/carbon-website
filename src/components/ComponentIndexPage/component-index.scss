@@ -8,6 +8,15 @@
 //----------------------------------------------------------------------------
 // Component Index Search
 //----------------------------------------------------------------------------
+.component-index-container.bx--col-sm-4, 
+.component-index-container.bx--col-md-6, 
+.component-index-container.bx--col-lg-9 {
+  padding-right: 0;
+  padding-left: 0;
+}
+//----------------------------------------------------------------------------
+// Component Index Search
+//----------------------------------------------------------------------------
 .component-index-search {
   margin-top: 5rem;
 }
@@ -20,7 +29,7 @@
 
 .component-index-sort {
   background-color: $white-0;
-  height: 2.5rem;
+  height: $spacing-08;
 }
 
 //----------------------------------------------------------------------------
@@ -29,7 +38,7 @@
 .component-index-item {
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 1px;
+  border-bottom: 1px solid $ui-03;
 }
 
 .component-index-item .component-index-item__image,
@@ -46,7 +55,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 1px;
+    border-right: 1px solid $ui-03;
     // TODO: replace with appropriate aspect ratio handling
     width: 238px;
   }
@@ -69,7 +78,7 @@
 // Description
 .component-index-item__description {
   @include carbon--type-style('body-short-01');
-  padding-right: 3rem;
+  padding-right: $spacing-09;
   color: $text-01;
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -80,7 +89,7 @@
 
 // Content
 .component-index-item__content {
-  padding: 1rem;
+  padding: $spacing-05;
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -104,7 +113,7 @@
 // Divider
 .component-index-item__divider {
   width: 1px;
-  height: 1rem;
+  height: $spacing-05;
   background-color: $ui-03;
   margin: 0 $spacing-05;
 }
@@ -116,20 +125,23 @@
 }
 
 .component-index-item__tag--framework {
+  padding-top: $spacing-02;
   padding-right: $spacing-02;
 }
 
 .component-index-item__tag--design-asset {
+  padding-top: $spacing-02;
   padding-right: $spacing-02;
 }
 
 .component-index-item__tag--maintainer {
-  @include carbon--type-style('body-short-01');
-  color: $text-01;
-}
+  display: none;
 
-.component-index-item__tags li {
-  display: inline-block;
+  @include carbon--breakpoint(lg) {
+    display: flex;
+    @include carbon--type-style('body-short-01');
+    color: $text-01;
+  }
 }
 
 //----------------------------------------------------------------------------
@@ -160,16 +172,25 @@
   @include carbon--type-style('heading-01');
   color: $text-01;
 }
-.bx--label  {
-  border-top: 1px solid lightgray;
-  padding-top: 1rem;
+
+// Filter fieldset & label
+.component-index-filter__fieldset  {
+  padding-bottom: $spacing-05;
+  margin-top: $spacing-05;
 }
-.bx--fieldset  {
-  padding-bottom: 1rem;
-  margin-top: 1rem;
+.component-index-filter__label  {
+  border-top: 1px solid $ui-03;
+  padding-top: $spacing-05;
+  padding-bottom: $spacing-03;
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+  letter-spacing: 0.16px;
+  color: #525252;
+  font-weight: 400;
+  vertical-align: initial
 }
 
 // Filter option 
 .component-index-filter__option {
-  padding-bottom: 1rem;
+  padding-bottom: $spacing-05;
 }
