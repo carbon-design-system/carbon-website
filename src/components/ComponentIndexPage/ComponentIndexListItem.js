@@ -73,9 +73,7 @@ const ComponentIndexListItem = React.memo(
       <Row>
         <Column sm={4} md={6} lg={9}>
           <article className="component-index-item">
-            <div className="component-index-item__image bx--aspect-ratio bx--aspect-ratio--4x3">
-              {img}
-            </div>
+            <div className="component-index-item__image">{img}</div>
             <div className="component-index-item__content">
               <header className="component-index-item__name">{name}</header>
               <p className="component-index-item__description">{description}</p>
