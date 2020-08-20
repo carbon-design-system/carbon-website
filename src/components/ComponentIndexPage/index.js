@@ -129,7 +129,11 @@ function ComponentIndexPage() {
 
   return (
     <Row>
-      <Column sm={4} md={6} lg={9} className="component-index-container">
+      <Column
+        sm={4}
+        md={6}
+        lg={9}
+        className="component-index-container bx--no-gutter">
         <ComponentIndexSearch value={searchValue} onChange={setSearchValue} />
         <ComponentIndexSort
           initialSortOption={initialSortOption}

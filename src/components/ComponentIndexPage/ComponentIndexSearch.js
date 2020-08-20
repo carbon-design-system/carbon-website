@@ -1,4 +1,4 @@
-import { Search, Row, Column } from 'carbon-components-react';
+import { Search } from 'carbon-components-react';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -9,18 +9,14 @@ function ComponentIndexSearch({ value, onChange }) {
 
   return (
     <div className="component-index-search">
-      <Row>
-        <Column sm={4} md={6} lg={9}>
-          <Search
-            light
-            id="component-index-search"
-            labelText="Search component index by name, keyword, or domain"
-            placeHolderText="Component name, keyword, domain"
-            value={value}
-            onChange={handleOnChange}
-          />
-        </Column>
-      </Row>
+      <Search
+        light
+        id="component-index-search"
+        labelText="Search component index by name, keyword, or domain"
+        placeHolderText="Component name, keyword, domain"
+        value={value}
+        onChange={handleOnChange}
+      />
     </div>
   );
 }

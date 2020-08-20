@@ -70,67 +70,65 @@ const ComponentIndexListItem = React.memo(
     }
 
     return (
-      <Row>
-        <Column sm={4} md={6} lg={9}>
-          <article className="component-index-item">
-            <div className="component-index-item__image">{img}</div>
-            <div className="component-index-item__content">
-              <header className="component-index-item__name">{name}</header>
-              <p className="component-index-item__description">{description}</p>
-              <footer className="component-index-item__info">
-                <div className="component-index-item__links">
-                  <Link
-                    className="component-index-item__link"
-                    href={websiteUrl}
-                    rel="noopener noreferrer">
-                    Website
-                  </Link>
-                  {codeUrl && (
-                    <>
-                      <div className="component-index-item__divider" />
-                      <Link
-                        className="component-index-item__link"
-                        href={codeUrl}
-                        rel="noopener noreferrer">
-                        Code
-                      </Link>
-                    </>
-                  )}
-                </div>
-                <ul className="component-index-item__tags">
-                  {framework && (
-                    <li className="component-index-item__tag component-index-item__tag--framework">
-                      <TooltipIcon direction="top" tooltipText={framework}>
-                        <img
-                          src={frameworkIcons[framework] || null}
-                          alt={framework}
-                        />
-                      </TooltipIcon>
-                    </li>
-                  )}
-                  {designAsset && (
-                    <li className="component-index-item__tag component-index-item__tag--design-asset">
-                      <TooltipIcon direction="top" tooltipText={designAsset}>
-                        <img
-                          src={designAssetIcons[designAsset] || null}
-                          alt={designAsset}
-                        />
-                      </TooltipIcon>
-                    </li>
-                  )}
-                  {maintainer && (
-                    <li className="component-index-item__tag component-index-item__tag--maintainer">
-                      <TooltipIcon direction="top" tooltipText="Maintainer">
-                        <Tag>{maintainer}</Tag>
-                      </TooltipIcon>
-                    </li>
-                  )}
-                </ul>
-              </footer>
-            </div>
-          </article>
-        </Column>
-      </Row>
+      <>
+        <article className="component-index-item">
+          <div className="component-index-item__image">{img}</div>
+          <div className="component-index-item__content">
+            <header className="component-index-item__name">{name}</header>
+            <p className="component-index-item__description">{description}</p>
+            <footer className="component-index-item__info">
+              <div className="component-index-item__links">
+                <Link
+                  className="component-index-item__link"
+                  href={websiteUrl}
+                  rel="noopener noreferrer">
+                  Website
+                </Link>
+                {codeUrl && (
+                  <>
+                    <div className="component-index-item__divider" />
+                    <Link
+                      className="component-index-item__link"
+                      href={codeUrl}
+                      rel="noopener noreferrer">
+                      Code
+                    </Link>
+                  </>
+                )}
+              </div>
+              <ul className="component-index-item__tags">
+                {framework && (
+                  <li className="component-index-item__tag component-index-item__tag--framework">
+                    <TooltipIcon direction="top" tooltipText={framework}>
+                      <img
+                        src={frameworkIcons[framework] || null}
+                        alt={framework}
+                      />
+                    </TooltipIcon>
+                  </li>
+                )}
+                {designAsset && (
+                  <li className="component-index-item__tag component-index-item__tag--design-asset">
+                    <TooltipIcon direction="top" tooltipText={designAsset}>
+                      <img
+                        src={designAssetIcons[designAsset] || null}
+                        alt={designAsset}
+                      />
+                    </TooltipIcon>
+                  </li>
+                )}
+                {maintainer && (
+                  <li className="component-index-item__tag component-index-item__tag--maintainer">
+                    <TooltipIcon direction="top" tooltipText="Maintainer">
+                      <Tag>{maintainer}</Tag>
+                    </TooltipIcon>
+                  </li>
+                )}
+              </ul>
+            </footer>
+          </div>
+        </article>
+      </>
     );
   }
 );

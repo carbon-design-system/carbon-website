@@ -5,29 +5,27 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Dropdown, Row, Column } from 'carbon-components-react';
+import { Dropdown } from 'carbon-components-react';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 function ComponentIndexSort({ initialSortOption, options, onChange }) {
   return (
-    <Row className="component-index-sort-container">
-      <Column sm={4} md={6} lg={9}>
-        <div className="component-index-sort">
-          <Dropdown
-            id="component-index-sort"
-            initialSelectedItem={initialSortOption}
-            items={options}
-            label="Sort"
-            light
-            onChange={({ selectedItem }) => {
-              onChange(selectedItem);
-            }}
-            type="inline"
-          />
-        </div>
-      </Column>
-    </Row>
+    <div className="component-index-sort-container">
+      <div className="component-index-sort">
+        <Dropdown
+          id="component-index-sort"
+          initialSelectedItem={initialSortOption}
+          items={options}
+          label="Sort"
+          light
+          onChange={({ selectedItem }) => {
+            onChange(selectedItem);
+          }}
+          type="inline"
+        />
+      </div>
+    </div>
   );
 }
 
