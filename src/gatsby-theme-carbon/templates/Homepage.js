@@ -49,7 +49,7 @@ const customProps = {
                 className={styles.callToAction}
                 subTitle="Read"
                 title="Migration guide"
-                href="/updates/migration-guide/overview"
+                href="/help/migration-guide/overview"
                 color="dark"
                 actionIcon="arrowRight"
               />
