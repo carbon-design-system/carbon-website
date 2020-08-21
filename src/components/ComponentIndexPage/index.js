@@ -90,67 +90,21 @@ function ComponentIndexPage() {
     components,
   ]);
 
-  const selectedOptions = {
-    framework: ['React', 'Angular', 'Vue', 'Vanilla'].filter((value) =>
-      selected.includes(value)
-    ),
-    designAsset: ['Sketch', 'Azure', 'Adobe XD', 'Figma'].filter((value) =>
-      selected.includes(value)
-    ),
-    availability: ['Open Source', 'IBM Internal'].filter((value) =>
-      selected.includes(value)
-    ),
-    maintainer: ['Cloud Data & AI', 'Cloud PAL', 'Watson Health', 'Watson IoT']
-      .filter((value) => selected.includes(value))
-      .map((value) => (value === 'Cloud Data & AI' ? 'CD&AI' : value)),
-  };
-
-  const filterFunction = ({
-    framework,
-    designAsset,
-    availability,
-    maintainer,
-  }) => {
-    // Display all components / filter groups on initial render.
-    let frameworkIsSelected = true;
-    let designAssetIsSelected = true;
-    let availabilityIsSelected = true;
-    let maintainerIsSelected = true;
-
-    // Filter conditionals to only display components cotain selected filter option(s).
-    if (
-      selectedOptions.framework.length > 0 &&
-      !selectedOptions.framework.includes(framework)
-    ) {
-      frameworkIsSelected = false;
-    }
-    if (
-      selectedOptions.designAsset.length > 0 &&
-      !selectedOptions.designAsset.includes(designAsset)
-    ) {
-      designAssetIsSelected = false;
-    }
-    if (
-      selectedOptions.availability.length > 0 &&
-      !selectedOptions.availability.includes(availability)
-    ) {
-      availabilityIsSelected = false;
-    }
-    if (
-      selectedOptions.maintainer.length > 0 &&
-      !selectedOptions.maintainer.includes(maintainer)
-    ) {
-      maintainerIsSelected = false;
-    }
-
-    return (
-      frameworkIsSelected &&
-      designAssetIsSelected &&
-      availabilityIsSelected &&
-      maintainerIsSelected
-    );
-  };
-
+  function filterItems(items, filters) {
+    return items.filter((item) => {
+      // If there are no filters, return true.
+      if (filters.length === 0) {
+        return true;
+      }
+      const { framework, designAsset, availability, maintainer } = item;
+      const fields = [framework, designAsset, availability, maintainer];
+      return filters.every((filter) =>
+        filter === 'Cloud Data & AI'
+          ? fields.includes('CD&AI')
+          : fields.includes(filter)
+      );
+    });
+  }
   const handleOnChange = (checkedOption, selectedFilter) => {
     // Remove unchecked filter option(s) from setSelected state.
     if (selected.includes(selectedFilter)) {
@@ -176,10 +130,9 @@ function ComponentIndexPage() {
   if (searchResults.length > 0) {
     results = (
       <ComponentIndexList
-        items={searchResults
-          .slice()
-          .sort(sortBy[activeSortOption])
-          .filter(filterFunction)}
+        items={filterItems(searchResults.slice(), selected).sort(
+          sortBy[activeSortOption]
+        )}
       />
     );
   } else {
