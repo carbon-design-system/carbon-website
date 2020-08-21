@@ -61,7 +61,7 @@ function sortByNewest(a, b) {
   return dateA - dateB;
 }
 
-const filterOptions = [
+const filterLabels = [
   {
     title: 'Framework',
     options: ['React', 'Angular', 'Vue', 'Vanilla'],
@@ -90,11 +90,75 @@ function ComponentIndexPage() {
     components,
   ]);
 
-  const handleOnChange = (filterOption, selectedFilter) => {
+  const selectedOptions = {
+    framework: ['React', 'Angular', 'Vue', 'Vanilla'].filter((value) =>
+      selected.includes(value)
+    ),
+    designAsset: ['Sketch', 'Azure', 'Adobe XD', 'Figma'].filter((value) =>
+      selected.includes(value)
+    ),
+    availability: ['Open Source', 'IBM Internal'].filter((value) =>
+      selected.includes(value)
+    ),
+    maintainer: ['Cloud Data & AI', 'Cloud PAL', 'Watson Health', 'Watson IoT']
+      .filter((value) => selected.includes(value))
+      .map((value) => (value === 'Cloud Data & AI' ? 'CD&AI' : value)),
+  };
+
+  const filterFunction = ({
+    framework,
+    designAsset,
+    availability,
+    maintainer,
+  }) => {
+    // Display all components / filter groups on initial render.
+    let frameworkIsSelected = true;
+    let designAssetIsSelected = true;
+    let availabilityIsSelected = true;
+    let maintainerIsSelected = true;
+
+    // Filter conditionals to only display components cotain selected filter option(s).
+    if (
+      selectedOptions.framework.length > 0 &&
+      !selectedOptions.framework.includes(framework)
+    ) {
+      frameworkIsSelected = false;
+    }
+    if (
+      selectedOptions.designAsset.length > 0 &&
+      !selectedOptions.designAsset.includes(designAsset)
+    ) {
+      designAssetIsSelected = false;
+    }
+    if (
+      selectedOptions.availability.length > 0 &&
+      !selectedOptions.availability.includes(availability)
+    ) {
+      availabilityIsSelected = false;
+    }
+    if (
+      selectedOptions.maintainer.length > 0 &&
+      !selectedOptions.maintainer.includes(maintainer)
+    ) {
+      maintainerIsSelected = false;
+    }
+
+    return (
+      frameworkIsSelected &&
+      designAssetIsSelected &&
+      availabilityIsSelected &&
+      maintainerIsSelected
+    );
+  };
+
+  const handleOnChange = (checkedOption, selectedFilter) => {
+    // Remove unchecked filter option(s) from setSelected state.
     if (selected.includes(selectedFilter)) {
       setSelected(
-        selected.filter((filterOption) => filterOption !== selectedFilter)
+        selected.filter((checkedOption) => checkedOption !== selectedFilter)
       );
+
+      // Add checked filter option(s) to setSeleted state.
     } else {
       setSelected([...selected, selectedFilter]);
     }
@@ -108,70 +172,6 @@ function ComponentIndexPage() {
   }
 
   let results;
-
-  const selectedOptions = {
-    framework: ['React', 'Angular', 'Vue', 'Vanilla'].filter((value) =>
-      selected.includes(value)
-    ),
-    designAsset: ['Sketch', 'Azure', 'Adobe XD', 'Figma'].filter((value) =>
-      selected.includes(value)
-    ),
-    availability: ['Open Source', 'IBM Internal'].filter((value) =>
-      selected.includes(value)
-    ),
-    maintainer: [
-      // this value does not work :(
-      'Cloud Data & AI',
-      'Cloud PAL',
-      'Watson Health',
-      'Watson IoT',
-    ].filter((value) => selected.includes(value)),
-  };
-
-  console.log('options', selectedOptions);
-
-  const filterFunction = ({
-    availability,
-    designAsset,
-    maintainer,
-    framework,
-  }) => {
-    let availabilityIsSelected = false;
-    let designAssetIsSelected = false;
-    let maintainerIsSelected = false;
-    let frameworkIsSelected = false;
-    if (
-      selectedOptions.availability.length === 0 ||
-      selectedOptions.availability.includes(availability)
-    ) {
-      availabilityIsSelected = true;
-    }
-    if (
-      selectedOptions.designAsset.length === 0 ||
-      selectedOptions.designAsset.includes(designAsset)
-    ) {
-      designAssetIsSelected = true;
-    }
-    if (
-      selectedOptions.maintainer.length === 0 ||
-      selectedOptions.maintainer.includes(maintainer)
-    ) {
-      maintainerIsSelected = true;
-    }
-    if (
-      selectedOptions.framework.length === 0 ||
-      selectedOptions.framework.includes(framework)
-    ) {
-      frameworkIsSelected = true;
-    }
-
-    return (
-      availabilityIsSelected &&
-      designAssetIsSelected &&
-      maintainerIsSelected &&
-      frameworkIsSelected
-    );
-  };
 
   if (searchResults.length > 0) {
     results = (
@@ -204,16 +204,16 @@ function ComponentIndexPage() {
       <Column sm={0} md={2} lg={3} className="component-index-filter-container">
         <header className="component-index-filter__header">Filters</header>
         <fieldset className="component-index-filter__fieldset">
-          {filterOptions.map(({ title, options, key }) => (
+          {filterLabels.map(({ title, options, key }) => (
             <div key={key} className="component-index-filter__option">
               <legend className="component-index-filter__label">{title}</legend>
-              {options.map((option) => (
+              {options.map((selectedFilter) => (
                 <Checkbox
-                  labelText={option}
-                  id={option}
-                  checked={selected.includes(option)}
-                  onChange={(filterOption) =>
-                    handleOnChange(filterOption, option)
+                  labelText={selectedFilter}
+                  id={selectedFilter}
+                  checked={selected.includes(selectedFilter)}
+                  onChange={(checkedOption) =>
+                    handleOnChange(checkedOption, selectedFilter)
                   }
                 />
               ))}
