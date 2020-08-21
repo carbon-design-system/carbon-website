@@ -4,7 +4,7 @@ import { Column, Row } from 'gatsby-theme-carbon';
 class TypeScaleTable extends Component {
   render() {
     return (
-      <Row style={{"--space": 0}}>
+      <Row className="type-scale-row">
         <Column colLg={8} className="type-scale-table no-gap">
           <table>
             <thead>
