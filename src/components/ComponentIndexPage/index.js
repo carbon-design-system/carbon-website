@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 /**
  * Copyright IBM Corp. 2016, 2020
  *
@@ -27,6 +28,7 @@ const searchOptions = {
       name: 'name',
       weight: 2,
     },
+    'availability',
     'description',
     'maintainer.name',
     'maintainer.friendly_name',
@@ -107,20 +109,77 @@ function ComponentIndexPage() {
 
   let results;
 
+  const selectedOptions = {
+    framework: ['React', 'Angular', 'Vue', 'Vanilla'].filter((value) =>
+      selected.includes(value)
+    ),
+    designAsset: ['Sketch', 'Azure', 'Adobe XD', 'Figma'].filter((value) =>
+      selected.includes(value)
+    ),
+    availability: ['Open Source', 'IBM Internal'].filter((value) =>
+      selected.includes(value)
+    ),
+    maintainer: [
+      // this value does not work :(
+      'Cloud Data & AI',
+      'Cloud PAL',
+      'Watson Health',
+      'Watson IoT',
+    ].filter((value) => selected.includes(value)),
+  };
+
+  console.log('options', selectedOptions);
+
+  const filterFunction = ({
+    availability,
+    designAsset,
+    maintainer,
+    framework,
+  }) => {
+    let availabilityIsSelected = false;
+    let designAssetIsSelected = false;
+    let maintainerIsSelected = false;
+    let frameworkIsSelected = false;
+    if (
+      selectedOptions.availability.length === 0 ||
+      selectedOptions.availability.includes(availability)
+    ) {
+      availabilityIsSelected = true;
+    }
+    if (
+      selectedOptions.designAsset.length === 0 ||
+      selectedOptions.designAsset.includes(designAsset)
+    ) {
+      designAssetIsSelected = true;
+    }
+    if (
+      selectedOptions.maintainer.length === 0 ||
+      selectedOptions.maintainer.includes(maintainer)
+    ) {
+      maintainerIsSelected = true;
+    }
+    if (
+      selectedOptions.framework.length === 0 ||
+      selectedOptions.framework.includes(framework)
+    ) {
+      frameworkIsSelected = true;
+    }
+
+    return (
+      availabilityIsSelected &&
+      designAssetIsSelected &&
+      maintainerIsSelected &&
+      frameworkIsSelected
+    );
+  };
+
   if (searchResults.length > 0) {
     results = (
       <ComponentIndexList
         items={searchResults
           .slice()
           .sort(sortBy[activeSortOption])
-          .filter(({ description, framework, maintainer, designAsset }) =>
-            selected.length === 0
-              ? searchResults
-              : selected.includes(maintainer) ||
-                selected.includes(framework) ||
-                selected.includes(designAsset) ||
-                selected.includes(description)
-          )}
+          .filter(filterFunction)}
       />
     );
   } else {
