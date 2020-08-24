@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-expressions */
 /**
  * Copyright IBM Corp. 2016, 2020
  *
