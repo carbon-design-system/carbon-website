@@ -80,6 +80,22 @@ const filterLabels = [
   },
 ];
 
+function filterItems(items, filters) {
+  return items.filter((item) => {
+    // If there are no filters, return true.
+    if (filters.length === 0) {
+      return true;
+    }
+    const { framework, designAsset, availability, maintainer } = item;
+    const fields = [framework, designAsset, availability, maintainer];
+    return filters.every((filter) =>
+      filter === 'Cloud Data & AI'
+        ? fields.includes('CD&AI')
+        : fields.includes(filter)
+    );
+  });
+}
+
 function ComponentIndexPage() {
   const components = useComponentIndexData();
   const [activeSortOption, setActiveSortOption] = useState(initialSortOption);
@@ -90,21 +106,7 @@ function ComponentIndexPage() {
     components,
   ]);
 
-  function filterItems(items, filters) {
-    return items.filter((item) => {
-      // If there are no filters, return true.
-      if (filters.length === 0) {
-        return true;
-      }
-      const { framework, designAsset, availability, maintainer } = item;
-      const fields = [framework, designAsset, availability, maintainer];
-      return filters.every((filter) =>
-        filter === 'Cloud Data & AI'
-          ? fields.includes('CD&AI')
-          : fields.includes(filter)
-      );
-    });
-  }
+
   const handleOnChange = (checkedOption, selectedFilter) => {
     // Remove unchecked filter option(s) from setSelected state.
     if (selected.includes(selectedFilter)) {
