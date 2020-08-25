@@ -4,6 +4,12 @@
 // This source code is licensed under the Apache-2.0 license found in the
 // LICENSE file in the root directory of this source tree.
 //
+//----------------------------------------------------------------------------
+// Component Index Container
+//----------------------------------------------------------------------------
+.component-index-container .bx--no-gutter--start {
+  width: 100%;
+}
 
 //----------------------------------------------------------------------------
 // Component Index Search
@@ -20,7 +26,7 @@
 
 .component-index-sort {
   background-color: $white-0;
-  height: 2.5rem;
+  height: $spacing-08;
 }
 
 //----------------------------------------------------------------------------
@@ -29,7 +35,7 @@
 .component-index-item {
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 1px;
+  border-bottom: 1px solid $ui-03;
 }
 
 .component-index-item .component-index-item__image,
@@ -42,13 +48,21 @@
 .component-index-item__image {
   display: none;
 
-  @include carbon--breakpoint(md) {
+  @include carbon--breakpoint(md) {  //672  4:3
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 1px;
+    border-right: 1px solid $ui-03;
     // TODO: replace with appropriate aspect ratio handling
-    width: 238px;
+    width: 14.875rem;
+  }
+
+  @include carbon--breakpoint(lg) { //1056  1:1
+    width: 11.25rem;
+  }
+
+  @include carbon--breakpoint(xlg) { //1312  4:3
+    width: 14.875rem;
   }
 }
 
@@ -69,7 +83,7 @@
 // Description
 .component-index-item__description {
   @include carbon--type-style('body-short-01');
-  padding-right: 3rem;
+  padding-right: $spacing-09;
   color: $text-01;
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -80,7 +94,7 @@
 
 // Content
 .component-index-item__content {
-  padding: 1rem;
+  padding: $spacing-05;
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -104,7 +118,7 @@
 // Divider
 .component-index-item__divider {
   width: 1px;
-  height: 1rem;
+  height: $spacing-05;
   background-color: $ui-03;
   margin: 0 $spacing-05;
 }
@@ -116,20 +130,23 @@
 }
 
 .component-index-item__tag--framework {
+  padding-top: $spacing-02;
   padding-right: $spacing-02;
 }
 
 .component-index-item__tag--design-asset {
+  padding-top: $spacing-02;
   padding-right: $spacing-02;
 }
 
 .component-index-item__tag--maintainer {
-  @include carbon--type-style('body-short-01');
-  color: $text-01;
-}
+  display: none;
 
-.component-index-item__tags li {
-  display: inline-block;
+  @media screen and (min-width: 850px) {
+    display: flex;
+    @include carbon--type-style('body-short-01');
+    color: $text-01;
+  }
 }
 
 //----------------------------------------------------------------------------
@@ -147,4 +164,46 @@
 
   color: $text-01;
   margin-bottom: $spacing-06;
+}
+
+.component-index-not-found__link {
+  @include carbon--type-style('body-long-02');
+
+  margin-bottom: $spacing-06;
+  padding: 0 $spacing-02 0 $spacing-02;
+}
+
+//----------------------------------------------------------------------------
+// Component Index Filter
+//----------------------------------------------------------------------------
+.component-index-filter-container {
+  margin-top: 12.5rem;
+  padding-left: $spacing-07;
+}
+// Header
+.component-index-filter__header {
+  @include carbon--type-style('heading-01');
+  color: $text-01;
+}
+
+// Filter fieldset & label
+.component-index-filter__fieldset  {
+  padding-bottom: $spacing-05;
+  margin-top: $spacing-05;
+}
+.component-index-filter__label  {
+  border-top: 1px solid $ui-03;
+  padding-top: $spacing-05;
+  padding-bottom: $spacing-03;
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+  letter-spacing: 0.16px;
+  color: $carbon--gray-70;
+  font-weight: 400;
+  vertical-align: initial
+}
+
+// Filter option 
+.component-index-filter__option {
+  padding-bottom: $spacing-05;
 }
