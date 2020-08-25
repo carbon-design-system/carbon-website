@@ -877,12 +877,12 @@ const colorTokens = {
           hex: '#054ada',
         },
         g90: {
-          name: 'Blue 70',
-          hex: '#054ada',
+          name: 'Blue 30',
+          hex: '#a6c8ff',
         },
         g100: {
-          name: 'Blue 70',
-          hex: '#054ada',
+          name: 'Blue 30',
+          hex: '#a6c8ff',
         },
       },
     },
