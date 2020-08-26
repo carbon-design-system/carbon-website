@@ -8,11 +8,6 @@ on:
   push:
     branches:
       - master
-    paths-ignore: 
-      - 'docs/**'
-      - '.vscode/**'
-      - '.gitub/**'
-      - '!.github/workflows/deploy.yml' # re-deploy after changes to deployment workflow
 
 jobs:
   build:
@@ -25,42 +20,8 @@ jobs:
         with:
           node-version: 12.x
 
-      - name: Store yarn directory
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-
-      - name: Check yarn cache
-        uses: actions/cache@v2
-        id: yarn-cache
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-
-      - name: Check node_modules cache
-        id: node-modules-cache
-        uses: actions/cache@v2
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-${{ matrix.node-version }}-nodemodules-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-${{ matrix.node-version }}-nodemodules-
-
-      - name: Check Gatsby cache
-        id: gatsby-cache
-        uses: actions/cache@v2
-        with:
-          path: |
-            .cache
-            public
-          key: ${{ runner.os }}-gatsby-${{ hashFiles('gatsby-*.js') }}-${{ hashFiles('package.json') }}
-
       - name: Install packages
-        if: |
-          steps.yarn-cache.outputs.cache-hit != 'true' ||
-          steps.node-modules-cache.outputs.cache-hit != 'true'
-        run: yarn install --frozen-lockfile --network-timeout 300000 && yarn clean
+        run: yarn install --frozen-lockfile --network-timeout 300000
 
       - name: Build site
         run: yarn build
