@@ -75,7 +75,7 @@ const filterLabels = [
   },
   {
     title: 'Maintainer',
-    options: ['Cloud Data & AI', 'Cloud PAL', 'Watson Health', 'Watson IoT'],
+    options: ['Cloud Data & AI', 'Cloud PAL', 'Watson Health', 'AI Apps'],
   },
 ];
 
