@@ -6,7 +6,8 @@
  */
 
 import Fuse from 'fuse.js';
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
+import { Column, Checkbox, Row } from 'carbon-components-react';
 import ComponentIndexList from './ComponentIndexList';
 import ComponentIndexNotFound from './ComponentIndexNotFound';
 import ComponentIndexSearch from './ComponentIndexSearch';
@@ -26,6 +27,7 @@ const searchOptions = {
       name: 'name',
       weight: 2,
     },
+    'availability',
     'description',
     'maintainer.name',
     'maintainer.friendly_name',
@@ -58,14 +60,59 @@ function sortByNewest(a, b) {
   return dateA - dateB;
 }
 
+const filterLabels = [
+  {
+    title: 'Framework',
+    options: ['React', 'Angular', 'Vue', 'Vanilla'],
+  },
+  {
+    title: 'Design asset',
+    options: ['Sketch', 'Axure', 'Adobe XD', 'Figma'],
+  },
+  {
+    title: 'Availability',
+    options: ['Open Source', 'IBM Internal'],
+  },
+  {
+    title: 'Maintainer',
+    options: ['Cloud Data & AI', 'Cloud PAL', 'Watson Health', 'AI Apps'],
+  },
+];
+
+function filterItems(items, filters) {
+  return items.filter((item) => {
+    // If there are no filters, return true.
+    if (filters.length === 0) {
+      return true;
+    }
+    const { framework, designAsset, availability, maintainer } = item;
+    const fields = [framework, designAsset, availability, maintainer];
+    return filters.every((filter) => fields.includes(filter));
+  });
+}
+
 function ComponentIndexPage() {
   const components = useComponentIndexData();
   const [activeSortOption, setActiveSortOption] = useState(initialSortOption);
+  const [selected, setSelected] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   const [debouncedSearchValue] = useDebounce(searchValue, 300);
   const searchClient = useMemo(() => new Fuse(components, searchOptions), [
     components,
   ]);
+
+  const handleOnChange = (checkedOption, selectedFilter) => {
+    // Remove unchecked filter option(s) from setSelected state.
+    if (selected.includes(selectedFilter)) {
+      setSelected(
+        selected.filter((checkedOption) => checkedOption !== selectedFilter)
+      );
+
+      // Add checked filter option(s) to setSeleted state.
+    } else {
+      setSelected([...selected, selectedFilter]);
+    }
+  };
 
   let searchResults = components;
   if (debouncedSearchValue !== '') {
@@ -74,11 +121,14 @@ function ComponentIndexPage() {
       .map((result) => result.item);
   }
 
-  let results = undefined;
+  let results;
+
   if (searchResults.length > 0) {
     results = (
       <ComponentIndexList
-        items={searchResults.slice().sort(sortBy[activeSortOption])}
+        items={filterItems(searchResults.slice(), selected).sort(
+          sortBy[activeSortOption]
+        )}
       />
     );
   } else {
@@ -86,15 +136,41 @@ function ComponentIndexPage() {
   }
 
   return (
-    <>
-      <ComponentIndexSearch value={searchValue} onChange={setSearchValue} />
-      <ComponentIndexSort
-        initialSortOption={initialSortOption}
-        options={sortOptions}
-        onChange={setActiveSortOption}
-      />
-      {results}
-    </>
+    <Row>
+      <Column
+        sm={4}
+        md={6}
+        lg={9}
+        className="component-index-container bx--no-gutter">
+        <ComponentIndexSearch value={searchValue} onChange={setSearchValue} />
+        <ComponentIndexSort
+          initialSortOption={initialSortOption}
+          options={sortOptions}
+          onChange={setActiveSortOption}
+        />
+        {results}
+      </Column>
+      <Column sm={0} md={2} lg={3} className="component-index-filter-container">
+        <header className="component-index-filter__header">Filters</header>
+        <fieldset className="component-index-filter__fieldset">
+          {filterLabels.map(({ title, options, key }) => (
+            <div key={key} className="component-index-filter__option">
+              <legend className="component-index-filter__label">{title}</legend>
+              {options.map((selectedFilter) => (
+                <Checkbox
+                  labelText={selectedFilter}
+                  id={selectedFilter}
+                  checked={selected.includes(selectedFilter)}
+                  onChange={(checkedOption) =>
+                    handleOnChange(checkedOption, selectedFilter)
+                  }
+                />
+              ))}
+            </div>
+          ))}
+        </fieldset>
+      </Column>
+    </Row>
   );
 }
 

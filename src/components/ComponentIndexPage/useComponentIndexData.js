@@ -24,6 +24,7 @@ const COMPONENT_INDEX_DATA = graphql`
     allComponentIndexEntry {
       edges {
         node {
+          availability
           aliases
           code_url
           date_added
