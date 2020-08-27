@@ -9,7 +9,7 @@ const FirstLeftText = () => <p>Carbon Design System</p>;
 const FirstRightText = () => (
   <p>
     Carbon is IBM’s <strong>open-source</strong> design system for products and
-    experiences. With the IBM Design Language as its foundation, the system
+    digital experiences. With the IBM Design Language as its foundation, the system
     consists of working code, design tools and resources, human interface
     guidelines, and a vibrant community of contributors.
   </p>
@@ -30,7 +30,7 @@ const SecondRightText = () => (
     check out our contributing guidelines to get started.
     <a
       className={styles.calloutLink}
-      href="https://www.carbondesignsystem.com/how-to-contribute/overview/"
+      href="/contributing/overview/"
     >
       Start contributing →
     </a>
@@ -47,9 +47,8 @@ const customProps = {
             <div className="bx--col-lg-4 bx--col-md-4 bx--col-sm-2 bx--offset-lg-8 bx--offset-md-4 bx--offset-sm-2 homepage--tile-header">
               <ResourceCard
                 className={styles.callToAction}
-                subTitle="Read"
-                title="Migration guide"
-                href="/updates/migration-guide/overview"
+                title="Carbon events"
+                href="/whats-happening/events"
                 color="dark"
                 actionIcon="arrowRight"
               />

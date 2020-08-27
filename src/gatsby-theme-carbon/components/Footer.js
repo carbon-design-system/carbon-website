@@ -35,8 +35,8 @@ const Content = ({ buildTime }) => (
 const links = {
   firstCol: [
     {
-      href: 'https://www.carbondesignsystem.com/how-to-contribute/overview',
-      linkText: 'Contribute',
+      href: 'https://www.carbondesignsystem.com/help/contact-us',
+      linkText: 'Contact us',
     },
     { href: 'https://www.ibm.com/privacy', linkText: 'Privacy' },
     { href: 'https://www.ibm.com/legal', linkText: 'Terms of use' },
