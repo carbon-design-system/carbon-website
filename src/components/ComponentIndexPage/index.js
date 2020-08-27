@@ -67,7 +67,7 @@ const filterLabels = [
   },
   {
     title: 'Design asset',
-    options: ['Sketch', 'Azure', 'Adobe XD', 'Figma'],
+    options: ['Sketch', 'Axure', 'Adobe XD', 'Figma'],
   },
   {
     title: 'Availability',

@@ -27,7 +27,7 @@ const maintainerRenames = {
   'Cloud PAL': 'cloud-pal',
   'Cloud Data & AI': 'cdai',
   'Watson Health': 'watson-health',
-  'AI Apps': 'watson-iot',
+  'AI Apps': 'ai-apps',
 };
 
 async function main() {
