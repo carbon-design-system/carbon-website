@@ -1,0 +1,597 @@
+---
+title: 3. Using APIs
+tabs:
+  ['Overview', 'Step 1', 'Step 2', 'Step 3', 'Step 4', 'Step 5', 'Wrapping up']
+---
+
+import Preview from 'components/Preview';
+
+<PageDescription>
+
+This step takes our static components and populates them with data from the
+GitHub GraphQL API – loading states and all. We'll be displaying Carbon
+repository information in a data table.
+
+</PageDescription>
+
+<AnchorLinks>
+
+<AnchorLink>Fork, clone and branch</AnchorLink>
+<AnchorLink>Install dependencies</AnchorLink>
+<AnchorLink>Create access token</AnchorLink>
+<AnchorLink>Connect to Apollo</AnchorLink>
+<AnchorLink>Fetch data</AnchorLink>
+<AnchorLink>Populate data table</AnchorLink>
+<AnchorLink>Add loading</AnchorLink>
+<AnchorLink>Add pagination</AnchorLink>
+<AnchorLink>Submit pull request</AnchorLink>
+
+</AnchorLinks>
+
+### Preview
+
+The [GitHub GraphQL API](https://developer.github.com/v4/) is very well
+documented, and even though the focus of this tutorial isn't learning and using
+GraphQL, it's a great opportunity to fetch Carbon-related data for this Carbon
+tutorial.
+
+To do so, we'll be using Apollo Client, the front-end component of the
+[Apollo Platform](https://www.apollographql.com/docs/intro/platform). Apollo
+provides several open source tools for using GraphQL throughout your
+application’s stack. Apollo Client is a sophisticated GraphQL client that
+manages data and state in an application.
+
+A [preview](https://angular-step-4-carbon-tutorial.netlify.com) of what you will
+build (see repositories page):
+
+<Preview
+  height="400"
+  title="Carbon Tutorial Step 3"
+  src="https://angular-step-4-carbon-tutorial.netlify.com"
+  frameborder="no"
+  allowtransparency="true"
+  allowfullscreen="true"
+/>
+
+<InlineNotification>
+
+**Note:** If you get lint errors when you copy the code from the snippets, run
+`ng lint --fix` to fix them.
+
+</InlineNotification>
+
+## Fork, clone and branch
+
+This tutorial has an accompanying GitHub repository called
+[carbon-tutorial-angular](https://github.com/carbon-design-system/carbon-tutorial-angular)
+that we'll use as a starting point for each step. If you haven't forked and
+cloned that repository yet, and haven't added the upstream remote, go ahead and
+do so by following the
+[step 1 instructions](/developing/angular-tutorial/step-1#fork-clone-and-branch).
+
+### Branch
+
+With your repository all set up, let's check out the branch for this tutorial
+step's starting point.
+
+```bash
+git fetch upstream
+git checkout -b angular-step-3 upstream/angular-step-3
+```
+
+### Build and start app
+
+Install the app's dependencies:
+
+```bash
+npm install
+```
+
+Then, start the app:
+
+```bash
+npm start
+```
+
+You should see something similar to where the
+[previous step](/developing/angular-tutorial/step-2) left off. Stop your app
+with `CTRL-C` and let's get everything installed.
+
+## Install dependencies
+
+We'll shortcut this using the Angular CLI, if you'd like more information head
+over to
+[Angular Apollo Installation](https://www.apollographql.com/docs/angular/recipes/angular-cli/)
+for details.
+
+<InlineNotification>
+
+**Note:** If you have not yet installed the Angular CLI, you will need to
+[install the Angular CLI](https://cli.angular.io/) before running the Angular
+Apollo Installation.
+
+</InlineNotification>
+
+Install the following
+
+- `apollo-client` - package containing everything you need to set up Apollo
+  Client
+- `graphql` - parses your GraphQL queries
+- `apollo-angular` - Apollo integration for Angular
+
+Using the command:
+
+```bash
+ng add apollo-angular
+ng lint --fix
+```
+
+<InlineNotification>
+
+​**Note:** In case you receive
+`ERROR in ../node_modules/graphql/subscription/subscribe.d.ts:44:3 - error TS2304: Cannot find name 'AsyncIterableIterator'.`,
+you'll have to add the code below in `tsconfig.app.json` `lib`: ​
+
+</InlineNotification>
+
+```javascript path=src/tsconfig.app.json
+"lib": [
+  "es2016",
+  "dom",
+  "esnext.asynciterable"
+],
+```
+
+<InlineNotification>
+
+**Note:** In case you receive
+`typings.d.ts:2:13 - error TS2403: Subsequent variable declarations must have the same type. Variable 'module' must be of type 'NodeModule', but here has type '{ id: string; }'.`,
+you'll have to comment out or remove the code below in `typings.d.ts`:
+
+</InlineNotification>
+
+```javascript path=src/typings.d.ts
+declare var module: {
+  id: string,
+};
+```
+
+## Create access token
+
+You'll need a personal access token from your GitHub account in order to make
+requests to the GitHub API. Check out
+[this guide](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line)
+to see how to get one.
+
+When you get to the scope/permissions step, you can leave them all unchecked. We
+don't need any special permissions, we just need access to the public API.
+
+Once you have your token, we need to put it in a place where we can use it in
+our app. When your application is being built and developed, our app will parse
+environmental variables in any `environment` file and make them available.
+
+​<!-- prettier-ignore-start -->
+
+```javascript path=src/environment/environment.ts
+export const environment = {
+  production: false,
+  githubPersonalAccessToken: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+};
+```
+
+<!-- prettier-ignore-end -->
+
+Go ahead and start your app with `npm start`, or, if your app is running, you'll
+need to restart it to get access to this token.
+
+## Connect to Apollo
+
+We need to import the environment at the top of every file that we decide to use
+it in:
+
+<!-- prettier-ignore-start -->
+```javascript
+import { environment } from '../environments/environment';
+```
+<!-- prettier-ignore-end -->
+
+Next, make your client by providing a URI for the GitHub GraphQL API as well as
+an authorization header using the environmental variable you just added to
+`environment.ts`.
+
+<!-- prettier-ignore-start -->
+```javascript path=src/app/graphql.module.ts
+import { HttpHeaders } from '@angular/common/http';
+
+const uri = 'https://api.github.com/graphql'; // <-- add the URL of the GraphQL server here
+export function createApollo(httpLink: HttpLink) {
+  return {
+    link: httpLink.create({
+      uri,
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${environment.githubPersonalAccessToken}`,
+      }),
+    }),
+    cache: new InMemoryCache(),
+  };
+}
+```
+<!-- prettier-ignore-end -->
+
+## Fetch data
+
+### Imports
+
+Add the following import at the top of `repo-table.component.ts`:
+
+<!-- prettier-ignore-start -->
+```javascript path=src/app/repositories/repo-table/repo-table.component.ts
+import { Apollo } from 'apollo-angular';
+import gql from 'graphql-tag';
+```
+<!-- prettier-ignore-end -->
+
+### Query
+
+Next we'll assemble our GraphQL query to fetch only the data we need from the
+GraphQL API. We'll do this using the `gql` helper we just imported. The `gql`
+helper lets you write GraphQL queries using interpolated strings (backticks) in
+JavaScript.
+
+You can use GitHub's [explorer](https://developer.github.com/v4/explorer/) tool
+to write and test your own queries. Try copying the query below and experiment
+with changing the properties. You can also click the "Docs" button in the top
+right of the explorer to view all of the available data and query parameters.
+
+If you'd like some more information regarding writing queries, we recommend
+[Apollo's documentation](https://www.apollographql.com/docs/tutorial/queries) on
+this topic.
+
+First, we will add a private apollo parameter of type Apollo to the constructor
+to get access to the Apollo service.
+
+```javascript path=src/app/repositories/repo-table/repo-table.component.ts
+constructor(private apollo: Apollo) { }
+```
+
+Next, we will fetch the data in `ngOnInit()`. Add the folowing code right below
+the `model.header` declaration:
+
+```graphql path=src/app/repositories/repo-table/repo-table.component.ts
+this.apollo.watchQuery({
+  query: gql`
+    query REPO_QUERY {
+      # Let's use carbon as our organization
+      organization(login: "carbon-design-system") {
+        # We'll grab all the repositories in one go. To load more resources
+        # continuously, see the advanced topics.
+        repositories(first: 75, orderBy: { field: UPDATED_AT, direction: DESC }) {
+          totalCount
+          nodes {
+            url
+            homepageUrl
+            issues(filterBy: { states: OPEN }) {
+              totalCount
+            }
+            stargazers {
+              totalCount
+            }
+            releases(first: 1) {
+              totalCount
+              nodes {
+                name
+              }
+            }
+            name
+            updatedAt
+            createdAt
+            description
+            id
+          }
+        }
+      }
+    }
+  `
+})
+```
+
+### Custom data
+
+Our last column in the data table will be a comma-separated list of repository
+and home page links, so let's create a custom cell template.
+
+The column will have two values (`url` and `homepageUrl`) and will have the
+structure of an unordered list. If the repository does not have a home page URL,
+only render the repository link.
+
+```html path=src/app/repositories/repo-table/repo-table.component.html
+<ng-template #linkTemplate let-data="data">
+  <ul style="display: flex">
+    <li>
+      <a ibmLink [href]="data.github">Github</a>
+    </li>
+    <li *ngIf="data.homepage">
+      <span>&nbsp;|&nbsp;</span>
+      <a ibmLink [href]="data.homepage">HomePage</a>
+    </li>
+  </ul>
+</ng-template>
+```
+
+```javascript path=src/app/repositories/repo-table/repo-table.component.ts
+@ViewChild('linkTemplate', null)
+protected linkTemplate: TemplateRef<any>;
+```
+
+<InlineNotification>
+
+**Note:** Don't forget to import `ViewChild` and `TemplateRef`.
+
+</InlineNotification>
+
+Now let's create a function that transforms row data to our expected header
+keys. Notice how we're using our new `linkTemplate` to generate the value of the
+`links` key in each row.
+
+```javascript path=src/app/repositories/repo-table/repo-table.component.ts
+prepareData(data) {
+  const newData = [];
+
+  for (const datum of data) {
+    newData.push([
+      new TableItem({ data: datum.name, expandedData: datum.description }),
+      new TableItem({ data: new Date(datum.createdAt).toLocaleDateString() }),
+      new TableItem({ data: new Date(datum.updatedAt).toLocaleDateString() }),
+      new TableItem({ data: datum.issues.totalCount }),
+      new TableItem({ data: datum.stargazers.totalCount }),
+      new TableItem({
+        data: {
+          github: datum.url,
+          homepage: datum.homepageUrl
+        },
+        template: this.linkTemplate
+      })
+    ]);
+  }
+  return newData;
+}
+```
+
+### Query component
+
+At this point, we should run our query and `console.log()` the results to verify
+that the request is working.
+
+If there's an issue, we'll render the corresponding error message. We will also
+check when loading is true, but add the implementation in the following steps.
+
+Finally, if neither of those are true, it means we have our data! One nice
+advantage of GraphQL is that as long as there are no errors, we can be certain
+the properties on the data we requested aren't `undefined`.
+
+At the end of the `watchQuery` in `ngOnInit()`:
+
+```javascript path=src/app/repositories/repo-table/repo-table.component.ts
+.valueChanges.subscribe((response: any) => {
+  if (response.error) {
+    const errorData = [];
+    errorData.push([
+      new TableItem({data: 'error!' })
+    ]);
+    this.model.data = errorData;
+  } else if (response.loading) {
+    // Add loading state
+  } else {
+    console.log(response);
+  }
+});
+```
+
+The page will look the same as we're still rendering our static example rows,
+but if you view your browser's console (e.g.
+[Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools/)),
+you should see the response from GitHub!
+
+## Populate data table
+
+Now that we have that data, let's populate the data table. Replace
+`console.log(response);` with the following that destructures the `organization`
+object. Once we have the repositories, we can call our `prepareData()` to build
+the data table rows.
+
+```javascript path=src/app/repositories/repo-table/repo-table.component.ts
+// If we're here, we've got our data!
+this.prepareData(response.data.organization.repositories.nodes);
+```
+
+Then, in `ngOnInit()` delete the static rows since we no longer need them.
+
+## Add loading
+
+At this point, the first time that you visit the repositories page, we're
+querying the GitHub API and rendering the response through the `DataTable`
+component. We could stop here, but there's more to be done! Let's add the
+[Table Skeleton](https://angular.carbondesignsystem.com/?path=/story/table--skeleton).
+
+To do so, we will need to modify `repo-table.component.html` and
+`repo-table.component.ts`:
+
+<!-- prettier-ignore-start -->
+```html path=src/app/repositories/repo-table/repo-table.component.html
+<ibm-table
+  [skeleton]="skeleton"
+  [model]="skeleton ? skeletonModel : model"
+  [showSelectionColumn]="false"
+  [striped]="false">
+</ibm-table>
+```
+<!-- prettier-ignore-end -->
+
+We need to tell the loading skeleton how many rows to render, so let's use 10
+skeleton rows to prepare for the next enhancement...
+
+```javascript path=src/app/repositories/repo-table/repo-table.component.ts
+skeletonModel = Table.skeletonModel(10, 6);
+skeleton = true;
+```
+
+<InlineNotification>
+
+**Note:** Don't forget to import `Table`.
+
+</InlineNotification>
+
+Then replace the comment with:
+
+```javascript path=src/app/repositories/repo-table/repo-table.component.ts
+else if (response.loading) {
+  this.skeleton = true;
+}
+```
+
+and at the top of the `prepareData()` function add:
+
+```javascript path=src/app/repositories/repo-table/repo-table.component.ts
+this.skeleton = false;
+```
+
+## Add pagination
+
+Pagination! Instead of rendering every repository, let's add pagination to the
+data table to only render 10 at a time. Depending on your specific requirements,
+you may need to fetch new data each time that you interact with the pagination
+component, but for simplicity, we're going to make one request to fetch all
+data, and then paginate the in-memory row data.
+
+First we will create an array and populate it with 10 rows at a time.
+
+```javascript
+data = [];
+```
+
+Next, replace the code where we call `preapreData()` with:
+
+```javascript path=src/app/repositories/repo-table/repo-table.component.ts
+this.data = response.data.organization.repositories.nodes;
+this.model.pageLength = 10;
+this.model.totalDataLength = response.data.organization.repositories.totalCount;
+this.selectPage(1);
+```
+
+This initializes the page size to `10` as we also specified in our loading
+skeleton.
+
+Next we will call `selectPage()`. This will initialize the offset and use
+`prepareData()` to only render the subset of rows for the current "page".
+
+```javascript path=src/app/repositories/repo-table/repo-table.component.ts
+selectPage(page) {
+  const offset = this.model.pageLength * (page - 1);
+  const pageRawData = this.data.slice(offset, offset + this.model.pageLength);
+  this.model.data = this.prepareData(pageRawData);
+  this.model.currentPage = page;
+}
+```
+
+<InlineNotification>
+
+**Note:** We only pass the rows that we want our table to display. We can do
+this by slicing our array of rows depending on the first item and the page size.
+
+</InlineNotification>
+
+Finally, let's import the `LinkModule` and `PaginationModule` to
+`repositories.module.ts` and `repo-table.component.spec` and add the template
+for pagination.
+
+```javascript path=src/app/repositories/repositories.module.ts,src/app/repositories/repo-table/repo-table.component.spec.ts
+import { LinkModule, PaginationModule } from 'carbon-components-angular';
+```
+
+```javascript path=src/app/repositories/repositories.module.ts,src/app/repositories/repo-table/repo-table.component.spec.ts
+imports: [LinkModule, PaginationModule];
+```
+
+Immediately after the `ibm-table` closing tag (`/>`), add the `ibm-pagination`
+component.
+
+<!-- prettier-ignore-start -->
+```html path=src/app/repositories/repo-table/repo-table.component.html
+<ibm-pagination
+  [model]="model"
+  (selectPage)="selectPage($event)">
+</ibm-pagination>
+```
+<!-- prettier-ignore-end -->
+
+<InlineNotification>
+
+**Note:** Like the other Carbon Angular component, `pagination` component
+examples can be found in
+[Storybook](https://angular.carbondesignsystem.com/?path=/story/table--with-pagination)
+by browsing the story and knobs.
+
+</InlineNotification>
+
+That does it! Your data table should fetch GitHub data on first render. You can
+expand each row to see the repository's description. You can modify the
+pagination items per page and cycle through pages or jump to a specific page of
+repositories.
+
+## Submit pull request
+
+We're going to submit a pull request to verify completion of this tutorial step.
+
+### Continuous integration (CI) check
+
+Run the CI check to make sure we're all set to submit a pull request.
+
+```bash
+ng lint --fix
+npm run lint && npm test
+```
+
+<InlineNotification>
+
+**Note:** Having issues running the CI check?
+[Step 1](</developing/angular-tutorial/step-1#continuous-integration-(ci)-check>)
+has troubleshooting notes that may help.
+
+</InlineNotification>
+
+### Git commit and push
+
+Before we can create a pull request, stage and commit all of your changes:
+
+```bash
+git add --all && git commit -m "feat(tutorial): complete step 3"
+```
+
+Then, push to your repository:
+
+```bash
+git push origin angular-step-3
+```
+
+<InlineNotification>
+
+**Note:** Having issues pushing your changes?
+[Step 1](/developing/angular-tutorial/step-1#git-commit-and-push) has
+troubleshooting notes that may help.
+
+</InlineNotification>
+
+### Pull request (PR)
+
+Finally, visit
+[carbon-tutorial-angular](https://github.com/carbon-design-system/carbon-tutorial-angular)
+to "Compare & pull request". In doing so, make sure that you are comparing to
+`angular-step-3` into `base: angular-step-3`.
+
+<InlineNotification>
+
+**Note:** Expect your tutorial step PRs to be reviewed by the Carbon team but
+not merged. We'll close your PR so we can keep the repository's remote branches
+pristine and ready for the next person!
+
+</InlineNotification>
