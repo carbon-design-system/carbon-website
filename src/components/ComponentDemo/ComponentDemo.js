@@ -102,6 +102,7 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
             initialSelectedItem="White"
             id="theme-variant"
             label="Theme variant selection"
+            titleText="Theme variant selection"
             items={Object.keys(themes)}
             size="xl"
           />
@@ -111,6 +112,7 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
             initialSelectedItem={components[0]}
             id="component-variant"
             label="Component variant selection"
+            titleText="Component variant selection"
             items={components}
             size="xl"
             className={cx(variantDropdown, {
@@ -123,8 +125,7 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
               className={exitFullscreenButton}
               onClick={() => {
                 setFullscreen(false);
-              }}
-            >
+              }}>
               <Close16 />
             </button>
           )}
@@ -134,16 +135,14 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
             noInline={noInline}
             theme={prismTheme}
             scope={{ ...CarbonComponents, ...scope }}
-            code={code}
-          >
+            code={code}>
             <div className={cx(container, { [knoblessContainer]: !knobs })}>
               <button
                 type="button"
                 className={cx(theme, fullscreenButton)}
                 onClick={() => {
                   setFullscreen(!isFullscreen);
-                }}
-              >
+                }}>
                 {isFullscreen ? <Minimize16 /> : <Maximize16 />}
               </button>
               <LivePreview className={cx(theme, previewContainer)} />
@@ -152,8 +151,7 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
                   type="button"
                   aria-labelledby="expand-knob-container-button"
                   onClick={() => setIsKnobContainerCollapsed(false)}
-                  className={cx(theme, iconButton, iconButtonExpand)}
-                >
+                  className={cx(theme, iconButton, iconButtonExpand)}>
                   <span id="expand-knob-container-button" hidden>
                     Expand component knob container
                   </span>
