@@ -102,7 +102,7 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
             initialSelectedItem="White"
             id="theme-variant"
             label="Theme variant selection"
-            titleText="Theme variant selection"
+            titleText={ childrenArray.length === 1 ? '' : 'Component variant selection' }
             items={Object.keys(themes)}
             size="xl"
           />
