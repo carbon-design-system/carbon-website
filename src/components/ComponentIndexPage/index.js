@@ -67,7 +67,7 @@ const filterLabels = [
   },
   {
     title: 'Design asset',
-    options: ['Sketch', 'Azure', 'Adobe XD', 'Figma'],
+    options: ['Sketch', 'Axure', 'Adobe XD', 'Figma'],
   },
   {
     title: 'Availability',
@@ -75,7 +75,7 @@ const filterLabels = [
   },
   {
     title: 'Maintainer',
-    options: ['Cloud Data & AI', 'Cloud PAL', 'Watson Health', 'Watson IoT'],
+    options: ['Cloud Data & AI', 'Cloud PAL', 'Watson Health', 'AI Apps'],
   },
 ];
 
@@ -87,11 +87,7 @@ function filterItems(items, filters) {
     }
     const { framework, designAsset, availability, maintainer } = item;
     const fields = [framework, designAsset, availability, maintainer];
-    return filters.every((filter) =>
-      filter === 'Cloud Data & AI'
-        ? fields.includes('CD&AI')
-        : fields.includes(filter)
-    );
+    return filters.every((filter) => fields.includes(filter));
   });
 }
 
@@ -104,7 +100,6 @@ function ComponentIndexPage() {
   const searchClient = useMemo(() => new Fuse(components, searchOptions), [
     components,
   ]);
-
 
   const handleOnChange = (checkedOption, selectedFilter) => {
     // Remove unchecked filter option(s) from setSelected state.
