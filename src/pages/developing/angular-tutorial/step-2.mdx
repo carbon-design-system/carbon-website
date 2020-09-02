@@ -1,0 +1,896 @@
+---
+title: 2. Building pages
+tabs:
+  ['Overview', 'Step 1', 'Step 2', 'Step 3', 'Step 4', 'Step 5', 'Wrapping up']
+---
+
+import Preview from 'components/Preview';
+
+<PageDescription>
+
+Now that we have a base Angular app, it's time to build a few static pages. In
+this step, we'll become comfortable with the Carbon UI Shell, grid and various
+Carbon components.
+
+</PageDescription>
+
+<AnchorLinks>
+
+<AnchorLink>Fork, clone and branch</AnchorLink>
+<AnchorLink>Add grid</AnchorLink>
+<AnchorLink>Add landing page grid</AnchorLink>
+<AnchorLink>Build landing page</AnchorLink>
+<AnchorLink>Style landing page</AnchorLink>
+<AnchorLink>Add repo page grid</AnchorLink>
+<AnchorLink>Build repo page</AnchorLink>
+<AnchorLink>Style repo page</AnchorLink>
+<AnchorLink>Submit pull request</AnchorLink>
+
+</AnchorLinks>
+
+## Preview
+
+A [preview](https://angular-step-3-carbon-tutorial.netlify.com) of what you'll
+build:
+
+<Preview
+  height="400"
+  title="Carbon Angular Tutorial Step 2"
+  src="https://angular-step-3-carbon-tutorial.netlify.com"
+  frameborder="no"
+  allowtransparency="true"
+  allowfullscreen={true}
+/>
+
+<InlineNotification>
+
+**Note:** If you get lint errors when you copy the code from the snippets, run
+`ng lint --fix` to fix them.
+
+</InlineNotification>
+
+## Fork, clone and branch
+
+This tutorial has an accompanying GitHub repository called
+[carbon-tutorial-angular](https://github.com/carbon-design-system/carbon-tutorial-angular)
+that we'll use as a starting point for each step. If you haven't forked and
+cloned that repository yet, and haven't added the upstream remote, go ahead and
+do so by following the
+[step 1 instructions](/developing/angular-tutorial/step-1#fork-clone-and-branch).
+
+### Branch
+
+With your repository all set up, let's check out the branch for this tutorial
+step's starting point.
+
+```bash
+git fetch upstream
+git checkout -b angular-step-2 upstream/angular-step-2
+```
+
+<InlineNotification>
+
+**Note:** This builds on top of step 1, but be sure to check out the upstream
+step 2 branch because it includes the static assets required to get through this
+step.
+
+</InlineNotification>
+
+### Build and start app
+
+Install the app's dependencies (in case you're starting fresh in your current
+directory and not continuing from the previous step):
+
+```bash
+npm install
+```
+
+Then, start the app:
+
+```bash
+npm start
+```
+
+You should see something similar to where the
+[previous step](/developing/angular-tutorial/step-1) left off.
+
+## Add grid
+
+In our last step we added our styles, components and icon packages. Now we are
+going to build the pages with the grid component.
+
+In `styles.scss`, we need to configure our grid to use 16 columns instead of the
+default 12 columns. We do this by adding `grid-columns-16: true` in our
+`$feature-flags`. `$feature-flags` **must** be set before importing from
+`carbon-components`, otherwise they won't take affect.
+
+<!-- prettier-ignore-start -->
+```css path=src/styles.scss
+$feature-flags: (
+  grid-columns-16: true
+);
+```
+<!-- prettier-ignore-end -->
+
+Next we'll import our Carbon grid component into `home.module.ts` and
+`landing-page.component.spec.ts`.
+
+```javascript path=src/app/home/landing-page/landing-page.component.spec.ts,src/app/home/home.module.ts
+import { GridModule } from 'carbon-components-angular';
+...
+@NgModule({
+  ...
+  imports: [GridModule]
+})
+```
+
+## Add landing page grid
+
+Let's add our grid elements to `landing-page.component.html`.
+
+In order to use the grid, we need to wrap everything in a `<div ibmGrid>`. We
+can continue to make rows by adding a `<div ibmRow>` inside the grid, as well as
+make columns within those rows by adding
+`<div ibmCol [columnNumbers]="{'[breakpoint]': [size]}"`.
+
+Our column sizes are specified by the number of columns they'll be spanning. If
+we use `[columnNumbers]="{'lg': 4}"`, it means it'll span 4 of the 16 columns.
+If we use `[columnNumbers]="{'lg': 8}"` it means it'll span 8 of the 16 columns,
+and so on.
+
+We've included the designs for this tutorial app in the `design.sketch` file
+found as a top-level file in the `carbon-tutorial-angular` repository. But, if
+you don't have Sketch installed and available to inspect the design, we provide
+screenshots.
+
+![Landing page grid](../shared/step-2/images/landing-layout.png)
+
+<Caption>Landing page grid</Caption>
+
+<InlineNotification>
+
+**Pro tip:** `CTRL-L` toggles the layout in Sketch.
+
+</InlineNotification>
+
+We'll break this down into three rows. The first row with the gray background
+doesn't appear to need any columns. The second row with the white background
+looks like it has two columns of different widths. The third row with the gray
+background looks like it has four columns of equal width.
+
+We'll make rows like so:
+
+```html path=src/app/home/landing-page/landing-page.component.html
+<div ibmGrid class="bx--grid--full-width landing-page">
+  <div ibmRow class="landing-page__banner">
+    <div ibmCol [columnNumbers]="{'lg': 16}">1</div>
+  </div>
+  <div ibmRow class="landing-page__r2">
+    <div ibmCol [columnNumbers]="{'md': 4, 'lg': 7}">7/16</div>
+    <div ibmCol class="bx--offset-lg-1" [columnNumbers]="{'md': 4, 'lg': 7}">
+      8/16
+    </div>
+  </div>
+  <div ibmRow class="landing-page__r3">
+    <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">1/4</div>
+    <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">1/4</div>
+    <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">1/4</div>
+    <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">1/4</div>
+  </div>
+</div>
+```
+
+We added a class of `bx--grid--full-width` to the grid container since our rows
+need to expand the whole page without any margins. We also added some custom
+classes like `landing-page`, `landing-page__banner`, `landing-page__r2`, etc.,
+which we will use later.
+
+Also, take notice of the second row. The tab content only covers 7 columns at
+this large viewport to prevent overly-large line lengths, so we needed to add a
+1 column offset `bx--offset-lg-1` to the second column to fill the full 16
+columns in the grid. Then, both of those columns have `'md': 4` so they are of
+equal width at medium-sized viewports.
+
+## Build landing page
+
+We'll start adding HTML elements and components by row.
+
+### First row
+
+In our first row we'll need a `Breadcrumb` component. First, let's import the
+components we need in `home.module.ts` and `landing-page.component.spec.ts`.
+
+```javascript path=src/app/home/home.module.ts,src/app/home/landing-page/landing-page.component.spec.ts
+import { BreadcrumbModule, GridModule } from 'carbon-components-angular';
+```
+
+<!-- prettier-ignore-end -->
+
+```javascript path=src/app/home/home.module.ts,src/app/home/landing-page/landing-page.component.spec.ts
+imports: [BreadcrumbModule, GridModule];
+```
+
+We can now add our component to the first row, along with a header, like so:
+
+```html path=src/app/home/landing-page/landing-page.component.html
+<div ibmRow class="landing-page__banner">
+  <div ibmCol [columnNumbers]="{'lg': 16}">
+    <ibm-breadcrumb noTrailingSlash="true">
+      <ibm-breadcrumb-item href="/">
+        Getting started
+      </ibm-breadcrumb-item>
+    </ibm-breadcrumb>
+    <h1 class="landing-page__heading">
+      Design &amp; build with Carbon
+    </h1>
+  </div>
+</div>
+```
+
+You may notice that the styles look off. Don't worry, we'll fix these later.
+
+### Second row
+
+In our second row we'll need `Tabs` and `Button` components also in
+`home.module.ts` and `landing-page.component.spec.ts`. We'll update the
+`carbon-components-angular` import to:
+
+<!-- prettier-ignore-start -->
+```javascript path=src/app/home/home.module.ts,src/app/home/landing-page/landing-page.component.spec.ts
+import {
+  BreadcrumbModule,
+  ButtonModule,
+  GridModule,
+  TabsModule,
+} from 'carbon-components-angular';
+```
+<!-- prettier-ignore-end -->
+
+```javascript path=src/app/home/home.module.ts,src/app/home/landing-page/landing-page.component.spec.ts
+imports: [BreadcrumbModule, ButtonModule, GridModule, TabsModule];
+```
+
+Now we need to modify the second row to use the `Tab` component.
+
+```html path=src/app/home/landing-page/landing-page.component.html
+<div ibmRow class="landing-page__r2">
+  <div ibmCol class="bx--no-gutter">
+    <ibm-tabs>
+      <ibm-tab heading="About">
+        <div ibmGrid class="bx--grid--no-gutter bx--grid--full-width">
+          <div ibmRow class="landing-page__tab-content">
+            <div ibmCol [columnNumbers]="{'md': 4, 'lg': 7}">7/16</div>
+            <div
+              ibmCol
+              class="bx--offset-lg-1"
+              [columnNumbers]="{'md': 4, 'lg': 8}"
+            >
+              8/16
+            </div>
+          </div>
+        </div>
+      </ibm-tab>
+      <ibm-tab heading="Design">
+        <div ibmGrid class="bx--grid--no-gutter bx--grid--full-width">
+          <div ibmRow class="landing-page__tab-content">
+            <div ibmCol [columnNumbers]="{'lg': 16}">
+              Rapidly build beautiful and accessible experiences. The Carbon kit
+              contains all resources you need to get started.
+            </div>
+          </div>
+        </div>
+      </ibm-tab>
+      <ibm-tab heading="Develop">
+        <div ibmGrid class="bx--grid--no-gutter bx--grid--full-width">
+          <div ibmRow class="landing-page__tab-content">
+            <div ibmCol [columnNumbers]="{'lg': 16}">
+              Carbon provides styles and components in Vanilla, React, Angular,
+              and Vue for anyone building on the web.
+            </div>
+          </div>
+        </div>
+      </ibm-tab>
+    </ibm-tabs>
+  </div>
+</div>
+```
+
+<InlineNotification>
+
+**Note:** We're using the grid for the page layout, but we also need to apply
+the grid within the tab content. When doing so, make sure the nested grid has
+the expected `grid` > `row` > `col` DOM structure.
+
+</InlineNotification>
+
+Hold up! If you were to run
+[DAP](https://www.ibm.com/able/dynamic-assessment-plug-in.html) to check for
+accessibility violations, you'd see
+`Multiple navigation landmarks must have unique labels specified with aria-label or aria-labelledby`
+because both the `Breadcrumb` and `Tabs` components use `<nav>` elements. To
+fix, add `ariaLabel` to the `Breadcrumb` opening tag:
+
+<!-- prettier-ignore-start -->
+```html path=src/app/home/landing-page/landing-page.component.html
+<ibm-breadcrumb noTrailingSlash="true" ariaLabel="Page navigation">
+```
+<!-- prettier-ignore-end -->
+
+Same goes for the `Tabs` opening tag:
+
+<!-- prettier-ignore-start -->
+```html
+<ibm-tabs ariaLabel="Tab navigation">
+```
+<!-- prettier-ignore-end -->
+
+Next, we'll need to add a styling override to move the tabs to the right on
+large viewports, and tidy up the alignment of the grid. Create a file
+`carbon-overrides.scss` in `src/assets/scss` with this declaration block.
+
+```scss path=src/assets/carbon-overrides.scss
+// makes the grid fit the entire width of the page
+.bx--grid--full-width {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+// removes excess padding for nested full width grids
+.bx--grid--full-width .bx--grid--full-width {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+// removes extraneous row margins in the full width grid
+.bx--grid--full-width .bx--row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+// aligns the tabs to the right
+.landing-page__r2 .bx--tabs__nav {
+  right: 0;
+}
+
+// forces the navigation items to be displayed at all viewport sizes
+.bx--header__nav {
+  display: block;
+}
+```
+
+Then in `styles.scss` add this import after the Carbon `styles.scss` import.
+
+<!-- prettier-ignore-start -->
+```scss path=src/styles.scss
+@import './assets/scss/carbon-overrides.scss';
+```
+<!-- prettier-ignore-end -->
+
+<InlineNotification>
+
+**Note:** We don't have to include this in a separate file, but it's nice to
+keep overrides separate from your application's styling so when migrating to
+future Carbon versions and if there are breaking changes via different class
+names, you have a consolidated list of styling declaration blocks to review.
+
+</InlineNotification>
+
+We can now add our images and text for each column in the first `Tab` in
+`landing-page.component.html`.
+
+<!-- prettier-ignore-start -->
+```html path=src/app/home/landing-page/landing-page.component.html
+<ibm-tab heading="About">
+  <div ibmGrid class="bx--grid--no-gutter bx--grid--full-width">
+    <div ibmRow class="landing-page__tab-content">
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 7}">
+        <h2 class="landing-page__subheading">
+          What is Carbon?
+        </h2>
+        <p class="landing-page__p">
+          Carbon is IBM’s open-source design system for digital
+          products and experiences. With the IBM Design Language
+          as its foundation, the system consists of working code,
+          design tools and resources, human interface guidelines,
+          and a vibrant community of contributors.
+        </p>
+        <button ibmButton>Learn more</button>
+      </div>
+      <div ibmCol class="bx--offset-lg-1" [columnNumbers]="{'md': 4, 'lg': 8}">
+        <img
+        class="landing-page__illo"
+        src="../../../assets/tab-illo.png"
+        alt="Carbon illustration"
+        />
+      </div>
+    </div>
+  </div>
+</ibm-tab>
+```
+<!-- prettier-ignore-end -->
+
+Now let's download the image in `src/assests` and set the image size in
+`landing-page.component.scss`:
+
+```bash
+curl -o tab-illo.png https://raw.githubusercontent.com/carbon-design-system/carbon-tutorial-vue/vue-step-3/src/assets/tab-illo.png
+```
+
+```scss path=src/app/home/landing-page/landing-page.component.scss
+.landing-page__illo {
+  max-width: 100%;
+}
+```
+
+Assuming that the second and third tab would have a similar design, we would set
+them up in the same way. However, since our design specs don't show those tabs,
+we'll leave the code as is.
+
+### Third row
+
+The third row will be created in a later tutorial, so we'll just add the headers
+for now.
+
+```html path=src/app/home/landing-page/landing-page.component.html
+<div ibmRow class="landing-page__r3">
+  <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+    <h3 class="landing-page__label">The Principles</h3>
+  </div>
+  <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">Carbon is Open</div>
+  <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">Carbon is Modular</div>
+  <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">Carbon is Consistent</div>
+</div>
+```
+
+## Style landing page
+
+We've added basic layout styles in `landing-page.component.scss` and
+`styles.scss`, so now let's add type, color and spacing styles to match the
+design. We'll be using our [spacing tokens](/guidelines/spacing/overview). In
+`landing-page.component.scss`, add these imports at the **top** of the file so
+we can use Carbon breakpoints, tokens, and typography Sass mixins and functions:
+
+<!-- prettier-ignore-start -->
+```scss path=src/app/home/landing-page/landing-page.component.scss
+@import '~carbon-components/scss/globals/scss/vendor/@carbon/type/scss/font-family';
+@import '~carbon-components/scss/globals/scss/typography';
+```
+<!-- prettier-ignore-end -->
+
+### Banner
+
+<Row>
+<Column colLg={8}>
+
+![Banner vertical spacing](../shared/step-2/images/landing-r1-spacing.png)
+
+<Caption>Banner vertical spacing</Caption>
+
+</Column>
+</Row>
+
+<InlineNotification>
+
+**Pro tip:** `CTRL-G` toggles the grid in Sketch.
+
+</InlineNotification>
+
+Now, we need to add a space above the breadcrumb and below the heading. For
+that, add:
+
+```scss path=src/app/home/landing-page/landing-page.component.scss
+.landing-page__banner {
+  padding-top: $spacing-05;
+  padding-bottom: $spacing-07 * 4;
+}
+```
+
+Referencing the
+[spacing token table](/guidelines/spacing/overview#spacing-scale),
+`16px` can be set with the `$spacing-05` token. The design calls for `128px` of
+space below the heading and that's not in the spacing scale, we can achieve that
+in Sass by multiplying 32px (`$spacing-07`) by 4. We could use `128px` or `8rem`
+directly in our styling, but using our tokens preserves consistency should the
+token values get updated in the future.
+
+Looking at the design, we need a wall-to-wall light gray background behind the
+banner and also behind the third row. This is a great opportunity to use a Sass
+mixin. We will put this at the top of `landing-page.component.scss`.
+
+Per the design we need to use Gray 10 for our banner background color, which can
+be set with the `$ui-01`
+[color token](https://www.carbondesignsystem.com/guidelines/color/usage). Also,
+we want the background to extend into the grid's outermost gutters to go the
+full width of the viewport, so given the DOM structure, we can achieve that by
+setting the background in an absolutely positioned pseudo element.
+
+```scss path=src/app/home/landing-page/landing-page.component.scss
+@mixin landing-page-background() {
+  background-color: $ui-01;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: -$spacing-05;
+    top: 0;
+    right: -$spacing-05;
+    bottom: 0;
+    background: $ui-01;
+    z-index: -1;
+  }
+}
+```
+
+Now to use the new mixin, update the `.landing-page__banner` declaration block
+to:
+
+```scss path=src/app/home/landing-page/landing-page.component.scss
+.landing-page__banner {
+  padding-top: $spacing-05;
+  padding-bottom: $spacing-07 * 4;
+  @include landing-page-background;
+}
+```
+
+Next, we can see that the `h1` is using the `heading-05` type token.
+
+<Row>
+<Column colLg={8}>
+
+![Banner heading type](../shared/step-2/images/landing-r1-type.png)
+
+<Caption>Banner heading type</Caption>
+
+</Column>
+</Row>
+
+The Sketch symbol naming is consistent with the development Sass tokens to help
+translate design to development. So, looking up the
+[type token](https://www.carbondesignsystem.com/guidelines/typography/productive),
+we know to use `productive-heading-05`:
+
+<!-- prettier-ignore-start -->
+```scss path=src/app/home/landing-page/landing-page.component.scss
+.landing-page__heading {
+  @include carbon--type-style('productive-heading-05');
+}
+```
+<!-- prettier-ignore-end -->
+
+### Row two
+
+For our second row, we need to fix the tabs vertical positioning to match the
+design. By inspecting the tabs component, you can see that the tab height
+computes to `40px`. We can use that to create our negative top margin in rem
+units.
+
+```scss path=src/app/home/landing-page/landing-page.component.scss
+.landing-page__r2 {
+  margin-top: rem(-40px);
+}
+```
+
+We also need to adjust our vertical spacing and type treatment. Like before,
+it's a matter of using spacing and type tokens like so:
+
+<Row>
+<Column colLg={8}>
+
+![Row 2 vertical spacing](../shared/step-2/images/landing-r2-spacing.png)
+
+<Caption>Row 2 vertical spacing</Caption>
+
+</Column>
+</Row>
+
+<InlineNotification>
+
+**Note:** You may be wondering why there are vertical gaps between the type and
+spacers. Each type token has a line height that's suited for its font size. The
+vertical spacers adjacently touch the line height boundaries and not the
+baseline, for consistency as well as development ease so `margins` and
+`paddings` don't need to offset line heights.
+
+</InlineNotification>
+
+<!-- prettier-ignore-start -->
+```scss path=src/app/home/landing-page/landing-page.component.scss
+.landing-page__tab-content {
+  padding-top: $layout-05;
+  padding-bottom: $layout-05;
+}
+
+.landing-page__subheading {
+  @include carbon--type-style('productive-heading-03');
+  @include carbon--font-weight('semibold');
+}
+
+.landing-page__p {
+  @include carbon--type-style('productive-heading-03');
+  margin-top: $spacing-06;
+  margin-bottom: $spacing-08;
+
+  @include carbon--breakpoint-between((320px + 1), md) {
+    max-width: 75%;
+  }
+}
+```
+<!-- prettier-ignore-end -->
+
+### Row three
+
+<Row>
+<Column colLg={8}>
+
+![Row 3 vertical spacing](../shared/step-2/images/landing-r3-spacing.png)
+
+<Caption>Row 3 vertical spacing</Caption>
+
+</Column>
+</Row>
+
+Let's also add some styles for the last row, even though that will get used
+later in the tutorial. You'll notice that we get to re-use the
+`landing-page-background` mixin that we just created.
+
+<!-- prettier-ignore-start -->
+```scss path=src/app/home/landing-page/landing-page.component.scss
+.landing-page__r3 {
+  padding-top: $spacing-09;
+  padding-bottom: $spacing-09;
+  @include landing-page-background;
+}
+
+.landing-page__label {
+  @include carbon--type-style('heading-01');
+}
+```
+<!-- prettier-ignore-end -->
+
+Ta-da! You should see a finished landing page! Now we can move on to the repo
+page.
+
+## Add repo page grid
+
+First, we’ll add our grid and table by importing a few components in
+`repositories.module.ts` and `repo-page.component.spec.ts`:
+
+<!-- prettier-ignore-start -->
+```javascript path=src/app/repositories/repositories.module.ts,src/app/repositories/repo-page/repo-page.component.spec.ts
+import { GridModule, TableModule } from 'carbon-components-angular';
+```
+<!-- prettier-ignore-end -->
+
+```javascript path=src/app/repositories/repositories.module.ts,src/app/repositories/repo-page/repo-page.component.spec.ts
+imports: [GridModule, TableModule];
+```
+
+Now in our `repo-page.component.html` we will add our grid containers.
+
+```html path=src/app/repositories/repo-page/repo-page.component.html
+<div ibmGrid class="bx--grid--full-width bx--grid--no-gutter repo-page">
+  <div ibmRow class="repo-page__r1">
+    <div ibmCol [columnNumbers]="{'lg': 16}">Data table will go here</div>
+  </div>
+</div>
+```
+
+## Build repo page
+
+We currently have the `repo-page` that just contains a grid and placeholder
+content for the time being. In the next tutorial step we're going to be querying
+an API to populate the `Table` component in this page. As a best practice to
+separate data fetching from the presentation components, go ahead and create a
+`repo-table` component as a sibling to `repo-page`.
+
+```bash
+ng g component repositories/repo-table --lint-fix
+```
+
+##### Folder structure
+
+```bash
+src/app/repositories
+├── repo-table.component.html
+├── repo-table.component.scss
+├── repo-table.component.spec.ts
+└── repo-table.component.ts
+```
+
+Next we will add our newly generated repo-table to the declarations in
+`repo-page.component.spec.ts`
+
+<!-- prettier-ignore-start -->
+```javascript path=src/app/repositories/repo-page/repo-page.component.spec.ts
+import { RepoTableComponent } from '../repo-table/repo-table.component';
+```
+<!-- prettier-ignore-end -->
+
+```javascript path=src/app/repositories/repo-page/repo-page.component.spec.ts
+declarations: [ RepoPageComponent, RepoTableComponent ],
+```
+
+### Build data table
+
+Then, let's create the table in `repo-table.component.html`
+
+<!-- prettier-ignore-start -->
+```html path=src/app/repositories/repo-table/repo-table.component.html
+<ibm-table-container>
+	<ibm-table-header>
+		<h4 ibmTableHeaderTitle>Carbon Repositories</h4>
+		<p ibmTableHeaderDescription>A collection of public Carbon repositories.</p>
+	</ibm-table-header>
+	<ibm-table
+		[model]="model"
+		[showSelectionColumn]="false"
+		[striped]="false">
+	</ibm-table>
+</ibm-table-container>
+```
+<!-- prettier-ignore-end -->
+
+Instead of the usual write-your-own-html approach you had with `<table>`, Carbon
+table uses the model-view-controller approach.
+
+Here, you create a view (with built-in controller) and provide it a model.
+Changes you make to the model are reflected in the view.
+
+### Render data table
+
+Then include the following arrays to pass into the `repo-table.component.ts`
+component. We'll be setting the `rows` array from an API in the next tutorial
+step, but for now, static example rows will suffice.
+
+<!-- prettier-ignore-start -->
+```javascript path=src/app/repositories/repo-table/repo-table.component.ts
+import { Component, OnInit } from '@angular/core';
+
+import {
+  TableModel,
+  TableItem,
+  TableHeaderItem,
+} from 'carbon-components-angular';
+
+@Component({
+  selector: 'app-repo-table',
+  templateUrl: './repo-table.component.html',
+  styleUrls: ['./repo-table.component.scss']
+})
+export class RepoTableComponent implements OnInit {
+  model = new TableModel();
+
+  constructor() {}
+
+  ngOnInit() {
+    this.model.data = [
+      [
+        new TableItem({ data: 'Repo 1', expandedData: 'Row description' }),
+        new TableItem({ data: 'Date' }),
+        new TableItem({ data: 'Date' }),
+        new TableItem({ data: '123' }),
+        new TableItem({ data: '456' }),
+        new TableItem({ data: 'Links' }),
+      ],
+      [
+        new TableItem({ data: 'Repo 2', expandedData: 'Row description' }),
+        new TableItem({ data: 'Date' }),
+        new TableItem({ data: 'Date' }),
+        new TableItem({ data: '123' }),
+        new TableItem({ data: '456' }),
+        new TableItem({ data: 'Links' }),
+      ],
+      [
+        new TableItem({ data: 'Repo 3', expandedData: 'Row description' }),
+        new TableItem({ data: 'Date' }),
+        new TableItem({ data: 'Date' }),
+        new TableItem({ data: '123' }),
+        new TableItem({ data: '456' }),
+        new TableItem({ data: 'Links' }),
+      ],
+    ];
+    this.model.header = [
+      new TableHeaderItem({ data: 'Name' }),
+      new TableHeaderItem({ data: 'Created' }),
+      new TableHeaderItem({ data: 'Updated' }),
+      new TableHeaderItem({ data: 'Open Issues' }),
+      new TableHeaderItem({ data: 'Stars' }),
+      new TableHeaderItem({ data: 'Links' }),
+    ];
+  }
+}
+```
+<!-- prettier-ignore-end -->
+
+At this point, go to `repo-page.component.html` because now we need to render a
+static `repo-table`.
+
+```html path=src/app/repositories/repo-page/repo-page.component.html
+<div ibmGrid class="bx--grid--full-width bx--grid--no-gutter repo-page">
+  <div ibmRow class="repo-page__r1">
+    <div ibmCol [columnNumbers]="{'lg': 16}">
+      <app-repo-table></app-repo-table>
+    </div>
+  </div>
+</div>
+```
+
+## Style repo page
+
+Our styles for the repo page are mostly fine. We just need to update a few
+vertical spacing issues.
+
+In `repo-page.component.scss`, add the following styles:
+
+<!-- prettier-ignore-start -->
+```scss path=src/app/repositories/repo-page/repo-page.component.scss
+@import '~carbon-components/scss/globals/scss/typography';
+
+.repo-page .bx--row {
+  padding-top: $spacing-05;
+  padding-bottom: $spacing-05;
+}
+```
+<!-- prettier-ignore-end -->
+
+Congratulations! We've now created our static repo page!
+
+## Submit pull request
+
+We're going to submit a pull request to verify completion of this tutorial step.
+
+### Continuous integration (CI) check
+
+Run the `lint` and `test` scripts to make sure we're all set to submit a pull
+request.
+
+```bash
+ng lint --fix
+npm run lint && npm test
+```
+
+<InlineNotification>
+
+**Note:** Having issues running this?
+[Step 1](</developing/angular-tutorial/step-1#continuous-integration-(ci)-check>)
+has troubleshooting notes that may help.
+
+</InlineNotification>
+
+### Git commit and push
+
+Before we can create a pull request, stage and commit all of your changes:
+
+```bash
+git add --all && git commit -m "feat(tutorial): complete step 2"
+```
+
+Then, push to your repository:
+
+```bash
+git push origin angular-step-2
+```
+
+<InlineNotification>
+
+**Note:** Having issues pushing your changes?
+[Step 1](/developing/angular-tutorial/step-1#git-commit-and-push) has
+troubleshooting notes that may help.
+
+</InlineNotification>
+
+### Pull request (PR)
+
+Finally, visit
+[carbon-tutorial-angular](https://github.com/carbon-design-system/carbon-tutorial-angular)
+to "Compare & pull request". In doing so, make sure that you are comparing to
+`angular-step-2` into `base: angular-step-2`.
+
+<InlineNotification>
+
+**Note:** Expect your tutorial step PRs to be reviewed by the Carbon team but
+not merged. We'll close your PR so we can keep the repository's remote branches
+pristine and ready for the next person!
+
+</InlineNotification>
