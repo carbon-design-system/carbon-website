@@ -1,5 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
+import { colorPaletteColor, textLight } from './ColorPalette.module.scss';
 
 const ColorPaletteColor = ({
   index,
@@ -21,10 +22,9 @@ const ColorPaletteColor = ({
   return (
     <div
       key={index}
-      className={cx('color-palette-color', { 'light-text': lightText })}
-      style={isSequential ? sequentialStyle : defaultStyle}
-    >
-      <span className="color-name">
+      className={cx(colorPaletteColor, { [textLight]: lightText })}
+      style={isSequential ? sequentialStyle : defaultStyle}>
+      <span>
         {number}
         {name}
       </span>

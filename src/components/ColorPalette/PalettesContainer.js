@@ -1,5 +1,17 @@
 import React from 'react';
 import cx from 'classnames';
+import {
+  palettesContainer,
+  sequential,
+  darkMode,
+  gradientBlue,
+  gradientPurple,
+  gradientRed,
+  gradientTeal,
+  gradientCyan,
+  gradientTealOnly,
+  alertContainer,
+} from './ColorPalette.module.scss';
 
 const PalettesContainer = ({
   children,
@@ -9,16 +21,16 @@ const PalettesContainer = ({
   index,
   type,
 }) => {
-  const paletteContainerClassNames = cx(`palettes-container`, {
-    [`sequential`]: color,
-    [`dark-mode`]: dark,
-    [`gradient-blue`]: color === 'blue' && continuous,
-    [`gradient-purple`]: color === 'purple' && continuous,
-    [`gradient-red`]: color === 'red' && continuous,
-    [`gradient-teal`]: color === 'teal' && continuous,
-    [`gradient-cyan`]: color === 'cyan' && continuous,
-    [`gradient-teal-only`]: color === 'teal-only' && continuous,
-    [`alert-container`]: type === 'alert',
+  const paletteContainerClassNames = cx(palettesContainer, {
+    [sequential]: color,
+    [darkMode]: dark,
+    [gradientBlue]: color === 'blue' && continuous,
+    [gradientPurple]: color === 'purple' && continuous,
+    [gradientRed]: color === 'red' && continuous,
+    [gradientTeal]: color === 'teal' && continuous,
+    [gradientCyan]: color === 'cyan' && continuous,
+    [gradientTealOnly]: color === 'teal-only' && continuous,
+    [alertContainer]: type === 'alert',
   });
 
   return (

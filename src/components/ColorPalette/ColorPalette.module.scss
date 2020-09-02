@@ -3,6 +3,11 @@
   margin-left: -1rem;
   margin-right: -1rem;
 }
+
+.color-palette-wrapper * {
+  --space: 0; //needed to override global spacing on columns
+}
+
 // DROPDOWN
 .palette-controls {
   display: grid;
@@ -26,18 +31,18 @@
 }
 
 .group-controls.dark-controls {
-  border-bottom: 1px solid $icon-02;
+  border-bottom: 2px solid $icon-02; // you can't see it if it's 1px
 }
 
-.group-controls .bx--dropdown__wrapper {
+.group-controls :global(.bx--dropdown__wrapper) {
   box-shadow: -2px 0px 0px 0px $ui-03; // adds left divider
 }
 
-.group-controls.dark-controls .bx--dropdown__wrapper {
+.group-controls.dark-controls :global(.bx--dropdown__wrapper) {
   box-shadow: -2px 0px 0px 0px solid $icon-02;
 }
 
-.palette-controls .bx--dropdown {
+.palette-controls :global(.bx--dropdown) {
   border-bottom: none; //removes carbon border
 }
 
@@ -46,32 +51,32 @@
   height: 3rem;
 }
 
-.palette-switcher .bx--content-switcher-btn {
+.palette-switcher :global(.bx--content-switcher-btn) {
   border-radius: 0;
   color: $text-01;
 }
 
-.palette-switcher .bx--content-switcher--selected {
+.palette-switcher :global(.bx--content-switcher--selected) {
   color: $text-04;
 }
 
-.palette-switcher .bx--content-switcher-btn:focus {
+.palette-switcher :global(.bx--content-switcher-btn:focus) {
   outline: 1px solid $inverse-focus-ui;
   box-shadow: none;
   outline-offset: -4px;
 }
 
-.palette-switcher .bx--content-switcher-btn {
+.palette-switcher :global(.bx--content-switcher-btn) {
   border-radius: 0;
 }
 
 .palette-switcher
-  .bx--content-switcher-btn:not(.bx--content-switcher--selected) {
+  :global(.bx--content-switcher-btn:not(.bx--content-switcher--selected)) {
   background-color: $inverse-01;
 }
 
 .palette-switcher
-  .bx--content-switcher-btn:not(.bx--content-switcher--selected):hover {
+  :global(.bx--content-switcher-btn:not(.bx--content-switcher--selected):hover) {
   background-color: $hover-ui;
 }
 
@@ -111,7 +116,7 @@
   padding: 0 1rem;
 }
 
-.light-text {
+.text-light {
   color: $text-04;
 }
 
@@ -189,9 +194,6 @@
 // SEQUENTIAL
 .sequential-controls {
   margin-bottom: 0;
-}
-
-.sequential-controls .palette-switcher {
   border-bottom: 1px solid $ui-03;
 }
 

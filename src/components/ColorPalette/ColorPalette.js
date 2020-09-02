@@ -20,6 +20,17 @@ import {
 } from '../../data/data-visualization/palettes';
 import ColorPaletteColor from './ColorPaletteColor';
 import PalettesContainer from './PalettesContainer';
+import {
+  colorPaletteWrapper,
+  paletteControls,
+  paletteSwitcher,
+  groupControls,
+  groupContainer,
+  groupOption,
+  darkControls,
+  sequentialControls,
+  sequentialContainer,
+} from './ColorPalette.module.scss';
 
 const ColorPalette = ({ type, isMono, isDiverging }) => {
   // STATES
@@ -98,15 +109,7 @@ const ColorPalette = ({ type, isMono, isDiverging }) => {
   };
 
   // SWITCHER STUFF
-  const setTrue = () => {
-    if (type === 'sequential') {
-      setContinuous(true); // for sequential palettes
-    } else {
-      setDark(true); // for all other palettes
-    }
-  };
-
-  const setFalse = () => {
+  const activateFirstSwitcher = () => {
     if (type === 'sequential') {
       setContinuous(false); // for sequential palettes
     } else {
@@ -114,13 +117,21 @@ const ColorPalette = ({ type, isMono, isDiverging }) => {
     }
   };
 
+  const activateSecondSwitcher = () => {
+    if (type === 'sequential') {
+      setContinuous(true); // for sequential palettes
+    } else {
+      setDark(true); // for all other palettes
+    }
+  };
+
   const handleKeyboard = (e) => {
     if (e.key === 'ArrowRight') {
-      setTrue();
+      activateSecondSwitcher();
     }
 
     if (e.key === 'ArrowLeft') {
-      setFalse();
+      activateFirstSwitcher();
     }
   };
 
@@ -128,22 +139,20 @@ const ColorPalette = ({ type, isMono, isDiverging }) => {
   const switcherTwo = type === 'sequential' ? 'Continuous' : 'Dark';
 
   return (
-    <div className="color-palette-wrapper">
+    <div className={colorPaletteWrapper}>
       <div
-        className={cx('palette-controls', {
-          'group-controls': type === 'grouped',
-          'sequential-controls': type === 'sequential',
-          'dark-controls': dark,
-        })}
-      >
+        className={cx(paletteControls, {
+          [groupControls]: type === 'grouped',
+          [sequentialControls]: type === 'sequential',
+          [darkControls]: dark,
+        })}>
         <ContentSwitcher
           onChange={handleKeyboard}
-          className="palette-switcher"
+          className={paletteSwitcher}
           selectionMode="automatic"
-          selectedIndex={0}
-        >
-          <Switch text={switcherOne} onClick={setFalse} />
-          <Switch text={switcherTwo} onClick={setTrue} />
+          selectedIndex={0}>
+          <Switch text={switcherOne} onClick={activateFirstSwitcher} />
+          <Switch text={switcherTwo} onClick={activateSecondSwitcher} />
         </ContentSwitcher>
         {type === 'grouped' && (
           <Dropdown
@@ -162,8 +171,8 @@ const ColorPalette = ({ type, isMono, isDiverging }) => {
       {type === 'grouped' && (
         <PalettesContainer dark={dark}>
           {colorGroup.map((i, index) => (
-            <div className="group-container" key={index}>
-              <div className="group-option">Option {index + 1}</div>
+            <div className={groupContainer} key={index}>
+              <div className={groupOption}>Option {index + 1}</div>
               {i.map((j, jIndex) => (
                 <ColorPaletteColor
                   index={jIndex}
@@ -192,14 +201,13 @@ const ColorPalette = ({ type, isMono, isDiverging }) => {
       )}
 
       {type === 'sequential' && (
-        <div className="sequential-container">
+        <div className={sequentialContainer}>
           {colors.map((i, index) => (
             <PalettesContainer
               color={i.color}
               index={index}
-              continuous={continuous}
-            >
-              <div className="group-option">Option {index + 1}</div>
+              continuous={continuous}>
+              <div className={groupOption}>Option {index + 1}</div>
               {i.data.map((j, jIndex) => (
                 <ColorPaletteColor
                   index={jIndex}
