@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 /**
  * Copyright IBM Corp. 2016, 2020
  *
@@ -122,17 +123,14 @@ function ComponentIndexPage() {
   }
 
   let results;
+  const indexItems = filterItems(searchResults.slice(), selected).sort(
+    sortBy[activeSortOption]
+  );
 
-  if (searchResults.length > 0) {
-    results = (
-      <ComponentIndexList
-        items={filterItems(searchResults.slice(), selected).sort(
-          sortBy[activeSortOption]
-        )}
-      />
-    );
-  } else {
+  if (searchResults.length === 0 || indexItems.length === 0) {
     results = <ComponentIndexNotFound />;
+  } else {
+    results = <ComponentIndexList items={indexItems} />;
   }
 
   return (
