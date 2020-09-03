@@ -82,7 +82,7 @@ const ComponentIndexListItem = React.memo(
                   className="component-index-item__link"
                   href={websiteUrl}
                   rel="noopener noreferrer">
-                  Website
+                  Docs
                 </Link>
                 {codeUrl && (
                   <>
