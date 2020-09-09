@@ -69,7 +69,9 @@ const Layout = ({
         <div className={banner} role="contentinfo">
           <span>
             Remember to vote. &nbsp;
-            <a href="https://www.vote.org">Make sure you’re registered.</a>
+            <a href="https://www.vote.org">
+              <span>https://</span>www.vote.org
+            </a>
           </span>
           <Button
             className={bannerClose}
