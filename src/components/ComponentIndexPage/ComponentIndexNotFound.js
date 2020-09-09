@@ -17,7 +17,7 @@ function ComponentIndexNotFound() {
         <Column sm={4} md={6} lg={6}>
           <h2 className="component-index-not-found__title">No results found</h2>
           <p className="component-index-not-found__text">
-            It appears we don’t have a communtiy component that matches your
+            It appears we don’t have a community component that matches your
             search. Try different search terms.
           </p>
         </Column>
