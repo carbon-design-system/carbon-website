@@ -5,9 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Link, Row, Column, Tag, TooltipIcon } from 'carbon-components-react';
+import { Link, Tag, TooltipIcon } from 'carbon-components-react';
 import Image from 'gatsby-image';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 // Placeholder image
@@ -82,7 +81,7 @@ const ComponentIndexListItem = React.memo(
                   className="component-index-item__link"
                   href={websiteUrl}
                   rel="noopener noreferrer">
-                  Website
+                  Docs
                 </Link>
                 {codeUrl && (
                   <>
