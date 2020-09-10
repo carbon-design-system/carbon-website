@@ -62,6 +62,10 @@ function sortByNewest(a, b) {
 
 const filterLabels = [
   {
+    title: 'Maintainer',
+    options: ['Cloud Data & AI', 'Cloud PAL', 'Watson Health', 'AI Apps', 'IBM.com'],
+  },
+  {
     title: 'Framework',
     options: ['React', 'Angular', 'Vue', 'Vanilla'],
   },
@@ -72,10 +76,6 @@ const filterLabels = [
   {
     title: 'Availability',
     options: ['Open Source', 'IBM Internal'],
-  },
-  {
-    title: 'Maintainer',
-    options: ['Cloud Data & AI', 'Cloud PAL', 'Watson Health', 'AI Apps'],
   },
 ];
 

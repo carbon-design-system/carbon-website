@@ -58,7 +58,7 @@ exports.sourceNodes = async (
     }
 
     const node = {
-      id: createNodeId(value.name),
+      id: createNodeId(`${value.maintainer.name}:${value.name}`),
       parent: null,
       children: [],
       internal: {
