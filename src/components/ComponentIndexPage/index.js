@@ -62,6 +62,10 @@ function sortByNewest(a, b) {
 
 const filterLabels = [
   {
+    title: 'Maintainer',
+    options: ['Cloud Data & AI', 'Cloud PAL', 'Watson Health', 'AI Apps', 'IBM.com'],
+  },
+  {
     title: 'Framework',
     options: ['React', 'Angular', 'Vue', 'Vanilla'],
   },
@@ -72,10 +76,6 @@ const filterLabels = [
   {
     title: 'Availability',
     options: ['Open Source', 'IBM Internal'],
-  },
-  {
-    title: 'Maintainer',
-    options: ['Cloud Data & AI', 'Cloud PAL', 'Watson Health', 'AI Apps'],
   },
 ];
 
@@ -122,17 +122,14 @@ function ComponentIndexPage() {
   }
 
   let results;
+  const indexItems = filterItems(searchResults.slice(), selected).sort(
+    sortBy[activeSortOption]
+  );
 
-  if (searchResults.length > 0) {
-    results = (
-      <ComponentIndexList
-        items={filterItems(searchResults.slice(), selected).sort(
-          sortBy[activeSortOption]
-        )}
-      />
-    );
-  } else {
+  if (searchResults.length === 0 || indexItems.length === 0) {
     results = <ComponentIndexNotFound />;
+  } else {
+    results = <ComponentIndexList items={indexItems} />;
   }
 
   return (
