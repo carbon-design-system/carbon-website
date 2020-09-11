@@ -112,7 +112,7 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
             initialSelectedItem={components[0]}
             id="component-variant"
             titleText={childrenArray.length === 1 ? '' : 'Variant selector'}
-            label="Variant selection"
+            label="Variant selector"
             items={components}
             size="xl"
             className={cx(variantDropdown, {
