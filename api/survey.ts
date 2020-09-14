@@ -1,6 +1,8 @@
 import { NowRequest, NowResponse } from '@now/node';
 import fetch, { FetchError } from 'node-fetch';
 
+import { WebClient } from '@slack/web-api';
+
 require('dotenv').config();
 
 const permittedOrigins = [
@@ -16,6 +18,13 @@ module.exports = async (req: NowRequest, res: NowResponse) => {
   if (!process.env.SURVEYGIZMO_REQUEST_URI) {
     return res.json({ error: 'Invalid SurveyGizmo request uri.' });
   }
+
+  if (!process.env.SLACK_TOKEN || !process.env.SLACK_CHANNEL) {
+    return res.json({ error: 'Invalid Slack token or channel.' });
+  }
+
+  // Initialize Slack web client
+  const slack = new WebClient(process.env.SLACK_TOKEN);
 
   // Only allow requests from specified urls
   const { origin } = req.headers;
@@ -42,6 +51,37 @@ module.exports = async (req: NowRequest, res: NowResponse) => {
       'Content-Type': 'application/json',
     },
   }).catch((error: FetchError) => res.json({ error: error.message }));
+
+  // Prepare data for Slack
+  const emoji =
+    experience === 'Negative'
+      ? ':disappointed:'
+      : experience === 'Neutral'
+      ? ':neutral_face:'
+      : ':grinning:';
+
+  const blocks = [
+    {
+      type: 'section',
+      text: {
+        type: 'mrkdwn',
+        text: `${emoji} *${experience}* web page experience ${emoji}`,
+      },
+    },
+  ];
+
+  if (path) {
+    blocks[0].text.text += `\n>*Path:*\n>${path}`;
+  }
+
+  if (comment) {
+    blocks[0].text.text += `\n>*Comment:*\n>${comment}`;
+  }
+
+  await slack.chat.postMessage({
+    blocks,
+    channel: process.env.SLACK_CHANNEL,
+  } as any);
 
   // Set a "recently submitted" cookie that expires after one minute to mitigate spam
   res.setHeader(
