@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 /**
  * Copyright IBM Corp. 2016, 2020
  *
@@ -61,10 +62,7 @@ const ComponentIndexListItem = React.memo(
       );
     } else {
       img = (
-        <img
-          src={placeholder}
-          alt={`Placeholder image for the ${name} component`}
-        />
+        <img src={placeholder} alt={`Placeholder for the ${name} component`} />
       );
     }
 
@@ -98,8 +96,12 @@ const ComponentIndexListItem = React.memo(
               <ul className="component-index-item__tags">
                 {framework && (
                   <li className="component-index-item__tag component-index-item__tag--framework">
-                    <TooltipIcon direction="top" tooltipText={framework}>
+                    <TooltipIcon
+                      aria-label={`framework type ${framework}`}
+                      direction="top"
+                      tooltipText={framework}>
                       <img
+                        aria-hidden="true"
                         src={frameworkIcons[framework] || null}
                         alt={framework}
                       />
@@ -108,8 +110,12 @@ const ComponentIndexListItem = React.memo(
                 )}
                 {designAsset && (
                   <li className="component-index-item__tag component-index-item__tag--design-asset">
-                    <TooltipIcon direction="top" tooltipText={designAsset}>
+                    <TooltipIcon
+                      aria-label={`design asset type ${designAsset}`}
+                      direction="top"
+                      tooltipText={designAsset}>
                       <img
+                        aria-hidden="true"
                         src={designAssetIcons[designAsset] || null}
                         alt={designAsset}
                       />
@@ -118,8 +124,11 @@ const ComponentIndexListItem = React.memo(
                 )}
                 {maintainer && (
                   <li className="component-index-item__tag component-index-item__tag--maintainer">
-                    <TooltipIcon direction="top" tooltipText="Maintainer">
-                      <Tag>{maintainer}</Tag>
+                    <TooltipIcon
+                      direction="top"
+                      tooltipText="Maintainer"
+                      aria-label={`Component maintainer ${maintainer}`}>
+                      <Tag aria-hidden="true">{maintainer}</Tag>
                     </TooltipIcon>
                   </li>
                 )}
