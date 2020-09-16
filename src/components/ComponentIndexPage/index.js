@@ -63,7 +63,13 @@ function sortByNewest(a, b) {
 const filterLabels = [
   {
     title: 'Maintainer',
-    options: ['Cloud Data & AI', 'Cloud PAL', 'Watson Health', 'AI Apps', 'IBM.com'],
+    options: [
+      'Cloud Data & AI',
+      'Cloud PAL',
+      'Watson Health',
+      'AI Apps',
+      'IBM.com',
+    ],
   },
   {
     title: 'Framework',
@@ -149,10 +155,10 @@ function ComponentIndexPage() {
       </Column>
       <Column sm={0} md={2} lg={3} className="component-index-filter-container">
         <header className="component-index-filter__header">Filters</header>
-        <fieldset className="component-index-filter__fieldset">
-          {filterLabels.map(({ title, options, key }) => (
+        {filterLabels.map(({ title, options, key }) => (
+          <fieldset className="component-index-filter__fieldset">
+            <legend className="component-index-filter__label">{title}</legend>
             <div key={key} className="component-index-filter__option">
-              <legend className="component-index-filter__label">{title}</legend>
               {options.map((selectedFilter) => (
                 <Checkbox
                   labelText={selectedFilter}
@@ -164,8 +170,8 @@ function ComponentIndexPage() {
                 />
               ))}
             </div>
-          ))}
-        </fieldset>
+          </fieldset>
+        ))}
       </Column>
     </Row>
   );
