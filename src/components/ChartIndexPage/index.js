@@ -63,7 +63,7 @@ function sortByNewest(a, b) {
 const filterLabels = [
   {
     title: 'Maintainer',
-    options: ['Cloud Data & AI', 'Cloud PAL', 'Watson Health', 'AI Apps', 'IBM.com'],
+    options: ['Carbon Charts', 'Cognos'],
   },
   {
     title: 'Framework',
