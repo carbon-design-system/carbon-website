@@ -295,7 +295,7 @@ import {
   HeaderGlobalBar,
   HeaderGlobalAction,
   SkipToContent,
-} from 'carbon-components-react/lib/components/UIShell';
+} from 'carbon-components-react';
 
 const TutorialHeader = () => (
   <Header aria-label="Carbon Tutorial">
@@ -346,9 +346,11 @@ the `TutorialHeader.js` file, we need to import each individual icon we will
 use.
 
 ```javascript path=src/components/TutorialHeader/TutorialHeader.js
-import Notification20 from '@carbon/icons-react/lib/notification/20';
-import UserAvatar20 from '@carbon/icons-react/lib/user--avatar/20';
-import AppSwitcher20 from '@carbon/icons-react/lib/app-switcher/20';
+import {
+  AppSwitcher20,
+  Notification20,
+  UserAvatar20,
+} from '@carbon/icons-react';
 ```
 
 Then we need to add the `HeaderGlobalAction` component inside of the
@@ -383,8 +385,7 @@ Next we'll render our UI Shell by importing our `TutorialHeader` component and
 ```javascript path=src/App.js
 import React, { Component } from 'react';
 import './app.scss';
-import { Button } from 'carbon-components-react';
-import { Content } from 'carbon-components-react/lib/components/UIShell';
+import { Button, Content } from 'carbon-components-react';
 import TutorialHeader from './components/TutorialHeader';
 ```
 
@@ -686,5 +687,14 @@ anybody to assist the PR review process.
 **Note:** Expect your tutorial step PRs to be reviewed by the Carbon team but
 not merged. We'll close your PR so we can keep the repository's remote branches
 pristine and ready for the next person!
+
+</InlineNotification>
+
+<InlineNotification>
+
+**Note:** If your PR fails the CircleCI test with the error
+`Can't make a request in offline mode`, try running the following command:
+`rm -rf .yarn-offline-mirror node_modules && yarn cache clean && yarn install`.
+Add and commit the changes once this completes, and try pushing again.
 
 </InlineNotification>

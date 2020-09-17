@@ -62,6 +62,16 @@ function sortByNewest(a, b) {
 
 const filterLabels = [
   {
+    title: 'Maintainer',
+    options: [
+      'Cloud Data & AI',
+      'Cloud PAL',
+      'Watson Health',
+      'AI Apps',
+      'IBM.com',
+    ],
+  },
+  {
     title: 'Framework',
     options: ['React', 'Angular', 'Vue', 'Vanilla'],
   },
@@ -72,10 +82,6 @@ const filterLabels = [
   {
     title: 'Availability',
     options: ['Open Source', 'IBM Internal'],
-  },
-  {
-    title: 'Maintainer',
-    options: ['Cloud Data & AI', 'Cloud PAL', 'Watson Health', 'AI Apps'],
   },
 ];
 
@@ -122,17 +128,14 @@ function ComponentIndexPage() {
   }
 
   let results;
+  const indexItems = filterItems(searchResults.slice(), selected).sort(
+    sortBy[activeSortOption]
+  );
 
-  if (searchResults.length > 0) {
-    results = (
-      <ComponentIndexList
-        items={filterItems(searchResults.slice(), selected).sort(
-          sortBy[activeSortOption]
-        )}
-      />
-    );
-  } else {
+  if (searchResults.length === 0 || indexItems.length === 0) {
     results = <ComponentIndexNotFound />;
+  } else {
+    results = <ComponentIndexList items={indexItems} />;
   }
 
   return (
@@ -152,10 +155,10 @@ function ComponentIndexPage() {
       </Column>
       <Column sm={0} md={2} lg={3} className="component-index-filter-container">
         <header className="component-index-filter__header">Filters</header>
-        <fieldset className="component-index-filter__fieldset">
-          {filterLabels.map(({ title, options, key }) => (
+        {filterLabels.map(({ title, options, key }) => (
+          <fieldset className="component-index-filter__fieldset">
+            <legend className="component-index-filter__label">{title}</legend>
             <div key={key} className="component-index-filter__option">
-              <legend className="component-index-filter__label">{title}</legend>
               {options.map((selectedFilter) => (
                 <Checkbox
                   labelText={selectedFilter}
@@ -167,8 +170,8 @@ function ComponentIndexPage() {
                 />
               ))}
             </div>
-          ))}
-        </fieldset>
+          </fieldset>
+        ))}
       </Column>
     </Row>
   );
