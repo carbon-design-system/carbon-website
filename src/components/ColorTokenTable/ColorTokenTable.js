@@ -7,6 +7,7 @@ import {
   OverflowMenuItem,
 } from 'carbon-components-react';
 import { CopyToClipboard } from 'react-copy-to-clipboard/lib/Component';
+import StickyContainer from '../TypesetStyle/StickyContainer';
 import colorTokens from '../../data/guidelines/color-tokens';
 
 export default class ColorTokenTable extends React.Component {
@@ -45,7 +46,7 @@ export default class ColorTokenTable extends React.Component {
 
   addScrollListener() {
     document.addEventListener('scroll', () => {
-      const stickyPoint = this.state.mobile ? 400 : 398;
+      const stickyPoint = this.state.mobile ? 400 : 368;
       if (window.scrollY >= stickyPoint) {
         this.setState({
           sticky: true,
@@ -135,19 +136,16 @@ export default class ColorTokenTable extends React.Component {
     const themeSwitcherClasses = classnames(
       'color-token-table__theme-switcher',
       {
-        'color-token-table__theme-switcher--sticky': this.state.sticky,
+        'color-token-table__theme-switcher--stuck': this.state.sticky,
       }
     );
-    const h3Classes = classnames('page-h3', {
-      'page-h3--sticky': this.state.sticky,
-    });
+
     return (
       <div className="bx--row color-token-table">
-        <div className="bx--col-lg-12 bx--no-gutter">
+        <StickyContainer navBar banner secondary={false} top="9rem">
           <ContentSwitcher
             className={themeSwitcherClasses}
-            onChange={this.switchTheme}
-          >
+            onChange={this.switchTheme}>
             <Switch name="white" text={this.state.mobile ? 'Wte' : 'White'} />
             <Switch name="g10" text={this.state.mobile ? 'G10' : 'Gray 10'} />
             <Switch name="g90" text={this.state.mobile ? 'G90' : 'Gray 90'} />
@@ -156,49 +154,53 @@ export default class ColorTokenTable extends React.Component {
               text={this.state.mobile ? 'G100' : 'Gray 100'}
             />
           </ContentSwitcher>
-        </div>
-        <div className="bx--col-lg-7">
-          <h3 className={h3Classes}>Core color tokens</h3>
-        </div>
-        <div className="bx--col-lg-12 bx--no-gutter">
-          <table className="page-table">
-            <thead>
-              <tr>
-                <th>Token</th>
-                <th>Role</th>
-                <th>Value</th>
-              </tr>
-            </thead>
-            <tbody>
-              {Object.keys(colorTokens['core-tokens']).map((token, i) =>
-                this.renderToken(token, colorTokens['core-tokens'][token], i)
-              )}
-            </tbody>
-          </table>
-        </div>
-        <div className="bx--col-lg-7">
-          <h3 className="page-h3">Interactive color tokens</h3>
-        </div>
-        <div className="bx--col-lg-12 bx--no-gutter">
-          <table className="page-table">
-            <thead>
-              <tr>
-                <th>Token</th>
-                <th>Role</th>
-                <th>Value</th>
-              </tr>
-            </thead>
-            <tbody>
-              {Object.keys(colorTokens['interaction-tokens']).map((token, i) =>
-                this.renderToken(
-                  token,
-                  colorTokens['interaction-tokens'][token],
-                  i
-                )
-              )}
-            </tbody>
-          </table>
-        </div>
+        </StickyContainer>
+        <section>
+          <div className="bx--col-lg-7">
+            <h3 className="page-h3">Core color tokens</h3>
+          </div>
+          <div className="bx--col-lg-12 bx--no-gutter">
+            <table className="page-table">
+              <thead>
+                <tr>
+                  <th>Token</th>
+                  <th>Role</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                {Object.keys(colorTokens['core-tokens']).map((token, i) =>
+                  this.renderToken(token, colorTokens['core-tokens'][token], i)
+                )}
+              </tbody>
+            </table>
+          </div>
+          <div className="bx--col-lg-7">
+            <h3 className="page-h3">Interactive color tokens</h3>
+          </div>
+          <div className="bx--col-lg-12 bx--no-gutter">
+            <table className="page-table">
+              <thead>
+                <tr>
+                  <th>Token</th>
+                  <th>Role</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                {Object.keys(
+                  colorTokens['interaction-tokens']
+                ).map((token, i) =>
+                  this.renderToken(
+                    token,
+                    colorTokens['interaction-tokens'][token],
+                    i
+                  )
+                )}
+              </tbody>
+            </table>
+          </div>
+        </section>
       </div>
     );
   }
