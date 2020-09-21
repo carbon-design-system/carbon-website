@@ -68,7 +68,7 @@ const Layout = ({
       {isBannerVisible ? (
         <div className={banner} role="contentinfo">
           <span>
-            Make your choice<span className={fullName}>, America</span>. &nbsp;
+            Make your choice<span className={fullName}>, America</span>.&nbsp;
             <a href="https://www.vote.org">vote.org</a>
           </span>
           <Button
