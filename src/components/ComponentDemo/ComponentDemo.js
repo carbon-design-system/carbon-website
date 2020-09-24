@@ -101,8 +101,8 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
             }
             initialSelectedItem="White"
             id="theme-variant"
-            label="Theme variant selection"
-            titleText="Theme variant selection"
+            label="Theme selector"
+            titleText="Theme selector"
             items={Object.keys(themes)}
             size="xl"
           />
@@ -111,10 +111,8 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
             light
             initialSelectedItem={components[0]}
             id="component-variant"
-            titleText={
-              childrenArray.length === 1 ? '' : 'Component variant selection'
-            }
-            label="Component variant selection"
+            titleText={childrenArray.length === 1 ? '' : 'Variant selector'}
+            label="Variant selector"
             items={components}
             size="xl"
             className={cx(variantDropdown, {
