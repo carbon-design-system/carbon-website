@@ -554,7 +554,7 @@ containers and certain components to “hang” into the gutter.
 <Row>
 <Column colLg={2} colMd={2}>
 
-**Condensed**<br/> 2px gutter
+**Condensed**<br/> 1px gutter
 
 </Column>
 <Column colLg={10} colMd={6}>
@@ -648,24 +648,34 @@ Use vertical helpers here.
 
 <InlineNotification>
 
-**Note:** Code for the Narrow grid mode is currently using an outdated naming
-convention. We've disabled the attached code snippet until the class name can be
-updated to avoid confusion.
+**Note:** Code for the narrow grid mode was added in
+[v10.17.0](https://github.com/carbon-design-system/carbon/releases/tag/v10.17.0)
 
 </InlineNotification>
 
 <Row>
   <Column noGutterSm>
     <div className="grid-demo grid-demo--narrow">
-      <div class="bx-demo--grid">
+      <div class="bx-demo--grid bx-demo--grid--narrow">
         <div class="bx-demo--row">
-          <div class="bx-demo--col bx-demo--no-gutter--left"><div class="grid-demo-content"></div></div>
-          <div class="bx-demo--col bx-demo--no-gutter--left"><div class="grid-demo-content"></div></div>
-          <div class="bx-demo--col bx-demo--no-gutter--left"><div class="grid-demo-content"></div></div>
-          <div class="bx-demo--col bx-demo--no-gutter--left"><div class="grid-demo-content"></div></div>
+          <div class="bx-demo--col"><div class="grid-demo-content"></div></div>
+          <div class="bx-demo--col"><div class="grid-demo-content"></div></div>
+          <div class="bx-demo--col"><div class="grid-demo-content"></div></div>
+          <div class="bx-demo--col"><div class="grid-demo-content"></div></div>
         </div>
       </div>
     </div>
+
+```html
+<div class="bx--grid bx--grid--narrow">
+  <div class="bx--row">
+    <div class="bx--col"></div>
+    <div class="bx--col"></div>
+    <div class="bx--col"></div>
+    <div class="bx--col"></div>
+  </div>
+</div>
+```
 
   </Column>
 </Row>
@@ -700,12 +710,18 @@ Wide and a Narrow grid scenario in the [Mix and match](#mix-and-match) section.
 
 ### The Condensed grid
 
-The Condensed grid collapses the gutter to 2px. To achieve this, containers and
+The Condensed grid collapses the gutter to 1px. To achieve this, containers and
 components bleed 16px into the gutter on either side of the column. This grid
 mode is most often used in conjunction with another grid mode and arguably
 requires the most design skill to incorporate into layouts.
 
-Rows that are adjacent will have a 2px of margin between them to match gutter.
+In order to emphasize the gutters, 1px borders that are darker than the
+background color (in both light and dark themes), must be added to any tiles or
+cards. The borders add just enough clarity to the gutters to stand out, while
+still registering to the user as the background color. The token for these
+borders is `$ui-03`.
+
+Rows that are adjacent will have a 1px of margin between them to match gutter.
 Use vertical helpers here.
 
 <Row>
@@ -748,7 +764,7 @@ UI. See it in action on the
 As mentioned above, fixed components with labels, such as input fields and
 dropdowns, should not hang into the gutter.
 
-![2px gutter](images/2px_gutter.png)
+![1px gutter](images/2px_gutter.png)
 
 <DoDontRow>
   <DoDont caption="Do keep all type (inside and outside containers) aligned with the column grid.">
@@ -825,7 +841,7 @@ cases as we find them.
 ## Incorporating the Shell
 
 We cover more about shell behavior on the 2x Grid Basics tab in the
-[Grid influencers](/guidelines/2x-grid/basics#grid-influencers) section.
+[Grid influencers](/guidelines/2x-grid/overview/#grid-influencers) section.
 However, we've had a lot of questions about how the shell works in conjunction
 with our grid. That's why we recently incorporated the shell into our grid
 tooling as a Sketch template. We'd also like to show it in action here in a
@@ -1137,9 +1153,9 @@ aspect ratio. We offer several classes for specifying aspect ratio for given
 content. We use these classes to maintain consistency throughout our UI.
 
 We discuss aspect ratios and various grid behaviors more in depth on the 2x Grid
-Basics tab, both in the [Aspect ratios](/guidelines/2x-grid/basics#aspect-ratio)
-section and in the [Grid behaviors](/guidelines/2x-grid/basics#grid-behaviors)
-section.
+Basics tab, both in the
+[Aspect ratios](/guidelines/2x-grid/overview/#aspect-ratio) section and in the
+[Grid behaviors](/guidelines/2x-grid/overview/#grid-behaviors) section.
 
 <InlineNotification>
 

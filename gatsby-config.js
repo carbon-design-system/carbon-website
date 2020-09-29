@@ -10,6 +10,26 @@ module.exports = {
       'IBM, design, system, Carbon, design system, Bluemix, styleguide, style, guide, components, library, pattern, kit, component, cloud',
   },
   plugins: [
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'component-index-images',
+        path: path.join(__dirname, 'src/data/index'),
+        ignore: ['**/*.js', '**/*.yml', '**/.*'],
+      },
+    },
+    {
+      resolve: 'gatsby-remark-images',
+      options: {
+        maxWidth: 1152,
+        linkImagesToOriginal: false,
+        quality: 75,
+        withWebp: false,
+        pngCompressionSpeed: 4,
+      },
+    },
+    'gatsby-plugin-sharp',
+    'gatsby-transformer-sharp',
     'gatsby-plugin-lodash',
     {
       resolve: 'gatsby-theme-carbon',

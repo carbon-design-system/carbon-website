@@ -7,7 +7,6 @@ const schema = require('./src/schema');
 // the build to fail. In the interim, we're logging the error to the console and
 // manually exiting the process so that we don't have builds that pass but don't
 // have the appropriate source nodes
-
 exports.sourceNodes = async (
   { actions, createNodeId, createContentDigest },
   pluginOptions
@@ -34,14 +33,19 @@ exports.sourceNodes = async (
     const directory = path.join(rootDirectory, maintainer.name);
     const files = await fs.readdir(directory);
 
-    for (const file of files) {
+    for (const file of files.filter(filterFiles)) {
       const filepath = path.join(directory, file);
       const contents = await fs.readFile(filepath, 'utf8');
       const component = yml.safeLoad(contents);
 
       components.push({
         ...component,
-        maintainer: maintainer.friendly_name,
+        name: path.basename(file, '.yml'),
+        friendly_name: component.name,
+        maintainer: {
+          name: maintainer.name,
+          friendly_name: maintainer.friendly_name,
+        },
       });
     }
   }
@@ -54,7 +58,7 @@ exports.sourceNodes = async (
     }
 
     const node = {
-      id: createNodeId(value.name),
+      id: createNodeId(`${value.maintainer.name}:${value.name}`),
       parent: null,
       children: [],
       internal: {
@@ -67,3 +71,8 @@ exports.sourceNodes = async (
     createNode(node);
   }
 };
+
+const denylist = new Set(['images', '.DS_Store']);
+function filterFiles(filename) {
+  return !denylist.has(filename);
+}

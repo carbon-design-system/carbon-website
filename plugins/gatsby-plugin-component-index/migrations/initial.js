@@ -1,28 +1,28 @@
 /* eslint-disable */
 
-"use strict";
+'use strict';
 
-const { paramCase } = require("change-case");
-const fs = require("fs-extra");
-const path = require("path");
-const csv = require("csvtojson");
-const yml = require("js-yaml");
+const { paramCase } = require('change-case');
+const fs = require('fs-extra');
+const path = require('path');
+const csv = require('csvtojson');
+const yml = require('js-yaml');
 
-const CSV_FILEPATH = path.resolve(__dirname, "../data/index.csv");
+const CSV_FILEPATH = path.resolve(__dirname, '../data/index.csv');
 const renames = {
-  "Platform (Web, iOS, Android)": "platform",
-  "Availability (open source, IBM internal)": "availability",
-  "Date added to index": "date_added",
-  "Search aliases": "aliases",
-  "Design asset": "design_asset",
-  "Maintainer team": "maintainer",
-  Image: "image_url",
+  'Platform (Web, iOS, Android)': 'platform',
+  'Availability (open source, IBM internal)': 'availability',
+  'Date added to index': 'date_added',
+  'Search aliases': 'aliases',
+  'Design asset': 'design_asset',
+  'Maintainer team': 'maintainer',
+  Image: 'image_url',
 };
 const maintainerRenames = {
-  "Cloud PAL": "cloud-pal",
-  "CD&AI": "cdai",
-  "Watson Health": "watson-health",
-  "Watson IoT": "watson-iot",
+  'Cloud PAL': 'cloud-pal',
+  'Cloud Data & AI': 'cdai',
+  'Watson Health': 'watson-health',
+  'AI Apps': 'ai-apps',
 };
 
 async function main() {
@@ -56,7 +56,7 @@ async function main() {
       const aliases =
         component.aliases.length > 0
           ? component.aliases
-              .split(",")
+              .split(',')
               .map((alias) => alias.trim().toLowerCase())
           : [];
       return {
@@ -70,7 +70,7 @@ async function main() {
       const keys = Object.keys(component);
       for (const key of keys) {
         const value = component[key];
-        if (value === "") {
+        if (value === '') {
           continue;
         }
         result[key] = component[key];
@@ -81,21 +81,21 @@ async function main() {
     .map((component) => {
       if (component.design_asset) {
         switch (component.design_asset) {
-          case "CD&AI Design Kit":
-          case "IBM Watson IoT PAL tables":
-          case "IBM Watson IoT PAL charts":
-          case "IBM Watson IoT PAL.sketch":
-          case "IBM Watson IoT PAL buttons":
-            component.design_asset = "Sketch";
+          case 'CD&AI Design Kit':
+          case 'IBM Watson IoT PAL tables':
+          case 'IBM Watson IoT PAL charts':
+          case 'IBM Watson IoT PAL.sketch':
+          case 'IBM Watson IoT PAL buttons':
+            component.design_asset = 'Sketch';
             break;
-          case "No asset":
+          case 'No asset':
             component.design_asset = null;
         }
       }
       return component;
     })
     .filter((component) => {
-      return component.name !== "Not included";
+      return component.name !== 'Not included';
     });
 
   const maintainers = new Map();
@@ -112,7 +112,7 @@ async function main() {
 
   const INDEX_DATA_DIRECTORY = path.resolve(
     __dirname,
-    "../../../src/data/index"
+    '../../../src/data/index'
   );
 
   if (await fs.pathExists(INDEX_DATA_DIRECTORY)) {
@@ -120,7 +120,7 @@ async function main() {
   }
   await fs.ensureDir(INDEX_DATA_DIRECTORY);
 
-  const manifestFilePath = path.join(INDEX_DATA_DIRECTORY, "maintainers.yml");
+  const manifestFilePath = path.join(INDEX_DATA_DIRECTORY, 'maintainers.yml');
   const manifestFile = {
     maintainers: Array.from(maintainers.keys())
       .sort()
@@ -132,7 +132,7 @@ async function main() {
       }),
   };
 
-  await fs.writeFile(manifestFilePath, yml.safeDump(manifestFile), "utf8");
+  await fs.writeFile(manifestFilePath, yml.safeDump(manifestFile), 'utf8');
 
   for (const [maintainer, value] of maintainers) {
     const directory = path.join(
@@ -152,7 +152,7 @@ async function main() {
       }
 
       const data = yml.safeDump(entry);
-      await fs.writeFile(filepath, data, "utf8");
+      await fs.writeFile(filepath, data, 'utf8');
     }
   }
 }

@@ -244,6 +244,30 @@ const colorTokens = {
         },
       },
     },
+    '$button-separator': {
+      role: [
+        '3:1 aa element contrast',
+        'Fluid button separator',
+      ],
+      value: {
+        white: {
+          name: 'Gray 20',
+          hex: '#e0e0e0',
+        },
+        g10: {
+          name: 'Gray 20',
+          hex: '#e0e0e0',
+        },
+        g90: {
+          name: 'Gray 100',
+          hex: '#161616',
+        },
+        g100: {
+          name: 'Gray 100',
+          hex: '#161616',
+        },
+      },
+    },
     '$decorative-01': {
       role: [
         '“Light” variant elements',
@@ -853,12 +877,12 @@ const colorTokens = {
           hex: '#054ada',
         },
         g90: {
-          name: 'Blue 70',
-          hex: '#054ada',
+          name: 'Blue 30',
+          hex: '#a6c8ff',
         },
         g100: {
-          name: 'Blue 70',
-          hex: '#054ada',
+          name: 'Blue 30',
+          hex: '#a6c8ff',
         },
       },
     },

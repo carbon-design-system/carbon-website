@@ -1,7 +1,7 @@
 /* eslint-disable global-require */
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable import/no-unresolved */
-import React, { useLayoutEffect } from 'react';
+import React, { useLayoutEffect, useEffect, useState } from 'react';
 
 import LeftNav from 'gatsby-theme-carbon/src/components/LeftNav';
 import Meta from 'gatsby-theme-carbon/src/components/Meta';
@@ -9,12 +9,15 @@ import Header from 'gatsby-theme-carbon/src/components/Header';
 import Switcher from 'gatsby-theme-carbon/src/components/Switcher';
 import Footer from 'gatsby-theme-carbon/src/components/Footer';
 import Container from 'gatsby-theme-carbon/src/components/Container';
+import { Close20 } from '@carbon/icons-react';
+import { Button } from 'carbon-components-react';
 
 import 'gatsby-theme-carbon/src/styles/index.scss';
-
 import {
   layout,
+  layoutNoBanner,
   banner,
+  bannerClose,
   initialism,
   fullName,
 } from '../../styles/Layout.module.scss';
@@ -30,6 +33,7 @@ const Layout = ({
   tabs,
 }) => {
   const is404 = children.key === null;
+  const [isBannerVisible, setBannerVisibility] = useState(true);
 
   useLayoutEffect(() => {
     const scroll = require('smooth-scroll')('a[href*="#"]', {
@@ -43,21 +47,40 @@ const Layout = ({
     return scroll.destroy;
   }, [tabs]);
 
+  useEffect(() => {
+    if (localStorage.getItem('isBannerVisible'))
+      setBannerVisibility(localStorage.getItem('isBannerVisible') === 'true');
+  }, [setBannerVisibility]);
+
+  const handleBannerClose = () => {
+    localStorage.setItem('isBannerVisible', false);
+    setBannerVisibility(false);
+  };
+
   return (
-    <div className={layout}>
+    <div className={isBannerVisible ? layout : layoutNoBanner}>
       <Meta
         titleType={titleType}
         pageTitle={pageTitle}
         pageDescription={pageDescription}
         pageKeywords={pageKeywords}
       />
-      <header className={banner}>
-        Black Lives Matter.&nbsp;
-        <a href="https://support.eji.org/give/153413/#!/donation/checkout">
-          Support the <span className={initialism}>EJI</span>
-          <span className={fullName}>Equal Justice Initiative</span>
-        </a>
-      </header>
+      {isBannerVisible ? (
+        <div className={banner} role="contentinfo">
+          <span>
+            Make your choice<span className={fullName}>, America</span>.&nbsp;
+            <a href="https://www.vote.org">vote.org</a>
+          </span>
+          <Button
+            className={bannerClose}
+            hasIconOnly
+            renderIcon={Close20}
+            onClick={handleBannerClose}
+            iconDescription="Close the banner"
+          />
+        </div>
+      ) : null}
+
       <Header />
       <Switcher />
       <LeftNav homepage={homepage} is404Page={is404} theme={theme} />
