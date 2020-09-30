@@ -17,7 +17,7 @@ src
 ├── util
 ```
 
-## 👩‍💻 Develop
+## 👩‍💻 Develop with 💕
 
 - 🤝 [Contribution guidelines](.github/CONTRIBUTING.md)
 - 📚 [Content and Markdown guidelines](https://gatsby-theme-carbon.now.sh/components/markdown)
