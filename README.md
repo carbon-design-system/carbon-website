@@ -38,3 +38,4 @@ Runing the build command generates all the files and places them in the `public`
 ```
 yarn build
 ```
+## Thank You
