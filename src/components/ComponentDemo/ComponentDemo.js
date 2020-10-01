@@ -139,6 +139,9 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
             <div className={cx(container, { [knoblessContainer]: !knobs })}>
               <button
                 type="button"
+                aria-label={
+                  isFullscreen ? 'Exit full screen' : 'Expand to full screen'
+                }
                 className={cx(theme, fullscreenButton)}
                 onClick={() => {
                   setFullscreen(!isFullscreen);
