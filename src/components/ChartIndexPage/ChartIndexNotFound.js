@@ -17,23 +17,8 @@ function ChartIndexNotFound() {
         <Column sm={4} md={6} lg={6}>
           <h2 className="component-index-not-found__title">No results found</h2>
           <p className="component-index-not-found__text">
-            It appears we don’t have a community component that matches your
+            It appears we don’t have a chart that matches your
             search. Try different search terms.
-          </p>
-        </Column>
-      </Row>
-      <Row>
-        <Column sm={4} md={6} lg={6}>
-          <p className="component-index-not-found__text">
-            This community component index does not include the Carbon core
-            components and you may find what you're looking for in the
-            <Link
-              className="component-index-not-found__link"
-              href={coreComponentsLink}
-              rel="noopener noreferrer">
-              core component
-            </Link>
-            list.
           </p>
         </Column>
       </Row>

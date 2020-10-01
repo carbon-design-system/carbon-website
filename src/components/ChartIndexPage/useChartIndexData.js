@@ -33,6 +33,7 @@ const CHART_INDEX_DATA = graphql`
           framework
           friendly_name
           name
+          chart_type
           website_url
 
           maintainer {
@@ -76,6 +77,7 @@ export function useChartIndexData() {
       dateAdded: node.date_added,
       codeUrl: node.code_url,
       websiteUrl: node.website_url,
+      chartType: node.chart_type,
     };
   });
 

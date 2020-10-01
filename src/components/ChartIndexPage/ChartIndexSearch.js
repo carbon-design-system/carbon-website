@@ -12,8 +12,8 @@ function ChartIndexSearch({ value, onChange }) {
       <Search
         light
         id="component-index-search"
-        labelText="Search component index by name, keyword, or domain"
-        placeHolderText="Component name, keyword, domain"
+        labelText="Search chart index by name, keyword, or domain"
+        placeHolderText="Chart name, keyword, domain"
         value={value}
         onChange={handleOnChange}
       />

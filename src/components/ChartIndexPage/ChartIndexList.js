@@ -21,6 +21,7 @@ function ChartIndexList({ items }) {
           image,
           maintainer,
           name,
+          chartType,
           websiteUrl,
         }) => {
           const key = `${name}:${maintainer}`;
@@ -34,6 +35,7 @@ function ChartIndexList({ items }) {
               image={image}
               maintainer={maintainer}
               name={name}
+              chartType={chartType}
               websiteUrl={websiteUrl}
             />
           );

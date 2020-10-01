@@ -32,8 +32,7 @@ const searchOptions = {
     'maintainer.name',
     'maintainer.friendly_name',
     'aliases',
-    'framework',
-    'design_asset',
+    'chartType',
   ],
 };
 
@@ -66,12 +65,8 @@ const filterLabels = [
     options: ['Carbon Charts', 'Cognos', 'AI Apps'],
   },
   {
-    title: 'Framework',
-    options: ['React', 'Angular', 'Vue', 'Vanilla'],
-  },
-  {
-    title: 'Design asset',
-    options: ['Sketch', 'Axure', 'Adobe XD', 'Figma'],
+    title: 'Chart type',
+    options: ['Comparisons', 'Trends', 'Part-to-whole', 'Correlations', 'Connections', 'Geospatial: overlays'],
   },
   {
     title: 'Availability',
@@ -85,8 +80,8 @@ function filterItems(items, filters) {
     if (filters.length === 0) {
       return true;
     }
-    const { framework, designAsset, availability, maintainer } = item;
-    const fields = [framework, designAsset, availability, maintainer];
+    const { chartType, availability, maintainer } = item;
+    const fields = [chartType, availability, maintainer];
     return filters.every((filter) => fields.includes(filter));
   });
 }

@@ -12,32 +12,6 @@ import React from 'react';
 // Placeholder image
 import placeholder from './images/placeholder.svg';
 
-// Framework icons
-import angularIcon from './images/Angular.svg';
-import reactIcon from './images/React.svg';
-import vanillaIcon from './images/Vanilla.svg';
-import vueIcon from './images/Vue.svg';
-
-// Design asset icons
-import axureIcon from './images/Axure.svg';
-import figmaIcon from './images/Figma.svg';
-import sketchIcon from './images/Sketch.svg';
-import xdIcon from './images/XD.svg';
-
-const frameworkIcons = {
-  Angular: angularIcon,
-  React: reactIcon,
-  Vanilla: vanillaIcon,
-  Vue: vueIcon,
-};
-
-const designAssetIcons = {
-  Axure: axureIcon,
-  Figma: figmaIcon,
-  Sketch: sketchIcon,
-  XD: xdIcon,
-};
-
 const ChartIndexListItem = React.memo(
   ({
     codeUrl,
@@ -47,6 +21,7 @@ const ChartIndexListItem = React.memo(
     image,
     maintainer,
     name,
+    chartType,
     websiteUrl,
   }) => {
     let img;
@@ -96,26 +71,6 @@ const ChartIndexListItem = React.memo(
                 )}
               </div>
               <ul className="component-index-item__tags">
-                {framework && (
-                  <li className="component-index-item__tag component-index-item__tag--framework">
-                    <TooltipIcon direction="top" tooltipText={framework}>
-                      <img
-                        src={frameworkIcons[framework] || null}
-                        alt={framework}
-                      />
-                    </TooltipIcon>
-                  </li>
-                )}
-                {designAsset && (
-                  <li className="component-index-item__tag component-index-item__tag--design-asset">
-                    <TooltipIcon direction="top" tooltipText={designAsset}>
-                      <img
-                        src={designAssetIcons[designAsset] || null}
-                        alt={designAsset}
-                      />
-                    </TooltipIcon>
-                  </li>
-                )}
                 {maintainer && (
                   <li className="component-index-item__tag component-index-item__tag--maintainer">
                     <TooltipIcon direction="top" tooltipText="Maintainer">
