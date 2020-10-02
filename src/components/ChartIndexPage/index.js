@@ -66,7 +66,7 @@ const filterLabels = [
   },
   {
     title: 'Chart type',
-    options: ['Comparisons', 'Trends', 'Part-to-whole', 'Correlations', 'Connections', 'Geospatial: overlays'],
+    options: ['Comparisons', 'Trends', 'Part-to-whole', 'Correlations', 'Connections', 'Geospatial: overlays', 'Other'],
   },
   {
     title: 'Availability',
