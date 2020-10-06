@@ -4,6 +4,7 @@ import MdxIcon from '../../../components/MdxIcon';
 import ComponentDemo from '../../../components/ComponentDemo';
 import ComponentVariant from '../../../components/ComponentDemo/ComponentVariant';
 import ColorPalette from '../../../components/ColorPalette';
+import Profile from '../../../components/Profile';
 
 export default {
   ...defaultComponents,
@@ -11,4 +12,5 @@ export default {
   ComponentVariant,
   MdxIcon,
   ColorPalette,
+  Profile
 };
