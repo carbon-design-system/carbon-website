@@ -20,7 +20,6 @@ const CHART_INDEX_DATA = graphql`
         }
       }
     }
-
     allChartIndexEntry {
       edges {
         node {
@@ -34,7 +33,6 @@ const CHART_INDEX_DATA = graphql`
           chart_type
           complexity
           website_url
-
           maintainer {
             name
             friendly_name

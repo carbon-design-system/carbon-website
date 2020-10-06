@@ -67,7 +67,7 @@ const filterLabels = [
   },
   {
     title: 'Chart type',
-    options: ['Comparisons', 'Trends', 'Part-to-whole', 'Correlations', 'Connections', 'Geospatial: overlays', 'Other'],
+    options: ['Comparisons', 'Trends', 'Part-to-whole', 'Correlations', 'Connections', 'Geospatial', 'Other'],
   },
   {
     title: 'Complexity',
