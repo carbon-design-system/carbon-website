@@ -33,6 +33,7 @@ const searchOptions = {
     'maintainer.friendly_name',
     'aliases',
     'chartType',
+    'complexity',
   ],
 };
 
@@ -69,6 +70,10 @@ const filterLabels = [
     options: ['Comparisons', 'Trends', 'Part-to-whole', 'Correlations', 'Connections', 'Geospatial: overlays', 'Other'],
   },
   {
+    title: 'Complexity',
+    options: ['Basic', 'Advanced'],
+  },
+  {
     title: 'Availability',
     options: ['Open Source', 'IBM Internal'],
   },
@@ -80,8 +85,8 @@ function filterItems(items, filters) {
     if (filters.length === 0) {
       return true;
     }
-    const { chartType, availability, maintainer } = item;
-    const fields = [chartType, availability, maintainer];
+    const { chartType, availability, maintainer, complexity } = item;
+    const fields = [chartType, availability, maintainer, complexity];
     return filters.every((filter) => fields.includes(filter));
   });
 }

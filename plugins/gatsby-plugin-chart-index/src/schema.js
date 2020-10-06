@@ -10,6 +10,7 @@ const chart = Joi.object({
   framework: Joi.string().valid('React', 'Angular', 'Vanilla', 'Vue'),
   platform: Joi.string().valid('Web', 'iOS', 'Android'),
   chart_type: Joi.string().valid('Comparisons', 'Trends', 'Part-to-whole', 'Correlations', 'Connections', 'Geospatial: overlays', 'Other'),
+  complexity: Joi.string().valid('Basic', 'Advanced'),
   website_url: Joi.string().uri(),
 
   // Mapped from `name`

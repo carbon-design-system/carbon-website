@@ -22,6 +22,7 @@ function ChartIndexList({ items }) {
           maintainer,
           name,
           chartType,
+          complexity,
           websiteUrl,
         }) => {
           const key = `${name}:${maintainer}`;
@@ -36,6 +37,7 @@ function ChartIndexList({ items }) {
               maintainer={maintainer}
               name={name}
               chartType={chartType}
+              complexity={complexity}
               websiteUrl={websiteUrl}
             />
           );

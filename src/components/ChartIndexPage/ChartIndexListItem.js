@@ -22,6 +22,7 @@ const ChartIndexListItem = React.memo(
     maintainer,
     name,
     chartType,
+    complexity,
     websiteUrl,
   }) => {
     let img;

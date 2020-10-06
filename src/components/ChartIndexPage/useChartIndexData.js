@@ -29,11 +29,10 @@ const CHART_INDEX_DATA = graphql`
           code_url
           date_added
           description
-          design_asset
-          framework
           friendly_name
           name
           chart_type
+          complexity
           website_url
 
           maintainer {
@@ -78,6 +77,7 @@ export function useChartIndexData() {
       codeUrl: node.code_url,
       websiteUrl: node.website_url,
       chartType: node.chart_type,
+      complexity: node.complexity,
     };
   });
 
