@@ -991,7 +991,7 @@ const divergingSequentialOne = [
   {
     name: 'Red 50',
     hex: 'fa4d56',
-    light: true,
+    light: false,
   },
   {
     name: 'Red 40',
@@ -1074,7 +1074,7 @@ const divergingSequentialTwo = [
   {
     name: 'Purple 50',
     hex: 'a56eff',
-    light: true,
+    light: false,
   },
   {
     name: 'Purple 40',
