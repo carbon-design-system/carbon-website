@@ -142,7 +142,7 @@ export default class ColorTokenTable extends React.Component {
 
     return (
       <div className="bx--row color-token-table">
-        <StickyContainer navBar banner secondary={false} top="9rem">
+        <StickyContainer navBar banner secondary={false}>
           <ContentSwitcher
             className={themeSwitcherClasses}
             onChange={this.switchTheme}>
