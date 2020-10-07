@@ -22,6 +22,20 @@ function ChartIndexNotFound() {
           </p>
         </Column>
       </Row>
+      <Row>
+      <Column sm={4} md={6} lg={6}>
+          <p className="component-index-not-found__text">
+            If you have designs or code for a chart that isn't listed here, please  
+            <Link
+              className="component-index-not-found__link"
+              href="/community/contribute-a-chart"
+              rel="noopener noreferrer">
+              add it
+            </Link>
+            to the index.
+          </p>
+        </Column>
+      </Row>
     </div>
   );
 }
