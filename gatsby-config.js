@@ -17,6 +17,11 @@ module.exports = {
         path: path.join(__dirname, 'src/data/index'),
         ignore: ['**/*.js', '**/*.yml', '**/.*'],
       },
+      options: {
+        name: 'chart-index-images',
+        path: path.join(__dirname, 'src/data/chart-index'),
+        ignore: ['**/*.js', '**/*.yml', '**/.*'],
+      },
     },
     {
       resolve: 'gatsby-remark-images',
@@ -56,6 +61,12 @@ module.exports = {
       resolve: 'gatsby-plugin-component-index',
       options: {
         directory: path.resolve(__dirname, './src/data/index'),
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-chart-index',
+      options: {
+        directory: path.resolve(__dirname, './src/data/chart-index'),
       },
     },
   ],
