@@ -996,6 +996,7 @@ class TypesetStyle extends React.Component {
                     Screen width
                   </span>
                   <InputRange
+                    id="screenWidthInput"
                     min={breakpoints.sm}
                     max={breakpoints.max}
                     value={this.state.simulatedScreenWidth}

@@ -4,8 +4,9 @@ import { settings } from 'carbon-components';
 
 const { prefix } = settings;
 
-const InputRange = ({ step, min, max, value, onChange }) => (
+const InputRange = ({ step, min, max, value, onChange, id }) => (
   <input
+    id={id}
     type="range"
     step={step || 1}
     min={min}
@@ -32,6 +33,9 @@ InputRange.propTypes = {
 
   // onChange function
   onChange: PropTypes.func.isRequired,
+
+  // input id
+  id: PropTypes.string,
 };
 
 export default InputRange;
