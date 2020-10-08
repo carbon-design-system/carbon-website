@@ -69,7 +69,7 @@ For this question, you will need to select `(Y)es`, otherwise you will be unable
 to move forward with this process.
 
 The last step before you need to update the DNS for `carbondesignsystem.com`
-will be the following prompt:
+will be to complete the DNS challenge(s).
 
 ```bash
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -95,6 +95,8 @@ nslookup -q=txt _acme-challenge.carbondesignsystem.com
 
 After you add this record with your DNS provider, you can press enter to
 continue.
+
+**NOTE:** There may be a second or even a third challenge. Complete all the challenges as above before moving on.
 
 If everything works properly, you should see the following prompt in your
 terminal:
