@@ -122,7 +122,7 @@ IMPORTANT NOTES:
    Donating to EFF:                    https://eff.org/donate-le
 ```
 
-If you navigate to the directory inside of `config/live/carbondesignsystem.com`, you should
+If you navigate to the directory inside of `~/letsencrypt/config/live/carbondesignsystem.com`, you should
 see a `README.md` file that contains the following descriptions of the generate
 files:
 
