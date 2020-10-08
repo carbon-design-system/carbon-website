@@ -35,7 +35,7 @@ module.exports = {
       resolve: 'gatsby-theme-carbon',
       options: {
         mdxExtensions: ['.mdx'],
-        isSearchEnabled: true,
+        isServiceWorkerEnabled: true,
         iconPath: './src/images/favicon.svg',
         titleType: 'prepend',
         repository: {
@@ -52,7 +52,6 @@ module.exports = {
     },
     'gatsby-plugin-netlify-cache',
     'gatsby-plugin-sitemap',
-    'gatsby-plugin-remove-serviceworker',
     {
       resolve: 'gatsby-plugin-component-index',
       options: {
