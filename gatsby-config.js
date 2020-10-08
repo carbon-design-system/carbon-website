@@ -44,13 +44,6 @@ module.exports = {
         },
       },
     },
-    {
-      resolve: 'gatsby-plugin-fathom',
-      options: {
-        siteId: 'VMSGXQRS',
-      },
-    },
-    'gatsby-plugin-netlify-cache',
     'gatsby-plugin-sitemap',
     {
       resolve: 'gatsby-plugin-component-index',

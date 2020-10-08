@@ -27,5 +27,11 @@ export const onRenderBody = ({ setHeadComponents }) => {
       key="twitter:site"
       content="@_carbondesign"
     />,
+    <script
+      src="https://cdn.usefathom.com/script.js"
+      spa="auto"
+      site="VMSGXQRS"
+      defer
+    />,
   ]);
 };
