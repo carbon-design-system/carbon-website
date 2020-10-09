@@ -19,6 +19,14 @@ module.exports = {
       },
     },
     {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'chart-index-images',
+        path: path.join(__dirname, 'src/data/chart-index'),
+        ignore: ['**/*.js', '**/*.yml', '**/.*'],
+      },
+    },
+    {
       resolve: 'gatsby-remark-images',
       options: {
         maxWidth: 1152,
@@ -45,17 +53,23 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-fathom',
+      resolve: 'gatsby-plugin-manifest',
       options: {
-        siteId: 'VMSGXQRS',
+        name: 'Carbon Design System',
+        short_name: 'Carbon',
       },
     },
-    'gatsby-plugin-netlify-cache',
     'gatsby-plugin-sitemap',
     {
       resolve: 'gatsby-plugin-component-index',
       options: {
         directory: path.resolve(__dirname, './src/data/index'),
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-chart-index',
+      options: {
+        directory: path.resolve(__dirname, './src/data/chart-index'),
       },
     },
   ],
