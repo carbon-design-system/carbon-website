@@ -2,7 +2,7 @@
 import React from 'react';
 import { HomepageCallout, ResourceCard } from 'gatsby-theme-carbon';
 import HomepageTemplate from 'gatsby-theme-carbon/src/templates/Homepage';
-import { blue90, gray10 } from '@carbon/elements';
+import { blue90, gray10, white } from '@carbon/elements';
 import styles from './Homepage.module.scss';
 import HomepageVideo from '../../components/HomepageVideo/HomepageVideo';
 
@@ -70,7 +70,7 @@ const customProps = {
     <HomepageCallout
       leftText={SecondLeftText}
       rightText={SecondRightText}
-      color={gray10}
+      color={white}
       backgroundColor={blue90}
     />
   ),
