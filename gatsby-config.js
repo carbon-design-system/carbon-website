@@ -50,12 +50,12 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-fathom',
+      resolve: 'gatsby-plugin-manifest',
       options: {
-        siteId: 'VMSGXQRS',
+        name: 'Carbon Design System',
+        short_name: 'Carbon',
       },
     },
-    'gatsby-plugin-netlify-cache',
     'gatsby-plugin-sitemap',
     {
       resolve: 'gatsby-plugin-component-index',
