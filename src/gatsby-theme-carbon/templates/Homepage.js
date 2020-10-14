@@ -1,6 +1,8 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import { HomepageCallout, ResourceCard } from 'gatsby-theme-carbon';
 import HomepageTemplate from 'gatsby-theme-carbon/src/templates/Homepage';
+import { blue90, gray10, white } from '@carbon/elements';
 import styles from './Homepage.module.scss';
 import HomepageVideo from '../../components/HomepageVideo/HomepageVideo';
 
@@ -9,8 +11,8 @@ const FirstLeftText = () => <p>Carbon Design System</p>;
 const FirstRightText = () => (
   <p>
     Carbon is IBM’s <strong>open source</strong> design system for products and
-    digital experiences. With the IBM Design Language as its foundation, the system
-    consists of working code, design tools and resources, human interface
+    digital experiences. With the IBM Design Language as its foundation, the
+    system consists of working code, design tools and resources, human interface
     guidelines, and a vibrant community of contributors.
   </p>
 );
@@ -28,10 +30,7 @@ const SecondRightText = () => (
     We welcome all feedback, designs, or ideas in order to produce the best
     possible experience for our users. If you’re interested in contributing,
     check out our contributing guidelines to get started.
-    <a
-      className={styles.calloutLink}
-      href="/contributing/overview/"
-    >
+    <a className={styles.calloutLink} href="/contributing/overview/">
       Start contributing →
     </a>
   </p>
@@ -61,8 +60,8 @@ const customProps = {
   ),
   FirstCallout: (
     <HomepageCallout
-      backgroundColor="#030303"
-      color="white"
+      backgroundColor="#030303" // not quite black, but not in color pallete
+      color={gray10}
       leftText={FirstLeftText}
       rightText={FirstRightText}
     />
@@ -71,8 +70,8 @@ const customProps = {
     <HomepageCallout
       leftText={SecondLeftText}
       rightText={SecondRightText}
-      color="white"
-      backgroundColor="#061f80"
+      color={white}
+      backgroundColor={blue90}
     />
   ),
 };

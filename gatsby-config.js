@@ -17,6 +17,9 @@ module.exports = {
         path: path.join(__dirname, 'src/data/index'),
         ignore: ['**/*.js', '**/*.yml', '**/.*'],
       },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
       options: {
         name: 'chart-index-images',
         path: path.join(__dirname, 'src/data/chart-index'),
@@ -50,12 +53,12 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-fathom',
+      resolve: 'gatsby-plugin-manifest',
       options: {
-        siteId: 'VMSGXQRS',
+        name: 'Carbon Design System',
+        short_name: 'Carbon',
       },
     },
-    'gatsby-plugin-netlify-cache',
     'gatsby-plugin-sitemap',
     {
       resolve: 'gatsby-plugin-component-index',
