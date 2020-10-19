@@ -29,7 +29,7 @@ src
 - `lint:js` – lint your JavaScript files
 - `format` - run Prettier
 
-If you need more detailed information on how to setup your machine to develop locally, please take a look at our [wiki](https://github.com/carbon-design-system/carbon-website/wiki).
+If you need more detailed information on how to set up your machine to develop locally, please take a look at our [wiki](https://github.com/carbon-design-system/carbon-website/wiki).
 
 ## 🚀 Build
 
