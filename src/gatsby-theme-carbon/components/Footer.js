@@ -1,6 +1,7 @@
 import React from 'react';
 import Footer from 'gatsby-theme-carbon/src/components/Footer';
 import packageJson from '../../../package.json';
+import {ToggleHalloweenButton} from './Layout';
 
 const currentYear = new Date().getFullYear();
 const versions = {
@@ -10,6 +11,9 @@ const versions = {
 
 const Content = ({ buildTime }) => (
   <>
+    <p>
+      <ToggleHalloweenButton />
+    </p>
     <p>
       Have questions? Email us <br />
       at <a href="mailto:carbon@us.ibm.com">carbon@us.ibm.com</a> <br />

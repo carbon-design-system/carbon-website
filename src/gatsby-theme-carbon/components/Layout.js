@@ -11,6 +11,7 @@ import Footer from 'gatsby-theme-carbon/src/components/Footer';
 import Container from 'gatsby-theme-carbon/src/components/Container';
 import { Close20 } from '@carbon/icons-react';
 import { Button } from 'carbon-components-react';
+import cx from 'classnames';
 
 import 'gatsby-theme-carbon/src/styles/index.scss';
 import {
@@ -20,7 +21,10 @@ import {
   bannerClose,
   initialism,
   fullName,
+  halloweenButton
 } from '../../styles/Layout.module.scss';
+
+const ThemeContext = React.createContext();
 
 const Layout = ({
   children,
@@ -34,6 +38,12 @@ const Layout = ({
 }) => {
   const is404 = children.key === null;
   const [isBannerVisible, setBannerVisibility] = useState(true);
+  const [isItHalloween, setIsItHalloween] = useState(false);
+  const themeContext = {
+    toggleHalloween() {
+      setIsItHalloween(!isItHalloween);
+    },
+  };
 
   useLayoutEffect(() => {
     const scroll = require('smooth-scroll')('a[href*="#"]', {
@@ -57,39 +67,52 @@ const Layout = ({
     setBannerVisibility(false);
   };
 
-  return (
-    <div className={isBannerVisible ? layout : layoutNoBanner}>
-      <Meta
-        titleType={titleType}
-        pageTitle={pageTitle}
-        pageDescription={pageDescription}
-        pageKeywords={pageKeywords}
-      />
-      {isBannerVisible ? (
-        <div className={banner} role="contentinfo">
-          <span>
-            Make your choice<span className={fullName}>, America</span>.&nbsp;
-            <a href="https://www.vote.org">vote.org</a>
-          </span>
-          <Button
-            className={bannerClose}
-            hasIconOnly
-            renderIcon={Close20}
-            onClick={handleBannerClose}
-            iconDescription="Close the banner"
-          />
-        </div>
-      ) : null}
+  const layoutClassNames = cx({
+    [`halloween`]: isItHalloween,
+    [layout]: isBannerVisible,
+    [layoutNoBanner]: !isBannerVisible,
+  });
 
-      <Header />
-      <Switcher />
-      <LeftNav homepage={homepage} is404Page={is404} theme={theme} />
-      <Container homepage={homepage} theme={theme}>
-        {children}
-        <Footer />
-      </Container>
-    </div>
+  return (
+    <ThemeContext.Provider value={themeContext}>
+      <div className={layoutClassNames}>
+        <Meta
+          titleType={titleType}
+          pageTitle={pageTitle}
+          pageDescription={pageDescription}
+          pageKeywords={pageKeywords}
+        />
+        {isBannerVisible ? (
+          <div className={banner} role="contentinfo">
+            <span>
+              Make your choice<span className={fullName}>, America</span>.&nbsp;
+              <a href="https://www.vote.org">vote.org</a>
+            </span>
+            <Button
+              className={bannerClose}
+              hasIconOnly
+              renderIcon={Close20}
+              onClick={handleBannerClose}
+              iconDescription="Close the banner"
+            />
+          </div>
+        ) : null}
+
+        <Header />
+        <Switcher />
+        <LeftNav homepage={homepage} is404Page={is404} theme={theme} />
+        <Container homepage={homepage} theme={theme}>
+          {children}
+          <Footer/>
+        </Container>
+      </div>
+    </ThemeContext.Provider>
   );
 };
+
+export function ToggleHalloweenButton() {
+  const { toggleHalloween } = React.useContext(ThemeContext);
+  return <Button kind="ghost" onClick={toggleHalloween} className={halloweenButton}>Happy Halloween!</Button>;
+}
 
 export default Layout;
