@@ -162,7 +162,7 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
                 </button>
               )}
 
-              <Code links={links} code={code} src={src} className={codeRow}>
+              <Code links={links} code={code} src={src} className={cx(codeRow, 'halloween-component-demo')}>
                 <LiveEditor
                   padding={16}
                   style={{ overflowX: 'auto', whiteSpace: 'pre' }}
