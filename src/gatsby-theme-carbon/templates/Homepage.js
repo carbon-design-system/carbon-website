@@ -36,11 +36,7 @@ const SecondRightText = () => (
   </p>
 );
 
-
-// spreading the original props gives us props.children (mdx content)
-function ShadowedHomepage(props) {
-
-  const customProps = {
+const customProps = {
   Banner: (
     <>
       <span className="homepage--dots" />
@@ -76,11 +72,12 @@ function ShadowedHomepage(props) {
       rightText={SecondRightText}
       color={white}
       backgroundColor={blue90}
-      className='halloween-callout'
     />
   ),
 };
 
+// spreading the original props gives us props.children (mdx content)
+function ShadowedHomepage(props) {
   return <HomepageTemplate {...props} {...customProps} />;
 }
 
