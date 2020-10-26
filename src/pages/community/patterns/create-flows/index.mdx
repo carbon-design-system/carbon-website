@@ -15,23 +15,48 @@ description:
 
 Users often need to create different types of assets - they can have simple or
 complex requirements. The Create pattern covers different complexities and
-formats: Simple (single step) and Multistep options, including Modal, Sidepanel,
-Tearsheet, and Full-page formats.
+formats: Simple (single step) and Multistep options, including Modal, Narrow
+Tearsheet, Wide Tearsheet, and Full-page formats.
 
 To create is to generate a new resource. Creating is distinct from adding, but
 the two are often confused. To add a resource is to include a resource that
-already exists. This pattern focuses on how to place the user in a flow when
-there's a need for creating a new resource.
+already exists. Editing a resource is also different from creating a new one.
+This pattern focuses on how to place the user in a flow when there's a need for
+creating a new resource.
+
+Do not use this pattern for adding or editing a resource.
+
+### When to use
+
+- Creating a new resource
+
+### When not to use
+
+- Adding an existing resource
+- Editing an existing resource
 
 ## Inline creation
 
-(inline creation content to come?)
+With quick, simple creations like that of an item, it is usually preferred to
+keep the flow inline. This is especially true when the user could benefit from
+seeing context in the page while creating. The inline create pattern is under
+construction, as it needs to account for many different use cases. Below are
+some examples of inline create for temporary reference.
+
+_Examples to be added here_
+
+Another factor to consider with quick, simple creations is whether or not the
+flow is transitional. Use a Modal if the user is being taken to a different page
+than the one where they initiated the create. For example, if the newly created
+asset is being opened or if the user is taken to a confirmation screen.
+
+For complex creation flows, such as that of a large system object, use the
+Narrow or Wide Tearsheet variations for single or multi-step options,
+respectively.
 
 ## Modal
 
-### Single step
-
-#### Anatomy
+### Anatomy
 
 <Row>
 <Column colLg={8}>
@@ -41,8 +66,9 @@ there's a need for creating a new resource.
 </Column>
 </Row>
 
-1. **Modal size & overlay:** Modal size "small". Screen overlay that obscures
-   the on-page content.
+1. **Modal size & overlay:**
+   [Modal size "small"](https://www.carbondesignsystem.com/components/modal/style#small).
+   Screen overlay that obscures the on-page content.
 2. **Create modal title:** Title line for the create flow with an optional
    subtitle.
 3. **Body:** Contains the information and/or controls needed to populate the
@@ -53,7 +79,7 @@ there's a need for creating a new resource.
 5. **Close button:** Closes the modal and cancels the create action after user
    confirmation.
 
-#### Alignment
+### Alignment
 
 <Row>
 <Column colLg={8}>
@@ -63,260 +89,141 @@ there's a need for creating a new resource.
 </Column>
 </Row>
 
-#### When to use
+### When to use
 
-- There are only one or two form fields to be filled out during a creation
+- There are only one or two form fields to be filled out during a creation.
+- The user will be taken to a different page after creation.
 
-#### When not to use
+### When not to use
 
+- The create can be performed inline.
 - There are more than three form fields.
 - The fields are unrelated and should be split into steps.
 - There is scrolling inside the modal.
 
-### Multistep
-
-#### Anatomy
-
-<Row>
-<Column colLg={8}>
-
-![Anatomy of a Multistep modal](images/ModalMultistepAnatomy.png)
-
-</Column>
-</Row>
-
-1. **Modal size & overlay:** Modal size "large". Screen overlay that obscures
-   the on-page content.
-2. **Create modal title:** Title line for the create flow. The title will
-   usually be "New _asset type_".
-3. **Progress indicator:** Vertical progress indicator lets the user know what
-   step they are on. Limit of three steps in the modal option.
-4. **Close button:** Closes the modal and cancels the create action after user
-   confirmation.
-5. **Body:** Contains the information and/or controls needed to populate the
-   task. It can include message text and components.
-6. **Buttons:** The primary and secondary buttons are "Next" and "Back",
-   respectively. The "Back" button will be disabled on the first step. The
-   "Next" button will change to "Create _asset type_" on the last step of
-   creation.
-
-#### Alignment
-
-<Row>
-<Column colLg={8}>
-
-![Alignment of a multistep modal](images/ModalMultistepAlignment.png)
-
-</Column>
-</Row>
-
-#### When to use
-
-- The create flow has low complexity: simple, quick, and easy.
-- There are two or three distinct steps in the flow.
-- There is little or no scrolling in any of the steps content.
-
-#### When not to use
-
-- There are more than four or five form fields in any of the steps.
-- There is more than 2x scrolling inside the modal.
-- There are four or more distinct steps in the flow.
-
-## Side-panel
-
-### Single step
-
-#### Example executions
-
-<Row>
-<Column colLg={8}>
-
-![Single step side panel in non-focus state](images/SidepanelSingleStepNonFocus.png)
-
-<Caption>Single step side panel in non-focus state</Caption>
-
-</Column>
-</Row>
-
-<Row>
-<Column colLg={8}>
-
-![Single step side panel in focus state](images/SidePanelSingleStepFocus.png)
-
-<Caption>Single step side panel in focus state</Caption>
-
-</Column>
-</Row>
-
-#### Anatomy
-
-<Row>
-<Column colLg={8}>
-
-![Single step side panel anatomy](images/SidepanelSinglestepAnatomy.png)
-
-</Column>
-</Row>
-
-1. **Sidepanel size & optional overlay:** Slide-over sidepanel size option of
-   320px or 480px. Optional screen overlay that obscures the on-page content.
-   Either way, Create panel should always be tied to the right side of the
-   screen.
-2. **Create title:** Title line for the create flow with an optional subtitle.
-   The title will usually be "New _asset type_".
-3. **Body:** Contains the information and/or controls needed to populate the
-   task. It can include message text and components.
-4. **Buttons:** The primary and secondary buttons are "Create _asset type_" and
-   "Cancel", respectively. Cancelling requires confirmation, as seen in the
-   Creation section.
-5. **Close button:** Closes the sidepanel and cancels the create action after
-   user confirmation.
-
-#### Alignment
-
-<Row>
-<Column colLg={8}>
-
-![Single step side panel alignment](images/SidepanelSingleStepAlignment.png)
-
-</Column>
-</Row>
-
-#### When to use
-
-- There are more fields than can fit into a modal.
-- The page gives important context that should not be hidden behind a modal.
-- All fields are related and should not be broken down into steps.
-
-#### When not to use
-
-- The form fields are unrelated.
-- The flow would benefit from having steps.
-
-### Multistep
-
-<Row>
-<Column colLg={8}>
-
-![Multistep side panel in focus mode](images/SidePanelMultistepFocus.png)
-
-<Caption>Multistep side panel in focus mode</Caption>
-
-</Column>
-</Row>
-
-<Row>
-<Column colLg={8}>
-
-![Multistep side panel not in focus mode](images/SidePanelMultistepNonFocus.png)
-
-<Caption>Multistep side panel not in focus mode</Caption>
-
-</Column>
-</Row>
-
-#### Anatomy
-
-<Row>
-<Column colLg={8}>
-
-![Anatomy of multistep side panel](images/SidePanelMultistepAnatomy.png)
-
-</Column>
-</Row>
-
-1. **Sidepanel size & optional overlay:** Slide-over sidepanel size option of
-   320px or 480px. Optional screen overlay that obscures the on-page content.
-2. **Create title:** Title line for the create flow with an optional subtitle.
-   The title will usually be "New _asset type_".
-3. **Progress indicator:** Horizontal progress indicator lets the user know what
-   step they are on. Limit of three steps in the sidepanel option.
-4. **Body:** Contains the information and/or controls needed to populate the
-   task. It can include message text and components.
-5. **Buttons:** The primary and secondary buttons are "Next" and "Back",
-   respectively. The "Back" button will be disabled on the first step. The
-   "Next" button will change to "Create _asset type_" on the last step of
-   creation.
-6. **Close button:** Closes the sidepanel and cancels the create action after
-   user confirmation.
-
-#### Alignment
-
-<Row>
-<Column colLg={8}>
-
-![Alignment of multistep side panel](images/SidePanelMultistepAlignment.png)
-
-</Column>
-</Row>
-
-#### When to use
-
-- The create flow has medium complexity, with two or three distinct steps
-- The create flow benefits from keeping the page context in view
-- There are no more than six fields in any of the steps
-
-#### When not to use
-
-- Complex create flows
-- There are more than three distinct steps
-- There is more than 2x scrolling in the sidepanel
-
-#### Behaviors structure
-
-When using the Slide-over Sidepanel, there is an option to either include or
-exclude an overlay that extends over the entire left side of the screen.
-Consider including the overlay when the top priority is maintaining the user's
-focus on the creation. Exclude the overlay when it is helpful to the user in
-completing the creation task to allow the context of the page to be visible or
-partially visible.
-
-## Tearsheet
+## Narrow Tearsheet
 
 ### Anatomy
 
 <Row>
 <Column colLg={8}>
 
-![Tearsheet anatomy](images/TearsheetAnatomy.png)
+![Anatomy of narrow tearsheets](images/Narrow-tearsheet-1.png)
 
 </Column>
 </Row>
 
-<Row>
-<Column colLg={8}>
-
-![Tearsheet anatomy with Show all available options on](images/TearsheetAnatomyShowAllOn.png)
-
-<Caption>Tearsheet anatomy with Show all available options on</Caption>
-
-</Column>
-</Row>
-
-1. **Tearsheet & overlay:** Tearsheet component with screen overlay that
-   obscures the on-page content.
-2. **Create title:** Title line for the create flow with an optional subtitle.
-   The title will usually be "New _asset type_".
-3. **Progress indicator:** Vertical progress indicator lets the user know what
-   step they are on.
-4. **Toggle (Optional):** Optional toggle allows the user to view all available
-   options in one scrolling page with anchor links.
-5. **Body:** Contains the information and/or controls needed to populate the
+1. **Panel size & overlay**: Should follow the
+   [Modal size "small"](https://www.carbondesignsystem.com/components/modal/style#small).
+   See [Narrow Tearsheet documentation](none yet). Screen overlay that obscures
+   the on-page content.
+2. **Create title**: Title line for the create flow with an optional subtitle.
+   The title will usually be "Create `asset type`".
+3. **Body**: Contains the information and/or controls needed to populate the
    task. It can include message text and components.
-6. **Buttons:** The primary, secondary, and ghost buttons are "Next", "Back" and
-   "Cancel", respectively. The "Back" button will be disabled on the first step.
-   The "Next" button will change to "Create _asset type_" on the last step of
-   creation. "Cancel" closes the tearsheet and cancels the create action.
-   Cancelling requires confirmation, as seen in the Creation section.
-7. **Close button:** Closes the tearsheet and cancels the create action after
-   user confirmation.
+4. **Buttons**: The primary and secondary buttons are "Create" and "Cancel",
+   respectively.
 
 ### Alignment
 
 <Row>
 <Column colLg={8}>
 
-![Tearsheet alignment](images/TearsheetAlignment.png)
+![Narrow tearsheet alignment](images/Narrow-Tearsheet-2.png)
+
+</Column>
+</Row>
+
+### When to use
+
+- There are more fields than can fit into the modal without scrolling.
+- The steps can be broken down into sections or chapters.
+
+### When not to use
+
+- The flow has high complexity and the user would benefit from having a visible
+  progress indicator.
+
+## Wide Tearsheet
+
+### Anatomy
+
+<Row>
+<Column colLg={8}>
+
+![Anatomy of a wide tearsheet](images/Wide-tearsheet-1.png)
+
+</Column>
+</Row>
+
+1. **Tearsheet & overlay**: [Tearsheet component](none yet) with screen overlay
+   that obscures the on-page content.
+2. **Create title**: Title line for the create flow with an optional subtitle.
+   The title will usually be "Create `asset type`".
+3. **Progress indicator**: Vertical progress indicator lets the user know what
+   step they are on. The default left panel width is 256px. An option of 310px
+   wide is available for use cases where step labels are very long.
+4. **Toggle (Optional)**: Optional toggle allows the user to view all available
+   options in one scrolling page with anchor links.
+5. **Body**: Contains the information and/or controls needed to populate the
+   task. It can include message text and components.
+6. **Buttons**: The primary, secondary, and ghost buttons are "Next", "Back" and
+   "Cancel", respectively. The "Back" button will be disabled on the first step.
+   The "Next" button will change to "Create" on the last step of creation.
+   "Cancel" closes the tearsheet and cancels the create action.
+
+_Note: Coming soon from Carbon, 80px tall fluid buttons will be the new standard
+replacing the 64px fluid buttons in the bottom sticky footer. Image reference
+below._
+
+<Row>
+<Column colLg={5}>
+
+![New carbon button heights in the wide tearsheet](images/Wide-tearsheet-3.png)
+
+<Caption>New carbon button heights in the wide tearsheet</Caption>
+</Column>
+</Row>
+<Row>
+<Column colLg={8}>
+
+![Alternative left panel width](images/Wide-tearsheet-4.png)
+
+<Caption>Alternative left panel width</Caption>
+</Column>
+</Row>
+<Row>
+<Column colLg={8}>
+
+![Toggle view - show all available actions](images/Wide-tearsheet-5.png)
+
+<Caption>Toggle view - show all available actions</Caption>
+</Column>
+</Row>
+<Row>
+<Column colLg={8}>
+
+![Toggle view - show all available actions warning modal](images/Wide-tearsheet-6.png)
+
+<Caption>Toggle view - show all available actions warning modal</Caption>
+</Column>
+</Row>
+
+1. **In-page navigation**: Side panel switches from progress indicator steps to
+   In-page navigation anchor links that scroll the form content to the
+   corresponding section.
+2. **Toggle**: The toggle switches to the "On" position when the user clicks on
+   it.
+3. **Footer & scrolling**: The button footer is sticky and has a dividing line
+   on top. The form content appears from underneath the sticky footer. There is
+   no gradient.
+
+### Alignment
+
+<Row>
+<Column colLg={8}>
+
+![Wide tearsheet alignment](images/Wide-tearsheet-7.png)
 
 </Column>
 </Row>
@@ -324,11 +231,11 @@ partially visible.
 ### When to use
 
 - The create flow is complex, with two or more distinct steps.
-- There are many form fields to be filled by the user.
+- There are many form fields to be filled out.
 
 ### When not to use
 
-- The create flow is low or medium complexity.
+- The create flow has low complexity.
 - There is only one step.
 
 ### Behaviors, structure and functionality
@@ -336,15 +243,18 @@ partially visible.
 Tearsheet Create flows can include an optional Toggle to show all the steps on a
 single scrolling page with anchor links. Toggling to "Show all available
 options" will replace the progress indicator with the In-page navigation anchor
-links.
+links. Depending on your use case, you may choose to persist the toggle to show
+all options for a particular Create flow if it will enhance the user
+experience.  
+If the user toggles off the advanced options, show a modal alerting them that
+the changes won't be saved.
 
 <Row>
 <Column colLg={8}>
 
-![Image to come](images/02.png)
+![Toggle view - show all available actions warning modal](images/Wide-tearsheet-6.png)
 
-<Caption>Image to come</Caption>
-
+<Caption>Toggle view - show all available actions warning modal</Caption>
 </Column>
 </Row>
 
@@ -352,7 +262,7 @@ links.
 
 <InlineNotification>
   The full page option is not a common use case and should not be confused with
-  or used in place of the tearsheet.
+  or used in place of the Wide tearsheet.
 </InlineNotification>
 
 ### Anatomy
@@ -360,43 +270,63 @@ links.
 <Row>
 <Column colLg={8}>
 
-![Image to come](images/02.png)
-
-<Caption>Image to come</Caption>
+![Full page anatomy](images/Full-page-1.png)
 
 </Column>
 </Row>
 
-Page header
+1. **Breadcrumbs (optional)**: Use location-based breadcrumbs when appropriate.
+2. **Page title**: The page title will not necessarily be "Create `asset type`".
+3. **Create title**: This title will usually be "Create `asset type`".
+4. **Progress indicator**: Vertical progress indicator lets the user know what
+   step they are on. The default left panel width is 256px. An option of 310px
+   wide is available for use cases where step labels are very long.
+5. **Body**: Contains the information and/or controls needed to populate the
+   task. It can include message text and components.
+6. **Toggle (Optional)**: Optional toggle allows the user to view all available
+   options in one scrolling page with anchor links.
+7. **Buttons**: The primary, secondary, and ghost buttons are 64px tall fluid
+   buttons. They are "Next", "Back" and "Cancel", respectively. The "Back"
+   button will be disabled on the first step. The "Next" button will change to
+   "Create" on the last step of creation. "Cancel" takes the user to the
+   previous page and cancels the create action.
 
-- Title: "New _object_" + optional subtitle
-- Cancel button
-- Next button that changes to Create button in final step
-- Close (x) button
-- Vertical progress indicator panel
-- Toggle: Show all steps in one page (Optional)
+_Note: Coming soon from Carbon, 80px tall fluid buttons will be the new standard
+replacing the 64px fluid buttons in the bottom sticky footer. Image reference
+below._
+
+<Row>
+<Column colLg={6}>
+
+![Full page anatomy with new Carbon button size](images/Full-page-2.png)
+
+</Column>
+</Row>
 
 ### Alignment
 
 <Row>
 <Column colLg={8}>
 
-![Image to come](images/02.png)
-
-<Caption>Image to come</Caption>
+![Full page alignment](images/Full-page-3.png)
 
 </Column>
 </Row>
 
 ### When to use
 
-In Cloud and Cognitive, the create flow is the process the user must complete in
-order to use a product or service. In IBM Cloud public, it is the alternative to
-the Provisioning flow for a non-billable service.
+- In Cloud and Cognitive, the create flow is the process the user must complete
+  in order to use a product or service.
+- In IBM Cloud public, it is the alternative to the Provisioning flow for a
+  non-billable service.
 
 ### When not to use
 
-The product or service is usable before the current creation flow is initiated.
+- The product or service is usable before the current creation flow is
+  initiated.
+- For IBM Public Cloud, do not use this when provisioning a service directly
+  from the Catalog, or when creating a non-billable resource that could happen
+  in a side panel/in context.
 
 ### Behaviours, structure, and functionality
 
@@ -405,109 +335,60 @@ single scrolling page with anchor links. Toggling to "Show all available
 options" will replace the progress indicator with the In-page navigation anchor
 links.
 
-<Row>
-<Column colLg={8}>
+## Creation
 
-![Image to come](images/02.png)
+### Behaviors, structure and functionality
 
-<Caption>Image to come</Caption>
+A create flow is usually started when the user clicks on a "New `asset type`"
+button. The button text should include the type of asset and a plus icon. For
+example, "New project" or "New user". In many cases the button will be primary.
+However, there should be only one primary button in any page section. When there
+is already a primary button, a tertiary or ghost button should be used. Today,
+guidance around button types does not specify when to use tertiary versus ghost
+buttons. This guideline will be updated as we get more clarity.
 
-</Column>
-</Row>
+After clicking on the new button, the user then fills out a form in one of the
+above formats: with one step or multiple steps. With multiple steps, the "Back"
+button is disabled in the first step. In the last step, the text of the primary
+button changes from "Next" to "Create". The "Next" and "Create" buttons should
+be disabled until the user has entered all required fields.
 
-## Creation behaviors, structure and functionality
+The Modal, Narrow Tearsheet and Wide Tearsheet components in the create flow
+will not have a close icon in the top right. This is to enforce the user's
+decision to exit the create flow by clicking on the word "Cancel".
 
-A create flow is usually started when the user clicks on a "New _object_"
-button. The button text should typically include the type of asset. For example,
-"New project" or "New user".
-
-<Row>
-<Column colLg={8}>
-
-![Image to come](images/02.png)
-
-<Caption>Image to come</Caption>
-
-</Column>
-</Row>
-
-The user then fills out a form, in any of the above formats, with one step or
-multiple steps. With multiple steps, initially there are "Back" and "Next"
-buttons, where "Back" is disabled in the first step. In the final step, the text
-of the primary button changes from "Next" to "Create _object_".  Both "Next" and
-"Create _object_" buttons should be disabled until the user has entered all
-required fields.
-
-<Row>
-<Column colLg={8}>
-
-![Image to come](images/02.png)
-
-<Caption>Image to come</Caption>
-
-</Column>
-</Row>
-
-To prevent data loss, if the user cancels or closes out of the creation context,
-show a cancel confirmation modal.
-
-<Row>
-<Column colLg={8}>
-
-![Image to come](images/02.png)
-
-<Caption>Image to come</Caption>
-
-</Column>
-</Row>
-
-When the user clicks "Create _object_" there should be an indication of loading
-or submitting.
-
-<Row>
-<Column colLg={8}>
-
-![Image to come](images/02.png)
-
-<Caption>Image to come</Caption>
-
-</Column>
-</Row>
-
+When the user clicks "Create" there should be an indication of loading or
+submitting. See Carbon's
+[Loading](https://www.carbondesignsystem.com/patterns/loading-pattern#loading-indicators)
+pattern. Also, see specific guidance for
+[loading in the Modal component](https://www.carbondesignsystem.com/components/modal/usage#loading).
 Once the loading is complete, the user should see a success or error
-notification
+notification. For success, one option is to open the newly created asset or the
+asset's details page. But when the user stays on the same page, show a success
+banner notification. For errors, you must show an
+[error notification](https://www.carbondesignsystem.com/components/notification/usage/).
 
-<Row>
-<Column colLg={8}>
+### Best practices
 
-![Image to come](images/02.png)
+#### Do
 
-<Caption>Image to come</Caption>
+- TBD
+- TBD
 
-</Column>
-</Row>
+#### Don't
 
-## Create best practices
+- TBD
+- TBD
 
-### Do
+### Other use cases
 
--
--
-
-### Don't
-
--
--
-
-## Other use cases
-
-### Add
+#### Add
 
 - While the Create and Add patterns are similar, and ideas can certainly be
   drawn from this pattern, it does not cover Add use cases.
 - The Add pattern should be looked at and worked on separately.
 
-### Edit
+#### Edit
 
 - Similarly, while there are similar concepts in both Create and Edit, this
   pattern does not cover Edit use cases.
@@ -523,9 +404,15 @@ the search query.”
 
 ## Related
 
-Which components did you use when building this pattern? Did you reference other
-patterns? List them here. If necessary, clarify any differences between this
-pattern and related patterns.
+- [Modal](https://www.carbondesignsystem.com/components/modal/usage/)
+- Narrow Tearsheet
+- Wide Tearsheet
+- [Form](https://www.carbondesignsystem.com/patterns/forms-pattern/)
+- Toggle
+- Page header
+- In-page navigation
+- [Progress indicator](https://www.carbondesignsystem.com/components/progress-indicator/usage)
+- Sticky footer (TBD)
 
 ## References 
 
