@@ -57,38 +57,37 @@ const Layout = ({
   };
 
   return (
-  
-      <div className={isBannerVisible ? layout : layoutNoBanner}>
-        <Meta
-          titleType={titleType}
-          pageTitle={pageTitle}
-          pageDescription={pageDescription}
-          pageKeywords={pageKeywords}
-        />
-        {isBannerVisible ? (
-          <div className={banner} role="contentinfo">
-            <span>
-              Make your choice<span className={fullName}>, America</span>.&nbsp;
-              <a href="https://www.vote.org">vote.org</a>
-            </span>
-            <Button
-              className={bannerClose}
-              hasIconOnly
-              renderIcon={Close20}
-              onClick={handleBannerClose}
-              iconDescription="Close the banner"
-            />
-          </div>
-        ) : null}
+    <div className={isBannerVisible ? layout : layoutNoBanner}>
+      <Meta
+        titleType={titleType}
+        pageTitle={pageTitle}
+        pageDescription={pageDescription}
+        pageKeywords={pageKeywords}
+      />
+      {isBannerVisible ? (
+        <div className={banner} role="contentinfo">
+          <span>
+            Make your choice<span className={fullName}>, America</span>.&nbsp;
+            <a href="https://www.vote.org">vote.org</a>
+          </span>
+          <Button
+            className={bannerClose}
+            hasIconOnly
+            renderIcon={Close20}
+            onClick={handleBannerClose}
+            iconDescription="Close the banner"
+          />
+        </div>
+      ) : null}
 
-        <Header />
-        <Switcher />
-        <LeftNav homepage={homepage} is404Page={is404} theme={theme} />
-        <Container homepage={homepage} theme={theme}>
-          {children}
-          <Footer/>
-        </Container>
-      </div>
+      <Header />
+      <Switcher />
+      <LeftNav homepage={homepage} is404Page={is404} theme={theme} />
+      <Container homepage={homepage} theme={theme}>
+        {children}
+        <Footer />
+      </Container>
+    </div>
   );
 };
 
