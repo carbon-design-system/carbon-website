@@ -18,7 +18,6 @@ import {
   layoutNoBanner,
   banner,
   bannerClose,
-  initialism,
   fullName,
 } from '../../styles/Layout.module.scss';
 
