@@ -54,7 +54,7 @@ export function useComponentIndexData() {
   const components = allComponentIndexEntry.edges.map((edge) => {
     const { node } = edge;
     const { name, maintainer } = node;
-    let image = images.find((node) => {
+    const image = images.find((node) => {
       if (node.name !== name) {
         return false;
       }
