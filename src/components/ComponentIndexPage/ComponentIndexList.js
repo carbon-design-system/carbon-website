@@ -5,9 +5,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import ComponentIndexListItem from './ComponentIndexListItem';
 import PropTypes from 'prop-types';
 import React from 'react';
-import ComponentIndexListItem from './ComponentIndexListItem';
 
 function ComponentIndexList({ items }) {
   return (
@@ -22,6 +22,7 @@ function ComponentIndexList({ items }) {
           maintainer,
           name,
           websiteUrl,
+          fathomGoal,
         }) => {
           const key = `${name}:${maintainer}`;
           return (
@@ -35,6 +36,7 @@ function ComponentIndexList({ items }) {
               maintainer={maintainer}
               name={name}
               websiteUrl={websiteUrl}
+              fathomGoal={fathomGoal}
             />
           );
         }
