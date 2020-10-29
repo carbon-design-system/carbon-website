@@ -24,7 +24,6 @@ const FilterRow = ({
         [pictograms]: type !== 'icon',
       })}>
       <Search
-        light
         labelText={`filter ${type}s by searching for their name or category`}
         onChange={onSearchChange}
         placeHolderText={placeHolderText}
@@ -34,7 +33,6 @@ const FilterRow = ({
         id="category-filter"
         size="xl"
         direction="bottom"
-        light
         selectedItem={selectedCategory}
         onChange={onDropdownChange}
         label={`Filter ${type}s by category`}
