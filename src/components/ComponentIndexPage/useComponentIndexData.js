@@ -34,6 +34,7 @@ const COMPONENT_INDEX_DATA = graphql`
           friendly_name
           name
           website_url
+          fathom_goal
 
           maintainer {
             name
@@ -76,6 +77,7 @@ export function useComponentIndexData() {
       dateAdded: node.date_added,
       codeUrl: node.code_url,
       websiteUrl: node.website_url,
+      fathomGoal: node.fathom_goal,
     };
   });
 
