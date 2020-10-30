@@ -7,22 +7,17 @@
  */
 
 import { Link, Tag, TooltipIcon } from 'carbon-components-react';
+
 import Image from 'gatsby-image';
 import React from 'react';
-
-// Placeholder image
-import placeholder from './images/placeholder.svg';
-
-// Framework icons
 import angularIcon from './images/Angular.svg';
-import reactIcon from './images/React.svg';
-import vanillaIcon from './images/Vanilla.svg';
-import vueIcon from './images/Vue.svg';
-
-// Design asset icons
 import axureIcon from './images/Axure.svg';
 import figmaIcon from './images/Figma.svg';
+import placeholder from './images/placeholder.svg';
+import reactIcon from './images/React.svg';
 import sketchIcon from './images/Sketch.svg';
+import vanillaIcon from './images/Vanilla.svg';
+import vueIcon from './images/Vue.svg';
 import xdIcon from './images/XD.svg';
 
 const frameworkIcons = {
@@ -49,6 +44,7 @@ const ComponentIndexListItem = React.memo(
     maintainer,
     name,
     websiteUrl,
+    fathomGoal,
   }) => {
     let img;
 
@@ -66,6 +62,23 @@ const ComponentIndexListItem = React.memo(
       );
     }
 
+    const linkProps = {
+      className: 'component-index-item__link',
+      rel: 'noopener noreferrer',
+    };
+
+    const websiteLinkProps = {
+      ...linkProps,
+      href: websiteUrl,
+      onClick: () => fathomGoal && fathom.trackGoal(fathomGoal, 0),
+    };
+
+    const codeLinkProps = {
+      ...linkProps,
+      href: codeUrl,
+      onClick: () => fathomGoal && fathom.trackGoal(fathomGoal, 1),
+    };
+
     return (
       <>
         <article className="component-index-item">
@@ -75,21 +88,11 @@ const ComponentIndexListItem = React.memo(
             <p className="component-index-item__description">{description}</p>
             <footer className="component-index-item__info">
               <div className="component-index-item__links">
-                <Link
-                  className="component-index-item__link"
-                  href={websiteUrl}
-                  rel="noopener noreferrer">
-                  Docs
-                </Link>
+                <Link {...websiteLinkProps}>Docs</Link>
                 {codeUrl && (
                   <>
                     <div className="component-index-item__divider" />
-                    <Link
-                      className="component-index-item__link"
-                      href={codeUrl}
-                      rel="noopener noreferrer">
-                      Code
-                    </Link>
+                    <Link {...codeLinkProps}>Code</Link>
                   </>
                 )}
               </div>
