@@ -20,7 +20,7 @@ const localIcons = {
   illustrator,
   react,
   vue,
-  angular
+  angular,
 };
 
 const carbonIcons = {
