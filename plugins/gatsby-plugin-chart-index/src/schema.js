@@ -9,7 +9,15 @@ const chart = Joi.object({
   design_asset: Joi.string().valid('Sketch', 'Adobe XD', 'Figma'),
   framework: Joi.string().valid('React', 'Angular', 'Vanilla', 'Vue'),
   platform: Joi.string().valid('Web', 'iOS', 'Android'),
-  chart_type: Joi.string().valid('Comparisons', 'Trends', 'Part-to-whole', 'Correlations', 'Connections', 'Geospatial', 'Other'),
+  chart_type: Joi.string().valid(
+    'Comparisons',
+    'Trends',
+    'Part-to-whole',
+    'Correlations',
+    'Connections',
+    'Geospatial',
+    'Other'
+  ),
   complexity: Joi.string().valid('Basic', 'Advanced'),
   website_url: Joi.string().uri(),
 

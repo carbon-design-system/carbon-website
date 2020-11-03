@@ -28,8 +28,7 @@ const SvgCard = ({ icon, containerIsVisible, ...rest }) => {
       onMouseLeave={() => {
         setIsActionBarVisible(false);
       }}
-      className={svgCard}
-    >
+      className={svgCard}>
       <div className={svgCardInside}>
         <span className={triggerText}>{friendlyName}</span>
         {containerIsVisible && (

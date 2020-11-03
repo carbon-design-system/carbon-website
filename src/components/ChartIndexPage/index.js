@@ -67,7 +67,15 @@ const filterLabels = [
   },
   {
     title: 'Chart type',
-    options: ['Comparisons', 'Trends', 'Part-to-whole', 'Correlations', 'Connections', 'Geospatial', 'Other'],
+    options: [
+      'Comparisons',
+      'Trends',
+      'Part-to-whole',
+      'Correlations',
+      'Connections',
+      'Geospatial',
+      'Other',
+    ],
   },
   {
     title: 'Complexity',
@@ -97,9 +105,7 @@ function ChartIndexPage() {
   const [selected, setSelected] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   const [debouncedSearchValue] = useDebounce(searchValue, 300);
-  const searchClient = useMemo(() => new Fuse(charts, searchOptions), [
-    charts,
-  ]);
+  const searchClient = useMemo(() => new Fuse(charts, searchOptions), [charts]);
 
   const handleOnChange = (checkedOption, selectedFilter) => {
     // Remove unchecked filter option(s) from setSelected state.

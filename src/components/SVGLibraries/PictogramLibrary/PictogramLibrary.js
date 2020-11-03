@@ -60,9 +60,11 @@ const IconLibrary = () => {
         const searchValue = searchInputValue.toLowerCase();
         return (
           friendlyName.toLowerCase().includes(searchValue) ||
-          aliases.filter(Boolean).some((alias) =>
-            alias.toString().toLowerCase().includes(searchValue)
-          ) ||
+          aliases
+            .filter(Boolean)
+            .some((alias) =>
+              alias.toString().toLowerCase().includes(searchValue)
+            ) ||
           category.toLowerCase().includes(searchValue) ||
           name.toLowerCase().includes(searchValue)
         );
