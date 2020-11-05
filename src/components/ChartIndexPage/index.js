@@ -109,7 +109,7 @@ function ChartIndexPage() {
   const [debouncedSearchValue] = useDebounce(searchValue, 300);
   const searchClient = useMemo(() => new Fuse(charts, searchOptions), [charts]);
 
-  const handleOnChange = (checkedOption, selectedFilter) => {
+  const handleOnChange = (_checkedOption, selectedFilter) => {
     // Remove unchecked filter option(s) from setSelected state.
     if (selected.includes(selectedFilter)) {
       setSelected(
