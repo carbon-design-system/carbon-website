@@ -36,12 +36,7 @@ const ChartIndexListItem = React.memo(
         />
       );
     } else {
-      img = (
-        <img
-          src={placeholder}
-          alt={`Placeholder image for the ${name} chart`}
-        />
-      );
+      img = <img src={placeholder} alt={`Placeholder for the ${name} chart`} />;
     }
 
     return (
