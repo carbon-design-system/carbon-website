@@ -3,6 +3,11 @@ const path = require('path');
 const yml = require('js-yaml');
 const schema = require('./src/schema');
 
+const denylist = new Set(['images', '.DS_Store']);
+function filterFiles(filename) {
+  return !denylist.has(filename);
+}
+
 // TODO: for some reason throwing an error in `sourceNodes` here does not cause
 // the build to fail. In the interim, we're logging the error to the console and
 // manually exiting the process so that we don't have builds that pass but don't
@@ -71,8 +76,3 @@ exports.sourceNodes = async (
     createNode(node);
   }
 };
-
-const denylist = new Set(['images', '.DS_Store']);
-function filterFiles(filename) {
-  return !denylist.has(filename);
-}

@@ -13,18 +13,7 @@ import React from 'react';
 import placeholder from './images/placeholder.svg';
 
 const ChartIndexListItem = React.memo(
-  ({
-    codeUrl,
-    description,
-    designAsset,
-    framework,
-    image,
-    maintainer,
-    name,
-    chartType,
-    complexity,
-    websiteUrl,
-  }) => {
+  ({ codeUrl, description, image, maintainer, name, websiteUrl }) => {
     let img;
 
     if (image?.fluid) {
@@ -36,12 +25,7 @@ const ChartIndexListItem = React.memo(
         />
       );
     } else {
-      img = (
-        <img
-          src={placeholder}
-          alt={`Placeholder image for the ${name} chart`}
-        />
-      );
+      img = <img src={placeholder} alt={`Placeholder for the ${name} chart`} />;
     }
 
     return (
@@ -87,5 +71,6 @@ const ChartIndexListItem = React.memo(
     );
   }
 );
+ChartIndexListItem.displayName = 'ChartIndexListItem';
 
 export default ChartIndexListItem;
