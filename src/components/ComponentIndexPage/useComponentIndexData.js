@@ -55,12 +55,12 @@ export function useComponentIndexData() {
   const components = allComponentIndexEntry.edges.map((edge) => {
     const { node } = edge;
     const { name, maintainer } = node;
-    const image = images.find((node) => {
-      if (node.name !== name) {
+    const image = images.find((imgNode) => {
+      if (imgNode.name !== name) {
         return false;
       }
 
-      const [imageMaintainer] = node.relativeDirectory.split('/');
+      const [imageMaintainer] = imgNode.relativeDirectory.split('/');
       if (imageMaintainer !== maintainer.name) {
         return false;
       }
