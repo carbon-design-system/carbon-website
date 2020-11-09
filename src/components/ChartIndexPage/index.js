@@ -163,6 +163,7 @@ function ChartIndexPage() {
               <legend className="component-index-filter__label">{title}</legend>
               {options.map((selectedFilter) => (
                 <Checkbox
+                  key={selectedFilter}
                   labelText={selectedFilter}
                   id={selectedFilter}
                   checked={selected.includes(selectedFilter)}

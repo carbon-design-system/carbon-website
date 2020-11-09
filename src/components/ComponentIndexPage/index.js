@@ -158,11 +158,12 @@ function ComponentIndexPage() {
       <Column sm={0} md={2} lg={3} className="component-index-filter-container">
         <header className="component-index-filter__header">Filters</header>
         {filterLabels.map(({ title, options, key }) => (
-          <fieldset className="component-index-filter__fieldset">
+          <fieldset key={key} className="component-index-filter__fieldset">
             <legend className="component-index-filter__label">{title}</legend>
-            <div key={key} className="component-index-filter__option">
+            <div className="component-index-filter__option">
               {options.map((selectedFilter) => (
                 <Checkbox
+                  key={selectedFilter}
                   labelText={selectedFilter}
                   id={selectedFilter}
                   checked={selected.includes(selectedFilter)}

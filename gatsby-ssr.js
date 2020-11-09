@@ -28,6 +28,7 @@ export const onRenderBody = ({ setHeadComponents }) => {
       content="@_carbondesign"
     />,
     <script
+      key="fathom"
       src="https://cdn.usefathom.com/script.js"
       spa="auto"
       site="VMSGXQRS"

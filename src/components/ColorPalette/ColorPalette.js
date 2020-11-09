@@ -175,6 +175,7 @@ const ColorPalette = ({ type, isMono, isDiverging }) => {
               <div className={groupOption}>Option {index + 1}</div>
               {i.map((j, jIndex) => (
                 <ColorPaletteColor
+                  key={`${j.name}-${jIndex}`}
                   index={jIndex}
                   lightText={j.light}
                   hex={j.hex}
@@ -191,6 +192,7 @@ const ColorPalette = ({ type, isMono, isDiverging }) => {
           {colors.map((i, index) => (
             <ColorPaletteColor
               isNumbered
+              key={`${i.name}-${index}`}
               index={index}
               lightText={i.light}
               hex={i.hex}
@@ -206,10 +208,12 @@ const ColorPalette = ({ type, isMono, isDiverging }) => {
             <PalettesContainer
               color={i.color}
               index={index}
+              key={`${i.color}-${index}`}
               continuous={continuous}>
               <div className={groupOption}>Option {index + 1}</div>
               {i.data.map((j, jIndex) => (
                 <ColorPaletteColor
+                  key={`${j.name}-${jIndex}`}
                   index={jIndex}
                   lightText={j.light}
                   hex={j.hex}

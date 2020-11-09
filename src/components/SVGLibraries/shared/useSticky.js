@@ -3,16 +3,16 @@ import { useEffect, useState, useRef } from 'react';
 export default () => {
   const stickyRef = useRef(null);
   const [sticky, setSticky] = useState(false);
-  const eventsToBind =
-    typeof window !== 'undefined'
-      ? [
-          [document, 'scroll'],
-          [window, 'resize'],
-          [window, 'orientationchange'],
-        ]
-      : [];
-
+  
   useEffect(() => {
+    const eventsToBind =
+      typeof window !== 'undefined'
+        ? [
+            [document, 'scroll'],
+            [window, 'resize'],
+            [window, 'orientationchange'],
+          ]
+        : [];
     // Observe when ref enters or leaves sticky state
     // rAF https://stackoverflow.com/questions/41740082/scroll-events-requestanimationframe-vs-requestidlecallback-vs-passive-event-lis
     function observe() {
@@ -38,7 +38,7 @@ export default () => {
         eventPair[0].removeEventListener(eventPair[1], observe);
       });
     };
-  }, [stickyRef, sticky, eventsToBind]);
+  }, [stickyRef, sticky]);
 
   return [stickyRef, sticky];
 };
