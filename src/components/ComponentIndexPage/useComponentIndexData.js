@@ -34,6 +34,7 @@ const COMPONENT_INDEX_DATA = graphql`
           friendly_name
           name
           website_url
+          fathom_goal
 
           maintainer {
             name
@@ -54,12 +55,12 @@ export function useComponentIndexData() {
   const components = allComponentIndexEntry.edges.map((edge) => {
     const { node } = edge;
     const { name, maintainer } = node;
-    let image = images.find((node) => {
-      if (node.name !== name) {
+    const image = images.find((imgNode) => {
+      if (imgNode.name !== name) {
         return false;
       }
 
-      const [imageMaintainer] = node.relativeDirectory.split('/');
+      const [imageMaintainer] = imgNode.relativeDirectory.split('/');
       if (imageMaintainer !== maintainer.name) {
         return false;
       }
@@ -76,6 +77,7 @@ export function useComponentIndexData() {
       dateAdded: node.date_added,
       codeUrl: node.code_url,
       websiteUrl: node.website_url,
+      fathomGoal: node.fathom_goal,
     };
   });
 

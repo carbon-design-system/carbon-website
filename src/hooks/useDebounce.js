@@ -99,6 +99,23 @@ export function useDebounce(value, wait = 0, options = {}) {
     }
 
     /**
+     * Get the remaining time for a `setTimeout` call based on the current `time`.
+     * If `maxWait` has been specified, we'll choose the minimum between how long
+     * we've been waiting and how much time we have left before hitting our
+     * `maxWait` threshold. Otherwise, we'll use the time since the last call to
+     * schedule the timer.
+     * @param {number} time
+     */
+    function getRemainingTime(time) {
+      const timeSinceLastCall = time - lastCallTime.current;
+      const timeSinceLastUpdate = time - lastUpdate.current;
+      const timeWaiting = wait - timeSinceLastCall;
+      return maxWait
+        ? Math.min(timeWaiting, maxWait - timeSinceLastUpdate)
+        : timeSinceLastCall;
+    }
+
+    /**
      * Used as the handler to our `setTimeout` calls. This function will determine
      * if we are able to update the debouncedValue, or if we'll need to schedule a
      * timer to run for the remaining time.
@@ -116,23 +133,6 @@ export function useDebounce(value, wait = 0, options = {}) {
         return;
       }
       timerId.current = setTimeout(timerExpired, getRemainingTime(time));
-    }
-
-    /**
-     * Get the remaining time for a `setTimeout` call based on the current `time`.
-     * If `maxWait` has been specified, we'll choose the minimum between how long
-     * we've been waiting and how much time we have left before hitting our
-     * `maxWait` threshold. Otherwise, we'll use the time since the last call to
-     * schedule the timer.
-     * @param {number} time
-     */
-    function getRemainingTime(time) {
-      const timeSinceLastCall = time - lastCallTime.current;
-      const timeSinceLastUpdate = time - lastUpdate.current;
-      const timeWaiting = wait - timeSinceLastCall;
-      return maxWait
-        ? Math.min(timeWaiting, maxWait - timeSinceLastUpdate)
-        : timeSinceLastCall;
     }
 
     timerId.current = setTimeout(timerExpired, wait);

@@ -12,5 +12,5 @@ export default {
   ComponentVariant,
   MdxIcon,
   ColorPalette,
-  Profile
+  Profile,
 };
