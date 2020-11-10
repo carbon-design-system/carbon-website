@@ -8,8 +8,6 @@
 import { Row, Column, Link } from 'carbon-components-react';
 import React from 'react';
 
-const coreChartsLink = '/components/overview';
-
 function ChartIndexNotFound() {
   return (
     <div className="component-index-not-found">
