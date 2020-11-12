@@ -949,7 +949,7 @@ const colorTokens = {
         },
       },
     },
-    '$hover-ui-light': {
+    '$hover-light-ui': {
       role: ['“Light” variant hover'],
       value: {
         white: {
@@ -961,12 +961,12 @@ const colorTokens = {
           hex: '#e5e5e5',
         },
         g90: {
-          name: 'Gray 60',
-          hex: '#6f6f6f',
+          name: 'Gray 70 hover',
+          hex: '#656565',
         },
         g100: {
-          name: 'Gray 70',
-          hex: '#525252',
+          name: 'Gray 80 hover',
+          hex: '#4c4c4c',
         },
       },
     },
@@ -1138,6 +1138,27 @@ const colorTokens = {
         },
       },
     },
+    '$active-light-ui': {
+      role: ['“Light” variant active'],
+      value: {
+        white: {
+          name: 'Gray 30',
+          hex: '#c6c6c6',
+        },
+        g10: {
+          name: 'Gray 30',
+          hex: '#c6c6c6',
+        },
+        g90: {
+          name: 'Gray 50',
+          hex: '#8d8d8d',
+        },
+        g100: {
+          name: 'Gray 60',
+          hex: '#6f6f6f',
+        },
+      },
+    },
     '$active-danger': {
       role: ['Danger active', '$support-01 active'],
       value: {
@@ -1177,6 +1198,27 @@ const colorTokens = {
         g100: {
           name: 'Gray 80',
           hex: '#393939',
+        },
+      },
+    },
+    '$selected-light-ui': {
+      role: ['“Light” variant selected'],
+      value: {
+        white: {
+          name: 'Gray 20',
+          hex: '#e0e0e0',
+        },
+        g10: {
+          name: 'Gray 20',
+          hex: '#e0e0e0',
+        },
+        g90: {
+          name: 'Gray 60',
+          hex: '#6f6f6f',
+        },
+        g100: {
+          name: 'Gray 70',
+          hex: '#525252',
         },
       },
     },
