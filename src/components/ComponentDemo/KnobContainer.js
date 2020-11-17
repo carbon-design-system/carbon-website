@@ -152,8 +152,15 @@ const Knob = ({
       [component]: { ...knobs[component], ...{ [name]: val } },
     };
 
+    const isSelfClosingTag =
+      defaultKnobProps.charAt(defaultKnobProps.length - 1) === '/';
+
+    const parsedKnobProps = isSelfClosingTag
+      ? defaultKnobProps.slice(0, -2)
+      : defaultKnobProps;
+
     // Generates valid jsx props from a prop object
-    const propString = defaultKnobProps.concat(
+    const propString = parsedKnobProps.concat(
       Object.entries(newKnobs[component]).reduce(
         (accumulator, [prop, value]) => {
           if (!value || value === `'default'`) return accumulator;
@@ -167,7 +174,13 @@ const Knob = ({
     );
 
     setKnobs(newKnobs);
-    setCode(code.replace(componentPropsRegex, `<${component}${propString}>`));
+    if (isSelfClosingTag) {
+      setCode(
+        code.replace(componentPropsRegex, `<${component}${propString} />`)
+      );
+    } else {
+      setCode(code.replace(componentPropsRegex, `<${component}${propString}>`));
+    }
   };
 
   if (type.name === 'bool') {
