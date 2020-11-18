@@ -10,6 +10,7 @@ const component = Joi.object({
   framework: Joi.string().valid('React', 'Angular', 'Vanilla', 'Vue'),
   platform: Joi.string().valid('Web', 'iOS', 'Android'),
   website_url: Joi.string().uri(),
+  fathom_goal: Joi.string(),
 
   // Mapped from `name`
   friendly_name: Joi.string().required(),
