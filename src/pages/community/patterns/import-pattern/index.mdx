@@ -28,7 +28,7 @@ This pattern uses Carbon's
 <AnchorLinks>
   <AnchorLink>Choose a file (modal)</AnchorLink>
   <AnchorLink>Choose a file (full page or side-panel)</AnchorLink>
-  <AnchorLink>Future considerations</AnchorLink>
+  <AnchorLink>Accessibility</AnchorLink>
 </AnchorLinks>
 
 ![Example of an import modal](/images/0.png)
@@ -175,7 +175,184 @@ If your product supports importing from a URL, use this method.
 </Column>
 </Row>
 
-## Future considerations
+## Accessibility
 
-We understand that some content in this pattern duplicates Carbon's File
-uploader component.
+Refer to accessibility guidance for the components implemented:
+[Modal](https://www.carbondesignsystem.com/components/modal/usage#behaviors),
+[File Uploader](https://www.carbondesignsystem.com/components/file-uploader/usage#interactions).
+
+### Modal (& single-files)
+
+#### Trigger
+
+The modal can be launched by a variety of interactions.
+
+<Row>
+<Column colLg={8}>
+
+![Non-exhaustive example interactions that load an import modal](images/Importbuttons.png)
+
+<Caption>Non-exhaustive example interactions that load an import modal</Caption>
+
+</Column>
+</Row>
+
+1. The user navigates to the Export button using the tab key. If Export is
+   launched from an overflow menu, the user may navigate to Export within the
+   overflow menu using the up/down arrow keys.
+2. The focus state is applied to the button/menu item.
+3. The user clicks “enter” to launch the Export modal.
+
+#### Focus
+
+This guidance also applies to full page or side-panel interactions, when a
+maximum of 1 files can be uploaded.
+
+<Row>
+<Column colLg={8}>
+
+![Tab order in an opened import modal](images/ModalTabOrder.png)
+
+</Column>
+</Row>
+
+1. On opening the modal, the focus is applied to the first field that accepts
+   user input. In the case of Import modals, this is the drag & drop area.
+2. On `tab`, focus is applied to the second field that accepts user input. If
+   the URL field option is present, focus is applied to this.
+3. On `tab`, focus is applied to the Cancel button.
+
+The user cycles input methods using tab and hits `return` to activate their
+chosen option (file uploader or URL).
+
+_Using the file uploader_  
+If the user chooses the file uploader, they select files using the
+browser-native file selector and click the call to action. This returns them to
+the modal with an optional file loading state.
+
+_Using the URL field_
+
+<Row>
+<Column colLg={8}>
+
+![Tab order in an opened import modal where the user chooses the URL field](images/ModalURLTabOrder.png)
+
+</Column>
+</Row>
+
+If the user chooses the URL field, the field gains focus and the user inputs
+their URL. Then:
+
+1. On `tab`, focus is applied to the "Add file" button
+2. On `tab`, focus is applied to the "Cancel" button
+3. On `tab`, focus is applied to the file uploader
+4. On `tab`, focus is reapplied to the URL field
+
+Once the user presses `return` on the "Add file" button, the file is uploaded
+with an optional loading state. The user can also key `return` while focus is
+applied to the URL field to trigger the "Add file" button.
+
+_Once the file is added_
+
+<Row>
+<Column colLg={8}>
+
+![Tab order when the file is added](images/ModalCompleteTabOrder.png)
+
+</Column>
+</Row>
+
+1. Focus is applied to the "remove" cross on the added file. The user hits enter
+   to remove the chosen file and return to the original state of the modal.
+2. On `tab`, focus is applied to the "Import" button
+3. On `tab`, focus is applied to the "Cancel" button
+
+### Side panel & full page (multiple files)
+
+When multiple files may be selected, the side panel and full page options are
+used.
+
+#### Focus
+
+<Row>
+<Column colLg={8}>
+
+![Tab order of full page and side panel import](images/FullPageTabOrder.png)
+
+</Column>
+</Row>
+
+1. On entering an Import section or page, focus on the first `tab` keystroke is
+   applied to the first field accepting user input. In most cases this is the
+   file uploader.
+2. On `tab`, focus is applied to the the URL field
+
+The user keys `return` to choose between the file uploader and URL field.
+
+_When the file uploader is chosen_  
+If the user chooses the file uploader, they select files using the
+browser-native file selector and click the call to action. This returns them to
+the page with an optional file loading state.
+
+_When the URL field is chosen_
+
+<Row>
+<Column colLg={8}>
+
+![Tab order when the URL field is filled](images/FullPageTabOrderURL.png)
+
+</Column>
+</Row>
+
+If the user chooses the URL field, the field gains focus and the user inputs
+their URL. Then:
+
+1. On `tab`, the "Add file" button gains focus
+2. On `tab`, any fields below the import section gain focus.
+3. On returning to the top of the import section or page, on `tab`, the file
+   uploader gains focus once again.
+
+On keying `return` while the "Add file" button **or** the URL field has focus,
+"Add file" is triggered, the file is added and an optional loading state is
+displayed.
+
+_When (some) files are loaded_
+
+<Row>
+<Column colLg={8}>
+
+![Tab order when some files have been chosen](images/FullPageTabOrderIncomplete.png)
+
+</Column>
+</Row>
+
+<InlineNotification>
+  Note that the behavior when multiple files can be selected is different to
+  single file situations. Refer to the Modal/single file behavior above in
+  single file situations.
+</InlineNotification>
+
+1. Focus returns to the just-used file selection method. For example, if the
+   file added so far was added by URL, return focus to the URL field.
+2. **If** the just-used method was the file uploader, on `tab`, apply focus to
+   the URL field.
+3. On `tab`, apply focus to the "remove" icon on the added file(s), moving
+   through each using `tab`.
+
+_On reaching the maximum number of added files_  
+In some usecases, there are a maximum number of allowed files.
+
+<Row>
+<Column colLg={8}>
+
+![Tab order once the maximum number of files is reached](images/FullPageTabOrderComplete.png)
+
+</Column>
+</Row>
+
+1. On returning to the page/panel from the final File Uploader/"Add file"
+   interaction, (after any option loading state) focus is applied to the
+   "remove" icon on the uploaded files.
+2. On keying `tab`, focus moves through the "remove" icon of each uploaded file.
+3. On continued use of `tab`, focus is applied to the next section or
+   interaction in the page.
