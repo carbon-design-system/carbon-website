@@ -58,11 +58,22 @@ Do not use this pattern for [adding or editing a resource](#Related-use-cases).
 
 ## Inline creation
 
+#### When to use
 With quick, simple creations like that of an item, it is usually preferred to
 keep the flow inline. This is especially true when the user could benefit from
 seeing context in the page while creating. The inline create pattern is under
 construction, as it needs to account for many different use cases. Below is an
 example of an inline creation.
+
+#### When not to use
+Another factor to consider with quick, simple creations is whether or not the
+flow is transitional. Use a Modal if the user is being taken to a different page
+than the one where they initiated the create. For example, if the newly created
+asset is being opened or if the user is taken to a confirmation screen.
+
+For complex creation flows, such as that of a large system object, use the
+Narrow or Wide tearsheet variations for single or multistep options,
+respectively.
 
 <Row>
 <Column colLg={12}>
@@ -78,18 +89,22 @@ example of an inline creation.
 </Column>
 </Row>
 
-Another factor to consider with quick, simple creations is whether or not the
-flow is transitional. Use a Modal if the user is being taken to a different page
-than the one where they initiated the create. For example, if the newly created
-asset is being opened or if the user is taken to a confirmation screen.
-
-For complex creation flows, such as that of a large system object, use the
-Narrow or Wide tearsheet variations for single or multistep options,
-respectively.
 
 ## Modal
 
-### Anatomy
+#### When to use
+
+- Use a modal for simple creations with one or two form fields to be filled out.
+- Use for transitions when the user will be taken to a different page after
+  creation.
+
+#### When not to use a modal
+
+- Don't use a modal in place of an inline create.
+- Don't use a modal if there are more than four form fields or if there is
+  scrolling inside the modal.
+
+### Anatomy of a modal
 
 <Row>
 <Column colLg={8}>
@@ -118,21 +133,19 @@ respectively.
 </Column>
 </Row>
 
-#### Do:
-
-- Use for simple creations with one or two form fields to be filled out.
-- Use for transitions when the user will be taken to a different page after
-  creation.
-
-#### Don't:
-
-- Don't use a modal in place of an inline create.
-- Don't use this option if there are more than four form fields or if there is
-  scrolling inside the modal.
 
 ## Side panel
 
-### Anatomy
+#### When to use
+
+- Use a side panel when the user needs to have page context while populating the side panel.
+
+#### When not to use
+
+- Don't use when the flow has high complexity and the user would benefit from
+  having a visible progress indicator.
+
+### Anatomy of a side panel
 
 <Row>
 <Column colLg={8}>
@@ -161,18 +174,20 @@ respectively.
 </Column>
 </Row>
 
-#### Do:
-
-- Use when the user needs to have page context while populating the side panel.
-
-#### Don't:
-
-- Don't use when the flow has high complexity and the user would benefit from
-  having a visible progress indicator.
 
 ## Narrow tearsheet
 
-### Anatomy
+#### When to use
+
+- Use a narrow tearsheet as an alternative to Modal when there is scrolling.
+- Use when the form fields can be broken down into sections using section headers.
+
+#### When not to use
+
+- Don't use if the flow has high complexity and the user would
+  benefit from having a visible progress indicator.
+
+### Anatomy of a tearsheet
 
 <Row>
 <Column colLg={8}>
@@ -200,19 +215,21 @@ respectively.
 </Column>
 </Row>
 
-#### Do:
-
-- Use as an alternative to Modal when there is scrolling.
-- The form fields can be broken down into sections using section headers.
-
-#### Don't:
-
-- Don't use this option if the flow has high complexity and the user would
-  benefit from having a visible progress indicator.
 
 ## Wide tearsheet
 
-### Anatomy
+#### When to use
+
+- Use a wide tearsheet with creations that have two or more distinct steps.
+- Omit the progress indicator to use with single step creations that require
+  more space, such as those with interactive selections, diagrams, or tables.
+
+#### When not to use
+
+- Don't use the wide tearsheet for low complexity create flows with only one
+  step.
+
+### Anatomy of a wide tearsheet
 
 <Row>
 <Column colLg={8}>
@@ -283,7 +300,7 @@ respectively.
 </Column>
 </Row>
 
-Wide tearsheet Create flows can include an optional Toggle to show all the steps
+Wide tearsheet create flows can include an optional toggle to show all the steps
 on a single scrolling page with anchor links. Toggling to "Show all available
 options" will replace the progress indicator with the In-page navigation anchor
 links. Depending on your use case, you may choose to persist the toggle to show
@@ -329,16 +346,6 @@ consequences, show a modal alerting them that the changes won't be saved.
 </Column>
 </Row>
 
-#### Do:
-
-- Use with creations that have two or more distinct steps.
-- Omit the progress indicator to use with single step creations that require
-  more space, such as those with interactive selections, diagrams, or tables.
-
-#### Don't:
-
-- Don't use the Wide tearsheet for low complexity create flows with only one
-  step.
 
 ## Full page
 
@@ -347,7 +354,22 @@ consequences, show a modal alerting them that the changes won't be saved.
   or used in place of the Wide tearsheet.
 </InlineNotification>
 
-### Anatomy
+#### When to use
+
+- In Cloud and Cognitive, the Full page create flow is the process the user must
+  complete in order to use a product or service.
+- In IBM Cloud public, it is the alternative to the Provisioning flow for a
+  non-billable service.
+
+#### When not to use
+
+- Don't use the Full page option when the product or service is usable before
+  the current creation flow is initiated.
+- For IBM Public Cloud, do not use this when provisioning a service directly
+  from the Catalog, or when creating a non-billable resource that could happen
+  in a side panel/in context.
+
+### Anatomy of a full page
 
 <Row>
 <Column colLg={8}>
@@ -398,27 +420,13 @@ consequences, show a modal alerting them that the changes won't be saved.
 </Column>
 </Row>
 
-### Behaviours, structure, and functionality
+### Optional toggle
 
-Full page Create flows can include an optional Toggle to show all the steps on a
+Full page create flows can include an optional toggle to show all the steps on a
 single scrolling page with anchor links. Toggling to "Show all available
 options" will replace the progress indicator with the In-page navigation anchor
 links.
 
-#### Do:
-
-- In Cloud and Cognitive, the Full page create flow is the process the user must
-  complete in order to use a product or service.
-- In IBM Cloud public, it is the alternative to the Provisioning flow for a
-  non-billable service.
-
-#### Don't:
-
-- Don't use the Full page option when the product or service is usable before
-  the current creation flow is initiated.
-- For IBM Public Cloud, do not use this when provisioning a service directly
-  from the Catalog, or when creating a non-billable resource that could happen
-  in a side panel/in context.
 
 ## Designing with creation flows
 
