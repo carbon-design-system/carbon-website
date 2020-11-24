@@ -16,7 +16,8 @@ import {
   fiveColorDark,
   monoColors,
   divergingColors,
-  alert,
+  alertLight,
+  alertDark,
 } from '../../data/data-visualization/palettes';
 import ColorPaletteColor from './ColorPaletteColor';
 import PalettesContainer from './PalettesContainer';
@@ -46,6 +47,7 @@ const ColorPalette = ({ type, isMono, isDiverging }) => {
   const threeColor = dark ? threeColorDark : threeColorLight;
   const fourColor = dark ? fourColorDark : fourColorLight;
   const fiveColor = dark ? fiveColorDark : fiveColorLight;
+  const alertColor = dark ? alertDark : alertLight;
 
   // SET RENDERED COLORS
   const [colorGroup, setColorGroup] = useState(oneColor); // used to render type === "grouped" colors
@@ -56,7 +58,7 @@ const ColorPalette = ({ type, isMono, isDiverging }) => {
   } else if (type === 'categorical') {
     colors = categorical;
   } else if (type === 'alert') {
-    colors = alert;
+    colors = alertColor;
   }
 
   // DROPDOWN STUFF
@@ -166,7 +168,6 @@ const ColorPalette = ({ type, isMono, isDiverging }) => {
             label="Color group selection"
             id="color-group-dropdown"
             size="xl"
-            light
             items={dropdownItems}
             onChange={onDropdownChange}
             selectedItem={dropdownItems[groupNumber - 1]}
