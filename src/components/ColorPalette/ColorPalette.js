@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ContentSwitcher, Switch, Dropdown } from 'carbon-components-react';
 import cx from 'classnames';
 import {
@@ -84,11 +84,13 @@ const ColorPalette = ({ type, isMono, isDiverging }) => {
   ];
 
   const onDropdownChange = (e) => {
+    const id = e.selectedItem ? e.selectedItem.id : e;
+
     // update selected option
-    setGroupNumber(e.selectedItem.id);
+    setGroupNumber(id);
 
     // update colors rendered
-    switch (e.selectedItem.id) {
+    switch (id) {
       case 1:
         setColorGroup(oneColor);
         break;
@@ -107,6 +109,11 @@ const ColorPalette = ({ type, isMono, isDiverging }) => {
       default:
     }
   };
+
+  // Rerender color group values when theme is toggled
+  useEffect(() => {
+    onDropdownChange(groupNumber);
+  }, [dark]);
 
   // SWITCHER STUFF
   const activateFirstSwitcher = () => {
