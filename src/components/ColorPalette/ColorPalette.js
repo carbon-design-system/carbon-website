@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ContentSwitcher, Switch, Dropdown } from 'carbon-components-react';
 import cx from 'classnames';
 import {
@@ -16,7 +16,8 @@ import {
   fiveColorDark,
   monoColors,
   divergingColors,
-  alert,
+  alertLight,
+  alertDark,
 } from '../../data/data-visualization/palettes';
 import ColorPaletteColor from './ColorPaletteColor';
 import PalettesContainer from './PalettesContainer';
@@ -46,6 +47,7 @@ const ColorPalette = ({ type, isMono, isDiverging }) => {
   const threeColor = dark ? threeColorDark : threeColorLight;
   const fourColor = dark ? fourColorDark : fourColorLight;
   const fiveColor = dark ? fiveColorDark : fiveColorLight;
+  const alertColor = dark ? alertDark : alertLight;
 
   // SET RENDERED COLORS
   const [colorGroup, setColorGroup] = useState(oneColor); // used to render type === "grouped" colors
@@ -56,7 +58,7 @@ const ColorPalette = ({ type, isMono, isDiverging }) => {
   } else if (type === 'categorical') {
     colors = categorical;
   } else if (type === 'alert') {
-    colors = alert;
+    colors = alertColor;
   }
 
   // DROPDOWN STUFF
@@ -84,11 +86,13 @@ const ColorPalette = ({ type, isMono, isDiverging }) => {
   ];
 
   const onDropdownChange = (e) => {
+    const id = e.selectedItem ? e.selectedItem.id : e;
+
     // update selected option
-    setGroupNumber(e.selectedItem.id);
+    setGroupNumber(id);
 
     // update colors rendered
-    switch (e.selectedItem.id) {
+    switch (id) {
       case 1:
         setColorGroup(oneColor);
         break;
@@ -107,6 +111,11 @@ const ColorPalette = ({ type, isMono, isDiverging }) => {
       default:
     }
   };
+
+  // Rerender color group values when theme is toggled
+  useEffect(() => {
+    onDropdownChange(groupNumber);
+  }, [dark]);
 
   // SWITCHER STUFF
   const activateFirstSwitcher = () => {
@@ -159,7 +168,6 @@ const ColorPalette = ({ type, isMono, isDiverging }) => {
             label="Color group selection"
             id="color-group-dropdown"
             size="xl"
-            light
             items={dropdownItems}
             onChange={onDropdownChange}
             selectedItem={dropdownItems[groupNumber - 1]}
