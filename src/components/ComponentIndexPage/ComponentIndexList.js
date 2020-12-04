@@ -22,6 +22,7 @@ function ComponentIndexList({ items }) {
           maintainer,
           name,
           websiteUrl,
+          fathomGoal,
         }) => {
           const key = `${name}:${maintainer}`;
           return (
@@ -35,6 +36,7 @@ function ComponentIndexList({ items }) {
               maintainer={maintainer}
               name={name}
               websiteUrl={websiteUrl}
+              fathomGoal={fathomGoal}
             />
           );
         }

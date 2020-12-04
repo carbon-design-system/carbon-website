@@ -37,6 +37,23 @@ const searchOptions = {
   ],
 };
 
+function sortByName(a, b) {
+  return a.name.localeCompare(b.name);
+}
+
+function sortByMaintainer(a, b) {
+  if (a.maintainer === b.maintainer) {
+    return sortByName(a, b);
+  }
+  return a.maintainer.localeCompare(b.maintainer);
+}
+
+function sortByNewest(a, b) {
+  const dateA = new Date(a.date_added);
+  const dateB = new Date(b.date_added);
+  return dateA - dateB;
+}
+
 const sortOptions = ['Sort by A to Z', 'Sort by Maintainer', 'Sort by Newest'];
 const initialSortOption = 'Sort by A to Z';
 const sortBy = {
@@ -45,21 +62,6 @@ const sortBy = {
   'Sort by Newest': sortByNewest,
 };
 
-function sortByName(a, b) {
-  return a.name.localeCompare(b.name);
-}
-function sortByMaintainer(a, b) {
-  if (a.maintainer === b.maintainer) {
-    return sortByName(a, b);
-  }
-  return a.maintainer.localeCompare(b.maintainer);
-}
-function sortByNewest(a, b) {
-  const dateA = new Date(a.date_added);
-  const dateB = new Date(b.date_added);
-  return dateA - dateB;
-}
-
 const filterLabels = [
   {
     title: 'Maintainer',
@@ -67,7 +69,15 @@ const filterLabels = [
   },
   {
     title: 'Chart type',
-    options: ['Comparisons', 'Trends', 'Part-to-whole', 'Correlations', 'Connections', 'Geospatial', 'Other'],
+    options: [
+      'Comparisons',
+      'Trends',
+      'Part-to-whole',
+      'Correlations',
+      'Connections',
+      'Geospatial',
+      'Other',
+    ],
   },
   {
     title: 'Complexity',
@@ -97,11 +107,9 @@ function ChartIndexPage() {
   const [selected, setSelected] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   const [debouncedSearchValue] = useDebounce(searchValue, 300);
-  const searchClient = useMemo(() => new Fuse(charts, searchOptions), [
-    charts,
-  ]);
+  const searchClient = useMemo(() => new Fuse(charts, searchOptions), [charts]);
 
-  const handleOnChange = (checkedOption, selectedFilter) => {
+  const handleOnChange = (_checkedOption, selectedFilter) => {
     // Remove unchecked filter option(s) from setSelected state.
     if (selected.includes(selectedFilter)) {
       setSelected(

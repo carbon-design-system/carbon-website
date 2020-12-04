@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React, { useState, useContext } from 'react';
-import prismTheme from 'gatsby-theme-carbon/src/components/Code/prismTheme';
+import getTheme from 'gatsby-theme-carbon/src/components/Code/getTheme';
 import * as CarbonComponents from 'carbon-components-react';
 import { LiveProvider, LiveEditor, LivePreview, LiveError } from 'react-live';
 import { Row } from 'gatsby-theme-carbon';
@@ -95,7 +95,6 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
         <Row className={dropdownRow}>
           <Dropdown
             onChange={onThemeChange}
-            light
             itemToString={(item) =>
               isMobile ? item.replace('ray ', '') : item
             }
@@ -108,7 +107,6 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
           />
           <Dropdown
             onChange={onVariantChange}
-            light
             initialSelectedItem={components[0]}
             id="component-variant"
             titleText={childrenArray.length === 1 ? '' : 'Variant selector'}
@@ -133,7 +131,7 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
         <Row>
           <LiveProvider
             noInline={noInline}
-            theme={prismTheme}
+            theme={getTheme('white')}
             scope={{ ...CarbonComponents, ...scope }}
             code={code}>
             <div className={cx(container, { [knoblessContainer]: !knobs })}>
