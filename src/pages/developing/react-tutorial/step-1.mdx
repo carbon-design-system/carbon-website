@@ -138,16 +138,16 @@ packages.
 Stop your development server with `CTRL-C` and install Carbon dependencies with:
 
 ```bash
-yarn add carbon-components@10.3.0 carbon-components-react@7.3.0 @carbon/icons-react@10.3.0 carbon-icons@7.0.7
+yarn add carbon-components@10.25.0 carbon-components-react@7.25.0 @carbon/icons-react@10.22.0 carbon-icons@7.0.7
 ```
 
 ## Install and build Sass
 
 We need to run a Sass build as the Carbon styles are authored in Sass, so run
-the following command to install `node-sass` as a dependency.
+the following command to install `sass` as a dependency.
 
 ```bash
-yarn add node-sass@4.12.0
+yarn add sass@1.29.0
 ```
 
 To avoid having to add the `~` prefix when importing SCSS files from
@@ -253,18 +253,6 @@ src/components/TutorialHeader
 
 ### Add UI Shell Sass
 
-In `index.scss` add the following feature-flag **above** the Carbon styles
-import like so:
-
-```scss path=src/index.scss
-$feature-flags: (
-  ui-shell: true,
-);
-```
-
-This is because our UI Shell is in experimental mode and the styles need to be
-manually imported.
-
 Next, in `app.scss`, we'll import our `TutorialHeader` styles. Your file should
 now look like this:
 
@@ -289,25 +277,49 @@ up the file like so:
 import React from 'react';
 import {
   Header,
+  HeaderContainer,
   HeaderName,
   HeaderNavigation,
+  HeaderMenuButton,
   HeaderMenuItem,
   HeaderGlobalBar,
   HeaderGlobalAction,
   SkipToContent,
+  SideNav,
+  SideNavItems,
+  HeaderSideNavItems,
 } from 'carbon-components-react';
 
 const TutorialHeader = () => (
-  <Header aria-label="Carbon Tutorial">
-    <SkipToContent />
-    <HeaderName href="/" prefix="IBM">
-      Carbon Tutorial
-    </HeaderName>
-    <HeaderNavigation aria-label="Carbon Tutorial">
-      <HeaderMenuItem href="/repos">Repositories</HeaderMenuItem>
-    </HeaderNavigation>
-    <HeaderGlobalBar />
-  </Header>
+  <HeaderContainer
+    render={({ isSideNavExpanded, onClickSideNavExpand }) => (
+      <Header aria-label="Carbon Tutorial">
+        <SkipToContent />
+        <HeaderMenuButton
+          aria-label="Open menu"
+          onClick={onClickSideNavExpand}
+          isActive={isSideNavExpanded}
+        />
+        <HeaderName href="/" prefix="IBM">
+          Carbon Tutorial
+        </HeaderName>
+        <HeaderNavigation aria-label="Carbon Tutorial">
+          <HeaderMenuItem href="/repos">Repositories</HeaderMenuItem>
+        </HeaderNavigation>
+        <SideNav
+          aria-label="Side navigation"
+          expanded={isSideNavExpanded}
+          isPersistent={false}>
+          <SideNavItems>
+            <HeaderSideNavItems>
+              <HeaderMenuItem href="/repos">Repositories</HeaderMenuItem>
+            </HeaderSideNavItems>
+          </SideNavItems>
+        </SideNav>
+        <HeaderGlobalBar />
+      </Header>
+    )}
+  />
 );
 
 export default TutorialHeader;
@@ -327,15 +339,6 @@ package.
 **Note:** When creating navigation headers, it's important to have a
 `Skip to content` link so keyboard users can skip the navigation items and go
 straight to the main content.
-
-</InlineNotification>
-
-<InlineNotification>
-
-**Note:** It's important that the `TutorialHeader` returns the Carbon `Header`
-as its containing element, as we'll later be rendering `TutorialHeader` in
-`App.js` as a preceding sibling of `Content`, another UI Shell component. Those
-components need to live one after another for the UI Shell to properly render.
 
 </InlineNotification>
 
@@ -587,7 +590,7 @@ replace the `href` with `to`:
 </HeaderName>
 ```
 
-Do the same with the component that contains `href="/repos"`, updating to:
+Do the same with the components that contain `href="/repos"`, updating them to:
 
 ```javascript path=src/components/TutorialHeader/TutorialHeader.js
 <HeaderMenuItem element={Link} to="/repos">
