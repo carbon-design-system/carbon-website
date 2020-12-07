@@ -124,7 +124,7 @@ we're building the pages with grid, we need to install one more Carbon package.
 Stop your development environment (`CTRL-C`) and:
 
 ```bash
-yarn add @carbon/grid
+yarn add @carbon/grid@10.17.0
 ```
 
 In `index.scss`, we need to configure our grid to use 16 columns instead of the
@@ -352,13 +352,18 @@ Same goes for the `Tabs` opening tag:
 ```
 <!-- prettier-ignore-end -->
 
-Next, we'll need to add a styling override to move the tabs to the right on
+Next, we'll need to add some styling overrides to move the tabs to the right on
 large viewports. Create a file `_overrides.scss` in `src/content/LandingPage`
 with this declaration block.
 
 ```scss path=src/content/LandingPage/_overrides.scss
-.landing-page__r2 .bx--tabs__nav {
-  right: 0;
+.landing-page__r2 .bx--tabs--scrollable {
+  transform: translateZ(0);
+  justify-content: flex-end;
+}
+
+.landing-page__r2 .bx--tab-content {
+  padding: 0;
 }
 ```
 
