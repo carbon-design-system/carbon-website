@@ -8,20 +8,35 @@ tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 
 ## Color
 
+| Class                     | Property         | Color token |
+| ------------------------- | ---------------- | ----------- |
+| `.bx--data-table-header`  | background-color | `$ui-01`    |
+| `.bx--data-table-header`  | text color       | `$text-01`  |
+| `.bx--data-table thead`   | background-color | `$ui-03`    |
+| `.bx--table-header-label` | text color       | `$text-01`  |
+| `.bx--data-table tbody`   | background-color | `$ui-01`    |
+| `.bx--data-table td`      | text color       | `$text-02`  |
+
+<Row>
+<Column colLg={8}>
+
+![Basic data table](images/datatable-style-3.png)
+
+</Column>
+</Row>
+
+### Enhancements
+
 | Class                                                                                         | Property         | Color token       |
 | --------------------------------------------------------------------------------------------- | ---------------- | ----------------- |
-| `.bx--data-table-header`                                                                      | background-color | `$ui-01`          |
-| `.bx--data-table-header`                                                                      | text color       | `$text-01`        |
-| `.bx--data-table thead`                                                                       | background-color | `$ui-03`          |
-| `.bx--table-header-label`                                                                     | text color       | `$text-01`        |
-| `.bx--data-table tbody`                                                                       | background-color | `$ui-01`          |
-| `.bx--data-table td`                                                                          | text color       | `$text-02`        |
 | `.bx--data-table--zebra`                                                                      | background-color | –                 |
 | `.bx--expandable-row-v2`                                                                      | background-color | `$ui-01`          |
 | `.bx--table-sort-v2__icon` <br/> `.bx--table-expand-v2__svg` <br/> `.bx--overflow-menu__icon` | fill             | `$icon-01`        |
 | `.bx--batch-actions--active`                                                                  | background-color | `$interactive-01` |
 | `.bx--batch-summary__para`                                                                    | background-color | `$text-04`        |
 | `.bx--batch-actions .bx--btn`                                                                 | text-color       | `$text-04`        |
+| `.bx--overflow-menu-options`                                                                  | text-color       | `$text-02`        |
+| `.bx--overflow-menu-options`                                                                  | background color | `$ui-02`          |
 
 ### Interactive states
 
@@ -35,53 +50,67 @@ tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 | `.bx--data-table--selected:hover`   | background-color | `$hover-selected-ui` |
 | `.bx--batch-actions .bx--btn:hover` | background color | `$hover-primary`     |
 
-### Style options
+<Row>
+<Column colLg={8}>
 
-Specific styling on the data table component can be toggled on/off based on user
-or team preference.
+![data table states](images/datatable-style-4.png)
 
-#### Row dividers, zebra striping, & table border
-
-If zebra striping is turned off, you must have row dividers.
-
-<div className="image--fixed">
-
-![Data table: row styling](images/data-table-style-1.png)
-
-</div>
-
-<Caption>Data table with various row styling</Caption>
-
-<!-- This section is commented out until themes are ready
-
-**Background colors**
-
-Data tables are built to be accessible against the `$ui-background` color:
-
-
-
-![Data table: background colors](images/data-table-style-2.png)
-
-
--->
+</Column>
+</Row>
 
 ## Typography
 
-| Class                     | Font-size (px/rem) | Font-weight    | Type token       |
-| ------------------------- | ------------------ | -------------- | ---------------- |
-| `.bx--data-table-header`  | 18 / 1.125         | Regular / 400  | `$heading-03`    |
-| `.bx--table-header-label` | 14 / 0.875         | SemiBold / 600 | `$heading-01`    |
-| `.bx--data-table td`      | 14 / 0.875         | Regular / 400  | `$body-short-01` |
+| Class                     | Font-size (px/rem) | Font-weight    | Type token               |
+| ------------------------- | ------------------ | -------------- | ------------------------ |
+| `.bx--data-table-header`  | 20 / 1.25          | Regular / 400  | `$productive-heading-03` |
+| `.bx--table-header-label` | 14 / 0.875         | SemiBold / 600 | `$productive-heading-01` |
+| `.bx--data-table td`      | 14 / 0.875         | Regular / 400  | `$body-short-01`         |
 
 ## Structure
 
 Tables are a configurable and customizable component. Designers can pick and
-choose certain elements and interactions.
+choose certain elements and interactions. The basic table style is the required
+base from which tables can be developed. Basic tables are composed of a header
+row followed by rows of data below.
 
-### Row sizes
+| Class                                                                      | Property                    | px / rem | Spacing token |
+| -------------------------------------------------------------------------- | --------------------------- | -------- | ------------- |
+| `.bx--data-table-header`                                                   | margin-top                  | 16 / 1   | `$spacing-05` |
+| `.bx--data-table-header`                                                   | margin-bottom               | 24 / 1.5 | `$spacing-06` |
+| `.bx--data-table-header`                                                   | padding left, padding right | 16 / 1   | `$spacing-05` |
+| `.bx--table-sort-v2__icon`                                                 | padding                     | 8 / 0.5  | `$spacing-03` |
+| `.bx--data-table td:first-of-type` <br/> `.bx--data-table td:last-of-type` | padding-left, padding-right | 16 / 1   | `$spacing-05` |
 
-Short and Default are offered as **user preferences** that can be accessed from
-the table settings menu.
+<div className="image--fixed">
+
+![Data table structure](images/datatable-style-1.png)
+
+</div>
+
+<Caption>
+  Structure and spacing measurements for a basic data table | px/rem
+</Caption>
+
+### Columns
+
+Column widths can vary by content and only requires a minimum spacing between
+columns. Tables require three or more columns.
+
+| Spacing between | Property | px / rem | Spacing token |
+| --------------- | -------- | -------- | ------------- |
+| Columns         | padding  | 16 /1    | `$spacing-05` |
+
+<div className="image--fixed">
+
+![Data table column measurements](images/datatable-style-2.png)
+
+</div>
+
+<Caption>
+  Structure and spacing measurements for columns in a data table | px/rem
+</Caption>
+
+### Rows
 
 Row sizes are customizable. The column header row `.bx--data-table thead` should
 always match the row size of the table. Tall row heights are only recommended if
@@ -94,28 +123,13 @@ your data is expected to have 2 lines of content in a single row.
 | `.bx--data-table tr`       | Default | 48 / 3              |
 | `.bx--data-table--tall`    | Tall    | 64 / 4              |
 
-<div className="image--fixed">
+<Row>
+<Column colLg={8}>
 
-![Data table: row styling](images/data-table-style-3.png)
+![data table row sizes](images/datatable-style-sizes.png)
 
-</div>
-
-<Caption>Data table: varying row sizes</Caption>
-
-### Basics
-
-The basic table style is the required base from which tables can be developed.
-Basic tables are composed of a header row followed by rows of data below. At a
-minimum, tables require three or more columns.
-
-Column widths can vary by content and only requires a minimum spacing between
-columns.
-
-| Class                                                                      | Property                    | px / rem | Spacing token |
-| -------------------------------------------------------------------------- | --------------------------- | -------- | ------------- |
-| `.bx--data-table-header`                                                   | margin-bottom               | 16 / 1   | `$spacing-05` |
-| `.bx--table-sort-v2__icon`                                                 | padding                     | 8 / 0.5  | `$spacing-03` |
-| `.bx--data-table td:first-of-type` <br/> `.bx--data-table td:last-of-type` | padding-left, padding-right | 16 / 1   | `$spacing-05` |
+</Column>
+</Row>
 
 ### Enhancements
 
@@ -123,29 +137,64 @@ After the simple table structure, tables can be enhanced by adding any of the
 following: selectable rows, expanding rows, nested tables, row menus, table
 batch actions, overall table menu, and/or table filter.
 
-| Class                       | Property      | px / rem  | Spacing token |
-| --------------------------- | ------------- | --------- | ------------- |
-| `.bx--table-toolbar`        | height        | 48 / 3    | –             |
-| `.bx--table-toolbar--small` | height        | 32 / 2    | –             |
-| `.bx--table-expand-v2__svg` | height        | 16 / 1    | –             |
-| `.bx--checkbox-appearance`  | height, width | 20 / 1.25 | –             |
+| Class                           | Property                   | px / rem  | Spacing token |
+| ------------------------------- | -------------------------- | --------- | ------------- |
+| `.bx--checkbox-appearance`      | height, width              | 20 / 1.25 | –             |
+| `.bx--radio-button__appearance` | height, width              | 20 / 1.25 | –             |
+| `.bx--overflow-menu-options`    | height                     | 40 / 2.5  | –             |
+| `.bx--table-expand__svg`        | icon                       | 16 / 1    | –             |
+| `.bx--expandable-row`           | padding-top, padding-right | 16 / 1    | `$spacing-05` |
+| `.bx--expandable-row`           | padding-left               | 48 / 3    | `$spacing-09` |
+| `.bx--expandable-row`           | padding-bottom             | 24 / 1.5  | `$spacing-06` |
 
-_Structure and spacing measurements for a basic and an enhanced data table | px
-/ rem_
+<div className="image--fixed">
 
-### Recommended
+![Data table expanded row measurements](images/datatable-style-5.png)
 
-| Spacing between | Property | px / rem | Spacing token |
-| --------------- | -------- | -------- | ------------- |
-| Columns         | padding  | 16 /1    | `$spacing-05` |
+</div>
+
+<Caption>Structure and spacing measurements for expanded row | px/rem</Caption>
 
 ### Toolbar
+
+The default 48px toolbar is paired with the tall and default row sizes. The
+small toolbar is paired with the short and compact row sizes.
 
 | Class                        | Property                  | px/rem  | Spacing token |
 | ---------------------------- | ------------------------- | ------- | ------------- |
 | `.bx--toolbar-action`        | height, width             | 48 / 3  | –             |
-| `.bx--toolbar`               | margin-top, margin-bottom | 16 / 1  | `$spacing-05` |
 | `.bx--toolbar-action--small` | height, width             | 32 / 2  | –             |
+| `.bx--toolbar`               | margin-top, margin-bottom | 16 / 1  | `$spacing-05` |
 | `.bx--toolbar--small`        | margin-top, margin-bottom | 8 / 0.5 | `$spacing-03` |
 
-_Structure and spacing measurements for toolbar icons | px / rem_
+<div className="image--fixed">
+
+![Data table toolbar measurements](images/datatable-style-7.png)
+
+</div>
+
+<Caption>Structure and spacing measurements for toolar | px/rem</Caption>
+
+### Batch action bar
+
+The default 48px batch action bar is paired with the tall and default row sizes.
+The small batch actioin bar is paired with the short and compact row sizes.
+
+| Class                       | Property                    | px/rem | Spacing token |
+| --------------------------- | --------------------------- | ------ | ------------- |
+| `.bx--batch-actions`        | height                      | 48 / 3 | –             |
+| `.bx--batch-actions--small` | height                      | 32 / 2 | –             |
+| `.bx--batch-actions`        | padding-left, padding-right | 16 / 1 | `$spacing-05` |
+| `.bx--btn`                  | default size                | 48px   | –             |
+| `.bx--btn`                  | small size                  | 32px   | –             |
+| `.bx--btn__icon`            | padding-right               | 16/1   | `$spacing-05` |
+
+<div className="image--fixed">
+
+![Data table batch action bar measurements](images/datatable-style-8.png)
+
+</div>
+
+<Caption>
+  Structure and spacing measurements for batch action bar | px/rem
+</Caption>

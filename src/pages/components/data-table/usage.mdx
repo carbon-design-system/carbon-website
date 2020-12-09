@@ -552,15 +552,31 @@ further guidelines and configurations.
 
 ### Search
 
+#### Collapsed search
+
 A search field can be triggered through an icon button in the data table
 toolbar. By default the search functionality follows the
 [active search](/patterns/search-pattern/#active-search) pattern. The search
 should be closed by default, and placed below the table title.
 
 <Row>
-<Column colLg={12}>
+<Column colLg={8}>
 
 ![data table search](images/datatable_search.gif)
+
+</Column>
+</Row>
+
+#### Open search
+
+The search field can also appear always open on a data table. The field is
+placed on the left side of the table under the table title and stretches until
+it mets the actions on the right.
+
+<Row>
+<Column colLg={8}>
+
+![data table search](images/datatable-search-2-a.png)
 
 </Column>
 </Row>
@@ -601,7 +617,7 @@ added if you have an icon to support that function. Icons should be 16x16 px
 </Column>
 </Row>
 
-### Multi-select / batch action
+### Multi-select & batch action
 
 Batch actions are functions that may be performed on multiple items within a
 table. Once the user selects at least one row from the table, the batch action
@@ -617,12 +633,31 @@ the items.
 </Column>
 </Row>
 
+### Radio selection
+
+Instead of a multi-select checkbox function the data table also supports a
+single selection radio button control. Only one row can be selected at a time
+when using the radio selection. The radio button is placed in the first column
+on the left side.
+
+<Row>
+<Column colLg={12}>
+
+![data table multi select](images/datatable-radio-select.png)
+
+</Column>
+</Row>
+
 ### Inline actions
 
 Inline actions are functions that may be performed on a specific table row. Each
 row is accompanied by
 an [overflow menu](https://www.carbondesignsystem.com/components/overflow-menu/code) that
 contains actions related specifically to that row.
+
+When the overflow menu contains less than three options, keep the actions inline
+as icon buttons instead. This reduces a click and makes available actions
+visible at a glance.
 
 <Row>
 <Column colLg={8}>
@@ -631,10 +666,6 @@ contains actions related specifically to that row.
 
 </Column>
 </Row>
-
-When the overflow menu contains less than three options, keep the actions inline
-as icon buttons instead. This reduces a click and makes available actions
-visible at a glance.
 
 ### Overflow menu
 
@@ -652,6 +683,8 @@ supports hover-over and persist the overflow menus even if the
 <Column colLg={8}>
 
 ![data table inline actions](images/datatable-persistent-hover.png)
+
+<Caption>Persistent overflow (left), on hover (right).</Caption>
 
 </Column>
 </Row>
@@ -674,10 +707,12 @@ view the information and complete tasks.
 </Column>
 </Row>
 
-By default, the expand-all chevron is not shown. Keeping detailed information in the
-expanded section saves user loading time by postponing some data queries until
-needed. Expanding all rows at once will typically negate this advantage of the
-expandable table. If additional load time is expected to display expanded
+#### Loading
+
+By default, the expand-all chevron is not shown. Keeping detailed information in
+the expanded section saves user loading time by postponing some data queries
+until needed. Expanding all rows at once will typically negate this advantage of
+the expandable table. If additional load time is expected to display expanded
 information, use skeleton states instead of spinners.
 
 <Row>
