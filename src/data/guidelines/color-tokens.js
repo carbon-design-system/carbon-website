@@ -111,7 +111,7 @@ const colorTokens = {
         },
       },
     },
-    $danger: {
+    '$danger-01': {
       role: ['Danger button background', '3:1 AA contrast'],
       value: {
         white: {
@@ -129,6 +129,27 @@ const colorTokens = {
         g100: {
           name: 'Red 60',
           hex: '#da1e28',
+        },
+      },
+    },
+    '$danger-02': {
+      role: ['Danger button variant', 'Text', 'Icon', 'Border'],
+      value: {
+        white: {
+          name: 'Red 60',
+          hex: '#da1e28',
+        },
+        g10: {
+          name: 'Red 60',
+          hex: '#da1e28',
+        },
+        g90: {
+          name: 'Red 40',
+          hex: '#ff8389',
+        },
+        g100: {
+          name: 'Red 50',
+          hex: '#fa4d56',
         },
       },
     },

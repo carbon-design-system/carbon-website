@@ -57,6 +57,7 @@ module.exports = {
       options: {
         name: 'Carbon Design System',
         short_name: 'Carbon',
+        icon: 'src/images/favicon.svg',
       },
     },
     'gatsby-plugin-sitemap',

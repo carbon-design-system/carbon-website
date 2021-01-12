@@ -1168,7 +1168,7 @@ export const divergingColors = [
   },
 ];
 
-export const alert = [
+export const alertLight = [
   {
     name: 'Red 60',
     hex: 'da1e28',
@@ -1180,13 +1180,36 @@ export const alert = [
     light: false,
   },
   {
-    name: 'Green 50',
-    hex: '24a148',
+    name: 'Yellow 30',
+    hex: 'f1c21b',
+    light: false,
+  },
+  {
+    name: 'Green 60',
+    hex: '198038',
+    light: true,
+  },
+];
+
+export const alertDark = [
+  {
+    name: 'Red 50',
+    hex: 'fa4d56',
+    light: false,
+  },
+  {
+    name: 'Orange 40',
+    hex: 'ff832b',
     light: false,
   },
   {
     name: 'Yellow 30',
     hex: 'f1c21b',
+    light: false,
+  },
+  {
+    name: 'Green 50',
+    hex: '24a148',
     light: false,
   },
 ];
