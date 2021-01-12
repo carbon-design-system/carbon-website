@@ -8,32 +8,77 @@ tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 
 ## Color
 
-| Class                      | Property   | Color token |
-| -------------------------- | ---------- | ----------- |
-| `.bx--label`               | text color | `$text-01`  |
-| `.bx--label-description`   | text color | `$text-02`  |
-| `.bx--file-filename`       | color      | `$text-01`  |
-| `.bx--file__selected-file` | background | `$ui-01`    |
-| `.bx--file-close`          | fill       | `$icon-01`  |
+Use the [primary button](/components/button/style#primary-button) for the "Add
+file" button.
+
+| Class                       | Property   | Color token |
+| --------------------------- | ---------- | ----------- |
+| `.bx--file--label`          | text color | `$text-01`  |
+| `.bx--label-description`    | text color | `$text-02`  |
+| `.bx--file-filename`        | color      | `$text-01`  |
+| `.bx--file__selected-file`  | background | `$ui-01`    |
+| `.bx--file-close`           | fill       | `$icon-01`  |
+| `.bx--file__drop-container` | border     | `$ui-04`    |
+| `.bx--file__drop-container` | text       | `$link-01`  |
+
+<Row>
+<Column colLg={8}>
+
+![Examples of file loader](images/file-uploader-style-1.png))
+
+</Column>
+</Row>
 
 ### Interactive states
 
-| Class                | Property      | Color token    |
-| -------------------- | ------------- | -------------- |
-| File name: invalid   | text color    | `$disabled-02` |
-| Error message        | text color    | `$support-01`  |
-| `.bx--file-filename` | border-bottom | `$support-01`  |
+Use the [inline loading](/components/inline-loading/style#colors) component
+active state for `.bx--file__state-container` loading status.
+
+| Class                                  | Property   | Color token       |
+| -------------------------------------- | ---------- | ----------------- |
+| `.bx--file-close: focus`               | border     | `$focus`          |
+| `.bx--file__drop-container: focus`     | border     | `$focus`          |
+| `.bx--file__state-container: complete` | svg        | `$interactive-04` |
+| `.bx--file-invalid`                    | svg        | `$support-01`     |
+| `.bx--file__selected-file--invalid`    | border     | `$support-01`     |
+| `.bx--form-requirement__title`         | text color | `$support-01`     |
+| `.bx--form-requirement__supplement`    | text color | `$text-01`        |
+| `.bx--form-requirement`                | border-top | `$ui-03`          |
+| `.bx--file--label--disabled`           | text color | `$disabled-02`    |
+| `.bx--file__drop-container: disabled`  | text color | `$disbaled-02`    |
+| `.bx--file__drop-container: disabled`  | border     | `$disbaled-02`    |
+
+<Row>
+<Column colLg={12}>
+
+![Examples of file loader file states](images/file-uploader-style-2.png))
+
+</Column>
+</Row>
+
+<Caption>Selected file states: loading, complete, focus, invalid.</Caption>
+
+<Row>
+<Column colLg={8}>
+
+![Examples of drag and drop file uploader states](images/file-uploader-style-3.png))
+
+</Column>
+</Row>
+
+<Caption>Drag and drop file uploader states.</Caption>
 
 ## Typography
 
 The file uploader label and instruction text should be set in sentence case,
 with only the first letter of the first word in the sentence capitalized.
 
-| Class                    | Font-size (px/rem) | Font-weight     | Type token       |
-| ------------------------ | ------------------ | --------------- | ---------------- |
-| `.bx--label`             | 14 / 0.875         | Semi-bold / 600 | `$heading-01`    |
-| `.bx--label-description` | 14 / 0.875         | Regular / 400   | `$body-short-01` |
-| `.bx--file-filename`     | 14 / 0.875         | Regular / 400   | `$body-short-01` |
+| Class                            | Font-size (px/rem) | Font-weight     | Type token       |
+| -------------------------------- | ------------------ | --------------- | ---------------- |
+| `.bx--file--label`               | 14 / 0.875         | Semi-bold / 600 | `$heading-01`    |
+| `.bx--label-description`         | 14 / 0.875         | Regular / 400   | `$body-short-01` |
+| `.bx--file-filename`             | 14 / 0.875         | Regular / 400   | `$body-short-01` |
+| `.bx--file__drop-container#text` | 14 / 0.875         | Regular / 400   | `$body-short-01` |
 
 ## Structure
 
@@ -41,16 +86,21 @@ The width of an uploaded file varies based on the content and layout of a
 design. Refer to the [button](/components/button/usage) guidelines for usage and
 styling of the “Add files” button.
 
-| Class                      | Property      | px / rem | Spacing token |
-| -------------------------- | ------------- | -------- | ------------- |
-| `.bx--file-filename`       | height        | 40 / 2.5 | –             |
-| `.bx--file-filename`       | width         | 224 / 14 | –             |
-| `.bx--file__selected-file` | padding-left  | 16 / 1   | `$spacing-03` |
-| `.bx--file__selected-file` | margin-bottom | 8 / 0.5  | `$spacing-05` |
+| Class                             | Property                  | px / rem | Spacing token |
+| --------------------------------- | ------------------------- | -------- | ------------- |
+| `.bx--file-filename`              | height                    | 48 / 3   | –             |
+| `.bx--file-filename`              | width                     | 288 / 18 | –             |
+| `.bx--file__selected-file--field` | height                    | 40 / 2.5 | –             |
+| `.bx--file__selected-file--sm`    | height                    | 32 / 2   | –             |
+| `.bx--file__selected-file`        | padding-left              | 16 / 1   | `$spacing-05` |
+| `.bx--file__selected-file`        | margin-bottom             | 8 / 0.5  | `$spacing-03` |
+| `.bx----file__state-container`    | padding-right             | 16 / 1   | `$spacing-05` |
+| `.bx--file-close`                 | height, width             | 16 / 1   | –             |
+| `.bx--file-close`                 | margin-left, margin-right | 16 / 1   | `$spacing-05` |
 
 <div className="image--fixed">
 
-![Structure and spacing measurements for file uploader](images/file-uploader-style-1.png)
+![Structure and spacing measurements for file uploader](images/file-uploader-style-4.png)
 
 </div>
 
@@ -58,12 +108,12 @@ styling of the “Add files” button.
   Structure and spacing measurements for file uploader | px / rem
 </Caption>
 
-### Recommended
+<div className="image--fixed">
 
-The following specs are not built into the file uploader component but are
-recommended by design as the proper amount between file uploader elements.
+![Structure and spacing measurements for drage and drop file uploader](images/file-uploader-style-5.png)
 
-| Class             | Property                  | px / rem | Spacing token |
-| ----------------- | ------------------------- | -------- | ------------- |
-| `.bx--file-close` | height, width             | 16 / 1   | –             |
-| `.bx--file-close` | margin-left, margin-right | 16 / 1   | `$spacing-05` |
+</div>
+
+<Caption>
+  Structure and spacing measurements for drag and drop file uploader | px / rem
+</Caption>
