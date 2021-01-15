@@ -15,37 +15,45 @@ input color is `$field-02` and is used on `$ui-01` page backgrounds.
 | Element            | Property         | Color token                  |
 | ------------------ | ---------------- | ---------------------------- |
 | Label              | text color       | `$text-02`                   |
-| Input text         | text color       | `$text-01`                   |
-| Prompt text        | text color       | `$text-05`                   |
-| Input field        | background-color | `$field-01`                  |
+| Field text         | text color       | `$text-01`                   |
+| Field text: prompt | text color       | `$text-05`                   |
+| Helper text        | text color       | `$text-05`                   |
+| Field              | background-color | `$field-01`                  |
 |                    | border-bottom    | `$ui-04`                     |
-| Input field: light | background-color | `$field-02`                  |
+| Field: light       | background-color | `$field-02`                  |
 | Chevron            | svg              | `$icon-01`                   |
-| List item          | text color       | `$text-02`                   |
+| Menu option        | text color       | `$text-02`                   |
 |                    | background-color | `$field-01`                  |
-| Checkbox           | background-color | `$field-01`                  |
-| Tag                | background-color | `$inverse-02`                |
-| List               | box-shadow       | `0 2px 6px 0 rgba(0,0,0,.2)` |
+|                    | border-top       | `$ui-03`                     |
+| Menu option: light | background-color | `$field-02`                  |
+| Menu               | box-shadow       | `0 2px 6px 0 rgba(0,0,0,.2)` |
+| Checkbox           | background-color | `$icon-01`                   |
+|                    | check            | `$inverse-01`                |
+|                    | border           | `$icon-01`                   |
 
 ### Interactive states
 
-| Element              | State    | Property         | Color token          |
-| -------------------- | -------- | ---------------- | -------------------- |
-| **Label**            | Disabled | text color       | `$disabled-02`       |
-| **Input field**      | Focus    | border           | `$focus`             |
-|                      | Hover    | background-color | `$hover-ui`          |
-|                      | Invalid  | svg              | `$support-01`        |
-|                      | Invalid  | border-bottom    | `$support-01`        |
-|                      | Invalid  | text-color       | `$text-error`        |
-|                      | Disabled | background-color | `$disabled-01`       |
-|                      | Disabled | text color       | `$disabled-02`       |
-| **List item**        | Hover    | background-color | `$hover-ui`          |
-|                      | Hover    | text color       | `$text-01`           |
-|                      | Active   | background-color | `$selected-ui`       |
-|                      | Selected | background-color | `$selected-ui`       |
-| **List item: light** | Hover    | background-color | `$hover-light-ui`    |
-|                      | Active   | background-color | `$selected-light-ui` |
-| **Checkmark**        | Selected | svg              | `$icon-01`           |
+| Element                | State    | Property         | Color token          |
+| ---------------------- | -------- | ---------------- | -------------------- | ------------- |
+| **Label**              | Disabled | text color       | `$disabled-02`       |
+| **Field**              | Focus    | border           | `$focus`             |
+|                        | Hover    | background-color | `$hover-ui`          |
+|                        | Invalid  | svg              | `$support-01`        |
+|                        | Invalid  | border-bottom    | `$support-01`        |
+|                        | Invalid  | text-color       | `$text-error`        |
+|                        | Disabled | background-color | `$disabled-01`       |
+|                        | Disabled | text color       | `$disabled-02`       |
+| **Field: light**       | Hover    | background-color | `$hover-light-ui`    |
+|                        | Active   | background-color | `$selected-light-ui` |
+| **Menu option**        | Hover    | background-color | `$hover-ui`          |
+|                        | Hover    | text color       | `$text-01`           |
+|                        | Active   | background-color | `$selected-ui`       |
+|                        | Selected | background-color | `$selected-ui`       |
+|                        | Selected | checkmark        | `$icon-01`           |
+| **Menu option: light** | Hover    | background-color | `$hover-light-ui`    |
+|                        | Active   | background-color | `$selected-light-ui` |
+| **Tag**                | Selected |                  | background-color     | `$inverse-02` |
+|                        | Selected |                  | text color           | `$inverse-02` |
 
 ## Typography
 
@@ -53,12 +61,13 @@ All dropdown text should be set in sentence case, with only the first word in a
 phrase and any proper nouns capitalized. Dropdown options should not exceed
 three words.
 
-| Class                   | Font-size  | Font-weight   | Type style       |
-| ----------------------- | ---------- | ------------- | ---------------- |
-| `.bx--dropdown-text`    | 14 / 0.875 | Regular / 400 | `$body-short-01` |
-| `.bx--dropdown-link`    | 14 / 0.875 | Regular / 400 | `$body-short-01` |
-| `.bx--label`            | 12 / 0.75  | Regular / 400 | `$label-01`      |
-| `.bx--form-requirement` | 12 / 0.75  | Regular / 400 | `$label-01`      |
+| Class            | Font-size  | Font-weight   | Type style        |
+| ---------------- | ---------- | ------------- | ----------------- |
+| Label            | 12 / 0.75  | Regular / 400 | `$label-01`       |
+| Field text       | 14 / 0.875 | Regular / 400 | `$body-short-01`  |
+| Menu option text | 14 / 0.875 | Regular / 400 | `$body-short-01`  |
+| Error message    | 12 / 0.75  | Regular / 400 | `$label-01`       |
+| Helper text      | 12 / 0.75  | Regular / 400 | `$helper-text-01` |
 
 ## Structure
 
@@ -68,14 +77,12 @@ height of a closed dropdown stays consistent while the height of an open
 dropdown will vary based on the amount of options it has. Please note the
 various color differences for closed and open dropdowns.
 
-| Class                  | Property                    | px / rem | Spacing tokens |
-| ---------------------- | --------------------------- | -------- | -------------- |
-| `.bx--label`           | margin-bottom               | 8 / 0.5  | `$spacing-03`  |
-| `.bx--dropdown`        | height                      | 40 / 2.5 | –              |
-| `.bx--dropdown-text`   | padding-left                | 16 / 1   | `$spacing-05`  |
-| `.bx--dropdown__arrow` | padding-right, padding-left | 16 / 1   | `$spacing-05`  |
-| `.bx--dropdown`        | border-bottom               | 1px      | –              |
-| `.bx--dropdown-item`   | height                      | 40 / 2.5 | –              |
+| Element | Property                    | px / rem | Spacing tokens |
+| ------- | --------------------------- | -------- | -------------- |
+| Label   | margin-bottom               | 8 / 0.5  | `$spacing-03`  |
+| Field   | padding-left                | 16 / 1   | `$spacing-05`  |
+|         | border-bottom               | 1px      | –              |
+| Chevron | padding-right, padding-left | 16 / 1   | `$spacing-05`  |
 
 <div className="image--fixed">
 
@@ -84,6 +91,17 @@ various color differences for closed and open dropdowns.
 </div>
 
 <Caption>Structure and spacing measurements for dropdown | px / rem</Caption>
+
+### Size
+
+| Element     | Property | Size    | px / rem |
+| ----------- | -------- | ------- | -------- |
+| Field       | height   | Default | 40 / 2.5 |
+|             | height   | Small   | 32 / 2   |
+|             | height   | Large   | 48 / 3   |
+| Menu option | height   | Default | 40 / 2.5 |
+|             | height   | Small   | 32 / 2   |
+|             | height   | Large   | 48 / 3   |
 
 ## Multiselect dropdown
 
