@@ -11,6 +11,7 @@ import illustrator from './icons/illustrator.svg';
 import react from './icons/react.png';
 import vue from './icons/vue.png';
 import angular from './icons/angular.png';
+import npm from './icons/npm.svg';
 
 const localIcons = {
   sketch,
@@ -20,7 +21,8 @@ const localIcons = {
   illustrator,
   react,
   vue,
-  angular
+  angular,
+  npm,
 };
 
 const carbonIcons = {

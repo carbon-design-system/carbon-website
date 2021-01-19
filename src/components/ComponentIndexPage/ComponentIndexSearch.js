@@ -10,7 +10,6 @@ function ComponentIndexSearch({ value, onChange }) {
   return (
     <div className="component-index-search">
       <Search
-        light
         id="component-index-search"
         labelText="Search component index by name, keyword, or domain"
         placeHolderText="Component name, keyword, domain"

@@ -42,8 +42,7 @@ const AllDemos = () => (
                 <div className="bx--col-sm-4 bx--col-md-8 bx--col-lg-8">
                   <div
                     className="chart-demo-wrapper"
-                    id={generateHeadingID(demo.title)}
-                  >
+                    id={generateHeadingID(demo.title)}>
                     <div className="chart-demo">
                       <DemoComponent
                         data={demo.data}

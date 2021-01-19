@@ -124,7 +124,7 @@ we're building the pages with grid, we need to install one more Carbon package.
 Stop your development environment (`CTRL-C`) and:
 
 ```bash
-yarn add @carbon/grid
+yarn add @carbon/grid@10.17.0
 ```
 
 In `index.scss`, we need to configure our grid to use 16 columns instead of the
@@ -133,15 +133,13 @@ default 12 columns. We do this by adding `grid-columns-16: true` in our
 
 ```scss path=src/index.scss
 $feature-flags: (
-  ui-shell: true,
   grid-columns-16: true,
 );
 ```
 
 <InlineNotification>
 
-**Note:** Like before, the feature flag still needs to come before the Carbon
-`styles.scss` import.
+**Note:** The feature flag needs to come before the Carbon `styles.scss` import.
 
 </InlineNotification>
 
@@ -271,11 +269,9 @@ Storybook.
 const props = {
   tabs: {
     selected: 0,
-    triggerHref: '#',
     role: 'navigation',
   },
   tab: {
-    href: '#',
     role: 'presentation',
     tabIndex: 0,
   },
@@ -352,13 +348,18 @@ Same goes for the `Tabs` opening tag:
 ```
 <!-- prettier-ignore-end -->
 
-Next, we'll need to add a styling override to move the tabs to the right on
+Next, we'll need to add some styling overrides to move the tabs to the right on
 large viewports. Create a file `_overrides.scss` in `src/content/LandingPage`
 with this declaration block.
 
 ```scss path=src/content/LandingPage/_overrides.scss
-.landing-page__r2 .bx--tabs__nav {
-  right: 0;
+.landing-page__r2 .bx--tabs--scrollable {
+  transform: translateZ(0);
+  justify-content: flex-end;
+}
+
+.landing-page__r2 .bx--tab-content {
+  padding: 0;
 }
 ```
 
@@ -511,9 +512,9 @@ setting the background in an absolutely positioned pseudo element.
   &::before {
     content: '';
     position: absolute;
-    left: -$spacing-05;
+    left: -$spacing-06;
     top: 0;
-    right: -$spacing-05;
+    right: -$spacing-06;
     bottom: 0;
     background: $ui-01;
     z-index: -1;

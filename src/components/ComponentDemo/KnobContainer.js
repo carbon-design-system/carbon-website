@@ -81,8 +81,7 @@ const Component = ({
       <div
         role="group"
         aria-labelledby={componentGroupId}
-        className={componentKnobWrapper}
-      >
+        className={componentKnobWrapper}>
         {booleanKnobs.length > 0 && (
           <FormGroup className={formGroup} legendText="Modifiers">
             {booleanKnobs.map(([name, info]) => (
@@ -138,7 +137,10 @@ const Knob = ({
   const componentPropsRegex = new RegExp(pattern);
 
   // stores whatever props are provided in the inital code
-  const defaultKnobProps = useDefaultProps(initialCode, componentPropsRegex);
+  const defaultKnobProps = useDefaultProps(
+    initialCode,
+    componentPropsRegex
+  ).slice(0, -1);
 
   const { knobs, setKnobs } = useContext(DemoContext);
 
@@ -150,19 +152,35 @@ const Knob = ({
       [component]: { ...knobs[component], ...{ [name]: val } },
     };
 
+    const isSelfClosingTag =
+      defaultKnobProps.charAt(defaultKnobProps.length - 1) === '/';
+
+    const parsedKnobProps = isSelfClosingTag
+      ? defaultKnobProps.slice(0, -2)
+      : defaultKnobProps;
+
     // Generates valid jsx props from a prop object
-    const propString = Object.entries(newKnobs[component])
-      .reduce((accumulator, [prop, value]) => {
-        if (!value || value === `'default'`) return accumulator;
-        if (typeof value === 'boolean') {
-          return `${accumulator} ${prop}`;
-        }
-        return `${accumulator} ${prop}=${value}`;
-      }, '')
-      .concat(defaultKnobProps);
+    const propString = parsedKnobProps.concat(
+      Object.entries(newKnobs[component]).reduce(
+        (accumulator, [prop, value]) => {
+          if (!value || value === `'default'`) return accumulator;
+          if (typeof value === 'boolean') {
+            return `${accumulator} ${prop}`;
+          }
+          return `${accumulator} ${prop}=${value}`;
+        },
+        ''
+      )
+    );
 
     setKnobs(newKnobs);
-    setCode(code.replace(componentPropsRegex, `<${component}${propString}`));
+    if (isSelfClosingTag) {
+      setCode(
+        code.replace(componentPropsRegex, `<${component}${propString} />`)
+      );
+    } else {
+      setCode(code.replace(componentPropsRegex, `<${component}${propString}>`));
+    }
   };
 
   if (type.name === 'bool') {
@@ -198,8 +216,7 @@ const Knob = ({
           onChange={(val) => updateKnob(val)}
           defaultSelected={defaultSelected}
           name={name}
-          orientation="vertical"
-        >
+          orientation="vertical">
           {values.map(({ value }) => (
             <RadioButton
               key={`${inputId}-${value}`}
@@ -258,15 +275,13 @@ const KnobContainer = ({ knobs, code, setCode, initialCode, variantId }) => {
     <Form
       className={cx(knobContainer, {
         [knobContainerCollapsed]: isMobile && isKnobContainerCollapsed,
-      })}
-    >
+      })}>
       {isMobile && (
         <div className={iconButtonRow}>
           <button
             className={iconButton}
             type="button"
-            onClick={() => setIsKnobContainerCollapsed(true)}
-          >
+            onClick={() => setIsKnobContainerCollapsed(true)}>
             <Close20 />
           </button>
         </div>
