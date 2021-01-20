@@ -21,6 +21,7 @@ input color is `$field-02` and is used on `$ui-01` page backgrounds.
 | Field              | background-color | `$field-01`                  |
 |                    | border-bottom    | `$ui-04`                     |
 | Field: light       | background-color | `$field-02`                  |
+| Field: inline      | background-color | `transparent`                |
 | Chevron            | svg              | `$icon-01`                   |
 | Menu option        | text color       | `$text-02`                   |
 |                    | background-color | `$field-01`                  |
@@ -101,12 +102,14 @@ height of a closed dropdown stays consistent while the height of an open
 dropdown will vary based on the amount of options it has. Please note the
 various color differences for closed and open dropdowns.
 
-| Element | Property                    | px / rem | Spacing tokens |
-| ------- | --------------------------- | -------- | -------------- |
-| Label   | margin-bottom               | 8 / 0.5  | `$spacing-03`  |
-| Field   | padding-left                | 16 / 1   | `$spacing-05`  |
-|         | border-bottom               | 1px      | –              |
-| Chevron | padding-right, padding-left | 16 / 1   | `$spacing-05`  |
+| Element     | Property                    | px / rem | Spacing tokens |
+| ----------- | --------------------------- | -------- | -------------- |
+| Label       | margin-bottom               | 8 / 0.5  | `$spacing-03`  |
+| Field       | padding-left                | 16 / 1   | `$spacing-05`  |
+|             | padding-right               | 48 / 3   | `$spacing-09`  |
+|             | border-bottom               | 1px      | –              |
+| Chevron     | padding-right, padding-left | 16 / 1   | `$spacing-05`  |
+| Helper text | margin-top                  | 4 / 0.25 | `$spacing-02`  |
 
 <div className="image--fixed">
 
@@ -118,7 +121,8 @@ various color differences for closed and open dropdowns.
 
 ### Sizes
 
-The field height and menu option height should always match.
+The field height and menu option height should always match. These sizes options
+can be applied to all variants of dropdown.
 
 | Element     | Property | Size    | px / rem |
 | ----------- | -------- | ------- | -------- |
@@ -129,15 +133,33 @@ The field height and menu option height should always match.
 |             | height   | Default | 40 / 2.5 |
 |             | height   | Large   | 48 / 3   |
 
+## Inline dropdown
+
+| Class       | Property                    | px / rem | Spacing token |
+| ----------- | --------------------------- | -------- | ------------- |
+| Field text  | padding-right, padding-left | 16 / 1   | `$spacing-05` |
+| Menu option | padding-right, padding-left | 16 / 1   | `$spacing-05` |
+| Chevron     | padding-left, padding-right | 16 / 1   | `$spacing-05` |
+
+<div className="image--fixed">
+
+![Structure and spacing for inline dropdown](images/dropdown-style-5.png)
+
+</div>
+
+<Caption>Structure and spacing for inline dropdown | px / rem</Caption>
+
 ## Multiselect dropdown
 
 | Element  | Property                    | px / rem | Spacing tokens |
 | -------- | --------------------------- | -------- | -------------- |
-| Field    | padding-left, padding-right | 16 / 1   | `$spacing-05`  |
-| Checkbox | padding-left                | 16 / 1   | `$spacing-05`  |
-|          | padding-right               | 8 / .5   | `$spacing-03`  |
+| Label    | margin-bottom               | 8 / 0.5  | `$spacing-03`  |
+| Field    | padding-left                | 16 / 1   | `$spacing-05`  |
+|          | padding-right               | 48 / 3   | `$spacing-09`  |
 | Chevron  | padding-left, padding-right | 16 / 1   | `$spacing-05`  |
 | Tag      | height                      | 24 / 1.5 | –              |
+|          | padding-right               | 8 / .5   | `$spacing-03`  |
+| Checkbox | padding-left                | 16 / 1   | `$spacing-05`  |
 |          | padding-right               | 8 / .5   | `$spacing-03`  |
 
 <div className="image--fixed">
@@ -150,49 +172,15 @@ The field height and menu option height should always match.
   Structure and spacing measurements for a multiselect dropdown | px / rem
 </Caption>
 
-## Inline dropdown
+## Combo box
 
-| Class                                | Property                    | px / rem | Spacing token |
-| ------------------------------------ | --------------------------- | -------- | ------------- |
-| `.bx--list-box.bx--list-box--inline` | height                      | 32 / 2   | -             |
-| `.bx--list-box__menu-item`           | height                      | 40 / 2.5 | -             |
-| `.bx--list-box__menu-item`           | padding-right, padding-left | 16 / 1   | `$spacing-05` |
-| `.bx--checkbox-label`                | padding-left                | 8 / 0.5  | `$spacing-03` |
-| `.bx--list-box__menu-icon`           | padding-left, padding-right | 16 / 1   | `$spacing-05` |
-
-<div className="image--fixed">
-
-![Structure and spacing for inline dropdown](images/dropdown-style-5.png)
-
-</div>
-
-<Caption>Structure and spacing for inline dropdown | px / rem</Caption>
-
-### Inline dropdown states
-
-Inline select has two different states; one for mouse hover and one for keyboard
-focus.
-
-<div className="image--fixed">
-
-![Hover and focus states for inline dropdown](images/dropdown-style-6.png)
-
-</div>
-
-<Caption>Hover and focus states for inline dropdown</Caption>
-
-## Filtering
-
-Filtering can be used with dropdown and multiselect dropdown but not inline
-dropdown.
-
-| Class                             | Property                    | px / rem | Spacing token |
-| --------------------------------- | --------------------------- | -------- | ------------- |
-| `.bx--list-box__selection`        | height                      | 40 / 2.5 | –             |
-| `.bx--list-box__selection svg`    | height                      | 16 / 1   | –             |
-| `.bx--list-box__menu-icon`        | padding-left, padding-right | 16 / 1   | `$spacing-05` |
-| `.bx--list-box__selection`        | padding-left, padding-right | 16 / 1   | `$spacing-05` |
-| `.bx--list-box__selection--multi` | height                      | 24 / 1.5 | –             |
+| Element    | Property                    | px / rem | Spacing token |
+| ---------- | --------------------------- | -------- | ------------- |
+| Label      | margin-bottom               | 8 / 0.5  | `$spacing-03` |
+| Field      | padding-left                | 16 / 1   | `$spacing-05` |
+|            | padding-right               | 72 / 4.5 | –             |
+| Chevron    | padding-left, padding-right | 16 / 1   | `$spacing-05` |
+| Clear icon | padding-left, padding-right | 16 / 1   | `$spacing-05` |
 
 <div className="image--fixed">
 
@@ -201,13 +189,3 @@ dropdown.
 </div>
 
 <Caption>Spacing for multiselect dropdown with filtering | px / rem</Caption>
-
-<div className="image--fixed">
-
-![Interaction states for multiselect dropdown with filtering](images/dropdown-style-8.png)
-
-</div>
-
-<Caption>
-  Interaction states for multiselect dropdown with filtering | px / rem
-</Caption>
