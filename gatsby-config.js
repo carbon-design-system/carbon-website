@@ -1,6 +1,13 @@
 const path = require('path');
 
 module.exports = {
+  flags: {
+    FAST_DEV: true,
+    FAST_REFRESH: true,
+    LAZY_IMAGES: true,
+    PRESERVE_WEBPACK_CACHE: true,
+    QUERY_ON_DEMAND: true,
+  },
   siteMetadata: {
     title: 'Carbon Design System',
     siteUrl: 'https://www.carbondesignsystem.com',
