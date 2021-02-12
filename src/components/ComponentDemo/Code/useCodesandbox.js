@@ -7,17 +7,17 @@ const getIndex = ({ code = '' }) => {
   ).map((component) => component.slice(1));
 
   return `
-      import React from 'react';
-      import { render } from 'react-dom';
-      import 'carbon-components/css/carbon-components.min.css';
-      import { ${uniqueComponents.join(', ')} } from 'carbon-components-react';
-    
-      const App = () => (
-        ${code}
-      );
+  import React from 'react';
+  import { render } from 'react-dom';
+  import 'carbon-components/css/carbon-components.min.css';
+  import { ${uniqueComponents.join(', ')} } from 'carbon-components-react';
 
-      render(<App />, document.getElementById('root'));
-    `;
+  const App = () => (
+  ${code}
+  );
+
+  render(<App />, document.getElementById('root'));
+`;
 };
 
 const useCodesandbox = (code) => {
