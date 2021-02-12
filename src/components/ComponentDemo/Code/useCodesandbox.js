@@ -51,7 +51,7 @@ const useCodesandbox = (code) => {
       },
     });
     return `https://codesandbox.io/api/v1/sandboxes/define?parameters=${parameters}`;
-  }, [originalCode]);
+  }, [code, originalCode]);
 
   return url;
 };
