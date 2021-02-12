@@ -1,16 +1,26 @@
 import { useMemo, useRef } from 'react';
 import { getParameters } from 'codesandbox/lib/api/define';
+import sampleData from '../data/sampleData';
 
 const getIndex = ({ code = '' }) => {
   const uniqueComponents = Array.from(
     new Set(code.match(/<[A-Z]\w+/g))
   ).map((component) => component.slice(1));
 
+  const importSampleData = () => {
+    const [componentName] = uniqueComponents;
+    if (componentName === 'DataTable') {
+      return `import { headerData, rowData } from './sampleData';`;
+    }
+    return '';
+  };
+
   return `
   import React from 'react';
   import { render } from 'react-dom';
   import 'carbon-components/css/carbon-components.min.css';
   import { ${uniqueComponents.join(', ')} } from 'carbon-components-react';
+  ${importSampleData()}
 
   const App = () => (
   ${code}
@@ -48,6 +58,7 @@ const useCodesandbox = (code) => {
         'index.html': {
           content: `<div id="root"></div>`,
         },
+        ...(/^<DataTable/.test(code) && sampleData.DataTable),
       },
     });
     return `https://codesandbox.io/api/v1/sandboxes/define?parameters=${parameters}`;
