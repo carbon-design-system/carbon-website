@@ -9,6 +9,14 @@ module.exports = {
     keywords:
       'IBM, design, system, Carbon, design system, Bluemix, styleguide, style, guide, components, library, pattern, kit, component, cloud',
   },
+  // https://github.com/gatsbyjs/gatsby/blob/master/docs/docs/reference/release-notes/v2.28/index.md#feature-flags-in-gatsby-configjs
+  flags: {
+    DEV_SSR: true,
+    FAST_DEV: true,
+    FAST_REFRESH: true,
+    PRESERVE_FILE_DOWNLOAD_CACHE: true,
+    PRESERVE_WEBPACK_CACHE: true,
+  },
   plugins: [
     {
       resolve: 'gatsby-source-filesystem',
