@@ -111,7 +111,7 @@ const colorTokens = {
         },
       },
     },
-    $danger: {
+    '$danger-01': {
       role: ['Danger button background', '3:1 AA contrast'],
       value: {
         white: {
@@ -129,6 +129,27 @@ const colorTokens = {
         g100: {
           name: 'Red 60',
           hex: '#da1e28',
+        },
+      },
+    },
+    '$danger-02': {
+      role: ['Danger button variant', 'Text', 'Icon', 'Border'],
+      value: {
+        white: {
+          name: 'Red 60',
+          hex: '#da1e28',
+        },
+        g10: {
+          name: 'Red 60',
+          hex: '#da1e28',
+        },
+        g90: {
+          name: 'Red 40',
+          hex: '#ff8389',
+        },
+        g100: {
+          name: 'Red 50',
+          hex: '#fa4d56',
         },
       },
     },
@@ -440,6 +461,27 @@ const colorTokens = {
         g100: {
           name: 'Blue 40',
           hex: '#78a9ff',
+        },
+      },
+    },
+    '$link-02': {
+      role: ['Secondary link color for lower contrast backgrounds'],
+      value: {
+        white: {
+          name: 'Blue 70',
+          hex: '#0043ce',
+        },
+        g10: {
+          name: 'Blue 70',
+          hex: '#0043ce',
+        },
+        g90: {
+          name: 'Blue 30',
+          hex: '#a6c8ff',
+        },
+        g100: {
+          name: 'Blue 30',
+          hex: '#a6c8ff',
         },
       },
     },
@@ -1280,8 +1322,8 @@ const colorTokens = {
           hex: '#525252',
         },
         g100: {
-          name: 'Gray 80',
-          hex: '#393939',
+          name: 'Gray 70',
+          hex: '#525252',
         },
       },
     },
