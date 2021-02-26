@@ -464,6 +464,27 @@ const colorTokens = {
         },
       },
     },
+    '$link-02': {
+      role: ['Secondary link color for lower contrast backgrounds'],
+      value: {
+        white: {
+          name: 'Blue 70',
+          hex: '#0043ce',
+        },
+        g10: {
+          name: 'Blue 70',
+          hex: '#0043ce',
+        },
+        g90: {
+          name: 'Blue 30',
+          hex: '#a6c8ff',
+        },
+        g100: {
+          name: 'Blue 30',
+          hex: '#a6c8ff',
+        },
+      },
+    },
     '$inverse-link': {
       role: ['Links on $inverse-02 backgrounds'],
       value: {
@@ -1301,8 +1322,8 @@ const colorTokens = {
           hex: '#525252',
         },
         g100: {
-          name: 'Gray 80',
-          hex: '#393939',
+          name: 'Gray 70',
+          hex: '#525252',
         },
       },
     },
