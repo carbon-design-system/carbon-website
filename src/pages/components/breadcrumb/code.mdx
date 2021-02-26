@@ -52,16 +52,31 @@ usage documentation, see the Storybooks for each framework below.
 
 <ComponentDemo
   components={[
+    { id: 'breadcrumb', label: 'Breadcrumb' },
     {
-      id: 'breadcrumb',
-      label: 'Breadcrumb',
+      id: 'currentPage',
+      label: 'Current page breadcrumb',
     },
   ]}>
   <ComponentVariant
+    id="currentPage"
+    links={{
+      React:
+        'http://react.carbondesignsystem.com/?path=/story/breadcrumb--default',
+      Angular:
+        'https://angular.carbondesignsystem.com/?path=/story/components-breadcrumb--basic',
+      Vue:
+        'http://vue.carbondesignsystem.com/?path=/story/components-cvbreadcrumb--default',
+      Vanilla: 'https://the-carbon-components.netlify.com/?nav=breadcrumb',
+    }}>{`
+<Breadcrumb noTrailingSlash>
+  <BreadcrumbItem href="/">Breadcrumb 1</BreadcrumbItem>
+  <BreadcrumbItem href="/">Breadcrumb 2</BreadcrumbItem>
+  <BreadcrumbItem isCurrentPage href="/">Breadcrumb 3</BreadcrumbItem>
+</Breadcrumb>
+`}</ComponentVariant>
+  <ComponentVariant
     id="breadcrumb"
-    knobs={{
-      Breadcrumb: ['noTrailingSlash'],
-    }}
     links={{
       React:
         'http://react.carbondesignsystem.com/?path=/story/breadcrumb--default',
@@ -74,7 +89,7 @@ usage documentation, see the Storybooks for each framework below.
 <Breadcrumb>
   <BreadcrumbItem href="/">Breadcrumb 1</BreadcrumbItem>
   <BreadcrumbItem href="/">Breadcrumb 2</BreadcrumbItem>
-  <BreadcrumbItem isCurrentPage href="/">Breadcrumb 3</BreadcrumbItem>
+  <BreadcrumbItem href="/">Breadcrumb 3</BreadcrumbItem>
 </Breadcrumb>
 `}</ComponentVariant>
 </ComponentDemo>
