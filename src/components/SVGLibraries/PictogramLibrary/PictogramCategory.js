@@ -25,8 +25,8 @@ const IconCategory = ({ category, pictograms }) => {
             containerIsVisible={containerIsVisible}
             key={pictogram.name}
             icon={pictogram}
-            height="35%"
-            width="35%"
+            height="23.5%"
+            width="23.5%"
           />
         ))}
       </ul>

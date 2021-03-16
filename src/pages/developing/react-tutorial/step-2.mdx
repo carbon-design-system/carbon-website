@@ -95,7 +95,7 @@ You should see something similar to where the
 
 Before we get started with this step, we'll be adding some components that
 require IE11 polyfills. As shown in the
-[Carbon React documentation](https://github.com/carbon-design-system/carbon/blob/master/packages/react/.storybook/polyfills.js),
+[Carbon React documentation](https://github.com/carbon-design-system/carbon/blob/main/packages/react/.storybook/polyfills.js),
 go ahead and add these imports to the top of the root `index.js`. They aren't
 all needed, but we'll add them all to play it safe for the duration of the
 tutorial.
@@ -124,7 +124,7 @@ we're building the pages with grid, we need to install one more Carbon package.
 Stop your development environment (`CTRL-C`) and:
 
 ```bash
-yarn add @carbon/grid
+yarn add @carbon/grid@10.17.0
 ```
 
 In `index.scss`, we need to configure our grid to use 16 columns instead of the
@@ -133,15 +133,13 @@ default 12 columns. We do this by adding `grid-columns-16: true` in our
 
 ```scss path=src/index.scss
 $feature-flags: (
-  ui-shell: true,
   grid-columns-16: true,
 );
 ```
 
 <InlineNotification>
 
-**Note:** Like before, the feature flag still needs to come before the Carbon
-`styles.scss` import.
+**Note:** The feature flag needs to come before the Carbon `styles.scss` import.
 
 </InlineNotification>
 
@@ -238,9 +236,7 @@ We can now add our component to the first row, along with a header, like so:
         <a href="/">Getting started</a>
       </BreadcrumbItem>
     </Breadcrumb>
-    <h1 className="landing-page__heading">
-      Design &amp; build with Carbon
-    </h1>
+    <h1 className="landing-page__heading">Design &amp; build with Carbon</h1>
   </div>
 </div>
 ```
@@ -271,11 +267,9 @@ Storybook.
 const props = {
   tabs: {
     selected: 0,
-    triggerHref: '#',
     role: 'navigation',
   },
   tab: {
-    href: '#',
     role: 'presentation',
     tabIndex: 0,
   },
@@ -352,13 +346,18 @@ Same goes for the `Tabs` opening tag:
 ```
 <!-- prettier-ignore-end -->
 
-Next, we'll need to add a styling override to move the tabs to the right on
+Next, we'll need to add some styling overrides to move the tabs to the right on
 large viewports. Create a file `_overrides.scss` in `src/content/LandingPage`
 with this declaration block.
 
 ```scss path=src/content/LandingPage/_overrides.scss
-.landing-page__r2 .bx--tabs__nav {
-  right: 0;
+.landing-page__r2 .bx--tabs--scrollable {
+  transform: translateZ(0);
+  justify-content: flex-end;
+}
+
+.landing-page__r2 .bx--tab-content {
+  padding: 0;
 }
 ```
 
@@ -511,9 +510,9 @@ setting the background in an absolutely positioned pseudo element.
   &::before {
     content: '';
     position: absolute;
-    left: -$spacing-05;
+    left: -$spacing-06;
     top: 0;
-    right: -$spacing-05;
+    right: -$spacing-06;
     bottom: 0;
     background: $ui-01;
     z-index: -1;
