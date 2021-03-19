@@ -4,10 +4,10 @@ on:
   workflow_dispatch:
     inputs:
       name:
-        description: "Reason"
+        description: 'Reason'
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build:
@@ -35,7 +35,9 @@ jobs:
       - name: Login to ibmcloud
         env:
           API_KEY: ${{ secrets.API_KEY }}
-        run: ibmcloud login -a "https://cloud.ibm.com" -u apikey -p "$API_KEY" -o "carbon-design-system" -s "production" -r "us-south"
+        run:
+          ibmcloud login -a "https://cloud.ibm.com" -u apikey -p "$API_KEY" -o
+          "carbon-design-system" -s "production" -r "us-south"
 
       - name: Deploy website
         run: |
