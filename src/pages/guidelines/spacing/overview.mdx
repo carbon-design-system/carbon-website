@@ -21,42 +21,26 @@ functional layouts.
 
 <AnchorLinks>
 
-<AnchorLink>Carbon’s two scales</AnchorLink>
 <AnchorLink>Spacing scale</AnchorLink>
-<AnchorLink>Layout scale</AnchorLink>
 <AnchorLink>Designing with space</AnchorLink>
 <AnchorLink>FAQ</AnchorLink>
 
 </AnchorLinks>
 
-## Carbon's two scales
-
-Carbon has two spacing scales; one for general spacing within components and the
-other for layout spacing. Both are designed to complement the existing
-components and typography throughout the system. The two scales have certain
-overlapping values that serve two different roles, so be mindful when picking a
-spacing token.
-
-| Scale           | Purpose                                                                                                                                         |     |
-| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | --- |
-| _Spacing scale_ | Used for smaller, more refined spacing needs, specifically within the context of a component (i.e. the space between a label and a text input). |     |
-| _Layout scale_  | Typically used for positioning components on a page (i.e., the space between a text field and a selector).                                      |     |
-
 ### Applying spacing
 
-Both the _spacing_ and the _layout_ scales can be applied to `margin` or
-`padding` properties. Likewise, these spacing tokens can be applied to both
-vertical and horizontal edges. The token takes the place of the values normally
-assigned to `margin` and `padding`. The following are all approved ways to
-syntactically apply Carbon spacing tokens:
+The spacing scale can be applied to `margin` or `padding` properties, as well as
+to both vertical and horizontal edges. The token takes the place of the values
+normally assigned to `margin` and `padding`. The following are all approved ways
+to syntactically apply Carbon spacing tokens:
 
 ```css
 margin: $spacing-03;
-margin: $layout-03 $layout-01;
+margin: $spacing-03 $spacing-01;
 margin: $spacing-07 0 $spacing-04 0;
-margin-right: $layout-05;
+margin-right: $spacing-05;
 padding: $spacing-04;
-padding: $layout-05 $layout-03;
+padding: $spacing-05 $spacing-03;
 padding: $spacing-07 $spacing-04 0 $spacing-04;
 ```
 
@@ -70,15 +54,19 @@ designs. This scale is applied and used within all Carbon components.
 
 | Token         | rem   | px  | Example                                       |
 | ------------- | ----- | --- | --------------------------------------------- |
-| `$spacing-01` | 0.125 | 2   | ![spacing-3xs example](images/spacing-3.svg)  |
-| `$spacing-02` | 0.25  | 4   | ![spacing-2xs example](images/spacing-4.svg)  |
-| `$spacing-03` | 0.5   | 8   | ![spacing-xs example](images/spacing-5.svg)   |
-| `$spacing-04` | 0.75  | 12  | ![spacing-sm example](images/spacing-6.svg)   |
-| `$spacing-05` | 1     | 16  | ![spacing-md example](images/spacing-7.svg)   |
-| `$spacing-06` | 1.5   | 24  | ![spacing-lg example](images/spacing-8.svg)   |
-| `$spacing-07` | 2     | 32  | ![spacing-xl example](images/spacing-9.svg)   |
-| `$spacing-08` | 2.5   | 40  | ![spacing-2xl example](images/spacing-10.svg) |
-| `$spacing-09` | 3     | 48  | ![spacing-3xl example](images/spacing-11.svg) |
+| `$spacing-01` | 0.125 | 2   | ![spacing-3xs example](images/spacing-01.svg) |
+| `$spacing-02` | 0.25  | 4   | ![spacing-2xs example](images/spacing-02.svg) |
+| `$spacing-03` | 0.5   | 8   | ![spacing-xs example](images/spacing-03.svg)  |
+| `$spacing-04` | 0.75  | 12  | ![spacing-sm example](images/spacing-04.svg)  |
+| `$spacing-05` | 1     | 16  | ![spacing-md example](images/spacing-05.svg)  |
+| `$spacing-06` | 1.5   | 24  | ![spacing-lg example](images/spacing-06.svg)  |
+| `$spacing-07` | 2     | 32  | ![spacing-xl example](images/spacing-07.svg)  |
+| `$spacing-08` | 2.5   | 40  | ![spacing-2xl example](images/spacing-08.svg) |
+| `$spacing-09` | 3     | 48  | ![spacing-3xl example](images/spacing-09.svg) |
+| `$spacing-10` | 4     | 64  | ![spacing-4xl example](images/spacing-10.svg) |
+| `$spacing-11` | 5     | 80  | ![spacing-5xl example](images/spacing-11.svg) |
+| `$spacing-12` | 6     | 96  | ![spacing-6xl example](images/spacing-12.svg) |
+| `$spacing-13` | 10    | 160 | ![spacing-7xl example](images/spacing-13.svg) |
 
 </div>
 
@@ -104,41 +92,6 @@ Each has its own unique use case.
 | `center` | Used to fluidly center an element between two edges.                                                                                                              |     |
 | `auto`   | Used on one side of an element to allow undefined space to automatically grow and shrink according to screen size. Typically used for asymmetrical fluid spacing. |     |
 | `gutter` | Used to space items between the grid's 12 columns                                                                                                                 |     |
-
-## Layout scale
-
-The layout scale is used for arranging components and other UI parts into a full
-page layout. It has larger increments that are used to control the density of a
-design. Use the smaller layout tokens to create more dense compositions and
-direct relationships. Use the larger tokens to increase the amount of white
-space and to disassociate sections.
-
-<div className="spacing-table">
-
-| Token        | rem | px  | Example                                      |
-| ------------ | --- | --- | -------------------------------------------- |
-| `$layout-01` | 1   | 16  | ![layout-2xs example](images/spacing-12.svg) |
-| `$layout-02` | 1.5 | 24  | ![layout-xs example](images/spacing-13.svg)  |
-| `$layout-03` | 2   | 32  | ![layout-sm example](images/spacing-14.svg)  |
-| `$layout-04` | 3   | 48  | ![layout-md example](images/spacing-15.svg)  |
-| `$layout-05` | 4   | 64  | ![layout-lg example](images/spacing-16.svg)  |
-| `$layout-06` | 6   | 96  | ![layout-xl example](images/spacing-17.svg)  |
-| `$layout-07` | 10  | 160 | ![layout-2xl example](images/spacing-18.svg) |
-
-</div>
-
-<br />
-
-![Example of layout tokens applied](images/layout_revised.png)
-
-<Caption>Example of layout tokens applied</Caption>
-
-### Using layout scale with the grid
-
-The Carbon grid is the encouraged way to horizontally space UI elements. The
-layout scale is most commonly used for vertical spacing, but it can also be
-applied for horizontal spacing when appropriate, especially in the case of fixed
-spacing.
 
 ## Designing with space
 
