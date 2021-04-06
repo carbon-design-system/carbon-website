@@ -1,6 +1,7 @@
 const path = require('path');
 
 module.exports = {
+  pathPrefix: '/carbon-website/public',
   siteMetadata: {
     title: 'Carbon Design System',
     siteUrl: 'https://www.carbondesignsystem.com',
