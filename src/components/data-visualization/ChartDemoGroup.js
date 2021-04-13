@@ -31,7 +31,7 @@ const ChartDemoGroup = ({ demoGroup, light }) => {
     demoGroup.demos.length > 2 ? demoGroup.demos.length - 1 : 0;
 
   return (
-    <>
+    <div>
       {light !== true && <H2>{demoGroup.title}</H2>}
 
       {light !== true && demoGroup.description && (
@@ -89,7 +89,7 @@ const ChartDemoGroup = ({ demoGroup, light }) => {
           </MiniCard>
         )}
       </>
-    </>
+    </div>
   );
 };
 
