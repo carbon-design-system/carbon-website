@@ -3,6 +3,7 @@ import React from 'react';
 import * as ChartComponents from '@carbon/charts-react';
 
 import H2 from 'gatsby-theme-carbon/src/components/markdown/H2';
+import P from 'gatsby-theme-carbon/src/components/markdown/P';
 import CodeBar from '../ComponentDemo/Code/CodeBar.js';
 
 import {
@@ -36,7 +37,7 @@ const ChartDemoGroup = ({ demoGroup, light }) => {
       {light !== true && demoGroup.description && (
         <div className="bx--row">
           <div className="bx--col-sm-4 bx--col-md-8 bx--col-lg-8">
-            <p className="dataviz-copy">{demoGroup.description}</p>
+            <P className="dataviz-copy">{demoGroup.description}</P>
           </div>
         </div>
       )}
@@ -45,12 +46,12 @@ const ChartDemoGroup = ({ demoGroup, light }) => {
         {light !== true && demo.description && (
           <div className="bx--row">
             <div className="bx--col-sm-4 bx--col-md-8 bx--col-lg-8">
-              <p className="dataviz-copy">{demo.description}</p>
+              <P className="dataviz-copy">{demo.description}</P>
             </div>
           </div>
         )}
 
-        <div className="bx--row">
+        <div className="bx--row" style={{ marginTop: "1.5rem"}}>
           <div className="bx--col-sm-4 bx--col-md-8 bx--col-lg-8">
             <div
               className="chart-demo-wrapper"
@@ -62,6 +63,7 @@ const ChartDemoGroup = ({ demoGroup, light }) => {
                   style={{ maxWidth: 400 }}
                 />
               </div>
+
               <CodeBar
                 links={{
                   React: demo.codesandbox.react,
@@ -80,9 +82,9 @@ const ChartDemoGroup = ({ demoGroup, light }) => {
               numberOfRemainingDemos > 1 ? 's' : ''
             }`}
             href={`https://carbon-design-system.github.io/carbon-charts/?path=/story/${demoGroup.type.replace(
-				'-chart',
-				''
-			  )}-charts-${demo.id}`}>
+              '-chart',
+              ''
+            )}-charts-${demo.id}`}>
             <img src={STORYBOOK_LOGO} style={{ height: 20 }} />
           </MiniCard>
         )}
