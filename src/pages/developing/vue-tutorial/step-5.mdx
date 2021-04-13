@@ -235,10 +235,10 @@ IBM Cloud. For example, in the case of serving static files, you can ignore
 
 ## Deploy app
 
-Login to IBM Cloud.
+Login to IBM Cloud with:
 
 ```bash
-cf login -sso
+cf login -a https://api.us-south.cf.cloud.ibm.com --sso
 ```
 
 Deploy app using the `cf push` command. Since `manifest.yml` is in our root
@@ -246,9 +246,15 @@ directory, we don't need to specify it in the push command. But, if you have
 multiple manifest files that target different environments, it's good practice
 to specify the file.
 
-_Note: To successfully deploy, you might need to update the region code (e.g.
-`api.[REGION].bluemix.net`).
-[Learn more.](https://developer.ibm.com/answers/answers/166990/view.html)_
+<InlineNotification>
+
+**Note:** This step assumes your spaces are in the US South region. To
+successfully deploy, you might need to update the region code (for example,
+`api.[REGION].cf.cloud.ibm.com`) to the region where your spaces were created,
+or create a space in the US South region.
+[Learn more](https://cloud.ibm.com/docs/overview?topic=overview-whatsnew&origin_team=T02M79KSB#new-cloud-foundry-api-endpoints)
+
+</InlineNotification>
 
 ```bash
 cf push -f manifest.yml

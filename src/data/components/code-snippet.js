@@ -15,8 +15,8 @@ $z-indexes: (
   dropdown : 7000,
   header : 6000,
   footer : 5000,
-  hidden : - 1,
-  overflowHidden: - 1,
+  hidden : -1,
+  overflowHidden: -1,
   floating: 10000
 );`;
 

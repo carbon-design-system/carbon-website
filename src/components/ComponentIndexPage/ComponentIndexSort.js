@@ -17,12 +17,12 @@ function ComponentIndexSort({ initialSortOption, options, onChange }) {
           id="component-index-sort"
           initialSelectedItem={initialSortOption}
           items={options}
-          label="Sort"
           light
           onChange={({ selectedItem }) => {
             onChange(selectedItem);
           }}
           type="inline"
+          titleText="Sort by:"
         />
       </div>
     </div>
