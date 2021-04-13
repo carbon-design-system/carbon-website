@@ -10,7 +10,7 @@ import {
   triggerText,
 } from './SvgLibrary.module.scss';
 
-const SvgCard = ({ icon, containerIsVisible, ...rest }) => {
+const SvgCard = ({ icon, containerIsVisible, isLastCard, ...rest }) => {
   const { name, Component, friendlyName, assets } = icon;
   const [isActionBarVisible, setIsActionBarVisible] = useState(false);
 
@@ -43,6 +43,7 @@ const SvgCard = ({ icon, containerIsVisible, ...rest }) => {
               )}
             </div>
             <ActionBar
+              isLastCard={isLastCard}
               name={name}
               source={source}
               friendlyName={friendlyName}
