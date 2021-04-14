@@ -2,17 +2,29 @@ import useMedia from 'use-media';
 import { breakpoints } from '@carbon/elements';
 
 const useColumnCount = ({ assetType }) => {
-  const isTwoCol = useMedia({ maxWidth: breakpoints.md.width });
-  const isFourCol = useMedia({
+  const isTablet = useMedia({
     minWidth: breakpoints.md.width,
     maxWidth: breakpoints.lg.width,
   });
+  const isDesktop = useMedia({
+    minWidth: breakpoints.lg.width,
+  });
 
-  if (isTwoCol) {
-    return 2;
+  let colCount = 2;
+
+  if (assetType === 'pictograms' && isDesktop) {
+    colCount = 4;
   }
 
-  return isFourCol || assetType === 'pictograms' ? 4 : 6;
+  if (assetType === 'icons') {
+    if (isTablet) {
+      colCount = 4;
+    } else if (isDesktop) {
+      colCount = 6;
+    }
+  }
+
+  return colCount;
 };
 
 export default useColumnCount;
