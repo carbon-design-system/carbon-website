@@ -26,6 +26,16 @@ const typeScale = {
       'letter-spacing': 0.32,
     },
   },
+  'caption-02': {
+    sm: {
+      step: 1,
+      font: 'IBM Plex Sans',
+      'font-weight': '400',
+      'font-size': 0.875,
+      'line-height': 1.125,
+      'letter-spacing': 0.16,
+    },
+  },
   'label-01': {
     sm: {
       step: 1,
@@ -34,6 +44,16 @@ const typeScale = {
       'font-size': 0.75,
       'line-height': 1,
       'letter-spacing': 0.32,
+    },
+  },
+  'label-02': {
+    sm: {
+      step: 1,
+      font: 'IBM Plex Sans',
+      'font-weight': '400',
+      'font-size': 0.875,
+      'line-height': 1.125,
+      'letter-spacing': 0.16,
     },
   },
   'helper-text-01': {
@@ -46,7 +66,16 @@ const typeScale = {
       'letter-spacing': 0.32,
     },
   },
-
+  'helper-text-02': {
+    sm: {
+      step: 1,
+      font: 'IBM Plex Sans',
+      'font-weight': '400',
+      'font-size': 0.875,
+      'line-height': 1.125,
+      'letter-spacing': 0.16,
+    },
+  },
   'body-short-01': {
     sm: {
       step: 2,
@@ -680,9 +709,21 @@ const typeSets = {
     },
     {
       description:
+        'This is for larger captions or legal content in a layout with expressive experience — not for body copy.',
+      key: 'caption-02',
+      name: 'caption-02',
+    },
+    {
+      description:
         'This is for explanatory helper text that appears below a field title within a component.',
       key: 'helper-text-01',
       name: 'helper-text-01',
+    },
+    {
+      description:
+        'This is for larger explanatory helper text that appears below a field title within a component.',
+      key: 'helper-text-02',
+      name: 'helper-text-02',
     },
   ],
   supportingStyles: [
@@ -705,6 +746,11 @@ const typeSets = {
       name: 'label-01',
     },
     {
+      description: 'This is for larger field labels in components and error messages.',
+      key: 'label-02',
+      name: 'label-02',
+    },
+    {
       description:
         'This is for explanatory helper text that appears below a field title within a component.',
       key: 'helper-text-01',
@@ -720,19 +766,19 @@ const typeSets = {
     },
     {
       description:
-        'This is commonly used in both the expressive and the productive type theme layouts for long paragraphs with more than four lines. It is a good size for comfortable, long-form reading. Use this for longer body copy in components such as accordion or structured list. Always left-align this type; never center it.',
+        'This is commonly used in both the expressive and the productive experience layouts for long paragraphs with more than four lines. It is a good size for comfortable, long-form reading. Use this for longer body copy in components such as accordion or structured list. Always left-align this type; never center it.',
       key: 'body-long-01',
       name: 'body-long-01',
     },
     {
       description:
-        'This is for short paragraphs with no more than four lines and is commonly used in the expressive type theme for layouts.',
+        'This is for short paragraphs with no more than four lines and is commonly used in the expressive experiences for layouts.',
       key: 'body-short-02',
       name: 'body-short-02',
     },
     {
       description:
-        'This is commonly used in the expressive type theme layouts for long paragraphs with more than four lines. The looser line height and larger size makes for comfortable, long-form reading, in mediums that allow for more space. This size type is rarely used for body copy in components. Always left-align type; never center it.',
+        'This is commonly used in the expressive experience layouts for long paragraphs with more than four lines. The looser line height and larger size makes for comfortable, long-form reading, in mediums that allow for more space. Always left-align type; never center it.',
       key: 'body-long-02',
       name: 'body-long-02',
     },
