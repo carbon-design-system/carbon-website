@@ -8,6 +8,7 @@ import {
   icons as pictogramMetaData,
   categories as pictogramCatagoryMetadata,
 } from '@carbon/pictograms/metadata.json';
+import useColumnCount from '../shared/useColumnCount';
 
 import FilterRow from '../shared/FilterRow';
 import { svgPage, svgLibrary } from '../shared/SvgLibrary.module.scss';
@@ -23,6 +24,7 @@ const IconLibrary = () => {
   const [categoriesLoaded, setCategoriesLoaded] = useState(false);
 
   const debouncedSetSearchInputValue = debounce(setSearchInputValue, 200);
+  const columnCount = useColumnCount({ assetType: 'pictograms' });
 
   useEffect(() => {
     const pictogramArray = pictogramMetaData.reduce(
@@ -111,6 +113,7 @@ const IconLibrary = () => {
         <div className={svgLibrary}>
           {filteredCategories.map(([category, pictograms]) => (
             <PictogramCategory
+              columnCount={columnCount}
               key={category}
               category={category}
               pictograms={pictograms}
