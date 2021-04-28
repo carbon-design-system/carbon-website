@@ -19,7 +19,7 @@ usage documentation, see the Storybooks for each framework below.
 <Column colLg={4} colMd={4} noGutterSm>
   <ResourceCard
     subTitle="React"
-    href="https://react.carbondesignsystem.com/?path=/story/notifications--toast"
+    href="https://react.carbondesignsystem.com/?path=/story/components-notifications--toast"
     >
 
 <MdxIcon name="react" />
@@ -49,3 +49,64 @@ usage documentation, see the Storybooks for each framework below.
 </Row>
 
 ## Live demo
+
+<ComponentDemo
+  components={[
+    {
+      id: 'toast',
+      label: 'Toast notification',
+    },
+    {
+      id: 'inline',
+      label: 'Inline notification',
+    },
+  ]}>
+  <ComponentVariant
+    id="toast"
+    knobs={{
+      ToastNotification: ['hideCloseButton', 'kind', 'lowContrast'],
+    }}
+    links={{
+      React:
+        'https://react.carbondesignsystem.com/?path=/story/components-notifications--toast',
+      Angular:
+        'https://angular.carbondesignsystem.com/?path=/story/components-notification--toast',
+      Vue:
+        'http://vue.carbondesignsystem.com/?path=/story/components-cvtoastnotification--default',
+      Vanilla: 'https://the-carbon-components.netlify.com/?nav=notification',
+    }}>{`
+    <div>
+      <ToastNotification
+        caption="00:00:00 AM"
+        iconDescription="describes the close button"
+        subtitle={<span>Subtitle text goes here. <a href="#example">Example link</a></span>}
+        timeout={0}
+        title="Notification title"
+      />
+    </div>
+`}</ComponentVariant>
+  <ComponentVariant
+    id="inline"
+    knobs={{
+      InlineNotification: ['hideCloseButton', 'lowContrast'],
+    }}
+    links={{
+      React:
+        'https://react.carbondesignsystem.com/?path=/story/components-notifications--inline',
+      Angular:
+        'https://angular.carbondesignsystem.com/?path=/story/components-notification--basic',
+      Vue:
+        'http://vue.carbondesignsystem.com/?path=/story/components-cvinlinenotification--default',
+      Vanilla: 'https://the-carbon-components.netlify.com/?nav=notification',
+    }}>{`
+  <div>
+    <InlineNotification
+      kind="info"
+      actions={<NotificationActionButton>Action</NotificationActionButton>}
+      iconDescription="describes the close button"
+      subtitle={<span>Subtitle text goes here. <a href="#example">Example link</a></span>}
+      title="Notification title"
+    />
+  </div>
+`}</ComponentVariant>
+</ComponentDemo>
