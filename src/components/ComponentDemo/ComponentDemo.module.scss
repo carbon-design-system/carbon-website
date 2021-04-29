@@ -312,6 +312,7 @@ fieldset.form-group:last-of-type {
 body[data-live-preview-theme='White'] [class^='bx--tooltip'],
 body[data-live-preview-theme='White']
   [class^='flatpickr-calendar'][class*='open'],
+body[data-live-preview-theme='White'] ul[class^='bx--overflow-menu-options'],
 .white {
   @include carbon--theme(
     $theme: $carbon--theme--white,
@@ -322,6 +323,7 @@ body[data-live-preview-theme='White']
 body[data-live-preview-theme='Gray 10'] [class^='bx--tooltip'],
 body[data-live-preview-theme='Gray 10']
   [class^='flatpickr-calendar'][class*='open'],
+body[data-live-preview-theme='Gray 10'] ul[class^='bx--overflow-menu-options'],
 .g10 {
   @include carbon--theme(
     $theme: $carbon--theme--g10,
@@ -332,6 +334,7 @@ body[data-live-preview-theme='Gray 10']
 body[data-live-preview-theme='Gray 90'] [class^='bx--tooltip'],
 body[data-live-preview-theme='Gray 90']
   [class^='flatpickr-calendar'][class*='open'],
+body[data-live-preview-theme='Gray 90'] ul[class^='bx--overflow-menu-options'],
 .g90 {
   @include carbon--theme(
     $theme: $carbon--theme--g90,
@@ -342,6 +345,7 @@ body[data-live-preview-theme='Gray 90']
 body[data-live-preview-theme='Gray 100'] [class^='bx--tooltip'],
 body[data-live-preview-theme='Gray 100']
   [class^='flatpickr-calendar'][class*='open'],
+body[data-live-preview-theme='Gray 100'] ul[class^='bx--overflow-menu-options'],
 .g100 {
   @include carbon--theme(
     $theme: $carbon--theme--g100,
@@ -390,6 +394,18 @@ body[data-live-preview-theme='Gray 100']
     height: 2.5rem;
   }
 
+  [class*='--overflow-menu__icon'] {
+    fill: var(--cds-icon-01, #161616);
+  }
+
+  [class$='--overflow-menu']:hover {
+    background-color: var(--cds-hover-ui, #e5e5e5);
+  }
+
+  [class*='--overflow-menu'][class*='--overflow-menu--open'] {
+    background-color: var(--cds-ui-01, #f4f4f4);
+  }
+
   [class*='--search--sm'],
   [class*='--search--lg'],
   [class*='--search--xl'],
@@ -409,5 +425,35 @@ body {
 
   .flatpickr-calendar.open {
     background-color: var(--cds-ui-01, #ffffff);
+  }
+
+  [class*='--overflow-menu-options'][class*='--overflow-menu-options--open'] {
+    background-color: var(--cds-ui-01, #f4f4f4);
+
+    &::after {
+      background-color: var(--cds-ui-01, #f4f4f4);
+    }
+  }
+
+  [class$='--overflow-menu-options__option']:hover,
+  [class*='--overflow-menu-options__option'][class$='--overflow-menu--divider']:hover {
+    background-color: var(--cds-hover-ui, #e5e5e5);
+  }
+
+  [class$='--overflow-menu-options__option']:hover
+    [class*='--overflow-menu-options'] {
+    background-color: transparent;
+  }
+
+  [class*='--overflow-menu-options__btn'] {
+    color: var(--cds-text-02, #525252);
+
+    &:hover {
+      color: var(--cds-text-01, #161616);
+    }
+
+    &:focus {
+      outline: 2px solid var(--cds-focus, #0f62fe);
+    }
   }
 }
