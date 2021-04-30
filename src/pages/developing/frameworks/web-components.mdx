@@ -1,0 +1,185 @@
+---
+title: Frameworks
+description:
+  The Carbon Design System is built React first. We also support core parts of
+  the system in vanilla JS, Angular, Vue, Svelte, and web components.
+tabs:
+  [
+    'React',
+    'Vanilla',
+    'Angular',
+    'Vue',
+    'Svelte',
+    'Web Components',
+    'Other frameworks',
+  ]
+---
+
+<PageDescription>
+
+The library provides front-end developers and engineers a collection of reusable
+web components to build websites and user interfaces. Adopting the library
+enables developers to use consistent markup, styles, and behavior in prototype
+and production work.
+
+This library uses Custom Elements v1 and Shadow DOM v1 specs.
+
+</PageDescription>
+
+<InlineNotification>
+
+The web components library is maintained by members of the Carbon community. For
+support, contact the
+[Carbon Web Components team](https://github.com/carbon-design-system/carbon-web-components/issues/new/choose).
+
+</InlineNotification>
+
+## Resources
+
+<Row className="resource-card-group">
+<Column colLg={4} colMd={4} noGutterSm>
+  <ResourceCard
+    subTitle="Carbon Web Components"
+    href="https://web-components.carbondesignsystem.com"
+    >
+
+![Storybook icon](images/storybook.svg)
+
+  </ResourceCard>
+</Column>
+  <Column colMd={4} colLg={4} noGutterSm>
+    <ResourceCard
+      subTitle="Try web components with CodeSandbox"
+      href="https://codesandbox.io/s/github/carbon-design-system/carbon-web-components/tree/master/examples/codesandbox/basic"
+    >
+      <MdxIcon name="codesandbox" />
+    </ResourceCard>
+  </Column>
+</Row>
+
+## Getting started
+
+To install `carbon-web-components` in your project, you will need to run the
+following command using [npm](https://www.npmjs.com/):
+
+```bash
+npm install -S carbon-web-components carbon-components lit-html lit-element
+```
+
+If you prefer [Yarn](https://yarnpkg.com/en/), use the following command
+instead:
+
+```bash
+yarn add carbon-web-components carbon-components lit-html lit-element
+```
+
+### Basic usage
+
+Our example at [CodeSandbox](https://codesandbox.io) shows the most basic usage:
+
+[![Edit carbon-web-components](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/carbon-design-system/carbon-web-components/tree/master/examples/codesandbox/basic)
+
+The first thing you need to do is **set up a module bundler** to resolve
+ECMAScript `import`s. The above example uses [Webpack](https://webpack.js.org)
+but you can use other bundlers like [Rollup](https://rollupjs.org/) too.
+
+Once you set up a module bundler, you can start importing our component modules,
+for example:
+
+```javascript
+import 'carbon-web-components/es/components/dropdown/dropdown.js';
+import 'carbon-web-components/es/components/dropdown/dropdown-item.js';
+```
+
+Once you've imported the component modules, you can use our components in the
+same manner as native HTML tags, for example:
+
+```html
+<bx-dropdown trigger-content="Select an item">
+  <bx-dropdown-item value="all">Option 1</bx-dropdown-item>
+  <bx-dropdown-item value="cloudFoundry">Option 2</bx-dropdown-item>
+  <bx-dropdown-item value="staging">Option 3</bx-dropdown-item>
+  <bx-dropdown-item value="dea">Option 4</bx-dropdown-item>
+  <bx-dropdown-item value="router">Option 5</bx-dropdown-item>
+</bx-dropdown>
+```
+
+If you just want to try our components for demonstrations and so on, you can use
+CDNs that support module mapping (for example, [JSPM](https://jspm.org)). With
+CDNs, you can import just our modules in `<script type="module">`:
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="module">
+      import 'https://jspm.dev/carbon-web-components/es/components/dropdown/dropdown.js';
+      import 'https://jspm.dev/carbon-web-components/es/components/dropdown/dropdown-item.js';
+    </script>
+    <style type="text/css">
+      #app {
+        font-family: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
+        width: 300px;
+        margin: 2rem;
+      }
+
+      bx-dropdown:not(:defined),
+      bx-dropdown-item:not(:defined) {
+        visibility: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <bx-dropdown trigger-content="Select an item">
+        <bx-dropdown-item value="all">Option 1</bx-dropdown-item>
+        <bx-dropdown-item value="cloudFoundry">Option 2</bx-dropdown-item>
+        <bx-dropdown-item value="staging">Option 3</bx-dropdown-item>
+        <bx-dropdown-item value="dea">Option 4</bx-dropdown-item>
+        <bx-dropdown-item value="router">Option 5</bx-dropdown-item>
+      </bx-dropdown>
+    </div>
+  </body>
+</html>
+```
+
+### List of available components
+
+View available web components
+[here](https://web-components.carbondesignsystem.com). Usage information is
+available in the notes provided with each story.
+
+### JavaScript framework integration
+
+In addition to the available web component versions of Carbon components, this
+library also supports usage with JavaScript frameworks like Angular, React, and
+Vue if the desire is to use instead of the pure framework versions of Carbon
+components. Specifically for React, this library comes with a wrapper
+implementation around the Carbon Web Components for more seamless integration
+with your React application.
+
+This is achievable since web components is the modern browser standard, and
+works well with other front-end frameworks that exist in the application. In
+turn, this also comes with the benefits of encapsulation within the Shadow DOM:
+
+- [Carbon Web Components with Angular](https://web-components.carbondesignsystem.com/angular/index.html)
+- [Carbon Web Components with React](https://web-components.carbondesignsystem.com/react/index.html)
+- [Carbon Web Components with Vue](https://web-components.carbondesignsystem.com/vue/index.html)
+
+<InlineNotification>
+
+**Note:** The approaches above detail the usage of Carbon Web Components within
+popular JavaScript frameworks. The APIs are based on how the web components are
+used, and differ from its pure framework counterparts (Carbon React, Carbon
+Angular, Carbon Vue).
+
+</InlineNotification>
+
+## Troubleshooting
+
+If you experience any issues while getting set up with Carbon Web Components,
+please head over to the
+[GitHub repo](https://github.com/carbon-design-system/carbon-web-components) for
+more guidelines and support. Please
+[create an issue](https://github.com/carbon-design-system/carbon-web-components/issues)
+if your issue does not already exist.

@@ -14,6 +14,7 @@ const ActionBar = ({
   source,
   setIsActionBarVisible,
   isActionBarVisible,
+  isLastCard,
 }) => {
   const { site, type } = useContext(LibraryContext);
   const component = `<${
@@ -29,6 +30,8 @@ const ActionBar = ({
     const isStillFocusedWithin = actionBarRef.current.contains(e.relatedTarget);
     setIsActionBarVisible(isStillFocusedWithin);
   };
+
+  const tooltipAlignment = isLastCard ? 'end' : 'center';
 
   const handleDownload = () => {
     const a = document.body.appendChild(document.createElement('a'));
@@ -60,7 +63,7 @@ const ActionBar = ({
         kind="ghost"
         size="small"
         hasIconOnly
-        tooltipAlignment="center"
+        tooltipAlignment={tooltipAlignment}
         tooltipPosition="top"
         iconDescription="Download SVG"
         renderIcon={Download16}
@@ -74,7 +77,7 @@ const ActionBar = ({
           kind="ghost"
           size="small"
           hasIconOnly
-          tooltipAlignment="center"
+          tooltipAlignment={tooltipAlignment}
           tooltipPosition="top"
           iconDescription={copyText}
           renderIcon={Code16}
