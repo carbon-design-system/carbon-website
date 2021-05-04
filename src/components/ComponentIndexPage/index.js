@@ -54,12 +54,12 @@ function sortByNewest(a, b) {
   return dateA - dateB;
 }
 
-const sortOptions = ['Sort by A to Z', 'Sort by Maintainer', 'Sort by Newest'];
-const initialSortOption = 'Sort by A to Z';
+const sortOptions = ['A to Z', 'Maintainer', 'Newest'];
+const initialSortOption = 'A to Z';
 const sortBy = {
-  'Sort by A to Z': sortByName,
-  'Sort by Maintainer': sortByMaintainer,
-  'Sort by Newest': sortByNewest,
+  'A to Z': sortByName,
+  'Maintainer': sortByMaintainer,
+  'Newest': sortByNewest,
 };
 
 const filterLabels = [

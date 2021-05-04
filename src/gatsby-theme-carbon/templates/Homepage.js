@@ -2,7 +2,7 @@
 import React from 'react';
 import { HomepageCallout, ResourceCard } from 'gatsby-theme-carbon';
 import HomepageTemplate from 'gatsby-theme-carbon/src/templates/Homepage';
-import { blue90, gray10, white } from '@carbon/elements';
+import { blue90, gray10, white0 } from '@carbon/elements';
 import styles from './Homepage.module.scss';
 import HomepageVideo from '../../components/HomepageVideo/HomepageVideo';
 
@@ -46,8 +46,9 @@ const customProps = {
             <div className="bx--col-lg-4 bx--col-md-4 bx--col-sm-2 bx--offset-lg-8 bx--offset-md-4 bx--offset-sm-2 homepage--tile-header">
               <ResourceCard
                 className={styles.callToAction}
-                title="Carbon meetups"
-                href="/whats-happening/meetups"
+                subTitle="Coming soon"
+                title="Carbon v11"
+                href="/whats-happening/v11-release/"
                 color="dark"
                 actionIcon="arrowRight"
               />
@@ -70,7 +71,7 @@ const customProps = {
     <HomepageCallout
       leftText={SecondLeftText}
       rightText={SecondRightText}
-      color={white}
+      color={white0}
       backgroundColor={blue90}
     />
   ),

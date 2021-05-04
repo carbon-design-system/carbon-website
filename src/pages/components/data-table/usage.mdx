@@ -48,13 +48,13 @@ table display settings, and other utilities.
 - When a more complex display of the data or interactions are required.
 - As a replacement for a spreadsheet application.
 
-### Types
+### Variants
 
-| Type             | Purpose                                                                                                                                                                                                                             |
-| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| _Default_        | The default data table comes with a base style with only the title, header, and table elements. rows.                                                                                                                               |
-| _With selection_ | Batch actions are functions that may be performed on multiple items within a table. This type of table enables the user to select individual rows and apply an action. A batch action toolbar appears when table rows are selected. |
-| _With expansion_ | The expandable data table is useful for presenting large amounts of data in a small space. Rows are collapsed and can be expanded to reveal extra information.                                                                      |
+| Variant          | Purpose                                                                                                                                                                                                                                |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _Default_        | The default data table comes with a base style with only the title, header, and table elements. rows.                                                                                                                                  |
+| _With selection_ | Batch actions are functions that may be performed on multiple items within a table. This variant of table enables the user to select individual rows and apply an action. A batch action toolbar appears when table rows are selected. |
+| _With expansion_ | The expandable data table is useful for presenting large amounts of data in a small space. Rows are collapsed and can be expanded to reveal extra information.                                                                         |
 
 ## Live demo
 
@@ -90,7 +90,7 @@ import {
     knobs={{ DataTable: ['isSortable'], Table: ['size', 'useZebraStyles'] }}
     links={{
       React:
-        'https://react.carbondesignsystem.com/?path=/story/datatable--default',
+        'https://react.carbondesignsystem.com/?path=/story/components-datatable--usage',
       Angular:
         'https://angular.carbondesignsystem.com/?path=/story/components-table--basic',
       Vue:
@@ -129,7 +129,7 @@ import {
     knobs={{ DataTable: ['isSortable'], Table: ['size', 'useZebraStyles'] }}
     links={{
       React:
-        'https://react.carbondesignsystem.com/?path=/story/datatable--with-selection',
+        'https://react.carbondesignsystem.com/?path=/story/components-datatable-selection--usage',
       Angular:
         'https://angular.carbondesignsystem.com/?path=/story/components-table--basic',
       Vue:
@@ -177,7 +177,7 @@ import {
     knobs={{ DataTable: ['isSortable'] }}
     links={{
       React:
-        'https://react.carbondesignsystem.com/?path=/story/datatable--with-expansion',
+        'https://react.carbondesignsystem.com/?path=/story/components-datatable-expansion--usage',
       Angular:
         'https://angular.carbondesignsystem.com/?path=/story/components-table--with-expansion',
       Vue:
@@ -225,7 +225,7 @@ import {
     id="with-batch-actions"
     links={{
       React:
-        'https://react.carbondesignsystem.com/?path=/story/datatable--with-batch-actions',
+        'https://react.carbondesignsystem.com/?path=/story/components-datatable-batch-actions--usage',
       Angular:
         'https://angular.carbondesignsystem.com/?path=/story/components-table--with-toolbar',
       Vue:
@@ -552,15 +552,31 @@ further guidelines and configurations.
 
 ### Search
 
+#### Collapsed search
+
 A search field can be triggered through an icon button in the data table
 toolbar. By default the search functionality follows the
 [active search](/patterns/search-pattern/#active-search) pattern. The search
 should be closed by default, and placed below the table title.
 
 <Row>
-<Column colLg={12}>
+<Column colLg={8}>
 
 ![data table search](images/datatable_search.gif)
+
+</Column>
+</Row>
+
+#### Open search
+
+The search field can appear always open on a data table. The field is placed on
+the left side of the table under the table title and stretches until it meets
+the actions on the right.
+
+<Row>
+<Column colLg={8}>
+
+![data table search](images/datatable-search-2-b.png)
 
 </Column>
 </Row>
@@ -601,7 +617,7 @@ added if you have an icon to support that function. Icons should be 16x16 px
 </Column>
 </Row>
 
-### Multi-select / batch action
+### Multi-select & batch action
 
 Batch actions are functions that may be performed on multiple items within a
 table. Once the user selects at least one row from the table, the batch action
@@ -617,12 +633,31 @@ the items.
 </Column>
 </Row>
 
+### Radio selection
+
+Instead of a multiselect checkbox function, the data table supports a single
+selection radio button control. Only one row can be selected at a time when
+using the radio selection. The radio button is placed in the first column on the
+left side.
+
+<Row>
+<Column colLg={12}>
+
+![data table multi select](images/datatable-radio-select.png)
+
+</Column>
+</Row>
+
 ### Inline actions
 
 Inline actions are functions that may be performed on a specific table row. Each
 row is accompanied by
 an [overflow menu](https://www.carbondesignsystem.com/components/overflow-menu/code) that
 contains actions related specifically to that row.
+
+When the overflow menu contains fewer than three options, keep the actions
+inline as icon buttons instead. This reduces a click and makes available actions
+visible at a glance.
 
 <Row>
 <Column colLg={8}>
@@ -631,10 +666,6 @@ contains actions related specifically to that row.
 
 </Column>
 </Row>
-
-When the overflow menu contains less than three options, keep the actions inline
-as icon buttons instead. This reduces a click and makes available actions
-visible at a glance.
 
 ### Overflow menu
 
@@ -652,6 +683,8 @@ supports hover-over and persist the overflow menus even if the
 <Column colLg={8}>
 
 ![data table inline actions](images/datatable-persistent-hover.png)
+
+<Caption>Persistent overflow (left), on hover (right).</Caption>
 
 </Column>
 </Row>
@@ -674,10 +707,12 @@ view the information and complete tasks.
 </Column>
 </Row>
 
-By default, the expand-all chevron is not shown. Keeping detailed information in the
-expanded section saves user loading time by postponing some data queries until
-needed. Expanding all rows at once will typically negate this advantage of the
-expandable table. If additional load time is expected to display expanded
+#### Loading
+
+By default, the expand-all chevron is not shown. Keeping detailed information in
+the expanded section saves user loading time by postponing some data queries
+until needed. Expanding all rows at once will typically negate this advantage of
+the expandable table. If additional load time is expected to display expanded
 information, use skeleton states instead of spinners.
 
 <Row>

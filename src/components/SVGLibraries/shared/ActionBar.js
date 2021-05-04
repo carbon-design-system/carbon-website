@@ -2,7 +2,7 @@
 import React, { useRef, useContext, useState } from 'react';
 import { pascalCase } from 'change-case';
 import { Code16, Download16 } from '@carbon/icons-react';
-import { TooltipDefinition } from 'carbon-components-react';
+import { Button } from 'carbon-components-react';
 import copy from 'copy-to-clipboard';
 import cx from 'classnames';
 import { LibraryContext } from './LibraryProvider';
@@ -14,6 +14,7 @@ const ActionBar = ({
   source,
   setIsActionBarVisible,
   isActionBarVisible,
+  isLastCard,
 }) => {
   const { site, type } = useContext(LibraryContext);
   const component = `<${
@@ -29,6 +30,8 @@ const ActionBar = ({
     const isStillFocusedWithin = actionBarRef.current.contains(e.relatedTarget);
     setIsActionBarVisible(isStillFocusedWithin);
   };
+
+  const tooltipAlignment = isLastCard ? 'end' : 'center';
 
   const handleDownload = () => {
     const a = document.body.appendChild(document.createElement('a'));
@@ -56,27 +59,33 @@ const ActionBar = ({
       className={cx(styles.container, {
         [styles.hidden]: !isActionBarVisible,
       })}>
-      <TooltipDefinition
+      <Button
+        kind="ghost"
+        size="small"
+        hasIconOnly
+        tooltipAlignment={tooltipAlignment}
+        tooltipPosition="top"
+        iconDescription="Download SVG"
+        renderIcon={Download16}
         onFocus={() => setIsActionBarVisible(true)}
         onClick={handleDownload}
-        align="center"
-        direction="top"
-        tooltipText="Download SVG"
         className={styles.tooltip}
-        triggerClassName={styles.trigger}>
-        <Download16 />
-      </TooltipDefinition>
+        triggerClassName={styles.trigger}
+      />
       {shouldShowCopyButton && (
-        <TooltipDefinition
-          align="center"
-          direction="top"
-          tooltipText={copyText}
+        <Button
+          kind="ghost"
+          size="small"
+          hasIconOnly
+          tooltipAlignment={tooltipAlignment}
+          tooltipPosition="top"
+          iconDescription={copyText}
+          renderIcon={Code16}
           onClick={handleCopy}
           onFocus={() => setIsActionBarVisible(true)}
           className={styles.tooltip}
-          triggerClassName={styles.trigger}>
-          <Code16 />
-        </TooltipDefinition>
+          triggerClassName={styles.trigger}
+        />
       )}
     </div>
   );

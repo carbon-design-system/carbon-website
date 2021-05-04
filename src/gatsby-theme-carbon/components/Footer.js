@@ -4,7 +4,7 @@ import packageJson from '../../../package.json';
 
 const currentYear = new Date().getFullYear();
 const versions = {
-  components: packageJson.devDependencies['carbon-components'],
+  components: packageJson.dependencies['carbon-components'],
   react: packageJson.dependencies['carbon-components-react'],
 };
 
@@ -13,7 +13,7 @@ const Content = ({ buildTime }) => (
     <p>
       Have questions? Email us <br />
       at <a href="mailto:carbon@us.ibm.com">carbon@us.ibm.com</a> <br />
-      or open an issue on
+      or open an issue on{' '}
       <a
         style={{ textDecoration: 'underline' }}
         href="https://github.com/carbon-design-system/carbon-website/issues/new">

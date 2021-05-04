@@ -11,15 +11,16 @@ import {
   svgCategory,
 } from '../shared/SvgLibrary.module.scss';
 
-const IconCategory = ({ category, icons }) => {
+const IconCategory = ({ category, icons, columnCount }) => {
   const [subCategoryRef, containerIsVisible] = useIntersectionObserver();
   return (
     <section className={svgCategory}>
       <h2 className={cx(h2, categoryTitle)}>{category}</h2>
       <ul ref={subCategoryRef}>
         <ul className={svgGrid}>
-          {icons.map((icon) => (
+          {icons.map((icon, i) => (
             <SvgCard
+              isLastCard={(i + 1) % columnCount === 0}
               containerIsVisible={containerIsVisible}
               key={icon.name}
               icon={icon}

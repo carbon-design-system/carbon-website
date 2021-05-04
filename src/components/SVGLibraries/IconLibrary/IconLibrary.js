@@ -8,6 +8,8 @@ import {
   icons as iconMetaData,
   categories as iconCategoryMetadata,
 } from '@carbon/icons/metadata.json';
+import useColumnCount from '../shared/useColumnCount';
+
 import { svgPage, svgLibrary } from '../shared/SvgLibrary.module.scss';
 
 import FilterRow from '../shared/FilterRow';
@@ -20,6 +22,7 @@ const IconLibrary = () => {
   const [searchInputValue, setSearchInputValue] = useState('');
   const [categoryList, setCategoryList] = useState([]);
   const [categoriesLoaded, setCategoriesLoaded] = useState(false);
+  const columnCount = useColumnCount({ assetType: 'icons' });
 
   const debouncedSetSearchInputValue = debounce(setSearchInputValue, 200);
 
@@ -105,12 +108,17 @@ const IconLibrary = () => {
           setSelectedCategory={setSelectedCategory}
           allIconResults={filteredIcons.length}
           pageName="icon"
-          pageUrl="https://github.com/carbon-design-system/carbon/blob/master/packages/icons/master/ui-icon-master.ai"
+          pageUrl="https://github.com/carbon-design-system/carbon/blob/main/packages/icons/master/ui-icon-master.ai"
         />
       ) : (
         <div className={svgLibrary}>
           {filteredCategories.map(([category, icons]) => (
-            <IconCategory key={category} category={category} icons={icons} />
+            <IconCategory
+              columnCount={columnCount}
+              key={category}
+              category={category}
+              icons={icons}
+            />
           ))}
         </div>
       )}
