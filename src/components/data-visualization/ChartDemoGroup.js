@@ -6,12 +6,6 @@ import H2 from 'gatsby-theme-carbon/src/components/markdown/H2';
 import P from 'gatsby-theme-carbon/src/components/markdown/P';
 import { MiniCard } from 'gatsby-theme-carbon/src/components/MiniCard';
 import CodeBar from '../ComponentDemo/Code/CodeBar.js';
-
-import {
-  CardGroup,
-  MiniCard,
-} from 'gatsby-theme-carbon/src/components/MiniCard';
-
 import STORYBOOK_LOGO from '../../images/storybook-icon.svg';
 
 const generateHeadingID = (title) =>
@@ -23,7 +17,7 @@ const generateHeadingID = (title) =>
 const ChartDemoGroup = ({ demoGroup, light }) => {
   let demo = demoGroup.demos.find((d) => d.mainDemo === true);
   if (!demo) {
-    demo = demoGroup.demos[0];
+    [demo] = demoGroup.demos;
   }
 
   const DemoComponent = ChartComponents[demo.chartType.vanilla];
@@ -85,7 +79,7 @@ const ChartDemoGroup = ({ demoGroup, light }) => {
               numberOfRemainingDemos > 1 ? 's' : ''
             }`}
             href={`https://carbon-design-system.github.io/carbon-charts/?path=/story/${demoGroupClassification}-charts-${demo.id}`}>
-            <img src={STORYBOOK_LOGO} style={{ height: 20 }} />
+            <img src={STORYBOOK_LOGO} alt="" style={{ height: 20 }} />
           </MiniCard>
         )}
       </>
