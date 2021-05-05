@@ -68,6 +68,7 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
 
   const onThemeChange = (event) => {
     setTheme(themes[event.selectedItem]);
+    document.body.dataset.livePreviewTheme = event.selectedItem;
   };
 
   const onVariantChange = (event) => {
