@@ -4,6 +4,7 @@ import * as ChartComponents from '@carbon/charts-react';
 
 import H2 from 'gatsby-theme-carbon/src/components/markdown/H2';
 import P from 'gatsby-theme-carbon/src/components/markdown/P';
+import { MiniCard } from 'gatsby-theme-carbon/src/components/MiniCard';
 import CodeBar from '../ComponentDemo/Code/CodeBar.js';
 
 import {
