@@ -1,4 +1,4 @@
-# Carbon Design System
+# Carbon Design System - 
 
 ![Deployment status](https://github.com/carbon-design-system/carbon-website/workflows/Deployment%20status/badge.svg)
 
