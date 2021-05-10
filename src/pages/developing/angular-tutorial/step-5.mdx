@@ -152,7 +152,7 @@ first.
 npm run build
 ```
 
-Looking at `package.json`, you'll find `yarn build` to run `ng build`. This
+Looking at `package.json`, you'll find `ng build`. This
 builds the app for production to the `dist` folder. It bundles Angular in
 production mode and optimizes the build for the best performance. It even goes
 so far to minify files and include hashes in filenames for caching.
@@ -262,10 +262,10 @@ sure we only deploy immediately after running the build. In the `"scripts"`
 object in `package.json`, add:
 
 ```bash path=package.json
-"deploy": "rm -rf ./dist && yarn build && cf push -f manifest.yml"
+"deploy": "rm -rf ./dist && ng build --prod --aot && cf push -f manifest.yml"
 ```
 
-Next time you want to deploy, you can simply run `yarn deploy`.
+Next time you want to deploy, you can simply run `npm run-script deploy`.
 
 ## Submit pull request
 
