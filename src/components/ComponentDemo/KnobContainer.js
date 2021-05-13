@@ -135,6 +135,7 @@ const Knob = ({
   // eslint-disable-next-line no-useless-escape
   const pattern = `<${component}(\\s?>|\\s[\\s\\S]*?>)`;
   const componentPropsRegex = new RegExp(pattern);
+  const globalComponentPropsRegex = new RegExp(componentPropsRegex.source, 'g');
 
   // stores whatever props are provided in the inital code
   const defaultKnobProps = useDefaultProps(
@@ -176,10 +177,12 @@ const Knob = ({
     setKnobs(newKnobs);
     if (isSelfClosingTag) {
       setCode(
-        code.replace(componentPropsRegex, `<${component}${propString} />`)
+        code.replace(globalComponentPropsRegex, `<${component}${propString} />`)
       );
     } else {
-      setCode(code.replace(componentPropsRegex, `<${component}${propString}>`));
+      setCode(
+        code.replace(globalComponentPropsRegex, `<${component}${propString}>`)
+      );
     }
   };
 
