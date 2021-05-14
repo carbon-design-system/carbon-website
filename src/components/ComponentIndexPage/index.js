@@ -58,8 +58,8 @@ const sortOptions = ['A to Z', 'Maintainer', 'Newest'];
 const initialSortOption = 'A to Z';
 const sortBy = {
   'A to Z': sortByName,
-  'Maintainer': sortByMaintainer,
-  'Newest': sortByNewest,
+  Maintainer: sortByMaintainer,
+  Newest: sortByNewest,
 };
 
 const filterLabels = [
