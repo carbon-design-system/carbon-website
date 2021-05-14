@@ -1,0 +1,482 @@
+---
+title: 3. Using APIs
+description:
+  Welcome to Carbon! This tutorial will guide you in creating a Svelte app with
+  the Carbon Design System.
+tabs:
+  ['Overview', 'Step 1', 'Step 2', 'Step 3', 'Step 4', 'Step 5', 'Wrapping up']
+---
+
+import Preview from 'components/Preview';
+
+<PageDescription>
+
+This step takes our static components and populates them with data from the
+GitHub GraphQL API – loading states and all. We'll be displaying Carbon
+repository information in a data table.
+
+</PageDescription>
+
+<AnchorLinks>
+
+<AnchorLink>Fork, clone and branch</AnchorLink>
+<AnchorLink>Create access token</AnchorLink>
+<AnchorLink>Fetch data</AnchorLink>
+<AnchorLink>Populate data table</AnchorLink>
+<AnchorLink>Add loading</AnchorLink>
+<AnchorLink>Add pagination</AnchorLink>
+<AnchorLink>Submit pull request</AnchorLink>
+
+</AnchorLinks>
+
+### Preview
+
+The [GitHub GraphQL API](https://developer.github.com/v4/) is very well
+documented, and even though the focus of this tutorial isn't learning and using
+GraphQL, it's a great opportunity to fetch Carbon-related data for this Carbon
+tutorial.
+
+A [preview](https://deploy-preview-4--carbon-tutorial-svelte.netlify.app/) of
+what you will build (see repositories page):
+
+<Preview
+  height="400"
+  title="Carbon Tutorial Step 3"
+  src="https://deploy-preview-4--carbon-tutorial-svelte.netlify.app/"
+  frameborder="no"
+  allowtransparency="true"
+  allowfullscreen="true"
+/>
+
+## Fork, clone and branch
+
+This tutorial has an accompanying GitHub repository called
+[carbon-tutorial](https://github.com/carbon-design-system/carbon-tutorial-svelte)
+that we'll use as a starting point for each step. If you haven't forked and
+cloned that repository yet, and haven't added the upstream remote, go ahead and
+do so by following the
+[step 1 instructions](/developing/svelte-tutorial/step-1#fork-clone-and-branch).
+
+### Branch
+
+With your repository all set up, let's check out the branch for this tutorial
+step's starting point.
+
+```bash
+git fetch upstream
+git checkout -b svelte-step-3 upstream/svelte-step-3
+```
+
+### Build and start app
+
+Install the app's dependencies:
+
+```bash
+yarn
+```
+
+Then, start the app:
+
+```bash
+yarn dev
+```
+
+You should see something similar to where the
+[previous step](/developing/svelte-tutorial/step-2) left off. Stop your app with
+`CTRL-C` and let's get everything installed.
+
+## Create access token
+
+You'll need a personal access token from your GitHub account in order to make
+requests to the GitHub API. Check out
+[this guide](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line)
+to see how to get one.
+
+When you get to the scope/permissions step, you can leave them all unchecked. We
+don't need any special permissions, we just need access to the public API.
+
+Once you have your token, we need to put it in a place where SvelteKit can use
+it. When your application is being built and developed, vite will parse
+environmental variables in any file that starts with `.env` and make them
+available under `import.meta.env.VITE_MY_VARIABLE`.
+
+One caveat is that we need to start our variables with `VITE_`. You can read
+more about environmental variables in
+[vite's guide](https://vitejs.dev/guide/env-and-mode.html#env-variables).
+
+Since we don't want to commit this file to Git, we can put it in `.env` which is
+in our `.gitignore` list. Your file should just have a single line like this
+one, where the `x`s are replaced with your unique token.
+
+```bash path=.env
+VITE_GITHUB_PERSONAL_ACCESS_TOKEN=xxxxxx
+```
+
+Go ahead and start your app with `yarn dev`, or, if your app is running, you'll
+need to restart it to get access to this token.
+
+## Fetch data
+
+### onMount
+
+First, import the [onMount](https://svelte.dev/docs#onMount) lifecyle method
+from Svelte at the top of `repo.svelte`:
+
+```javascript path=src/routes/repo.svelte
+import { onMount } from 'svelte';
+```
+
+The `onMount` method will be invoked when the component has been mounted to the
+Document Object Model (DOM). We will fetch data using this method.
+
+### Query
+
+Next, we will formulate a `fetch` request to retrieve data from GitHub's GraphQL
+API using our personal access token.
+
+You can use GitHub's [explorer](https://developer.github.com/v4/explorer/) tool
+to write and test your own queries. Try copying the query below and experiment
+with changing the properties. You can also click the "Docs" button in the top
+right of the explorer to view all of the available data and query parameters.
+
+Add this after your imports:
+
+```javascript path=src/routes/repo.svelte
+let loading = true;
+let error = false;
+let data = [];
+
+async function fetchData() {
+  const response = await fetch('https://api.github.com/graphql', {
+    method: 'POST',
+    headers: {
+      authorization: `Bearer ${TOKEN}`,
+    },
+    body: JSON.stringify({
+      query: `query REPO_QUERY {
+          # Let's use carbon as our organization
+          organization(login: "carbon-design-system") {
+            # We'll grab all the repositories in one go. To load more resources
+            # continuously, see the advanced topics.
+            repositories(first: 75, orderBy: { field: UPDATED_AT, direction: DESC }) {
+              nodes {
+                id
+                name
+                description
+                url
+                homepageUrl
+                issues(filterBy: { states: OPEN }) { totalCount }
+                stargazers { totalCount }
+                updatedAt
+                createdAt
+              }
+            }
+          }
+        }`,
+    }),
+  });
+
+  const result = await response.json();
+
+  if (response.ok) {
+    console.log(result.data.organization);
+  } else {
+    error = result;
+  }
+
+  loading = false;
+}
+```
+
+Now, we need to invoke the `fetchData` function using the `onMount` method:
+
+```javascript path=src/routes/repo.svelte
+onMount(fetchData);
+```
+
+### Helpers
+
+Below that, we should have our table headers set in a previous step that are
+good to go. Let's also keep our example rows below that.
+
+Our last column in the data table will be a comma-separated list of repository
+and home page links.
+
+First, add `Link` to the list of components imported from
+`carbon-components-svelte`:
+
+```javascript path=src/routes/repo.svelte
+import { Row, Column, DataTable, Link } from 'carbon-components-svelte';
+```
+
+We can use the slotted cell to target a specific header key. In this case, if
+the `key` is `"links"`, we can render a list of links.
+
+```html path=src/routes/index.svelte
+<DataTable
+  expandable
+  title="Carbon Repositories"
+  description="A collection of public Carbon repositories."
+  {headers}
+  {rows}
+>
+  <span slot="cell" let:row let:cell>
+    {#if cell.key === "links"}
+      <ul style="display: flex;">
+        <li>
+          <Link href={row.url}>GitHub</Link>
+        </li>
+        {#if row.homepageUrl}
+          <li>
+            <span>&nbsp;|&nbsp;</span>
+            <Link href={row.homepageUrl}>Homepage</Link>
+          </li>
+        {/if}
+      </ul>
+    {:else}{cell.value}{/if}
+  </span>
+  <div slot="expanded-row" let:row>{row.description}</div>
+</DataTable>
+```
+
+Finally, let's define a reactive variable called `repos` in the script block
+that normalizes GitHub repositories data whenever `data` is updated.
+
+```javascript path=src/routes/index.svelte
+$: repos = data.map((row) => ({
+  ...row,
+  stars: row.stargazers.totalCount,
+  issueCount: row.issues.totalCount,
+  createdAt: new Date(row.createdAt).toLocaleDateString(),
+  updatedAt: new Date(row.updatedAt).toLocaleDateString(),
+}));
+$: totalItems = repos.length;
+```
+
+### Fetching states
+
+We manually control the loading and error states in the `fetchData` function. In
+our markup, we can render content when we begin fetching the data (loading), if
+an error occurs (error), and when we've successfully retrieved the data (if
+`totalItems` is greater than zero).
+
+```html path=src/routes/repos.svelte
+{#if loading}Loading...{/if}
+
+{#if error}Error! {error.message}{/if}
+
+{#if totalItems > 0}
+  <DataTable
+    expandable
+    title="Carbon Repositories"
+    description="A collection of public Carbon repositories."
+    {headers}
+    {rows}
+  >
+    <span slot="cell" let:row let:cell>
+      {#if cell.key === "links"}
+        <ul style="display: flex;">
+          <li>
+            <Link href={row.url}>GitHub</Link>
+          </li>
+          {#if row.homepageUrl}
+            <li>
+              <span>&nbsp;|&nbsp;</span>
+              <Link href={row.homepageUrl}>Homepage</Link>
+            </li>
+          {/if}
+        </ul>
+      {:else}{cell.value}{/if}
+    </span>
+    <div slot="expanded-row" let:row>{row.description}</div>
+  </DataTable>
+{/if}
+```
+
+The page will look the same as we're still rendering our static example rows,
+but if you view your browser's console (e.g.
+[Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools/)),
+you should see the response from GitHub!
+
+## Populate data table
+
+Now that we have that data, let's populate the data table. Replace
+`console.log(result.data.organization);` with the following that assigns the API
+response to the `data`
+
+```javascript path=src/routes/index.svelte
+data = result.data.organization.repositories.nodes;
+```
+
+Now, we can change the constant variable `rows` to be reactive so that it will
+update whenever `data` and `repos` change:
+
+```javascript path=src/routes/repo.svelte
+$: rows = repos;
+```
+
+## Add loading
+
+At this point, the first time that you visit the repositories page, we're
+querying the GitHub API and rendering the response through the `DataTable`
+component. We could stop here, but there's more to be done! Let's replace the
+`Loading...` string with the `DataTableSkeleton` component.
+
+To do so, add the `DataTableSkeleton` import by modifying the existing
+`carbon-components-svelte` import.
+
+```javascript path=src/routes/repo.svelte
+import {
+  Row,
+  Column,
+  DataTable,
+  DataTableSkeleton,
+  Link,
+} from 'carbon-components-svelte';
+```
+
+Then replace the `if (loading) return 'Loading...';` with:
+
+<!-- prettier-ignore-start -->
+```html path=src/routes/repo.svelte
+{#if loading}
+  <DataTableSkeleton showToolbar="{false}" {headers} rows="{10}" />
+{/if}
+```
+<!-- prettier-ignore-end -->
+
+We need to tell the loading skeleton how many rows to render, so let's use 10
+skeleton rows to prepare for the next enhancement...
+
+## Add pagination
+
+Pagination! Instead of rendering every repository, let's add pagination to the
+data table to only render 10 at a time. Depending on your specific requirements,
+you may need to fetch new data each time that you interact with the pagination
+component, but for simplicity, we're going to make one request to fetch all
+data, and then paginate the in-memory row data.
+
+Then, initialize the new state variables that we'll use for pagination. The
+`firstRowIndex` reactive variable will update whenever `pageSize` or `page`
+change.
+
+```javascript path=src/routes/repo.svelte
+let page = 1;
+let pageSize = 10;
+
+$: firstRowIndex = pageSize * (page - 1);
+```
+
+Now, we can control the rows to show based on the `firstRowIndex` and `pageSize`
+reactive values:
+
+```javascript path=src/routes/repo.svelte
+$: rows = repos.slice(firstRowIndex, firstRowIndex + pageSize);
+```
+
+<InlineNotification>
+
+**Note:** We only pass the rows that we want our table to display. We can do
+this by slicing the our array of rows depending on the first item and the page
+size.
+
+</InlineNotification>
+
+Finally, let's add the `Pagination` to update our state variables and cause the
+data table to render new rows.
+
+Import `Pagination` by updating the `carbon-components-svelte` import.
+
+```javascript path=src/routes/repo.svelte
+import {
+  Row,
+  Column,
+  DataTable,
+  DataTableSkeleton,
+  Pagination,
+  Link,
+} from 'carbon-components-svelte';
+```
+
+Immediately after the `DataTable` closing tag (`/>`), add the `Pagination`
+component using the state variables that we previously initialized.
+
+```html path=src/routes/repo.svelte
+<Pagination
+  {totalItems}
+  bind:page
+  bind:pageSize
+  pageSizes="{[5, 10, 15, 25]}"
+/>
+```
+
+<InlineNotification>
+
+**Note:** The `Pagination` component isn't inherently connected in any way to
+the `DataTable` - we need to tell it what to do when a change occurs by binding
+to the reactive `page` prop. This includes both page size changes and displaying
+different rows.
+
+</InlineNotification>
+
+That does it! Your data table should fetch GitHub data on first render. You can
+expand each row to see the repository's description. You can modify the
+pagination items per page and cycle through pages or jump to a specific page of
+repositories.
+
+## Submit pull request
+
+We're going to submit a pull request to verify completion of this tutorial step.
+
+### Continuous integration (CI) check
+
+Run the CI check to make sure we're all set to submit a pull request.
+
+```bash
+yarn ci-check
+```
+
+<InlineNotification>
+
+**Note:** Having issues running the CI check?
+[Step 1](</developing/svelte-tutorial/step-1#continuous-integration-(ci)-check>)
+has troubleshooting notes that may help.
+
+</InlineNotification>
+
+### Git commit and push
+
+Before we can create a pull request, stage and commit all of your changes:
+
+```bash
+git add --all && git commit -m "feat(tutorial): complete step 3"
+```
+
+Then, push to your repository:
+
+```bash
+git push origin svelte-step-3
+```
+
+<InlineNotification>
+
+**Note:** Having issues pushing your changes?
+[Step 1](/developing/svelte-tutorial/step-1#git-commit-and-push) has
+troubleshooting notes that may help.
+
+</InlineNotification>
+
+### Pull request (PR)
+
+Finally, visit
+[carbon-tutorial-svelte](https://github.com/carbon-design-system/carbon-tutorial-svelte)
+to "Compare & pull request". In doing so, make sure that you are comparing to
+`svelte-step-3` into `base: svelte-step-3`.
+
+<InlineNotification>
+
+**Note:** Expect your tutorial step PRs to be reviewed by the Carbon team but
+not merged. We'll close your PR so we can keep the repository's remote branches
+pristine and ready for the next person!
+
+</InlineNotification>
