@@ -1,0 +1,429 @@
+---
+title: 4. Creating components
+description:
+  Welcome to Carbon! This tutorial will guide you in creating a Svelte app with
+  the Carbon Design System.
+tabs:
+  ['Overview', 'Step 1', 'Step 2', 'Step 3', 'Step 4', 'Step 5', 'Wrapping up']
+---
+
+import Preview from 'components/Preview';
+
+<PageDescription>
+
+With two pages comprised entirely of Carbon components, let's revisit the
+landing page and build a couple components of our own by using Carbon icons and
+tokens.
+
+</PageDescription>
+
+<AnchorLinks>
+
+<AnchorLink>Fork, clone and branch</AnchorLink>
+<AnchorLink>Review design</AnchorLink>
+<AnchorLink>Create components</AnchorLink>
+<AnchorLink>Use components</AnchorLink>
+<AnchorLink>Add styling</AnchorLink>
+<AnchorLink>Submit pull request</AnchorLink>
+
+</AnchorLinks>
+
+## Preview
+
+Carbon provides a solid foundation for building web applications through its
+color palette, layout, spacing, type, as well as common building blocks in the
+form of components. So far, we've only used Carbon components to build out two
+pages.
+
+Next, we're going to use Carbon assets to build application-specific components.
+We'll do so by including accessibility and responsive considerations all
+throughout.
+
+A [preview](https://deploy-preview-5--carbon-tutorial-svelte.netlify.app/) of
+what you'll build (see bottom of page):
+
+<Preview
+  height="400"
+  title="Carbon Tutorial Step 4"
+  src="https://deploy-preview-5--carbon-tutorial-svelte.netlify.app/"
+  frameborder="no"
+  allowtransparency="true"
+  allowfullscreen="true"
+/>
+
+## Fork, clone and branch
+
+This tutorial has an accompanying GitHub repository called
+[carbon-tutorial-svelte](https://github.com/carbon-design-system/carbon-tutorial-svelte)
+that we'll use as a starting point for each step. If you haven't forked and
+cloned that repository yet, and haven't added the upstream remote, go ahead and
+do so by following the
+[step 1 instructions](/developing/svelte-tutorial/step-1#fork-clone-and-branch).
+
+### Branch
+
+With your repository all set up, let's check out the branch for this tutorial
+step's starting point.
+
+```bash
+git fetch upstream
+git checkout -b svelte-step-4 upstream/svelte-step-4
+```
+
+<InlineNotification>
+
+**Note:** This builds on top of step 3, but be sure to check out the upstream
+step 4 branch because it includes the static assets required to get through this
+step.
+
+</InlineNotification>
+
+### Build and start app
+
+Install the app's dependencies (in case you're starting fresh in your current
+directory and not continuing from the previous step):
+
+```bash
+yarn
+```
+
+Then, start the app:
+
+```bash
+yarn dev
+```
+
+You should see something similar to where the
+[previous step](/developing/svelte-tutorial/step-3) left off.
+
+## Review design
+
+Here's what we're building – an informational section that has a heading and
+three subheadings. Each subheading has accompanying copy and a pictogram. We'll
+assume that this informational section is used elsewhere on the site, meaning
+it's a great opportunity to build it as a reusable component. As for naming,
+we'll call it an `InfoSection` with three `InfoCard`s as children.
+
+![Info section layout](../shared/step-4/images/info-layout.png)
+
+<Caption>Info section layout</Caption>
+
+## Create components
+
+First we need files for the components, so create `InfoSection.svelte` and
+`InfoCard.svelte` components in `src/lib`. The `lib` folder should already
+contain the `TutorialHeader` component.
+
+### Add files
+
+```bash
+src/lib
+├──InfoCard.svelte
+├──InfoSection.svelte
+└──TutorialHeader.svelte
+```
+
+### InfoSection component
+
+Let's create the parent component that includes the "The Principles" heading.
+That markup currently looks like this in `routes/index.svelte`:
+
+```html path=src/routes/index.svelte
+<Row>
+  <Column md="{4}" lg="{4}">
+    <h3>The Principles</h3>
+  </Column>
+  <Column md="{4}" lg="{4}">Carbon is Open</Column>
+  <Column md="{4}" lg="{4}">Carbon is Modular</Column>
+  <Column md="{4}" lg="{4}">Carbon is Consistent</Column>
+</Row>
+```
+
+We want to do a few things when abstracting it to a component:
+
+- Add component class names like `info-section` and `info-section__heading`
+- Update the grid columns to match the design
+- Replace `The Principles` with `{props.heading}`
+- Replace columns 2 - 4 with `<slot />`
+
+Using `props` we can render any heading and any number of slots (`InfoCard` that
+we'll build soon.)
+
+```html path=src/lib/InfoSection.svelte
+<script>
+  export let heading = '';
+
+  import { Row, Column } from 'carbon-components-svelte';
+</script>
+
+<Row {...$$restProps}>
+  <Column md="{8}" lg="{4}" xlg="{3}">
+    <h3>{heading}</h3>
+  </Column>
+  <slot />
+</Row>
+```
+
+At this point let's add styling for the `h3` element. Add a `style` block
+containing the following CSS:
+
+```html path=src/lib/InfoSection.svelte
+<style>
+  h3 {
+    font: 'heading-01';
+  }
+</style>
+```
+
+### InfoCard component
+
+Next up we're going to build a component for columns 2 - 4, which currently
+looks like `<Column md="{4}" lg="{4}">Carbon is Open</Column>`. In
+`src/lib/InfoCard.svelte`, add:
+
+```html path=src/lib/InfoCard.svelte
+<script>
+  export let heading = "";
+  export let icon;
+
+  import { Column } from "carbon-components-svelte";
+
+  $: [first, second, third] = heading.split(" ");
+</script>
+
+<Column md={4} lg={4} xlg={{ span: 3, offset: 1 }} class="info-card">
+  <h4>
+    {first}
+    {second} <strong>{third}</strong>
+  </h4>
+  <p>
+    <slot />
+  </p>
+  <svelte:component this={icon} />
+</Column>
+```
+
+In doing so, we:
+
+- Added `info-card` classes
+- Used `props` to render the heading and icon
+- Used default slot to render the paragraph body
+- Set columns to match the grid
+
+<InlineNotification>
+
+**Note:** At extra large viewports, we are using
+`bx--col-xlg-3 bx--offset-xlg-1` so each column takes up 3 of the 16 grid
+columns, with a 1 column offset.
+
+</InlineNotification>
+
+## Use components
+
+Nothing is styled yet, but with our components built let's put them to use. In
+`routes/index.svelte`, import the components towards the top of the file.
+
+```javascript path=src/routes/index.svelte
+import InfoSection from '$lib/InfoSection.svelte';
+import InfoCard from '$lib/InfoCard.svelte';
+```
+
+While we're at the top of `index.svelte`, import the icons from
+`carbon-icons-svelte` that we'll need as well. We don't need to install
+`carbon-icons-svelte` separately because it is already a direct dependency of
+`carbon-components-svelte`.
+
+```javascript path=src/routes/index.svelte
+import { PersonFavorite32, Application32, Globe32 } from 'carbon-icons-svelte';
+```
+
+<InlineNotification>
+
+**Note:** You'll notice that these 32px icons aren't the pictograms as designed.
+The Carbon team is currently working on adding pictograms to the icons packages.
+Until then, we'll use the biggest SVGs.
+
+</InlineNotification>
+
+With everything imported, replace the current:
+
+```html path=src/routes/index.svelte
+<Row>
+  <Column md="{4}" lg="{4}">
+    <h3>The Principles</h3>
+  </Column>
+  <Column md="{4}" lg="{4}">Carbon is Open</Column>
+  <Column md="{4}" lg="{4}">Carbon is Modular</Column>
+  <Column md="{4}" lg="{4}">Carbon is Consistent</Column>
+</Row>
+```
+
+With the new components:
+
+```html path=src/routes/index.svelte
+<InfoSection
+  heading="The Principles"
+  class="landing-page-background landing-page__r3"
+>
+  <InfoCard heading="Carbon is Open" icon="{PersonFavorite32}">
+    It’s a distributed effort, guided by the principles of the open-source
+    movement. Carbon’s users are also it’s makers, and everyone is encouraged to
+    contribute.
+  </InfoCard>
+  <InfoCard heading="Carbon is Modular" icon="{Application32}">
+    Carbon’s modularity ensures maximum flexibility in execution. Its components
+    are designed to work seamlessly with each other, in whichever combination
+    suits the needs of the user.
+  </InfoCard>
+  <InfoCard heading="Carbon is Consistent" icon="{Globe32}">
+    Based on the comprehensive IBM Design Language, every element and component
+    of Carbon was designed from the ground up to work elegantly together to
+    ensure consistent, cohesive user experiences.
+  </InfoCard>
+</InfoSection>
+```
+
+<InlineNotification>
+
+**Note:** Now is a good time to resize your browser from phone to extra large
+viewport widths to see how the responsive grid is working before we add further
+styling.
+
+</InlineNotification>
+
+## Add styling
+
+Here's our design showing the spacing tokens that we need to add. We also need
+to set type style and borders.
+
+![Info section spacing](../shared/step-4/images/info-spacing.png)
+
+### Layout
+
+Starting with layout, add the following to the `style` block in
+`InfoCard.svelte`.
+
+```css path=src/lib/InfoCard.svelte
+:global(.info-card.info-card) {
+  display: flex;
+  flex-direction: column;
+}
+
+:global(.info-card),
+:global(.info-card svg) {
+  margin-top: 'spacing-09';
+}
+
+@media (down: md) {
+  :global(.info-card:not(:nth-child(2))) {
+    border-top: 1px solid 'ui-03';
+    padding-top: 'spacing-09';
+  }
+}
+
+@media (bp: md) {
+  :global(.info-card:not(:nth-child(odd))) {
+    border-left: 1px solid 'ui-03';
+  }
+}
+
+@media (bp: lg) {
+  :global(.info-card) {
+    margin-top: 0;
+    border-left: 1px solid 'ui-03';
+  }
+
+  :global(.info-card svg) {
+    margin-top: 'spacing-12';
+  }
+}
+```
+
+Once you save, go ahead and resize your browser to see the responsive layout at
+the different breakpoints. Make sure to review these color and spacing tokens.
+There are also a few breakpoint mixins that may be new to you.
+
+### Type
+
+Our `InfoCard` headings look to be too small. We need to increase their font
+sizes according to the design spec with:
+
+```css path=src/lib/InfoCard.svelte
+h4 {
+  font: 'productive-heading-03';
+}
+```
+
+Finally, add the declaration block to set `InfoCard` body copy styles and to
+bottom-align the icons.
+
+```css path=src/lib/InfoCard.svelte
+p {
+  font: 'body-long-01';
+  margin-top: 'spacing-06';
+  flex-grow: 1;
+}
+
+@media (between: 321px) and (md) {
+  p {
+    max-width: 75%;
+  }
+}
+```
+
+## Submit pull request
+
+We're going to submit a pull request to verify completion of this tutorial step.
+
+### Continuous integration (CI) check
+
+Run the CI check to make sure we're all set to submit a pull request.
+
+```bash
+yarn ci-check
+```
+
+<InlineNotification>
+
+**Note:** Having issues running the CI check?
+[Step 1](</developing/svelte-tutorial/step-1#continuous-integration-(ci)-check>)
+has troubleshooting notes that may help.
+
+</InlineNotification>
+
+### Git commit and push
+
+Before we can create a pull request, stage and commit all of your changes:
+
+```bash
+git add --all && git commit -m "feat(tutorial): complete step 4"
+```
+
+Then, push to your repository:
+
+```bash
+git push origin svelte-step-4
+```
+
+<InlineNotification>
+
+**Note:** Having issues pushing your changes?
+[Step 1](/developing/svelte-tutorial/step-1#git-commit-and-push) has
+troubleshooting notes that may help.
+
+</InlineNotification>
+
+### Pull request (PR)
+
+Finally, visit
+[carbon-tutorial-svelte](https://github.com/carbon-design-system/carbon-tutorial-svelte)
+to "Compare & pull request". In doing so, make sure that you are comparing to
+`svelte-step-4` into `base: svelte-step-4`.
+
+<InlineNotification>
+
+**Note:** Expect your tutorial step PRs to be reviewed by the Carbon team but
+not merged. We'll close your PR so we can keep the repository's remote branches
+pristine and ready for the next person!
+
+</InlineNotification>
