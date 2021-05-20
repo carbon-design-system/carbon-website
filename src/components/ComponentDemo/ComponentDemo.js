@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable import/no-extraneous-dependencies */
 import React, { useState, useContext } from 'react';
 import getTheme from 'gatsby-theme-carbon/src/components/Code/getTheme';
@@ -58,6 +59,8 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
   const [initialCode, setInitialCode] = useState(code);
   const [knobs, setKnobs] = useState(initialVariant.props.knobs);
   const [links, setLinks] = useState(initialVariant.props.links);
+
+  console.log('something', components[0]);
 
   const themes = {
     White: white,
@@ -162,12 +165,15 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
               )}
 
               <Code links={links} code={code} src={src} className={codeRow}>
-                <LiveEditor
-                  padding={16}
-                  style={{ overflowX: 'auto', whiteSpace: 'pre' }}
-                  onChange={(updatedCode) => setCode(updatedCode)}
-                  className={editorContainer}
-                />
+                <label>
+                  <span className="hidden-editor-label">Editor</span>
+                  <LiveEditor
+                    padding={16}
+                    style={{ overflowX: 'auto', whiteSpace: 'pre' }}
+                    onChange={(updatedCode) => setCode(updatedCode)}
+                    className={editorContainer}
+                  />
+                </label>
               </Code>
               {knobs && (
                 <>
