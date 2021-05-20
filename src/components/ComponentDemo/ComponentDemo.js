@@ -165,13 +165,16 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
               )}
 
               <Code links={links} code={code} src={src} className={codeRow}>
-                <label>
-                  <span className="hidden-editor-label">Editor</span>
+                <label htmlFor="live-editor-label">
+                  <span className="live-editor-label">
+                    `Live editor for the ${components[0].label} component`
+                  </span>
                   <LiveEditor
                     padding={16}
                     style={{ overflowX: 'auto', whiteSpace: 'pre' }}
                     onChange={(updatedCode) => setCode(updatedCode)}
                     className={editorContainer}
+                    textareaId="live-editor-label"
                   />
                 </label>
               </Code>
