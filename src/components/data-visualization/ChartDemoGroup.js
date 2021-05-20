@@ -4,13 +4,8 @@ import * as ChartComponents from '@carbon/charts-react';
 
 import H2 from 'gatsby-theme-carbon/src/components/markdown/H2';
 import P from 'gatsby-theme-carbon/src/components/markdown/P';
+import { MiniCard } from 'gatsby-theme-carbon/src/components/MiniCard';
 import CodeBar from '../ComponentDemo/Code/CodeBar.js';
-
-import {
-  CardGroup,
-  MiniCard,
-} from 'gatsby-theme-carbon/src/components/MiniCard';
-
 import STORYBOOK_LOGO from '../../images/storybook-icon.svg';
 
 const generateHeadingID = (title) =>
@@ -22,13 +17,15 @@ const generateHeadingID = (title) =>
 const ChartDemoGroup = ({ demoGroup, light }) => {
   let demo = demoGroup.demos.find((d) => d.mainDemo === true);
   if (!demo) {
-    demo = demoGroup.demos[0];
+    [demo] = demoGroup.demos;
   }
 
   const DemoComponent = ChartComponents[demo.chartType.vanilla];
 
   const numberOfRemainingDemos =
     demoGroup.demos.length > 2 ? demoGroup.demos.length - 1 : 0;
+
+  const demoGroupClassification = demoGroup.type.replace('-chart', '');
 
   return (
     <div>
@@ -51,7 +48,7 @@ const ChartDemoGroup = ({ demoGroup, light }) => {
           </div>
         )}
 
-        <div className="bx--row" style={{ marginTop: "1.5rem"}}>
+        <div className="bx--row" style={{ marginTop: '1.5rem' }}>
           <div className="bx--col-sm-4 bx--col-md-8 bx--col-lg-8">
             <div
               className="chart-demo-wrapper"
@@ -67,7 +64,7 @@ const ChartDemoGroup = ({ demoGroup, light }) => {
               <CodeBar
                 links={{
                   React: demo.codesandbox.react,
-                  Angular: `https://carbon-design-system.github.io/carbon-charts/angular/?path=/story/${demo.id}`,
+                  Angular: `https://carbon-design-system.github.io/carbon-charts/angular/?path=/story/${demoGroupClassification}-charts-${demo.id}`,
                   Vue: demo.codesandbox.vue,
                   Vanilla: demo.codesandbox.vanilla,
                 }}
@@ -81,11 +78,8 @@ const ChartDemoGroup = ({ demoGroup, light }) => {
             title={`${numberOfRemainingDemos} more demo${
               numberOfRemainingDemos > 1 ? 's' : ''
             }`}
-            href={`https://carbon-design-system.github.io/carbon-charts/?path=/story/${demoGroup.type.replace(
-              '-chart',
-              ''
-            )}-charts-${demo.id}`}>
-            <img src={STORYBOOK_LOGO} style={{ height: 20 }} />
+            href={`https://carbon-design-system.github.io/carbon-charts/?path=/story/${demoGroupClassification}-charts-${demo.id}`}>
+            <img src={STORYBOOK_LOGO} alt="" style={{ height: 20 }} />
           </MiniCard>
         )}
       </>
