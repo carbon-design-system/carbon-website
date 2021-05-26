@@ -22,6 +22,7 @@ harmony through our User Interface design.
 
 <AnchorLink>Introduction</AnchorLink>
 <AnchorLink>Color anatomy</AnchorLink>
+<AnchorLink>Themes</AnchorLink>
 <AnchorLink>Implementing color</AnchorLink>
 <AnchorLink>Accessibility</AnchorLink>
 <AnchorLink>Resources</AnchorLink>
@@ -66,27 +67,6 @@ purposefully.
 {/* possible TODO: remove inline style */}
 <ColorGrid colorFamily="alerts" style="margin-top: 2rem" />
 <Caption>Alerts Colors</Caption>
-
-### Layering model
-
-Colors in the neutral gray palette are layered on top of each other to create
-depth and spacial associations. The layering model defines the logic of how the
-gray colors stack on top of each other in a UI when using the Carbon themes.
-Aspects of the layering model are built directly into the themes, color tokens,
-and components.
-
-The layering model differs between the "light" and "dark" themes.
-
-- In the light themes, layers alternate between White and Gray 10.
-- In the dark themes, layers become one step lighter with each added layer.
-
-<Row>
-<Column colLg={12}>
-
-![Layering model](images/color-layering-model-1.png)
-
-</Column>
-</Row>                                                                                       |     |
 
 ## Themes
 
@@ -171,6 +151,23 @@ themes. If you're not sure which color to use, refer to the
 All of the themes are available in
 [Design kits](https://carbondesignsystem.com/designing/kits/sketch/).
 
+#### Layering model
+
+Colors in the neutral gray palette are layered on top of each other to create
+depth and spacial associations. The layering model defines the logic of how the
+gray colors stack on top of each other in a UI when using the Carbon themes.
+
+The layering model differs between the "light" and "dark" themes. In the light
+themes, layers alternate between White and Gray 10.
+
+<Row>
+<Column colLg={12}>
+
+![Layering model for light themes](images/color-layering-model-light.png)
+
+</Column>
+</Row>
+
 <DoDontRow>
   <DoDont caption="Gray 10 dropdown on White background." colLg={6}>
 
@@ -202,15 +199,6 @@ All of the themes are available in
 <Caption>Components with common colors across both light themes.</Caption>
 
 <br />
-
-#### Layering model
-
-Colors in the neutral gray palette are layered on top of each other to create
-depth and spacial associations. The layering model defines the logic of how the
-gray colors stack on top of each other in a UI when using the Carbon themes.
-
-The layering model differs between the "light" and "dark" themes. In the light
-themes, layers alternate between White and Gray 10.
 
 ### Dark themes
 
@@ -266,6 +254,23 @@ All of the themes are available in
 
 <br />
 
+#### Layering model
+
+Colors in the neutral gray palette are layered on top of each other to create
+depth and spacial associations. The layering model defines the logic of how the
+gray colors stack on top of each other in a UI when using the Carbon themes.
+
+The layering model differs between the "light" and "dark" themes. In the dark
+themes, layers become one step lighter with each added layer.
+
+<Row>
+<Column colLg={12}>
+
+![Layering model for dark themes](images/color-layering-model-dark.png)
+
+</Column>
+</Row>
+
 ### High contrast
 
 In some cases, it is helpful to apply light components to dark backgrounds or
@@ -317,6 +322,9 @@ token name instead of the hex code, any color updates within a theme can be
 applied instantly, and any UI (or portion of a UI) can switch between different
 themes easily.
 
+See [color usage tab](/guidelines/color/usage) for the full list of color
+tokens.
+
 ### Color roles
 
 The systematic and consistent use of color is achieved by applying tokens based
@@ -334,7 +342,7 @@ name will further describe its how it should be used. For example
 `border-subtle` is used when a border or divider rule needs a low contrasting
 (subtle) aesthetic.
 
-## Interaction states
+### Interaction states
 
 In addition to the core set of enabled-state tokens, there are five other
 primary interaction states defined with tokens for each theme. Interaction
@@ -347,15 +355,15 @@ The color layering model for interaction tokens is as follows:
 - For values between Black and Gray 70, interaction gets lighter.
 - For values between Gray 60 and White, interaction gets darker.
 
-<Row>
-<Column colLg={12}>
+![interactive states light](images/Interactive_states_light_new.png)
 
-![Interactive states](images/color-overview-interactive-3.png)
+<Caption>Light theme interactive tokens.</Caption>
 
-</Column>
-</Row>
+![interactive states dark](images/Interactive_states_dark_new.png)
 
-### Hover
+<Caption>Dark theme interactive tokens.</Caption>
+
+#### Hover
 
 Hover is a subtle visual change that appears when a mouse cursor moves over an
 interactive element. Hover states have their own tokens and are identified the
@@ -375,7 +383,7 @@ of use and are built into the layer style tokens._
 <Row>
 <Column colLg={12}>
 
-![Hover states](images/color-overview-interactive-hover.png)
+![Hover states palette](images/color-overview-interactive-hover-2.png)
 
 </Column>
 </Row>
@@ -388,7 +396,15 @@ overflow menu items use `$text-secondary` and `$layer` in its enabled state. On
 hover, the text switches to `$text-primary` and the background to
 `$layer-hover`.
 
-### Active
+<Row>
+<Column colLg={12}>
+
+![Hover states example](images/color-overview-interactive-hover-2.png)
+
+</Column>
+</Row>
+
+#### Active
 
 The active state can be used to indicate a `click`, `tap` or down press of a
 button. Active tokens are identified by `-active` added to the end of the base
@@ -406,12 +422,12 @@ value, and Black value shares the same active state as Gray 100 value.
 <Row>
 <Column colLg={12}>
 
-![Active states](images/color-overview-interactive-active-2.png)
+![Active states](images/color-overview-interactive-active-3.png)
 
 </Column>
 </Row>
 
-### Selected
+#### Selected
 
 Selected states indicated item(s) or option(s) that have been chosen in the UI
 by the user through any input method. Selected token are identified by the
@@ -429,12 +445,12 @@ shares the same selected state as Gray 100.
 <Row>
 <Column colLg={12}>
 
-![Selected states](images/color-overview-interactive-selected-2.png)
+![Selected states](images/color-overview-interactive-selected-3.png)
 
 </Column>
 </Row>
 
-### Focus
+#### Focus
 
 The focus state draws attention to the active element on a page when using the
 keyboard or voice to navigate. In Carbon, the focus of an element is most
@@ -452,7 +468,7 @@ Focus states are required on all interactive elements and must pass 3:1 color
 contrast accessibility. Often times to achieve proper 3:1 contrast a
 `$focus-inset` border is used between the focus border and the element itself.
 
-### Disabled
+#### Disabled
 
 A disabled state is applied to a component when the user is not allowed to
 interact with the component due to either permissions, dependencies, or
@@ -469,14 +485,6 @@ disabled token like `$text-disabled`.
 
 - For the light themes, disabled color values range from White to Gray 50
 - For the dark themes, disabled color values range from Gray 90 to Gray 40
-
-![interactive states light](images/Interactive_states_light_new.png)
-
-<Caption>Light theme interactive tokens.</Caption>
-
-![interactive states dark](images/Interactive_states_dark_new.png)
-
-<Caption>Dark theme interactive tokens.</Caption>
 
 ## Accessibility
 
