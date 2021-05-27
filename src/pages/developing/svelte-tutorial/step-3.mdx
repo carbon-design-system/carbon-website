@@ -129,6 +129,22 @@ import { onMount } from 'svelte';
 The `onMount` method will be invoked when the component has been mounted to the
 Document Object Model (DOM). We will fetch data using this method.
 
+### Import token
+
+Next, create a `constants.js` file that exports the
+`VITE_GITHUB_PERSONAL_ACCESS_TOKEN` variable.
+
+```javascript path=src/constants.js
+export const TOKEN = import.meta.env.VITE_GITHUB_PERSONAL_ACCESS_TOKEN;
+```
+
+Add the token import to `repo.svelte`.
+
+```javascript path=src/routes/repo.svelte
+import { onMount } from 'svelte';
+import { TOKEN } from '../constants';
+```
+
 ### Query
 
 Next, we will formulate a `fetch` request to retrieve data from GitHub's GraphQL
