@@ -70,12 +70,12 @@ purposefully.
 ### Layering model
 
 Colors in the neutral gray palette are layered on top of each other to create
-depth and spacial associations. The layering model defines the logic of how the
-gray colors stack on top of each other in a UI when using the Carbon themes.
-Aspects of the layering model are built directly into the themes, color tokens,
-and components.
+depth and spacial associations. The layering model defines the logic of how
+colors stack on top of each other in a UI when using the Carbon themes. Aspects
+of the layering model are built directly into the themes, color tokens, and
+components.
 
-The layering model differs between the "light" and "dark" themes.
+The layering model differs between the _light_ and _dark_ themes.
 
 - In the light themes, layers alternate between White and Gray 10.
 - In the dark themes, layers become one step lighter with each added layer.
@@ -83,32 +83,28 @@ The layering model differs between the "light" and "dark" themes.
 <Row>
 <Column colLg={12}>
 
-![Layering model for light themes](images/color-layering-model-light.png)
+![Layering model for light themes](images/color-layering-model-light-2.png)
 
 </Column>
 </Row>
+
+<Caption>
+  White theme (left) and Gray 10 theme (right) color layering model.
+</Caption>
 
 <Row>
 <Column colLg={12}>
 
-![Layering model for dark themes](images/color-layering-model-dark.png)
+![Layering model for dark themes](images/color-layering-model-dark-2.png)
 
 </Column>
 </Row>
 
-## Understanding color
+<Caption>
+  Gray 100 theme (left) and Gray 90 theme (right) color layering model.
+</Caption>
 
-Carbon uses tokens and themes to manage color. Tokens are role-based, and themes
-specify the color values that serve those roles in the UI.
-
-| Term    | Definition                                                                                                                                                                                  |     |
-| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- |
-| _Theme_ | A collection of colors designed to create a specific aesthetic. Themes control the color value assigned to a token. For example, White theme, Gray 10 theme, Gray 90 theme, Gray 100 theme. |     |
-| _Token_ | The role-based identifier that assigns a color. Used instead of a hex code. Tokens apply universally across themes. For example, `$layer`, `$border-subtle`, `$support-error`.              |     |
-| _Role_  | The systematic usage(s) of a color. Roles cannot be changed between themes.                                                                                                                 |     |
-| _Value_ | The unique visual attribute (hex code, rgba value) assigned to a token through the use of a theme.                                                                                          |
-
-## Themes
+### Themes
 
 Themes serve as an organizational framework for color in Carbon, with each theme
 based on a specific primary background color. And they actually get their names
@@ -175,18 +171,28 @@ layering model.
 
 <br />
 
+## Understanding color
+
+Carbon uses tokens and themes to manage color. Tokens are role-based, and themes
+specify the color values that serve those roles in the UI.
+
+| Term    | Definition                                                                                                                                                                                  |     |
+| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- |
+| _Theme_ | A collection of colors designed to create a specific aesthetic. Themes control the color value assigned to a token. For example, White theme, Gray 10 theme, Gray 90 theme, Gray 100 theme. |     |
+| _Token_ | The role-based identifier that assigns a color. Used instead of a hex code. Tokens apply universally across themes. For example, `$layer`, `$border-subtle`, `$support-error`.              |     |
+| _Role_  | The systematic usage(s) of a color. Roles cannot be changed between themes.                                                                                                                 |     |
+| _Value_ | The unique visual attribute (hex code, rgba value) assigned to a token through the use of a theme.                                                                                          |
+
 ### Light themes
 
-There are two light themes: White and Gray 10.
+There are two light themes: White and Gray 10. In the light themes, layers
+alternate between White and Gray 10. For enabled UI colors light themes
+primarily uses the color range of White to Gray 20.
 
 - **White theme**: Uses white background as it layering model base and is paired
-  with components using Gray 10 containers.
+  with components using Gray 10 containers to start.
 - **Gray 10 theme:** Uses Gray 10 backgrounds as it layering model baseand is
-  paired with components using white containers.
-
-Some components, such as buttons and toggles, share the same colors across both
-themes. If you're not sure which color to use, refer to the
-[core color token](https://carbondesignsystem.com/guidelines/color/usage) table.
+  paired with components using white containers to start.
 
 All of the themes are available in
 [Design kits](https://carbondesignsystem.com/designing/kits/sketch/).
@@ -225,16 +231,14 @@ All of the themes are available in
 
 ### Dark themes
 
-There are two dark themes: Gray 90 and Gray 100.
+There are two dark themes: Gray 90 and Gray 100. In the dark themes, layers
+become one step lighter with each added layer. For enabled UI colors dark themes
+primarily uses the color range of Gray 100 to Gray 70.
 
 - **Gray 90 theme**: Uses Gray 90 backgrounds and is paired with components
-  using Gray 80 containers.
+  using Gray 80 containers start.
 - **Gray 100 theme:** Uses Gray 100 backgrounds and is paired with components
-  using Gray 90 containers.
-
-Some components, such as buttons and toggles, share the same colors across both
-themes. If you're not sure which color to use, refer to the
-[core color token](https://carbondesignsystem.com/guidelines/color/usage) table.
+  using Gray 90 containers start.
 
 All of the themes are available in
 [Design kits](https://carbondesignsystem.com/designing/kits/sketch/).
@@ -281,7 +285,10 @@ All of the themes are available in
 
 In some cases, it is helpful to apply light components to dark backgrounds or
 dark components to light backgrounds. This technique is useful to focus
-attention or create visual tension.
+attention or create visual tension. Some high contrast moments are backed into
+the themes used `inverse` tokens, like with the tooltip component. Other times
+high contrast moments can be achieved through applying inline theming for
+instances like a dark UI Shell Header with a light theme page.
 
 <DoDontRow>
   <DoDont colLg={6}>
@@ -316,7 +323,7 @@ token name instead of the hex code, any color updates within a theme can be
 applied instantly, and any UI (or portion of a UI) can switch between different
 themes easily.
 
-See [color usage tab](/guidelines/color/usage) for the full list of color
+See the [color usage tab](/guidelines/color/usage) for the full list of color
 tokens.
 
 ### Color roles
@@ -348,14 +355,6 @@ The color layering model for interaction tokens is as follows:
 
 - For values between Black and Gray 70, interaction gets lighter.
 - For values between Gray 60 and White, interaction gets darker.
-
-![interactive states light](images/Interactive_states_light_new.png)
-
-<Caption>Light theme interactive tokens.</Caption>
-
-![interactive states dark](images/Interactive_states_dark_new.png)
-
-<Caption>Dark theme interactive tokens.</Caption>
 
 #### Hover
 
