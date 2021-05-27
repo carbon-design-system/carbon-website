@@ -81,7 +81,7 @@ The layering model differs between the _light_ and _dark_ themes.
 - In the dark themes, layers become one step lighter with each added layer.
 
 <Row>
-<Column colLg={12}>
+<Column colLg={8}>
 
 ![Layering model for light and dark themes](images/color-layering-model-2.png)
 
@@ -106,8 +106,8 @@ specify the color values that serve those roles in the UI.
 
 Themes serve as an organizational framework for color in Carbon, with each theme
 based on a specific primary background color. And they actually get their names
-from their background color. There are two default "light" themes and two
-default "dark" themes.
+from their background color. There are two default _light_ themes and two
+default _dark_ themes.
 
 The light themes are based on White and Gray 10 backgrounds, and the dark themes
 use Gray 100 and Gray 90 backgrounds. Within each theme, the values for the
@@ -222,9 +222,9 @@ become one step lighter with each added layer. For enabled UI colors dark themes
 primarily uses the color range of Gray 100 to Gray 70.
 
 - **Gray 90 theme**: Uses Gray 90 backgrounds and is paired with components
-  using Gray 80 containers start.
+  using Gray 80 containers to start.
 - **Gray 100 theme:** Uses Gray 100 backgrounds and is paired with components
-  using Gray 90 containers start.
+  using Gray 90 containers to start.
 
 All of the themes are available in
 [Design kits](https://carbondesignsystem.com/designing/kits/sketch/).
@@ -305,7 +305,7 @@ Here's an example of how tokens work: instead of coding all instances of input
 labels in a UI to be `#565656`, the _form_ component in Carbon specifies the
 label color to use the token `$text-secondary`. The value of the token will
 automatically be called in a relay effect through a theme file which will assign
-it the value of `#565656`. For a different theme, that same `text-secondary`
+it the value of `#565656`. For a different theme, that same `$text-secondary`
 token could be mapped to a different hex value like `#ffffff`. By using the
 token name instead of the hex code, any color updates within a theme can be
 applied instantly, and any UI (or portion of a UI) can switch between different
@@ -340,7 +340,7 @@ understand options. The first part of the token name references the general UI
 element the color is being applied to, like `background`, `text`, `border`. If
 the element can be styled in more than one way then the last half of the token
 name will further describe its how it should be used. For example
-`border-subtle` is used when a border or divider rule needs a low contrasting
+`$border-subtle` is used when a border or divider rule needs a low contrasting
 (subtle) aesthetic.
 
 ### Interaction states
@@ -348,8 +348,8 @@ name will further describe its how it should be used. For example
 In addition to the core set of enabled-state tokens, there are five other
 primary interaction states defined with tokens for each theme. Interaction
 tokens are signified by the addition of a state name added to the end of the
-base token name. For example, the `background` hover state token is
-`background-hover`.
+base token name. For example, the `$background` hover state token is
+`$background-hover`.
 
 The color layering model for interaction tokens is as follows:
 
@@ -359,7 +359,7 @@ The color layering model for interaction tokens is as follows:
 <Row>
 <Column colLg={12}>
 
-![Interaction colors](images/color-overview-interactive-4.png)
+![Hover states palette](images/color-overview-interactive-hover-2.png)
 
 </Column>
 </Row>
@@ -383,16 +383,6 @@ of use and are built into the layer style tokens._
 - For values between Black and 70, interaction gets `+` adjustment.
 - For values between 60 and White, interaction gets `-` adjustment.
 
-<Row>
-<Column colLg={12}>
-
-![Hover states palette](images/color-overview-interactive-hover-2.png)
-
-</Column>
-</Row>
-
-<br />
-
 For elements like text or icons that are use `secondary` colors for its enabled
 state when hovered will change to the `primary` color to subtly emphasis the
 element. Often times this shift in color to the text or icon element will also
@@ -401,8 +391,6 @@ overflow menu items use `$text-secondary` and `$layer` in its enabled state. On
 hover, the text switches to `$text-primary` and the background to
 `$layer-hover`.
 
-<br />
-
 <Row>
 <Column colLg={12}>
 
@@ -410,6 +398,8 @@ hover, the text switches to `$text-primary` and the background to
 
 </Column>
 </Row>
+
+<Caption>Enabled color (1) and hover color (2).</Caption>
 
 <br />
 
@@ -435,6 +425,8 @@ value, and Black value shares the same active state as Gray 100 value.
 </Column>
 </Row>
 
+<Caption>Enabled color (1) and active color (2).</Caption>
+
 <br />
 
 #### Selected
@@ -459,6 +451,8 @@ shares the same selected state as Gray 100.
 </Column>
 </Row>
 
+<Caption>Enabled color (1) and selected color (2).</Caption>
+
 <br />
 
 #### Focus
@@ -478,6 +472,14 @@ instead.
 Focus states are required on all interactive elements and must pass 3:1 color
 contrast accessibility. Often times to achieve proper 3:1 contrast a
 `$focus-inset` border is used between the focus border and the element itself.
+
+<Row>
+<Column colLg={12}>
+
+![Focus states](images/color-overview-interactive-focus-03.png)
+
+</Column>
+</Row>
 
 <br />
 
