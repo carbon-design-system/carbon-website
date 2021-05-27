@@ -83,26 +83,24 @@ The layering model differs between the _light_ and _dark_ themes.
 <Row>
 <Column colLg={12}>
 
-![Layering model for light themes](images/color-layering-model-light-2.png)
+![Layering model for light and dark themes](images/color-layering-model-2.png)
 
 </Column>
 </Row>
 
-<Caption>
-  White theme (left) and Gray 10 theme (right) color layering model.
-</Caption>
+<br />
 
-<Row>
-<Column colLg={12}>
+## Understanding color
 
-![Layering model for dark themes](images/color-layering-model-dark-2.png)
+Carbon uses tokens and themes to manage color. Tokens are role-based, and themes
+specify the color values that serve those roles in the UI.
 
-</Column>
-</Row>
-
-<Caption>
-  Gray 100 theme (left) and Gray 90 theme (right) color layering model.
-</Caption>
+| Term    | Definition                                                                                                                                                                                  |     |
+| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- |
+| _Theme_ | A collection of colors designed to create a specific aesthetic. Themes control the color value assigned to a token. For example, White theme, Gray 10 theme, Gray 90 theme, Gray 100 theme. |     |
+| _Token_ | The role-based identifier that assigns a color. Used instead of a hex code. Tokens apply universally across themes. For example, `$layer`, `$border-subtle`, `$support-error`.              |     |
+| _Role_  | The systematic usage(s) of a color. Roles cannot be changed between themes.                                                                                                                 |     |
+| _Value_ | The unique visual attribute (hex code, rgba value) assigned to a token through the use of a theme.                                                                                          |
 
 ### Themes
 
@@ -170,18 +168,6 @@ layering model.
 | Gray 100 | Global Background Dark  | `$background` | `#161616` | <ColorBlock  size="xs">#171717</ColorBlock> |
 
 <br />
-
-## Understanding color
-
-Carbon uses tokens and themes to manage color. Tokens are role-based, and themes
-specify the color values that serve those roles in the UI.
-
-| Term    | Definition                                                                                                                                                                                  |     |
-| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- |
-| _Theme_ | A collection of colors designed to create a specific aesthetic. Themes control the color value assigned to a token. For example, White theme, Gray 10 theme, Gray 90 theme, Gray 100 theme. |     |
-| _Token_ | The role-based identifier that assigns a color. Used instead of a hex code. Tokens apply universally across themes. For example, `$layer`, `$border-subtle`, `$support-error`.              |     |
-| _Role_  | The systematic usage(s) of a color. Roles cannot be changed between themes.                                                                                                                 |     |
-| _Value_ | The unique visual attribute (hex code, rgba value) assigned to a token through the use of a theme.                                                                                          |
 
 ### Light themes
 
@@ -303,6 +289,8 @@ instances like a dark UI Shell Header with a light theme page.
   </DoDont>
 </DoDontRow>
 
+<br />
+
 ### Tokens
 
 Color in Carbon is managed through tokens. Tokens are an abstracted method of
@@ -334,6 +322,10 @@ tokens.
 </Column>
 </Row>
 
+<Caption>Color tokens for components are the same across themes.</Caption>
+
+<br />
+
 ### Color roles
 
 The systematic and consistent use of color is achieved by applying tokens based
@@ -364,6 +356,16 @@ The color layering model for interaction tokens is as follows:
 - For values between Black and Gray 70, interaction gets lighter.
 - For values between Gray 60 and White, interaction gets darker.
 
+<Row>
+<Column colLg={12}>
+
+![Interaction colors](images/color-overview-interactive-4.png)
+
+</Column>
+</Row>
+
+<br />
+
 #### Hover
 
 Hover is a subtle visual change that appears when a mouse cursor moves over an
@@ -389,6 +391,8 @@ of use and are built into the layer style tokens._
 </Column>
 </Row>
 
+<br />
+
 For elements like text or icons that are use `secondary` colors for its enabled
 state when hovered will change to the `primary` color to subtly emphasis the
 element. Often times this shift in color to the text or icon element will also
@@ -397,6 +401,8 @@ overflow menu items use `$text-secondary` and `$layer` in its enabled state. On
 hover, the text switches to `$text-primary` and the background to
 `$layer-hover`.
 
+<br />
+
 <Row>
 <Column colLg={12}>
 
@@ -404,6 +410,8 @@ hover, the text switches to `$text-primary` and the background to
 
 </Column>
 </Row>
+
+<br />
 
 #### Active
 
@@ -427,6 +435,8 @@ value, and Black value shares the same active state as Gray 100 value.
 </Column>
 </Row>
 
+<br />
+
 #### Selected
 
 Selected states indicated item(s) or option(s) that have been chosen in the UI
@@ -449,6 +459,8 @@ shares the same selected state as Gray 100.
 </Column>
 </Row>
 
+<br />
+
 #### Focus
 
 The focus state draws attention to the active element on a page when using the
@@ -466,6 +478,8 @@ instead.
 Focus states are required on all interactive elements and must pass 3:1 color
 contrast accessibility. Often times to achieve proper 3:1 contrast a
 `$focus-inset` border is used between the focus border and the element itself.
+
+<br />
 
 #### Disabled
 
@@ -492,8 +506,8 @@ user-friendly color and interface choices. Awareness of standards and best
 practices is the key to accessible color selection.
 
 The color families in the IBM palette contain ten values from 10 to 100. White
-and Black sit outside those values. Black text is WCAG AA accessible on colors
-ranging from 10 to 50. White text is accessible on colors from 60 to 100.
+and Black sit outside those values. Black text is WCAG 2.0 AA accessible on
+colors ranging from 10 to 50. White text is accessible on colors from 60 to 100.
 
 <ArtDirection>
 
