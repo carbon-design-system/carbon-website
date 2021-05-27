@@ -22,8 +22,7 @@ harmony through our User Interface design.
 
 <AnchorLink>Introduction</AnchorLink>
 <AnchorLink>Color anatomy</AnchorLink>
-<AnchorLink>Themes</AnchorLink>
-<AnchorLink>Implementing color</AnchorLink>
+<AnchorLink>Understanding color</AnchorLink>
 <AnchorLink>Accessibility</AnchorLink>
 <AnchorLink>Resources</AnchorLink>
 
@@ -67,6 +66,47 @@ purposefully.
 {/* possible TODO: remove inline style */}
 <ColorGrid colorFamily="alerts" style="margin-top: 2rem" />
 <Caption>Alerts Colors</Caption>
+
+### Layering model
+
+Colors in the neutral gray palette are layered on top of each other to create
+depth and spacial associations. The layering model defines the logic of how the
+gray colors stack on top of each other in a UI when using the Carbon themes.
+Aspects of the layering model are built directly into the themes, color tokens,
+and components.
+
+The layering model differs between the "light" and "dark" themes.
+
+- In the light themes, layers alternate between White and Gray 10.
+- In the dark themes, layers become one step lighter with each added layer.
+
+<Row>
+<Column colLg={12}>
+
+![Layering model for light themes](images/color-layering-model-light.png)
+
+</Column>
+</Row>
+
+<Row>
+<Column colLg={12}>
+
+![Layering model for dark themes](images/color-layering-model-dark.png)
+
+</Column>
+</Row>
+
+## Understanding color
+
+Carbon uses tokens and themes to manage color. Tokens are role-based, and themes
+specify the color values that serve those roles in the UI.
+
+| Term    | Definition                                                                                                                                                                                  |     |
+| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- |
+| _Theme_ | A collection of colors designed to create a specific aesthetic. Themes control the color value assigned to a token. For example, White theme, Gray 10 theme, Gray 90 theme, Gray 100 theme. |     |
+| _Token_ | The role-based identifier that assigns a color. Used instead of a hex code. Tokens apply universally across themes. For example, `$layer`, `$border-subtle`, `$support-error`.              |     |
+| _Role_  | The systematic usage(s) of a color. Roles cannot be changed between themes.                                                                                                                 |     |
+| _Value_ | The unique visual attribute (hex code, rgba value) assigned to a token through the use of a theme.                                                                                          |
 
 ## Themes
 
@@ -150,23 +190,6 @@ themes. If you're not sure which color to use, refer to the
 
 All of the themes are available in
 [Design kits](https://carbondesignsystem.com/designing/kits/sketch/).
-
-#### Layering model
-
-Colors in the neutral gray palette are layered on top of each other to create
-depth and spacial associations. The layering model defines the logic of how the
-gray colors stack on top of each other in a UI when using the Carbon themes.
-
-The layering model differs between the "light" and "dark" themes. In the light
-themes, layers alternate between White and Gray 10.
-
-<Row>
-<Column colLg={12}>
-
-![Layering model for light themes](images/color-layering-model-light.png)
-
-</Column>
-</Row>
 
 <DoDontRow>
   <DoDont caption="Gray 10 dropdown on White background." colLg={6}>
@@ -254,23 +277,6 @@ All of the themes are available in
 
 <br />
 
-#### Layering model
-
-Colors in the neutral gray palette are layered on top of each other to create
-depth and spacial associations. The layering model defines the logic of how the
-gray colors stack on top of each other in a UI when using the Carbon themes.
-
-The layering model differs between the "light" and "dark" themes. In the dark
-themes, layers become one step lighter with each added layer.
-
-<Row>
-<Column colLg={12}>
-
-![Layering model for dark themes](images/color-layering-model-dark.png)
-
-</Column>
-</Row>
-
 ### High contrast
 
 In some cases, it is helpful to apply light components to dark backgrounds or
@@ -289,18 +295,6 @@ attention or create visual tension.
 
   </DoDont>
 </DoDontRow>
-
-## Implementing color
-
-Carbon uses tokens and themes to manage color. Tokens are role-based, and themes
-specify the color values that serve those roles in the UI.
-
-| Term    | Definition                                                                                                                                                                                  |     |
-| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- |
-| _Theme_ | A collection of colors designed to create a specific aesthetic. Themes control the color value assigned to a token. For example, White theme, Gray 10 theme, Gray 90 theme, Gray 100 theme. |     |
-| _Token_ | The role-based identifier that assigns a color. Used instead of a hex code. Tokens apply universally across themes. For example, `$layer`, `$border-subtle`, `$support-error`.              |     |
-| _Role_  | The systematic usage(s) of a color. Roles cannot be changed between themes.                                                                                                                 |     |
-| _Value_ | The unique visual attribute (hex code, rgba value) assigned to a token through the use of a theme.                                                                                          |
 
 ### Tokens
 
@@ -399,7 +393,7 @@ hover, the text switches to `$text-primary` and the background to
 <Row>
 <Column colLg={12}>
 
-![Hover states example](images/color-overview-interactive-hover-2.png)
+![Hover states example](images/color-overview-interactive-hover-3.png)
 
 </Column>
 </Row>
@@ -408,10 +402,9 @@ hover, the text switches to `$text-primary` and the background to
 
 The active state can be used to indicate a `click`, `tap` or down press of a
 button. Active tokens are identified by `-active` added to the end of the base
-token name, such as `$button-primary-active`.
-
-Active state values are two full steps lighter or darker on the IBM color scale.
-For example, the Blue 60 active state is Blue 80.
+token name, such as `$button-primary-active`. Active state values are two full
+steps lighter or darker on the IBM color scale. For example, the Blue 60 active
+state is Blue 80.
 
 - For values between 100 and 70, the active state is two full steps lighter.
 - For values between 60 and 10, the active state is two full steps darker.
@@ -432,7 +425,6 @@ value, and Black value shares the same active state as Gray 100 value.
 Selected states indicated item(s) or option(s) that have been chosen in the UI
 by the user through any input method. Selected token are identified by the
 `-selected` added to the end of the base token name, such as `$layer-selected`.
-
 The color logic for selected state is either one full step lighter or darker on
 the IBM color scale. For example, the Gray100 selected state is Gray 90.
 
