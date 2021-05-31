@@ -60,8 +60,6 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
   const [knobs, setKnobs] = useState(initialVariant.props.knobs);
   const [links, setLinks] = useState(initialVariant.props.links);
 
-  console.log('something', components[0]);
-
   const themes = {
     White: white,
     'Gray 10': g10,
