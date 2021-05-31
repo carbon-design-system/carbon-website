@@ -164,9 +164,8 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
 
               <Code links={links} code={code} src={src} className={codeRow}>
                 <label htmlFor="live-editor-label">
-                  <span className="live-editor-label">
-                    `Live editor for the ${components[0].label} component`
-                  </span>
+                    <span className="live-editor-label">{labelText}</span>
+                  </label>
                   <LiveEditor
                     padding={16}
                     style={{ overflowX: 'auto', whiteSpace: 'pre' }}
@@ -174,7 +173,6 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
                     className={editorContainer}
                     textareaId="live-editor-label"
                   />
-                </label>
               </Code>
               {knobs && (
                 <>
