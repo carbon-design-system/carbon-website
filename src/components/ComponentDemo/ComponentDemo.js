@@ -85,6 +85,8 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
       return currentVariant.props.children;
     });
   };
+  
+  const labelText = `Live editor for the ${components[0].label} component`;
 
   // TODO max width editor handle multiple clicks use regex for individual props?
   // allow for write-in props
