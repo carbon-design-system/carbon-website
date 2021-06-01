@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable import/no-extraneous-dependencies */
 import React, { useState, useContext } from 'react';
 import getTheme from 'gatsby-theme-carbon/src/components/Code/getTheme';
@@ -84,6 +85,8 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
       return currentVariant.props.children;
     });
   };
+  
+  const labelText = `Live editor for the ${components[0].label} component`;
 
   // TODO max width editor handle multiple clicks use regex for individual props?
   // allow for write-in props
@@ -162,12 +165,16 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
               )}
 
               <Code links={links} code={code} src={src} className={codeRow}>
-                <LiveEditor
-                  padding={16}
-                  style={{ overflowX: 'auto', whiteSpace: 'pre' }}
-                  onChange={(updatedCode) => setCode(updatedCode)}
-                  className={editorContainer}
-                />
+                <label htmlFor="live-editor-label">
+                    <span className="live-editor-label">{labelText}</span>
+                  </label>
+                  <LiveEditor
+                    padding={16}
+                    style={{ overflowX: 'auto', whiteSpace: 'pre' }}
+                    onChange={(updatedCode) => setCode(updatedCode)}
+                    className={editorContainer}
+                    textareaId="live-editor-label"
+                  />
               </Code>
               {knobs && (
                 <>
