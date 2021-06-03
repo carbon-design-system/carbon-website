@@ -21,7 +21,7 @@ import {
 } from './StatusIndicator.module.scss';
 
 // TODO: Organize styles, add the rest of the yaml
-const StatusIndicators = ({ attention }) => (
+const StatusIndicatorTable = ({ attention }) => (
   <StatusIndicatorTableWrapper>
     <StructuredListWrapper className={table}>
       <StructuredListHead>
@@ -53,30 +53,41 @@ const StatusIndicatorRow = ({
   token,
   description,
   usage,
-}) => (
-  <StructuredListRow className={statusIndicatorRow}>
-    <StructuredListCell>
-      <StatusIconWrapper>
-        <StatusIconGroup attention={attention}>
-          {fileNames.map((fileName) => (
-            <StatusIcon key={`${fileName}`} fileName={fileName} />
-          ))}
-        </StatusIconGroup>
-        <StatusIconGroup attention={attention} theme="dark">
-          {fileNames.map((fileName) => (
-            <StatusIcon key={`${fileName}-dark`} fileName={fileName} />
-          ))}
-        </StatusIconGroup>
-      </StatusIconWrapper>
-    </StructuredListCell>
-    <StructuredListCell>{name}</StructuredListCell>
-    <StructuredListCell className={tokenCell}>{token}</StructuredListCell>
-    <StructuredListCell className={descriptionCell}>
-      {description}
-      <br />
-      {usage ? <em>Used for: {usage}</em> : null}
-    </StructuredListCell>
-  </StructuredListRow>
-);
+}) => {
+  const isGlyph = attention === 'glyph';
+  return (
+    <StructuredListRow className={statusIndicatorRow}>
+      <StructuredListCell>
+        <StatusIconWrapper>
+          <StatusIconGroup attention={attention}>
+            {fileNames.map((fileName) => (
+              <StatusIcon
+                isGlyph={isGlyph}
+                key={`${fileName}`}
+                fileName={fileName}
+              />
+            ))}
+          </StatusIconGroup>
+          <StatusIconGroup attention={attention} theme="dark">
+            {fileNames.map((fileName) => (
+              <StatusIcon
+                isGlyph={isGlyph}
+                key={`${fileName}-dark`}
+                fileName={fileName}
+              />
+            ))}
+          </StatusIconGroup>
+        </StatusIconWrapper>
+      </StructuredListCell>
+      <StructuredListCell>{name}</StructuredListCell>
+      <StructuredListCell className={tokenCell}>{token}</StructuredListCell>
+      <StructuredListCell className={descriptionCell}>
+        {description}
+        <br />
+        {usage ? <em>Used for: {usage}</em> : null}
+      </StructuredListCell>
+    </StructuredListRow>
+  );
+};
 
-export default StatusIndicators;
+export default StatusIndicatorTable;

@@ -6,16 +6,17 @@ import {
   iconWrapper,
   statusIndicatorTableWrapper,
   isDark,
-  isGlyph,
+  glyph,
 } from './StatusIndicator.module.scss';
 
-export const StatusIcon = ({ attention, theme, fileName }) => {
+export const StatusIcon = ({ attention, theme, fileName, isGlyph }) => {
   const path = `/status-icons/${attention}/${theme}/${fileName}.svg`;
+  const size = isGlyph ? '16px' : '20px';
   return (
     <img
-      height="20px"
-      width="20px"
-      className={icon}
+      height={size}
+      width={size}
+      className={cx(icon, isGlyph && glyph)}
       alt={`${fileName} status icon`}
       src={path}
     />
@@ -29,15 +30,9 @@ export const StatusIndicatorTableWrapper = ({ children }) => (
   <div className={statusIndicatorTableWrapper}>{children}</div>
 );
 
-export const StatusIconGroup = ({
-  theme = 'light',
-  glyph = false,
-  children,
-  attention,
-}) => {
+export const StatusIconGroup = ({ theme = 'light', children, attention }) => {
   const className = cx(iconGroup, {
     [isDark]: theme === 'dark',
-    [isGlyph]: glyph,
   });
   return (
     <div className={className}>
