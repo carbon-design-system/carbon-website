@@ -6,7 +6,7 @@ import {
   StructuredListRow,
   StructuredListCell,
 } from 'carbon-components-react';
-import yaml from '../../data/status-icons/status-icons.yaml';
+import yaml from '../../data/status-indicators/status-indicators.yaml';
 import {
   StatusIcon,
   StatusIconGroup,
