@@ -21,29 +21,30 @@ import {
 } from './StatusIndicator.module.scss';
 
 // TODO: Organize styles, add the rest of the yaml
-const StatusIndicators = ({ attention }) => {
-  console.log(yaml);
-  return (
-    <StatusIndicatorTableWrapper>
-      <StructuredListWrapper className={table}>
-        <StructuredListHead>
-          <StructuredListRow head>
-            <StructuredListCell head>Icon</StructuredListCell>
-            <StructuredListCell head>Name</StructuredListCell>
-            <StructuredListCell head>Token</StructuredListCell>
-            <StructuredListCell head>Description & usage</StructuredListCell>
-          </StructuredListRow>
-        </StructuredListHead>
-        <StructuredListBody>
-          {yaml[attention].map((indicator) => (
-            <StatusIndicatorRow attention={attention} {...indicator} />
-          ))}
-        </StructuredListBody>
-        <StructuredListBody />
-      </StructuredListWrapper>
-    </StatusIndicatorTableWrapper>
-  );
-};
+const StatusIndicators = ({ attention }) => (
+  <StatusIndicatorTableWrapper>
+    <StructuredListWrapper className={table}>
+      <StructuredListHead>
+        <StructuredListRow head>
+          <StructuredListCell head>Icon</StructuredListCell>
+          <StructuredListCell head>Name</StructuredListCell>
+          <StructuredListCell head>Token</StructuredListCell>
+          <StructuredListCell head>Description & usage</StructuredListCell>
+        </StructuredListRow>
+      </StructuredListHead>
+      <StructuredListBody>
+        {yaml[attention].map((indicator, i) => (
+          <StatusIndicatorRow
+            key={`${indicator.name}-${i}`}
+            attention={attention}
+            {...indicator}
+          />
+        ))}
+      </StructuredListBody>
+      <StructuredListBody />
+    </StructuredListWrapper>
+  </StatusIndicatorTableWrapper>
+);
 
 const StatusIndicatorRow = ({
   attention,
@@ -58,12 +59,12 @@ const StatusIndicatorRow = ({
       <StatusIconWrapper>
         <StatusIconGroup attention={attention}>
           {fileNames.map((fileName) => (
-            <StatusIcon fileName={fileName} />
+            <StatusIcon key={`${fileName}`} fileName={fileName} />
           ))}
         </StatusIconGroup>
         <StatusIconGroup attention={attention} theme="dark">
           {fileNames.map((fileName) => (
-            <StatusIcon fileName={fileName} />
+            <StatusIcon key={`${fileName}-dark`} fileName={fileName} />
           ))}
         </StatusIconGroup>
       </StatusIconWrapper>
