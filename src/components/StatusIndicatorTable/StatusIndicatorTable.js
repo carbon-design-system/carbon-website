@@ -7,29 +7,31 @@ import {
   StructuredListCell,
 } from 'carbon-components-react';
 import yaml from '../../data/status-indicators/status-indicators.yaml';
-import {
-  StatusIcon,
-  StatusIconGroup,
-  StatusIconWrapper,
-  StatusIndicatorTableWrapper,
-} from './StatusIcon';
+import StatusIndicatorRow from './StatusIndicatorRow';
 import {
   table,
-  statusIndicatorRow,
-  tokenCell,
-  descriptionCell,
+  statusIndicatorTableWrapper,
+  headerCell,
 } from './StatusIndicator.module.scss';
 
 // TODO: Organize styles, add the rest of the yaml
 const StatusIndicatorTable = ({ attention }) => (
-  <StatusIndicatorTableWrapper>
+  <div className={statusIndicatorTableWrapper}>
     <StructuredListWrapper className={table}>
       <StructuredListHead>
         <StructuredListRow head>
-          <StructuredListCell head>Icon</StructuredListCell>
-          <StructuredListCell head>Name</StructuredListCell>
-          <StructuredListCell head>Token</StructuredListCell>
-          <StructuredListCell head>Description & usage</StructuredListCell>
+          <StructuredListCell className={headerCell} head>
+            Icon
+          </StructuredListCell>
+          <StructuredListCell className={headerCell} head>
+            Name
+          </StructuredListCell>
+          <StructuredListCell className={headerCell} head>
+            Token
+          </StructuredListCell>
+          <StructuredListCell className={headerCell} head>
+            Description & usage
+          </StructuredListCell>
         </StructuredListRow>
       </StructuredListHead>
       <StructuredListBody>
@@ -43,51 +45,7 @@ const StatusIndicatorTable = ({ attention }) => (
       </StructuredListBody>
       <StructuredListBody />
     </StructuredListWrapper>
-  </StatusIndicatorTableWrapper>
+  </div>
 );
-
-const StatusIndicatorRow = ({
-  attention,
-  fileNames,
-  name,
-  token,
-  description,
-  usage,
-}) => {
-  const isGlyph = attention === 'glyph';
-  return (
-    <StructuredListRow className={statusIndicatorRow}>
-      <StructuredListCell>
-        <StatusIconWrapper>
-          <StatusIconGroup attention={attention}>
-            {fileNames.map((fileName) => (
-              <StatusIcon
-                isGlyph={isGlyph}
-                key={`${fileName}`}
-                fileName={fileName}
-              />
-            ))}
-          </StatusIconGroup>
-          <StatusIconGroup attention={attention} theme="dark">
-            {fileNames.map((fileName) => (
-              <StatusIcon
-                isGlyph={isGlyph}
-                key={`${fileName}-dark`}
-                fileName={fileName}
-              />
-            ))}
-          </StatusIconGroup>
-        </StatusIconWrapper>
-      </StructuredListCell>
-      <StructuredListCell>{name}</StructuredListCell>
-      <StructuredListCell className={tokenCell}>{token}</StructuredListCell>
-      <StructuredListCell className={descriptionCell}>
-        {description}
-        <br />
-        {usage ? <em>Used for: {usage}</em> : null}
-      </StructuredListCell>
-    </StructuredListRow>
-  );
-};
 
 export default StatusIndicatorTable;
