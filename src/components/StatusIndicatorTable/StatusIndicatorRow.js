@@ -14,14 +14,15 @@ import {
 
 export const StatusIcon = ({ attention, theme, fileName, isGlyph }) => {
   const path = `/status-icons/${attention}/${theme}/${fileName}.svg`;
-  const size = isGlyph ? '16px' : '20px';
+  const size = isGlyph ? '16' : '20';
   return (
-    <img
+    <object
       height={size}
       width={size}
       className={cx(icon, isGlyph && glyph)}
-      alt={`${fileName} status icon`}
-      src={path}
+      aria-label={`${fileName} status icon`}
+      type="image/svg+xml"
+      data={path}
     />
   );
 };
