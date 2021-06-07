@@ -38,8 +38,8 @@ harmony through our User Interface design.
 
 Application of the color palette brings a unified and recognizable consistency
 to IBM's array of digital products and interfaces. This consistency is grounded
-by a set of well-defined rules on how to work with Carbon
-in the context of dark and light themes.
+by a set of well-defined rules on how to work with Carbon in the context of dark
+and light themes.
 
 A set of well-defined rules about how to work with the Carbon component library
 in the context of dark and light themes, grounds this consistency and makes it
@@ -294,12 +294,13 @@ instances like a dark UI Shell Header with a light theme page.
 ### Tokens
 
 Color in Carbon is managed through tokens. Tokens are an abstracted method of
-applying color in a consistent and scalable way. Each color token is assigned a
-role and a value. The role determines where the token is applied in the UI and
-the value is the actual color (that is, the hex code) that will appear in an
-assigned theme. Tokens are used in place of a one-off hex code, allowing for
-changes in values to be made at scale for easy color management. The token names
-themselves stay the same in code no matter which theme is being used.
+applying color in a consistent, reusable, and scalable way. Each color token is
+assigned a role and a value. The role determines where the token is applied in
+the UI and the value is the actual color (that is, the hex code) that will
+appear in an assigned theme. Tokens are used in place of a one-off hex code,
+allowing for changes in values to be made at scale for easy color management.
+The token names themselves stay the same in code no matter which theme is being
+used.
 
 Here's an example of how tokens work: instead of coding all instances of input
 labels in a UI to be `#565656`, the _form_ component in Carbon specifies the
@@ -520,35 +521,70 @@ Using various forms of contrast is the most important consideration when making
 user-friendly color and interface choices. Awareness of standards and best
 practices is the key to accessible color selection.
 
-The color families in the IBM palette contain ten values from 10 to 100. White
-and Black sit outside those values. Black text is WCAG 2.0 AA accessible on
-colors ranging from 10 to 50. White text is accessible on colors from 60 to 100.
+<Row className="resource-card-group">
+<Column colMd={4} colLg={4} noGutterSm>
+    <ResourceCard
+      subTitle="IBM Design Language: Accessibility"
+      aspectRatio="2:1"
+      href="https://www.ibm.com/design/language/color#accessibility"
+      >
 
+![Bee Icon](../images/resource-cards/bee.png)
+
+  </ResourceCard>
+</Column>
+<Column colMd={4} colLg={4} noGutterSm>
+    <ResourceCard
+      subTitle="IBM Accessibility"
+      aspectRatio="2:1"
+      href="https://www.ibm.com/able/toolkit/design/visual/color-and-contrast"
+      >
+
+![Bee Icon](../images/resource-cards/bee.png)
+
+  </ResourceCard>
+</Column>
+</Row>
+
+### Contrast ratios
+
+Contrast is the difference in brightness between any two elements. The
+[Web Content Acessibility Guidelines (WCAG)](https://www.w3.org/TR/WCAG20/) set
+specific ratios that achieve the minimum required contrast for legibility.
+Generally speaking, small text is any size below 24px and requires a 4.5:1
+contrast ratio. Large text is anything above 24px and requires a 3:1 contrast
+ratio. Graphical elements, such as charts in data visualization, also require a
+3:1 contrast ratio.
+
+The IBM palette is comprised of twelve color grades—Black, White and ten values
+for each hue. The following table indicates the minimum number of steps required
+to achieve commonly used contrast ratios between any two colors.
+
+<Row>
+<Column colLg={8}>
 <ArtDirection>
 
-![Digital accessibility](images/wcag2-blues-mobile.svg)
-![Digital accessibility](images/wcag2-blues-desktop.svg)
+![color grades - Mobile image](images/colorgrades_table_mobile.png)
+![color grades graphic](images/colorgrades_table.png)
 
 </ArtDirection>
+</Column>
+</Row>
 
-Beyond black and white, the IBM color palette provides a range of accessible
-combinations. Subtracting the foreground value from the background value (or
-vice versa) helps determine whether that color combination meets the WCAG AA
-contrast ratio success criteria. If the difference between two values is 50 or
-greater, the colors are accessible. Anything below a difference of 50 may fail
-accessibility standards.
-
-<ArtDirection>
-
-![Blue color do dont accessible example](images/wcag-dos-donts-mobile.svg)
-![Blue color do dont accessible example](images/wcag-dos-donts-desktop.svg)
-
-</ArtDirection>
-
-<Caption>Blue color family, 60 background</Caption>
-
-For a complete look at color-related accessibility topics in Carbon, visit the
-[Accessibility](/guidelines/accessibility/color) section.
+| Color 1 | Color 2 (4.5:1 contrast)   | Color 2 (3:1 contrast)     |
+| ------- | -------------------------- | -------------------------- |
+| Black   | 50 through White (6 steps) | 60 through White (5 steps) |
+| 100     | 50 through White (5 steps) | 60 through White (4 steps) |
+| 90      | 50 through White (4 steps) | 60 through White (3 steps) |
+| 80      | 40 through White (4 steps) | 50 through White (3 steps) |
+| 70      | 30 through White (4 steps) | 40 through White (3 steps) |
+| 60      | 20 through White (4 steps) | 20 through White (4 steps) |
+| 50      | 90 through Black (4 steps) | 80 through Black (3 steps) |
+| 40      | 80 through Black (4 steps) | 70 through Black (3 steps) |
+| 30      | 70 through Black (4 steps) | 70 through Black (4 steps) |
+| 20      | 70 through Black (5 steps) | 60 through Black (4 steps) |
+| 10      | 60 through Black (5 steps) | 50 through Black (4 steps) |
+| White   | 60 through Black (6 steps) | 50 through Black (5 steps) |
 
 ## Resources
 
