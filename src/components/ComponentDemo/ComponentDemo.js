@@ -85,7 +85,7 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
       return currentVariant.props.children;
     });
   };
-  
+
   const labelText = `Live editor for the ${components[0].label} component`;
 
   // TODO max width editor handle multiple clicks use regex for individual props?
@@ -166,15 +166,15 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
 
               <Code links={links} code={code} src={src} className={codeRow}>
                 <label htmlFor="live-editor-label">
-                    <span className="live-editor-label">{labelText}</span>
-                  </label>
-                  <LiveEditor
-                    padding={16}
-                    style={{ overflowX: 'auto', whiteSpace: 'pre' }}
-                    onChange={(updatedCode) => setCode(updatedCode)}
-                    className={editorContainer}
-                    textareaId="live-editor-label"
-                  />
+                  <span className="live-editor-label">{labelText}</span>
+                </label>
+                <LiveEditor
+                  padding={16}
+                  style={{ overflowX: 'auto', whiteSpace: 'pre' }}
+                  onChange={(updatedCode) => setCode(updatedCode)}
+                  className={editorContainer}
+                  textareaId="live-editor-label"
+                />
               </Code>
               {knobs && (
                 <>
