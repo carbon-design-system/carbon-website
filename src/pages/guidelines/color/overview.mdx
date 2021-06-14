@@ -13,7 +13,7 @@ import ColorGrid from 'components/ColorGrid';
 
 Maintaining consistent and engaging digital interfaces throughout IBM, whether
 applications or experiences, demands extended guidance around color usage. The
-following concepts are the foundation as we strive to achieve balance and
+following concepts provide the foundation as we strive to achieve balance and
 harmony through our User Interface design.
 
 </PageDescription>
@@ -22,7 +22,7 @@ harmony through our User Interface design.
 
 <AnchorLink>Introduction</AnchorLink>
 <AnchorLink>Color anatomy</AnchorLink>
-<AnchorLink>Implementing color</AnchorLink>
+<AnchorLink>Understanding color</AnchorLink>
 <AnchorLink>Accessibility</AnchorLink>
 <AnchorLink>Resources</AnchorLink>
 
@@ -37,21 +37,24 @@ harmony through our User Interface design.
 ## Introduction
 
 Application of the color palette brings a unified and recognizable consistency
-to IBM's vast array of digital products and interfaces. This consistency is
-grounded by a set of well-defined rules on how to work with the Carbon component
+to IBM's array of digital products and interfaces. This consistency is grounded
+in a set of well-defined rules about how to work with the Carbon component
 library in the context of dark and light themes.
 
-![Color in UI](images/IBM_UI_Screens.gif)
+<GifPlayer color="dark">
 
-<Caption></Caption>
+![UI color alternatives](images/introduction.gif)
+![UI color alternatives](images/introduction.jpg)
+
+</GifPlayer>
 
 ## Color anatomy
 
-Carbon's default themes are derived from the IBM Design Language color palette.
-The Neutral Gray family is dominant in the default themes, making use of subtle
-shifts in value to help organize content into distinct zones.
+Carbon’s default themes are derived from the IBM Design Language color palette.
+The neutral gray family is dominant in the default themes, making use of subtle
+shifts in value to organize content into distinct zones.
 
-The core Blue family serves as the primary action color across all IBM products
+The core blue family serves as the primary action color across all IBM products
 and experiences. Additional colors are used sparingly and purposefully.
 
 <div>
@@ -62,46 +65,52 @@ and experiences. Additional colors are used sparingly and purposefully.
 <ColorGrid colorFamily="alerts" style="margin-top: 2rem" />
 <Caption>Alerts Colors</Caption>
 
-## Implementing color
+### Layering model
 
-Carbon uses _tokens_ and _themes_ to manage color. Tokens are role-based, and
-themes specify the color values that serve those roles in the UI.
+Colors in the neutral gray palette are layered on top of each other to create
+depth and spatial associations. The layering model defines the logic of how
+colors stack on top of each other in a UI when using the Carbon themes. Aspects
+of the layering model are built directly into the themes, color tokens, and
+components.
 
-| Term    | Definition                                                                                                  |     |
-| ------- | ----------------------------------------------------------------------------------------------------------- | --- |
-| _Theme_ | The set of unique values assigned to the tokens of a Carbon interface                                       |     |
-| _Token_ | The code identifier for a unique role or set of roles. Tokens are universal and never change across themes. |     |
-| _Role_  | The systematic usage(s) of a token. Roles cannot be changed between themes.                                 |     |
-| _Value_ | The actual style (i.e. hex code) assigned to a token                                                        |     |
+The layering model differs between the _light_ and _dark_ themes.
 
-### Tokens
+- In the light themes, layers alternate between White and Gray 10.
+- In the dark themes, layers become one step lighter with each added layer.
 
-Color in Carbon is managed using color tokens. Tokens are a method of
-abstracting color by role or usage, independent of the actual color values. For
-example, instead of needing to code all instances of input labels in a UI to be
-`#565656`, the _form_ component in Carbon specifies the token `$text-02` for
-these labels, and that token is specified in a separate theme file to be
-`#565656`. For a different theme, that same `text-02` token could be mapped to a
-different hex value, like `#ffffff`. Thus, tokens not only allow for more
-efficient color updates within a theme, but also enable any UI (or portion of a
-UI) built with Carbon to easily switch between different themes.
+<Row>
+<Column colLg={8}>
 
-A single token can be associated with multiple roles, but only if the color
-value is used consistently across those roles. This allows for uniform color
-application across themes while maintaining full styling flexibility.
+![Layering model for light and dark themes](images/color-layering-model-2.png)
 
-With this system, all Carbon users can create their own themes by assigning new
-values to the established color tokens. IBM products should use one of the four
-IBM default themes.
+</Column>
+</Row>
+
+<br />
+
+## Understanding color
+
+Carbon uses tokens and themes to manage color. Tokens are role-based, and themes
+specify the color values that serve those roles in the UI.
+
+| Term                                                    | Definition                                                                                                                                                                                             |     |
+| ------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --- |
+| [Theme](/guidelines/color/overview/#themes)             | A theme is a collection of colors designed to create a specific aesthetic. Themes control the color value assigned to a token. For example, White theme, Gray 10 theme, Gray 90 theme, Gray 100 theme. |     |
+| [Token](/guidelines/color/overview/#tokens)             | A token is the role-based identifier that assigns a color. Unlike hex codes, tokens apply universally across themes. For example, `$layer`, `$border-subtle`, `$support-error`.                        |     |
+| [Role](/guidelines/color/overview/#color-roles)         | A role is the systematic usage of a color. Roles cannot be changed between themes.                                                                                                                     |     |
+| [Value](/guidelines/color/overview/#interaction-states) | A value is the unique visual attribute (hex code, rgba value) assigned to a token through the use of a theme.                                                                                          |
 
 ### Themes
 
 Themes serve as an organizational framework for color in Carbon, with each theme
-based on a specific primary background color. There are two default "light"
-themes and two default "dark" themes. The light themes use White and Gray 10
-backgrounds, and the dark themes use Gray 100 and Gray 90 backgrounds. Default
-color tokens are provided for each component based on the primary background
-color.
+based on a specific primary background color. And they actually get their names
+from their background color. There are two default _light_ themes and two
+default _dark_ themes.
+
+The light themes are based on White and Gray 10 backgrounds, and the dark themes
+use Gray 100 and Gray 90 backgrounds. Within each theme, the values for the
+universal color tokens use the primary background color as the base of its
+layering model.
 
 <Row className="color-blocks">
 <Column colSm={1} colMd={1} colLg={2}>
@@ -149,21 +158,28 @@ color.
 <br />
 <Title> Global background colors </Title>
 
-| Theme    | Primary background      | Token            | Hex value |                                             |
-| -------- | ----------------------- | ---------------- | --------- | ------------------------------------------: |
-| White    | Global Background Light | `$ui-background` | `#ffffff` |  <ColorBlock size="xs">#ffffff</ColorBlock> |
-| Gray 10  | Global Background Light | `$ui-background` | `#f4f4f4` | <ColorBlock  size="xs">#f4f4f4</ColorBlock> |
-| Gray 90  | Global Background Dark  | `$ui-background` | `#262626` | <ColorBlock  size="xs">#282828</ColorBlock> |
-| Gray 100 | Global Background Dark  | `$ui-background` | `#161616` | <ColorBlock  size="xs">#171717</ColorBlock> |
+| Theme    | Primary background      | Token         | Hex value |                                             |
+| -------- | ----------------------- | ------------- | --------- | ------------------------------------------: |
+| White    | Global Background Light | `$background` | `#ffffff` |  <ColorBlock size="xs">#ffffff</ColorBlock> |
+| Gray 10  | Global Background Light | `$background` | `#f4f4f4` | <ColorBlock  size="xs">#f4f4f4</ColorBlock> |
+| Gray 90  | Global Background Dark  | `$background` | `#262626` | <ColorBlock  size="xs">#282828</ColorBlock> |
+| Gray 100 | Global Background Dark  | `$background` | `#161616` | <ColorBlock  size="xs">#171717</ColorBlock> |
 
 <br />
 
 #### Light themes
 
-Gray 10 components are paired with White backgrounds to make the White theme and
-White components with Gray 10 backgrounds to make the Gray 10 theme. Some
-components, such as buttons and toggles, share the same colors across both light
-themes.
+There are two light themes in Carbon: White and Gray 10. In the light themes,
+layers alternate between White and Gray 10. For enabled UI colors light themes
+primarily uses the color range of White to Gray 20.
+
+- **White theme**: uses white background as it layering model base and is paired
+  with components using Gray 10 containers to start.
+- **Gray 10 theme:** uses Gray 10 backgrounds as it layering model baseand is
+  paired with components using white containers to start.
+
+All of the themes are available in
+[Design kits](https://carbondesignsystem.com/designing/kits/sketch/).
 
 <DoDontRow>
   <DoDont caption="Gray 10 dropdown on White background." colLg={6}>
@@ -199,10 +215,17 @@ themes.
 
 #### Dark themes
 
-Gray 90 components are paired with Gray 100 backgrounds to make the Gray 100
-Theme and Gray 80 components with Gray 90 backgrounds to make the Gray 90 Theme.
-Some components, such as buttons and toggles, share the same colors across both
-light themes.
+There are two dark themes: Gray 90 and Gray 100. In the dark themes, layers
+become one step lighter with each added layer. For enabled UI colors, dark
+themes primarily use the color range of Gray 100 through Gray 70.
+
+- **Gray 90 theme**: uses Gray 90 backgrounds and is paired with components
+  using Gray 80 containers to start.
+- **Gray 100 theme:** uses Gray 100 backgrounds and is paired with components
+  using Gray 90 containers to start.
+
+All of the themes are available in
+[Design kits](https://carbondesignsystem.com/designing/kits/sketch/).
 
 <DoDontRow>
   <DoDont
@@ -246,7 +269,10 @@ light themes.
 
 In some cases, it is helpful to apply light components to dark backgrounds or
 dark components to light backgrounds. This technique is useful to focus
-attention or create visual tension.
+attention or create visual tension. Some high contrast moments are baked into
+the themes used `inverse` tokens, like with the tooltip component. Other times
+high contrast moments can be achieved through applying inline theming for
+instances like a dark UI Shell Header with a light theme page.
 
 <DoDontRow>
   <DoDont colLg={6}>
@@ -261,90 +287,301 @@ attention or create visual tension.
   </DoDont>
 </DoDontRow>
 
+<br />
+
+### Tokens
+
+Color in Carbon is managed through tokens. Tokens are an abstracted method of
+applying color in a consistent, reusable, and scalable way. Each color token is
+assigned a role and a value. The role determines where the token is applied in
+the UI and the value is the actual color (that is, the hex code) that will
+appear in an assigned theme. Tokens are used in place of a one-off hex code,
+allowing for changes in values to be made at scale, for easy color management.
+The token names themselves stay the same in code no matter which theme is being
+used.
+
+Here's an example of how tokens work: instead of coding all instances of input
+labels in a UI to be `#565656`, the _form_ component in Carbon specifies the
+label color to use the token `$text-secondary`. The value of the token will
+automatically be called in a relay effect through a theme file which will assign
+it the value of `#565656`. For a different theme, that same `$text-secondary`
+token could be mapped to a different hex value like `#ffffff`. By using the
+token name instead of the hex code, any color updates within a theme can be
+applied instantly, and any UI (or portion of a UI) can switch between different
+themes easily.
+
+See the [color usage tab](/guidelines/color/usage) for the full list of color
+tokens.
+
+<Row>
+<Column colLg={12}>
+
+![Color token example](images/color-overview-tokens.png)
+
+</Column>
+</Row>
+
+<Caption>Color tokens for components are the same across themes.</Caption>
+
+<br />
+
+### Color roles
+
+The systematic and consistent use of color is achieved by applying tokens based
+on their _role_. Roles are important to follow as a single color value may be
+assigned to multiple color tokens. The
+[color usage tab](https://carbondesignsystem.com/guidelines/color/usage) lists
+the role(s) for each color token in the second column.
+
+For quick reference, the role of a token is also represented in the token name
+itself. The token names are divided into parts to help you make decisions and
+understand options. The first part of the token name references the general UI
+element the color is being applied to, like `background`, `text`, `border`. If
+the element can be styled in more than one way then the last half of the token
+name will further describe its how it should be used. For example
+`$border-subtle` is used when a border or divider rule needs a low contrasting
+(subtle) aesthetic.
+
 ### Interaction states
 
-In addition to the enabled-state tokens above, the five other primary
-interaction states have been defined and tokenized for each default theme. For
-values between Black and 70, interaction gets lighter, and for values between 60
-and White, interaction gets darker.
+In addition to the core set of enabled-state tokens, there are five other
+primary interaction states defined with tokens for each theme. Interaction
+tokens are signified by the addition of a state name added to the end of the
+base token name. For example, the `$background` hover state token is
+`$background-hover`.
+
+The color layering model for interaction tokens is as follows:
+
+- For values between Black and Gray 70, interaction gets lighter.
+- For values between Gray 60 and White, interaction gets darker.
+
+<Row>
+<Column colLg={12}>
+
+![Hover states palette](images/color-overview-interactive.png)
+
+</Column>
+</Row>
+
+<br />
 
 #### Hover
 
-Hover states have their own tokens. In the IBM default themes, these colors fall
-outside of the core palette steps and act as "half steps" between two adjacent
-colors. The White theme shares the same hover value as the Gray 10 theme; the
-two dark theme backgrounds share a hover value as well.
+Hover is a subtle visual change that appears when a mouse cursor moves over an
+interactive element. Hover states have their own tokens and are identified the
+`-hover` added to the end of the base token name, such as `$background-hover`.
+
+For container backgrounds in the IBM themes, hover states token values are "half
+steps" between two adjacent colors on the IBM color palette steps. These values
+fall outside of the IBM color palette steps and are calculated in code through
+an `adjustLightness` function with either a `+` or `-` number value. For
+example, `$background-hover: adjustLightness($background, -5)`. _Note that in
+the Sketch assets, hex codes are still used as values for hover states for ease
+of use and are built into the layer style tokens._
+
+- For values between Black and 70, interaction gets `+` adjustment.
+- For values between 60 and White, interaction gets `-` adjustment.
+
+Elements like text or icons that use `secondary` colors for their enabled state,
+will change to `primary` color on hover, giving them a subtle emphasis. Often
+times this shift in color (to the text or icon element) will also be accompanied
+by a background hover color shift as well. For example, an overflow menu uses
+`$text-secondary` and `$layer` in its enabled state. On hover, the text switches
+to `$text-primary` and the background to `$layer-hover`.
+
+<Row>
+<Column colLg={8}>
+
+![Hover state colors are half steps](images/color-overview-interactive-hover.png)
+
+</Column>
+</Row>
+
+<Caption>
+  Shown in the white theme, (1) `$layer` enabled color and (2) `$layer-hover`
+  hover color.
+</Caption>
+
+<br />
 
 #### Active
 
-The active state is two full steps lighter for values between 100 and 70 and two
-full steps darker for values between 60 and 10. For example, the Blue 60 active
-state is Blue 80. The exception is that White shares the same active state as
-Gray 10, and Black shares the same active state as Gray 100.
+The active state can be used to indicate a `click`, `tap` or down press of a
+button. Active tokens are identified by `-active` added to the end of the base
+token name, such as `$button-primary-active`. Active state values are two full
+steps lighter or darker on the IBM color scale. For example, the Blue 60 active
+state is Blue 80.
+
+- For values between 100 and 70, the active state is two full steps lighter.
+- For values between 60 and 10, the active state is two full steps darker.
+
+The exceptions are that White value shares the same active state as Gray 10
+value, and Black value shares the same active state as Gray 100 value.
+
+<Row>
+<Column colLg={8}>
+
+![Active state colors are two steps over](images/color-overview-interactive-active.png)
+
+</Column>
+</Row>
+
+<Caption>
+  Shown in the White theme, (1) `$button-primary` enabled color and (2)
+  `$button-primary-active` active color.
+</Caption>
+
+<br />
 
 #### Selected
 
-The selected state is one full step lighter for values between 100 and 70, and
-one full step darker for values between 60 and 10. For example, the Blue 60
-selected state is Blue 70. The exception is that White shares the same selected
-state as Gray 10, and Black shares the same selected state as Gray 100.
+Selected states indicate item(s) or option(s) that have been chosen in the UI by
+the user through any input method. Selected tokens are identified by the
+`-selected` added to the end of the base token name, such as `$layer-selected`.
+The color logic for selected state is either one full step lighter or darker on
+the IBM color scale. For example, the Gray100 selected state is Gray 90.
+
+- For values between 100 and 70, the selected state is one full step lighter.
+- For values between 60 and 10, the selected state one full step darker.
+
+The exception is that White shares the same selected state as Gray 10, and Black
+shares the same selected state as Gray 100.
+
+<Row>
+<Column colLg={8}>
+
+![Selected state colors are one step over](images/color-overview-interactive-selected.png)
+
+</Column>
+</Row>
+
+<Caption>
+  Shown in the white theme, (1) `$layer` enabled color and (2) `$layer-selected`
+  selected color.
+</Caption>
+
+<br />
 
 #### Focus
 
-The focus state usually appears as a Blue 60 border in the light theme and as a
-White border in the dark theme.
+The focus state draws attention to the active element on a page when using the
+keyboard or voice to navigate. In Carbon, the focus of an element is most
+commonly indicated by a 2px border around the element. In order to make it easy
+to identify and locate on a page, most focus states use only one color per theme
+controlled through the `$focus` color token.
+
+- In the light themes, the focus state usually appears as a Blue 60 border.
+- In the dark themes, the focus state usually appears as a White border.
+
+The exception is high contrast moments where a `$focus-inverse` color is used
+instead.
+
+Focus states are required on all interactive elements and must pass 3:1 color
+contrast accessibility. Often times to achieve proper 3:1 contrast a
+`$focus-inset` border is used between the focus border and the element itself.
+
+<Row>
+<Column colLg={8}>
+
+![Focus state colors](images/color-overview-interactive-focus.png)
+
+</Column>
+</Row>
+
+<Caption>
+  (1) White theme `$focus` color and (2) Gray 90 theme `$focus` color.
+</Caption>
+
+<br />
 
 #### Disabled
 
-Disabled components are unavailable for interaction, so they don't receive hover
-or focus and are not subject to WC3 contrast compliance standards. For the dark
-themes, disabled values are two full steps lighter than their respective
-background. For light themes, they are two full steps darker. The exception is
-that the White theme disabled value is Gray 30.
+A disabled state is applied to a component when the user is not allowed to
+interact with the component due to either permissions, dependencies, or
+pre-requisites. Disabled states completely remove the interactive function of a
+component and therefore don't receive hover or focus. Disabled state styling is
+not subject to WC3 contrast compliance standards and is intentionally
+de-emphasized in a faded fashion.
 
-![interactive states light](images/Interactive_states_light_new.png)
+Disabled elements are always styled in the Gray family no matter its base color.
+Component-specific styling will depend on the elements within it and what layers
+they are placed on. Some tokens have their own specific disabled tokens, such as
+`$layer-disabled`, while other elements are grouped together and share a
+disabled token like `$text-disabled`.
 
-<Caption>Light theme interactive tokens.</Caption>
-
-![interactive states dark](images/Interactive_states_dark_new.png)
-
-<Caption>Dark theme interactive tokens.</Caption>
+- For the light themes, disabled color values range from White to Gray 50
+- For the dark themes, disabled color values range from Gray 90 to Gray 40
 
 ## Accessibility
 
 Using various forms of contrast is the most important consideration when making
 user-friendly color and interface choices. Awareness of standards and best
-practices is the key to accessible color selection.
+practices is the key to accessible color selections.
 
-The color families in the IBM palette contain ten values from 10 to 100. White
-and Black sit outside those values. Black text is WCAG AA accessible on colors
-ranging from 10 to 50. White text is accessible on colors from 60 to 100.
+<Row className="resource-card-group">
+<Column colMd={4} colLg={4} noGutterSm>
+    <ResourceCard
+      subTitle="IBM Design Language: Accessibility"
+      aspectRatio="2:1"
+      href="https://www.ibm.com/design/language/color#accessibility"
+      >
 
+<MdxIcon name="bee" />
+
+  </ResourceCard>
+</Column>
+<Column colMd={4} colLg={4} noGutterSm>
+    <ResourceCard
+      subTitle="IBM Accessibility: Color and Contrast"
+      aspectRatio="2:1"
+      href="https://www.ibm.com/able/toolkit/design/visual/color-and-contrast"
+      >
+
+<MdxIcon name="bee" />
+
+  </ResourceCard>
+</Column>
+</Row>
+
+### Contrast ratios
+
+Contrast is the difference in brightness between any two elements. The
+[Web Content Acessibility Guidelines (WCAG)](https://www.w3.org/TR/WCAG20/) set
+specific ratios that achieve the minimum required contrast for legibility.
+Generally speaking, small text is any size below 24px and requires a 4.5:1
+contrast ratio. Large text is anything above 24px and requires a 3:1 contrast
+ratio. Graphical elements, such as data visualizations, also require a 3:1
+contrast ratio.
+
+The IBM palette is comprised of twelve color grades—Black, White and ten values
+for each hue. The following table indicates the minimum number of steps required
+to achieve commonly used contrast ratios between any two colors.
+
+<Row>
+<Column colLg={8}>
 <ArtDirection>
 
-![Digital accessibility](images/wcag2-blues-mobile.svg)
-![Digital accessibility](images/wcag2-blues-desktop.svg)
+![color grades - Mobile image](images/colorgrades_table_mobile.png)
+![color grades graphic](images/colorgrades_table.png)
 
 </ArtDirection>
+</Column>
+</Row>
 
-Beyond black and white, the IBM color palette provides a range of accessible
-combinations. Subtracting the foreground value from the background value (or
-vice versa) helps determine whether that color combination meets the WCAG AA
-contrast ratio success criteria. If the difference between two values is 50 or
-greater, the colors are accessible. Anything below a difference of 50 may fail
-accessibility standards.
-
-<ArtDirection>
-
-![Blue color do dont accessible example](images/wcag-dos-donts-mobile.svg)
-![Blue color do dont accessible example](images/wcag-dos-donts-desktop.svg)
-
-</ArtDirection>
-
-<Caption>Blue color family, 60 background</Caption>
-
-For a complete look at color-related accessibility topics in Carbon, visit the
-[Accessibility](/guidelines/accessibility/color) section.
+| Color 1 | Color 2 (4.5:1 contrast)   | Color 2 (3:1 contrast)     |
+| ------- | -------------------------- | -------------------------- |
+| Black   | 50 through White (6 steps) | 60 through White (5 steps) |
+| 100     | 50 through White (5 steps) | 60 through White (4 steps) |
+| 90      | 50 through White (4 steps) | 60 through White (3 steps) |
+| 80      | 40 through White (4 steps) | 50 through White (3 steps) |
+| 70      | 30 through White (4 steps) | 40 through White (3 steps) |
+| 60      | 20 through White (4 steps) | 20 through White (4 steps) |
+| 50      | 90 through Black (4 steps) | 80 through Black (3 steps) |
+| 40      | 80 through Black (4 steps) | 70 through Black (3 steps) |
+| 30      | 70 through Black (4 steps) | 70 through Black (4 steps) |
+| 20      | 70 through Black (5 steps) | 60 through Black (4 steps) |
+| 10      | 60 through Black (5 steps) | 50 through Black (4 steps) |
+| White   | 60 through Black (6 steps) | 50 through Black (5 steps) |
 
 ## Resources
 
