@@ -10,8 +10,8 @@ export const statusLight = [
     light: true,
   },
   {
-    name: 'Orange 40',
-    hex: 'ff832b',
+    name: 'Orange 50',
+    hex: 'eb6200',
     light: false,
   },
   { name: 'Blue 60', hex: '0f62fe', light: true },
