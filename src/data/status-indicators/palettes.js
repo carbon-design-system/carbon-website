@@ -22,7 +22,7 @@ export const statusLight = [
   },
   { name: 'Purple 60', hex: '8a3ffc', light: true },
   {
-    name: 'Gray 60',
+    name: 'Gray 30',
     hex: '6f6f6f',
     light: true,
   },
@@ -52,7 +52,7 @@ export const statusDark = [
   },
   { name: 'Purple 50', hex: 'a56eff', light: false },
   {
-    name: 'Gray 60',
+    name: 'Gray 70',
     hex: 'c6c6c6',
     light: false,
   },

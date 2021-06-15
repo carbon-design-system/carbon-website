@@ -42,6 +42,7 @@ const ColorPalette = ({
   type,
   isMono,
   isDiverging,
+  twoColumn,
   shouldShowControls = true,
 }) => {
   // STATES
@@ -216,7 +217,7 @@ const ColorPalette = ({
       )}
 
       {(type === 'categorical' || type === 'alert' || type === 'status') && (
-        <PalettesContainer dark={dark} type={type}>
+        <PalettesContainer dark={dark} type={type} twoColumn={twoColumn}>
           {colors.map((i, index) => (
             <ColorPaletteColor
               key={`${i.name}-${index}-${i.index}`}
