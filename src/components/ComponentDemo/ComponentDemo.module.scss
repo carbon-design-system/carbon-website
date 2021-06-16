@@ -313,6 +313,10 @@ fieldset.form-group:last-of-type {
 }
 
 // Themes
+body[data-live-preview-theme='White'] [class^='bx--tooltip'],
+body[data-live-preview-theme='White']
+  [class^='flatpickr-calendar'][class*='open'],
+body[data-live-preview-theme='White'] ul[class^='bx--overflow-menu-options'],
 .white {
   @include carbon--theme(
     $theme: $carbon--theme--white,
@@ -323,6 +327,10 @@ fieldset.form-group:last-of-type {
   }
 }
 
+body[data-live-preview-theme='Gray 10'] [class^='bx--tooltip'],
+body[data-live-preview-theme='Gray 10']
+  [class^='flatpickr-calendar'][class*='open'],
+body[data-live-preview-theme='Gray 10'] ul[class^='bx--overflow-menu-options'],
 .g10 {
   @include carbon--theme(
     $theme: $carbon--theme--g10,
@@ -333,6 +341,10 @@ fieldset.form-group:last-of-type {
   }
 }
 
+body[data-live-preview-theme='Gray 90'] [class^='bx--tooltip'],
+body[data-live-preview-theme='Gray 90']
+  [class^='flatpickr-calendar'][class*='open'],
+body[data-live-preview-theme='Gray 90'] ul[class^='bx--overflow-menu-options'],
 .g90 {
   @include carbon--theme(
     $theme: $carbon--theme--g90,
@@ -343,6 +355,10 @@ fieldset.form-group:last-of-type {
   }
 }
 
+body[data-live-preview-theme='Gray 100'] [class^='bx--tooltip'],
+body[data-live-preview-theme='Gray 100']
+  [class^='flatpickr-calendar'][class*='open'],
+body[data-live-preview-theme='Gray 100'] ul[class^='bx--overflow-menu-options'],
 .g100 {
   @include carbon--theme(
     $theme: $carbon--theme--g100,
@@ -378,14 +394,36 @@ fieldset.form-group:last-of-type {
     color: var(--cds-text-01, #161616);
   }
 
+  [class*='--data-table--zebra'] tbody tr:nth-child(even) td {
+    background-color: var(--cds-ui-03, #e0e0e0);
+    border-bottom: var(--cds-ui-03, #e0e0e0);
+    border-top: var(--cds-ui-03, #e0e0e0);
+  }
+
   [class*='--data-table--zebra'] tbody tr:nth-child(odd) td {
-    background-color: var(--cds-ui-02, #fffff);
-    border-bottom: var(--cds-ui-02, #fffff);
-    border-top: var(--cds-ui-02, #fffff);
+    background-color: var(--cds-ui-01, #f4f4f4);
+    border-bottom: var(--cds-ui-01, #f4f4f4);
+    border-top: var(--cds-ui-01, #f4f4f4);
   }
 
   [class*='--content-switcher-btn'] {
-    height: 2.5rem;
+    height: 100%;
+  }
+
+  [class*='--loading-overlay'] {
+    position: static;
+  }
+
+  [class*='--overflow-menu__icon'] {
+    fill: var(--cds-icon-01, #161616);
+  }
+
+  [class$='--overflow-menu']:hover {
+    background-color: var(--cds-hover-ui, #e5e5e5);
+  }
+
+  [class*='--overflow-menu'][class*='--overflow-menu--open'] {
+    background-color: var(--cds-ui-01, #f4f4f4);
   }
 
   [class*='--search--sm'],
@@ -394,4 +432,61 @@ fieldset.form-group:last-of-type {
   .bx--select {
     width: 50%;
   }
+
+  [class*='--table-sort']:hover {
+    background-color: var(--cds-layer-selected-hover, #cacaca);
+  }
+}
+
+body {
+  [class$='bx--tooltip'] {
+    background-color: var(--cds-inverse-02, #393939);
+  }
+
+  .flatpickr-calendar.open {
+    background-color: var(--cds-ui-01, #ffffff);
+  }
+
+  [class*='--overflow-menu-options'][class*='--overflow-menu-options--open'] {
+    background-color: var(--cds-ui-01, #f4f4f4);
+
+    &::after {
+      background-color: var(--cds-ui-01, #f4f4f4);
+    }
+  }
+
+  [class$='--overflow-menu-options__option']:hover,
+  [class*='--overflow-menu-options__option'][class$='--overflow-menu--divider']:hover {
+    background-color: var(--cds-hover-ui, #e5e5e5);
+  }
+
+  [class$='--overflow-menu-options__option']:hover
+    [class*='--overflow-menu-options'] {
+    background-color: transparent;
+  }
+
+  [class*='--overflow-menu-options__btn'] {
+    color: var(--cds-text-02, #525252);
+
+    &:hover {
+      color: var(--cds-text-01, #161616);
+    }
+
+    &:focus {
+      outline: 2px solid var(--cds-focus, #0f62fe);
+    }
+  }
+}
+
+:global(.live-editor-label) {
+  position: absolute;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  border: 0;
+  margin: -1px;
+  clip: rect(0, 0, 0, 0);
+  visibility: inherit;
+  white-space: nowrap;
 }
