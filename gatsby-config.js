@@ -46,7 +46,7 @@ module.exports = {
       resolve: 'gatsby-theme-carbon',
       options: {
         mdxExtensions: ['.mdx'],
-        isServiceWorkerEnabled: true,
+        isServiceWorkerEnabled: false,
         iconPath: './src/images/favicon.svg',
         titleType: 'prepend',
         repository: {
@@ -76,5 +76,6 @@ module.exports = {
         directory: path.resolve(__dirname, './src/data/chart-index'),
       },
     },
+    'gatsby-plugin-remove-serviceworker',
   ],
 };
