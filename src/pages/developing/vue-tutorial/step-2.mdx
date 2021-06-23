@@ -215,21 +215,6 @@ You may notice that the styles look off. Don't worry, we'll fix these later.
 
 In our second row we'll use `CvTabs` and `CvButton` components.
 
-```javascript path=src/views/LandingPage/LandingPage.vue
-const props = {
-  tabs: {
-    selected: 0,
-    triggerHref: '#',
-    role: 'navigation',
-  },
-  tab: {
-    href: '#',
-    role: 'presentation',
-    tabIndex: 0,
-  },
-};
-```
-
 Modify the second row to use the `Tab` component.
 
 ```html path=src/views/LandingPage/LandingPage.vue
@@ -471,12 +456,16 @@ setting the background in an absolutely positioned pseudo element.
   &::before {
     content: '';
     position: absolute;
-    left: -$spacing-05;
+    left: -$spacing-06;
     top: 0;
-    right: -$spacing-05;
+    right: -$spacing-06;
     bottom: 0;
     background: $ui-01;
-    z-index: -1;
+  }
+
+  > * {
+    /* lift above position absolute */
+    position: relative;
   }
 }
 ```
