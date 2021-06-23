@@ -208,8 +208,17 @@ also be accompanied by an icon to reinforce the message intent.
 notifications that slide in and out, typically in the top right of the page.
 They are more disruptive than inline notifications and are best used with
 system-generated messages that do not correspond to a specific section of the
-UI. Toasts disappear automatically after a set amount of time but can also be
-dismissed by the user.
+UI. There are two types of toast notifications.
+
+Assertive toast notifications do not contain action buttons and disappear
+automatically after a set amount of time or can also be dismissed by the user.
+Assertive notifications take focus when triggered and cannot be tabbed into. Use
+these for urgent messages since they disrupt keyboard and screenreader users.
+
+Polite toast notifications can contain action buttons as well as remain on
+screen to allow a user to take action or dismiss the alert. These notifications
+do not interrupt the screen reader and keyboard workflows so are typically
+considered less intrusive than the assertive toast notification.
 
 Carbon toasts can be either low-contrast or high-contrast. Their color should
 correspond with the message intent and they can also use an icon to convey the
@@ -222,14 +231,14 @@ toast messages. Toasts are intended to be at-a-glance messages confined to a
 small region of the screen so their messages should not exceed three lines.
 
 If it is possible a toast will have a message longer than three lines, include a
-short message with a "View more" link that takes the user to a view of the full
-notification message. This can be either a full page with more details or a
+short message with a "View more" button that takes the user to a view of the
+full notification message. This can be either a full page with more details or a
 modal.
 
 #### Best practices:
 
-- Multiple toasts stack horizontally, with the newest appearing at the top of
-  the list.
+- Multiple toasts stack vertically, with the newest appearing at the top of the
+  list.
 - Keep messages clear and concise
 - Toasts dismiss after five seconds.
 - The timestamp is optional and can be removed.
