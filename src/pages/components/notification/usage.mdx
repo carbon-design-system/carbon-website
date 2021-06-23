@@ -235,6 +235,18 @@ critical for a user to read or interact with the notification.
 
 ## Toast notifications
 
+There are two types of toast notifications, polite and assertive. Polite toast
+notifications are used to display a message to the user that does not interrupt
+keyboard and screen reader users current task and then queues the notification
+until whatever task the user is currently working on is complete. Assertive
+toast notifications interrupt a users task when triggered and are more intrusive
+to keyboard and screen reader users.
+
+| Type      | Purpose                                                                                                                                                                                                                                |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Polite    | Polite toast notifications are used to display a message to the user that does not interrupt keyboard and screen reader users current task. These notifications contain action buttons and are dismissed by the user.                  |
+| Assertive | Assertive toast notifications take focus when triggered and are more intrusive to keyboard and screen reader users. These notifications do not contain interactive elements and are automatically dismissed or dismissed by the user.  |
+
 ### Formatting
 
 <Row>
@@ -245,13 +257,17 @@ critical for a user to read or interact with the notification.
 </Column>
 </Row>
 
-#### Action
+#### Action (polite only)
 
-Carbon toast notifications are not fully accessible when they include
-interactive content. Using links and other interactive content in toasts breaks
-WCAG 2.1 compliance and should therefore be avoided. The Carbon team is aware of
-the accessibility concerns and is currently working on deprecating this
-functionality.
+Polite toast notifications allow for interactive elements. Only one action
+button is allowed within polite toast notifications.  Action buttons should
+clearly state the user action. This action frequently takes users to a flow or
+page related to the message, where they can resolve the notification. If
+multiple actions are required, consider using a
+[dialog](https://carbondesignsystem.com/patterns/dialog-pattern/). Assertive
+toast notifications cannot include interactive elements due to limitations with
+how ARIA tags are interpreted by screen readers and are inaccessible via
+keyboard and screen readers.
 
 #### Time stamp
 
@@ -288,13 +304,17 @@ Actionable toast notifications do not appear on mobile screen widths.
 
 #### Dismissal
 
-Toasts dismiss automatically after five seconds on the screen. They can also
-include a close button so users can dismiss them sooner. Toasts cover content on
-the screen so they should always be easily dismissed. Because toast
-notifications dismiss automatically, users must be able to access them elsewhere
-after the toast disappears. This allows them to be accessible for users who need
-more time reading the notification or who may want to refer back to the
-notification.
+Polite toast notifications remain on screen until a user dismisses the toast
+with the close button. These toasts stay on screen because a user usually needs
+to take action.
+
+Assertive toast notifications can be dismissed automatically after five seconds
+on the screen. They can also include a close button so users can dismiss them
+sooner. Because these toast notifications dismiss automatically, users must be
+able to access them elsewhere after the toast disappears. This allows them to be
+accessible for users who need more time reading the notification or who may want
+to refer back to the notification. All toast notifications cover content on the
+screen so they should always be easily dismissed.
 
 ## Modifiers
 
