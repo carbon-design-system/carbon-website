@@ -77,6 +77,7 @@ module.exports = {
         directory: path.resolve(__dirname, './src/data/chart-index'),
       },
     },
+    `gatsby-plugin-percy`,
     'gatsby-plugin-remove-serviceworker',
   ],
 };
