@@ -61,7 +61,7 @@ const customProps = {
   ),
   FirstCallout: (
     <HomepageCallout
-      backgroundColor="#030303" // not quite black, but not in color pallete
+      backgroundColor="#030303" // not quite black, but not in color palette
       color={gray10}
       leftText={FirstLeftText}
       rightText={FirstRightText}
