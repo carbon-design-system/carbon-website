@@ -27,17 +27,32 @@ import {
 ## How it works
 
 Notification Carbon components are messages that communicate information to a
-user. The WAI-ARIA `role="alert"` is equivalent to `aria-live="assertive"`. It
-is used to display a message to the user in a way that attracts the user's
-attention without receiving focus to communicate the message without
-interrupting the users current task. If the notification does not contain an
-urgent message, consider changing it to `aria-live="polite"` so the notification
-is queued until whatever task the user is currently working on is complete.
+user. The WAI-ARIA `role="status"` and `role="log"` are equivalent to
+`aria-live="polite"`. It is used to display a message to the user in a way that
+does not interrupt the user's current task and queues the notification until
+whatever task the user is currently working on is complete. If the notification
+contains an urgent message, a `role="alert"` can be used, it is equivalent to
+`aria-live="assertive"`. It is used to display a message to the user that
+interrupts the user's current task. These are considerably more disruptive to
+users than the`role="status"`or`role="log"`. In either case, these notifications
+attract the user’s attention without receiving focus to communicate the message.
 
-The close button contains an ARIA label of `aria-label="close"`, and the icon
-has `aria-hidden="true"` so it is ignored by assistive technologies. The `Tab`
-key is used to move focus to the close button within the notification and the
-`Space` key or `Enter` key activate the button to close the notification.
+Details pertaining to these roles include specifics around containing
+interactive elements, focus behavior, and close behavior. The `role` of
+`status`, `log`, and `alert` can not contain interactive elements, should not be
+given focus, and can optionally be closed by pressing the `Escape` key. The
+close button is given `aria-hidden="true"` so it is ignored by assistive
+technologies.
+
+Notification components are allowed interactive children (actions) though, and
+when an interactive element is provided, a `role="alertdialog"` is used. These
+notifications should immediately be given focus so the user can navigate through
+the interactive elements. The close button is given an ARIA label of
+`aria-label="close"`, and the icon has `aria-hidden="true"` so it is ignored by
+assistive technologies. The `Tab` key is used to move focus to the action and
+close button within the notification and the `Space` key or `Enter` key activate
+the appropriate button within the notification. It can also be optionally closed
+via pressing the `Escape` key.
 
 ## Accessibility considerations
 
