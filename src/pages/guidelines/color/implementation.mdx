@@ -93,9 +93,6 @@ distinction._
 
 <Tabs>
 
-<Row>
-<Column colLg={8}>
-
 <Tab label="White">
 
 ![Layer set tokens applied to dropdown in the White theme](images/color-implementation-layer-set-W.png)
@@ -119,9 +116,6 @@ distinction._
 ![Layer set tokens applied to dropdown in the Gray 100 theme](images/color-implementation-layer-set-G100.png)
 
 </Tab>
-
-</Column>
-</Row>
 
 </Tabs>
 
@@ -221,6 +215,36 @@ Contextual tokens have all the same type of tokens as the layer set except
 without the number prefixes. It doesn't matter what layer it sits on, the
 contextual token is always the same across layer levels.
 
+<Tabs>
+
+<Tab label="White">
+
+![Layer set tokens applied to dropdown in the White theme](images/color-implementation-contextual-W.png)
+
+</Tab>
+
+<Tab label="Gray 10">
+
+![Layer set tokens applied to dropdown in the Gray 10 theme](images/color-implementation-contextual-G10.png)
+
+</Tab>
+
+<Tab label="Gray 90">
+
+![Layer set tokens applied to dropdown in the Gray 90 theme](images/color-implementation-contextual-G90.png)
+
+</Tab>
+
+<Tab label="Gray 100">
+
+![Layer set tokens applied to dropdown in the Gray 100 theme](images/color-implementation-contextual-G100.png)
+
+</Tab>
+
+</Tabs>
+
+</br>
+
 #### Example of how to apply contextual layers tokens in a layout
 
 Referencing the image below, the starting base level is still the page area
@@ -230,6 +254,34 @@ on different levels but they both use the `$layer` token that will output a
 different values in code with the help of the layer component.
 
 - Contextual token: magenta
+
+<Tabs>
+
+<Tab label="White">
+
+![In context contextual token example in the White theme](images/color-implementation-contextual-2-W.png)
+
+</Tab>
+
+<Tab label="Gray 10">
+
+![In context contextual token example in the Gray 10 theme](images/color-implementation-contextual-2-G10.png)
+
+</Tab>
+
+<Tab label="Gray 90">
+
+![In context contextual token example in the Gray 90 theme](images/color-implementation-contextual-2-G90.png)
+
+</Tab>
+
+<Tab label="Gray 100">
+
+![In context contextual token example in the Gray 100 theme](images/color-implementation-contextual-2-G100.png)
+
+</Tab>
+
+</Tabs>
 
 #### Building components with contextual tokens
 
@@ -243,6 +295,14 @@ Note: Contextual tokens are only available in code and are not a part of the
 design assets. Designer should use the layer set tokens when creating assets but
 can include contextual tokens in their specs and redlines.
 
+<Row>
+<Column colLg={8}>
+
+![Component spec example using contextual tokens](images/color-implementation-contextual-3.png)
+
+</Column>
+</Row>
+
 ### Using the layer component
 
 The layer component is used with the contextual tokens to implement the layering
@@ -250,9 +310,35 @@ model in code. The layer component and contextual tokens are essentially a short
 cut for development because the layer component will apply the correct values to
 a single component without having to develop explicit hard coded variants.
 
-INSET DEV DOCS HERE
+<InlineNotification>
+
+**Coming soon:** Dev content is currently be worked on. Check back at a later
+date.
+
+</InlineNotification>
 
 ## Light or dark mode
+
+Light or dark mode is a theme setting that allows the end user to choose either
+an UI that is predominately light or dark in color. The UI will automatically
+switch from using light colors backgrounds with dark color text to using dark
+color backgrounds with light color text. The themes use color tokens to
+interpret which values are need for each theme. It is the color tokens that
+allows a UI to so easily switch from one mode to the next. You cannot implement
+light or dark mode without using color tokens everywhere in your product. Hard
+coded values will not change when the mode is switched.
+
+Adding the ability to change between a light or dark mode in your product is not
+required as an IBM product but is highly encouraged. Most operating system
+nowadays (ex: MacOS, iOS, Windows, Android and Linux/GNOME 3) support dark and
+light modes, offering APIs so that websites and application can automatically
+match users preferred mode.
+
+For users, choosing light versus dark mode is not just an aesthetic choice.
+While research shows that unimpaired sighted user preform better in light mode,
+it also shows that dark mode is better for people with cataract and related
+disorders. Dark mode emits less light and can therefor reduces eyes strain and
+help prevent headaches and migraine.
 
 <Tabs>
 
@@ -269,3 +355,76 @@ INSET DEV DOCS HERE
 </Tab>
 
 </Tabs>
+
+### Designing for light or dark mode
+
+You can build a light or dark mode by using the Carbon themes and color tokens.
+Your product will need to choose a light Carbon theme (White or Gray 10) and a
+dark Carbon theme (Gray 100 or Gray 90).  All color in your designs and
+components wither Carbon, PAL or custom made should be redlined using the Carbon
+color tokens (it would also be to your advantage to use the color token layer
+styles from the Carbon design asset libraries when designing).
+
+Redlining a design in one theme should be enough and not require duplicate
+designs. However, if products teams do want to have design comps in both light
+and dark mode then use this handy Sketch theme switcher plug-in made by an
+IBMer.
+
+#### Creating a mode control
+
+Since this is a user preference you'll need to add a control somewhere in your
+product for the user to make a theme mode selection. This is commonly done in a
+display settings, user profile, or account area. At the moment, the placement
+and design of this control is up to product teams, further guidance and designs
+for a mode control in IBM products may be offered in the future.
+
+<Row>
+<Column colLg={12}>
+
+![Example of a color mode control](images/ccolor-modes-control.png)
+
+</Column>
+</Row>
+
+<Caption>
+  In IBM Cloud (beta), the theme control can be accessed through the user
+  profile panel in the header (left). The "Change theme" link triggers a model
+  where the user can save their theme preference (right).
+</Caption>
+
+#### Inline themes
+
+Mixing themes inline is still allowed with light or dark mode. Mixing inline
+theme contrast between elements in different modes is also allowed. It is very
+common for products to have side panels or UI Shell elements be high contrast in
+light mode but low contrast in dark mode. These relationships can be mapped in
+code using the the theme component. Note that smaller components built with an
+inverse tokens (like tooltip) should remain high contrast when switching modes.
+
+#### Consider illustrations 
+
+You'll need to account for illustrations and other imagery like pictograms
+changing color between modes. Otherwise you may end up having very high contrast
+images in one mode vs the other. A low effort way to help design for this is to
+use transparent backgrounds on images and tokens with svgs files. More in depth
+ways to account for this would be switching out the artifacts entirely when
+changing modes.
+
+<InlineNotification>
+
+**Coming soon:** More guidance and information on how to properly treat
+illustrations, images, and pictograms in light or dark mode. For now, checkout
+some helpful guidance around this topic on
+[IBM Cloud PAL](https://pages.github.ibm.com/ibmcloud/pal/dark-mode-guidelines/designers/#illustrations-in-dark-mode)
+(internal only).
+
+</InlineNotification>
+
+### Developing for light or dark mode
+
+<InlineNotification>
+
+**Coming soon:** This content is currently be worked on. Check back at a later
+date.
+
+</InlineNotification>
