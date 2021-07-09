@@ -8,19 +8,14 @@ tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 
 ## Color
 
-Inputs come in two different colors. The default input color is `$field-01` and
-is used on `$ui-background` and `$ui-01` page backgrounds. The `--light` version
-input color is `$field-02` and is used on `$ui-02` page backgrounds.
-
-| Class                          | Property         | Color token |
-| ------------------------------ | ---------------- | ----------- |
-| `.bx--label`                   | text color       | `$text-02`  |
-| `.bx--text-input`              | text color       | `$text-01`  |
-| `.bx--text-input::placeholder` | text color       | `$text-03`  |
-| `.bx--form__helper-text`       | text color       | `$text-02`  |
-| `.bx--text-input`              | background-color | `$field-01` |
-| `.bx--text-input--light`       | background-color | `$field-02` |
-| `.bx--text-input`              | border-bottom    | `$ui-04`    |
+| Element          | Property         | Color token         |
+| ---------------- | ---------------- | ------------------- |
+| Label            | text color       | `$text-secondary`   |
+| Field text       | text color       | `$text-primary`     |
+| Placeholder text | text color       | `$text-placeholder` |
+| Helper text      | text color       | `$text-helper`      |
+| Field            | background-color | `$field`            |
+|                  | border-bottom    | `$border-strong`    |
 
 <Row>
 <Column colLg={8}>
@@ -32,14 +27,14 @@ input color is `$field-02` and is used on `$ui-02` page backgrounds.
 
 ### Interactive states
 
-| Class                      | Property   | Color token    |
-| -------------------------- | ---------- | -------------- |
-| `.bx--text-input:focus`    | outline    | `$focus`       |
-| `.bx--text-input--invalid` | outline    | `$support-01`  |
-| `.bx--form-requirement`    | text color | `$support-01`  |
-| `.warning--filled`         | svg        | `$support-01`  |
-| `.bx--text-input:disabled` | background | `$disabled-01` |
-| `.bx--text-input:disabled` | text color | `$disabled-02` |
+| State    | Element       | Property   | Color token       |
+| -------- | ------------- | ---------- | ----------------- |
+| Focus    | Field         | outline    | `$focus`          |
+| Invalid  | Field         | outline    | `$support-error`  |
+|          | Error message | text color | `$text-error`     |
+|          | Warning icon  | svg        | `$support-error`  |
+| Disabled | Field         | background | `$field-disabled` |
+|          | Field text    | text color | `$disabled-02`    |
 
 <Row>
 <Column colLg={8}>
@@ -55,27 +50,26 @@ Text input labels and placeholder text should be set in sentence case, with only
 the first word in a phrase and any proper nouns capitalized. Text input labels
 should be three words or less.
 
-| Class                    | Font-size (px/rem) | Font-weight   | Type token      |
-| ------------------------ | ------------------ | ------------- | --------------- |
-| `.bx--label`             | 12 / 0.75          | Regular / 400 | `$label-01`     |
-| `.bx--text-input`        | 14 / 0.875         | Regular / 400 | `$body-long-01` |
-| `.bx--form__helper-text` | 12 / 0.75          | Regular / 400 | `$label-01`     |
-| `.bx--form-requirement`  | 12 / 0.75          | Regular / 400 | `$label-01`     |
+| Element       | Font-size (px/rem) | Font-weight   | Type token      |
+| ------------- | ------------------ | ------------- | --------------- |
+| Label         | 12 / 0.75          | Regular / 400 | `$label-01`     |
+| Field text    | 14 / 0.875         | Regular / 400 | `$body-long-01` |
+| Helper text   | 12 / 0.75          | Regular / 400 | `$label-01`     |
+| Error message | 12 / 0.75          | Regular / 400 | `$label-01`     |
 
 ## Structure
 
 ### Text input
 
-| Class                      | Property                    | px / rem | Spacing token |
-| -------------------------- | --------------------------- | -------- | ------------- |
-| `.bx--text-input: default` | height                      | 40 / 2.5 | –             |
-| `.bx--text-input: sm`      | height                      | 32 / 2   | –             |
-| `.bx--text-input: xl`      | height                      | 48 / 3   | –             |
-| `.bx--label`               | margin-bottom               | 8 / 0.5  | `$spacing-03` |
-| `.bx--form__helper-text`   | margin-top                  | 4 / 0.25 | `$spacing-02` |
-| `.bx--text-input`          | padding-left, padding-right | 16 / 1   | `$spacing-05` |
-| `.bx--text-input`          | border-bottom               | 1px      | –             |
-| `.bx--text-input:focus`    | border                      | 2px      | –             |
+| Element      | Property                    | px / rem | Spacing token |
+| ------------ | --------------------------- | -------- | ------------- |
+| Label        | margin-bottom               | 8 / 0.5  | `$spacing-03` |
+| Helper text  | margin-top                  | 4 / 0.25 | `$spacing-02` |
+| Field text   | padding-left, padding-right | 16 / 1   | `$spacing-05` |
+| Field        | border-bottom               | 1px      | –             |
+| Field: focus | border                      | 2px      | –             |
+
+<br />
 
 <div className="image--fixed">
 
@@ -87,15 +81,15 @@ should be three words or less.
 
 ### Text area
 
-| Class                     | Property                    | px / rem    | Spacing token |
-| ------------------------- | --------------------------- | ----------- | ------------- |
-| `.bx--text-area__wrapper` | height                      | varies      | –             |
-| `.bx--label`              | margin-bottom               | 8 / 0.5     | `$spacing-03` |
-| `.bx--form__helper-text`  | margin-top                  | 4 / 0.25    | `$spacing-02` |
-| `.bx--text-area__wrapper` | padding-left, padding-right | 16 / 1      | `$spacing-05` |
-| `.bx--text-area__wrapper` | padding-top, padding-bottom | 11 / 0.6875 | –             |
-| `.bx--text-area__wrapper` | border-bottom               | 1px         | –             |
-| `.bx--text-input:focus`   | border                      | 2px         | –             |
+| Element      | Property                    | px / rem    | Spacing token |
+| ------------ | --------------------------- | ----------- | ------------- |
+| Label        | margin-bottom               | 8 / 0.5     | `$spacing-03` |
+| Field        | height                      | varies      | –             |
+|              | padding-left, padding-right | 16 / 1      | `$spacing-05` |
+|              | padding-top, padding-bottom | 11 / 0.6875 | –             |
+|              | border-bottom               | 1px         | –             |
+| Field: focus | border                      | 2px         | –             |
+| Helper text  | margin-top                  | 4 / 0.25    | `$spacing-02` |
 
 <div className="image--fixed">
 
@@ -104,3 +98,19 @@ should be three words or less.
 </div>
 
 <Caption>Structure and spacing measurements for text area | px / rem</Caption>
+
+## Sizes
+
+| Element | Size        | Height (px / rem) |
+| ------- | ----------- | ----------------- |
+| Input   | Small (sm)  | 32 / 2            |
+|         | Medium (md) | 40 / 2.5          |
+|         | Large (lg)  | 48 / 3            |
+
+<div className="image--fixed">
+
+![Sizes for text input](images/text-input-style-size.png)
+
+</div>
+
+<Caption>Text input sizes | px / rem</Caption>

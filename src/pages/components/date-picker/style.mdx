@@ -8,21 +8,16 @@ tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 
 ## Color
 
-Inputs come in two different colors. The default input color is `$field-01` and
-is used on `$ui-background` and `$ui-02` page backgrounds. The `light` version
-input color is `$field-02` and is used on `$ui-01` page backgrounds.
-
 ### Date input
 
-| Class                                                    | Property         | Color token |
-| -------------------------------------------------------- | ---------------- | ----------- |
-| `.bx--label`                                             | text color       | `$text-02`  |
-| `.bx--date-picker__input`                                | background-color | `$field-01` |
-| `.bx--date-picker__input` <br/> `.bx--text-input--light` | background-color | `$field-02` |
-| `.bx--date-picker__input`                                | border-bottom    | `$ui-04`    |
-| `.bx--date-picker__input`                                | text color       | `$text-01`  |
-| `:placeholder`                                           | text color       | `$text-05`  |
-| `.bx--date-picker__icon`                                 | color            | `$icon-01`  |
+| Element            | Property         | Color token       |
+| ------------------ | ---------------- | ----------------- |
+| Label              | text-color       | `$text-secondary` |
+| Field              | background-color | `$field`          |
+|                    | border-bottom    | `$border-strong`  |
+| Field text         | text-color       | `$text-primary`   |
+| Field text: prompt | text-color       | `$text-helper`    |
+| Calendar icon      | svg              | `$icon-primary`   |
 
 <br />
 
@@ -30,16 +25,18 @@ input color is `$field-02` and is used on `$ui-01` page backgrounds.
 
 <br />
 
-| Class                       | Property         | Color token    |
-| --------------------------- | ---------------- | -------------- |
-| `input:focus`               | border           | `$focus`       |
-| `input[data-invalid]`       | border-bottom    | `$support-01`  |
-| `.bx--form-requirement`     | text color       | `$support-01`  |
-| `input[data-invalid]:focus` | border-bottom    | `$support-01`  |
-| `.bx--label:disabled`       | text color       | `$disabled-02` |
-| `input:disabled`            | background-color | `$disabled-01` |
-| `input:disabled`            | text color       | `$disabled-02` |
-| `icon:disabled`             | color            | `$disabled-02` |
+| State    | Element         | Property         | Color token        |
+| -------- | --------------- | ---------------- | ------------------ |
+| Focus    | Field           | border           | `$focus`           |
+| Invalid  | Field           | border           | `$support-error`   |
+|          | Error message   | text-color       | `$text-error`      |
+|          | Error icon      | svg              | `$support-error`   |
+| Warning  | Warning message | text-color       | `$text-primary`    |
+|          | Warning icon    | svg              | `$support-warning` |
+| Disabled | Label           | text-color       | `$text-disabled`   |
+|          | Field           | background-color | `$field-disabled`  |
+|          | Field text      | text-color       | `$text-disabled`   |
+|          | Calendar icon   | svg              | `$icon-disabled`   |
 
 <Row>
 <Column colLg={8}>
@@ -62,20 +59,22 @@ while invalid.
 
 ### Calendar menu
 
-| Class              | Property         | Color token                                |
-| ------------------ | ---------------- | ------------------------------------------ |
-| `calendar`         | background-color | `$ui-01`                                   |
-| `calendar`         | box-shadow       | `0 12px 24px 0` <br/> `rgba(0, 0, 0, 0.1)` |
-| `today`            | background-color | `$interactive-01`                          |
-| `day`              | text color       | `$text-01`                                 |
-| `day.selected`     | text color       | `$text-04`                                 |
-| `day.selected`     | background-color | `$interactive-01`                          |
-| `day.inRange`      | text color       | `$interactive-01`                          |
-| `day.endRange`     | border           | `$interactive-01`                          |
-| `day.nextMonthDay` | text color       | `$text-02`                                 |
-| `day:focus`        | border           | `$focus`                                   |
-| `day:hover`        | background-color | `$hover-ui`                                |
-| `day:disabled`     | text color       | `$text-02`                                 |
+| Element             | Property         | Color token                      |
+| ------------------- | ---------------- | -------------------------------- |
+| Calendar            | background-color | `$layer`                         |
+| Calendar menu       | box-shadow       | `0 2px 6px 0 rgba(0, 0, 0, 0.2)` |
+| Today               | text-color       | `$link-01`                       |
+| Day                 | text-color       | `$text-primary`                  |
+| Day: hover          | background-color | `$layer-hover`                   |
+| Day: focus          | border           | `$focus`                         |
+| Day: selected       | text-color       | `$text-on-color`                 |
+|                     | background-color | `$background-brand`              |
+| Day: disabled       | text-color       | `$text-disabled`                 |
+| Day: in range       | text-color       | `$text-primary`                  |
+|                     | background-color | `$highlight`                     |
+| Day: end range      | text-color       | `$text-primary`                  |
+|                     | border           | `$focus`                         |
+| Day: next month day | text-color       | `$text-secondary`                |
 
 <Row>
 <Column colLg={12}>
@@ -95,11 +94,11 @@ while invalid.
 Labels should be set in sentence case, with only the first word in a phrase and
 any proper nouns capitalized, and no more than three words.
 
-| Class                     | Font-size  | Font-weight   | Type token  |
-| ------------------------- | ---------- | ------------- | ----------- |
-| `.bx--label`              | 14 / 0.875 | Regular / 400 | `$label-01` |
-| `.bx--date-picker__input` | 14 / 0.875 | Regular / 400 | `$code-02`  |
-| `.bx--form-requirement`   | 12 / 0.75  | Regular / 400 | `$label-01` |
+| Element       | Font-size  | Font-weight   | Type token  |
+| ------------- | ---------- | ------------- | ----------- |
+| Label         | 12 / 0.75  | Regular / 400 | `$label-01` |
+| Field text    | 14 / 0.875 | Regular / 400 | `$code-02`  |
+| Error message | 12 / 0.75  | Regular / 400 | `$label-01` |
 
 ## Structure
 
@@ -107,14 +106,11 @@ any proper nouns capitalized, and no more than three words.
 
 The widths of the date inputs may vary based on the grid and layout.
 
-| Class                         | Property                    | px / rem | Spacing token |
-| ----------------------------- | --------------------------- | -------- | ------------- |
-| `.bx--label`                  | padding-bottom              | 8 / 0.5  | `$spacing-03` |
-| `.bx--date-picker__input`     | padding-left, padding-right | 16 / 1   | `$spacing-05` |
-| `.bx--date-picker__input`     | border-bottom               | 1px      | -             |
-| `.bx--date-picker__input`     | height                      | 40 / 2.5 | –             |
-| `.bx--date-picker__input--xl` | height                      | 48 / 3   | –             |
-| `.bx--date-picker__input--sm` | height                      | 32 / 2   | –             |
+| Element | Property                    | px / rem | Spacing token |
+| ------- | --------------------------- | -------- | ------------- |
+| Label   | padding-bottom              | 8 / 0.5  | `$spacing-03` |
+| Field   | padding-left, padding-right | 16 / 1   | `$spacing-05` |
+|         | border-bottom               | 1px      | -             |
 
 <div className="image--fixed">
 
@@ -124,26 +120,34 @@ The widths of the date inputs may vary based on the grid and layout.
 
 <Caption>Structure and spacing for date picker inputs | px / rem</Caption>
 
+### Sizes
+
+| Element | Size        | Height px / rem |
+| ------- | ----------- | --------------- |
+| Field   | Small (sm)  | 32 / 2          |
+|         | Medium (md) | 40 / 2.5        |
+|         | Large (lg)  | 48 / 3          |
+
 <div className="image--fixed">
 
-![Sizes for date picker inputs](images/date-picker-style-5.png)
+![Sizes for simple and single date calendar sizes](images/date-picker-style-size.png)
 
 </div>
 
-<Caption>Sizes for date picker inputs | px / rem</Caption>
+<Caption>Sizes for simple and single date calendar sizes | px / rem</Caption>
 
 ### Calendar menu
 
-| Class                        | Property                                 | px / rem | Spacing token |
-| ---------------------------- | ---------------------------------------- | -------- | ------------- |
-| `.bx--date-picker__calendar` | height                                   | 336 / 21 | –             |
-| `.bx--date-picker__calendar` | width                                    | 288      | –             |
-| `.bx--date-picker__calendar` | padding-top, padding-right, padding-left | 4 / 0.25 | `$spacing-02` |
-| `.bx--date-picker__calendar` | padding-bottom                           | 8 / 0.5  | `$spacing-03` |
-| `.bx--date-picker__icon`     | height, width                            | 16 / 1   | –             |
-| `.bx--date-picker__icon`     | padding-right, padding-left              | 16 / 1   | `$spacing-05` |
-| `.today` dot                 | height & width                           | 4 /0.25  | –             |
-| `day`                        | height & width                           | 40 / 2.5 | –             |
+| Element        | Property                                 | px / rem | Spacing token |
+| -------------- | ---------------------------------------- | -------- | ------------- |
+| Calendar       | height                                   | 336 / 21 | –             |
+|                | width                                    | 288 / 18 | –             |
+|                | padding-top, padding-right, padding-left | 4 / 0.25 | `$spacing-02` |
+|                | padding-bottom                           | 8 / 0.5  | `$spacing-03` |
+| Calendar: icon | height, width                            | 16 / 1   | –             |
+|                | padding-right, padding-left              | 16 / 1   | `$spacing-05` |
+| Day            | height, width                            | 40 / 2.5 | –             |
+| Today: dot     | height, width                            | 4 / 0.25 | –             |
 
 <div className="image--fixed">
 
@@ -166,14 +170,14 @@ The widths of the date inputs may vary based on the grid and layout.
 There are two types of time pickers; a 12-hour and 24-hour time picker. The
 12-hour Time Picker is accompanied by a time period (am/pm) input, while the
 24-hour clock is not. Refer to [select](/components/select/code) for inline
-select styling.
+select styling. Hi
 
-| Class                           | Property                    | px / rem | Spacing token |
-| ------------------------------- | --------------------------- | -------- | ------------- |
-| `.bx--label`                    | padding-bottom              | 8 / 0.5  | `$spacing-03` |
-| `.bx--time-picker__input-field` | height                      | 40 / 2.5 | -             |
-| `.bx--time-picker__input-field` | padding-right, padding-left | 16 / 1   | `$spacing-05` |
-| `.bx--select-input`             | padding-right, padding-left | 16 / 1   | `$spacing-05` |
+| Element | Property                    | px / rem | Spacing token |
+| ------- | --------------------------- | -------- | ------------- |
+| Label   | padding-bottom              | 8 / 0.5  | `$spacing-03` |
+| Field   | height                      | 40 / 2.5 | -             |
+|         | padding-right, padding-left | 16 / 1   | `$spacing-05` |
+| Select  | padding-right, padding-left | 16 / 1   | `$spacing-05` |
 
 <div className="image--fixed">
 
