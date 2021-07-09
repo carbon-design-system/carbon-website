@@ -65,6 +65,8 @@ to use when building your product.
 | `$border-subtle-selected` | `$border-subtle-selected-01` | `$border-subtle-selected-02` | `$border-subtle-selected-03` |
 | `$border-strong`          | `$border-strong-01`          | `$border-strong-02`          | `$border-strong-03`          |
 
+</br>
+
 ### Layer set tokens
 
 Layer tokens are sets of explicit tokens used to manually map the layering model
@@ -89,65 +91,41 @@ and `icon` work across layer sets.  _Note: previously in v10 many color tokens
 had numeral suffixes, now in v11 only layering tokens will have this
 distinction._
 
+<Tabs>
+
 <Row>
 <Column colLg={8}>
-
-![Component spec example using layering tokens](images/color-implementation-layer-set-3.png)
-
-</Column>
-</Row>
-
-<Tabs>
 
 <Tab label="White">
 
-<Row>
-<Column colLg={8}>
-
 ![Layer set tokens applied to dropdown in the White theme](images/color-implementation-layer-set-W.png)
-
-</Column>
-</Row>
 
 </Tab>
 
 <Tab label="Gray 10">
 
-<Row>
-<Column colLg={8}>
-
 ![Layer set tokens applied to dropdown in the Gray 10 theme](images/color-implementation-layer-set-G10.png)
-
-</Column>
-</Row>
 
 </Tab>
 
 <Tab label="Gray 90">
 
-<Row>
-<Column colLg={8}>
-
 ![Layer set tokens applied to dropdown in the Gray 90 theme](images/color-implementation-layer-set-G90.png)
-
-</Column>
-</Row>
 
 </Tab>
 
 <Tab label="Gray 100">
 
-<Row>
-<Column colLg={8}>
-
 ![Layer set tokens applied to dropdown in the Gray 100 theme](images/color-implementation-layer-set-G100.png)
+
+</Tab>
 
 </Column>
 </Row>
 
-</Tab>
-
 </Tabs>
+
+</br>
 
 #### Example of how to apply layer set tokens in a layout
 
@@ -200,6 +178,8 @@ of third layer level and will use tokens from layer set 03.
 
 </Tabs>
 
+</br>
+
 #### Building components with layer tokens
 
 Building component with layer tokens works much like how you would have built
@@ -226,7 +206,7 @@ as they are high enough contrast not to need to change with each layer.
   Example component spec in the white theme using the layer set 01 tokens.
 </Caption>
 
-## Contextual layer tokens
+### Contextual layer tokens
 
 Contextual tokens are smart tokens used to automatically map the layering model
 onto components in code. A contextual token is aware of what layer it is placed
@@ -240,6 +220,37 @@ contextual tokens.
 Contextual tokens have all the same type of tokens as the layer set except
 without the number prefixes. It doesn't matter what layer it sits on, the
 contextual token is always the same across layer levels.
+
+#### Example of how to apply contextual layers tokens in a layout
+
+Referencing the image below, the starting base level is still the page area
+behind and above the tabs; it uses `$background`. However, there are no sets so
+with each level added simply reuse the same tokens. The tabs and the tile live
+on different levels but they both use the `$layer` token that will output a
+different values in code with the help of the layer component.
+
+- Contextual token: magenta
+
+#### Building components with contextual tokens
+
+Build a single component as you would normally but apply the contextual color
+tokens instead of the layer set tokens. Then in your product code use the layer
+component to express the nested layer visuals. Even if the component is never
+used at other layer levels it is still acceptable and encouraged to use the
+contextual tokens.
+
+Note: Contextual tokens are only available in code and are not a part of the
+design assets. Designer should use the layer set tokens when creating assets but
+can include contextual tokens in their specs and redlines.
+
+### Using the layer component
+
+The layer component is used with the contextual tokens to implement the layering
+model in code. The layer component and contextual tokens are essentially a short
+cut for development because the layer component will apply the correct values to
+a single component without having to develop explicit hard coded variants.
+
+INSET DEV DOCS HERE
 
 ## Light or dark mode
 
