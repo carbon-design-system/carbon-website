@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { ContentSwitcher, Switch, Dropdown } from 'carbon-components-react';
 import cx from 'classnames';
 import {
@@ -85,37 +85,40 @@ const ColorPalette = ({ type, isMono, isDiverging }) => {
     },
   ];
 
-  const onDropdownChange = (e) => {
-    const id = e.selectedItem ? e.selectedItem.id : e;
+  const onDropdownChange = useCallback(
+    (e) => {
+      const id = e.selectedItem ? e.selectedItem.id : e;
 
-    // update selected option
-    setGroupNumber(id);
+      // update selected option
+      setGroupNumber(id);
 
-    // update colors rendered
-    switch (id) {
-      case 1:
-        setColorGroup(oneColor);
-        break;
-      case 2:
-        setColorGroup(twoColor);
-        break;
-      case 3:
-        setColorGroup(threeColor);
-        break;
-      case 4:
-        setColorGroup(fourColor);
-        break;
-      case 5:
-        setColorGroup(fiveColor);
-        break;
-      default:
-    }
-  };
+      // update colors rendered
+      switch (id) {
+        case 1:
+          setColorGroup(oneColor);
+          break;
+        case 2:
+          setColorGroup(twoColor);
+          break;
+        case 3:
+          setColorGroup(threeColor);
+          break;
+        case 4:
+          setColorGroup(fourColor);
+          break;
+        case 5:
+          setColorGroup(fiveColor);
+          break;
+        default:
+      }
+    },
+    [oneColor, twoColor, threeColor, fourColor, fiveColor]
+  );
 
   // Rerender color group values when theme is toggled
   useEffect(() => {
     onDropdownChange(groupNumber);
-  }, [dark]);
+  }, [groupNumber, onDropdownChange]);
 
   // SWITCHER STUFF
   const activateFirstSwitcher = () => {
