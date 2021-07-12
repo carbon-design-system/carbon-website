@@ -56,7 +56,7 @@ to use when building your product.
 | `$layer-selected`         | `$layer-selected-01`         | `$layer-selected-02`         | `$layer-selected-03`         |
 | `$layer-selected-hover`   | `$layer-selected-hover-01`   | `$layer-selected-hover-02`   | `$layer-selected-hover-03`   |
 | `$layer-accent`           | `$layer-acccent-01`          | `$layer-accent-02`           | `$layer-accent-03`           |
-| `$layer-accent-active`    | `$layer-acccent-active01`    | `$layer-accent-active-02`    | `$layer-accent-active-03`    |
+| `$layer-accent-active`    | `$layer-acccent-active-01`   | `$layer-accent-active-02`    | `$layer-accent-active-03`    |
 | `$layer-accent-hover`     | `$layer-acccent-hover-01`    | `$layer-accent-hover-02`     | `$layer-accent-hover-03`     |
 | `$field`                  | `$field-01`                  | `$field-02`                  | `$field-03`                  |
 | `$field-hover`            | `$field-hover-01`            | `$field-hover-02`            | `$field-hover-03`            |
@@ -73,22 +73,29 @@ onto components. They are part of the theme package and come in predefined sets
 that pair ui and interaction colors together to accurately match the layering
 model and enforce correct color contrast.
 
-There are four levels of layering within a theme: base layer, layer 01, layer
-02, and layer 03.  With each layer of color added you move up to the next
-layering level, for example `$layer-02` would stack on top of `$layer-01`.
-Notice, not all layer set tokens use `$layer` as its token base name. Token sets
-also include `border` and `field` tokens as well as interactive state tokens for
-the various layers. Field is considered a layer level and uses the next level
-token from the layer it is placed on.
+There are four sets of color layering within a theme: base layer, layer 01,
+layer 02, and layer 03. After each layer of color is added you move up to the
+next layering level and use the next set of layering tokens. For example, on top
+of `$layer-01` you would place `$layer-02`. These layer set tokens are
+identified by a number suffix (-01, -02, -03) attached to the core token name,
+such as `$field-03`. The number indicates which set the token is a part of.
 
-These layer set tokens are identified by a number suffix (-01, -02, -03)
-attached to the base token name, such as `$field-03`. The number indicates which
-level or set the token is a part of. Border tokens pair with its same number, so
+Notice, not all layer set tokens use `$layer` as its token name. Token sets also
+include `border` and `field` tokens as well as interactive state tokens for the
+various layers. Field is considered a layer level and uses the next level token
+from the layer it is placed on. Border tokens pair with its same number, so
 `$field-03` pairs with `$border-strong-03` in a text input.  Only certain color
 tokens are a part of these layering sets. Other tokens for elements like `text`
 and `icon` work across layer sets.  _Note: previously in v10 many color tokens
 had numeral suffixes, now in v11 only layering tokens will have this
 distinction._
+
+**Key:**
+
+- Base layer: Magenta
+- Layer set 01: Purple
+- Layer set 02: Teal
+- Layer set 03: Cyan
 
 <Row>
 <Column colLg={8}>
