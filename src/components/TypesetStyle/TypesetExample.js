@@ -94,6 +94,7 @@ const TypesetExample = (props) => (
         step: currentBreakpointSpecs.step,
         font: currentBreakpointSpecs.font,
         style: currentBreakpointSpecs['font-style'],
+        typeSet: currentBreakpointSpecs['type-set'],
         fontWeight: displayWeight(
           currentBreakpointSpecs['font-weight'],
           currentBreakpointSpecs['font-style']
@@ -112,6 +113,7 @@ const TypesetExample = (props) => (
           .replace('0.', '.'),
         warning: currentBreakpointSpecs.warning,
       };
+      console.log(displaySpecs);
 
       const versionClassName = type.version
         ? `${prefix}--type-${type.version}`
@@ -151,6 +153,8 @@ const TypesetExample = (props) => (
                 </span>
                 <br />
                 Letter spacing: {displaySpecs.letterSpacing}px
+                <br />
+                Type set: {displaySpecs.typeSet}
                 {displaySpecs.warning != null ? (
                   <span>
                     <br />

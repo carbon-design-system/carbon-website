@@ -95,6 +95,7 @@ const typeScale = {
       'font-size': 0.75,
       'line-height': 1,
       'letter-spacing': 0.32,
+      'type-set': "Productive",
     },
   },
   'code-02': {
@@ -1018,12 +1019,12 @@ class TypesetStyle extends React.Component {
             .split(',')
             .map((typeset, i) => (
               <>
-                <h4 className="page-h4">
+                {/* <h4 className="page-h4">
                   {typeset
                     .replace(/fixed/g, '')
                     .replace(/([a-z])([A-Z])/g, '$1 $2')
                     .toLowerCase()}
-                </h4>
+                </h4> */}
                 <TypesetExample
                   key={i}
                   simulatedScreenWidth={this.state.simulatedScreenWidth}
