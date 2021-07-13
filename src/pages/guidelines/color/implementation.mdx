@@ -8,21 +8,20 @@ tabs: ['Overview', 'Usage', 'Code', 'Implementation']
 
 <PageDescription>
 
-Intro about implementing color within a single theme and with multiple themes.
-TBD
+Implementing color in Carbon has never been easier. We've provided users with
+several techniques to implement all your product's color and theming needs.
 
 </PageDescription>
 
 <AnchorLinks>
 
-<AnchorLink>Layering model</AnchorLink>
-<AnchorLink>Light or dark mode</AnchorLink>
+<AnchorLink>Layering model tokens</AnchorLink>
 <AnchorLink>Inline theming</AnchorLink>
-<AnchorLink>Resources</AnchorLink>
+<AnchorLink>Light or dark mode</AnchorLink>
 
 </AnchorLinks>
 
-## Layering model
+## Layering model tokens
 
 There are two ways to implement the
 [layering model](/guidelines/color/overview#layering-model) within a single
@@ -341,8 +340,49 @@ a single component without having to develop explicit hard coded variants.
 
 <InlineNotification>
 
-**Coming soon:** Dev content is currently be worked on. Check back at a later
-date for more information.
+**Coming soon:** Developer documentation is currently be worked on. Check back
+at a later date for more information.
+
+</InlineNotification>
+
+## Inline theming
+
+Inline theming is used when a section of a UI needs to be a different theme from
+the rest of the page. Inline theming allows themes to be nested within each
+other without needing custom styles or overrides. In product, a common use-case
+for inline theming is applying a contrasting theme to UI Shell and side panels.
+This is especially common in light themed products or light modes. For example,
+the main page content will use the White theme while the UI Shell and the left
+side panel uses an inline Gray 100 theme. These high contrast moments created
+with inline themes can add emphasis and focus to a work flow.
+
+You should only need to use inline theming for major shifts in color, like high
+contrast moments. The more subtle transitions of color in a product are handled
+within each theme through the layering model tokens. It is unlikely that you'll
+need to inline a White theme within the Gray 10 theme or the Gray 90 theme
+within the Gray100 theme.
+
+#### How it works
+
+If your product is using the Carbon color tokens and themes then a section of
+the page can easily be targeted to call a different theme without having to use
+new tokens or manually change values. For the inline themed section simply use
+the same Carbon tokens you were using for the rest of the page, then using the
+theme component assign the whole zone the new theme.
+
+When designing for inline theming you'll need to pull assets from the other
+theme library files (or use the
+[theme switcher](https://github.com/IanKitchen-IBM/carbon-theme-switcher) Sketch
+plug-in). Assets will have the same tokens names across libraries but will show
+different values. Then specify in the design deliverables which sections of the
+page will be using an inline theme.
+
+### Using the theme component
+
+<InlineNotification>
+
+**Coming soon:** Developer documentation is currently be worked on. Check back
+at a later date for more information.
 
 </InlineNotification>
 
@@ -358,16 +398,17 @@ light or dark mode without using color tokens everywhere in your product. Hard
 coded values will not change when the mode is switched.
 
 Adding the ability to change between a light or dark mode in your product is not
-required as an IBM product but is highly encouraged. Most operating system
-nowadays (ex: MacOS, iOS, Windows, Android and Linux/GNOME 3) support dark and
-light modes, offering APIs so that websites and application can automatically
-match users preferred mode.
+required as an IBM product but is highly encouraged. Most operating systems
+nowadays (ex: MacOS, iOS, Windows, Android and Linux/GNOME 3) support dark or
+light modes, offering APIs so that websites and applications can automatically
+match the users preferred mode.
 
-For users, choosing light versus dark mode is not just an aesthetic choice.
-While research shows that unimpaired sighted user preform better in light mode,
-it also shows that dark mode is better for people with cataract and related
-disorders. Dark mode emits less light and can therefor reduces eyes strain and
-help prevent headaches and migraine.
+For some users, choosing light versus dark mode is not just an aesthetic choice.
+While [research](https://www.nngroup.com/articles/dark-mode/) shows that
+unimpaired sighted user preform better in light mode, it also shows that dark
+mode is better for people with cataract and related disorders. Dark mode emits
+less light and can therefor reduces eye strain and help prevent headaches and
+migraines.
 
 <Tabs>
 
@@ -396,8 +437,9 @@ styles from the Carbon design asset libraries when designing).
 
 Redlining a design in one theme should be enough and not require duplicate
 designs. However, if products teams do want to have design comps in both light
-and dark mode then use this handy Sketch theme switcher plug-in made by an
-IBMer.
+and dark mode then use this handy Sketch
+[theme switcher](https://github.com/IanKitchen-IBM/carbon-theme-switcher) Sketch
+plug-in made by an IBMer.
 
 #### Creating a mode control
 
