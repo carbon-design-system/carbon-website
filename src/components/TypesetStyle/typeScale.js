@@ -51,6 +51,7 @@ export default {
       'font-size': 0.875,
       'line-height': 1.125,
       'letter-spacing': 0.16,
+      'type-set': 'Productive',
     },
   },
   'body-compact-02': {
@@ -61,6 +62,7 @@ export default {
       'font-size': 1,
       'line-height': 1.375,
       'letter-spacing': 0,
+      'type-set': 'Expressive',
     },
   },
   'body-01': {
@@ -71,6 +73,7 @@ export default {
       'font-size': 0.875,
       'line-height': 1.25,
       'letter-spacing': 0.16,
+      'type-set': 'Productive',
     },
   },
   'body-02': {
@@ -81,6 +84,7 @@ export default {
       'font-size': 1,
       'line-height': 1.5,
       'letter-spacing': 0,
+      'type-set': 'Expressive',
     },
   },
   'code-01': {
@@ -105,7 +109,7 @@ export default {
       'type-set': 'Expressive',
     },
   },
-  'productive-heading-01': {
+  'fixed-heading-compact-01': {
     sm: {
       step: 2,
       font: 'IBM Plex Sans',
@@ -113,66 +117,95 @@ export default {
       'font-size': 0.875,
       'line-height': 1.125,
       'letter-spacing': 0.16,
+      'type-set': 'Productive',
     },
   },
-  'productive-heading-02': {
+  'fixed-heading-compact-02': {
     sm: {
-      step: 3,
+      step: 2,
       font: 'IBM Plex Sans',
       'font-weight': '600',
       'font-size': 1,
       'line-height': 1.375,
       'letter-spacing': 0,
+      'type-set': 'Expressive',
     },
   },
-  'productive-heading-03': {
+  'fixed-heading-01': {
+    sm: {
+      step: 2,
+      font: 'IBM Plex Sans',
+      'font-weight': '600',
+      'font-size': 0.875,
+      'line-height': 1.25,
+      'letter-spacing': 0.16,
+      'type-set': 'Productive',
+    },
+  },
+  'fixed-heading-02': {
+    sm: {
+      step: 3,
+      font: 'IBM Plex Sans',
+      'font-weight': '600',
+      'font-size': 1,
+      'line-height': 1.5,
+      'letter-spacing': 0,
+      'type-set': 'Expressive',
+    },
+  },
+  'fixed-heading-03': {
     sm: {
       step: 3,
       font: 'IBM Plex Sans',
       'font-weight': '400',
       'font-size': 1.25,
       'line-height': 1.75,
-      'letter-spacing': '0',
+      'letter-spacing': 0,
+      'type-set': 'Productive',
     },
   },
-  'productive-heading-04': {
+  'fixed-heading-04': {
     sm: {
       step: 7,
       font: 'IBM Plex Sans',
       'font-weight': '400',
       'font-size': 1.75,
       'line-height': 2.25,
-      'letter-spacing': '0',
+      'letter-spacing': 0,
+      'type-set': 'Productive',
     },
   },
-  'productive-heading-05': {
+  'fixed-heading-05': {
     sm: {
       step: 8,
       font: 'IBM Plex Sans',
       'font-weight': '400',
       'font-size': 2,
       'line-height': 2.5,
-      'letter-spacing': '0',
+      'letter-spacing': 0,
+      'type-set': 'Productive',
     },
   },
-  'productive-heading-06': {
+  'fixed-heading-06': {
     sm: {
       step: 9,
       font: 'IBM Plex Sans',
       'font-weight': '300',
       'font-size': 2.625,
       'line-height': 3.125,
-      'letter-spacing': '0',
+      'letter-spacing': 0,
+      'type-set': 'Productive',
     },
   },
-  'productive-heading-07': {
+  'fixed-heading-07': {
     sm: {
       step: 10,
       font: 'IBM Plex Sans',
       'font-weight': '300',
       'font-size': 3.375,
       'line-height': 4,
-      'letter-spacing': '0',
+      'letter-spacing': 0,
+      'type-set': 'Productive',
     },
   },
   'expressive-heading-01': {

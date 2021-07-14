@@ -232,7 +232,7 @@ TypesetStyle.propTypes = {
   // show / hide breakpoint controls
   breakpointControls: PropTypes.bool,
 
-  // show / hide header
+  // show / hide the header
   header: PropTypes.bool,
 
   // comma separated list of typesets to display

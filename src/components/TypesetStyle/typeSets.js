@@ -67,38 +67,48 @@ export default {
   fixedHeadings: [
     {
       description: 'This is for component and layout headings.',
-      key: 'productive-heading-01',
-      name: 'productive-heading-01',
+      key: 'fixed-heading-compact-01',
+      name: 'fixed-heading-compact-01',
     },
     {
       description: 'This is for component and layout headings.',
-      key: 'productive-heading-02',
-      name: 'productive-heading-02',
+      key: 'fixed-heading-compact-02',
+      name: 'fixed-heading-compact-02',
     },
     {
       description: 'This is for component and layout headings.',
-      key: 'productive-heading-03',
-      name: 'productive-heading-03',
+      key: 'fixed-heading-01',
+      name: 'fixed-heading-01',
+    },
+    {
+      description: 'This is for component and layout headings.',
+      key: 'fixed-heading-02',
+      name: 'fixed-heading-02',
+    },
+    {
+      description: 'This is for component and layout headings.',
+      key: 'fixed-heading-03',
+      name: 'fixed-heading-03',
     },
     {
       description: 'This is for layout headings.',
-      key: 'productive-heading-04',
-      name: 'productive-heading-04',
+      key: 'fixed-heading-04',
+      name: 'fixed-heading-04',
     },
     {
       description: 'This is for layout headings.',
-      key: 'productive-heading-05',
-      name: 'productive-heading-05',
+      key: 'fixed-heading-05',
+      name: 'fixed-heading-05',
     },
     {
       description: 'This is for layout headings.',
-      key: 'productive-heading-06',
-      name: 'productive-heading-06',
+      key: 'fixed-heading-06',
+      name: 'fixed-heading-06',
     },
     {
       description: 'This is for layout headings.',
-      key: 'productive-heading-07',
-      name: 'productive-heading-07',
+      key: 'fixed-heading-07',
+      name: 'fixed-heading-07',
     },
   ],
   headings: [
