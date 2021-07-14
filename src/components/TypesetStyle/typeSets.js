@@ -33,7 +33,7 @@ export default {
     },
     {
       description:
-        'The legal-02 type style is for legal copy appearing in product pages.',
+        'The legal-02 type style is for legal copy appearing in web pages.',
       key: 'legal-02',
       name: 'legal-02',
     },
@@ -47,41 +47,45 @@ export default {
     },
     {
       description:
-        'This is for short paragraphs with no more than four lines and is commonly used in the expressive type theme for layouts.',
+        'This is for short paragraphs with no more than four lines. Use in expressive components, such as button and link.',
       key: 'body-compact-02',
       name: 'body-compact-02',
     },
     {
       description:
-        'This is commonly used in both the expressive and the productive type theme layouts for long paragraphs with more than four lines. It is a good size for comfortable, long-form reading. Use this for longer body copy in components such as accordion or structured list. Always left-align this type; never center it.',
+        'With a slightly taller line height, this body style is used in productive layouts for long paragraphs with more than four lines. Use also for longer body copy in components such as accordion or structured list. It is always left-aligned. Body-long-01 can also be used for productive moments within expressive experiences.',
       key: 'body-01',
       name: 'body-01',
     },
     {
       description:
-        'This is commonly used in the expressive type theme layouts for long paragraphs with more than four lines. The looser line height and larger size makes for comfortable, long-form reading, in mediums that allow for more space. This size type is rarely used for body copy in components. Always left-align type; never center it.',
+        'With a slightly taller line height than body-short-02, this style is commonly used in expressive layouts for long paragraphs with four lines or more. It is always left-aligned.',
       key: 'body-02',
       name: 'body-02',
     },
   ],
   fixedHeadings: [
     {
-      description: 'This is for component and layout headings.',
+      description:
+        'This is for component and layout headings. It pairs with $body-compact-01.',
       key: 'fixed-heading-compact-01',
       name: 'fixed-heading-compact-01',
     },
     {
-      description: 'This is for component and layout headings.',
+      description:
+        'This is for smaller layout headings. It pairs with $body-compact-02.',
       key: 'fixed-heading-compact-02',
       name: 'fixed-heading-compact-02',
     },
     {
-      description: 'This is for component and layout headings.',
+      description:
+        'This is for component and layout headings. It pairs with $body-01.',
       key: 'fixed-heading-01',
       name: 'fixed-heading-01',
     },
     {
-      description: 'This is for component and layout headings.',
+      description:
+        'This is for smaller layout headings. It pairs with $body-02.',
       key: 'fixed-heading-02',
       name: 'fixed-heading-02',
     },
@@ -111,53 +115,44 @@ export default {
       name: 'fixed-heading-07',
     },
   ],
-  headings: [
+  fluidHeadings: [
     {
       description: 'This is for component and layout headings.',
-      key: 'expressive-heading-01',
-      name: 'expressive-heading-01',
+      key: 'fluid-heading-03',
+      name: 'fluid-heading-03',
     },
     {
-      description: 'This is for component and layout headings.',
-      key: 'expressive-heading-02',
-      name: 'expressive-heading-02',
+      description: 'This is for layout headings.',
+      key: 'fluid-heading-04',
+      name: 'fluid-heading-04',
     },
     {
-      description: 'This is for component and layout headings.',
-      key: 'expressive-heading-03',
-      name: 'expressive-heading-03',
+      description: 'This is for layout headings.',
+      key: 'fluid-heading-05',
+      name: 'fluid-heading-05',
     },
     {
-      description: 'Heading style',
-      key: 'expressive-heading-04',
-      name: 'expressive-heading-04',
-    },
-    {
-      description: 'Heading style',
-      key: 'expressive-heading-05',
-      name: 'expressive-heading-05',
-    },
-    {
-      description: 'Heading style',
-      key: 'expressive-heading-06',
-      name: 'expressive-heading-06',
+      description: 'This is for layout headings.',
+      key: 'fluid-heading-06',
+      name: 'fluid-heading-06',
     },
   ],
-  paragraphsAndQuotes: [
+  fluidCallouts: [
     {
-      description: 'Paragraph',
-      key: 'expressive-paragraph-01',
-      name: 'expressive-paragraph-01',
+      description:
+        'This is for larger paragraphs of type that are usually three or more lines in length.',
+      key: 'fluid-paragraph-01',
+      name: 'fluid-paragraph-01',
     },
     {
       description: '“Quote.”',
-      key: 'quotation-01',
-      name: 'quotation-01',
+      key: 'fluid-quotation-01',
+      name: 'fluid-quotation-01',
     },
     {
       description: '“Quote.”',
-      key: 'quotation-02',
-      name: 'quotation-02',
+      key: 'fluid-quotation-02',
+      name: 'fluid-quotation-02',
     },
   ],
   display: [

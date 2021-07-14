@@ -208,34 +208,15 @@ export default {
       'type-set': 'Productive',
     },
   },
-  'expressive-heading-01': {
+  'fluid-heading-03': {
     sm: {
-      step: 2,
+      step: 7,
       font: 'IBM Plex Sans',
-      'font-weight': '600',
-      'font-size': 0.875,
-      'line-height': 1.25,
-      'letter-spacing': 0.16,
-    },
-  },
-  'expressive-heading-02': {
-    sm: {
-      step: 3,
-      font: 'IBM Plex Sans',
-      'font-weight': '600',
-      'font-size': 1,
-      'line-height': 1.5,
+      'font-weight': '400',
+      'font-size': 1.25,
+      'line-height': 1.75,
       'letter-spacing': 0,
-    },
-  },
-  'expressive-heading-03': {
-    sm: {
-      step: 7,
-      font: 'IBM Plex Sans',
-      'font-weight': '400',
-      'font-size': 1.25,
-      'line-height': 1.75,
-      'letter-spacing': '0',
+      'type-set': 'Expressive',
     },
     max: {
       step: 13,
@@ -243,17 +224,19 @@ export default {
       'font-weight': '400',
       'font-size': 1.5,
       'line-height': 1.75,
-      'letter-spacing': '0',
+      'letter-spacing': 0,
+      'type-set': 'Expressive',
     },
   },
-  'expressive-heading-04': {
+  'fluid-heading-04': {
     sm: {
       step: 7,
       font: 'IBM Plex Sans',
       'font-weight': '400',
       'font-size': 1.75,
       'line-height': 2.25,
-      'letter-spacing': '0',
+      'letter-spacing': 0,
+      'type-set': 'Expressive',
     },
     md: {
       step: 7,
@@ -261,7 +244,8 @@ export default {
       'font-weight': '400',
       'font-size': 1.75,
       'line-height': 2.25,
-      'letter-spacing': '0',
+      'letter-spacing': 0,
+      'type-set': 'Expressive',
     },
     lg: {
       step: 7,
@@ -269,7 +253,8 @@ export default {
       'font-weight': '400',
       'font-size': 1.75,
       'line-height': 2.25,
-      'letter-spacing': '0',
+      'letter-spacing': 0,
+      'type-set': 'Expressive',
     },
     xlg: {
       step: 8,
@@ -277,7 +262,8 @@ export default {
       'font-weight': '400',
       'font-size': 2,
       'line-height': 2.5,
-      'letter-spacing': '0',
+      'letter-spacing': 0,
+      'type-set': 'Expressive',
     },
     max: {
       step: 8,
@@ -285,17 +271,19 @@ export default {
       'font-weight': '400',
       'font-size': 2,
       'line-height': 2.5,
-      'letter-spacing': '0',
+      'letter-spacing': 0,
+      'type-set': 'Expressive',
     },
   },
-  'expressive-heading-05': {
+  'fluid-heading-05': {
     sm: {
       step: 8,
       font: 'IBM Plex Sans',
       'font-weight': '400',
       'font-size': 2,
       'line-height': 2.5,
-      'letter-spacing': '0',
+      'letter-spacing': 0,
+      'type-set': 'Expressive',
     },
     md: {
       step: 9,
@@ -303,7 +291,8 @@ export default {
       'font-weight': '300',
       'font-size': 2.25,
       'line-height': 2.75,
-      'letter-spacing': '0',
+      'letter-spacing': 0,
+      'type-set': 'Expressive',
     },
     lg: {
       step: 10,
@@ -311,7 +300,8 @@ export default {
       'font-weight': '300',
       'font-size': 2.625,
       'line-height': 3.125,
-      'letter-spacing': '0',
+      'letter-spacing': 0,
+      'type-set': 'Expressive',
     },
     xlg: {
       step: 11,
@@ -319,7 +309,8 @@ export default {
       'font-weight': '300',
       'font-size': 3,
       'line-height': 3.5,
-      'letter-spacing': '0',
+      'letter-spacing': 0,
+      'type-set': 'Expressive',
     },
     max: {
       step: 13,
@@ -327,17 +318,19 @@ export default {
       'font-weight': '300',
       'font-size': 3.75,
       'line-height': 4.375,
-      'letter-spacing': '0',
+      'letter-spacing': 0,
+      'type-set': 'Expressive',
     },
   },
-  'expressive-heading-06': {
+  'fluid-heading-06': {
     sm: {
       step: 8,
       font: 'IBM Plex Sans',
       'font-weight': '600',
       'font-size': 2,
       'line-height': 2.5,
-      'letter-spacing': '0',
+      'letter-spacing': 0,
+      'type-set': 'Expressive',
     },
     md: {
       step: 9,
@@ -345,7 +338,8 @@ export default {
       'font-weight': '600',
       'font-size': 2.25,
       'line-height': 2.75,
-      'letter-spacing': '0',
+      'letter-spacing': 0,
+      'type-set': 'Expressive',
     },
     lg: {
       step: 10,
@@ -353,7 +347,8 @@ export default {
       'font-weight': '600',
       'font-size': 2.625,
       'line-height': 3.125,
-      'letter-spacing': '0',
+      'letter-spacing': 0,
+      'type-set': 'Expressive',
     },
     xlg: {
       step: 11,
@@ -361,7 +356,8 @@ export default {
       'font-weight': '600',
       'font-size': 3,
       'line-height': 3.5,
-      'letter-spacing': '0',
+      'letter-spacing': 0,
+      'type-set': 'Expressive',
     },
     max: {
       step: 13,
@@ -369,17 +365,19 @@ export default {
       'font-weight': '600',
       'font-size': 3.75,
       'line-height': 4.375,
-      'letter-spacing': '0',
+      'letter-spacing': 0,
+      'type-set': 'Expressive',
     },
   },
-  'expressive-paragraph-01': {
+  'fluid-paragraph-01': {
     sm: {
       step: 6,
       font: 'IBM Plex Sans',
       'font-weight': '300',
       'font-size': 1.5,
       'line-height': 1.875,
-      'letter-spacing': '0',
+      'letter-spacing': 0,
+      'type-set': 'Expressive',
     },
     md: {
       step: 6,
@@ -387,7 +385,8 @@ export default {
       'font-weight': '300',
       'font-size': 1.5,
       'line-height': 1.875,
-      'letter-spacing': '0',
+      'letter-spacing': 0,
+      'type-set': 'Expressive',
     },
     lg: {
       step: 7,
@@ -395,7 +394,8 @@ export default {
       'font-weight': '300',
       'font-size': 1.75,
       'line-height': 2.25,
-      'letter-spacing': '0',
+      'letter-spacing': 0,
+      'type-set': 'Expressive',
     },
     xlg: {
       step: 7,
@@ -403,7 +403,8 @@ export default {
       'font-weight': '300',
       'font-size': 1.75,
       'line-height': 2.25,
-      'letter-spacing': '0',
+      'letter-spacing': 0,
+      'type-set': 'Expressive',
     },
     max: {
       step: 8,
@@ -411,17 +412,19 @@ export default {
       'font-weight': '300',
       'font-size': 2,
       'line-height': 2.5,
-      'letter-spacing': '0',
+      'letter-spacing': 0,
+      'type-set': 'Expressive',
     },
   },
-  'quotation-01': {
+  'fluid-quotation-01': {
     sm: {
       step: 5,
       font: 'IBM Plex Serif',
       'font-weight': '400',
       'font-size': 1.25,
       'line-height': 1.625,
-      'letter-spacing': '0',
+      'letter-spacing': 0,
+      'type-set': 'Expressive',
     },
     md: {
       step: 5,
@@ -429,7 +432,8 @@ export default {
       'font-weight': '400',
       'font-size': 1.25,
       'line-height': 1.625,
-      'letter-spacing': '0',
+      'letter-spacing': 0,
+      'type-set': 'Expressive',
     },
     lg: {
       step: 6,
@@ -437,7 +441,8 @@ export default {
       'font-weight': '400',
       'font-size': 1.5,
       'line-height': 1.875,
-      'letter-spacing': '0',
+      'letter-spacing': 0,
+      'type-set': 'Expressive',
     },
     xlg: {
       step: 7,
@@ -445,7 +450,8 @@ export default {
       'font-weight': '300',
       'font-size': 1.75,
       'line-height': 2.25,
-      'letter-spacing': '0',
+      'letter-spacing': 0,
+      'type-set': 'Expressive',
     },
     max: {
       step: 8,
@@ -453,17 +459,19 @@ export default {
       'font-weight': '300',
       'font-size': 2,
       'line-height': 2.5,
-      'letter-spacing': '0',
+      'letter-spacing': 0,
+      'type-set': 'Expressive',
     },
   },
-  'quotation-02': {
+  'fluid-quotation-02': {
     sm: {
       step: 8,
       font: 'IBM Plex Sans',
       'font-weight': '300',
       'font-size': 2,
       'line-height': 2.5,
-      'letter-spacing': '0',
+      'letter-spacing': 0,
+      'type-set': 'Expressive',
     },
     md: {
       step: 9,
@@ -471,7 +479,8 @@ export default {
       'font-weight': '300',
       'font-size': 2.25,
       'line-height': 2.75,
-      'letter-spacing': '0',
+      'letter-spacing': 0,
+      'type-set': 'Expressive',
     },
     lg: {
       step: 10,
@@ -479,7 +488,8 @@ export default {
       'font-weight': '300',
       'font-size': 2.625,
       'line-height': 3.125,
-      'letter-spacing': '0',
+      'letter-spacing': 0,
+      'type-set': 'Expressive',
     },
     xlg: {
       step: 11,
@@ -487,7 +497,8 @@ export default {
       'font-weight': '300',
       'font-size': 3,
       'line-height': 3.5,
-      'letter-spacing': '0',
+      'letter-spacing': 0,
+      'type-set': 'Expressive',
     },
     max: {
       step: 13,
@@ -495,7 +506,8 @@ export default {
       'font-weight': '300',
       'font-size': 3.75,
       'line-height': 4.375,
-      'letter-spacing': '0',
+      'letter-spacing': 0,
+      'type-set': 'Expressive',
     },
   },
   'display-01': {
@@ -505,7 +517,7 @@ export default {
       'font-weight': '300',
       'font-size': 2.625,
       'line-height': 3.125,
-      'letter-spacing': '0',
+      'letter-spacing': 0,
       warning: 'Never use this style as the main headline',
     },
     md: {
@@ -514,7 +526,7 @@ export default {
       'font-weight': '300',
       'font-size': 2.625,
       'line-height': 3.125,
-      'letter-spacing': '0',
+      'letter-spacing': 0,
       warning: 'Never use this style as the main headline',
     },
     lg: {
@@ -523,7 +535,7 @@ export default {
       'font-weight': '300',
       'font-size': 3.375,
       'line-height': 4,
-      'letter-spacing': '0',
+      'letter-spacing': 0,
       warning: 'Never use this style as the main headline',
     },
     xlg: {
@@ -532,7 +544,7 @@ export default {
       'font-weight': '300',
       'font-size': 3.75,
       'line-height': 4.375,
-      'letter-spacing': '0',
+      'letter-spacing': 0,
       warning: 'Never use this style as the main headline',
     },
     max: {
@@ -541,7 +553,7 @@ export default {
       'font-weight': '300',
       'font-size': 4.75,
       'line-height': 5.375,
-      'letter-spacing': '0',
+      'letter-spacing': 0,
       warning: 'Never use this style as the main headline',
     },
   },
@@ -552,7 +564,7 @@ export default {
       'font-weight': '600',
       'font-size': 2.625,
       'line-height': 3.125,
-      'letter-spacing': '0',
+      'letter-spacing': 0,
       warning: 'Never use this style as the main headline',
     },
     md: {
@@ -561,7 +573,7 @@ export default {
       'font-weight': '600',
       'font-size': 2.625,
       'line-height': 3.125,
-      'letter-spacing': '0',
+      'letter-spacing': 0,
       warning: 'Never use this style as the main headline',
     },
     lg: {
@@ -570,7 +582,7 @@ export default {
       'font-weight': '600',
       'font-size': 3.375,
       'line-height': 4,
-      'letter-spacing': '0',
+      'letter-spacing': 0,
       warning: 'Never use this style as the main headline',
     },
     xlg: {
@@ -579,7 +591,7 @@ export default {
       'font-weight': '600',
       'font-size': 3.75,
       'line-height': 4.375,
-      'letter-spacing': '0',
+      'letter-spacing': 0,
       warning: 'Never use this style as the main headline',
     },
     max: {
@@ -588,7 +600,7 @@ export default {
       'font-weight': '600',
       'font-size': 4.75,
       'line-height': 5.375,
-      'letter-spacing': '0',
+      'letter-spacing': 0,
       warning: 'Never use this style as the main headline',
     },
   },
@@ -599,7 +611,7 @@ export default {
       'font-weight': '300',
       'font-size': 2.625,
       'line-height': 3.125,
-      'letter-spacing': '0',
+      'letter-spacing': 0,
       warning: 'Never use this style as the main headline',
     },
     md: {
@@ -608,7 +620,7 @@ export default {
       'font-weight': '300',
       'font-size': 4.25,
       'line-height': 4.875,
-      'letter-spacing': '0',
+      'letter-spacing': 0,
       warning: 'Never use this style as the main headline',
     },
     lg: {
@@ -646,7 +658,7 @@ export default {
       'font-weight': '600',
       'font-size': 2.625,
       'line-height': 3.125,
-      'letter-spacing': '0',
+      'letter-spacing': 0,
       warning: 'Never use this style as the main headline',
     },
     md: {
@@ -655,7 +667,7 @@ export default {
       'font-weight': '600',
       'font-size': 4.25,
       'line-height': 4.875,
-      'letter-spacing': '0',
+      'letter-spacing': 0,
       warning: 'Never use this style as the main headline',
     },
     lg: {
