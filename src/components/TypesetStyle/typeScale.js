@@ -510,7 +510,7 @@ export default {
       'type-set': 'Expressive',
     },
   },
-  'display-01': {
+  'fluid-display-01': {
     sm: {
       step: 10,
       font: 'IBM Plex Sans',
@@ -518,6 +518,7 @@ export default {
       'font-size': 2.625,
       'line-height': 3.125,
       'letter-spacing': 0,
+      'type-set': 'Expressive',
       warning: 'Never use this style as the main headline',
     },
     md: {
@@ -527,6 +528,7 @@ export default {
       'font-size': 2.625,
       'line-height': 3.125,
       'letter-spacing': 0,
+      'type-set': 'Expressive',
       warning: 'Never use this style as the main headline',
     },
     lg: {
@@ -536,6 +538,7 @@ export default {
       'font-size': 3.375,
       'line-height': 4,
       'letter-spacing': 0,
+      'type-set': 'Expressive',
       warning: 'Never use this style as the main headline',
     },
     xlg: {
@@ -545,6 +548,7 @@ export default {
       'font-size': 3.75,
       'line-height': 4.375,
       'letter-spacing': 0,
+      'type-set': 'Expressive',
       warning: 'Never use this style as the main headline',
     },
     max: {
@@ -554,10 +558,11 @@ export default {
       'font-size': 4.75,
       'line-height': 5.375,
       'letter-spacing': 0,
+      'type-set': 'Expressive',
       warning: 'Never use this style as the main headline',
     },
   },
-  'display-02': {
+  'fluid-display-02': {
     sm: {
       step: 10,
       font: 'IBM Plex Sans',
@@ -565,6 +570,7 @@ export default {
       'font-size': 2.625,
       'line-height': 3.125,
       'letter-spacing': 0,
+      'type-set': 'Expressive',
       warning: 'Never use this style as the main headline',
     },
     md: {
@@ -574,6 +580,7 @@ export default {
       'font-size': 2.625,
       'line-height': 3.125,
       'letter-spacing': 0,
+      'type-set': 'Expressive',
       warning: 'Never use this style as the main headline',
     },
     lg: {
@@ -583,6 +590,7 @@ export default {
       'font-size': 3.375,
       'line-height': 4,
       'letter-spacing': 0,
+      'type-set': 'Expressive',
       warning: 'Never use this style as the main headline',
     },
     xlg: {
@@ -592,6 +600,7 @@ export default {
       'font-size': 3.75,
       'line-height': 4.375,
       'letter-spacing': 0,
+      'type-set': 'Expressive',
       warning: 'Never use this style as the main headline',
     },
     max: {
@@ -601,10 +610,11 @@ export default {
       'font-size': 4.75,
       'line-height': 5.375,
       'letter-spacing': 0,
+      'type-set': 'Expressive',
       warning: 'Never use this style as the main headline',
     },
   },
-  'display-03': {
+  'fluid-display-03': {
     sm: {
       step: 10,
       font: 'IBM Plex Sans',
@@ -612,6 +622,7 @@ export default {
       'font-size': 2.625,
       'line-height': 3.125,
       'letter-spacing': 0,
+      'type-set': 'Expressive',
       warning: 'Never use this style as the main headline',
     },
     md: {
@@ -621,6 +632,7 @@ export default {
       'font-size': 4.25,
       'line-height': 4.875,
       'letter-spacing': 0,
+      'type-set': 'Expressive',
       warning: 'Never use this style as the main headline',
     },
     lg: {
@@ -630,6 +642,7 @@ export default {
       'font-size': 5.75,
       'line-height': 6.375,
       'letter-spacing': '-0.64',
+      'type-set': 'Expressive',
       warning: 'Never use this style as the main headline',
     },
     xlg: {
@@ -639,6 +652,7 @@ export default {
       'font-size': 7.625,
       'line-height': 8.125,
       'letter-spacing': '-0.64',
+      'type-set': 'Expressive',
       warning: 'Never use this style as the main headline',
     },
     max: {
@@ -648,10 +662,11 @@ export default {
       'font-size': 9.75,
       'line-height': 10.25,
       'letter-spacing': '-0.96',
+      'type-set': 'Expressive',
       warning: 'Never use this style as the main headline',
     },
   },
-  'display-04': {
+  'fluid-display-04': {
     sm: {
       step: 10,
       font: 'IBM Plex Sans',
@@ -659,6 +674,7 @@ export default {
       'font-size': 2.625,
       'line-height': 3.125,
       'letter-spacing': 0,
+      'type-set': 'Expressive',
       warning: 'Never use this style as the main headline',
     },
     md: {
@@ -668,6 +684,7 @@ export default {
       'font-size': 4.25,
       'line-height': 4.875,
       'letter-spacing': 0,
+      'type-set': 'Expressive',
       warning: 'Never use this style as the main headline',
     },
     lg: {
@@ -677,6 +694,7 @@ export default {
       'font-size': 5.75,
       'line-height': 6.375,
       'letter-spacing': -0.64,
+      'type-set': 'Expressive',
       warning: 'Never use this style as the main headline',
     },
     xlg: {
@@ -686,6 +704,7 @@ export default {
       'font-size': 7.625,
       'line-height': 8.125,
       'letter-spacing': -0.64,
+      'type-set': 'Expressive',
       warning: 'Never use this style as the main headline',
     },
     max: {
@@ -695,6 +714,7 @@ export default {
       'font-size': 9.75,
       'line-height': 10.25,
       'letter-spacing': -0.96,
+      'type-set': 'Expressive',
       warning: 'Never use this style as the main headline',
     },
   },

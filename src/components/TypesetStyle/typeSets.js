@@ -155,26 +155,26 @@ export default {
       name: 'fluid-quotation-02',
     },
   ],
-  display: [
+  fluidDisplay: [
     {
       description: 'Display',
-      key: 'display-01',
-      name: 'display-01',
+      key: 'fluid-display-01',
+      name: 'fluid-display-01',
     },
     {
       description: 'Display',
-      key: 'display-02',
-      name: 'display-02',
+      key: 'fluid-display-02',
+      name: 'fluid-display-02',
     },
     {
       description: 'Display',
-      key: 'display-03',
-      name: 'display-03',
+      key: 'fluid-display-03',
+      name: 'fluid-display-03',
     },
     {
       description: 'Display',
-      key: 'display-04',
-      name: 'display-04',
+      key: 'fluid-display-04',
+      name: 'fluid-display-04',
     },
   ],
 };
