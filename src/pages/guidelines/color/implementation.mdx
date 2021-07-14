@@ -84,16 +84,21 @@ by a number suffix (-01, -02, -03) attached to the core token name, such as
 previously in v10 many color tokens had numeral suffixes, now in v11 only
 layering tokens will have this distinction._
 
-Notice, not all layer set tokens use `$layer` as its token name. Token sets also
-include `border` and `field` tokens as well as interactive state tokens for the
-various layers. Field is considered a layer level and uses the next level token
-from the layer it is placed on. Border tokens pair with its same number, so
-`$field-03` pairs with `$border-strong-03` in a text input.  Only certain color
-tokens are a part of these layering sets. Other tokens for elements like `text`
-and `icon` work across layer sets. For a full list of the layer set tokens see
-the [color usage](/guidelines/color/usage) tab.
+Not all layer set tokens use `$layer` as its token name. Token sets also include
+`border` and `field` tokens as well as interactive state tokens for the various
+layers. Field is considered a layer on top of the background it is placed on, so
+a field placed on a `$layer-02` background will use `$field-03`. Border tokens
+however pair with its same number, so `$field-03` pairs with `$border-strong-03`
+in a text input.  Only certain color tokens are a part of these layering sets.
+Other tokens for elements like `text` and `icon` work across layer sets. For a
+full list of the layer set tokens see the [color usage](/guidelines/color/usage)
+tab.
 
-- Base layer: Magenta
+The below images show what a dropdown looks like across the layers within each
+theme. Included in the image are the tokens that make up each layer set and are
+identified by the following key.
+
+- Base set: Magenta
 - Layer set 01: Purple
 - Layer set 02: Teal
 - Layer set 03: Cyan
@@ -144,15 +149,18 @@ considered a proper layer but a supporting color for `$layer` inside of
 components. The tab content area attached to the selected tab is also only one
 layer above the base and so also uses `$layer-01` as its background.
 
-In the tabs main section, the text input field is placed on top of `$layer-01`
-making it a part of the next layer level and will use tokens from layer set 02,
-`$field-02` and `$border-strong-02`. Also a part of the second layer level are
-the tiles in the sub-section, this includes the tile background `$layer-02` as
-well as the border between the tiles `$border-subtle-02`. However, components
-added on top of the tiles—the text input and overflow menu—are considered part
-of third layer level and will use tokens from layer set 03.
+In the tab's main section, the text input field is placed on top of `$layer-01`
+making it a part of the next layer level and will use tokens from the 02 layer
+set, so `$field-02` and `$border-strong-02`. Also a part of the second layer
+level are the tiles in the sub-section, this includes the tile background
+`$layer-02` as well as the border between the tiles `$border-subtle-02`.
+However, components added on top of the tiles—the text input and overflow
+menu—are considered part of third layer level and will use tokens from the 03
+layer set.
 
-- Base layer: Magenta
+Token key
+
+- Base set: Magenta
 - Layer set 01: Purple
 - Layer set 02: Teal
 - Layer set 03: Cyan
@@ -368,20 +376,28 @@ at a later date for more information.
 
 ## Inline theming
 
-Inline theming is used when a section of a UI needs to be a different theme from
-the rest of the page. Inline theming allows themes to be nested within each
+Inline theming is used when a section of a UI needs to have a different theme
+from the rest of the page. Inline theming allows themes to be nested within each
 other without needing custom styles or overrides. In product, a common use-case
 for inline theming is applying a contrasting theme to UI Shell and side panels.
 This is especially common in light themed products or light modes. For example,
-the main page content will use the White theme while the UI Shell and the left
-side panel uses an inline Gray 100 theme. These high contrast moments created
-with inline themes can add emphasis and focus to a work flow.
+the majority of a page can use the White theme while the UI Shell and the left
+side panel uses an inline Gray 100 theme. This type of inline theme pairing
+creates a high contrast moment that adds emphasis and focus to a work flow.
 
 You should only need to use inline theming for major shifts in color, like high
 contrast moments. The more subtle transitions of color in a product are handled
 within each theme through the layering model tokens. It is unlikely that you'll
 need to inline a White theme within the Gray 10 theme or the Gray 90 theme
 within the Gray100 theme.
+
+<Row>
+<Column colLg={8}>
+
+![Example of inline themes](images/color-implementation-inline-1.png)
+
+</Column>
+</Row>
 
 #### How it works
 
@@ -397,6 +413,14 @@ theme library files (or use the
 plug-in). Assets will have the same tokens names across libraries but will show
 different values. Then specify in the design deliverables which sections of the
 page will be using an inline theme.
+
+<Row>
+<Column colLg={8}>
+
+![Example of inline themes](images/color-implementation-inline-2.png)
+
+</Column>
+</Row>
 
 ### Using the theme component
 
