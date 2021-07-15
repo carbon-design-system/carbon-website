@@ -15,7 +15,7 @@ export default {
       step: 1,
       font: 'IBM Plex Sans',
       'font-weight': '400',
-      'font-size': 0.75,
+      'font-size': 0.875,
       'line-height': 1.125,
       'letter-spacing': 0.16,
       'type-set': 'Expressive',
@@ -466,7 +466,7 @@ export default {
   'fluid-quotation-02': {
     sm: {
       step: 8,
-      font: 'IBM Plex Sans',
+      font: 'IBM Plex Serif',
       'font-weight': '300',
       'font-size': 2,
       'line-height': 2.5,
@@ -475,7 +475,7 @@ export default {
     },
     md: {
       step: 9,
-      font: 'IBM Plex Sans',
+      font: 'IBM Plex Serif',
       'font-weight': '300',
       'font-size': 2.25,
       'line-height': 2.75,
@@ -519,7 +519,6 @@ export default {
       'line-height': 3.125,
       'letter-spacing': 0,
       'type-set': 'Expressive',
-      warning: 'Never use this style as the main headline',
     },
     md: {
       step: 10,
@@ -529,7 +528,6 @@ export default {
       'line-height': 3.125,
       'letter-spacing': 0,
       'type-set': 'Expressive',
-      warning: 'Never use this style as the main headline',
     },
     lg: {
       step: 12,
@@ -539,7 +537,6 @@ export default {
       'line-height': 4,
       'letter-spacing': 0,
       'type-set': 'Expressive',
-      warning: 'Never use this style as the main headline',
     },
     xlg: {
       step: 13,
@@ -549,7 +546,6 @@ export default {
       'line-height': 4.375,
       'letter-spacing': 0,
       'type-set': 'Expressive',
-      warning: 'Never use this style as the main headline',
     },
     max: {
       step: 15,
@@ -559,7 +555,6 @@ export default {
       'line-height': 5.375,
       'letter-spacing': 0,
       'type-set': 'Expressive',
-      warning: 'Never use this style as the main headline',
     },
   },
   'fluid-display-02': {
@@ -571,7 +566,6 @@ export default {
       'line-height': 3.125,
       'letter-spacing': 0,
       'type-set': 'Expressive',
-      warning: 'Never use this style as the main headline',
     },
     md: {
       step: 10,
@@ -581,7 +575,6 @@ export default {
       'line-height': 3.125,
       'letter-spacing': 0,
       'type-set': 'Expressive',
-      warning: 'Never use this style as the main headline',
     },
     lg: {
       step: 12,
@@ -591,7 +584,6 @@ export default {
       'line-height': 4,
       'letter-spacing': 0,
       'type-set': 'Expressive',
-      warning: 'Never use this style as the main headline',
     },
     xlg: {
       step: 13,
@@ -601,7 +593,6 @@ export default {
       'line-height': 4.375,
       'letter-spacing': 0,
       'type-set': 'Expressive',
-      warning: 'Never use this style as the main headline',
     },
     max: {
       step: 15,
@@ -611,7 +602,6 @@ export default {
       'line-height': 5.375,
       'letter-spacing': 0,
       'type-set': 'Expressive',
-      warning: 'Never use this style as the main headline',
     },
   },
   'fluid-display-03': {
@@ -623,7 +613,6 @@ export default {
       'line-height': 3.125,
       'letter-spacing': 0,
       'type-set': 'Expressive',
-      warning: 'Never use this style as the main headline',
     },
     md: {
       step: 14,
@@ -633,7 +622,6 @@ export default {
       'line-height': 4.875,
       'letter-spacing': 0,
       'type-set': 'Expressive',
-      warning: 'Never use this style as the main headline',
     },
     lg: {
       step: 17,
@@ -643,7 +631,6 @@ export default {
       'line-height': 6.375,
       'letter-spacing': '-0.64',
       'type-set': 'Expressive',
-      warning: 'Never use this style as the main headline',
     },
     xlg: {
       step: 20,
@@ -653,7 +640,6 @@ export default {
       'line-height': 8.125,
       'letter-spacing': '-0.64',
       'type-set': 'Expressive',
-      warning: 'Never use this style as the main headline',
     },
     max: {
       step: 23,
@@ -663,7 +649,6 @@ export default {
       'line-height': 10.25,
       'letter-spacing': '-0.96',
       'type-set': 'Expressive',
-      warning: 'Never use this style as the main headline',
     },
   },
   'fluid-display-04': {
@@ -675,7 +660,6 @@ export default {
       'line-height': 3.125,
       'letter-spacing': 0,
       'type-set': 'Expressive',
-      warning: 'Never use this style as the main headline',
     },
     md: {
       step: 14,
@@ -685,7 +669,6 @@ export default {
       'line-height': 4.875,
       'letter-spacing': 0,
       'type-set': 'Expressive',
-      warning: 'Never use this style as the main headline',
     },
     lg: {
       step: 17,
@@ -695,7 +678,6 @@ export default {
       'line-height': 6.375,
       'letter-spacing': -0.64,
       'type-set': 'Expressive',
-      warning: 'Never use this style as the main headline',
     },
     xlg: {
       step: 20,
@@ -705,7 +687,6 @@ export default {
       'line-height': 8.125,
       'letter-spacing': -0.64,
       'type-set': 'Expressive',
-      warning: 'Never use this style as the main headline',
     },
     max: {
       step: 23,
@@ -715,7 +696,6 @@ export default {
       'line-height': 10.25,
       'letter-spacing': -0.96,
       'type-set': 'Expressive',
-      warning: 'Never use this style as the main headline',
     },
   },
 };
