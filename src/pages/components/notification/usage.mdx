@@ -177,7 +177,7 @@ For further content guidance, see Carbon's
 
 ## Inline notifications
 
-### Formatting
+### Inline formatting
 
 <Row>
 <Column colLg={8}>
@@ -235,7 +235,19 @@ critical for a user to read or interact with the notification.
 
 ## Toast notifications
 
-### Formatting
+There are two types of toast notifications—polite and assertive. Polite toast
+notifications are used to display a message to the user that does not interrupt
+keyboard and screen reader users' current task and then queues the notification
+until whatever task the user is currently working on is complete. Assertive
+toast notifications interrupt a user's task when triggered and are more intrusive
+to keyboard and screen reader users.
+
+| Type      | Purpose                                                                                                                                                                                                                                |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Polite    | Polite toast notifications are used to display a message to the user that does not interrupt keyboard and screen reader users' current task. These notifications contain action buttons and are dismissed by the user.                  |
+| Assertive | Assertive toast notifications take focus when triggered and are more intrusive to keyboard and screen reader users. These notifications do not contain interactive elements and are automatically dismissed or dismissed by the user.  |
+
+### Toast formatting
 
 <Row>
 <Column colLg={8}>
@@ -245,13 +257,30 @@ critical for a user to read or interact with the notification.
 </Column>
 </Row>
 
-#### Action
+#### Action (polite only)
 
-Carbon toast notifications are not fully accessible when they include
-interactive content. Using links and other interactive content in toasts breaks
-WCAG 2.1 compliance and should therefore be avoided. The Carbon team is aware of
-the accessibility concerns and is currently working on deprecating this
-functionality.
+Polite toast notifications allow for interactive elements. Only one action
+button is allowed within polite toast notifications. Action buttons should
+clearly state the user action. This action frequently takes users to a flow or
+page related to the message, where they can resolve the notification. If
+multiple actions are required, consider using a
+[dialog](https://carbondesignsystem.com/patterns/dialog-pattern/). Assertive
+toast notifications cannot include interactive elements due to limitations with
+how ARIA tags are interpreted by screen readers and are inaccessible via
+keyboard and screen readers.
+
+<Row>
+<Column colLg={8}>
+
+![Example of toast notification with action button and time stamp](images/07_Toast_types_608.png)
+
+</Column>
+</Row>
+
+<Caption>
+  Example of a polite toast notification with action button (left) and assertive
+  toast notification with time stamp (right)
+</Caption>
 
 #### Time stamp
 
@@ -274,12 +303,10 @@ stack with `$spacing-03` in-between. New toast notifications should appear at
 the top of the list, with older notifications being pushed down until they are
 dismissed.
 
-Actionable toast notifications do not appear on mobile screen widths.
-
 <Row>
 <Column colLg={8}>
 
-![Example of toast notification placement](images/05_toast_context_608.png)
+![Example of toast notification placement](images/05_toast_context_608.gif)
 
 </Column>
 </Row>
@@ -288,13 +315,17 @@ Actionable toast notifications do not appear on mobile screen widths.
 
 #### Dismissal
 
-Toasts dismiss automatically after five seconds on the screen. They can also
-include a close button so users can dismiss them sooner. Toasts cover content on
-the screen so they should always be easily dismissed. Because toast
-notifications dismiss automatically, users must be able to access them elsewhere
-after the toast disappears. This allows them to be accessible for users who need
-more time reading the notification or who may want to refer back to the
-notification.
+Polite toast notifications remain on screen until a user dismisses the toast
+with the close button. These toasts stay on screen because a user usually needs
+to take action.
+
+Assertive toast notifications can be dismissed automatically after five seconds
+on the screen. They can also include a close button so users can dismiss them
+sooner. Because these toast notifications dismiss automatically, users must be
+able to access them elsewhere after the toast disappears. This allows them to be
+accessible for users who need more time reading the notification or who may want
+to refer back to the notification. All toast notifications cover content on the
+screen so they should always be easily dismissed.
 
 ## Modifiers
 
