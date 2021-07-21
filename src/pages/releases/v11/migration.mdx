@@ -11,9 +11,33 @@ import { Tag } from 'carbon-components-react';
 <PageDescription>
 
 This is our v11 migration guide. Here you can find information on how to migrate
-from Carbon v10 to v11.
+from Carbon v10 to v11. With any major migration, there are some exciting new
+features we're looking forward to sharing with you all, but of course there are
+some breaking changes. We're hoping to have made this transition as smooth as
+possible by detailing all of the feature updatess below. This is a constant work
+in progress, so please feel free to make any contributions.
 
 </PageDescription>
+
+## Changelog
+
+| Feature                          | Status                           | Migration doc                                       | Packages or components impacted                                                                                            |
+| -------------------------------- | -------------------------------- | --------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `@carbon/styles`                 | <Tag type="green">New</Tag>      | [Bring in styles](#bring-in-styles)                 | `carbon-components`                                                                                                        |
+| `@carbon/react`                  | <Tag type="green">New</Tag>      | [Carbon Components React](#carbon-components-react) | `carbon-components-react`                                                                                                  |
+| SASS Modules                     | <Tag type="cyan">Breaking</Tag>  | [SASS Modules](#sass-modules)                       | `@carbon/styles` `carbon-components-angular` `carbon-components-vue` `@carbon/react`                                       |
+| Inline theming (light/dark mode) | <Tag type="green">New</Tag>      | [SASS Modules](#sass-modules)                       | v11.x                                                                                                                      |
+| CSS Grid                         | <Tag type="cyan">Breaking</Tag>  | [CSS Grid](#css-grid)                               | `@carbon/grid` `Grid` `Row` `Column`                                                                                       |
+| Color tokens                     | <Tag type="cyan">Breaking</Tag>  | [SASS Modules](#sass-modules)                       | All components                                                                                                             |
+| Size prop                        | <Tag type="cyan">Breaking</Tag>  | [Size prop](#size-prop-updates)                     | `Button` `DataTable` `Modal` `ComboBox` `Dropdown` `TextInput` `Search` `DatePicker` `Tag` `Toggle` `Select` `MultiSelect` |
+| UI Shell theming                 | <Tag type="cyan">Breaking</Tag>  | [SASS Modules](#sass-modules)                       | `UI Shell` `@carbon/styles`                                                                                                |
+| Popover                          | <Tag type="green">New</Tag>      | [SASS Modules](#sass-modules)                       | `Tooltip`                                                                                                                  |
+| Tooltip                          | <Tag type="cyan">Breaking</Tag>  | [SASS Modules](#sass-modules)                       | `Tooltip` `@carbon/react`                                                                                                  |
+| `carbon-components-react`        | <Tag type="red">Deprecated</Tag> | [SASS Modules](#sass-modules)                       | v11.x                                                                                                                      |
+| `carbon-icons`                   | <Tag type="red">Deprecated</Tag> | [SASS Modules](#sass-modules)                       | v11.x                                                                                                                      |
+| `carbon-components`              | <Tag type="red">Deprecated</Tag> | [SASS Modules](#sass-modules)                       | v11.x                                                                                                                      |
+
+## Carbon Components React
 
 To start at any point in your migration process you must, first, do the
 following:
@@ -26,20 +50,76 @@ First step, remove the following packages:
 - `carbon-components-react`
 - `carbon-icons` (yes, we got rid of them...)
 
-| Feature                          | Status                           | Migration doc                 | What packages are impacted? |
-| -------------------------------- | -------------------------------- | ----------------------------- | --------------------------- |
-| `@carbon/styles`                 | <Tag type="green">New</Tag>      | [SASS Modules](#sass-modules) | `carbon-components`         |
-| `@carbon/react`                  | <Tag type="green">New</Tag>      | [SASS Modules](#sass-modules) | `carbon-components-react`   |
-| `carbon-components-react`        | <Tag type="red">Deprecated</Tag> | [SASS Modules](#sass-modules) | v11.x                       |
-| `carbon-icons`                   | <Tag type="red">Deprecated</Tag> | [SASS Modules](#sass-modules) | v11.x                       |
-| `carbon-components`              | <Tag type="red">Deprecated</Tag> | [SASS Modules](#sass-modules) | v11.x                       |
-| Transition to SASS Modules       | <Tag type="cyan">Updated</Tag>   | [SASS Modules](#sass-modules) | v11.x                       |
-| Inline theming (light/dark mode) | <Tag type="green">New</Tag>      | [SASS Modules](#sass-modules) | v11.x                       |
-| Carbon Grid                      | <Tag type="cyan">Updated</Tag>   | [SASS Modules](#sass-modules) | v11.x                       |
-| Color tokens                     | <Tag type="cyan">Updated</Tag>   | [SASS Modules](#sass-modules) | v11.x                       |
-| Size props                       | <Tag type="cyan">Updated</Tag>   | [SASS Modules](#sass-modules) | v11.x                       |
-| UI Shell                         | <Tag type="cyan">Updated</Tag>   | [SASS Modules](#sass-modules) | v11.x                       |
-| Popover                          | <Tag type="green">New</Tag>      | [SASS Modules](#sass-modules) | v11.x                       |
-| Tooltip                          | <Tag type="cyan">Updated</Tag>   | [SASS Modules](#sass-modules) | v11.x                       |
+something here about updating imports to point to `@carbon/react` instead of
+`carbon-components-react`, maybe explaing that the components all still work the
+same just coming from a diff package now. and why did we do this???
 
 ## SASS Modules
+
+Since [NodeSass](https://sass-lang.com/blog/libsass-is-deprecated) was
+officially deprectated, we thought it might be a good time to transition to
+using `Sass modules`.
+
+### What this means for you and your team:
+
+- Faster compile times: reduced by ~90%
+- Faster build times: reduced by ~60%
+- Over-all more flexibility when importing styles
+
+### This is what updating to Sass modules looks like:
+
+- Projects that are currently using `webpack` with `sass-loader` the update
+  should be automatic.
+- Projects using create-react-app or Next.js, remove `node-sass` from your
+  dependencies and add `sass` as the replacement. Find more information
+  regarding this process
+  [here](https://sass-lang.com/blog/libsass-is-deprecated#how-do-i-migrate).
+- In your project you will now use the `@use` keyword instead of `@import` to
+  include the Carbon packages, as seen below.
+
+To learn more about getting starting with `Dart Sass`, usage, and importing
+specific packages, checkout our
+[styles docs](https://github.com/carbon-design-system/carbon/tree/main/packages/styles).
+
+```jsx
+// Use all styles
+@use 'carbon-components';
+// Use all styles with configuration
+@use 'carbon-components' with (
+  $css--reset: false
+);
+// Include specific modules
+@use 'carbon-components/scss/color';
+// Include a component
+@use 'carbon-components/scss/components/accordion';
+```
+
+### Size Prop updates
+
+- Over the years our size props got a little messy. So we updated them, so that
+  they are now consistent across all of our components.
+
+### What this means for you and your team:
+
+_add something here_
+
+The props should now look like this:
+
+| Prop Name | Size |
+| --------- | ---- |
+| xs        | 24px |
+| sm        | 32px |
+| md        | 40px |
+| lg        | 48px |
+| xl        | 64px |
+| 2xl       | 80px |
+
+## CSS Grid
+
+A huge change for us this release is dropping support for IE11, which means we
+can now support CSS Grid and sub-grid. 🎉
+
+### What this means for you and your team:
+
+- No longer need `Row` components
+- You can drop `Column` components directly into `Grid`
