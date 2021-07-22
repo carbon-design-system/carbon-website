@@ -48,7 +48,7 @@ const customProps = {
                 className={styles.callToAction}
                 subTitle="Coming soon"
                 title="Carbon v11"
-                href="/whats-happening/v11-release/"
+                href="/releases/v11/overview"
                 color="dark"
                 actionIcon="arrowRight"
               />
