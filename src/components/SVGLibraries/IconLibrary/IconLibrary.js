@@ -32,12 +32,16 @@ const IconLibrary = () => {
 
       const path = [...icon.namespace, icon.name].join('/');
 
+      const glyphOnly = icon.sizes.length === 1 && icon.sizes[0] === 'glyph';
+
       return [
         ...accumulator,
         {
           ...icon,
           Component: loadable(() =>
-            import(`@carbon/icons-react/lib/${path}/32`)
+            import(
+              `@carbon/icons-react/lib/${path}/${glyphOnly ? 'index' : '32'}`
+            )
           ),
         },
       ];
