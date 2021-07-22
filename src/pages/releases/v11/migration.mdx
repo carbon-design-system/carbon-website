@@ -10,14 +10,21 @@ import { Tag } from 'carbon-components-react';
 
 <PageDescription>
 
-This is our v11 migration guide. Here you can find information on how to migrate
-from Carbon v10 to v11. With any major migration, there are some exciting new
-features we're looking forward to sharing with you all, but of course there are
-some breaking changes. We're hoping to have made this transition as smooth as
-possible by detailing all of the feature updatess below. This is a constant work
-in progress, so please feel free to make any contributions.
+Here you can find information on how to migrate from Carbon v10 to v11. With any
+major migration, there are some exciting new features we're looking forward to
+sharing with you all as well as some breaking changes. We're hoping to have made
+this transition as smooth as possible by detailing all of the feature updates
+below. This is a constant work in progress, so please feel free to make any
+contributions.
 
 </PageDescription>
+
+<AnchorLinks>
+
+<AnchorLink>Changelog</AnchorLink>
+<AnchorLink>Components</AnchorLink>
+
+</AnchorLinks>
 
 ## Changelog
 
@@ -37,18 +44,31 @@ in progress, so please feel free to make any contributions.
 | `carbon-icons`                   | <Tag type="red">Deprecated</Tag> | [SASS Modules](#sass-modules)                       | v11.x                                                                                                                      |
 | `carbon-components`              | <Tag type="red">Deprecated</Tag> | [SASS Modules](#sass-modules)                       | v11.x                                                                                                                      |
 
-## Carbon Components React
+## Components
 
-To start at any point in your migration process you must, first, do the
-following:
+### Step 1: Install the new package
 
-- Install the `@carbon/react` package
+```
+npm -i @carbon/react
+```
 
-First step, remove the following packages:
+or
 
-- `carbon-components`
-- `carbon-components-react`
-- `carbon-icons` (yes, we got rid of them...)
+```
+yarn install @carbon/react
+```
+
+### Step 2: Remove the old packages
+
+```
+npm uninstall carbon-components carbon-components-react carbon-icons
+```
+
+or
+
+```
+yarn remove carbon-components carbon-components-react carbon-icons
+```
 
 something here about updating imports to point to `@carbon/react` instead of
 `carbon-components-react`, maybe explaing that the components all still work the
@@ -118,6 +138,9 @@ The props should now look like this:
 
 A huge change for us this release is dropping support for IE11, which means we
 can now support CSS Grid and sub-grid. 🎉
+
+Here is a
+[link to our Grid docs](https://github.com/carbon-design-system/carbon/blob/main/docs/migration/11.x-grid.md).
 
 ### What this means for you and your team:
 
