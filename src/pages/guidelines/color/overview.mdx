@@ -22,7 +22,9 @@ harmony through our User Interface design.
 
 <AnchorLink>Introduction</AnchorLink>
 <AnchorLink>Color anatomy</AnchorLink>
-<AnchorLink>Applying color</AnchorLink>
+<AnchorLink>Theming</AnchorLink>
+<AnchorLink>Color tokens</AnchorLink>
+<AnchorLink>Interaction states</AnchorLink>
 <AnchorLink>Accessibility</AnchorLink>
 <AnchorLink>Resources</AnchorLink>
 
@@ -79,12 +81,32 @@ The layering model differs between the _light_ and _dark_ themes.
 - In the dark themes, layers become one step lighter with each added layer.
 
 <Row>
-<Column colLg={8}>
+<Column colLg={12}>
 
 ![Layering model for light and dark themes](images/color-layering-model-2.png)
 
 </Column>
 </Row>
+
+<DoDontRow>
+
+<DoDont
+    colLg={6}
+    caption="Light theme layering model example">
+
+![White overflow menu on Gray 10 card.](images/Light_theme_03.png)
+
+  </DoDont>
+
+  <DoDont
+    colLg={6}
+    caption="Dark theme layering model example">
+
+![Gray 80 overflow menu on Gray 90 card.](images/Dark_theme_03_new.png)
+
+  </DoDont>
+
+</DoDontRow>
 
 <br />
 
@@ -100,7 +122,7 @@ specify the color values that serve those roles in the UI.
 | [Role](/guidelines/color/overview/#color-roles)         | A role is the systematic usage of a color. Roles cannot be changed between themes.                                                                                                                     |     |
 | [Value](/guidelines/color/overview/#interaction-states) | A value is the unique visual attribute (hex code, rgba value) assigned to a token through the use of a theme.                                                                                          |
 
-### Themes
+## Themes
 
 Themes serve as an organizational framework for color in Carbon, with each theme
 based on a specific primary background color. And they actually get their names
@@ -167,7 +189,7 @@ layering model.
 
 <br />
 
-#### Light themes
+### Light themes
 
 There are two light themes in Carbon: White and Gray 10. In the light themes,
 layers alternate between White and Gray 10. For enabled UI colors light themes
@@ -181,39 +203,26 @@ primarily uses the color range of White to Gray 20.
 All of the themes are available in
 [Design kits](https://carbondesignsystem.com/designing/kits/sketch/).
 
+![Product example in a light theme](images/color-implementation-mode-light.png)
+
+<Caption>This is a placeholder image</Caption>
+
 <DoDontRow>
   <DoDont caption="Gray 10 dropdown on White background." colLg={6}>
 
 ![Gray 10 dropdown on White background.](images/Light_theme_01.png)
 
   </DoDont>
-  <DoDont colLg={6} caption="White dropdown on a Gray 10 background.">
-
-![White dropdown on a Gray 10 background.](images/Light_theme_02.png)
-
-  </DoDont>
-</DoDontRow>
-
-<DoDontRow>
-  <DoDont colLg={6} caption="White overflow menu on Gray 10 card.">
-
-![White overflow menu on Gray 10 card.](images/Light_theme_03.png)
-
-  </DoDont>
-  <DoDont type="dont" colLg={6} caption="Avoid use of midtones.">
+<DoDont type="dont" colLg={6} caption="Avoid use of midtones.">
 
 ![Avoid use of midtones.](images/Light_theme_04.png)
 
   </DoDont>
 </DoDontRow>
 
-![light theme examples](images/Light_theme_sample_revised.gif)
-
-<Caption>Components with common colors across both light themes.</Caption>
-
 <br />
 
-#### Dark themes
+### Dark themes
 
 There are two dark themes: Gray 90 and Gray 100. In the dark themes, layers
 become one step lighter with each added layer. For enabled UI colors, dark
@@ -227,45 +236,28 @@ themes primarily use the color range of Gray 100 through Gray 70.
 All of the themes are available in
 [Design kits](https://carbondesignsystem.com/designing/kits/sketch/).
 
+![Product example in a light theme](images/color-implementation-mode-dark.png)
+
+<Caption>This is a placeholder image</Caption>
+
 <DoDontRow>
   <DoDont
     colLg={6}
     caption="Gray 90 dropdown on Gray 100 background.">
 
-![Gray 10 dropdown on White background.](images/Dark_theme_01_new.png)
+![Gray 10 dropdown on Gray 100 background.](images/Dark_theme_01_new.png)
 
   </DoDont>
-  <DoDont colLg={6} caption="Gray 80 dropdown on Gray 90 background.">
+ <DoDont type="dont" colLg={6} caption="Do not apply components that are darker than the background unless using high-contrast mode.">
 
-![White dropdown on a Gray 10 background.](images/Dark_theme_02_new.png)
-
-  </DoDont>
-</DoDontRow>
-
-<DoDontRow>
-  <DoDont
-    colLg={6}
-    caption="Gray 70 is sometimes used when compound components are being applied, such as an overflow menu.">
-
-![White overflow menu on Gray 10 card.](images/Dark_theme_03_new.png)
-
-  </DoDont>
-  <DoDont type="dont" colLg={6} caption="Do not apply components that are darker than the background unless using high-contrast mode.">
-
-![Do not apply components that are darker than the background unless using high-contrast mode.](images/Dark_theme_04_new.png)
+![Dropdown showing incorrect color usage](images/Dark_theme_04_new.png)
 
   </DoDont>
 </DoDontRow>
-
-![dark theme examples](images/Dark_theme_sample_revised.gif)
-
-<Caption>
-  Components with common colors across both dark UI backgrounds.
-</Caption>
 
 <br />
 
-#### High contrast
+### High contrast
 
 In some cases, it is helpful to apply light components to dark backgrounds or
 dark components to light backgrounds. This technique is useful to focus
@@ -289,7 +281,7 @@ instances like a dark UI Shell Header with a light theme page.
 
 <br />
 
-### Tokens
+## Color Tokens
 
 Color in Carbon is managed through tokens. Tokens are an abstracted method of
 applying color in a consistent, reusable, and scalable way. Each color token is
@@ -342,7 +334,7 @@ name will further describe its how it should be used. For example
 `$border-subtle` is used when a border or divider rule needs a low contrasting
 (subtle) aesthetic.
 
-### Interaction states
+## Interaction states
 
 In addition to the core set of enabled-state tokens, there are five other
 primary interaction states defined with tokens for each theme. Interaction
@@ -365,11 +357,11 @@ The color layering model for interaction tokens is as follows:
 
 <br />
 
-#### Hover
+### Hover
 
 Hover is a subtle visual change that appears when a mouse cursor moves over an
 interactive element. Hover states have their own tokens and are identified the
-`-hover` added to the end of the base token name, such as `$background-hover`.
+`-hover` added after the base token name, such as `$background-hover`.
 
 For container backgrounds in the IBM themes, hover states token values are "half
 steps" between two adjacent colors on the IBM color palette steps. These values
@@ -404,13 +396,13 @@ to `$text-primary` and the background to `$layer-hover`.
 
 <br />
 
-#### Active
+### Active
 
 The active state can be used to indicate a `click`, `tap` or down press of a
-button. Active tokens are identified by `-active` added to the end of the base
-token name, such as `$button-primary-active`. Active state values are two full
-steps lighter or darker on the IBM color scale. For example, the Blue 60 active
-state is Blue 80.
+button. Active tokens are identified by `-active` added after the base token
+name, such as `$button-primary-active`. Active state values are two full steps
+lighter or darker on the IBM color scale. For example, the Blue 60 active state
+is Blue 80.
 
 - For values between 100 and 70, the active state is two full steps lighter.
 - For values between 60 and 10, the active state is two full steps darker.
@@ -433,13 +425,13 @@ value, and Black value shares the same active state as Gray 100 value.
 
 <br />
 
-#### Selected
+### Selected
 
 Selected states indicate item(s) or option(s) that have been chosen in the UI by
 the user through any input method. Selected tokens are identified by the
-`-selected` added to the end of the base token name, such as `$layer-selected`.
-The color logic for selected state is either one full step lighter or darker on
-the IBM color scale. For example, the Gray100 selected state is Gray 90.
+`-selected` added after base token name, such as `$layer-selected-01`. The color
+logic for selected state is either one full step lighter or darker on the IBM
+color scale. For example, the Gray100 selected state is Gray 90.
 
 - For values between 100 and 70, the selected state is one full step lighter.
 - For values between 60 and 10, the selected state one full step darker.
@@ -506,7 +498,7 @@ de-emphasized in a faded fashion.
 Disabled elements are always styled in the Gray family no matter its base color.
 Component-specific styling will depend on the elements within it and what layers
 they are placed on. Some tokens have their own specific disabled tokens, such as
-`$layer-disabled`, while other elements are grouped together and share a
+`$layer-disabled-01`, while other elements are grouped together and share a
 disabled token like `$text-disabled`.
 
 - For the light themes, disabled color values range from White to Gray 50
@@ -546,7 +538,7 @@ practices is the key to accessible color selections.
 ### Contrast ratios
 
 Contrast is the difference in brightness between any two elements. The
-[Web Content Acessibility Guidelines (WCAG)](https://www.w3.org/TR/WCAG20/) set
+[Web Content Acessibility Guidelines (WCAG)](https://www.w3.org/TR/WCAG21/) set
 specific ratios that achieve the minimum required contrast for legibility.
 Generally speaking, small text is any size below 24px and requires a 4.5:1
 contrast ratio. Large text is anything above 24px and requires a 3:1 contrast
