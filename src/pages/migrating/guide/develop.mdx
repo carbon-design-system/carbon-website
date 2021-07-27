@@ -23,6 +23,7 @@ contributions.
 
 <AnchorLink>Changelog</AnchorLink>
 <AnchorLink>Components</AnchorLink>
+<AnchorLink>Sass Modules</AnchorLink>
 
 </AnchorLinks>
 
@@ -34,7 +35,7 @@ contributions.
 | `@carbon/react`           | <Tag type="green">New</Tag>      | [Carbon Components React](#carbon-components-react) | `carbon-components-react`                                                                                                  |
 | CSS Grid                  | <Tag type="cyan">Breaking</Tag>  | [CSS Grid](#css-grid)                               | `@carbon/grid` `Grid` `Row` `Column`                                                                                       |
 | Design Tokens             | <Tag type="cyan">Breaking</Tag>  | [SASS Modules](#sass-modules)                       | All components                                                                                                             |
-| SASS Modules              | <Tag type="cyan">Breaking</Tag>  | [SASS Modules](#sass-modules)                       | `@carbon/styles` `carbon-components-angular` `carbon-components-vue` `@carbon/react`                                       |
+| Sass Modules              | <Tag type="cyan">Breaking</Tag>  | [SASS Modules](#sass-modules)                       | `@carbon/styles` `carbon-components-angular` `carbon-components-vue` `@carbon/react`                                       |
 | Size Props                | <Tag type="cyan">Breaking</Tag>  | [Size prop](#size-prop-updates)                     | `Button` `DataTable` `Modal` `ComboBox` `Dropdown` `TextInput` `Search` `DatePicker` `Tag` `Toggle` `Select` `MultiSelect` |
 | Theming                   | <Tag type="green">New</Tag>      | [SASS Modules](#theming)                            | v11.x                                                                                                                      |
 | <!--                      | UI Shell theming                 | <Tag type="cyan">Breaking</Tag>                     | [SASS Modules](#sass-modules)                                                                                              | `UI Shell` `@carbon/styles` | --> |
@@ -91,45 +92,63 @@ Here is a
 
 TODO - to be added
 
-## SASS Modules
+## Sass Modules
 
-Since [NodeSass](https://sass-lang.com/blog/libsass-is-deprecated) was
-officially deprectated, we thought it might be a good time to transition to
-using `Sass modules`.
+Using [Dart-Sass](https://sass-lang.com/dart-sass), we are finally able to use
+[the Module System](https://sass-lang.com/blog/the-module-system-is-launched),
+dropping the `import-once` helpers that have being causing awful compilation and
+build times, re-thinking how developers bring styles into Carbon.
 
-### What this means for you and your team:
+Here are some reasons why we're moving away from Node-Sass and moving towards
+Dart-Sass:
+
+- Import Once: To offer better flexibility for importing Sass files, the project
+  used a convention to offer style deduplication due to Sass’s @import behavior.
+- Long compile times: While this technique would compile fine using Sass CLIs
+  directly, tooling like sass-loader would take an increasingly large amount of
+  time.
+- Incorrect behavior: In certain configurations with Webpack <4 and sass-loader,
+  style duplication was not even being prevented.
+- LibSass deprecation: When LibSass was
+  [deprecated](https://sass-lang.com/blog/libsass-is-deprecated), and
+  subsequently node-sass, we knew it was time to start looking towards Dart
+  Sass.
+
+### What this means for you and your team
 
 - Faster compile times: reduced by ~90%
 - Faster build times: reduced by ~60%
 - Over-all more flexibility when importing styles
 
-### This is what updating to Sass modules looks like:
+### How to migrate
 
-- Projects that are currently using `webpack` with `sass-loader` the update
-  should be automatic.
-- Projects using create-react-app or Next.js, remove `node-sass` from your
-  dependencies and add `sass` as the replacement. Find more information
-  regarding this process
-  [here](https://sass-lang.com/blog/libsass-is-deprecated#how-do-i-migrate).
-- In your project you will now use the `@use` keyword instead of `@import` to
-  include the Carbon packages, as seen below.
+1. Projects that are currently using `webpack` with `sass-loader` the update
+   should be automatic.
+2. Projects using create-react-app or Next.js, remove `node-sass` from your
+   dependencies and add `sass` as the replacement.
+3. In your project you will now use the `@use` keyword instead of `@import` to
+   include the Carbon packages, as seen below.
 
 To learn more about getting starting with `Dart Sass`, usage, and importing
 specific packages, checkout our
 [styles docs](https://github.com/carbon-design-system/carbon/tree/main/packages/styles).
 
-```jsx
-// Use all styles
-@use 'carbon-components';
-// Use all styles with configuration
-@use 'carbon-components' with (
-  $css--reset: false
-);
-// Include specific modules
-@use 'carbon-components/scss/color';
-// Include a component
-@use 'carbon-components/scss/components/accordion';
-```
+### Resources
+
+<Row className="resource-card-group">
+  <Column colLg={4} colMd={4} noGutterSm>
+    <ResourceCard
+      subTitle="@carbon/styles docs"
+      href="https://github.com/carbon-design-system/carbon/tree/main/packages/styles">
+      <MdxIcon name="github" />
+    </ResourceCard>
+  </Column>
+  <Column colLg={4} colMd={4} noGutterSm>
+    <ResourceCard
+      subTitle="Migrating from node-sass to dart-sass"
+      href="https://sass-lang.com/blog/libsass-is-deprecated#how-do-i-migrate"></ResourceCard>
+  </Column>
+</Row>
 
 ## Size Props
 
