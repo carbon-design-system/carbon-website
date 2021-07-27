@@ -29,21 +29,21 @@ contributions.
 
 ## Changelog
 
-| Feature                          | Status                           | Migration doc                                       | Packages or components impacted                                                                                            |
-| -------------------------------- | -------------------------------- | --------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| `@carbon/styles`                 | <Tag type="green">New</Tag>      | [Bring in styles](#bring-in-styles)                 | `carbon-components`                                                                                                        |
-| `@carbon/react`                  | <Tag type="green">New</Tag>      | [Carbon Components React](#carbon-components-react) | `carbon-components-react`                                                                                                  |
-| SASS Modules                     | <Tag type="cyan">Breaking</Tag>  | [SASS Modules](#sass-modules)                       | `@carbon/styles` `carbon-components-angular` `carbon-components-vue` `@carbon/react`                                       |
-| Inline theming (light/dark mode) | <Tag type="green">New</Tag>      | [SASS Modules](#sass-modules)                       | v11.x                                                                                                                      |
-| CSS Grid                         | <Tag type="cyan">Breaking</Tag>  | [CSS Grid](#css-grid)                               | `@carbon/grid` `Grid` `Row` `Column`                                                                                       |
-| Design tokens                    | <Tag type="cyan">Breaking</Tag>  | [SASS Modules](#sass-modules)                       | All components                                                                                                             |
-| Size prop                        | <Tag type="cyan">Breaking</Tag>  | [Size prop](#size-prop-updates)                     | `Button` `DataTable` `Modal` `ComboBox` `Dropdown` `TextInput` `Search` `DatePicker` `Tag` `Toggle` `Select` `MultiSelect` |
-| UI Shell theming                 | <Tag type="cyan">Breaking</Tag>  | [SASS Modules](#sass-modules)                       | `UI Shell` `@carbon/styles`                                                                                                |
-| Popover                          | <Tag type="green">New</Tag>      | [SASS Modules](#sass-modules)                       | `Tooltip`                                                                                                                  |
-| Tooltip                          | <Tag type="cyan">Breaking</Tag>  | [SASS Modules](#sass-modules)                       | `Tooltip` `@carbon/react`                                                                                                  |
-| `carbon-components-react`        | <Tag type="red">Deprecated</Tag> | [SASS Modules](#sass-modules)                       | v11.x                                                                                                                      |
-| `carbon-icons`                   | <Tag type="red">Deprecated</Tag> | [SASS Modules](#sass-modules)                       | v11.x                                                                                                                      |
-| `carbon-components`              | <Tag type="red">Deprecated</Tag> | [SASS Modules](#sass-modules)                       | v11.x                                                                                                                      |
+| Feature                   | Status                           | Migration doc                                       | Packages or components impacted                                                                                            |
+| ------------------------- | -------------------------------- | --------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | --------------------------- | --- |
+| `@carbon/styles`          | <Tag type="green">New</Tag>      | [Bring in styles](#bring-in-styles)                 | `carbon-components`                                                                                                        |
+| `@carbon/react`           | <Tag type="green">New</Tag>      | [Carbon Components React](#carbon-components-react) | `carbon-components-react`                                                                                                  |
+| CSS Grid                  | <Tag type="cyan">Breaking</Tag>  | [CSS Grid](#css-grid)                               | `@carbon/grid` `Grid` `Row` `Column`                                                                                       |
+| Design Tokens             | <Tag type="cyan">Breaking</Tag>  | [SASS Modules](#sass-modules)                       | All components                                                                                                             |
+| Sass Modules              | <Tag type="cyan">Breaking</Tag>  | [SASS Modules](#sass-modules)                       | `@carbon/styles` `carbon-components-angular` `carbon-components-vue` `@carbon/react`                                       |
+| Size Props                | <Tag type="cyan">Breaking</Tag>  | [Size prop](#size-prop-updates)                     | `Button` `DataTable` `Modal` `ComboBox` `Dropdown` `TextInput` `Search` `DatePicker` `Tag` `Toggle` `Select` `MultiSelect` |
+| Theming                   | <Tag type="green">New</Tag>      | [SASS Modules](#theming)                            | v11.x                                                                                                                      |
+| <!--                      | UI Shell theming                 | <Tag type="cyan">Breaking</Tag>                     | [SASS Modules](#sass-modules)                                                                                              | `UI Shell` `@carbon/styles` | --> |
+| <!--                      | Popover                          | <Tag type="green">New</Tag>                         | [SASS Modules](#sass-modules)                                                                                              | `Tooltip`                   | --> |
+| <!--                      | Tooltip                          | <Tag type="cyan">Breaking</Tag>                     | [SASS Modules](#sass-modules)                                                                                              | `Tooltip` `@carbon/react`   | --> |
+| `carbon-components-react` | <Tag type="red">Deprecated</Tag> | [SASS Modules](#sass-modules)                       | v11.x                                                                                                                      |
+| `carbon-icons`            | <Tag type="red">Deprecated</Tag> | [SASS Modules](#sass-modules)                       | v11.x                                                                                                                      |
+| `carbon-components`       | <Tag type="red">Deprecated</Tag> | [SASS Modules](#sass-modules)                       | v11.x                                                                                                                      |
 
 ## Components
 
@@ -74,6 +74,23 @@ yarn remove carbon-components carbon-components-react carbon-icons
 something here about updating imports to point to `@carbon/react` instead of
 `carbon-components-react`, maybe explaing that the components all still work the
 same just coming from a diff package now. and why did we do this???
+
+## CSS Grid
+
+A huge change for us this release is dropping support for IE11, which means we
+can now support CSS Grid and sub-grid. 🎉
+
+Here is a
+[link to our Grid docs](https://github.com/carbon-design-system/carbon/blob/main/docs/migration/11.x-grid.md).
+
+### What this means for you and your team:
+
+- No longer need `Row` components
+- You can drop `Column` components directly into `Grid`
+
+## Design Tokens
+
+TODO - to be added
 
 ## Sass Modules
 
@@ -133,14 +150,12 @@ specific packages, checkout our
   </Column>
 </Row>
 
-### Size Prop updates
+## Size Props
 
 - Over the years our size props got a little messy. So we updated them, so that
   they are now consistent across all of our components.
 
 ### What this means for you and your team:
-
-_add something here_
 
 The props should now look like this:
 
@@ -153,15 +168,54 @@ The props should now look like this:
 | xl        | 64px |
 | 2xl       | 80px |
 
-## CSS Grid
+## Theming
 
-A huge change for us this release is dropping support for IE11, which means we
-can now support CSS Grid and sub-grid. 🎉
+We have added a new, flexible `Theme` component. The `Theme` component allows
+you to specify the theme for a section of the page, for example with inline
+theming, or render a theme for an entire page.
 
-Here is a
-[link to our Grid docs](https://github.com/carbon-design-system/carbon/blob/main/docs/migration/11.x-grid.md).
+### What this means for you and your team
 
-### What this means for you and your team:
+- Inline theming 🎉
 
-- No longer need `Row` components
-- You can drop `Column` components directly into `Grid`
+Here is an example of how you can use the `Theme` component:
+
+```jsx
+import { g90 } from '@carbon/themes';
+
+<Theme theme={g90}>
+  <ChildComponent />
+</Theme>;
+```
+
+To learn more about how our `Theme` component works with our `useTheme` hook,
+checkout our
+[Theme docs](https://github.com/carbon-design-system/carbon/blob/main/packages/carbon-react/src/components/Theme/Theme.mdx).
+
+### Layer Component
+
+In regards to theming, we have also added in a new `Layer` component. The
+`Layer` component builds on top of contextual token, allowing you to style
+different layers, or directly use the tokens exported from our styles package.
+
+### What this means for you and your team
+
+- More flexibility for 3 layer stacking vs. 2 layer stacking
+- Third layer stacking will now be supported in dark themes
+
+Here is an example of how you can use the `Layer` component:
+
+```jsx
+<Layer>
+  <ChildComponent />
+  <Layer>
+    <ChildComponent />
+    <Layer>
+      <ChildComponent />
+    </Layer>
+  </Layer>
+</Layer>
+```
+
+To learn more about how our `Layer` component works and it's API, checkout our
+[Layer docs](https://github.com/carbon-design-system/carbon/blob/main/packages/carbon-react/src/components/Layer/Layer.mdx).
