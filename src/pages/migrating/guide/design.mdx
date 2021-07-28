@@ -6,97 +6,118 @@ description:
 tabs: ['Overview', 'Design', 'Develop']
 ---
 
+<PageDescription>
+
+The transition from v10 to v11 includes updates and additions to color tokens
+and theming as well as introduces beta kits to experiment with.
+
+</PageDescription>
+
+<AnchorLinks>
+  <AnchorLink>Design kit</AnchorLink>
+  <AnchorLink>Components</AnchorLink>
+  <AnchorLink>Elements</AnchorLink>
+</AnchorLinks>
+
 ## Design kit
 
-### Whats changed
+### What's changed
 
 - Updated existing color token names to better reflect their usage
 - Updated layer styles with new color tokens
 - Updated text styles with new color tokens
-- Removal of light variants (in favor of layer and contextual token sets)
+- Removal of light variants (in favor of new layer and contextual token sets)
 
-### Whats new
+### What's new
 
 - Added new color tokens
-  - Introducing layer set tokens
-  - Introducing contextual layer tokens
+- Introduced layering models: layer set tokens and contextual layer tokens
 
-### v11 Beta Kit
+### v11 Beta kit
 
-Download and tryout the v11 Beta kit that use our updated token names and
-additional token layer sets and contextual sets. This
+Try out the v11 Beta Sketch kit that has been updated to reflect our color token
+name changes and additional token layer sets and contextual layer sets. The v11
+Beta kit is available in the White and Gray 100 themes.
 
-[Placeholder: Tile 1 link (White theme)]
+<InlineNotification>
+  Note: The v11 Beta kit is temporary and only available during our beta release
+  timeframe. The existing v10 kits will be updated with these changes and
+  additions once v11 is released to the general public.
+</InlineNotification>
 
-[White theme (Beta)]
-(sketch://add-library/cloud/fabc8814-ead2-4eeb-a893-ef3b6ea88875)
-
-[Placeholder: Tile 2 link (Gray 100 theme)]
-
-[Gray 100 theme (Beta)]
-(sketch://add-library/cloud/9b33e49d-9b79-4696-9f57-c7a15c1e276a)
-
----
+<Row className="resource-card-group">
+  <Column colLg={4} colMd={4} noGutterSm>
+    <ResourceCard
+      subTitle="White theme (Beta)"
+      href="sketch://add-library/cloud/fabc8814-ead2-4eeb-a893-ef3b6ea88875"
+      actionIcon="download">
+      <MdxIcon name="sketch" />
+    </ResourceCard>
+  </Column>
+  <Column colLg={4} colMd={4} noGutterSm>
+    <ResourceCard
+      subTitle="Gray 100 theme (Beta)"
+      actionIcon="download"
+      href="sketch://add-library/cloud/9b33e49d-9b79-4696-9f57-c7a15c1e276a">
+      <MdxIcon name="sketch" />
+    </ResourceCard>
+  </Column>
+</Row>
 
 ## Components
 
-### UI Shell
+### UI shell
 
-The UI Shell is now themeable and has been updated to use Carbon theme tokens
-instead of component specific tokens. As a result of this change, the component
-specific tokens have been deprecated.
-
----
+The UI shell is now themeable and has been updated to use inline theming. The UI
+shell uses Carbon theme tokens instead of component specific tokens and the
+color will follow each themes styles.
 
 ## Elements
 
-### Color
+### Color tokens
 
-**Color tokens**
-
-Existing color tokens have been renamed to better reflect their usage. The token
-names are divided into parts to help you make decisions and understand options.
-The first part of the token name references the general UI element the color is
-being applied to. If the element can be styled in more than one way then the
-last half of the token name will further describe how it should be used.
-
-In addition to renaming existing tokens, new tokens have been added to fill
-existing color token gaps in our system and to fix complex layering logic.
-
-We have also introduced two different types of layering models—Layer set tokens
-and Contextual layer tokens. You can choose to use one model over another
-depending on what makes most sense to migrate to for your product.
+Existing color tokens have been renamed to better reflect their usage. In
+addition to renaming existing tokens, new tokens have been added to fill
+existing color token gaps in our system and to fix complex layering logic. We
+have introduced two different types of color token layering models—Layer set
+tokens and Contextual layer tokens. You can choose to use one model over the
+other depending on which one makes most sense to migrate to for your product.
 
 See Carbon's
-[color usage](https://v11.carbondesignsystem.com/guidelines/color/overview/#tokens)
+[color overview](https://v11.carbondesignsystem.com/guidelines/color/overview/#tokens)
+and
+[color implementation](https://carbondesignsystem-git-fork-aagonza-f5b8b0-carbon-design-system.vercel.app/guidelines/color/implementation#layering-model-tokens)
 guidance for more information.
 
-[Placeholder: tile link to github code to "color token" package?]
+<Row className="resource-card-group">
+  <Column colLg={4} colMd={4} noGutterSm>
+    <ResourceCard
+      subTitle="Migrating color tokens"
+      href="https://github.com/carbon-design-system/carbon/pull/9245">
+      <MdxIcon name="github" />
+    </ResourceCard>
+  </Column>
+</Row>
 
-**Hover colors**
+### Inline theming
 
-Hover colors have been updated to follow a lighten and darken approach. Hover
-values fall outside of the IBM color palette steps and are calculated in code
-through an adjustLightness function with either a + or - number value. Note that
-in the Sketch assets, hex codes are still used as values for hover states for
-ease of use and are built into the layer style tokens.
+Inline theming is available to use in your product. Inline theming is used when
+a section of a UI needs to have a different theme from the rest of the page and
+allows themes to be nested within each other without needing custom styles or
+overrides. In product, a common use-case for inline theming is applying a
+contrasting theme to a UI shell and side panels.
 
 See Carbon's
-[interaction states](https://v11.carbondesignsystem.com/guidelines/color/overview/#interaction-states)
+[inline theming](https://carbondesignsystem-git-fork-aagonza-f5b8b0-carbon-design-system.vercel.app/guidelines/color/implementation#inline-theming)
 guidance for more information.
 
-[Placeholder: tile link to github code "hover color" package?]
+### Light or dark mode
 
-**Inline theming**
-
-_Need description..._
+Light or dark mode has been newly introduced and is a theme setting that allows
+the end user to choose a UI that is either predominately light or dark in color.
+The UI will automatically switch from using light color backgrounds with dark
+color text to using dark color backgrounds with light color text.
 
 See Carbon's
-[inline theming guidance](https://carbondesignsystem-git-fork-aagonza-f5b8b0-carbon-design-system.vercel.app/guidelines/color/implementation#inline-theming)
-for more information.
-
-[Placeholder: tile link to github code "inline theme" package?]
-
-**Light/dark mode???**
-
-_Need description..._
+[light or dark mode](https://carbondesignsystem-git-fork-aagonza-f5b8b0-carbon-design-system.vercel.app/guidelines/color/implementation#designing-for-light-or-dark-mode)
+guidance for more information.
