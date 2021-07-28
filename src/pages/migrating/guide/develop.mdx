@@ -30,17 +30,17 @@ possible by detailing all of the updates below.
 
 ## Changelog
 
-| Feature                   | Status                           | Migrate                       | Packages or components impacted                                                      |
-| ------------------------- | -------------------------------- | ----------------------------- | ------------------------------------------------------------------------------------ |
-| `@carbon/react`           | <Tag type="green">New</Tag>      | [Components](#components)     | `carbon-components-react`                                                            |
-| `@carbon/styles`          | <Tag type="green">New</Tag>      | [SASS Modules](#sass-modules) | `carbon-components`                                                                  |
-| Sass Modules              | <Tag type="cyan">Breaking</Tag>  | [SASS Modules](#sass-modules) | `@carbon/styles` `carbon-components-angular` `carbon-components-vue` `@carbon/react` |
-| Color Tokens              | <Tag type="cyan">Breaking</Tag>  | [Color tokens](#color-tokens) | All components                                                                       |
-| Theming                   | <Tag type="green">New</Tag>      | [Theming](#theming)           | `@carbon/react`                                                                      |
-| CSS Grid                  | <Tag type="cyan">Breaking</Tag>  | [CSS Grid](#css-grid)         | `@carbon/grid` `Grid` `Row` `Column`                                                 |
-| `carbon-icons`            | <Tag type="red">Deprecated</Tag> | [Components](#components)     | `@carbon/react`                                                                      |
-| `carbon-components`       | <Tag type="red">Deprecated</Tag> | [SASS Modules](#sass-modules) | `@carbon/styles`                                                                     |
-| `carbon-components-react` | <Tag type="red">Deprecated</Tag> | [Components](#components)     | `@carbon/react`                                                                      |
+| Feature                   | Status                           | Migrate                       | Packages or components impacted                                                         |
+| ------------------------- | -------------------------------- | ----------------------------- | --------------------------------------------------------------------------------------- |
+| `@carbon/react`           | <Tag type="cyan">Breaking</Tag>  | [Components](#components)     | `carbon-components-react` `carbon-icons` `carbon-components`                            |
+| `@carbon/styles`          | <Tag type="cyan">Breaking</Tag>  | [Styles](#styles)             | `carbon-components` `@carbon/react` `carbon-components-angular` `carbon-components-vue` |
+| Color Tokens              | <Tag type="cyan">Breaking</Tag>  | [Color tokens](#color-tokens) | All components                                                                          |
+| Theming                   | <Tag type="green">New</Tag>      | [Theming](#theming)           |                                                                                         |
+| Layering                  | <Tag type="cyan">Breaking</Tag>  | [Layering](#layer-component)  | Components using `light` prop                                                           |
+| CSS Grid                  | <Tag type="cyan">Breaking</Tag>  | [CSS Grid](#css-grid)         | `@carbon/grid` `Grid` `Row` `Column`                                                    |
+| `carbon-icons`            | <Tag type="red">Deprecated</Tag> | [Components](#components)     |                                                                                         |
+| `carbon-components`       | <Tag type="red">Deprecated</Tag> | [SASS Modules](#sass-modules) |                                                                                         |
+| `carbon-components-react` | <Tag type="red">Deprecated</Tag> | [Components](#components)     |                                                                                         |
 
 <!-- to do: add rows for
 - size props breaking changes
@@ -52,10 +52,10 @@ possible by detailing all of the updates below.
 
 ## Components
 
-We have deprecated `carbon-components-react` in favor of our new package
-`@carbon/react`. All of the component usage and API remains the same. The big
-change with this is to avoid having to install three separate packages and
-having to keep them in sync.
+We have deprecated `carbon-components-react`, `carbon-icons` and
+`carbon-components` in favor of our new package `@carbon/react`. All of the
+component usage and API remains the same. The big change with this is to avoid
+having to install three separate packages that you have to keep in sync.
 
 ### What this means for you and your team
 
@@ -85,8 +85,10 @@ installing or updating one package.
    ```
 
 3. Update package imports. Migration for this can be as easy as
-   find-and-replace. Search for anywhere you're importing components from
-   `carbon-components-react` and update the import to point to `@carbon/react`.
+   find-and-replace. Search for anywhere you're importing components or icons
+   from `carbon-components-react` and `carbon-icons` and update the import to
+   point to `@carbon/react`. Read the next section below to find out how to
+   migrate styles.
 
 ### Resources
 
@@ -100,12 +102,15 @@ installing or updating one package.
   </Column>
 </Row>
 
-## Sass Modules
+## Styles
 
-In v11, our Carbon styles feature two essential changes:
-
-1. Their own dedicated package `@carbon/styles`
-2. Transition to Sass modules
+In v11, our Carbon styles feature two essential changes: their own dedicated
+package `@carbon/styles` and transitioning to Sass modules. If you're using our
+React components we have some great news for you, you don't have to install the
+styles package! `@carbon/react` already forwards all the sass included in
+`@carbon/styles`. If you are a library not using our React components, and just
+consuming our styles, then your migration will require installing the new
+package in addition to what's listed below.
 
 Using [Dart-Sass](https://sass-lang.com/dart-sass), we are finally able to use
 [the Module System](https://sass-lang.com/blog/the-module-system-is-launched),
@@ -139,14 +144,15 @@ Dart-Sass:
    should be automatic.
 2. Projects using create-react-app or Next.js, remove `node-sass` from your
    dependencies and add `sass` as the replacement.
-3. Remove the `carbon-components` dependency and install `@carbon/styles`
-4. In any of your files where you are using Carbon sass (tokens, mixins, or
+3. In any of your files where you are using Carbon sass (tokens, mixins, or
    funcions), you will now need to import the specific sass file at the top. You
    will use the `@use` keyword instead of `@import` to include the Carbon sass,
-   as seen below.
+   as seen below. If you're using our React components, your import will point
+   to the `@carbon/react` package. If you're a library just using the styles
+   package, your import will point to that.
 
    ```scss
-   @use '@carbon/styles/scss/theme';
+   @use '@carbon/react/scss/theme';
 
    body {
      background: theme.$background;
@@ -157,7 +163,7 @@ Dart-Sass:
    instances, you can do the following:
 
    ```scss
-   @use '@carbon/styles/scss/theme' as *;
+   @use '@carbon/react/scss/theme' as *;
 
    body {
      background: $background;
@@ -187,10 +193,11 @@ specific Carbon sass, checkout our
 
 ## Color Tokens
 
-We have renamed our color tokens to be more semantic and inform on their usage.
-Some of the changes will be easy enough to find-and-replace, however, make sure
-to double check that you were using the correct v10 token as to not migrate to
-an incorrect token.
+We have renamed our color tokens to be more semantic and better inform on their
+usage. Some of the changes can be easily done with find-and-replace, however,
+some may require more manual updates. When migrating, make sure to double check
+that you were using the correct v10 token as to not migrate to an incorrect
+token.
 
 ### What this means for you and your team
 
@@ -199,11 +206,11 @@ an incorrect token.
 
 ### How to migrate
 
-Check for any sass files that are referencing color tokens, and use our color
-token migration table to find the updated token name. We recommend checking
-manually since some of the v10 tokens apply to more than one v11 token depending
-on usage. For example `hover-ui` could be `field-hover` or `layer-hover`
-depending on where it is being used.
+1. Check for any sass files that are referencing color tokens, and use our color
+   token migration table to find the updated token name. We recommend checking
+   manually since some of the v10 tokens apply to more than one v11 token
+   depending on usage. For example `hover-ui` could be `field-hover` or
+   `layer-hover` depending on where it is being used.
 
 To view a full table of v10 color tokens and their v11 equivalent, check out our
 [colors migration doc](https://github.com/carbon-design-system/carbon/blob/356dcf2c2de54bece89440b989e715f08790d470/docs/migration/11.x-color.md).
