@@ -65,7 +65,7 @@ and experiences. Additional colors are used sparingly and purposefully.
 </div>
 {/* possible TODO: remove inline style */}
 <ColorGrid colorFamily="alerts" style="margin-top: 2rem" />
-<Caption>Alerts Colors</Caption>
+<Caption>Alerts colors</Caption>
 
 ### Layering model
 
@@ -77,36 +77,33 @@ components.
 
 The layering model differs between the _light_ and _dark_ themes.
 
-- In the light themes, layers alternate between White and Gray 10.
+- In the light themes, layers alternate between White and Gray 10 with each
+  added layer.
 - In the dark themes, layers become one step lighter with each added layer.
 
 <Row>
 <Column colLg={12}>
 
-![Layering model for light and dark themes](images/color-layering-model-2.png)
+![Layering model for light themes](images/color-layering-model-light.png)
 
 </Column>
 </Row>
 
-<DoDontRow>
+<Caption>
+  Light theme layering model example in the shown in the White theme
+</Caption>
 
-<DoDont
-    colLg={6}
-    caption="Light theme layering model example">
+<Row>
+<Column colLg={12}>
 
-![White overflow menu on Gray 10 card.](images/Light_theme_03.png)
+![Layering model for dark themes](images/color-layering-model-dark.png)
 
-  </DoDont>
+</Column>
+</Row>
 
-  <DoDont
-    colLg={6}
-    caption="Dark theme layering model example">
-
-![Gray 80 overflow menu on Gray 90 card.](images/Dark_theme_03_new.png)
-
-  </DoDont>
-
-</DoDontRow>
+<Caption>
+  Dark theme layering model example in the shown in the Gray 100 theme
+</Caption>
 
 <br />
 
@@ -195,19 +192,32 @@ layering model.
 
 There are two light themes in Carbon: White and Gray 10. In the light themes,
 layers alternate between White and Gray 10. For enabled UI colors light themes
-primarily uses the color range of White to Gray 20.
+primarily uses the color range of White to Gray 20, and for text and icons uses
+the color range between Gray 100 and Gray 60.
 
-- **White theme**: uses white background as it layering model base and is paired
-  with components using Gray 10 containers to start.
-- **Gray 10 theme:** uses Gray 10 backgrounds as it layering model baseand is
-  paired with components using white containers to start.
+- **White theme**: uses White backgrounds and is paired with components using
+  Gray 10 containers for its first layer.
+- **Gray 10 theme:** uses Gray 10 backgrounds and is paired with components
+  using white containers for its first layer.
 
 All of the themes are available in
 [Design kits](https://carbondesignsystem.com/designing/kits/sketch/).
 
-![Product example in a light theme](images/color-implementation-mode-light.png)
+<Tabs>
 
-<Caption>This is a placeholder image</Caption>
+<Tab label="White">
+
+![A dashboard in the white theme](images/color-overview-themes-white.png)
+
+</Tab>
+
+<Tab label="Gray 10">
+
+![A dashboard in the Gray 10 theme](images/color-overview-themes-gray10.png)
+
+</Tab>
+
+</Tabs>
 
 <DoDontRow>
   <DoDont caption="Gray 10 dropdown on White background." colLg={6}>
@@ -228,7 +238,8 @@ All of the themes are available in
 
 There are two dark themes: Gray 90 and Gray 100. In the dark themes, layers
 become one step lighter with each added layer. For enabled UI colors, dark
-themes primarily use the color range of Gray 100 through Gray 70.
+themes primarily use the color range of Gray 100 through Gray 70, and for text
+and icons uses the color range between White and Gray 50.
 
 - **Gray 90 theme**: uses Gray 90 backgrounds and is paired with components
   using Gray 80 containers to start.
@@ -238,9 +249,21 @@ themes primarily use the color range of Gray 100 through Gray 70.
 All of the themes are available in
 [Design kits](https://carbondesignsystem.com/designing/kits/sketch/).
 
-![Product example in a light theme](images/color-implementation-mode-dark.png)
+<Tabs>
 
-<Caption>This is a placeholder image</Caption>
+<Tab label="Gray 90">
+
+![A dashboard in the Gray 90 theme](images/color-overview-themes-gray90.png)
+
+</Tab>
+
+<Tab label="Gray 100">
+
+![A dashboard in the Gray 100 theme](images/color-overview-themes-gray100.png)
+
+</Tab>
+
+</Tabs>
 
 <DoDontRow>
   <DoDont
@@ -296,7 +319,7 @@ token is applied in the UI and the value is the actual color (hex code) that
 appears in the assigned theme. Color token names and roles are the same across
 themes, only the assigned value will change base on which theme is being used.
 
-See the [color usage tab](/guidelines/color/usage) for the full list of color
+See the [color usage](/guidelines/color/usage) tab for the full list of color
 tokens.
 
 <Row>
@@ -307,11 +330,14 @@ tokens.
 </Column>
 </Row>
 
-<Caption>Color tokens for components are the same across themes.</Caption>
+<Caption>
+  Color tokens for components are the same across themes as shown in the White
+  theme (left) and Gray 100 theme (right).
+</Caption>
 
 <br />
 
-**The power of tokens**
+#### The power of tokens
 
 When building a component or designing a part of your product, you may be
 tempted to use colors from the IBM Design Language directly. For example, when
@@ -337,37 +363,45 @@ In summary, tokens help us abstract how we use color from the values themselves.
 ### Token names
 
 For quick reference, the role of a token is represented in the token name itself
-to help you make correct usage decisions. The token names are divided into 3
+to help you make correct usage decisions. The token names are divided into three
 possible parts. The first part of the token name references the general UI
-element the color is being applied to, like `background`, `text`, `border`. The
-second part of token name will specify how or when to use that type of token. It
-will be an adjective that describes how or when to use to token, like `subtle`
-or `primary`. At its end, token name can also include the interaction state of
-the token like `hover` or `active`.
+element the color is being applied to, like `background`, `text`, or `border`.
+The second part of token name will specify its role. It will be an adjective
+that describes how or when to use to token, like `subtle` or `primary`. At its
+end, token name can also include the interaction state of the token like `hover`
+or `active`.
 
 ### Token groups
 
-For quick reference, the role of a token is represented in the token name itself
-to help you make correct usage decisions. The token names are divided into 3
-possible parts. The first part of the token name references the general UI
-element the color is being applied to, like `background`, `text`, `border`. The
-second part of token name will specify how or when to use that type of token. It
-will be an adjective that describes how or when to use to token, like `subtle`
-or `primary`. At its end, token name can also include the interaction state of
-the token like `-hover` or `-active` .
+There are 10 main groups of color tokens. They are grouped by the common UI
+element they are applied too. Grouping tokens makes it easier to find and apply
+color tokens. There are a few core tokens that do not belong to the a group and
+stand as individual tokens like $overlay $highlight and $interactive.
 
-| Group      | Applied to                                               |
-| ---------- | -------------------------------------------------------- |
-| Background | Page or primary backgrounds                              |
-| Layer      | Any container that sets on top of a background           |
-| Field      | Form and input container backgrounds                     |
-| Border     | Dividers, rules, and borders between and around elements |
-| Text       | Type and type styles                                     |
-| Link       | Standalone and inline links                              |
-| Icon       | Icons and pictograms                                     |
-| Support    | Notification elements and status indicators              |
-| Focus      | Focus states                                             |
-| Skeleton   | Skeleton states                                          |
+| Token group | Applied to                                               |
+| ----------- | -------------------------------------------------------- |
+| Background  | Page or primary backgrounds                              |
+| Layer       | Any container that sets on top of a background           |
+| Field       | Form and input container backgrounds                     |
+| Border      | Dividers, rules, and borders between and around elements |
+| Text        | Type and type styles                                     |
+| Link        | Standalone and inline links                              |
+| Icon        | Icons and pictograms                                     |
+| Support     | Notification elements and status indicators              |
+| Focus       | Focus states                                             |
+| Skeleton    | Skeleton states                                          |
+
+#### Component tokens
+
+Some components have explicit color tokens to be used only with that particular
+component. These tokens are called _component tokens_. They are part of the
+component packages and not part of the elements package like the core color
+tokens. To find the tokens and values across the themes for each the components,
+visit their component page.
+
+- Button
+- Tag
+- Notification
 
 ## Interaction states
 
@@ -395,26 +429,23 @@ The color layering model for interaction tokens is as follows:
 ### Hover
 
 Hover is a subtle visual change that appears when a mouse cursor moves over an
-interactive element. Hover states have their own tokens and are identified the
-`-hover` added after the base token name, such as `$background-hover`.
+interactive element. Hover states have their own tokens and are identified by
+`-hover` added to the end of the base token name, such as `$background-hover`.
 
-For container backgrounds in the IBM themes, hover states token values are "half
-steps" between two adjacent colors on the IBM color palette steps. These values
-fall outside of the IBM color palette steps and are calculated in code through
-an `adjustLightness` function with either a `+` or `-` number value. For
-example, `$background-hover: adjustLightness($background, -5)`. _Note that in
-the Sketch assets, hex codes are still used as values for hover states for ease
-of use and are built into the layer style tokens._
+In the IBM themes, hover states token values are “half steps” between two
+adjacent colors on the IBM core color palette steps. These values fall outside
+of the IBM core color palette steps and have their own spectrum. Hover colors
+should not be used for anything other hover states.
 
-- For values between Black and 70, interaction gets `+` adjustment.
-- For values between 60 and White, interaction gets `-` adjustment.
+- For values between Black and 70, the hover state is a half step lighter.
+- For values between 60 and White, the hover state is a half step darker.
 
 Elements like text or icons that use `secondary` colors for their enabled state,
-will change to `primary` color on hover, giving them a subtle emphasis. Often
-times this shift in color (to the text or icon element) will also be accompanied
-by a background hover color shift as well. For example, an overflow menu uses
-`$text-secondary` and `$layer` in its enabled state. On hover, the text switches
-to `$text-primary` and the background to `$layer-hover`.
+will change to the `primary` color on hover, giving them a subtle emphasis. Most
+of the time, this shift in color (to the text or icon element) will be
+accompanied by a background hover color shift as well. For example, an overflow
+menu uses `$text-secondary` and `$layer` in its enabled state. On hover, the
+text switches to `$text-primary` and the background to `$layer-hover`.
 
 <Row>
 <Column colLg={8}>
@@ -425,8 +456,8 @@ to `$text-primary` and the background to `$layer-hover`.
 </Row>
 
 <Caption>
-  Shown in the white theme, (1) `$layer` enabled color and (2) `$layer-hover`
-  hover color.
+  Shown in the white theme, $layer enabled color (1) and $layer-hover hover
+  color (2).
 </Caption>
 
 <br />
@@ -442,8 +473,8 @@ is Blue 80.
 - For values between 100 and 70, the active state is two full steps lighter.
 - For values between 60 and 10, the active state is two full steps darker.
 
-The exceptions are that White value shares the same active state as Gray 10
-value, and Black value shares the same active state as Gray 100 value.
+The exceptions are that White value shares the same active state value as Gray
+10, and Black value shares the same active state value as Gray 100.
 
 <Row>
 <Column colLg={8}>
@@ -454,8 +485,8 @@ value, and Black value shares the same active state as Gray 100 value.
 </Row>
 
 <Caption>
-  Shown in the White theme, (1) `$button-primary` enabled color and (2)
-  `$button-primary-active` active color.
+  Shown in the White theme, $button-primary enabled color (1) and
+  $button-primary-active active color (2).
 </Caption>
 
 <br />
@@ -471,8 +502,13 @@ color scale. For example, the Gray100 selected state is Gray 90.
 - For values between 100 and 70, the selected state is one full step lighter.
 - For values between 60 and 10, the selected state one full step darker.
 
-The exception is that White shares the same selected state as Gray 10, and Black
-shares the same selected state as Gray 100.
+The exception is that White shares the same selected state value as Gray 10, and
+Black shares the same selected state value as Gray 100.
+
+Elements like text or icons that use `secondary` colors for their enabled state,
+will change to the `primary` color when selected, giving them a subtle emphasis.
+Most of the time, this shift in color (to the text or icon element) will be
+accompanied by a selected background color shift as well.
 
 <Row>
 <Column colLg={8}>
@@ -483,8 +519,8 @@ shares the same selected state as Gray 100.
 </Row>
 
 <Caption>
-  Shown in the white theme, (1) `$layer` enabled color and (2) `$layer-selected`
-  selected color.
+  Shown in the white theme, $layer enabled color (1) and $layer-selected
+  selected color (2).
 </Caption>
 
 <br />
@@ -516,7 +552,7 @@ contrast accessibility. Often times to achieve proper 3:1 contrast a
 </Row>
 
 <Caption>
-  (1) White theme `$focus` color and (2) Gray 90 theme `$focus` color.
+  White theme $focus color (1) and Gray 90 theme $focus color (2).
 </Caption>
 
 <br />
