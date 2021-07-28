@@ -22,7 +22,7 @@ harmony through our User Interface design.
 
 <AnchorLink>Introduction</AnchorLink>
 <AnchorLink>Color anatomy</AnchorLink>
-<AnchorLink>Theming</AnchorLink>
+<AnchorLink>Themes</AnchorLink>
 <AnchorLink>Color tokens</AnchorLink>
 <AnchorLink>Interaction states</AnchorLink>
 <AnchorLink>Accessibility</AnchorLink>
@@ -110,6 +110,7 @@ The layering model differs between the _light_ and _dark_ themes.
 
 <br />
 
+<!--- 
 ## Applying color
 
 Carbon uses tokens and themes to manage color. Tokens are role-based, and themes
@@ -121,6 +122,7 @@ specify the color values that serve those roles in the UI.
 | [Token](/guidelines/color/overview/#tokens)             | A token is the role-based identifier that assigns a color. Unlike hex codes, tokens apply universally across themes. For example, `$layer`, `$border-subtle`, `$support-error`.                        |     |
 | [Role](/guidelines/color/overview/#color-roles)         | A role is the systematic usage of a color. Roles cannot be changed between themes.                                                                                                                     |     |
 | [Value](/guidelines/color/overview/#interaction-states) | A value is the unique visual attribute (hex code, rgba value) assigned to a token through the use of a theme.                                                                                          |
+--->
 
 ## Themes
 
@@ -257,7 +259,7 @@ All of the themes are available in
 
 <br />
 
-### High contrast
+### High contrast moments
 
 In some cases, it is helpful to apply light components to dark backgrounds or
 dark components to light backgrounds. This technique is useful to focus
@@ -284,23 +286,15 @@ instances like a dark UI Shell Header with a light theme page.
 ## Color Tokens
 
 Color in Carbon is managed through tokens. Tokens are an abstracted method of
-applying color in a consistent, reusable, and scalable way. Each color token is
-assigned a role and a value. The role determines where the token is applied in
-the UI and the value is the actual color (that is, the hex code) that will
-appear in an assigned theme. Tokens are used in place of a one-off hex code,
-allowing for changes in values to be made at scale, for easy color management.
-The token names themselves stay the same in code no matter which theme is being
-used.
+applying color in a consistent, reusable, and scalable way. Tokens are used in
+place of a hard coded values, like a hex code. Tokens allow for value changes to
+be made at scale, making design language changes easy to implement as well as
+making color theming possible.
 
-Here's an example of how tokens work: instead of coding all instances of input
-labels in a UI to be `#565656`, the _form_ component in Carbon specifies the
-label color to use the token `$text-secondary`. The value of the token will
-automatically be called in a relay effect through a theme file which will assign
-it the value of `#565656`. For a different theme, that same `$text-secondary`
-token could be mapped to a different hex value like `#ffffff`. By using the
-token name instead of the hex code, any color updates within a theme can be
-applied instantly, and any UI (or portion of a UI) can switch between different
-themes easily.
+Each color token is assigned a role and a value. The role determines where the
+token is applied in the UI and the value is the actual color (hex code) that
+appears in the assigned theme. Color token names and roles are the same across
+themes, only the assigned value will change base on which theme is being used.
 
 See the [color usage tab](/guidelines/color/usage) for the full list of color
 tokens.
@@ -317,22 +311,63 @@ tokens.
 
 <br />
 
-### Color roles
+**The power of tokens**
 
-The systematic and consistent use of color is achieved by applying tokens based
-on their _role_. Roles are important to follow as a single color value may be
-assigned to multiple color tokens. The
-[color usage tab](https://carbondesignsystem.com/guidelines/color/usage) lists
-the role(s) for each color token in the second column.
+When building a component or designing a part of your product, you may be
+tempted to use colors from the IBM Design Language directly. For example, when
+building a form you want all of the input labels to be Gray 70 (following Carbon
+guidelines) so you use the hex code `#565656` in code.
 
-For quick reference, the role of a token is also represented in the token name
-itself. The token names are divided into parts to help you make decisions and
-understand options. The first part of the token name references the general UI
-element the color is being applied to, like `background`, `text`, `border`. If
-the element can be styled in more than one way then the last half of the token
-name will further describe its how it should be used. For example
-`$border-subtle` is used when a border or divider rule needs a low contrasting
-(subtle) aesthetic.
+In the future, the design language may update the value of Gray 70. In this
+case, you need to manually change the color of your labels by updating ever hard
+coded instance of `#565656`. If you had instead used the Carbon color token
+`$text-secondary`, all your labels would have received the color update
+automatically.
+
+In another scenario, you may want to support a user preference of light mode and
+dark mode in your product. In this situation, you would also need to use
+the `$text-secondary` token instead of the hard coded hex color. Under the hood,
+the `$text-secondary` token will dynamically map
+to `#565656` or `#ffffff` depending on the theme. By using the tokens from the
+start you can fast track other color functionalities like theming needed in the
+future.
+
+In summary, tokens help us abstract how we use color from the values themselves.
+
+### Token names
+
+For quick reference, the role of a token is represented in the token name itself
+to help you make correct usage decisions. The token names are divided into 3
+possible parts. The first part of the token name references the general UI
+element the color is being applied to, like `background`, `text`, `border`. The
+second part of token name will specify how or when to use that type of token. It
+will be an adjective that describes how or when to use to token, like `subtle`
+or `primary`. At its end, token name can also include the interaction state of
+the token like `hover` or `active`.
+
+### Token groups
+
+For quick reference, the role of a token is represented in the token name itself
+to help you make correct usage decisions. The token names are divided into 3
+possible parts. The first part of the token name references the general UI
+element the color is being applied to, like `background`, `text`, `border`. The
+second part of token name will specify how or when to use that type of token. It
+will be an adjective that describes how or when to use to token, like `subtle`
+or `primary`. At its end, token name can also include the interaction state of
+the token like `-hover` or `-active` .
+
+| Group      | Applied to                                               |
+| ---------- | -------------------------------------------------------- |
+| Background | Page or primary backgrounds                              |
+| Layer      | Any container that sets on top of a background           |
+| Field      | Form and input container backgrounds                     |
+| Border     | Dividers, rules, and borders between and around elements |
+| Text       | Type and type styles                                     |
+| Link       | Standalone and inline links                              |
+| Icon       | Icons and pictograms                                     |
+| Support    | Notification elements and status indicators              |
+| Focus      | Focus states                                             |
+| Skeleton   | Skeleton states                                          |
 
 ## Interaction states
 
@@ -454,7 +489,7 @@ shares the same selected state as Gray 100.
 
 <br />
 
-#### Focus
+### Focus
 
 The focus state draws attention to the active element on a page when using the
 keyboard or voice to navigate. In Carbon, the focus of an element is most
@@ -486,7 +521,7 @@ contrast accessibility. Often times to achieve proper 3:1 contrast a
 
 <br />
 
-#### Disabled
+### Disabled
 
 A disabled state is applied to a component when the user is not allowed to
 interact with the component due to either permissions, dependencies, or
