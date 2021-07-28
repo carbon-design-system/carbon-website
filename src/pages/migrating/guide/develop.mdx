@@ -43,7 +43,8 @@ possible by detailing all of the updates below.
 | `carbon-components-react` | <Tag type="red">Deprecated</Tag> | [Components](#components)     |                                                                                         |
 
 <!-- to do: add rows for
-- size props breaking changes
+- component size props breaking changes
+- @carbon/icons-react breaking changes (size prop)
 - @carbon/icons-react breaking changes
 - tooltip breaking changes?
 - popover new feature?
@@ -66,29 +67,44 @@ installing or updating one package.
 
 1. Install the new package
 
-   ```
-   npm -i @carbon/react
-   ```
+```
+npm -i @carbon/react
+```
 
-   ```
-   yarn install @carbon/react
-   ```
+```
+yarn install @carbon/react
+```
 
 2. Remove the old packages
 
-   ```
-   npm uninstall carbon-components carbon-components-react carbon-icons
-   ```
+```
+npm uninstall carbon-components carbon-components-react carbon-icons
+```
 
-   ```
-   yarn remove carbon-components carbon-components-react carbon-icons
-   ```
+```
+yarn remove carbon-components carbon-components-react carbon-icons
+```
 
 3. Update package imports. Migration for this can be as easy as
    find-and-replace. Search for anywhere you're importing components or icons
-   from `carbon-components-react` and `carbon-icons` and update the import to
-   point to `@carbon/react`. Read the next section below to find out how to
-   migrate styles.
+   and update the import to point to `@carbon/react`. Read the next section
+   below to find out how to migrate styles.
+
+```js
+import { Button } from '@carbon/react';
+
+function MyComponent() {
+  return <Button>Example usage</Button>;
+}
+```
+
+```js
+import { Add } from '@carbon/react/icons';
+
+function MyComponent() {
+  return <Add />;
+}
+```
 
 ### Resources
 
@@ -105,9 +121,9 @@ installing or updating one package.
 ## Styles
 
 In v11, our Carbon styles feature two essential changes: their own dedicated
-package `@carbon/styles` and transitioning to Sass modules. If you're using our
-React components we have some great news for you, you don't have to install the
-styles package! `@carbon/react` already forwards all the sass included in
+package, `@carbon/styles`, and transitioning to Sass modules. If you're using
+our React components we have some great news for you, you don't have to install
+the styles package! `@carbon/react` already forwards all the sass included in
 `@carbon/styles`. If you are a library not using our React components, and just
 consuming our styles, then your migration will require installing the new
 package in addition to what's listed below.
@@ -151,24 +167,24 @@ Dart-Sass:
    to the `@carbon/react` package. If you're a library just using the styles
    package, your import will point to that.
 
-   ```scss
-   @use '@carbon/react/scss/theme';
+```scss
+@use '@carbon/react/scss/theme';
 
-   body {
-     background: theme.$background;
-   }
-   ```
+body {
+  background: theme.$background;
+}
+```
 
-   Alternatively, if you don't want to deal with prefixing all the Carbon sass
-   instances, you can do the following:
+Alternatively, if you don't want to deal with prefixing all the Carbon sass
+instances, you can do the following:
 
-   ```scss
-   @use '@carbon/react/scss/theme' as *;
+```scss
+@use '@carbon/react/scss/theme' as *;
 
-   body {
-     background: $background;
-   }
-   ```
+body {
+  background: $background;
+}
+```
 
 To learn more about getting starting with `Dart Sass`, usage, and importing
 specific Carbon sass, checkout our
@@ -208,14 +224,12 @@ token.
 
 1. Check for any sass files that are referencing color tokens, and use our color
    token migration table to find the updated token name. We recommend checking
-   manually since some of the v10 tokens apply to more than one v11 token
-   depending on usage. For example `hover-ui` could be `field-hover` or
-   `layer-hover` depending on where it is being used.
+   manually since some of the v10 tokens apply to more than one v11 token,
+   depending on its usage. For example, `hover-ui` could be `field-hover` or
+   `layer-hover`.
 
 To view a full table of v10 color tokens and their v11 equivalent, check out our
-[colors migration doc](https://github.com/carbon-design-system/carbon/blob/356dcf2c2de54bece89440b989e715f08790d470/docs/migration/11.x-color.md).
-
-<!-- to do: update the link above once John's PR is merged. -->
+[colors migration doc](https://github.com/carbon-design-system/carbon/blob/main/docs/migration/11.x-color.md).
 
 ### Resources
 
@@ -223,7 +237,7 @@ To view a full table of v10 color tokens and their v11 equivalent, check out our
   <Column colLg={4} colMd={4} noGutterSm>
     <ResourceCard
       subTitle="Color tokens migration table"
-      href="https://github.com/carbon-design-system/carbon/blob/356dcf2c2de54bece89440b989e715f08790d470/docs/migration/11.x-color.md">
+      href="https://github.com/carbon-design-system/carbon/blob/main/docs/migration/11.x-color.md">
       <MdxIcon name="github" />
     </ResourceCard>
   </Column>
