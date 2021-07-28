@@ -231,18 +231,141 @@ token.
 To view a full table of v10 color tokens and their v11 equivalent, check out our
 [colors migration doc](https://github.com/carbon-design-system/carbon/blob/main/docs/migration/11.x-color.md).
 
+### Resources
+
+<Row className="resource-card-group">
+  <Column colLg={4} colMd={4} noGutterSm>
+    <ResourceCard
+      subTitle="Color tokens migration table"
+      href="https://github.com/carbon-design-system/carbon/blob/main/docs/migration/11.x-color.md">
+      <MdxIcon name="github" />
+    </ResourceCard>
+  </Column>
+</Row>
+
 ## CSS Grid <Tag type="cyan">Breaking</Tag>
 
 A huge change for us this release is dropping support for IE11, which means we
-can now support CSS Grid and sub-grid. 🎉
-
-Here is a
-[link to our Grid docs](https://github.com/carbon-design-system/carbon/blob/main/docs/migration/11.x-grid.md).
+can now support CSS Grid. 🎉 Previously, our grid used CSS Flexbox, which made
+it hard to support nesting grids. At the moment, we are not providing an option
+to continue using flexbox grid in v11. Another notable change is that, by
+default, our grid is now 16 columns and there is no continued support for 12
+columns.
 
 ### What this means for you and your team:
 
-- No longer need `Row` components
-- You can drop `Column` components directly into `Grid`
+- 16 column grid only
+- Support for nested grids
+
+### How to migrate
+
+`Grid` and `Column` continue to have the same props, but operate just a little
+bit differently. We realize the strategy for updating the grid might change from
+team to team, so instead we're just going to highlight some of the big changes
+you need to keep in mind when tackling this transition.
+
+- If you are using a 3 column layout anywhere, we suggest talking to your design
+  team to decide on an alternate solution for 3 columns. Since our columns, no
+  longer span the full width of a row, there's no way to _evenly_ get a 3 column
+  layout with our 16 columns. We realize this may be frustrating, but we hope
+  the other cool features we now support make it worth the change!
+- Use `Grid` component for subgrids.
+- `Row` component is deprecated. You can drop `Column` components directly into
+  `Grid`, including nested grids.
+- All columns by default will span just one column, not span the full width like
+  flex columns. You _must_ be explicit about how many columns you want to span
+  for each breakpoint. Below, you can find what a full width 4 column layout
+  would've looked like in v10 and what it looks like now in v11.
+- To view more detailed examples of our v11 grid, checkout our grid [story](#).
+<!-- to-do: add grid storybook link once it's live -->
+
+Some usage guidelines to keep in mind when migrating are:
+
+- Wide grid should always be the parent grid
+- Some grids, like condensed grid, don't exist in isolation; they are always
+  mixed.
+
+#### v10 auto columns
+
+```jsx
+<Grid>
+  <Row>
+    <Column>1 of 4</Column>
+    <Column>1 of 4</Column>
+    <Column>1 of 4</Column>
+    <Column>1 of 4</Column>
+  </Row>
+</Grid>
+```
+
+#### v11 auto columns
+
+```jsx
+<Grid>
+  // first row - 4 col full span like the v10 auto columns
+  <Column lg={4}>1 of 4</Column>
+  <Column lg={4}>1 of 4</Column>
+  <Column lg={4}>1 of 4</Column>
+  <Column lg={4}>1 of 4</Column>
+  // second row - v11 auto columns
+  <Column>1 of 8</Column>
+  <Column>1 of 8</Column>
+  <Column>1 of 8</Column>
+  <Column>1 of 8</Column>
+  <Column>1 of 8</Column>
+  <Column>1 of 8</Column>
+  <Column>1 of 8</Column>
+  <Column>1 of 8</Column>
+</Grid>
+```
+
+#### Nested grid
+
+```jsx
+<Grid>
+  <Column sm={2} md={4} lg={3}>
+    <p>Small: Span 2 of 4</p>
+    <p>Medium: Span 4 of 8</p>
+    <p>Large: Span 3 of 16</p>
+  </Column>
+  <Column sm={2} md={4} lg={10}>
+    <p>Small: Span 2 of 4</p>
+    <p>Medium: Span 4 of 8</p>
+    <p>Large: Span 10 of 16</p>
+    <Grid>
+      <Column sm={1} md={1} lg={2}>
+        <p>sm={1}</p> <p>md={1}</p> <p>lg={2}</p>
+      </Column>
+      <Column sm={1} md={1} lg={2}>
+        <p>sm={1}</p> <p>md={1}</p> <p>lg={2}</p>
+      </Column>
+      <Column sm={0} md={1} lg={1}>
+        <p>sm={0}</p> <p>md={1}</p> <p>lg={1}</p>
+      </Column>
+      <Column sm={0} md={1} lg={1}>
+        <p>sm={0}</p> <p>md={1}</p> <p>lg={1}</p>
+      </Column>
+      <Column sm={0} md={0} lg={1}>
+        <p>sm={0}</p> <p>md={0}</p> <p>lg={1}</p>
+      </Column>
+      <Column sm={0} md={0} lg={1}>
+        <p>sm={0}</p> <p>md={0}</p> <p>lg={1}</p>
+      </Column>
+      <Column sm={0} md={0} lg={1}>
+        <p>sm={0}</p> <p>md={0}</p> <p>lg={1}</p>
+      </Column>
+      <Column sm={0} md={0} lg={1}>
+        <p>sm={0}</p> <p>md={0}</p> <p>lg={1}</p>
+      </Column>
+    </Grid>
+  </Column>
+  <Column sm={0} md={0} lg={3}>
+    <p>Small: Span 0 of 4</p>
+    <p>Medium: Span 0 of 8</p>
+    <p>Large: Span 3 of 16</p>
+  </Column>
+</Grid>
+```
 
 ### Resources
 
@@ -254,16 +377,11 @@ Here is a
       <MdxIcon name="github" />
     </ResourceCard>
   </Column>
-</Row>
-
-### Resources
-
-<Row className="resource-card-group">
   <Column colLg={4} colMd={4} noGutterSm>
     <ResourceCard
-      subTitle="Color tokens migration table"
-      href="https://github.com/carbon-design-system/carbon/blob/main/docs/migration/11.x-color.md">
-      <MdxIcon name="github" />
+      subTitle="CSS Grid storybook"
+      href="https://github.com/carbon-design-system/carbon/blob/main/docs/migration/11.x-grid.md">
+      <MdxIcon name="React" />
     </ResourceCard>
   </Column>
 </Row>
