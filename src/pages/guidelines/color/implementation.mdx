@@ -23,16 +23,22 @@ several techniques to implement all your product's color and theming needs.
 
 ## Layering model tokens
 
-There are two ways to implement the
-[layering model](/guidelines/color/overview#layering-model) within a single
-theme, either by using explicit layer tokens or smart contextual layer tokens.
-Both ways are acceptable with different pros and cons that should be weighed in
-deciding which to use when building your product.
+There are two ways to implement the layering model in a theme, either by using
+explicit tokens or contextual tokens. These techniques can be used independently
+in a product or can be used together. Both methods produce the same visual
+result, the difference lays in how you develop with them. Designers only need to
+be concerned with the theme tokens.
 
-| Token type                                                                          | Definition                                                                                                                                                                                             |
-| ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [Layer set tokens](/guidelines/color/implementation#layer-set-tokens)               | Explicit tokens used to manually map the layering model onto components. They come in sets based on their level in the layering model and are part of the theme package.                               |
-| [Contextual layer tokens](/guidelines/color/implementation#contextual-layer-tokens) | Abstracted tokens that automatically infer value based on the context a component inside the layering model. They are part of the component package and don't have an explicit value assigned to them. |
+The explicit layer tokens are standard design tokens. Each layer token
+corresponds to a specific layer on the page and is used exactly like any other
+token from Carbon. Contextual layer tokens are a special case of token where the
+value changes depending on where the token is used on a page. This type of token
+is incredibly useful for building reusable components that work across layers.
+
+| Token type                                                                          | Definition                                                                                                                            |
+| ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| [Layer set tokens](/guidelines/color/implementation#layer-set-tokens)               | Explicit layer tokens used to manually map the layering model onto components. They come in sets that pair with individual UI layers. |
+| [Contextual layer tokens](/guidelines/color/implementation#contextual-layer-tokens) | Abstrast code tokens used to automatically map the layering model onto components depending on where it used on the page.             |
 
 <Row>
 <Column colLg={12}>
@@ -68,15 +74,16 @@ deciding which to use when building your product.
 
 <br />
 
-### Layer set tokens
+### Layer tokens
 
-Layer tokens are sets of explicit tokens used to manually map the layering model
-onto components. They are part of the theme package and come in predefined sets
-that pair UI and interaction colors together to accurately match the layering
-model in each theme.
+Layer tokens are explicit tokens used to manually map the layering model onto
+components. They are used just like any other color token. They come in
+predefined sets that pair UI and interaction colors together to match whichever
+layer level they are a part of. Layer tokens replace what was the `ui-00` color
+tokens in v10 and are used in a similar way.
 
-There are four sets of color layering within a theme: base layer, layer 01,
-layer 02, and layer 03. After each layer of color added you move up to the next
+There are four levels of layering within a theme: base layer, layer 01, layer
+02, and layer 03. After each layer of color added you move up to the next
 layering level and use the next set of layering tokens. For example, on top of
 `$layer-01` you would place `$layer-02`. These layer set tokens are identified
 by a number suffix (-01, -02, -03) attached to the core token name, such as
@@ -84,12 +91,12 @@ by a number suffix (-01, -02, -03) attached to the core token name, such as
 previously in v10 many color tokens had numeral suffixes, now in v11 only
 layering tokens will have this distinction._
 
-Not all layer set tokens use `$layer` as its token name. Token sets also include
+Not all layer tokens use `$layer` as its token name. Layer tokens also include
 `border` and `field` tokens as well as interactive state tokens for the various
 layers. Field is considered a layer on top of the background it is placed on, so
 a field placed on a `$layer-02` background will use `$field-03`. Border tokens
 however pair with its same number, so `$field-03` pairs with `$border-strong-03`
-in a text input.  Only certain color tokens are a part of these layering sets.
+in a text input. Only certain color tokens are a part of these layering sets.
 Other tokens for elements like `text` and `icon` work across layer sets. For a
 full list of the layer set tokens see the [color usage](/guidelines/color/usage)
 tab.
@@ -210,10 +217,11 @@ In v10, these color variants were known as the `light` prop variants, however
 these new layering tokens allows for a three levels color variant in components
 that wasn't possible in v10.
 
-Spec each component variant with its corresponding layer set tokens. For elements
-that are not part of the layering model like type or icons, use the normal color
-tokens as you would have in v10. These tokens will be the same across variants
-as they are high enough contrast not to need to change with each layer.
+Spec each component variant with its corresponding layer set tokens. For
+elements that are not part of the layering model like type or icons, use the
+normal color tokens as you would have in v10. These tokens will be the same
+across variants as they are high enough contrast not to need to change with each
+layer.
 
 <Row>
 <Column colLg={8}>
@@ -229,18 +237,18 @@ as they are high enough contrast not to need to change with each layer.
 
 ### Contextual layer tokens
 
-Contextual tokens are smart tokens used to automatically map the layering model
-onto components in code. A contextual token is aware of what layer it is placed
-on and will call the correct layer set token needed for that layer level. There
-is only one set of contextual tokens and it requires only one variant of a
-component to be built. Contextual tokens are a part of the component package
-instead of the theme package and are used in the v11 Carbon components. To
-implement the nesting layers correctly in code, use the layer component with the
-contextual tokens.
+Contextual tokens are used to automatically map the layering model onto
+components in code. A contextual token is aware of what layer it is placed on
+and will call the correct values needed for that layer. There is only one set of
+contextual tokens and it requires only one variant of a component to be built.
+Carbon components are built using the contextual tokens.
 
 Contextual tokens have all the same type of tokens as the layer set except
 without the number prefixes. It does not matter what layer it sits on, the
 contextual token is always the same across layer levels.
+
+To implement the nesting layers with contextual tokens in code, use the
+[layer component](https://carbon-react-next.netlify.app/?path=/docs/components-layer--default).
 
 <!---
 ```scss
@@ -348,9 +356,9 @@ component to express the nested layer visuals. Even if the component is never
 used at other layer levels it is still acceptable and encouraged to use the
 contextual tokens.
 
-Note: Contextual tokens are only available in code and are not a part of the
+_Note: Contextual tokens are only available in code and are not a part of the
 design assets. Designer should use the layer set tokens when creating assets but
-can include contextual tokens in their specs and redlines.
+can include contextual tokens in their specs and redlines._
 
 <Row>
 <Column colLg={8}>
@@ -362,34 +370,33 @@ can include contextual tokens in their specs and redlines.
 
 ### Using the layer component
 
-The layer component is used with the contextual tokens to implement the layering
-model in code. The layer component and contextual tokens are essentially a short
-cut for development because the layer component will apply the correct values to
-a single component without having to develop explicit hard coded variants.
+Use the Layer component in order to have contextual tokens map to the correct
+layer value. Each token that is used to build a component rendered in a Layer
+component will automatically map to the next level based on the current layer
+set. These components can be nested up to three times, the last level
+corresponding to the 04 layer set of tokens. By default, tokens use the 01 layer
+set of tokens.
 
-<InlineNotification>
-
-**Coming soon:** Developer documentation is currently be worked on. Check back
-at a later date for more information.
-
-</InlineNotification>
+For more guidance on the layer component, see the
+[Storybook](https://carbon-react-next.netlify.app/?path=/docs/components-layer--default).
 
 ## Inline theming
 
 Inline theming is used when a section of a UI needs to have a different theme
 from the rest of the page. Inline theming allows themes to be nested within each
 other without needing custom styles or overrides. In product, a common use-case
-for inline theming is applying a contrasting theme to a UI shell and side panels.
-This is especially common in light themed products or light modes. For example,
-the majority of a page can use the White theme while the UI shell and the left
-side panel use an inline Gray 100 theme. This type of inline theme pairing
-creates a high contrast moment that adds emphasis and focus to a workflow.
+for inline theming is applying a contrasting theme to a UI shell and side
+panels. This is especially common in light themed products or light modes. For
+example, the majority of a page can use the White theme while the UI shell and
+the left side panel use an inline Gray 100 theme. This type of inline theme
+pairing creates a high contrast moment that adds emphasis and focus to a
+workflow.
 
 You should only need to use inline theming for major shifts in color, like high
 contrast moments. The more subtle transitions of color in a product are handled
 within each theme through the layering model tokens. It is unlikely that you'll
 need to inline a White theme within the Gray 10 theme or the Gray 90 theme
-within the Gray100 theme.
+within the Gray 100 theme.
 
 <Row>
 <Column colLg={8}>
@@ -405,7 +412,8 @@ If your product is using the Carbon color tokens and themes then a section of
 the page can easily be targeted to call a different theme without having to use
 new tokens or manually change values. For the inline themed section simply use
 the same Carbon tokens you were using for the rest of the page, then using the
-theme component assign the new theme to the whole zone.
+[theme component](https://carbon-react-next.netlify.app/?path=/docs/components-theme--default)
+assign the new theme to the whole zone.
 
 When designing for inline theming you'll need to pull assets from the other
 theme library files (or use the
@@ -421,15 +429,6 @@ page will be using an inline theme.
 
 </Column>
 </Row>
-
-### Using the theme component
-
-<InlineNotification>
-
-**Coming soon:** Developer documentation is currently be worked on. Check back
-at a later date for more information.
-
-</InlineNotification>
 
 ## Light or dark mode
 
@@ -476,9 +475,9 @@ migraines.
 You can build a light or dark mode by using the Carbon themes and color tokens.
 Your product will need to choose a light Carbon theme (White or Gray 10) and a
 dark Carbon theme (Gray 100 or Gray 90).  All color in your designs and
-components whether Carbon, PAL or custom made should be redlined using the Carbon
-color tokens (it would also be to your advantage to use the color token layer
-styles from the Carbon design asset libraries when designing).
+components whether Carbon, PAL or custom made should be redlined using the
+Carbon color tokens (it would also be to your advantage to use the color token
+layer styles from the Carbon design asset libraries when designing).
 
 Redlining a design in one theme should be enough and not require duplicate
 designs. However, if products teams do want to have design comps in both light
@@ -490,9 +489,9 @@ plug-in made by an IBMer.
 
 Since this is a user preference, you'll need to add a control somewhere in your
 product for the user to make a theme mode selection. This is commonly done in a
-display setting, user profile, or account area. At the moment, the placement
-and design of this control is up to product teams, further guidance and designs
-for a mode control in IBM products may be offered in the future.
+display setting, user profile, or account area. At the moment, the placement and
+design of this control is up to product teams, further guidance and designs for
+a mode control in IBM products may be offered in the future.
 
 <Row>
 <Column colLg={12}>
@@ -514,8 +513,10 @@ Mixing themes inline is still allowed with light or dark mode. Mixing inline
 theme contrast between elements in different modes is also allowed. It is very
 common for products to have side panels or UI shell elements be high contrast in
 light mode but low contrast in dark mode. These relationships can be mapped in
-code using the the theme component. Note that smaller components built with an
-inverse tokens (like tooltip) should remain high contrast when switching modes.
+code using the the
+[theme component](https://carbon-react-next.netlify.app/?path=/docs/components-theme--default).
+Note that smaller components built with an inverse tokens (like tooltip) should
+remain high contrast when switching modes.
 
 #### Consider illustrations 
 
