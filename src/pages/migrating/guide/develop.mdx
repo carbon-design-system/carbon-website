@@ -33,35 +33,63 @@ contributions.
 | `carbon-components`       | <Tag type="red">Deprecated</Tag> | [SASS Modules](#sass-modules) |                                                                                      |
 | `carbon-components-react` | <Tag type="red">Deprecated</Tag> | [Components](#components)     |                                                                                      |
 
+<!-- to do: add rows for
+- size props breaking changes
+- @carbon/icons-react breaking changes
+- tooltip breaking changes?
+- popover new feature?
+- other component API specific new features?
+ -->
+
 ## Components
 
-### Step 1: Install the new package
+We have deprecated `carbon-components-react` in favor of our new package
+`@carbon/react`. All of the component usage and API remains the same. The big
+change with this is to avoid having to install three separate packages and
+having to keep them in sync.
 
-```
-npm -i @carbon/react
-```
+### What this means for you and your team
 
-or
+Going forward, using our components and styles will be as easy as just
+installing or updating one package.
 
-```
-yarn install @carbon/react
-```
+### How to migrate
 
-### Step 2: Remove the old packages
+1. Install the new package
 
-```
-npm uninstall carbon-components carbon-components-react carbon-icons
-```
+   ```
+   npm -i @carbon/react
+   ```
 
-or
+   ```
+   yarn install @carbon/react
+   ```
 
-```
-yarn remove carbon-components carbon-components-react carbon-icons
-```
+2. Remove the old packages
 
-something here about updating imports to point to `@carbon/react` instead of
-`carbon-components-react`, maybe explaing that the components all still work the
-same just coming from a diff package now. and why did we do this???
+   ```
+   npm uninstall carbon-components carbon-components-react carbon-icons
+   ```
+
+   ```
+   yarn remove carbon-components carbon-components-react carbon-icons
+   ```
+
+3. Update package imports. Migration for this can be as easy as
+   find-and-replace. Search for anywhere you're importing components from
+   `carbon-components-react` and update the import to point to `@carbon/react`.
+
+### Resources
+
+<Row className="resource-card-group">
+  <Column colLg={4} colMd={4} noGutterSm>
+    <ResourceCard
+      subTitle="@carbon/react docs"
+      href="https://github.com/carbon-design-system/carbon/tree/main/packages/carbon-react">
+      <MdxIcon name="github" />
+    </ResourceCard>
+  </Column>
+</Row>
 
 ## Sass Modules
 
@@ -128,7 +156,7 @@ Some of the changes will be easy enough to find-and-replace, however, make sure
 to double check that you were using the correct v10 token as to not migrate to
 an incorrect token.
 
-### What this means for you and your team:
+### What this means for you and your team
 
 - Intuitive naming ensures correct token usage
 - Less ambiguity around what a color token is for
@@ -145,6 +173,18 @@ To view a full table of v10 color tokens and their v11 equivalent, check out our
 [colors migration doc](https://github.com/carbon-design-system/carbon/blob/356dcf2c2de54bece89440b989e715f08790d470/docs/migration/11.x-color.md).
 
 <!-- to do: update the link above once John's PR is merged. -->
+
+### Resources
+
+<Row className="resource-card-group">
+  <Column colLg={4} colMd={4} noGutterSm>
+    <ResourceCard
+      subTitle="Color tokens migration table"
+      href="https://github.com/carbon-design-system/carbon/blob/356dcf2c2de54bece89440b989e715f08790d470/docs/migration/11.x-color.md">
+      <MdxIcon name="github" />
+    </ResourceCard>
+  </Column>
+</Row>
 
 ## Theming
 
@@ -198,6 +238,25 @@ Here is an example of how you can use the `Layer` component:
 To learn more about how our `Layer` component works and it's API, checkout our
 [Layer docs](https://github.com/carbon-design-system/carbon/blob/main/packages/carbon-react/src/components/Layer/Layer.mdx).
 
+### Resources
+
+<Row className="resource-card-group">
+  <Column colLg={4} colMd={4} noGutterSm>
+    <ResourceCard
+      subTitle="Theme component docs"
+      href="https://github.com/carbon-design-system/carbon/blob/main/packages/carbon-react/src/components/Theme/Theme.mdx">
+      <MdxIcon name="github" />
+    </ResourceCard>
+  </Column>
+  <Column colLg={4} colMd={4} noGutterSm>
+    <ResourceCard
+      subTitle="Layer component docs"
+      href="https://github.com/carbon-design-system/carbon/blob/main/packages/carbon-react/src/components/Layer/Layer.mdx">
+      <MdxIcon name="github" />
+    </ResourceCard>
+  </Column>
+</Row>
+
 ## CSS Grid
 
 A huge change for us this release is dropping support for IE11, which means we
@@ -210,6 +269,18 @@ Here is a
 
 - No longer need `Row` components
 - You can drop `Column` components directly into `Grid`
+
+### Resources
+
+<Row className="resource-card-group">
+  <Column colLg={4} colMd={4} noGutterSm>
+    <ResourceCard
+      subTitle="CSS Grid docs"
+      href="https://github.com/carbon-design-system/carbon/blob/main/docs/migration/11.x-grid.md">
+      <MdxIcon name="github" />
+    </ResourceCard>
+  </Column>
+</Row>
 
 <!-- 
 
