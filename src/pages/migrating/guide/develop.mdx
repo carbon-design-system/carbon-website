@@ -10,12 +10,10 @@ import { Tag } from 'carbon-components-react';
 
 <PageDescription>
 
-Here you can find information on how to migrate from Carbon v10 to v11. With any
-major migration, there are some exciting new features we're looking forward to
-sharing with you all as well as some breaking changes. We're hoping to have made
-this transition as smooth as possible by detailing all of the feature updates
-below. This is a constant work in progress, so please feel free to make any
-contributions.
+Here you can find information on how to migrate your code from Carbon v10 to
+v11. As with any major version, there are some exciting features we're looking
+forward to sharing with you. We hope to make your transition as smooth as
+possible by detailing all of the updates below.
 
 </PageDescription>
 
@@ -29,9 +27,9 @@ contributions.
 | Color Tokens              | <Tag type="cyan">Breaking</Tag>  | [Color tokens](#color-tokens) | All components                                                                       |
 | Theming                   | <Tag type="green">New</Tag>      | [Theming](#theming)           | `@carbon/react`                                                                      |
 | CSS Grid                  | <Tag type="cyan">Breaking</Tag>  | [CSS Grid](#css-grid)         | `@carbon/grid` `Grid` `Row` `Column`                                                 |
-| `carbon-icons`            | <Tag type="red">Deprecated</Tag> | [Components](#components)     |                                                                                      |
-| `carbon-components`       | <Tag type="red">Deprecated</Tag> | [SASS Modules](#sass-modules) |                                                                                      |
-| `carbon-components-react` | <Tag type="red">Deprecated</Tag> | [Components](#components)     |                                                                                      |
+| `carbon-icons`            | <Tag type="red">Deprecated</Tag> | [Components](#components)     | `@carbon/react`                                                                      |
+| `carbon-components`       | <Tag type="red">Deprecated</Tag> | [SASS Modules](#sass-modules) | `@carbon/styles`                                                                     |
+| `carbon-components-react` | <Tag type="red">Deprecated</Tag> | [Components](#components)     | `@carbon/react`                                                                      |
 
 <!-- to do: add rows for
 - size props breaking changes
@@ -93,10 +91,15 @@ installing or updating one package.
 
 ## Sass Modules
 
+In v11, our Carbon styles feature two essential changes:
+
+1. Their own dedicated package `@carbon/styles`
+2. Transition to Sass modules
+
 Using [Dart-Sass](https://sass-lang.com/dart-sass), we are finally able to use
 [the Module System](https://sass-lang.com/blog/the-module-system-is-launched),
 dropping the `import-once` helpers that have being causing awful compilation and
-build times, re-thinking how developers bring styles into Carbon.
+build times, and re-thinking how developers bring styles into Carbon.
 
 Here are some reasons why we're moving away from Node-Sass and moving towards
 Dart-Sass:
@@ -115,8 +118,8 @@ Dart-Sass:
 
 ### What this means for you and your team
 
-- Faster compile times: reduced by ~90%
-- Faster build times: reduced by ~60%
+- Faster compile times
+- Faster build times
 - Over-all more flexibility when importing styles
 
 ### How to migrate
@@ -125,11 +128,33 @@ Dart-Sass:
    should be automatic.
 2. Projects using create-react-app or Next.js, remove `node-sass` from your
    dependencies and add `sass` as the replacement.
-3. In your project you will now use the `@use` keyword instead of `@import` to
-   include the Carbon packages, as seen below.
+3. Remove the `carbon-components` dependency and install `@carbon/styles`
+4. In any of your files where you are using Carbon sass (tokens, mixins, or
+   funcions), you will now need to import the specific sass file at the top. You
+   will use the `@use` keyword instead of `@import` to include the Carbon sass,
+   as seen below.
+
+   ```scss
+   @use '@carbon/styles/scss/theme';
+
+   body {
+     background: theme.$background;
+   }
+   ```
+
+   Alternatively, if you don't want to deal with prefixing all the Carbon sass
+   instances, you can do the following:
+
+   ```scss
+   @use '@carbon/styles/scss/theme' as *;
+
+   body {
+     background: $background;
+   }
+   ```
 
 To learn more about getting starting with `Dart Sass`, usage, and importing
-specific packages, checkout our
+specific Carbon sass, checkout our
 [styles docs](https://github.com/carbon-design-system/carbon/tree/main/packages/styles).
 
 ### Resources
