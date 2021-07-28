@@ -10,77 +10,96 @@ import { Tag } from 'carbon-components-react';
 
 <PageDescription>
 
-Here you can find information on how to migrate from Carbon v10 to v11. With any
-major migration, there are some exciting new features we're looking forward to
-sharing with you all as well as some breaking changes. We're hoping to have made
-this transition as smooth as possible by detailing all of the feature updates
-below. This is a constant work in progress, so please feel free to make any
-contributions.
+Here you can find information on how to migrate your code from Carbon v10 to
+v11. As with any major version, there are some exciting features we're looking
+forward to sharing with you. We hope to make your transition as smooth as
+possible by detailing all of the updates below.
 
 </PageDescription>
 
-<AnchorLinks>
-
-<AnchorLink>Changelog</AnchorLink>
-<AnchorLink>Components</AnchorLink>
-<AnchorLink>Sass Modules</AnchorLink>
-
-</AnchorLinks>
-
 ## Changelog
 
-| Feature                          | Status                           | Migration doc                                       | Packages or components impacted                                                                                            |
-| -------------------------------- | -------------------------------- | --------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| `@carbon/styles`                 | <Tag type="green">New</Tag>      | [Bring in styles](#bring-in-styles)                 | `carbon-components`                                                                                                        |
-| `@carbon/react`                  | <Tag type="green">New</Tag>      | [Carbon Components React](#carbon-components-react) | `carbon-components-react`                                                                                                  |
-| SASS Modules                     | <Tag type="cyan">Breaking</Tag>  | [SASS Modules](#sass-modules)                       | `@carbon/styles` `carbon-components-angular` `carbon-components-vue` `@carbon/react`                                       |
-| Inline theming (light/dark mode) | <Tag type="green">New</Tag>      | [SASS Modules](#sass-modules)                       | v11.x                                                                                                                      |
-| CSS Grid                         | <Tag type="cyan">Breaking</Tag>  | [CSS Grid](#css-grid)                               | `@carbon/grid` `Grid` `Row` `Column`                                                                                       |
-| Design tokens                    | <Tag type="cyan">Breaking</Tag>  | [SASS Modules](#sass-modules)                       | All components                                                                                                             |
-| Size prop                        | <Tag type="cyan">Breaking</Tag>  | [Size prop](#size-prop-updates)                     | `Button` `DataTable` `Modal` `ComboBox` `Dropdown` `TextInput` `Search` `DatePicker` `Tag` `Toggle` `Select` `MultiSelect` |
-| UI Shell theming                 | <Tag type="cyan">Breaking</Tag>  | [SASS Modules](#sass-modules)                       | `UI Shell` `@carbon/styles`                                                                                                |
-| Popover                          | <Tag type="green">New</Tag>      | [SASS Modules](#sass-modules)                       | `Tooltip`                                                                                                                  |
-| Tooltip                          | <Tag type="cyan">Breaking</Tag>  | [SASS Modules](#sass-modules)                       | `Tooltip` `@carbon/react`                                                                                                  |
-| `carbon-components-react`        | <Tag type="red">Deprecated</Tag> | [SASS Modules](#sass-modules)                       | v11.x                                                                                                                      |
-| `carbon-icons`                   | <Tag type="red">Deprecated</Tag> | [SASS Modules](#sass-modules)                       | v11.x                                                                                                                      |
-| `carbon-components`              | <Tag type="red">Deprecated</Tag> | [SASS Modules](#sass-modules)                       | v11.x                                                                                                                      |
+| Feature                   | Status                           | Migrate                       | Packages or components impacted                                                      |
+| ------------------------- | -------------------------------- | ----------------------------- | ------------------------------------------------------------------------------------ |
+| `@carbon/react`           | <Tag type="green">New</Tag>      | [Components](#components)     | `carbon-components-react`                                                            |
+| `@carbon/styles`          | <Tag type="green">New</Tag>      | [SASS Modules](#sass-modules) | `carbon-components`                                                                  |
+| Sass Modules              | <Tag type="cyan">Breaking</Tag>  | [SASS Modules](#sass-modules) | `@carbon/styles` `carbon-components-angular` `carbon-components-vue` `@carbon/react` |
+| Color Tokens              | <Tag type="cyan">Breaking</Tag>  | [Color tokens](#color-tokens) | All components                                                                       |
+| Theming                   | <Tag type="green">New</Tag>      | [Theming](#theming)           | `@carbon/react`                                                                      |
+| CSS Grid                  | <Tag type="cyan">Breaking</Tag>  | [CSS Grid](#css-grid)         | `@carbon/grid` `Grid` `Row` `Column`                                                 |
+| `carbon-icons`            | <Tag type="red">Deprecated</Tag> | [Components](#components)     | `@carbon/react`                                                                      |
+| `carbon-components`       | <Tag type="red">Deprecated</Tag> | [SASS Modules](#sass-modules) | `@carbon/styles`                                                                     |
+| `carbon-components-react` | <Tag type="red">Deprecated</Tag> | [Components](#components)     | `@carbon/react`                                                                      |
+
+<!-- to do: add rows for
+- size props breaking changes
+- @carbon/icons-react breaking changes
+- tooltip breaking changes?
+- popover new feature?
+- other component API specific new features?
+ -->
 
 ## Components
 
-### Step 1: Install the new package
+We have deprecated `carbon-components-react` in favor of our new package
+`@carbon/react`. All of the component usage and API remains the same. The big
+change with this is to avoid having to install three separate packages and
+having to keep them in sync.
 
-```
-npm -i @carbon/react
-```
+### What this means for you and your team
 
-or
+Going forward, using our components and styles will be as easy as just
+installing or updating one package.
 
-```
-yarn install @carbon/react
-```
+### How to migrate
 
-### Step 2: Remove the old packages
+1. Install the new package
 
-```
-npm uninstall carbon-components carbon-components-react carbon-icons
-```
+   ```
+   npm -i @carbon/react
+   ```
 
-or
+   ```
+   yarn install @carbon/react
+   ```
 
-```
-yarn remove carbon-components carbon-components-react carbon-icons
-```
+2. Remove the old packages
 
-something here about updating imports to point to `@carbon/react` instead of
-`carbon-components-react`, maybe explaing that the components all still work the
-same just coming from a diff package now. and why did we do this???
+   ```
+   npm uninstall carbon-components carbon-components-react carbon-icons
+   ```
+
+   ```
+   yarn remove carbon-components carbon-components-react carbon-icons
+   ```
+
+3. Update package imports. Migration for this can be as easy as
+   find-and-replace. Search for anywhere you're importing components from
+   `carbon-components-react` and update the import to point to `@carbon/react`.
+
+### Resources
+
+<Row className="resource-card-group">
+  <Column colLg={4} colMd={4} noGutterSm>
+    <ResourceCard
+      subTitle="@carbon/react docs"
+      href="https://github.com/carbon-design-system/carbon/tree/main/packages/carbon-react">
+      <MdxIcon name="github" />
+    </ResourceCard>
+  </Column>
+</Row>
 
 ## Sass Modules
+
+In v11, our Carbon styles feature two essential changes:
+
+1. Their own dedicated package `@carbon/styles`
+2. Transition to Sass modules
 
 Using [Dart-Sass](https://sass-lang.com/dart-sass), we are finally able to use
 [the Module System](https://sass-lang.com/blog/the-module-system-is-launched),
 dropping the `import-once` helpers that have being causing awful compilation and
-build times, re-thinking how developers bring styles into Carbon.
+build times, and re-thinking how developers bring styles into Carbon.
 
 Here are some reasons why we're moving away from Node-Sass and moving towards
 Dart-Sass:
@@ -99,8 +118,8 @@ Dart-Sass:
 
 ### What this means for you and your team
 
-- Faster compile times: reduced by ~90%
-- Faster build times: reduced by ~60%
+- Faster compile times
+- Faster build times
 - Over-all more flexibility when importing styles
 
 ### How to migrate
@@ -109,11 +128,33 @@ Dart-Sass:
    should be automatic.
 2. Projects using create-react-app or Next.js, remove `node-sass` from your
    dependencies and add `sass` as the replacement.
-3. In your project you will now use the `@use` keyword instead of `@import` to
-   include the Carbon packages, as seen below.
+3. Remove the `carbon-components` dependency and install `@carbon/styles`
+4. In any of your files where you are using Carbon sass (tokens, mixins, or
+   funcions), you will now need to import the specific sass file at the top. You
+   will use the `@use` keyword instead of `@import` to include the Carbon sass,
+   as seen below.
+
+   ```scss
+   @use '@carbon/styles/scss/theme';
+
+   body {
+     background: theme.$background;
+   }
+   ```
+
+   Alternatively, if you don't want to deal with prefixing all the Carbon sass
+   instances, you can do the following:
+
+   ```scss
+   @use '@carbon/styles/scss/theme' as *;
+
+   body {
+     background: $background;
+   }
+   ```
 
 To learn more about getting starting with `Dart Sass`, usage, and importing
-specific packages, checkout our
+specific Carbon sass, checkout our
 [styles docs](https://github.com/carbon-design-system/carbon/tree/main/packages/styles).
 
 ### Resources
@@ -133,25 +174,113 @@ specific packages, checkout our
   </Column>
 </Row>
 
-### Size Prop updates
+## Color Tokens
 
-- Over the years our size props got a little messy. So we updated them, so that
-  they are now consistent across all of our components.
+We have renamed our color tokens to be more semantic and inform on their usage.
+Some of the changes will be easy enough to find-and-replace, however, make sure
+to double check that you were using the correct v10 token as to not migrate to
+an incorrect token.
 
-### What this means for you and your team:
+### What this means for you and your team
 
-_add something here_
+- Intuitive naming ensures correct token usage
+- Less ambiguity around what a color token is for
 
-The props should now look like this:
+### How to migrate
 
-| Prop Name | Size |
-| --------- | ---- |
-| xs        | 24px |
-| sm        | 32px |
-| md        | 40px |
-| lg        | 48px |
-| xl        | 64px |
-| 2xl       | 80px |
+Check for any sass files that are referencing color tokens, and use our color
+token migration table to find the updated token name. We recommend checking
+manually since some of the v10 tokens apply to more than one v11 token depending
+on usage. For example `hover-ui` could be `field-hover` or `layer-hover`
+depending on where it is being used.
+
+To view a full table of v10 color tokens and their v11 equivalent, check out our
+[colors migration doc](https://github.com/carbon-design-system/carbon/blob/356dcf2c2de54bece89440b989e715f08790d470/docs/migration/11.x-color.md).
+
+<!-- to do: update the link above once John's PR is merged. -->
+
+### Resources
+
+<Row className="resource-card-group">
+  <Column colLg={4} colMd={4} noGutterSm>
+    <ResourceCard
+      subTitle="Color tokens migration table"
+      href="https://github.com/carbon-design-system/carbon/blob/356dcf2c2de54bece89440b989e715f08790d470/docs/migration/11.x-color.md">
+      <MdxIcon name="github" />
+    </ResourceCard>
+  </Column>
+</Row>
+
+## Theming
+
+We have added a new, flexible `Theme` component. The `Theme` component allows
+you to specify the theme for a section of the page, for example with inline
+theming, or render a theme for an entire page.
+
+### What this means for you and your team
+
+- Inline theming 🎉
+
+Here is an example of how you can use the `Theme` component:
+
+```jsx
+import { g90 } from '@carbon/themes';
+
+<Theme theme={g90}>
+  <ChildComponent />
+</Theme>;
+```
+
+To learn more about how our `Theme` component works with our `useTheme` hook,
+checkout our
+[Theme docs](https://github.com/carbon-design-system/carbon/blob/main/packages/carbon-react/src/components/Theme/Theme.mdx).
+
+### Layer Component
+
+In regards to theming, we have also added in a new `Layer` component. The
+`Layer` component builds on top of contextual token, allowing you to style
+different layers, or directly use the tokens exported from our styles package.
+
+### What this means for you and your team
+
+- More flexibility for 3 layer stacking vs. 2 layer stacking
+- Third layer stacking will now be supported in dark themes
+
+Here is an example of how you can use the `Layer` component:
+
+```jsx
+<Layer>
+  <ChildComponent />
+  <Layer>
+    <ChildComponent />
+    <Layer>
+      <ChildComponent />
+    </Layer>
+  </Layer>
+</Layer>
+```
+
+To learn more about how our `Layer` component works and it's API, checkout our
+[Layer docs](https://github.com/carbon-design-system/carbon/blob/main/packages/carbon-react/src/components/Layer/Layer.mdx).
+
+### Resources
+
+<Row className="resource-card-group">
+  <Column colLg={4} colMd={4} noGutterSm>
+    <ResourceCard
+      subTitle="Theme component docs"
+      href="https://github.com/carbon-design-system/carbon/blob/main/packages/carbon-react/src/components/Theme/Theme.mdx">
+      <MdxIcon name="github" />
+    </ResourceCard>
+  </Column>
+  <Column colLg={4} colMd={4} noGutterSm>
+    <ResourceCard
+      subTitle="Layer component docs"
+      href="https://github.com/carbon-design-system/carbon/blob/main/packages/carbon-react/src/components/Layer/Layer.mdx">
+      <MdxIcon name="github" />
+    </ResourceCard>
+  </Column>
+</Row>
 
 ## CSS Grid
 
@@ -165,3 +294,37 @@ Here is a
 
 - No longer need `Row` components
 - You can drop `Column` components directly into `Grid`
+
+### Resources
+
+<Row className="resource-card-group">
+  <Column colLg={4} colMd={4} noGutterSm>
+    <ResourceCard
+      subTitle="CSS Grid docs"
+      href="https://github.com/carbon-design-system/carbon/blob/main/docs/migration/11.x-grid.md">
+      <MdxIcon name="github" />
+    </ResourceCard>
+  </Column>
+</Row>
+
+<!-- 
+
+## Size Props
+
+- Over the years our size props got a little messy. So we updated them, so that
+  they are now consistent across all of our components.
+
+### What this means for you and your team:
+
+The props should now look like this:
+
+| Prop Name | Size |
+| --------- | ---- |
+| xs        | 24px |
+| sm        | 32px |
+| md        | 40px |
+| lg        | 48px |
+| xl        | 64px |
+| 2xl       | 80px |
+
+-->
