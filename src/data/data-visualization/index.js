@@ -1,21 +1,15 @@
-import { demoGroups as dG } from '@carbon/charts/demo/data';
+import { storybookDemoGroups } from '@carbon/charts/demo/data';
 
-// Merge all demoGroups with matching names
-const demoGroups = [];
-dG.forEach((demoGroup) => {
-  const demoGroupTitle = demoGroup.title;
-  const demoGroupExistingIndex = demoGroups.findIndex(
-    (dg) => dg.title === demoGroupTitle
+export const simpleChartDemoGroups = storybookDemoGroups.filter(
+  (demoGroup) => demoGroup.type === 'simple-chart'
+);
+
+export const complexChartDemoGroups = storybookDemoGroups.filter(
+  (demoGroup) => demoGroup.type === 'complex-chart'
+);
+
+export const getDemoGroupByTitle = (title) =>
+  storybookDemoGroups.find(
+    (demoGroup) =>
+      demoGroup.title.toLowerCase().replace(/\s/g, '') === title.toLowerCase()
   );
-
-  if (demoGroupExistingIndex === -1) {
-    demoGroups.push(demoGroup);
-  } else {
-    const existingDemos = demoGroups[demoGroupExistingIndex].demos;
-    demoGroups[demoGroupExistingIndex].demos = existingDemos.concat(
-      demoGroup.demos
-    );
-  }
-});
-
-export default demoGroups;
