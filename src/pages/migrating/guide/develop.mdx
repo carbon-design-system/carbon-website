@@ -1,0 +1,501 @@
+---
+title: Guide
+description:
+  This guide includes everything you need to migrate your offering from v10 to
+  v11 of Carbon.
+tabs: ['Overview', 'Design', 'Develop']
+---
+
+import { Tag } from 'carbon-components-react';
+
+<PageDescription>
+
+Here you can find information on how to migrate your code from Carbon v10 to
+v11. As with any major version, there are some exciting features we're looking
+forward to sharing with you. We hope to make your transition as smooth as
+possible by detailing all of the updates below.
+
+</PageDescription>
+
+<AnchorLinks>
+
+<AnchorLink>Changelog</AnchorLink>
+<AnchorLink to="#components-breaking">Components</AnchorLink>
+<AnchorLink to="#styles-breaking">Styles</AnchorLink>
+<AnchorLink to="#color-tokens-breaking">Color Tokens</AnchorLink>
+<AnchorLink to="#css-grid-breaking">CSS Grid</AnchorLink>
+<AnchorLink to="#layer-component-breaking">Layering</AnchorLink>
+<AnchorLink to="#theme-component-new">Theming</AnchorLink>
+
+</AnchorLinks>
+
+## Changelog
+
+| Feature                   | <div style="width:100px">Status</div> | Migrate                                | Packages or components impacted                                                         |
+| ------------------------- | ------------------------------------- | -------------------------------------- | --------------------------------------------------------------------------------------- |
+| `@carbon/react`           | <Tag type="cyan">Breaking</Tag>       | [Components](#components-breaking)     | `carbon-components-react` `carbon-icons` `carbon-components`                            |
+| `@carbon/styles`          | <Tag type="cyan">Breaking</Tag>       | [Styles](#styles-breaking)             | `carbon-components` `@carbon/react` `carbon-components-angular` `carbon-components-vue` |
+| Color Tokens              | <Tag type="cyan">Breaking</Tag>       | [Color tokens](#color-tokens-breaking) | All components                                                                          |
+| CSS Grid                  | <Tag type="cyan">Breaking</Tag>       | [CSS Grid](#css-grid-breaking)         | `@carbon/grid` `Grid` `Row` `Column`                                                    |
+| Layer Component           | <Tag type="cyan">Breaking</Tag>       | [Layering](#layer-component-breaking)  | Components using `light` prop                                                           |
+| Theme Component           | <Tag type="green">New</Tag>           | [Theming](#theme-component-new)        |                                                                                         |
+| `carbon-icons`            | <Tag type="red">Deprecated</Tag>      | [Components](#components-breaking)     |                                                                                         |
+| `carbon-components`       | <Tag type="red">Deprecated</Tag>      | [Styles](#styles-breaking)             |                                                                                         |
+| `carbon-components-react` | <Tag type="red">Deprecated</Tag>      | [Components](#components-breaking)     |                                                                                         |
+
+<!-- to do: add rows for
+- component size props breaking changes
+- @carbon/icons-react breaking changes (size prop)
+- @carbon/icons-react breaking changes
+- tooltip breaking changes?
+- popover new feature?
+- other component API specific new features?
+ -->
+
+## Components <Tag type="cyan">Breaking</Tag>
+
+We have deprecated `carbon-components-react`, `carbon-icons` and
+`carbon-components` in favor of our new package `@carbon/react`. All of the
+component usage and API remains the same. The big change with this is to avoid
+having to install three separate packages that you have to keep in sync.
+
+### What this means for you and your team
+
+Going forward, using our components and styles will be as easy as just
+installing or updating one package.
+
+### How to migrate
+
+1. Install the new package
+
+```
+npm -i @carbon/react
+```
+
+```
+yarn install @carbon/react
+```
+
+2. Remove the old packages
+
+```
+npm uninstall carbon-components carbon-components-react carbon-icons
+```
+
+```
+yarn remove carbon-components carbon-components-react carbon-icons
+```
+
+3. Update package imports. Migration for this can be as easy as
+   find-and-replace. Search for anywhere you're importing components or icons
+   and update the import to point to `@carbon/react`. Read the next section
+   below to find out how to migrate styles.
+
+```js
+import { Button } from '@carbon/react';
+
+function MyComponent() {
+  return <Button>Example usage</Button>;
+}
+```
+
+```js
+import { Add } from '@carbon/react/icons';
+
+function MyComponent() {
+  return <Add />;
+}
+```
+
+### Resources
+
+<Row className="resource-card-group">
+  <Column colLg={4} colMd={4} noGutterSm>
+    <ResourceCard
+      subTitle="@carbon/react docs"
+      href="https://github.com/carbon-design-system/carbon/tree/main/packages/carbon-react">
+      <MdxIcon name="github" />
+    </ResourceCard>
+  </Column>
+</Row>
+
+## Styles <Tag type="cyan">Breaking</Tag>
+
+In v11, our Carbon styles feature two essential changes: their own dedicated
+package, `@carbon/styles`, and transitioning to Sass modules. If you're using
+our React components we have some great news for you, you don't have to install
+the styles package! `@carbon/react` already forwards all the sass included in
+`@carbon/styles`. If you are a library not using our React components, and just
+consuming our styles, then your migration will require installing the new
+package in addition to what's listed below.
+
+Using [Dart-Sass](https://sass-lang.com/dart-sass), we are finally able to use
+[the Module System](https://sass-lang.com/blog/the-module-system-is-launched),
+dropping the `import-once` helpers that have being causing awful compilation and
+build times, and re-thinking how developers bring styles into Carbon.
+
+Here are some reasons why we're moving away from Node-Sass and moving towards
+Dart-Sass:
+
+- Import Once: To offer better flexibility for importing Sass files, the project
+  used a convention to offer style deduplication due to Sass’s @import behavior.
+- Long compile times: While this technique would compile fine using Sass CLIs
+  directly, tooling like sass-loader would take an increasingly large amount of
+  time.
+- Incorrect behavior: In certain configurations with Webpack <4 and sass-loader,
+  style duplication was not even being prevented.
+- LibSass deprecation: When LibSass was
+  [deprecated](https://sass-lang.com/blog/libsass-is-deprecated), and
+  subsequently node-sass, we knew it was time to start looking towards Dart
+  Sass.
+
+### What this means for you and your team
+
+- Faster compile times
+- Faster build times
+- Over-all more flexibility when importing styles
+
+### How to migrate
+
+1. Projects that are currently using `webpack` with `sass-loader` the update
+   should be automatic.
+2. Projects using create-react-app or Next.js, remove `node-sass` from your
+   dependencies and add `sass` as the replacement.
+3. In any of your files where you are using Carbon sass (tokens, mixins, or
+   funcions), you will now need to import the specific sass file at the top. You
+   will use the `@use` keyword instead of `@import` to include the Carbon sass,
+   as seen below. If you're using our React components, your import will point
+   to the `@carbon/react` package. If you're a library just using the styles
+   package, your import will point to that.
+
+```scss
+@use '@carbon/react/scss/theme';
+
+body {
+  background: theme.$background;
+}
+```
+
+Alternatively, if you don't want to deal with prefixing all the Carbon sass
+instances, you can do the following:
+
+```scss
+@use '@carbon/react/scss/theme' as *;
+
+body {
+  background: $background;
+}
+```
+
+To learn more about getting starting with `Dart Sass`, usage, and importing
+specific Carbon sass, checkout our
+[styles docs](https://github.com/carbon-design-system/carbon/tree/main/packages/styles).
+
+### Resources
+
+<Row className="resource-card-group">
+  <Column colLg={4} colMd={4} noGutterSm>
+    <ResourceCard
+      subTitle="@carbon/styles docs"
+      href="https://github.com/carbon-design-system/carbon/tree/main/packages/styles">
+      <MdxIcon name="github" />
+    </ResourceCard>
+  </Column>
+  <Column colLg={4} colMd={4} noGutterSm>
+    <ResourceCard
+      subTitle="Migrating from node-sass to dart-sass"
+      href="https://sass-lang.com/blog/libsass-is-deprecated#how-do-i-migrate"></ResourceCard>
+  </Column>
+</Row>
+
+## Color Tokens <Tag type="cyan">Breaking</Tag>
+
+We have renamed our color tokens to be more semantic and better inform on their
+usage. Some of the changes can be easily done with find-and-replace, however,
+some may require more manual updates. When migrating, make sure to double check
+that you were using the correct v10 token as to not migrate to an incorrect
+token.
+
+### What this means for you and your team
+
+- Intuitive naming ensures correct token usage
+- Less ambiguity around what a color token is for
+
+### How to migrate
+
+1. Check for any sass files that are referencing color tokens, and use our color
+   token migration table to find the updated token name. We recommend checking
+   manually since some of the v10 tokens apply to more than one v11 token,
+   depending on its usage. For example, `hover-ui` could be `field-hover` or
+   `layer-hover`.
+
+To view a full table of v10 color tokens and their v11 equivalent, check out our
+[colors migration doc](https://github.com/carbon-design-system/carbon/blob/main/docs/migration/11.x-color.md).
+
+### Resources
+
+<Row className="resource-card-group">
+  <Column colLg={4} colMd={4} noGutterSm>
+    <ResourceCard
+      subTitle="Color tokens migration table"
+      href="https://github.com/carbon-design-system/carbon/blob/main/docs/migration/11.x-color.md">
+      <MdxIcon name="github" />
+    </ResourceCard>
+  </Column>
+</Row>
+
+## CSS Grid <Tag type="cyan">Breaking</Tag>
+
+A huge change for us this release is dropping support for IE11, which means we
+can now support CSS Grid. 🎉 Previously, our grid used CSS Flexbox, which made
+it hard to support nesting grids. At the moment, we are not providing an option
+to continue using flexbox grid in v11. Another notable change is that, by
+default, our grid is now 16 columns and there is no continued support for 12
+columns.
+
+### What this means for you and your team:
+
+- 16 column grid only
+- Support for nested grids
+
+### How to migrate
+
+`Grid` and `Column` continue to have the same props, but operate just a little
+bit differently. We realize the strategy for updating the grid might change from
+team to team, so instead we're just going to highlight some of the big changes
+you need to keep in mind when tackling this transition.
+
+- If you are using a 3 column layout anywhere, we suggest talking to your design
+  team to decide on an alternate layout since we are no longer supporting 12
+  columns. We realize this may be frustrating, but we hope the other cool
+  features we now support make it worth the change!
+- Use `Grid` component for subgrids.
+- `Row` component is deprecated. You can drop `Column` components directly into
+  `Grid`, including nested grids.
+- All columns by default will span just one column, not span the full width like
+  flex columns. You _must_ be explicit about how many columns you want to span
+  for each breakpoint. Below, you can find what a full width 4 column layout
+  would've looked like in v10 and what it looks like now in v11.
+- To view more detailed examples of our v11 grid, checkout our grid [story](#).
+<!-- to-do: add grid storybook link once it's live -->
+
+Some usage guidelines to keep in mind when migrating are:
+
+- Wide grid should always be the parent grid
+- Some grids, like condensed grid, don't exist in isolation; they are always
+  mixed.
+
+#### v10 auto columns
+
+```jsx
+<Grid>
+  <Row>
+    <Column>1 of 4</Column>
+    <Column>1 of 4</Column>
+    <Column>1 of 4</Column>
+    <Column>1 of 4</Column>
+  </Row>
+</Grid>
+```
+
+#### v11 auto columns
+
+```jsx
+<Grid>
+  // first row - 4 col full span like the v10 auto columns
+  <Column lg={4}>1 of 4</Column>
+  <Column lg={4}>1 of 4</Column>
+  <Column lg={4}>1 of 4</Column>
+  <Column lg={4}>1 of 4</Column>
+  // second row - v11 auto columns
+  <Column>1 of 8</Column>
+  <Column>1 of 8</Column>
+  <Column>1 of 8</Column>
+  <Column>1 of 8</Column>
+  <Column>1 of 8</Column>
+  <Column>1 of 8</Column>
+  <Column>1 of 8</Column>
+  <Column>1 of 8</Column>
+</Grid>
+```
+
+#### Nested grid
+
+```jsx
+<Grid>
+  <Column sm={2} md={4} lg={3}>
+    <p>Small: Span 2 of 4</p>
+    <p>Medium: Span 4 of 8</p>
+    <p>Large: Span 3 of 16</p>
+  </Column>
+  <Column sm={2} md={4} lg={10}>
+    <p>Small: Span 2 of 4</p>
+    <p>Medium: Span 4 of 8</p>
+    <p>Large: Span 10 of 16</p>
+    <Grid>
+      <Column sm={1} md={1} lg={2}>
+        <p>sm={1}</p> <p>md={1}</p> <p>lg={2}</p>
+      </Column>
+      <Column sm={1} md={1} lg={2}>
+        <p>sm={1}</p> <p>md={1}</p> <p>lg={2}</p>
+      </Column>
+      <Column sm={0} md={1} lg={1}>
+        <p>sm={0}</p> <p>md={1}</p> <p>lg={1}</p>
+      </Column>
+      <Column sm={0} md={1} lg={1}>
+        <p>sm={0}</p> <p>md={1}</p> <p>lg={1}</p>
+      </Column>
+      <Column sm={0} md={0} lg={1}>
+        <p>sm={0}</p> <p>md={0}</p> <p>lg={1}</p>
+      </Column>
+      <Column sm={0} md={0} lg={1}>
+        <p>sm={0}</p> <p>md={0}</p> <p>lg={1}</p>
+      </Column>
+      <Column sm={0} md={0} lg={1}>
+        <p>sm={0}</p> <p>md={0}</p> <p>lg={1}</p>
+      </Column>
+      <Column sm={0} md={0} lg={1}>
+        <p>sm={0}</p> <p>md={0}</p> <p>lg={1}</p>
+      </Column>
+    </Grid>
+  </Column>
+  <Column sm={0} md={0} lg={3}>
+    <p>Small: Span 0 of 4</p>
+    <p>Medium: Span 0 of 8</p>
+    <p>Large: Span 3 of 16</p>
+  </Column>
+</Grid>
+```
+
+### Resources
+
+<Row className="resource-card-group">
+  <Column colLg={4} colMd={4} noGutterSm>
+    <ResourceCard
+      subTitle="CSS Grid docs"
+      href="https://github.com/carbon-design-system/carbon/blob/main/docs/migration/11.x-grid.md">
+      <MdxIcon name="github" />
+    </ResourceCard>
+  </Column>
+  <Column colLg={4} colMd={4} noGutterSm>
+    <ResourceCard
+      subTitle="CSS Grid storybook"
+      href="https://github.com/carbon-design-system/carbon/blob/main/docs/migration/11.x-grid.md">
+      <MdxIcon name="react" />
+    </ResourceCard>
+  </Column>
+</Row>
+
+<!-- to-do: link to live v11 storybook once we have it up!!!! -->
+
+## Theming
+
+With our theming updates we have some new features and some breaking changes.
+You can now specify you're theme with our new
+[Theme component](#theme-component)., and incorporate inline theming. You can
+also specify a layer with a [Layer component](#layer-component).
+
+### Layer Component <Tag type="cyan">Breaking</Tag>
+
+In regards to theming, we have also added in a new `Layer` component. The
+`Layer` component replaces the `light` prop. It is a container that renders the
+`cds--layer` class name. The class name then remaps contextual tokens to the
+next layer. This allows you to style different layers, or directly use the
+tokens exported from our styles package.
+
+### What this means for you and your team
+
+- Layer componet replaces `light` prop. See the first example below.
+- More flexibility for 3 layer stacking vs. 2 layer stacking
+- Third layer stacking will now be supported in dark themes
+
+```jsx
+  // v10
+  <Dropdown light />
+
+  // v11
+  <Layer>
+    <Dropdown />
+  </Layer>
+```
+
+Here is an example of how you can use the `Layer` component:
+
+```jsx
+<Layer>
+  <ChildComponent />
+  <Layer>
+    <ChildComponent />
+    <Layer>
+      <ChildComponent />
+    </Layer>
+  </Layer>
+</Layer>
+```
+
+To learn more about how our `Layer` component works and it's API, checkout out
+the resource link below.
+
+### Theme Component <Tag type="green">New</Tag>
+
+We have added a new, flexible `Theme` component. The `Theme` component allows
+you to specify the theme for a section of the page, for example with inline
+theming, or render a theme for an entire page.
+
+### What this means for you and your team
+
+- Inline theming 🎉
+
+Here is an example of how you can use the `Theme` component:
+
+```jsx
+import { g90 } from '@carbon/themes';
+
+<Theme theme={g90}>
+  <ChildComponent />
+</Theme>;
+```
+
+To learn more about how our `Theme` component works with our `useTheme` hook,
+checkout our resource link below.
+
+### Resources
+
+<Row className="resource-card-group">
+  <Column colLg={4} colMd={4} noGutterSm>
+    <ResourceCard
+      subTitle="Layer component docs"
+      href="https://github.com/carbon-design-system/carbon/blob/main/packages/carbon-react/src/components/Layer/Layer.mdx">
+      <MdxIcon name="github" />
+    </ResourceCard>
+  </Column>
+  <Column colLg={4} colMd={4} noGutterSm>
+    <ResourceCard
+      subTitle="Theme component docs"
+      href="https://github.com/carbon-design-system/carbon/blob/main/packages/carbon-react/src/components/Theme/Theme.mdx">
+      <MdxIcon name="github" />
+    </ResourceCard>
+  </Column>
+</Row>
+
+<!-- 
+
+## Size Props
+
+- Over the years our size props got a little messy. So we updated them, so that
+  they are now consistent across all of our components.
+
+### What this means for you and your team:
+
+The props should now look like this:
+
+| Prop Name | Size |
+| --------- | ---- |
+| xs        | 24px |
+| sm        | 32px |
+| md        | 40px |
+| lg        | 48px |
+| xl        | 64px |
+| 2xl       | 80px |
+
+-->
