@@ -45,7 +45,7 @@ library in the context of dark and light themes.
 
 <GifPlayer color="dark">
 
-![UI color alternatives](images/introduction.gif)
+![6 screenshots showing a range of color schemes and considerations for text and data visualizations](images/introduction.gif)
 ![UI color alternatives](images/introduction.jpg)
 
 </GifPlayer>
@@ -65,7 +65,7 @@ and experiences. Additional colors are used sparingly and purposefully.
 </div>
 {/* possible TODO: remove inline style */}
 <ColorGrid colorFamily="alerts" style="margin-top: 2rem" />
-<Caption>Alerts Colors</Caption>
+<Caption>Alert Colors</Caption>
 
 ### Layering model
 
@@ -192,7 +192,7 @@ layering model.
 
 There are two light themes in Carbon: White and Gray 10. In the light themes,
 layers alternate between White and Gray 10. For enabled UI colors light themes
-primarily uses the color range of White to Gray 20, and for text and icons uses
+primarily use the color range of White to Gray 20, and for text and icons uses
 the color range between Gray 100 and Gray 60.
 
 - **White theme**: uses White backgrounds and is paired with components using
@@ -275,7 +275,7 @@ All of the themes are available in
   </DoDont>
  <DoDont type="dont" colLg={6} caption="Do not apply components that are darker than the background unless using high-contrast mode.">
 
-![Gray 100 dropdown on Gray 90 background]](images/Dark_theme_04_new.png)
+![Gray 100 dropdown on Gray 90 background](images/Dark_theme_04_new.png)
 
   </DoDont>
 </DoDontRow>
@@ -287,9 +287,10 @@ All of the themes are available in
 In some cases, it is helpful to apply light components to dark backgrounds or
 dark components to light backgrounds. This technique is useful to focus
 attention or create visual tension. Some high contrast moments are baked into
-the themes used `inverse` tokens, like with the tooltip component. Other times
-high contrast moments can be achieved through applying inline theming for
-instances like a dark UI Shell Header with a light theme page.
+the themes by using the `inverse` tokens, like the tooltip component. Other
+times high contrast moments can be achieved through applying
+[inline theming](/guidelines/color/implementation#inline-theming) for instances
+like a dark UI Shell Header with a light theme page.
 
 <DoDontRow>
   <DoDont colLg={6}>
@@ -325,14 +326,14 @@ tokens.
 <Row>
 <Column colLg={12}>
 
-![Color token example](images/color-overview-tokens.png)
+![Generic text input showing same tokens assigned for White and Gray 100 themes.](images/color-overview-tokens.png)
 
 </Column>
 </Row>
 
 <Caption>
-  Color tokens for components are the same across themes as shown in the White
-  theme (left) and Gray 100 theme (right).
+  Color tokens for components are the same across themes as shown by this text
+  input using the White theme (left) and Gray 100 theme (right).
 </Caption>
 
 <br />
@@ -340,8 +341,8 @@ tokens.
 #### The power of tokens
 
 When building a component or designing a part of your product, you may be
-tempted to use colors from the IBM Design Language directly. For example, when
-building a form you want all of the input labels to be Gray 70 (following Carbon
+tempted to use colors directly from the IBM Design Language. Like, when building
+a form you want all of the input labels to be Gray 70 (following Carbon
 guidelines) so you use the hex code `#565656` in code.
 
 In the future, the design language may update the value of Gray 70. In this
@@ -395,22 +396,16 @@ stand as individual tokens like `$overlay`, `$highlight`, and `$interactive`.
 
 #### Component tokens
 
-Some components have their own explicit color tokens that are only used with
-that particular component. These types tokens are called _component tokens_.
-They lives with the components and not part of the core color token palette. To
-find the components tokens and values for each theme, visit their component
-style page.
+Some components have their own specific color tokens, known as _component
+tokens_. They represent the properties associated with a particular component.
+They are not global tokens like the core tokens and should never be used for
+anything other than their own component. For a full list for component tokens
+see the [color usage](/guidelines/color/usage) tab. To see how the tokens are
+applied in the components themselves, visit the component’s style page.
 
-- Button
-- Tag
-- Notification
-
-<InlineNotification>
-
-**Coming soon:** Some component tokens may not be available on the component
-page yet. Check back later for updates.
-
-</InlineNotification>
+- [Button](/components/button/style#color)
+- [Tag](/components/tag/style#color)
+- [Notification](/components/notification/style#color)
 
 ### Interaction states
 
@@ -451,7 +446,7 @@ should not be used for anything other hover states.
 
 Elements like text or icons that use `secondary` colors for their enabled state,
 will change to the `primary` color on hover, giving them a subtle emphasis. Most
-of the time, this shift in color (to the text or icon element) will be
+of the time, this shift in color (on the text or icon element) will be
 accompanied by a background hover color shift as well. For example, an overflow
 menu uses `$text-secondary` and `$layer` in its enabled state. On hover, the
 text switches to `$text-primary` and the background to `$layer-hover`.
@@ -465,8 +460,8 @@ text switches to `$text-primary` and the background to `$layer-hover`.
 </Row>
 
 <Caption>
-  Shown in the white theme, (1) `$layer` enabled color and (2) `$layer-hover`
-  hover color.
+  Shown in the white theme, '$layer' enabled color (1) has a value of 10 and
+  '$layer-hover' (2) has a value of 15.
 </Caption>
 
 <br />
@@ -494,8 +489,8 @@ The exceptions are that White value shares the same active state value as Gray
 </Row>
 
 <Caption>
-  Shown in the White theme, (1) `$button-primary` enabled color and (2)
-  `$button-primary-active` active color.
+  Shown in the White theme, `$button-primary` enabled color (1) has a value of
+  Blue 60 and `$button-primary-active` active color (2) has a value of Blue 80.
 </Caption>
 
 <br />
@@ -528,8 +523,8 @@ accompanied by a selected background color shift as well.
 </Row>
 
 <Caption>
-  Shown in the white theme, (1) `$layer` enabled color and (2) `$layer-selected`
-  selected color.
+  Shown in the white theme, `$layer` enabled color (1) has a value of Gray 10
+  and `$layer-selected` selected color (2) has a value of Gray 20.
 </Caption>
 
 <br />
@@ -561,7 +556,7 @@ contrast accessibility. Often times to achieve proper 3:1 contrast a
 </Row>
 
 <Caption>
-  (1) White theme `$focus` color and (2) Gray 90 theme `$focus` color.
+  White theme `$focus` color (1) and Gray 90 theme `$focus` color (2).
 </Caption>
 
 <br />
@@ -576,9 +571,9 @@ not subject to WC3 contrast compliance standards and is intentionally
 de-emphasized in a faded fashion.
 
 Disabled elements are always styled in the Gray family no matter its base color.
-Component-specific styling will depend on the elements within it and what layers
-they are placed on. Some tokens have their own specific disabled tokens, such as
-`$layer-disabled`, while other elements are grouped together and share a
+A component's specific styling will depend on the elements within it and what
+layers they are placed on. Some tokens have their own specific disabled tokens,
+such as `$layer-disabled`, while other elements are grouped together and share a
 disabled token like `$text-disabled`.
 
 - For the light themes, disabled color values range from White to Gray 50
