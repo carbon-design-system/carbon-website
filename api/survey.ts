@@ -1,5 +1,6 @@
 import { NowRequest, NowResponse } from '@now/node';
-import fetch, { FetchError } from 'node-fetch';
+
+import axios from 'axios';
 
 import { WebClient } from '@slack/web-api';
 
@@ -44,13 +45,13 @@ module.exports = async (req: NowRequest, res: NowResponse) => {
     },
   });
 
-  await fetch(process.env.SURVEYGIZMO_REQUEST_URI, {
-    method: 'PUT',
-    body: surveyBody,
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  }).catch((error: FetchError) => res.json({ error: error.message }));
+  await axios
+    .put(process.env.SURVEYGIZMO_REQUEST_URI, surveyBody, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .catch((error) => res.json({ error: error.message }));
 
   // Prepare data for Slack
   const emoji =
