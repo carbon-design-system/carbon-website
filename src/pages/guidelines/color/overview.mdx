@@ -106,19 +106,7 @@ The layering model differs between the _light_ and _dark_ themes.
   Dark theme layering model and example shown in the Gray 100 theme.
 </Caption>
 
-<br />
-
-## Implementing color
-
-Carbon uses themes and tokens to manage color. Tokens are role-based, and themes
-specify the color values that serve those roles in the UI.
-
-| Term  | Definition                                                                                                                                                                                             |     |
-| ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --- |
-| Theme | A theme is a collection of colors designed to create a specific aesthetic. Themes control the color value assigned to a token. For example, White theme, Gray 10 theme, Gray 90 theme, Gray 100 theme. |     |
-| Token | A token is the role-based identifier that assigns a color. Unlike hex codes, tokens apply universally across themes. For example, `$layer`, `$border-subtle`, `$support-error`.                        |     |
-| Role  | A role is the systematic usage of a color. Roles cannot be changed between themes.                                                                                                                     |     |
-| Value | A value is the unique visual attribute (hex code, rgba value) assigned to a token through the use of a theme.                                                                                          |
+<br /> |
 
 ## Themes
 
@@ -308,19 +296,39 @@ like a dark UI Shell Header with a light theme page.
 
 ## Tokens
 
-Color in Carbon is managed through tokens. Tokens are an abstracted method of
-applying color in a consistent, reusable, and scalable way. Tokens are used in
-place of a hard coded values, like a hex code. Tokens allow for value changes to
-be made at scale, making design language changes easy to implement as well as
-making color theming possible.
+Tokens are method of applying color in a consistent, reusable, and scalable way.
+They help us abstract how we use color from the values themselves. They are used
+in place of hard coded values, like hex codes. Tokens allow for value changes to
+be made at scale, making design language changes easy to implement, as well as
+making possible color functionalities like inline theming and light or dark
+mode.
 
-Each color token is assigned a role and a value. The role determines where the
-token is applied in the UI and the value is the actual color (hex code) that
-appears in the assigned theme. Color token names and roles are the same across
-themes, only the assigned value will change base on which theme is being used.
+Each token is assigned a role and a value. The role determines what element to
+apply a token too and the value is the actual color (hex code) that appears in
+the assigned theme. Color token names and roles are the same across themes, only
+the assigned value will change with the theme. For example, under the hood
+the $text-secondary token can dynamically map to Gray 70 or Gray 30 depending on
+the theme.
 
 See the [color usage](/guidelines/color/usage) tab for the full list of color
 tokens.
+
+| Term  | Definition                                                                                                                                                                                             |     |
+| ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --- |
+| Theme | A theme is a collection of colors designed to create a specific aesthetic. Themes control the color value assigned to a token. For example, White theme, Gray 10 theme, Gray 90 theme, Gray 100 theme. |     |
+| Token | A token is the role-based identifier that assigns a color. Unlike hex codes, tokens apply universally across themes. For example, `$layer`, `$border-subtle`, `$support-error`.                        |     |
+| Role  | A role is the systematic usage of a color. Roles cannot be changed between themes.                                                                                                                     |     |
+| Value | A value is the unique visual attribute (hex code, rgba value) assigned to a token through the use of a theme.                                                                                          |
+
+### Token names
+
+For quick reference, the role of a token is represented in the token name itself
+to help you correctly apply tokens. The first part of the token name references
+the general UI element the color is being applied to,
+like background, text, or border. The second part of token name will specify its
+unique role within the element group, like `$border-subtle` or $text-primary.
+Additionally, some tokens include an interaction state at the end, like
+$background-hover.
 
 <Row>
 <Column colLg={12}>
@@ -337,70 +345,46 @@ tokens.
 
 <br />
 
-#### The power of tokens
+### Core tokens
 
-When building a component or designing a part of your product, you may be
-tempted to use colors directly from the IBM Design Language. Like, when building
-a form you want all of the input labels to be Gray 70 (following Carbon
-guidelines) so you use the hex code `#565656` in code.
+Color tokens that can be applied across components are called _core tokens_.
+There are ten main groups of core color tokens. They are grouped by the common
+UI element that they are applied to. Token groups makes it easier to find and
+apply color tokens. Interaction state tokens are included in the group along
+side their enabled state tokens. There are a few core tokens that do not belong
+to the a group and stand as individual tokens like $overlay, $highlight,
+and $interactive.
 
-In the future, the design language may update the value of Gray 70. In this
-case, you need to manually change the color of your labels by updating ever hard
-coded instance of `#565656`. If you had instead used the Carbon color token
-`$text-secondary`, all your labels would have received the color update
-automatically.
+Some core tokens are part of an additional token group called Layering tokens.
+These tokens are used to implement the layering model onto components. For more
+information, see the
+[Implementation tab](/guidelines/color/implementation#layer-tokens).
 
-In another scenario, you may want to support a user preference of light mode and
-dark mode in your product. In this situation, you would also need to use
-the `$text-secondary` token instead of the hard coded hex color. Under the hood,
-the `$text-secondary` token will dynamically map
-to `#565656` or `#ffffff` depending on the theme. By using the tokens from the
-start you can fast track other color functionalities like theming needed in the
-future.
-
-In summary, tokens help us abstract how we use color from the values themselves.
-
-### Token names
-
-For quick reference, the role of a token is represented in the token name itself
-to help you make correct usage decisions. The token names are divided into three
-possible parts. The first part of the token name references the general UI
-element the color is being applied to, like `background`, `text`, or `border`.
-The second part of token name will specify its role. It will be an adjective
-that describes how or when to use to token, like `subtle` or `primary`. At its
-end, token name can also include the interaction state of the token like `hover`
-or `active`.
-
-### Token groups
-
-There are 10 main groups of color tokens. They are grouped by the common UI
-element they are applied too. Grouping tokens makes it easier to find and apply
-color tokens. There are a few core tokens that do not belong to the a group and
-stand as individual tokens like `$overlay`, `$highlight`, and `$interactive`.
-
-| Token group | Applied to                                               |
-| ----------- | -------------------------------------------------------- |
-| Background  | Page or primary backgrounds                              |
-| Layer       | Stacking containers or UI elements                       |
-| Field       | Form and input container backgrounds                     |
-| Border      | Dividers, rules, and borders between and around elements |
-| Text        | Type and type styles                                     |
-| Link        | Standalone and inline links                              |
-| Icon        | Icons and pictograms                                     |
-| Support     | Notification elements and status indicators              |
-| Focus       | Focus states                                             |
-| Skeleton    | Skeleton states                                          |
+| Token group | Applied to                                                                          |
+| ----------- | ----------------------------------------------------------------------------------- |
+| Background  | Page or primary backgrounds                                                         |
+| Layer       | Stacked backgrounds (includes layering tokens)                                      |
+| Field       | Form and input backgrounds (includes layering tokens)                               |
+| Border      | Dividers, rules, and borders between and around elements (includes layering tokens) |
+| Text        | Type and type styles                                                                |
+| Link        | Standalone and inline links                                                         |
+| Icon        | Icons and pictograms                                                                |
+| Support     | Notification elements and status indicators                                         |
+| Focus       | Focus states                                                                        |
+| Skeleton    | Skeleton states                                                                     |
 
 <br />
 
-#### Component tokens
+### Component tokens
 
 Some components have their own specific color tokens, known as _component
 tokens_. They represent the properties associated with a particular component.
 They are not global tokens like the core tokens and should never be used for
 anything other than their own component. For a full list for component tokens
-see the [color usage](/guidelines/color/usage) tab. To see how the tokens are
-applied in the components themselves, visit the component’s style page.
+see the [color usage](/guidelines/color/usage) tab.
+
+To see how the tokens are applied in the components themselves, visit the
+component’s style page.
 
 - [Button](/components/button/style#color)
 - [Tag](/components/tag/style#color)
