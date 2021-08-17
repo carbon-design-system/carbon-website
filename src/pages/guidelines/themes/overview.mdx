@@ -35,21 +35,21 @@ individual components.
 
 ### Theme terms
 
-| Term    | Definition                                                                                                  |     |
-| ------- | ----------------------------------------------------------------------------------------------------------- | --- |
-| _Theme_ | The set of unique values assigned to the tokens of a Carbon interface                                       |     |
-| _Token_ | The code identifier for a unique role or set of roles. Tokens are universal and never change across themes. |     |
-| _Role_  | The systematic usage(s) of a token. Roles cannot be changed between themes.                                 |     |
-| _Value_ | The actual style (i.e. hex code) assigned to a token                                                        |     |
+| Term    | Definition                                                                                                   |     |
+| ------- | ------------------------------------------------------------------------------------------------------------ | --- |
+| _Theme_ | A collection of visual attributes assigned to the tokens in order to create a specific aesthetic             |     |
+| _Token_ | A role-based identifier that assigns a value to a theme. Tokens are universal and never change across themes |     |
+| _Role_  | The systematic usage(s) of a token. Roles cannot be changed between themes                                   |     |
+| _Value_ | The actual style (such as a hex code) assigned to a token                                                    |     |
 
 ### Default theme
 
 Carbon provides four themes as shown in the
 [color usage](/guidelines/color/usage) page. When `carbon-components` is
-downloaded and installed, the components are preset to use the default (white)
+downloaded and installed, the components are preset to use the default (White)
 theme.
 
-To use the gray 10, gray 90, or gray 100 theme as your default instead of white,
+To use the Gray 10, Gray 90, or Gray 100 theme as your default instead of White,
 set the `$carbon--theme` variable to one of the available theme maps
 (`$carbon--theme--g10`, `$carbon--theme--g90`, `$carbon--theme--g100`) and then
 include your normal components in your Sass build. These need to be imported
@@ -84,71 +84,161 @@ stylesheet which will replace the values of the default theme.
 
 <Title>
   1. Create a theme mixin that effectively mimics this structure, but changes up
-  hex values as needed:
+  values as needed:
 </Title>
 
-```scss
-$carbon--theme--white: (
-  interactive-01: #0062ff,
-  interactive-02: #171717,
-  interactive-03: #0062ff,
-  interactive-04: #0062ff,
-  ui-background: #ffffff,
-  ui-01: #f3f3f3,
-  ui-02: #ffffff,
-  ui-03: #dcdcdc,
-  ui-04: #8c8c8c,
-  ui-05: #171717,
-  text-01: #171717,
-  text-02: #565656,
-  text-03: #8c8c8c,
-  text-04: #ffffff,
-  icon-01: #171717,
-  icon-02: #565656,
-  icon-03: #ffffff,
-  link-01: #0062ff,
-  link-02: #0043ce,
-  field-01: #f3f3f3,
-  field-02: #ffffff,
-  inverse-01: #ffffff,
-  inverse-02: #3d3d3d,
-  support-01: #da1e28,
-  support-02: #24a148,
-  support-03: #fdd13a,
-  support-04: #054ada,
-  inverse-support-01: #fb4b53,
-  inverse-support-02: #3dbb61,
-  inverse-support-03: #fdd13a,
-  inverse-support-04: #408bfc,
-  overlay-01: rgba(23, 23, 23, 0.5),
-  focus: #0062ff,
-  hover-primary: #0353e9,
-  active-primary: #0530ad,
-  hover-primary-text: #054ada,
-  hover-secondary: #4c4c4c,
-  active-secondary: #6f6f6f,
-  hover-tertiary: #0353e9,
-  active-tertiary: #0530ad,
-  hover-ui: #e5e5e5,
-  active-ui: #bebebe,
-  selected-ui: #dcdcdc,
-  hover-selected-ui: #cacaca,
-  hover-danger: #ba1b23,
-  active-danger: #750e13,
-  hover-row: #e5e5e5,
-  visited-link: #8a3ffc,
-  disabled-01: #f3f3f3,
-  disabled-02: #bebebe,
-  disabled-03: #8c8c8c,
-  highlight: #c9deff,
-  skeleton-01: #e5e5e5,
-  skeleton-02: #bebebe,
-  brand-01: #0062ff,
-  brand-02: #171717,
-  brand-03: #0062ff,
-  active-01: #bebebe,
-  hover-field: #e5e5e5,
-) !default;
+```js
+// Background
+background = white;
+backgroundInverse = gray80;
+backgroundBrand = blue60;
+backgroundActive = gray30;
+backgroundHover = whiteHover;
+backgroundInverseHover = gray80Hover;
+backgroundSelected = gray20;
+backgroundSelectedHover = gray20Hover;
+
+// Layer
+// layer-01
+layer01 = gray10;
+layerActive01 = gray30;
+layerHover01 = gray10Hover;
+layerSelected01 = gray20;
+layerSelectedHover01 = gray20Hover;
+
+// layer-02
+layer02 = white;
+layerActive02 = gray30;
+layerHover02 = whiteHover;
+layerSelected02 = gray20;
+layerSelectedHover02 = gray20Hover;
+
+// layer-03
+layer03 = gray10;
+layerActive03 = gray30;
+layerHover03 = gray10Hover;
+layerSelected03 = gray20;
+layerSelectedHover03 = gray20Hover;
+
+// layer
+layerDisabled = gray10;
+layerSelectedInverse = gray100;
+layerSelectedDisabled = gray50;
+
+// layer-accent-01
+layerAccent01 = gray20;
+layerAccentActive01 = gray40;
+layerAccentHover01 = gray20Hover;
+
+// layer-accent-02
+layerAccent02 = gray20;
+layerAccentActive02 = gray40;
+layerAccentHover02 = gray20Hover;
+
+// layer-accent-03
+layerAccent03 = gray20;
+layerAccentActive03 = gray40;
+layerAccentHover03 = gray20Hover;
+
+// Field
+// field-01
+field01 = gray10;
+fieldHover01 = gray10Hover;
+
+// field-02
+field02 = white;
+fieldHover02 = whiteHover;
+
+// field-03
+field03 = gray10;
+fieldHover03 = gray10Hover;
+
+// field
+fieldDisabled = gray10;
+
+// Border
+// border-subtle-00
+borderSubtle00 = gray20;
+
+// border-subtle-01
+borderSubtle01 = gray20;
+borderSubtleSelected01 = gray30;
+
+// border-subtle-02
+borderSubtle02 = gray20;
+borderSubtleSelected02 = gray30;
+
+// border-subtle-03
+borderSubtle03 = gray20;
+borderSubtleSelected03 = gray30;
+
+// border-strong
+borderStrong01 = gray50;
+borderStrong02 = gray50;
+borderStrong03 = gray50;
+
+// border-inverse
+borderInverse = gray100;
+
+// border-interactive
+borderInteractive = blue60;
+
+// border
+borderDisabled = gray10;
+
+// ext
+textPrimary = gray100;
+textSecondary = gray70;
+textPlaceholder = gray40;
+textHelper = gray60;
+textError = red60;
+textInverse = white;
+textOnColor = white;
+textOnColorDisabled = gray50;
+textDisabled = gray30;
+
+// Link
+linkPrimary = blue60;
+linkPrimaryHover = blue70;
+linkSecondary = blue70;
+linkInverse = blue40;
+linkVisited = purple60;
+
+// Icon
+iconPrimary = gray100;
+iconSecondary = gray70;
+iconInverse = white;
+iconOnColor = white;
+iconOnColorDisabled = gray50;
+iconDisabled = gray30;
+
+// Support
+supportError = red60;
+supportSuccess = green50;
+supportWarning = yellow30;
+supportInfo = blue70;
+supportErrorInverse = red50;
+supportSuccessInverse = green40;
+supportWarningInverse = yellow30;
+supportInfoInverse = blue50;
+supportCautionMinor = yellow30;
+supportCautionMajor = orange40;
+supportCautionUndefined = purple60;
+
+// Focus
+focus = blue60;
+focusInset = white;
+focusInverse = white;
+
+// Skeleton
+skeletonBackground = whiteHover;
+skeletonElement = gray30;
+
+// Misc
+interactive = blue60;
+highlight = blue20;
+overlay = 'rgba(22, 22, 22, 0.5)';
+toggleOff = gray50;
 ```
 
 <Title> 2. Name the mixin: </Title>
@@ -183,101 +273,127 @@ There are several token categories:
 
 ### Color
 
-Each theme is assigned 52 universal color variables, which are determined by
-[common roles and usage](/guidelines/color/usage). This allows for uniform color
-application across themes while maintaining full styling flexibility.
+Each theme is assigned universal color variables, which are determined by common
+roles and usage. This allows for uniform color application across themes while
+maintaining full styling flexibility. For more information, see the
+[color page](/guidelines/color/overview).
 
-```scss
-//// _theme-tokens.scss
-// White theme tokens
-$interactive-01: #0062ff !default;
-$interactive-02: #171717 !default;
-$interactive-03: #0062ff !default;
-$interactive-04: #0062ff !default;
-$ui-background: #ffffff !default;
-$ui-01: #f3f3f3 !default;
-$ui-02: #ffffff !default;
-$ui-03: #dcdcdc !default;
-$ui-04: #8c8c8c !default;
-$ui-05: #171717 !default;
-$text-01: #171717 !default;
-$text-02: #565656 !default;
-$text-03: #8c8c8c !default;
-$text-04: #ffffff !default;
-$icon-01: #171717 !default;
-$icon-02: #565656 !default;
-$icon-03: #ffffff !default;
-$link-01: #0062ff !default;
-$link-02: #0043ce !default;
-$field-01: #f3f3f3 !default;
-$field-02: #ffffff !default;
-$inverse-01: #ffffff !default;
-$inverse-02: #3d3d3d !default;
-$support-01: #da1e28 !default;
-$support-02: #24a148 !default;
-$support-03: #fdd13a !default;
-$support-04: #054ada !default;
-$overlay-01: rgba(23, 23, 23, 0.5) !default;
-$focus: #0062ff !default;
-$hover-primary: #0353e9 !default;
-$active-primary: #0530ad !default;
-$hover-primary-text: #054ada !default;
-$hover-secondary: #4c4c4c !default;
-$active-secondary: #6f6f6f !default;
-$hover-tertiary: #0353e9 !default;
-$active-tertiary: #0530ad !default;
-$hover-ui: #e5e5e5 !default;
-$active-ui: #bebebe !default;
-$selected-ui: #dcdcdc !default;
-$hover-selected-ui: #cacaca !default;
-$hover-danger: #ba1b23 !default;
-$active-danger: #750e13 !default;
-$hover-row: #e5e5e5 !default;
-$visited-link: #8a3ffc !default;
-$disabled-01: #f3f3f3 !default;
-$disabled-02: #bebebe !default;
-$disabled-03: #8c8c8c !default;
-$highlight: #c9deff !default;
-$brand-01: #0062ff !default;
-$brand-02: #171717 !default;
-$brand-03: #0062ff !default;
-$active-01: #bebebe !default;
-$hover-field: #e5e5e5 !default;
+```js
+  'background',
+  'layer',
+  'layerAccent',
+  'layerAccentHover',
+  'layerAccentActive',
+  'field',
+  'backgroundInverse',
+  'backgroundBrand',
+  'interactive',
+
+  'borderSubtle',
+  'borderStrong',
+  'borderInverse',
+  'borderInteractive',
+
+  'textPrimary',
+  'textSecondary',
+  'textPlaceholder',
+  'textHelper',
+  'textOnColor',
+  'textInverse',
+
+  'linkPrimary',
+  'linkSecondary',
+  'linkVisited',
+  'linkInverse',
+
+  'iconPrimary',
+  'iconSecondary',
+  'iconOnColor',
+  'iconInverse',
+
+  'supportError',
+  'supportSuccess',
+  'supportWarning',
+  'supportInfo',
+  'supportErrorInverse',
+  'supportSuccessInverse',
+  'supportWarningInverse',
+  'supportInfoInverse',
+
+  'overlay',
+  'toggleOff',
+
+  'buttonPrimary',
+  'buttonSecondary',
+  'buttonTertiary',
+  'buttonDangerPrimary',
+  'buttonDangerSecondary',
+
+  'backgroundActive',
+  'layerActive',
+
+  'buttonDangerActive',
+  'buttonPrimaryActive',
+  'buttonSecondaryActive',
+  'buttonTertiaryActive',
+
+  'focusInset',
+  'focusInverse',
+
+  'backgroundHover',
+  'layerHover',
+  'fieldHover',
+  'backgroundInverseHover',
+  'linkPrimaryHover',
+  'buttonDangerHover',
+  'buttonPrimaryHover',
+  'buttonSecondaryHover',
+  'buttonTertiaryHover',
+
+  'backgroundSelected',
+  'backgroundSelectedHover',
+  'layerSelected',
+  'layerSelectedHover',
+  'layerSelectedInverse',
+  'borderSubtleSelected',
+
+  'layerDisabled',
+  'fieldDisabled',
+  'borderDisabled',
+
+  'textDisabled',
+  'buttonDisabled',
+  'iconDisabled',
+
+  'textOnColorDisabled',
+  'iconOnColorDisabled',
+  'layerSelectedDisabled',
+
+  'skeletonBackground',
+  'skeletonElement',
 ```
 
 ### Spacing
 
-Carbon has two spacing scales, one for general spacing within components and the
-other for layout spacing. Both are designed to complement the components and
-typography throughout the system. Each scale has its own
-[distinct purpose](/guidelines/spacing/overview). The two scales have certain
-overlapping values that serve two different roles, so be mindful when choosing a
-spacing token.
+Use the spacing scale when building individual components. It includes small
+increments needed to create appropriate spatial relationships for detail-level
+designs. For more information, see the
+[spacing page](/guidelines/spacing/overview/).
 
-```scss
-//// _spacing.scss
-$spacing-baseline: 1rem !default;
-
-// Spacing scale
-$spacing-4xs: $spacing-baseline * 0.0625 !default;
-$spacing-3xs: $spacing-baseline * 0.125 !default;
-$spacing-2xs: $spacing-baseline * 0.25 !default;
-$spacing-xs: $spacing-baseline * 0.5 !default;
-$spacing-sm: $spacing-baseline * 0.75 !default;
-$spacing-md: $spacing-baseline !default;
-$spacing-lg: $spacing-baseline * 1.5 !default;
-$spacing-xl: $spacing-baseline * 2 !default;
-$spacing-2xl: $spacing-baseline * 2.5 !default;
-$spacing-3xl: $spacing-baseline * 3 !default;
-
-// Layout scale
-$layout-2xs: $spacing-baseline !default;
-$layout-xs: $spacing-baseline * 1.5 !default;
-$layout-sm: $spacing-baseline * 2 !default;
-$layout-md: $spacing-baseline * 3 !default;
-$layout-lg: $spacing-baseline * 4 !default;
-$layout-xl: $spacing-baseline * 6 !default;
-$layout-2xl: $spacing-baseline * 10 !default;
+```js
+spacing01 = miniUnits(0.25);
+spacing02 = miniUnits(0.5);
+spacing03 = miniUnits(1);
+spacing04 = miniUnits(1.5);
+spacing05 = miniUnits(2);
+spacing06 = miniUnits(3);
+spacing07 = miniUnits(4);
+spacing08 = miniUnits(5);
+spacing09 = miniUnits(6);
+spacing10 = miniUnits(8);
+spacing11 = miniUnits(10);
+spacing12 = miniUnits(12);
+spacing13 = miniUnits(20);
 ```
 
 ### Typography
@@ -285,7 +401,8 @@ $layout-2xl: $spacing-baseline * 10 !default;
 Typography has four categories of type styles (universal, productive, editorial,
 and additional) that can be customized through tokens. These tokens are used
 both within components and across layouts. Type tokens are determined by their
-[role](/guidelines/typography/productive) across the system.
+role across the system. For more information, see the
+[typography page](/guidelines/typography/overview/).
 
 ```scss
 // Universal
