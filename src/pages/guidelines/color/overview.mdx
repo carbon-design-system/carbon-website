@@ -85,28 +85,28 @@ The layering model differs between the _light_ and _dark_ themes.
 <Row>
 <Column colLg={12}>
 
-![Layering model for light themes](images/color-layering-model-light.png)
+![Layering model for light themes](images/color-layering-model.png)
 
 </Column>
 </Row>
 
 <Caption>
-  Light theme layering model and example shown in the White theme.
+  Layering model for the White theme (left) and Gray 100 theme (right)
 </Caption>
 
-<Row>
-<Column colLg={12}>
+<br />{' '}
 
-![Layering model for dark themes](images/color-layering-model-dark.png)
+## Implementing color
 
-</Column>
-</Row>
+Carbon uses tokens and themes to manage color. Tokens are role-based, and themes
+specify the color values that serve those roles in the UI.
 
-<Caption>
-  Dark theme layering model and example shown in the Gray 100 theme.
-</Caption>
-
-<br /> |
+| Term    | Definition                                                                                                                                                                      |
+| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _Theme_ | A theme is a collection of colors designed to create a specific aesthetic. Themes control the color value assigned to a token. For example, Gray 100 theme.                     |
+| _Token_ | A token is the role-based identifier that assigns a color. Unlike hex codes, tokens apply universally across themes. For example, `$layer`, `$border-subtle`, `$support-error`. |
+| _Role_  | A role is the systematic usage of a color assigned to a token. Roles cannot be changed between themes.                                                                          |
+| _Value_ | A value is the unique visual attribute (hex code, rgba value) assigned to a token through the use of themes.                                                                    |
 
 ## Themes
 
@@ -177,18 +177,23 @@ layering model.
 
 ### Light themes
 
-There are two light themes in Carbon: White and Gray 10. In the light themes,
-layers alternate between White and Gray 10. For enabled UI colors light themes
-primarily use the color range of White to Gray 20, and for text and icons uses
-the color range between Gray 100 and Gray 60.
-
-- **White theme**: uses White backgrounds and is paired with components using
-  Gray 10 containers for its first layer.
-- **Gray 10 theme:** uses Gray 10 backgrounds and is paired with components
-  using white containers for its first layer.
+There are two light themes in Carbon: White and Gray 10. For enabled UI colors
+light themes primarily use the color range of White to Gray 20, and for text and
+icons uses the color range between Gray 100 and Gray 60.
 
 All of the themes are available in
 [Design kits](https://carbondesignsystem.com/designing/kits/sketch/).
+
+#### Layering model
+
+In the light themes, layers alternate between White and Gray 10.
+
+- **White theme**: uses White as the global background color and is layered
+  first with components using Gray 10 backgrounds. The second layer uses White
+  and the third layer used Gray 10.
+- **Gray 10 theme:** uses Gray 10 as the global background color and is layered
+  first with components using White backgrounds. The second layer uses Gray 10
+  and the third layer used White.
 
 <Tabs>
 
@@ -223,18 +228,23 @@ All of the themes are available in
 
 ### Dark themes
 
-There are two dark themes: Gray 90 and Gray 100. In the dark themes, layers
-become one step lighter with each added layer. For enabled UI colors, dark
+There are two dark themes: Gray 90 and Gray 100. For enabled UI colors, dark
 themes primarily use the color range of Gray 100 through Gray 70, and for text
 and icons uses the color range between White and Gray 50.
 
-- **Gray 90 theme**: uses Gray 90 backgrounds and is paired with components
-  using Gray 80 containers to start.
-- **Gray 100 theme:** uses Gray 100 backgrounds and is paired with components
-  using Gray 90 containers to start.
-
 All of the themes are available in
 [Design kits](https://carbondesignsystem.com/designing/kits/sketch/).
+
+#### Layering model
+
+In the dark themes, layers become one step lighter with each added layer.
+
+- **Gray 90 theme**: uses Gray 90 as the global background color and is layered
+  first with components using Gray 80 backgrounds. The second layer uses Gray 70
+  and the third layer used Gray 60.
+- **Gray 100 theme:** uses Gray 100 as the global background color and is
+  layered first with components using Gray 90 backgrounds. The second layer uses
+  Gray 80 and the third layer used Gray 70.
 
 <Tabs>
 
@@ -307,28 +317,11 @@ Each token is assigned a role and a value. The role determines what element to
 apply a token too and the value is the actual color (hex code) that appears in
 the assigned theme. Color token names and roles are the same across themes, only
 the assigned value will change with the theme. For example, under the hood
-the $text-secondary token can dynamically map to Gray 70 or Gray 30 depending on
-the theme.
+the `$text-secondary` token can dynamically map to `Gray 70` or `Gray 30`
+depending on the theme.
 
 See the [color usage](/guidelines/color/usage) tab for the full list of color
 tokens.
-
-| Term  | Definition                                                                                                                                                                                             |     |
-| ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --- |
-| Theme | A theme is a collection of colors designed to create a specific aesthetic. Themes control the color value assigned to a token. For example, White theme, Gray 10 theme, Gray 90 theme, Gray 100 theme. |     |
-| Token | A token is the role-based identifier that assigns a color. Unlike hex codes, tokens apply universally across themes. For example, `$layer`, `$border-subtle`, `$support-error`.                        |     |
-| Role  | A role is the systematic usage of a color. Roles cannot be changed between themes.                                                                                                                     |     |
-| Value | A value is the unique visual attribute (hex code, rgba value) assigned to a token through the use of a theme.                                                                                          |
-
-### Token names
-
-For quick reference, the role of a token is represented in the token name itself
-to help you correctly apply tokens. The first part of the token name references
-the general UI element the color is being applied to,
-like background, text, or border. The second part of token name will specify its
-unique role within the element group, like `$border-subtle` or $text-primary.
-Additionally, some tokens include an interaction state at the end, like
-$background-hover.
 
 <Row>
 <Column colLg={12}>
@@ -345,6 +338,16 @@ $background-hover.
 
 <br />
 
+### Token names
+
+For quick reference, the role of a token is represented in the token name itself
+to help you correctly apply tokens. The first part of the token name references
+the general UI element the color is being applied to,
+like `background`, `text`, or `border`. The second part of token name will
+specify its unique role within the element group,
+like `$border-subtle` or `$text-primary`. Additionally, some tokens include an
+interaction state at the end, like `$background-hover`.
+
 ### Core tokens
 
 Color tokens that can be applied across components are called _core tokens_.
@@ -352,10 +355,10 @@ There are ten main groups of core color tokens. They are grouped by the common
 UI element that they are applied to. Token groups makes it easier to find and
 apply color tokens. Interaction state tokens are included in the group along
 side their enabled state tokens. There are a few core tokens that do not belong
-to the a group and stand as individual tokens like $overlay, $highlight,
-and $interactive.
+to the a group and stand as individual tokens like `$overlay`, `$highlight`,
+and `$interactive`.
 
-Some core tokens are part of an additional token group called Layering tokens.
+Some core tokens are part of an additional token group called _layering tokens_.
 These tokens are used to implement the layering model onto components. For more
 information, see the
 [Implementation tab](/guidelines/color/implementation#layer-tokens).
@@ -393,10 +396,9 @@ component’s style page.
 ## Interaction states
 
 In addition to the core set of enabled-state tokens, there are five other
-primary interaction states defined with tokens for each theme. Interaction
-tokens are signified by the addition of a state name added to the end of the
-base token name. For example, the `$background` hover state token is
-`$background-hover`.
+interaction states defined with tokens for each theme. Interaction tokens are
+signified by the addition of a state name added to the end of the base token
+name. For example, the `$background` hover state token is `$background-hover`.
 
 The color layering model for interaction tokens is as follows:
 
