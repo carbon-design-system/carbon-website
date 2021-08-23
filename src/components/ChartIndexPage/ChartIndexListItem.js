@@ -6,7 +6,7 @@
  */
 
 import { Link, Tag, TooltipIcon } from 'carbon-components-react';
-import Image from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import React from 'react';
 
 // Placeholder image
@@ -16,12 +16,12 @@ const ChartIndexListItem = React.memo(
   ({ codeUrl, description, image, maintainer, name, websiteUrl }) => {
     let img;
 
-    if (image?.fluid) {
+    if (image?.gatsbyImageData) {
       img = (
-        <Image
+        <GatsbyImage
           className="index-image"
           alt={`Image for the ${name} chart`}
-          fluid={image.fluid}
+          image={image.gatsbyImageData}
         />
       );
     } else {

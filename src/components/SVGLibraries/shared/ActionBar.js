@@ -6,7 +6,7 @@ import { Button } from 'carbon-components-react';
 import copy from 'copy-to-clipboard';
 import cx from 'classnames';
 import { LibraryContext } from './LibraryProvider';
-import styles from './ActionBar.module.scss';
+import { container, trigger, hidden, tooltip } from './ActionBar.module.scss';
 
 const ActionBar = ({
   name,
@@ -56,8 +56,8 @@ const ActionBar = ({
       ref={actionBarRef}
       onBlur={handleBlurEvent}
       aria-hidden={!isActionBarVisible}
-      className={cx(styles.container, {
-        [styles.hidden]: !isActionBarVisible,
+      className={cx(container, {
+        [hidden]: !isActionBarVisible,
       })}>
       <Button
         kind="ghost"
@@ -69,8 +69,8 @@ const ActionBar = ({
         renderIcon={Download16}
         onFocus={() => setIsActionBarVisible(true)}
         onClick={handleDownload}
-        className={styles.tooltip}
-        triggerClassName={styles.trigger}
+        className={tooltip}
+        triggerClassName={trigger}
       />
       {shouldShowCopyButton && (
         <Button
@@ -83,8 +83,8 @@ const ActionBar = ({
           renderIcon={Code16}
           onClick={handleCopy}
           onFocus={() => setIsActionBarVisible(true)}
-          className={styles.tooltip}
-          triggerClassName={styles.trigger}
+          className={tooltip}
+          triggerClassName={trigger}
         />
       )}
     </div>
