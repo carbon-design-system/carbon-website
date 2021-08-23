@@ -7,7 +7,7 @@ exports.onCreateWebpackConfig = ({ actions, getConfig }) => {
       rules: [
         {
           test: /\.md$/,
-          loaders: ['html-loader', 'markdown-loader'],
+          use: ['html-loader', 'markdown-loader'],
         },
         {
           test: /\.html$/,

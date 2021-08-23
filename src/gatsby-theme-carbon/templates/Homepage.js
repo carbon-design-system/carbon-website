@@ -3,7 +3,7 @@ import React from 'react';
 import { HomepageCallout, ResourceCard } from 'gatsby-theme-carbon';
 import HomepageTemplate from 'gatsby-theme-carbon/src/templates/Homepage';
 import { blue90, gray10, white0 } from '@carbon/elements';
-import styles from './Homepage.module.scss';
+import { calloutLink, callToAction } from './Homepage.module.scss';
 import HomepageVideo from '../../components/HomepageVideo/HomepageVideo';
 
 const FirstLeftText = () => <p>Carbon Design System</p>;
@@ -30,7 +30,7 @@ const SecondRightText = () => (
     We welcome all feedback, designs, or ideas in order to produce the best
     possible experience for our users. If you’re interested in contributing,
     check out our contributing guidelines to get started.
-    <a className={styles.calloutLink} href="/contributing/overview/">
+    <a className={calloutLink} href="/contributing/overview/">
       Start contributing →
     </a>
   </p>
@@ -45,7 +45,7 @@ const customProps = {
           <div className="bx--row">
             <div className="bx--col-lg-4 bx--col-md-4 bx--col-sm-2 bx--offset-lg-8 bx--offset-md-4 bx--offset-sm-2 homepage--tile-header">
               <ResourceCard
-                className={styles.callToAction}
+                className={callToAction}
                 subTitle="Coming soon"
                 title="Carbon v11"
                 href="/whats-happening/v11-release/"
