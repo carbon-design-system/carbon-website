@@ -73,7 +73,7 @@ npm -i @carbon/react
 ```
 
 ```
-yarn add @carbon/react
+yarn install @carbon/react
 ```
 
 2. Remove the old packages
@@ -85,15 +85,6 @@ npm uninstall carbon-components carbon-components-react carbon-icons
 ```
 yarn remove carbon-components carbon-components-react carbon-icons
 ```
-
-<InlineNotification>
-
-While this release is still in beta, you may have to keep `carbon-components`,
-`carbon-components-react` and `carbon-icons` installed since `@carbon/react` is
-importing them. In the future, these will be included as peer dependencies in
-the package, and you won't have to install them.
-
-</InlineNotification>
 
 3. Update package imports. Migration for this can be as easy as
    find-and-replace. Search for anywhere you're importing components or icons
@@ -109,10 +100,10 @@ function MyComponent() {
 ```
 
 ```js
-import { Add16 } from '@carbon/react/icons';
+import { Add } from '@carbon/react/icons';
 
 function MyComponent() {
-  return <Add16 />;
+  return <Add />;
 }
 ```
 
@@ -458,9 +449,11 @@ theming, or render a theme for an entire page.
 Here is an example of how you can use the `Theme` component:
 
 ```jsx
-<Theme theme="g90">
+import { g90 } from '@carbon/themes';
+
+<Theme theme={g90}>
   <ChildComponent />
-</Theme>
+</Theme>;
 ```
 
 To learn more about how our `Theme` component works with our `useTheme` hook,
