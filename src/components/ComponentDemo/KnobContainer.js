@@ -22,7 +22,6 @@ import {
   formGroup,
   componentKnobWrapper,
   componentKnobTitle,
-  formItem,
   checkboxWrapper,
   iconButton,
   iconButtonRow,
@@ -196,7 +195,6 @@ const Knob = ({
         title={description}
         defaultChecked={defaultChecked}
         labelText={name}
-        className={formItem}
         wrapperClassName={checkboxWrapper}
         id={inputId}
       />

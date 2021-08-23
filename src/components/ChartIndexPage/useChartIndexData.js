@@ -14,9 +14,7 @@ const CHART_INDEX_DATA = graphql`
         name
         relativeDirectory
         childImageSharp {
-          fluid(maxWidth: 640, maxHeight: 480) {
-            ...GatsbyImageSharpFluid
-          }
+          gatsbyImageData(width: 640, height: 480)
         }
       }
     }
