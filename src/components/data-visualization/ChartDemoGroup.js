@@ -39,8 +39,7 @@ const ChartDemoGroup = ({ demoGroup, light }) => {
         </div>
       )}
 
-      <>
-        {light !== true && demo.description && (
+      {light !== true && demo.description && (
           <div className="bx--row">
             <div className="bx--col-sm-4 bx--col-md-8 bx--col-lg-8">
               <P className="dataviz-copy">{demo.description}</P>
@@ -82,7 +81,6 @@ const ChartDemoGroup = ({ demoGroup, light }) => {
             <img src={STORYBOOK_LOGO} alt="" style={{ height: 20 }} />
           </MiniCard>
         )}
-      </>
     </div>
   );
 };
