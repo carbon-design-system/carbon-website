@@ -1,6 +1,5 @@
 import React, { useState, useLayoutEffect } from 'react';
 
-/* eslint-disable import/no-extraneous-dependencies */
 import useMedia from 'use-media';
 import { breakpoints } from '@carbon/elements';
 
