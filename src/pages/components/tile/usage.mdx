@@ -17,20 +17,49 @@ including information, getting started, how-to, next steps, and more.
 
 <AnchorLink>Overview</AnchorLink>
 <AnchorLink>Live demo</AnchorLink>
-<AnchorLink>Variants</AnchorLink>
+<AnchorLink>Tile variants</AnchorLink>
+<AnchorLink>Formatting</AnchorLink>
+<AnchorLink>Behaviors</AnchorLink>
+<AnchorLink>Related</AnchorLink>
+<AnchorLink>References</AnchorLink>
 <AnchorLink>Feedback</AnchorLink>
 
 </AnchorLinks>
 
 ## Overview
 
-Carbon ships a basic tile structure that responds to the grid. Tiles have no
-pre-set styles for the content within them. You can customize tiles to fit your
-specific use case.
+Carbon ships a basic tile structure that responds to the grid. Based on the
+layout structure, tiles can contain type, images and/or a block of color. As
+tiles have no pre-set styles for the content within them, the tile component
+usage guidance is purposefully high level. It focuses specifically on the tile
+itself, not the structure of the information or interactive elements that the
+tile contains—that type of information will be found in the card pattern.
 
-When using a call-to-action (CTA) within a tile, use a
-[secondary button](/components/button/usage). Primary buttons should be reserved
-for the most important action a user can take on the page.
+#### Tiles vs. Cards
+
+Tiles are simple and foundational. Cards can be very complex. They are built
+upon the tile foundation and have various patterns, multiple actions, overflow
+menus, selectable features, etc. Carbon does not have a Card pattern yet, but we
+link out to several card patterns within our pattern asset library (PAL)
+ecosystem below:
+
+- [Productive vs. Expressive cards](https://pages.github.ibm.com/cdai-design/pal/components/card/overview/)
+  (Carbon for Cloud & Cognitive).
+- [Dashboard cards](https://pages.github.ibm.com/ai-applications/design/patterns/dashboards-v2/overview/#dashboard-cards)
+  (AI Applications Design).
+- [Card](https://www.ibm.com/standards/carbon/components/card) (Carbon for
+  IBM.com).
+
+### When to use
+
+Tiles are reusable components that provide shortcuts to building cards and other
+modules. Here are some common use cases for when to use tiles:
+
+- Containing a related group of information or actions.
+- Displaying high level information and metrics on dashboards.
+- Guiding user to take actions or navigate.
+- Presenting options for single or multiple selections.
+- Hiding or showing large amounts of content.
 
 ## Live demo
 
@@ -67,8 +96,7 @@ for the most important action a user can take on the page.
         'https://react.carbondesignsystem.com/?path=/story/components-tile--default',
       Angular:
         'https://angular.carbondesignsystem.com/?path=/story/components-tiles--basic',
-      Vue:
-        'http://vue.carbondesignsystem.com/?path=/story/components-cvtile--default',
+      Vue: 'http://vue.carbondesignsystem.com/?path=/story/components-cvtile--default',
       Vanilla: 'https://the-carbon-components.netlify.com/?nav=tile',
     }}>{`
     <Tile>
@@ -85,8 +113,7 @@ for the most important action a user can take on the page.
         'https://react.carbondesignsystem.com/?path=/story/components-tile--clickable',
       Angular:
         'https://angular.carbondesignsystem.com/?path=/story/components-tiles--basic',
-      Vue:
-        'http://vue.carbondesignsystem.com/?path=/story/components-cvtile--default',
+      Vue: 'http://vue.carbondesignsystem.com/?path=/story/components-cvtile--default',
       Vanilla: 'https://the-carbon-components.netlify.com/?nav=tile',
     }}>{`
     <ClickableTile
@@ -105,8 +132,7 @@ for the most important action a user can take on the page.
         'https://react.carbondesignsystem.com/?path=/story/components-tile--radio',
       Angular:
         'https://angular.carbondesignsystem.com/?path=/story/components-tiles--clickable',
-      Vue:
-        'http://vue.carbondesignsystem.com/?path=/story/components-cvtile--clickable',
+      Vue: 'http://vue.carbondesignsystem.com/?path=/story/components-cvtile--clickable',
       Vanilla: 'https://the-carbon-components.netlify.com/?nav=tile',
     }}>{`
     <TileGroup
@@ -150,8 +176,7 @@ for the most important action a user can take on the page.
         'https://react.carbondesignsystem.com/?path=/story/components-tile--multi-select',
       Angular:
         'https://angular.carbondesignsystem.com/?path=/story/components-tiles--selectable',
-      Vue:
-        'http://vue.carbondesignsystem.com/?path=/story/components-cvtile--selectable',
+      Vue: 'http://vue.carbondesignsystem.com/?path=/story/components-cvtile--selectable',
       Vanilla: 'https://the-carbon-components.netlify.com/?nav=tile',
     }}>{`
     <div
@@ -197,8 +222,7 @@ for the most important action a user can take on the page.
         'https://react.carbondesignsystem.com/?path=/story/components-tile--expandable',
       Angular:
         'https://angular.carbondesignsystem.com/?path=/story/components-tiles--expandable',
-      Vue:
-        'http://vue.carbondesignsystem.com/?path=/story/components-cvtile--expandable',
+      Vue: 'http://vue.carbondesignsystem.com/?path=/story/components-cvtile--expandable',
       Vanilla: 'https://the-carbon-components.netlify.com/?nav=tile',
     }}>{`
     <ExpandableTile
@@ -222,18 +246,27 @@ for the most important action a user can take on the page.
   `}</ComponentVariant>
 </ComponentDemo>
 
-## Variants
+## Tile variants
 
-All of the images below represent examples of types of content that could be
-presented within a tile. The styling in these examples is for illustration only;
-you are free to create your own layout and design within a tile.
+Tiles can function or be implemented in four ways—read-only, clickable,
+selectable, or expandable. These variation of tiles are flexible enough to
+support a variety of different use cases when building more complicating card
+features.
+
+| Variant                    | Purpose                                                                                                   |
+| -------------------------- | --------------------------------------------------------------------------------------------------------- |
+| [Read-only](#read-only)    | For high-level, short, and digestible content pieces such as features, plans, or services offered.        |
+| [Clikckable](#clickable)   | For prompting an action, navigating or directing to other pieces of information about the subject matter. |
+| [Selectable](/#selectable) | For presenting options to a user in a structured manner, such as a set of pricing plans.                  |
+| [Expandable](#expandable)  | For hiding and revealing a large amount of content in order to focus on specific pieces of info.          |
 
 ### Read-only
 
 Read-only tiles are used to display information to the user, such as features or
 services offered. Read-only tiles are often seen on marketing pages to promote
-content. These tiles can have internal calls-to-action (CTAs), such as a
-[button](/components/button/usage) or a [link](/components/link/usage).
+content or on dashboards that are highly interactive. These tiles can have
+internal calls-to-action (CTAs), such as a [button](/components/button/usage) or
+a [link](/components/link/usage).
 
 <Row>
 <Column colLg={8}>
@@ -247,7 +280,8 @@ content. These tiles can have internal calls-to-action (CTAs), such as a
 
 Clickable tiles can be used as navigational items, where the entire tile is a
 clickable state, which redirects the user to a new page. Clickable tiles cannot
-contain separate internal CTAs.
+contain separate internal CTAs but can contain pictograms, icons, or media such
+as illustrations or images.
 
 <Row>
 <Column colLg={8}>
@@ -259,38 +293,372 @@ contain separate internal CTAs.
 
 ### Selectable
 
-Selectable tiles work like a [radio button](/components/radio-button/usage),
-where the entire tile is a click target. Selectable tiles may contain internal
-CTAs (like links to docs) if the internal CTA is given its own click target.
 Selectable tiles work well for presenting options to a user in a structured
-manner, such as a set of pricing plans.
+manner, such as a set of pricing plans. Selectable tiles may contain internal
+CTAs (like links to docs) if the internal CTA is given its own click target.
+
+Selectable tiles can either have a single select state working like a
+[radio button](/components/radio-button/usage), or multi-select state working as
+a [checkbox](/components/checkbox/usage).
 
 <Row>
 <Column colLg={8}>
 
-![Example image of selectable tiles.](images/tile-usage-3.png)
+![Selectable radio-button / single select tiles](images/tile-usage-3.png)
+
+<Caption>Selectable radio-button / single select tiles.</Caption>
+
+![Selectable checkbox / multi-select tiles](images/tile-usage-4.png)
+
+<Caption>Selectable checkbox / multi-select tiles. </Caption>
 
 </Column>
 </Row>
 
 ### Expandable
 
-Expandable tiles are helpful for hiding/showing larger amounts of content to a
-user. They can only be stacked in a single column, and cannot live in a row or
-horizontal grid. When expanded, tiles push content down the page. Expandable
-tiles may contain internal CTAs (like links to docs) if the internal CTA is
-given its own click target.
+Expandable tiles are helpful for hiding and showing large amounts of content to
+a user.  
+When expanded, tiles push content down the page. They allow the user to
+specifically focus on featured content while having access to the rest of the
+information. Expandable tiles can contain internal CTAs (like links to docs) if
+they are given their own click targets and the click target is reduced to only
+the chevron icon.
 
 <Row>
 <Column colLg={8}>
 
-![Example image of expandable tiles.](images/tile-usage-4.png)
+![Example image of expandable tiles.](images/tile-usage-5.png)
 
 </Column>
 </Row>
 
+## Formatting
+
+### Anatomy
+
+<Row>
+<Column colLg={8}>
+
+![Example image of expandable tiles.](images/tile-usage-6.png)
+
+</Column>
+</Row>
+
+1. **Header**: Includes a title, optional label, and the close icon.
+
+2. **Body**: Contains the information and/or controls needed to complete the
+   modal's task. It can include message text and components.
+
+### Sizing
+
+The **width** varies depending on three basic grid modes: wide, narrow, and
+condensed while the **height** varies depending on the amount of content placed
+within it, but still following the aspect ratio.
+
+[Aspect ratios](https://www.carbondesignsystem.com/guidelines/2x-grid/overview/#aspect-ratio)
+are written out as a formula of width to height, such as 3:2. It’s important to
+remember that while two images can have the same aspect ratio, they can have
+varying images sizes.
+
+<Row>
+<Column colLg={8}>
+
+![Example image of expandable tiles.](images/tile-usage-7.png)
+
+</Column>
+</Row>
+
+### Alignment
+
+Always strive for left alignment whenver possible. Type in tiles should always
+be left aligned. Icons or icon buttons can be aligned to either left or right
+edge depending on the tiles’ complexity.
+
+For example: In situations where there are both an icon or pictogram with an
+icon button, place the icon or pictorgram in the lower left corner of the tile
+and move the icon button (action) to the right corner.
+
+<Row>
+<Column colLg={8}>
+
+![Example of $ui-03 token border between fluid buttons](images/tile-usage-8.png)
+
+</Column>
+</Row>
+
+<DoDontRow>
+  <DoDont caption="Do left align icon, link, or text when it is by itself.">
+
+![Do left align icon, link, or text when it is by itself.](images/tile-usage-9.png)
+
+  </DoDont>
+
+  <DoDont type="dont" caption="Do not right align an icon, link, or text when it is by itself">
+
+![Do not right align an icon, link, or text when it is by itself.](images/tile-usage-10.png)
+
+  </DoDont>
+</DoDontRow>
+
+<DoDontRow>
+
+  <DoDont caption="Do move icon to the right when there is an icon or pictogram.">
+
+![Do move icon to the right when there is an icon or pictogram.](images/tile-usage-11.png)
+
+  </DoDont>
+
+  <DoDont type="dont" caption="Do move icon to the right when there is text or link.">
+
+![Do move icon to the right when there is text or link.](images/tile-usage-12.png)
+
+  </DoDont>
+</DoDontRow>
+
+### Placement
+
+#### Tile groups
+
+Tile groups are a useful way of aligning tiles that have a strong relationship.
+Tile groups flow horizontally left to right usually and have similar
+hierarchical importance like navigation or catalog tiles.
+
+<Row>
+<Column colLg={12}>
+
+![Example image of how tiles are built on the wide grid.](images/tile-usage-13.png)
+
+<Caption>Example image of how tiles are built on the wide grid.</Caption>
+
+</Column>
+</Row>
+
+<Row>
+<Column colLg={12}>
+
+![Example image of how tiles are built on the narrow grid.](images/tile-usage-14.png)
+
+<Caption>Example image of how tiles are built on the narrow grid.</Caption>
+
+</Column>
+</Row>
+
+<Row>
+<Column colLg={12}>
+
+![Example image of how tiles are built on the condensed grid.](images/tile-usage-15.png)
+
+<Caption>Example image of how tiles are built on the condensed grid.</Caption>
+
+</Column>
+</Row>
+
+<Row>
+<Column colLg={12}>
+
+![Example image of how tiles are built on the condensed grid but smaller in width.](images/tile-usage-16.png)
+
+<Caption>
+  Example image of how tiles are built on the condensed grid but smaller in
+  width.
+</Caption>
+
+</Column>
+</Row>
+
+#### Layout
+
+There are three basic layouts for tiles: **standard**, **vertical mansory**, and
+**horizontal masonry**. The standard layout will be the most commonly used
+version.
+
+- Displaying high level information and metrics on dashboards.
+- A vertical masonry grid can vary in height, but is consistent in width.
+- A horizontal masonry grid can vary in width. Rows of tiles may vary in height,
+  but the tiles within a row are consistent in height.
+
+<Row>
+<Column colLg={4}>
+
+![Standard layout for tiles](/images/tile-usage-17.png)
+
+<Caption>Standard layout for tiles</Caption>
+
+</Column>
+
+<Column colLg={4}>
+
+![An example of the standard layout](/images/tile-usage-18.png)
+
+<Caption>An example of the standard layout</Caption>
+
+</Column>
+</Row>
+
+<Row>
+<Column colLg={4}>
+
+![Vertical masonry layout for tiles](/images/tile-usage-19.png)
+
+<Caption>Vertical masonry layout for tiles</Caption>
+
+</Column>
+
+<Column colLg={4}>
+
+![An example of the vertical masonry layout](images/tile-usage-20.png)
+
+<Caption>An example of the vertical masonry layout </Caption>
+
+</Column>
+</Row>
+
+<Row>
+<Column colLg={4}>
+
+![Horizonal masonry layout for tiles](/images/tile-usage-21.png)
+
+<Caption>Horizonal masonry layout for tiles</Caption>
+
+</Column>
+
+<Column colLg={4}>
+
+![An example of the horizonal masonry layout](images/tile-usage-22.png)
+
+<Caption>An example of the horizonal masonry layout </Caption>
+
+</Column>
+</Row>
+
+### Elevation
+
+Tiles reside in the same plane as the background layer—they do not have
+elevation. Do not add drop shadows to tiles. Tiles organize essential
+information and have the same visual hierarchy as content within the same page.
+Modals, popovers, and dialogs do have elevation but are not inherently part of
+the users main workstream and are envoked on screen to reveal secondary
+information, actions, or notifications.
+
+### Call-to-actiions
+
+For **read-only, selectable, and expandable tiles**, use $link-01 when icon and
+link are paired together or use $interactive-04 when the icon stands alone.
+
+For **clickable tiles**, don’t highlight text or icons to avoid confusion as if
+they’re links and clickable.
+
+<DoDontRow>
+
+  <DoDont caption="Do use text or icon for clickable tiles if needed.">
+
+![Do use text or icon for clickable tiles if needed.](images/tile-usage-23.png)
+
+  </DoDont>
+  <DoDont type="dont" caption="Do not use link or highlight the icon color for clickable tiles.">
+
+![Do not use link or highlight the icon color for clickable tiles.](images/tile-usage-24.png)
+
+  </DoDont>
+</DoDontRow>
+
+## Behaviors
+
+### Interactions
+
+#### Mouse
+
+Users can trigger an item by clicking anywhere in any tile container, except
+read-only tiles.
+
+<Row>
+<Column colLg={8}>
+
+![Clickable, expandable, and selectable tiles are clickable anywhere within the tile.](images/tile-usage-25.png)
+
+<Caption>
+  Clickable, expandable, and selectable tiles are clickable anywhere within the
+  tile.
+</Caption>
+
+</Column>
+</Row>
+
+<Row>
+<Column colLg={8}>
+
+![Read-only tiles are static, except buttons or links .](images/tile-usage-26.png)
+
+<Caption>Read-only tiles are static, except buttons or links .</Caption>
+
+</Column>
+</Row>
+
+Expandable tiles can either be triggered as a whole or only contain internal
+CTA's if they are given their own click targets and the tile’s click target is
+reduced to only the chevron icon.
+
+<InlineNotification>
+
+**Note:** Clickable targets are currently not available in coding. Teams can
+override the code to make smaller click targets while we're updating this in the
+future.
+
+</InlineNotification>
+
+<Row>
+<Column colLg={8}>
+
+![Clickable, expandable, and selectable tiles are clickable anywhere within the tile.](images/tile-usage-27.png)
+
+</Column>
+</Row>
+
+#### Keyboard
+
+Specific keyboard interactions will depend on the type of tile you are using and
+what content it contains but all types of tiles can take focus.
+
+| Key             | Interaction                                                                                               |
+| --------------- | --------------------------------------------------------------------------------------------------------- |
+| Tab             | For high-level, short, and digestible content pieces such as features, plans, or services offered.        |
+| Shit + Tab      | For prompting an action, navigating or directing to other pieces of information about the subject matter. |
+| Return or Enter | For presenting options to a user in a structured manner, such as a set of pricing plans.                  |
+| Space           | For hiding and revealing a large amount of content in order to focus on specific pieces of info.          |
+
+## Related
+
+#### Grid
+
+To learn more about how to build tiles correctly on the grid, see Carbon’s
+[2x grid](/guidelines/2x-grid/implementation).
+
+#### Aspect ratio
+
+Aspect ratio is important when building tiles and images. For further guidance,
+see Carbon’s
+[Aspect ratio](https://www.carbondesignsystem.com/guidelines/2x-grid/overview/#aspect-ratio)
+and its
+[implementation](https://www.carbondesignsystem.com/guidelines/2x-grid/implementation#screen-regions).
+
+#### Buttons
+
+When in doubt, use full-span button alignment within tiles. For further
+guidance, see Carbon’s [buttons](/components/buttons/usage).
+
+#### Link
+
+Link has variants depending on the context. For further guidance, see Carbon’s
+[link](/components/buttons/usage).
+
+## Referneces
+
+- Hagan Rivers,
+  [Interactions design with cards/tiles](https://medium.com/@hagan.rivers/interaction-design-with-cards-tiles-5a6895aa220d/)
+  (Medium, 2017)
+
 ## Feedback
 
 Help us improve this component by providing feedback, asking questions, and
-leaving any other comments on
-[GitHub](https://github.com/carbon-design-system/carbon-website/issues/new?assignees=&labels=feedback&template=feedback.md).
+leaving any other comments on [GitHub]().
