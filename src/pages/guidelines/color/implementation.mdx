@@ -17,7 +17,8 @@ needs.
 <AnchorLinks>
 
 <AnchorLink>Implementing layering</AnchorLink>
-<AnchorLink>Layering model tokens</AnchorLink>
+<AnchorLink>Layering tokens</AnchorLink>
+<AnchorLink>Contextual tokens</AnchorLink>
 <AnchorLink>Inline theming</AnchorLink>
 <AnchorLink>Light or dark mode</AnchorLink>
 
@@ -39,10 +40,10 @@ the value changes depending on where the token is used on a page. This type of
 token is incredibly useful for building reusable components that work across
 layers.
 
-| Token type                                                                    | Definition                                                                                                                                |
-| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| [Layering tokens](/guidelines/color/implementation#layer-set-tokens)          | Explicit layerings tokens used to manually map the layering model onto components. They come in sets that pair with individual UI layers. |
-| [Contextual tokens](/guidelines/color/implementation#contextual-layer-tokens) | Abstract code tokens used to automatically map the layering model onto components depending on where it used on the page.                 |
+| Token type          | Definition                                                                                                                                |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| _Layering tokens_   | Explicit layerings tokens used to manually map the layering model onto components. They come in sets that pair with individual UI layers. |
+| _Contextual tokens_ | Abstract code tokens used to automatically map the layering model onto components depending on where it used on the page.                 |
 
 <Row>
 <Column colLg={12}>
@@ -62,7 +63,7 @@ layers.
 
 Layering tokens are explicit tokens used to manually map the layering model onto
 components. They are used just like any other color token, and in fact, are a
-replacement for the ‘ui’ color tokens from v10. Layering tokens come in
+replacement for the `ui` color tokens from v10. Layering tokens come in
 predefined sets that coordinate with the different layer levels. For each layer
 that a component needs to lives on a separate component variation must be built
 using the tokens from that layer set.
@@ -226,10 +227,10 @@ they have enough contrast not to need a change with each layer.
 
 <InlineNotification>
 
-**Migration note:** In `v10`, the additional color variants were known as
+**Migration note:** In v10, the additional color variants were known as
 the light prop variants. The `light` variants now use the 02 layer set. These
 new tokens also allow for a third color variant using the 03 layer set in
-components that was not possible in `v10`.
+components that was not possible in v10.
 
 </InlineNotification>
 
@@ -322,7 +323,7 @@ tokens use the 01 layer set tokens in the first layer.
 For more guidance on the layer component, go to the
 [Storybook](https://carbon-react-next.netlify.app/?path=/docs/components-layer--default).
 
-```scss Layer component
+```css Layer component
 <Layer>
   <ChildComponent />
   <Layer>
@@ -333,6 +334,8 @@ For more guidance on the layer component, go to the
   </Layer>
 </Layer>
 ```
+
+<br />
 
 #### Applying contextual layer tokens in a layout
 
@@ -380,10 +383,9 @@ text input in the main section is nested in second level of layer component
 </Row>
 
 <Caption>
-  An example layout using contextual tokens within a single theme. The
-  components are then wrapped in the layer component to control the visual
-  output: first layer (purple), second nested layer (teal), and third nested
-  layer (cyan).
+  A layout using contextual tokens within a single theme. The components are
+  wrapped in the layer component to control the visual output: first layer
+  (purple), second nested layer (teal), and third nested layer (cyan).
 </Caption>
 
 ### Building components with contextual tokens
@@ -455,8 +457,7 @@ what theme a section of the page should render with.
 For more guidance on the theme component, go to the
 [Storybook](https://carbon-react-next.netlify.app/?path=/docs/components-theme--default).
 
-```scss Theme component
-
+```css Theme component
 <Theme theme="g100">
   <ChildComponent />
 </Theme>
@@ -612,7 +613,7 @@ images for modes is to use transparent backgrounds.
 
 <InlineNotification>
 
-**Additional guidance:** Checkout this helpful PAL guidance around how to
+**Additional guidance:** Checkout some helpful PAL guidance around how to
 properly treat illustrations, images, and pictograms in light or dark mode on
 [IBM Cloud PAL](https://pages.github.ibm.com/ibmcloud/pal/dark-mode-guidelines/designers/#illustrations-in-dark-mode)
 _IBMers only_.
@@ -660,7 +661,7 @@ _IBMers only_.
     href="https://github.com/IanKitchen-IBM/carbon-theme-switcher"
     actionIcon="launch">
 
-    <MdxIcon name="sketch" />
+![](/images/sketch.svg)
 
   </ResourceCard>
 </Column>
