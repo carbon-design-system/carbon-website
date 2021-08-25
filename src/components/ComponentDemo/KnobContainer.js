@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 import React, { useContext, useRef } from 'react';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { Close20 } from '@carbon/icons-react';
 import nanoid from 'nanoid';
 
@@ -163,7 +162,7 @@ const Knob = ({
     const propString = parsedKnobProps.concat(
       Object.entries(newKnobs[component]).reduce(
         (accumulator, [prop, value]) => {
-          if (!value || value === `'default'`) return accumulator;
+          if (!value || value === `'default'`) {return accumulator;}
           if (typeof value === 'boolean') {
             return `${accumulator} ${prop}`;
           }

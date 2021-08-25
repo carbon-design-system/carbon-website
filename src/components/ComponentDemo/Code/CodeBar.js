@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import copy from 'copy-to-clipboard';
 
 import React from 'react';

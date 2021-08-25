@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import React, { useRef, useContext, useState } from 'react';
 import { pascalCase } from 'change-case';
 import { Code16, Download16 } from '@carbon/icons-react';
@@ -15,11 +14,18 @@ const ActionBar = ({
   setIsActionBarVisible,
   isActionBarVisible,
   isLastCard,
+  glyphOnly,
 }) => {
   const { site, type } = useContext(LibraryContext);
-  const component = `<${
-    pascalCase(friendlyName) + (type === 'pictogram' ? '' : '32')
-  } />`;
+  let suffix;
+  if (type === 'pictogram') {
+    suffix = '';
+  } else if (glyphOnly) {
+    suffix = 'Glyph';
+  } else {
+    suffix = '32';
+  }
+  const component = `<${pascalCase(friendlyName) + suffix} />`;
   const [copyText, setCopyText] = useState(`Copy ${component}`);
   const actionBarRef = useRef();
 

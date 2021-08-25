@@ -80,8 +80,7 @@ const ComponentIndexListItem = React.memo(
     };
 
     return (
-      <>
-        <article className="component-index-item">
+      <article className="component-index-item">
           <div className="component-index-item__image">{img}</div>
           <div className="component-index-item__content">
             <header className="component-index-item__name">{name}</header>
@@ -139,7 +138,6 @@ const ComponentIndexListItem = React.memo(
             </footer>
           </div>
         </article>
-      </>
     );
   }
 );

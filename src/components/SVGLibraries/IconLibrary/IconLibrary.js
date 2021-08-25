@@ -27,7 +27,7 @@ const IconLibrary = () => {
 
   useEffect(() => {
     const iconArray = iconMetaData.reduce((accumulator, icon) => {
-      if (icon.deprecated) return accumulator;
+      if (icon.deprecated) {return accumulator;}
 
       const path = [...icon.namespace, icon.name].join('/');
 
