@@ -414,7 +414,7 @@ In regards to theming, we have also added in a new `Layer` component. The
 next layer. This allows you to style different layers, or directly use the
 tokens exported from our styles package.
 
-### What this means for you and your team
+#### What this means for you and your team
 
 - Layer componet replaces `light` prop. See the first example below.
 - More flexibility for 3 layer stacking vs. 2 layer stacking
@@ -453,7 +453,7 @@ We have added a new, flexible `Theme` component. The `Theme` component allows
 you to specify the theme for a section of the page, for example with inline
 theming, or render a theme for an entire page.
 
-### What this means for you and your team
+#### What this means for you and your team
 
 - Inline theming 🎉
 
@@ -485,14 +485,129 @@ the `@carbon/react` package, by default.
 
 Here is an example of how to import an icon:
 
-```
+```js
 import { Add } from '@carbon/react/icons';
-
 ```
+
+## Component API
+
+### Size prop updates <Tag type="cyan">Breaking</Tag>
+
+We updated all our components with size variants to have the same API.
+Previously, the size options were inconsistent: `field`, `medium`, `short`.
+Sizing options will now be the same across all components for less confusion.
+
+#### What this means for you and your team
+
+- You will always know what to expect from components to size correctly
+
+#### How to migrate
+
+The following components all have size variants that may be affected in your
+code:
+
+- Accordion
+- Button
+- ComboBox
+- Dropdown
+- Multiselect
+- Filterable multiselect
+- ContentSwitcher
+- DataTable
+- DatePicker
+- FileUploader
+- FileUploaderItem
+- FileUploaderDropContainer
+- FileUploaderButton
+- Link
+- Modal
+- ComposedModal
+- NumberInput
+- OverflowMenu
+- Search
+- Select
+- Tag
+- TextInput
+- TimePicker
+- Toggle
+
+If you are using any size variants of those listed components, use the following
+table to determine what updated value to use for the size prop. The default size
+in v11 is `md` (`40px`).
+
+| Prop value | Size |
+| ---------- | ---- |
+| `xs`       | 24px |
+| `sm`       | 32px |
+| `md`       | 40px |
+| `lg`       | 48px |
+| `xl`       | 64px |
+| `2xl`      | 80px |
+
+### ClassName prop updates <Tag type="cyan">Breaking</Tag>
+
+We have renamed our color tokens to be more semantic and better inform on their
+usage. Some of the changes can be easily done with find-and-replace, however,
+some may require more manual updates. When migrating, make sure to double check
+that you were using the correct v10 token as to not migrate to an incorrect
+token.
+
+#### What this means for you and your team
+
+- Intuitive naming ensures correct token usage
+- Less ambiguity around what a color token is for
+
+#### How to migrate
+
+1. Check for any sass files that are referencing color tokens, and use our color
+   token migration table to find the updated token name. We recommend checking
+   manually since some of the v10 tokens apply to more than one v11 token,
+   depending on its usage. For example, `hover-ui` could be `field-hover` or
+   `layer-hover`.
+
+### Event handler updates <Tag type="cyan">Breaking</Tag>
+
+We have renamed our color tokens to be more semantic and better inform on their
+usage. Some of the changes can be easily done with find-and-replace, however,
+some may require more manual updates. When migrating, make sure to double check
+that you were using the correct v10 token as to not migrate to an incorrect
+token.
+
+#### What this means for you and your team
+
+- Intuitive naming ensures correct token usage
+- Less ambiguity around what a color token is for
+
+#### How to migrate
+
+1. Check for any sass files that are referencing color tokens, and use our color
+   token migration table to find the updated token name. We recommend checking
+   manually since some of the v10 tokens apply to more than one v11 token,
+   depending on its usage. For example, `hover-ui` could be `field-hover` or
+   `layer-hover`.
+
+### Resources
+
+<Row className="resource-card-group">
+  <Column colLg={4} colMd={4} noGutterSm>
+    <ResourceCard
+      subTitle="Color tokens migration table"
+      href="https://github.com/carbon-design-system/carbon/blob/main/docs/migration/11.x-color.md">
+      <MdxIcon name="github" />
+    </ResourceCard>
+  </Column>
+  <Column colLg={4} colMd={4} noGutterSm>
+    <ResourceCard
+      subTitle="Color tokens migration table"
+      href="https://github.com/carbon-design-system/carbon/blob/main/docs/migration/11.x-color.md">
+      <MdxIcon name="github" />
+    </ResourceCard>
+  </Column>
+</Row>
 
 ## New Components
 
-We are releasing a few new components that complement the our accessibility
+We are releasing a few new components that complement our accessibility
 initiatives and component changes.
 
 ### Popover
@@ -516,6 +631,7 @@ Learn more about our Popover component and it's API below:
   </ResourceCard>
 </Column>
 </Row>
+
 ### ToggleTip
 
 ### Dialog
