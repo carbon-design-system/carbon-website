@@ -48,7 +48,7 @@ const TypesetExample = (props) => (
           typeStylesUntilCurrentBreakpoint.push(
             props.typeScale[type.key][item]
           );
-          if (item === breakpointName) break;
+          if (item === breakpointName) {break;}
         }
         return Object.assign(
           {},
