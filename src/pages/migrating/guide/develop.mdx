@@ -546,24 +546,52 @@ in v11 is `md` (`40px`).
 
 ### ClassName prop updates <Tag type="cyan">Breaking</Tag>
 
-We have renamed our color tokens to be more semantic and better inform on their
-usage. Some of the changes can be easily done with find-and-replace, however,
-some may require more manual updates. When migrating, make sure to double check
-that you were using the correct v10 token as to not migrate to an incorrect
-token.
+We updated our components to pass custom `className` to the outermost element of
+a component's inner markup. A lot of components already placed this prop on the
+outermost layer, but many were targetting elements inside the wrappers.
 
 #### What this means for you and your team
 
-- Intuitive naming ensures correct token usage
-- Less ambiguity around what a color token is for
+- Easily target any component HTML element since the `className` is now added to
+  the wrapper
 
 #### How to migrate
 
-1. Check for any sass files that are referencing color tokens, and use our color
-   token migration table to find the updated token name. We recommend checking
-   manually since some of the v10 tokens apply to more than one v11 token,
-   depending on its usage. For example, `hover-ui` could be `field-hover` or
-   `layer-hover`.
+The following components previously were not applying the `className` prop to
+the outermost element. If you were using a custom `className` to target an inner
+element for any of these components, you will have to update your selectors to
+now account for the `className` being in the wrapper.
+
+- Checkbox
+- Combobox
+- Table
+- TableToolbar
+- DataTableSkeleton
+- DatePicker
+- DatePickerSkeleton
+- DatePickerInput
+- Dropdown
+- FileUploaderDropContainer
+- FileUploaderItem
+- FormGroup
+- FilterableMultiSelect
+- MultiSelect
+- NotificationTextDetails
+- NotificationIcon
+- NumberInput
+- OverflowMenuItem
+- RadioButtonGroup
+- RadioTile
+- Select
+- Slider
+- Switch
+- TextArea
+- ControlledPasswordInput
+- PasswordInput
+- TextInput
+- TimePicker
+- Tooltip
+- HeaderContainer
 
 ### Event handler updates <Tag type="cyan">Breaking</Tag>
 
