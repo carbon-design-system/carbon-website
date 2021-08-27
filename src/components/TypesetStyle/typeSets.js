@@ -27,6 +27,18 @@ export default {
     },
     {
       description:
+        'This is for explanatory helper text that appears below a field title within a component.',
+      key: 'helper-text-01',
+      name: 'helper-text-01',
+    },
+    {
+      description:
+        'This is for explanatory helper text that appears below a field title within a component.',
+      key: 'helper-text-02',
+      name: 'helper-text-02',
+    },
+    {
+      description:
         'The legal-01 type style is for legal copy appearing in product pages.',
       key: 'legal-01',
       name: 'legal-01',

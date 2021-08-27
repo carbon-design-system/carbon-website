@@ -43,6 +43,28 @@ export default {
       'type-set': 'Expressive',
     },
   },
+  'helper-text-01': {
+    sm: {
+      step: 1,
+      font: 'IBM Plex Sans',
+      'font-weight': '400',
+      'font-size': 0.75,
+      'line-height': 1,
+      'letter-spacing': 0.32,
+      'type-set': 'Productive',
+    },
+  },
+  'helper-text-02': {
+    sm: {
+      step: 1,
+      font: 'IBM Plex Sans',
+      'font-weight': '400',
+      'font-size': 0.875,
+      'line-height': 1.125,
+      'letter-spacing': 0.16,
+      'type-set': 'Expressive',
+    },
+  },
   'body-compact-01': {
     sm: {
       step: 2,
