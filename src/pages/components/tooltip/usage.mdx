@@ -20,7 +20,9 @@ extra ability to communicate and give clarity to a user.
 <AnchorLink>Live demo</AnchorLink>
 <AnchorLink>Formatting</AnchorLink>
 <AnchorLink>Content</AnchorLink>
-<AnchorLink>Behaviors</AnchorLink>
+<AnchorLink>Universal behaviors</AnchorLink>
+<AnchorLink>Standard tooltip</AnchorLink>
+<AnchorLink>Icon button tooltip</AnchorLink>
 <AnchorLink>Related</AnchorLink>
 <AnchorLink>References</AnchorLink>
 <AnchorLink>Feedback</AnchorLink>
@@ -44,7 +46,7 @@ tooltips and use toggle tip instead.
 </Column>
 </Row>
 
-<Caption>Example of when to use icon tooltip</Caption>
+<Caption>Example of standard tooltip</Caption>
 
 ### When to use
 
@@ -109,6 +111,13 @@ caption="Do not use interactive elements within a tooltip.">
 
 </DoDont>
 </DoDontRow>
+
+### Variants
+
+| Variant                                     | Purpose                                                                        |
+| ------------------------------------------- | ------------------------------------------------------------------------------ |
+| [Standard tooltip](#standard-tooltip)       | Provides nonessential, supplemental information to help a user make a decision |
+| [Icon button tooltip](#icon-button-tooltip) | Describes a button's function or action                                        |
 
 ## Live demo
 
@@ -201,7 +210,7 @@ import { Filter16 } from '@carbon/icons-react';
 
 ## Formatting
 
-### Tooltip anatomy
+### Standard tooltip anatomy
 
 <Row>
 <Column colLg={8}>
@@ -212,6 +221,20 @@ import { Filter16 } from '@carbon/icons-react';
 </Row>
 
 1. **UI trigger button:** Element that triggers a tooltip on hover or focus
+2. **Caret tip:** Closely associates container to specific trigger element
+3. **Container:** Contains helper text
+
+### Icon button tooltip anatomy
+
+<Row>
+<Column colLg={8}>
+
+![Image of tooltip that has an icon button paired with a container](images/tooltip-usage-6.png)
+
+</Column>
+</Row>
+
+1. **Icon button:** Button that triggers a tooltip on hover or focus
 2. **Caret tip:** Closely associates container to specific trigger element
 3. **Container:** Contains helper text
 
@@ -226,7 +249,7 @@ especially helpful when multiple elements are close to each other.
 <Row>
 <Column colLg={8}>
 
-![Image of tooltips aligned to start, center, and end](images/tooltip-usage-6.png)
+![Image of tooltips aligned to start, center, and end](images/tooltip-usage-7.png)
 
 </Column>
 </Row>
@@ -274,7 +297,7 @@ not bleed off page or behind other content.
 For further content guidance, see Carbon’s
 [content guidelines](https://carbondesignsystem.com/guidelines/content/overview/).
 
-## Behaviors
+## Universal behaviors
 
 ### States
 
@@ -306,27 +329,66 @@ JAWS: Users can trigger a button to open a popover by pressing `enter` or
 NVDA: Users can trigger a button to open a popover by pressing `enter` or
 `space` while the button has focus.
 
+## Standard tooltip
+
+A standard tooltip is used to provide more information to help a user complete a
+task and is always paired with an interactive UI element such as a button or
+link.
+
+### Best practices
+
+- Do not include interactive elements within a tooltip. If interactive elements
+  are needed use a toggle tip instead.
+- Default tooltip content, such as when using an information icon, should be
+  precise and related.
+
+<Row>
+<Column colLg={8}>
+
+![Image of information icon tooltip](images/tooltip-usage-9.png)
+
+</Column>
+</Row>
+
+## Icon button tooltip
+
+An icon button tooltip is used to describe the function or action of an icon
+button that has no label to provide clarity on what the button will do.
+
+### Best practices
+
+- Should only contain one or two words.
+- Should use icon button tooltip instead of the title attribute. Do not use
+  both.
+
+<Row>
+<Column colLg={8}>
+
+![Image of an icon button tooltip](images/tooltip-usage-10.png)
+
+</Column>
+</Row>
+
 ## Related
 
 #### Popover
 
 Popovers are used as a base layer in some of our components like tooltips,
-overflow menus, and dropdown menus. For further guidance, see Carbon's popver
+overflow menus, and dropdown menus. For further guidance, see Carbon's popover
 component.
 
 #### Disclosure
 
 Disclosures use popovers as a base layer. Disclosures are comprised of a popover
 container, text, and interactive elements. Interactive elements are kept in the
-tab order of the page. For further guidance on the disclosure pattern coming
-soon.
+tab order of the page. Further guidance on the disclosure pattern coming soon.
 
 #### Toggle tip
 
 Definition tootips now use the toggletip component to achieve accessibility
 standards. Toggle tip uses the disclosure pattern to toggle the visibility of a
 popover. This popover may contain a variety of information, from descriptive
-text to interactive elements. For further guidance on the toggle tip component
+text to interactive elements. Further guidance on the toggle tip component
 coming soon.
 
 #### Chart tooltip
@@ -340,7 +402,7 @@ to learn more about using tooltips in charts.
 <Row>
 <Column colLg={8}>
 
-![Image of chart tooltips on a line graph](images/tooltip-usage-9.png)
+![Image of chart tooltips on a line graph](images/tooltip-usage-11.png)
 
 </Column>
 </Row>
