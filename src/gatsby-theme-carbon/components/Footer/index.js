@@ -1,6 +1,6 @@
 import React from 'react';
 import Footer from 'gatsby-theme-carbon/src/components/Footer';
-import packageJson from '../../../package.json';
+import packageJson from '../../../../package.json';
 
 const currentYear = new Date().getFullYear();
 const versions = {

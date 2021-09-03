@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 import React, { useContext, useRef } from 'react';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { Close20 } from '@carbon/icons-react';
 import nanoid from 'nanoid';
 
@@ -22,7 +21,6 @@ import {
   formGroup,
   componentKnobWrapper,
   componentKnobTitle,
-  formItem,
   checkboxWrapper,
   iconButton,
   iconButtonRow,
@@ -164,7 +162,7 @@ const Knob = ({
     const propString = parsedKnobProps.concat(
       Object.entries(newKnobs[component]).reduce(
         (accumulator, [prop, value]) => {
-          if (!value || value === `'default'`) return accumulator;
+          if (!value || value === `'default'`) {return accumulator;}
           if (typeof value === 'boolean') {
             return `${accumulator} ${prop}`;
           }
@@ -196,7 +194,6 @@ const Knob = ({
         title={description}
         defaultChecked={defaultChecked}
         labelText={name}
-        className={formItem}
         wrapperClassName={checkboxWrapper}
         id={inputId}
       />

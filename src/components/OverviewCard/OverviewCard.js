@@ -66,31 +66,26 @@ export default class OverviewCard extends React.Component {
 
 OverviewCard.propTypes = {
   children: PropTypes.node,
-
-  /**
-   * Add tag
-   */
-  tag: PropTypes.string,
-
-  /**
-   * Set url for card
-   */
-  href: PropTypes.string,
-
-  /**
-   * LTitle
-   */
-  title: PropTypes.string,
-
-  /**
-   * Use for disabled card
-   */
-  disabled: PropTypes.bool,
-
   /**
    * Specify a custom class
    */
   className: PropTypes.string,
+  /**
+   * Use for disabled card
+   */
+  disabled: PropTypes.bool,
+  /**
+   * Set url for card
+   */
+  href: PropTypes.string,
+  /**
+   * Add tag
+   */
+  tag: PropTypes.string,
+  /**
+   * LTitle
+   */
+  title: PropTypes.string,
 };
 
 OverviewCard.defaultProps = {

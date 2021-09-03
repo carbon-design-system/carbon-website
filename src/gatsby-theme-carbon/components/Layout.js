@@ -1,6 +1,4 @@
 /* eslint-disable global-require */
-/* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable import/no-unresolved */
 import React, { useLayoutEffect } from 'react';
 
 import LeftNav from 'gatsby-theme-carbon/src/components/LeftNav';
