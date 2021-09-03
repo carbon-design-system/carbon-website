@@ -39,13 +39,13 @@ export default {
     },
     {
       description:
-        'The legal-01 type style is for legal copy appearing in product pages.',
+        'This is for legal copy appearing in product pages.',
       key: 'legal-01',
       name: 'legal-01',
     },
     {
       description:
-        'The legal-02 type style is for legal copy appearing in web pages.',
+        'This is for legal copy appearing in web pages.',
       key: 'legal-02',
       name: 'legal-02',
     },
@@ -65,13 +65,13 @@ export default {
     },
     {
       description:
-        'With a slightly taller line height, this body style is used in productive layouts for long paragraphs with more than four lines. Use also for longer body copy in components such as accordion or structured list. It is always left-aligned. Body-long-01 can also be used for productive moments within expressive experiences.',
+        'With a slightly taller line height than body-compact-01, this body style is used in productive layouts for long paragraphs with more than four lines. Use also for longer body copy in components such as accordion or structured list. It is always left-aligned. Body-long-01 can also be used for productive moments within expressive experiences.',
       key: 'body-01',
       name: 'body-01',
     },
     {
       description:
-        'With a slightly taller line height than body-short-02, this style is commonly used in expressive layouts for long paragraphs with four lines or more. It is always left-aligned.',
+        'With a slightly taller line height than body-compact-02, this style is commonly used in expressive layouts for long paragraphs with four lines or more. It is always left-aligned.',
       key: 'body-02',
       name: 'body-02',
     },
@@ -80,51 +80,51 @@ export default {
     {
       description:
         'This is for component and layout headings. It pairs with $body-compact-01.',
-      key: 'fixed-heading-compact-01',
-      name: 'fixed-heading-compact-01',
+      key: 'heading-compact-01',
+      name: 'heading-compact-01',
     },
     {
       description:
         'This is for smaller layout headings. It pairs with $body-compact-02.',
-      key: 'fixed-heading-compact-02',
-      name: 'fixed-heading-compact-02',
+      key: 'heading-compact-02',
+      name: 'heading-compact-02',
     },
     {
       description:
         'This is for component and layout headings. It pairs with $body-01.',
-      key: 'fixed-heading-01',
-      name: 'fixed-heading-01',
+      key: 'heading-01',
+      name: 'heading-01',
     },
     {
       description:
         'This is for smaller layout headings. It pairs with $body-02.',
-      key: 'fixed-heading-02',
-      name: 'fixed-heading-02',
+      key: 'heading-02',
+      name: 'heading-02',
     },
     {
       description: 'This is for component and layout headings.',
-      key: 'fixed-heading-03',
-      name: 'fixed-heading-03',
+      key: 'heading-03',
+      name: 'heading-03',
     },
     {
       description: 'This is for layout headings.',
-      key: 'fixed-heading-04',
-      name: 'fixed-heading-04',
+      key: 'heading-04',
+      name: 'heading-04',
     },
     {
       description: 'This is for layout headings.',
-      key: 'fixed-heading-05',
-      name: 'fixed-heading-05',
+      key: 'heading-05',
+      name: 'heading-05',
     },
     {
       description: 'This is for layout headings.',
-      key: 'fixed-heading-06',
-      name: 'fixed-heading-06',
+      key: 'heading-06',
+      name: 'heading-06',
     },
     {
       description: 'This is for layout headings.',
-      key: 'fixed-heading-07',
-      name: 'fixed-heading-07',
+      key: 'heading-07',
+      name: 'heading-07',
     },
   ],
   fluidHeadings: [
