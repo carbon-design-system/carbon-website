@@ -131,7 +131,7 @@ export default {
       'type-set': 'Expressive',
     },
   },
-  'fixed-heading-compact-01': {
+  'heading-compact-01': {
     sm: {
       step: 2,
       font: 'IBM Plex Sans',
@@ -142,7 +142,7 @@ export default {
       'type-set': 'Productive',
     },
   },
-  'fixed-heading-compact-02': {
+  'heading-compact-02': {
     sm: {
       step: 2,
       font: 'IBM Plex Sans',
@@ -153,7 +153,7 @@ export default {
       'type-set': 'Expressive',
     },
   },
-  'fixed-heading-01': {
+  'heading-01': {
     sm: {
       step: 2,
       font: 'IBM Plex Sans',
@@ -164,7 +164,7 @@ export default {
       'type-set': 'Productive',
     },
   },
-  'fixed-heading-02': {
+  'heading-02': {
     sm: {
       step: 3,
       font: 'IBM Plex Sans',
@@ -175,7 +175,7 @@ export default {
       'type-set': 'Expressive',
     },
   },
-  'fixed-heading-03': {
+  'heading-03': {
     sm: {
       step: 3,
       font: 'IBM Plex Sans',
@@ -186,7 +186,7 @@ export default {
       'type-set': 'Productive',
     },
   },
-  'fixed-heading-04': {
+  'heading-04': {
     sm: {
       step: 7,
       font: 'IBM Plex Sans',
@@ -197,7 +197,7 @@ export default {
       'type-set': 'Productive',
     },
   },
-  'fixed-heading-05': {
+  'heading-05': {
     sm: {
       step: 8,
       font: 'IBM Plex Sans',
@@ -208,7 +208,7 @@ export default {
       'type-set': 'Productive',
     },
   },
-  'fixed-heading-06': {
+  'heading-06': {
     sm: {
       step: 9,
       font: 'IBM Plex Sans',
@@ -219,7 +219,7 @@ export default {
       'type-set': 'Productive',
     },
   },
-  'fixed-heading-07': {
+  'heading-07': {
     sm: {
       step: 10,
       font: 'IBM Plex Sans',
