@@ -26,7 +26,7 @@ function ComponentIndexNotFound() {
         <Column sm={4} md={6} lg={6}>
           <p className="component-index-not-found__text">
             This community component index does not include the Carbon core
-            components and you may find what you're looking for in the
+            components and you may find what you’re looking for in the
             <Link
               className="component-index-not-found__link"
               href={coreComponentsLink}

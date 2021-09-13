@@ -1,4 +1,3 @@
-/* eslint-disable import/no-dynamic-require */
 /* eslint-disable global-require */
 import React from 'react';
 import { Link } from 'gatsby';

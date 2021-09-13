@@ -9,11 +9,6 @@ module.exports = {
     keywords:
       'IBM, design, system, Carbon, design system, Bluemix, styleguide, style, guide, components, library, pattern, kit, component, cloud',
   },
-  flags: {
-    PRESERVE_WEBPACK_CACHE: true,
-    FAST_DEV: true,
-    FAST_REFRESH: true,
-  },
   plugins: [
     {
       resolve: 'gatsby-source-filesystem',
