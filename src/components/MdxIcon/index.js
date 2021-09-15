@@ -14,6 +14,8 @@ import angular from './icons/angular.png';
 import webcomponents from './icons/webcomponents.png';
 import npm from './icons/npm.svg';
 import storybook from './icons/storybook.svg';
+import medium from './icons/medium.svg';
+import sass from './icons/sass.png';
 
 const localIcons = {
   sketch,
@@ -27,6 +29,8 @@ const localIcons = {
   webcomponents,
   npm,
   storybook,
+  medium,
+  sass,
 };
 
 const carbonIcons = {

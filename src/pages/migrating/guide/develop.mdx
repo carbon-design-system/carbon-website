@@ -31,26 +31,27 @@ possible by detailing all of the updates below.
 
 ## Changelog
 
-| Feature                   | <div style="width:100px">Status</div> | Migrate                                | Packages or components impacted                                                         |
-| ------------------------- | ------------------------------------- | -------------------------------------- | --------------------------------------------------------------------------------------- |
-| `@carbon/react`           | <Tag type="cyan">Breaking</Tag>       | [Components](#components-breaking)     | `carbon-components-react` `carbon-icons` `carbon-components`                            |
-| `@carbon/styles`          | <Tag type="cyan">Breaking</Tag>       | [Styles](#styles-breaking)             | `carbon-components` `@carbon/react` `carbon-components-angular` `carbon-components-vue` |
-| Color Tokens              | <Tag type="cyan">Breaking</Tag>       | [Color tokens](#color-tokens-breaking) | All components                                                                          |
-| CSS Grid                  | <Tag type="cyan">Breaking</Tag>       | [CSS Grid](#css-grid-breaking)         | `@carbon/grid` `Grid` `Row` `Column`                                                    |
-| Layer Component           | <Tag type="cyan">Breaking</Tag>       | [Layering](#layer-component-breaking)  | Components using `light` prop                                                           |
-| Theme Component           | <Tag type="green">New</Tag>           | [Theming](#theme-component-new)        |                                                                                         |
-| `carbon-icons`            | <Tag type="red">Deprecated</Tag>      | [Components](#components-breaking)     |                                                                                         |
-| `carbon-components`       | <Tag type="red">Deprecated</Tag>      | [Styles](#styles-breaking)             |                                                                                         |
-| `carbon-components-react` | <Tag type="red">Deprecated</Tag>      | [Components](#components-breaking)     |                                                                                         |
-
-<!-- to do: add rows for
-- component size props breaking changes
-- @carbon/icons-react breaking changes (size prop)
-- @carbon/icons-react breaking changes
-- tooltip breaking changes?
-- popover new feature?
-- other component API specific new features?
- -->
+| Feature                    | <div style="width:100px">Status</div> | Migrate                                | Packages or components impacted                                                         |
+| -------------------------- | ------------------------------------- | -------------------------------------- | --------------------------------------------------------------------------------------- |
+| `@carbon/react`            | <Tag type="cyan">Breaking</Tag>       | [Components](#components-breaking)     | `carbon-components-react` `carbon-icons` `carbon-components`                            |
+| `@carbon/styles`           | <Tag type="cyan">Breaking</Tag>       | [Styles](#styles-breaking)             | `carbon-components` `@carbon/react` `carbon-components-angular` `carbon-components-vue` |
+| Color Tokens               | <Tag type="cyan">Breaking</Tag>       | [Color tokens](#color-tokens-breaking) | All components                                                                          |
+| CSS Grid                   | <Tag type="cyan">Breaking</Tag>       | [CSS Grid](#css-grid-breaking)         | `@carbon/react` `@carbon/grid`                                                          |
+| Component `size` prop      | <Tag type="cyan">Breaking</Tag>       | [CSS Grid](#css-grid-breaking)         | `@carbon/react` components that have different size variations                          |
+| Icons `size` prop          | <Tag type="cyan">Breaking</Tag>       | [Icons size prop](#icon-size-prop)     | `@carbon/react/icons` `@carbon/icons-react` All icons                                   |
+| Component `className` prop | <Tag type="cyan">Breaking</Tag>       | [CSS Grid](#css-grid-breaking)         | `@carbon/react`                                                                         |
+| Event handlers             | <Tag type="cyan">Breaking</Tag>       | [CSS Grid](#css-grid-breaking)         | `@carbon/react`                                                                         |
+| Notification               | <Tag type="cyan">Breaking</Tag>       | [CSS Grid](#css-grid-breaking)         | `@carbon/react`                                                                         |
+| Tooltip                    | <Tag type="cyan">Breaking</Tag>       | [CSS Grid](#css-grid-breaking)         | `@carbon/react`                                                                         |
+| ContentSwitcher            | <Tag type="cyan">Breaking</Tag>       | [CSS Grid](#css-grid-breaking)         | `@carbon/react`                                                                         |
+| Layer Component            | <Tag type="cyan">Breaking</Tag>       | [Layering](#layer-component-breaking)  | Components using `light` prop                                                           |
+| Theme Component            | <Tag type="green">New</Tag>           | [Theming](#theme-component-new)        |                                                                                         |
+| Popover                    | <Tag type="green">New</Tag>           | [New components](#popover)             | `@carbon/react` `carbon-components`                                                     |
+| ToggleTip                  | <Tag type="green">New</Tag>           | [New components](#toggle-tip)          | `@carbon/react` `carbon-components`                                                     |
+| Dialog                     | <Tag type="green">New</Tag>           | [New components](#dialog)              | `@carbon/react` `carbon-components`                                                     |
+| `carbon-icons`             | <Tag type="red">Deprecated</Tag>      | [Components](#components-breaking)     |                                                                                         |
+| `carbon-components`        | <Tag type="red">Deprecated</Tag>      | [Styles](#styles-breaking)             |                                                                                         |
+| `carbon-components-react`  | <Tag type="red">Deprecated</Tag>      | [Components](#components-breaking)     |                                                                                         |
 
 ## Components <Tag type="cyan">Breaking</Tag>
 
@@ -85,15 +86,6 @@ npm uninstall carbon-components carbon-components-react carbon-icons
 ```
 yarn remove carbon-components carbon-components-react carbon-icons
 ```
-
-<InlineNotification>
-
-While this release is still in beta, you may have to keep `carbon-components`,
-`carbon-components-react` and `carbon-icons` installed since `@carbon/react` is
-importing them. In the future, these will be included as peer dependencies in
-the package, and you won't have to install them.
-
-</InlineNotification>
 
 3. Update package imports. Migration for this can be as easy as
    find-and-replace. Search for anywhere you're importing components or icons
@@ -198,7 +190,12 @@ body {
 
 To learn more about getting starting with `Dart Sass`, usage, and importing
 specific Carbon sass, checkout our
-[styles docs](https://github.com/carbon-design-system/carbon/tree/main/packages/styles).
+[styles docs](https://github.com/carbon-design-system/carbon/tree/main/packages/styles)
+or read about it from a developer's perspective in this
+[Medium article](https://medium.com/carbondesign/migrating-from-node-sass-to-sass-eba9db004a3a).
+Checkout a
+[live example](https://github.com/carbon-design-system/carbon-tutorial/blob/v11-react-step-5/src/content/LandingPage/_landing-page.scss)
+of mixins and design tokens using the Carbon tutorial.
 
 ### Resources
 
@@ -213,7 +210,23 @@ specific Carbon sass, checkout our
   <Column colLg={4} colMd={4} noGutterSm>
     <ResourceCard
       subTitle="Migrating from node-sass to dart-sass"
-      href="https://sass-lang.com/blog/libsass-is-deprecated#how-do-i-migrate"></ResourceCard>
+      href="https://sass-lang.com/blog/libsass-is-deprecated#how-do-i-migrate">
+      <MdxIcon name="sass" />
+    </ResourceCard>
+  </Column>
+  <Column colLg={4} colMd={4} noGutterSm>
+    <ResourceCard
+      subTitle="One quick way to get ready for Carbon v11"
+      href="https://medium.com/carbondesign/migrating-from-node-sass-to-sass-eba9db004a3a">
+      <MdxIcon name="medium" />
+    </ResourceCard>
+  </Column>
+  <Column colLg={4} colMd={4} noGutterSm>
+    <ResourceCard
+      subTitle="Discover mixins using the Carbon tutorial"
+      href="https://github.com/carbon-design-system/carbon-tutorial/blob/v11-react-step-5/src/content/LandingPage/_landing-page.scss">
+      <MdxIcon name="github" />
+    </ResourceCard>
   </Column>
 </Row>
 
@@ -412,7 +425,7 @@ In regards to theming, we have also added in a new `Layer` component. The
 next layer. This allows you to style different layers, or directly use the
 tokens exported from our styles package.
 
-### What this means for you and your team
+#### What this means for you and your team
 
 - Layer componet replaces `light` prop. See the first example below.
 - More flexibility for 3 layer stacking vs. 2 layer stacking
@@ -451,7 +464,7 @@ We have added a new, flexible `Theme` component. The `Theme` component allows
 you to specify the theme for a section of the page, for example with inline
 theming, or render a theme for an entire page.
 
-### What this means for you and your team
+#### What this means for you and your team
 
 - Inline theming 🎉
 
@@ -464,15 +477,19 @@ Here is an example of how you can use the `Theme` component:
 ```
 
 To learn more about how our `Theme` component works with our `useTheme` hook,
-checkout our resource link below.
+checkout our
+[usage docs](https://github.com/carbon-design-system/carbon/blob/main/packages/carbon-react/src/components/Theme/Theme.mdx).
+You can also checkout a
+[live example](https://github.com/carbon-design-system/carbon-tutorial/blob/v11-react-step-5/src/App.js)
+of the Carbon Tutorial to see theming in action.
 
 ### Resources
 
 <Row className="resource-card-group">
   <Column colLg={4} colMd={4} noGutterSm>
     <ResourceCard
-      subTitle="Layer component docs"
-      href="https://github.com/carbon-design-system/carbon/blob/main/packages/carbon-react/src/components/Layer/Layer.mdx">
+      subTitle="Theme usage example"
+      href="https://github.com/carbon-design-system/carbon-tutorial/blob/v11-react-step-5/src/App.js">
       <MdxIcon name="github" />
     </ResourceCard>
   </Column>
@@ -483,26 +500,167 @@ checkout our resource link below.
       <MdxIcon name="github" />
     </ResourceCard>
   </Column>
+  <Column colLg={4} colMd={4} noGutterSm>
+    <ResourceCard
+      subTitle="Layer component docs"
+      href="https://github.com/carbon-design-system/carbon/blob/main/packages/carbon-react/src/components/Layer/Layer.mdx">
+      <MdxIcon name="github" />
+    </ResourceCard>
+  </Column>
 </Row>
 
-<!-- 
+## Updates to `@carbon/icons-react`
 
-## Size Props
+We have two new changes to our `@carbon/icons-react` package. We have updated
+the default prop size and the way it can be imported.
 
-- Over the years our size props got a little messy. So we updated them, so that
-  they are now consistent across all of our components.
+### Icon size prop
 
-### What this means for you and your team:
+We are updating the default size prop for all icons to `md`.
 
-The props should now look like this:
+### Importing
 
-| Prop Name | Size |
-| --------- | ---- |
-| xs        | 24px |
-| sm        | 32px |
-| md        | 40px |
-| lg        | 48px |
-| xl        | 64px |
-| 2xl       | 80px |
+All icons can now be imported from `@carbon/react/icons`. In v11, you'll still
+be able to access `@carbon/icons-react`, however it is available directly from
+the `@carbon/react` package, by default.
 
--->
+Here is an example of how to import an icon:
+
+```js
+import { Add } from '@carbon/react/icons';
+```
+
+## Component API
+
+### Size prop updates <Tag type="cyan">Breaking</Tag>
+
+We updated all our components with size variants to have the same API.
+Previously, the size options were inconsistent: `field`, `medium`, `short`.
+Sizing options will now be the same across all components for less confusion.
+
+#### What this means for you and your team
+
+- You will always know what to expect from components to size correctly
+
+#### How to migrate
+
+The following components all have size variants that may be affected in your
+code:
+
+- Accordion
+- Button
+- ComboBox
+- Dropdown
+- Multiselect
+- Filterable multiselect
+- ContentSwitcher
+- DataTable
+- DatePicker
+- FileUploader
+- FileUploaderItem
+- FileUploaderDropContainer
+- FileUploaderButton
+- Link
+- Modal
+- ComposedModal
+- NumberInput
+- OverflowMenu
+- Search
+- Select
+- Tag
+- TextInput
+- TimePicker
+- Toggle
+
+If you are using any size variants of those listed components, use the following
+table to determine what updated value to use for the size prop. The default size
+in v11 is `md` (`40px`).
+
+| Prop value | Size |
+| ---------- | ---- |
+| `xs`       | 24px |
+| `sm`       | 32px |
+| `md`       | 40px |
+| `lg`       | 48px |
+| `xl`       | 64px |
+| `2xl`      | 80px |
+
+### ClassName prop updates <Tag type="cyan">Breaking</Tag>
+
+We updated our components to pass custom `className` to the outermost element of
+a component's inner markup. A lot of components already placed this prop on the
+outermost layer, but many were targetting elements inside the wrappers.
+
+#### What this means for you and your team
+
+- Easily target any component HTML element since the `className` is now added to
+  the wrapper
+
+#### How to migrate
+
+The following components previously were not applying the `className` prop to
+the outermost element. If you were using a custom `className` to target an inner
+element for any of these components, you will have to update your selectors to
+now account for the `className` being in the wrapper.
+
+- Checkbox
+- Combobox
+- Table
+- TableToolbar
+- DataTableSkeleton
+- DatePicker
+- DatePickerSkeleton
+- DatePickerInput
+- Dropdown
+- FileUploaderDropContainer
+- FileUploaderItem
+- FormGroup
+- FilterableMultiSelect
+- MultiSelect
+- NotificationTextDetails
+- NotificationIcon
+- NumberInput
+- OverflowMenuItem
+- RadioButtonGroup
+- RadioTile
+- Select
+- Slider
+- Switch
+- TextArea
+- ControlledPasswordInput
+- PasswordInput
+- TextInput
+- TimePicker
+- Tooltip
+- HeaderContainer
+
+### Event handler updates <Tag type="cyan">Breaking</Tag>
+
+Guidance coming soon.
+
+## New Components
+
+We are releasing a few new components that complement our accessibility
+initiatives and component changes.
+
+### Popover
+
+This component primitive is most similar a tile or card. However, Popover is a
+primitive consumed by other components to render content. Popover components can
+also be referred to as Disclosures, and will be accomodate a lot of the changes
+being made in our Tooltip component.
+
+Learn more about our Popover component and it's API below:
+
+<Row className="resource-card-group">
+<Column colLg={4} colMd={4} noGutterSm>
+  <ResourceCard
+    subTitle="Popover"
+    href="https://github.com/carbon-design-system/carbon/tree/main/packages/react/src/components/Popover">
+    <MdxIcon name="github" />
+
+![Carbon icon](images/carbon.svg)
+
+  </ResourceCard>
+</Column>
+</Row>
