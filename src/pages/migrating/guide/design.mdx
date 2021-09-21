@@ -1,8 +1,9 @@
 ---
 title: Guide
 description:
-  This guide includes everything you need to migrate your offering from v10 to
-  v11 of Carbon.
+  The design transition from v10 to v11 includes updates and additions to
+  components, color tokens, theming, and introduces beta kits to experiment
+  with.
 tabs: ['Overview', 'Design', 'Develop']
 ---
 
@@ -21,17 +22,17 @@ theming, and introduces beta kits to experiment with.
 
 ## Design kit
 
+### What's new
+
+- Added new color tokens
+- Introduced layering models: layer set tokens and contextual layer tokens
+
 ### What's changed
 
 - Updated existing color token names to better reflect their usage
 - Updated layer styles with new color tokens
 - Updated text styles with new color tokens
 - Removal of light variants (in favor of new layer and contextual token sets)
-
-### What's new
-
-- Added new color tokens
-- Introduced layering models: layer set tokens and contextual layer tokens
 
 ### v11 Beta kit
 
@@ -72,51 +73,166 @@ Beta kit is available in the White and Gray 100 themes.
 
 ## Components
 
+### Notifications
+
+Toast notifications have been refactored to now allow interactive content in
+them, like links and buttons. To support the usecase of having a toast with or
+without interactive content, we have introduced two types of toast
+notifications—polite and assertive.
+
+See Carbon's
+[toast notification](https://v11.carbondesignsystem.com/components/notification/usage/#toast-notifications)
+usage guidance for more information.
+
+<Row>
+<Column colLg={8}>
+
+![Example of toast notifications stacking.](images/05_toast_context_608.gif)
+
+</Column>
+</Row>
+
+### Popover
+
+Popover is a new component we have added to our system. A popover is a layer
+that appears above all other content on the page and is used to display
+additional details for specific elements whether it be text or interactive
+elements.
+
+See Carbon's
+[popover](https://v11.carbondesignsystem.com/components/popover/usage/) usage
+guidance for more information.
+
+<Row>
+<Column colLg={8}>
+
+![Example of popover variants.](images/popover-usage-1.png)
+
+</Column>
+</Row>
+
+### Tooltip
+
+The tooltip component has been refactored to use the popover component under the
+hood to improve accessibility.
+
+See Carbon's
+[tooltip](https://v11.carbondesignsystem.com/components/tooltip/usage/) usage
+guidance for more information.
+
+<Row>
+<Column colLg={8}>
+
+![Example of a tooltip.](images/tooltip-usage-1.png)
+
+</Column>
+</Row>
+
+#### Toggletip
+
+Definition and interactive tootips now use the toggletip component to achieve
+accessibility standards. Toggle tip uses the disclosure pattern to toggle the
+visibility of a popover. This popover may contain a variety of information, from
+descriptive text to interactive elements. Further guidance on the toggle tip
+component is coming soon.
+
+### Tabs
+
+The tab component variant names are changing. Default tabs will become Line tabs
+and Container tabs will become Contained tabs. There are 3 new modifiers—tabs
+with icons, icon-only tabs, and secondary labels.
+
+See Carbon's [tab](https://v11.carbondesignsystem.com/components/tabs/usage/)
+usage guidance for more information.
+
+<Row>
+<Column colLg={8}>
+
+![Example of new tab style.](images/contained-tabs.png)
+
+</Column>
+</Row>
+
 ### UI shell
 
 The UI shell is now themeable and has been updated to use inline theming. The UI
 shell uses Carbon theme tokens instead of component specific tokens and the
 color will follow each themes styles.
 
+<Row>
+<Column colLg={8}>
+
+![Example of UI shell themes.](images/ui-shell-themes.png)
+
+</Column>
+</Row>
+
 ## Elements
+
+### Sizing
+
+All size properties for components have been renamed to be more consistent with
+the pixel/rem value that it is paired with.
+
+| Size                     | Height (px / rem) |
+| ------------------------ | ----------------- |
+| Extra small (xs)         | 24 / 1.5          |
+| Small (sm)               | 32 / 2            |
+| Medium (md)              | 40 / 2.5          |
+| Large (lg)               | 48 / 3            |
+| Extra large (xl)         | 64 / 4            |
+| Double extra large (2xl) | 80 / 5            |
 
 ### Color tokens
 
 Existing color tokens have been renamed to better reflect their usage. In
 addition to renaming existing tokens, new tokens have been added to fill
-existing color token gaps in our system and to fix complex layering logic. We
-have introduced two different types of color token layering models—Layer set
-tokens and Contextual layer tokens. You can choose to use one model over the
-other depending on which one makes most sense to migrate to for your product.
+existing color token gaps in our system and to fix complex layering logic.
 
-See Carbon's guidance below for more information:
+See Carbon's
+[color overview](https://v11.carbondesignsystem.com/guidelines/color/overview/)
+and
+[color implementation](https://v11.carbondesignsystem.com/guidelines/color/implementation)
+guidance for more information.
 
-<Row className="resource-card-group">
-<Column colLg={4} colMd={4} noGutterSm>
-  <ResourceCard
-    subTitle="Color tokens overview"
-    href="https://v11.carbondesignsystem.com/guidelines/color/overview/#tokens">
+<Row>
+  <Column colLg={4} colMd={4} noGutterSm>
+    <ResourceCard
+      subTitle="Migrating color tokens"
+      href="https://github.com/carbon-design-system/carbon/blob/main/docs/migration/11.x-color.md">
+      <MdxIcon name="github" />
+    </ResourceCard>
+  </Column>
+</Row>
 
-![Carbon icon](images/carbon.svg)
+#### Color token names
 
-  </ResourceCard>
+Previously, in v10 many color tokens had numeral endings, now in v11 only
+layering tokens will have this distinction. All other tokens have been given an
+adjective descriptor in place of the number ending to help with better
+understanding how a token should be used.
+
+<Row>
+<Column colLg={8}>
+
+![Example of the new token names with the layer model tokens highlighted in purple.](images/color-implementation-layer-set-3.png)
 
 </Column>
-<Column colLg={4} colMd={4} noGutterSm>
-  <ResourceCard
-    subTitle="Migrating color tokens"
-    href="https://github.com/carbon-design-system/carbon/blob/main/docs/migration/11.x-color.md">
-    <MdxIcon name="github" />
-  </ResourceCard>
-</Column>
-<Column colLg={4} colMd={4} noGutterSm>
-  <ResourceCard
-    subTitle="Color implementation"
-    href="https://v11.carbondesignsystem.com/guidelines/color/implementation">
+</Row>
 
-![Carbon icon](images/carbon.svg)
+#### Layer model tokens
 
-  </ResourceCard>
+We have introduced two different types of color token for the layering
+models—Layering tokens and Contextual layer tokens. The two type of tokens will
+produce the same visual effect. The difference between them is a technical one
+and largely a developer concern. **In Sketch, and other design tools, designer
+will only be using the Layering tokens to design.** The layering tokens replace
+what were the `ui` color tokens in v10 and are used in a similar way.
+
+<Row>
+<Column colLg={8}>
+
+![Example of layering token (left) versus contextual layering tokens (right).](images/color-implementation-compare.png)
 
 </Column>
 </Row>
@@ -133,6 +249,14 @@ See Carbon's
 [inline theming](https://v11.carbondesignsystem.com/guidelines/color/implementation#inline-theming)
 guidance for more information.
 
+<Row>
+<Column colLg={8}>
+
+![Example of mixing themes](images/color-implementation-inline-1.png)
+
+</Column>
+</Row>
+
 ### Light or dark mode
 
 Light or dark mode has been newly introduced and is a theme setting that allows
@@ -143,3 +267,11 @@ color text to using dark color backgrounds with light color text.
 See Carbon's
 [light or dark mode](https://v11.carbondesignsystem.com/guidelines/color/implementation#light-or-dark-mode)
 guidance for more information.
+
+<Row>
+<Column colLg={8}>
+
+![Example of light or dark mode](images/light-or-dark-mode.png)
+
+</Column>
+</Row>
