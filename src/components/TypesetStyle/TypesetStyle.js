@@ -689,7 +689,6 @@ const typeScale = {
 
 const typeSets = {
   supportingStyle: [
-    // this one
     {
       description:
         'This is for inline code snippets and smaller code elements.',
