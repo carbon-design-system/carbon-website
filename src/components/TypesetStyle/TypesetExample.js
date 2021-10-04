@@ -113,7 +113,6 @@ const TypesetExample = (props) => (
           .replace('0.', '.'),
         warning: currentBreakpointSpecs.warning,
       };
-      console.log(displaySpecs);
 
       const versionClassName = type.version
         ? `${prefix}--type-${type.version}`
