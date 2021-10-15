@@ -14,9 +14,7 @@ const COMPONENT_INDEX_DATA = graphql`
         name
         relativeDirectory
         childImageSharp {
-          fluid(maxWidth: 640, maxHeight: 480) {
-            ...GatsbyImageSharpFluid
-          }
+          gatsbyImageData(width: 640, height: 480)
         }
       }
     }
@@ -47,9 +45,8 @@ const COMPONENT_INDEX_DATA = graphql`
 `;
 
 export function useComponentIndexData() {
-  const { allComponentIndexEntry, allFile } = useStaticQuery(
-    COMPONENT_INDEX_DATA
-  );
+  const { allComponentIndexEntry, allFile } =
+    useStaticQuery(COMPONENT_INDEX_DATA);
 
   const images = allFile.nodes;
   const components = allComponentIndexEntry.edges.map((edge) => {

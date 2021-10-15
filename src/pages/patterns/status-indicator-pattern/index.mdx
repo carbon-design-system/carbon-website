@@ -6,6 +6,8 @@ description:
   assess and identify status and respond accordingly.
 ---
 
+import StatusIndicatorTable from 'components/StatusIndicatorTable';
+
 <PageDescription>
 
 Status indicators are an important method of communicating severity level
@@ -32,12 +34,10 @@ and identify status and respond accordingly.
 
 An indicator highlights a page element and informs the user of something that
 needs the user’s attention. Often, the indicator will denote that there has been
-a change to a particular item.
-
-They are frequently used to signal validation errors or notifications, changes,
-or updates. They can also be used on their own. Indicators are visual cues
-intended to attract the user's attention to a piece of content or UI element
-that is dynamic in nature.
+a change to a particular item. They are frequently used to signal validation
+errors or notifications, changes, or updates. They can also be used on their
+own. Indicators are visual cues intended to attract the user's attention to a
+piece of content or UI element that is dynamic in nature.
 
 In this pattern we explore:
 
@@ -78,7 +78,7 @@ an irregularity in the system, something malfunctioned, or a user needs to
 confirm a potentially destructive action. Some examples include alerts,
 exceptions, confirmations, and errors.
 
-{INSERT HIGH ATTENTION TABLE HERE}
+<StatusIndicatorTable attention="high" />
 
 ### Medium attention
 
@@ -86,7 +86,7 @@ Use these indicators when no immediate user action is required or to provide
 feedback to a user action. Some examples include acknowledgements and progress
 indicators.
 
-{INSERT MEDIUM ATTENTION TABLE HERE}
+<StatusIndicatorTable attention="medium" />
 
 ### Low attention
 
@@ -95,7 +95,7 @@ signify that something has changed since the last interaction. Some examples
 include tooltip triggers that offer explanatory or added information, and
 passive notifications.
 
-{INSERT LOW ATTENTION TABLE HERE}
+<StatusIndicatorTable attention="low" />
 
 ## Ingredients
 
@@ -195,7 +195,7 @@ information and workflow progress. We’ve also included gray and purple to add
 more depth to the system. Gray indicates drafts or jobs that haven’t been
 started, and purple indicates outliers or undefined statuses.
 
-<ColorPalette type="alert" />
+<ColorPalette twoColumn type="status" />
 
 #### Extended status palettes
 
@@ -205,7 +205,7 @@ the v2 color release (that is, it’s not in ASE, Sketch kit palettes, and so on
 because it’s for very selective use in data visualizations and certain status
 indicators. Do not use this palette in any other manner in your layouts.
 
-{Insert extended yellow and orange palette component}
+<ColorPalette type="status-extended" shouldShowControls={false} />
 
 ## Variants
 
@@ -349,6 +349,18 @@ Numbers are used in conjunction with a badge status when a count of new or
 updated items is available and it's important for the user to know the number of
 updates.
 
+Badge status numbers can only be used in conjunction with the large icon button
+because with anything smaller, the icon gets covered. In very rare cases badge
+number may exceed two digits.
+
+<Row>
+<Column colLg={8}>
+
+![Four icons with badges that included numbers ranging from one to three digits. The last badge has a plus.](./images/badge-status-with-number.jpg)
+
+</Column>
+</Row>
+
 #### Badge status without number
 
 A badge indicator with no number is used when a new notification is available
@@ -365,13 +377,21 @@ visualizations, for example network diagrams.
 
 The shapes are only the most basic geometries, derived from the larger icon
 containers, so they can be easily discerned at small sizes. Shape indicators are
-not available in outline because they are so small. The only situation in which
-you would use an outline is to ensure contrast accessibility for yellows.
+not available in outline because they are so small. The only situations in which
+you would use an outline is to ensure contrast accessibility for yellows or
+oranges in the Carbon light themes.
 
 The table below is a first pass at establishing a standard lexicon for symbol
-indicators within IBM product.
+indicators across IBM products.
 
-{INSERT SYMBOL STATUS TABLE HERE}
+#### Same shape, different color
+
+The status shapes naturally allow more room for interpretation than the status
+icons. Certain shapes can take on different colors for different circumstances.
+However, NEVER use the same shape, in different colors, within the same
+experience.
+
+<StatusIndicatorTable attention="glyph" />
 
 #### Type pairing and alignment
 
@@ -587,5 +607,5 @@ limitations. WCAG 2.1 success criterion 2.2.3 (AAA)
 ## Feedback
 
 Help us improve this pattern by providing feedback, asking questions, and
-leaving any other comments
-on [GitHub](https://github.com/carbon-design-system/carbon-website/issues/new?assignees=&labels=feedback&template=feedback.md).
+leaving any other comments on
+[GitHub](https://github.com/carbon-design-system/carbon-website/issues/new?assignees=&labels=feedback&template=feedback.md).

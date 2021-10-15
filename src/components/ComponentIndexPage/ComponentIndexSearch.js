@@ -22,15 +22,14 @@ function ComponentIndexSearch({ value, onChange }) {
 
 ComponentIndexSearch.propTypes = {
   /**
-   * Control the value of the search using the `value` prop
-   */
-  value: PropTypes.string.isRequired,
-
-  /**
    * Receive an update for the latest value and use it to update the passed in
    * `value`
    */
   onChange: PropTypes.func.isRequired,
+  /**
+   * Control the value of the search using the `value` prop
+   */
+  value: PropTypes.string.isRequired,
 };
 
 export default ComponentIndexSearch;
