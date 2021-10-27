@@ -41,7 +41,7 @@ possible by detailing all of the updates below.
 | Icons `size` prop          | <Tag type="cyan">Breaking</Tag>       | [Icons size prop](#icon-size-prop)     | `@carbon/react/icons` `@carbon/icons-react` All icons                                   |
 | Component `className` prop | <Tag type="cyan">Breaking</Tag>       | [CSS Grid](#css-grid-breaking)         | `@carbon/react`                                                                         |
 | Event handlers             | <Tag type="cyan">Breaking</Tag>       | [CSS Grid](#css-grid-breaking)         | `@carbon/react`                                                                         |
-| Notification               | <Tag type="cyan">Breaking</Tag>       | [CSS Grid](#css-grid-breaking)         | `@carbon/react`                                                                         |
+| Notifications              | <Tag type="cyan">Breaking</Tag>       | [Notifications](#notifications-breaking)        | `@carbon/react`                                                                         |
 | Tooltip                    | <Tag type="cyan">Breaking</Tag>       | [CSS Grid](#css-grid-breaking)         | `@carbon/react`                                                                         |
 | ContentSwitcher            | <Tag type="cyan">Breaking</Tag>       | [CSS Grid](#css-grid-breaking)         | `@carbon/react`                                                                         |
 | Layer Component            | <Tag type="cyan">Breaking</Tag>       | [Layering](#layer-component-breaking)  | Components using `light` prop                                                           |
@@ -663,4 +663,80 @@ Learn more about our Popover component and it's API below:
 
   </ResourceCard>
 </Column>
+</Row>
+
+## Notifications <Tag type="cyan">Breaking</Tag>
+
+We have updated the notification components to be more accessible out of the
+box. `ToastNotification` and `InlineNotification` now have `role="status"` by
+default with additional `role` options of `log` and `alert`. These components do
+not receive focus and should be used for information-only use cases. These
+components no longer accept actions or interactive children.
+
+For notifications requiring an action, a new `ActionableNotifiation` component
+is available. It has a `role="alertdialog"` and recieves focus by default.
+Automatic placement of focus can be turned off via the new `hasFocus` prop.
+
+All notifications have a new optional `closeOnEscape` prop, it enables
+notifications to closed by pressing the `escape` key. For more details, see the
+[notification components accessibility page](https://v11.carbondesignsystem.com/components/notification/accessibility).
+
+### What this means for you and your team
+
+- Notifications will be WAI-ARIA compliant out of the box without the explicit
+  need for additional functionality or configuration
+
+### How to migrate
+
+#### Update `ToastNotification` usage
+
+- The `title`, `subtitle` and `caption` props have been removed. Compose
+  notification contents using `children` instead.
+- `children` can no longer contain interactive elements. A `ToastNotification`
+  containing an action or interactive children should be replaced with
+  `ActionableNotification`.
+- The `notificationType` prop is no longer needed and can be removed.
+- The default `role` is now `status`. `log` and `alert` can also be used.
+- The `closeOnEscape` prop toggles the closing of notifications via the `escape`
+  key.
+
+#### Update `InlineNotification` usage
+
+- The `title`, `subtitle` props have been removed. Compose notification contents
+  using `children` instead.
+- The `actions` prop has been removed. An `InlineNotification` containing an
+  action or interactive children should be replaced with
+  `ActionableNotification` configured with the `inline` prop.
+- `children` can no longer contain interactive elements.
+- The `notificationType` prop is no longer needed and can be removed.
+- The default `role` is now `status`. `log` and `alert` can also be used.
+- The `closeOnEscape` prop toggles the closing of notifications via the `escape`
+  key.
+
+#### When using `ActionableNotification`:
+
+- The `inline` prop enables a styling variation resulting in a similar visual
+  design to `InlineNotification`.
+- The `actionButtonLabel` prop configures the action button text.
+- The `hasFocus` prop toggles the automatic placement of focus.
+- The `closeOnEscape` prop toggles the closing of notifications via the `escape`
+  key.
+
+### Resources
+
+<Row className="resource-card-group">
+  <Column colLg={4} colMd={4} noGutterSm>
+    <ResourceCard
+      subTitle="Notification usage examples"
+      href="https://carbon-react-next.netlify.app/?path=/story/components-notifications--toast">
+      <MdxIcon name="storybook" />
+    </ResourceCard>
+  </Column>
+  <Column colLg={4} colMd={4} noGutterSm>
+    <ResourceCard
+      subTitle="Notification accessibility page"
+      href="https://v11.carbondesignsystem.com/components/notification/accessibility">
+      <MdxIcon name="bee" />
+    </ResourceCard>
+  </Column>
 </Row>
