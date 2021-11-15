@@ -1,4 +1,3 @@
-/* eslint-disable import/no-dynamic-require */
 /* eslint-disable global-require */
 import React from 'react';
 import { Link } from 'gatsby';
@@ -20,10 +19,10 @@ class ComponentOverview extends React.Component {
 
     let componentImg;
     try {
-      componentImg = require(`./images/${component}.svg`);
+      componentImg = require(`./images/${component}.svg`).default;
     } catch (e) {
       // eslint-disable-next-line global-require
-      componentImg = require('./images/NoImage.svg');
+      componentImg = require('./images/NoImage.svg').default;
     }
 
     return (

@@ -12,7 +12,7 @@ import {
 
 const { prefix } = settings;
 
-const Profile = ({ name, title, children, ...rest }) => (
+const Profile = ({ name, title, children }) => (
   <div
     className={`${profileContainer} bx--col-md-4 bx--col-lg-4 bx--no-gutter-sm`}>
     <div className={`${prefix}--aspect-ratio ${prefix}--aspect-ratio--2x1`}>
@@ -30,9 +30,9 @@ const Profile = ({ name, title, children, ...rest }) => (
 );
 
 Profile.propTypes = {
+  children: PropTypes.node,
   name: PropTypes.string,
   title: PropTypes.string,
-  children: PropTypes.node,
 };
 
 export default Profile;
