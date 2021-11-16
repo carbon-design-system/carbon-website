@@ -28,8 +28,8 @@ information related to the source it is triggered from.
 
 ## Overview
 
-Disclosures support a wide range of different usecases in product interfaces and
-are commonly used to reveal more information or details about an element or
+Disclosures support a wide range of different use cases in product interfaces
+and are commonly used to reveal more information or details about an element or
 content on a page. Disclosures can contain interactive elements while preserving
 accessible functionality.
 
@@ -41,8 +41,8 @@ and discloses the content.
 
 - Use when disclosing additional content about part of a UI.
 - Use when there is a need to include interactive elements in a popover.
-- Use to show settings, filtering or sorting menus that affect large sections of
-  a page,for example in data tables, or an entire page.
+- Use to show settings, filtering, or sorting menus that affect large sections
+  of a page, for example in data tables, or an entire page.
 - Use when displaying content within types of menus, for example profile menus,
   context menus, combo buttons, and menu buttons.
 
@@ -69,9 +69,12 @@ width of six columns or less.
 
 #### Disclosures should be user initiated
 
-A user action, such as clicking an interactive element, should trigger the
-disclosure to open. Disclosures should not open without first being triggered by
-the user.
+A disclosure should not take up a considerable amount of the size of the screen.
+Disclosures are meant to be smaller moments that can open on top of different
+areas of a page. They should not seem like a disruption to the users workflow
+and should not act as a screen takeover. Keep all content in a disclosure
+concise and only include information that is necessary. We recommend having a
+width of six columns or less.
 
 #### One disclosure should open at a time
 
@@ -97,28 +100,28 @@ caption="Do not have multiple disclosures open at the same time.">
 </DoDont>
 </DoDontRow>
 
-### Avoid nesting disclosures
+#### Avoid nesting disclosures
 
 Do not nest one disclosure within another disclosure. Nesting disclosures
 creates a stacking effect and could confuse the user of where they should be
 focusing their attention and which disclosure they should be interacting with.
-Using submenus that fly out to the sides of a context menu is an acceptable way
-to disclose more information in an additional popover.
+Using submenus in a context menu that fly out to the sides is an acceptable way
+to disclose additional information in a disclosure.
 
-### Do not hide critical information within a disclosure
+#### Do not hide critical information within a disclosure
 
-Disclosures should not contain any required information needed to complete a
-workflow. Information should be optional or additional content that the user can
-read or interact with.
+Do not nest one disclosure within another disclosure. Nesting disclosures
+creates a stacking effect and could confuse the user of where they should be
+focusing their attention and which disclosure they should be interacting with.
+Using submenus in a context menu that fly out to the sides is an acceptable way
+to disclose additional information in a disclosure.
 
-### Use the toggletip component when appropriate
+#### Use the toggletip component when appropriate
 
 A toggletip follows the disclosure pattern but is also offered as its own
 component with the functionality built in. Use the toggletip component when the
-popover is triggered `on click` \*\*\*\*with a mouse or by pressing `Enter` or
-`Space` while the trigger element has focus.
-
-See the toggletip component usage guidance for more information.
+popover is triggered `on click` with a mouse or by pressing `Enter` or `Space`
+while the trigger element has focus.
 
 ### Behaviors
 
@@ -132,7 +135,7 @@ click anywhere outside of the open disclosure container or click on the close
 <Row>
 <Column colLg={12}>
 
-![Example of a disclosure opening and closing.](images/disclosure_opening_closing.gif)
+![Example of a disclosure opening and closing.](images/disclosure-opening-closing.gif)
 
 </Column>
 </Row>
@@ -151,7 +154,7 @@ popover and should not interfere or overlap with inline interactive elements.
 type="do"
 caption="Do place a close icon in the upper right hand corner in an empty space.">
 
-![Do place a close icon in the upper right hand corner in an empty space.](./images/disclosure_dismmisible_do.png)
+![Do place a close icon in the upper right hand corner in an empty space.](./images/disclosure-dismmisible-do.png)
 
 </DoDont>
 
@@ -159,7 +162,7 @@ caption="Do place a close icon in the upper right hand corner in an empty space.
 type="dont"
 caption="Do not place a close icon inline with interactive elements.">
 
-![Do not place a close icon inline with interactive elements.](./images/disclosure_dismmisible_dont.png)
+![Do not place a close icon inline with interactive elements.](./images/disclosure-dismmisible-dont.png)
 
 </DoDont>
 </DoDontRow>
@@ -198,3 +201,601 @@ If a trigger button contains an icon, the icon size should be either 20px or
 </Row>
 
 <Caption>Example of trigger button icon sizes.</Caption>
+
+#### Popover
+
+A popover is a layer that appears above all other content on the page. Only one
+popover can appear at a time and can contain varying text and interactive
+elements while still being accessible. Popovers are used as a base layer in some
+of our components like tooltips, overflow menus, and dropdown menus. The
+disclosure pattern uses the popover component to disclose information.
+
+See the
+[popover component](https://v11.carbondesignsystem.com/components/popover/usage/)
+guidance for more information.
+
+<Row>
+<Column colLg={8}>
+
+![Example of a popover container.](images/disclosure-popover.png)
+
+</Column>
+</Row>
+
+<Caption>Example of a popover container.</Caption>
+
+### Content
+
+The type of content in a disclosure can vary depending on the use case. A
+disclosure can be simple and contain solely informational text. In some cases
+content can be more complex and include a combination of multiple sections and
+interactive elements. Below are some common examples and best practices of how
+to show body text, heading text, and footer content in disclosures.
+
+#### Heading text
+
+Heading text can be placed above body text in a disclosure. Placing the heading
+text with 0px padding above the body text or adding a divider between the
+heading text and body text are two different common use cases.
+
+<Row>
+<Column colLg={8}>
+
+![Example of a disclosure with heading text.](images/disclosure-heading-text.png)
+
+</Column>
+</Row>
+
+<Caption>Example of a disclosure with heading text.</Caption>
+
+#### Footer content
+
+Footer content can be placed below the body text it is related to. Placing the
+footer content with 16px padding below the body text or adding a divider between
+the footer content and body text are two different common use cases.
+
+<Row>
+<Column colLg={8}>
+
+![Example of a disclosure with footer content.](images/disclosure-footer-content.png)
+
+</Column>
+</Row>
+
+<Caption>Example of a disclosure with footer content.</Caption>
+
+#### Multiple sections of text
+
+Depending on the use case, you may need a disclosure to show multiple sections
+of content. Use padding or dividers to visually create sections. Profile menus
+and context menus typically display multiple sections of content depending on
+the complexity of the menu.
+
+<Row>
+<Column colLg={8}>
+
+![Example of a disclosure with multiple sections.](images/disclosure-footer-content.png)
+
+</Column>
+</Row>
+
+<Caption>Example of a disclosure with multiple sections.</Caption>
+
+#### Interactive elements
+
+Disclosures allow you to place interactive elements in a popover while still
+keeping it accessible. Settings and filters often include components like radio
+buttons and checkboxes that the user can interact with to adjust specific
+content. Searching within a menu is another common use case of including
+interactive elements within a popover.
+
+<Row>
+<Column colLg={8}>
+
+![Example of a disclosure with interactive content.](images/disclosure-interactive-elements.png)
+
+</Column>
+</Row>
+
+<Caption>Example of a disclosure with interactive content.</Caption>
+
+## Common usecases
+
+Disclosures are used for a wide variety of use cases. The following variants are
+a few examples of common disclosures that you may come across frequently in
+product interfaces.
+
+| Example                  | Use cases                                                                                                                                                                                                              |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Profile menu             | Profile menus are typically part of a UI shell header and can have navigational options related to a users account or active session.                                                                                  |
+| Context menu             | Context menus are used to provide an additional list of options to take on the element it was triggered from.                                                                                                          |
+| Setting and filter menus | Settings and filter menus are frequently used within data table toolbars to enable users to adjust content. Filter and sort menus can also be used for filtering large amounts of content on a page or an entire page. |
+| Combo button             | Combo buttons are used to contain multiple related actions that come with a default, primary action. Additional actions live in the menu.                                                                              |
+
+## Profile menu
+
+Profile menus follow the disclosure pattern by clicking an icon button that
+opens a popover. Profile menus are essential to a product's UI and users rely on
+it to find global content related to their account, product, and active session
+information. Profile menus provide a way to log in or out of an account and let
+users access their settings. Additional links and icons can be added to a
+profile menu depending on the use case.
+
+See the
+[profile menu pattern](https://pages.github.ibm.com/cdai-design/pal/patterns/profile-header-menu/)
+for more information.
+
+### Anatomy
+
+<Row>
+<Column colLg={8}>
+
+![Anatomy of a profile menu.](images/disclosures-profile-menu-anatomy.png)
+
+</Column>
+</Row>
+
+<Caption>Anatomy of a profile menu.</Caption>
+
+1. **Toolbar profile image:** A profile image, initials, or icon of a user. See
+   the user
+   [profile image](https://pages.github.ibm.com/cdai-design/pal/patterns/user-profile-images)
+   guidance for more information.
+2. **Menu profile image:** A profile image that is paired with high level
+   information about the user, such as a name or handle.
+3. **Section dividers (optional):** To group related content by creating visual
+   sections.
+4. **Contextual information (optional):** Global information that is related to
+   the account or active session.
+5. **Link (optional):** Additional links that are not main menu items. Links can
+   be used for editing, prompting a modal, etc.
+6. **Menu items:** The main and most commonly used menu items that are
+   navigational.
+7. **Icon (optional):** Additional icons to place inline with menu items.
+
+### Structure
+
+A profile menu is made up of two parts—an icon button and a popover. Profile
+menus support a variety of content that can range in complexity. Some profile
+menus are simple while other menus may be more complex and require multiple
+sections of information. Profile menus that are complex may benefit from
+including interactive elements depending on the use case.
+
+<Row>
+<Column colLg={12}>
+
+![Example of a simple and complex profile menu.](images/disclosures-profile-menu-simple-complex.png)
+
+</Column>
+</Row>
+
+<Caption>Example of a simple and complex profile menu.</Caption>
+
+### Functionality
+
+**Mouse**
+
+Clicking the icon button triggers the profile menu to open and reveals
+information related to the users profile and account. The user can then click on
+menu items and other interactive elements within the menu. To close the menu,
+click on the icon button trigger again or anywhere on the page out side of the
+menu.
+
+<Row>
+<Column colLg={8}>
+
+![Example of a simple and complex profile menu.](images/disclosures-profile-menu-structure.png)
+
+</Column>
+</Row>
+
+#### Keyboard
+
+- `Tab` to the icon button trigger to apply focus.
+- To open the profile menu press `Enter` or `Space`.
+- To navigate the profile menu items press the `Up` and `Down` arrow keys.
+- To select an item in the profile menu press `Enter`.
+- To close the profile menu press `Enter`, `Space`, or `Esc` .
+
+### Best practices
+
+#### Use with a global toolbar header
+
+If a product has a global toolbar header and offers login capabilities use the
+profile menu. Provide a way for the user to log out of an account, make changes
+to profile information, or navigate to settings.
+
+#### Show information that is pertinent to the user account or session
+
+Include sections on a global contextual level that may be helpful to the user to
+see in the profile menu. For example, indicating the current plan or location
+with an option to edit or change the current information can be valuable to
+include in a profile menu depending on the use case.
+
+#### Add icons and links to help guide the user
+
+When appropriate, pair icons with related menu items or information to indicate
+the action that will be performed once it is clicked. Provide links next to
+related menu items or information to specify there are additional quick actions
+to take, whether it be upgrading an account plan or changing a location. Only
+add icons and links to a profile menu if completely necessary in order to not
+overwhelm the user and to reduce visual clutter within the menu.
+
+## Context menu
+
+A context menu is considered to be a disclosure pattern that is triggered by a
+right click interaction and opens a popover. A context menu is a defined list of
+options in a menu that appears above all other content on a page and is related
+to the selected content or element it was triggered from.
+
+### Anatomy
+
+<Row>
+<Column colLg={12}>
+
+![Anatomy of a context menu.](images/disclosures-context-menu-anatomy.png)
+
+</Column>
+</Row>
+
+<Caption>Anatomy of a context menu.</Caption>
+
+1. **Main menu:** The main and most commonly used menu option.
+2. **Submenu (optional):** A secondary menu that contains additional information
+   related to a main menu option.
+3. **Menu option:** An action that can be performed or an option that can take
+   selection.
+4. **Divider (optional):** To group related content by creating visual sections.
+5. **Checkmark icon:** Indicator that an option in the menu is selected.
+6. **Keyboard shortcut icon:** Indicator to provide a quick way of performing an
+   action.
+7. **Caret icon:** Indicator that there is more information displayed in a
+   submenu.
+
+### Structure
+
+A context menu consists of a main menu and can contain additional submenus. Use
+dividers to separate content and group into related sections. Use submenus for
+main menu options that have additional options to choose from. Options can also
+be selectable within the menu depending on the use case.
+
+<Row>
+<Column colLg={12}>
+
+![Example of context menu structure.](images/disclosures-context-menu-structure.png)
+
+</Column>
+</Row>
+
+### Functionality
+
+#### Mouse
+
+A context menu opens by `right clicking` or by pressing `control + click` on the
+content related to the menu on the page. The context menu appears next to the
+cursor or where the pointer was placed when clicked. Users can open submenus by
+hovering on the submenus option in the main menu. Users can select a menu option
+by clicking on it. Clicking on an option will close the menu. Users can also
+close the menu by clicking anywhere on the page outside of the menu.
+
+<Row>
+<Column colLg={12}>
+
+![Example of context menu hover functionality.](images/disclosures-context-menu-functionality-hover.png)
+
+</Column>
+</Row>
+
+#### Keyboard
+
+- Upon opening the context menu, the entire main menu receives focus. To give
+  focus to the first menu option press `Tab` .
+- To move focus to different menu options in the context menu press the `Up` and
+  `Down` arrow keys.
+- To open a submenu, make sure the main menu option item has focus and press
+  `Enter`, `Space`, or the `Right` arrow key.
+- To select a menu option press `Enter` or `Space` .
+- To close the profile menu press `Enter`, `Space`, or `Esc` .
+
+<Row>
+<Column colLg={12}>
+
+![Example of context menu focus functionality.](images/disclosures-context-menu-functionality-focus.png)
+
+</Column>
+</Row>
+
+### Best practices
+
+#### Use in data grid cells
+
+Context menus are typically used in data grid cells to reveal more actions or
+options to choose from that are related to the current context of the cell.
+
+#### Use in text editors
+
+Context menus are frequently used in text editors by highlighting text and
+activating a menu to show more actions or options to choose from that are
+related to the highlighted text.
+
+#### Restrict additional submenus to one level
+
+Context menus can contain multiple different submenus. Submenus can be difficult
+to navigate without accidentally dismissing the context menu. Limiting the
+amount of submenu levels will help users better navigate the context menu and
+reduce complexity.
+
+#### Avoid setting a default option
+
+If options in a context menu are selectable, let the user make the decision to
+select an option instead of predefining it for them.
+
+## Settings and filter menus
+
+Settings and filters follow the disclosure pattern by clicking an icon button
+that opens a popover. Interactive elements are often found in settings and
+filters in order to modify or adjust specific content. The disclosure pattern
+allows you to nest interactive elements inside of a popover while still being
+accessible.
+
+### Anatomy
+
+<Row>
+<Column colLg={8}>
+
+![Anatomy of a settings menu.](images/disclosures-settings-anatomy.png)
+
+</Column>
+</Row>
+
+<Caption>Anatomy of a settings menu.</Caption>
+
+1. **Icon button:** A trigger to open and close the popover.
+2. **Menu:** Uses the popover component as an underlying layer.
+3. **Content area:** Area to place text and interactive elements.
+4. **Button group (optional):** To cancel or apply changes in settings or
+   filters that affect other content on the page.
+
+### Structure
+
+Settings or filter menus are made up of two parts—an icon button and a popover.
+These types of menus usually contain interactive elements. For example, use
+links to clear filters, use checkboxes, radio buttons, or dropdowns to adjust
+content and use sets of buttons to reset or apply changes. Content may vary
+depending on what is being filtered, sorted, or what settings need to be
+defined.
+
+<Row>
+<Column colLg={8}>
+
+![Example of a settings menu structure.](images/disclosures-settings-structure.png)
+
+</Column>
+</Row>
+
+### Functionality
+
+#### Mouse
+
+Clicking the icon button triggers the popover to open. Upon opening the menu,
+the first interactive element in the menu receives focus. To close the menu
+click on the icon button again, or anywhere on the page outside of the menu.
+
+<Row>
+<Column colLg={8}>
+
+![Example of a settings menu functionality.](images/disclosures-settings-functionality.png)
+
+</Column>
+</Row>
+
+#### Keyboard
+
+- `Tab` to the icon button trigger to apply focus.
+- To open the settings or filter menu press `Enter` or `Space`.
+- Upon opening the menu, the first interactive element in the menu receives
+  focus.
+- To shift focus to different interactive elements in the menu press the `Up` or
+  `Down` arrow keys.
+- To close the profile menu press `Enter`, `Space`, or `Esc` .
+
+### Best practices
+
+#### Use a set of buttons to apply all changes
+
+In some use cases when live filtering is not feasible or the preferred method,
+use a set of buttons to either reset or apply all selected changes in the
+settings or filter menu. Once the "Apply" button has been selected, the menu
+closes and the results are updated.
+
+#### Don't overcrowd menus with unnecessary content
+
+Only include content or interactive elements that are necessary. Overcrowding
+disclosures with too many options or additional content can be distracting to
+the user.
+
+#### Include enough space between elements
+
+When placing interactive elements, be mindful of the padding between the
+interactive element and other content in the disclosure. A good rule of thumb is
+to keep at least 16px padding between different elements and content.
+
+## Combo button
+
+A combo button is a type of disclosure pattern and displays a primary default
+action that discloses a list of additional, related actions to choose from in a
+popover.
+
+### Anatomy
+
+<Row>
+<Column colLg={8}>
+
+![Anatomy of a combo button.](images/disclosures-combo-button-anatomy.png)
+
+</Column>
+</Row>
+
+<Caption>Anatomy of a combo button.</Caption>
+
+1. **Primary button:** A default action.
+2. **Icon button:** A trigger to open and close the popover.
+3. **Content area:** A list of additional actions.
+4. **Menu:** Uses the popover component as an underlying layer.
+
+### Structure
+
+A combo button is made up of three parts—a primary button, an icon button, and a
+popover. Dividers are shown to visually separate different actions that are
+related to each other.
+
+<Row>
+<Column colLg={8}>
+
+![Example of combo button structure.](images/disclosures-combo-button-structure.png)
+
+</Column>
+</Row>
+
+### Functionality
+
+#### Mouse
+
+Clicking the primary default button will perform the defaulted action. Clicking
+the icon button triggers the popover to open and reveals the additional actions
+to choose from in a menu. Clicking on an action in the menu will perform the
+action. To close the menu click on the icon button again, or anywhere on the
+page outside of the menu.
+
+<Row>
+<Column colLg={8}>
+
+![Example of combo button functionality.](images/disclosures-combo-button-functionality.png)
+
+</Column>
+</Row>
+
+#### Keyboard
+
+Primary default button:
+
+- `Tab` to the primary default button to apply focus.
+- Trigger the primary default button by pressing `Enter` or `Space`.
+
+Icon button:
+
+- `Tab` to the icon button to apply focus.
+- Open the menu by pressing `Enter`, `Space`, or the `Down` arrow key.
+
+Menu:
+
+- When the menu is opened, focus will go to the first additional action in the
+  menu list.
+- Move between menu actions by pressing the `Up` and `Down` arrow keys.
+- Close the menu by pressing `Enter` or  `Space` to activate the action with
+  focus or `Esc` to cancel.
+
+### Best practices
+
+#### Choose a default action
+
+Remember to choose the default, primary action that will be displayed in the
+primary button so it is not hidden within the menu of additional actions. The
+primary default action is typically the most commonly used action there is to
+take.
+
+#### Use to reduce visual complexity on a page
+
+Combo buttons reduce visual complexity by grouping similar commands together.
+For example, how navigation menus group together related options to enable
+conceptual understanding of the site information structure.
+
+#### Avoid using extra icons
+
+Avoid using extra icons inside of the default, primary button and the additional
+actions in the menu to reduce visual noise between elements. Keep button labels
+clear and concise.
+
+<DoDontRow>
+<DoDont
+type="do"
+caption="Do have only text in the primary default button.">
+
+![Do have only text in the primary default button.](./images/disclosures-combo-button-do.png)
+
+</DoDont>
+
+<DoDont
+type="dont"
+caption="Do not include an icon in the primary default button or next to additional actions.">
+
+![Do not include an icon in the primary default button or next to additional actions.](./images/disclosures-combo-button-dont.png)
+
+</DoDont>
+</DoDontRow>
+
+## Accessibility
+
+#### Screen readers
+
+VoiceOver: Users can trigger a button to open a disclosure popover by pressing
+`Enter` or `Space` while the trigger has focus.
+
+JAWS: Users can trigger a button to open a disclosure popover by pressing
+`Enter` or `Space` while the trigger has focus.
+
+NVDA: Users can trigger a button to open a disclosure popover by pressing
+`Enter` or `Space` while the trigger has focus.
+
+## Related
+
+#### Button
+
+Buttons are clickable interactive elements that are commonly used in disclosures
+as the trigger to open a popover. There are multiple variants of button that
+should be used in for certain use cases. For further guidance, see Carbon's
+[button component](https://www.carbondesignsystem.com/components/button/usage/)
+guidance.
+
+#### Popover
+
+Popovers are frequently used in disclosures to show additional content. Popovers
+are also used in components like tooltips, overflow menus, and dropdown menus.
+For further guidance of how to use a popover, see Carbon’s
+[popover component](https://v11.carbondesignsystem.com/components/popover/usage/).
+
+#### Toggletip
+
+Toggletip uses the disclosure pattern to toggle the visibility of a popover. The
+popover may contain a variety of information, from descriptive text to
+interactive elements. Toggletips are triggered on click to disclose the
+information inside of a popover. Further guidance on the toggletip component is
+coming soon.
+
+## References
+
+Context menu,
+[Delivering Relevant Tools for Tasks](https://www.nngroup.com/articles/contextual-menus/),
+(Nielsen Norman Group)
+
+Split Buttons,
+[Component definition](https://www.nngroup.com/articles/split-buttons/),
+(Nielsen Norman Group)
+
+Popup,
+[Component research](https://open-ui.org/components/popup.research#popup),
+(OpenUI)
+
+Enabling Popups,
+[Initial Explainer](https://open-ui.org/components/popup.research.explainer),
+(OpenUI)
+
+Disclosure,
+[W3C WAI-ARIA practices](https://v11.carbondesignsystem.com/components/popover/usage/%5Bhttps://www.w3.org/TR/wai-aria-practices-1.1/#disclosure),
+(W3C Working Group Note)
+
+## Feedback
+
+Help us improve this pattern by providing feedback, asking questions, and
+leaving any other comments on
+[GitHub](https://github.com/carbon-design-system/carbon-website/issues/new?assignees=&labels=feedback&template=feedback.md).
