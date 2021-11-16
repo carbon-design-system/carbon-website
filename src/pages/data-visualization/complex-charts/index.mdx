@@ -34,7 +34,9 @@ go to the
 <AnchorLink>Heat maps</AnchorLink>
 <AnchorLink>Network diagrams</AnchorLink>
 <AnchorLink>Parallel coordinates</AnchorLink>
+<AnchorLink>Tree diagrams</AnchorLink>
 <AnchorLink>Tree maps</AnchorLink>
+<AnchorLink>Circle packs</AnchorLink>
 <AnchorLink>Geospatial charts</AnchorLink>
 
 </AnchorLinks>
@@ -51,33 +53,9 @@ chart does not show correlations between indicators that are not directly
 connected. This is usually emphasized using a different set of colors for each
 block.
 
-<Row>
-<Column  colLg={12} colMd={8} colSm={4} >
-
-![Alluvial diagram](images/01_adv_alluvial_928.png)
-
-<Caption>Example of alluvial diagram made with two blocks</Caption>
-
-</Column>
-</Row>
-
-<Row>
-<Column  colLg={4} colMd={4} colSm={4} >
-
-![Alluvial node hover detail](images/02_adv_alluvial_detail_288.png)
-
-<Caption>Detail of an alluvial diagram on node hover</Caption>
-
-</Column>
-
-<Column  colLg={4} colMd={4} colSm={4} >
-
-![Alluvial link hover detail](images/03_adv_alluvial_288.png)
-
-<Caption>Detail of an alluvial diagram on link hover</Caption>
-
-</Column>
-</Row>
+<div>
+  <ChartDemoGroup demoGroup={getDemoGroupByTitle('alluvial')} light={true} />
+</div>
 
 ## Heat maps
 
@@ -139,7 +117,7 @@ increasing the contrast of the second hue to the other end of the scale. The
 neutral midpoint is often referred to as the "inflection point" (for example, a
 0 value midway between -100 and +100).
 
-[Divergent scales](../data-visualization/color-palettes#diverging-palettes)
+[Divergent scales](/data-visualization/color-palettes#diverging-palettes)
 require three colors for their correspondent values (min, max, and inflection
 point) and Carbon has provided two approved palettes for divergent
 visualizations. Although the examples here use the "discrete" (stepped scale)
@@ -176,12 +154,28 @@ it easier for users to understand complex connections at a glance. These
 diagrams are especially useful for isolating problems or when designing a new
 system.
 
-The example below illustrates a swimlane graph with expandable nodes developed
-by the Security team. In products like QRadar these diagrams are often paired
-with side and filter panels. However, a simplified version of the component is
-available in the
-[carbon-charts repository](https://github.com/carbon-design-system/carbon-charts/pull/435)
-for IBM designers to adapt.
+### Building blocks
+
+Carbon Charts offers building blocks for network diagrams in the form of
+**React** & **Angular** components.
+
+Note that Carbon Charts does not provide layouts for diagrams. You can utilize
+these components alongside graphing libraries (such as elkjs), or by composing
+your own layouts.
+
+**Getting started guides:**
+
+- [React](https://carbon-design-system.github.io/carbon-charts/react/?path=/story/diagrams--start-here)
+- [Angular](https://carbon-design-system.github.io/carbon-charts/angular/?path=/story/diagrams--start-here)
+
+Here's an example using elkjs in react
+
+<iframe
+  src="https://codesandbox.io/embed/carbon-charts-react-elkjs-diagram-b9xyp?fontsize=14&hidenavigation=1&theme=dark"
+  style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+  title="carbon-charts-react-elkjs-diagram"
+  allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"></iframe>
 
 <Row>
 <Column  colLg={12} colMd={8} colSm={4} >
@@ -271,6 +265,16 @@ updated scatterplot matrix example. See the detail below.
 </Column>
 </Row>
 
+## Tree diagrams
+
+Carbon Charts supports both tree diagrams and dendrograms. Although the two are
+very similar, dendrograms tend to offer a more responsive layout for varying
+screen sizes.
+
+<div>
+  <ChartDemoGroup demoGroup={getDemoGroupByTitle('tree')} light={true} />
+</div>
+
 ## Tree maps
 
 Tree maps can work for visualizing a part-to-whole relationship among a large
@@ -332,6 +336,25 @@ country, tourism for that country may fall below its annual average.
 
 </Column>
 </Row>
+
+## Circle packs
+
+A circle pack is a hierarchical visualization of data. It’s equivalent to a
+Treemap or a Dendrogram—where each node of the tree is represented as a circle
+and sub-nodes are represented as circles within a parent. The size of each
+circle can also be used to represent an additional arbitrary value, such as
+population or file size. Color may also be used to assign categories or to
+represent an additional variable. Although they’re not as space efficient,
+Circle Packs reveal hierarchical structure better than Treemaps.
+
+For Circle Packs with more than two levels of hierarchy, zoom functionality
+allows users to explore the data without compromising the contrast accessibility
+of the chart. We advise against disabling the zoom functionality except in cases
+such as preview charts, cards that expand to full view with the chart, etc.
+
+<div>
+  <ChartDemoGroup demoGroup={getDemoGroupByTitle('circlepack')} light={true} />
+</div>
 
 ## Geospatial charts
 
@@ -452,7 +475,7 @@ accessible results.
 <Row>
 <Column  colLg={12} colMd={8} colSm={4} >
 
-![Mapbox white style](images/15_adv_geo_mapbox_a_928.png)
+![Mapbox white style](images/15_adv_geo_mapbox_a_928.jpg)
 
 <Caption>Example of a Carbon’s White theme style in Mapbox</Caption>
 

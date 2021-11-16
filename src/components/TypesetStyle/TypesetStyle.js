@@ -26,11 +26,11 @@ const breakpoints = {
   max: Number(carbonBreakpoints.max.width.replace('rem', '')) * baseFontSize,
 };
 
-const nextLargerBreakpointPx = viewportWidth =>
+const nextLargerBreakpointPx = (viewportWidth) =>
   values(breakpoints)[indexOfCurrentBreakpoint(viewportWidth) + 1];
 
-const indexOfCurrentBreakpoint = viewportWidth =>
-  findLastIndex(values(breakpoints), width => viewportWidth >= width);
+const indexOfCurrentBreakpoint = (viewportWidth) =>
+  findLastIndex(values(breakpoints), (width) => viewportWidth >= width);
 
 const isWithinBreakpoint = (viewportWidth, currentBreakpoint) => {
   if (viewportWidth === currentBreakpoint) return true;
@@ -88,16 +88,16 @@ class TypesetStyle extends React.Component {
     });
   }
 
-  toggleBreakpoint = e => {
+  toggleBreakpoint = (e) => {
     this.setState({ simulatedScreenWidth: Number(e.target.value) });
   };
 
-  toggleSet = value => {
+  toggleSet = (value) => {
     this.setState({ tab: value });
   };
 
   getButtons = () =>
-    Object.keys(breakpoints).map(breakpointName => (
+    Object.keys(breakpoints).map((breakpointName) => (
       <button
         className={`${prefix}--typeset-style-button ${prefix}--type-body-long-01 ${
           isWithinBreakpoint(

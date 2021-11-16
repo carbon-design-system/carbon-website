@@ -120,20 +120,96 @@ Advantages:
   entry errors, top-alignment is ideal.
 - This arrangement is best when fewer form fields need to be presented.
 
-#### Optional vs. mandatory
+### Optional vs. mandatory
 
-All fields in a form are assumed required, with optional fields being tagged as
-so in the label. An excess of optional fields should be avoided. If it's
-necessary to have a large number of optional fields, we recommend devoting an
-entire section to optional fields to avoid excessive repetition.
+Forms items can be labeled as either optional or required depending on several
+factors. A common distinction in IBM products for using required or optional is
+the forms complexity.
+
+1. **Simple forms** - generally shorter and/or user- or consumer-oriented; such
+   as sign-up and contact forms and checkout screens. Most of the fields will
+   tend to be required.
+2. **Complex forms** - generally longer and product-oriented; contain properties
+   and settings that are used to configure Enterprise software.  Although they
+   will usually contain at least one required field, the majority of the fields
+   will tend to be optional.
+
+Note if the majority of the fields are **required** or **optional**, as the
+overall number of form fields for your entire product should inform your
+treatment. The pattern used should be consistent throughout your product, or at
+minimum, consistent between all of the same types of form within your product.
+
+- If the majority of the fields are required, mark **only** the optional field
+  labels with _(optional)_.
+- If the majority of the fields are optional, mark **only** the required field
+  labels with _(required)_.
+
+When designing your form, consider the purpose and the use case to reduce visual
+noise and clutter to allow your user to better complete their task. This will
+also ensure consistency through and across products.
+
+An excess of optional fields should be avoided. If it’s necessary to have a
+large number of optional fields, we recommend devoting an entire section to
+optional fields to avoid excessive repetition.
 
 <Row>
 <Column colLg={8}>
 
-![Example of input field with optional label](/images/optional_v_mandatory.png)
+![Example of a short user sign-up form using the optional pattern](images/form-usage-optional.png)
+
+<Caption>
+  Example of a short user sign-up form using the optional pattern
+</Caption>
 
 </Column>
 </Row>
+
+<Row>
+<Column colLg={8}>
+
+![Example of product configuration properties using the required pattern](images/form-usage-required.png)
+
+<Caption>
+  Example of product configuration properties using the required pattern
+</Caption>
+
+</Column>
+</Row>
+
+#### When to use
+
+<br />
+
+<DoDontRow>
+<DoDont
+colMd={6} colLg={6}
+caption="DO mark fields (required) when the majority of the fields are optional.">
+
+![Do mark fields (required) when the majority of the fields are optional.](images/Do-Form-required.png)
+
+</DoDont>
+<DoDont
+colMd={6} colLg={6}
+type="dont"
+caption="DON'T mark fields (optional) when the majority of the fields are optional.">
+
+![Don't mark fields (optional) when the majority of the fields are optional.](images/Dont-form-required.png)
+
+</DoDont>
+</DoDontRow>
+
+#### Best practices
+
+- Consider the overall number of required and optional fields in the forms for
+  your entire product. The pattern used should be consistent throughout your
+  product, or at minimum consistent between all of the same type of form within
+  your product.
+  - For example, if you have 100 types of connections properties forms and the
+    fields are optional in 85 of the 100 forms, all 100 should use the required
+    pattern.
+- Use the techniques illustrated below in the [Default Values](#default-values)
+  and [Designing for Longer Forms](#designing-for-longer-forms) sections in
+  order to make your forms easier and more efficient to use.
 
 ### Text inputs
 
@@ -340,6 +416,24 @@ the user or formatting is in question, use placeholder text.
   password requirements. Instead, use an infotip.
 - Provide placeholder text when it isn’t necessary.
 - Ever use placeholder text as a replacement for field labels.
+
+#### Default values
+
+Default values can be set for for all types of inputs. Ensure that if a default
+value is provided, it is something that would commonly be used anyway and would
+not cause disruption or errors if the user forgets or opts not to make any
+changes to it before submitting the form. Good default values reduce cognitive
+load.
+
+For example:
+
+- If you can detect or determine where your users are from, have their country
+  pre-selected in a "Country" dropdown.
+- If there is a common or minimum value (i.e., a quota or memory limit),
+  pre-fill that value.
+- If a text input can be detected or determined in advance (i.e.-company name),
+  pre-fill that value.
+- If a start date is required, use the current date as the default.
 
 ### Buttons
 
@@ -828,6 +922,12 @@ in-depth accessibility guidance for each form element.
 
 ### Further reading
 
+- Nick Babich,
+  [The Power of Defaults](https://uxplanet.org/the-power-of-defaults-992d50b73968)(UX
+  Planet, 2017)
+- Raluca Budiu,
+  [Marking Required Fields in Forms](https://www.nngroup.com/articles/required-fields/)
+  (Nielsen Norman Group, 2019)
 - Andrew Coyle,
   [Design Better Forms](https://uxdesign.cc/design-better-forms-96fadca0f49c),
   (UX Collective, 2016)
@@ -837,6 +937,11 @@ in-depth accessibility guidance for each form element.
 - Marieke McCloskey,
   [Accordions Are Not Always the Answer for Complex Content on Desktops](https://www.nngroup.com/articles/accordions-complex-content/),
   Nielsen Norman Group, 2014)
+- Jakob Nielsen,
+  [The Power of Defaults](https://www.nngroup.com/articles/the-power-of-defaults/)(Nielsen
+  Norman Group, 2015)
+- Preibusch et al.,
+  [_The privacy economics of voluntary over-disclosure in Web forms_](http://preibusch.de/publications/Preibusch-Krol-Beresford__voluntary_over-disclosure.pdf)(2013)
 
 ## Feedback
 
