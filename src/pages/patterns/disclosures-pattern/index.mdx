@@ -30,11 +30,11 @@ information related to the source it is triggered from.
 
 Disclosures support a wide range of different use cases in product interfaces
 and are commonly used to reveal more information or details about an element or
-content on a page. Disclosures can contain interactive elements while preserving
-accessible functionality.
+content on a page. Unlike tooltips, the content expanded by a disclosure may
+contain interactive elements.
 
 At its core, a disclosure is comprised of two parts—a trigger that the user
-interacts with by clicking or using their keyboard and the popover that opens
+interacts with by clicking or using their keyboard and the container that opens
 and discloses the content.
 
 ### When to use
@@ -44,7 +44,7 @@ and discloses the content.
 - Use to show settings, filtering, or sorting menus that affect large sections
   of a page, for example in data tables, or an entire page.
 - Use when displaying content within types of menus, for example profile menus,
-  context menus, combo buttons, and menu buttons.
+  combo buttons, and menu buttons.
 
 ### When not to use
 
@@ -131,16 +131,6 @@ To open a disclosure to reveal its content, click the trigger button it is
 related to. To close a disclosure, either click on the trigger button again,
 click anywhere outside of the open disclosure container or click on the close
 `x` icon if it is present within the disclosure.
-
-<Row>
-<Column colLg={8}>
-
-![Example of a disclosure opening and closing.](images/disclosure-opening-closing.gif)
-
-</Column>
-</Row>
-
-<Caption>Example of a disclosure opening and closing.</Caption>
 
 #### Dismissible action
 
@@ -308,7 +298,6 @@ product interfaces.
 | Example                   | Use cases                                                                                                                                                                                                              |
 | ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Profile menu              | Profile menus are typically part of a UI shell header and can have navigational options related to a users account or active session.                                                                                  |
-| Context menu              | Context menus are used to provide an additional list of options to take on the element it was triggered from.                                                                                                          |
 | Settings and filter menus | Settings and filter menus are frequently used within data table toolbars to enable users to adjust content. Filter and sort menus can also be used for filtering large amounts of content on a page or an entire page. |
 | Combo button              | Combo buttons are used to contain multiple related actions that come with a default, primary action. Additional actions live in the menu.                                                                              |
 
@@ -417,107 +406,6 @@ related menu items or information to specify there are additional quick actions
 to take, whether it be upgrading an account plan or changing a location. Only
 add icons and links to a profile menu if completely necessary in order to not
 overwhelm the user and to reduce visual clutter within the menu.
-
-## Context menu
-
-A context menu is considered to be a disclosure pattern that is triggered by a
-right click interaction and opens a popover. A context menu is a defined list of
-options in a menu that appears above all other content on a page and is related
-to the selected content or element it was triggered from.
-
-### Anatomy
-
-<Row>
-<Column colLg={12}>
-
-![Anatomy of a context menu.](images/disclosures-context-menu-anatomy.png)
-
-</Column>
-</Row>
-
-<Caption>Anatomy of a context menu.</Caption>
-
-1. **Main menu:** The main and most commonly used menu option.
-2. **Submenu (optional):** A secondary menu that contains additional information
-   related to a main menu option.
-3. **Menu option:** An action that can be performed or an option that can take
-   selection.
-4. **Divider (optional):** To group related content by creating visual sections.
-5. **Checkmark icon:** Indicator that an option in the menu is selected.
-6. **Keyboard shortcut icon:** Indicator to provide a quick way of performing an
-   action.
-7. **Caret icon:** Indicator that there is more information displayed in a
-   submenu.
-
-### Structure
-
-A context menu consists of a main menu and can contain additional submenus. Use
-dividers to separate content and group into related sections. Use submenus for
-main menu options that have additional options to choose from. Options can also
-be selectable within the menu depending on the use case.
-
-<Row>
-<Column colLg={12}>
-
-![Example of context menu structure.](images/disclosures-context-menu-structure.png)
-
-</Column>
-</Row>
-
-### Functionality
-
-#### Mouse
-
-A context menu opens by `right clicking` or by pressing `control + click` on the
-content related to the menu on the page. The context menu appears next to the
-cursor or where the pointer was placed when clicked. Users can open submenus by
-hovering on the submenus option in the main menu. Users can select a menu option
-by clicking on it. Clicking on an option will close the menu. Users can also
-close the menu by clicking anywhere on the page outside of the menu.
-
-<Row>
-<Column colLg={12}>
-
-![Example of context menu focus functionality.](images/disclosures-context-menu-functionality-focus.png)
-
-</Column>
-</Row>
-
-#### Keyboard
-
-- Upon opening the context menu, the entire main menu receives focus. To give
-  focus to the first menu option press `Tab` .
-- To move focus to different menu options in the context menu press the `Up` and
-  `Down` arrow keys.
-- To open a submenu, make sure the main menu option item has focus and press
-  `Enter`, `Space`, or the `Right` arrow key.
-- To select a menu option press `Enter` or `Space` .
-- To close the profile menu press `Enter`, `Space`, or `Esc` .
-
-### Best practices
-
-#### Use in data grid cells
-
-Context menus are typically used in data grid cells to reveal more actions or
-options to choose from that are related to the current context of the cell.
-
-#### Use in text editors
-
-Context menus are frequently used in text editors by highlighting text and
-activating a menu to show more actions or options to choose from that are
-related to the highlighted text.
-
-#### Restrict additional submenus to one level
-
-Context menus can contain multiple different submenus. Submenus can be difficult
-to navigate without accidentally dismissing the context menu. Limiting the
-amount of submenu levels will help users better navigate the context menu and
-reduce complexity.
-
-#### Avoid setting a default option
-
-If options in a context menu are selectable, let the user make the decision to
-select an option instead of predefining it for them.
 
 ## Settings and filter menus
 
