@@ -152,8 +152,6 @@ const TypesetExample = (props) => (
                 </span>
                 <br />
                 Letter spacing: {displaySpecs.letterSpacing}px
-                <br />
-                Type set: {displaySpecs.typeSet}
                 {displaySpecs.warning != null ? (
                   <span>
                     <br />

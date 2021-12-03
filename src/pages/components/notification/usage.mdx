@@ -182,7 +182,7 @@ For further content guidance, see Carbon's
 
 ## Inline notifications
 
-### Inline formatting
+### Formatting
 
 <Row>
 <Column colLg={8}>
@@ -240,7 +240,7 @@ critical for a user to read or interact with the notification.
 
 ## Toast notifications
 
-### Toast formatting
+### Formatting
 
 <Row>
 <Column colLg={8}>
@@ -252,25 +252,11 @@ critical for a user to read or interact with the notification.
 
 #### Action
 
-Toast notifications can be actionable and allow for interactive elements. Only
-one tertiary action button is allowed within toast notifications. Action buttons
-should clearly state the user action. This action frequently takes users to a
-flow or page related to the message, where they can resolve the notification. If
-multiple actions are required, consider using a
-[dialog](https://carbondesignsystem.com/patterns/dialog-pattern/).
-
-<Row>
-<Column colLg={8}>
-
-![Example of toast notification with action button and time stamp](images/07_Toast_types_608.png)
-
-</Column>
-</Row>
-
-<Caption>
-  Example of a toast notification with action button (left) and a toast
-  notification with time stamp (right)
-</Caption>
+Carbon toast notifications are not fully accessible when they include
+interactive content. Using links and other interactive content in toasts breaks
+WCAG 2.1 compliance and should therefore be avoided. The Carbon team is aware of
+the accessibility concerns and is currently working on deprecating this
+functionality.
 
 #### Time stamp
 
@@ -293,10 +279,12 @@ stack with `$spacing-03` in-between. New toast notifications should appear at
 the top of the list, with older notifications being pushed down until they are
 dismissed.
 
+Actionable toast notifications do not appear on mobile screen widths.
+
 <Row>
 <Column colLg={8}>
 
-![Example of toast notification placement](images/05_toast_context_608.gif)
+![Example of toast notification placement](images/05_toast_context_608.png)
 
 </Column>
 </Row>
@@ -305,17 +293,13 @@ dismissed.
 
 #### Dismissal
 
-Toasts can be automatically dismissed or dismissed by the user. If the toast
-includes an action button, then the notification should remain on screen until
-the user dismisses it. The user then has enough time to interact with the button
-without the toast closing too soon. If a toast is not actionable, it can dismiss
-automatically after five seconds on the screen or be dismissed by the user. They
-can also include a close button so users can dismiss them sooner. Is a toast
-notification does dismiss automatically, users must be able to access them
-elsewhere after the toast disappears. This allows them to be accessible for
-users who need more time reading the notification or who may want to refer back
-to the notification. All toast notifications cover content on the screen so they
-should always be easily dismissed.
+Toasts dismiss automatically after five seconds on the screen. They can also
+include a close button so users can dismiss them sooner. Toasts cover content on
+the screen so they should always be easily dismissed. Because toast
+notifications dismiss automatically, users must be able to access them elsewhere
+after the toast disappears. This allows them to be accessible for users who need
+more time reading the notification or who may want to refer back to the
+notification.
 
 ## Modifiers
 
@@ -337,25 +321,6 @@ low-contrast notifications.
 
 <Caption>
     High contrast notification (top); low contrast notification (bottom)
-</Caption>
-</Column>
-</Row>
-
-### Actionable
-
-Carbon supports actions within notifications for inline and toast variants. With
-actionable notifications, only one action is allowed per notification. This
-action frequently takes users to a flow or page related to the message, where
-they can resolve the notification. Consider using a notification center where a
-user can revisit and act on past notifications.
-
-<Row>
-<Column colLg={8}>
-
-![Actionable inline and toast notifications](images/08_toast-action-608.png)
-
-<Caption>
-    Actionable toast notification (top); actionable inline notification (bottom)
 </Caption>
 </Column>
 </Row>
