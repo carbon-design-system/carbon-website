@@ -23,6 +23,7 @@ extra ability to communicate and give clarity to a user.
 <AnchorLink>Universal behaviors</AnchorLink>
 <AnchorLink>Standard tooltip</AnchorLink>
 <AnchorLink>Icon button tooltip</AnchorLink>
+<AnchorLink>Definition tooltip</AnchorLink>
 <AnchorLink>Related</AnchorLink>
 <AnchorLink>References</AnchorLink>
 <AnchorLink>Feedback</AnchorLink>
@@ -53,6 +54,7 @@ tooltips and use toggle tip instead.
 - Describe icon buttons
 - When more information is useful in helping a user make decisions
 - When an element needs more context or explanation
+- Use when defining a term or inline item
 
 <Row>
 <Column colLg={8}>
@@ -72,7 +74,7 @@ tooltips and use toggle tip instead.
 - Do not include interactive elements within a tooltip. Interactive elements in
   tooltips are inaccessible for some users and are hard to use for all users
   since tooltips do not receive focus. If images, buttons, or links need to be
-  included in supplemental information, use the toggle tip component and the
+  included in supplemental information, use the toggletip component and the
   disclosure pattern that allows for better tabbing and focus structure,
   improving the experience for all users.
 
@@ -112,12 +114,34 @@ caption="Do not use interactive elements within a tooltip.">
 </DoDont>
 </DoDontRow>
 
+#### Toggletips vs Tooltips
+
+Toggletips and tooltips are similar visually and both contain a popover and
+interactive trigger element. The two components differ in the way they are
+invoked and dismissed and if the user must interact with the contents. A tooltip
+is exposed on hover or focus when you need to expose brief, supplemental
+information that is not interactive. A toggletip is used on click or enter when
+you need to expose interactive elements, such as button, that a user needs to
+interact with.
+
+The exception here is that definition tooltip can be invoked on `hover` or
+`click` depending on use case.
+
 ### Variants
 
-| Variant                                     | Purpose                                                                        |
-| ------------------------------------------- | ------------------------------------------------------------------------------ |
-| [Standard tooltip](#standard-tooltip)       | Provides nonessential, supplemental information to help a user make a decision |
-| [Icon button tooltip](#icon-button-tooltip) | Describes a button's function or action                                        |
+| Variant                                     | Purpose                                                                                                                                 |
+| ------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| [Standard tooltip](#standard-tooltip)       | Provides nonessential, supplemental information to help a user make a decision                                                          |
+| [Icon button tooltip](#icon-button-tooltip) | Describes a button's function or action                                                                                                 |
+| [Definition tooltip](#definition-tooltip)   | Provides additional help or defines an item or term. It may be used on the label of a UI element, or on a word embedded in a paragraph. |
+
+<Row>
+<Column colLg={8}>
+
+![Tooltip variants](images/tooltip-usage-12.png)
+
+</Column>
+</Row>
 
 ## Live demo
 
@@ -138,8 +162,7 @@ import { Filter16 } from '@carbon/icons-react';
       label: 'Definition tooltip',
     },
   ]}
-  scope={{ Filter16 }}
->
+  scope={{ Filter16 }}>
   <ComponentVariant
     id="tooltip"
     links={{
@@ -147,12 +170,12 @@ import { Filter16 } from '@carbon/icons-react';
         'https://react.carbondesignsystem.com/?path=/story/components-tooltip--default-bottom',
       Angular:
         'https://angular.carbondesignsystem.com/?path=/story/components-tooltip--basic',
-      Vue: 'http://vue.carbondesignsystem.com/?path=/story/components-cvtooltip--default-interactive-tootlip',
+      Vue:
+        'http://vue.carbondesignsystem.com/?path=/story/components-cvtooltip--default-interactive-tootlip',
       Vanilla: 'https://the-carbon-components.netlify.com/?nav=tooltip',
       'Web Components':
         'https://web-components.carbondesignsystem.com/?path=/story/components-tooltip--default',
-    }}
-  >{`
+    }}>{`
     <Tooltip
       direction="bottom"
       tabIndex={0}
@@ -179,12 +202,12 @@ import { Filter16 } from '@carbon/icons-react';
         'https://react.carbondesignsystem.com/?path=/story/components-tooltipicon--default',
       Angular:
         'https://angular.carbondesignsystem.com/?path=/story/components-tooltip-icon--basic',
-      Vue: 'http://vue.carbondesignsystem.com/?path=/story/components-cvtooltip--default-tootlip',
+      Vue:
+        'http://vue.carbondesignsystem.com/?path=/story/components-cvtooltip--default-tootlip',
       Vanilla: 'https://the-carbon-components.netlify.com/?nav=tooltip',
       'Web Components':
         'https://web-components.carbondesignsystem.com/?path=/story/components-tooltip--icon',
-    }}
-  >{`
+    }}>{`
     <TooltipIcon
       tooltipText="Filter"
     >
@@ -201,12 +224,12 @@ import { Filter16 } from '@carbon/icons-react';
         'https://react.carbondesignsystem.com/?path=/story/components-tooltipdefinition--default',
       Angular:
         'https://angular.carbondesignsystem.com/?path=/story/components-tooltip-definition--basic',
-      Vue: 'http://vue.carbondesignsystem.com/?path=/story/components-cvtooltip--default-definition-tootlip',
+      Vue:
+        'http://vue.carbondesignsystem.com/?path=/story/components-cvtooltip--default-definition-tootlip',
       Vanilla: 'https://the-carbon-components.netlify.com/?nav=tooltip',
       'Web Components':
         'https://web-components.carbondesignsystem.com/?path=/story/components-tooltip--definition',
-    }}
-  >{`
+    }}>{`
     <TooltipDefinition
       tooltipText="Brief description of the dotted, underlined word above."
     >
@@ -222,7 +245,7 @@ import { Filter16 } from '@carbon/icons-react';
 <Row>
 <Column colLg={8}>
 
-![Image of tooltip that has a UI trigger button paired with a container](images/tooltip-usage-5.png)
+![Standard tooltip anatomy](images/tooltip-usage-5.png)
 
 </Column>
 </Row>
@@ -236,13 +259,27 @@ import { Filter16 } from '@carbon/icons-react';
 <Row>
 <Column colLg={8}>
 
-![Image of tooltip that has an icon button paired with a container](images/tooltip-usage-6.png)
+![Icon button tooltip anatomy](images/tooltip-usage-6.png)
 
 </Column>
 </Row>
 
 1. **Icon button:** Button that triggers a tooltip on hover or focus
 2. **Caret tip:** Closely associates container to specific trigger element
+3. **Container:** Contains helper text
+
+### Definition tooltip anatomy
+
+<Row>
+<Column colLg={8}>
+
+![Definition tooltip anatomy](images/tooltip-usage-12.png)
+
+</Column>
+</Row>
+
+1. **UI trigger:** Definition indicator: Underline below text that cues
+2. **Caret tip:** Closely associates container to term to be defined
 3. **Container:** Contains helper text
 
 ### Alignment
@@ -284,6 +321,19 @@ not bleed off page or behind other content.
   Tooltip containers can be positioned to the right, left, bottom, or top.
 </Caption>
 
+For toggletips that are inline with other text, like a definition toggletip, do
+not obstruct words to the left and right of the trigger word. When the toggletip
+is active, ensure popover overlays other content and is not cut off by other
+surrounding components or bleeds off the page where some content is not visible.
+
+<Row>
+<Column colLg={8}>
+
+![Image of definition tooltip positioned to the top](images/tooltip-usage-15.png)
+
+</Column>
+</Row>
+
 ## Content
 
 ### Main elements
@@ -310,20 +360,24 @@ For further content guidance, see Carbon’s
 
 The tooltip component has two states: active and inactive. By default, the
 tooltip is hidden and inactive. Tooltips are displayed on `hover` and `focus`.
+Definition tooltips can be displayed either on `hover` and `focus` or on `click`
+and `enter`.
 
 ### Interactions
 
 #### Mouse
 
-Tooltips are triggered when the mouse hovers over or focuses on the active
-element. The tooltip persists as long as the mouse remains over the active
-container or the UI element. The tooltip is dismissed by hovering away or moving
-focus to another element.
+Tooltips are triggered when the mouse hovers over or focuses on the UI trigger.
+The tooltip persists as long as the mouse remains over the active container or
+the UI trigger. The tooltip is dismissed by hovering away or moving focus to
+another element. Definition tooltip can additionally be activated on click or
+enter and dismissed by clicking outside of active container or UI element.
 
 #### Keyboard
 
-Users can trigger a tooltip by pressing `enter` when the UI element has focus. A
-tooltip dismissible by use of the Escape key.
+Users can trigger a tooltip by focusing on element. Addtionally, a definition
+tooltip can be triggered by using the `enter` key. A tooltip dismissible by use
+of the `escape` key.
 
 #### Screen readers
 
@@ -376,6 +430,34 @@ button that has no label to provide clarity on what the button will do.
 </Column>
 </Row>
 
+## Definition tooltip
+
+The definition tooltip provides inline additional help or defines a term. It may
+be used on the label of a UI element, on a word embedded in a paragraph, or in
+compact spaces such as data tables where icons clutter the UI. You can use
+definition tooltips on headers, body copy, or labels.
+
+Definition tooltip is unique in that if offers both a hover or click interaction
+depending on specific use cases. If a user needs only a few seconds to gather
+their information and go, use a hover interaction. If a user needs time to think
+about the content or the tooltip is placed in a way that a user can
+unintentionally tigger the tooltip, then a click interaction would be more
+appropriate.
+
+### Best practices
+
+- Should contain brief, read-only text
+- Use on proper nouns, technical terms, or acronyms with two letters or more
+- Do not use a definition tooltip on words with fewer than two letters
+
+<Row>
+<Column colLg={8}>
+
+![Image of definition tooltip](images/tooltip-usage-15.png)
+
+</Column>
+</Row>
+
 ## Related
 
 #### Popover
@@ -388,15 +470,13 @@ component.
 
 Disclosures use popovers as a base layer. Disclosures are comprised of a popover
 container, text, and interactive elements. Interactive elements are kept in the
-tab order of the page. Further guidance on the disclosure pattern coming soon.
+tab order of the page. For further guidance, see Carbon's disclosure pattern.
 
-#### Toggle tip
+#### Toggletip
 
-Definition tootips now use the toggletip component to achieve accessibility
-standards. Toggle tip uses the disclosure pattern to toggle the visibility of a
-popover. This popover may contain a variety of information, from descriptive
-text to interactive elements. Further guidance on the toggle tip component
-coming soon.
+Toggletip uses the disclosure pattern to toggle the visibility of a popover.
+This popover may contain a variety of information, from descriptive text to
+interactive elements. For further guidance, see Carbon's toggletip component.
 
 #### Chart tooltip
 
