@@ -83,6 +83,10 @@ variant is visualized as a track on which a bar fills up from left to right
 representing the progress. The indeterminate variant is visualized as a track on
 which a bar is moving along in constant speed, repeating over time.
 
+When it is neccesary to show the percentage and the descriptive text, the
+developers will have to calculate the percentage on their side with the value:
+`${(value/max*100).toFixed(2)}% (${value} of ${max} items)`
+
 | Variant                        | Purpose                                                                                                                                                                                                                                                    |
 | ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- |
 | [Determinate](Determinate)     | Use determinate progress bars for a specified amount of time or clear information about the progression — they convey exact and qualitative information about the progression.                                                                             |     |
@@ -99,11 +103,11 @@ which a bar is moving along in constant speed, repeating over time.
 
 <Column colLg={4}>
 
-![Indeterminate progress bars move along a fixed track, growing and shrinking in size.](images/progress-bar-usage-3.gif)
+![Indeterminate progress bars move along a fixed track continually until the process is complete.](images/progress-bar-usage-3.gif)
 
 <Caption>
-  Indeterminate progress bars move along a fixed track, growing and shrinking in
-  size.
+  Indeterminate progress bars move along a fixed track continually until the
+  process is complete.
 </Caption>
 
 </Column>
@@ -165,21 +169,20 @@ on how much has been downloaded so far over a time period.
 #### Uploading
 
 Upload actions may be unable to report real time progress status depending on
-the data source and API configuration. In these cases, indeterminate progress
-bars can be used.
+the data source and API configuration. However, always strive to provide users
+the determinate value whenever it's possible to inform them about the process.
 
-#### Local Processing
+#### Data processing
 
-Local processing refers to manipulations or operations done on the local device
-that does not require communication with an external entity such as a server.
-This can include currency exchange, file generation, data reformatting, or
-similar operations. Depending on the operation, time estimated or cycles to
-complete processing could be used to populate a determinate progress bar.
-Otherwise, an indeterminate progress bar would be best.
+Data processing refers to manipulations of data to produce meaningful
+information. This can include currency exchange, file generation, data
+reformatting, or similar operations. Depending on the operation, time estimated
+or cycles to complete processing could be used to populate a determinate
+progress bar.
 
 ## Formatting
 
-Determinate and indeterminate progress bars both have the labels and optional
+Determinate and indeterminate progress bars both have a label and an optional
 helper text. However, the inderterminate can’t provide the exact, quantiative
 information about the progression in the optional helper text.
 
@@ -246,7 +249,7 @@ a window or application.
 ### Alignment
 
 Text alignment depends on the context and area given. As long as the text is
-placed close to the progres bar, it’s up to designers to provide the best
+placed close to the progress bar, it’s up to designers to provide the best
 judgement that fits the context.
 
 <Row>
@@ -288,7 +291,7 @@ cause confusion in the context.
 ![Do place text inline with the progress bar](images/progress-bar-usage-12.png)
 
   </DoDont>
-  <DoDont type="dont" caption="Don’t embed text into the progres bar.">
+  <DoDont type="dont" caption="Don’t embed text into the progress bar.">
 
 ![Don’t embed text into the progres bar](images/progress-bar-usage-13.png)
 
@@ -362,12 +365,11 @@ The success loading state indicates that the action completed successfully.
 #### Error
 
 The error loading state indicates that the action did not successfully complete.
+The error loading state indicates that the action did not successfully complete.
 If an error occurs, an inline notification or error handling within the form
-should appear. The error loading state indicates that the action did not
-successfully complete. If an error occurs, an inline notification or error
-handling within the form should appear. As soon as a process fails, the current
-visual progress remains but just stops. For example, if a process fails at 75%,
-then the red line would fill 75% of the total track width.
+should appear. As soon as a process fails, the current visual progress remains
+but just stops. For example, if a process fails at 75%, then the red line would
+fill 75% of the total track width.
 
 <Row>
 <Column colLg={8}>
@@ -447,13 +449,19 @@ to right) when enough information is gathered to end the load animation.
 
 ## Accessibility
 
-The loading component is implemented using the ARIA 1.1 progressbar pattern. It
-outputs an ARIA role="progressbar" and uses `aria-valuemin`, `aria-value-max`,
-and `aria-valuenow` to convey the loaded percentage to screen reader users.
+- The loading component is implemented using the ARIA 1.1 progressbar pattern.
+  It outputs an ARIA `role="progressbar"` and uses `aria-valuemin`,
+  `aria-valuemax`, and `aria-valuenow` to convey the loaded percentage to screen
+  reader users.
 
-If is neccesary to show the percentage and the descriptive text, the developers
-will have to calculate the percentage on their side with the value
-`${(value/max*100).toFixed(2)}% (${value} of ${max} items)`.
+- If the progress bar shows the loading of a specific part or region of the
+  applicaition, set `aria-busy="true"` and `aria-describedly="[progressbar-id]"`
+  on the related element to ensure assistive technologies can correctly convey
+  this relation to the user.
+
+- Only hide the label when it is absolute clear to the user which process the
+  progress bar represents. Note that you are still required to pass an
+  appropriate label which will be ready by screen readers.
 
 ## Related
 
@@ -479,12 +487,15 @@ will have to calculate the percentage on their side with the value
 
 ## References
 
-Accessible Rich, Internet Applications Working Group, [“progressbar” role],
-(W3C, 2017) Katie Sherwin,
-[Progress Indicators Make a Slow System Less Insufferable](https://www.nngroup.com/articles/progress-indicators/)
-(Nielsen Norman Group, 2001) Jakob Nielsen,
-[Response Times: The 3 Important Limits (Nielsen Norman Group](https://www.nngroup.com/articles/response-times-3-important-limits/),
-(Nielsen Norman Group,1993)
+- Accessible Rich Internet Applications Working Group,
+  [“progressbar” role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_progressbar_role),
+  (W3C, 2017)
+- Katie Sherwin,
+  [Progress Indicators Make a Slow System Less Insufferable](https://www.nngroup.com/articles/progress-indicators/)
+  (Nielsen Norman Group, 2001)
+- Jakob Nielsen,
+  [Response Times: The 3 Important Limits (Nielsen Norman Group](https://www.nngroup.com/articles/response-times-3-important-limits/),
+  (Nielsen Norman Group,1993)
 
 ## Feedback
 
