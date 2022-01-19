@@ -79,10 +79,6 @@ variant is visualized as a track on which a bar fills up from left to right
 representing the progress. The indeterminate variant is visualized as a track on
 which a bar is moving along in constant speed, repeating over time.
 
-When it is neccesary to show the percentage and the descriptive text, the
-developers will have to calculate the percentage on their side with the value:
-`${(value/max*100).toFixed(2)}% (${value} of ${max} items)`
-
 | Variant                        | Purpose                                                                                                                                                                                                                                                    |
 | ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- |
 | [Determinate](Determinate)     | Use determinate progress bars for a specified amount of time or clear information about the progression — they convey exact and qualitative information about the progression.                                                                             |     |
@@ -98,6 +94,7 @@ developers will have to calculate the percentage on their side with the value:
 </Column>
 
 <Column colLg={4}>
+<GifPlayer>
 
 ![Indeterminate progress bars move along a fixed track continually until the process is complete.](images/progress-bar-usage-3.gif)
 
@@ -106,6 +103,7 @@ developers will have to calculate the percentage on their side with the value:
   process is complete.
 </Caption>
 
+</GifPlayer>
 </Column>
 </Row>
 
@@ -113,11 +111,8 @@ developers will have to calculate the percentage on their side with the value:
 
 Determinate progress bars are used when the loading progress can be tracked and
 translated into a percentage indicator which fills from 0% to 100% and never
-<<<<<<< HEAD decrease in value. The entire animation moves from the left to the
-right — with ======= decreases in value. The entire animation moves from the
-left to the right – with
-
-> > > > > > > bd3e870ea9e25ae9a4701968d64950b7f38457d2 no back and forth motion.
+decreases in value. The entire animation moves from the left to the right — with
+no back and forth motion.
 
 Use a determinate progress bar when progress can be calculated against a
 specific goal. For example, when downloading a file of a known size.
@@ -131,6 +126,9 @@ specific goal. For example, when downloading a file of a known size.
 </Row>
 
 ## Indeterminate progress bar
+
+Indeterminate progress bars are used when the loading progress is unknown or the
+amount of wait time can't be calculated.
 
 Once triggered, the loading bar will begin by moving along in constant speed,
 repeating over time while data is being gathered during the first stages of the
@@ -262,21 +260,6 @@ judgement that fits the context.
 </Column>
 </Row>
 
-#### Internationalization (RTL)
-
-For RTL (right-to-left) languages, the layout of the progress bar is mirrored
-for both determinate and indeterminate options. The label is right-aligned, the
-value is left-aligned, and the fill progresses from right to left. Keep in mind
-that the placement of the percent sign differs depending on the locale.
-
-<Row>
-<Column colLg={6}>
-
-![Progress bar RTL](images/progress-bar-usage-11.gif)
-
-</Column>
-</Row>
-
 #### Text placement
 
 Labels or helper text should always be placed above, below, or beside the
@@ -310,6 +293,21 @@ cause confusion in the context.
 
   </DoDont>
 </DoDontRow>
+
+#### Internationalization (RTL)
+
+For RTL (right-to-left) languages, the layout of the progress bar is mirrored
+for both determinate and indeterminate options. The label is right-aligned, the
+value is left-aligned, and the fill progresses from right to left. Keep in mind
+that the placement of the percent sign differs depending on the locale.
+
+<Row>
+<Column colLg={6}>
+
+![Progress bar RTL](images/progress-bar-usage-11.gif)
+
+</Column>
+</Row>
 
 ## Content
 
@@ -367,8 +365,7 @@ The success loading state indicates that the action completed successfully.
 The error loading state indicates that the action did not successfully complete.
 If an error occurs, an inline notification or error handling within the form
 should appear. As soon as a process fails, the current visual progress remains
-but just stops. For example, if a process fails at 75%, then the red line would
-fill 75% of the total track width.
+visible but the indicator bar's progress stops in place and spans full width.
 
 <Row>
 <Column colLg={8}>
