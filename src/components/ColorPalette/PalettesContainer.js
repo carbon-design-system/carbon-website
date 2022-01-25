@@ -19,7 +19,7 @@ const PalettesContainer = ({
   continuous,
   dark,
   index,
-  type,
+  twoColumn = false,
 }) => {
   const paletteContainerClassNames = cx(palettesContainer, {
     [sequential]: color,
@@ -30,7 +30,7 @@ const PalettesContainer = ({
     [gradientTeal]: color === 'teal' && continuous,
     [gradientCyan]: color === 'cyan' && continuous,
     [gradientTealOnly]: color === 'teal-only' && continuous,
-    [alertContainer]: type === 'alert',
+    [alertContainer]: twoColumn,
   });
 
   return (

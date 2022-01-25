@@ -1,0 +1,125 @@
+.iconWrapper {
+  display: flex;
+  height: 100%;
+}
+
+.iconGroup {
+  padding: 1rem;
+  display: flex;
+  width: 100%;
+
+  @include carbon--breakpoint('lg') {
+    width: 50%;
+  }
+}
+
+.iconGroup.isDark {
+  background-color: $carbon--gray-100;
+  position: relative;
+}
+
+// Covers the top border of the dark cells with appropriate border color
+.iconGroup.isDark::before {
+  content: '';
+  position: absolute;
+  left: 0px;
+  top: -1px;
+  width: 100%;
+  height: 1px;
+  display: block;
+  background-color: #393939;
+}
+
+.icon {
+  background: transparent !important;
+  min-width: 20px;
+  height: 20px;
+}
+
+.icon.glyph {
+  min-width: 16px;
+  height: 16px;
+}
+
+.icon:first-child {
+  margin-right: 8px;
+}
+
+.table {
+  background: white;
+  height: 1px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.table .cell,
+.table .headerCell {
+  padding: 1rem;
+  vertical-align: top;
+  color: $text-01;
+}
+
+.table :is(.cell) {
+  color: var(--cds-text-01);
+  border-collapse: collapse;
+}
+
+.table .cell:first-child {
+  padding: 0;
+  padding-left: 0 !important;
+  height: 100%;
+}
+
+.descriptionCell {
+  min-width: 240px;
+}
+
+.statusIndicatorRow {
+  height: 100%;
+  border-bottom: 1px solid #dcdcdc;
+}
+
+.statusIndicatorRow:last-child {
+  border-bottom: none;
+}
+
+.statusIndicatorTableWrapper {
+  margin-left: -1rem;
+  margin-right: -1rem;
+}
+
+@include carbon--breakpoint-between('sm', 'lg') {
+  .statusIndicatorTableWrapper {
+    overflow: scroll;
+  }
+  .iconGroup.isDark {
+    display: none;
+  }
+}
+
+//Needed for Safari
+.statusIndicatorTableWrapper {
+  @include carbon--breakpoint('md') {
+    :global(.bx--col-md-1) {
+      width: 12.5%;
+    }
+
+    :global(.bx--col-md-2) {
+      width: 25%;
+    }
+
+    :global(.bx--col-md-3) {
+      width: 37.5%;
+    }
+  }
+
+  @include carbon--breakpoint('lg') {
+    :global(.bx--col-lg-4) {
+      width: 33.333333%;
+    }
+
+    :global(.bx--col-lg-2) {
+      width: 16.66667%;
+    }
+  }
+}

@@ -15,6 +15,7 @@ const SvgCard = ({ icon, containerIsVisible, isLastCard, ...rest }) => {
   const [isActionBarVisible, setIsActionBarVisible] = useState(false);
 
   let { source } = assets[0];
+  const glyphOnly = assets[0].size === 'glyph' && assets.length <= 1;
 
   if (assets.length > 1) {
     source = assets.find(({ size }) => size === 32).source;
@@ -49,6 +50,7 @@ const SvgCard = ({ icon, containerIsVisible, isLastCard, ...rest }) => {
               friendlyName={friendlyName}
               isActionBarVisible={isActionBarVisible}
               setIsActionBarVisible={setIsActionBarVisible}
+              glyphOnly={glyphOnly}
             />
           </>
         )}

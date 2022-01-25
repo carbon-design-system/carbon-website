@@ -907,11 +907,11 @@ const colorTokens = {
       value: {
         white: {
           name: 'Blue 70',
-          hex: '#054ada',
+          hex: '#0043ce',
         },
         g10: {
           name: 'Blue 70',
-          hex: '#054ada',
+          hex: '#0043ce',
         },
         g90: {
           name: 'Blue 30',
