@@ -6,7 +6,11 @@
 .iconGroup {
   padding: 1rem;
   display: flex;
-  width: 50%;
+  width: 100%;
+
+  @include carbon--breakpoint('lg') {
+    width: 50%;
+  }
 }
 
 .iconGroup.isDark {
@@ -79,16 +83,43 @@
   border-bottom: none;
 }
 
-@media (max-width: 600px) {
+.statusIndicatorTableWrapper {
+  margin-left: -1rem;
+  margin-right: -1rem;
+}
+
+@include carbon--breakpoint-between('sm', 'lg') {
   .statusIndicatorTableWrapper {
-    margin-right: -1rem;
-    margin-left: -1rem;
     overflow: scroll;
-  }
-  .iconGroup {
-    width: 100%;
   }
   .iconGroup.isDark {
     display: none;
+  }
+}
+
+//Needed for Safari
+.statusIndicatorTableWrapper {
+  @include carbon--breakpoint('md') {
+    :global(.bx--col-md-1) {
+      width: 12.5%;
+    }
+
+    :global(.bx--col-md-2) {
+      width: 25%;
+    }
+
+    :global(.bx--col-md-3) {
+      width: 37.5%;
+    }
+  }
+
+  @include carbon--breakpoint('lg') {
+    :global(.bx--col-lg-4) {
+      width: 33.333333%;
+    }
+
+    :global(.bx--col-lg-2) {
+      width: 16.66667%;
+    }
   }
 }
