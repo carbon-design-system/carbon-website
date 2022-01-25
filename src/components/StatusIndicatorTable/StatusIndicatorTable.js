@@ -18,18 +18,18 @@ import {
 const StatusIndicatorTable = ({ attention }) => (
   <div className={statusIndicatorTableWrapper}>
     <StructuredListWrapper className={table}>
-      <StructuredListHead>
-        <StructuredListRow head>
-          <StructuredListCell className={headerCell} head>
+      <StructuredListHead className='bx--grid'>
+        <StructuredListRow className='bx--row' head>
+          <StructuredListCell className={`bx--col-lg-4 bx--col-md-1 ${headerCell}`} head>
             Icon
           </StructuredListCell>
-          <StructuredListCell className={headerCell} head>
+          <StructuredListCell className={`bx--col-lg-2 bx--col-md-2 ${headerCell}`} head>
             Name
           </StructuredListCell>
-          <StructuredListCell className={headerCell} head>
+          <StructuredListCell className={`bx--col-lg-2 bx--col-md-2 ${headerCell}`} head>
             Token
           </StructuredListCell>
-          <StructuredListCell className={headerCell} head>
+          <StructuredListCell className={`bx--col-lg-4 bx--col-md-3 ${headerCell}`} head>
             Description & usage
           </StructuredListCell>
         </StructuredListRow>
