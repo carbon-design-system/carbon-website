@@ -33,7 +33,6 @@ module.exports = {
         linkImagesToOriginal: false,
         quality: 75,
         withWebp: false,
-        pngCompressionSpeed: 4,
       },
     },
     'gatsby-plugin-sharp',
@@ -43,13 +42,14 @@ module.exports = {
       resolve: 'gatsby-theme-carbon',
       options: {
         mdxExtensions: ['.mdx'],
-        isServiceWorkerEnabled: true,
+        isServiceWorkerEnabled: false,
         iconPath: './src/images/favicon.svg',
         titleType: 'prepend',
         repository: {
           baseUrl: 'https://github.com/carbon-design-system/carbon-website',
           subDirectory: '',
         },
+        mediumAccount: 'carbondesign',
       },
     },
     {
@@ -73,5 +73,6 @@ module.exports = {
         directory: path.resolve(__dirname, './src/data/chart-index'),
       },
     },
+    'gatsby-plugin-remove-serviceworker',
   ],
 };

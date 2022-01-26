@@ -26,6 +26,16 @@ const typeScale = {
       'letter-spacing': 0.32,
     },
   },
+  'caption-02': {
+    sm: {
+      step: 1,
+      font: 'IBM Plex Sans',
+      'font-weight': '400',
+      'font-size': 0.875,
+      'line-height': 1.125,
+      'letter-spacing': 0.16,
+    },
+  },
   'label-01': {
     sm: {
       step: 1,
@@ -36,6 +46,16 @@ const typeScale = {
       'letter-spacing': 0.32,
     },
   },
+  'label-02': {
+    sm: {
+      step: 1,
+      font: 'IBM Plex Sans',
+      'font-weight': '400',
+      'font-size': 0.875,
+      'line-height': 1.125,
+      'letter-spacing': 0.16,
+    },
+  },
   'helper-text-01': {
     sm: {
       step: 1,
@@ -44,6 +64,16 @@ const typeScale = {
       'font-size': 0.75,
       'line-height': 1,
       'letter-spacing': 0.32,
+    },
+  },
+  'helper-text-02': {
+    sm: {
+      step: 1,
+      font: 'IBM Plex Sans',
+      'font-weight': '400',
+      'font-size': 0.875,
+      'line-height': 1.125,
+      'letter-spacing': 0.16,
     },
   },
 
@@ -428,7 +458,7 @@ const typeScale = {
   'quotation-02': {
     sm: {
       step: 8,
-      font: 'IBM Plex Sans',
+      font: 'IBM Plex Serif',
       'font-weight': '300',
       'font-size': 2,
       'line-height': 2.5,
@@ -436,7 +466,7 @@ const typeScale = {
     },
     md: {
       step: 9,
-      font: 'IBM Plex Sans',
+      font: 'IBM Plex Serif',
       'font-weight': '300',
       'font-size': 2.25,
       'line-height': 2.75,
@@ -680,9 +710,27 @@ const typeSets = {
     },
     {
       description:
+        'This is for captions or legal content in a layout — not for body copy.',
+      key: 'caption-02',
+      name: 'caption-02',
+    },
+    {
+      description:
         'This is for explanatory helper text that appears below a field title within a component.',
       key: 'helper-text-01',
       name: 'helper-text-01',
+    },
+    {
+      description:
+        'This is for explanatory helper text that appears below a field title within a component.',
+      key: 'helper-text-02',
+      name: 'helper-text-02',
+    },
+    {
+      description:
+        'This is a multipurpose type style that can be used for field labels in components, error messages, and captions. It should not be used for body copy.',
+      key: 'label-02',
+      name: 'label-02',
     },
   ],
   supportingStyles: [
@@ -855,11 +903,11 @@ const breakpoints = {
   max: Number(carbonBreakpoints.max.width.replace('rem', '')) * baseFontSize,
 };
 
-const nextLargerBreakpointPx = viewportWidth =>
+const nextLargerBreakpointPx = (viewportWidth) =>
   values(breakpoints)[indexOfCurrentBreakpoint(viewportWidth) + 1];
 
-const indexOfCurrentBreakpoint = viewportWidth =>
-  findLastIndex(values(breakpoints), width => viewportWidth >= width);
+const indexOfCurrentBreakpoint = (viewportWidth) =>
+  findLastIndex(values(breakpoints), (width) => viewportWidth >= width);
 
 const isWithinBreakpoint = (viewportWidth, currentBreakpoint) => {
   if (viewportWidth === currentBreakpoint) return true;
@@ -917,16 +965,16 @@ class TypesetStyle extends React.Component {
     });
   }
 
-  toggleBreakpoint = e => {
+  toggleBreakpoint = (e) => {
     this.setState({ simulatedScreenWidth: Number(e.target.value) });
   };
 
-  toggleSet = value => {
+  toggleSet = (value) => {
     this.setState({ tab: value });
   };
 
   getButtons = () =>
-    Object.keys(breakpoints).map(breakpointName => (
+    Object.keys(breakpoints).map((breakpointName) => (
       <button
         className={`${prefix}--typeset-style-button ${prefix}--type-body-long-01 ${
           isWithinBreakpoint(
@@ -948,14 +996,8 @@ class TypesetStyle extends React.Component {
     ));
 
   render() {
-    const {
-      navBar,
-      banner,
-      secondary,
-      top,
-      breakpointControls,
-      typesets,
-    } = this.props;
+    const { navBar, banner, secondary, top, breakpointControls, typesets } =
+      this.props;
 
     const typesetStyleStickyClassnames = classnames(
       [`${prefix}--typeset-style-controls-sticky`],

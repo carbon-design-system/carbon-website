@@ -10,5 +10,6 @@ export const complexChartDemoGroups = storybookDemoGroups.filter(
 
 export const getDemoGroupByTitle = (title) =>
   storybookDemoGroups.find(
-    (demoGroup) => demoGroup.title.toLowerCase() === title.toLowerCase()
+    (demoGroup) =>
+      demoGroup.title.toLowerCase().replace(/\s/g, '') === title.toLowerCase()
   );

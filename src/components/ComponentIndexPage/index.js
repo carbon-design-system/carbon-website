@@ -58,8 +58,8 @@ const sortOptions = ['A to Z', 'Maintainer', 'Newest'];
 const initialSortOption = 'A to Z';
 const sortBy = {
   'A to Z': sortByName,
-  'Maintainer': sortByMaintainer,
-  'Newest': sortByNewest,
+  Maintainer: sortByMaintainer,
+  Newest: sortByNewest,
 };
 
 const filterLabels = [
@@ -105,9 +105,10 @@ function ComponentIndexPage() {
   const [selected, setSelected] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   const [debouncedSearchValue] = useDebounce(searchValue, 300);
-  const searchClient = useMemo(() => new Fuse(components, searchOptions), [
-    components,
-  ]);
+  const searchClient = useMemo(
+    () => new Fuse(components, searchOptions),
+    [components]
+  );
 
   const handleOnChange = (_checkedOption, selectedFilter) => {
     // Remove unchecked filter option(s) from setSelected state.
@@ -158,11 +159,12 @@ function ComponentIndexPage() {
       <Column sm={0} md={2} lg={3} className="component-index-filter-container">
         <header className="component-index-filter__header">Filters</header>
         {filterLabels.map(({ title, options, key }) => (
-          <fieldset className="component-index-filter__fieldset">
+          <fieldset key={key} className="component-index-filter__fieldset">
             <legend className="component-index-filter__label">{title}</legend>
-            <div key={key} className="component-index-filter__option">
-              {options.map((selectedFilter) => (
+            <div className="component-index-filter__option">
+              {options.map((selectedFilter, i) => (
                 <Checkbox
+                  key={`${selectedFilter}-${i}`}
                   labelText={selectedFilter}
                   id={selectedFilter}
                   checked={selected.includes(selectedFilter)}

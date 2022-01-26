@@ -1,4 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useContext } from 'react';
 import getTheme from 'gatsby-theme-carbon/src/components/Code/getTheme';
 import * as CarbonComponents from 'carbon-components-react';
@@ -68,6 +68,7 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
 
   const onThemeChange = (event) => {
     setTheme(themes[event.selectedItem]);
+    document.body.dataset.livePreviewTheme = event.selectedItem;
   };
 
   const onVariantChange = (event) => {
@@ -83,6 +84,8 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
       return currentVariant.props.children;
     });
   };
+
+  const labelText = `Live editor for the ${components[0].label} component`;
 
   // TODO max width editor handle multiple clicks use regex for individual props?
   // allow for write-in props
@@ -161,11 +164,15 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
               )}
 
               <Code links={links} code={code} src={src} className={codeRow}>
+                <label htmlFor="live-editor-label">
+                  <span className="live-editor-label">{labelText}</span>
+                </label>
                 <LiveEditor
                   padding={16}
                   style={{ overflowX: 'auto', whiteSpace: 'pre' }}
                   onChange={(updatedCode) => setCode(updatedCode)}
                   className={editorContainer}
+                  textareaId="live-editor-label"
                 />
               </Code>
               {knobs && (
