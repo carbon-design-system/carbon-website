@@ -124,8 +124,8 @@ class TypesetStyle extends React.Component {
       banner,
       secondary,
       top,
-      breakpointControls=false,
-      header=false,
+      breakpointControls = false,
+      header = false,
       typesets,
     } = this.props;
 
@@ -191,12 +191,12 @@ class TypesetStyle extends React.Component {
             .map((typeset, i) => (
               <>
                 {header && (
-                <h4 className="page-h4">
-                  {typeset
-                    .replace(/fixed/g, '')
-                    .replace(/([a-z])([A-Z])/g, '$1 $2')
-                    .toLowerCase()}
-                </h4>
+                  <h4 className="page-h4">
+                    {typeset
+                      .replace(/fixed/g, '')
+                      .replace(/([a-z])([A-Z])/g, '$1 $2')
+                      .toLowerCase()}
+                  </h4>
                 )}
                 <TypesetExample
                   key={i}
