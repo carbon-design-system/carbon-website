@@ -32,9 +32,8 @@ const TypesetExample = (props) => (
         )
       );
 
-      const currentBreakpointPx = values(breakpoints)[
-        indexOfClosestLargerBreakpoint
-      ];
+      const currentBreakpointPx =
+        values(breakpoints)[indexOfClosestLargerBreakpoint];
 
       const currentBreakpointName = findKey(
         breakpoints,
@@ -48,7 +47,9 @@ const TypesetExample = (props) => (
           typeStylesUntilCurrentBreakpoint.push(
             props.typeScale[type.key][item]
           );
-          if (item === breakpointName) {break;}
+          if (item === breakpointName) {
+            break;
+          }
         }
         return Object.assign(
           {},
@@ -129,13 +130,13 @@ const TypesetExample = (props) => (
           className={`${prefix}--typeset-example`}>
           <div className={`${prefix}--typeset-example-row ${prefix}--row`}>
             <div
-              className={`${prefix}--typeset-example-description ${prefix}--col-md-5`}>
+              className={`${prefix}--typeset-example-description ${prefix}--col-md-6`}>
               <p className={versionClassNames} style={specs}>
                 {type.description}
               </p>
             </div>
             <div
-              className={`${prefix}--typeset-example-specs ${prefix}--col-md-3 ${prefix}--padding`}>
+              className={`${prefix}--typeset-example-specs ${prefix}--col-md-2 ${prefix}--padding`}>
               <span className={`${prefix}--type-body-short-01`}>
                 <span className={`${prefix}--type-semibold`}>{type.name} </span>
                 <br />
