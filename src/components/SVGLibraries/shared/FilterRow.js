@@ -1,5 +1,5 @@
 import React from 'react';
-import { Search, Dropdown } from 'carbon-components-react';
+import { Search, Dropdown } from '@carbon/react';
 import cx from 'classnames';
 import useSticky from './useSticky';
 import { filterRow, pictograms, dropdown } from './SvgLibrary.module.scss';

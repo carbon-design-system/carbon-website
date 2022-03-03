@@ -6,7 +6,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Link, Tag, TooltipIcon } from 'carbon-components-react';
+import { Link, Tag, TooltipIcon } from '@carbon/react';
 
 import { GatsbyImage } from 'gatsby-plugin-image';
 import React from 'react';
@@ -81,63 +81,63 @@ const ComponentIndexListItem = React.memo(
 
     return (
       <article className="component-index-item">
-          <div className="component-index-item__image">{img}</div>
-          <div className="component-index-item__content">
-            <header className="component-index-item__name">{name}</header>
-            <p className="component-index-item__description">{description}</p>
-            <footer className="component-index-item__info">
-              <div className="component-index-item__links">
-                <Link {...websiteLinkProps}>Docs</Link>
-                {codeUrl && (
-                  <>
-                    <div className="component-index-item__divider" />
-                    <Link {...codeLinkProps}>Code</Link>
-                  </>
-                )}
-              </div>
-              <ul className="component-index-item__tags">
-                {framework && (
-                  <li className="component-index-item__tag component-index-item__tag--framework">
-                    <TooltipIcon
-                      aria-label={`framework type ${framework}`}
-                      direction="top"
-                      tooltipText={framework}>
-                      <img
-                        aria-hidden="true"
-                        src={frameworkIcons[framework] || null}
-                        alt={framework}
-                      />
-                    </TooltipIcon>
-                  </li>
-                )}
-                {designAsset && (
-                  <li className="component-index-item__tag component-index-item__tag--design-asset">
-                    <TooltipIcon
-                      aria-label={`design asset type ${designAsset}`}
-                      direction="top"
-                      tooltipText={designAsset}>
-                      <img
-                        aria-hidden="true"
-                        src={designAssetIcons[designAsset] || null}
-                        alt={designAsset}
-                      />
-                    </TooltipIcon>
-                  </li>
-                )}
-                {maintainer && (
-                  <li className="component-index-item__tag component-index-item__tag--maintainer">
-                    <TooltipIcon
-                      direction="top"
-                      tooltipText="Maintainer"
-                      aria-label={`Component maintainer ${maintainer}`}>
-                      <Tag aria-hidden="true">{maintainer}</Tag>
-                    </TooltipIcon>
-                  </li>
-                )}
-              </ul>
-            </footer>
-          </div>
-        </article>
+        <div className="component-index-item__image">{img}</div>
+        <div className="component-index-item__content">
+          <header className="component-index-item__name">{name}</header>
+          <p className="component-index-item__description">{description}</p>
+          <footer className="component-index-item__info">
+            <div className="component-index-item__links">
+              <Link {...websiteLinkProps}>Docs</Link>
+              {codeUrl && (
+                <>
+                  <div className="component-index-item__divider" />
+                  <Link {...codeLinkProps}>Code</Link>
+                </>
+              )}
+            </div>
+            <ul className="component-index-item__tags">
+              {framework && (
+                <li className="component-index-item__tag component-index-item__tag--framework">
+                  <TooltipIcon
+                    aria-label={`framework type ${framework}`}
+                    direction="top"
+                    tooltipText={framework}>
+                    <img
+                      aria-hidden="true"
+                      src={frameworkIcons[framework] || null}
+                      alt={framework}
+                    />
+                  </TooltipIcon>
+                </li>
+              )}
+              {designAsset && (
+                <li className="component-index-item__tag component-index-item__tag--design-asset">
+                  <TooltipIcon
+                    aria-label={`design asset type ${designAsset}`}
+                    direction="top"
+                    tooltipText={designAsset}>
+                    <img
+                      aria-hidden="true"
+                      src={designAssetIcons[designAsset] || null}
+                      alt={designAsset}
+                    />
+                  </TooltipIcon>
+                </li>
+              )}
+              {maintainer && (
+                <li className="component-index-item__tag component-index-item__tag--maintainer">
+                  <TooltipIcon
+                    direction="top"
+                    tooltipText="Maintainer"
+                    aria-label={`Component maintainer ${maintainer}`}>
+                    <Tag aria-hidden="true">{maintainer}</Tag>
+                  </TooltipIcon>
+                </li>
+              )}
+            </ul>
+          </footer>
+        </div>
+      </article>
     );
   }
 );

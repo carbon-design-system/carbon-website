@@ -5,7 +5,7 @@ import {
   Switch,
   OverflowMenu,
   OverflowMenuItem,
-} from 'carbon-components-react';
+} from '@carbon/react';
 import { CopyToClipboard } from 'react-copy-to-clipboard/lib/Component';
 import StickyContainer from '../TypesetStyle/StickyContainer';
 import colorTokens from '../../data/guidelines/color-tokens';
@@ -188,14 +188,13 @@ export default class ColorTokenTable extends React.Component {
                 </tr>
               </thead>
               <tbody>
-                {Object.keys(
-                  colorTokens['interaction-tokens']
-                ).map((token, i) =>
-                  this.renderToken(
-                    token,
-                    colorTokens['interaction-tokens'][token],
-                    i
-                  )
+                {Object.keys(colorTokens['interaction-tokens']).map(
+                  (token, i) =>
+                    this.renderToken(
+                      token,
+                      colorTokens['interaction-tokens'][token],
+                      i
+                    )
                 )}
               </tbody>
             </table>

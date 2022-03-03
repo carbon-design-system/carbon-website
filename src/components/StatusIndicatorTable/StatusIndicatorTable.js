@@ -5,7 +5,7 @@ import {
   StructuredListBody,
   StructuredListRow,
   StructuredListCell,
-} from 'carbon-components-react';
+} from '@carbon/react';
 import yaml from '../../data/status-indicators/status-indicators.yaml';
 import StatusIndicatorRow from './StatusIndicatorRow';
 import {
@@ -18,18 +18,26 @@ import {
 const StatusIndicatorTable = ({ attention }) => (
   <div className={statusIndicatorTableWrapper}>
     <StructuredListWrapper className={table}>
-      <StructuredListHead className='bx--grid'>
-        <StructuredListRow className='bx--row' head>
-          <StructuredListCell className={`bx--col-lg-4 bx--col-md-1 ${headerCell}`} head>
+      <StructuredListHead className="bx--grid">
+        <StructuredListRow className="bx--row" head>
+          <StructuredListCell
+            className={`bx--col-lg-4 bx--col-md-1 ${headerCell}`}
+            head>
             Icon
           </StructuredListCell>
-          <StructuredListCell className={`bx--col-lg-2 bx--col-md-2 ${headerCell}`} head>
+          <StructuredListCell
+            className={`bx--col-lg-2 bx--col-md-2 ${headerCell}`}
+            head>
             Name
           </StructuredListCell>
-          <StructuredListCell className={`bx--col-lg-2 bx--col-md-2 ${headerCell}`} head>
+          <StructuredListCell
+            className={`bx--col-lg-2 bx--col-md-2 ${headerCell}`}
+            head>
             Token
           </StructuredListCell>
-          <StructuredListCell className={`bx--col-lg-4 bx--col-md-3 ${headerCell}`} head>
+          <StructuredListCell
+            className={`bx--col-lg-4 bx--col-md-3 ${headerCell}`}
+            head>
             Description & usage
           </StructuredListCell>
         </StructuredListRow>

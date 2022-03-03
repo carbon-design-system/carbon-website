@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { ContentSwitcher, Switch, Dropdown } from 'carbon-components-react';
+import { ContentSwitcher, Switch, Dropdown } from '@carbon/react';
 import cx from 'classnames';
 import {
   categoricalLight,

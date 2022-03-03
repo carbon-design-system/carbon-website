@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useContext } from 'react';
 import getTheme from 'gatsby-theme-carbon/src/components/Code/getTheme';
-import * as CarbonComponents from 'carbon-components-react';
+import * as CarbonComponents from '@carbon/react';
 import { LiveProvider, LiveEditor, LivePreview, LiveError } from 'react-live';
 import { Row } from 'gatsby-theme-carbon';
 import {

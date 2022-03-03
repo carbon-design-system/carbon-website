@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tag } from 'carbon-components-react';
+import { Tag } from '@carbon/react';
 import Packages from '../../../package.json';
 import componentStatus from '../../data/components.json';
 

@@ -6,7 +6,7 @@ import {
   baseFontSize,
   breakpoints as carbonBreakpoints,
 } from '@carbon/elements';
-import { CodeSnippet } from 'carbon-components-react';
+import { CodeSnippet } from '@carbon/react';
 
 const { prefix } = settings;
 
@@ -32,9 +32,8 @@ const TypesetExample = (props) => (
         )
       );
 
-      const currentBreakpointPx = values(breakpoints)[
-        indexOfClosestLargerBreakpoint
-      ];
+      const currentBreakpointPx =
+        values(breakpoints)[indexOfClosestLargerBreakpoint];
 
       const currentBreakpointName = findKey(
         breakpoints,
@@ -48,7 +47,9 @@ const TypesetExample = (props) => (
           typeStylesUntilCurrentBreakpoint.push(
             props.typeScale[type.key][item]
           );
-          if (item === breakpointName) {break;}
+          if (item === breakpointName) {
+            break;
+          }
         }
         return Object.assign(
           {},

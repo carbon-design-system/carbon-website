@@ -7,7 +7,7 @@
 
 import Fuse from 'fuse.js';
 import React, { useState, useMemo } from 'react';
-import { Column, Checkbox, Row } from 'carbon-components-react';
+import { Column, Checkbox, Row } from '@carbon/react';
 import ComponentIndexList from './ComponentIndexList';
 import ComponentIndexNotFound from './ComponentIndexNotFound';
 import ComponentIndexSearch from './ComponentIndexSearch';

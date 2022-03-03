@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { Link } from 'gatsby';
-import { Tag } from 'carbon-components-react';
+import { Tag } from '@carbon/react';
 
 export default class OverviewCard extends React.Component {
   render() {
