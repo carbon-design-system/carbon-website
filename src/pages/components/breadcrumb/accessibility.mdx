@@ -23,70 +23,36 @@ Carbon bakes keyboard operation into its components, which improves the experien
 
 ### Keyboard interactions
 
-Each accordion is a tab stop. `Space` or `Enter` keys expand or collapse accordions, which are collapsed by default. Interactive elements within expanded accordions integrate into the tab order automatically.
+Each page link in the breadcrumb is reached by `Tab` and activated by `Enter`. The current page, if listed in the breadcrumb, is not a link. If the breadcrumb is truncated, the ellipsis button for the overflow menu is in the tab order. See [overflow menu](https://carbondesignsystem.com/components/overflow-menu/usage/) for details on its keyboard operation.
 
 <Row>
 <Column colLg={8}>
 
-![example of accordion keyboard interaction](images/accordion-accessibility-1.png)
+![example of breadcrumb keyboard interaction](images/breadcrumb-accessibility-1.png)
 
 </Column>
 </Row>
 
-Accordions are reached by `Tab` and activated by `Space` and `Enter` keys.
+The breadcrumb's links are reached by `Tab` and activated by `Enter`.
 
-### Labelling and states
+### Labelling and regions
 
-The collapsed or expanded state of the accordions is [programmatically set](https://www.ibm.com/able/requirements/requirements/#4_1_2) by default, eliminating the need for any [text equivalent](https://www.ibm.com/able/toolkit/design/content/text-equivalents/) for the chevron icons.
+Carbon implements each page link as a list item inside a navigation region named “breadcrumb.” The ellipsis symbol is a button called “more breadcrumbs” which opens the [overflow menu](https://carbondesignsystem.com/components/overflow-menu/usage/).
 
 <Row>
 <Column colLg={8}>
 
-![expanded and collapsed accordions](images/accordion-accessibility-2.png)
+![aria-label designates the navigation region 'breadcrumb' and the ellipsis button 'more breadcrumbs’](images/breadcrumb-accessibility-2.png)
 
 </Column>
 </Row>
 
-Carbon handles the accessibility of the chevron  indicators.
-
-## Design annotations
-
-Design annotations are needed for the following instances.
-
-### Headings
-
-Carbon accordions are not set as headings by default. For improved accessibility, annotate accordions as headings on the first occurrence in a product. Annotate the heading level of accordions as needed. See [Indicate heading levels](https://www.ibm.com/able/toolkit/design/content/text-meaning/#heading-levels).
-
-<Row>
-<Column colLg={8}>
-
-![H1 and H2 annotations for headings, plus direction to ‘include accordion titles as headings'](images/accordion-accessibility-3.png)
-
-</Column>
-</Row>
-
-If accordion titles act as headings, annotate for development.
-
-### Alignment
-
-Carbon chevrons are right-aligned by default, but left-aligned chevrons are more accessible for users with low vision, as the expanded/collapsed indicator is closer to the accordion title. 
-
-<Row>
-<Column colLg={8}>
-
-![annotation stating ‘position chevrons on the left of accordion titles'](images/accordion-accessibility-4.png)
-
-</Column>
-</Row>
-
-Annotate if the accordion chevrons should be left-aligned.
+Carbon provides the accessibility information about the breadcrumb's structure.
 
 ## Developer considerations
 
 Keep these considerations in mind if you’re modifying Carbon or creating a custom component:
 
-* The accordion header has a role of `<button>`, with an `aria-expanded` attribute set to `"true"` or `"false"`.
-* The button has an `aria-controls` property set to the unique id of the panel it controls.
-* Since accordions are typically grouped together, Carbon puts each button inside a list item in an unordered list, which provides additional context to screen reader users; where only one accordion is used, it should not be put in a list.
-* When accordion titles are used as headings, the buttons are also wrapped in an element with an appropriate heading level; ARIA can be used to set both the heading role and the level (via `aria-level`).
-* See the [A]RIA authoring practices](https://www.w3.org/TR/wai-aria-practices-1.2/#accordion) for more guidance.
+* The Carbon implementation uses an html5 `<nav>` element; this could also be achieved with a “navigation” landmark on a `<div>`.
+* Each link in the breadcrumb is implemented as an unordered list item so that screen readers provide more context.
+* The visual / separators do not need to be text (Carbon uses CSS) and are not intended to be navigable.
