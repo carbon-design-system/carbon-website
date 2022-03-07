@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Link, Tag, TooltipIcon } from '@carbon/react';
+import { Link, Tag, Tooltip } from '@carbon/react';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import React from 'react';
 
@@ -57,9 +57,9 @@ const ChartIndexListItem = React.memo(
             <ul className="component-index-item__tags">
               {maintainer && (
                 <li className="component-index-item__tag component-index-item__tag--maintainer">
-                  <TooltipIcon direction="top" tooltipText="Maintainer">
+                  <Tooltip align="top" label="Maintainer">
                     <Tag>{maintainer}</Tag>
-                  </TooltipIcon>
+                  </Tooltip>
                 </li>
               )}
             </ul>

@@ -6,7 +6,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Link, Tag, TooltipIcon } from '@carbon/react';
+import { Link, Tag, Tooltip } from '@carbon/react';
 
 import { GatsbyImage } from 'gatsby-plugin-image';
 import React from 'react';
@@ -98,40 +98,40 @@ const ComponentIndexListItem = React.memo(
             <ul className="component-index-item__tags">
               {framework && (
                 <li className="component-index-item__tag component-index-item__tag--framework">
-                  <TooltipIcon
+                  <Tooltip
                     aria-label={`framework type ${framework}`}
-                    direction="top"
-                    tooltipText={framework}>
+                    align="top"
+                    label={framework}>
                     <img
                       aria-hidden="true"
                       src={frameworkIcons[framework] || null}
                       alt={framework}
                     />
-                  </TooltipIcon>
+                  </Tooltip>
                 </li>
               )}
               {designAsset && (
                 <li className="component-index-item__tag component-index-item__tag--design-asset">
-                  <TooltipIcon
+                  <Tooltip
                     aria-label={`design asset type ${designAsset}`}
-                    direction="top"
-                    tooltipText={designAsset}>
+                    align="top"
+                    label={designAsset}>
                     <img
                       aria-hidden="true"
                       src={designAssetIcons[designAsset] || null}
                       alt={designAsset}
                     />
-                  </TooltipIcon>
+                  </Tooltip>
                 </li>
               )}
               {maintainer && (
                 <li className="component-index-item__tag component-index-item__tag--maintainer">
-                  <TooltipIcon
-                    direction="top"
-                    tooltipText="Maintainer"
+                  <Tooltip
+                    align="top"
+                    label="Maintainer"
                     aria-label={`Component maintainer ${maintainer}`}>
                     <Tag aria-hidden="true">{maintainer}</Tag>
-                  </TooltipIcon>
+                  </Tooltip>
                 </li>
               )}
             </ul>
