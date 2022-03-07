@@ -6,335 +6,87 @@ description:
 tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 ---
 
-import {
-  StructuredListWrapper,
-  StructuredListHead,
-  StructuredListBody,
-  StructuredListRow,
-  StructuredListInput,
-  StructuredListCell,
-  OrderedList,
-  ListItem,
-} from 'carbon-components-react';
+<PageDescription>
+
+No accessibility annotations are needed for breadcrumbs, but keep these considerations in mind if you’re modifying Carbon or creating a custom component.
+
+</PageDescription>
 
 <AnchorLinks>
-  <AnchorLink>How it works</AnchorLink>
-  <AnchorLink>Accessibility considerations</AnchorLink>
-  <AnchorLink>Resources</AnchorLink>
-  <AnchorLink>Accessibility testing</AnchorLink>
+  <AnchorLink>What Carbon provides</AnchorLink>
+  <AnchorLink>Developer considerations</AnchorLink>
 </AnchorLinks>
 
-## How it works
+## What Carbon provides
 
-The `Breadcrumb` component implements the
-[Breadcrumb design pattern from WAI ARIA](https://www.w3.org/TR/wai-aria-practices-1.1/#breadcrumb)
-for Carbon. It establishes a landmark on the page which assists the user in
-understanding where they currently are and which pages exist in the current
-page's hierarchical order.
+Carbon bakes keyboard operation into its components, which improves the experiences of blind users and others who need to operate via the keyboard API. Carbon also incorporates many other accessibility considerations.
 
-The landmark is provided through the `<nav>` element which contains a list of
-links. The `<nav>` element is labeled by the `aria-label`attribute, providing a
-chance to describe to the user the type of navigation provided by the list of
-links. The current page is identified with the `aria-current="page"` attribute
-on the appropriate link.
+### Keyboard interactions
 
-## Accessibility considerations
-
-This component has been validated to meet the
-[WCAG 2.0 AA](https://www.w3.org/TR/WCAG20/) and
-[Section 508](http://www.section508.gov/) accessibility guidelines, however
-changes made by the content owner can affect accessibility compliance. Be sure
-to review and follow the guidance in this section when updating or adding new
-content to this component.
-
-1. The breadcrumb should remain in the same relative order and location on each
-   web page.
-1. The link text should be clear, reflect the breadcrumb location accurately and
-   easy to understand for all users.
-1. The link to the current page element in the breadcrumb has the
-   `aria-current="page"` attribute.
-
-## Resources
-
-- [W3C WAI-ARIA Authoring Practices Breadcrumb Design Pattern](https://www.w3.org/TR/wai-aria-practices/#breadcrumb)
-  covers the usage of ARIA names, state and roles.
-- [IBM Accessibility Requirements:](https://www.ibm.com/able/requirements/requirements/)
-  - [2.4.4 Link Purpose (In Context)](https://www.ibm.com/able/requirements/requirements/#2_4_4)
-    (WCAG Success Criteria
-    [2.4.4](https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-refs.html))
-  - [3.2.3 Consistent Navigation](https://www.ibm.com/able/requirements/requirements/#3_2_3)
-    (WCAG Success
-    Criteria[3.2.3](https://www.w3.org/TR/UNDERSTANDING-WCAG20/consistent-behavior-consistent-locations.html))
-
-## Accessibility testing
-
-Accessibility issues are tracked in the
-[Carbon Design System GitHub repository](https://github.com/carbon-design-system/carbon/issues?q=is%3Aopen+label%3A%22type%3A+a11y+%E2%99%BF%22+label%3A%22component%3A+breadcrumb%22+).
-
-### Automated test
+Each accordion is a tab stop. `Space` or `Enter` keys expand or collapse accordions, which are collapsed by default. Interactive elements within expanded accordions integrate into the tab order automatically.
 
 <Row>
-  <Column noGutterSm>
-    <StructuredListWrapper>
-      <StructuredListHead>
-        <StructuredListRow head>
-          <StructuredListCell head>
-            Automated test Environment
-          </StructuredListCell>
-          <StructuredListCell head>Results</StructuredListCell>
-        </StructuredListRow>
-      </StructuredListHead>
-      <StructuredListBody>
-        <StructuredListRow>
-          <StructuredListCell>
-            - macOS Mojave version 10.14.6 with VoiceOver
-            <br />
-            - Chrome version 77.0.3865.90
-            <br />
-            - Dynamic Assessment Plugin version 1.8.0.0 - IBM Accessibility WCAG
-            2.1 Sept. 2019 Ruleset
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>DAP test:</strong>
-            <br />- No violations
-          </StructuredListCell>
-        </StructuredListRow>
-      </StructuredListBody>
-    </StructuredListWrapper>
-  </Column>
+<Column colLg={8}>
+
+![example of accordion keyboard interaction](images/accordion-accessibility-1.png)
+
+</Column>
 </Row>
 
-### macOS screen reader tests
+Accordions are reached by `Tab` and activated by `Space` and `Enter` keys.
+
+### Labelling and states
+
+The collapsed or expanded state of the accordions is [programmatically set](https://www.ibm.com/able/requirements/requirements/#4_1_2) by default, eliminating the need for any [text equivalent](https://www.ibm.com/able/toolkit/design/content/text-equivalents/) for the chevron icons.
 
 <Row>
-  <Column noGutterSm>
-    <StructuredListWrapper>
-      <StructuredListHead>
-        <StructuredListRow head>
-          <StructuredListCell head>Environment </StructuredListCell>
-          <StructuredListCell head>Results</StructuredListCell>
-        </StructuredListRow>
-      </StructuredListHead>
-      <StructuredListBody>
-        <StructuredListRow>
-          <StructuredListCell>
-            - macOS Mojave version 10.14.6 with VoiceOver
-            <br />
-            - Chrome version 77.0.3865.90
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>VoiceOver(VO) Test:</strong>
-            <OrderedList>
-              <ListItem>
-                Tab to the breadcrumb and VO announces, "Breadcrumb 1,
-                breadcrumb navigation".
-              </ListItem>
-              <ListItem>
-                The Tab key and shift-tab navigate between the links in the
-                breadcrumb. VO announces, "Link Breadcrumb #. You are currently
-                on a link to click this link press Control-Option-Space."
-              </ListItem>
-            </OrderedList>
-          </StructuredListCell>
-        </StructuredListRow>
-        <StructuredListRow>
-          <StructuredListCell>
-            - macOS Mojave version 10.14.6 with VoiceOver
-            <br />
-            - Safari version 12.14.6
-            <br />- Carbon React Version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>VoiceOver(VO) Test:</strong>
-            <OrderedList>
-              <ListItem>
-                Tab to the breadcrumb and VO announces, "Breadcrumb 1,
-                breadcrumb navigation".
-              </ListItem>
-              <ListItem>
-                The Tab key and shift-tab navigate between the links in the
-                breadcrumb. VO announces, "Link Breadcrumb #. You are currently
-                on a link to click this link press Control-Option-Space."
-              </ListItem>
-              <ListItem>
-                Note: In Safari > Preferences > Advanced > ensure "Press Tab to
-                highlight each item on a webpage" option is checked.
-              </ListItem>
-            </OrderedList>
-          </StructuredListCell>
-        </StructuredListRow>
-      </StructuredListBody>
-    </StructuredListWrapper>
-  </Column>
+<Column colLg={8}>
+
+![expanded and collapsed accordions](images/accordion-accessibility-2.png)
+
+</Column>
 </Row>
 
-### Windows screen reader tests
+Carbon handles the accessibility of the chevron  indicators.
+
+## Design annotations
+
+Design annotations are needed for the following instances.
+
+### Headings
+
+Carbon accordions are not set as headings by default. For improved accessibility, annotate accordions as headings on the first occurrence in a product. Annotate the heading level of accordions as needed. See [Indicate heading levels](https://www.ibm.com/able/toolkit/design/content/text-meaning/#heading-levels).
 
 <Row>
-  <Column noGutterSm>
-    <StructuredListWrapper>
-      <StructuredListHead>
-        <StructuredListRow head>
-          <StructuredListCell head>Environment</StructuredListCell>
-          <StructuredListCell head>Results</StructuredListCell>
-        </StructuredListRow>
-      </StructuredListHead>
-      <StructuredListBody>
-        <StructuredListRow>
-          <StructuredListCell>
-            - Microsoft Windows 10
-            <br />
-            - Chrome: 71.0.3578.98 (Official Build) (64-bit)
-            <br />
-            - JAWS 19.1810.64
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>JAWS Test:</strong>
-            <OrderedList>
-              <ListItem>
-                Navigate the list with the Up and Down Arrow keys.
-              </ListItem>
-              <ListItem>
-                JAWS announces the beginning of the list, number of items in the
-                list, nesting level, content of the list item and end of the
-                list.
-              </ListItem>
-              <ListItem>
-                Information and the list item content are announced on two
-                separate lines on the virtual viewer.
-              </ListItem>
-              <ListItem>
-                Bullets and item numbers are also placed on a separate line.
-              </ListItem>
-            </OrderedList>
-          </StructuredListCell>
-        </StructuredListRow>
-        <StructuredListRow>
-          <StructuredListCell>
-            - Microsoft Windows 10
-            <br />
-            - Chrome: 71.0.3578.98 (Official Build) (64-bit)
-            <br />
-            - NVDA 2018.4.1
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>NVDA test:</strong>
-            <OrderedList>
-              <ListItem>
-                Navigate the list with the Up and Down Arrow keys.
-              </ListItem>
-              <ListItem>
-                NVDA announces the beginning of the list, number of items in the
-                list, nesting level, content of the list item.
-              </ListItem>
-              <ListItem>
-                End of list, when exiting the list from the top or bottom.
-              </ListItem>
-              <ListItem>
-                List item parameters are announced together with the list item
-                content.
-              </ListItem>
-            </OrderedList>
-          </StructuredListCell>
-        </StructuredListRow>
-      </StructuredListBody>
-    </StructuredListWrapper>
-  </Column>
+<Column colLg={8}>
+
+![H1 and H2 annotations for headings, plus direction to ‘include accordion titles as headings'](images/accordion-accessibility-3.png)
+
+</Column>
 </Row>
 
-### Android screen reader tests
+If accordion titles act as headings, annotate for development.
+
+### Alignment
+
+Carbon chevrons are right-aligned by default, but left-aligned chevrons are more accessible for users with low vision, as the expanded/collapsed indicator is closer to the accordion title. 
 
 <Row>
-  <Column noGutterSm>
-    <StructuredListWrapper>
-      <StructuredListHead>
-        <StructuredListRow head>
-          <StructuredListCell head>Environment </StructuredListCell>
-          <StructuredListCell head>Results</StructuredListCell>
-        </StructuredListRow>
-      </StructuredListHead>
-      <StructuredListBody>
-        <StructuredListRow>
-          <StructuredListCell>
-            - Android version 9 with Talkback
-            <br />
-            - Chrome: 71.0.3578.98 (Official Build) (64-bit)
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>Talkback Test:</strong>
-            <OrderedList>
-              <ListItem>
-                Navigate the list by swiping left or right or pressing the Alt
-                key with the Left or Right Arrow key.
-              </ListItem>
-              <ListItem>
-                Talkback announces, "in list" when entering the list and "out of
-                list" when exiting the list.
-              </ListItem>
-              <ListItem>
-                Talkback also announces entering and exiting the nested lists,
-                the number of list items, nesting level, and content of the list
-                item.
-              </ListItem>
-              <ListItem>
-                Bullets and numbers are announced separately from the list item
-                content.
-              </ListItem>
-            </OrderedList>
-          </StructuredListCell>
-        </StructuredListRow>
-      </StructuredListBody>
-    </StructuredListWrapper>
-  </Column>
+<Column colLg={8}>
+
+![annotation stating ‘position chevrons on the left of accordion titles'](images/accordion-accessibility-4.png)
+
+</Column>
 </Row>
 
-### iOS screen reader tests
+Annotate if the accordion chevrons should be left-aligned.
 
-<Row>
-  <Column noGutterSm>
-    <StructuredListWrapper>
-      <StructuredListRow head>
-        <StructuredListCell head>Environment </StructuredListCell>
-        <StructuredListCell head>Results</StructuredListCell>
-      </StructuredListRow>
-      <StructuredListBody>
-        <StructuredListRow>
-          <StructuredListCell>
-            - iOS version 13.1.3 with VoiceOver
-            <br />
-            - Safari version 13.1.3
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>VoiceOver test:</strong>
-            <OrderedList>
-              <ListItem>
-                Navigate list items by swiping left or right, or using the Left
-                and Right Arrow keys on the keyboard when the quick navigation
-                is turned on.
-              </ListItem>
-              <ListItem>
-                VoiceOver announces the beginning of the list, nesting level,
-                content of the list item, the end of the list.
-              </ListItem>
-              <ListItem>
-                VoiceOver announces the beginning of the list, nesting level,
-                content of the list item, the end of the list.
-              </ListItem>
-              <ListItem>
-                Information about the list, bullets and numbers and list item
-                contents are pronounced separately, we have to navigate through
-                these one by one.
-              </ListItem>
-            </OrderedList>
-          </StructuredListCell>
-        </StructuredListRow>
-      </StructuredListBody>
-    </StructuredListWrapper>
-  </Column>
-</Row>
+## Developer considerations
+
+Keep these considerations in mind if you’re modifying Carbon or creating a custom component:
+
+* The accordion header has a role of `<button>`, with an `aria-expanded` attribute set to `"true"` or `"false"`.
+* The button has an `aria-controls` property set to the unique id of the panel it controls.
+* Since accordions are typically grouped together, Carbon puts each button inside a list item in an unordered list, which provides additional context to screen reader users; where only one accordion is used, it should not be put in a list.
+* When accordion titles are used as headings, the buttons are also wrapped in an element with an appropriate heading level; ARIA can be used to set both the heading role and the level (via `aria-level`).
+* See the [A]RIA authoring practices](https://www.w3.org/TR/wai-aria-practices-1.2/#accordion) for more guidance.
