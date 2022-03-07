@@ -147,7 +147,7 @@ function ComponentIndexPage() {
         sm={4}
         md={6}
         lg={9}
-        className="component-index-container bx--no-gutter">
+        className="component-index-container cds--no-gutter">
         <ComponentIndexSearch value={searchValue} onChange={setSearchValue} />
         <ComponentIndexSort
           initialSortOption={initialSortOption}

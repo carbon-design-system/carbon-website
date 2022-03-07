@@ -4,7 +4,7 @@ import packageJson from '../../../../package.json';
 
 const currentYear = new Date().getFullYear();
 const versions = {
-  components: packageJson.dependencies['carbon-components'],
+  styles: packageJson.dependencies['@carbon/styles'],
   react: packageJson.dependencies['@carbon/react'],
 };
 
@@ -21,7 +21,7 @@ const Content = ({ buildTime }) => (
       </a>
     </p>
     <p>
-      Vanilla Components version {versions.components}
+      Styles version {versions.styles}
       <br />
       React Components version {versions.react}
       <br />

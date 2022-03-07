@@ -19,8 +19,8 @@ export default class OverviewCard extends React.Component {
     });
 
     const carbonTileclassNames = classnames(
-      [`bx--tile`],
-      [`bx--tile--clickable`]
+      [`cds--tile`],
+      [`cds--tile--clickable`]
     );
 
     const cardContent = (
@@ -56,8 +56,8 @@ export default class OverviewCard extends React.Component {
 
     return (
       <div className={OverviewCardClassNames}>
-        <div className="bx--aspect-ratio bx--aspect-ratio--1x1">
-          <div className="bx--aspect-ratio--object">{cardContainer}</div>
+        <div className="cds--aspect-ratio cds--aspect-ratio--1x1">
+          <div className="cds--aspect-ratio--object">{cardContainer}</div>
         </div>
       </div>
     );

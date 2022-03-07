@@ -161,13 +161,13 @@ background looks like it has four columns of equal width.
 We'll make rows like so:
 
 ```html path=src/app/home/landing-page/landing-page.component.html
-<div ibmGrid class="bx--grid--full-width landing-page">
+<div ibmGrid class="cds--grid--full-width landing-page">
   <div ibmRow class="landing-page__banner">
     <div ibmCol [columnNumbers]="{'lg': 16}">1</div>
   </div>
   <div ibmRow class="landing-page__r2">
     <div ibmCol [columnNumbers]="{'md': 4, 'lg': 7}">7/16</div>
-    <div ibmCol class="bx--offset-lg-1" [columnNumbers]="{'md': 4, 'lg': 7}">
+    <div ibmCol class="cds--offset-lg-1" [columnNumbers]="{'md': 4, 'lg': 7}">
       8/16
     </div>
   </div>
@@ -180,14 +180,14 @@ We'll make rows like so:
 </div>
 ```
 
-We added a class of `bx--grid--full-width` to the grid container since our rows
+We added a class of `cds--grid--full-width` to the grid container since our rows
 need to expand the whole page without any margins. We also added some custom
 classes like `landing-page`, `landing-page__banner`, `landing-page__r2`, etc.,
 which we will use later.
 
 Also, take notice of the second row. The tab content only covers 7 columns at
 this large viewport to prevent overly-large line lengths, so we needed to add a
-1 column offset `bx--offset-lg-1` to the second column to fill the full 16
+1 column offset `cds--offset-lg-1` to the second column to fill the full 16
 columns in the grid. Then, both of those columns have `'md': 4` so they are of
 equal width at medium-sized viewports.
 
@@ -250,15 +250,15 @@ Now we need to modify the second row to use the `Tab` component.
 
 ```html path=src/app/home/landing-page/landing-page.component.html
 <div ibmRow class="landing-page__r2">
-  <div ibmCol class="bx--no-gutter">
+  <div ibmCol class="cds--no-gutter">
     <ibm-tabs>
       <ibm-tab heading="About">
-        <div ibmGrid class="bx--grid--no-gutter bx--grid--full-width">
+        <div ibmGrid class="cds--grid--no-gutter cds--grid--full-width">
           <div ibmRow class="landing-page__tab-content">
             <div ibmCol [columnNumbers]="{'md': 4, 'lg': 7}">7/16</div>
             <div
               ibmCol
-              class="bx--offset-lg-1"
+              class="cds--offset-lg-1"
               [columnNumbers]="{'md': 4, 'lg': 8}"
             >
               8/16
@@ -267,7 +267,7 @@ Now we need to modify the second row to use the `Tab` component.
         </div>
       </ibm-tab>
       <ibm-tab heading="Design">
-        <div ibmGrid class="bx--grid--no-gutter bx--grid--full-width">
+        <div ibmGrid class="cds--grid--no-gutter cds--grid--full-width">
           <div ibmRow class="landing-page__tab-content">
             <div ibmCol [columnNumbers]="{'lg': 16}">
               Rapidly build beautiful and accessible experiences. The Carbon kit
@@ -277,7 +277,7 @@ Now we need to modify the second row to use the `Tab` component.
         </div>
       </ibm-tab>
       <ibm-tab heading="Develop">
-        <div ibmGrid class="bx--grid--no-gutter bx--grid--full-width">
+        <div ibmGrid class="cds--grid--no-gutter cds--grid--full-width">
           <div ibmRow class="landing-page__tab-content">
             <div ibmCol [columnNumbers]="{'lg': 16}">
               Carbon provides styles and components in Vanilla, React, Angular,
@@ -326,30 +326,30 @@ large viewports, and tidy up the alignment of the grid. Create a file
 
 ```scss path=src/assets/scss/carbon-overrides.scss
 // makes the grid fit the entire width of the page
-.bx--grid--full-width {
+.cds--grid--full-width {
   padding-left: 1rem;
   padding-right: 1rem;
 }
 
 // removes excess padding for nested full width grids
-.bx--grid--full-width .bx--grid--full-width {
+.cds--grid--full-width .cds--grid--full-width {
   padding-left: 0;
   padding-right: 0;
 }
 
 // removes extraneous row margins in the full width grid
-.bx--grid--full-width .bx--row {
+.cds--grid--full-width .cds--row {
   margin-left: 0;
   margin-right: 0;
 }
 
 // aligns the tabs to the right
-.landing-page__r2 .bx--tabs__nav {
+.landing-page__r2 .cds--tabs__nav {
   right: 0;
 }
 
 // forces the navigation items to be displayed at all viewport sizes
-.bx--header__nav {
+.cds--header__nav {
   display: block;
 }
 ```
@@ -377,7 +377,7 @@ We can now add our images and text for each column in the first `Tab` in
 <!-- prettier-ignore-start -->
 ```html path=src/app/home/landing-page/landing-page.component.html
 <ibm-tab heading="About">
-  <div ibmGrid class="bx--grid--no-gutter bx--grid--full-width">
+  <div ibmGrid class="cds--grid--no-gutter cds--grid--full-width">
     <div ibmRow class="landing-page__tab-content">
       <div ibmCol [columnNumbers]="{'md': 4, 'lg': 7}">
         <h2 class="landing-page__subheading">
@@ -392,7 +392,7 @@ We can now add our images and text for each column in the first `Tab` in
         </p>
         <button ibmButton>Learn more</button>
       </div>
-      <div ibmCol class="bx--offset-lg-1" [columnNumbers]="{'md': 4, 'lg': 8}">
+      <div ibmCol class="cds--offset-lg-1" [columnNumbers]="{'md': 4, 'lg': 8}">
         <img
         class="landing-page__illo"
         src="../../../assets/tab-illo.png"
@@ -665,7 +665,7 @@ imports: [GridModule, TableModule];
 Now in our `repo-page.component.html` we will add our grid containers.
 
 ```html path=src/app/repositories/repo-page/repo-page.component.html
-<div ibmGrid class="bx--grid--full-width bx--grid--no-gutter repo-page">
+<div ibmGrid class="cds--grid--full-width cds--grid--no-gutter repo-page">
   <div ibmRow class="repo-page__r1">
     <div ibmCol [columnNumbers]="{'lg': 16}">Data table will go here</div>
   </div>
@@ -803,7 +803,7 @@ At this point, go to `repo-page.component.html` because now we need to render a
 static `repo-table`.
 
 ```html path=src/app/repositories/repo-page/repo-page.component.html
-<div ibmGrid class="bx--grid--full-width bx--grid--no-gutter repo-page">
+<div ibmGrid class="cds--grid--full-width cds--grid--no-gutter repo-page">
   <div ibmRow class="repo-page__r1">
     <div ibmCol [columnNumbers]="{'lg': 16}">
       <app-repo-table></app-repo-table>
@@ -823,7 +823,7 @@ In `repo-page.component.scss`, add the following styles:
 ```scss path=src/app/repositories/repo-page/repo-page.component.scss
 @import '~carbon-components/scss/globals/scss/typography';
 
-.repo-page .bx--row {
+.repo-page .cds--row {
   padding-top: $spacing-05;
   padding-bottom: $spacing-05;
 }

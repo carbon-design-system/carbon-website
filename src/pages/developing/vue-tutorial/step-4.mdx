@@ -149,18 +149,18 @@ Let's create the parent component that includes the "The Principles" heading.
 That markup currently looks like this in `LandingPage.vue`:
 
 ```html path=src/views/LandingPage/LandingPage.vue
-<div class="bx--row landing-page__r3">
-  <div class="bx--col-md-4 bx--col-lg-4">
+<div class="cds--row landing-page__r3">
+  <div class="cds--col-md-4 cds--col-lg-4">
     <h3 class="landing-page__label">The Principles</h3>
   </div>
-  <div class="bx--col-md-4 bx--col-lg-4">Carbon is Open</div>
-  <div class="bx--col-md-4 bx--col-lg-4">Carbon is Modular</div>
-  <div class="bx--col-md-4 bx--col-lg-4">Carbon is Consistent</div>
+  <div class="cds--col-md-4 cds--col-lg-4">Carbon is Open</div>
+  <div class="cds--col-md-4 cds--col-lg-4">Carbon is Modular</div>
+  <div class="cds--col-md-4 cds--col-lg-4">Carbon is Consistent</div>
 </div>
 ```
 
 We want to do a few things when abstracting it to a component. First, we only
-want Carbon (`bx--`) and this component's class names; we don't want to include
+want Carbon (`cds--`) and this component's class names; we don't want to include
 `landing-page__r3` as that's specific to the landing page. That will be passed
 in as a property to the component.
 
@@ -177,8 +177,8 @@ Using `props` we can render any heading and any number of children components
 
 ```html path=src/components/InfoSection/InfoSection.vue
 <template>
-  <section class="bx--row info-section">
-    <div class="bx--col-md-8 bx--col-lg-4 bx--col-xlg-3">
+  <section class="cds--row info-section">
+    <div class="cds--col-md-8 cds--col-lg-4 cds--col-xlg-3">
       <h3 class="info-section__heading">{{ heading }}</h3>
     </div>
     <slot />
@@ -214,13 +214,13 @@ At this point let's add styling for the new class names that we just added.
 ### InfoCard component
 
 Next up we're going to build a component for columns 2 - 4, which currently
-looks like `<div class="bx--col-md-4 bx--col-lg-4">Carbon is Open</div>`. Create
-a new file InfoCard.vue, add:
+looks like `<div class="cds--col-md-4 cds--col-lg-4">Carbon is Open</div>`.
+Create a new file InfoCard.vue, add:
 
 ```html path=src/components/InfoSection/InfoCard.vue
 <template>
   <article
-    class="info-card bx--col-md-4 bx--col-lg-4 bx--col-xlg-3 bx--offset-xlg-1"
+    class="info-card cds--col-md-4 cds--col-lg-4 cds--col-xlg-3 cds--offset-xlg-1"
   >
     <h4 class="info-card__heading">{{ heading }}</h4>
     <p class="info-card__body">{{ body }}</p>
@@ -260,7 +260,7 @@ In doing so, we:
 <InlineNotification>
 
 **Note:** At extra large viewports, we are using
-`bx--col-xlg-3 bx--offset-xlg-1` so each column takes up 3 of the 16 grid
+`cds--col-xlg-3 cds--offset-xlg-1` so each column takes up 3 of the 16 grid
 columns, with a 1 column offset.
 
 </InlineNotification>
@@ -323,13 +323,13 @@ add the icons to the component.
 With everything imported, replace the current template content:
 
 ```html path=src/views/LandingPage/LandingPage.vue
-<div class="bx--row landing-page__r3">
-  <div class="bx--col-md-4 bx--col-lg-4">
+<div class="cds--row landing-page__r3">
+  <div class="cds--col-md-4 cds--col-lg-4">
     <h3 class="landing-page__label">The Principles</h3>
   </div>
-  <div class="bx--col-md-4 bx--col-lg-4">Carbon is Open</div>
-  <div class="bx--col-md-4 bx--col-lg-4">Carbon is Modular</div>
-  <div class="bx--col-md-4 bx--col-lg-4">Carbon is Consistent</div>
+  <div class="cds--col-md-4 cds--col-lg-4">Carbon is Open</div>
+  <div class="cds--col-md-4 cds--col-lg-4">Carbon is Modular</div>
+  <div class="cds--col-md-4 cds--col-lg-4">Carbon is Consistent</div>
 </div>
 ```
 
