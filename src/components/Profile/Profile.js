@@ -11,7 +11,7 @@ import {
 
 const Profile = ({ name, title, children }) => (
   <div
-    className={`${profileContainer} cds--col-md-4 cds--col-lg-8 cds--col-xlg-4 cds--no-gutter-sm`}>
+    className={`${profileContainer} cds--col-md-4 cds--col-lg-4 cds--no-gutter-sm`}>
     <div className={`cds--aspect-ratio cds--aspect-ratio--2x1`}>
       <div className={`cds--aspect-ratio--object`}>
         <div className={cardContainer}>
