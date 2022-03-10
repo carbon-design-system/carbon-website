@@ -31,7 +31,7 @@ const FilterRow = ({
       <Dropdown
         className={dropdown}
         id="category-filter"
-        size="xl"
+        size="lg"
         direction="bottom"
         selectedItem={selectedCategory}
         onChange={onDropdownChange}

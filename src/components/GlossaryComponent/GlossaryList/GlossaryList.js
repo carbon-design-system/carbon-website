@@ -13,7 +13,7 @@ class Glossary extends Component {
     let counter = 0;
     return (
       <div id={glossaryEntry} key={glossaryEntry} className="glossary-entry">
-        <h2 className="glossary-entry__main-heading cds--type-display-02">
+        <h2 className="glossary-entry__main-heading bx--type-display-02">
           {glossaryEntry}
           <span>{glossaryEntry}</span>
         </h2>

@@ -112,10 +112,10 @@ const TypesetExample = (props) => (
         warning: currentBreakpointSpecs.warning,
       };
 
-      const versionClassName = type.version ? `cds--type-${type.version}` : '';
+      const versionClassName = type.version ? `bx--type-${type.version}` : '';
 
       const versionClassNames = classnames(
-        `cds--type-${type.key}`,
+        `bx--type-${type.key}`,
         versionClassName
       );
 
@@ -132,8 +132,8 @@ const TypesetExample = (props) => (
             </div>
             <div
               className={`cds--typeset-example-specs cds--col-md-3 cds--padding`}>
-              <span className={`cds--type-body-short-01`}>
-                <span className={`cds--type-semibold`}>{type.name} </span>
+              <span className={`bx--type-body-short-01`}>
+                <span className={`bx--type-semibold`}>{type.name} </span>
                 <br />
                 Type: {displaySpecs.font}
                 <br />
@@ -152,7 +152,7 @@ const TypesetExample = (props) => (
                 {displaySpecs.warning != null ? (
                   <span>
                     <br />
-                    <span className={`cds--type-semibold`}>warning: </span>
+                    <span className={`bx--type-semibold`}>warning: </span>
                     {displaySpecs.warning}
                     <br />
                   </span>
