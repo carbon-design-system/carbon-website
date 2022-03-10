@@ -5,30 +5,19 @@ description:
 tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 ---
 
-<AnchorLinks>
-
-<AnchorLink>Color</AnchorLink>
-<AnchorLink>Typography</AnchorLink>
-<AnchorLink>Structure</AnchorLink>
-
-</AnchorLinks>
-
 ## Color
 
 ### Line tabs
 
-| State    | Element               | Property         | Color token                                            |
-| -------- | --------------------- | ---------------- | ------------------------------------------------------ |
-| Enabled  | Background            | background-color | transparent                                            |
-|          | Label                 | text-color       | `$text-secondary`                                      |
-|          | Icon                  | svg              | `$icon-secondary`                                      |
-|          | Background            | border-bottom    | `$border-subtle` \*                                    |
-|          | Scrollable icon       | svg              | `$icon-primary`                                        |
-|          | Scrollable fade       | background-color | 8px, linear-gradient `$background` to 100% transparent |
-|          | Scrollable background | background-color | `$background`                                          |
-| Selected | Label                 | text-color       | `$text-primary`                                        |
-|          | Icon                  | svg              | `$icon-primary`                                        |
-|          | Background            | border-bottom    | `$interactive`                                         |
+| Type       | Element | Property         | Color token           |
+| ---------- | ------- | ---------------- | --------------------- |
+| Unselected | Tab     | background-color | transparent           |
+|            |         | border-bottom    | `$border-subtle` \*   |
+|            | Label   | text-color       | `$text-secondary`     |
+|            | Icon    | svg              | `$icon-secondary`     |
+| Selected   | Label   | text-color       | `$text-primary`       |
+|            | Icon    | svg              | `$icon-primary`       |
+|            | Tab     | border-bottom    | `$border-interactive` |
 
 <div className="image--fixed">
 
@@ -44,23 +33,17 @@ tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 
 <br />
 
-| State          | Element               | Property         | Color token         |
-| -------------- | --------------------- | ---------------- | ------------------- |
-| Hover          | Background            | border-bottom    | `$interactive`      |
-|                | Label                 | text-color       | `$text-primary`     |
-|                | Icon                  | svg              | `$icon-primary`     |
-|                | Scrollable background | background-color | `$background-hover` |
-| Active         | Scrollable background | background-color | `$layer-accent`     |
-| Focus          | Scrollable background | border           | `$focus`            |
-| Focus-enabled  | Label                 | text-color       | `$text-secondary`   |
-|                | Background            | border           | `$interactive`      |
-|                | Icon                  | svg              | `$icon-secondary`   |
-| Focus-selected | Label                 | text-color       | `$text-primary`     |
-|                | Background            | border           | `$interactive`      |
-|                | Icon                  | svg              | `$icon-primary`     |
-| Disabled       | Label                 | text-color       | `$text-disabled`    |
-|                | Icon                  | svg              | `$icon-disabled`    |
-|                | Background            | background-color | transparent         |
+| State    | Element         | Property         | Color token       |
+| -------- | --------------- | ---------------- | ----------------- |
+| Hover    | Label           | text-color       | `$text-primary`   |
+|          | Icon            | svg              | `$icon-primary`   |
+|          | Tab             | border-bottom    | `$border-strong`  |
+| Focus    | Tab: unselected | border           | `$focus`          |
+|          | Tab: selected   | border           | `$focus`          |
+| Disabled | Label           | text-color       | `$text-disabled`  |
+|          | Icon            | svg              | `$icon-disabled`  |
+|          | Tab             | background-color | transparent       |
+|          |                 | border-bottom    | `$border-disable` |
 
 <div className="image--fixed">
 
@@ -72,6 +55,17 @@ tabs: ['Usage', 'Style', 'Code', 'Accessibility']
   Examples of hover, focus-enabled, focus-selected, and disabled states for line
   tabs.
 </Caption>
+
+#### Scrollable states
+
+| State   | Element | Property         | Color token                            |
+| ------- | ------- | ---------------- | -------------------------------------- |
+| Enabled | Icon    | svg              | `$icon-primary`                        |
+|         | Button  | linear-gradient  | `$background` to 100% transparent, 8px |
+|         |         | background-color | `$background`                          |
+| Hover   | Button  | background-color | `$background-hover`                    |
+| Active  | Button  | background-color | `$layer-accent`                        |
+| Focus   | Button  | border           | `$focus`                               |
 
 <div className="image--fixed">
 
@@ -86,17 +80,16 @@ tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 
 ### Contained tabs
 
-| State    | Element         | Property         | Color token           |
-| -------- | --------------- | ---------------- | --------------------- |
-| Enabled  | Background      | background-color | `$layer-accent` \*    |
-|          | Label           | text-color       | `$text-secondary`     |
-|          | Icon            | svg              | `$icon-secondary`     |
-|          | Background      | border-right     | `$border-strong` \*   |
-|          | Scrollable icon | svg              | `$icon-secondary`     |
-|          | Label           | text-color       | `$text-primary`       |
-| Selected | Background      | background-color | `$layer` \*           |
-|          | Icon            | svg              | `$icon-primary`       |
-|          | Background      | border-top       | `$border-interactive` |
+| Type       | Element | Property         | Color token           |
+| ---------- | ------- | ---------------- | --------------------- |
+| Unselected | Tab     | background-color | `$layer-accent` \*    |
+|            |         | border-right     | `$border-strong` \*   |
+|            | Label   | text-color       | `$text-secondary`     |
+|            | Icon    | svg              | `$icon-secondary`     |
+| Selected   | Tab     | background-color | `$layer` \*           |
+|            |         | border-top       | `$border-interactive` |
+|            | Label   | text-color       | `$text-primary`       |
+|            | Icon    | svg              | `$icon-primary`       |
 
 <Caption>
   * Denotes a contextual color token that will change values based on the layer
@@ -117,24 +110,16 @@ tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 
 <br />
 
-| State          | Element               | Property         | Color token               |
-| -------------- | --------------------- | ---------------- | ------------------------- |
-| Hover          | Background            | background-color | `$layer-accent-hover` \*  |
-|                | Label                 | text-color       | `$text-primary`           |
-|                | Icon                  | svg              | `$icon-primary`           |
-|                | Scrollable background | background-color | `$layer-accent-hover` \*  |
-| Active         | Scrollable background | background-color | `$layer-accent-active` \* |
-| Focus          | Scrollable background | border           | `$focus`                  |
-| Focus-enabled  | Label                 | text-color       | `$text-secondary`         |
-|                | Background            | background-color | `$layer-accent` \*        |
-|                | Icon                  | svg              | `$icon-secondary`         |
-| Focus-selected | Label                 | text-color       | `$text-primary`           |
-|                | Background            | background-color | `$layer` \*               |
-|                | Icon                  | svg              | `$icon-primary`           |
-| Disabled       | Label                 | text-color       | `$text-disabled`          |
-|                | Icon                  | svg              | `$icon-disabled`          |
-|                | Background            | background-color | `$button-disabled`        |
-|                | Border                | border-right     | `$border-disabled`        |
+| State    | Element | Property         | Color token              |
+| -------- | ------- | ---------------- | ------------------------ |
+| Hover    | Tab     | background-color | `$layer-accent-hover` \* |
+|          | Label   | text-color       | `$text-primary`          |
+|          | Icon    | svg              | `$icon-primary`          |
+| Focus    | Tab     | border           | `$focus`                 |
+| Disabled | Label   | text-color       | `$text-disabled`         |
+|          | Icon    | svg              | `$icon-disabled`         |
+|          | Tab     | background-color | `$button-disabled`       |
+|          |         | border-right     | `$border-disabled`       |
 
 <Caption>
   * Denotes a contextual color token that will change values based on the layer
@@ -152,6 +137,17 @@ tabs.](images/tab-style-5.png)
   Hover, focus-enabled, focus-selected, and disabled states for contained tabs.
 </Caption>
 
+#### Scrollable states
+
+| State   | Element | Property         | Color token               |
+| ------- | ------- | ---------------- | ------------------------- |
+| Enabled | Icon    | svg              | `$icon-secondary`         |
+|         | Button  | background-color | `$layer-accent` \*        |
+| Hover   | Button  | background-color | `$layer-accent-hover` \*  |
+|         | Icon    | svg              | `$icon-primary`           |
+| Active  | Button  | background-color | `$layer-accent-active` \* |
+| Focus   | Button  | border           | `$focus`                  |
+
 <div className="image--fixed">
 
 ![Enabled, hover, active, and focus states for contained scrollable tabs.](images/tab-style-6.png)
@@ -167,10 +163,10 @@ tabs.](images/tab-style-5.png)
 
 Tab labels should be set in sentence case, and should not exceed three words.
 
-| Element         | Font-size (px/rem) | Font-weight    | Type token            |
-| --------------- | ------------------ | -------------- | --------------------- |
-| Label: enabled  | 14 / 0.875         | Regular / 400  | `$body-compact-01`    |
-| Label: selected | 14 / 0.875         | SemiBold / 600 | `$heading-compact-01` |
+| Element           | Font-size (px/rem) | Font-weight    | Type token            |
+| ----------------- | ------------------ | -------------- | --------------------- |
+| Label: unselected | 14 / 0.875         | Regular / 400  | `$body-compact-01`    |
+| Label: selected   | 14 / 0.875         | SemiBold / 600 | `$heading-compact-01` |
 
 ## Structure
 
@@ -222,18 +218,18 @@ Tab labels should be set in sentence case, and should not exceed three words.
 
 ### Contained tabs
 
-| Element               | Property                    | px / rem         | Spacing token |
-| --------------------- | --------------------------- | ---------------- | ------------- |
-| Tab                   | height                      | 40 / 2.5         | –             |
-|                       | border-top                  | 2px              | –             |
-|                       | width                       | auto-width, grid | –             |
-| Label                 | padding-left, padding-right | 16 / 1           | `$spacing-05` |
-| Icon                  | padding-right               | 16 / 1           | `$spacing-05` |
-|                       | padding-left                | 16 / 1           | `$spacing-05` |
-|                       | svg                         | 16 x 16          | –             |
-| Tab                   | border-right                | 1px              | –             |
-| Scrollable icon       | svg                         | 16 x 16          | –             |
-| Scrollable background | border-right, border-left   | 1px              | –             |
+| Element           | Property                    | px / rem         | Spacing token |
+| ----------------- | --------------------------- | ---------------- | ------------- |
+| Tab               | height                      | 40 / 2.5         | –             |
+|                   | border-top                  | 2px              | –             |
+|                   | width                       | auto-width, grid | –             |
+| Label             | padding-left, padding-right | 16 / 1           | `$spacing-05` |
+| Icon              | padding-right               | 16 / 1           | `$spacing-05` |
+|                   | padding-left                | 16 / 1           | `$spacing-05` |
+|                   | svg                         | 16 x 16          | –             |
+| Tab               | border-right                | 1px              | –             |
+| Scrollable icon   | svg                         | 16 x 16          | –             |
+| Scrollable button | border-right, border-left   | 1px              | –             |
 
 <div className="image--fixed">
 
