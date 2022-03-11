@@ -52,63 +52,44 @@ yarn add @carbon/type
 
 ## Usage
 
-`@carbon/type` provides a variety of ways to work with typography from the IBM
-Design Language. You can use all of these features either in JavaScript or Sass.
-These features include:
+The `@carbon/type` package enables you to use typography from the IBM Design
+Language, including the type scale and fonts, along with typography design
+tokens from the Carbon Design System. It also comes with opinionated defaults
+for type styles on common elements like `h1`, `h2`, `p`, etc.
 
-| Feature                       | Description                                                                                                  |
-| ----------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| [Font face](#font-face)       | Include IBM Plex™ font faces in your application. Uses Google fonts                                          |
-| [Type classes](#type-classes) | Helpers to use type styles directly. Not included by default                                                 |
-| [Font family](#font-family)   | Defines the font stack for IBM Plex™ in your application, provides helpers for working with font definitions |
-| [Reset](#reset)               | Provides a high-level CSS Reset to use in your project                                                       |
-| [Scale](#type-scale)          | Provides the type scale. Can access the size at any given step (step 1, 2, 3, etc)                           |
-| [Styles](#type-styles)        | Provides type styles for your application (heading-01, body-long-01, etc)                                    |
-
-To include `@carbon/type` in your project, you can write the following in your
-Sass file:
+You can use this package by writing the following:
 
 ```scss
-@import '@carbon/type/scss/type';
-@import '@carbon/type/scss/font-face/mono';
-@import '@carbon/type/scss/font-face/sans';
+@use '@carbon/type';
 
-@include carbon--type-reset();
-@include carbon--font-face-mono();
-@include carbon--font-face-sans();
-```
+// Include type reset
+@include type.reset();
 
-This should include the default type reset from the project, in addition to
-font-face definitions for IBM Plex Mono and IBM Plex Sans that come from Google
-Fonts.
+// Include default type styles, targets h1, h2, h3, etc
+@include type.default-type();
 
-If you are using `@carbon/elements`, the import paths become:
+// Include utility classes for type-related properties
+@include type.type-classes();
 
-```scss
-@import '@carbon/elements/scss/type/path-to-import';
-```
-
-For example:
-
-```scss
-@import '@carbon/elements/scss/type/styles';
-```
-
-In addition, you will need to setup `node-sass` so that `node_modules` is
-included in the `includePaths` option. Often times, the tool that you are using
-to build Sass files in your project should expose this option for you to set.
-
-For example, if you are using Webpack you would use `node-sass` and
-`sass-loader` with the following configuration for `includePaths`:
-
-```js
-{
-  loader: 'sass-loader',
-  options: {
-    includePaths: ['node_modules'],
-  },
+.selector {
+  // Include a type style
+  @include type.style('productive-heading-01');
 }
 ```
+
+### Type classes
+
+The `type-classes` mixin will output a collection of utility CSS that you can
+use to style a given HTML element with type-related styles.
+
+In particular, you can use the following classes:
+
+| Class                      | Description                                                                                                                                                                                                           |
+| :------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `.cds--type-{font-family}` | Set the `font-family` property for the given font. This can include `mono`, `sans`, `sans-condensed`, `sans-arabic`, `sans-devanagari`, `sans-hebrew`, `sans-jp`, `sans-kr`, `sans-thai-looped`, `sans-thai`, `serif` |
+| `.cds--type-{font-weight}` | Set the `font-weight` property                                                                                                                                                                                        |
+| `.cds--type-italic`        | Set the `font-style` property to `italic`                                                                                                                                                                             |
+| `.cds--type-{token}`       | Style the HTML element with the given type token                                                                                                                                                                      |
 
 ### Type styles
 
