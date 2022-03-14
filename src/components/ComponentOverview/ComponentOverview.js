@@ -27,8 +27,8 @@ class ComponentOverview extends React.Component {
 
     return (
       <li className="component-item" key={component}>
-        <div className="bx--aspect-ratio bx--aspect-ratio--align bx--aspect-ratio--1x1">
-          <div className="bx--aspect-ratio--object">
+        <div className="cds--aspect-ratio cds--aspect-ratio--align cds--aspect-ratio--1x1">
+          <div className="cds--aspect-ratio--object">
             <Link to={componentUrl} className="component-item__link">
               <img
                 src={componentImg}
@@ -45,8 +45,8 @@ class ComponentOverview extends React.Component {
 
   render() {
     return (
-      <div className="bx--row">
-        <div className="bx--col-lg-12 bx--no-gutter">
+      <div className="cds--row">
+        <div className="cds--col-lg-12 cds--no-gutter">
           <ul className="component-overview">
             {Object.keys(componentList.components).map((component) =>
               this.renderItems(componentList.components[component])

@@ -58,20 +58,20 @@ In Sass, you can import the files individual by doing:
 @import '@carbon/colors/scss/colors';
 ```
 
-This file automatically includes the `carbon--colors` mixin which initializes
-all the color variables for the IBM Design Language.
+This file automatically includes the `colors` mixin which initializes all the
+color variables for the IBM Design Language.
 
-These color variables follow the naming convention: `$carbon--<swatch>-<grade>`.
-For example:
+These color variables follow the naming convention: `$<swatch>-<grade>`. For
+example:
 
 ```scss
-$carbon--blue-50;
-$carbon--cool-gray-10;
-$carbon--black-100;
-$carbon--white-0;
+$blue-50;
+$cool-gray-10;
+$black-100;
+$white-0;
 ```
 
-You can also use the shorthand form of these colors by dropping the `carbon--`
+You can also use the shorthand form of these colors by dropping the ``
 namespace:
 
 ```scss
@@ -86,25 +86,24 @@ conflicting variables in your setup. Namespaced variables are always preferred
 for this reason, unless you are confident that no collisions will occur._
 
 If you would like you choose when these variables are defined, then you can call
-the `carbon--colors` mixin directly by importing the following file:
+the `colors` mixin directly by importing the following file:
 
 ```scss
 @import '@carbon/colors/scss/mixins';
 
 // ...
-@include carbon--colors();
+@include colors();
 ```
 
 Alongside the color variables detailed above, we also provide a map of colors so
-that you can programmatically use these values. This map is called
-`$carbon--colors` and each key is the name of a swatch. The value of these
-swatches is also a map, but each key is now the grade. In code, this looks like
-the following:
+that you can programmatically use these values. This map is called `$colors` and
+each key is the name of a swatch. The value of these swatches is also a map, but
+each key is now the grade. In code, this looks like the following:
 
 <!-- prettier-ignore-start -->
 
 ```scss
-$carbon--colors: (
+$colors: (
   'blue': (
     10: #edf4ff,
     // ...
@@ -115,7 +114,7 @@ $carbon--colors: (
 <!-- prettier-ignore-end -->
 
 You can include this variable by including `@carbon/colors/scss/colors` or
-calling the `carbon--colors()` mixin directly.
+calling the `colors()` mixin directly.
 
 #### Migrating from previous versions
 

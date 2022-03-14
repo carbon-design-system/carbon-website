@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { StructuredListRow, StructuredListCell } from 'carbon-components-react';
+import { StructuredListRow, StructuredListCell } from '@carbon/react';
 import {
   icon,
   iconGroup,

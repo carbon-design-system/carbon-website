@@ -1,7 +1,7 @@
 import copy from 'copy-to-clipboard';
 
 import React from 'react';
-import { CopyButton } from 'carbon-components-react';
+import { CopyButton } from '@carbon/react';
 import { Launch16 } from '@carbon/icons-react';
 import { withLive } from 'react-live';
 import cx from 'classnames';
