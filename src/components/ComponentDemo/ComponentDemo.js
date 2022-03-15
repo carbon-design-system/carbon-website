@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useContext } from 'react';
 import getTheme from 'gatsby-theme-carbon/src/components/Code/getTheme';
-import * as CarbonComponents from 'carbon-components-react';
+import * as CarbonComponents from '@carbon/react';
 import { LiveProvider, LiveEditor, LivePreview, LiveError } from 'react-live';
 import { Row } from 'gatsby-theme-carbon';
 import {
@@ -106,7 +106,7 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
             label="Theme selector"
             titleText="Theme selector"
             items={Object.keys(themes)}
-            size="xl"
+            size="lg"
           />
           <Dropdown
             onChange={onVariantChange}
@@ -115,7 +115,7 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
             titleText={childrenArray.length === 1 ? '' : 'Variant selector'}
             label="Variant selector"
             items={components}
-            size="xl"
+            size="lg"
             className={cx(variantDropdown, {
               [hiddenDropdown]: childrenArray.length === 1,
             })}
