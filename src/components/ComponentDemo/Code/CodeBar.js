@@ -1,7 +1,7 @@
 import copy from 'copy-to-clipboard';
 
 import React from 'react';
-import { CopyButton } from 'carbon-components-react';
+import { CopyButton } from '@carbon/react';
 import { Launch16 } from '@carbon/icons-react';
 import cx from 'classnames';
 import { codeBar, button, copyButton, linkList } from './Code.module.scss';

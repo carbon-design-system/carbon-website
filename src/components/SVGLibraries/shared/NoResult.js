@@ -29,7 +29,7 @@ const NoResult = ({
           <button
             type="button"
             onClick={() => setSelectedCategory(`All ${type}`)}
-            className={cx(allSvgs, 'bx--link')}>
+            className={cx(allSvgs, 'cds--link')}>
             all {type}.
           </button>
         </h2>

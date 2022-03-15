@@ -1,14 +1,11 @@
 import React from 'react';
-import { settings } from 'carbon-components';
 import classnames from 'classnames';
 import { findKey, values } from 'lodash-es';
 import {
   baseFontSize,
   breakpoints as carbonBreakpoints,
 } from '@carbon/elements';
-import { CodeSnippet } from 'carbon-components-react';
-
-const { prefix } = settings;
+import { CodeSnippet } from '@carbon/react';
 
 const breakpoints = {
   sm: Number(carbonBreakpoints.sm.width.replace('rem', '')) * baseFontSize,
@@ -23,7 +20,7 @@ const defaultTypeValues = {
 };
 
 const TypesetExample = (props) => (
-  <div className={`${prefix}--typeset-example-container`}>
+  <div className={`cds--typeset-example-container`}>
     {(props.typeSet || []).map((type) => {
       const indexOfClosestLargerBreakpoint = Math.max(
         0,
@@ -115,12 +112,10 @@ const TypesetExample = (props) => (
         warning: currentBreakpointSpecs.warning,
       };
 
-      const versionClassName = type.version
-        ? `${prefix}--type-${type.version}`
-        : '';
+      const versionClassName = type.version ? `bx--type-${type.version}` : '';
 
       const versionClassNames = classnames(
-        `${prefix}--type-${type.key}`,
+        `bx--type-${type.key}`,
         versionClassName
       );
 
@@ -128,18 +123,17 @@ const TypesetExample = (props) => (
         <div
           key={`${props.name}${type.key}${type.version}`}
           style={{ padding: 0 }}
-          className={`${prefix}--typeset-example`}>
-          <div className={`${prefix}--typeset-example-row ${prefix}--row`}>
-            <div
-              className={`${prefix}--typeset-example-description ${prefix}--col-md-6`}>
+          className={`cds--typeset-example`}>
+          <div className={`cds--typeset-example-row cds--row`}>
+            <div className={`cds--typeset-example-description cds--col-md-5`}>
               <p className={versionClassNames} style={specs}>
                 {type.description}
               </p>
             </div>
             <div
-              className={`${prefix}--typeset-example-specs ${prefix}--col-md-2 ${prefix}--padding`}>
-              <span className={`${prefix}--type-body-short-01`}>
-                <span className={`${prefix}--type-semibold`}>{type.name} </span>
+              className={`cds--typeset-example-specs cds--col-md-3 cds--padding`}>
+              <span className={`bx--type-body-short-01`}>
+                <span className={`bx--type-semibold`}>{type.name} </span>
                 <br />
                 Type: {displaySpecs.font}
                 <br />
@@ -158,16 +152,14 @@ const TypesetExample = (props) => (
                 {displaySpecs.warning != null ? (
                   <span>
                     <br />
-                    <span className={`${prefix}--type-semibold`}>
-                      warning:{' '}
-                    </span>
+                    <span className={`bx--type-semibold`}>warning: </span>
                     {displaySpecs.warning}
                     <br />
                   </span>
                 ) : (
                   <br />
                 )}
-                <div className={`${prefix}--typeset-example-code-style`}>
+                <div className={`cds--typeset-example-code-style`}>
                   <CodeSnippet type="inline" feedback="Copied!" light>
                     ${type.name.split(' ')[0]}
                   </CodeSnippet>
