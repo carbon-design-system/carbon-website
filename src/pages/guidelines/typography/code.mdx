@@ -61,7 +61,6 @@ You can use this package by writing the following:
 
 ```scss
 @use '@carbon/type';
-
 // Include type reset
 @include type.reset();
 
@@ -106,17 +105,17 @@ You can include a token in your Sass file by writing:
 ```scss
 @import '@carbon/type/scss/styles';
 
-@include carbon--type-style('productive-heading-01');
+@include type-style('productive-heading-01');
 ```
 
 In addition, if the type style you are using has a fluid style then you can pass
-in `true` as the second argument to `carbon--type-style` to enable fluid styles.
-For example:
+in `true` as the second argument to `type-style` to enable fluid styles. For
+example:
 
 ```scss
 @import '@carbon/type/scss/styles';
 
-@include carbon--type-style('token-name', true);
+@include type-style('token-name', true);
 ```
 
 ### Font-face
@@ -144,7 +143,7 @@ your project you would write the following in your Sass file:
 ```scss
 @import '@carbon/type/scss/font-face/mono';
 
-@include carbon--font-face-mono();
+@include font-face-mono();
 ```
 
 Similarly, you can include IBM Plex Sans and IBM Plex Serif by writing:
@@ -154,9 +153,9 @@ Similarly, you can include IBM Plex Sans and IBM Plex Serif by writing:
 @import '@carbon/type/scss/font-face/sans';
 @import '@carbon/type/scss/font-face/serif';
 
-@include carbon--font-face-mono();
-@include carbon--font-face-sans();
-@include carbon--font-face-serif();
+@include font-face-mono();
+@include font-face-sans();
+@include font-face-serif();
 ```
 
 ### Type classes
@@ -172,16 +171,16 @@ Sass file:
 @import '@carbon/type/scss/classes';
 ```
 
-| Selector                 | Description                               |
-| ------------------------ | ----------------------------------------- |
-| `.bx--type-mono`         | Specify the font face as IBM Plex Mono    |
-| `.bx--type-sans`         | Specify the font face as IBM Plex Sans    |
-| `.bx--type-serif`        | Specify the font face as IBM Plex Serif   |
-| `.bx--type-light`        | Specify the font weight as light (300)    |
-| `.bx--type-regular`      | Specify the font weight as regular (400)  |
-| `.bx--type-semibold`     | Specify the font weight as semibold (600) |
-| `.bx--type-italic`       | Specify the font style as italic          |
-| `.bx--type-<type-style>` | Set styles for the given type style       |
+| Selector                  | Description                               |
+| ------------------------- | ----------------------------------------- |
+| `.cds--type-mono`         | Specify the font face as IBM Plex Mono    |
+| `.cds--type-sans`         | Specify the font face as IBM Plex Sans    |
+| `.cds--type-serif`        | Specify the font face as IBM Plex Serif   |
+| `.cds--type-light`        | Specify the font weight as light (300)    |
+| `.cds--type-regular`      | Specify the font weight as regular (400)  |
+| `.cds--type-semibold`     | Specify the font weight as semibold (600) |
+| `.cds--type-italic`       | Specify the font style as italic          |
+| `.cds--type-<type-style>` | Set styles for the given type style       |
 
 ### Font family
 
@@ -193,36 +192,35 @@ your Sass file:
 @import '@carbon/type/scss/font-family';
 ```
 
-The font stacks are available under the `$carbon--font-families` variable. You
-can also access a specific font family by using the `carbon--font-family`
-function by doing:
+The font stacks are available under the `$font-families` variable. You can also
+access a specific font family by using the `font-family` function by doing:
 
 ```scss
 .my-selector {
-  font-family: carbon--font-family('mono');
+  font-family: font-family('mono');
 }
 ```
 
-You can also use the `carbon--font-family` mixin to automatically set the
-`font-family` property for you:
+You can also use the `font-family` mixin to automatically set the `font-family`
+property for you:
 
 ```scss
 .my-selector {
-  @include carbon--font-family('mono');
+  @include font-family('mono');
 }
 ```
 
-You can see all the available font families in `$carbon--font-families` .
+You can see all the available font families in `$font-families` .
 
 ### Reset
 
-An optional type reset is provided under the `carbon--type-reset` mixin. You can
-include this mixin by writing the following in your Sass file:
+An optional type reset is provided under the `type-reset` mixin. You can include
+this mixin by writing the following in your Sass file:
 
 ```scss
 @import '@carbon/type/scss/reset';
 
-@include carbon--type-reset();
+@include type-reset();
 ```
 
 This reset sets some top-level properties on `html` and `body`, namely
@@ -231,9 +229,9 @@ This reset sets some top-level properties on `html` and `body`, namely
 
 ### Type scale
 
-A type scale is provided through the `$carbon--type-scale` variable and
-corresponding `carbon--type-scale` function and mixin. However, for specifying
-type styles, the recommendation is to use [type styles](#type-styles) .
+A type scale is provided through the `$type-scale` variable and corresponding
+`type-scale` function and mixin. However, for specifying type styles, the
+recommendation is to use [type styles](#type-styles) .
 
 If you are looking to use the type scale, you can include all the scale-related
 utilities and variables by writing the following in your Sass file:
@@ -242,14 +240,14 @@ utilities and variables by writing the following in your Sass file:
 @import '@carbon/type/scss/scale';
 ```
 
-You can access a specific step in the type scale by using the
-`carbon--type-scale` function:
+You can access a specific step in the type scale by using the `type-scale`
+function:
 
 ```scss
 @import '@carbon/type/scss/scale';
 
 .my-selector {
-  font-size: carbon--type-scale(1);
+  font-size: type-scale(1);
 }
 ```
 
@@ -259,7 +257,7 @@ There is also a `type-scale` mixin that will set `font-size` for your directly:
 @import '@carbon/type/scss/scale';
 
 .my-selector {
-  @include carbon--type-scale(1);
+  @include type-scale(1);
 }
 ```
 
