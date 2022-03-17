@@ -40,9 +40,9 @@ const customProps = {
     <>
       <span className="homepage--dots" />
       <section className="homepage--header">
-        <div className="bx--grid">
-          <div className="bx--row">
-            <div className="bx--col-lg-4 bx--col-md-4 bx--col-sm-2 bx--offset-lg-8 bx--offset-md-4 bx--offset-sm-2 homepage--tile-header">
+        <div className="cds--grid">
+          <div className="cds--row">
+            <div className="cds--col-lg-4 cds--col-md-4 cds--col-sm-2 cds--offset-lg-8 cds--offset-md-4 cds--offset-sm-2 homepage--tile-header">
               <ResourceCard
                 className={callToAction}
                 subTitle="Coming soon"

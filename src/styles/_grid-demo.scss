@@ -1,3 +1,10 @@
+@use '@carbon/react/scss/grid' as *;
+@use '@carbon/react/scss/breakpoint' as *;
+@use '@carbon/react/scss/compat/theme' as *;
+@use '@carbon/react/scss/colors' as *;
+@use '@carbon/react/scss/spacing' as *;
+@use '@carbon/react/scss/type' as *;
+
 //---------------------------------------
 // Set 16 column grid for examples only
 //---------------------------------------
@@ -6,12 +13,14 @@
   $feature-flags: (
     grid-columns-16: true,
   );
-  @import '~carbon-components/scss/globals/grid/grid';
-  @import '~carbon-components/scss/globals/scss/layout';
+
+  @include flex-grid();
+  // @import '~carbon-components/scss/globals/grid/grid';
+  // @import '~carbon-components/scss/globals/scss/layout';
 }
 
 .bx-demo-sm {
-  @include carbon--breakpoint('md') {
+  @include breakpoint('md') {
     display: none;
   }
 }
@@ -19,11 +28,11 @@
 .bx-demo-md {
   display: none;
 
-  @include carbon--breakpoint('md') {
+  @include breakpoint('md') {
     display: inline;
   }
 
-  @include carbon--breakpoint('lg') {
+  @include breakpoint('lg') {
     display: none;
   }
 }
@@ -31,7 +40,7 @@
 .bx-demo-lg {
   display: none;
 
-  @include carbon--breakpoint('lg') {
+  @include breakpoint('lg') {
     display: inline;
   }
 }
@@ -40,7 +49,7 @@
 .hide-sm {
   display: none;
 
-  @include carbon--breakpoint('md') {
+  @include breakpoint('md') {
     display: block;
   }
 }
@@ -48,7 +57,7 @@
 .hide-md {
   display: none;
 
-  @include carbon--breakpoint('lg') {
+  @include breakpoint('lg') {
     display: block;
   }
 }
@@ -58,7 +67,7 @@
 //---------------------------------------
 
 .grid-demo {
-  background: $ui-01;
+  background: $layer-01;
   padding: $spacing-05 0;
   display: flex;
   position: relative;
@@ -72,27 +81,27 @@
 }
 
 .grid-demo [class*='col'] {
-  @include carbon--type-style('caption-01');
+  @include type-style('caption-01');
   padding-top: $spacing-05;
   min-height: 4rem;
-  background-color: $carbon--blue-10;
-  outline: 1px solid $carbon--blue-30;
+  background-color: $blue-10;
+  outline: 1px solid $blue-30;
 }
 
 .grid-demo--wide [class*='col'] {
-  background-color: $carbon--blue-20;
+  background-color: $blue-20;
   padding-top: 0;
 }
 
 .grid-demo--narrow [class*='col'] {
-  background-color: $carbon--teal-20;
-  outline: 1px solid $carbon--teal-30;
+  background-color: $teal-20;
+  outline: 1px solid $teal-30;
   padding-top: 0;
 }
 
 .grid-demo--condensed [class*='col'] {
-  background-color: $carbon--purple-30;
-  outline: 1px solid $carbon--purple-30;
+  background-color: $purple-30;
+  outline: 1px solid $purple-30;
   padding-top: 0;
 }
 
@@ -101,15 +110,15 @@
 }
 
 .grid-demo--wide .grid-demo-content {
-  background-color: $carbon--blue-10;
+  background-color: $blue-10;
 }
 
 .grid-demo--narrow .grid-demo-content {
-  background-color: $carbon--teal-10;
+  background-color: $teal-10;
 }
 
 .grid-demo--condensed .grid-demo-content {
-  background-color: $carbon--purple-10;
+  background-color: $purple-10;
 }
 
 // Full bleed
@@ -118,10 +127,10 @@
 }
 
 .grid-demo--bleed .bx-demo--grid {
-  background-color: $carbon--blue-30;
+  background-color: $blue-30;
   padding-top: 0;
   padding-bottom: 0;
-  outline: 1px solid $carbon--blue-30;
+  outline: 1px solid $blue-30;
 }
 
 //---------------------------------------
@@ -152,7 +161,7 @@
 // Shell collapsed/expanded
 //---------------------------------------
 .grid-demo .side-nav + .bx-demo--grid {
-  @include carbon--breakpoint('md') {
+  @include breakpoint('md') {
     padding-left: $spacing-05;
   }
 }
@@ -160,12 +169,12 @@
 .grid-demo .side-nav {
   height: 16rem;
   width: 3rem;
-  background-color: $carbon--blue-20;
-  outline: 1px solid $carbon--blue-30;
+  background-color: $blue-20;
+  outline: 1px solid $blue-30;
   margin-left: $spacing-05;
   display: none;
 
-  @include carbon--breakpoint('md') {
+  @include breakpoint('md') {
     display: block;
   }
 }
@@ -176,7 +185,7 @@
   display: block;
   height: 12rem;
 
-  @include carbon--breakpoint('md') {
+  @include breakpoint('md') {
     position: static;
     height: auto;
   }
@@ -218,7 +227,7 @@
 //---------------------------------------
 // Grid modes section
 //---------------------------------------
-.grid-modes .bx--col-lg-2 {
+.grid-modes .cds--col-lg-2 {
   padding-top: $spacing-04;
 }
 

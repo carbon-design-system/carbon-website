@@ -3,9 +3,9 @@ import { getParameters } from 'codesandbox/lib/api/define';
 import sampleData from '../data/sampleData';
 
 const getIndex = ({ code = '' }) => {
-  const uniqueComponents = Array.from(
-    new Set(code.match(/<[A-Z]\w+/g))
-  ).map((component) => component.slice(1));
+  const uniqueComponents = Array.from(new Set(code.match(/<[A-Z]\w+/g))).map(
+    (component) => component.slice(1)
+  );
 
   const importSampleData = () => {
     const [componentName] = uniqueComponents;
@@ -19,7 +19,7 @@ const getIndex = ({ code = '' }) => {
   import React from 'react';
   import { render } from 'react-dom';
   import 'carbon-components/css/carbon-components.min.css';
-  import { ${uniqueComponents.join(', ')} } from 'carbon-components-react';
+  import { ${uniqueComponents.join(', ')} } from '@carbon/react';
   ${importSampleData()}
 
   const App = () => (
@@ -46,7 +46,7 @@ const useCodesandbox = (code) => {
             dependencies: {
               react: 'latest',
               'react-dom': 'latest',
-              'carbon-components-react': 'latest',
+              '@carbon/react': 'latest',
               'carbon-components': 'latest',
               'carbon-icons': 'latest',
             },
