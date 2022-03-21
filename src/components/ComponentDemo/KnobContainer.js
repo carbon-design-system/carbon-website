@@ -9,7 +9,7 @@ import {
   RadioButton,
   RadioButtonGroup,
   Checkbox,
-} from 'carbon-components-react';
+} from '@carbon/react';
 import cx from 'classnames';
 
 import carbonReactDocgen from '../../data/docgen';
@@ -162,7 +162,9 @@ const Knob = ({
     const propString = parsedKnobProps.concat(
       Object.entries(newKnobs[component]).reduce(
         (accumulator, [prop, value]) => {
-          if (!value || value === `'default'`) {return accumulator;}
+          if (!value || value === `'default'`) {
+            return accumulator;
+          }
           if (typeof value === 'boolean') {
             return `${accumulator} ${prop}`;
           }
@@ -243,11 +245,8 @@ Knob.propTypes = {
 };
 
 const KnobContainer = ({ knobs, code, setCode, initialCode, variantId }) => {
-  const {
-    isMobile,
-    isKnobContainerCollapsed,
-    setIsKnobContainerCollapsed,
-  } = useContext(DemoContext);
+  const { isMobile, isKnobContainerCollapsed, setIsKnobContainerCollapsed } =
+    useContext(DemoContext);
 
   const requestedKnobs = Object.keys(knobs).map((component) => {
     const fullComponent = carbonReactDocgen[component];

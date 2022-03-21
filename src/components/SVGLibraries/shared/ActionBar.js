@@ -1,7 +1,7 @@
 import React, { useRef, useContext, useState } from 'react';
 import { pascalCase } from 'change-case';
 import { Code16, Download16 } from '@carbon/icons-react';
-import { Button } from 'carbon-components-react';
+import { Button } from '@carbon/react';
 import copy from 'copy-to-clipboard';
 import cx from 'classnames';
 import { LibraryContext } from './LibraryProvider';

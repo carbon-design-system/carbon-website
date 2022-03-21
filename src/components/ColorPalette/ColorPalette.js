@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { ContentSwitcher, Switch, Dropdown } from 'carbon-components-react';
+import { ContentSwitcher, Switch, Dropdown } from '@carbon/react';
 import cx from 'classnames';
 import {
   categoricalLight,
@@ -187,7 +187,7 @@ const ColorPalette = ({
             <Dropdown
               label="Color group selection"
               id="color-group-dropdown"
-              size="xl"
+              size="lg"
               items={dropdownItems}
               onChange={onDropdownChange}
               selectedItem={dropdownItems[groupNumber - 1]}
