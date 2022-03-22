@@ -6,7 +6,9 @@ description:
 tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 ---
 
-import { Filter16 } from '@carbon/icons-react';
+import { Filter } from '@carbon/react/icons';
+import { Information } from '@carbon/react/icons';
+import { tooltipTrigger } from '../../../styles/tooltip.scss';
 
 <PageDescription>
 
@@ -77,7 +79,7 @@ documentation, see the Storybooks for each framework below.
       label: 'Definition tooltip',
     },
   ]}
-  scope={{ Filter16 }}
+  scope={{ Filter, Information }}
 >
   <ComponentVariant
     id="tooltip"
@@ -93,19 +95,14 @@ documentation, see the Storybooks for each framework below.
     }}
   >{`
     <Tooltip
-      direction="bottom"
+      align="bottom"
+      label="This is some tooltip text. This box shows the maximum amount of text that should appear inside. If more room is needed please use a modal instead."
       tabIndex={0}
       triggerText="Tooltip label"
     >
-      <p>
-        This is some tooltip text. This box shows the maximum amount of text that should appear inside. If more room is needed please use a modal instead.
-      </p>
-      <div className="cds--tooltip__footer">
-        <Link href="#">Learn more</Link>
-        <Button size="small">
-          Create
-        </Button>
-      </div>
+      <button className={ tooltipTrigger } type="button">
+        <Information />
+      </button>
     </Tooltip>
   `}</ComponentVariant>
   <ComponentVariant
@@ -127,13 +124,13 @@ documentation, see the Storybooks for each framework below.
     <TooltipIcon
       tooltipText="Filter"
     >
-      <Filter16/>
+      <Filter/>
     </TooltipIcon>
   `}</ComponentVariant>
   <ComponentVariant
     id="definition-tooltip"
     knobs={{
-      TooltipDefinition: ['direction', 'align'],
+      TooltipDefinition: ['align'],
     }}
     links={{
       React:
@@ -146,10 +143,10 @@ documentation, see the Storybooks for each framework below.
         'https://web-components.carbondesignsystem.com/?path=/story/components-tooltip--definition',
     }}
   >{`
-    <TooltipDefinition
-      tooltipText="Brief description of the dotted, underlined word above."
+    <DefinitionTooltip
+      definition="Brief description of the dotted, underlined word above."
     >
       Definition Tooltip
-    </TooltipDefinition>
+    </DefinitionTooltip>
   `}</ComponentVariant>
 </ComponentDemo>
