@@ -6,6 +6,14 @@ description:
 tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 ---
 
+import {
+  Tabs,
+  unstable_TabList as TabList,
+  Tab,
+  unstable_TabPanels as TabPanels,
+  unstable_TabPanel as TabPanel,
+} from '@carbon/react';
+
 <PageDescription>
 
 Tabs are used to organize related content. They allow the user to navigate
@@ -93,10 +101,20 @@ such as modals, cards, or side panels.
       label: 'Tabs',
     },
   ]}
+  scope={{
+    Tabs,
+    TabList,
+    Tab,
+    TabPanels,
+    TabPanel,
+  }}
 >
   <ComponentVariant
     id="tabs"
-    knobs={{ Tabs: ['type'], Tab: ['disabled', 'selected'] }}
+    knobs={{
+      TabList: ['activation', 'contained'],
+      Tab: ['disabled'],
+    }}
     links={{
       React:
         'https://react.carbondesignsystem.com/?path=/story/components-tabs--default',
@@ -110,7 +128,7 @@ such as modals, cards, or side panels.
   >{`
 <div style={{ width: '50%' }}>
   <Tabs>
-    <TabList aria-label="List of tabs" contained {...args}>
+    <TabList aria-label="List of tabs" contained>
       <Tab>Tab Label 1</Tab>
       <Tab>Tab Label 2</Tab>
       <Tab disabled>Tab Label 3</Tab>
