@@ -48,7 +48,6 @@ const customProps = {
                 subTitle="Coming soon"
                 title="Carbon v11"
                 href="/migrating/guide/overview/"
-                color="dark"
                 actionIcon="arrowRight"
               />
             </div>
