@@ -162,6 +162,7 @@ const Knob = ({
     const propString = parsedKnobProps.concat(
       Object.entries(newKnobs[component]).reduce(
         (accumulator, [prop, value]) => {
+
           if (!value || value === `'default'`) {
             return accumulator;
           }
@@ -173,6 +174,7 @@ const Knob = ({
         ''
       )
     );
+
 
     setKnobs(newKnobs);
     if (isSelfClosingTag) {
@@ -191,7 +193,7 @@ const Knob = ({
       (defaultValue && defaultValue.value !== 'false') || undefined;
     return (
       <Checkbox
-        onChange={(val) => updateKnob(val)}
+        onChange={(event) => updateKnob(event.target.checked)}
         key={inputId}
         title={description}
         defaultChecked={defaultChecked}
@@ -257,9 +259,11 @@ const KnobContainer = ({ knobs, code, setCode, initialCode, variantId }) => {
       return [component, []];
     }
 
+
     knobs[component].forEach((knob) => {
-      if (fullComponent.props[knob].type) {
-        requestedProps[knob] = fullComponent.props[knob];
+      const prop = fullComponent.props[knob];
+      if (prop && prop.type) {
+        requestedProps[knob] = prop;
       } else {
         console.error(
           `Error: ${component} prop '${knob}' lacks sufficient docgen info.`
