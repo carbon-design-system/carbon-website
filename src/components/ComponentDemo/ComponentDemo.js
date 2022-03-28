@@ -106,7 +106,7 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
             label="Theme selector"
             titleText="Theme selector"
             items={Object.keys(themes)}
-            size="md"
+            size="lg"
           />
           <Dropdown
             onChange={onVariantChange}
@@ -115,7 +115,7 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
             titleText={childrenArray.length === 1 ? '' : 'Variant selector'}
             label="Variant selector"
             items={components}
-            size="md"
+            size="lg"
             className={cx(variantDropdown, {
               [hiddenDropdown]: childrenArray.length === 1,
             })}
