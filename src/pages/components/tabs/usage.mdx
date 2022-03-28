@@ -6,6 +6,14 @@ description:
 tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 ---
 
+import {
+  Tabs,
+  unstable_TabList as TabList,
+  Tab,
+  unstable_TabPanels as TabPanels,
+  unstable_TabPanel as TabPanel,
+} from '@carbon/react';
+
 <PageDescription>
 
 Tabs are used to organize related content. They allow the user to navigate
@@ -93,10 +101,20 @@ such as modals, cards, or side panels.
       label: 'Tabs',
     },
   ]}
+  scope={{
+    Tabs,
+    TabList,
+    Tab,
+    TabPanels,
+    TabPanel,
+  }}
 >
   <ComponentVariant
     id="tabs"
-    knobs={{ TabList: ['contained'] }}
+    knobs={{
+      TabList: ['activation', 'contained'],
+      Tab: ['disabled'],
+    }}
     links={{
       React:
         'https://react.carbondesignsystem.com/?path=/story/components-tabs--default',
@@ -108,26 +126,28 @@ such as modals, cards, or side panels.
         'https://web-components.carbondesignsystem.com/?path=/story/components-tabs--default',
     }}
   >{`
-        <div style={{ width: '50%' }}>
-          <Tabs>
-            <TabList>
-              <Tab id="tab-1">
-                Tab label 1"
-              </Tab>
-              <Tab id="tab-2">
-                Tab label 2
-              </Tab>
-              <Tab id="tab-3">
-                Tab label 3
-              </Tab>
-            </TabList>
-            <TabPanels>
-              <TabPanel>Content for tab 1</TabPanel>
-              <TabPanel>Content for tab 2</TabPanel>
-              <TabPanel>Content for tab 3</TabPanel>
-            </TabPanels>
-          </Tabs>
-        </div>
+<div style={{ width: '50%' }}>
+  <Tabs>
+    <TabList aria-label="List of tabs" contained>
+      <Tab>Tab Label 1</Tab>
+      <Tab>Tab Label 2</Tab>
+      <Tab disabled>Tab Label 3</Tab>
+      <Tab title="Tab Label 4 with a very long long title">
+          Tab Label 4 with a very long long title
+      </Tab>
+      <Tab>Tab Label 5</Tab>
+    </TabList>
+    <TabPanels>
+      <TabPanel>Tab Panel 1</TabPanel>
+      <TabPanel>
+        Tab Panel 2 <Button>Example button</Button>
+      </TabPanel>
+      <TabPanel>Tab Panel 3</TabPanel>
+      <TabPanel>Tab Panel 4</TabPanel>
+      <TabPanel>Tab Panel 5</TabPanel>
+    </TabPanels>
+  </Tabs>
+</div>
   `}</ComponentVariant>
 </ComponentDemo>
 
@@ -321,6 +341,9 @@ one tab can be selected at a time. When a user chooses a new item, the previous
 tab is automatically deselected. If a user navigates away from a tab, a user
 should return to the last tab selected.
 
+For detailed visual information about the various states for this component, see
+the [Style tab](https://carbondesignsystem.com/components/tabs/style).
+
 <Row>
 <Column colLg={8}>
 
@@ -333,9 +356,6 @@ should return to the last tab selected.
   Example of selected, unselected, and disabled states in line tabs (top) and
   contained tabs (bottom)
 </Caption>
-
-For detailed visual information about the various states for this component, see
-the [Style tab](https://carbondesignsystem.com/components/tabs/style).
 
 ### Scrollable
 
