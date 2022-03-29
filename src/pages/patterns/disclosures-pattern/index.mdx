@@ -1,25 +1,24 @@
 ---
 title: Disclosures
 description:
-  Disclosures are small moments that open up on a page and reveal additional
+  Disclosures are moments that open up on a page and reveal additional
   information related to the source it is triggered from.
 ---
 
 <PageDescription>
 
-Disclosures are small moments that open up on a page and reveal additional
-information related to the source it is triggered from.
+Disclosures are moments that open up on a page and reveal additional information
+related to the source it is triggered from.
 
 </PageDescription>
 
 <AnchorLinks>
 
 <AnchorLink>Overview</AnchorLink>
-<AnchorLink>Designing with disclosures</AnchorLink>
 <AnchorLink>Profile menu</AnchorLink>
-<AnchorLink>Context menu</AnchorLink>
 <AnchorLink>Settings and filter menus</AnchorLink>
 <AnchorLink>Combo button</AnchorLink>
+<AnchorLink>Accessibility</AnchorLink>
 <AnchorLink>Related</AnchorLink>
 <AnchorLink>References</AnchorLink>
 <AnchorLink>Feedback</AnchorLink>
@@ -41,10 +40,10 @@ and discloses the content.
 
 - Use when disclosing additional content about part of a UI.
 - Use when there is a need to include interactive elements in a popover.
-- Use to show settings, filtering, or sorting menus that affect large sections
-  of a page, for example in data tables, or an entire page.
-- Use when displaying content within types of menus, for example profile menus,
-  combo buttons, and menu buttons.
+- Use to show settings, filtering, or sorting menus that affect sections of a
+  page, for example in data tables, or an entire page.
+- Use when displaying content within types of dropdowns, for example profile
+  menus, combo buttons, and menu buttons.
 
 ### When not to use
 
@@ -69,12 +68,9 @@ width of six columns or less.
 
 #### Disclosures should be user initiated
 
-A disclosure should not take up a considerable amount of the size of the screen.
-Disclosures are meant to be smaller moments that can open on top of different
-areas of a page. They should not seem like a disruption to the users workflow
-and should not act as a screen takeover. Keep all content in a disclosure
-concise and only include information that is necessary. We recommend having a
-width of six columns or less.
+Disclosures should always be triggered to open or close by the user. Disclosures
+should never open automatically because this could be potentially intrusive to
+the user's workflow.
 
 #### One disclosure should open at a time
 
@@ -110,27 +106,21 @@ to disclose additional information in a disclosure.
 
 #### Do not hide critical information within a disclosure
 
-Do not nest one disclosure within another disclosure. Nesting disclosures
-creates a stacking effect and could confuse the user of where they should be
-focusing their attention and which disclosure they should be interacting with.
-Using submenus in a context menu that fly out to the sides is an acceptable way
-to disclose additional information in a disclosure.
-
-#### Use the toggletip component when appropriate
-
-A toggletip follows the disclosure pattern but is also offered as its own
-component with the functionality built in. Use the toggletip component when the
-popover is triggered `on click` with a mouse or by pressing `Enter` or `Space`
-while the trigger element has focus.
+Do not hide important information inside of a disclosure that the user may need
+in order to complete a task or workflow. Keep critical information at a higher
+level so the user has better visibility.
 
 ### Behaviors
 
 **Opening and closing a disclosure**
 
 To open a disclosure to reveal its content, click the trigger button it is
-related to. To close a disclosure, either click on the trigger button again,
-click anywhere outside of the open disclosure container or click on the close
-`x` icon if it is present within the disclosure.
+related to. If using a keyboard, press `Enter` or `Space`.
+
+To close a disclosure, either click on the trigger button again, click anywhere
+outside of the open disclosure container or click on the close `x` icon if it is
+present within the disclosure. If using a keyboard, press `Esc` or `Tab` to tab
+out of the disclosure.
 
 #### Dismissible action
 
@@ -194,13 +184,8 @@ If a trigger button contains an icon, the icon size should be either 20px or
 
 #### Popover
 
-A popover is a layer that appears above all other content on the page. Only one
-popover can appear at a time and can contain varying text and interactive
-elements while still being accessible. Popovers are used as a base layer in some
-of our components like tooltips, overflow menus, and dropdown menus. The
-disclosure pattern uses the popover component to disclose information.
-
-See the
+A popover component is used as the underlying layer of a disclosure to disclose
+its content. See the
 [popover component](https://v11.carbondesignsystem.com/components/popover/usage/)
 guidance for more information.
 
@@ -297,7 +282,7 @@ product interfaces.
 
 | Example                   | Use cases                                                                                                                                                                                                              |
 | ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Profile menu              | Profile menus are typically part of a UI shell header and can have navigational options related to a users account or active session.                                                                                  |
+| Profile menu              | Profile menus are typically part of a UI shell header and can have navigational options related to a user's account or active session.                                                                                 |
 | Settings and filter menus | Settings and filter menus are frequently used within data table toolbars to enable users to adjust content. Filter and sort menus can also be used for filtering large amounts of content on a page or an entire page. |
 | Combo button              | Combo buttons are used to contain multiple related actions that come with a default, primary action. Additional actions live in the menu.                                                                              |
 
@@ -370,7 +355,7 @@ menu.
 <Row>
 <Column colLg={8}>
 
-![Example of a simple and complex profile menu.](images/disclosures-profile-menu-structure.png)
+![Example of a closed and opened profile menu.](images/disclosures-profile-menu-structure.png)
 
 </Column>
 </Row>
@@ -379,15 +364,16 @@ menu.
 
 - `Tab` to the icon button trigger to apply focus.
 - To open the profile menu press `Enter` or `Space`.
+- Once opened, focus goes to the first item in the menu.
 - To navigate the profile menu items press the `Up` and `Down` arrow keys.
 - To select an item in the profile menu press `Enter`.
-- To close the profile menu press `Enter`, `Space`, or `Esc` .
+- To close the profile menu press `Esc` .
 
 ### Best practices
 
 #### Use with a global toolbar header
 
-If a product has a global toolbar header and offers login capabilities use the
+If a product has a global toolbar header and offers login capabilities, use the
 profile menu. Provide a way for the user to log out of an account, make changes
 to profile information, or navigate to settings.
 
@@ -428,16 +414,16 @@ accessible.
 <Caption>Anatomy of a settings menu.</Caption>
 
 1. **Icon button:** A trigger to open and close the popover.
-2. **Menu:** Uses the popover component as an underlying layer.
+2. **Popover:** Uses the popover component as an underlying layer.
 3. **Content area:** Area to place text and interactive elements.
-4. **Button group (optional):** To cancel or apply changes in settings or
-   filters that affect other content on the page.
+4. **Button group:** To cancel or apply changes in settings or filters that
+   affect other content on the page.
 
 ### Structure
 
 Settings or filter menus are made up of two parts—an icon button and a popover.
 These types of menus usually contain interactive elements. For example, use
-links to clear filters, use checkboxes, radio buttons, or dropdowns to adjust
+buttons to clear filters, use checkboxes, radio buttons, or dropdowns to adjust
 content and use sets of buttons to reset or apply changes. Content may vary
 depending on what is being filtered, sorted, or what settings need to be
 defined.
@@ -445,10 +431,12 @@ defined.
 <Row>
 <Column colLg={8}>
 
-![Example of a settings menu structure.](images/disclosures-settings-structure.png)
+![Example of a filter menu structure.](images/disclosures-settings-structure.png)
 
 </Column>
 </Row>
+
+<Caption>Example of a filter menu structure</Caption>
 
 ### Functionality
 
@@ -461,10 +449,12 @@ click on the icon button again, or anywhere on the page outside of the menu.
 <Row>
 <Column colLg={8}>
 
-![Example of a settings menu functionality.](images/disclosures-settings-functionality.png)
+![Example of a closed and opened filter menu.](images/disclosures-settings-functionality.png)
 
 </Column>
 </Row>
+
+<Caption>Example of a closed and opened filter menu.</Caption>
 
 #### Keyboard
 
@@ -472,9 +462,10 @@ click on the icon button again, or anywhere on the page outside of the menu.
 - To open the settings or filter menu press `Enter` or `Space`.
 - Upon opening the menu, the first interactive element in the menu receives
   focus.
-- To shift focus to different interactive elements in the menu press the `Up` or
-  `Down` arrow keys.
-- To close the profile menu press `Enter`, `Space`, or `Esc` .
+- To shift focus to different interactive elements in the menu press the `Tab`
+  or `Shift` + `Tab`.
+- To close the settings or filter menu press `Esc`. Pressing `Enter` or `Space`
+  on a button can also close the menu.
 
 ### Best practices
 
@@ -538,7 +529,7 @@ related to each other.
 
 #### Mouse
 
-Clicking the primary default button will perform the defaulted action. Clicking
+Clicking the primary default action will perform the defaulted action. Clicking
 the icon button triggers the popover to open and reveals the additional actions
 to choose from in a menu. Clicking on an action in the menu will perform the
 action. To close the menu click on the icon button again, or anywhere on the
@@ -623,7 +614,7 @@ NVDA: Users can trigger a button to open a disclosure popover by pressing
 
 Buttons are clickable interactive elements that are commonly used in disclosures
 as the trigger to open a popover. There are multiple variants of button that
-should be used in for certain use cases. For further guidance, see Carbon's
+should be used for certain use cases. For further guidance, see Carbon's
 [button component](https://www.carbondesignsystem.com/components/button/usage/)
 guidance.
 
@@ -639,8 +630,9 @@ For further guidance of how to use a popover, see Carbon’s
 Toggletip uses the disclosure pattern to toggle the visibility of a popover. The
 popover may contain a variety of information, from descriptive text to
 interactive elements. Toggletips are triggered on click to disclose the
-information inside of a popover. Further guidance on the toggletip component is
-coming soon.
+information inside of a popover. For further guidance, see Carbon's
+[toggletip component](https://v11.carbondesignsystem.com/components/toggletip/usage/)
+guidance.
 
 ## References
 
