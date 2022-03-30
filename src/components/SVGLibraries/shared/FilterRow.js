@@ -27,11 +27,12 @@ const FilterRow = ({
         labelText={`filter ${type}s by searching for their name or category`}
         onChange={onSearchChange}
         placeHolderText={placeHolderText}
+        size="lg"
       />
       <Dropdown
         className={dropdown}
         id="category-filter"
-        size="lg"
+        size="md"
         direction="bottom"
         selectedItem={selectedCategory}
         onChange={onDropdownChange}

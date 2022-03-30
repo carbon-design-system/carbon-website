@@ -65,6 +65,17 @@ const ActionBar = ({
       className={cx(container, {
         [hidden]: !isActionBarVisible,
       })}>
+      {/* Refactor to use IconButton once popover styles are included in gatsby-theme-carbon */}
+      {/* <IconButton
+        align="top"
+        kind="ghost"
+        size="sm"
+        label="Download SVG"
+        onFocus={() => setIsActionBarVisible(true)}
+        onClick={handleDownload}
+        className={tooltip}>
+        <Download16 />
+      </IconButton> */}
       <Button
         kind="ghost"
         size="small"
@@ -92,6 +103,17 @@ const ActionBar = ({
           className={tooltip}
           triggerClassName={trigger}
         />
+        // Refactor to use IconButton once popover styles are included in gatsby-theme-carbon
+        // <IconButton
+        //   align="top"
+        //   kind="ghost"
+        //   size="sm"
+        //   label={copyText}
+        //   onFocus={() => setIsActionBarVisible(true)}
+        //   onClick={handleDownload}
+        //   className={tooltip}>
+        //   <Code16 />
+        // </IconButton>
       )}
     </div>
   );
