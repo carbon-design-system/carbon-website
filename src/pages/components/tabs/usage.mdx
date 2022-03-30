@@ -6,12 +6,24 @@ description:
 tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 ---
 
+import { Tabs, TabList, Tab, TabPanels, TabPanel } from '@carbon/react';
+
 <PageDescription>
 
 Tabs are used to organize related content. They allow the user to navigate
 between groups of information that appear within the same context.
 
 </PageDescription>
+
+<InlineNotification>
+
+**v11 update:** The tab component variant names have changed. Default tabs has
+become _Line tabs_ and Container tabs has become _Contained tabs_. The tabs
+component has also been refactored and now includes a composable component API
+which allows for additional style modifications like icons in tabs and secondary
+labels.
+
+</InlineNotification>
 
 <AnchorLinks>
 
@@ -92,10 +104,20 @@ such as modals, cards, or side panels.
       id: 'tabs',
       label: 'Tabs',
     },
-  ]}>
+  ]}
+  scope={{
+    Tabs,
+    TabList,
+    Tab,
+    TabPanels,
+    TabPanel,
+  }}>
   <ComponentVariant
     id="tabs"
-    knobs={{ Tabs: ['type'], Tab: ['disabled', 'selected'] }}
+    knobs={{
+      TabList: ['activation', 'contained'],
+      Tab: ['disabled'],
+    }}
     links={{
       React:
         'https://react.carbondesignsystem.com/?path=/story/components-tabs--default',
@@ -107,34 +129,25 @@ such as modals, cards, or side panels.
         'https://web-components.carbondesignsystem.com/?path=/story/components-tabs--default',
     }}>{`
 <div style={{ width: '50%' }}>
-  <Tabs scrollIntoView={false}>
-    <Tab
-      href="#"
-      id="tab-1"
-      label="Tab label 1"
-    >
-      <div className="some-content">
-        Content for first tab goes here.
-      </div>
-    </Tab>
-    <Tab
-      href="#"
-      id="tab-2"
-      label="Tab label 2"
-    >
-      <div className="some-content">
-        Content for second tab goes here.
-      </div>
-    </Tab>
-    <Tab
-      href="#"
-      id="tab-3"
-      label='Tab label 3'
-    >
-      <div className="some-content">
-        Content for third tab goes here.
-      </div>
-    </Tab>
+  <Tabs>
+    <TabList aria-label="List of tabs" contained>
+      <Tab>Tab Label 1</Tab>
+      <Tab>Tab Label 2</Tab>
+      <Tab disabled>Tab Label 3</Tab>
+      <Tab title="Tab Label 4 with a very long long title">
+          Tab Label 4 with a very long long title
+      </Tab>
+      <Tab>Tab Label 5</Tab>
+    </TabList>
+    <TabPanels>
+      <TabPanel>Tab Panel 1</TabPanel>
+      <TabPanel>
+        Tab Panel 2 <Button>Example button</Button>
+      </TabPanel>
+      <TabPanel>Tab Panel 3</TabPanel>
+      <TabPanel>Tab Panel 4</TabPanel>
+      <TabPanel>Tab Panel 5</TabPanel>
+    </TabPanels>
   </Tabs>
 </div>
   `}</ComponentVariant>
@@ -154,6 +167,7 @@ are always at least two tabs and one is selected by default. Icons are optional.
 
 </Column>
 </Row>
+<Caption>Note: The close icon button pattern is not a configurable prop, it is instead enabled through the composable component API. This requires additional styling and configuration.</Caption>
 
 <Row>
 <Column colSm={2} colMd={4} colLg={4}>
@@ -185,6 +199,7 @@ B. Indicator <br /> C. Icon
 
 </Column>
 </Row>
+<Caption>Note: The optional secondary label and icon patterns are not configurable props, but are instead enabled through the composable component API. This requires additional styling and configuration.</Caption>
 
 <Row>
 <Column colSm={2} colMd={4} colLg={4}>
@@ -264,6 +279,11 @@ Use the
 to drive visual rhythm by spacing content in multiples of two columns and
 aligning the beginning and ending of the tab elements with content below the
 tabs when possible.
+
+<InlineNotification>
+  _Note: This is not currently implemented in the components, updates for
+  alignment to the grid are incoming!_
+</InlineNotification>
 
 <Row>
 <Column colLg={12}>
@@ -399,6 +419,12 @@ label.
 </Column>
 </Row>
 
+<Caption>
+  Note: Tabs with an icon is an example of a pattern. It is not currently
+  implemented by default in the component, it is instead enabled through the
+  composable component API. This requires additional styling and configuration.
+</Caption>
+
 ### Icon-only tabs
 
 You may use icon-only tabs with both line and contained tabs. Icons must be
@@ -426,6 +452,7 @@ secondary labels with line tabs or auto-width contained tabs.
 
 </Column>
 </Row>
+<Caption>Note: The secondary label is an example of a pattern. It is not currently implemented in the component.</Caption>
 
 ## Related
 

@@ -9,10 +9,20 @@ tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 
 <PageDescription>
 
-Notifications are messages that communicate information to the user. The two
-main variants of notifications are toast notifications and inline notifications.
+Notifications are messages that communicate information to the user. The three
+variants of notifications are toast notifications, inline notifications, and
+actionable notifications.
 
 </PageDescription>
+
+<InlineNotification>
+
+**v11 update:** An actionable variant has been added to the notification
+component. Actionable notifications allow for interactive elements within a
+notification, like buttons. Toast and inline notification no longer allow any
+interactive elements.
+
+</InlineNotification>
 
 <AnchorLinks>
 
@@ -22,6 +32,8 @@ main variants of notifications are toast notifications and inline notifications.
 <AnchorLink>Content</AnchorLink>
 <AnchorLink>Inline notifications</AnchorLink>
 <AnchorLink>Toast notifications</AnchorLink>
+<AnchorLink>Actionable notifications</AnchorLink>
+<AnchorLink>Universal behaviors</AnchorLink>
 <AnchorLink>Modifiers</AnchorLink>
 <AnchorLink>Related</AnchorLink>
 <AnchorLink>Feedback</AnchorLink>
@@ -39,15 +51,16 @@ with users, they are disruptive and should be used sparingly.
 
 For more context on when to use each notification variant, including modals,
 refer to the [notifications pattern](/patterns/notification-pattern/). Carbon
-only supports inline, toast, and modal notification variants, although some
-product teams also support banners and notification centers.
+only supports inline, toast, actionable, and modal notification variants,
+although some product teams also support banners and notification centers.
 
 ### Variants
 
-| Variant                         | Purpose                                                                                                                                                          |
-| ------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Inline](#inline-notifications) | Inline notifications show up in task flows, to notify users of the status of an action. They usually appear at the top of the primary content area.              |
-| [Toast](#toast-notifications)   | Toasts are non-modal, time-based window elements used to display short messages; they usually appear at the top of the screen and disappear after a few seconds. |
+| Variant                                | Purpose                                                                                                                                                          |
+| -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Inline](#inline-notifications)        | Inline notifications show up in task flows, to notify users of the status of an action. They usually appear at the top of the primary content area.              |
+| [Toast](#toast-notifications)          | Toasts are non-modal, time-based window elements used to display short messages; they usually appear at the top of the screen and disappear after a few seconds. |
+| [Actionable](#actionable-notification) | Actionable notifications allow for interactive elements within a notification styled like an inline or toast notification.                                       |
 
 ## Live demo
 
@@ -61,8 +74,7 @@ product teams also support banners and notification centers.
       id: 'inline',
       label: 'Inline notification',
     },
-  ]}
->
+  ]}>
   <ComponentVariant
     id="toast"
     knobs={{
@@ -77,8 +89,7 @@ product teams also support banners and notification centers.
       Vanilla: 'https://the-carbon-components.netlify.com/?nav=notification',
       'Web Components':
         'https://web-components.carbondesignsystem.com/?path=/story/components-notifications--toast',
-    }}
-  >{`
+    }}>{`
     <div>
       <ToastNotification
         caption="00:00:00 AM"
@@ -103,8 +114,7 @@ product teams also support banners and notification centers.
       Vanilla: 'https://the-carbon-components.netlify.com/?nav=notification',
       'Web Components':
         'https://web-components.carbondesignsystem.com/?path=/story/components-notifications--inline',
-    }}
-  >{`
+    }}>{`
   <div>
     <InlineNotification
       kind="info"
@@ -131,12 +141,13 @@ product teams also support banners and notification centers.
 
 1. **Icon:** Informs users of the kind of notification at a glance.
 2. **Title:** Gives users a quick overview of the notification.
-3. **Message (optional):** Provides additional detail and actionable steps for
-   the user to take.
-4. **Inline notification action (optional):** Ghost button that allows users to
+3. **Action (actionable only):** Ghost or tertiary button that allows users to
    address the notification or navigates them to a page with further details.
-5. **Close button (optional):** Closes the notification.
-6. **Time stamp (optional):** Shows the time the toast notification was sent.
+4. **Close button (optional):** Closes the notification.
+5. **Message:** Provides additional detail and actionable steps for the user to
+   take.
+6. **Timestamp (optional for toast):** Shows the time the toast notification was
+   sent.
 
 ## Content
 
@@ -152,6 +163,9 @@ apprised of the situation, and know what to do next.
   of information.
 - When possible, communicate the main message using just the title.
 - Use a period only if the title is a full sentence.
+- When using rich text, such as in a title, a screen reader will read aloud the
+  entire message as one sentence. Since the message will be read as one string,
+  make sure that any text styling does not convey meaning.
 
 #### Body content
 
@@ -159,10 +173,12 @@ apprised of the situation, and know what to do next.
 - Limit content to one or two short sentences.
 - Explain how to resolve the issue by including any troubleshooting actions or
   next steps. You can include links within the notification body that redirect
-  the user to next steps.
+  the user to next steps by using an actionable notification.
 
-#### Action
+#### Action (actionable only)
 
+- Only actionable notifications can contain interactive elements such as a link
+  or button.
 - Keep labels concise and clearly indicate the action the user can take.
 - Limit action labels to one or two words. For a list of recommended action
   labels, see Carbon's
@@ -170,10 +186,10 @@ apprised of the situation, and know what to do next.
 
 ### Overflow
 
-If a toast or inline notification requires a message longer than two lines,
-include a short message with a “View more” link that takes the user to a view of
-the full notification message. This can be either a full page with more details
-or a modal.
+If a toast or inline notification requires a message longer than two lines, use
+an actionable notification and include a short message with a “View more” link
+that takes the user to a view of the full notification message. This can be
+either a full page with more details or a modal.
 
 ### Further guidance
 
@@ -181,6 +197,10 @@ For further content guidance, see Carbon's
 [content guidelines](/guidelines/content/overview).
 
 ## Inline notifications
+
+Inline notifications show up in task flows, to notify users of the status of an
+action or system. They usually appear at the top of the primary content area or
+close to the item needing attention.
 
 ### Inline formatting
 
@@ -191,13 +211,6 @@ For further content guidance, see Carbon's
 
 </Column>
 </Row>
-
-#### Action
-
-Inline notifications have an optional ghost button action that is adjacent to
-the title and body content. On mobile screens the action button wraps under the
-body content. This button should allow users to take further action on the
-notification.
 
 #### Sizing
 
@@ -227,9 +240,7 @@ inputs, they should supplement the error state on that specific input field.
 </Column>
 </Row>
 
-### Behavior
-
-#### Dismissal
+### Dismissal
 
 Inline notifications do not dismiss automatically. They persist on the page
 until the user dismisses them or takes action that resolves the notification.
@@ -239,6 +250,9 @@ Including the close button is optional and should not be included if it is
 critical for a user to read or interact with the notification.
 
 ## Toast notifications
+
+Toasts are non-modal, time-based window elements used to display short messages;
+they usually appear at the top of the screen and disappear after a few seconds.
 
 ### Toast formatting
 
@@ -250,35 +264,13 @@ critical for a user to read or interact with the notification.
 </Column>
 </Row>
 
-#### Action
-
-Toast notifications can be actionable and allow for interactive elements. Only
-one tertiary action button is allowed within toast notifications. Action buttons
-should clearly state the user action. This action frequently takes users to a
-flow or page related to the message, where they can resolve the notification. If
-multiple actions are required, consider using a
-[dialog](https://carbondesignsystem.com/patterns/dialog-pattern/).
-
-<Row>
-<Column colLg={8}>
-
-![Example of toast notification with action button and time stamp](images/07_Toast_types_608.png)
-
-</Column>
-</Row>
-
-<Caption>
-  Example of a toast notification with action button (left) and a toast
-  notification with time stamp (right)
-</Caption>
-
 #### Time stamp
 
-Toast notifications include a time stamp at the bottom the container. The time
-stamp shows the time the notification was sent. Using time stamps is optional
-but toasts should be consistent across the product so either all toasts should
-include time stamps or none of them should. The time stamp is optional and can
-be removed if a third line of content is needed.
+Toast notifications can include a time stamp at the bottom the container. The
+time stamp shows the time the notification was sent. Using time stamps is
+optional but toasts should be consistent across the product so either all toasts
+should include time stamps or none of them should. The time stamp is optional
+and can be removed if a third line of content is needed.
 
 #### Sizing
 
@@ -301,21 +293,92 @@ dismissed.
 </Column>
 </Row>
 
-### Behavior
+### Dismissal
 
-#### Dismissal
+Toast notifications persist by default. Toasts do have the option to timeout and
+dismiss automatically after five seconds on the screen. They can also include a
+close button so users can dismiss them sooner. Toasts cover content on the
+screen so they should always be easily dismissed. Because toast notifications
+can dismiss automatically, users should be able to access them elsewhere after
+the toast disappears. This allows them to be accessible for users who need more
+time reading the notification or who may want to refer back to the notification.
 
-Toasts can be automatically dismissed or dismissed by the user. If the toast
-includes an action button, then the notification should remain on screen until
-the user dismisses it. The user then has enough time to interact with the button
-without the toast closing too soon. If a toast is not actionable, it can dismiss
-automatically after five seconds on the screen or be dismissed by the user. They
-can also include a close button so users can dismiss them sooner. Is a toast
-notification does dismiss automatically, users must be able to access them
-elsewhere after the toast disappears. This allows them to be accessible for
-users who need more time reading the notification or who may want to refer back
-to the notification. All toast notifications cover content on the screen so they
-should always be easily dismissed.
+## Actionable notifications
+
+Actionable notifications allow for interactive elements within a notification
+styled like an inline or toast notification. Actionable notifications, since
+they require user interaction, take focus when triggered and can be highly
+disruptive to screen readers and keyboard users. With actionable notifications,
+only one action is allowed per notification. This action frequently takes users
+to a flow or page related to the message, where they can resolve the
+notification. Consider using a notification center where a user can revisit and
+act on past notifications.
+
+### Formatting
+
+#### Inline
+
+Actionable inline notifications have a ghost button action that is adjacent to
+the title and body content. On mobile screens the action button wraps under the
+body content. This button should allow users to take further action on the
+notification.
+
+#### Toast
+
+Actionable toast notifications can include a button at the end of their body
+content. This button should be short and navigate users to a page or modal where
+they can take action to address the notification or find further information.
+Because toast notifications automatically dismiss, it is important that there
+are alternative routes to navigate to the link destination.
+
+<Row>
+<Column colLg={8}>
+
+![Example of actionable notifications](images/07_actionable_types_608.png)
+
+<Caption>
+  Actionable toast notification (top); actionable inline notification (bottom)
+</Caption>
+
+</Column>
+</Row>
+
+### Dismissal
+
+All notifications, including actionable, persist by default until a user
+dismissed them. If using inline styling refer to
+[inline notifications](#inline-notifications) for inline dismissal. If using
+toast styling for an actionable notification, then the notification should
+remain on screen until the user dismisses it. With the notification remaining
+open, the user has enough time to interact with the button without the toast
+closing too soon. Refer to [toast notifications](#toast-notifications) for
+further information.
+
+## Universal behaviors
+
+### Interactions
+
+#### Mouse
+
+Notifications are system generated. A user can close a dismissible notification
+by clicking the close `x`
+
+#### Keyboard
+
+For actionable notifications, the action gets focus first. Use `Tab` to move
+between action and the close `x`. To close notifications, press `Enter`
+or `Space` while the close `x` has focus or use the `Esc` key.
+
+#### Screen readers
+
+VoiceOver: To close notifications, press `Enter` or `Space` while the close `x`
+has focus or use the `Esc` key.
+
+JAWS: To close notifications, press `Enter` or `Space` while the close `x` has
+focus or use the `Esc` key.
+
+NVDA: To close notifications, press `Enter` or `Space` while the close `x` has
+focus or use the `Esc` key.
 
 ## Modifiers
 
@@ -337,25 +400,6 @@ low-contrast notifications.
 
 <Caption>
     High contrast notification (top); low contrast notification (bottom)
-</Caption>
-</Column>
-</Row>
-
-### Actionable
-
-Carbon supports actions within notifications for inline and toast variants. With
-actionable notifications, only one action is allowed per notification. This
-action frequently takes users to a flow or page related to the message, where
-they can resolve the notification. Consider using a notification center where a
-user can revisit and act on past notifications.
-
-<Row>
-<Column colLg={8}>
-
-![Actionable inline and toast notifications](images/08_toast-action-608.png)
-
-<Caption>
-    Actionable toast notification (top); actionable inline notification (bottom)
 </Caption>
 </Column>
 </Row>
