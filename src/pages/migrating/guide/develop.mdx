@@ -19,6 +19,7 @@ Step-by-step guide to updating your code from Carbon v10 to v11
 <AnchorLink>Overview</AnchorLink>
 <AnchorLink>carbon-components-react</AnchorLink>
 <AnchorLink>carbon-components</AnchorLink>
+<AnchorLink>@carbon/icons-react</AnchorLink>
 <AnchorLink>carbon-icons</AnchorLink>
 <AnchorLink>Elements</AnchorLink>
 
@@ -26,14 +27,14 @@ Step-by-step guide to updating your code from Carbon v10 to v11
 
 ## Overview
 
-This guide helps you update your project to Carbon v11. This guide is broken
-into sections based on packages that you are using in your project today. For
-most teams using Carbon, you'll want to use the
+This guide helps you update your project to Carbon v11. It is broken into
+sections based on packages that you are using in your project today. For most
+teams using Carbon, you'll want to use the
 [`carbon-components-react`](#carbon-components-react) section.
 
 One of the biggest changes coming to Carbon in v11 is that we are moving to
 dedicated packages under the `@carbon` scope. What this means for you is that if
-you previously were using the following packages:
+you were previously using the following packages:
 
 - `carbon-components`
 - `carbon-components-react`
@@ -516,8 +517,6 @@ longer needed. Below are the minor tweaks in naming or implementation.
 For more details about the changes to Tabs, see our storybook documentation
 [here](https://react.carbondesignsystem.com/?path=/docs/components-tabs--default).
 
-#### Tooltip
-
 ### Step 9: Done with @carbon/react!
 
 And that's it! You're done. At this point you have migrated to use Carbon v11
@@ -535,9 +534,13 @@ Starting in v11, the styles for Carbon live in the `@carbon/styles` package.
 Alternatively, you can continue to use `carbon-components` as it re-exports
 styles from this package directly.
 
-_Note: if you are using `carbon-components-react`, you can bring in styles
-directly from the new package `@carbon/react`. To learn more, visit the
-[`carbon-components-react`](#carbon-components-react) section_
+<InlineNotification>
+
+If you are using carbon-components-react, you can bring in styles directly from
+the new package @carbon/react. To learn more, visit the
+[carbon-components-react](#carbon-components-react) section.
+
+</InlineNotification>
 
 ### Step 1: Install @carbon/styles
 
@@ -754,6 +757,96 @@ us over on Slack or open up a discussion on
 [GitHub](https://github.com/carbon-design-system/carbon/discussions/categories/help).
 We want to make this migration experience as seamless as possible and will be
 monitoring both areas to help out.
+
+## @carbon/icons-react
+
+The `@carbon/icons-react` package has been updated to minimize the number of
+exports from the package to help reduce build and compile times. It also has
+been updated to remove icons that were deprecated in v10.
+
+<InlineNotification>
+
+If you are using @carbon/react, you can now import icons directly from
+@carbon/react/icons.
+
+</InlineNotification>
+
+### Changes to size
+
+This update includes a change to the API of the icon components that come from
+this package. Previously, we would export icons that included the size of the
+asset. This update allows you to bring the icon directly and specify the size
+using the `size` prop.
+
+**Before**
+
+```jsx
+import { Add32, Add24, Add20, Add16 } from '@carbon/icons-react';
+
+function MyComponent() {
+  return (
+    <>
+      <Add32 />
+      <Add24 />
+      <Add20 />
+      <Add16 />
+    </>
+  );
+}
+```
+
+**After**
+
+```jsx
+import { Add } from '@carbon/icons-react';
+
+function MyComponent() {
+  return (
+    <>
+      <Add size={32} />
+      <Add size={24} />
+      <Add size={20} />
+      <Add />
+    </>
+  );
+}
+```
+
+### Removed icons
+
+The following deprecated icons have been removed. Use the table below to find
+their replacement, if available, in v11.
+
+| Asset                           | v10                         | v11                         |
+| :------------------------------ | :-------------------------- | :-------------------------- |
+| app-switcher                    | AppSwitcher                 | Switcher                    |
+| arrows                          | Arrows                      | ArrowsVertical              |
+| back-to-top                     | BackToTop                   | UpToTop                     |
+| checkbox--undeterminate         | CheckboxUndeterminate       | CheckboxIndeterminate       |
+| checkbox--undeterminate--filled | CheckboxUndeterminateFilled | CheckboxIndeterminateFilled |
+| cloud--lightning                | CloudLightning              | Removed                     |
+| cloud--rain                     | CloudRain                   | Removed                     |
+| cloud--snow                     | CloudSnow                   | Removed                     |
+| delete                          | Delete                      | TrashCan                    |
+| edit-filter                     | EditFilter                  | FilterEdit                  |
+| sunny                           | Sunny                       | Removed                     |
+| research--bloch-sphere          | ResearchBlockSphere         | BlochSphere                 |
+| research--hinton-plot           | ResearchHintonPlot          | HintonPlot                  |
+| research--matrix                | ResearchMatrix              | Matrix                      |
+| misuse--alt                     | MisuseAlt                   | MisuseOutline               |
+| logo--google                    | LogoGoogle                  | Removed                     |
+| mammogram--stacked              | MammogramStacked            | Removed                     |
+| logo--delicious                 | LogoDelicious               | Removed                     |
+| logo--stumbleupon               | LogoStumbleUpon             | Removed                     |
+| letter--Aa--large               | LetterAaLarge               | TextFont                    |
+| glyph--caution-inverted         | GlyphCautionInverted        | CautionInverted             |
+| glyph--caution                  | GlyphCaution                | Caution                     |
+| glyph--circle-fill              | GlyphCircleFill             | CircleFill                  |
+| glyph--circle-stroke            | GlyphCircleStroke           | CircleStroke                |
+| glyph--critical                 | GlyphCritical               | Critical                    |
+| glyph--incomplete               | GlyphIncomplete             | Incomplete                  |
+| glyph--square-fill              | GlyphSquareFill             | SquareFill                  |
+| glyph--undefined                | GlyphUndefined              | Undefined                   |
 
 ## carbon-icons
 
