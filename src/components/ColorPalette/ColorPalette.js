@@ -187,7 +187,7 @@ const ColorPalette = ({
             <Dropdown
               label="Color group selection"
               id="color-group-dropdown"
-              size="md"
+              size="lg"
               items={dropdownItems}
               onChange={onDropdownChange}
               selectedItem={dropdownItems[groupNumber - 1]}
