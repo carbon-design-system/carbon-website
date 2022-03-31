@@ -31,7 +31,7 @@ const IconLibrary = () => {
         return accumulator;
       }
 
-      const path = [...icon.namespace, icon.name].join('/');
+      const path = icon.moduleInfo.filepath;
 
       if (icon.sizes.length === 1 && icon.sizes[0] === 'glyph') {
         return [
@@ -48,9 +48,7 @@ const IconLibrary = () => {
         ...accumulator,
         {
           ...icon,
-          Component: loadable(() =>
-            import(`@carbon/icons-react/lib/${path}/32`)
-          ),
+          Component: loadable(() => import(`@carbon/icons-react/lib/${path}`)),
         },
       ];
     }, []);

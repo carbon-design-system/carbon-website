@@ -5,6 +5,8 @@ description:
 tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 ---
 
+import { Tabs, TabList, Tab, TabPanels, TabPanel } from '@carbon/react';
+
 <PageDescription>
 
 Preview the tabs component with the React live demo. For detailed code usage
@@ -59,55 +61,60 @@ documentation, see the Storybooks for each framework below.
 
 ## Live demo
 
+<!-- knobs={{ Tabs: ['type'], Tab: ['disabled', 'selected'] }} -->
+
 <ComponentDemo
   components={[
     {
       id: 'tabs',
       label: 'Tabs',
     },
-  ]}>
+  ]}
+  scope={{
+    Tabs,
+    TabList,
+    Tab,
+    TabPanels,
+    TabPanel,
+  }}
+>
   <ComponentVariant
     id="tabs"
-    knobs={{ Tabs: ['type'], Tab: ['disabled', 'selected'] }}
+    knobs={{
+      TabList: ['activation', 'contained'],
+      Tab: ['disabled'],
+    }}
     links={{
       React:
         'https://react.carbondesignsystem.com/?path=/story/components-tabs--default',
       Angular:
         'https://angular.carbondesignsystem.com/?path=/story/components-tabs--basic',
-      Vue:
-        'http://vue.carbondesignsystem.com/?path=/story/components-cvtabs--default',
+      Vue: 'http://vue.carbondesignsystem.com/?path=/story/components-cvtabs--default',
       Vanilla: 'https://the-carbon-components.netlify.com/?nav=tabs',
-      "Web Components": 'https://web-components.carbondesignsystem.com/?path=/story/components-tabs--default',
-    }}>{`
-<div style={{ width: '50%' }}>
-  <Tabs scrollIntoView={false}>
-    <Tab
-      href="#"
-      id="tab-1"
-      label="Tab label 1"
-    >
-      <div className="some-content">
-        Content for first tab goes here.
-      </div>
-    </Tab>
-    <Tab
-      href="#"
-      id="tab-2"
-      label="Tab label 2"
-    >
-      <div className="some-content">
-        Content for second tab goes here.
-      </div>
-    </Tab>
-    <Tab
-      href="#"
-      id="tab-3"
-      label='Tab label 3'
-    >
-      <div className="some-content">
-        Content for third tab goes here.
-      </div>
-    </Tab>
+      'Web Components':
+        'https://web-components.carbondesignsystem.com/?path=/story/components-tabs--default',
+    }}
+  >{`
+<div style={{ width: '75%' }}>
+  <Tabs>
+    <TabList aria-label="List of tabs">
+      <Tab>Tab Label 1</Tab>
+      <Tab>Tab Label 2</Tab>
+      <Tab>Tab Label 3</Tab>
+      <Tab>
+          Tab Label 4 with a very long long title
+      </Tab>
+      <Tab>Tab Label 5</Tab>
+    </TabList>
+    <TabPanels>
+      <TabPanel>Tab Panel 1</TabPanel>
+      <TabPanel>
+        Tab Panel 2 <Button>Example button</Button>
+      </TabPanel>
+      <TabPanel>Tab Panel 3</TabPanel>
+      <TabPanel>Tab Panel 4</TabPanel>
+      <TabPanel>Tab Panel 5</TabPanel>
+    </TabPanels>
   </Tabs>
 </div>
   `}</ComponentVariant>

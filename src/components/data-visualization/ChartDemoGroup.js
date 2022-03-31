@@ -32,23 +32,23 @@ const ChartDemoGroup = ({ demoGroup, light }) => {
       {light !== true && <H2>{demoGroup.title}</H2>}
 
       {light !== true && demoGroup.description && (
-        <div className="bx--row">
-          <div className="bx--col-sm-4 bx--col-md-8 bx--col-lg-8">
+        <div className="cds--row">
+          <div className="cds--col-sm-4 cds--col-md-8 cds--col-lg-8">
             <P className="dataviz-copy">{demoGroup.description}</P>
           </div>
         </div>
       )}
 
       {light !== true && demo.description && (
-        <div className="bx--row">
-          <div className="bx--col-sm-4 bx--col-md-8 bx--col-lg-8">
+        <div className="cds--row">
+          <div className="cds--col-sm-4 cds--col-md-8 cds--col-lg-8">
             <P className="dataviz-copy">{demo.description}</P>
           </div>
         </div>
       )}
 
-      <div className="bx--row" style={{ marginTop: '1.5rem' }}>
-        <div className="bx--col-sm-4 bx--col-md-8 bx--col-lg-8">
+      <div className="cds--row" style={{ marginTop: '1.5rem' }}>
+        <div className="cds--col-sm-4 cds--col-md-8 cds--col-lg-8">
           <div
             className="chart-demo-wrapper"
             id={generateHeadingID(demo.title)}>

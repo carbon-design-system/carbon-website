@@ -1,5 +1,5 @@
 ---
-title: Button
+title: Buttons
 description:
   Buttons are used to initialize an action. Button labels express what action
   will occur when the user interacts with it.
@@ -46,8 +46,8 @@ interacts with it.
 #### When to use
 
 Use buttons to communicate actions users can take and to allow users to interact
-with the page. Each page should have only one primary button, and any remaining calls
-to action should be represented as lower emphasis buttons.
+with the page. Each page should have only one primary button, and any remaining
+calls to action should be represented as lower emphasis buttons.
 
 #### When not to use
 
@@ -80,10 +80,10 @@ actions.
 
 ## Live demo
 
-import { Add16 } from '@carbon/icons-react';
+import { Add } from '@carbon/react/icons';
 
 <ComponentDemo
-  scope={{ Add16 }}
+  scope={{ Add }}
   components={[
     {
       id: 'button',
@@ -97,7 +97,8 @@ import { Add16 } from '@carbon/icons-react';
       id: 'icon-only',
       label: 'Icon only',
     },
-  ]}>
+  ]}
+>
   <ComponentVariant
     id="button"
     knobs={{
@@ -108,11 +109,12 @@ import { Add16 } from '@carbon/icons-react';
         'https://react.carbondesignsystem.com/?path=/story/components-button--default',
       Angular:
         'https://angular.carbondesignsystem.com/?path=/story/components-button--basic',
-      Vue:
-        'http://vue.carbondesignsystem.com/?path=/story/components-cvbutton--default',
+      Vue: 'http://vue.carbondesignsystem.com/?path=/story/components-cvbutton--default',
       Vanilla: 'https://the-carbon-components.netlify.com/?nav=button',
-      "Web Components": 'https://web-components.carbondesignsystem.com/?path=/story/components-button--default',
-    }}>{`
+      'Web Components':
+        'https://web-components.carbondesignsystem.com/?path=/story/components-button--default',
+    }}
+  >{`
       <Button>Button</Button>
     `}</ComponentVariant>
   <ComponentVariant
@@ -125,12 +127,13 @@ import { Add16 } from '@carbon/icons-react';
         'https://react.carbondesignsystem.com/?path=/story/components-button--default',
       Angular:
         'https://angular.carbondesignsystem.com/?path=/story/components-button--basic',
-      Vue:
-        'http://vue.carbondesignsystem.com/?path=/story/components-cvbutton--default',
+      Vue: 'http://vue.carbondesignsystem.com/?path=/story/components-cvbutton--default',
       Vanilla: 'https://the-carbon-components.netlify.com/?nav=button',
-      "Web Components": 'https://web-components.carbondesignsystem.com/?path=/story/components-button--default',
-    }}>{`
-      <Button renderIcon={Add16}>Button</Button>
+      'Web Components':
+        'https://web-components.carbondesignsystem.com/?path=/story/components-button--default',
+    }}
+  >{`
+      <Button renderIcon={Add}>Button</Button>
     `}</ComponentVariant>
   <ComponentVariant
     id="icon-only"
@@ -142,18 +145,15 @@ import { Add16 } from '@carbon/icons-react';
         'https://react.carbondesignsystem.com/?path=/story/components-button--icon-button',
       Angular:
         'https://angular.carbondesignsystem.com/?path=/story/components-button--basic',
-      Vue:
-        'http://vue.carbondesignsystem.com/?path=/story/components-cvbutton--icon-only',
+      Vue: 'http://vue.carbondesignsystem.com/?path=/story/components-cvbutton--icon-only',
       Vanilla: 'https://the-carbon-components.netlify.com/?nav=button',
-      "Web Components": 'https://web-components.carbondesignsystem.com/?path=/story/components-button--icon',
-    }}>{`
-      <Button
-        hasIconOnly
-        renderIcon={Add16}
-        tooltipAlignment="center"
-        tooltipPosition="bottom"
-        iconDescription="Button description here"
-      />
+      'Web Components':
+        'https://web-components.carbondesignsystem.com/?path=/story/components-button--icon',
+    }}
+  >{`
+     <IconButton align='top' label='Icon button'>
+       <Add size={16}/>
+     </IconButton>
   `}</ComponentVariant>
 </ComponentDemo>
 
@@ -224,11 +224,12 @@ size. For guidance on button heights as well as type sizes and tokens, see
 
 | Button size        | Use case                                                                                                                                                                                                                                                 |
 | ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| _Full bleed_       | Use when buttons bleed to the edge of a larger component, like side panels or modals. _Note: This variant is not offered in the kit because it does not have a coded counterpart. Carbon only offers this button in the context of the modal component._ |
-| _Default_          | Use as primary page actions and other standalone actions.                                                                                                                                                                                                |
-| _Large expressive_ | The larger expressive type size within this button provides balance when used with 16px body copy. Used by the IBM.com team in website banners.                                                                                                          |
-| _Field_            | Use when buttons are paired with input fields.                                                                                                                                                                                                           |
-| _Small_            | Use when there is not enough vertical space for the default or field-sized button.                                                                                                                                                                       |
+| Small              | Use when there is not enough vertical space for the default or field-sized button.                                                                                                                                                                       |
+| Medium             | Use when buttons are paired with input fields.                                                                                                                                                                                                           |
+| Large (productive) | This is the most common button size. Use 14px body copy.                                                                                                                                                                                                 |
+| Large (expressive) | The larger expressive type size within this button provides balance when used with 16px body copy. Used by the IBM.com team in website banners.                                                                                                          |
+| Extra large        | Use when buttons bleed to the edge of a larger component, like side panels or modals. _Note: This variant is not offered in the kit because it does not have a coded counterpart. Carbon only offers this button in the context of the modal component._ |
+| 2XL                | Use when buttons bleed to the edge of a larger component, like side panels or modals. _Note: This variant is not offered in the kit because it does not have a coded counterpart. Carbon only offers this button in the context of the modal component._ |
 
 <Row>
 <Column colLg={8}>
@@ -367,19 +368,19 @@ Other fluid components include tiles and most recently,
 #### Fluid button border
 
 Many product designers have approached us looking for more guidance around
-borders between all fluid buttons. In a
-[recent update](https://github.com/carbon-design-system/carbon/issues/5638), we
-added a 1px border between all fluid buttons that call the `$ui-03` token for
-subtle borders. This feature adds a 3:1 distinction between the two interactive
-UI elements. The border is a recommended feature to improve accessibility in
-data visualizations, and the same logic should apply here.
+borders between all fluid buttons. There is a 1px border between all fluid
+buttons that call the `$button-separator` token for borders. This feature adds a
+3:1 distinction between the two interactive UI elements. The border is a
+recommended feature to improve accessibility.
 
 <Row>
 <Column colLg={8}>
 
-![Example of $ui-03 token border between fluid buttons](images/button_usage_14.png)
+![Example of $button-separator token border between fluid buttons](images/button_usage_14.png)
 
-<Caption>Example of $ui-03 token border between fluid buttons</Caption>
+<Caption>
+  Example of $button-separator token border between fluid buttons
+</Caption>
 
 </Column>
 </Row>
@@ -594,7 +595,8 @@ Users can trigger a button by clicking anywhere within the button container.
 #### Keyboard
 
 Users can trigger a button by pressing `Enter` or `Space` while the button has
-focus. For additional keyboard interactions, see the [accessibility tab](/components/button/accessibility).
+focus. For additional keyboard interactions, see the
+[accessibility tab](/components/button/accessibility).
 
 ## Modifiers
 

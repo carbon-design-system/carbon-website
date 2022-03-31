@@ -13,38 +13,38 @@ tabs: ['Overview', 'Code']
 
 <PageDescription>
 
-Spacing is an important — and often overlooked — part of visual design. Carbon
-takes a lot of the guesswork out of spacing to help designers deliver clear,
-functional layouts.
+Spacing is an important — and often overlooked — part of product design. Carbon
+provides tokens and other utilities to take the guesswork out of spacing and
+help deliver clear, functional layouts
 
 </PageDescription>
 
 <AnchorLinks>
 
-<AnchorLink>Spacing scale</AnchorLink>
+<AnchorLink>Spacing</AnchorLink>
+<AnchorLink>Stacking</AnchorLink>
 <AnchorLink>Designing with space</AnchorLink>
 <AnchorLink>FAQ</AnchorLink>
 
 </AnchorLinks>
 
-### Applying spacing
+## Introduction
 
-The spacing scale can be applied to `margin` or `padding` properties, as well as
-to both vertical and horizontal edges. The token takes the place of the values
-normally assigned to `margin` and `padding`. The following are all approved ways
-to syntactically apply Carbon spacing tokens:
+Spacing is the negative area between elements and components. It is commonly
+controlled in code with `margin` and `padding`. Carbon offers several methods
+such as tokens and layout components to make implementing spacing in product
+easier and more consistent.
 
-```css
-margin: $spacing-03;
-margin: $spacing-03 $spacing-01;
-margin: $spacing-07 0 $spacing-04 0;
-margin-right: $spacing-05;
-padding: $spacing-04;
-padding: $spacing-05 $spacing-03;
-padding: $spacing-07 $spacing-04 0 $spacing-04;
-```
+## Spacing
 
-## Spacing scale
+The Carbon spacing scale complements the 2x Grid and typography scale by using
+using multiples of two, four, and eight. It includes both small increments
+needed to create appropriate spatial relationships for detail-level designs as
+well as larger increments used to control the density of a design. Each level of
+the spacing scale has its own token. Spacing tokens can be used inside of
+components for building and between components for layout spacing.
+
+### Spacing scale
 
 Use the spacing scale when building individual components. It includes small
 increments needed to create appropriate spatial relationships for detail-level
@@ -72,6 +72,23 @@ designs. This scale is applied and used within all Carbon components.
 
 <br />
 
+### Applying spacing
+
+The spacing scale can be applied to `margin` or `padding` properties, as well as
+to both vertical and horizontal edges. The token takes the place of the values
+normally assigned to `margin` and `padding`. The following are all approved ways
+to syntactically apply Carbon spacing tokens:
+
+```css
+margin: $spacing-03;
+margin: $spacing-03 $spacing-01;
+margin: $spacing-07 0 $spacing-04 0;
+margin-right: $spacing-05;
+padding: $spacing-04;
+padding: $spacing-05 $spacing-03;
+padding: $spacing-07 $spacing-04 0 $spacing-04;
+```
+
 <Row>
 <Column colLg={8}>
 
@@ -92,6 +109,32 @@ Each has its own unique use case.
 | `center` | Used to fluidly center an element between two edges.                                                                                                              |     |
 | `auto`   | Used on one side of an element to allow undefined space to automatically grow and shrink according to screen size. Typically used for asymmetrical fluid spacing. |     |
 | `gutter` | Used to space items between the grid's 12 columns                                                                                                                 |     |
+
+## Stacking
+
+Stacking is a form of spacing that creates equal distance between components or
+a group of items. Carbon provides a stack component that uses the Carbon spacing
+scale to determine how much space there should be between items. The stack
+component supports both horizontal and vertical orientations.
+
+The Stack component is a useful layout utility in a component-based model. This
+allows components to not use margin and instead delegate the responsibility of
+positioning and layout to parent components. It also supports a custom `gap`
+property which will allow a user to provide a custom value for the gap of the
+layout.
+
+For more information, see the `Stack` component in
+[React storybook](https://carbon-react-next.netlify.app/?path=/story/layout-stack--default).
+
+<Row>
+<Column colLg={8}>
+
+![Example of spacing tokens applied with the stack component](images/spacing-stack.png)
+
+<Caption>Example of spacing tokens applied with the stack component</Caption>
+
+</Column>
+</Row>
 
 ## Designing with space
 
@@ -145,13 +188,10 @@ should be avoided whenever possible.
 
 Yes, in fact it's encouraged.
 
-#### Can I still use percentages for spacing?
+#### Can I use percentages for spacing?
 
-Percentages like 50% (1/2) or 33% (1/3) are still acceptable ways to divide a
-page. Percentages can all still be used to control max and min widths. However,
-using percentages for padding or margin inside of a component or element should
-be avoided (ex. `padding-right: 10%`). The exception to this is if you’re
-applying it to fit the 5% grid margins.
+Percentages like 50% (1/2) or 33% (1/3) are acceptable ways to divide a page.
+Percentages can all be used to control max and min widths.
 
 #### Are the spacing tokens responsive?
 
