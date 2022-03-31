@@ -6,417 +6,72 @@ description:
 tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 ---
 
-import {
-  StructuredListWrapper,
-  StructuredListHead,
-  StructuredListBody,
-  StructuredListRow,
-  StructuredListInput,
-  StructuredListCell,
-  OrderedList,
-  ListItem,
-} from 'carbon-components-react';
+<PageDescription>
+
+Design annotations are needed for specific instances shown below, but for the standard checkbox component, Carbon already incorporates accessibility.
+
+</PageDescription>
 
 <AnchorLinks>
-  <AnchorLink>How it works</AnchorLink>
-  <AnchorLink>Accessibility considerations</AnchorLink>
-  <AnchorLink>Resources</AnchorLink>
-  <AnchorLink>Accessibility testing</AnchorLink>
+  <AnchorLink>What Carbon provides</AnchorLink>
+  <AnchorLink>Design recommendations</AnchorLink>
+  <AnchorLink>Development considerations</AnchorLink>
 </AnchorLinks>
 
-## How it works
+## What Carbon provides
 
-The Checkbox component is used to provide a list of options where the user can
-select multiple options, including all or none. A checkbox control has three
-possible states indicated by the value of its `aria-checked` attribute, “true”
-when selected, “false” when unselected and “mixed” when in the indeterminate
-state. The indeterminate state comes into play when the checkbox contains a
-sublist of selections, some of which are selected, and some unselected.
+Carbon bakes keyboard operation into its components, improving the experience of blind users and others who operate via the keyboard. Carbon incorporates many other accessibility considerations, some of which are described below.
 
-The `Tab` key is used to move focus to each checkbox. Checkboxes identified as
-disabled are ignored in the tab order. The `Space` key is used to select and
-deselect each checkbox when the checkbox has focus. When the checkbox is
-selected the ARIA state is set to `aria-checked="true"` and when it is
-deselected `aria-checked="false"`. An indeterminable checkbox has an ARIA state
-that is set to `aria-checked="mixed"` until it is selected or deselected by the
-user. Fieldset and Legend elements are used for labeling the checkbox group.
+### Keyboard interactions
 
-## Accessibility considerations
-
-This component has been validated to meet the
-[WCAG 2.0 AA](https://www.w3.org/TR/WCAG20/) and
-[Section 508](http://www.section508.gov/) accessibility guidelines, however
-changes made by the content owner can affect accessibility compliance. Be sure
-to review and follow the guidance in this section when updating or adding new
-content to this component.
-
-1. Checkboxes must have a clear and concise label.
-2. Users should be warned if selecting a checkbox will cause a change in
-   context.
-3. If the checkbox is a required field include the
-   [aria-required property](https://www.w3.org/TR/WCAG20-TECHS/ARIA2.html) and
-   indicate that it is a required field and use the validation message for input
-   errors.
-
-## Resources
-
-#### Helpful resources for creating customized accessible implementations
-
-- [W3C WAI-ARIA Authoring Practices Checkbox Design Pattern](https://www.w3.org/TR/wai-aria-practices/examples/checkbox/checkbox-1/checkbox-1.html)
-  covers the usage of ARIA names, state and roles, as well as the expected
-  keyboard interactions.
-- [IBM Accessibility Requirements:](https://www.ibm.com/able/requirements/requirements/)
-  - [1.3.1 Information and Relationships](https://www.ibm.com/able/requirements/requirements/#1_3_1)
-    (WCAG Success Criteria
-    [1.3.1](https://www.w3.org/TR/2016/NOTE-UNDERSTANDING-WCAG20-20161007/content-structure-separation-programmatic.html))
-  - [3.3.2 Labels or Instructions](https://www.ibm.com/able/requirements/requirements/#3_3_2)
-    (WCAG Success Criteria
-    [3.3.2](https://www.w3.org/TR/UNDERSTANDING-WCAG20/minimize-error-cues.html))
-  - [4.1.2 Name, Role, Value](https://www.ibm.com/able/requirements/requirements/#4_1_2)
-    (WCAG Success Criteria
-    [4.2.1](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value))
-
-## Accessibility testing
-
-Accessibility issues are tracked in the
-[Carbon Component GitHub repository](https://github.com/carbon-design-system/carbon/issues?q=is%3Aopen+label%3A%22type%3A+a11y+%E2%99%BF%22+label%3A%22component%3A+checkbox%22+).
-
-### Automated test
+Each checkbox can be reached by `Tab` and selected with `Space` independently. This matches the established HTML interaction pattern.
 
 <Row>
-  <Column noGutterSm>
-    <StructuredListWrapper>
-      <StructuredListHead>
-        <StructuredListRow head>
-          <StructuredListCell head>
-            Automated test environment
-          </StructuredListCell>
-          <StructuredListCell head>Results</StructuredListCell>
-        </StructuredListRow>
-      </StructuredListHead>
-      <StructuredListBody>
-        <StructuredListRow>
-          <StructuredListCell>
-            - macOS Mojave version 10.14.6 with VoiceOver
-            <br />
-            - Chrome Version 77.0.3865.90
-            <br />
-            - Dynamic Assessment Plugin Version 1.8.0.0 - IBM Accessibility WCAG
-            2.1 Sept. 2019 Ruleset
-            <br />- Carbon React Version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>DAP Test</strong>
-            <br />- Violations
-          </StructuredListCell>
-        </StructuredListRow>
-      </StructuredListBody>
-    </StructuredListWrapper>
-  </Column>
+<Column colLg={8}>
+
+![example of checkbox keyboard interaction](images/checkbox-accessibility-1.png)
+
+<Caption>Carbon checkboxes retain expected interactions.</Caption>
+
+</Column>
 </Row>
 
-### macOS Screen reader tests
+### Grouping
+
+For groups of checkboxes, Carbon already provides the code for screen readers to properly detect the set of checkboxes and announce the group label.
 
 <Row>
-  <Column noGutterSm>
-    <StructuredListWrapper>
-      <StructuredListHead>
-        <StructuredListRow head>
-          <StructuredListCell head>Environment </StructuredListCell>
-          <StructuredListCell head>Results</StructuredListCell>
-        </StructuredListRow>
-      </StructuredListHead>
-      <StructuredListBody>
-        <StructuredListRow>
-          <StructuredListCell>
-            - macOS Mojave version 10.14.6 with VoiceOver
-            <br />
-            - Chrome Version 77.0.3865.90
-            <br />- Carbon React Version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>VoiceOver(VO) Test:</strong>
-            <OrderedList>
-              <ListItem>
-                Press the Tab key to navigate to the first checkbox. VO
-                announces the label, the state as checked, that it is a checkbox
-                input and the label group.
-              </ListItem>
-              <ListItem>
-                Press the Space key to select or deselect the checkbox.
-              </ListItem>
-              <ListItem>
-                Press the Tab key to navigate to the indeterminable checkbox. VO
-                announces the label, and the state as mixed.
-              </ListItem>
-              <ListItem>
-                Press the Space key to select or deselect the checkbox.
-              </ListItem>
-              <ListItem>
-                Press the Tab key and the disabled checkbox is skipped.
-              </ListItem>
-              <ListItem>
-                Control-Option-Left Arrow key to read the disabled field. VO
-                announces, "Disabled checkbox, dimmed unchecked checkbox".
-              </ListItem>
-              <ListItem>
-                Tab to the next group of checkboxes with the same results.
-              </ListItem>
-            </OrderedList>
-          </StructuredListCell>
-        </StructuredListRow>
-        <StructuredListRow>
-          <StructuredListCell>
-            - macOS Mojave version 10.14.6 with VoiceOver
-            <br />
-            - Safari Version 13.0.2
-            <br />- Carbon React Version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>VoiceOver(VO) Test:</strong>
-            <OrderedList>
-              <ListItem>
-                Press the Tab key to navigate to the first checkbox. VO
-                announces the label, the state as checked, the checkbox legend
-                and the group.
-              </ListItem>
-              <ListItem>
-                Press the Space key to select or deselect the checkbox.
-              </ListItem>
-              <ListItem>
-                Press the Tab key to navigate to the indeterminable checkbox. VO
-                announces the label, and the state as unchecked (Note: The mixed
-                state is not announced).
-              </ListItem>
-              <ListItem>
-                Press the Space key to select or deselect the checkbox.
-              </ListItem>
-              <ListItem>
-                Press the Tab key and the disabled checkbox is skipped.
-              </ListItem>
-              <ListItem>
-                Control-Option-Left Arrow key to read the disabled field. VO
-                announces, "Off off dimmed unchecked checkbox".
-              </ListItem>
-              <ListItem>
-                Tab to the next group of checkboxes with the same results.
-              </ListItem>
-            </OrderedList>
-          </StructuredListCell>
-        </StructuredListRow>
-      </StructuredListBody>
-    </StructuredListWrapper>
-  </Column>
+<Column colLg={8}>
+
+![checkbox items with group label](images/checkbox-accessibility-2.png)
+
+<Caption>Carbon handles the accessibility of grouped checkboxes.</Caption>
+
+</Column>
 </Row>
 
-### Windows screen reader tests
+## Design recommendations
+
+Design annotations are needed for the following instances.
+
+### Meaningful order
+
+Checkboxes can appear in multiple columns. If there is a meaningful order to the items (such as days of the week), annotate whether the tab order is by row or by column. See [Specify the tab order](https://www.ibm.com/able/toolkit/design/ux/navigation/#tab-order).
 
 <Row>
-  <Column noGutterSm>
-    <StructuredListWrapper>
-      <StructuredListHead>
-        <StructuredListRow head>
-          <StructuredListCell head>Environment</StructuredListCell>
-          <StructuredListCell head>Results</StructuredListCell>
-        </StructuredListRow>
-      </StructuredListHead>
-      <StructuredListBody>
-        <StructuredListRow>
-          <StructuredListCell>
-            - Microsoft Windows 10
-            <br />
-            - Firefox Version 67
-            <br />
-            - JAWS 19.1810.64
-            <br />- Carbon React Version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>JAWS test:</strong>
-            <OrderedList>
-              <ListItem>
-                Navigate among check boxes by pressing the Tab and Shift-Tab
-                keys, or X and Shift+X keys to jump to next or previous
-                checkboxes.
-              </ListItem>
-              <ListItem>
-                When navigating to a checkbox, JAWS announces the label,
-                checkbox, and the status of the checkbox.
-              </ListItem>
-              <ListItem>
-                Disabled checkboxes can only be found by using the Up and Down
-                Arrow keys, when JAWS.
-              </ListItem>
-              <ListItem>
-                Press the Space key to select or deselect the checkbox. JAWS
-                announces the status of checked or unchecked.
-              </ListItem>
-            </OrderedList>
-          </StructuredListCell>
-        </StructuredListRow>
-        <StructuredListRow>
-          <StructuredListCell>
-            - Microsoft Windows 10
-            <br />
-            - Chrome Version 73.0.3683.103 (Official Build) (64-bit)
-            <br />
-            - JAWS Version 19.1810.64
-            <br />- Carbon React Version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>JAWS test:</strong>
-            <OrderedList>
-              <ListItem>
-                Navigate among check boxes by pressing the Tab and Shift-Tab
-                keys, or X and Shift+X keys to jump to next or previous
-                checkboxes.
-              </ListItem>
-              <ListItem>
-                When navigating to a checkbox, JAWS announces the label,
-                checkbox, and the status of the checkbox.
-              </ListItem>
-              <ListItem>
-                Disabled checkboxes can only be found by using the Up and Down
-                Arrow keys, when JAWS announces "disabled checkbox checkbox
-                unchecked unavailable".
-              </ListItem>
-              <ListItem>
-                Press the Space key to select or deselect the checkbox. JAWS
-                announces the status of checked or unchecked.
-              </ListItem>
-            </OrderedList>
-          </StructuredListCell>
-        </StructuredListRow>
-        <StructuredListRow>
-          <StructuredListCell>
-            - Microsoft Windows 10
-            <br />
-            - Chrome Version 73.0.3683.103 (Official Build) (64-bit)
-            <br />
-            - NVDA Version 2018.4.1
-            <br />- Carbon React Version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>NVDA test:</strong>
-            <OrderedList>
-              <ListItem>
-                Navigate among check boxes by pressing the Tab and Shift-Tab
-                keys, or X and Shift+X keys to jump to next or previous
-                checkboxes.
-              </ListItem>
-              <ListItem>
-                When navigating to a checkbox, NVDA announces the label,
-                checkbox, and the status of the checkbox, but repeats the
-                information twice.
-              </ListItem>
-              <ListItem>
-                When navigating to an indeterminable checkbox NVDA announces,
-                "indeterminate checkbox indeterminate checkbox checkbox half
-                checked".
-              </ListItem>
-              <ListItem>
-                Disabled checkboxes can only be found by using the Up and Down
-                Arrow keys, or the the X and Shift+X keys. NVDA announces
-                "checkbox unavailable not checked disabled checkbox".
-              </ListItem>
-              <ListItem>
-                Press the Space or Enter key to select or deselect the checkbox.
-                NVDA announces the status of checked or unchecked.
-              </ListItem>
-            </OrderedList>
-          </StructuredListCell>
-        </StructuredListRow>
-      </StructuredListBody>
-    </StructuredListWrapper>
-  </Column>
+<Column colLg={8}>
+
+![checkboxes with instruction to ‘navigate in columns'](images/checkbox-accessibility-3.png)
+
+<Caption>Annotate if there is meaningful navigation order in rows of checkboxes.</Caption>
+
+</Column>
 </Row>
 
-### Android screen reader tests
+## Development considerations
 
-<Row>
-  <Column noGutterSm>
-    <StructuredListWrapper>
-      <StructuredListHead>
-        <StructuredListRow head>
-          <StructuredListCell head>Environment </StructuredListCell>
-          <StructuredListCell head>Results</StructuredListCell>
-        </StructuredListRow>
-      </StructuredListHead>
-      <StructuredListBody>
-        <StructuredListRow>
-          <StructuredListCell>
-            - Android Version 9 with Talkback
-            <br />
-            - Chrome Version 73.0.3683.103 (Official Build) (64-bit)
-            <br />- Carbon React Version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>Talkback Test:</strong>
-            <OrderedList>
-              <ListItem>
-                Navigate to the checkbox by swiping left or right, or press the
-                Left or Right Arrow keys. Talkback announces,the label, field
-                type, and the status of the checkbox.
-              </ListItem>
-              <ListItem>
-                The status of indeterminate checkboxes is not announced
-                properly, Talkback only announces checked or unchecked.
-              </ListItem>
-              <ListItem>
-                When tapping on a checkbox, or pressing the Alt-Enter keys,
-                Talkback announces the new status of the checkbox as checked or
-                not checked.
-              </ListItem>
-            </OrderedList>
-          </StructuredListCell>
-        </StructuredListRow>
-      </StructuredListBody>
-    </StructuredListWrapper>
-  </Column>
-</Row>
+Keep these considerations in mind if you are modifying Carbon or creating a custom component:
 
-### iOS screen reader tests
-
-<Row>
-  <Column noGutterSm>
-    <StructuredListWrapper>
-      <StructuredListRow head>
-        <StructuredListCell head>Environment </StructuredListCell>
-        <StructuredListCell head>Results</StructuredListCell>
-      </StructuredListRow>
-      <StructuredListBody>
-        <StructuredListRow>
-          <StructuredListCell>
-            - iOS Version 13.1.3 with VoiceOver
-            <br />
-            - Safari Version 13.1.3
-            <br />- Carbon React Version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>VoiceOver Test:</strong>
-            <OrderedList>
-              <ListItem>
-                Navigate to the checkbox by swiping left or right, or press the
-                Left-Arrow or Right-Arrow keys when quick navigation is turned
-                on. VO announces,the label, field type, and the status of the
-                checkbox.
-              </ListItem>
-              <ListItem>
-                The status of indeterminate checkboxes is not announced
-                properly, VoiceOver only announces checked or unchecked.
-              </ListItem>
-              <ListItem>
-                VoiceOver announces the beginning of the list, nesting level,
-                content of the list item, the end of the list.
-              </ListItem>
-              <ListItem>
-                When tapping on a checkbox, or pressing VO+Space, VoiceOver
-                announces the new status of the checkbox as checked or
-                unchecked.
-              </ListItem>
-            </OrderedList>
-          </StructuredListCell>
-        </StructuredListRow>
-      </StructuredListBody>
-    </StructuredListWrapper>
-  </Column>
-</Row>
+* Checkboxes are grouped using `<fieldset>` and `<legend>`.
+* A tri-state checkbox that is partially checked (indeterminate) has `aria-checked` set to `"mixed"`. See [Behaviors](https://carbondesignsystem.com/components/checkbox/usage/#behaviors) on the Usage tab for details.
+* See the [ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices-1.2/#checkbox) for more considerations.
