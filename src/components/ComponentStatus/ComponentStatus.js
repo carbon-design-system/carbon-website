@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tag } from 'carbon-components-react';
+import { Tag } from '@carbon/react';
 import Packages from '../../../package.json';
 import componentStatus from '../../data/components.json';
 
@@ -49,13 +49,13 @@ class ComponentStatus extends React.Component {
   );
 
   render() {
-    const vanillaVersion = Packages.dependencies['carbon-components'];
+    const coreVersion = Packages.dependencies['@carbon/react'];
     return (
-      <div className="bx--row component-status">
-        <div className="bx--col-lg-12">
-          <h2 className="page-h2">Current version: {vanillaVersion}</h2>
+      <div className="cds--row component-status">
+        <div className="cds--col-lg-12">
+          <h2 className="page-h2">Current version: {coreVersion}</h2>
         </div>
-        <div className="bx--col-lg-12 bx--no-gutter bx--table-container">
+        <div className="cds--col-lg-12 cds--no-gutter cds--table-container">
           <table className="page-table">
             <thead>
               <tr>
@@ -73,10 +73,10 @@ class ComponentStatus extends React.Component {
             </tbody>
           </table>
         </div>
-        <div className="bx--col-lg-8 component-status__key">
+        <div className="cds--col-lg-8 component-status__key">
           <h4 className="page-h4">Key</h4>
         </div>
-        <div className="bx--col-lg-8 bx--no-gutter">
+        <div className="cds--col-lg-8 cds--no-gutter">
           <table className="page-table">
             <thead>
               <tr>

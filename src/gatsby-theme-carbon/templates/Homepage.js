@@ -1,9 +1,10 @@
 import React from 'react';
 import { HomepageCallout, ResourceCard } from 'gatsby-theme-carbon';
 import HomepageTemplate from 'gatsby-theme-carbon/src/templates/Homepage';
-import { blue90, gray10, white0 } from '@carbon/elements';
+import { blue20, purple20, gray100 } from '@carbon/elements';
 import { calloutLink, callToAction } from './Homepage.module.scss';
-import HomepageVideo from '../../components/HomepageVideo/HomepageVideo';
+// import HomepageVideo from '../../components/HomepageVideo/HomepageVideo';
+import ImageV11 from '../../components/Homepage/Carbon-V11-Release-Image.jpg';
 
 const FirstLeftText = () => <p>Carbon Design System</p>;
 
@@ -38,21 +39,27 @@ const SecondRightText = () => (
 const customProps = {
   Banner: (
     <>
-      <span className="homepage--dots" />
+      {/* Remove the dots for now since we're using a static image for v11 */}
+      {/* <span className="homepage--dots" /> */}
       <section className="homepage--header">
-        <div className="bx--grid">
-          <div className="bx--row">
-            <div className="bx--col-lg-4 bx--col-md-4 bx--col-sm-2 bx--offset-lg-8 bx--offset-md-4 bx--offset-sm-2 homepage--tile-header">
+        <div
+          className="cds--grid"
+          style={{
+            maxWidth: '100%',
+            overflow: 'hidden',
+            backgroundImage: `url(${ImageV11})`,
+          }}>
+          <div className="cds--row">
+            <div className="cds--col-lg-4 cds--col-md-4 cds--col-sm-2 cds--offset-lg-8 cds--offset-md-4 cds--offset-sm-2 homepage--tile-header">
               <ResourceCard
                 className={callToAction}
-                subTitle="Coming soon"
+                subTitle="Migrate to"
                 title="Carbon v11"
-                href="/whats-happening/v11-release/"
-                color="dark"
+                href="/migrating/guide/overview/"
                 actionIcon="arrowRight"
               />
             </div>
-            <HomepageVideo />
+            {/* <HomepageVideo /> */}
           </div>
         </div>
       </section>
@@ -60,8 +67,8 @@ const customProps = {
   ),
   FirstCallout: (
     <HomepageCallout
-      backgroundColor="#030303" // not quite black, but not in color palette
-      color={gray10}
+      backgroundColor={blue20}
+      color={gray100}
       leftText={FirstLeftText}
       rightText={FirstRightText}
     />
@@ -70,8 +77,8 @@ const customProps = {
     <HomepageCallout
       leftText={SecondLeftText}
       rightText={SecondRightText}
-      color={white0}
-      backgroundColor={blue90}
+      color={gray100}
+      backgroundColor={purple20}
     />
   ),
 };

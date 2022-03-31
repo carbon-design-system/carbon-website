@@ -19,7 +19,7 @@
 }
 
 // feedback tooltip adjustments
-.container :global(.bx--btn--copy__feedback) {
+.container :global(.cds--btn--copy__feedback) {
   position: absolute;
   &::before {
     left: $spacing-07;
@@ -29,7 +29,10 @@
   }
   &::before,
   &::after {
-    z-index: z('floating');
+    // TODO - use the z-index helper again once it's exported through
+    // @carbon/react and included in gatsby-theme-carbon resources
+    // z-index: z('floating');
+    z-index: 6000;
   }
 }
 
@@ -49,7 +52,7 @@
 .link-list {
   display: flex;
   overflow-x: auto;
-  @include carbon--breakpoint('md') {
+  @include breakpoint('md') {
     overflow-x: visible;
   }
 }
@@ -57,7 +60,7 @@
 .link-list a {
   display: flex;
   align-items: center;
-  @include carbon--type-style('body-short-01');
+  @include type-style('body-short-01');
   color: $inverse-01;
   text-decoration: none;
   margin-right: $spacing-06;
@@ -105,7 +108,7 @@
   align-items: center;
   background: transparent;
   flex-shrink: 0;
-  transition: background $duration--fast-02;
+  transition: background $duration-fast-02;
   z-index: 1000;
   &:hover {
     background-color: $inverse-02;
@@ -115,7 +118,7 @@
   }
 }
 
-.copy-button:global(.bx--copy-btn--animating) span {
+.copy-button:global(.cds--copy-btn--animating) span {
   display: inline-block;
   left: -$spacing-03;
 }
