@@ -29,16 +29,16 @@ const FilterRow = ({
         placeHolderText={placeHolderText}
         size="lg"
       />
-      {/* <Dropdown
+      <Dropdown
         className={dropdown}
         id="category-filter"
-        size="md"
+        size="lg"
         direction="bottom"
         selectedItem={selectedCategory}
         onChange={onDropdownChange}
         label={`Filter ${type}s by category`}
         items={[`All ${type}s`, ...categoryList]}
-      /> */}
+      />
     </div>
   );
 };

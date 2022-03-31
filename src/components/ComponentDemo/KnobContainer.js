@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React, { useContext, useRef } from 'react';
-import { Close20 } from '@carbon/icons-react';
+import { Close } from '@carbon/icons-react';
 import nanoid from 'nanoid';
 
 import {
@@ -282,7 +282,7 @@ const KnobContainer = ({ knobs, code, setCode, initialCode, variantId }) => {
             className={iconButton}
             type="button"
             onClick={() => setIsKnobContainerCollapsed(true)}>
-            <Close20 />
+            <Close size={20} />
           </button>
         </div>
       )}

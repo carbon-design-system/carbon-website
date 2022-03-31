@@ -2,7 +2,7 @@ import copy from 'copy-to-clipboard';
 
 import React from 'react';
 import { CopyButton } from '@carbon/react';
-import { Launch16 } from '@carbon/icons-react';
+import { Launch } from '@carbon/icons-react';
 import { withLive } from 'react-live';
 import cx from 'classnames';
 import { button, sidebar, copyButton } from './Code.module.scss';
@@ -29,7 +29,7 @@ const Sidebar = ({ src, path, live }) => {
           className={button}
           href={src}
           style={{ zIndex: 200 }}>
-          <Launch16 />
+          <Launch size={16} />
         </a>
       )}
     </div>

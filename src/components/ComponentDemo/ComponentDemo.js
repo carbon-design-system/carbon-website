@@ -5,10 +5,10 @@ import * as CarbonComponents from '@carbon/react';
 import { LiveProvider, LiveEditor, LivePreview, LiveError } from 'react-live';
 import { Row } from 'gatsby-theme-carbon';
 import {
-  TableOfContents20,
-  Maximize16,
-  Minimize16,
-  Close16,
+  TableOfContents,
+  Maximize,
+  Minimize,
+  Close,
 } from '@carbon/icons-react';
 import cx from 'classnames';
 
@@ -96,7 +96,7 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
     <ErrorBoundary>
       <div className={cx({ [fullscreen]: isFullscreen })}>
         <Row className={dropdownRow}>
-          {/* <Dropdown
+          <Dropdown
             onChange={onThemeChange}
             itemToString={(item) =>
               isMobile ? item.replace('ray ', '') : item
@@ -119,7 +119,7 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
             className={cx(variantDropdown, {
               [hiddenDropdown]: childrenArray.length === 1,
             })}
-          /> */}
+          />
           {isFullscreen && (
             <button
               type="button"
@@ -127,7 +127,7 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
               onClick={() => {
                 setFullscreen(false);
               }}>
-              <Close16 />
+              <Close size={16} />
             </button>
           )}
         </Row>
@@ -147,7 +147,7 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
                 onClick={() => {
                   setFullscreen(!isFullscreen);
                 }}>
-                {isFullscreen ? <Minimize16 /> : <Maximize16 />}
+                {isFullscreen ? <Minimize size={16} /> : <Maximize size={16} />}
               </button>
               <LivePreview className={cx(theme, previewContainer)} />
               {isMobile && (
@@ -159,7 +159,7 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
                   <span id="expand-knob-container-button" hidden>
                     Expand component knob container
                   </span>
-                  <TableOfContents20 />
+                  <TableOfContents size={20} />
                 </button>
               )}
 

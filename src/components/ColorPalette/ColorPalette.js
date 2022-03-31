@@ -183,7 +183,7 @@ const ColorPalette = ({
             <Switch text={switcherOne} onClick={activateFirstSwitcher} />
             <Switch text={switcherTwo} onClick={activateSecondSwitcher} />
           </ContentSwitcher>
-          {/* {type === 'grouped' && (
+          {type === 'grouped' && (
             <Dropdown
               label="Color group selection"
               id="color-group-dropdown"
@@ -193,7 +193,7 @@ const ColorPalette = ({
               selectedItem={dropdownItems[groupNumber - 1]}
               initialSelectedItem={dropdownItems[0]}
             />
-          )} */}
+          )}
         </div>
       )}
 

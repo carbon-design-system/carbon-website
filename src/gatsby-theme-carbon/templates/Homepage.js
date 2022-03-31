@@ -3,7 +3,8 @@ import { HomepageCallout, ResourceCard } from 'gatsby-theme-carbon';
 import HomepageTemplate from 'gatsby-theme-carbon/src/templates/Homepage';
 import { blue20, purple20, gray100 } from '@carbon/elements';
 import { calloutLink, callToAction } from './Homepage.module.scss';
-import HomepageVideo from '../../components/HomepageVideo/HomepageVideo';
+// import HomepageVideo from '../../components/HomepageVideo/HomepageVideo';
+import ImageV11 from '../../components/Homepage/Carbon-V11-Release-Image.jpg';
 
 const FirstLeftText = () => <p>Carbon Design System</p>;
 
@@ -38,9 +39,16 @@ const SecondRightText = () => (
 const customProps = {
   Banner: (
     <>
-      <span className="homepage--dots" />
+      {/* Remove the dots for now since we're using a static image for v11 */}
+      {/* <span className="homepage--dots" /> */}
       <section className="homepage--header">
-        <div className="cds--grid">
+        <div
+          className="cds--grid"
+          style={{
+            maxWidth: '100%',
+            overflow: 'hidden',
+            backgroundImage: `url(${ImageV11})`,
+          }}>
           <div className="cds--row">
             <div className="cds--col-lg-4 cds--col-md-4 cds--col-sm-2 cds--offset-lg-8 cds--offset-md-4 cds--offset-sm-2 homepage--tile-header">
               <ResourceCard
@@ -51,7 +59,7 @@ const customProps = {
                 actionIcon="arrowRight"
               />
             </div>
-            <HomepageVideo />
+            {/* <HomepageVideo /> */}
           </div>
         </div>
       </section>
