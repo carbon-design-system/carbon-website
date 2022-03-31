@@ -19,10 +19,9 @@ import {
 } from '@carbon/react';
 
 <AnchorLinks>
-  <AnchorLink>How it works</AnchorLink>
-  <AnchorLink>Accessibility considerations</AnchorLink>
-  <AnchorLink>Resources</AnchorLink>
-  <AnchorLink>Accessibility testing</AnchorLink>
+  <AnchorLink>What Carbon provides</AnchorLink>
+  <AnchorLink>Design recommendations</AnchorLink>
+  <AnchorLink>Development considerations</AnchorLink>
 </AnchorLinks>
 
 ## How it works
@@ -107,323 +106,102 @@ Accessibility issues are tracked in the
 
 ### Automated test
 
-<Row>
-  <Column noGutterSm>
-    <StructuredListWrapper>
-      <StructuredListHead>
-        <StructuredListRow head>
-          <StructuredListCell head>
-            Automated test environment
-          </StructuredListCell>
-          <StructuredListCell head>Results</StructuredListCell>
-        </StructuredListRow>
-      </StructuredListHead>
-      <StructuredListBody>
-        <StructuredListRow>
-          <StructuredListCell>
-            - macOS Mojave version 10.14.2 with VoiceOver
-            <br />
-            - Chrome version 77.0.3865.90
-            <br />
-            - Dynamic Assessment Plugin (DAP) version 1.8.0.0 - IBM
-            Accessibility WCAG 2.1 Sept. 2019 Ruleset
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>DAP test:</strong>
-            <br />- Violations
-          </StructuredListCell>
-        </StructuredListRow>
-      </StructuredListBody>
-    </StructuredListWrapper>
-  </Column>
-</Row>
+Carbon bakes keyboard operation into its components, improving the experience of
+blind users and others who operate via the keyboard. Carbon incorporates many
+other accessibility considerations, some of which are described below.
 
-### macOS screen reader tests
+### Keyboard interactions
+
+Each accordion is a tab stop. `Space` or `Enter` keys expand or collapse
+accordions, which are collapsed by default. Interactive elements within expanded
+accordions integrate into the tab order automatically.
 
 <Row>
-  <Column noGutterSm>
-    <StructuredListWrapper>
-      <StructuredListHead>
-        <StructuredListRow head>
-          <StructuredListCell head>Environment </StructuredListCell>
-          <StructuredListCell head>Results</StructuredListCell>
-        </StructuredListRow>
-      </StructuredListHead>
-      <StructuredListBody>
-        <StructuredListRow>
-          <StructuredListCell>
-            - macOS Mojave version 10.14.6 with VoiceOver
-            <br />
-            - Chrome version 77.0.3865.90
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>VoiceOver(VO) Test:</strong>
-            <OrderedList>
-              <ListItem>
-                The Tab key and Shift-Tab navigate between accordion headers. VO
-                announces, expand/collapse, title, collapsed, button, the
-                button's state (expanded or collapsed), list, 1 item. You are
-                currently on a button...
-              </ListItem>
-              <ListItem>
-                Press Control-Option-Space (or Space) to expand or collapse the
-                accordion panel. VO announces expand/collapse title, the
-                button's state (expanded or collapsed).
-              </ListItem>
-              <ListItem>
-                With the second or third accordion header expanded, Press
-                Control-Option-Right Arrow. VO announces, the accordion panel
-                content and the line number in the list.
-              </ListItem>
-              <ListItem>
-                Press Control-Option-Left Arrow - VO announces reads the
-                accordion header again.
-              </ListItem>
-            </OrderedList>
-          </StructuredListCell>
-        </StructuredListRow>
-        <StructuredListRow>
-          <StructuredListCell>
-            - macOS Mojave version 10.14.6 with VoiceOver
-            <br />
-            - Safari version 13.0.2
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>VoiceOver(VO) test:</strong>
-            <OrderedList>
-              <ListItem>
-                The Tab key and Shift-Tab navigate between accordion headers. VO
-                announces, expand/collapse, title, collapsed, button, the
-                button's state (expanded or collapsed), group.
-              </ListItem>
-              <ListItem>
-                Press Control-Option-Space (or Space) to expand or collapse the
-                accordion panel. VO announces expand/collapse title, the
-                button's state (expanded or collapsed).
-              </ListItem>
-              <ListItem>
-                With the second or third accordion header expanded, Press
-                Control-Option-Right Arrow. VO announces, the accordion panel
-                content and the line number in the list. Your are currently on a
-                text area.
-              </ListItem>
-              <ListItem>
-                Press Control-Option-Left Arrow - VO announces reads the
-                accordion header again.
-              </ListItem>
-            </OrderedList>
-          </StructuredListCell>
-        </StructuredListRow>
-      </StructuredListBody>
-    </StructuredListWrapper>
-  </Column>
+<Column colLg={8}>
+
+![example of accordion keyboard interaction](images/accordion-accessibility-1.png)
+
+<Caption>
+  Accordions and interactive elements in the expanded content are in the tab
+  order and keyboard operable.
+</Caption>
+
+</Column>
 </Row>
 
-### Windows screen reader tests
+### Labeling and states
+
+The collapsed or expanded state of the accordions is
+[programmatically set](https://www.ibm.com/able/requirements/requirements/#4_1_2)
+by default, eliminating the need for designers to provide
+[text equivalents](https://www.ibm.com/able/toolkit/design/content/text-equivalents/)
+for the chevron icons.
 
 <Row>
-  <Column noGutterSm>
-    <StructuredListWrapper>
-      <StructuredListHead>
-        <StructuredListRow head>
-          <StructuredListCell head>Environment</StructuredListCell>
-          <StructuredListCell head>Results</StructuredListCell>
-        </StructuredListRow>
-      </StructuredListHead>
-      <StructuredListBody>
-        <StructuredListRow>
-          <StructuredListCell>
-            - Microsoft Windows 10
-            <br />
-            - JAWS 19.1903.47
-            <br />
-            - Firefox version 67
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>JAWS test:</strong>
-            <OrderedList>
-              <ListItem>
-                The Tab key and Shift-Tab navigate between accordion headers.
-                JAWS announces, title, and expand/collapse status.
-              </ListItem>
-              <ListItem>
-                Press the Enter or Space key on the title. JAWS announces expand
-                or collapsed.
-              </ListItem>
-              <ListItem>
-                Navigate the text using the Up and Down Arrow keys, when JAWS
-                read the headers and associated text if expanded in a linear
-                order.
-              </ListItem>
-              <ListItem>
-                Please note that sometimes it takes a second for the text to
-                update after a title is expanded. When pressing the down arrow
-                key immediately after JAWS announces "expanded", JAWS jumps past
-                the text and reads the next title.
-              </ListItem>
-            </OrderedList>
-          </StructuredListCell>
-        </StructuredListRow>
-        <StructuredListRow>
-          <StructuredListCell>
-            - Microsoft Windows 10
-            <br />
-            - JAWS 19.1903.47
-            <br />
-            - Chrome version 71.0.3578.98 (Official Build) (64-bit)
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>JAWS test:</strong>
-            <OrderedList>
-              <ListItem>
-                The Tab key and Shift-Tab navigate between accordion headers.
-                JAWS announces, title, and expand/collapse status.
-              </ListItem>
-              <ListItem>
-                Press the Enter or Space key on the title. JAWS announces expand
-                or collapsed.
-              </ListItem>
-              <ListItem>
-                Navigate the text using the Up and Down Arrow keys, when JAWS
-                read the headers and associated text if expanded in a linear
-                order.
-              </ListItem>
-              <ListItem>
-                Please note that sometimes it takes a second for the text to
-                update after a title is expanded. When pressing the down arrow
-                key immediately after JAWS announces "expanded", JAWS jumps past
-                the text and reads the next title.
-              </ListItem>
-            </OrderedList>
-          </StructuredListCell>
-        </StructuredListRow>
-        <StructuredListRow>
-          <StructuredListCell>
-            - Microsoft Windows 10
-            <br />
-            - NVDA version 2018.4.1
-            <br />
-            - Chrome version 72.0.3626.96 (Official Build) (64-bit)
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>NVDA test:</strong>
-            <OrderedList>
-              <ListItem>
-                The Tab key and Shift-Tab navigate between accordion headers.
-                NVDA announces, title, and expand/collapse status.
-              </ListItem>
-              <ListItem>
-                Press the Enter or Space key on the title. NVDA announces expand
-                or collapsed.
-              </ListItem>
-              <ListItem>
-                Navigate the text using the Up and Down Arrow keys, when JAWS
-                read the headers and associated text if expanded in a linear
-                order.
-              </ListItem>
-            </OrderedList>
-          </StructuredListCell>
-        </StructuredListRow>
-      </StructuredListBody>
-    </StructuredListWrapper>
-  </Column>
+<Column colLg={8}>
+
+![expanded and collapsed accordions](images/accordion-accessibility-2.png)
+
+<Caption>Carbon handles the accessibility of the chevron indicators.</Caption>
+
+</Column>
 </Row>
 
-### iOS screen reader tests
+## Design recommendations
+
+Design annotations are needed for the following instances.
+
+### Headings
+
+Carbon accordions are not set as headings by default. For improved
+accessibility, annotate accordions as headings on the first occurrence in a
+product. Annotate the heading level of accordions as needed. See
+[Indicate heading levels](https://www.ibm.com/able/toolkit/design/content/text-meaning/#heading-levels).
 
 <Row>
-  <Column noGutterSm>
-    <StructuredListWrapper>
-      <StructuredListRow head>
-        <StructuredListCell head>Environment </StructuredListCell>
-        <StructuredListCell head>Results</StructuredListCell>
-      </StructuredListRow>
-      <StructuredListBody>
-        <StructuredListRow>
-          <StructuredListCell>
-            - iOS version 13.1.3 with VoiceOver
-            <br />
-            - Safari version 13.1.3
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>VoiceOver test:</strong>
-            <OrderedList>
-              <ListItem>
-                To navigate the accordion, swipe left or right, or use the Left
-                or Right Arrow keys when quick nav mode is on. On each header,
-                VoiceOver announces the header, and expanded/collapsed status.
-              </ListItem>
-              <ListItem>
-                To expand or collapse the accordion, doubletap on the header, or
-                press Control+Option+Space. VoiceOver announces, expanded or
-                collapses.
-              </ListItem>
-              <ListItem>
-                In some cases, VoiceOver also reads out the entire header, it
-                seems to happen randomly, possibly have to do with the speed of
-                the phone.
-              </ListItem>
-              <ListItem>
-                Navigate the text by swiping left or right, or by pressing the
-                Left or Right Arrow keys when quick navigation mode is on. After
-                each title, when moving to the left or right, VoiceOver will
-                read the text if it is expanded.
-              </ListItem>
-            </OrderedList>
-          </StructuredListCell>
-        </StructuredListRow>
-      </StructuredListBody>
-    </StructuredListWrapper>
-  </Column>
+<Column colLg={8}>
+
+![H1 and H2 annotations for headings, plus direction to ‘include accordion titles as headings'](images/accordion-accessibility-3.png)
+
+<Caption>
+  If accordion titles act as headings, annotate for development.
+</Caption>
+
+</Column>
 </Row>
 
-### Android screen reader tests
+### Alignment
+
+Carbon chevrons are right-aligned by default, but left-aligned chevrons are more
+accessible for users with low vision, as the expanded/collapsed indicator is
+closer to the accordion title.
 
 <Row>
-  <Column noGutterSm>
-    <StructuredListWrapper>
-      <StructuredListHead>
-        <StructuredListRow head>
-          <StructuredListCell head>Environment </StructuredListCell>
-          <StructuredListCell head>Results</StructuredListCell>
-        </StructuredListRow>
-      </StructuredListHead>
-      <StructuredListBody>
-        <StructuredListRow>
-          <StructuredListCell>
-            - Android version 9 with Talkback
-            <br />
-            - Chrome version 72.0.3626.96 (Official Build) (64-bit)
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>Talkback test:</strong>
-            <OrderedList>
-              <ListItem>
-                To navigate the accordion, swipe left or right, or use the
-                Alt+Left or Right Arrow keys. On each header, TalkBack announces
-                the header, and expanded/collapsed status.
-              </ListItem>
-              <ListItem>
-                To expand or collapse the accordion, doubletap on the header, or
-                press Alt+Enter. Talkback announces expanded or collapses.
-              </ListItem>
-              <ListItem>
-                Navigate the text by swiping left or right, or by pressing the
-                Left or Right Arrow keys. After each title, when moving to the
-                left or right, Talkback will read the text if it is expanded.
-              </ListItem>
-            </OrderedList>
-          </StructuredListCell>
-        </StructuredListRow>
-      </StructuredListBody>
-    </StructuredListWrapper>
-  </Column>
+<Column colLg={8}>
+
+![annotation stating ‘position chevrons on the left of accordion titles'](images/accordion-accessibility-4.png)
+
+<Caption>Annotate if the accordion chevrons should be left-aligned.</Caption>
+
+</Column>
 </Row>
+
+## Development considerations
+
+Keep these considerations in mind if you are modifying Carbon or creating a
+custom component:
+
+- The accordion header has a role of `<button>`, with an `aria-expanded`
+  attribute set to `"true"` or `"false"`.
+- The button has an `aria-controls` property set to the unique id of the panel
+  it controls.
+- Since accordions are typically grouped together, Carbon puts each button
+  inside a list item in an unordered list, which provides additional context to
+  screen reader users; where only one accordion is used, it should not be put in
+  a list.
+- When accordion titles are used as headings, the buttons are also wrapped in an
+  element with an appropriate heading level; ARIA can be used to set both the
+  heading role and the level (via `aria-level`).
+- See the
+  [ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices-1.2/#accordion)
+  for more guidance.

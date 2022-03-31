@@ -162,7 +162,6 @@ const Knob = ({
     const propString = parsedKnobProps.concat(
       Object.entries(newKnobs[component]).reduce(
         (accumulator, [prop, value]) => {
-
           if (!value || value === `'default'`) {
             return accumulator;
           }
@@ -174,7 +173,6 @@ const Knob = ({
         ''
       )
     );
-
 
     setKnobs(newKnobs);
     if (isSelfClosingTag) {
@@ -258,7 +256,6 @@ const KnobContainer = ({ knobs, code, setCode, initialCode, variantId }) => {
       console.error(`Error: no docgen data found for ${component}`);
       return [component, []];
     }
-
 
     knobs[component].forEach((knob) => {
       const prop = fullComponent.props[knob];
