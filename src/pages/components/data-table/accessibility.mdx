@@ -6,109 +6,98 @@ description:
 tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 ---
 
-import {
-  StructuredListWrapper,
-  StructuredListHead,
-  StructuredListBody,
-  StructuredListRow,
-  StructuredListInput,
-  StructuredListCell,
-  OrderedList,
-  ListItem,
-} from '@carbon/react';
-
 <PageDescription>
 
-The data table React Carbon component has been tested against the latest
-[W3C Web Content Accessibility Guidelines (WCAG) 2.1 Level A and AA success criteria](https://www.w3.org/TR/WCAG21/)
-and violations have been identified as high priority issues. This document will
-be updated when these accessibility issues are resolved.
+Design annotations are needed for specific instances shown below, but for the
+standard data table component, Carbon already incorporates accessibility.
 
 </PageDescription>
 
 <AnchorLinks>
-  <AnchorLink>Accessibility considerations</AnchorLink>
-  <AnchorLink>Resources</AnchorLink>
-  <AnchorLink>Accessibility testing</AnchorLink>
+  <AnchorLink>What Carbon provides</AnchorLink>
+  <AnchorLink>Design recommendations</AnchorLink>
+  <AnchorLink>Development considerations</AnchorLink>
 </AnchorLinks>
 
-## Accessibility considerations
+## What Carbon provides
 
-1. The data table headers accurately describe the data contained in the rows and
-   columns.
-2. If the data table has a labels it should be clear and concise.
-3. If the data table has a caption or description, `aria-describedby` should be
-   set on the table element with a value referring to the element containing the
-   description.
+Carbon bakes keyboard operation into its components, improving the experience of
+blind users and others who operate via the keyboard. Carbon incorporates many
+other accessibility considerations, some of which are described below.
 
-## Resources
+### Keyboard interaction
 
-- [W3C WAI-ARIA Authoring Practices Table Design Pattern](https://www.w3.org/TR/wai-aria-practices-1.1/#table)
-  covers the usage of ARIA names, state and roles, as well as the expected
-  keyboard interactions.
-- [W3C Tutorial - Table Concepts](https://www.w3.org/WAI/tutorials/tables/)
-  covers the usage of various tables, headers, and captions.
-- [IBM Accessibility Requirements](https://www.ibm.com/able/requirements/requirements/):
-  - [1.3.1 Info and Relationships](https://www.ibm.com/able/requirements/requirements/#1_3_1)
-    (WCAG Success Criteria
-    [1.3.1](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships))
-  - [1.3.2 Meaningful Sequence](https://www.ibm.com/able/requirements/requirements/#1_3_2)
-    (WCAG Success Criteria
-    [1.3.2](https://www.w3.org/WAI/WCAG21/Understanding/meaningful-sequence))
-  - [2.1.1 Keyboard](https://www.ibm.com/able/requirements/requirements/#2_1_1)
-    (WCAG Success Criteria
-    [2.1.1](https://www.w3.org/WAI/WCAG21/Understanding/keyboard))
-  - [2.4.3 Focus Order](https://www.ibm.com/able/requirements/requirements/#2_4_3)
-    (WCAG Success Criteria
-    [2.4.3](https://www.w3.org/WAI/WCAG21/Understanding/focus-order))
-  - [2.4.6 Headings and Labels](https://www.ibm.com/able/requirements/requirements/#2_4_6)
-    (WCAG Success Criteria
-    [2.4.6](https://www.w3.org/WAI/WCAG21/Understanding/headings-and-labels))
-  - [2.4.7 Focus Visible](https://www.ibm.com/able/requirements/requirements/#2_4_7)
-    (WCAG Success Criteria
-    [2.4.7](https://www.w3.org/WAI/WCAG21/Understanding/focus-visible))
-  - [4.1.2 Name, Role, Value](https://www.ibm.com/able/requirements/requirements/#4_1_2)
-    (WCAG Success Criteria
-    [4.1.2](https://www.w3.org/TR/UNDERSTANDING-WCAG20/ensure-compat-rsv.html))
-
-## Accessibility testing
-
-Automated, manual and screen reader accessibility verification test has been
-performed on the data table React Carbon component.
-[WCAG 2.1 Level A and AA success criteria](https://www.w3.org/TR/WCAG21/) issues
-have been identified and the list of open accessibility violations is available
-in the Carbon Component GitHub repository.
-
-### Automated test
+There are three data table variants with different interactions. Optional
+features like column sorting can appear in any of the variants. Table
+[pagination](https://www.carbondesignsystem.com/components/pagination/usage/) is
+treated as a separate component.
 
 <Row>
-  <Column noGutterSm>
-    <StructuredListWrapper>
-      <StructuredListHead>
-        <StructuredListRow head>
-          <StructuredListCell head>
-            Automated test environment
-          </StructuredListCell>
-          <StructuredListCell head>Results</StructuredListCell>
-        </StructuredListRow>
-      </StructuredListHead>
-      <StructuredListBody>
-        <StructuredListRow>
-          <StructuredListCell>
-            - macOS Mojave version 10.14.2 with VoiceOver
-            <br />
-            - Chrome version 77.0.3865.90
-            <br />
-            - Dynamic Assessment Plugin (DAP) version 1.8.0.0 - IBM
-            Accessibility WCAG 2.1 Sept. 2019 Ruleset
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>DAP test:</strong>
-            <br />- Violations
-          </StructuredListCell>
-        </StructuredListRow>
-      </StructuredListBody>
-    </StructuredListWrapper>
-  </Column>
+<Column colLg={8}>
+
+![sortable table keyboard interaction](images/datatable-accessibility-1.png)
+
+</Column>
 </Row>
+
+For sortable tables, the column headers are reachable by `Tab` and sortable with
+`Space` or `Enter`.
+
+### Controls inside tables
+
+Any interactive controls in data cells are in the tab order and maintain normal
+keyboard operation. This also applies to expandable table rows, which operate in
+the same manner as
+[accordions](https://www.carbondesignsystem.com/components/accordions/usage/)
+
+<Row>
+<Column colLg={8}>
+
+![tab order proceeds sequentially through the table row expansion icons then to a link inside an expanded row](images/datatable-accessibility-2.png)
+
+</Column>
+</Row>
+
+Links, inputs, and other interactive controls inside tables operate by keyboard
+as normal.
+
+### Labeling and updates
+
+If columns are sortable, the sort symbols appear on hover or focus. A sorted
+column retains an indicator until it is no longer sorted.
+
+<Row>
+<Column colLg={8}>
+
+![The Rule column header has focus and shows a sortable icon, and the Status column header has a 'sorted ascending' icon](images/datatable-accessibility-3.png)
+
+</Column>
+</Row>
+
+Sort indicators appear on hover and focus. A sorted column is indicated
+visually.
+
+## Design recommendations
+
+Since there is no persistent visual indicator that a table is sortable,
+designers need to annotate if a table should be implemented with sortable column
+headers.
+
+<Row>
+<Column colLg={8}>
+
+![the header row is annotated 'sortable headers'](images/datatable-accessibility-4.png)
+
+</Column>
+</Row>
+
+Annotate if a table is sortable.
+
+## Development considerations
+
+Keep this in mind if you’re modifying Carbon or creating a custom component:
+
+- Column sorting indicators are matched programmatically using `aria-sort`
+- See the
+  [ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices-1.2/#table)
+  for more considerations

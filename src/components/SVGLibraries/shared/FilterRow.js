@@ -32,7 +32,7 @@ const FilterRow = ({
       <Dropdown
         className={dropdown}
         id="category-filter"
-        size="md"
+        size="lg"
         direction="bottom"
         selectedItem={selectedCategory}
         onChange={onDropdownChange}

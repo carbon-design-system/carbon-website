@@ -1,6 +1,6 @@
 import React, { useRef, useContext, useState } from 'react';
 import { pascalCase } from 'change-case';
-import { Code16, Download16 } from '@carbon/icons-react';
+import { Code, Download } from '@carbon/icons-react';
 import { Button } from '@carbon/react';
 import copy from 'copy-to-clipboard';
 import cx from 'classnames';
@@ -65,17 +65,6 @@ const ActionBar = ({
       className={cx(container, {
         [hidden]: !isActionBarVisible,
       })}>
-      {/* Refactor to use IconButton once popover styles are included in gatsby-theme-carbon */}
-      {/* <IconButton
-        align="top"
-        kind="ghost"
-        size="sm"
-        label="Download SVG"
-        onFocus={() => setIsActionBarVisible(true)}
-        onClick={handleDownload}
-        className={tooltip}>
-        <Download16 />
-      </IconButton> */}
       <Button
         kind="ghost"
         size="small"
@@ -83,7 +72,7 @@ const ActionBar = ({
         tooltipAlignment={tooltipAlignment}
         tooltipPosition="top"
         iconDescription="Download SVG"
-        renderIcon={Download16}
+        renderIcon={Download}
         onFocus={() => setIsActionBarVisible(true)}
         onClick={handleDownload}
         className={tooltip}
@@ -97,23 +86,12 @@ const ActionBar = ({
           tooltipAlignment={tooltipAlignment}
           tooltipPosition="top"
           iconDescription={copyText}
-          renderIcon={Code16}
+          renderIcon={Code}
           onClick={handleCopy}
           onFocus={() => setIsActionBarVisible(true)}
           className={tooltip}
           triggerClassName={trigger}
         />
-        // Refactor to use IconButton once popover styles are included in gatsby-theme-carbon
-        // <IconButton
-        //   align="top"
-        //   kind="ghost"
-        //   size="sm"
-        //   label={copyText}
-        //   onFocus={() => setIsActionBarVisible(true)}
-        //   onClick={handleDownload}
-        //   className={tooltip}>
-        //   <Code16 />
-        // </IconButton>
       )}
     </div>
   );

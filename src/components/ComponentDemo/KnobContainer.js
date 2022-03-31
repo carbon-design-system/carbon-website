@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React, { useContext, useRef } from 'react';
-import { Close20 } from '@carbon/icons-react';
+import { Close } from '@carbon/icons-react';
 import nanoid from 'nanoid';
 
 import {
@@ -162,7 +162,6 @@ const Knob = ({
     const propString = parsedKnobProps.concat(
       Object.entries(newKnobs[component]).reduce(
         (accumulator, [prop, value]) => {
-
           if (!value || value === `'default'`) {
             return accumulator;
           }
@@ -174,7 +173,6 @@ const Knob = ({
         ''
       )
     );
-
 
     setKnobs(newKnobs);
     if (isSelfClosingTag) {
@@ -259,7 +257,6 @@ const KnobContainer = ({ knobs, code, setCode, initialCode, variantId }) => {
       return [component, []];
     }
 
-
     knobs[component].forEach((knob) => {
       const prop = fullComponent.props[knob];
       if (prop && prop.type) {
@@ -285,7 +282,7 @@ const KnobContainer = ({ knobs, code, setCode, initialCode, variantId }) => {
             className={iconButton}
             type="button"
             onClick={() => setIsKnobContainerCollapsed(true)}>
-            <Close20 />
+            <Close size={20} />
           </button>
         </div>
       )}

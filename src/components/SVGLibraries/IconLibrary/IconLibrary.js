@@ -27,9 +27,11 @@ const IconLibrary = () => {
 
   useEffect(() => {
     const iconArray = iconMetaData.reduce((accumulator, icon) => {
-      if (icon.deprecated) {return accumulator;}
+      if (icon.deprecated) {
+        return accumulator;
+      }
 
-      const path = [...icon.namespace, icon.name].join('/');
+      const path = icon.moduleInfo.filepath;
 
       if (icon.sizes.length === 1 && icon.sizes[0] === 'glyph') {
         return [
@@ -46,9 +48,7 @@ const IconLibrary = () => {
         ...accumulator,
         {
           ...icon,
-          Component: loadable(() =>
-            import(`@carbon/icons-react/lib/${path}/32`)
-          ),
+          Component: loadable(() => import(`@carbon/icons-react/lib/${path}`)),
         },
       ];
     }, []);
@@ -118,7 +118,7 @@ const IconLibrary = () => {
           setSelectedCategory={setSelectedCategory}
           allIconResults={filteredIcons.length}
           pageName="icon"
-          pageUrl="https://github.com/carbon-design-system/carbon/blob/main/packages/icons/master/ui-icon-master.ai"
+          pageUrl="https://github.com/carbon-design-system/carbon/blob/v10/packages/icons/master/ui-icon-master.ai"
         />
       ) : (
         <div className={svgLibrary}>
