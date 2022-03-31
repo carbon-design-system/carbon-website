@@ -4,7 +4,7 @@ import HomepageTemplate from 'gatsby-theme-carbon/src/templates/Homepage';
 import { blue20, purple20, gray100 } from '@carbon/elements';
 import { calloutLink, callToAction } from './Homepage.module.scss';
 // import HomepageVideo from '../../components/HomepageVideo/HomepageVideo';
-import ImageV11 from '../../components/Homepage/Carbon-V11-Release-Image.jpg';
+import AnimatedHero from './AnimatedHero';
 
 const FirstLeftText = () => <p>Carbon Design System</p>;
 
@@ -47,7 +47,8 @@ const customProps = {
           style={{
             maxWidth: '100%',
             overflow: 'hidden',
-            backgroundImage: `url(${ImageV11})`,
+            // backgroundImage: `url(${ImageV11})`,
+            backgroundColor: '#fff',
           }}>
           <div className="cds--row">
             <div className="cds--col-lg-4 cds--col-md-4 cds--col-sm-2 cds--offset-lg-8 cds--offset-md-4 cds--offset-sm-2 homepage--tile-header">
@@ -60,6 +61,8 @@ const customProps = {
               />
             </div>
             {/* <HomepageVideo /> */}
+
+            <AnimatedHero />
           </div>
         </div>
       </section>
