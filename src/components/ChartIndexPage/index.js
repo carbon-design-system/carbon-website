@@ -148,11 +148,11 @@ function ChartIndexPage() {
         lg={9}
         className="component-index-container cds--no-gutter">
         <ChartIndexSearch value={searchValue} onChange={setSearchValue} />
-        <ChartIndexSort
+        {/* <ChartIndexSort
           initialSortOption={initialSortOption}
           options={sortOptions}
           onChange={setActiveSortOption}
-        />
+        /> */}
         {results}
       </Column>
       <Column sm={0} md={2} lg={3} className="component-index-filter-container">

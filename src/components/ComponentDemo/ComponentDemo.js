@@ -96,7 +96,7 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
     <ErrorBoundary>
       <div className={cx({ [fullscreen]: isFullscreen })}>
         <Row className={dropdownRow}>
-          <Dropdown
+          {/* <Dropdown
             onChange={onThemeChange}
             itemToString={(item) =>
               isMobile ? item.replace('ray ', '') : item
@@ -119,7 +119,7 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
             className={cx(variantDropdown, {
               [hiddenDropdown]: childrenArray.length === 1,
             })}
-          />
+          /> */}
           {isFullscreen && (
             <button
               type="button"
