@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { settings } from 'carbon-components';
 import {
   profileContainer,
   cardContainer,
@@ -10,13 +9,11 @@ import {
   titleStyle,
 } from './profile.module.scss';
 
-const { prefix } = settings;
-
 const Profile = ({ name, title, children }) => (
   <div
-    className={`${profileContainer} bx--col-md-4 bx--col-lg-4 bx--no-gutter-sm`}>
-    <div className={`${prefix}--aspect-ratio ${prefix}--aspect-ratio--2x1`}>
-      <div className={`${prefix}--aspect-ratio--object`}>
+    className={`${profileContainer} cds--col-md-4 cds--col-lg-4 cds--no-gutter-sm`}>
+    <div className={`cds--aspect-ratio cds--aspect-ratio--2x1`}>
+      <div className={`cds--aspect-ratio--object`}>
         <div className={cardContainer}>
           <div className={contentContainer}>
             <div className={nameStyle}>{name}</div>

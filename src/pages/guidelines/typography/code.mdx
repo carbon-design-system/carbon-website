@@ -1,18 +1,20 @@
 ---
 label:
-  When used properly, typography can help create clear hierarchies, organize
-  information, and guide users through the product or experience.
+  Type is a core part of any offering and critical to how brands express and
+  communicate throughout any experience. Use the Carbon type package to leverage
+  IBM Plex and create effective typography across your products more easily.
 title: Typography
 description:
   Typography can help create clear hierarchies, organize information, and guide
   users through a product or experience.
-tabs: ['Overview', 'Productive', 'Expressive', 'Code']
+tabs: ['Overview', 'Styling strategies', 'Type sets', 'Code']
 ---
 
 <PageDescription>
 
-Type is a core part of any offering. Use the Carbon type package to leverage IBM
-Plex across your product.
+Type is a core part of any offering and critical to how brands express and
+communicate throughout any experience. Use the Carbon type package to leverage
+IBM Plex and create effective typography across your products more easily.
 
 </PageDescription>
 
@@ -50,63 +52,43 @@ yarn add @carbon/type
 
 ## Usage
 
-`@carbon/type` provides a variety of ways to work with typography from the IBM
-Design Language. You can use all of these features either in JavaScript or Sass.
-These features include:
+The `@carbon/type` package enables you to use typography from the IBM Design
+Language, including the type scale and fonts, along with typography design
+tokens from the Carbon Design System. It also comes with opinionated defaults
+for type styles on common elements like `h1`, `h2`, `p`, etc.
 
-| Feature                       | Description                                                                                                  |
-| ----------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| [Font face](#font-face)       | Include IBM Plex™ font faces in your application. Uses Google fonts                                          |
-| [Type classes](#type-classes) | Helpers to use type styles directly. Not included by default                                                 |
-| [Font family](#font-family)   | Defines the font stack for IBM Plex™ in your application, provides helpers for working with font definitions |
-| [Reset](#reset)               | Provides a high-level CSS Reset to use in your project                                                       |
-| [Scale](#type-scale)          | Provides the type scale. Can access the size at any given step (step 1, 2, 3, etc)                           |
-| [Styles](#type-styles)        | Provides type styles for your application (heading-01, body-long-01, etc)                                    |
-
-To include `@carbon/type` in your project, you can write the following in your
-Sass file:
+You can use this package by writing the following:
 
 ```scss
-@import '@carbon/type/scss/type';
-@import '@carbon/type/scss/font-face/mono';
-@import '@carbon/type/scss/font-face/sans';
+@use '@carbon/type';
+// Include type reset
+@include type.reset();
 
-@include carbon--type-reset();
-@include carbon--font-face-mono();
-@include carbon--font-face-sans();
-```
+// Include default type styles, targets h1, h2, h3, etc
+@include type.default-type();
 
-This should include the default type reset from the project, in addition to
-font-face definitions for IBM Plex Mono and IBM Plex Sans that come from Google
-Fonts.
+// Include utility classes for type-related properties
+@include type.type-classes();
 
-If you are using `@carbon/elements`, the import paths become:
-
-```scss
-@import '@carbon/elements/scss/type/path-to-import';
-```
-
-For example:
-
-```scss
-@import '@carbon/elements/scss/type/styles';
-```
-
-In addition, you will need to setup `node-sass` so that `node_modules` is
-included in the `includePaths` option. Often times, the tool that you are using
-to build Sass files in your project should expose this option for you to set.
-
-For example, if you are using Webpack you would use `node-sass` and
-`sass-loader` with the following configuration for `includePaths`:
-
-```js
-{
-  loader: 'sass-loader',
-  options: {
-    includePaths: ['node_modules'],
-  },
+.selector {
+  // Include a type style
+  @include type.style('productive-heading-01');
 }
 ```
+
+### Type classes
+
+The `type-classes` mixin will output a collection of utility CSS that you can
+use to style a given HTML element with type-related styles.
+
+In particular, you can use the following classes:
+
+| Class                      | Description                                                                                                                                                                                                           |
+| :------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `.cds--type-{font-family}` | Set the `font-family` property for the given font. This can include `mono`, `sans`, `sans-condensed`, `sans-arabic`, `sans-devanagari`, `sans-hebrew`, `sans-jp`, `sans-kr`, `sans-thai-looped`, `sans-thai`, `serif` |
+| `.cds--type-{font-weight}` | Set the `font-weight` property                                                                                                                                                                                        |
+| `.cds--type-italic`        | Set the `font-style` property to `italic`                                                                                                                                                                             |
+| `.cds--type-{token}`       | Style the HTML element with the given type token                                                                                                                                                                      |
 
 ### Type styles
 
@@ -123,17 +105,17 @@ You can include a token in your Sass file by writing:
 ```scss
 @import '@carbon/type/scss/styles';
 
-@include carbon--type-style('productive-heading-01');
+@include type-style('productive-heading-01');
 ```
 
 In addition, if the type style you are using has a fluid style then you can pass
-in `true` as the second argument to `carbon--type-style` to enable fluid styles.
-For example:
+in `true` as the second argument to `type-style` to enable fluid styles. For
+example:
 
 ```scss
 @import '@carbon/type/scss/styles';
 
-@include carbon--type-style('token-name', true);
+@include type-style('token-name', true);
 ```
 
 ### Font-face
@@ -161,7 +143,7 @@ your project you would write the following in your Sass file:
 ```scss
 @import '@carbon/type/scss/font-face/mono';
 
-@include carbon--font-face-mono();
+@include font-face-mono();
 ```
 
 Similarly, you can include IBM Plex Sans and IBM Plex Serif by writing:
@@ -171,9 +153,9 @@ Similarly, you can include IBM Plex Sans and IBM Plex Serif by writing:
 @import '@carbon/type/scss/font-face/sans';
 @import '@carbon/type/scss/font-face/serif';
 
-@include carbon--font-face-mono();
-@include carbon--font-face-sans();
-@include carbon--font-face-serif();
+@include font-face-mono();
+@include font-face-sans();
+@include font-face-serif();
 ```
 
 ### Type classes
@@ -189,16 +171,16 @@ Sass file:
 @import '@carbon/type/scss/classes';
 ```
 
-| Selector                 | Description                               |
-| ------------------------ | ----------------------------------------- |
-| `.bx--type-mono`         | Specify the font face as IBM Plex Mono    |
-| `.bx--type-sans`         | Specify the font face as IBM Plex Sans    |
-| `.bx--type-serif`        | Specify the font face as IBM Plex Serif   |
-| `.bx--type-light`        | Specify the font weight as light (300)    |
-| `.bx--type-regular`      | Specify the font weight as regular (400)  |
-| `.bx--type-semibold`     | Specify the font weight as semibold (600) |
-| `.bx--type-italic`       | Specify the font style as italic          |
-| `.bx--type-<type-style>` | Set styles for the given type style       |
+| Selector                  | Description                               |
+| ------------------------- | ----------------------------------------- |
+| `.cds--type-mono`         | Specify the font face as IBM Plex Mono    |
+| `.cds--type-sans`         | Specify the font face as IBM Plex Sans    |
+| `.cds--type-serif`        | Specify the font face as IBM Plex Serif   |
+| `.cds--type-light`        | Specify the font weight as light (300)    |
+| `.cds--type-regular`      | Specify the font weight as regular (400)  |
+| `.cds--type-semibold`     | Specify the font weight as semibold (600) |
+| `.cds--type-italic`       | Specify the font style as italic          |
+| `.cds--type-<type-style>` | Set styles for the given type style       |
 
 ### Font family
 
@@ -210,36 +192,35 @@ your Sass file:
 @import '@carbon/type/scss/font-family';
 ```
 
-The font stacks are available under the `$carbon--font-families` variable. You
-can also access a specific font family by using the `carbon--font-family`
-function by doing:
+The font stacks are available under the `$font-families` variable. You can also
+access a specific font family by using the `font-family` function by doing:
 
 ```scss
 .my-selector {
-  font-family: carbon--font-family('mono');
+  font-family: font-family('mono');
 }
 ```
 
-You can also use the `carbon--font-family` mixin to automatically set the
-`font-family` property for you:
+You can also use the `font-family` mixin to automatically set the `font-family`
+property for you:
 
 ```scss
 .my-selector {
-  @include carbon--font-family('mono');
+  @include font-family('mono');
 }
 ```
 
-You can see all the available font families in `$carbon--font-families` .
+You can see all the available font families in `$font-families` .
 
 ### Reset
 
-An optional type reset is provided under the `carbon--type-reset` mixin. You can
-include this mixin by writing the following in your Sass file:
+An optional type reset is provided under the `type-reset` mixin. You can include
+this mixin by writing the following in your Sass file:
 
 ```scss
 @import '@carbon/type/scss/reset';
 
-@include carbon--type-reset();
+@include type-reset();
 ```
 
 This reset sets some top-level properties on `html` and `body`, namely
@@ -248,9 +229,9 @@ This reset sets some top-level properties on `html` and `body`, namely
 
 ### Type scale
 
-A type scale is provided through the `$carbon--type-scale` variable and
-corresponding `carbon--type-scale` function and mixin. However, for specifying
-type styles, the recommendation is to use [type styles](#type-styles) .
+A type scale is provided through the `$type-scale` variable and corresponding
+`type-scale` function and mixin. However, for specifying type styles, the
+recommendation is to use [type styles](#type-styles) .
 
 If you are looking to use the type scale, you can include all the scale-related
 utilities and variables by writing the following in your Sass file:
@@ -259,14 +240,14 @@ utilities and variables by writing the following in your Sass file:
 @import '@carbon/type/scss/scale';
 ```
 
-You can access a specific step in the type scale by using the
-`carbon--type-scale` function:
+You can access a specific step in the type scale by using the `type-scale`
+function:
 
 ```scss
 @import '@carbon/type/scss/scale';
 
 .my-selector {
-  font-size: carbon--type-scale(1);
+  font-size: type-scale(1);
 }
 ```
 
@@ -276,7 +257,7 @@ There is also a `type-scale` mixin that will set `font-size` for your directly:
 @import '@carbon/type/scss/scale';
 
 .my-selector {
-  @include carbon--type-scale(1);
+  @include type-scale(1);
 }
 ```
 

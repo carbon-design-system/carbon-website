@@ -8,83 +8,105 @@ tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 
 ## Color
 
-Inputs come in two different colors. The default input color is `$field-01` and
-is used on `$ui-background` and `$ui-02` page backgrounds. The `--light` version
-input color is `$field-02` and is used on `$ui-01` page backgrounds.
+| Element  | Property         | Color token         |
+| -------- | ---------------- | ------------------- |
+| Label    | text color       | `$text-secondary`   |
+| Number   | text color       | `$text-primary`     |
+| Field    | background-color | `$field` \*         |
+|          | border-bottom    | `$border-strong` \* |
+| Controls | svg color        | `$icon-primary`     |
 
-| Class                              | Property         | Color token |
-| ---------------------------------- | ---------------- | ----------- |
-| `.bx--label`                       | text color       | `$text-02`  |
-| `.bx--number input[type='number']` | text color       | `$text-01`  |
-| `.bx--number`                      | background-color | `$field-01` |
-| `.bx--number--light`               | background-color | `$field-02` |
-| `.bx--number`                      | border-bottom    | `$ui-04`    |
-| `.bx--number__controls`            | svg color        | `$icon-01`  |
+<Caption>
+  * Denotes a contextual color token that will change values based on the layer
+  it is placed on.
+</Caption>
 
-<div className="image--fixed">
+<Row>
+<Column colLg={8}>
 
-![Number input example](images/number-input-style-2.png)
+![Number input example](images/number-input-style-1.png)
 
-</div>
+</Column>
+</Row>
 
-<Caption>Number input example</Caption>
+<Caption>Number input example.</Caption>
 
 ### Interactive states
 
-| Class                                       | Property         | Color token    |
-| ------------------------------------------- | ---------------- | -------------- |
-| `.bx--number:focus`                         | border           | `$focus`       |
-| `.bx--number__controls:focus`               | border           | `$focus`       |
-| `[data-invalid]`                            | border           | `$support-01`  |
-| `[data-invalid]:focus`                      | color            | `$support-01`  |
-| `.bx--form-requirement`                     | text color       | `$support-01`  |
-| `.bx--label:disabled`                       | text color       | `$disabled-02` |
-| `.bx--number:disabled`                      | background-color | `$disabled-01` |
-| `.bx--number input[type='number']:disabled` | text color       | `$disabled-03` |
+| Element         | Property         | Color token       |
+| --------------- | ---------------- | ----------------- |
+| Controls:hover  | background-color | `field-hover` \*    |
+| Field:focus     | border           | `$focus`          |
+| Controls:focus  | border           | `$focus`          |
+| Field:invalid   | border           | `$support-error`  |
+| Error icon      | svg              | `$support-error`  |
+| Error message   | text color       | `$text-error`     |
+| Warning icon    | svg              | `support-warning` |
+| Warning message | text color       | `text-primary`    |
+| Label:disabled  | text color       | `$text-disabled`  |
+| Field:disabled  | background-color | `$field` \*       |
+|                 | border-bottom    | transparent       |
+| Number          | text color       | `$text-disabled`  |
 
-**Active:** Number input should have a default number to start. The input should
-never be empty.
+<Row>
+<Column colLg={12}>
 
-**Helper text:** Helper text appears below the label when the input is active.
-Helper text remains visible while the input is focused and disappears after
-focus away.
+![Number input states example](images/number-input-style-2.png)
 
-**Error:** Error messages appear below the input field and are always present
-while invalid.
+</Column>
+</Row>
 
-**Disabled:** Disabled state should have a `.not-allowed` cursor on hover.
+<Caption>Number input states example.</Caption>
 
 ## Typography
 
 Number input labels should use sentence case, with only the first word in a
 phrase and any proper nouns capitalized.
 
-| Class                              | Font-size (px/rem) | Font-weight   | Type token       |
-| ---------------------------------- | ------------------ | ------------- | ---------------- |
-| `.bx--label`                       | 12 / 0.75          | Regular / 400 | `$label-01`      |
-| `.bx--number input[type='number']` | 14 / 0.875         | Regular / 400 | `$body-short-01` |
-| `.bx--form-requirement`            | 12 / 0.75          | Regular / 400 | `$label-01`      |
+| Element       | Font-size (px/rem) | Font-weight   | Type token  |
+| ------------- | ------------------ | ------------- | ----------- |
+| Label         | 12 / 0.75          | Regular / 400 | `$label-01` |
+| Field input   | 14 / 0.875         | Regular / 400 | `$code-02`  |
+| Error message | 12 / 0.75          | Regular / 400 | `$label-01` |
 
 ## Structure
 
-The height varies for small (32/2), medium (40/2.5), and large (48/3) size
-variants. The width varies based on content, layout, and design. The add and
-subtract icons can be found in the [icons](/guidelines/icons/library) library.
+The add and subtract icons can be found in the
+[icons](/guidelines/icons/library) library.
 
-| Class                              | Property                    | px / rem | Spacing token |
-| ---------------------------------- | --------------------------- | -------- | ------------- |
-| `.bx--label`                       | margin-bottom               | 8 / 0.5  | `$spacing-03` |
-| `.bx--number input`                | height                      | 40 / 2.5 | –             |
-| `.bx--number input[type='number']` | padding-left                | 16 / 1   | `$spacing-05` |
-| `.bx--number__controls`            | padding-left, padding-right | 16 / 1   | `$spacing-05` |
-| `.bx--number`                      | border-bottom               | 1px      | –             |
+| Element         | Property                    | px / rem | Spacing token |
+| --------------- | --------------------------- | -------- | ------------- |
+| Label           | margin-bottom               | 8 / 0.5  | `$spacing-03` |
+| Field (default) | height                      | 40 / 2.5 | –             |
+|                 | border-bottom               | 1px      | –             |
+| Number          | padding-left                | 16 / 1   | `$spacing-05` |
+| Controls        | padding-left, padding-right | 16 / 1   | `$spacing-05` |
 
 <div className="image--fixed">
 
-![Structure and spacing for number input](images/number-input-style-1.png)
+![Structure and spacing for number input](images/number-input-style-3.png)
 
 </div>
 
 <Caption>
   Structure and spacing measurements for a number input | px / rem
 </Caption>
+
+## Sizes
+
+The height varies for each size variant and the the width varies based on
+content, layout, and design.
+
+| Element | Size        | Height (px/rem) |
+| ------- | ----------- | --------------- |
+| Field   | Small (sm)  | 32 / 2          |
+|         | Medium (md) | 40 / 2.5        |
+|         | Large (lg)  | 48 / 3          |
+
+<div className="image--fixed">
+
+![Sizes for number input](images/number-input-style-size.png)
+
+</div>
+
+<Caption>Sizes for number input fields | px / rem</Caption>
