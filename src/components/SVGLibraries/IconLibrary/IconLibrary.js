@@ -39,7 +39,7 @@ const IconLibrary = () => {
           {
             ...icon,
             Component: loadable(() =>
-              import(`@carbon/icons-react/lib/${path}/index`)
+              import(`@carbon/icons-react/lib/${path}`)
             ),
           },
         ];
