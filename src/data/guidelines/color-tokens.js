@@ -1764,7 +1764,7 @@ const colorTokens = {
       },
     },
     '$layer-selected-02': {
-      role: ['Selected colro for $layer-02'],
+      role: ['Selected color for $layer-02'],
       value: {
         white: {
           name: 'Gray 20',
@@ -1785,7 +1785,7 @@ const colorTokens = {
       },
     },
     '$layer-selected-03': {
-      role: ['Selected color for $layer-02'],
+      role: ['Selected color for $layer-03'],
       value: {
         white: {
           name: 'Gray 20',
@@ -1869,7 +1869,7 @@ const colorTokens = {
       },
     },
     '$layer-selected-disabled': {
-      role: ['Disabled color selected layers'],
+      role: ['Disabled color for selected layers'],
       value: {
         white: {
           name: 'Gray 50',
