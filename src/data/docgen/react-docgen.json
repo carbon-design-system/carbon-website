@@ -782,7 +782,7 @@
       "hasForm": {
         "type": { "name": "bool" },
         "required": false,
-        "description": "Provide whether the modal content has a form element.\nIf `true` is used here, non-form child content should have `bx--modal-content__regular-content` class."
+        "description": "Provide whether the modal content has a form element.\nIf `true` is used here, non-form child content should have `cds--modal-content__regular-content` class."
       },
       "hasScrollingContent": {
         "type": { "name": "bool" },
@@ -2106,7 +2106,7 @@
       "className": {
         "type": { "name": "string" },
         "required": false,
-        "description": "Provide a custom className to be applied on the bx--dropdown node"
+        "description": "Provide a custom className to be applied on the cds--dropdown node"
       },
       "downshiftProps": {
         "type": { "name": "object" },
@@ -3160,7 +3160,7 @@
       "hasForm": {
         "type": { "name": "bool" },
         "required": false,
-        "description": "Provide whether the modal content has a form element.\nIf `true` is used here, non-form child content should have `bx--modal-content__regular-content` class."
+        "description": "Provide whether the modal content has a form element.\nIf `true` is used here, non-form child content should have `cds--modal-content__regular-content` class."
       },
       "id": {
         "type": { "name": "string" },
@@ -5050,57 +5050,125 @@
       }
     }
   },
+  "Tabs": {
+    "description": "",
+    "displayName": "Tabs",
+    "props": {
+      "children": {
+        "type": { "name": "node" },
+        "required": false,
+        "description": "Provide child elements to be rendered inside of the Tabs. These elements should render either TabsList or TabsPanels"
+      },
+      "defaultSelectedIndex": {
+        "defaultValue": { "value": "0", "computed": false },
+        "type": { "name": "number" },
+        "required": false,
+        "description": "Specify which content tab should be initially selected when the component is first rendered"
+      },
+      "onChange": {
+        "type": { "name": "func" },
+        "required": false,
+        "description": "Provide an optional function which is called whenever the state of the Tabs changes"
+      },
+      "selectedIndex": {
+        "type": { "name": "number" },
+        "required": false,
+        "description": "Control which content panel is currently selected. This puts the component in a controlled mode and should be used along with onChange"
+      }
+    }
+  },
+  "TabList": {
+    "description": "",
+    "displayName": "TabList",
+    "props": {
+      "activation": {
+        "defaultValue": { "value": "automatic", "computed": false },
+        "type": {
+          "name": "enum",
+          "value": [
+            { "value": "'automatic'", "computed": false },
+            { "value": "'manual'", "computed": false }
+          ]
+        },
+        "required": false,
+        "description": "Specify whether the content tab should be activated automatically or manually"
+      },
+      "aria-label": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Provide an accessible label to be read when a user interacts with this component"
+      },
+      "children": {
+        "type": { "name": "node" },
+        "required": false,
+        "description": "Provide child elements to be rendered inside of ContentTabs. These elements should render a ContentTab"
+      },
+      "className": {
+        "type": { "name": "string" },
+        "required": false,
+        "description": "Specify an optional className to be added to the container node"
+      },
+      "contained": {
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Specify whether component is contained type"
+      },
+      "iconSize": {
+        "type": {
+          "name": "enum",
+          "value": [
+            { "value": "'default'", "computed": false },
+            { "value": "'lg'", "computed": false }
+          ]
+        },
+        "required": false,
+        "description": "If using IconTab, specify the size of the icon being used."
+      },
+      "leftOverflowButtonProps": {
+        "type": { "name": "object" },
+        "required": false,
+        "description": "Provide the props that describe the left overflow button"
+      },
+      "light": {
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Specify whether or not to use the light component variant"
+      },
+      "rightOverflowButtonProps": {
+        "type": { "name": "object" },
+        "required": false,
+        "description": "Provide the props that describe the right overflow button"
+      },
+      "scrollDebounceWait": {
+        "defaultValue": { "value": "200", "computed": false },
+        "type": { "name": "number" },
+        "required": false,
+        "description": "Optionally provide a delay (in milliseconds) passed to the lodash debounce of the onScroll handler. This will impact the responsiveness of scroll arrow buttons rendering when scrolling to the first or last tab."
+      },
+      "scrollIntoView": {
+        "type": { "name": "bool" },
+        "required": false,
+        "description": "Choose whether or not to automatically scroll to newly selected tabs on component rerender"
+      }
+    }
+  },
   "Tab": {
     "description": "",
     "displayName": "Tab",
     "props": {
-      "role": {
-        "defaultValue": { "value": "'presentation'", "computed": false },
-        "type": { "name": "string" },
+      "as": {
+        "defaultValue": { "value": "'button'", "computed": false },
+        "type": {
+          "name": "union",
+          "value": [{ "name": "string" }, { "name": "elementType" }]
+        },
         "required": false,
-        "description": "Provide an accessibility role for your Tab"
+        "description": "Provide a custom element to render instead of the default button"
       },
-      "label": {
-        "defaultValue": { "value": "'provide a label'", "computed": false },
+      "children": {
         "type": { "name": "node" },
         "required": false,
-        "description": "Provide the contents of your Tab"
-      },
-      "tabIndex": {
-        "defaultValue": { "value": "0", "computed": false },
-        "type": { "name": "custom", "raw": "deprecate(PropTypes.number)" },
-        "required": false,
-        "description": "Specify the tab index of the `<button>` node"
-      },
-      "href": {
-        "defaultValue": { "value": "'#'", "computed": false },
-        "type": { "name": "custom", "raw": "deprecate(PropTypes.string)" },
-        "required": false,
-        "description": "Provide a string that represents the `href` of the Tab"
-      },
-      "selected": {
-        "defaultValue": { "value": "false", "computed": false },
-        "type": { "name": "bool" },
-        "required": false,
-        "description": "Whether your Tab is selected.\nReserved for usage in Tabs"
-      },
-      "renderContent": {
-        "defaultValue": { "value": "TabContent", "computed": true },
-        "type": { "name": "func" },
-        "required": false,
-        "description": ""
-      },
-      "onClick": {
-        "defaultValue": { "value": "() => {}", "computed": false },
-        "type": { "name": "func" },
-        "required": false,
-        "description": "Provide a handler that is invoked when a user clicks on the control"
-      },
-      "onKeyDown": {
-        "defaultValue": { "value": "() => {}", "computed": false },
-        "type": { "name": "func" },
-        "required": false,
-        "description": "Provide a handler that is invoked on the key down event for the control"
+        "description": "Provide child elements to be rendered inside of Tab."
       },
       "className": {
         "type": { "name": "string" },
@@ -5112,128 +5180,35 @@
         "required": false,
         "description": "Whether your Tab is disabled."
       },
-      "handleTabClick": {
-        "type": { "name": "func" },
-        "required": false,
-        "description": "A handler that is invoked when a user clicks on the control.\nReserved for usage in Tabs"
-      },
-      "handleTabKeyDown": {
-        "type": { "name": "func" },
-        "required": false,
-        "description": "A handler that is invoked on the key down event for the control.\nReserved for usage in Tabs"
-      },
-      "id": {
-        "type": { "name": "string" },
-        "required": false,
-        "description": "The element ID for the top-level element."
-      },
-      "index": {
-        "type": { "name": "number" },
-        "required": false,
-        "description": "The index of your Tab in your Tabs. Reserved for usage in Tabs"
-      },
-      "renderAnchor": {
-        "type": { "name": "custom", "raw": "deprecate(PropTypes.func)" },
-        "required": false,
-        "description": ""
-      }
-    }
-  },
-  "TabContent": {
-    "description": "",
-    "displayName": "TabContent",
-    "props": {
-      "selected": {
-        "defaultValue": { "value": "false", "computed": false },
-        "type": { "name": "bool" },
-        "required": false,
-        "description": "Specify whether the TabContent is selected"
-      },
-      "children": {
-        "type": { "name": "node" },
-        "required": false,
-        "description": "Pass in content to render inside of the TabContent"
-      },
-      "className": {
-        "type": { "name": "string" },
-        "required": false,
-        "description": "Provide a className for the tab content container"
-      }
-    }
-  },
-  "Tabs": {
-    "description": "",
-    "displayName": "Tabs",
-    "props": {
-      "type": {
-        "defaultValue": { "value": "'default'", "computed": false },
-        "type": {
-          "name": "enum",
-          "value": [
-            { "value": "'default'", "computed": false },
-            { "value": "'container'", "computed": false }
-          ]
-        },
-        "required": false,
-        "description": "Provide the type of Tab"
-      },
-      "selected": {
-        "defaultValue": { "value": "0", "computed": false },
-        "type": { "name": "number" },
-        "required": false,
-        "description": "Optionally provide an index for the currently selected <Tab>"
-      },
-      "selectionMode": {
-        "defaultValue": { "value": "'automatic'", "computed": false },
-        "type": {
-          "name": "enum",
-          "value": [
-            { "value": "'automatic'", "computed": false },
-            { "value": "'manual'", "computed": false }
-          ]
-        },
-        "required": false,
-        "description": "Choose whether or not to automatically change selection on focus"
-      },
-      "children": {
-        "type": { "name": "node" },
-        "required": false,
-        "description": "Pass in a collection of <Tab> children to be rendered depending on the\ncurrently selected tab"
-      },
-      "className": {
-        "type": { "name": "string" },
-        "required": false,
-        "description": "Provide a className that is applied to the root <div> component for the\n<Tabs>"
-      },
-      "hidden": {
-        "type": { "name": "bool" },
-        "required": false,
-        "description": "Specify whether the Tab content is hidden"
-      },
-      "light": {
-        "type": { "name": "bool" },
-        "required": false,
-        "description": "Specify whether or not to use the light component variant"
-      },
       "onClick": {
         "type": { "name": "func" },
         "required": false,
-        "description": "Optionally provide an `onClick` handler that is invoked when a <Tab> is\nclicked"
+        "description": "Provide a handler that is invoked when a user clicks on the control"
       },
       "onKeyDown": {
         "type": { "name": "func" },
         "required": false,
-        "description": "Optionally provide an `onKeyDown` handler that is invoked when keyed\nnavigation is triggered"
+        "description": "Provide a handler that is invoked on the key down event for the control"
       },
-      "onSelectionChange": {
+      "renderButton": {
         "type": { "name": "func" },
+        "required": false
+      }
+    }
+  },
+  "TabPanel": {
+    "description": "",
+    "displayName": "TabPanel",
+    "props": {
+      "children": {
+        "type": { "name": "node" },
         "required": false,
-        "description": "Provide an optional handler that is called whenever the selection\nchanges. This method is called with the index of the tab that was\nselected"
+        "description": "Provide child elements to be rendered inside of TabPanel."
       },
-      "tabContentClassName": {
+      "className": {
         "type": { "name": "string" },
         "required": false,
-        "description": "Provide a className that is applied to the <TabContent> components"
+        "description": "Specify an optional className to be added to TabPanel."
       }
     }
   },
@@ -5405,7 +5380,7 @@
     "props": {
       "className": {
         "defaultValue": {
-          "value": "`${prefix}--text__input`",
+          "value": "`cds--text__input`",
           "computed": false
         },
         "type": { "name": "string" },

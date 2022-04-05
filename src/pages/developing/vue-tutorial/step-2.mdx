@@ -125,13 +125,13 @@ Run `yarn serve` so we can begin building.
 Let's add our grid elements to `LandingPage.vue`.
 
 In order to use the grid, we need to wrap everything in a
-`<div class="bx--grid">`. We can continue to make rows by adding a
-`<div class="bx--row">` inside the grid, as well as make columns within those
-rows by adding `<div class="bx--col-[breakpoint]-[size]">`.
+`<div class="cds--grid">`. We can continue to make rows by adding a
+`<div class="cds--row">` inside the grid, as well as make columns within those
+rows by adding `<div class="cds--col-[breakpoint]-[size]">`.
 
 Our column sizes are specified by the number of columns they'll be spanning. If
-we use `bx--col-lg-4`, it means it'll span 4 of the 16 columns. If we use
-`bx--col-lg-8` it means it'll span 8 of the 16 columns, and so on.
+we use `cds--col-lg-4`, it means it'll span 4 of the 16 columns. If we use
+`cds--col-lg-8` it means it'll span 8 of the 16 columns, and so on.
 
 We've included the designs for this tutorial app in the `design.sketch` file
 found as a top-level file in the `carbon-tutorial-vue` repository. But, if you
@@ -157,34 +157,34 @@ We'll make rows like so:
 
 ```html path=src/views/LandingPage/LandingPage.vue
 <template>
-  <div class="bx--grid bx--grid--full-width landing-page">
-    <div class="bx--row landing-page__banner">
-      <div class="bx--col-lg-16">1</div>
+  <div class="cds--grid cds--grid--full-width landing-page">
+    <div class="cds--row landing-page__banner">
+      <div class="cds--col-lg-16">1</div>
     </div>
-    <div class="bx--row landing-page__r2">
-      <div class="bx--col-md-4 bx--col-lg-7">7/16</div>
-      <div class="bx--col-md-4 bx--offset-lg-1 bx--col-lg-8">8/16</div>
+    <div class="cds--row landing-page__r2">
+      <div class="cds--col-md-4 cds--col-lg-7">7/16</div>
+      <div class="cds--col-md-4 cds--offset-lg-1 cds--col-lg-8">8/16</div>
     </div>
-    <div class="bx--row landing-page__r3">
-      <div class="bx--col-md-4 bx--col-lg-4">1/4</div>
-      <div class="bx--col-md-4 bx--col-lg-4">1/4</div>
-      <div class="bx--col-md-4 bx--col-lg-4">1/4</div>
-      <div class="bx--col-md-4 bx--col-lg-4">1/4</div>
+    <div class="cds--row landing-page__r3">
+      <div class="cds--col-md-4 cds--col-lg-4">1/4</div>
+      <div class="cds--col-md-4 cds--col-lg-4">1/4</div>
+      <div class="cds--col-md-4 cds--col-lg-4">1/4</div>
+      <div class="cds--col-md-4 cds--col-lg-4">1/4</div>
     </div>
   </div>
 </template>
 ```
 
-We added a class of `bx--grid--full-width` to the grid container since our rows
+We added a class of `cds--grid--full-width` to the grid container since our rows
 need to expand the whole page without any margins. We also added some custom
 classes like `landing-page`, `landing-page__banner`, `landing-page__r2`, etc.,
 which we will use later.
 
 Also, take notice of the second row. The tab content only covers 7 columns at
 this large viewport to prevent overly-large line lengths, so we needed to add a
-1 column offset `bx--offset-lg-1` to second column to fill the full 16 columns
-in the grid. Then, both of those columns have `bx--col-md-4` classes so they are
-of equal width at medium-sized viewports.
+1 column offset `cds--offset-lg-1` to second column to fill the full 16 columns
+in the grid. Then, both of those columns have `cds--col-md-4` classes so they
+are of equal width at medium-sized viewports.
 
 ## Build landing page
 
@@ -197,8 +197,8 @@ In our first row we'll use a `CvBreadcrumb` component.
 We can now add our component to the first row, along with a header, like so:
 
 ```html path=src/views/LandingPage/LandingPage.vue
-<div class="bx--row landing-page__banner">
-  <div class="bx--col-lg-16">
+<div class="cds--row landing-page__banner">
+  <div class="cds--col-lg-16">
     <cv-breadcrumb noTrailingSlash>
       <cv-breadcrumb-item>
         <cv-link href="/">Getting started</cv-link>
@@ -218,21 +218,21 @@ In our second row we'll use `CvTabs` and `CvButton` components.
 Modify the second row to use the `Tab` component.
 
 ```html path=src/views/LandingPage/LandingPage.vue
-<div class="bx--row landing-page__r2">
-  <div class="bx--col bx--no-gutter">
+<div class="cds--row landing-page__r2">
+  <div class="cds--col cds--no-gutter">
     <cv-tabs selected="0">
       <cv-tab label="About">
-        <div class="bx--grid bx--grid--no-gutter bx--grid--full-width">
-          <div class="bx--row landing-page__tab-content">
-            <div class="bx--col-md-4 bx--col-lg-7">7/16</div>
-            <div class="bx--col-md-4 bx--offset-lg-1 bx--col-lg-8">8/16</div>
+        <div class="cds--grid cds--grid--no-gutter cds--grid--full-width">
+          <div class="cds--row landing-page__tab-content">
+            <div class="cds--col-md-4 cds--col-lg-7">7/16</div>
+            <div class="cds--col-md-4 cds--offset-lg-1 cds--col-lg-8">8/16</div>
           </div>
         </div>
       </cv-tab>
       <cv-tab label="Design">
-        <div class="bx--grid bx--grid--no-gutter bx--grid--full-width">
-          <div class="bx--row landing-page__tab-content">
-            <div class="bx--col-lg-16">
+        <div class="cds--grid cds--grid--no-gutter cds--grid--full-width">
+          <div class="cds--row landing-page__tab-content">
+            <div class="cds--col-lg-16">
               Rapidly build beautiful and accessible experiences. The Carbon kit
               contains all resources you need to get started.
             </div>
@@ -240,9 +240,9 @@ Modify the second row to use the `Tab` component.
         </div>
       </cv-tab>
       <cv-tab label="Develop">
-        <div class="bx--grid bx--grid--no-gutter bx--grid--full-width">
-          <div class="bx--row landing-page__tab-content">
-            <div class="bx--col-lg-16">
+        <div class="cds--grid cds--grid--no-gutter cds--grid--full-width">
+          <div class="cds--row landing-page__tab-content">
+            <div class="cds--col-lg-16">
               Carbon provides styles and components in Vanilla, React, Angular,
               and Vue for anyone building on the web.
             </div>
@@ -291,7 +291,7 @@ large viewports. Create a file `_carbon-overrides.scss` in
 `src/views/LandingPage` with this declaration block.
 
 ```scss path=src/views/LandingPage/_carbon-overrides.scss
-.landing-page__r2 .bx--tabs__nav {
+.landing-page__r2 .cds--tabs__nav {
   right: 0;
 }
 ```
@@ -320,9 +320,9 @@ can now add our images and text for each column in the first `CvTab` in
 <!-- prettier-ignore-start -->
 ```html path=src/views/LandingPage/LandingPage.vue
 <cv-tab label="About">
-  <div class="bx--grid bx--grid--no-gutter bx--grid--full-width">
-    <div class="bx--row landing-page__tab-content">
-      <div class="bx--col-md-4 bx--col-lg-7">
+  <div class="cds--grid cds--grid--no-gutter cds--grid--full-width">
+    <div class="cds--row landing-page__tab-content">
+      <div class="cds--col-md-4 cds--col-lg-7">
         <h2 class="landing-page__subheading">What is Carbon?</h2>
         <p class="landing-page__p">
           Carbon is IBM’s open-source design system for digital
@@ -333,7 +333,7 @@ can now add our images and text for each column in the first `CvTab` in
         </p>
         <cv-button>Learn more</cv-button>
       </div>
-      <div class="bx--col-md-4 bx--offset-lg-1 bx--col-lg-8">
+      <div class="cds--col-md-4 cds--offset-lg-1 cds--col-lg-8">
         <img
           class="landing-page__illo"
           src="../../assets/tab-illo.png"
@@ -365,13 +365,13 @@ The third row will be created in a later tutorial, so we'll just add the headers
 for now.
 
 ```html path=src/views/LandingPage/LandingPage.vue
-<div class="bx--row landing-page__r3">
-  <div class="bx--col-md-4 bx--col-lg-4">
+<div class="cds--row landing-page__r3">
+  <div class="cds--col-md-4 cds--col-lg-4">
     <h3 class="landing-page__label">The Principles</h3>
   </div>
-  <div class="bx--col-md-4 bx--col-lg-4">Carbon is Open</div>
-  <div class="bx--col-md-4 bx--col-lg-4">Carbon is Modular</div>
-  <div class="bx--col-md-4 bx--col-lg-4">Carbon is Consistent</div>
+  <div class="cds--col-md-4 cds--col-lg-4">Carbon is Open</div>
+  <div class="cds--col-md-4 cds--col-lg-4">Carbon is Modular</div>
+  <div class="cds--col-md-4 cds--col-lg-4">Carbon is Consistent</div>
 </div>
 ```
 
@@ -509,7 +509,7 @@ we know to use `productive-heading-05`:
 
 ```scss path=src/views/LandingPage/LandingPage.vue
 .landing-page__heading {
-  @include carbon--type-style('productive-heading-05');
+  @include type-style('productive-heading-05');
 }
 ```
 
@@ -556,16 +556,16 @@ baseline, for consistency as well as development ease so `margins` and
 }
 
 .landing-page__subheading {
-  @include carbon--type-style('productive-heading-03');
-  @include carbon--font-weight('semibold');
+  @include type-style('productive-heading-03');
+  @include font-weight('semibold');
 }
 
 .landing-page__p {
-  @include carbon--type-style('productive-heading-03');
+  @include type-style('productive-heading-03');
   margin-top: $spacing-06;
   margin-bottom: $spacing-08;
 
-  @include carbon--breakpoint-between((320px + 1), md) {
+  @include breakpoint-between((320px + 1), md) {
     max-width: 75%;
   }
 }
@@ -595,7 +595,7 @@ later in the tutorial. You'll notice that we get to re-use the
 }
 
 .landing-page__label {
-  @include carbon--type-style('heading-01');
+  @include type-style('heading-01');
 }
 ```
 
@@ -608,9 +608,9 @@ Now in our `RepoPage.vue` we'll add our grid containers in the template section.
 
 ```html path=src/views/RepoPage/RepoPage.vue
 <template>
-  <div class="bx--grid bx--grid--full-width bx--grid--no-gutter repo-page">
-    <div class="bx--row repo-page__r1">
-      <div class="bx--col-lg-16">Data table will go here</div>
+  <div class="cds--grid cds--grid--full-width cds--grid--no-gutter repo-page">
+    <div class="cds--row repo-page__r1">
+      <div class="cds--col-lg-16">Data table will go here</div>
     </div>
   </div>
 </template>
@@ -854,7 +854,7 @@ In `RepoPage.vue`, add the following style section:
 <style lang="scss">
 @import '../../styles/carbon-utils';
 
-.repo-page .bx--row {
+.repo-page .cds--row {
   padding-top: $spacing-05;
   padding-bottom: $spacing-05;
 }
