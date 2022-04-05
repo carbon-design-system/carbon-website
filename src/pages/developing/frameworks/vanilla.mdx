@@ -22,6 +22,9 @@ HTML and SCSS partials to build websites and user interfaces. Adopting the
 library enables developers to use consistent markup, styles, and behavior in
 prototype and production work.
 
+For v10 documents please visit our
+[v10 documentation](https://v10.carbondesignsystem.com/developing/frameworks/vanilla).
+
 </PageDescription>
 
 <AnchorLinks>
@@ -56,8 +59,6 @@ e.g. `npm i carbon-components@next`._
 <AnchorLinks small>
 
 <AnchorLink>What's included</AnchorLink>
-<AnchorLink>CDN</AnchorLink>
-<AnchorLink>CodePen</AnchorLink>
 <AnchorLink>SCSS</AnchorLink>
 <AnchorLink>JavaScript</AnchorLink>
 <AnchorLink>Polyfills for older browsers</AnchorLink>
@@ -71,10 +72,8 @@ carbon-components/
 ├── html
 ├── css
 │   ├── carbon-components.css
-│   └── carbon-components.min.css
 ├── scripts
 │   ├── carbon-components.js
-│   └── carbon-components.min.js
 ├── scss
 │   └── components
 │       └── modal
@@ -86,107 +85,23 @@ carbon-components/
 └── src (Deprecated and subject to breaking changes, please use es/umd instead)
 ```
 
-### CDN
-
-Use unpkg for easy access to our built static files. This is great for
-prototyping and trying `carbon-components` without installing anything. See all
-files from `carbon-components` available on
-[unpkg CDN](https://unpkg.com/carbon-components/).
-
-| Scripts | URL                                                                  |
-| ------- | -------------------------------------------------------------------- |
-| CSS     | https://unpkg.com/carbon-components/css/carbon-components.min.css    |
-| ES5     | https://unpkg.com/carbon-components/scripts/carbon-components.min.js |
-
-### CodePen
-
-We have individual [CodePens](https://codepen.io/collection/XqRbEz/) for all of
-our components which you can easily fork and play around with.
-
 ### SCSS
 
-Using the Carbon Sass files infers usage of the SCSS pre-processor. All Sass
-files use the `*.scss` file extension.
+A minified css bundle is not included, you'll need to add sass compiliation to
+your project's build to use v11.
 
-For transpiling Sass code, use `node-sass` based Sass compilers, for example,
-WebPack `sass-loader` or `gulp-sass`.
+If you were previously using `carbon-components`, the styles from this package
+are available under `@carbon/styles`. The `carbon-components` packages will
+stick around in v11 but will only be a re-export of `@carbon/styles`.
 
-If you're starting a new project without a boilerplate, you need to know about a
-few things to get started.
+For additional information on using sass for v11. Please follow the
+[scss migration guide](https://carbondesignsystem.com/migrating/guide/develop#step-2:-styles-and-dart-sass)
 
 #### Autoprefixer
 
 Make sure your build process uses
 [autoprefixer](https://github.com/postcss/autoprefixer) to ensure vendor
 prefixes are automatically added to your output CSS.
-
-#### Default body styles
-
-CSS is automatically applied to `<body>` element, which comes from
-[\_css--body.scss](https://github.com/carbon-design-system/carbon/blob/v10/packages/components/src/globals/scss/_css--body.scss).
-These styles are meant to cascade down to everything in `<body>` to set common
-styles shared across all components.
-
-```scss
-body {
-  @include reset;
-  @include type-style('body-short-01');
-  color: $text-01;
-  background-color: $ui-background;
-  line-height: 1;
-}
-```
-
-#### Icons
-
-A lot of components depend on SVG icons from
-[carbon-icons](https://github.com/carbon-design-system/carbon-icons). Read the
-[docs](https://github.com/carbon-design-system/carbon-icons/blob/master/docs/usage.md)
-for details on how to use them.
-
-#### Global SCSS variables
-
-These variables are used to configure which parts of the SCSS get compiled,
-where each variable controls a SCSS file of the same name. All variables are set
-to `true` by default.
-
-For example:
-
-- When you set `$css--reset: true`, then the contents of
-  [\_css--reset.scss](https://github.com/carbon-design-system/carbon/blob/v10/packages/components/src/globals/scss/_css--reset.scss)
-  will be part of your output CSS.
-- When you set `$css--reset: false`, then nothing gets included from that SCSS
-  file.
-- When the variable is not declared at all, then nothing gets included from that
-  SCSS file.
-
-The same rules apply to all the following variables:
-
-```scss
-// In styles.scss:
-// These are the default settings.
-$css--font-face: true !default;
-$css--helpers: true !default;
-$css--body: true !default;
-$css--use-layer: true !default;
-$css--reset: true !default;
-$css--typography: true !default;
-$css--plex: true !default;
-```
-
-These flags are set for you by default when you `@import` the `styles.scss`
-file. You can override these default settings by redeclaring the variables.
-
-#### Importing SCSS files
-
-To add a component style to your build, simply import the component directly.
-Importing a component this way will bring in any dependencies that component has
-as well. The import system removes duplicate dependencies, so shared
-dependencies between components will not create extra CSS.
-
-```js
-@import 'node_modules/carbon-components/scss/components/card/card';
-```
 
 #### Namespacing
 
