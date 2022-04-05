@@ -91,7 +91,7 @@ const colorTokens = {
       },
     },
     '$button-primary': {
-      role: ['Primary buttons'],
+      role: ['Primary button color'],
       value: {
         white: {
           name: 'Blue 60',
@@ -112,7 +112,7 @@ const colorTokens = {
       },
     },
     '$button-secondary': {
-      role: ['Secondary buttons'],
+      role: ['Secondary button color'],
       value: {
         white: {
           name: 'Gray 80',
@@ -133,7 +133,7 @@ const colorTokens = {
       },
     },
     '$button-tertiary': {
-      role: ['Tertiary buttons', '4.5:1 AA text contrast'],
+      role: ['Tertiary button color', '4.5:1 AA text contrast'],
       value: {
         white: {
           name: 'Blue 60',
@@ -154,7 +154,7 @@ const colorTokens = {
       },
     },
     '$button-danger-primary': {
-      role: ['Primary danger buttons', '3:1 AA non-text contrast'],
+      role: ['Primary danger button color', '3:1 AA non-text contrast'],
       value: {
         white: {
           name: 'Red 60',
@@ -175,7 +175,7 @@ const colorTokens = {
       },
     },
     '$button-danger-secondary': {
-      role: ['Tertiary danger buttons', 'Ghost danger buttons', '4.5:1 AA text contrast'],
+      role: ['Tertiary danger button color', 'Ghost danger button color', '4.5:1 AA text contrast'],
       value: {
         white: {
           name: 'Red 60',
@@ -218,7 +218,7 @@ const colorTokens = {
     },
     '$layer-01': {
       role: [
-        'Container background on $background',
+        'Container color on $background',
         'Secondary page background',
       ],
       value: {
@@ -241,7 +241,7 @@ const colorTokens = {
       },
     },
     '$layer-02': {
-      role: ['Container background on $layer-01'],
+      role: ['Container color on $layer-01'],
       value: {
         white: {
           name: 'White',
@@ -262,7 +262,7 @@ const colorTokens = {
       },
     },
     '$layer-03': {
-      role: ['Container background on $layer-02'],
+      role: ['Container color on $layer-02'],
       value: {
         white: {
           name: 'Gray 10',
