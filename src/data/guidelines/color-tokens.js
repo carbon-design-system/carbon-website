@@ -2121,7 +2121,7 @@ const colorTokens = {
       },
     },
     '$border-disabled': {
-      role: ['Disabled border color (excluding border-subtles'],
+      role: ['Disabled border color (excluding border-subtles)'],
       value: {
         white: {
           name: 'Gray 30',
