@@ -2,7 +2,7 @@
 const colorTokens = {
   'core-tokens': {
     $background: {
-      role: ['Default page background'],
+      role: ['Default page background', 'UI Shell base color'],
       value: {
         white: {
           name: 'White',
@@ -44,7 +44,7 @@ const colorTokens = {
       },
     },
     '$background-brand': {
-      role: ['Primary interactive color'],
+      role: ['Feature background color'],
       value: {
         white: {
           name: 'Blue 60',
@@ -91,7 +91,7 @@ const colorTokens = {
       },
     },
     '$button-primary': {
-      role: ['Primary interactive color', 'Primary buttons'],
+      role: ['Primary button color'],
       value: {
         white: {
           name: 'Blue 60',
@@ -112,7 +112,7 @@ const colorTokens = {
       },
     },
     '$button-secondary': {
-      role: ['Secondary interactive color', 'Secondary button'],
+      role: ['Secondary button color'],
       value: {
         white: {
           name: 'Gray 80',
@@ -133,7 +133,7 @@ const colorTokens = {
       },
     },
     '$button-tertiary': {
-      role: ['4.5:1 AA contrast', 'Tertiary button'],
+      role: ['Tertiary button color', '4.5:1 AA text contrast'],
       value: {
         white: {
           name: 'Blue 60',
@@ -154,7 +154,7 @@ const colorTokens = {
       },
     },
     '$button-danger-primary': {
-      role: ['Danger button background', '3:1 AA contrast'],
+      role: ['Primary danger button color', '3:1 AA non-text contrast'],
       value: {
         white: {
           name: 'Red 60',
@@ -175,7 +175,7 @@ const colorTokens = {
       },
     },
     '$button-danger-secondary': {
-      role: ['Danger button variant', 'Text', 'Icon', 'Border'],
+      role: ['Tertiary danger button color', 'Ghost danger button color', '4.5:1 AA text contrast'],
       value: {
         white: {
           name: 'Red 60',
@@ -196,7 +196,7 @@ const colorTokens = {
       },
     },
     '$button-separator': {
-      role: ['3:1 aa element contrast', 'Fluid button separator'],
+      role: ['Fluid button separator', '3:1 AA non-text contrast'],
       value: {
         white: {
           name: 'Gray 20',
@@ -218,7 +218,7 @@ const colorTokens = {
     },
     '$layer-01': {
       role: [
-        'Container background on $background',
+        'Container color on $background',
         'Secondary page background',
       ],
       value: {
@@ -241,7 +241,7 @@ const colorTokens = {
       },
     },
     '$layer-02': {
-      role: ['Container background on $layer-01'],
+      role: ['Container color on $layer-01'],
       value: {
         white: {
           name: 'White',
@@ -262,7 +262,7 @@ const colorTokens = {
       },
     },
     '$layer-03': {
-      role: ['Container background on $layer-02'],
+      role: ['Container color on $layer-02'],
       value: {
         white: {
           name: 'Gray 10',
@@ -283,7 +283,7 @@ const colorTokens = {
       },
     },
     '$layer-selected-inverse': {
-      role: ['4.5:1 aa element contrast', 'Emphasis elements'],
+      role: ['High contrast elements', '4.5:1 AA element contrast'],
       value: {
         white: {
           name: 'Gray 100',
@@ -304,7 +304,7 @@ const colorTokens = {
       },
     },
     '$layer-accent-01': {
-      role: ['Tertiary background'],
+      role: ['Tertiary background paired with $layer-01'],
       value: {
         white: {
           name: 'Gray 20',
@@ -325,7 +325,7 @@ const colorTokens = {
       },
     },
     '$layer-accent-02': {
-      role: ['Tertiary background'],
+      role: ['Tertiary background paired with $layer-02'],
       value: {
         white: {
           name: 'Gray 20',
@@ -346,7 +346,7 @@ const colorTokens = {
       },
     },
     '$layer-accent-03': {
-      role: ['Tertiary background'],
+      role: ['Tertiary background paired with $layer-03'],
       value: {
         white: {
           name: 'Gray 20',
@@ -367,7 +367,7 @@ const colorTokens = {
       },
     },
     '$toggle-off': {
-      role: ['3:1 aa element contrast'],
+      role: ['Off background', '3:1 AA contrast'],
       value: {
         white: {
           name: 'Gray 50',
@@ -390,9 +390,8 @@ const colorTokens = {
     '$border-interactive': {
       role: [
         '3:1 AA contrast',
-        'Selected elements',
-        'Active elements',
-        'Accent icons',
+        'Selected borders',
+        'Active borders'
       ],
       value: {
         white: {
@@ -414,7 +413,7 @@ const colorTokens = {
       },
     },
     '$border-subtle-00': {
-      role: ['Subtle border'],
+      role: ['Subtle borders paired with $background'],
       value: {
         white: {
           name: 'Gray 20',
@@ -435,7 +434,7 @@ const colorTokens = {
       },
     },
     '$border-subtle-01': {
-      role: ['Subtle border'],
+      role: ['Subtle borders paired with $layer-01'],
       value: {
         white: {
           name: 'Gray 20',
@@ -456,7 +455,7 @@ const colorTokens = {
       },
     },
     '$border-subtle-02': {
-      role: ['“Light” variant elements'],
+      role: ['Subtle borders paired with $layer-02'],
       value: {
         white: {
           name: 'Gray 20',
@@ -477,7 +476,7 @@ const colorTokens = {
       },
     },
     '$border-subtle-03': {
-      role: ['“Light” variant elements'],
+      role: ['Subtle borders paired with $layer-03'],
       value: {
         white: {
           name: 'Gray 20',
@@ -498,7 +497,7 @@ const colorTokens = {
       },
     },
     '$border-strong-01': {
-      role: ['3:1 aa element contrast', 'Medium contrast border'],
+      role: ['Medium contrast border', 'Border-bottom paired with $field-01', '3:1 AA non-text contrast'],
       value: {
         white: {
           name: 'Gray 50',
@@ -519,7 +518,7 @@ const colorTokens = {
       },
     },
     '$border-strong-02': {
-      role: ['3:1 aa element contrast', 'Medium contrast border'],
+      role: ['Medium contrast border', 'Border-bottom paired with $field-02', '3:1 AA non-text contrast'],
       value: {
         white: {
           name: 'Gray 50',
@@ -540,7 +539,7 @@ const colorTokens = {
       },
     },
     '$border-strong-03': {
-      role: ['3:1 aa element contrast', 'Medium contrast border'],
+      role: ['Medium contrast border', 'Border-bottom paired with $field-03', '3:1 AA non-text contrast'],
       value: {
         white: {
           name: 'Gray 50',
@@ -561,7 +560,7 @@ const colorTokens = {
       },
     },
     '$border-inverse': {
-      role: ['4.5:1 aa element contrast', 'High contrast border'],
+      role: ['High contrast border', '4.5:1 AA non-text contrast'],
       value: {
         white: {
           name: 'Gray 100',
@@ -650,7 +649,7 @@ const colorTokens = {
       },
     },
     '$text-on-color': {
-      role: ['Text on interactive colors'],
+      role: ['Text on interactive colors', 'Text on button colors'],
       value: {
         white: {
           name: 'White',
@@ -839,7 +838,7 @@ const colorTokens = {
       },
     },
     '$icon-on-color': {
-      role: [`Icons on interactive colors`, `Icons on non-ui colors`],
+      role: [`Icons on interactive colors`, `Icons on non-layer colors`],
       value: {
         white: {
           name: 'White',
@@ -881,7 +880,7 @@ const colorTokens = {
       },
     },
     '$field-01': {
-      role: ['Default input fields', 'Fields on $ui-backgrounds'],
+      role: ['Default input fields', 'Fields on $background'],
       value: {
         white: {
           name: 'Gray 10',
@@ -902,7 +901,7 @@ const colorTokens = {
       },
     },
     '$field-02': {
-      role: ['“Light” variant input fields', 'Fields on $ui-01 backgrounds'],
+      role: ['Secondary input fields', 'Fields on $layer-01'],
       value: {
         white: {
           name: 'White',
@@ -923,7 +922,7 @@ const colorTokens = {
       },
     },
     '$field-03': {
-      role: ['“Light” variant input fields', 'Fields on $ui-01 backgrounds'],
+      role: ['Tertiary input fields', 'Fields on $layer-02'],
       value: {
         white: {
           name: 'Gray 10',
@@ -943,29 +942,8 @@ const colorTokens = {
         },
       },
     },
-    '$focus-inset': {
-      role: ['Inverse text color', 'Inverse icon color'],
-      value: {
-        white: {
-          name: 'White',
-          hex: '#ffffff',
-        },
-        g10: {
-          name: 'White',
-          hex: '#ffffff',
-        },
-        g90: {
-          name: 'Gray 100',
-          hex: '#161616',
-        },
-        g100: {
-          name: 'Gray 100',
-          hex: '#161616',
-        },
-      },
-    },
     '$support-error': {
-      role: ['Error'],
+      role: ['Error', 'Invalid state'],
       value: {
         white: {
           name: 'Red 60',
@@ -986,7 +964,7 @@ const colorTokens = {
       },
     },
     '$support-success': {
-      role: ['Success'],
+      role: ['Success', 'On'],
       value: {
         white: {
           name: 'Green 60',
@@ -1007,7 +985,7 @@ const colorTokens = {
       },
     },
     '$support-warning': {
-      role: ['Warning'],
+      role: ['Warning', 'Caution'],
       value: {
         white: {
           name: 'Yellow',
@@ -1049,7 +1027,7 @@ const colorTokens = {
       },
     },
     '$support-error-inverse': {
-      role: ['Danger in high contrast moments'],
+      role: ['Error in high contrast moments'],
       value: {
         white: {
           name: 'Red 50',
@@ -1176,6 +1154,27 @@ const colorTokens = {
         },
       },
     },
+    '$focus-inset': {
+      role: ['Contrast border paired with $focus'],
+      value: {
+        white: {
+          name: 'White',
+          hex: '#ffffff',
+        },
+        g10: {
+          name: 'White',
+          hex: '#ffffff',
+        },
+        g90: {
+          name: 'Gray 100',
+          hex: '#161616',
+        },
+        g100: {
+          name: 'Gray 100',
+          hex: '#161616',
+        },
+      },
+    },
     '$focus-inverse': {
       role: ['Focus on high contrast moments'],
       value: {
@@ -1198,7 +1197,7 @@ const colorTokens = {
       },
     },
     '$button-primary-hover': {
-      role: ['$button-primary hover'],
+      role: ['Hover color for $button-primary'],
       value: {
         white: {
           name: 'Blue 60 hover',
@@ -1219,7 +1218,7 @@ const colorTokens = {
       },
     },
     '$button-secondary-hover': {
-      role: ['$button-secondary hover'],
+      role: ['Hover color for $button-secondary'],
       value: {
         white: {
           name: 'Gray 80 hover',
@@ -1240,7 +1239,7 @@ const colorTokens = {
       },
     },
     '$button-tertiary-hover': {
-      role: ['$button-tertiary hover'],
+      role: ['Hover color for $button-tertiary'],
       value: {
         white: {
           name: 'Blue 60 hover',
@@ -1261,7 +1260,7 @@ const colorTokens = {
       },
     },
     '$button-danger-hover': {
-      role: ['Danger hover', '$support-01 hover'],
+      role: ['Hover color for $danger-primary', 'Hover color for $danger-secondary'],
       value: {
         white: {
           name: 'Red 60 hover',
@@ -1282,7 +1281,7 @@ const colorTokens = {
       },
     },
     '$button-primary-active': {
-      role: ['$button-primary active'],
+      role: ['Active color for $button-primary'],
       value: {
         white: {
           name: 'Blue 80',
@@ -1303,7 +1302,7 @@ const colorTokens = {
       },
     },
     '$button-secondary-active': {
-      role: ['$button-secondary active'],
+      role: ['Active color for $button-secondary'],
       value: {
         white: {
           name: 'Gray 60',
@@ -1324,7 +1323,7 @@ const colorTokens = {
       },
     },
     '$button-tertiary-active': {
-      role: ['$button-tertiary active'],
+      role: ['Active color for $button-tertiary'],
       value: {
         white: {
           name: 'Blue 80',
@@ -1345,7 +1344,7 @@ const colorTokens = {
       },
     },
     '$button-danger-active': {
-      role: ['Danger active', '$support-error active'],
+      role: ['Active color for $danger-primary', 'Active color for $danger-secondary'],
       value: {
         white: {
           name: 'Red 80',
@@ -1366,7 +1365,7 @@ const colorTokens = {
       },
     },
     '$button-disabled': {
-      role: ['Disabled elements'],
+      role: ['Disabled color for button elements'],
       value: {
         white: {
           name: 'Gray 30',
@@ -1387,7 +1386,7 @@ const colorTokens = {
       },
     },
     '$background-hover': {
-      role: ['$background hover', 'Transparent background hover'],
+      role: ['Hover color for $background', 'Hover color for transparent backgrounds'],
       value: {
         white: {
           name: 'Gray 10 hover',
@@ -1408,7 +1407,7 @@ const colorTokens = {
       },
     },
     '$background-selected-hover': {
-      role: ['Selected row hover'],
+      role: ['Hover color for $background-selected'],
       value: {
         white: {
           name: 'Gray 20 hover',
@@ -1429,7 +1428,7 @@ const colorTokens = {
       },
     },
     '$background-inverse-hover': {
-      role: ['Hover for $background-inverse'],
+      role: ['Hover color for $background-inverse'],
       value: {
         white: {
           name: 'Gray 80 hover',
@@ -1450,7 +1449,7 @@ const colorTokens = {
       },
     },
     '$background-active': {
-      role: ['$background active'],
+      role: ['Active color for $background'],
       value: {
         white: {
           name: 'Gray 30',
@@ -1471,7 +1470,7 @@ const colorTokens = {
       },
     },
     '$background-selected': {
-      role: ['Selected UI elements'],
+      role: ['Selected color for $background'],
       value: {
         white: {
           name: 'Gray 20',
@@ -1492,7 +1491,7 @@ const colorTokens = {
       },
     },
     '$layer-hover-01': {
-      role: ['$layer-01 hover', 'Transparent background hover'],
+      role: ['Hover color for $layer-01'],
       value: {
         white: {
           name: 'Gray 10 hover',
@@ -1513,7 +1512,7 @@ const colorTokens = {
       },
     },
     '$layer-hover-02': {
-      role: ['$layer-02 hover'],
+      role: ['Hover color for $layer-02'],
       value: {
         white: {
           name: 'Gray 10 hover',
@@ -1534,7 +1533,7 @@ const colorTokens = {
       },
     },
     '$layer-hover-03': {
-      role: ['$layer-03 hover'],
+      role: ['Hover color for $layer-03'],
       value: {
         white: {
           name: 'Gray 10 hover',
@@ -1555,7 +1554,7 @@ const colorTokens = {
       },
     },
     '$layer-accent-hover-01': {
-      role: ['Selected row hover'],
+      role: ['Hover color for $layer-accent-01'],
       value: {
         white: {
           name: 'Gray 20 hover',
@@ -1576,7 +1575,7 @@ const colorTokens = {
       },
     },
     '$layer-accent-hover-02': {
-      role: ['Selected row hover'],
+      role: ['Hover color for $layer-accent-02'],
       value: {
         white: {
           name: 'Gray 20 hover',
@@ -1597,7 +1596,7 @@ const colorTokens = {
       },
     },
     '$layer-accent-hover-03': {
-      role: ['Selected row hover'],
+      role: ['Hover color for $layer-accent-03'],
       value: {
         white: {
           name: 'Gray 20 hover',
@@ -1618,7 +1617,7 @@ const colorTokens = {
       },
     },
     '$layer-selected-hover-01': {
-      role: ['Selected row hover'],
+      role: ['Hover color for $layer-selected-01'],
       value: {
         white: {
           name: 'Gray 20 hover',
@@ -1639,7 +1638,7 @@ const colorTokens = {
       },
     },
     '$layer-selected-hover-02': {
-      role: ['Selected row hover'],
+      role: ['Hover color for $layer-selected-02'],
       value: {
         white: {
           name: 'Gray 20 hover',
@@ -1660,7 +1659,7 @@ const colorTokens = {
       },
     },
     '$layer-selected-hover-03': {
-      role: ['Selected row hover'],
+      role: ['Hover color for $layer-selected-03'],
       value: {
         white: {
           name: 'Gray 20 hover',
@@ -1681,7 +1680,7 @@ const colorTokens = {
       },
     },
     '$layer-active-01': {
-      role: ['$layer-01 active'],
+      role: ['Active color for $layer-01'],
       value: {
         white: {
           name: 'Gray 30',
@@ -1702,7 +1701,7 @@ const colorTokens = {
       },
     },
     '$layer-active-02': {
-      role: ['$layer-02 active'],
+      role: ['Active color for $layer-02'],
       value: {
         white: {
           name: 'Gray 30',
@@ -1723,7 +1722,7 @@ const colorTokens = {
       },
     },
     '$layer-active-03': {
-      role: ['$layer-02 active'],
+      role: ['Active color for $layer-03'],
       value: {
         white: {
           name: 'Gray 30',
@@ -1744,7 +1743,7 @@ const colorTokens = {
       },
     },
     '$layer-selected-01': {
-      role: ['Selected UI elements'],
+      role: ['Selected color for $layer-01'],
       value: {
         white: {
           name: 'Gray 20',
@@ -1765,7 +1764,7 @@ const colorTokens = {
       },
     },
     '$layer-selected-02': {
-      role: ['$layer-02 selected'],
+      role: ['Selected color for $layer-02'],
       value: {
         white: {
           name: 'Gray 20',
@@ -1786,7 +1785,7 @@ const colorTokens = {
       },
     },
     '$layer-selected-03': {
-      role: ['$layer-02 selected'],
+      role: ['Selected color for $layer-03'],
       value: {
         white: {
           name: 'Gray 20',
@@ -1807,7 +1806,7 @@ const colorTokens = {
       },
     },
     '$layer-accent-active-01': {
-      role: ['$layer-accent-01 active'],
+      role: ['Active color for $layer-accent-01'],
       value: {
         white: {
           name: 'Gray 30',
@@ -1828,7 +1827,7 @@ const colorTokens = {
       },
     },
     '$layer-accent-active-02': {
-      role: ['$layer-accent-02 active'],
+      role: ['Active color for $layer-accent-02'],
       value: {
         white: {
           name: 'Gray 40',
@@ -1849,7 +1848,7 @@ const colorTokens = {
       },
     },
     '$layer-accent-active-03': {
-      role: ['$layer-accent-03 active'],
+      role: ['Active color for $layer-accent-03'],
       value: {
         white: {
           name: 'Gray 40',
@@ -1870,7 +1869,7 @@ const colorTokens = {
       },
     },
     '$layer-selected-disabled': {
-      role: ['Disabled selected layer'],
+      role: ['Disabled color for selected layers'],
       value: {
         white: {
           name: 'Gray 50',
@@ -1891,7 +1890,7 @@ const colorTokens = {
       },
     },
     '$field-hover-01': {
-      role: ['$field-01 hover', 'Transparent background hover'],
+      role: ['Hover color for $field-01'],
       value: {
         white: {
           name: 'Gray 10 hover',
@@ -1912,7 +1911,7 @@ const colorTokens = {
       },
     },
     '$field-hover-02': {
-      role: ['$field-02 hover', 'Transparent background hover'],
+      role: ['Hover color for $field-02'],
       value: {
         white: {
           name: 'Gray 10 hover',
@@ -1933,7 +1932,7 @@ const colorTokens = {
       },
     },
     '$field-hover-03': {
-      role: ['$field-02 hover', 'Transparent background hover'],
+      role: ['Hover color for $field-03'],
       value: {
         white: {
           name: 'Gray 10 hover',
@@ -1954,7 +1953,7 @@ const colorTokens = {
       },
     },
     $highlight: {
-      role: ['$interactive-01 highlight'],
+      role: ['Highlight color'],
       value: {
         white: {
           name: 'Blue 20',
@@ -1975,7 +1974,7 @@ const colorTokens = {
       },
     },
     '$skeleton-background': {
-      role: ['Skeleton state of graphics'],
+      role: ['Skeleton color for containers'],
       value: {
         white: {
           name: 'Gray 10 hover',
@@ -1996,7 +1995,7 @@ const colorTokens = {
       },
     },
     '$skeleton-element': {
-      role: ['Skeleton state of texts'],
+      role: ['Skeleton color for text and UI elements'],
       value: {
         white: {
           name: 'Gray 30',
@@ -2017,7 +2016,7 @@ const colorTokens = {
       },
     },
     '$link-primary-hover': {
-      role: ['$button-primary text hover'],
+      role: ['Hover color for $link-primary'],
       value: {
         white: {
           name: 'Blue 70',
@@ -2038,7 +2037,7 @@ const colorTokens = {
       },
     },
     '$link-visited': {
-      role: ['Visited links'],
+      role: ['Color for visited links'],
       value: {
         white: {
           name: 'Purple 60',
@@ -2059,7 +2058,7 @@ const colorTokens = {
       },
     },
     '$border-subtle-selected-01': {
-      role: ['$border-subtle-01 selected'],
+      role: ['Selected color for $border-subtle-01'],
       value: {
         white: {
           name: 'Gray 30',
@@ -2080,7 +2079,7 @@ const colorTokens = {
       },
     },
     '$border-subtle-selected-02': {
-      role: ['$border-subtle-02 selected'],
+      role: ['Selected color for $border-subtle-02'],
       value: {
         white: {
           name: 'Gray 30',
@@ -2101,7 +2100,7 @@ const colorTokens = {
       },
     },
     '$border-subtle-selected-03': {
-      role: ['$border-subtle-03 selected'],
+      role: ['Selected color for $border-subtle-03'],
       value: {
         white: {
           name: 'Gray 30',
@@ -2122,7 +2121,7 @@ const colorTokens = {
       },
     },
     '$border-disabled': {
-      role: ['Disabled border'],
+      role: ['Disabled border color (excluding border-subtles)'],
       value: {
         white: {
           name: 'Gray 30',
@@ -2143,7 +2142,7 @@ const colorTokens = {
       },
     },
     '$text-disabled': {
-      role: ['Disabled text'],
+      role: ['Disabled text color'],
       value: {
         white: {
           name: 'Gray 30',
@@ -2164,7 +2163,7 @@ const colorTokens = {
       },
     },
     '$icon-disabled': {
-      role: ['Disabled icons'],
+      role: ['Disabled icon color'],
       value: {
         white: {
           name: 'Gray 30',
@@ -2185,7 +2184,7 @@ const colorTokens = {
       },
     },
     '$icon-on-color-disabled': {
-      role: ['Disabled icon'],
+      role: ['Disabled color for $icon-on-color'],
       value: {
         white: {
           name: 'Gray 50',
@@ -2206,7 +2205,7 @@ const colorTokens = {
       },
     },
     '$text-on-color-disabled': {
-      role: ['Disabled text'],
+      role: ['Disabled color for $text-on-color'],
       value: {
         white: {
           name: 'Gray 50',
