@@ -5,7 +5,7 @@ import {
   Switch,
   OverflowMenu,
   OverflowMenuItem,
-} from 'carbon-components-react';
+} from '@carbon/react';
 import { CopyToClipboard } from 'react-copy-to-clipboard/lib/Component';
 import StickyContainer from '../TypesetStyle/StickyContainer';
 import colorTokens from '../../data/guidelines/color-tokens';
@@ -141,7 +141,7 @@ export default class ColorTokenTable extends React.Component {
     );
 
     return (
-      <div className="bx--row color-token-table">
+      <div className="cds--row color-token-table">
         <StickyContainer navBar banner secondary={false}>
           <ContentSwitcher
             className={themeSwitcherClasses}
@@ -156,10 +156,10 @@ export default class ColorTokenTable extends React.Component {
           </ContentSwitcher>
         </StickyContainer>
         <section>
-          <div className="bx--col-lg-7">
+          <div className="cds--col-lg-7">
             <h3 className="page-h3">Core color tokens</h3>
           </div>
-          <div className="bx--col-lg-12 bx--no-gutter">
+          <div className="cds--col-lg-12 cds--no-gutter">
             <table className="page-table">
               <thead>
                 <tr>
@@ -175,10 +175,10 @@ export default class ColorTokenTable extends React.Component {
               </tbody>
             </table>
           </div>
-          <div className="bx--col-lg-7">
+          <div className="cds--col-lg-7">
             <h3 className="page-h3">Interactive color tokens</h3>
           </div>
-          <div className="bx--col-lg-12 bx--no-gutter">
+          <div className="cds--col-lg-12 cds--no-gutter">
             <table className="page-table">
               <thead>
                 <tr>
@@ -188,14 +188,13 @@ export default class ColorTokenTable extends React.Component {
                 </tr>
               </thead>
               <tbody>
-                {Object.keys(
-                  colorTokens['interaction-tokens']
-                ).map((token, i) =>
-                  this.renderToken(
-                    token,
-                    colorTokens['interaction-tokens'][token],
-                    i
-                  )
+                {Object.keys(colorTokens['interaction-tokens']).map(
+                  (token, i) =>
+                    this.renderToken(
+                      token,
+                      colorTokens['interaction-tokens'][token],
+                      i
+                    )
                 )}
               </tbody>
             </table>

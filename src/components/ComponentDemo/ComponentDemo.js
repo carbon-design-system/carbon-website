@@ -1,14 +1,14 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useContext } from 'react';
 import getTheme from 'gatsby-theme-carbon/src/components/Code/getTheme';
-import * as CarbonComponents from 'carbon-components-react';
+import * as CarbonComponents from '@carbon/react';
 import { LiveProvider, LiveEditor, LivePreview, LiveError } from 'react-live';
 import { Row } from 'gatsby-theme-carbon';
 import {
-  TableOfContents20,
-  Maximize16,
-  Minimize16,
-  Close16,
+  TableOfContents,
+  Maximize,
+  Minimize,
+  Close,
 } from '@carbon/icons-react';
 import cx from 'classnames';
 
@@ -106,7 +106,7 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
             label="Theme selector"
             titleText="Theme selector"
             items={Object.keys(themes)}
-            size="xl"
+            size="lg"
           />
           <Dropdown
             onChange={onVariantChange}
@@ -115,7 +115,7 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
             titleText={childrenArray.length === 1 ? '' : 'Variant selector'}
             label="Variant selector"
             items={components}
-            size="xl"
+            size="lg"
             className={cx(variantDropdown, {
               [hiddenDropdown]: childrenArray.length === 1,
             })}
@@ -127,7 +127,7 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
               onClick={() => {
                 setFullscreen(false);
               }}>
-              <Close16 />
+              <Close size={16} />
             </button>
           )}
         </Row>
@@ -147,7 +147,7 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
                 onClick={() => {
                   setFullscreen(!isFullscreen);
                 }}>
-                {isFullscreen ? <Minimize16 /> : <Maximize16 />}
+                {isFullscreen ? <Minimize size={16} /> : <Maximize size={16} />}
               </button>
               <LivePreview className={cx(theme, previewContainer)} />
               {isMobile && (
@@ -159,7 +159,7 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
                   <span id="expand-knob-container-button" hidden>
                     Expand component knob container
                   </span>
-                  <TableOfContents20 />
+                  <TableOfContents size={20} />
                 </button>
               )}
 

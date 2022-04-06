@@ -11,39 +11,44 @@ tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 Refer to the [button](/components/button/style) for primary and secondary button
 styling in the transactional modal.
 
-| Class                        | Property         | Color token   |
-| ---------------------------- | ---------------- | ------------- |
-| `.bx--modal-container`       | background-color | `$ui-01`      |
-| `.bx--modal-header__label`   | text color       | `$text-02`    |
-| `.bx--modal-header__heading` | text color       | `$text-01`    |
-| `.bx--modal-content`         | text color       | `$text-01`    |
-| `.bx--modal-close__icon`     | fill             | `$icon-01`    |
-| `.bx--modal-close:hover`     | background-color | `$hover-ui`   |
-| Overlay                      | color            | `$overlay-01` |
+| Elements         | Property         | Color token       |
+| ---------------- | ---------------- | ----------------- |
+| Container        | background-color | `$layer` \*       |
+| Header label     | text color       | `$text-secondary` |
+| Header           | text color       | `$text-primary`   |
+| Content          | text color       | `$text-primary`   |
+| Close icon       | fill             | `$icon-primary`   |
+| Close icon:hover | background-color | `$layer-hover` \* |
+| Page overlay     | color            | `$overlay`        |
+
+<Caption>
+  * Denotes a contextual color token that will change values based on the layer
+  it is placed on.
+</Caption>
 
 ## Typography
 
-Modal titles and labels should be set in sentence case. Keep all titles and
-labels concise and to the point. Modal labels are optional.
+Modal labels and headings should be set in sentence case. Keep all labels and
+headings concise and to the point. Modal labels are optional.
 
-| Class                        | Font-size (px/rem) | Font-weight   | Type token      |
-| ---------------------------- | ------------------ | ------------- | --------------- |
-| `.bx--modal-header__label`   | 12 / 0.75          | Regular / 400 | `$label-01`     |
-| `.bx--modal-header__heading` | 20 / 1.25          | Regular / 400 | `$heading-03`   |
-| `.bx--modal-content`         | 14 / 0.875         | Regular / 400 | `$body-long-01` |
+| Element | Font-size (px/rem) | Font-weight   | Type token    |
+| ------- | ------------------ | ------------- | ------------- |
+| Label   | 12 / 0.75          | Regular / 400 | `$label-01`   |
+| Heading | 20 / 1.25          | Regular / 400 | `$heading-03` |
+| Content | 14 / 0.875         | Regular / 400 | `$body-01`    |
 
 ## Structure
 
-| Class                      | Property                  | px / rem | Spacing token |
-| -------------------------- | ------------------------- | -------- | ------------- |
-| `.bx--modal-close`         | height, width             | 48 x 48  | –             |
-| `.bx--modal-close__icon`   | height, width             | 16 x 16  | –             |
-| `.bx--modal-header__label` | margin-bottom             | 4 / 0.25 | `$spacing-02` |
-| `.bx--modal-header`        | padding top, padding left | 16 / 1   | `$spacing-05` |
-| `.bx--modal-header`        | margin-bottom             | 16 / 1   | `$spacing-05` |
-| `.bx--modal-content`       | padding-left              | 16 / 1   | `$spacing-05` |
-| `.bx--modal-content`       | padding-right             | 20%      | –             |
-| `.bx--modal-content`       | margin-bottom             | 48 / 3   | `$spacing-09` |
+| Element      | Property                  | px / rem | Spacing token |
+| ------------ | ------------------------- | -------- | ------------- |
+| Close button | height, width             | 48 x 48  | –             |
+| Close icon   | height, width             | 16 x 16  | –             |
+| Header label | margin-bottom             | 4 / 0.25 | `$spacing-02` |
+| Header       | padding top, padding left | 16 / 1   | `$spacing-05` |
+|              | margin-bottom             | 16 / 1   | `$spacing-05` |
+| Content      | padding-left              | 16 / 1   | `$spacing-05` |
+|              | padding-right             | 20%      | –             |
+|              | margin-bottom             | 48 / 3   | `$spacing-09` |
 
 <div className="image--fixed">
 
@@ -83,23 +88,30 @@ other components may still expand to the full width of a modal window.
   Margin-right for modals less than 36% (left) and greater than 36% (right).
 </Caption>
 
-<!--
-### Buttons widths
+### Button structure
 
-| Number of buttons    | Percentage of modal     | Positioning    |
-| -------------------- | ----------------------- | -------------- | 
-| 1                    | 50%                     | Flush right    |
-| 2                    | 50% each                | Full bleed     |
-| 3                    | 25% each                | Flush right    |
--->
+| Number of buttons | Percentage width of modal | Positioning                 |
+| ----------------- | ------------------------- | --------------------------- |
+| 1                 | 50%                       | Flush right                 |
+| 2                 | 50% each                  | Full bleed                  |
+| 3                 | 25% each                  | Flush right                 |
+| 3                 | 25% each                  | 1 flush left, 2 flush right |
+
+<Row>
+<Column colLg={8}>
+
+![Modal button sizes](images/modal-style-button.png)
+
+</Column>
+</Row>
 
 ## Sizes
 
-There are four modal sizes: **xs, small, default, large**. Each modal size has a
-responsive width that changes based on the browser size. As the browser
-decreases, the modal width percentage increases thus maintaining a proper ratio
-between the modal and browser. Modal widths are defined as percentages of the
-browser but will still align to columns on the 2x grid.
+There are four modal sizes: extra small, small, medium, and large. Each modal
+size has a responsive width that changes based on the browser size. As the
+browser decreases, the modal width percentage increases thus maintaining a
+proper ratio between the modal and browser. Modal widths are defined as
+percentages of the browser but will still align to columns on the 2x grid.
 
 <Row>
 <Column colLg={8}>
@@ -109,7 +121,7 @@ browser but will still align to columns on the 2x grid.
 </Column>
 </Row>
 
-### XS
+### Extra small (xs)
 
 | Breakpoint | Percentage width | Column span | Margin-right |
 | ---------- | ---------------- | ----------- | ------------ |
@@ -119,7 +131,7 @@ browser but will still align to columns on the 2x grid.
 | 672        | 48%              | 4 of 8      | 16px / 1rem  |
 | 320        | 100%             | 4 of 4      | 16px / 1rem  |
 
-### Small
+### Small (sm)
 
 | Breakpoint | Percentage width | Column span | Margin-right |
 | ---------- | ---------------- | ----------- | ------------ |
@@ -129,7 +141,7 @@ browser but will still align to columns on the 2x grid.
 | 672        | 60%              | 5 of 8      | 16px / 1rem  |
 | 320        | 100%             | 4 of 4      | 16px / 1rem  |
 
-### Default
+### Medium (md)
 
 | Breakpoint | Percentage width | Column span | Margin-right |
 | ---------- | ---------------- | ----------- | ------------ |
@@ -139,7 +151,7 @@ browser but will still align to columns on the 2x grid.
 | 672        | 84%              | 7 of 8      | 20%          |
 | 320        | 100%             | 4 of 4      | 16px / 1rem  |
 
-### Large
+### Large (lg)
 
 | Breakpoint | Percentage width | Column span | Margin-right |
 | ---------- | ---------------- | ----------- | ------------ |
@@ -153,12 +165,12 @@ browser but will still align to columns on the 2x grid.
 
 Each modal size has a max height in order to maintain a proper window ratio.
 
-| Modal size  | Max-height |
-| ----------- | ---------- |
-| **XS**      | 48%        |
-| **Small**   | 72%        |
-| **Default** | 84%        |
-| **Large**   | 96%        |
+| Modal size       | Max-height |
+| ---------------- | ---------- |
+| Extra small (xs) | 48%        |
+| Small (sm)       | 72%        |
+| Medium (md)      | 84%        |
+| Large (lg)       | 96%        |
 
 <Row>
 <Column colLg={8}>

@@ -1,8 +1,8 @@
 import copy from 'copy-to-clipboard';
 
 import React from 'react';
-import { CopyButton } from 'carbon-components-react';
-import { Launch16 } from '@carbon/icons-react';
+import { CopyButton } from '@carbon/react';
+import { Launch } from '@carbon/icons-react';
 import cx from 'classnames';
 import { codeBar, button, copyButton, linkList } from './Code.module.scss';
 import useCodesandbox from './useCodesandbox';
@@ -12,7 +12,7 @@ import useCodesandbox from './useCodesandbox';
 // The copy button will.
 const StorybookLink = ({ framework, url }) => (
   <a target="_blank" rel="noopener noreferrer" href={url}>
-    {framework} <Launch16 />
+    {framework} <Launch size={16} />
   </a>
 );
 
@@ -26,7 +26,7 @@ const CodeBar = ({ src, code, links }) => {
       <div className={linkList}>
         {sandboxUrl && (
           <a target="_blank" rel="noopener noreferrer" href={sandboxUrl}>
-            CodeSandbox <Launch16 />
+            CodeSandbox <Launch size={16} />
           </a>
         )}
         {storybookLinks.map(([framework, url]) => (
@@ -42,7 +42,7 @@ const CodeBar = ({ src, code, links }) => {
           className={button}
           href={src}
           style={{ position: 'relative', zIndex: 200 }}>
-          <Launch16 />
+          <Launch size={16} />
         </a>
       )}
 

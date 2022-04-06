@@ -1,37 +1,71 @@
+@use '@carbon/grid/scss/flex-grid' as *;
+@use '@carbon/react/scss/breakpoint' as *;
+@use '@carbon/react/scss/compat/theme' as *;
+@use '@carbon/react/scss/colors' as *;
+@use '@carbon/react/scss/spacing' as *;
+@use '@carbon/react/scss/type' as *;
+
 //---------------------------------------
 // Set 16 column grid for examples only
 //---------------------------------------
-.grid-demo {
-  $prefix: 'bx-demo';
-  $feature-flags: (
-    grid-columns-16: true,
-  );
-  @import '~carbon-components/scss/globals/grid/grid';
-  @import '~carbon-components/scss/globals/scss/layout';
+.grid-demo.override.override {
+  // $prefix: 'cds';
+
+  $grid-breakpoints: (
+    sm: (
+      columns: 4,
+      margin: 0,
+      width: rem(320px),
+    ),
+    md: (
+      columns: 8,
+      margin: rem(16px),
+      width: rem(672px),
+    ),
+    lg: (
+      columns: 16,
+      margin: rem(16px),
+      width: rem(1056px),
+    ),
+    xlg: (
+      columns: 16,
+      margin: rem(16px),
+      width: rem(1312px),
+    ),
+    max: (
+      columns: 16,
+      margin: rem(24px),
+      width: rem(1584px),
+    ),
+  ) !default;
+
+  @include flex-grid($grid-breakpoints);
+  // @import '~carbon-components/scss/globals/grid/grid';
+  // @import '~carbon-components/scss/globals/scss/layout';
 }
 
-.bx-demo-sm {
-  @include carbon--breakpoint('md') {
+.cds-sm {
+  @include breakpoint('md') {
     display: none;
   }
 }
 
-.bx-demo-md {
+.cds-md {
   display: none;
 
-  @include carbon--breakpoint('md') {
+  @include breakpoint('md') {
     display: inline;
   }
 
-  @include carbon--breakpoint('lg') {
+  @include breakpoint('lg') {
     display: none;
   }
 }
 
-.bx-demo-lg {
+.cds-lg {
   display: none;
 
-  @include carbon--breakpoint('lg') {
+  @include breakpoint('lg') {
     display: inline;
   }
 }
@@ -40,7 +74,7 @@
 .hide-sm {
   display: none;
 
-  @include carbon--breakpoint('md') {
+  @include breakpoint('md') {
     display: block;
   }
 }
@@ -48,7 +82,7 @@
 .hide-md {
   display: none;
 
-  @include carbon--breakpoint('lg') {
+  @include breakpoint('lg') {
     display: block;
   }
 }
@@ -58,13 +92,13 @@
 //---------------------------------------
 
 .grid-demo {
-  background: $ui-01;
+  background: $layer-01;
   padding: $spacing-05 0;
   display: flex;
   position: relative;
 }
 
-.grid-demo .bx-demo--grid {
+.grid-demo .cds--grid {
   margin: 0;
   flex-grow: 1;
   padding-left: $spacing-07;
@@ -72,27 +106,27 @@
 }
 
 .grid-demo [class*='col'] {
-  @include carbon--type-style('caption-01');
+  @include type-style('label-01');
   padding-top: $spacing-05;
   min-height: 4rem;
-  background-color: $carbon--blue-10;
-  outline: 1px solid $carbon--blue-30;
+  background-color: $blue-10;
+  outline: 1px solid $blue-30;
 }
 
 .grid-demo--wide [class*='col'] {
-  background-color: $carbon--blue-20;
+  background-color: $blue-20;
   padding-top: 0;
 }
 
 .grid-demo--narrow [class*='col'] {
-  background-color: $carbon--teal-20;
-  outline: 1px solid $carbon--teal-30;
+  background-color: $teal-20;
+  outline: 1px solid $teal-30;
   padding-top: 0;
 }
 
 .grid-demo--condensed [class*='col'] {
-  background-color: $carbon--purple-30;
-  outline: 1px solid $carbon--purple-30;
+  background-color: $purple-30;
+  outline: 1px solid $purple-30;
   padding-top: 0;
 }
 
@@ -101,15 +135,15 @@
 }
 
 .grid-demo--wide .grid-demo-content {
-  background-color: $carbon--blue-10;
+  background-color: $blue-10;
 }
 
 .grid-demo--narrow .grid-demo-content {
-  background-color: $carbon--teal-10;
+  background-color: $teal-10;
 }
 
 .grid-demo--condensed .grid-demo-content {
-  background-color: $carbon--purple-10;
+  background-color: $purple-10;
 }
 
 // Full bleed
@@ -117,11 +151,11 @@
   padding-top: $spacing-05;
 }
 
-.grid-demo--bleed .bx-demo--grid {
-  background-color: $carbon--blue-30;
+.grid-demo--bleed .cds--grid {
+  background-color: $blue-30;
   padding-top: 0;
   padding-bottom: 0;
-  outline: 1px solid $carbon--blue-30;
+  outline: 1px solid $blue-30;
 }
 
 //---------------------------------------
@@ -136,11 +170,11 @@
   padding-bottom: $spacing-05;
 }
 
-.aspect-ratio-demo .bx-demo--grid {
+.aspect-ratio-demo .cds--grid {
   margin-top: $spacing-05;
 }
 
-.aspect-ratio-demo .bx-demo--grid:first-child {
+.aspect-ratio-demo .cds--grid:first-child {
   margin-top: 0;
 }
 
@@ -151,8 +185,8 @@
 //---------------------------------------
 // Shell collapsed/expanded
 //---------------------------------------
-.grid-demo .side-nav + .bx-demo--grid {
-  @include carbon--breakpoint('md') {
+.grid-demo .side-nav + .cds--grid {
+  @include breakpoint('md') {
     padding-left: $spacing-05;
   }
 }
@@ -160,12 +194,12 @@
 .grid-demo .side-nav {
   height: 16rem;
   width: 3rem;
-  background-color: $carbon--blue-20;
-  outline: 1px solid $carbon--blue-30;
+  background-color: $blue-20;
+  outline: 1px solid $blue-30;
   margin-left: $spacing-05;
   display: none;
 
-  @include carbon--breakpoint('md') {
+  @include breakpoint('md') {
     display: block;
   }
 }
@@ -176,7 +210,7 @@
   display: block;
   height: 12rem;
 
-  @include carbon--breakpoint('md') {
+  @include breakpoint('md') {
     position: static;
     height: auto;
   }
@@ -200,25 +234,25 @@
 // grid code that isn't being pulled in
 // with the updated prefix ❓❓❓❓
 //---------------------------------------
-.bx-demo--grid--condensed .bx-demo--row:not(:last-of-type) {
+.cds--grid--condensed .cds--row:not(:last-of-type) {
   margin-bottom: 0.125rem;
 }
 
-.bx-demo--grid--condensed .bx-demo--col,
-.bx-demo--row--condensed .bx-demo--col {
+.cds--grid--condensed .cds--col,
+.cds--row--condensed .cds--col {
   padding-right: 0.0625rem;
   padding-left: 0.0625rem;
 }
 
-.bx-demo--grid--narrow .bx-demo--col,
-.bx-demo--row--narrow .bx-demo--col {
+.cds--grid--narrow .cds--col,
+.cds--row--narrow .cds--col {
   padding-left: 0;
 }
 
 //---------------------------------------
 // Grid modes section
 //---------------------------------------
-.grid-modes .bx--col-lg-2 {
+.grid-modes .cds--col-lg-2 {
   padding-top: $spacing-04;
 }
 
