@@ -1,5 +1,9 @@
 name: Deployment status
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 on:
   workflow_dispatch:
     inputs:
@@ -12,7 +16,6 @@ on:
 jobs:
   build:
     runs-on: macos-latest
-
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js 14.x
@@ -42,3 +45,43 @@ jobs:
       - name: Deploy website
         run: |
           ibmcloud cf v3-zdt-push carbon-website -b https://github.com/cloudfoundry/nginx-buildpack.git
+
+  gh-pages:
+    if: github.repository == 'carbon-design-system/carbon-website'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14.x
+      - name: Install packages
+        run: yarn install --frozen-lockfile --network-timeout 300000
+      - name: Gatsby Cache Folder
+        uses: actions/cache@v3
+        id: gatsby-cache-folder
+        with:
+          path: .cache
+          key: ${{ runner.os }}-cache-gatsby
+          restore-keys: |
+            ${{ runner.os }}-cache-gatsby
+      - name: Gatsby Public Folder
+        uses: actions/cache@v3
+        id: gatsby-public-folder
+        with:
+          path: public/
+          key: ${{ runner.os }}-public-gatsby
+          restore-keys: |
+            ${{ runner.os }}-public-gatsby
+      - name: Build site
+        run: yarn build:clean
+        env:
+          GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES: true
+          NODE_ENV: production
+          CI: true
+      - name: Deploy
+        run: |
+          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          npx gh-pages -d public -u "github-actions-bot <support+actions@github.com>"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
