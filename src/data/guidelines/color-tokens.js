@@ -1,6 +1,6 @@
 /* eslint-disable */
 const colorTokens = {
-  'core-tokens': {
+  'Background': {
     $background: {
       role: ['Default page background', 'UI Shell base color'],
       value: {
