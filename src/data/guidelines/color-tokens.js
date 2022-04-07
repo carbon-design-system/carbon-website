@@ -170,7 +170,7 @@ const colorTokens = {
       },
     },
   },
-  'Background': {
+  'Core tokens': {
     $interactive: {
       role: [
         '3:1 AA contrast',
