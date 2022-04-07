@@ -1331,35 +1331,6 @@ const colorTokens = {
     },
   },
   'Button': {
-
-  },
-  'Core tokens': {
-    $interactive: {
-      role: [
-        '3:1 AA contrast',
-        'Selected elements',
-        'Active elements',
-        'Accent icons',
-      ],
-      value: {
-        white: {
-          name: 'Blue 60',
-          hex: '#0f62fe',
-        },
-        g10: {
-          name: 'Blue 60',
-          hex: '#0f62fe',
-        },
-        g90: {
-          name: 'Blue 50',
-          hex: '#4589ff',
-        },
-        g100: {
-          name: 'Blue 50',
-          hex: '#4589ff',
-        },
-      },
-    },
     '$button-primary': {
       role: ['Primary button color'],
       value: {
@@ -1378,6 +1349,48 @@ const colorTokens = {
         g100: {
           name: 'Blue 60',
           hex: '#0f62fe',
+        },
+      },
+    },
+    '$button-primary-hover': {
+      role: ['Hover color for $button-primary'],
+      value: {
+        white: {
+          name: 'Blue 60 hover',
+          hex: '#0353e9',
+        },
+        g10: {
+          name: 'Blue 60 hover',
+          hex: '#0353e9',
+        },
+        g90: {
+          name: 'Blue 60 hover',
+          hex: '#0353e9',
+        },
+        g100: {
+          name: 'Blue 60 hover',
+          hex: '#0353e9',
+        },
+      },
+    },
+    '$button-primary-active': {
+      role: ['Active color for $button-primary'],
+      value: {
+        white: {
+          name: 'Blue 80',
+          hex: '#002d9c',
+        },
+        g10: {
+          name: 'Blue 80',
+          hex: '#002d9c',
+        },
+        g90: {
+          name: 'Blue 80',
+          hex: '#002d9c',
+        },
+        g100: {
+          name: 'Blue 80',
+          hex: '#002d9c',
         },
       },
     },
@@ -1486,27 +1499,8 @@ const colorTokens = {
         },
       },
     },
-    '$toggle-off': {
-      role: ['Off background', '3:1 AA contrast'],
-      value: {
-        white: {
-          name: 'Gray 50',
-          hex: '#8d8d8d',
-        },
-        g10: {
-          name: 'Gray 50',
-          hex: '#8d8d8d',
-        },
-        g90: {
-          name: 'Gray 50',
-          hex: '#8d8d8d',
-        },
-        g100: {
-          name: 'Gray 60',
-          hex: '#6f6f6f',
-        },
-      },
-    },
+  },
+  'Support': {
     '$support-error': {
       role: ['Error', 'Invalid state'],
       value: {
@@ -1591,27 +1585,6 @@ const colorTokens = {
         },
       },
     },
-    '$support-error-inverse': {
-      role: ['Error in high contrast moments'],
-      value: {
-        white: {
-          name: 'Red 50',
-          hex: '#fa4d56',
-        },
-        g10: {
-          name: 'Red 50',
-          hex: '#fa4d56',
-        },
-        g90: {
-          name: 'Red 60',
-          hex: '#da1e28',
-        },
-        g100: {
-          name: 'Red 60',
-          hex: '#da1e28',
-        },
-      },
-    },
     '$support-success-inverse': {
       role: ['Success in high contrast moments'],
       value: {
@@ -1654,6 +1627,27 @@ const colorTokens = {
         },
       },
     },
+    '$support-error-inverse': {
+      role: ['Error in high contrast moments'],
+      value: {
+        white: {
+          name: 'Red 50',
+          hex: '#fa4d56',
+        },
+        g10: {
+          name: 'Red 50',
+          hex: '#fa4d56',
+        },
+        g90: {
+          name: 'Red 60',
+          hex: '#da1e28',
+        },
+        g100: {
+          name: 'Red 60',
+          hex: '#da1e28',
+        },
+      },
+    },
     '$support-info-inverse': {
       role: ['Information in high contrast moments'],
       value: {
@@ -1672,6 +1666,55 @@ const colorTokens = {
         g100: {
           name: 'Blue 70',
           hex: '#0043ce',
+        },
+      },
+    },
+  },
+  'Core tokens': {
+    $interactive: {
+      role: [
+        '3:1 AA contrast',
+        'Selected elements',
+        'Active elements',
+        'Accent icons',
+      ],
+      value: {
+        white: {
+          name: 'Blue 60',
+          hex: '#0f62fe',
+        },
+        g10: {
+          name: 'Blue 60',
+          hex: '#0f62fe',
+        },
+        g90: {
+          name: 'Blue 50',
+          hex: '#4589ff',
+        },
+        g100: {
+          name: 'Blue 50',
+          hex: '#4589ff',
+        },
+      },
+    },
+    '$toggle-off': {
+      role: ['Off background', '3:1 AA contrast'],
+      value: {
+        white: {
+          name: 'Gray 50',
+          hex: '#8d8d8d',
+        },
+        g10: {
+          name: 'Gray 50',
+          hex: '#8d8d8d',
+        },
+        g90: {
+          name: 'Gray 50',
+          hex: '#8d8d8d',
+        },
+        g100: {
+          name: 'Gray 60',
+          hex: '#6f6f6f',
         },
       },
     },
@@ -1761,27 +1804,6 @@ const colorTokens = {
         },
       },
     },
-    '$button-primary-hover': {
-      role: ['Hover color for $button-primary'],
-      value: {
-        white: {
-          name: 'Blue 60 hover',
-          hex: '#0353e9',
-        },
-        g10: {
-          name: 'Blue 60 hover',
-          hex: '#0353e9',
-        },
-        g90: {
-          name: 'Blue 60 hover',
-          hex: '#0353e9',
-        },
-        g100: {
-          name: 'Blue 60 hover',
-          hex: '#0353e9',
-        },
-      },
-    },
     '$button-secondary-hover': {
       role: ['Hover color for $button-secondary'],
       value: {
@@ -1842,27 +1864,6 @@ const colorTokens = {
         g100: {
           name: 'Red 60 hover',
           hex: '#ba1b23',
-        },
-      },
-    },
-    '$button-primary-active': {
-      role: ['Active color for $button-primary'],
-      value: {
-        white: {
-          name: 'Blue 80',
-          hex: '#002d9c',
-        },
-        g10: {
-          name: 'Blue 80',
-          hex: '#002d9c',
-        },
-        g90: {
-          name: 'Blue 80',
-          hex: '#002d9c',
-        },
-        g100: {
-          name: 'Blue 80',
-          hex: '#002d9c',
         },
       },
     },
@@ -2246,5 +2247,4 @@ const colorTokens = {
     },
   },
 };
-
 export default colorTokens;
