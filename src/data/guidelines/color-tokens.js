@@ -169,6 +169,8 @@ const colorTokens = {
         },
       },
     },
+  },
+  'Background': {
     $interactive: {
       role: [
         '3:1 AA contrast',
