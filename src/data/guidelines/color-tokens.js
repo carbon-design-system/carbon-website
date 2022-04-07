@@ -22,6 +22,90 @@ const colorTokens = {
         },
       },
     },
+    '$background-hover': {
+      role: ['Hover color for $background', 'Hover color for transparent backgrounds'],
+      value: {
+        white: {
+          name: 'Gray 10 hover',
+          hex: '#e5e5e5',
+        },
+        g10: {
+          name: 'Gray 10 hover',
+          hex: '#e5e5e5',
+        },
+        g90: {
+          name: 'Gray 80 hover',
+          hex: '#4c4c4c',
+        },
+        g100: {
+          name: 'Gray 90 hover',
+          hex: '#353535',
+        },
+      },
+    },
+    '$background-active': {
+      role: ['Active color for $background'],
+      value: {
+        white: {
+          name: 'Gray 30',
+          hex: '#c6c6c6',
+        },
+        g10: {
+          name: 'Gray 30',
+          hex: '#c6c6c6',
+        },
+        g90: {
+          name: 'Gray 60',
+          hex: '#6f6f6f',
+        },
+        g100: {
+          name: 'Gray 70',
+          hex: '#525252',
+        },
+      },
+    },
+    '$background-selected': {
+      role: ['Selected color for $background'],
+      value: {
+        white: {
+          name: 'Gray 20',
+          hex: '#e0e0e0',
+        },
+        g10: {
+          name: 'Gray 20',
+          hex: '#e0e0e0',
+        },
+        g90: {
+          name: 'Gray 70',
+          hex: '#525252',
+        },
+        g100: {
+          name: 'Gray 80',
+          hex: '#393939',
+        },
+      },
+    },
+    '$background-selected-hover': {
+      role: ['Hover color for $background-selected'],
+      value: {
+        white: {
+          name: 'Gray 20 hover',
+          hex: '#cacaca',
+        },
+        g10: {
+          name: 'Gray 20 hover',
+          hex: '#cacaca',
+        },
+        g90: {
+          name: 'Gray 70 hover',
+          hex: '#656565',
+        },
+        g100: {
+          name: 'Gray 80 hover',
+          hex: '#4c4c4c',
+        },
+      },
+    },
     '$background-inverse': {
       role: ['High contrast backgrounds', 'High contrast elements'],
       value: {
@@ -40,6 +124,27 @@ const colorTokens = {
         g100: {
           name: 'Gray 10',
           hex: '#f4f4f4',
+        },
+      },
+    },
+    '$background-inverse-hover': {
+      role: ['Hover color for $background-inverse'],
+      value: {
+        white: {
+          name: 'Gray 80 hover',
+          hex: '#4c4c4c',
+        },
+        g10: {
+          name: 'Gray 80 hover',
+          hex: '#4c4c4c',
+        },
+        g90: {
+          name: 'Gray 10 hover',
+          hex: '#e5e5e5',
+        },
+        g100: {
+          name: 'Gray 10 hover',
+          hex: '#e5e5e5',
         },
       },
     },
@@ -1382,111 +1487,6 @@ const colorTokens = {
         g100: {
           name: 'Gray 70',
           hex: '#525252',
-        },
-      },
-    },
-    '$background-hover': {
-      role: ['Hover color for $background', 'Hover color for transparent backgrounds'],
-      value: {
-        white: {
-          name: 'Gray 10 hover',
-          hex: '#e5e5e5',
-        },
-        g10: {
-          name: 'Gray 10 hover',
-          hex: '#e5e5e5',
-        },
-        g90: {
-          name: 'Gray 80 hover',
-          hex: '#4c4c4c',
-        },
-        g100: {
-          name: 'Gray 90 hover',
-          hex: '#353535',
-        },
-      },
-    },
-    '$background-selected-hover': {
-      role: ['Hover color for $background-selected'],
-      value: {
-        white: {
-          name: 'Gray 20 hover',
-          hex: '#cacaca',
-        },
-        g10: {
-          name: 'Gray 20 hover',
-          hex: '#cacaca',
-        },
-        g90: {
-          name: 'Gray 70 hover',
-          hex: '#656565',
-        },
-        g100: {
-          name: 'Gray 80 hover',
-          hex: '#4c4c4c',
-        },
-      },
-    },
-    '$background-inverse-hover': {
-      role: ['Hover color for $background-inverse'],
-      value: {
-        white: {
-          name: 'Gray 80 hover',
-          hex: '#4c4c4c',
-        },
-        g10: {
-          name: 'Gray 80 hover',
-          hex: '#4c4c4c',
-        },
-        g90: {
-          name: 'Gray 10 hover',
-          hex: '#e5e5e5',
-        },
-        g100: {
-          name: 'Gray 10 hover',
-          hex: '#e5e5e5',
-        },
-      },
-    },
-    '$background-active': {
-      role: ['Active color for $background'],
-      value: {
-        white: {
-          name: 'Gray 30',
-          hex: '#c6c6c6',
-        },
-        g10: {
-          name: 'Gray 30',
-          hex: '#c6c6c6',
-        },
-        g90: {
-          name: 'Gray 60',
-          hex: '#6f6f6f',
-        },
-        g100: {
-          name: 'Gray 70',
-          hex: '#525252',
-        },
-      },
-    },
-    '$background-selected': {
-      role: ['Selected color for $background'],
-      value: {
-        white: {
-          name: 'Gray 20',
-          hex: '#e0e0e0',
-        },
-        g10: {
-          name: 'Gray 20',
-          hex: '#e0e0e0',
-        },
-        g90: {
-          name: 'Gray 70',
-          hex: '#525252',
-        },
-        g100: {
-          name: 'Gray 80',
-          hex: '#393939',
         },
       },
     },
