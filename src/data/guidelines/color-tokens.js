@@ -511,6 +511,27 @@ const colorTokens = {
       },
     },
   },
+  '$layer-selected-disabled': {
+    role: ['Disabled color for selected layers'],
+    value: {
+      white: {
+        name: 'Gray 50',
+        hex: '#8d8d8d',
+      },
+      g10: {
+        name: 'Gray 50',
+        hex: '#8d8d8d',
+      },
+      g90: {
+        name: 'Gray 50',
+        hex: '#8d8d8d',
+      },
+      g100: {
+        name: 'Gray 60',
+        hex: '#6f6f6f',
+      },
+    },
+  },
   'Layer accent': {
     '$layer-accent-01': {
       role: ['Tertiary background paired with $layer-01'],
@@ -940,6 +961,69 @@ const colorTokens = {
         },
       },
     },
+    '$border-subtle-selected-01': {
+      role: ['Selected color for $border-subtle-01'],
+      value: {
+        white: {
+          name: 'Gray 30',
+          hex: '#c6c6c6',
+        },
+        g10: {
+          name: 'Gray 30',
+          hex: '#c6c6c6',
+        },
+        g90: {
+          name: 'Gray 60',
+          hex: '#6f6f6f',
+        },
+        g100: {
+          name: 'Gray 70',
+          hex: '#525252',
+        },
+      },
+    },
+    '$border-subtle-selected-02': {
+      role: ['Selected color for $border-subtle-02'],
+      value: {
+        white: {
+          name: 'Gray 30',
+          hex: '#c6c6c6',
+        },
+        g10: {
+          name: 'Gray 30',
+          hex: '#c6c6c6',
+        },
+        g90: {
+          name: 'Gray 50',
+          hex: '#8d8d8d',
+        },
+        g100: {
+          name: 'Gray 60',
+          hex: '#6f6f6f',
+        },
+      },
+    },
+    '$border-subtle-selected-03': {
+      role: ['Selected color for $border-subtle-03'],
+      value: {
+        white: {
+          name: 'Gray 30',
+          hex: '#c6c6c6',
+        },
+        g10: {
+          name: 'Gray 30',
+          hex: '#c6c6c6',
+        },
+        g90: {
+          name: 'Gray 40',
+          hex: '#a8a8a8',
+        },
+        g100: {
+          name: 'Gray 50',
+          hex: '#8d8d8d',
+        },
+      },
+    },
     '$border-strong-01': {
       role: ['Medium contrast border', 'Border-bottom paired with $field-01', '3:1 AA non-text contrast'],
       value: {
@@ -1021,6 +1105,27 @@ const colorTokens = {
         g100: {
           name: 'Gray 10',
           hex: '#f4f4f4',
+        },
+      },
+    },
+    '$border-disabled': {
+      role: ['Disabled border color (excluding border-subtles)'],
+      value: {
+        white: {
+          name: 'Gray 30',
+          hex: '#c6c6c6',
+        },
+        g10: {
+          name: 'Gray 30',
+          hex: '#c6c6c6',
+        },
+        g90: {
+          name: 'Gray 60',
+          hex: '#6f6f6f',
+        },
+        g100: {
+          name: 'Gray 70',
+          hex: '#525252',
         },
       },
     },
@@ -1115,6 +1220,27 @@ const colorTokens = {
         },
       },
     },
+    '$text-on-color-disabled': {
+      role: ['Disabled color for $text-on-color'],
+      value: {
+        white: {
+          name: 'Gray 50',
+          hex: '#8d8d8d',
+        },
+        g10: {
+          name: 'Gray 50',
+          hex: '#8d8d8d',
+        },
+        g90: {
+          name: 'Gray 50',
+          hex: '#8d8d8d',
+        },
+        g100: {
+          name: 'Gray 60',
+          hex: '#6f6f6f',
+        },
+      },
+    },
     '$text-helper': {
       role: ['Tertiary text', 'Help text'],
       value: {
@@ -1178,6 +1304,27 @@ const colorTokens = {
         },
       },
     },
+    '$text-disabled': {
+      role: ['Disabled text color'],
+      value: {
+        white: {
+          name: 'Gray 30',
+          hex: '#c6c6c6',
+        },
+        g10: {
+          name: 'Gray 30',
+          hex: '#c6c6c6',
+        },
+        g90: {
+          name: 'Gray 60',
+          hex: '#6f6f6f',
+        },
+        g100: {
+          name: 'Gray 70',
+          hex: '#525252',
+        },
+      },
+    },
   },
   'Link': {
     '$link-primary': {
@@ -1198,6 +1345,27 @@ const colorTokens = {
         g100: {
           name: 'Blue 40',
           hex: '#78a9ff',
+        },
+      },
+    },
+    '$link-primary-hover': {
+      role: ['Hover color for $link-primary'],
+      value: {
+        white: {
+          name: 'Blue 70',
+          hex: '#0043ce',
+        },
+        g10: {
+          name: 'Blue 70',
+          hex: '#0043ce',
+        },
+        g90: {
+          name: 'Blue 30',
+          hex: '#a6c8ff',
+        },
+        g100: {
+          name: 'Blue 30',
+          hex: '#a6c8ff',
         },
       },
     },
@@ -1240,6 +1408,27 @@ const colorTokens = {
         g100: {
           name: 'Blue 60',
           hex: '#0f62fe',
+        },
+      },
+    },
+    '$link-visited': {
+      role: ['Color for visited links'],
+      value: {
+        white: {
+          name: 'Purple 60',
+          hex: '#8a3ffc',
+        },
+        g10: {
+          name: 'Purple 60',
+          hex: '#8a3ffc',
+        },
+        g90: {
+          name: 'Purple 40',
+          hex: '#be95ff',
+        },
+        g100: {
+          name: 'Purple 40',
+          hex: '#be95ff',
         },
       },
     },
@@ -1308,6 +1497,27 @@ const colorTokens = {
         },
       },
     },
+    '$icon-on-color-disabled': {
+      role: ['Disabled color for $icon-on-color'],
+      value: {
+        white: {
+          name: 'Gray 50',
+          hex: '#8d8d8d',
+        },
+        g10: {
+          name: 'Gray 50',
+          hex: '#8d8d8d',
+        },
+        g90: {
+          name: 'Gray 50',
+          hex: '#8d8d8d',
+        },
+        g100: {
+          name: 'Gray 60',
+          hex: '#6f6f6f',
+        },
+      },
+    },
     '$icon-inverse': {
       role: ['Inverse icon color'],
       value: {
@@ -1326,6 +1536,27 @@ const colorTokens = {
         g100: {
           name: 'Gray 100',
           hex: '#161616',
+        },
+      },
+    },
+    '$icon-disabled': {
+      role: ['Disabled icon color'],
+      value: {
+        white: {
+          name: 'Gray 30',
+          hex: '#c6c6c6',
+        },
+        g10: {
+          name: 'Gray 30',
+          hex: '#c6c6c6',
+        },
+        g90: {
+          name: 'Gray 60',
+          hex: '#6f6f6f',
+        },
+        g100: {
+          name: 'Gray 70',
+          hex: '#525252',
         },
       },
     },
@@ -1415,6 +1646,48 @@ const colorTokens = {
         },
       },
     },
+    '$button-secondary-hover': {
+      role: ['Hover color for $button-secondary'],
+      value: {
+        white: {
+          name: 'Gray 80 hover',
+          hex: '#4c4c4c',
+        },
+        g10: {
+          name: 'Gray 80 hover',
+          hex: '#4c4c4c',
+        },
+        g90: {
+          name: 'Gray 60 hover',
+          hex: '#606060',
+        },
+        g100: {
+          name: 'Gray 60 hover',
+          hex: '#606060',
+        },
+      },
+    },
+    '$button-secondary-active': {
+      role: ['Active color for $button-secondary'],
+      value: {
+        white: {
+          name: 'Gray 60',
+          hex: '#6f6f6f',
+        },
+        g10: {
+          name: 'Gray 60',
+          hex: '#6f6f6f',
+        },
+        g90: {
+          name: 'Gray 80',
+          hex: '#393939',
+        },
+        g100: {
+          name: 'Gray 80',
+          hex: '#393939',
+        },
+      },
+    },
     '$button-tertiary': {
       role: ['Tertiary button color', '4.5:1 AA text contrast'],
       value: {
@@ -1433,6 +1706,48 @@ const colorTokens = {
         g100: {
           name: 'White',
           hex: '#ffffff',
+        },
+      },
+    },
+    '$button-tertiary-hover': {
+      role: ['Hover color for $button-tertiary'],
+      value: {
+        white: {
+          name: 'Blue 60 hover',
+          hex: '#0353e9',
+        },
+        g10: {
+          name: 'Blue 60 hover',
+          hex: '#0353e9',
+        },
+        g90: {
+          name: 'Gray 10',
+          hex: '#f4f4f4',
+        },
+        g100: {
+          name: 'Gray 10',
+          hex: '#f4f4f4',
+        },
+      },
+    },
+    '$button-tertiary-active': {
+      role: ['Active color for $button-tertiary'],
+      value: {
+        white: {
+          name: 'Blue 80',
+          hex: '#002d9c',
+        },
+        g10: {
+          name: 'Blue 80',
+          hex: '#002d9c',
+        },
+        g90: {
+          name: 'Gray 30',
+          hex: '#c6c6c6',
+        },
+        g100: {
+          name: 'Gray 30',
+          hex: '#c6c6c6',
         },
       },
     },
@@ -1478,6 +1793,48 @@ const colorTokens = {
         },
       },
     },
+    '$button-danger-hover': {
+      role: ['Hover color for $danger-primary', 'Hover color for $danger-secondary'],
+      value: {
+        white: {
+          name: 'Red 60 hover',
+          hex: '#ba1b23',
+        },
+        g10: {
+          name: 'Red 60 hover',
+          hex: '#ba1b23',
+        },
+        g90: {
+          name: 'Red 60 hover',
+          hex: '#ba1b23',
+        },
+        g100: {
+          name: 'Red 60 hover',
+          hex: '#ba1b23',
+        },
+      },
+    },
+    '$button-danger-active': {
+      role: ['Active color for $danger-primary', 'Active color for $danger-secondary'],
+      value: {
+        white: {
+          name: 'Red 80',
+          hex: '#750e13',
+        },
+        g10: {
+          name: 'Red 80',
+          hex: '#750e13',
+        },
+        g90: {
+          name: 'Red 80',
+          hex: '#750e13',
+        },
+        g100: {
+          name: 'Red 80',
+          hex: '#750e13',
+        },
+      },
+    },
     '$button-separator': {
       role: ['Fluid button separator', '3:1 AA non-text contrast'],
       value: {
@@ -1496,6 +1853,27 @@ const colorTokens = {
         g100: {
           name: 'Gray 100',
           hex: '#161616',
+        },
+      },
+    },
+    '$button-disabled': {
+      role: ['Disabled color for button elements'],
+      value: {
+        white: {
+          name: 'Gray 30',
+          hex: '#c6c6c6',
+        },
+        g10: {
+          name: 'Gray 30',
+          hex: '#c6c6c6',
+        },
+        g90: {
+          name: 'Gray 60',
+          hex: '#6f6f6f',
+        },
+        g100: {
+          name: 'Gray 70',
+          hex: '#525252',
         },
       },
     },
@@ -1670,77 +2048,7 @@ const colorTokens = {
       },
     },
   },
-  'Core tokens': {
-    $interactive: {
-      role: [
-        '3:1 AA contrast',
-        'Selected elements',
-        'Active elements',
-        'Accent icons',
-      ],
-      value: {
-        white: {
-          name: 'Blue 60',
-          hex: '#0f62fe',
-        },
-        g10: {
-          name: 'Blue 60',
-          hex: '#0f62fe',
-        },
-        g90: {
-          name: 'Blue 50',
-          hex: '#4589ff',
-        },
-        g100: {
-          name: 'Blue 50',
-          hex: '#4589ff',
-        },
-      },
-    },
-    '$toggle-off': {
-      role: ['Off background', '3:1 AA contrast'],
-      value: {
-        white: {
-          name: 'Gray 50',
-          hex: '#8d8d8d',
-        },
-        g10: {
-          name: 'Gray 50',
-          hex: '#8d8d8d',
-        },
-        g90: {
-          name: 'Gray 50',
-          hex: '#8d8d8d',
-        },
-        g100: {
-          name: 'Gray 60',
-          hex: '#6f6f6f',
-        },
-      },
-    },
-    $overlay: {
-      role: ['Background overlay'],
-      value: {
-        white: {
-          name: 'Gray 100',
-          hex: '#161616 @ 50%',
-        },
-        g10: {
-          name: 'Gray 100',
-          hex: '#161616 @ 50%',
-        },
-        g90: {
-          name: 'Gray 100',
-          hex: '#161616 @ 70%',
-        },
-        g100: {
-          name: 'Gray 100',
-          hex: '#161616 @ 70%',
-        },
-      },
-    },
-  },
-  'interaction-tokens': {
+  'Focus': {
     $focus: {
       role: ['Focus border', 'Focus underline'],
       value: {
@@ -1804,171 +2112,31 @@ const colorTokens = {
         },
       },
     },
-    '$button-secondary-hover': {
-      role: ['Hover color for $button-secondary'],
+  },
+  'Miscellaneous': {
+    $interactive: {
+      role: [
+        '3:1 AA contrast',
+        'Selected elements',
+        'Active elements',
+        'Accent icons',
+      ],
       value: {
         white: {
-          name: 'Gray 80 hover',
-          hex: '#4c4c4c',
+          name: 'Blue 60',
+          hex: '#0f62fe',
         },
         g10: {
-          name: 'Gray 80 hover',
-          hex: '#4c4c4c',
+          name: 'Blue 60',
+          hex: '#0f62fe',
         },
         g90: {
-          name: 'Gray 60 hover',
-          hex: '#606060',
+          name: 'Blue 50',
+          hex: '#4589ff',
         },
         g100: {
-          name: 'Gray 60 hover',
-          hex: '#606060',
-        },
-      },
-    },
-    '$button-tertiary-hover': {
-      role: ['Hover color for $button-tertiary'],
-      value: {
-        white: {
-          name: 'Blue 60 hover',
-          hex: '#0353e9',
-        },
-        g10: {
-          name: 'Blue 60 hover',
-          hex: '#0353e9',
-        },
-        g90: {
-          name: 'Gray 10',
-          hex: '#f4f4f4',
-        },
-        g100: {
-          name: 'Gray 10',
-          hex: '#f4f4f4',
-        },
-      },
-    },
-    '$button-danger-hover': {
-      role: ['Hover color for $danger-primary', 'Hover color for $danger-secondary'],
-      value: {
-        white: {
-          name: 'Red 60 hover',
-          hex: '#ba1b23',
-        },
-        g10: {
-          name: 'Red 60 hover',
-          hex: '#ba1b23',
-        },
-        g90: {
-          name: 'Red 60 hover',
-          hex: '#ba1b23',
-        },
-        g100: {
-          name: 'Red 60 hover',
-          hex: '#ba1b23',
-        },
-      },
-    },
-    '$button-secondary-active': {
-      role: ['Active color for $button-secondary'],
-      value: {
-        white: {
-          name: 'Gray 60',
-          hex: '#6f6f6f',
-        },
-        g10: {
-          name: 'Gray 60',
-          hex: '#6f6f6f',
-        },
-        g90: {
-          name: 'Gray 80',
-          hex: '#393939',
-        },
-        g100: {
-          name: 'Gray 80',
-          hex: '#393939',
-        },
-      },
-    },
-    '$button-tertiary-active': {
-      role: ['Active color for $button-tertiary'],
-      value: {
-        white: {
-          name: 'Blue 80',
-          hex: '#002d9c',
-        },
-        g10: {
-          name: 'Blue 80',
-          hex: '#002d9c',
-        },
-        g90: {
-          name: 'Gray 30',
-          hex: '#c6c6c6',
-        },
-        g100: {
-          name: 'Gray 30',
-          hex: '#c6c6c6',
-        },
-      },
-    },
-    '$button-danger-active': {
-      role: ['Active color for $danger-primary', 'Active color for $danger-secondary'],
-      value: {
-        white: {
-          name: 'Red 80',
-          hex: '#750e13',
-        },
-        g10: {
-          name: 'Red 80',
-          hex: '#750e13',
-        },
-        g90: {
-          name: 'Red 80',
-          hex: '#750e13',
-        },
-        g100: {
-          name: 'Red 80',
-          hex: '#750e13',
-        },
-      },
-    },
-    '$button-disabled': {
-      role: ['Disabled color for button elements'],
-      value: {
-        white: {
-          name: 'Gray 30',
-          hex: '#c6c6c6',
-        },
-        g10: {
-          name: 'Gray 30',
-          hex: '#c6c6c6',
-        },
-        g90: {
-          name: 'Gray 60',
-          hex: '#6f6f6f',
-        },
-        g100: {
-          name: 'Gray 70',
-          hex: '#525252',
-        },
-      },
-    },
-    '$layer-selected-disabled': {
-      role: ['Disabled color for selected layers'],
-      value: {
-        white: {
-          name: 'Gray 50',
-          hex: '#8d8d8d',
-        },
-        g10: {
-          name: 'Gray 50',
-          hex: '#8d8d8d',
-        },
-        g90: {
-          name: 'Gray 50',
-          hex: '#8d8d8d',
-        },
-        g100: {
-          name: 'Gray 60',
-          hex: '#6f6f6f',
+          name: 'Blue 50',
+          hex: '#4589ff',
         },
       },
     },
@@ -1993,24 +2161,45 @@ const colorTokens = {
         },
       },
     },
-    '$skeleton-background': {
-      role: ['Skeleton color for containers'],
+    '$toggle-off': {
+      role: ['Off background', '3:1 AA contrast'],
       value: {
         white: {
-          name: 'Gray 10 hover',
-          hex: '#e5e5e5',
+          name: 'Gray 50',
+          hex: '#8d8d8d',
         },
         g10: {
-          name: 'Gray 10 hover',
-          hex: '#e5e5e5',
+          name: 'Gray 50',
+          hex: '#8d8d8d',
         },
         g90: {
-          name: 'Gray 80 hover',
-          hex: '#353535',
+          name: 'Gray 50',
+          hex: '#8d8d8d',
         },
         g100: {
-          name: 'Gray 80 hover',
-          hex: '#353535',
+          name: 'Gray 60',
+          hex: '#6f6f6f',
+        },
+      },
+    },
+    $overlay: {
+      role: ['Background overlay'],
+      value: {
+        white: {
+          name: 'Gray 100',
+          hex: '#161616 @ 50%',
+        },
+        g10: {
+          name: 'Gray 100',
+          hex: '#161616 @ 50%',
+        },
+        g90: {
+          name: 'Gray 100',
+          hex: '#161616 @ 70%',
+        },
+        g100: {
+          name: 'Gray 100',
+          hex: '#161616 @ 70%',
         },
       },
     },
@@ -2035,213 +2224,24 @@ const colorTokens = {
         },
       },
     },
-    '$link-primary-hover': {
-      role: ['Hover color for $link-primary'],
+    '$skeleton-background': {
+      role: ['Skeleton color for containers'],
       value: {
         white: {
-          name: 'Blue 70',
-          hex: '#0043ce',
+          name: 'Gray 10 hover',
+          hex: '#e5e5e5',
         },
         g10: {
-          name: 'Blue 70',
-          hex: '#0043ce',
+          name: 'Gray 10 hover',
+          hex: '#e5e5e5',
         },
         g90: {
-          name: 'Blue 30',
-          hex: '#a6c8ff',
+          name: 'Gray 80 hover',
+          hex: '#353535',
         },
         g100: {
-          name: 'Blue 30',
-          hex: '#a6c8ff',
-        },
-      },
-    },
-    '$link-visited': {
-      role: ['Color for visited links'],
-      value: {
-        white: {
-          name: 'Purple 60',
-          hex: '#8a3ffc',
-        },
-        g10: {
-          name: 'Purple 60',
-          hex: '#8a3ffc',
-        },
-        g90: {
-          name: 'Purple 40',
-          hex: '#be95ff',
-        },
-        g100: {
-          name: 'Purple 40',
-          hex: '#be95ff',
-        },
-      },
-    },
-    '$border-subtle-selected-01': {
-      role: ['Selected color for $border-subtle-01'],
-      value: {
-        white: {
-          name: 'Gray 30',
-          hex: '#c6c6c6',
-        },
-        g10: {
-          name: 'Gray 30',
-          hex: '#c6c6c6',
-        },
-        g90: {
-          name: 'Gray 60',
-          hex: '#6f6f6f',
-        },
-        g100: {
-          name: 'Gray 70',
-          hex: '#525252',
-        },
-      },
-    },
-    '$border-subtle-selected-02': {
-      role: ['Selected color for $border-subtle-02'],
-      value: {
-        white: {
-          name: 'Gray 30',
-          hex: '#c6c6c6',
-        },
-        g10: {
-          name: 'Gray 30',
-          hex: '#c6c6c6',
-        },
-        g90: {
-          name: 'Gray 50',
-          hex: '#8d8d8d',
-        },
-        g100: {
-          name: 'Gray 60',
-          hex: '#6f6f6f',
-        },
-      },
-    },
-    '$border-subtle-selected-03': {
-      role: ['Selected color for $border-subtle-03'],
-      value: {
-        white: {
-          name: 'Gray 30',
-          hex: '#c6c6c6',
-        },
-        g10: {
-          name: 'Gray 30',
-          hex: '#c6c6c6',
-        },
-        g90: {
-          name: 'Gray 40',
-          hex: '#a8a8a8',
-        },
-        g100: {
-          name: 'Gray 50',
-          hex: '#8d8d8d',
-        },
-      },
-    },
-    '$border-disabled': {
-      role: ['Disabled border color (excluding border-subtles)'],
-      value: {
-        white: {
-          name: 'Gray 30',
-          hex: '#c6c6c6',
-        },
-        g10: {
-          name: 'Gray 30',
-          hex: '#c6c6c6',
-        },
-        g90: {
-          name: 'Gray 60',
-          hex: '#6f6f6f',
-        },
-        g100: {
-          name: 'Gray 70',
-          hex: '#525252',
-        },
-      },
-    },
-    '$text-disabled': {
-      role: ['Disabled text color'],
-      value: {
-        white: {
-          name: 'Gray 30',
-          hex: '#c6c6c6',
-        },
-        g10: {
-          name: 'Gray 30',
-          hex: '#c6c6c6',
-        },
-        g90: {
-          name: 'Gray 60',
-          hex: '#6f6f6f',
-        },
-        g100: {
-          name: 'Gray 70',
-          hex: '#525252',
-        },
-      },
-    },
-    '$icon-disabled': {
-      role: ['Disabled icon color'],
-      value: {
-        white: {
-          name: 'Gray 30',
-          hex: '#c6c6c6',
-        },
-        g10: {
-          name: 'Gray 30',
-          hex: '#c6c6c6',
-        },
-        g90: {
-          name: 'Gray 60',
-          hex: '#6f6f6f',
-        },
-        g100: {
-          name: 'Gray 70',
-          hex: '#525252',
-        },
-      },
-    },
-    '$icon-on-color-disabled': {
-      role: ['Disabled color for $icon-on-color'],
-      value: {
-        white: {
-          name: 'Gray 50',
-          hex: '#8d8d8d',
-        },
-        g10: {
-          name: 'Gray 50',
-          hex: '#8d8d8d',
-        },
-        g90: {
-          name: 'Gray 50',
-          hex: '#8d8d8d',
-        },
-        g100: {
-          name: 'Gray 60',
-          hex: '#6f6f6f',
-        },
-      },
-    },
-    '$text-on-color-disabled': {
-      role: ['Disabled color for $text-on-color'],
-      value: {
-        white: {
-          name: 'Gray 50',
-          hex: '#8d8d8d',
-        },
-        g10: {
-          name: 'Gray 50',
-          hex: '#8d8d8d',
-        },
-        g90: {
-          name: 'Gray 50',
-          hex: '#8d8d8d',
-        },
-        g100: {
-          name: 'Gray 60',
-          hex: '#6f6f6f',
+          name: 'Gray 80 hover',
+          hex: '#353535',
         },
       },
     },
