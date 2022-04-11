@@ -1,6 +1,6 @@
 /* eslint-disable */
 const colorTokens = {
-  'Background': {
+  'background-tokens': {
     $background: {
       role: ['Default page background', 'UI Shell base color'],
       value: {
@@ -170,7 +170,7 @@ const colorTokens = {
       },
     },
   },
-  'Layer': {
+  'layer-tokens': {
     '$layer-01': {
       role: [
         'Container color on $background',
@@ -510,29 +510,29 @@ const colorTokens = {
         },
       },
     },
-  },
-  '$layer-selected-disabled': {
-    role: ['Disabled color for selected layers'],
-    value: {
-      white: {
-        name: 'Gray 50',
-        hex: '#8d8d8d',
-      },
-      g10: {
-        name: 'Gray 50',
-        hex: '#8d8d8d',
-      },
-      g90: {
-        name: 'Gray 50',
-        hex: '#8d8d8d',
-      },
-      g100: {
-        name: 'Gray 60',
-        hex: '#6f6f6f',
+    '$layer-selected-disabled': {
+      role: ['Disabled color for selected layers'],
+      value: {
+        white: {
+          name: 'Gray 50',
+          hex: '#8d8d8d',
+        },
+        g10: {
+          name: 'Gray 50',
+          hex: '#8d8d8d',
+        },
+        g90: {
+          name: 'Gray 50',
+          hex: '#8d8d8d',
+        },
+        g100: {
+          name: 'Gray 60',
+          hex: '#6f6f6f',
+        },
       },
     },
   },
-  'Layer accent': {
+  'layer-accent-tokens': {
     '$layer-accent-01': {
       role: ['Tertiary background paired with $layer-01'],
       value: {
@@ -723,7 +723,7 @@ const colorTokens = {
       },
     },
   },
-  'Field': {
+  'field-tokens': {
     '$field-01': {
       role: ['Default input fields', 'Fields on $background'],
       value: {
@@ -851,7 +851,7 @@ const colorTokens = {
       },
     },
   },
-  'Border': {
+  'border-tokens': {
     '$border-interactive': {
       role: [
         '3:1 AA contrast',
@@ -1130,7 +1130,7 @@ const colorTokens = {
       },
     },
   },
-  'Text': {
+  'text-tokens': {
     '$text-primary': {
       role: [
         'Primary text',
@@ -1326,7 +1326,7 @@ const colorTokens = {
       },
     },
   },
-  'Link': {
+  'link-tokens': {
     '$link-primary': {
       role: ['Primary links'],
       value: {
@@ -1433,7 +1433,7 @@ const colorTokens = {
       },
     },
   },
-  'Icon': {
+  'icon-tokens': {
     '$icon-primary': {
       role: ['Primary icons'],
       value: {
@@ -1561,7 +1561,7 @@ const colorTokens = {
       },
     },
   },
-  'Button': {
+  'button-tokens': {
     '$button-primary': {
       role: ['Primary button color'],
       value: {
@@ -1878,7 +1878,7 @@ const colorTokens = {
       },
     },
   },
-  'Support': {
+  'support-tokens': {
     '$support-error': {
       role: ['Error', 'Invalid state'],
       value: {
@@ -2048,7 +2048,7 @@ const colorTokens = {
       },
     },
   },
-  'Focus': {
+  'focus-tokens': {
     $focus: {
       role: ['Focus border', 'Focus underline'],
       value: {
@@ -2113,7 +2113,7 @@ const colorTokens = {
       },
     },
   },
-  'Miscellaneous': {
+  'miscellaneous': {
     $interactive: {
       role: [
         '3:1 AA contrast',
@@ -2247,4 +2247,5 @@ const colorTokens = {
     },
   },
 };
+
 export default colorTokens;
