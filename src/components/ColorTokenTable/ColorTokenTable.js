@@ -157,7 +157,7 @@ export default class ColorTokenTable extends React.Component {
         </StickyContainer>
         <section>
           <div className="cds--col-lg-7">
-            <h3 className="page-h3">Background tokens</h3>
+            <h3 className="page-h3">Background</h3>
           </div>
           <div className="cds--col-lg-12 cds--no-gutter">
             <table className="page-table">
@@ -176,7 +176,7 @@ export default class ColorTokenTable extends React.Component {
             </table>
           </div>
           <div className="cds--col-lg-7">
-            <h3 className="page-h3">Layer tokens</h3>
+            <h3 className="page-h3">Layer</h3>
           </div>
           <div className="cds--col-lg-12 cds--no-gutter">
             <table className="page-table">
@@ -195,7 +195,7 @@ export default class ColorTokenTable extends React.Component {
             </table>
           </div>
           <div className="cds--col-lg-7">
-            <h3 className="page-h3">Layer accent tokens</h3>
+            <h3 className="page-h3">Layer accent</h3>
           </div>
           <div className="cds--col-lg-12 cds--no-gutter">
             <table className="page-table">
@@ -214,7 +214,7 @@ export default class ColorTokenTable extends React.Component {
             </table>
           </div>
           <div className="cds--col-lg-7">
-            <h3 className="page-h3">Field tokens</h3>
+            <h3 className="page-h3">Field</h3>
           </div>
           <div className="cds--col-lg-12 cds--no-gutter">
             <table className="page-table">
@@ -233,7 +233,7 @@ export default class ColorTokenTable extends React.Component {
             </table>
           </div>
           <div className="cds--col-lg-7">
-            <h3 className="page-h3">Border tokens</h3>
+            <h3 className="page-h3">Border</h3>
           </div>
           <div className="cds--col-lg-12 cds--no-gutter">
             <table className="page-table">
@@ -252,7 +252,7 @@ export default class ColorTokenTable extends React.Component {
             </table>
           </div>
           <div className="cds--col-lg-7">
-            <h3 className="page-h3">Text tokens</h3>
+            <h3 className="page-h3">Text</h3>
           </div>
           <div className="cds--col-lg-12 cds--no-gutter">
             <table className="page-table">
@@ -271,7 +271,7 @@ export default class ColorTokenTable extends React.Component {
             </table>
           </div>
           <div className="cds--col-lg-7">
-            <h3 className="page-h3">Link tokens</h3>
+            <h3 className="page-h3">Link</h3>
           </div>
           <div className="cds--col-lg-12 cds--no-gutter">
             <table className="page-table">
@@ -290,7 +290,7 @@ export default class ColorTokenTable extends React.Component {
             </table>
           </div>
           <div className="cds--col-lg-7">
-            <h3 className="page-h3">Icon tokens</h3>
+            <h3 className="page-h3">Icon</h3>
           </div>
           <div className="cds--col-lg-12 cds--no-gutter">
             <table className="page-table">
@@ -309,7 +309,7 @@ export default class ColorTokenTable extends React.Component {
             </table>
           </div>
           <div className="cds--col-lg-7">
-            <h3 className="page-h3">Button tokens</h3>
+            <h3 className="page-h3">Button</h3>
           </div>
           <div className="cds--col-lg-12 cds--no-gutter">
             <table className="page-table">
@@ -328,7 +328,7 @@ export default class ColorTokenTable extends React.Component {
             </table>
           </div>
           <div className="cds--col-lg-7">
-            <h3 className="page-h3">Support tokens</h3>
+            <h3 className="page-h3">Support</h3>
           </div>
           <div className="cds--col-lg-12 cds--no-gutter">
             <table className="page-table">
@@ -347,7 +347,7 @@ export default class ColorTokenTable extends React.Component {
             </table>
           </div>
           <div className="cds--col-lg-7">
-            <h3 className="page-h3">Focus tokens</h3>
+            <h3 className="page-h3">Focus</h3>
           </div>
           <div className="cds--col-lg-12 cds--no-gutter">
             <table className="page-table">
