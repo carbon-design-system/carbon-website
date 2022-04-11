@@ -15,9 +15,9 @@ with five default breakpoints and dozens of predefined classes.
 
 <InlineNotification>
 
-If you’re using carbon-components there’s no reason to install the grid package
-separately. See our [get started](/get-started/develop/react) guide to start
-building.
+If you’re using `@carbon/styles` or `@carbon/react` there’s no reason to install
+the grid package separately. See our [get started](/get-started/develop/react)
+guide to start building.
 
 </InlineNotification>
 
@@ -46,14 +46,14 @@ will provide more detail around everything from basic terminology to code.
 
 ## Getting started
 
-### With Carbon-components
+### With `@carbon/styles`
 
 We provide multiple ways for you to use the grid for the Carbon Design System.
-By default, the grid code is included when you use `carbon-components`. To get
+By default, the grid code is included when you use `@carbon/styles`. To get
 started, you'll need to install this package using `npm`:
 
 ```bash
-npm install carbon-components --save
+npm install @carbon/styles --save
 ```
 
 <br />
@@ -61,7 +61,7 @@ npm install carbon-components --save
 Or, if you prefer Yarn:
 
 ```bash
-yarn add carbon-components
+yarn add @carbon/styles
 ```
 
 <br />
@@ -70,41 +70,19 @@ You can include the grid in one of two ways:
 
 ```scss
 // If you're including all the styles for Carbon
-@import 'carbon-components/scss/globals/scss/styles.scss';
+@use '@carbon/styles';
 
-// If you're wanting to import the grid
-@import 'carbon-components/scss/globals/grid/grid';
+// Or if you're wanting to use just the grid
+@use '@carbon/styles/scss/grid';
+
+// Emit the flex-grid styles
+@include grid.flex-grid();
 ```
 
-<br />
+### Without `@carbon/styles`
 
-To use 16 column variant of the grid, you need to enable the `grid-columns-16`
-feature flag before including any imports in your Sass files. For example:
-
-```scss
-$feature-flags: (
-  grid-columns-16: true,
-);
-
-// If you're including all the styles for Carbon
-@import 'carbon-components/scss/globals/scss/styles.scss';
-
-// If you want to import the grid
-@import 'carbon-components/scss/globals/grid/grid';
-```
-
-<InlineNotification>
-
-**Note:** By default, Carbon loads with 12 columns. In a later release this will
-change and the grid will default to 16 columns. Until then we ask you to enable
-the feature flag.
-
-</InlineNotification>
-
-### Without Carbon-components
-
-If you'd like to use the grid without including `carbon-components`, we offer
-the `@carbon/grid` package. You can install this with `npm`:
+If you'd like to use the grid without including `@carbon/styles`, we offer the
+`@carbon/grid` package. You can install this with `npm`:
 
 ```bash
 npm install @carbon/grid --save
@@ -120,11 +98,13 @@ yarn add @carbon/grid
 
 <br />
 
-You can then include the 16 column grid by doing the following in your Sass
-files:
+You can then include the grid by doing the following in your Sass files:
 
 ```scss
-@import '@carbon/grid/scss/grid';
+@use '@carbon/grid';
+
+// Emit the flex-grid styles
+@include grid.flex-grid();
 ```
 
 ## How it works
