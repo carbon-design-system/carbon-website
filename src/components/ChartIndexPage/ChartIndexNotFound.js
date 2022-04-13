@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Row, Column, Link } from 'carbon-components-react';
+import { Row, Column, Link } from '@carbon/react';
 import React from 'react';
 
 function ChartIndexNotFound() {

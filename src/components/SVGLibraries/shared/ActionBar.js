@@ -1,7 +1,7 @@
 import React, { useRef, useContext, useState } from 'react';
 import { pascalCase } from 'change-case';
-import { Code16, Download16 } from '@carbon/icons-react';
-import { Button } from 'carbon-components-react';
+import { Code, Download } from '@carbon/icons-react';
+import { Button } from '@carbon/react';
 import copy from 'copy-to-clipboard';
 import cx from 'classnames';
 import { LibraryContext } from './LibraryProvider';
@@ -72,7 +72,7 @@ const ActionBar = ({
         tooltipAlignment={tooltipAlignment}
         tooltipPosition="top"
         iconDescription="Download SVG"
-        renderIcon={Download16}
+        renderIcon={Download}
         onFocus={() => setIsActionBarVisible(true)}
         onClick={handleDownload}
         className={tooltip}
@@ -86,7 +86,7 @@ const ActionBar = ({
           tooltipAlignment={tooltipAlignment}
           tooltipPosition="top"
           iconDescription={copyText}
-          renderIcon={Code16}
+          renderIcon={Code}
           onClick={handleCopy}
           onFocus={() => setIsActionBarVisible(true)}
           className={tooltip}

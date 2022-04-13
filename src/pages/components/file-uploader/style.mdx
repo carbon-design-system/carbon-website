@@ -8,18 +8,21 @@ tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 
 ## Color
 
-Use the [primary button](/components/button/style#primary-button) for the "Add
-file" button.
+| Element        | Property                                                                                        | Color token       |
+| -------------- | ----------------------------------------------------------------------------------------------- | ----------------- |
+| Label          | text-color                                                                                      | `$text-primary`   |
+| Description    | text-color                                                                                      | `$text-secondary` |
+| File name      | text-color                                                                                      | `$text-primary`   |
+| File           | background-color                                                                                | `$field` \*       |
+| Close icon     | svg                                                                                             | `$icon-primary`   |
+| Drop container | border                                                                                          | `$border-strong`  |
+| Drop text      | text-color                                                                                      | `$link-primary`   |
+| Button         | See [primary button](https://www.carbondesignsystem.com/components/button/style#primary-button) |                   |
 
-| Class                       | Property   | Color token |
-| --------------------------- | ---------- | ----------- |
-| `.bx--file--label`          | text color | `$text-01`  |
-| `.bx--label-description`    | text color | `$text-02`  |
-| `.bx--file-filename`        | color      | `$text-01`  |
-| `.bx--file__selected-file`  | background | `$ui-01`    |
-| `.bx--file-close`           | fill       | `$icon-01`  |
-| `.bx--file__drop-container` | border     | `$ui-04`    |
-| `.bx--file__drop-container` | text       | `$link-01`  |
+<Caption>
+  * Denotes a contextual color token that will change values based on the layer
+  it is placed on.
+</Caption>
 
 <Row>
 <Column colLg={8}>
@@ -31,22 +34,23 @@ file" button.
 
 ### Interactive states
 
-Use the [inline loading](/components/inline-loading/style#colors) component
-active state for `.bx--file__state-container` loading status.
-
-| Class                                  | Property   | Color token       |
-| -------------------------------------- | ---------- | ----------------- |
-| `.bx--file-close: focus`               | border     | `$focus`          |
-| `.bx--file__drop-container: focus`     | border     | `$focus`          |
-| `.bx--file__state-container: complete` | svg        | `$interactive-04` |
-| `.bx--file-invalid`                    | svg        | `$support-01`     |
-| `.bx--file__selected-file--invalid`    | border     | `$support-01`     |
-| `.bx--form-requirement__title`         | text color | `$support-01`     |
-| `.bx--form-requirement__supplement`    | text color | `$text-01`        |
-| `.bx--form-requirement`                | border-top | `$ui-03`          |
-| `.bx--file--label--disabled`           | text color | `$disabled-02`    |
-| `.bx--file__drop-container: disabled`  | text color | `$disabled-02`    |
-| `.bx--file__drop-container: disabled`  | border     | `$disabled-02`    |
+| State    | Element        | Property                                                                                       | Color token        |
+| -------- | -------------- | ---------------------------------------------------------------------------------------------- | ------------------ |
+| Hover    | Drop container | border                                                                                         | `$focus`           |
+|          | Drop text      | text-color                                                                                     | `link-primary`     |
+| Focus    | File           | border                                                                                         | `$focus`           |
+|          | Drop container | border                                                                                         | `$focus`           |
+| Loading  | Loader         | See [inline loading](https://www.carbondesignsystem.com/components/inline-loading/style#color) |                    |
+| Uploaded | Checkmark icon | svg                                                                                            | `$interactive`     |
+| Invalid  | File           | border                                                                                         | `$support-error`   |
+|          | Error title    | text-color                                                                                     | `$text-primary`    |
+|          | Error message  | text-color                                                                                     | `$text-error`      |
+|          | Warning icon   | svg                                                                                            | `$support-error`   |
+|          | Divider        | border-top                                                                                     | `$border-subtle`   |
+| Disabled | Label          | text-color                                                                                     | `$text-disabled`   |
+|          | Description    | text-color                                                                                     | `$text-disabled`   |
+|          | Drop text      | text-color                                                                                     | `$text-disabled`   |
+|          | Drop container | border                                                                                         | `$border-disabled` |
 
 <Row>
 <Column colLg={8}>
@@ -70,33 +74,31 @@ active state for `.bx--file__state-container` loading status.
 
 ## Typography
 
-The file uploader label and instruction text should be set in sentence case,
+The file uploader label and description text should be set in sentence case,
 with only the first letter of the first word in the sentence capitalized.
 
-| Class                            | Font-size (px/rem) | Font-weight     | Type token       |
-| -------------------------------- | ------------------ | --------------- | ---------------- |
-| `.bx--file--label`               | 14 / 0.875         | Semi-bold / 600 | `$heading-01`    |
-| `.bx--label-description`         | 14 / 0.875         | Regular / 400   | `$body-short-01` |
-| `.bx--file-filename`             | 14 / 0.875         | Regular / 400   | `$body-short-01` |
-| `.bx--file__drop-container#text` | 14 / 0.875         | Regular / 400   | `$body-short-01` |
+| Element       | Font-size (px/rem) | Font-weight    | Type token            |
+| ------------- | ------------------ | -------------- | --------------------- |
+| Label         | 14 / 0.875         | SemiBold / 600 | `$heading-compact-01` |
+| Description   | 14 / 0.875         | Regular / 400  | `$body-compact-01`    |
+| File name     | 14 / 0.875         | Regular / 400  | `$body-compact-01`    |
+| Error message | 12 / 0.75          | Regular / 400  | `$label-01`           |
+| Drop text     | 14 / 0.875         | Regular / 400  | `$body-compact-01`    |
 
 ## Structure
 
 The width of an uploaded file varies based on the content and layout of a
-design. Refer to the [button](/components/button/usage) guidelines for usage and
-styling of the “Add files” button.
+design.
 
-| Class                             | Property                  | px / rem | Spacing token |
-| --------------------------------- | ------------------------- | -------- | ------------- |
-| `.bx--file-filename`              | height                    | 48 / 3   | –             |
-| `.bx--file-filename`              | width                     | 288 / 18 | –             |
-| `.bx--file__selected-file--field` | height                    | 40 / 2.5 | –             |
-| `.bx--file__selected-file--sm`    | height                    | 32 / 2   | –             |
-| `.bx--file__selected-file`        | padding-left              | 16 / 1   | `$spacing-05` |
-| `.bx--file__selected-file`        | margin-bottom             | 8 / 0.5  | `$spacing-03` |
-| `.bx----file__state-container`    | padding-right             | 16 / 1   | `$spacing-05` |
-| `.bx--file-close`                 | height, width             | 16 / 1   | –             |
-| `.bx--file-close`                 | margin-left, margin-right | 16 / 1   | `$spacing-05` |
+| Element    | Property                                                                                   | px / rem | Spacing token |
+| ---------- | ------------------------------------------------------------------------------------------ | -------- | ------------- |
+| File       | width                                                                                      | 288 / 18 | –             |
+|            | padding-left                                                                               | 16 / 1   | `$spacing-05` |
+|            | margin-bottom                                                                              | 8 / 0.5  | `$spacing-03` |
+|            | padding-right                                                                              | 16 / 1   | `$spacing-05` |
+| Close icon | height, width                                                                              | 16 / 1   | –             |
+|            | margin-left, margin-right                                                                  | 16 / 1   | `$spacing-05` |
+| Button     | See [primary button](https://www.carbondesignsystem.com/components/button/style#structure) |          |               |
 
 <div className="image--fixed">
 
@@ -110,10 +112,31 @@ styling of the “Add files” button.
 
 <div className="image--fixed">
 
-![Structure and spacing measurements for drage and drop file uploader](images/file-uploader-style-5.png)
+![Structure and spacing measurements for drag and drop file uploader](images/file-uploader-style-5.png)
 
 </div>
 
 <Caption>
   Structure and spacing measurements for drag and drop file uploader | px / rem
 </Caption>
+
+## Sizes
+
+The file and button heights should always match.
+
+| Element | Size        | Height px / rem |
+| ------- | ----------- | --------------- |
+| File    | Small (sm)  | 32 / 2          |
+|         | Medium (md) | 40 / 2.5        |
+|         | Large (lg)  | 48 / 3          |
+| Button  | Small (sm)  | 32 / 2          |
+|         | Medium (md) | 40 / 2.5        |
+|         | Large (lg)  | 48 / 3          |
+
+<div className="image--fixed">
+
+![Sizes for file and button](images/file-uploader-style-size.png)
+
+</div>
+
+<Caption>File and button sizes | px / rem</Caption>

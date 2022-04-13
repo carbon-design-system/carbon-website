@@ -7,7 +7,7 @@
 
 import Fuse from 'fuse.js';
 import React, { useState, useMemo } from 'react';
-import { Column, Checkbox, Row } from 'carbon-components-react';
+import { Column, Checkbox, Row } from '@carbon/react';
 import ComponentIndexList from './ComponentIndexList';
 import ComponentIndexNotFound from './ComponentIndexNotFound';
 import ComponentIndexSearch from './ComponentIndexSearch';
@@ -147,7 +147,7 @@ function ComponentIndexPage() {
         sm={4}
         md={6}
         lg={9}
-        className="component-index-container bx--no-gutter">
+        className="component-index-container cds--no-gutter">
         <ComponentIndexSearch value={searchValue} onChange={setSearchValue} />
         <ComponentIndexSort
           initialSortOption={initialSortOption}

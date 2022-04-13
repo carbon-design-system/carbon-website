@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Dropdown } from 'carbon-components-react';
+import { Dropdown } from '@carbon/react';
 import PropTypes from 'prop-types';
 import React from 'react';
 

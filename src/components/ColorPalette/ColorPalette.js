@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { ContentSwitcher, Switch, Dropdown } from 'carbon-components-react';
+import { ContentSwitcher, Switch, Dropdown } from '@carbon/react';
 import cx from 'classnames';
 import {
   categoricalLight,
@@ -187,7 +187,7 @@ const ColorPalette = ({
             <Dropdown
               label="Color group selection"
               id="color-group-dropdown"
-              size="xl"
+              size="lg"
               items={dropdownItems}
               onChange={onDropdownChange}
               selectedItem={dropdownItems[groupNumber - 1]}
@@ -204,7 +204,7 @@ const ColorPalette = ({
               <div className={groupOption}>Option {index + 1}</div>
               {i.map((j, jIndex) => (
                 <ColorPaletteColor
-                  key={`${j.name}-${index}-${j.index}`}
+                  key={`${type}-${j.name}-${index}-${j.index}`}
                   index={jIndex}
                   lightText={j.light}
                   hex={j.hex}
@@ -220,7 +220,7 @@ const ColorPalette = ({
         <PalettesContainer dark={dark} type={type} twoColumn={twoColumn}>
           {colors.map((i, index) => (
             <ColorPaletteColor
-              key={`${i.name}-${index}-${i.index}`}
+              key={`${type}-${i.name}-${index}-${i.index}`}
               isNumbered
               index={index}
               lightText={i.light}
@@ -242,7 +242,7 @@ const ColorPalette = ({
               <div className={groupOption}>Option {index + 1}</div>
               {i.data.map((j, jIndex) => (
                 <ColorPaletteColor
-                  key={`${j.name - jIndex}`}
+                  key={`${type}-${i.color}-${index}-${jIndex}`}
                   index={jIndex}
                   lightText={j.light}
                   hex={j.hex}
