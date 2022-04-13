@@ -79,9 +79,12 @@ jobs:
           GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES: true
           NODE_ENV: production
           CI: true
+      - name: Add CNAME record
+        run: |
+          echo 'staging.carbondesignsystem.com' > public/CNAME
       - name: Deploy
         run: |
           git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
-          npx gh-pages -d public -u "github-actions-bot <support+actions@github.com>"
+          npx gh-pages -d public -u "github-actions <github-actions@github.com>"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
