@@ -204,7 +204,7 @@ const ColorPalette = ({
               <div className={groupOption}>Option {index + 1}</div>
               {i.map((j, jIndex) => (
                 <ColorPaletteColor
-                  key={`${j.name}-${index}-${j.index}`}
+                  key={`${type}-${j.name}-${index}-${j.index}`}
                   index={jIndex}
                   lightText={j.light}
                   hex={j.hex}
@@ -220,7 +220,7 @@ const ColorPalette = ({
         <PalettesContainer dark={dark} type={type} twoColumn={twoColumn}>
           {colors.map((i, index) => (
             <ColorPaletteColor
-              key={`${i.name}-${index}-${i.index}`}
+              key={`${type}-${i.name}-${index}-${i.index}`}
               isNumbered
               index={index}
               lightText={i.light}
@@ -242,7 +242,7 @@ const ColorPalette = ({
               <div className={groupOption}>Option {index + 1}</div>
               {i.data.map((j, jIndex) => (
                 <ColorPaletteColor
-                  key={`${j.name - jIndex}`}
+                  key={`${type}-${i.color}-${index}-${jIndex}`}
                   index={jIndex}
                   lightText={j.light}
                   hex={j.hex}

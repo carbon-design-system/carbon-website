@@ -14,7 +14,7 @@ export default class TypeWeight extends React.Component {
       return (
         <div className="cds--row">
           <div className="cds--col-lg-8 cds--col-md-6 type-weight">
-            <div dangerouslySetInnerHTML={{ __html: typeTypes }} />
+            <div dangerouslySetInnerHTML={{ __html: typeTypes.default }} />
           </div>
         </div>
       );
@@ -24,7 +24,9 @@ export default class TypeWeight extends React.Component {
       return (
         <div className="cds--row">
           <div className="cds--col-lg-8 cds--col-md-6 type-weight">
-            <div dangerouslySetInnerHTML={{ __html: typeWeightItalic }} />
+            <div
+              dangerouslySetInnerHTML={{ __html: typeWeightItalic.default }}
+            />
           </div>
         </div>
       );
@@ -33,7 +35,7 @@ export default class TypeWeight extends React.Component {
     return (
       <div className="cds--row">
         <div className="cds--col-lg-8 cds--col-md-6 type-weight">
-          <div dangerouslySetInnerHTML={{ __html: typeWeight }} />
+          <div dangerouslySetInnerHTML={{ __html: typeWeight.default }} />
         </div>
       </div>
     );

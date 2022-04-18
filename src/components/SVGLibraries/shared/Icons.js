@@ -1,5 +1,5 @@
 import React from 'react';
-import { LogoGithub32 } from '@carbon/icons-react';
+import { LogoGithub } from '@carbon/icons-react';
 import { icon } from './SvgLibrary.module.scss';
 
 export const Illustrator = () => (
@@ -18,4 +18,4 @@ export const Illustrator = () => (
   </svg>
 );
 
-export const Github = () => <LogoGithub32 className={icon} />;
+export const Github = () => <LogoGithub size={32} className={icon} />;

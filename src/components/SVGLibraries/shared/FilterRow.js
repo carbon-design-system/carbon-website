@@ -27,6 +27,7 @@ const FilterRow = ({
         labelText={`filter ${type}s by searching for their name or category`}
         onChange={onSearchChange}
         placeHolderText={placeHolderText}
+        size="lg"
       />
       <Dropdown
         className={dropdown}

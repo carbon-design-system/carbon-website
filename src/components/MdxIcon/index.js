@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { LogoGithub32, Bee32 } from '@carbon/icons-react';
+import { LogoGithub, Bee } from '@carbon/icons-react';
 import { mdxIcon, iconInverse } from './MdxIcon.module.scss';
 
 import sketch from './icons/sketch.svg';
@@ -16,6 +16,7 @@ import npm from './icons/npm.svg';
 import storybook from './icons/storybook.svg';
 import medium from './icons/medium.svg';
 import sass from './icons/sass.png';
+import figma from './icons/figma.svg';
 
 const localIcons = {
   sketch,
@@ -31,11 +32,12 @@ const localIcons = {
   storybook,
   medium,
   sass,
+  figma,
 };
 
 const carbonIcons = {
-  github: LogoGithub32,
-  bee: Bee32,
+  github: LogoGithub,
+  bee: Bee,
 };
 
 const iconColor = {
@@ -51,7 +53,7 @@ const MdxIcon = ({ name, color }) => {
 
   if (carbonIcons[name]) {
     const Icon = carbonIcons[name];
-    return <Icon className={cx(mdxIcon, iconColor[color])} />;
+    return <Icon className={cx(mdxIcon, iconColor[color])} size={32} />;
   }
 
   return null;

@@ -13,10 +13,8 @@ import { svgPage, svgLibrary } from '../shared/SvgLibrary.module.scss';
 import PictogramCategory from './PictogramCategory';
 import NoResult from '../shared/NoResult';
 
-const {
-  icons: pictogramMetaData,
-  categories: pictogramCategoryMetadata,
-} = metaData;
+const { icons: pictogramMetaData, categories: pictogramCategoryMetadata } =
+  metaData;
 
 const IconLibrary = () => {
   const [pictogramComponents, setPictogramComponents] = useState([]);
@@ -31,7 +29,9 @@ const IconLibrary = () => {
   useEffect(() => {
     const pictogramArray = pictogramMetaData.reduce(
       (accumulator, pictogram) => {
-        if (pictogram.deprecated) {return accumulator;}
+        if (pictogram.deprecated) {
+          return accumulator;
+        }
 
         const path = [...pictogram.namespace, pictogram.name].join('/');
 
@@ -109,7 +109,7 @@ const IconLibrary = () => {
           setSelectedCategory={setSelectedCategory}
           allIconResults={filteredPictograms.length}
           pageName="pictogram"
-          pageUrl="https://github.com/carbon-design-system/carbon/raw/main/packages/pictograms/master/productive-pictogram-master.ai"
+          pageUrl="https://github.com/carbon-design-system/carbon/raw/v10/packages/pictograms/master/productive-pictogram-master.ai"
         />
       ) : (
         <div className={svgLibrary}>

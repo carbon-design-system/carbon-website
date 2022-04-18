@@ -50,6 +50,9 @@ module.exports = {
           subDirectory: '',
         },
         mediumAccount: 'carbondesign',
+        theme: {
+          homepage: 'white',
+        }
       },
     },
     {
