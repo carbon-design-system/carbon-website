@@ -1,23 +1,27 @@
 ---
 title: Guide
 description:
-  The design transition from v10 to v11 includes updates and additions to
-  components, color tokens, theming, and introduces beta kits to experiment
-  with.
+  The transition from v10 to v11 includes updates and additions to color tokens,
+  theming, and introduces beta kits to experiment with.
 tabs: ['Overview', 'Design', 'Develop']
 ---
+
+import { Tag } from '@carbon/react';
 
 <PageDescription>
 
 The transition from v10 to v11 includes updates and additions to color tokens,
-theming, and introduces beta kits to experiment with.
+theming, size naming, and new components.
 
 </PageDescription>
 
 <AnchorLinks>
   <AnchorLink>Design kit</AnchorLink>
   <AnchorLink>Components</AnchorLink>
-  <AnchorLink>Elements</AnchorLink>
+  <AnchorLink to="#sizing-breaking">Sizing</AnchorLink>
+  <AnchorLink to="#type-tokens-breaking">Type tokens</AnchorLink>
+  <AnchorLink to="#color-tokens-breaking">Color tokens</AnchorLink>
+  <AnchorLink>Theming</AnchorLink>
 </AnchorLinks>
 
 ## Design kit
@@ -31,57 +35,28 @@ theming, and introduces beta kits to experiment with.
 
 - Updated existing color token names to better reflect their usage
 - Updated layer styles with new color tokens
-- Updated text styles with new color tokens
-- Removal of light variants (in favor of new layer and contextual token sets)
+- Updated text styles with new token names
+- Removal of `light` variants (in favor of new layer and contextual token sets)
 
-### v11 Beta kit
+### Kit migration
 
-Try out the v11 Beta Sketch kit that has been updated to reflect our color token
-name changes and additional token layer sets and contextual layer sets. The v11
-Beta kit is available in the White and Gray 100 themes.
-
-<InlineNotification>
-  Note: The v11 Beta kit is temporary and only available during our beta release
-  timeframe. The existing v10 kits will be updated with these changes and
-  additions once v11 is released to the general public.
-</InlineNotification>
-
-<Row className="resource-card-group">
-<Column colLg={4} colMd={4} noGutterSm>
-<ResourceCard
-    subTitle="White theme (Beta)"
-    href="sketch://add-library/cloud/fabc8814-ead2-4eeb-a893-ef3b6ea88875"
-    actionIcon="download"
-    >
-
-<MdxIcon name="sketch" />
-
-</ResourceCard>
-</Column>
-<Column colLg={4} colMd={4} noGutterSm>
-<ResourceCard
-    subTitle="Gray 100 theme (Beta)"
-    actionIcon="download"
-    href="sketch://add-library/cloud/9b33e49d-9b79-4696-9f57-c7a15c1e276a"
-    >
-      
-<MdxIcon name="sketch" />
-
-</ResourceCard>
-</Column>
-</Row>
+| Design tool                          | V11                                  | Migration strategy                                                                                                                                                        |
+| ------------------------------------ | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Sketch](/designing/kits/sketch)     | Update available                     | The same Sketch Cloud libraries that were used in v10 have been updated to include the v11 changes. Do not accept the library update until you are ready to work in v11.  |
+| [Figma](/designing/kits/figma)       | Expected release by the end of April | The same Figma libraries that were used in v10 will be updated to include the v11 changes. Do not accept the library update until you are ready to work in v11.           |
+| [Adobe XD](/designing/kits/adobe-xd) | Partial update available             | Some of the v11 changes have been made in the XD files. It is yet to be determined when all the other changes will be added.                                              |
 
 ## Components
 
-### Notifications
+### Notifications <Tag type="cyan">Breaking</Tag>
 
-Toast notifications have been refactored to now allow interactive content in
-them, like links and buttons. To support the usecase of having a toast with or
-without interactive content, we have introduced two types of toast
-notifications—polite and assertive.
+An actionable variant has been added to the notification component. Actionable
+notifications allow for interactive elements within a notification, like
+buttons. Actionable notifications can be styled like an inline or toast
+notification.
 
 See Carbon's
-[toast notification](https://v11.carbondesignsystem.com/components/notification/usage/#toast-notifications)
+[actionable notification](/components/notification/usage/#actionable-notifications)
 usage guidance for more information.
 
 <Row>
@@ -92,16 +67,15 @@ usage guidance for more information.
 </Column>
 </Row>
 
-### Popover
+### Popover <Tag type="green">New</Tag>
 
 Popover is a new component we have added to our system. A popover is a layer
 that appears above all other content on the page and is used to display
 additional details for specific elements whether it be text or interactive
 elements.
 
-See Carbon's
-[popover](https://v11.carbondesignsystem.com/components/popover/usage/) usage
-guidance for more information.
+See Carbon's [popover](/components/popover/usage/) usage guidance for more
+information.
 
 <Row>
 <Column colLg={8}>
@@ -111,14 +85,13 @@ guidance for more information.
 </Column>
 </Row>
 
-### Tooltip
+### Tooltip <Tag type="cyan">Breaking</Tag>
 
 The tooltip component has been refactored to use the popover component under the
 hood to improve accessibility.
 
-See Carbon's
-[tooltip](https://v11.carbondesignsystem.com/components/tooltip/usage/) usage
-guidance for more information.
+See Carbon's [tooltip](/components/tooltip/usage/) usage guidance for more
+information.
 
 <Row>
 <Column colLg={8}>
@@ -128,7 +101,7 @@ guidance for more information.
 </Column>
 </Row>
 
-### Toggletip
+### Toggletip <Tag type="green">New</Tag>
 
 Definition and interactive tootips now use the toggletip component to achieve
 accessibility standards. Toggletip uses the disclosure pattern to toggle the
@@ -136,7 +109,10 @@ visibility of a popover. This popover may contain a variety of information, from
 descriptive text to interactive elements. Further guidance on the toggletip
 component is coming soon.
 
-### Tabs
+See Carbon's [toggletip](/components/toggletip/usage/) usage guidance for more
+information.
+
+### Tabs <Tag type="cyan">Breaking</Tag>
 
 The tab component variant names are changing. Default tabs will become _Line
 tabs_ and Container tabs will become _Contained tabs_. There are three new
@@ -144,8 +120,7 @@ modifiers—tabs with icons, icon-only tabs, and secondary labels. Additionally,
 there is a new third alignment option for tab that allows for auto-widths where
 each tab size is determined by the label length.
 
-See Carbon's [tab](https://v11.carbondesignsystem.com/components/tabs/usage/)
-usage guidance for more information.
+See Carbon's [tab](/components/tabs/usage/) usage guidance for more information.
 
 <Row>
 <Column colLg={8}>
@@ -155,7 +130,7 @@ usage guidance for more information.
 </Column>
 </Row>
 
-### UI shell
+### UI shell <Tag type="purple">Updated</Tag>
 
 The UI shell is now themeable and has been updated to use inline theming. The UI
 shell uses Carbon theme tokens instead of component specific tokens and the
@@ -169,9 +144,7 @@ color will follow each themes styles.
 </Column>
 </Row>
 
-## Elements
-
-### Sizing
+## Sizing <Tag type="cyan">Breaking</Tag>
 
 All size properties for components have been renamed to be more consistent with
 the pixel/rem value that it is paired with.
@@ -185,54 +158,134 @@ the pixel/rem value that it is paired with.
 | Extra large (xl)         | 64 / 4            |
 | Double extra large (2xl) | 80 / 5            |
 
-### Color tokens
+## Type tokens <Tag type="cyan">Breaking</Tag>
+
+The two v10 type sets—Productive and Expressive—have been blended together to
+work as a unified collection in v11. As a result of this convergence, type token
+names have been renamed to better define their relationship to one another and
+reflect its styling.
+
+See Carbon's [typography](/guidelines/typography/styling-strategies) guidance
+for more information.
+
+### Compact styles
+
+Some tokens now have a compact designation, meaning the only difference it has
+with the token of a similar name is a variation in line height.
+
+### Body styles
+
+The four body styles stay the same but their names have been updated. The `long`
+styles are now simply just `body`, while the `short` styles are now
+`body-compact`.
+
+- `$body-long-01` → `$body-01`
+- `$body-short-02` → `$body-compact-02`
+
+### Heading styles
+
+Productive and expressive while still a concept used to express different
+“moments” are no longer used in the type token header names. There are two new
+classifications—Fixed and Fluid.
+
+#### Fixed headings
+
+Fixed headings, for the most part take the place of what were the v10 productive
+headings. The first two v10 expressive headings are also now included in the
+fixed type set. They are called “fixed” because they do not change sizes across
+breakpoints and always remain a single fixed size. However, the term fixed is
+not included in the token name but simply named `heading`.
+
+- `$productive-heading-03` → `$heading-03`
+
+#### Fluid headings
+
+Fluid headings take the place of the v10 expressive heading. These headings are
+responsive and the type styles change size at different breakpoints.
+
+- `$expressive-heading-05` → `$fluid-heading-05`
+
+### Resources
+
+<Row className="resource-card-group">
+  <Column colLg={4} colMd={4} noGutterSm>
+    <ResourceCard
+      subTitle="Type token migration table"
+      href="https://github.com/carbon-design-system/carbon/blob/main/docs/migration/v11.md#type-tokens"
+    >
+      <MdxIcon name="github" />
+    </ResourceCard>
+  </Column>
+</Row>
+
+## Color tokens <Tag type="cyan">Breaking</Tag>
 
 Existing color tokens have been renamed to better reflect their usage. In
-addition to renaming existing tokens, new tokens have been added to fill
-existing color token gaps in our system and to fix complex layering logic.
+addition to renaming existing tokens, new tokens have been added to fill gaps in
+the color token system and fix complex layering logic.
 
-#### Color token names
+### Color token names
 
 Previously, in v10 many color tokens had numeral endings, now in v11 only
 layering tokens will have this distinction. All other tokens have been given an
-adjective descriptor in place of the number ending to help with better
-understanding how a token should be used.
+adjective descriptor in place of the number ending to help users better
+understand how a token should be used. The new naming convention is as follows:
+`[element] - [role] - [order] - [state]`
+
+See Carbon's [color overview](/guidelines/color/overview/) guidance for more
+information.
 
 <Row>
-<Column colLg={8}>
+<Column colLg={12}>
 
-![Example of the new token names with the layer model tokens highlighted in purple.](images/color-implementation-layer-set-3.png)
+![Example showing the v10 tokens compared to the v11 tokens](images/migrate-design-color-tokens.png)
 
 </Column>
 </Row>
 
-#### Layer model tokens
+<Caption>
+  Examples showing v10 tokens on the left and v11 tokens on the right
+</Caption>
 
-We have introduced two different types of color token for the layering
-models—Layering tokens and Contextual layer tokens. The two type of tokens will
-produce the same visual effect. The difference between them is a technical one
-and largely a developer concern. **In Sketch, and other design tools, designer
-will only be using the Layering tokens to design.** The layering tokens replace
-what were the `ui` color tokens in v10 and are used in a similar way.
+### Layer model tokens <Tag type="green">New</Tag>
 
-<Row>
-<Column colMd={6} colLg={6}>
+We have introduced two new types of color token for the layering models—Layering
+tokens and Contextual layer tokens. The two types of tokens will produce the
+same visual effect. The difference between them is a technical one and largely a
+developer concern. **In Sketch, and other design tools, designer will only use
+the layering tokens to design.** The layering tokens replace what were the `ui`
+color tokens in v10 and are used in a similar way.
 
-![Example of layering token (left) versus contextual layering tokens (right).](images/color-implementation-compare-1.png)
-
-</Column>
-<Column colMd={6} colLg={6}>
-
-![Example of layering token (left) versus contextual layering tokens (right).](images/color-implementation-compare-2.png)
-
-</Column>
-</Row>
-
-See Carbon's
-[color overview](https://v11.carbondesignsystem.com/guidelines/color/overview/)
-guidance and
-[migrating color tokens](https://github.com/carbon-design-system/carbon/blob/main/docs/migration/11.x-color.md)
+See Carbon's [color implementation](/guidelines/color/implementation) guidance
 for more information.
+
+<Row>
+<Column colLg={12}>
+
+![Example showing layering and contextual tokens](images/color-implementation-compare.png)
+
+</Column>
+</Row>
+
+<Caption>
+  Examples showing layering tokens on the left and contextual tokens on the
+  right
+</Caption>
+
+### Resources
+
+<Row className="resource-card-group">
+  <Column colLg={4} colMd={4} noGutterSm>
+    <ResourceCard
+      subTitle="Color token migration table"
+      href="https://github.com/carbon-design-system/carbon/blob/main/docs/migration/v11.md#design-tokens"
+    >
+      <MdxIcon name="github" />
+    </ResourceCard>
+  </Column>
+</Row>
+
+## Theming
 
 ### Inline theming
 
@@ -242,8 +295,7 @@ allows themes to be nested within each other without needing custom styles or
 overrides. In product, a common use-case for inline theming is applying a
 contrasting theme to a UI shell and side panels.
 
-See Carbon's
-[inline theming](https://v11.carbondesignsystem.com/guidelines/color/implementation#inline-theming)
+See Carbon's [inline theming](/guidelines/color/implementation#inline-theming)
 guidance for more information.
 
 <Row>
@@ -262,7 +314,7 @@ The UI will automatically switch from using light color backgrounds with dark
 color text to using dark color backgrounds with light color text.
 
 See Carbon's
-[light or dark mode](https://v11.carbondesignsystem.com/guidelines/color/implementation#light-or-dark-mode)
+[light or dark mode](/guidelines/color/implementation#light-or-dark-mode)
 guidance for more information.
 
 <Row>

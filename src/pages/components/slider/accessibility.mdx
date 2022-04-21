@@ -6,99 +6,88 @@ description:
 tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 ---
 
-import {
-  StructuredListWrapper,
-  StructuredListHead,
-  StructuredListBody,
-  StructuredListRow,
-  StructuredListInput,
-  StructuredListCell,
-  OrderedList,
-  ListItem,
-} from '@carbon/react';
+import localVideo from './videos/slider.mp4';
+import localPoster from './images/slider-accessibility-3.png';
 
 <PageDescription>
 
-The slider React Carbon component has been tested against the latest
-[W3C Web Content Accessibility Guidelines (WCAG) 2.1 Level A and AA success criteria](https://www.w3.org/TR/WCAG21/)
-and violations have been identified as high priority issues. This document will
-be updated when these accessibility issues are resolved.
+No accessibility annotations are needed for sliders, but keep these
+considerations in mind if you are modifying Carbon or creating a custom
+component.
 
 </PageDescription>
 
 <AnchorLinks>
-  <AnchorLink>Accessibility considerations</AnchorLink>
-  <AnchorLink>Resources</AnchorLink>
-  <AnchorLink>Accessibility testing</AnchorLink>
+  <AnchorLink>What Carbon provides</AnchorLink>
+  <AnchorLink>Development considerations</AnchorLink>
 </AnchorLinks>
 
-## Accessibility considerations
+## What Carbon provides
 
-1. Labels should be clear and concise.
+Carbon bakes keyboard operation into its components, improving the experience of
+blind users and others who operate via the keyboard. Carbon incorporates many
+other accessibility considerations, some of which are described below.
 
-## Resources
+### Keyboard interactions
 
-- [W3C WAI-ARIA Authoring Practices Slider Design Pattern](https://www.w3.org/TR/wai-aria-practices/#slider)
-  covers the usage of ARIA names, state and roles, as well as the expected
-  keyboard interactions.
-- [IBM Accessibility Requirements](https://www.ibm.com/able/requirements/requirements/):
-  - [1.3.1 Info and Relationships](https://www.ibm.com/able/requirements/requirements/#1_3_1)
-    (WCAG Success Criteria
-    [1.3.1](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships))
-  - [1.3.2 Meaningful Sequence](https://www.ibm.com/able/requirements/requirements/#1_3_2)
-    (WCAG Success Criteria
-    [1.3.2](https://www.w3.org/WAI/WCAG21/Understanding/meaningful-sequence))
-  - [2.1.1 Keyboard](https://www.ibm.com/able/requirements/requirements/#2_1_1)
-    (WCAG Success Criteria
-    [2.1.1](https://www.w3.org/WAI/WCAG21/Understanding/keyboard))
-  - [2.4.3 Focus Order](https://www.ibm.com/able/requirements/requirements/#2_4_3)
-    (WCAG Success Criteria
-    [2.4.3](https://www.w3.org/WAI/WCAG21/Understanding/focus-order))
-  - [2.4.6 Headings and Labels](https://www.ibm.com/able/requirements/requirements/#2_4_6)
-    (WCAG Success Criteria
-    [2.4.6](https://www.w3.org/WAI/WCAG21/Understanding/headings-and-labels))
-  - [2.4.7 Focus Visible](https://www.ibm.com/able/requirements/requirements/#2_4_7)
-    (WCAG Success Criteria
-    [2.4.7](https://www.w3.org/WAI/WCAG21/Understanding/focus-visible))
-  - [4.1.2 Name, Role, Value](https://www.ibm.com/able/requirements/requirements/#4_1_2)
-    (WCAG Success Criteria
-    [4.1.2](https://www.w3.org/TR/UNDERSTANDING-WCAG20/ensure-compat-rsv.html))
-
-## Accessibility testing
-
-Accessibility issues are tracked in the
-[Carbon Component GitHub repository](https://github.com/carbon-design-system/carbon/issues?q=is%3Aopen+label%3A%22type%3A+a11y+%E2%99%BF%22+label%3A%22component%3A+slider%22+).
-
-### Automated test
+Tab order goes from slider to text input. Arrow keys are used to change the
+slider value. `Shift`+arrow changes the slider value by a larger increment (such
+as by 10 instead of 1). Users can also directly enter a value in the input.
 
 <Row>
-  <Column noGutterSm>
-    <StructuredListWrapper>
-      <StructuredListHead>
-        <StructuredListRow head>
-          <StructuredListCell head>
-            Automated test environment
-          </StructuredListCell>
-          <StructuredListCell head>Results</StructuredListCell>
-        </StructuredListRow>
-      </StructuredListHead>
-      <StructuredListBody>
-        <StructuredListRow>
-          <StructuredListCell>
-            - macOS Mojave version 10.14.6 with VoiceOver
-            <br />
-            - Chrome version 77.0.3865.90
-            <br />
-            - Dynamic Assessment Plugin (DAP) version 1.8.0.0 - IBM
-            Accessibility WCAG 2.1 Sept. 2019 Ruleset
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>DAP test:</strong>
-            <br />- No violations
-          </StructuredListCell>
-        </StructuredListRow>
-      </StructuredListBody>
-    </StructuredListWrapper>
-  </Column>
+<Column colLg={8}>
+
+![example of slider keyboard interaction](images/slider-accessibility-1.png)
+
+<Caption>
+  Both the slider and input are in the tab order and keyboard operable.
+</Caption>
+
+</Column>
 </Row>
+
+### Labeling and updates
+
+<Row>
+<Column colLg={8}>
+
+![slider label is connected to slider control and text input](images/slider-accessibility-2.png)
+
+<Caption>
+  The slider label is programmatically associated with both the slider and
+  input.
+</Caption>
+
+</Column>
+</Row>
+
+<Row>
+<Column colLg={8}>
+
+<Video
+  src={localVideo}
+  poster={localPoster}
+  aria-label="pointer clicks on slider range and input updates to 80. input value changes to 75 and slider repositions to match"
+/>
+
+<Caption>
+  The input value and slider position are in sync. An update to either causes
+  the other to update.
+</Caption>
+
+</Column>
+</Row>
+
+## Development considerations
+
+Keep these considerations in mind if you are modifying Carbon or creating a
+custom component:
+
+- The `step` value determines the change increment when moving the slider,
+  either by pointer or keyboard. A value of `"1"` is recommended.
+- The `stepMultiplier` determines the value change when the keyboard is used to
+  alter the slider by pressing `Shift`+ Arrow key. A tenth of the total range is
+  recommended as a value, such as `"10"` in a 0-100 slider.
+- See the
+  [ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices-1.2/#slider)
+  for more considerations.
