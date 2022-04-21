@@ -6,6 +6,8 @@ description:
 tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 ---
 
+import { tooltip } from '../../styles/Tooltip.module.scss';
+
 <PageDescription>
 
 Tooltips display additional information upon hover or focus. The information
@@ -155,7 +157,8 @@ The exception here is that definition tooltip can be invoked on `hover` or
 
 ## Live demo
 
-import { Filter } from '@carbon/icons-react';
+import { Filter16 } from '@carbon/icons-react';
+import { Information } from '@carbon/react/icons';
 
 <ComponentDemo
   components={[
@@ -172,7 +175,7 @@ import { Filter } from '@carbon/icons-react';
       label: 'Definition tooltip',
     },
   ]}
-  scope={{ Filter }}
+  scope={{ Filter16, Information }}
 >
   <ComponentVariant
     id="tooltip"
@@ -188,26 +191,18 @@ import { Filter } from '@carbon/icons-react';
     }}
   >{`
     <Tooltip
-      direction="bottom"
+      align="bottom"
+        label="This is some tooltip text. This box shows the maximum amount of text that should be displayed inside. If more room is needed, use a modal instead."
       tabIndex={0}
       triggerText="Tooltip label"
     >
-      <p>
-        This is some tooltip text. This box shows the maximum amount of text that should be displayed inside. If more room is needed, use a modal instead.
-      </p>
-      <div className="cds--tooltip__footer">
-        <Link href="#">Learn more</Link>
-        <Button size="small">
-          Create
-        </Button>
-      </div>
+      <button className={tooltip} type="button">
+        <Information />
+      </button>
     </Tooltip>
   `}</ComponentVariant>
   <ComponentVariant
     id="icon-tooltip"
-    knobs={{
-      TooltipIcon: ['direction', 'align'],
-    }}
     links={{
       React:
         'https://react.carbondesignsystem.com/?path=/story/components-tooltipicon--default',
@@ -220,15 +215,14 @@ import { Filter } from '@carbon/icons-react';
     }}
   >{`
     <TooltipIcon
-      tooltipText="Filter"
-    >
-      <Filter />
-    </TooltipIcon>
+      tooltipText="Interactive tooltip"
+      renderIcon={Information}
+    />
   `}</ComponentVariant>
   <ComponentVariant
     id="definition-tooltip"
     knobs={{
-      TooltipDefinition: ['direction', 'align'],
+      DefinitionTooltip: ['direction', 'align'],
     }}
     links={{
       React:
@@ -241,11 +235,11 @@ import { Filter } from '@carbon/icons-react';
         'https://web-components.carbondesignsystem.com/?path=/story/components-tooltip--definition',
     }}
   >{`
-    <TooltipDefinition
-      tooltipText="Brief description of the dotted, underlined word above."
+    <DefinitionTooltip
+      definition="Brief description of the dotted, underlined word above."
     >
       Definition Tooltip
-    </TooltipDefinition>
+    </DefinitionTooltip>
   `}</ComponentVariant>
 </ComponentDemo>
 
