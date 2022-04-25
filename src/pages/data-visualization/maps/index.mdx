@@ -1,0 +1,382 @@
+---
+title: Maps
+---
+
+<Row>
+<Column colMd={5} colLg={8}>
+
+<PageDescription>
+
+Interactive maps put data in context to immediately orient users to the
+information and provide answers to different spatial questions.
+
+</PageDescription>
+
+<AnchorLinks>
+
+<AnchorLink>Overview</AnchorLink>
+<AnchorLink>Anatomy</AnchorLink>
+<AnchorLink>Map page types</AnchorLink>
+<AnchorLink>Map controls</AnchorLink>
+<AnchorLink>Map legends</AnchorLink>
+<AnchorLink>Accessibility</AnchorLink>
+<AnchorLink>Related</AnchorLink>
+<AnchorLink>References</AnchorLink>
+<AnchorLink>Feedback</AnchorLink>
+
+</AnchorLinks>
+
+</Column>
+</Row>
+
+## Overview
+
+Interactive maps put data in context to immediately provide users with the
+information that is related to spacial orientation. These are basic usages of
+interactive maps:
+
+- To indicate the average values of a property or quantity in those areas
+- To identify data that is overlayed in geographical regions
+- To show connections and relationships geographically
+
+<br />
+
+This pattern explores the following approaches:
+
+- Basic types of maps that are in different contexts
+- Map controls and legends that help users identify portions of the map
+
+<Row> 
+<Column colLg={12}>
+
+![Map anatomy](/images/map-overview.png)
+
+</Column>
+</Row>
+
+#### Map page types
+
+Users can view and interact with maps on three different page types.
+
+| Map page type                                                                | Description                                                                                                                                                                                                                                                                               |
+| ---------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Map on a card](/patterns/maps/overview#map-on-a-card)                       | This map type is contained within a card on a dashboard. This type is useful when you want to provide location context in relation to other data on the dashboard. Interactions might be limited due to the card size, but can be expanded for full control.                              |
+| [Full-page map](/patterns/maps/overview#full-page-map)                       | This map type is usually a full page display but can also be paired with additional sections of information. This type is generally a feature within an application. It is useful when users need full map controls and more space to understand the full context of their data on a map. |
+| [Large screen map display](/patterns/maps/overview#large-screen-map-display) | This map type is generally the only feature within the application, and is often viewed on a larger screen. This type is useful when all of the work is done on the map or as a read-only map view to monitor data.                                                                       |
+
+### Map technology
+
+Each team needs to decide which map technology best meets the needs of their
+users. When you choose a base map, first determine whether the
+[Carbon Mapbox offerings](https://www.carbondesignsystem.com/data-visualization/advanced-charts/#mapbox)
+work for your project. If not, choose the map technology that provides the best
+experience for your users.
+
+## Anatomy
+
+Although the map technology can vary, the controls, legends, and styling needs
+to be the same for common features across interactive maps. Maps, unlike other
+components, are always full bleed.
+
+This guidance provides details on placement of the components and the zones for
+controls.
+
+<Row>
+<Column colLg={12}>
+
+![Map anatomy](/images/map-anatomy.png)
+
+</Column>
+</Row>
+
+<br />
+
+1. **Map settings (optional):** Map settings can be accessed in the page header
+   area to configure the map view (for example, the map layers or controls that
+   you can interact with on the map). The map settings open a configuration pane
+   on the right, and are only available in full-page views.
+2. **Map controls:** These controls change the map display, including map
+   layers, recenter control, and zoom controls. Related tools are grouped, with
+   zoom controls always placed as the last group.
+3. **Map:** A diagrammatic representation of an area that shows physical
+   features such as cities and roads. Maps are always full bleed.
+4. **Map watermark:** The dedicated location for the map brand attribute.
+5. **Map legend:** The dedicated legend placement for all map use cases.
+
+## Map page types
+
+### Map on a card
+
+The map on card type is contained within a card on a dashboard. This map type is
+useful to provide location context to the dashboard. This type can also provide
+some user interactivity, depending on the size of the card and type of
+interactivity that is needed. For more map card design details, see the
+[interactive maps](https://pages.github.ibm.com/ai-applications/design/patterns/dashboards-v2/overview#interactive-maps)
+section of the dashboard pattern.
+
+Due to limited space, maps on a card use the small map control sizes. The map
+controls are dynamically hidden or displayed depending on the height of the card
+and the available screen space. At a minimum, you must include a legend and zoom
+controls on the map.
+
+To view the map in a larger view, a maximize icon is available in the card
+header to provide a full screen view of the map. When the user expands the map
+card to the maximized state, additional map controls are provided to fully
+interact with the map. A minimize icon on the toolbar is used to close the full
+screen map.
+
+<Row>
+<Column colLg={12}>
+
+![Map on a card](/images/map-card.png)
+
+<Caption>Example of a map on a card</Caption>
+
+</Column>
+</Row>
+
+### Full-page map
+
+This map type is usually a full page display but can also be paired with
+additional sections of information. This type is generally a feature within an
+application. It is useful when users need full map controls and more space to
+understand the full context of their data on a map.
+
+<Row>
+<Column colLg={12}>
+
+![Full page map](/images/map-full.png)
+
+<Caption>Example of a full-page map</Caption>
+
+</Column>
+</Row>
+
+Related content for the map can be placed outside of the map area, or as a
+container overlay on the map.
+
+- Place the related content outside of the map if you don't want it to move or
+  obscure the map view.
+- Place the related content as an overlay on the map if you want to optimize for
+  map space on the page.
+
+<Row>
+<Column colLg={12}>
+
+![Map with related content - side](/images/map-side-content.png)
+
+<Caption>Example of related content outside of the map</Caption>
+
+</Column>
+</Row>
+
+<br />
+<br />
+
+<Row>
+<Column colLg={12}>
+
+![Map with related content - floating](/images/map-floating-content.png)
+
+<Caption>Example of related content as an overlay on the map</Caption>
+
+</Column>
+</Row>
+
+### Large screen map display
+
+This map type is generally the only feature within the application, and is often
+viewed on a larger screen. This type is useful when all of the work is done on
+the map or as a read-only map view to monitor data.
+
+Due to its scale, this map type generally uses a non-influencer grid and exceeds
+the maximum Carbon grid layout breakpoint size.
+
+#### Display mode
+
+Display mode is a large screen map display that does not include controls. This
+mode is often displayed at a high resolution (3840 px by 2860 px), is usually up
+on a wall in a room, and is set up by a manager. It shows all map layers and
+assets on the map, so the user can view all of the information at once.
+
+<Row>
+<Column colLg={12}>
+
+![Map - display mode](/images/display-mode.png)
+
+<Caption>Example of display mode</Caption>
+
+</Column>
+</Row>
+
+## Map controls
+
+Map controls are elements that are clicked or tapped to trigger an action (or to
+select and trigger an action). They communicate calls to action to the user and
+allow users to interact with the map in various ways. The map controls directly
+overlay the map on the right side. Each icon button indicates the action that
+occurs when the user interacts with it. The type of map controls that are used
+must be quick ways in which the user can change anything that is shown on the
+map.
+
+At a minimum, always include the zoom controls on a map. This control is
+anchored at the lower right corner of the map. All other map controls are
+anchored at the upper right corner of the page, and can be organized by
+importance or most-used. Include consistent spacing between separate map
+controls, and group any related controls together when applicable.
+
+<Row>
+<Column colLg={12}>
+
+![Spacing guidelines - full page map](/images/full-map-spacing.png)
+
+<Caption>Spacing guidelines for full-page maps</Caption>
+
+</Column>
+</Row>
+
+<br />
+<br />
+
+<Row>
+<Column colLg={12}>
+
+![Spacing guidelines - map on a card](/images/card-spacing.png)
+
+<Caption>Spacing guidelines for maps on a card</Caption>
+
+</Column>
+</Row>
+
+### Configuring map controls
+
+Map controls can be configured through a configuration pane on the right side of
+the page. The map controls are accessed through a map settings icon in the page
+header area (the map settings are global controls for the map). Users can set
+configurations according to their preferences, including these examples:
+
+- Toggling the display of map controls on the screen.
+- Setting the parameters for the different map layers.
+- Creating custom views for the information that is displayed on the map at the
+  same time.
+
+<InlineNotification>
+  Note: The content and layout of the map configuration pane is still in
+  experimental mode. If you apply the map controls to your use case, we ask that
+  you share them back to the PAL team so we can further evolve our guidance on
+  map configurations.
+</InlineNotification>
+
+<Row>
+<Column colLg={12}>
+
+![Map configuration](/images/map-configuration.png)
+
+<Caption>Example of a map configuration pane</Caption>
+
+</Column>
+</Row>
+
+### Control variations
+
+Map controls can be stand-alone or placed in groups to group related actions
+together. For easy access, surface the most commonly used actions on the map.
+
+#### Toggle controls
+
+Toggle controls are icon buttons that toggle a layer or action on or off for the
+map. Click the icon button to turn on the control, and click the icon button
+again to turn it off.
+
+<Row>
+<Column colLg={12}>
+
+![Map controls - toggles](/images/toggle.png)
+
+<Caption>Example of toggle controls</Caption>
+
+</Column>
+</Row>
+
+#### Flyout controls
+
+Flyout controls expand out a group of related actions that the user can take but
+do not always need to be visible on the map. To trigger the flyout, click the
+icon button with the left caret indicator to activate the flyout pane. Click the
+same icon button to close the flyout when finished.
+
+<Row>
+<Column colLg={12}>
+
+![Map controls - flyout](/images/flyout.png)
+
+<Caption>Example of flyout controls</Caption>
+
+</Column>
+</Row>
+
+#### Scrolling controls
+
+If the map uses many related controls, limit the number that is displayed and
+include scroll controls on either end so the user can scroll through the entire
+set of map controls. Scrolling controls are only available for full-page map use
+cases.
+
+<Row>
+<Column colLg={12}>
+
+![Map controls - scrolling](/images/scroll.png)
+
+<Caption>Example of scrolling controls</Caption>
+
+</Column>
+</Row>
+
+## Map legends
+
+A map legend is necessary to help the user understand the information that is on
+the map. The legend placement is anchored on the bottom of the page.
+
+### Simple legend
+
+For simple legends, the legend is anchored on the lower left corner of the map,
+and is displayed in a floating container as an overlay on the map. The container
+has an 80% opacity. The container uses a drop shadow to provide separation from
+the map and also to allow the map to show through.
+
+<Row>
+<Column colLg={12}>
+
+![Simple legend](/images/simple-legend.png)
+
+<Caption>Example of a simple legend</Caption>
+
+</Column>
+</Row>
+
+### Full-bleed legends
+
+If multiple legends can be displayed at once, use the full-bleed legend on the
+bottom of the page. This legend offers more space to display multiple legend
+types, and it can be collapsed to gain back more screen space for the map.
+
+<InlineNotification>
+  Note: Work on displaying multiple legends at one time is still in-progress. If
+  you have any contributions and use cases, we ask that you to share them back
+  to the PAL team so we can further evolve our map legend guidance.
+</InlineNotification>
+
+<Row>
+<Column colLg={12}>
+
+![Full-bleed legend](/images/full-legend.png)
+
+<Caption>Example of a full-bleed legend</Caption>
+
+</Column>
+</Row>
+
+## Related
+
+- [Carbon charts](https://www.carbondesignsystem.com/data-visualization/advanced-charts/#mapbox)
+- [AI Applications PAL dashboards](https://pages.github.ibm.com/ai-applications/design/patterns/dashboards-v2/overview#interactive-maps)
