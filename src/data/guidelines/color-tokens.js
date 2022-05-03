@@ -26,20 +26,20 @@ const colorTokens = {
       role: ['Hover color for $background', 'Hover color for transparent backgrounds'],
       value: {
         white: {
-          name: 'Gray 10 hover',
-          hex: '#e5e5e5',
+          name: 'Gray 50, 12% opacity',
+          hex: '#8d8d8d, 12%',
         },
         g10: {
-          name: 'Gray 10 hover',
-          hex: '#e5e5e5',
+          name: 'Gray 50, 12% opacity',
+          hex: '#8d8d8d, 12%',
         },
         g90: {
-          name: 'Gray 80 hover',
-          hex: '#4c4c4c',
+          name: 'Gray 50, 16% opacity',
+          hex: '#8d8d8d, 16% opacity',
         },
         g100: {
-          name: 'Gray 90 hover',
-          hex: '#353535',
+          name: 'Gray 50. 16% opacity',
+          hex: '#8d8d8d, 16% opacity',
         },
       },
     },
@@ -47,20 +47,20 @@ const colorTokens = {
       role: ['Active color for $background'],
       value: {
         white: {
-          name: 'Gray 30',
-          hex: '#c6c6c6',
+          name: 'Gray 50, 32% opacity',
+          hex: '#8d8d8d, 32% opacity',
         },
         g10: {
-          name: 'Gray 30',
-          hex: '#c6c6c6',
+          name: 'Gray 50. 32% opacity',
+          hex: '#8d8d8d, 32% opacity',
         },
         g90: {
-          name: 'Gray 60',
-          hex: '#6f6f6f',
+          name: 'Gray 50, 40% opacity',
+          hex: '#8d8d8d, 40% opacity',
         },
         g100: {
-          name: 'Gray 70',
-          hex: '#525252',
+          name: 'Gray 50. 40% opacity',
+          hex: '#8d8d8d, 40% opacity',
         },
       },
     },
@@ -68,8 +68,8 @@ const colorTokens = {
       role: ['Selected color for $background'],
       value: {
         white: {
-          name: 'Gray 20',
-          hex: '#e0e0e0',
+          name: 'Gray 50, 20% opacity',
+          rgba: '(141, 141, 141, 0.20)',
         },
         g10: {
           name: 'Gray 20',
