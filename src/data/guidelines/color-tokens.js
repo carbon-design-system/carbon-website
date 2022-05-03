@@ -69,19 +69,19 @@ const colorTokens = {
       value: {
         white: {
           name: 'Gray 50, 20% opacity',
-          rgba: '(141, 141, 141, 0.20)',
+          rgba: '#8d8d8d, 20% opacity',
         },
         g10: {
-          name: 'Gray 20',
-          hex: '#e0e0e0',
+          name: 'Gray 50, 20% opacity',
+          hex: '#8d8d8d, 20% opacity',
         },
         g90: {
-          name: 'Gray 70',
-          hex: '#525252',
+          name: 'Gray 50, 24% opacity',
+          hex: '#8d8d8d, 24% opacity',
         },
         g100: {
-          name: 'Gray 80',
-          hex: '#393939',
+          name: 'Gray 50, 24% opacity',
+          hex: '#8d8d8d, 24% opacity',
         },
       },
     },
@@ -89,20 +89,20 @@ const colorTokens = {
       role: ['Hover color for $background-selected'],
       value: {
         white: {
-          name: 'Gray 20 hover',
-          hex: '#cacaca',
+          name: 'Gray 50, 32% opacity',
+          hex: '#8d8d8d, 32% opacity',
         },
         g10: {
-          name: 'Gray 20 hover',
-          hex: '#cacaca',
+          name: 'Gray 50, 32% opacity',
+          hex: '#8d8d8d, 32% opacity',
         },
         g90: {
-          name: 'Gray 70 hover',
-          hex: '#656565',
+          name: 'Gray 50, 32% opacity',
+          hex: '#8d8d8d, 32% opacity',
         },
         g100: {
-          name: 'Gray 80 hover',
-          hex: '#4c4c4c',
+          name: 'Gray 50, 32% opacity',
+          hex: '#8d8d8d, 32% opacity',
         },
       },
     },
@@ -1120,12 +1120,12 @@ const colorTokens = {
           hex: '#c6c6c6',
         },
         g90: {
-          name: 'Gray 60',
-          hex: '#6f6f6f',
+          name: 'Gray 50, 50% opacity',
+          hex: '#8d8d8d, 50% opacity',
         },
         g100: {
-          name: 'Gray 70',
-          hex: '#525252',
+          name: 'Gray 50, 50% opacity',
+          hex: '#8d8d8d, 50% opacity',
         },
       },
     },
@@ -1308,20 +1308,20 @@ const colorTokens = {
       role: ['Disabled text color'],
       value: {
         white: {
-          name: 'Gray 30',
-          hex: '#c6c6c6',
+          name: 'Gray 100, 25% opacity',
+          hex: '#161616, 25% opacity',
         },
         g10: {
-          name: 'Gray 30',
-          hex: '#c6c6c6',
+          name: 'Gray 100, 25% opacity',
+          hex: '#161616, 25% opacity',
         },
         g90: {
-          name: 'Gray 60',
-          hex: '#6f6f6f',
+          name: 'Gray 10, 25% opacity',
+          hex: '#f4f4f4, 25% opacity',
         },
         g100: {
-          name: 'Gray 70',
-          hex: '#525252',
+          name: 'Gray 10, 25% opacity',
+          hex: '#f4f4f4, 25% opacity',
         },
       },
     },
@@ -1543,20 +1543,20 @@ const colorTokens = {
       role: ['Disabled icon color'],
       value: {
         white: {
-          name: 'Gray 30',
-          hex: '#c6c6c6',
+          name: 'Gray 100, 25% opacity',
+          hex: '#161616, 25% opacity',
         },
         g10: {
-          name: 'Gray 30',
-          hex: '#c6c6c6',
+          name: 'Gray 100, 25% opacity',
+          hex: '#161616, 25% opacity',
         },
         g90: {
-          name: 'Gray 60',
-          hex: '#6f6f6f',
+          name: 'Gray 10, 25% opacity',
+          hex: '#f4f4f4, 25% opacity',
         },
         g100: {
-          name: 'Gray 70',
-          hex: '#525252',
+          name: 'Gray 10, 25% opacity',
+          hex: '#f4f4f4, 25% opacity',
         },
       },
     },
