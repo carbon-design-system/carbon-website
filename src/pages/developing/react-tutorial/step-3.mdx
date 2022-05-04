@@ -359,6 +359,9 @@ Now that we have that data, let's populate the data table. Replace
 destructures the `data.organization` object. Once we have the repositories, we
 can call our `getRowItems()` helper to build the data table rows.
 
+Here will will also add our grid we previously made. The `data` should now look
+like this:
+
 ```javascript path=src/content/RepoPage/RepoPage.js
 // If we're here, we've got our data!
 const { repositories } = data.organization;
@@ -496,10 +499,7 @@ rows for the current "page". Update
 ```javascript path=src/content/RepoPage/RepoPage.js
 <RepoTable
   headers={headers}
-  rows={rows.slice(
-    firstRowIndex,
-    firstRowIndex + currentPageSize
-  )}
+  rows={rows.slice(firstRowIndex, firstRowIndex + currentPageSize)}
 />
 ```
 <!-- prettier-ignore-end -->
@@ -515,10 +515,16 @@ size.
 Finally, let's add the `Pagination` to update our state variables and cause the
 data table to render new rows.
 
-Import `Pagination` by updating the `carbon-components-react` import.
+Import `Pagination` by updating the `@carbon/react` import.
 
 ```javascript path=src/content/RepoPage/RepoPage.js
-import { Link, DataTableSkeleton, Pagination } from 'carbon-components-react';
+import {
+  Link,
+  DataTableSkeleton,
+  Pagination,
+  Grid,
+  Column,
+} from '@carbon/react';
 ```
 
 Immediately after the `RepoTable` closing tag (`/>`), add the `Pagination`
@@ -526,7 +532,7 @@ component using the state variables that we previously initialized.
 
 ```javascript path=src/content/RepoPage/RepoPage.js
 <Pagination
-  totalItems={totalItems}
+  totalItems={repositories.totalCount}
   backwardText="Previous page"
   forwardText="Next page"
   pageSize={currentPageSize}
@@ -554,8 +560,8 @@ rows.
 
 **Note:** Like the other Carbon React components, `Pagination` component
 examples can be found in
-[Storybook](http://react.carbondesignsystem.com/?selectedKind=Pagination) by
-browsing the story and knobs.
+[Storybook](https://react.carbondesignsystem.com/?path=/story/components-pagination--pagination)
+by browsing the story and knobs.
 
 </InlineNotification>
 
