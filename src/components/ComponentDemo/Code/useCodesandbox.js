@@ -18,7 +18,7 @@ const getIndex = ({ code = '' }) => {
   return `
   import React from 'react';
   import { render } from 'react-dom';
-  import 'carbon-components/css/carbon-components.min.css';
+  import './index.scss';
   import { ${uniqueComponents.join(', ')} } from '@carbon/react';
   ${importSampleData()}
 
@@ -47,8 +47,6 @@ const useCodesandbox = (code) => {
               react: 'latest',
               'react-dom': 'latest',
               '@carbon/react': 'latest',
-              'carbon-components': 'latest',
-              'carbon-icons': 'latest',
             },
           },
         },
@@ -57,6 +55,9 @@ const useCodesandbox = (code) => {
         },
         'index.html': {
           content: `<div id="root"></div>`,
+        },
+        'index.scss': {
+          content: `@use '@carbon/react';`,
         },
         ...(/^<DataTable/.test(code) && sampleData.DataTable),
       },

@@ -17,6 +17,7 @@ import storybook from './icons/storybook.svg';
 import medium from './icons/medium.svg';
 import sass from './icons/sass.png';
 import figma from './icons/figma.svg';
+import yourlearning from './icons/yourlearning.svg';
 
 const localIcons = {
   sketch,
@@ -33,6 +34,7 @@ const localIcons = {
   medium,
   sass,
   figma,
+  yourlearning,
 };
 
 const carbonIcons = {
