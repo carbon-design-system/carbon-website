@@ -6,7 +6,9 @@ description:
 tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 ---
 
-import { tooltip } from '../../styles/Tooltip.module.scss';
+import { Filter } from '@carbon/react/icons';
+import { Information } from '@carbon/react/icons';
+import { Tooltip, TooltipIcon } from '@carbon/react';
 
 <PageDescription>
 
@@ -157,9 +159,6 @@ The exception here is that definition tooltip can be invoked on `hover` or
 
 ## Live demo
 
-import { Filter16 } from '@carbon/icons-react';
-import { Information } from '@carbon/react/icons';
-
 <ComponentDemo
   components={[
     {
@@ -175,7 +174,7 @@ import { Information } from '@carbon/react/icons';
       label: 'Definition tooltip',
     },
   ]}
-  scope={{ Filter16, Information }}
+  scope={{ Filter, Information }}
 >
   <ComponentVariant
     id="tooltip"
@@ -192,11 +191,11 @@ import { Information } from '@carbon/react/icons';
   >{`
     <Tooltip
       align="bottom"
-        label="This is some tooltip text. This box shows the maximum amount of text that should be displayed inside. If more room is needed, use a modal instead."
+      label="This is some tooltip text. This box shows the maximum amount of text that should appear inside. If more room is needed please use a modal instead."
       tabIndex={0}
       triggerText="Tooltip label"
     >
-      <button className={tooltip} type="button">
+      <button className="tooltip-trigger" type="button">
         <Information />
       </button>
     </Tooltip>
@@ -215,14 +214,14 @@ import { Information } from '@carbon/react/icons';
     }}
   >{`
     <TooltipIcon
-      tooltipText="Interactive tooltip"
-      renderIcon={Information}
+        tooltipText="Interactive tooltip"
+        renderIcon={Information}
     />
   `}</ComponentVariant>
   <ComponentVariant
     id="definition-tooltip"
     knobs={{
-      DefinitionTooltip: ['direction', 'align'],
+      TooltipDefinition: ['align'],
     }}
     links={{
       React:
