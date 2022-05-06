@@ -23,23 +23,26 @@ const colorTokens = {
       },
     },
     '$background-hover': {
-      role: ['Hover color for $background', 'Hover color for transparent backgrounds'],
+      role: [
+        'Hover color for $background',
+        'Hover color for transparent backgrounds',
+      ],
       value: {
         white: {
           name: 'Gray 50, 12% opacity',
-          hex: '#8d8d8d, 12%',
+          hex: '#8d8d8d @ 12%',
         },
         g10: {
           name: 'Gray 50, 12% opacity',
-          hex: '#8d8d8d, 12%',
+          hex: '#8d8d8d @ 12%',
         },
         g90: {
           name: 'Gray 50, 16% opacity',
-          hex: '#8d8d8d, 16% opacity',
+          hex: '#8d8d8d @ 16%',
         },
         g100: {
           name: 'Gray 50. 16% opacity',
-          hex: '#8d8d8d, 16% opacity',
+          hex: '#8d8d8d @ 16%',
         },
       },
     },
@@ -48,19 +51,19 @@ const colorTokens = {
       value: {
         white: {
           name: 'Gray 50, 32% opacity',
-          hex: '#8d8d8d, 32% opacity',
+          hex: '#8d8d8d @ 32%',
         },
         g10: {
           name: 'Gray 50. 32% opacity',
-          hex: '#8d8d8d, 32% opacity',
+          hex: '#8d8d8d @ 32%',
         },
         g90: {
           name: 'Gray 50, 40% opacity',
-          hex: '#8d8d8d, 40% opacity',
+          hex: '#8d8d8d @ 40%',
         },
         g100: {
           name: 'Gray 50. 40% opacity',
-          hex: '#8d8d8d, 40% opacity',
+          hex: '#8d8d8d @ 40%',
         },
       },
     },
@@ -69,19 +72,19 @@ const colorTokens = {
       value: {
         white: {
           name: 'Gray 50, 20% opacity',
-          rgba: '#8d8d8d, 20% opacity',
+          hex: '#8d8d8d @ 20%',
         },
         g10: {
           name: 'Gray 50, 20% opacity',
-          hex: '#8d8d8d, 20% opacity',
+          hex: '#8d8d8d @ 20%',
         },
         g90: {
           name: 'Gray 50, 24% opacity',
-          hex: '#8d8d8d, 24% opacity',
+          hex: '#8d8d8d @ 24%',
         },
         g100: {
           name: 'Gray 50, 24% opacity',
-          hex: '#8d8d8d, 24% opacity',
+          hex: '#8d8d8d @ 24%',
         },
       },
     },
@@ -90,19 +93,19 @@ const colorTokens = {
       value: {
         white: {
           name: 'Gray 50, 32% opacity',
-          hex: '#8d8d8d, 32% opacity',
+          hex: '#8d8d8d @ 32%',
         },
         g10: {
           name: 'Gray 50, 32% opacity',
-          hex: '#8d8d8d, 32% opacity',
+          hex: '#8d8d8d @ 32%',
         },
         g90: {
           name: 'Gray 50, 32% opacity',
-          hex: '#8d8d8d, 32% opacity',
+          hex: '#8d8d8d @ 32%',
         },
         g100: {
           name: 'Gray 50, 32% opacity',
-          hex: '#8d8d8d, 32% opacity',
+          hex: '#8d8d8d @ 32%',
         },
       },
     },
@@ -172,10 +175,7 @@ const colorTokens = {
   },
   'layer-tokens': {
     '$layer-01': {
-      role: [
-        'Container color on $background',
-        'Secondary page background',
-      ],
+      role: ['Container color on $background', 'Secondary page background'],
       value: {
         white: {
           name: 'Gray 10',
@@ -853,11 +853,7 @@ const colorTokens = {
   },
   'border-tokens': {
     '$border-interactive': {
-      role: [
-        '3:1 AA contrast',
-        'Selected borders',
-        'Active borders'
-      ],
+      role: ['3:1 AA contrast', 'Selected borders', 'Active borders'],
       value: {
         white: {
           name: 'Blue 60',
@@ -1025,7 +1021,11 @@ const colorTokens = {
       },
     },
     '$border-strong-01': {
-      role: ['Medium contrast border', 'Border-bottom paired with $field-01', '3:1 AA non-text contrast'],
+      role: [
+        'Medium contrast border',
+        'Border-bottom paired with $field-01',
+        '3:1 AA non-text contrast',
+      ],
       value: {
         white: {
           name: 'Gray 50',
@@ -1046,7 +1046,11 @@ const colorTokens = {
       },
     },
     '$border-strong-02': {
-      role: ['Medium contrast border', 'Border-bottom paired with $field-02', '3:1 AA non-text contrast'],
+      role: [
+        'Medium contrast border',
+        'Border-bottom paired with $field-02',
+        '3:1 AA non-text contrast',
+      ],
       value: {
         white: {
           name: 'Gray 50',
@@ -1067,7 +1071,11 @@ const colorTokens = {
       },
     },
     '$border-strong-03': {
-      role: ['Medium contrast border', 'Border-bottom paired with $field-03', '3:1 AA non-text contrast'],
+      role: [
+        'Medium contrast border',
+        'Border-bottom paired with $field-03',
+        '3:1 AA non-text contrast',
+      ],
       value: {
         white: {
           name: 'Gray 50',
@@ -1121,11 +1129,11 @@ const colorTokens = {
         },
         g90: {
           name: 'Gray 50, 50% opacity',
-          hex: '#8d8d8d, 50% opacity',
+          hex: '#8d8d8d @ 50%',
         },
         g100: {
           name: 'Gray 50, 50% opacity',
-          hex: '#8d8d8d, 50% opacity',
+          hex: '#8d8d8d @ 50%',
         },
       },
     },
@@ -1309,19 +1317,19 @@ const colorTokens = {
       value: {
         white: {
           name: 'Gray 100, 25% opacity',
-          hex: '#161616, 25% opacity',
+          hex: '#161616 @ 25%',
         },
         g10: {
           name: 'Gray 100, 25% opacity',
-          hex: '#161616, 25% opacity',
+          hex: '#161616 @ 25%',
         },
         g90: {
           name: 'Gray 10, 25% opacity',
-          hex: '#f4f4f4, 25% opacity',
+          hex: '#f4f4f4 @ 25%',
         },
         g100: {
           name: 'Gray 10, 25% opacity',
-          hex: '#f4f4f4, 25% opacity',
+          hex: '#f4f4f4 @ 25%',
         },
       },
     },
@@ -1544,19 +1552,19 @@ const colorTokens = {
       value: {
         white: {
           name: 'Gray 100, 25% opacity',
-          hex: '#161616, 25% opacity',
+          hex: '#161616 @ 25%',
         },
         g10: {
           name: 'Gray 100, 25% opacity',
-          hex: '#161616, 25% opacity',
+          hex: '#161616 @ 25%',
         },
         g90: {
           name: 'Gray 10, 25% opacity',
-          hex: '#f4f4f4, 25% opacity',
+          hex: '#f4f4f4 @ 25%',
         },
         g100: {
           name: 'Gray 10, 25% opacity',
-          hex: '#f4f4f4, 25% opacity',
+          hex: '#f4f4f4 @ 25%',
         },
       },
     },
@@ -1773,7 +1781,11 @@ const colorTokens = {
       },
     },
     '$button-danger-secondary': {
-      role: ['Tertiary danger button color', 'Ghost danger button color', '4.5:1 AA text contrast'],
+      role: [
+        'Tertiary danger button color',
+        'Ghost danger button color',
+        '4.5:1 AA text contrast',
+      ],
       value: {
         white: {
           name: 'Red 60',
@@ -1794,7 +1806,10 @@ const colorTokens = {
       },
     },
     '$button-danger-hover': {
-      role: ['Hover color for $danger-primary', 'Hover color for $danger-secondary'],
+      role: [
+        'Hover color for $danger-primary',
+        'Hover color for $danger-secondary',
+      ],
       value: {
         white: {
           name: 'Red 60 hover',
@@ -1815,7 +1830,10 @@ const colorTokens = {
       },
     },
     '$button-danger-active': {
-      role: ['Active color for $danger-primary', 'Active color for $danger-secondary'],
+      role: [
+        'Active color for $danger-primary',
+        'Active color for $danger-secondary',
+      ],
       value: {
         white: {
           name: 'Red 80',
@@ -2113,7 +2131,7 @@ const colorTokens = {
       },
     },
   },
-  'miscellaneous': {
+  miscellaneous: {
     $interactive: {
       role: [
         '3:1 AA contrast',
