@@ -79,7 +79,8 @@ const Component = ({
       <div
         role="group"
         aria-labelledby={componentGroupId}
-        className={componentKnobWrapper}>
+        className={componentKnobWrapper}
+      >
         {booleanKnobs.length > 0 && (
           <FormGroup className={formGroup} legendText="Modifiers">
             {booleanKnobs.map(([name, info]) => (
@@ -187,8 +188,16 @@ const Knob = ({
   };
 
   if (type.name === 'bool') {
-    const defaultChecked =
-      (defaultValue && defaultValue.value !== 'false') || undefined;
+    let defaultChecked = false;
+
+    if (defaultValue && defaultValue.value) {
+      if (defaultValue.value === 'true') {
+        defaultChecked = true;
+      } else if (typeof defaultValue.value === 'boolean') {
+        defaultChecked = defaultValue.value;
+      }
+    }
+
     return (
       <Checkbox
         onChange={(event) => updateKnob(event.target.checked)}
@@ -218,7 +227,8 @@ const Knob = ({
           onChange={(val) => updateKnob(val)}
           defaultSelected={defaultSelected}
           name={name}
-          orientation="vertical">
+          orientation="vertical"
+        >
           {values.map(({ value }) => (
             <RadioButton
               key={`${inputId}-${value}`}
@@ -275,13 +285,15 @@ const KnobContainer = ({ knobs, code, setCode, initialCode, variantId }) => {
     <Form
       className={cx(knobContainer, {
         [knobContainerCollapsed]: isMobile && isKnobContainerCollapsed,
-      })}>
+      })}
+    >
       {isMobile && (
         <div className={iconButtonRow}>
           <button
             className={iconButton}
             type="button"
-            onClick={() => setIsKnobContainerCollapsed(true)}>
+            onClick={() => setIsKnobContainerCollapsed(true)}
+          >
             <Close size={20} />
           </button>
         </div>
