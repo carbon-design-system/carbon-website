@@ -248,7 +248,7 @@ Next, in `app.scss`, we'll import our `TutorialHeader` styles. Your file should
 now look like this:
 
 ```scss path=src/app.scss
-@use './components/TutorialHeader/tutorial-header.scss';
+@use './components/TutorialHeader/tutorial-header';
 ```
 
 ### Import and export the header
@@ -321,7 +321,7 @@ export default TutorialHeader;
 
 **Note:** you can find a description of the different components used UI Shell
 in our
-[carbon-components-react](https://github.com/carbon-design-system/carbon/tree/v10/packages/react/src/components/UIShell)
+[carbon-components-react](https://github.com/carbon-design-system/carbon/tree/main/packages/react/src/components/UIShell)
 package.
 
 </InlineNotification>
@@ -441,9 +441,9 @@ src/content/RepoPage
 Next, we'll import our content Sass files in `app.scss`, like so:
 
 ```scss path=src/app.scss
-@use './components/TutorialHeader/tutorial-header.scss';
-@use './content/LandingPage/landing-page.scss';
-@use './content/RepoPage/repo-page.scss';
+@use './components/TutorialHeader/tutorial-header';
+@use './content/LandingPage/landing-page';
+@use './content/RepoPage/repo-page';
 ```
 
 ### Import and export content pages
@@ -616,13 +616,12 @@ Then, we will wrap `Theme` around our header, and set the zoned theme using the
 </>
 ```
 
-The final thing we need to do is add our theming styles to `index.scss` below
-all our other styles.
+You might have noticed that the landing and repo page content disappeared. This is because we now have a wrapper around the UI Shell, and the spacing is off. To fix this, we'll add the following override in `index.scss` below our style import:
 
-```scss path=src/app.scss
-@use '@carbon/react/scss/themes';
-@use '@carbon/react/scss/theme';
-@use '@carbon/react/scss/zone';
+```scss path=src/index.scss
+.cds--content {
+  margin-top: 3rem;
+}
 ```
 
 ## Submit pull request
@@ -662,10 +661,10 @@ git add --all && git commit -m "feat(tutorial): complete step 1"
 <InlineNotification>
 
 **Note:** You'll notice that your commit includes binaries in the
-`.yarn-offline-mirror` folder. That's expected as the repository is configured
+`.yarn/cache` folder. That's expected as the repository is configured
 to run [Yarn offline](https://yarnpkg.com/blog/2016/11/24/offline-mirror) for
 more reliable builds. Future tutorial steps that don't install new packages
-won't have `.yarn-offline-mirror` commit changes.
+won't have `.yarn/cache` commit changes.
 
 </InlineNotification>
 
