@@ -368,26 +368,23 @@ body[data-live-preview-theme='Gray 100']
     padding: 1rem;
   }
 
-  // Checkbox uses body text
-  // https://github.com/carbon-design-system/carbon/issues/4545
-  [class*='--checkbox-label'],
   [class*='accordion__content'],
   [class*='--pagination__left'],
   [class*='--pagination__text'],
   [class*='--radio-button__label'] {
-    color: var(--cds-text-01, #161616);
+    color: var(--cds-text-primary, #161616);
   }
 
   [class*='--snippet--multi'],
   [class*='--snippet--single'] {
     background: var(--cds-layer-01, #f4f4f4);
-    color: var(--cds-text-01, #161616);
+    color: var(--cds-text-primary, #161616);
   }
 
   [class*='--data-table--zebra'] tbody tr:nth-child(even) td {
-    background-color: var(--cds-ui-03, #e0e0e0);
-    border-bottom: var(--cds-ui-03, #e0e0e0);
-    border-top: var(--cds-ui-03, #e0e0e0);
+    background-color: var(--cds-layer-accent-01, #e0e0e0);
+    border-bottom: var(--cds-layer-accent-01, #e0e0e0);
+    border-top: var(--cds-layer-accent-01, #e0e0e0);
   }
 
   [class*='--data-table--zebra'] tbody tr:nth-child(odd) td {
@@ -425,6 +422,15 @@ body[data-live-preview-theme='Gray 100']
 
   [class*='--table-sort']:hover {
     background-color: var(--cds-layer-selected-hover, #cacaca);
+  }
+
+  // Checkbox uses body text
+  :global(.cds--checkbox-label) {
+    color: var(--cds-text-primary, #161616);
+  }
+
+  :global(.cds--checkbox:disabled + .cds--checkbox-label) {
+    color: var(--cds-text-disabled, rgba(22, 22, 22, 0.25));
   }
 }
 
