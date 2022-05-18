@@ -61,10 +61,6 @@ contribution.
 </Column>
 </Row>
 
-## Getting started
-
-_Coming soon_
-
 ## Overview
 
 The LWC carbon component library, formally known as **Carbon for Salesforce
@@ -81,17 +77,6 @@ just kicking off the use of C4S on IBM Partner Portal.
 
 ### List of available components
 
-#### Carbon v10
-
-A set of LWC components based on Carbon v10 are available. The source code and
-setup instructions can be found on the
-[GitHub respository](https://github.ibm.com/carbon-for-salesforce/carbon-components-lwc).
-
-See list of available components
-[here](https://github.ibm.com/carbon-for-salesforce/carbon-components-lwc/tree/main/force-app/main/default/lwc).
-
-#### Carbon v11
-
 We are starting to develop components based on Carbon v11 in 2022 Q2. The source
 code and setup instructions can be found on the
 [GitHub respository](https://github.ibm.com/carbon-for-salesforce/carbon-for-salesforce).
@@ -101,6 +86,115 @@ See list of available components in
 
 Additional documentation is available in
 [ISC Playbook](https://isc-playbook.mybluemix.net/#/documents/b92d2ed082c108d76ee91887234558c9).
+
+## Getting started
+
+### 1. Install the Salesforce CLI
+
+- [Mac OS](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_install_cli.htm#sfdx_setup_install_cli_macos)
+- [Windows](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_install_cli.htm#sfdx_setup_install_cli_windows)
+- [TAR](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_install_cli.htm#sfdx_setup_install_cli_linux)
+- [NPM](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_install_cli.htm#sfdx_setup_install_cli_npm)
+
+Verify your installation with
+
+```
+sfdx --version
+```
+
+### 2. Get Visual Studio Code Plugins
+
+- [Salesforce Extension Pack](https://marketplace.visualstudio.com/items?itemName=salesforce.salesforcedx-vscode)
+- [Lightning Web Components](https://marketplace.visualstudio.com/items?itemName=salesforce.salesforcedx-vscode)
+
+Check that our environment is ready for creating Lightning Web Components by
+pressing Command + Shift + P on macOS or Ctrl + Shift + P on Windows and type
+`sfdx`.
+
+### 3. Set up LWC Local Development Server
+
+Learn more about the `lwc-dev-server` plugin at official
+[documentation](https://developer.salesforce.com/tools/vscode/en/localdev/set-up-lwc-local-dev).
+
+```
+sfdx plugins:install @salesforce/lwc-dev-server
+```
+
+### 4. Authenticate against Salesforce Developer Sandbox
+
+```
+sfdx force:auth:web:login -a "<NAME-OF-SANDBOX>" -r https://<NAME-OF-SANDBOX>.my.salesforce.com/ -s
+```
+
+### 5. Clone project and install dependencies
+
+Clone the repository using an SSH key. Alternatively, HTTPS should work too.
+
+```
+git clone git@github.ibm.com:carbon-for-salesforce/carbon-for-salesforce.git
+```
+
+Then navigate to the project folder
+
+```
+cd carbon-for-salesforce
+```
+
+Install dependencies with either `npm` or `yarn`.
+
+Please note, recommended Node.js version is `v16`. To switch between node
+versions we recommend <a href="https://github.com/nvm-sh/nvm">NVM (Node Version
+Manager)</a>.
+
+```
+npm install
+
+or
+
+yarn
+```
+
+### 6. Working with Storybook
+
+All commands below works if `npm run` is replaced with `yarn`.
+
+Start storybook
+
+```
+npm run storybook
+```
+
+Build Storybook
+
+```
+npm run build-storybook
+```
+
+Deploy Storybook
+
+```
+npm run deploy-storybook
+```
+
+Run unit tests
+
+```
+npm test
+
+or
+
+yarn test
+```
+
+### 7. Start local lwc development server
+
+```
+npm start
+
+or
+
+yarn start
+```
 
 ## Troubleshooting
 
