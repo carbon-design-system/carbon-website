@@ -252,8 +252,8 @@ Modify the second row to use the `Tabs` components.
 
 ```jsx path=src/content/LandingPage/LandingPage.js
 <Column lg={16} md={8} sm={4} className="landing-page__r2">
-  <Tabs defaultSelectedIndex={0} aria-label="Tab navigation">
-    <TabList className="tabs-group">
+  <Tabs defaultSelectedIndex={0}>
+    <TabList className="tabs-group" aria-label="Tab navigation">
       <Tab>About</Tab>
       <Tab>Design</Tab>
       <Tab>Develop</Tab>
@@ -308,7 +308,7 @@ nesting columns, you must always wrap the nested group within another `<Grid>`.
 
 **Note:** We're using the grid for the page layout, but we also need to apply
 the grid within the tab content. When doing so, make sure the nested grid has
-the expected `Grid` > `Col` DOM structure. Nested grids are officially supported
+the expected `Grid` > `Column` DOM structure. Nested grids are officially supported
 with our CSS Grid. If you are using `FlexGrid`, subgrid is not supported.
 
 </InlineNotification>
@@ -326,11 +326,11 @@ fix, add `aria-label` to the `Breadcrumb` opening tag:
 ```
 <!-- prettier-ignore-end -->
 
-Same goes for the `Tabs` opening tag:
+Same goes for the `TabList` opening tag:
 
 <!-- prettier-ignore-start -->
 ```html
-<Tabs defaultSelectedIndex={0} aria-label="Tab navigation">
+<TabList className="tabs-group" aria-label="Tab navigation">
 ```
 <!-- prettier-ignore-end -->
 
@@ -362,7 +362,7 @@ with this declaration block.
 Then in `_landing-page.scss` add this import at the top of the file.
 
 ```scss path=src/content/LandingPage/_landing-page.scss
-@use './overrides.scss' as *;
+@use './overrides.scss';
 ```
 
 <InlineNotification>
@@ -513,7 +513,7 @@ After you have created `_mixins.scss`, import it at the **top** of
 @use '@carbon/react/scss/breakpoint' as *;
 @use '@carbon/react/scss/theme' as *;
 @use './mixins.scss' as *;
-@use './overrides.scss' as *;
+@use './overrides.scss';
 ```
 
 Now to use the new mixin, update the `.landing-page__banner` declaration block
@@ -679,6 +679,7 @@ return (
         Data table will go here
       </Column>
   </Grid>
+  );
 ```
 
 ## Build repo page
@@ -775,7 +776,7 @@ in Storybook was used to put together the data table structure.
 
 **Note:** The `getTableProps`, `getHeaderProps`, and `getRowProps` functions
 each tell the `DataTable` component to process and return the necessary props
-that are needed by the `Table`, `Header` and `Row` components respectively. We
+that are needed by the `Table`, `TableHeader` and `TableRow` components respectively. We
 take the return of that function (an object containing the props) and
 [spread it out](https://reactjs.org/docs/jsx-in-depth.html#spread-attributes)
 into the component.
