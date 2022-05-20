@@ -308,8 +308,9 @@ nesting columns, you must always wrap the nested group within another `<Grid>`.
 
 **Note:** We're using the grid for the page layout, but we also need to apply
 the grid within the tab content. When doing so, make sure the nested grid has
-the expected `Grid` > `Column` DOM structure. Nested grids are officially supported
-with our CSS Grid. If you are using `FlexGrid`, subgrid is not supported.
+the expected `Grid` > `Column` DOM structure. Nested grids are officially
+supported with our CSS Grid. If you are using `FlexGrid`, subgrid is not
+supported.
 
 </InlineNotification>
 
@@ -659,7 +660,11 @@ mixins for the media queries, like so:
 }
 ```
 
-We are almost done with the landing page. You may notice a few styles are off. To fix this, we'll update some of the overriding styles in `index.scss`. We already have some overriding styles for `.cds--content`. We need to add `padding: 0;` to this selector and add one more selector for the grid below that:
+We are almost done with the landing page. You may notice a few styles are off.
+To fix this, we'll update some of the overriding styles in `index.scss`. We
+already have some overriding styles for `.cds--content`. We need to add
+`padding: 0;` to this selector and add one more selector for the grid below
+that:
 
 ```scss path=src/index.scss
 .cds--content {
@@ -693,11 +698,11 @@ Then add our grid containers in the `return` section.
 ```javascript path=src/content/RepoPage/RepoPage.js
 return (
   <Grid className="repo-page">
-      <Column lg={16} className="repo-page__r1">
-        Data table will go here
-      </Column>
+    <Column lg={16} className="repo-page__r1">
+      Data table will go here
+    </Column>
   </Grid>
-  );
+);
 ```
 
 ## Build repo page
@@ -794,8 +799,9 @@ in Storybook was used to put together the data table structure.
 
 **Note:** The `getTableProps`, `getHeaderProps`, and `getRowProps` functions
 each tell the `DataTable` component to process and return the necessary props
-that are needed by the `Table`, `TableHeader` and `TableRow` components respectively. We
-take the return of that function (an object containing the props) and
+that are needed by the `Table`, `TableHeader` and `TableRow` components
+respectively. We take the return of that function (an object containing the
+props) and
 [spread it out](https://reactjs.org/docs/jsx-in-depth.html#spread-attributes)
 into the component.
 
