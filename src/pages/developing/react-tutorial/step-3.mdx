@@ -320,17 +320,17 @@ corresponding error message using `error`.
 
 Finally, if neither of those are true, it means we have our data! One nice
 advantage of GraphQL is that as long as there are no errors, we can be certain
-the properties on the data we requested aren't `undefined`.
+the properties on the data we requested aren't `null`.
 
 We need to define the `loading`, `error`, and `data` using `useQuery`. We will
-replace what is the `RepoPage` component and add the following.
+update the beginning of the `RepoPage` component with the following.
 
 ```javascript path=src/content/RepoPage/RepoPage.js
 const { loading, error, data } = useQuery(REPO_QUERY);
 ```
 
 Notice how we're passing the `REPO_QUERY` that we previously defined into the
-`useQuery` prop.
+`useQuery` hook.
 
 ```javascript path=src/content/RepoPage/RepoPage.js
 if (loading) {
@@ -382,7 +382,7 @@ longer need the example rows.
 ### Render repository descriptions
 
 The data table component and its pieces use a common React pattern called
-[render props](https://reactjs.org/docs/render-props.html). This a really
+[render props](https://reactjs.org/docs/render-props.html). This is a really
 powerful way for libraries to give developers control of rendering and
 manipulating their data.
 
@@ -466,10 +466,7 @@ component, but for simplicity, we're going to make one request to fetch all
 data, and then paginate the in-memory row data.
 
 We'll be using [React Hooks](https://reactjs.org/docs/hooks-intro.html) to
-manage our state. Hooks are a relatively new React API that allows us to author
-a React component's stateful logic in a function component rather than a class
-component. Using hooks means we don't need to worry about complex lifecycle
-methods.
+manage our state.
 
 Import React's [useState](https://reactjs.org/docs/hooks-state.html) by
 modifying the `React` import.
@@ -532,7 +529,7 @@ component using the state variables that we previously initialized.
 
 ```javascript path=src/content/RepoPage/RepoPage.js
 <Pagination
-  totalItems={repositories.totalCount}
+  totalItems={rows.length}
   backwardText="Previous page"
   forwardText="Next page"
   pageSize={currentPageSize}
@@ -601,7 +598,7 @@ git add --all && git commit -m "feat(tutorial): complete step 3"
 Then, push to your repository:
 
 ```bash
-git push origin react-step-3
+git push origin v11-react-step-3
 ```
 
 <InlineNotification>
