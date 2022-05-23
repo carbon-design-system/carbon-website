@@ -1,23 +1,14 @@
-export const codeSnippet = `@mixin grid-container {
-  width: 100%;
-  padding-right: padding(mobile);
-  padding-left: padding(mobile);
-
-  @include breakpoint(bp--xs--major) {
-    padding-right: padding(xs);
-    padding-left: padding(xs);
-  }
+export const codeSnippet = `.color-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
 }
 
-$z-indexes: (
-  modal : 9000,
-  overlay : 8000,
-  dropdown : 7000,
-  header : 6000,
-  footer : 5000,
-  hidden : -1,
-  overflowHidden: -1,
-  floating: 10000
-);`;
+.color-grid__swatch {
+  content: '';
+  display: block;
+  height: 0;
+  padding-bottom: 100%;
+}
+`;
 
 export const codeSnippetSingle = `node -v`;
