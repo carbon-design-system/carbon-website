@@ -627,6 +627,23 @@ import:
 }
 ```
 
+We have one last thing to fix before we're done. Because we changed the header theme to dark, the `<HeaderGlobalAction>` tooltips are now light instead of dark, and when you scroll the page, it blends into the content. To fix this, we'll add some overriding styles in `_tutorial-header.scss`:
+
+```scss path=src/components/TutorialHeader/_tutorial-header.scss
+@use '@carbon/react/scss/colors';
+
+// overriding header tooltip bg color
+// because the navigation is dark themed while the content is white
+// which means the dark theme tooltip bg blends into the white content bg
+.cds--header__global .cds--popover-content {
+  background-color: colors.$gray-20;
+}
+
+.cds--header__global .cds--popover-caret {
+  background-color: colors.$gray-20;
+}
+```
+
 ## Submit pull request
 
 We're going to submit a pull request to verify completion of this tutorial step
