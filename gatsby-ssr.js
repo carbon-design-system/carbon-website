@@ -2,7 +2,7 @@ import React from 'react';
 import ogimage from './src/images/ogimage.png';
 
 export const onRenderBody = ({ setHeadComponents }) => {
-  setHeadComponents([
+  return setHeadComponents([
     <meta key="og:image" property="og:image" content={ogimage} />,
     <meta
       key="og:image:alt"
@@ -27,11 +27,10 @@ export const onRenderBody = ({ setHeadComponents }) => {
       content="@_carbondesign"
     />,
     <script
-      src="https://cdn.usefathom.com/script.js"
-      spa="auto"
-      site="VMSGXQRS"
-      key="fathom"
       defer
+      key="core-metrics"
+      src="https://1.www.s81c.com/common/stats/ibm-common.js"
+      type="text/javascript"
     />,
   ]);
 };
