@@ -250,6 +250,16 @@ import {
 
 Modify the second row to use the `Tabs` components.
 
+<InlineNotification>
+
+**Note:** We're using the grid for the page layout, but we also need to apply
+the grid within the tab content. When doing so, make sure the nested grid has
+the expected `Grid` > `Column` DOM structure. Nested grids are officially
+supported with our CSS Grid. If you are using `FlexGrid`, subgrid is not
+supported. 
+
+</InlineNotification>
+
 ```jsx path=src/content/LandingPage/LandingPage.js
 <Column lg={16} md={8} sm={4} className="landing-page__r2">
   <Tabs defaultSelectedIndex={0}>
@@ -304,15 +314,6 @@ and `<Column>`. This is because the parent column
 faux row, and each tab within that row contains the actual column content. When
 nesting columns, you must always wrap the nested group within another `<Grid>`.
 
-<InlineNotification>
-
-**Note:** We're using the grid for the page layout, but we also need to apply
-the grid within the tab content. When doing so, make sure the nested grid has
-the expected `Grid` > `Column` DOM structure. Nested grids are officially
-supported with our CSS Grid. If you are using `FlexGrid`, subgrid is not
-supported.
-
-</InlineNotification>
 
 Hold up! If you were to run the
 [Equal Access Toolkit](https://www.ibm.com/able/toolkit) to check for
@@ -442,7 +443,6 @@ mixins and functions:
 @use '@carbon/react/scss/type' as *;
 @use '@carbon/react/scss/breakpoint' as *;
 @use '@carbon/react/scss/theme' as *;
-@use './mixins.scss' as *;
 ```
 
 ### Banner
