@@ -2,6 +2,25 @@ import React from 'react';
 import ogimage from './src/images/ogimage.png';
 
 export const onRenderBody = ({ setHeadComponents }) => {
+  const script = `
+  if(!window) window = {};
+  window.idaPageIsSPA = true;
+  window.digitalData = {
+    page: {
+      category: {
+        primaryCategory: 'DESIGN',
+      },
+      pageInfo: {
+        ibm: {
+          siteID: 'CARBON_DESIGN_SYSTEM',
+          country: 'US',
+          industry: 'Design',
+          owner: 'carbon@us.ibm.com',
+        },
+      },
+    },
+  }`;
+
   return setHeadComponents([
     <meta key="og:image" property="og:image" content={ogimage} />,
     <meta
@@ -33,6 +52,7 @@ export const onRenderBody = ({ setHeadComponents }) => {
       key="fathom"
       defer
     />,
+    <script key="digital-data" dangerouslySetInnerHTML={{ __html: script }} />,
     <script
       defer
       key="core-metrics"
