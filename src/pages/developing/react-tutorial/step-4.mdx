@@ -129,7 +129,7 @@ Import `_info.scss` in `app.scss` after all of the `tutorial-header.scss`
 import.
 
 ```scss path=src/app.scss
-@use './components/Info/info.scss';
+@use './components/Info/info';
 ```
 
 Like our other components, `index.js` will serve as an entrypoint. Since
@@ -312,18 +312,18 @@ to set type style and borders.
 
 ### Layout
 
-Starting with layout, add the following to `src/components/Info/_info.scss`.
-Make sure to import the needed carbon styles.
+Starting with layout, import the following carbon styles to
+`src/components/Info/_info.scss`. Make sure to import the needed carbon styles.
 
 ```scss path=src/components/Info/_info.scss
-...
-
 @use '@carbon/react/scss/spacing' as *;
 @use '@carbon/react/scss/breakpoint' as *;
 @use '@carbon/react/scss/theme' as *;
+```
 
-...
+We will then add the following styles to the same file to style our info cards.
 
+```scss path=src/components/Info/_info.scss
 .info-card {
   margin-top: $spacing-09;
   display: flex;
@@ -372,11 +372,9 @@ sizes according to the design spec. Lets update the heading with the following
 type style:
 
 ```scss path=src/components/Info/_info.scss
-...
 .info-card__heading {
   @include type-style('productive-heading-03');
 }
-...
 ```
 
 Also, the design has the last word in each subheading as bold. To accomplish
@@ -457,10 +455,12 @@ has troubleshooting notes that may help.
 
 ### Git commit and push
 
-Before we can create a pull request, stage and commit all of your changes:
+Before we can create a pull request, format your code, then stage and commit all
+of your changes:
 
 ```bash
-git add --all && git commit -m "feat(tutorial): complete v11 step 4"
+yarn format
+git add --all && git commit -m "feat(tutorial): complete step 4"
 ```
 
 Then, push to your repository:
