@@ -11,8 +11,9 @@ import {
 } from './SvgLibrary.module.scss';
 
 const SvgCard = ({ icon, containerIsVisible, isLastCard, ...rest }) => {
-  const { name, Component, friendlyName, assets, moduleInfo } = icon;
+  const { name, Component, friendlyName, assets, moduleInfo, output } = icon;
   const [isActionBarVisible, setIsActionBarVisible] = useState(false);
+  const moduleName = moduleInfo?.global ?? output[0].moduleName;
 
   let { source } = assets[0];
 
@@ -47,7 +48,7 @@ const SvgCard = ({ icon, containerIsVisible, isLastCard, ...rest }) => {
               isLastCard={isLastCard}
               name={name}
               source={source}
-              moduleName={moduleInfo.global}
+              moduleName={moduleName}
               isActionBarVisible={isActionBarVisible}
               setIsActionBarVisible={setIsActionBarVisible}
             />
