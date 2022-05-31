@@ -1,4 +1,13 @@
 @use '@carbon/react/scss/themes';
+@use '@carbon/react/scss/theme';
+@use '@carbon/react/scss/components/button/tokens' as button;
+@use '@carbon/react/scss/components/notification/tokens' as notification;
+@use '@carbon/react/scss/components/tag/tokens' as tag;
+@use '@carbon/styles/scss/utilities/button-reset';
+
+@include theme.add-component-tokens(button.$button-tokens);
+@include theme.add-component-tokens(notification.$notification-tokens);
+@include theme.add-component-tokens(tag.$tag-tokens);
 
 .fullscreen {
   @include breakpoint('md') {
@@ -319,19 +328,6 @@ body[data-live-preview-theme='White']
 body[data-live-preview-theme='White'] ul[class^='cds--overflow-menu-options'],
 .white {
   @include theme(themes.$white);
-  --cds-layer: var(--cds-layer-01);
-  --cds-layer-active: var(--cds-layer-active-01);
-  --cds-layer-hover: var(--cds-layer-hover-01);
-  --cds-layer-selected: var(--cds-layer-selected-01);
-  --cds-layer-selected-hover: var(--cds-layer-selected-hover-01);
-  --cds-layer-accent: var(--cds-layer-accent-01);
-  --cds-layer-accent-hover: var(--cds-layer-accent-hover-01);
-  --cds-layer-accent-active: var(--cds-layer-accent-active-01);
-  --cds-field: var(--cds-field-01);
-  --cds-field-hover: var(--cds-field-hover-01);
-  --cds-border-subtle: var(--cds-border-subtle-01);
-  --cds-border-subtle-selected: var(--cds-border-subtle-selected-01);
-  --cds-border-strong: var(--cds-border-strong-01);
 }
 
 body[data-live-preview-theme='Gray 10'] [class^='cds--tooltip'],
@@ -340,19 +336,6 @@ body[data-live-preview-theme='Gray 10']
 body[data-live-preview-theme='Gray 10'] ul[class^='cds--overflow-menu-options'],
 .g10 {
   @include theme(themes.$g10);
-  --cds-layer: var(--cds-layer-01);
-  --cds-layer-active: var(--cds-layer-active-01);
-  --cds-layer-hover: var(--cds-layer-hover-01);
-  --cds-layer-selected: var(--cds-layer-selected-01);
-  --cds-layer-selected-hover: var(--cds-layer-selected-hover-01);
-  --cds-layer-accent: var(--cds-layer-accent-01);
-  --cds-layer-accent-hover: var(--cds-layer-accent-hover-01);
-  --cds-layer-accent-active: var(--cds-layer-accent-active-01);
-  --cds-field: var(--cds-field-01);
-  --cds-field-hover: var(--cds-field-hover-01);
-  --cds-border-subtle: var(--cds-border-subtle-01);
-  --cds-border-subtle-selected: var(--cds-border-subtle-selected-01);
-  --cds-border-strong: var(--cds-border-strong-01);
 }
 
 body[data-live-preview-theme='Gray 90'] [class^='cds--tooltip'],
@@ -361,19 +344,6 @@ body[data-live-preview-theme='Gray 90']
 body[data-live-preview-theme='Gray 90'] ul[class^='cds--overflow-menu-options'],
 .g90 {
   @include theme(themes.$g90);
-  --cds-layer: var(--cds-layer-01);
-  --cds-layer-active: var(--cds-layer-active-01);
-  --cds-layer-hover: var(--cds-layer-hover-01);
-  --cds-layer-selected: var(--cds-layer-selected-01);
-  --cds-layer-selected-hover: var(--cds-layer-selected-hover-01);
-  --cds-layer-accent: var(--cds-layer-accent-01);
-  --cds-layer-accent-hover: var(--cds-layer-accent-hover-01);
-  --cds-layer-accent-active: var(--cds-layer-accent-active-01);
-  --cds-field: var(--cds-field-01);
-  --cds-field-hover: var(--cds-field-hover-01);
-  --cds-border-subtle: var(--cds-border-subtle-01);
-  --cds-border-subtle-selected: var(--cds-border-subtle-selected-01);
-  --cds-border-strong: var(--cds-border-strong-01);
 }
 
 body[data-live-preview-theme='Gray 100'] [class^='cds--tooltip'],
@@ -383,19 +353,6 @@ body[data-live-preview-theme='Gray 100']
   ul[class^='cds--overflow-menu-options'],
 .g100 {
   @include theme(themes.$g100);
-  --cds-layer: var(--cds-layer-01);
-  --cds-layer-active: var(--cds-layer-active-01);
-  --cds-layer-hover: var(--cds-layer-hover-01);
-  --cds-layer-selected: var(--cds-layer-selected-01);
-  --cds-layer-selected-hover: var(--cds-layer-selected-hover-01);
-  --cds-layer-accent: var(--cds-layer-accent-01);
-  --cds-layer-accent-hover: var(--cds-layer-accent-hover-01);
-  --cds-layer-accent-active: var(--cds-layer-accent-active-01);
-  --cds-field: var(--cds-field-01);
-  --cds-field-hover: var(--cds-field-hover-01);
-  --cds-border-subtle: var(--cds-border-subtle-01);
-  --cds-border-subtle-selected: var(--cds-border-subtle-selected-01);
-  --cds-border-strong: var(--cds-border-strong-01);
 }
 
 //---------------------------------------
@@ -412,20 +369,17 @@ body[data-live-preview-theme='Gray 100']
     padding: 1rem;
   }
 
-  // Checkbox uses body text
-  // https://github.com/carbon-design-system/carbon/issues/4545
-  [class*='--checkbox-label'],
   [class*='accordion__content'],
   [class*='--pagination__left'],
   [class*='--pagination__text'],
   [class*='--radio-button__label'] {
-    color: var(--cds-text-01, #161616);
+    color: var(--cds-text-primary, #161616);
   }
 
   [class*='--snippet--multi'],
   [class*='--snippet--single'] {
     background: var(--cds-layer-01, #f4f4f4);
-    color: var(--cds-text-01, #161616);
+    color: var(--cds-text-primary, #161616);
   }
 
   [class*='--data-table--zebra'] tbody tr:nth-child(even) td {
@@ -470,11 +424,35 @@ body[data-live-preview-theme='Gray 100']
   [class*='--table-sort']:hover {
     background-color: var(--cds-layer-selected-hover, #cacaca);
   }
+
+  // Checkbox uses body text
+  :global(.cds--checkbox-label) {
+    color: var(--cds-text-primary, #161616);
+  }
+
+  :global(.cds--checkbox:disabled + .cds--checkbox-label) {
+    color: var(--cds-text-disabled, rgba(22, 22, 22, 0.25));
+  }
 }
 
 body {
   [class$='cds--tooltip'] {
     background-color: var(--cds-inverse-02, #393939);
+
+    button {
+      @inclue button-reset.reset();
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem;
+      height: 2rem;
+      border: 1px solid theme.$border-subtle;
+
+      svg {
+        fill: theme.$background-inverse;
+      }
+    }
   }
 
   .flatpickr-calendar.open {
