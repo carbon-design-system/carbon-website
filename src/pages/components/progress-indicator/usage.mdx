@@ -41,7 +41,6 @@ percentage of completeness as each task is completed.
   <ComponentVariant
     id="progress-indicator"
     knobs={{
-      ProgressStep: ['complete', 'current', 'disabled', 'invalid'],
       ProgressIndicator: ['vertical'],
     }}
     links={{
@@ -54,44 +53,36 @@ percentage of completeness as each task is completed.
         'https://web-components.carbondesignsystem.com/?path=/story/components-progress-indicator--default',
     }}
   >{`
-  <div className="some-container">
-    <ProgressIndicator currentIndex={1}>
+    <div className="some-container">
+      <ProgressIndicator>
         <ProgressStep
+          complete
           label="First step"
           description="Step 1: Getting started with Carbon Design System"
+          secondaryLabel="Optional label"
         />
         <ProgressStep
           current
           label="Second step with tooltip"
           description="Step 2: Getting started with Carbon Design System"
-          renderLabel={() => (
-            <Tooltip
-              direction="bottom"
-              showIcon={false}
-              triggerClassName="cds--progress-label"
-              triggerText="Second step with tooltip"
-              tooltipId="tooltipId-0">
-              <p>Second step with tooltip</p>
-            </Tooltip>
-          )}
         />
         <ProgressStep
-          label="Third step"
+          label="Third step with tooltip"
           description="Step 3: Getting started with Carbon Design System"
-          secondaryLabel="Optional label"
         />
         <ProgressStep
-          invalid
           label="Fourth step"
           description="Step 4: Getting started with Carbon Design System"
+          invalid
+          secondaryLabel="Example invalid step"
         />
         <ProgressStep
-          disabled
           label="Fifth step"
           description="Step 5: Getting started with Carbon Design System"
+          disabled
         />
       </ProgressIndicator>
-  </div>
+    </div>
 `}</ComponentVariant>
 </ComponentDemo>
 
