@@ -67,6 +67,7 @@ notifications that are relevant, timely, and informative for each use case.
 
 - Inline
 - Toast
+- Actionable
 - Banner
 - Notification panel
 - Modal
@@ -162,13 +163,14 @@ experience for users.
 
 <Title> Deciding what to use </Title>
 
-| Type               | Usage                                                                                                             | Duration and interaction                                                                                                                         |
-| ------------------ | ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Inline             | Provide users with nondisruptive feedback or the status of an action                                              | Persist until the message is resolved or dismissed by user and may include a ghost button action                                                 |
-| Toast              | Short, time-based messages that slide in and out of a page and provide nondisruptive information                  | Disappear automatically or can be dismissed by user                                                                                              |
-| Banner             | System or product level notifications that are not specific to a task                                             | Persist until dismissed by user and may include a ghost button or link                                                                           |
-| Notification panel | Notification center that provides users with system-generated messages                                            | Opened and closed by user                                                                                                                        |
-| Modal              | Highly disruptive notifications that provide users with critical information that needs their attention or action | Persist and block tasks until dismissed by user. Modals allow more user action than other notifications and can include other Carbon components. |
+| Type               | Usage                                                                                                                     | Duration and interaction                                                                                                                                       |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Inline             | Provide users with nondisruptive feedback or the status of an action                                                      | Persist until the message is resolved or dismissed by user and may include a ghost button action                                                               |
+| Toast              | Short, time-based messages that slide in and out of a page and provide nondisruptive information                          | Toast notifications without actions can disappear automatically or can be dismissed by user. Toast notifications with actions persist until dismissed by user. |
+| Actionable         | Actionable notifications allow for interactive elements within a notification styled like an inline or toast notification | Persist until action is taken or dismissed by user                                                                                                             |
+| Banner             | System or product level notifications that are not specific to a task                                                     | Persist until dismissed by user and may include a ghost button or link                                                                                         |
+| Notification panel | Notification center that provides users with system-generated messages                                                    | Opened and closed by user                                                                                                                                      |
+| Modal              | Highly disruptive notifications that provide users with critical information that needs their attention or action         | Persist and block tasks until dismissed by user. Modals allow more user action than other notifications and can include other Carbon components.               |
 
 ### Inline notification
 
@@ -208,12 +210,24 @@ also be accompanied by an icon to reinforce the message intent.
 notifications that slide in and out, typically in the top right of the page.
 They are more disruptive than inline notifications and are best used with
 system-generated messages that do not correspond to a specific section of the
-UI. Toasts disappear automatically after a set amount of time but can also be
-dismissed by the user.
+UI.
 
 Carbon toasts can be either low-contrast or high-contrast. Their color should
 correspond with the message intent and they can also use an icon to convey the
 message intent.
+
+<Row>
+<Column colLg={8}>
+
+![Examples of nonactionable and actionable toast notifications](/images/4_toast_static_736.png)
+
+<Caption>
+  Example of atoast notification without actions (left) and actionable toast
+  notification (right)
+</Caption>
+
+</Column>
+</Row>
 
 #### Long messages
 
@@ -221,17 +235,11 @@ Removing the timestamp provides space for a third line of content for longer
 toast messages. Toasts are intended to be at-a-glance messages confined to a
 small region of the screen so their messages should not exceed three lines.
 
-If it is possible a toast will have a message longer than three lines, include a
-short message with a "View more" link that takes the user to a view of the full
-notification message. This can be either a full page with more details or a
-modal.
-
 #### Best practices:
 
-- Multiple toasts stack horizontally, with the newest appearing at the top of
-  the list.
-- Keep messages clear and concise
-- Toasts dismiss after five seconds.
+- Multiple toasts stack vertically, with the newest appearing at the top of the
+  list.
+- Keep messages clear and concise.
 - The timestamp is optional and can be removed.
 - Toast notifications have a fixed width and should not be expanded to fit the
   content area.
@@ -239,9 +247,45 @@ modal.
 <Row>
 <Column colLg={8}>
 
-![Toast notification in a product](/images/4_Toast_736.png)
+![Toast notification in a product](/images/4_toast_736.gif)
 
-<Caption>Low-contrast toast notification</Caption>
+<Caption>Low-contrast toast notifications</Caption>
+
+</Column>
+</Row>
+
+### Actionable
+
+[Actionable](https://www.carbondesignsystem.com/components/notification/usage/)
+notifications allow for interactive elements within a notification styled like
+an inline or toast notification. Actionable notifications, since they require
+user interaction, take focus when triggered and can be highly disruptive to
+screen readers and keyboard users.
+
+Actionable notifications styled as inline notifications contain only one ghost
+button. A small “x” in the top right corner is used to dismiss inline
+notifications. Including the close button is optional and should not be included
+if it is critical for a user to read or interact with the notification.
+
+Actionable notifications styled as toast notifications can only contain one
+tertiary button. If the toast includes an action button, then the notification
+should remain on screen until the user dismisses it. With the notification
+remaining open, the user has enough time to interact with the button without the
+toast closing too soon.
+
+#### Best practices:
+
+- An actionable notification should persist until user dismisses it, allowing
+  users time to interact with the notification.
+- Only one action per notification.
+- Limit action labels to two words or less.
+
+<Row>
+<Column colLg={8}>
+
+![Actionable notification styled as a toast](/images/8_actionable_toast.png)
+
+<Caption>Actionable notification styled as a toast notification</Caption>
 
 </Column>
 </Row>
@@ -250,10 +294,9 @@ modal.
 
 Banners take over the top of an interface to show general notifications for the
 product or system, not a specific task. They persist until they are dismissed by
-the user. Banners can include a ghost button or link. Depending on the message,
-the user resolving a product or system issue (for example, updating necessary
-account information), may also dismiss the banner. Banners may also persist
-across multiple sessions.
+the user. Depending on the message, the user resolving a product or system issue
+(for example, updating necessary account information), may dismiss the banner.
+Banners may also persist across multiple sessions.
 
 #### Best practices:
 
@@ -355,20 +398,20 @@ supplemental messaging or other low priority use cases. Toast and inline
 notifications can use different styles, but you should never mix styles within
 the variations.
 
-### User action
+### General user action
 
 #### Optional action
 
-Notifications can include a ghost button that lets users interact with them.
-Taking action on these notifications should be optional and should not block the
-user from continuing with their current task. This action frequently takes users
-to a flow or page related to the message, where they can resolve the
-notification. All notifications should be dismissed when users interact with
-them.
+Actionable notifications can include a ghost or tertiary button that lets users
+interact with them. Taking action on these notifications should be optional and
+should not block the user from continuing with their current task. This action
+frequently takes users to a flow or page related to the message, where they can
+resolve the notification. All notifications should be dismissed when users
+interact with them.
 
 #### Required action
 
-Some notifications must block users from dismissing the notification or
+Some notification patterns must block users from dismissing the notification or
 continuing with their task until the message has been addressed. This is common
 in forms when there are errors or empty input fields. Notifications that prevent
 users from continuing should be relevant to the current task and provide the
@@ -421,7 +464,7 @@ notification.
 
 **Don’t use notifications that dismiss on a timer for critical or emergency
 messages.** Some users with disabilities need more time to read or interact with
-messages and timed toasts may not provide sufficient time.
+messages and timed actionable toasts may not provide sufficient time.
 [WCAG 2.1 success criterion 2.2.4 (AAA)](https://www.w3.org/WAI/WCAG21/Understanding/no-timing.html)
 
 **Users should be able to manage or limit noncritical notifications.** This

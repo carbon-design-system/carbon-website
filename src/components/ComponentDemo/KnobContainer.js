@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React, { useContext, useRef } from 'react';
-import { Close20 } from '@carbon/icons-react';
+import { Close } from '@carbon/icons-react';
 import nanoid from 'nanoid';
 
 import {
@@ -9,7 +9,7 @@ import {
   RadioButton,
   RadioButtonGroup,
   Checkbox,
-} from 'carbon-components-react';
+} from '@carbon/react';
 import cx from 'classnames';
 
 import carbonReactDocgen from '../../data/docgen';
@@ -79,7 +79,8 @@ const Component = ({
       <div
         role="group"
         aria-labelledby={componentGroupId}
-        className={componentKnobWrapper}>
+        className={componentKnobWrapper}
+      >
         {booleanKnobs.length > 0 && (
           <FormGroup className={formGroup} legendText="Modifiers">
             {booleanKnobs.map(([name, info]) => (
@@ -162,9 +163,17 @@ const Knob = ({
     const propString = parsedKnobProps.concat(
       Object.entries(newKnobs[component]).reduce(
         (accumulator, [prop, value]) => {
-          if (!value || value === `'default'`) {return accumulator;}
+          if (value === undefined) {
+            return accumulator;
+          }
+          if (value === `'default'`) {
+            return accumulator;
+          }
           if (typeof value === 'boolean') {
-            return `${accumulator} ${prop}`;
+            if (value === true) {
+              return `${accumulator} ${prop}`;
+            }
+            return `${accumulator} ${prop}={${value}}`;
           }
           return `${accumulator} ${prop}=${value}`;
         },
@@ -185,16 +194,24 @@ const Knob = ({
   };
 
   if (type.name === 'bool') {
-    const defaultChecked =
-      (defaultValue && defaultValue.value !== 'false') || undefined;
+    let defaultChecked = false;
+
+    if (defaultValue && defaultValue.value) {
+      if (defaultValue.value === 'true') {
+        defaultChecked = true;
+      } else if (typeof defaultValue.value === 'boolean') {
+        defaultChecked = defaultValue.value;
+      }
+    }
+
     return (
       <Checkbox
-        onChange={(val) => updateKnob(val)}
+        onChange={(event) => updateKnob(event.target.checked)}
         key={inputId}
         title={description}
         defaultChecked={defaultChecked}
         labelText={name}
-        wrapperClassName={checkboxWrapper}
+        className={checkboxWrapper}
         id={inputId}
       />
     );
@@ -216,7 +233,8 @@ const Knob = ({
           onChange={(val) => updateKnob(val)}
           defaultSelected={defaultSelected}
           name={name}
-          orientation="vertical">
+          orientation="vertical"
+        >
           {values.map(({ value }) => (
             <RadioButton
               key={`${inputId}-${value}`}
@@ -243,11 +261,8 @@ Knob.propTypes = {
 };
 
 const KnobContainer = ({ knobs, code, setCode, initialCode, variantId }) => {
-  const {
-    isMobile,
-    isKnobContainerCollapsed,
-    setIsKnobContainerCollapsed,
-  } = useContext(DemoContext);
+  const { isMobile, isKnobContainerCollapsed, setIsKnobContainerCollapsed } =
+    useContext(DemoContext);
 
   const requestedKnobs = Object.keys(knobs).map((component) => {
     const fullComponent = carbonReactDocgen[component];
@@ -259,8 +274,9 @@ const KnobContainer = ({ knobs, code, setCode, initialCode, variantId }) => {
     }
 
     knobs[component].forEach((knob) => {
-      if (fullComponent.props[knob].type) {
-        requestedProps[knob] = fullComponent.props[knob];
+      const prop = fullComponent.props[knob];
+      if (prop && prop.type) {
+        requestedProps[knob] = prop;
       } else {
         console.error(
           `Error: ${component} prop '${knob}' lacks sufficient docgen info.`
@@ -275,14 +291,16 @@ const KnobContainer = ({ knobs, code, setCode, initialCode, variantId }) => {
     <Form
       className={cx(knobContainer, {
         [knobContainerCollapsed]: isMobile && isKnobContainerCollapsed,
-      })}>
+      })}
+    >
       {isMobile && (
         <div className={iconButtonRow}>
           <button
             className={iconButton}
             type="button"
-            onClick={() => setIsKnobContainerCollapsed(true)}>
-            <Close20 />
+            onClick={() => setIsKnobContainerCollapsed(true)}
+          >
+            <Close size={20} />
           </button>
         </div>
       )}

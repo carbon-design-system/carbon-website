@@ -32,13 +32,13 @@ navigate between pages.
 
 ## Preview
 
-A [preview](https://react-step-2--carbon-tutorial.netlify.com) of what you will
-build:
+A [preview](https://v11-react-step-2--carbon-tutorial.netlify.com) of what you
+will build:
 
 <Preview
   height="200"
   title="Carbon Tutorial Step 1"
-  src="https://react-step-2--carbon-tutorial.netlify.com"
+  src="https://v11-react-step-2--carbon-tutorial.netlify.com"
   frameborder="no"
   allowtransparency="true"
   allowfullscreen="true"
@@ -106,7 +106,7 @@ tutorial step's starting point. Run the two commands:
 
 ```bash
 git fetch upstream
-git checkout -b react-step-1 upstream/react-step-1
+git checkout -b v11-react-step-1 upstream/v11-react-step-1
 ```
 
 ## Build and start
@@ -130,17 +130,14 @@ Your default browser should open up with an empty page that says:
 
 ## Install Carbon
 
-Even though we installed existing dependencies, we've yet to install the Carbon
-packages.
-
-- `carbon-components` - component styles
-- `carbon-components-react` - React components
-- `@carbon/icons-react` - React icons
+Even though we installed existing dependencies, we've yet to install our v11
+Carbon package, `@carbon/react`, which contains everything you need to build
+with.
 
 Stop your development server with `CTRL-C` and install Carbon dependencies with:
 
 ```bash
-yarn add carbon-components@10.25.0 carbon-components-react@7.25.0 @carbon/icons-react@10.22.0 carbon-icons@7.0.7
+yarn add @carbon/react@1.1.0
 ```
 
 ## Install and build Sass
@@ -149,7 +146,7 @@ We need to run a Sass build as the Carbon styles are authored in Sass, so run
 the following command to install `sass` as a dependency.
 
 ```bash
-yarn add sass@1.29.0
+yarn add sass@1.51.0
 ```
 
 To avoid having to add the `~` prefix when importing SCSS files from
@@ -183,7 +180,7 @@ In `index.scss`, import the Carbon styles by adding the following at the top of
 the file:
 
 ```scss path=src/index.scss
-@import 'carbon-components/scss/globals/scss/styles.scss';
+@use '@carbon/react';
 ```
 
 Making this change to `index.scss` will cause all of the Carbon Sass to
@@ -207,7 +204,7 @@ working properly. At the top of `App.js`, import the `Button` by adding the
 following:
 
 ```javascript path=src/App.js
-import { Button } from 'carbon-components-react';
+import { Button } from '@carbon/react';
 ```
 
 In the `App` component return, you can now replace:
@@ -251,7 +248,7 @@ Next, in `app.scss`, we'll import our `TutorialHeader` styles. Your file should
 now look like this:
 
 ```scss path=src/app.scss
-@import './components/TutorialHeader/tutorial-header.scss';
+@use './components/TutorialHeader/tutorial-header';
 ```
 
 ### Import and export the header
@@ -282,7 +279,7 @@ import {
   SideNav,
   SideNavItems,
   HeaderSideNavItems,
-} from 'carbon-components-react';
+} from '@carbon/react';
 
 const TutorialHeader = () => (
   <HeaderContainer
@@ -324,7 +321,7 @@ export default TutorialHeader;
 
 **Note:** you can find a description of the different components used UI Shell
 in our
-[carbon-components-react](https://github.com/carbon-design-system/carbon/tree/v10/packages/react/src/components/UIShell)
+[@carbon/react](https://github.com/carbon-design-system/carbon/tree/main/packages/react/src/components/UIShell)
 package.
 
 </InlineNotification>
@@ -339,16 +336,11 @@ straight to the main content.
 
 ### Import icons
 
-Now let's import the icons from our `@carbon/icons-react` elements package. In
-the `TutorialHeader.js` file, we need to import each individual icon we will
-use.
+Now let's import the icons. In the `TutorialHeader.js` file, we need to import
+each individual icon we will use.
 
 ```javascript path=src/components/TutorialHeader/TutorialHeader.js
-import {
-  AppSwitcher20,
-  Notification20,
-  UserAvatar20,
-} from '@carbon/icons-react';
+import { Switcher, Notification, UserAvatar } from '@carbon/react/icons';
 ```
 
 Then we need to add the `HeaderGlobalAction` component inside of the
@@ -361,19 +353,21 @@ header a user can make. Replace:
 
 With:
 
+<!-- prettier-ignore-start -->
 ```html path=src/components/TutorialHeader/TutorialHeader.js
 <HeaderGlobalBar>
-  <HeaderGlobalAction aria-label="Notifications">
-    <Notification20 />
+  <HeaderGlobalAction aria-label="Notifications" tooltipAlignment="center">
+    <Notification size={20} />
   </HeaderGlobalAction>
-  <HeaderGlobalAction aria-label="User Avatar">
-    <UserAvatar20 />
+  <HeaderGlobalAction aria-label="User Avatar" tooltipAlignment="center">
+    <UserAvatar size={20} />
   </HeaderGlobalAction>
-  <HeaderGlobalAction aria-label="App Switcher">
-    <AppSwitcher20 />
+  <HeaderGlobalAction aria-label="App Switcher" tooltipAlignment="end">
+    <Switcher size={20} />
   </HeaderGlobalAction>
 </HeaderGlobalBar>
 ```
+<!-- prettier-ignore-end -->
 
 ### Render the header
 
@@ -383,7 +377,7 @@ Next we'll render our UI Shell by importing our `TutorialHeader` component and
 ```javascript path=src/App.js
 import React, { Component } from 'react';
 import './app.scss';
-import { Button, Content } from 'carbon-components-react';
+import { Button, Content } from '@carbon/react';
 import TutorialHeader from './components/TutorialHeader';
 ```
 
@@ -447,9 +441,9 @@ src/content/RepoPage
 Next, we'll import our content Sass files in `app.scss`, like so:
 
 ```scss path=src/app.scss
-@import './components/TutorialHeader/tutorial-header.scss';
-@import './content/LandingPage/landing-page.scss';
-@import './content/RepoPage/repo-page.scss';
+@use './components/TutorialHeader/tutorial-header';
+@use './content/LandingPage/landing-page';
+@use './content/RepoPage/repo-page';
 ```
 
 ### Import and export content pages
@@ -594,7 +588,64 @@ Do the same with the components that contain `href="/repos"`, updating them to:
 ```
 
 You should now have a working header that routes to different pages without full
-page reload!
+page reload! However, our page does not match the design specs. We need to
+change the header theme to `g100` to match the specs.
+
+In `App.js` we will add inline theming for our navigation. First, we need to
+import our new `Theme` component.
+
+```javascript path=src/App.js
+import { Content, Theme } from '@carbon/react';
+```
+
+Then, we will wrap `Theme` around our header, and set the zoned theme using the
+`theme` prop, which accepts one of four strings: `"white"`, `"g10"`, `"g90"` or
+`"g100"`.
+
+```javascript path=src/App.js
+<>
+  <Theme theme="g100">
+    <TutorialHeader />
+  </Theme>
+  <Content>
+    <Switch>
+      <Route exact path="/" component={LandingPage} />
+      <Route path="/repos" component={RepoPage} />
+    </Switch>
+  </Content>
+</>
+```
+
+You might have noticed that the landing and repo page content disappeared. This
+is because we now have a wrapper around the UI Shell, and the spacing is off. To
+fix this, we'll add the following override in `index.scss` below our style
+import:
+
+```scss path=src/index.scss
+.cds--content {
+  margin-top: 3rem;
+}
+```
+
+We have one last thing to fix before we're done. Because we changed the header
+theme to dark, the `<HeaderGlobalAction>` tooltips are now light instead of
+dark, and when you scroll the page, it blends into the content. To fix this,
+we'll add some overriding styles in `_tutorial-header.scss`:
+
+```scss path=src/components/TutorialHeader/_tutorial-header.scss
+@use '@carbon/react/scss/colors';
+
+// overriding header tooltip bg color
+// because the navigation is dark themed while the content is white
+// which means the dark theme tooltip bg blends into the white content bg
+.cds--header__global .cds--popover-content {
+  background-color: colors.$gray-20;
+}
+
+.cds--header__global .cds--popover-caret {
+  background-color: colors.$gray-20;
+}
+```
 
 ## Submit pull request
 
@@ -632,18 +683,18 @@ git add --all && git commit -m "feat(tutorial): complete step 1"
 
 <InlineNotification>
 
-**Note:** You'll notice that your commit includes binaries in the
-`.yarn-offline-mirror` folder. That's expected as the repository is configured
-to run [Yarn offline](https://yarnpkg.com/blog/2016/11/24/offline-mirror) for
-more reliable builds. Future tutorial steps that don't install new packages
-won't have `.yarn-offline-mirror` commit changes.
+**Note:** You'll notice that your commit includes binaries in the `.yarn/cache`
+folder. That's expected as the repository is configured to run
+[Yarn offline](https://yarnpkg.com/blog/2016/11/24/offline-mirror) for more
+reliable builds. Future tutorial steps that don't install new packages won't
+have `.yarn/cache` commit changes.
 
 </InlineNotification>
 
 Then, push to your repository:
 
 ```bash
-git push origin react-step-1
+git push origin v11-react-step-1
 ```
 
 <InlineNotification>
@@ -663,8 +714,8 @@ over HTTPS.
 **Note:** If you receive a `non-fast-forward` error, it's likely that your
 forked repository is behind the original repository and needs to be updated.
 This can happen if the tutorial was updated after you began working on it. To
-fix, run `git pull upstream react-step-1` to merge the changes into your branch,
-then you can try pushing again. Or, you can
+fix, run `git pull upstream v11-react-step-1` to merge the changes into your
+branch, then you can try pushing again. Or, you can
 [manually merge](https://help.github.com/en/articles/syncing-a-fork) in the
 upstream changes.
 
@@ -675,7 +726,7 @@ upstream changes.
 Finally, visit
 [carbon-tutorial](https://github.com/carbon-design-system/carbon-tutorial) to
 "Compare & pull request". In doing so, make sure that you are comparing to
-`react-step-1` into `base: react-step-1`. Take notice of the
+`v11-react-step-1` into `base: v11-react-step-1`. Take notice of the
 [Netlify](https://www.netlify.com) bot that deploys a preview of your PR every
 time that you push new commits. These previews can be shared and viewed by
 anybody to assist the PR review process.

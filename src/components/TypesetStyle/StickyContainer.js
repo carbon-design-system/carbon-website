@@ -1,9 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { settings } from 'carbon-components';
 import classnames from 'classnames';
-
-const { prefix } = settings;
 
 const StickyContainer = ({
   children,
@@ -13,13 +10,13 @@ const StickyContainer = ({
   top,
   className,
 }) => {
-  const stickyClass = classnames(`${prefix}--sticky-container`, className, {
-    [`${prefix}--sticky-container-banner`]: banner,
-    [`${prefix}--sticky-container-visible`]: navBar,
-    [`${prefix}--sticky-container-hidden`]: !navBar,
-    [`${prefix}--sticky-container-secondary`]: secondary,
-    [`${prefix}--sticky-container-secondary-visible`]: navBar && secondary,
-    [`${prefix}--sticky-container-secondary-hidden`]: !navBar && secondary,
+  const stickyClass = classnames(`cds--sticky-container`, className, {
+    [`cds--sticky-container-banner`]: banner,
+    [`cds--sticky-container-visible`]: navBar,
+    [`cds--sticky-container-hidden`]: !navBar,
+    [`cds--sticky-container-secondary`]: secondary,
+    [`cds--sticky-container-secondary-visible`]: navBar && secondary,
+    [`cds--sticky-container-secondary-hidden`]: !navBar && secondary,
   });
 
   return (

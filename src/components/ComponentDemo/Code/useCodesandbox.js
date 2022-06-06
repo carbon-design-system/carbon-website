@@ -3,9 +3,9 @@ import { getParameters } from 'codesandbox/lib/api/define';
 import sampleData from '../data/sampleData';
 
 const getIndex = ({ code = '' }) => {
-  const uniqueComponents = Array.from(
-    new Set(code.match(/<[A-Z]\w+/g))
-  ).map((component) => component.slice(1));
+  const uniqueComponents = Array.from(new Set(code.match(/<[A-Z]\w+/g))).map(
+    (component) => component.slice(1)
+  );
 
   const importSampleData = () => {
     const [componentName] = uniqueComponents;
@@ -18,8 +18,8 @@ const getIndex = ({ code = '' }) => {
   return `
   import React from 'react';
   import { render } from 'react-dom';
-  import 'carbon-components/css/carbon-components.min.css';
-  import { ${uniqueComponents.join(', ')} } from 'carbon-components-react';
+  import './index.scss';
+  import { ${uniqueComponents.join(', ')} } from '@carbon/react';
   ${importSampleData()}
 
   const App = () => (
@@ -46,9 +46,7 @@ const useCodesandbox = (code) => {
             dependencies: {
               react: 'latest',
               'react-dom': 'latest',
-              'carbon-components-react': 'latest',
-              'carbon-components': 'latest',
-              'carbon-icons': 'latest',
+              '@carbon/react': 'latest',
             },
           },
         },
@@ -57,6 +55,9 @@ const useCodesandbox = (code) => {
         },
         'index.html': {
           content: `<div id="root"></div>`,
+        },
+        'index.scss': {
+          content: `@use '@carbon/react';`,
         },
         ...(/^<DataTable/.test(code) && sampleData.DataTable),
       },
