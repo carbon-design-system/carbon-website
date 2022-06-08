@@ -163,11 +163,17 @@ const Knob = ({
     const propString = parsedKnobProps.concat(
       Object.entries(newKnobs[component]).reduce(
         (accumulator, [prop, value]) => {
-          if (!value || value === `'default'`) {
+          if (value === undefined) {
+            return accumulator;
+          }
+          if (value === `'default'`) {
             return accumulator;
           }
           if (typeof value === 'boolean') {
-            return `${accumulator} ${prop}`;
+            if (value === true) {
+              return `${accumulator} ${prop}`;
+            }
+            return `${accumulator} ${prop}={${value}}`;
           }
           return `${accumulator} ${prop}=${value}`;
         },
@@ -205,7 +211,7 @@ const Knob = ({
         title={description}
         defaultChecked={defaultChecked}
         labelText={name}
-        wrapperClassName={checkboxWrapper}
+        className={checkboxWrapper}
         id={inputId}
       />
     );
