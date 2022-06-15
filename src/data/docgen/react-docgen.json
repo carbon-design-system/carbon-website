@@ -634,7 +634,14 @@
         "description": "For full control of the selection"
       },
       "size": {
-        "type": { "name": "custom", "raw": "ListBoxPropTypes.ListBoxSize" },
+        "type": {
+          "name": "enum",
+          "value": [
+            { "value": "'sm'", "computed": false },
+            { "value": "'md'", "computed": false },
+            { "value": "'lg'", "computed": false }
+          ]
+        },
         "required": false,
         "description": "Specify the size of the ListBox. Currently supports either `sm`, `lg` or `xl` as an option."
       },
@@ -2197,7 +2204,14 @@
         "description": "In the case you want to control the dropdown selection entirely."
       },
       "size": {
-        "type": { "name": "custom", "raw": "ListBoxPropTypes.ListBoxSize" },
+        "type": {
+          "name": "enum",
+          "value": [
+            { "value": "'sm'", "computed": false },
+            { "value": "'md'", "computed": false },
+            { "value": "'lg'", "computed": false }
+          ]
+        },
         "required": false,
         "description": "Specify the size of the ListBox. Currently supports either `sm`, `lg` or `xl` as an option."
       },
@@ -3512,7 +3526,14 @@
         "description": "`onChange` is a utility for this controlled component to communicate to a\nconsuming component what kind of internal state changes are occuring."
       },
       "size": {
-        "type": { "name": "custom", "raw": "ListBoxPropTypes.ListBoxSize" },
+        "type": {
+          "name": "enum",
+          "value": [
+            { "value": "'sm'", "computed": false },
+            { "value": "'md'", "computed": false },
+            { "value": "'lg'", "computed": false }
+          ]
+        },
         "required": false,
         "description": "Specify the size of the ListBox. Currently supports either `sm`, `lg` or `xl` as an option."
       },
@@ -3540,6 +3561,353 @@
         "type": { "name": "string" },
         "required": false,
         "description": "Provide the text that is displayed when the control is in warning state"
+      }
+    },
+    "composes": ["./MultiSelectPropTypes"]
+  },
+  "FilterableMultiSelect": {
+    "description": "",
+    "displayName": "FilterableMultiSelect",
+    "methods": [
+      {
+        "name": "handleOnChange",
+        "docblock": null,
+        "modifiers": [],
+        "params": [
+          {
+            "name": "changes",
+            "type": null
+          }
+        ],
+        "returns": null
+      },
+      {
+        "name": "handleOnMenuChange",
+        "docblock": null,
+        "modifiers": [],
+        "params": [
+          {
+            "name": "isOpen",
+            "type": null
+          }
+        ],
+        "returns": null
+      },
+      {
+        "name": "handleOnOuterClick",
+        "docblock": null,
+        "modifiers": [],
+        "params": [],
+        "returns": null
+      },
+      {
+        "name": "handleOnStateChange",
+        "docblock": null,
+        "modifiers": [],
+        "params": [
+          {
+            "name": "changes",
+            "type": null
+          },
+          {
+            "name": "downshift",
+            "type": null
+          }
+        ],
+        "returns": null
+      },
+      {
+        "name": "handleOnInputKeyDown",
+        "docblock": null,
+        "modifiers": [],
+        "params": [
+          {
+            "name": "event",
+            "type": null
+          }
+        ],
+        "returns": null
+      },
+      {
+        "name": "handleOnInputValueChange",
+        "docblock": null,
+        "modifiers": [],
+        "params": [
+          {
+            "name": "inputValue",
+            "type": null
+          },
+          {
+            "name": "{ type }",
+            "type": null
+          }
+        ],
+        "returns": null
+      },
+      {
+        "name": "clearInputValue",
+        "docblock": null,
+        "modifiers": [],
+        "params": [],
+        "returns": null
+      }
+    ],
+    "props": {
+      "ariaLabel": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "'aria-label' of the ListBox component.",
+        "defaultValue": {
+          "value": "'Choose an item'",
+          "computed": false
+        }
+      },
+      "direction": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'top'",
+              "computed": false
+            },
+            {
+              "value": "'bottom'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": "Specify the direction of the multiselect dropdown. Can be either top or bottom.",
+        "defaultValue": {
+          "value": "'bottom'",
+          "computed": false
+        }
+      },
+      "disabled": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Disable the control",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "downshiftProps": {
+        "type": {
+          "name": "shape",
+          "value": "Downshift.propTypes",
+          "computed": true
+        },
+        "required": false,
+        "description": "Additional props passed to Downshift"
+      },
+      "hideLabel": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Specify whether the title text should be hidden or not"
+      },
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": true,
+        "description": "Specify a custom `id`"
+      },
+      "initialSelectedItems": {
+        "type": {
+          "name": "array"
+        },
+        "required": false,
+        "description": "Allow users to pass in arbitrary items from their collection that are\npre-selected",
+        "defaultValue": {
+          "value": "[]",
+          "computed": false
+        }
+      },
+      "invalid": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Is the current selection invalid?"
+      },
+      "invalidText": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "If invalid, what is the error?"
+      },
+      "itemToElement": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Function to render items as custom components instead of strings.\nDefaults to null and is overridden by a getter"
+      },
+      "itemToString": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Helper function passed to downshift that allows the library to render a\ngiven item to a string label. By default, it extracts the `label` field\nfrom a given item to serve as the item label in the list.",
+        "defaultValue": {
+          "value": "defaultItemToString",
+          "computed": true
+        }
+      },
+      "items": {
+        "type": {
+          "name": "array"
+        },
+        "required": true,
+        "description": "We try to stay as generic as possible here to allow individuals to pass\nin a collection of whatever kind of data structure they prefer"
+      },
+      "light": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "`true` to use the light version.",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "locale": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Specify the locale of the control. Used for the default `compareItems`\nused for sorting the list of items in the control.",
+        "defaultValue": {
+          "value": "'en'",
+          "computed": false
+        }
+      },
+      "onChange": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "`onChange` is a utility for this controlled component to communicate to a\nconsuming component what kind of internal state changes are occurring."
+      },
+      "onMenuChange": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "`onMenuChange` is a utility for this controlled component to communicate to a\nconsuming component that the menu was opened(`true`)/closed(`false`)."
+      },
+      "open": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Initialize the component with an open(`true`)/closed(`false`) menu.",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "placeholder": {
+        "type": {
+          "name": "string"
+        },
+        "required": true,
+        "description": "Generic `placeholder` that will be used as the textual representation of\nwhat this field is for"
+      },
+      "selectionFeedback": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'top'",
+              "computed": false
+            },
+            {
+              "value": "'fixed'",
+              "computed": false
+            },
+            {
+              "value": "'top-after-reopen'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": "Specify feedback (mode) of the selection.\n`top`: selected item jumps to top\n`fixed`: selected item stays at it's position\n`top-after-reopen`: selected item jump to top after reopen dropdown",
+        "defaultValue": {
+          "value": "'top-after-reopen'",
+          "computed": false
+        }
+      },
+      "size": {
+        "type": {
+          "name": "enum",
+          "value": [
+            { "value": "'sm'", "computed": false },
+            { "value": "'md'", "computed": false },
+            { "value": "'lg'", "computed": false }
+          ]
+        },
+        "required": false,
+        "description": "Specify the size of the ListBox. Currently supports either `sm`, `md` or `lg` as an option."
+      },
+      "translateWithId": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Callback function for translating ListBoxMenuIcon SVG title"
+      },
+      "useTitleInItem": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Specify title to show title on hover"
+      },
+      "warn": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Specify whether the control is currently in warning state"
+      },
+      "warnText": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "Provide the text that is displayed when the control is in warning state"
+      },
+      "compareItems": {
+        "defaultValue": {
+          "value": "defaultCompareItems",
+          "computed": true
+        },
+        "required": false
+      },
+      "filterItems": {
+        "defaultValue": {
+          "value": "defaultFilterItems",
+          "computed": true
+        },
+        "required": false
+      },
+      "sortItems": {
+        "defaultValue": {
+          "value": "defaultSortItems",
+          "computed": true
+        },
+        "required": false
       }
     },
     "composes": ["./MultiSelectPropTypes"]
@@ -4187,6 +4555,152 @@
       }
     }
   },
+  "Popover": {
+    "description": "",
+    "methods": [],
+    "displayName": "Popover",
+    "props": {
+      "align": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'top'",
+              "computed": false
+            },
+            {
+              "value": "'top-left'",
+              "computed": false
+            },
+            {
+              "value": "'top-right'",
+              "computed": false
+            },
+            {
+              "value": "'bottom'",
+              "computed": false
+            },
+            {
+              "value": "'bottom-left'",
+              "computed": false
+            },
+            {
+              "value": "'bottom-right'",
+              "computed": false
+            },
+            {
+              "value": "'left'",
+              "computed": false
+            },
+            {
+              "value": "'left-bottom'",
+              "computed": false
+            },
+            {
+              "value": "'left-top'",
+              "computed": false
+            },
+            {
+              "value": "'right'",
+              "computed": false
+            },
+            {
+              "value": "'right-bottom'",
+              "computed": false
+            },
+            {
+              "value": "'right-top'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": "Specify how the popover should align with the trigger element",
+        "defaultValue": { "value": "'bottom'", "computed": false }
+      },
+      "as": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "elementType"
+            }
+          ]
+        },
+        "required": false,
+        "description": "Provide a custom element or component to render the top-level node for the\ncomponent."
+      },
+      "caret": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Specify whether a caret should be rendered",
+        "defaultValue": { "value": true, "computed": false }
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "Provide elements to be rendered inside of the component"
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Provide a custom class name to be added to the outermost node in the\ncomponent"
+      },
+      "dropShadow": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Specify whether a drop shadow should be rendered on the popover",
+        "defaultValue": { "value": true, "computed": false }
+      },
+      "highContrast": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Render the component using the high-contrast variant",
+        "defaultValue": { "value": false, "computed": false }
+      },
+      "open": {
+        "type": {
+          "name": "bool"
+        },
+        "required": true,
+        "description": "Specify whether the component is currently open or closed",
+        "defaultValue": { "value": true, "computed": false }
+      }
+    }
+  },
+  "PopoverContent": {
+    "description": "",
+    "methods": [],
+    "props": {
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "Provide elements to be rendered inside of the component"
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Provide a custom class name to be added to the outermost node in the\ncomponent"
+      }
+    }
+  },
   "PrimaryButton": { "description": "", "displayName": "PrimaryButton" },
   "ProgressIndicator": {
     "description": "",
@@ -4228,84 +4742,102 @@
   "ProgressStep": {
     "description": "",
     "displayName": "ProgressStep",
+    "methods": [],
     "props": {
-      "renderLabel": {
-        "defaultValue": {
-          "value": "(props) => <p {...props} />",
-          "computed": false
-        },
-        "type": { "name": "func" },
-        "required": false,
-        "description": ""
-      },
-      "translateWithId": {
-        "defaultValue": {
-          "value": "function translateWithId(messageId) {\n  return defaultTranslations[messageId];\n}",
-          "computed": false
-        },
-        "type": { "name": "func" },
-        "required": false,
-        "description": "Optional method that takes in a message id and returns an\ninternationalized string."
-      },
       "className": {
-        "type": { "name": "string" },
+        "type": {
+          "name": "string"
+        },
         "required": false,
         "description": "Provide an optional className to be applied to the containing `<li>` node"
       },
       "complete": {
-        "type": { "name": "bool" },
+        "type": {
+          "name": "bool"
+        },
         "required": false,
         "description": "Specify whether the step has been completed"
       },
       "current": {
-        "type": { "name": "bool" },
+        "type": {
+          "name": "bool"
+        },
         "required": false,
         "description": "Specify whether the step is the current step"
       },
       "description": {
-        "type": { "name": "string" },
+        "type": {
+          "name": "string"
+        },
         "required": false,
-        "description": "Provide a description for the <ProgressStep>"
+        "description": "Provide a description for the `<ProgressStep>`"
       },
       "disabled": {
-        "type": { "name": "bool" },
+        "type": {
+          "name": "bool"
+        },
         "required": false,
         "description": "Specify whether the step is disabled"
       },
       "index": {
-        "type": { "name": "number" },
+        "type": {
+          "name": "number"
+        },
         "required": false,
         "description": "Index of the current step within the ProgressIndicator"
       },
       "invalid": {
-        "type": { "name": "bool" },
+        "type": {
+          "name": "bool"
+        },
         "required": false,
         "description": "Specify whether the step is invalid"
       },
       "label": {
-        "type": { "name": "node" },
+        "type": {
+          "name": "node"
+        },
         "required": true,
-        "description": "Provide the label for the <ProgressStep>"
+        "description": "Provide the label for the `<ProgressStep>`"
       },
       "onClick": {
-        "type": { "name": "func" },
+        "type": {
+          "name": "func"
+        },
         "required": false,
         "description": "A callback called if the step is clicked or the enter key is pressed"
       },
       "overflowTooltipProps": {
-        "type": { "name": "object" },
+        "type": {
+          "name": "object"
+        },
         "required": false,
         "description": "Provide the props that describe a progress step tooltip"
       },
       "secondaryLabel": {
-        "type": { "name": "string" },
+        "type": {
+          "name": "string"
+        },
         "required": false,
         "description": "Provide an optional secondary label"
       },
       "tooltipId": {
-        "type": { "name": "string" },
+        "type": {
+          "name": "string"
+        },
         "required": false,
         "description": "The ID of the tooltip content."
+      },
+      "translateWithId": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Optional method that takes in a message id and returns an\ninternationalized string.",
+        "defaultValue": {
+          "value": "function translateWithId(messageId) {\n  return defaultTranslations[messageId];\n}",
+          "computed": false
+        }
       }
     }
   },
