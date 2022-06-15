@@ -133,12 +133,8 @@ specific goal. For example, when downloading a file of a known size.
 Indeterminate progress bars are used when the loading progress is unknown or the
 amount of wait time can't be calculated.
 
-Once triggered, the loading bar will begin by moving along in constant speed,
-repeating over time while data is being gathered during the first stages of the
-load. This bar then changes to a determinate indicator (finishing from left to
-right) when enough information is gathered to end the load animation. The final
-determinate stage of the load is used to visually indicate the completion of the
-task to the user. In this scenario, a percentage indicator would not be present.
+Once triggered, the loading bar will move either back and forth or continuosly from left to right, while data is being gathered during the first stages of the load. In this scenario, a percentage value would not be present. This bar may change to a determinate indicator if enough information is gathered to calculate the load completion. The final determinate stage of the load is used to visually indicate the completion of the
+task to the user. 
 
 <Row>
   <Column colLg="8">
@@ -330,7 +326,7 @@ information about the progression in the optional helper text.
 
 - Labels inform users what information the progress bar is processing.
 - Keep the label short and concise by limiting it to a single line of text.
-- Labels should never change as the progress bar is loading.
+- Label text should not be changed as the progress bar is loading or when it completes. The success or error information is provided by the bar indicator color and an icon, along with any helper text. 
 
 #### Helper text
 
@@ -356,6 +352,8 @@ states also apply on both indeterminate and determinate progress bars. After the
 process completes successfully or unsuccesfully, a progress bar can either
 remain persistent as confirmation or validation, or it can be automatically
 dismissed depending on what is most suitable for the use case.
+
+The states are indicated by the color of the loading bar, along with an icon for error and success.
 
 <Row>
 <Column colLg={8}>
