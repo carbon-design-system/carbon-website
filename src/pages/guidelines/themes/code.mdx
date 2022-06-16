@@ -25,8 +25,7 @@ building.
 
 <AnchorLinks>
 
-<AnchorLink>Get started</AnchorLink>
-<AnchorLink>Usage</AnchorLink>
+<AnchorLink>Get started</AnchorLink> <AnchorLink>Usage</AnchorLink>
 <AnchorLink>Resources</AnchorLink>
 
 </AnchorLinks>
@@ -49,10 +48,18 @@ yarn add @carbon/themes
 
 ## Usage
 
-You can use `@carbon/themes` in JavaScript or Sass by including this package in
-your project. By default, `@carbon/themes` provides a set of color tokens that
-are pre-defined for a specific theme. Currently, we offer the following color
-themes: white, gray 10, gray 90, gray 100 .
+There are three ways to utilize Carbon Themes. First, and maybe the simplest way
+is to bring in our
+[`<Theme>`](https://react.carbondesignsystem.com/?path=/story/components-theme--default)
+component and pass your desired theme as a prop. Second, if you need more
+granular control of what gets themed and when and you're using `@carbon/styles`
+or `@carbon/react` you already have access to sass theming with no need for an
+extra package. Thirdly, can use `@carbon/themes` in JavaScript or Sass by
+including this package in your project.
+
+By default, `@carbon/themes` provides a set of color tokens that are pre-defined
+for a specific theme. Currently, we offer the following color themes: white,
+gray 10, gray 90, gray 100 .
 
 You can preview all of the token values for this on the
 [Carbon Design System website](https://www.carbondesignsystem.com/guidelines/color/usage)
@@ -64,14 +71,14 @@ If your project is using Sass, you can include this package and the
 corresponding default theme by writing the following in your Sass file:
 
 ```scss
-@import '@carbon/themes/scss/themes';
+@use '@carbon/themes/scss/themes';
 ```
 
 By default, the white theme will be initialized. If you would like to include
 another theme, you can do so by calling our mixin. For example:
 
 ```scss
-@import '@carbon/themes/scss/themes';
+@use '@carbon/themes/scss/themes';
 
 // Use the gray 10 theme
 @include theme($theme--g10);
@@ -87,7 +94,7 @@ Alternatively, you can set the global theme variable then call the mixin without
 passing in a theme name.
 
 ```scss
-@import '@carbon/themes/scss/themes';
+@use '@carbon/themes/scss/themes';
 
 $theme: $theme--g10;
 
@@ -98,7 +105,7 @@ $theme: $theme--g10;
 Inline theming can be done by using the mixin. For example:
 
 ```scss
-@import '@carbon/themes/scss/themes';
+@use '@carbon/themes/scss/themes';
 
 // Use the default white theme here
 
@@ -113,6 +120,14 @@ Inline theming can be done by using the mixin. For example:
     // Use the darker theme here
   }
 }
+```
+
+Themes can be configured by accessing the tokens in the import statement. For
+example:
+
+```scss
+@use '@carbon/react/scss/themes';
+@use '@carbon/react/scss/theme' with ($theme: themes.$g100);
 ```
 
 ### JavaScript
@@ -143,7 +158,7 @@ import {
   <Column colMd={4} colLg={4} noGutterSm>
     <ResourceCard
       subTitle="Carbon theme package"
-      href="https://github.com/carbon-design-system/carbon/blob/v10/packages/themes"
+      href="https://github.com/carbon-design-system/carbon/tree/main/packages/themes"
     >
 
 <MdxIcon name="bee" />
