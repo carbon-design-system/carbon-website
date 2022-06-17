@@ -1,23 +1,22 @@
-export const codeSnippet = `@mixin grid-container {
-  width: 100%;
-  padding-right: padding(mobile);
-  padding-left: padding(mobile);
-
-  @include breakpoint(bp--xs--major) {
-    padding-right: padding(xs);
-    padding-left: padding(xs);
-  }
+export const codeSnippet = `"scripts": {
+  "build": "lerna run build --stream --prefix --npm-client yarn",
+  "ci-check": "carbon-cli ci-check",
+  "clean": "lerna run clean && lerna clean --yes && rimraf node_modules",
+  "doctoc": "doctoc --title '## Table of Contents'",
+  "format": "prettier --write '**/*.{js,md,scss,ts}' '!**/{build,es,lib,storybook,ts,umd}/**'",
+  "format:diff": "prettier --list-different '**/*.{js,md,scss,ts}' '!**/{build,es,lib,storybook,ts,umd}/**' '!packages/components/**'",
+  "lint": "eslint actions config codemods packages",
+  "lint:styles": "stylelint '**/*.{css,scss}' --report-needless-disables --report-invalid-scope-disables",
+  "sync": "carbon-cli sync",
+  "test": "cross-env BABEL_ENV=test jest",
+  "test:e2e": "cross-env BABEL_ENV=test jest --testPathPattern=e2e --testPathIgnorePatterns='examples,/packages/components/,/packages/react/'"
+},
+"resolutions": {
+  "react": "~16.9.0",
+  "react-dom": "~16.9.0",
+  "react-is": "~16.9.0",
+  "react-test-renderer": "~16.9.0"
 }
-
-$z-indexes: (
-  modal : 9000,
-  overlay : 8000,
-  dropdown : 7000,
-  header : 6000,
-  footer : 5000,
-  hidden : -1,
-  overflowHidden: -1,
-  floating: 10000
-);`;
+`;
 
 export const codeSnippetSingle = `node -v`;
