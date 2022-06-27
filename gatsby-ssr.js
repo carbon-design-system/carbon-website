@@ -1,5 +1,6 @@
 import React from 'react';
-import ogimage from './src/images/ogimage.png';
+const ogimage =
+  'https://raw.githubusercontent.com/carbon-design-system/carbon-website/main/src/images/ogimage.png';
 
 export const onRenderBody = ({ setHeadComponents }) => {
   const script = `
