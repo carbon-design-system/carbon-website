@@ -1,5 +1,5 @@
 import React from 'react';
-import ogimage from './src/images/ogimage.jpg';
+import ogimage from './src/images/ogimage.png';
 
 export const onRenderBody = ({ setHeadComponents }) => {
   const script = `
