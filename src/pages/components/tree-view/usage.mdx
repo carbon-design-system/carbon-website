@@ -80,14 +80,14 @@ organize large sets of information.
 </Column>
 </Row>
 
-1. Branch node: A node that has one or more child nodes. Can be expanded or
+1. **Branch node**: A node that has one or more child nodes. Can be expanded or
    collapsed to reveal or hide child nodes.
-2. Leaf node: A node that has no child nodes and can appear at any level of the
-   tree view hierarchy. A leaf node may be referred to as a child node when it
-   is nested underneath a branch node.
-3. Caret icon: An icon to expand or collapse a branch node.
-4. Node icon (optional): An icon to visually represent and support a node label,
-   they can assist the user to scan different content types quickly.
+2. **Leaf node**: A node that has no child nodes and can appear at any level of
+   the tree view hierarchy. A leaf node may be referred to as a child node when
+   it is nested underneath a branch node.
+3. **Caret icon**: An icon to expand or collapse a branch node.
+4. **Node icon** (optional): An icon to visually represent and support a node
+   label, they can assist the user to scan different content types quickly.
 
 ### Sizing
 
@@ -147,10 +147,14 @@ align vertically.
 You may be able to label your nodes, or the labels may be generated from code.
 If you have control of your label names, follow these guidelines.
 
-| Element           | Guidance                                                                                |
-| ----------------- | --------------------------------------------------------------------------------------- |
-| Branch node label | Be brief but clear while summarizing what kind of child nodes the branch node contains. |
-| Leaf node label   | Be brief and descriptive about what information the leaf node contains.                 |
+#### Branch node label
+
+Be brief but clear while summarizing what kind of child nodes the branch node
+contains.
+
+#### Leaf node label
+
+Be brief and descriptive about what information the leaf node contains.
 
 ### Overflow content
 
@@ -184,7 +188,7 @@ difference between the structure of the two is the addition of a caret icon for
 expanding or collapsing branch nodes.
 
 <Row>
-<Column colLg={8}>
+<Column colLg={12}>
 
 ![Example of node states](images/tree-view-usage-6.png)
 
@@ -198,7 +202,7 @@ inherit the selected state so the user does not lose the context of what is
 selected, even if it is out of view.
 
 <Row>
-<Column colLg={8}>
+<Column colLg={12-}>
 
 ![Example of a selected node](images/tree-view-usage-6b.png)
 
@@ -210,6 +214,8 @@ selected, even if it is out of view.
   parent is collapsed (right).
 </Caption>
 
+### Interactions
+
 #### Focus
 
 When a single-select tree receives focus:
@@ -218,11 +224,7 @@ When a single-select tree receives focus:
 - If none of the nodes were selected before the tree receives focus, focus is
   set on the first node.
 
-### Interactions
-
-#### Mouse
-
-Expanding and collapsing:
+#### Expanding and collapsing
 
 - To expand or collapse a branch node the user can click anywhere within the
   caret icon bounding box.
@@ -235,7 +237,7 @@ Expanding and collapsing:
 </Column>
 </Row>
 
-Selection:
+#### Selecting
 
 - To select a branch node the user can click anywhere on the node excluding the
   caret icon bounding box.
@@ -249,16 +251,22 @@ Selection:
 </Column>
 </Row>
 
-#### Keyboard
+#### Keyboard controls
 
-| Key                                                                                               | Interaction                                                                                                                                                                                        |
-| ------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Right arrow                                                                                       | When focus is on a closed node, opens the node; focus does not move. <br /> When focus is on an open node, moves focus to the first child node. <br /> When focus is on a leaf node, does nothing. |
-| Left arrow                                                                                        | When focus is on an open node, closes the node. <br /> When focus is on a child node that is also either a leaf node or a closed node, moves focus to its parent node. <br />                      |
-| When focus is on a top level node that is also either a leaf node or a closed node, does nothing. |
-| Down arrow                                                                                        | Moves focus to the next node that is focusable without opening or closing a node.                                                                                                                  |
-| Up arrow                                                                                          | Moves focus to the previous node that is focusable without opening or closing                                                                                                                      |
-| Enter                                                                                             | Activates a node. In single-select trees where selection does not follow focus, the default action is typically to select the focused node.                                                        |
+{' '}
+<br />
+
+| Key         | Interaction                                                                                                                                 |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| Right arrow | When focus is on a closed node, opens the node; focus does not move.                                                                        |
+|             | When focus is on an open node, moves focus to the first child node.                                                                         |
+|             | When focus is on a leaf node, does nothing.                                                                                                 |
+| Left arrow  | When focus is on an open node, closes the node.                                                                                             |
+|             | When focus is on a child node that is also either a leaf node or a closed node, moves focus to its parent node.                             |
+|             | When focus is on a top level node that is also either a leaf node or a closed node, does nothing.                                           |
+| Down arrow  | Moves focus to the next node that is focusable without opening or closing a node.                                                           |
+| Up arrow    | Moves focus to the previous node that is focusable without opening or closing                                                               |
+| Enter       | Activates a node. In single-select trees where selection does not follow focus, the default action is typically to select the focused node. |
 
 ## Modifiers
 
