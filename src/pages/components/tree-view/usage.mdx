@@ -91,21 +91,19 @@ organize large sets of information.
 
 ### Sizing
 
-#### Height
+There are two node sizes: small (default), and extra small. Supporting two
+different node sizes gives you more flexibility when structuring a tree view. If
+you have a tree structure with complex nesting levels, use the extra small node
+size to keep as much information in view as possible. When in doubt of which
+size to use, use the small node size because it is our default.
 
-There are two node height sizes: small (default), and extra small. Supporting
-two different node sizes gives you more flexibility when structuring a tree
-view. If you have a tree structure with complex nesting levels, use the extra
-small node size to keep as much information in view as possible. When in doubt
-of which size to use, use the small node size because it is our default.
-
-| Node size   | Height (px/rem) | Purpose                                                                                                                           |
-| ----------- | --------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| Small       | 32 / 2          | This is the default size and is the most commonly used as it has similar geometries as the UI shell left navigation panel.        |
-| Extra small | 24 / 1.5        | Use when space is constricted on the page and/or when you need a more condensed view to show more of the tree view on the screen. |
+| Node size     | Height (px/rem) | Purpose                                                                                                                           |
+| ------------- | --------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| _Small_       | 32 / 2          | This is the default size and is the most commonly used as it has similar geometries as the UI shell left navigation panel.        |
+| _Extra small_ | 24 / 1.5        | Use when space is constricted on the page and/or when you need a more condensed view to show more of the tree view on the screen. |
 
 <Row>
-<Column colLg={12}>
+<Column colLg={8}>
 
 ![Size comparison of the two nodes](images/tree-view-usage-2.png)
 
@@ -149,23 +147,20 @@ align vertically.
 You may be able to label your nodes, or the labels may be generated from code.
 If you have control of your label names, follow these guidelines.
 
-#### Branch node label
-
-Be brief but clear while summarizing what kind of child nodes the branch node
-contains.
-
-#### Leaf node label
-
-Be brief and descriptive about what information the leaf node contains.
+| Element           | Guidance                                                                                |
+| ----------------- | --------------------------------------------------------------------------------------- |
+| Branch node label | Be brief but clear while summarizing what kind of child nodes the branch node contains. |
+| Leaf node label   | Be brief and descriptive about what information the leaf node contains.                 |
 
 ### Overflow content
 
 If the node label is too long for one line in your tree view, add an ellipsis
-(…) and accompany with a browser-based tooltip to show the full string of text.
+`…` and accompany with a browser-based tooltip to show the full string of text.
 
-While truncation is not preferred, you can customize the view by positioning the
-ellipsis at the front-line, mid-line, or end-line of a node label depending on
-what information is most useful to the user to keep persistent in the tree view.
+While truncation is not preferred, you can customize the view by
+[positioning](/patterns/overflow-content/#variations) the ellipsis at the
+front-line, mid-line, or end-line of a node label depending on what information
+is most useful to the user to keep persistent in the tree view.
 
 <Row>
 <Column colLg={8}>
@@ -196,7 +191,7 @@ expanding or collapsing branch nodes.
 </Column>
 </Row>
 
-### Selection indicator
+#### Selection indicator
 
 If the branch node of a selected child node is collapsed, the parent node should
 inherit the selected state so the user does not lose the context of what is
@@ -215,6 +210,14 @@ selected, even if it is out of view.
   parent is collapsed (right).
 </Caption>
 
+#### Focus
+
+When a single-select tree receives focus:
+
+- Focus is set on the previously selected node.
+- If none of the nodes were selected before the tree receives focus, focus is
+  set on the first node.
+
 ### Interactions
 
 #### Mouse
@@ -227,7 +230,7 @@ Expanding and collapsing:
 <Row>
 <Column colLg={8}>
 
-![Example showing click target areas for a branch node](images/tree-view-usage-8.png)
+![Example showing click target areas for a branch node](images/tree-view-usage-7.png)
 
 </Column>
 </Row>
@@ -241,46 +244,21 @@ Selection:
 <Row>
 <Column colLg={8}>
 
-![Example showing click target areas for selecting a node](images/tree-view-usage-7.png)
+![Example showing click target areas for selecting a node](images/tree-view-usage-8.png)
 
 </Column>
 </Row>
 
 #### Keyboard
 
-When a single-select tree receives focus:
-
-- Focus is set on the previously selected node.
-- If none of the nodes were selected before the tree receives focus, focus is
-  set on the first node.
-
-Right arrow:
-
-- When focus is on a closed node, opens the node; focus does not move.
-- When focus is on an open node, moves focus to the first child node.
-- When focus is on a leaf node, does nothing.
-
-Left arrow:
-
-- When focus is on an open node, closes the node.
-- When focus is on a child node that is also either a leaf node or a closed
-  node, moves focus to its parent node.
-- When focus is on a top level node that is also either a leaf node or a closed
-  node, does nothing.
-
-Down arrow:
-
-- Moves focus to the next node that is focusable without opening or closing a
-  node.
-
-Up arrow:
-
-- Moves focus to the previous node that is focusable without opening or closing
-
-Enter:
-
-- Activates a node. In single-select trees where selection does not follow
-  focus, the default action is typically to select the focused node.
+| Key                                                                                               | Interaction                                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Right arrow                                                                                       | When focus is on a closed node, opens the node; focus does not move. <br /> When focus is on an open node, moves focus to the first child node. <br /> When focus is on a leaf node, does nothing. |
+| Left arrow                                                                                        | When focus is on an open node, closes the node. <br /> When focus is on a child node that is also either a leaf node or a closed node, moves focus to its parent node. <br />                      |
+| When focus is on a top level node that is also either a leaf node or a closed node, does nothing. |
+| Down arrow                                                                                        | Moves focus to the next node that is focusable without opening or closing a node.                                                                                                                  |
+| Up arrow                                                                                          | Moves focus to the previous node that is focusable without opening or closing                                                                                                                      |
+| Enter                                                                                             | Activates a node. In single-select trees where selection does not follow focus, the default action is typically to select the focused node.                                                        |
 
 ## Modifiers
 
@@ -318,9 +296,9 @@ caption="Do consistently use icons for each node in a tree view.">
 </DoDont>
 <DoDont
 colMd={4} colLg={4}
-caption="Do not mix non-icon and icon nodes in a tree view.">
+caption="Do not mix text-only and icon nodes in a tree view.">
 
-![Incorrect example showing only some nodes using icons.](./imagestree-view-usage-do-1b.png)
+![Incorrect example showing only some nodes using icons.](./images/tree-view-usage-do-10b.png)
 
 </DoDont>
 </DoDontRow>
@@ -334,10 +312,10 @@ lengthy information in sections that only go one level deep. Tree view is best
 used for nesting categories of information in a hierarchy of multiple levels /
 in a hierarchical form.
 
-#### Tree view versus UI shell-left panel)
+#### Tree view versus UI Shell left panel
 
-Use the [UI shell-left panel](/UI-shell-left-panel/usage/) component for product
-navigation. A combination of the UI shell left panel and the
+Use the [UI Shell left panel](/UI-shell-left-panel/usage/) component for product
+navigation. A combination of the UI Shell left panel and the
 [breadcrumb](/components/breadcrumb/usage/) component can support an information
 architecture several levels deep of a product. Tree view is best used for on
 page navigation instead of being used for architecture of a website or product.
