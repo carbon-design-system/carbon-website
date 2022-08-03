@@ -301,34 +301,45 @@ package.
 </InlineNotification>
 
 #### Import and register icons
-
-Now let's import the icons from our `@carbon/icons` package. In `app.module.ts`,
-`app.component.spec.ts` and `header.component.spec.ts`, we need to import each
-individual icon we will use and register them with the `IconService`
+Now let's import the icons from our `@carbon/icons` package. To not make our app very big, you don't need to import
+all the icons just those you would like to use. To do so let's open the `header.component.ts` file and import `Notification20` icon like below.
 
 <!-- prettier-ignore-start -->
-```javascript path=src/app/app.module.ts,src/app/app.component.spec.ts,src/app/header/header.component.spec.ts
+```javascript path=src/app/header/header.component.ts
 import Notification20 from '@carbon/icons/es/notification/20';
-import UserAvatar20 from '@carbon/icons/es/user--avatar/20';
-import AppSwitcher20 from '@carbon/icons/es/app-switcher/20';
 ```
 <!-- prettier-ignore-end -->
 
-In the `AppModule` class we'll add a constructor that provides us with an
-instance of `IconService` and call `registerAll` with an array of the icons we
-need to use.
+Now you need to register the icon via `IconService` that also needs to be imported from `carbon-components-angular` module.
 
-```javascript path=src/app/app.module.ts,src/app/app.component.spec.ts,src/app/header/header.component.spec.ts
-constructor(protected iconService: IconService) {
-  iconService.registerAll([
-    Notification20,
-    UserAvatar20,
-    AppSwitcher20
-  ]);
-}
+<!-- prettier-ignore-start -->
+```javascript path=src/app/header/header.component.ts
+import { IconService } from "carbon-components-angular";
+...
+
+constructor(protected iconService: IconService) {}
+
+  ngOnInit() {
+    this.iconService.registerAll([Notification20]);
+  }
 ```
+<!-- prettier-ignore-end -->
 
-Then we need to add the template code. Populate `header.component.html` with:
+Next step is to import the `IconModule` in the `AppModule` module where the `HeaderComponent` is declared.
+
+<!-- prettier-ignore-start -->
+```javascript path=src/app/header/header.component.ts
+import { IconModule } from "carbon-components-angular";
+...
+
+imports: [
+  ...
+  IconModule
+]
+```
+<!-- prettier-ignore-end -->
+
+Now the icon is ready to be used in template code. Template in `header.component.html` should look like this:
 
 <!-- prettier-ignore-start -->
 ```html path=src/app/header/header.component.html
