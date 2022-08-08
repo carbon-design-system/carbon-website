@@ -17,347 +17,98 @@ import {
   ListItem,
 } from '@carbon/react';
 
+<PageDescription>
+
+No accessibility annotations are needed for toggles, but keep these
+considerations in mind if you are modifying Carbon or creating a custom
+component.
+
+</PageDescription>
+
 <AnchorLinks>
-  <AnchorLink>How it works</AnchorLink>
-  <AnchorLink>Accessibility considerations</AnchorLink>
-  <AnchorLink>Resources</AnchorLink>
-  <AnchorLink>Accessibility testing</AnchorLink>
+
+<AnchorLink>What Carbon provides</AnchorLink>
+<AnchorLink>Design recommendations</AnchorLink>
+<AnchorLink>Development considerations</AnchorLink>
+
 </AnchorLinks>
 
-## How it works
+## What Carbon provides
 
-The toggle Carbon component is a control that uses a two state checkbox commonly
-used to switch between two possible states such as on or off. The Tab key is
-used to move focus to each toggle control. Either the Enter or Space key can be
-used to toggle between a checked or unchecked positions. The ARIA state
-`aria-checked="true"` is set when the toggle switch is checked or in the on
-position. When the toggle component is unchecked or in the off position, the
-ARIA state is set to `aria-checked="false"`. A toggle component identified as
-disabled is ignored in the tab order.
+Carbon bakes keyboard operation into its components, improving the experience of
+blind users and others who operate via keyboard. Carbon also incorporates other
+accessibility considerations, some of which are described below.
 
-## Accessibility considerations
+### Keyboard interaction
 
-This component has been validated to meet the
-[WCAG 2.0 AA](https://www.w3.org/TR/WCAG20/) and
-[Section 508](http://www.section508.gov/) accessibility guidelines, however
-changes made by the content owner can affect accessibility compliance. Be sure
-to review and follow the guidance in this section when updating or adding new
-content to this component.
-
-1. Each toggle control should have a clear and concise label.
-2. Users should be warned if selecting a toggle component will cause a change in
-   context.
-3. The `id` for each component must be unique when more then one Carbon toggle
-   component is present on a Web page.
-4. If the toggle is a required field include the
-   [aria-required property](https://www.w3.org/TR/WCAG20-TECHS/ARIA2.html) and
-   indicate that it is a required field and use the validation message for input
-   errors.
-
-## Resources
-
-- [W3C WAI-ARIA Authoring Practices Accordion Design Pattern](https://www.w3.org/TR/wai-aria-practices/#accordion)
-  covers the usage of ARIA names, state and roles, as well as the expected
-  keyboard interactions.
-- [IBM Accessibility Requirements:](https://www.ibm.com/able/requirements/requirements/)
-  - [1.3.1 Info and Relationships](https://www.ibm.com/able/requirements/requirements/#1_3_1)
-    (WCAG Success Criteria
-    [1.3.1](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships))
-  - [2.4.6 Headings and Labels](https://www.ibm.com/able/requirements/requirements/#2_4_6)
-    (WCAG Success Criteria
-    [2.4.6](https://www.w3.org/WAI/WCAG21/Understanding/headings-and-labels))
-  - [3.2.2 On Input](https://www.ibm.com/able/requirements/requirements/#3_2_2)
-    (WCAG Success Criteria
-    [3.2.2](https://www.w3.org/WAI/WCAG21/Understanding/on-input))
-  - [4.1.2 Name, Role, Value](https://www.ibm.com/able/requirements/requirements/#4_1_2)
-    (WCAG Success Criteria
-    [4.1.2](https://www.w3.org/TR/UNDERSTANDING-WCAG20/ensure-compat-rsv.html))
-
-## Accessibility testing
-
-Accessibility issues are tracked in the
-[Carbon Component GitHub repository](https://github.com/carbon-design-system/carbon/issues?q=is%3Aopen+label%3A%22type%3A+a11y+%E2%99%BF%22+label%3A%22component%3A+toggle%22+).
-
-### Automated test
+Each toggle is in the tab order. Pressing `Enter` or `Space` changes the
+toggle's state between off and on.
 
 <Row>
-  <Column noGutterSm>
-    <StructuredListWrapper>
-      <StructuredListHead>
-        <StructuredListRow head>
-          <StructuredListCell head>
-            Automated test environment
-          </StructuredListCell>
-          <StructuredListCell head>Results</StructuredListCell>
-        </StructuredListRow>
-      </StructuredListHead>
-      <StructuredListBody>
-        <StructuredListRow>
-          <StructuredListCell>
-            - macOS Mojave version 10.14.6 with VoiceOver
-            <br />
-            - Chrome version 77.0.3865.90
-            <br />
-            - Dynamic Assessment Plugin (DAP) version 1.8.0.0 - IBM
-            Accessibility WCAG 2.1 Sept. 2019 Ruleset
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>DAP test:</strong>
-            <br />- No violations
-          </StructuredListCell>
-        </StructuredListRow>
-      </StructuredListBody>
-    </StructuredListWrapper>
-  </Column>
+<Column colLg={8}>
+
+![illustration showing tab and other keyboard operation](images/toggle-accessibility-1.png)
+
+<Caption>
+  Toggles are reached by Tab and activated by Space or Enter keys.
+</Caption>
+
+</Column>
 </Row>
 
-### macOS screen reader tests
+### Redundant state information
 
-<Row>
-  <Column noGutterSm>
-    <StructuredListWrapper>
-      <StructuredListHead>
-        <StructuredListRow head>
-          <StructuredListCell head>Environment </StructuredListCell>
-          <StructuredListCell head>Results</StructuredListCell>
-        </StructuredListRow>
-      </StructuredListHead>
-      <StructuredListBody>
-        <StructuredListRow>
-          <StructuredListCell>
-            - macOS Mojave version 10.14.6 with VoiceOver
-            <br />
-            - Chrome version 77.0.3865.90
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>VoiceOver(VO) Test:</strong>
-            <OrderedList>
-              <ListItem>
-                Press the Tab key to navigate to the first toggle component. VO
-                announces the label as Off, the state as unchecked, and that it
-                is a checkbox.
-              </ListItem>
-              <ListItem>
-                Press the Space key to change the state of the toggle component
-                On and Off.
-              </ListItem>
-              <ListItem>
-                Press the Tab key to navigate to the labeled toggle component.
-                VO announces the label as Off, the state as unchecked, that it
-                is a checkbox and the label.
-              </ListItem>
-              <ListItem>
-                Press the Tab key and the disabled toggle component is skipped.
-              </ListItem>
-              <ListItem>
-                Control-Option-Left arrow key back to the disabled toggle
-                component. VO announces that it is a disabled checkbox, dimmed
-                unchecked checkbox.
-              </ListItem>
-            </OrderedList>
-          </StructuredListCell>
-        </StructuredListRow>
-        <StructuredListRow>
-          <StructuredListCell>
-            - macOS Mojave version 10.14.6 with VoiceOver
-            <br />
-            - Safari version 13.0.2
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>VoiceOver(VO) test:</strong>
-            <OrderedList>
-              <ListItem>
-                Press the Tab key to navigate to the first toggle component. VO
-                announces the label as off, the state as unchecked, and that it
-                is a checkbox.
-              </ListItem>
-              <ListItem>
-                Press the Space key to change the state of the toggle component
-                on and off.
-              </ListItem>
-              <ListItem>
-                Press the Tab key to navigate to the labeled toggle component.
-                VO announces the label as off, the state as unchecked, that it
-                is a checkbox and the label.
-              </ListItem>
-              <ListItem>
-                Press the Tab key and the disabled toggle component is skipped.
-              </ListItem>
-              <ListItem>
-                Control-Option-Left arrow key back to the disabled toggle
-                component. VO announces that it is an off, dimmed unchecked
-                checkbox.
-              </ListItem>
-            </OrderedList>
-          </StructuredListCell>
-        </StructuredListRow>
-      </StructuredListBody>
-    </StructuredListWrapper>
-  </Column>
-</Row>
+Carbon’s default toggle uses both color and text to indicate on or off. Where
+space constraints make a smaller toggle desirable, Carbon adds a tickmark to the
+toggle’s “on” state so that if the text is not included, the component’s on/off
+state can be distinguished without relying on use of color. The state is also
+captured programmatically for users who cannot see or understand the visual
+indicators.
 
-### Windows screen reader tests
+<DoDontRow>
+  <DoDont caption="Do include the on/off text for the toggle's state whenever space permits.">
 
-<Row>
-  <Column noGutterSm>
-    <StructuredListWrapper>
-      <StructuredListHead>
-        <StructuredListRow head>
-          <StructuredListCell head>Environment</StructuredListCell>
-          <StructuredListCell head>Results</StructuredListCell>
-        </StructuredListRow>
-      </StructuredListHead>
-      <StructuredListBody>
-        <StructuredListRow>
-          <StructuredListCell>
-            - Microsoft Windows 10
-            <br />
-            - JAWS 19.1810.64
-            <br />
-            - Chrome version 73.0.3683.103 (Official Build) (64-bit)
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>JAWS test:</strong>
-            <OrderedList>
-              <ListItem>
-                Navigate among the toggle component by pressing the Tab and
-                Shift-Tab keys, or X and Shift+X keys to jump to next or
-                previous checkboxes.
-              </ListItem>
-              <ListItem>
-                When navigating to a toggle, JAWS announces the label, checkbox,
-                and the status of the checkbox.
-              </ListItem>
-              <ListItem>
-                Disabled toggle components can only be found by using the Up and
-                Down Arrow keys, when JAWS announces "disabled checkbox checkbox
-                unchecked unavailable".
-              </ListItem>
-              <ListItem>
-                Press the Space key to select or deselect the toggle. JAWS
-                announces the status of checked or unchecked.
-              </ListItem>
-            </OrderedList>
-          </StructuredListCell>
-        </StructuredListRow>
-        <StructuredListRow>
-          <StructuredListCell>
-            - Microsoft Windows 10
-            <br />
-            - NVDA version 2018.4.1
-            <br />
-            - Chrome version 72.0.3683.103 (Official Build) (64-bit)
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>NVDA test:</strong>
-            <OrderedList>
-              <ListItem>
-                Navigate among the toggle components by pressing the Tab and
-                Shift-Tab keys, or X and Shift+X keys to jump to next or
-                previous checkboxes.
-              </ListItem>
-              <ListItem>
-                When navigating to a toggle, NVDA announces the label, checkbox,
-                and the status of the checkbox, but repeats the information
-                twice.
-              </ListItem>
-              <ListItem>
-                Disabled toggle components can only be found by using the Up and
-                Down Arrow keys, or the the X and Shift+X keys. NVDA announces
-                "checkbox unavailable not checked disabled checkbox".
-              </ListItem>
-              <ListItem>
-                Press the Space or Enter key to select or deselect the toggle.
-                NVDA announces the status of checked or unchecked.
-              </ListItem>
-            </OrderedList>
-          </StructuredListCell>
-        </StructuredListRow>
-      </StructuredListBody>
-    </StructuredListWrapper>
-  </Column>
-</Row>
+![The alert toggle shows "off" and "on" to indicate state](images/toggle-accessibility-2-do.png)
 
-### iOS screen reader tests
+  </DoDont>
+  <DoDont caption="Where space is confined, use the tickmark variation in lieu of on/off text.">
 
-<Row>
-  <Column noGutterSm>
-    <StructuredListWrapper>
-      <StructuredListRow head>
-        <StructuredListCell head>Environment </StructuredListCell>
-        <StructuredListCell head>Results</StructuredListCell>
-      </StructuredListRow>
-      <StructuredListBody>
-        <StructuredListRow>
-          <StructuredListCell>
-            - iOS version 13.1.3 with VoiceOver
-            <br />
-            - Safari version 13.1.3
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>VoiceOver test:</strong>
-            <OrderedList>
-              <ListItem>
-                Navigate to the toggle components by swiping left or right, or
-                press the Left or Right Arrow keys when quick navigation is
-                turned on. VO announces,the label, field type, and the status of
-                the checkbox.
-              </ListItem>
-              <ListItem>
-                When tapping on a toggle, or pressing VO+Space, VoiceOver
-                announces the new status of the toggle component as checked or
-                unchecked.
-              </ListItem>
-            </OrderedList>
-          </StructuredListCell>
-        </StructuredListRow>
-      </StructuredListBody>
-    </StructuredListWrapper>
-  </Column>
-</Row>
+![Toggles in the Alert column of a table show their "on" state with a green tickmark](images/toggle-accessibility-3-do.png)
 
-### Android screen reader tests
+  </DoDont>
+</DoDontRow>
 
-<Row>
-  <Column noGutterSm>
-    <StructuredListWrapper>
-      <StructuredListHead>
-        <StructuredListRow head>
-          <StructuredListCell head>Environment </StructuredListCell>
-          <StructuredListCell head>Results</StructuredListCell>
-        </StructuredListRow>
-      </StructuredListHead>
-      <StructuredListBody>
-        <StructuredListRow>
-          <StructuredListCell>
-            - Android version 9 with Talkback
-            <br />
-            - Chrome version 72.0.3683.103 (Official Build) (64-bit)
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>Talkback test:</strong>
-            <OrderedList>
-              <ListItem>
-                Navigate to the toggle components by swiping left or right, or
-                press the Left or Right Arrow keys. Talkback announces,the
-                label, field type, and the status of the checkbox.
-              </ListItem>
-              <ListItem>
-                When tapping on a toggle, or pressing the Alt-Enter keys,
-                Talkback announces the new status of the toggle component as
-                checked or not checked.
-              </ListItem>
-            </OrderedList>
-          </StructuredListCell>
-        </StructuredListRow>
-      </StructuredListBody>
-    </StructuredListWrapper>
-  </Column>
-</Row>
+## Design recommendations
+
+Design annotations are not needed, but keep the following point in mind.
+
+### Do not change the toggle's label based on its state
+
+It is essential that designers distinguish between the text indicating the
+on/off state of the toggle and the text that is the toggle’s label. The label's
+text should not change based on the on/off state.
+
+<DoDontRow>
+  <DoDont caption="Do keep the label consistent. Only change the state text between On and Off.">
+
+![the same 'Alerts' toggle keeping its label in both states](images/toggle-accessibility-4-do.png)
+
+  </DoDont>
+  <DoDont type="dont" caption="Do not change the label text as a way of indicating the toggle's on/off state.">
+
+![The toggle changing its label from 'Alerts on' to 'Alerts off'](images/toggle-accessibility-4-dont.png)
+
+  </DoDont>
+</DoDontRow>
+
+## Development considerations
+
+Keep this in mind if you’re modifying Carbon or creating a custom component.
+
+- Toggle is implemented as a button with a role of `switch`.
+- “On” and “off” text is `aria-hidden`; the state of the toggle is surfaced with
+  `aria-checked` set to “true” or “false”.
+- The toggle's `label` is set with `for`
+- See the
+  [ARIA authoring practices guidance on switch](https://w3c.github.io/aria-practices/#switch)
+  for more considerations.
