@@ -21,11 +21,6 @@ export const onRenderBody = ({ setHeadComponents }) => {
   }`;
 
   return setHeadComponents([
-    <meta
-      key="description"
-      name="description"
-      content="Carbon is IBM’s open source design system for products and digital experiences. With the IBM Design Language as its foundation, the system consists of working code, design tools and resources, human interface guidelines, and a vibrant community of contributors."
-    />,
     <meta key="image" name="image" content={'/ogimage.png'} />,
     <meta
       key="og:url"
