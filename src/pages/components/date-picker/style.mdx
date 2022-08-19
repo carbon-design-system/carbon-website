@@ -10,19 +10,28 @@ tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 
 ### Date input
 
-| Element            | Property         | Color token         |
-| ------------------ | ---------------- | ------------------- |
-| Label              | text-color       | `$text-secondary`   |
-| Field              | background-color | `$field` \*         |
-|                    | border-bottom    | `$border-strong` \* |
-| Field text         | text-color       | `$text-primary`     |
-| Field text: prompt | text-color       | `$text-helper`      |
-| Calendar icon      | svg              | `$icon-primary`     |
+| Element          | Property         | Color token         |
+| ---------------- | ---------------- | ------------------- |
+| Label            | text-color       | `$text-secondary`   |
+| Field            | background-color | `$field` \*         |
+|                  | border-bottom    | `$border-strong` \* |
+| Field text       | text-color       | `$text-primary`     |
+| Placeholder text | text-color       | `$text-placeholder` |
+| Helper text      | text-color       | `$text-helper`      |
+| Calendar icon    | svg              | `$icon-primary`     |
 
 <Caption>
   * Denotes a contextual color token that will change values based on the layer
   it is placed on.
 </Caption>
+
+<Row>
+<Column colLg={8}>
+
+![Date picker input states](images/date-picker-style-7.png)
+
+</Column>
+</Row>
 
 <br />
 
@@ -45,7 +54,7 @@ tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 |          | Calendar icon   | svg              | `$icon-disabled`   |
 
 <Row>
-<Column colLg={8}>
+<Column colLg={12}>
 
 ![Date picker input states](images/date-picker-style-6.png)
 
@@ -64,9 +73,9 @@ tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 | Day                 | text-color       | `$text-primary`                  |
 | Day: hover          | background-color | `$layer-hover` \*                |
 | Day: focus          | border           | `$focus`                         |
+| Day: disabled       | text-color       | `$text-disabled`                 |
 | Day: selected       | text-color       | `$text-on-color`                 |
 |                     | background-color | `$background-brand`              |
-| Day: disabled       | text-color       | `$text-disabled`                 |
 | Day: in range       | text-color       | `$text-primary`                  |
 |                     | background-color | `$highlight`                     |
 | Day: end range      | text-color       | `$text-primary`                  |
@@ -96,11 +105,15 @@ tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 Labels should be set in sentence case, with only the first word in a phrase and
 any proper nouns capitalized, and no more than three words.
 
-| Element       | Font-size  | Font-weight   | Type token  |
-| ------------- | ---------- | ------------- | ----------- |
-| Label         | 12 / 0.75  | Regular / 400 | `$label-01` |
-| Field text    | 14 / 0.875 | Regular / 400 | `$code-02`  |
-| Error message | 12 / 0.75  | Regular / 400 | `$label-01` |
+| Element         | Font-size  | Font-weight    | Type token            |
+| --------------- | ---------- | -------------- | --------------------- |
+| Label           | 12 / 0.75  | Regular / 400  | `$label-01`           |
+| Field text      | 14 / 0.875 | Regular / 400  | `$code-02`            |
+| Helper text     | 12 / 0.75  | Regular / 400  | `$label-01`           |
+| Error message   | 12 / 0.75  | Regular / 400  | `$label-01`           |
+| Warning message | 12 / 0.75  | Regular / 400  | `$label-01`           |
+| Month and year  | 14 / 0.875 | SemiBold / 600 | `$heading-compact-01` |
+| Day             | 14 / 0.875 | Regular / 400  | `$body-compact-01`    |
 
 ## Structure
 
@@ -108,11 +121,14 @@ any proper nouns capitalized, and no more than three words.
 
 The widths of the date inputs may vary based on the grid and layout.
 
-| Element | Property                    | px / rem | Spacing token |
-| ------- | --------------------------- | -------- | ------------- |
-| Label   | padding-bottom              | 8 / 0.5  | `$spacing-03` |
-| Field   | padding-left, padding-right | 16 / 1   | `$spacing-05` |
-|         | border-bottom               | 1px      | -             |
+| Element       | Property                    | px / rem | Spacing token |
+| ------------- | --------------------------- | -------- | ------------- |
+| Label         | margin-bottom               | 8 / 0.5  | `$spacing-03` |
+| Field         | padding-left, padding-right | 16 / 1   | `$spacing-05` |
+|               | border-bottom               | 1px      | –             |
+| Helper text   | margin-top                  | 4 / .25  | `$spacing-02` |
+| Calendar icon | height, width               | 16 / 1   | –             |
+|               | padding-left                | 8 / 0.5  | `$spacing-03` |
 
 <div className="image--fixed">
 
@@ -140,16 +156,14 @@ The widths of the date inputs may vary based on the grid and layout.
 
 ### Calendar menu
 
-| Element        | Property                                 | px / rem | Spacing token |
-| -------------- | ---------------------------------------- | -------- | ------------- |
-| Calendar       | height                                   | 336 / 21 | –             |
-|                | width                                    | 288 / 18 | –             |
-|                | padding-top, padding-right, padding-left | 4 / 0.25 | `$spacing-02` |
-|                | padding-bottom                           | 8 / 0.5  | `$spacing-03` |
-| Calendar: icon | height, width                            | 16 / 1   | –             |
-|                | padding-right, padding-left              | 16 / 1   | `$spacing-05` |
-| Day            | height, width                            | 40 / 2.5 | –             |
-| Today: dot     | height, width                            | 4 / 0.25 | –             |
+| Element       | Property                                 | px / rem | Spacing token |
+| ------------- | ---------------------------------------- | -------- | ------------- |
+| Calendar menu | height                                   | 336 / 21 | –             |
+|               | width                                    | 288 / 18 | –             |
+|               | padding-top, padding-right, padding-left | 4 / 0.25 | `$spacing-02` |
+|               | padding-bottom                           | 8 / 0.5  | `$spacing-03` |
+| Day           | height, width                            | 40 / 2.5 | –             |
+| Today: dot    | height, width                            | 4 / 0.25 | –             |
 
 <div className="image--fixed">
 
@@ -172,7 +186,7 @@ The widths of the date inputs may vary based on the grid and layout.
 There are two types of time pickers; a 12-hour and 24-hour time picker. The
 12-hour Time Picker is accompanied by a time period (am/pm) input, while the
 24-hour clock is not. Refer to [select](/components/select/code) for inline
-select styling. Hi
+select styling.
 
 | Element | Property                    | px / rem | Spacing token |
 | ------- | --------------------------- | -------- | ------------- |
