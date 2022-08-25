@@ -329,11 +329,181 @@ sections below.
 </Column>
 </Row>
 
-| State   | When to use |
-| ------- | ----------- |
-| Enabled |
+| State       | When to use                                                                                                                                                                                                                                                       |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _Enabled_   | When a text input is live but a user is not directly interacting with it. This is commonly referred to as the default or normal state of the component. An enabled text input field can contain no content, placeholder text, or user generate content.           |
+| _Active_    | When a user is actively typing content into the field.                                                                                                                                                                                                            |
+| _Focus_     | When a user `tabs` to or clicks on the text input, it becomes focused, indicating the user has successfully navigated to the component.                                                                                                                           |
+| _Error_     | When the user input is invalid or a required text input has not been filled in. It can also be triggered due to a system error. This state requires a user response before data can be submitted or saved.                                                        |
+| _Warning_   | When you need to call the user's attention to an exception condition. The condition might not be an error but can cause problems if not resolved.                                                                                                                 |
+| _Disabled_  | When the user is not allowed to interact with the text input due to either permissions, dependencies, or pre-requisites. The disabled state completely removes the interactive function from a component. The styling is not subject to WCAG contrast compliance. |
+| _Skeleton_  | Use on an initial page load to indicate that the text input has not yet fully loaded.                                                                                                                                                                             |
+| _Read-only_ | _Coming soon!_                                                                                                                                                                                                                                                    |
 
-| Active
+### Validation
+
+Real-time validation helps streamline the process and keep data clean when the
+user fills out forms. Otherwise, validate the text input data when the user
+submits the associated form. For complete guidance on error and validation, see
+the form pattern.
+
+#### Invalid
+
+An error state is triggered if the data is invalid or a required field is left
+empty. Error states have three visual indicators to signify invalid content: a
+red border, an error icon indicator, and an error message.
+
+<Row>
+<Column colLg={8}>
+
+![Example of an error state being triggered](images/text-input-usage-2.gif)
+
+</Column>
+</Row>
+
+### Default values
+
+Where possible, add programmatic assistance. Detect and pre-fill inputs to
+reduce errors and save time. When the software can’t determine the value that
+belongs in an input, use type-ahead to make suggestions. Use sentence-case for
+default values, detected values, and auto-completion text.
+
+### Required vs. optional
+
+Text inputs can be labeled as either optional or required depending on the
+depending on the circumstance. For more guidance on requirement labeling, see
+the form pattern.
+
+<DoDontRow>
+<DoDont
+colMd={4} colLg={4}
+caption="If the majority of the fields are required, mark only the optional field labels with (optional).">
+
+![Example showing optional field indicator](./images/text-input-usage-optional-do.png)
+
+</DoDont>
+<DoDont
+colMd={4} colLg={4}
+caption="If the majority of the fields are optional, mark only the required field labels with (required).">
+
+![Example showing required field indicator](./images/text-input-usage-required-do.png)
+
+</DoDont>
+</DoDontRow>
+
+### Interactions
+
+#### Mouse
+
+Users can activate a text input by clicking on the field container. A separate
+click is required to activate any additional actions associated with the text
+input such as a tooltip or password visibility toggle.
+
+<Row>
+<Column colLg={8}>
+
+![Example showing click target areas for text input](images/text-input-usage-mouse.png)
+
+</Column>
+</Row>
+
+#### Keyboard
+
+For additional keyboard interactions, see the
+[accessibility tab](/components/text-input/accessibility).
+
+| Key | Interaction | | _Tab_ | Brings focus to the text input. | | _Enter_ or
+_Space_ | Opens any associated actions added to the input, such as a password
+visibility toggle. | | _Esc_ | Closes any associated actions added to the input.
+| | _ctrl_ + _left/right arrows_ <br/> _opt_ + _left/right arrows_ | Moves you
+word by word inside the field. | | _ctrl_ + up/down arrows* <br/> \_opt* +
+_up/down arrows_ | Relocates you to the start or end of the input content. |
+
+## Text input
+
+Use a text input when the expected user input is a single line of text. Text
+inputs have a fixed height and are used a simple free-form data entry. Users can
+enter any combination of letters, numbers, or symbols.
+
+<Row>
+<Column colLg={8}>
+
+![Example of text input in context](images/text-input-usage-1.png)
+
+</Column>
+</Row>
+
+### Password input
+
+Password input is a sub-variant of text-input. It is used to collect private
+data and will hide the characters as a user enters them. A user can choose to
+toggle on the character visibility by clicking the view icon on the far right of
+the input field. When using a password input be sure to provide detailed helper
+text listing any requirements related to the data format, such as types of
+character allowed or date structure.
+
+<Row>
+<Column colLg={8}>
+
+![Example of a password input](images/text-input-usage-password.png)
+
+</Column>
+</Row>
+
+## Text area
+
+Use a text area when the expected user input is more than a few words and could
+span multiple lines. It is commonly used for features like user commentary or
+descriptions. It supports all the same states and functionality as text input
+except for the password functionality. Text area has several unique
+functionalities not included in the default text input, like the resize handle
+and character counter.
+
+<Row>
+<Column colLg={8}>
+
+![Example of a text area](images/text-input-usage-3.png)
+
+</Column>
+</Row>
+
+### Resize handle
+
+Included by default in text area is the `resize` handle. It allows a user the
+manipulate the field height by making it longer or shorter. The resize handle
+has no effect on the width of the text area container, it only effects the
+height. If the user makes the field size shorter than the content inside the
+field then a vertical scroll will become available.
+
+<Row>
+<Column colLg={8}>
+
+![Example showing the resize handle in text area](images/text-area-usage-resize.png)
+
+</Column>
+</Row>
+
+### Character counter
+
+A character counter can be added to text area to indicate both the number of
+characters being entered and the total number of characters allowed. Once the
+max number of characters is reached the text area should should prevent the user
+from entering any additional character and provide messaging to the user that a
+limit has been met.
+
+<Row>
+<Column colLg={8}>
+
+![Example showing a character counter in text area](images/text-area-usage-counter.png)
+
+</Column>
+</Row>
+
+## References
+
+- Katie Sherwin,
+  [Placeholders in Form Fields Are Harmful](https://www.nngroup.com/articles/form-design-placeholders/)
+  (Nielsen Norman Group, 2018)
 
 ## Feedback
 
