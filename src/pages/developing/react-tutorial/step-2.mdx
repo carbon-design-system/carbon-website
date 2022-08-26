@@ -4,7 +4,16 @@ description:
   Welcome to Carbon! This tutorial will guide you in creating a React app with
   the Carbon Design System.
 tabs:
-  ['Overview', 'Step 1', 'Step 2', 'Step 3', 'Step 4', 'Step 5', 'Wrapping up']
+  [
+    'Overview',
+    'Step 1',
+    'Step 2',
+    'Step 3',
+    'Step 4',
+    'Step 5',
+    'Wrapping up',
+    'FAQ',
+  ]
 ---
 
 import Preview from 'components/Preview';
@@ -215,7 +224,6 @@ import { Breadcrumb, BreadcrumbItem, Grid, Column } from '@carbon/react';
 
 We can now add our component to the first row, along with a header, like so:
 
-<!-- prettier-ignore-start -->
 ```jsx path=src/content/LandingPage/LandingPage.js
 <Column lg={16} md={8} sm={4} className="landing-page__banner">
   <Breadcrumb noTrailingSlash>
@@ -226,7 +234,6 @@ We can now add our component to the first row, along with a header, like so:
   <h1 className="landing-page__heading">Design &amp; build with Carbon</h1>
 </Column>
 ```
-<!-- prettier-ignore-end -->
 
 You may notice that the styles look off. Don't worry, we'll fix these later.
 
@@ -323,19 +330,15 @@ accessibility violations, you'd see
 because both the `Breadcrumb` and `Tabs` components use `<nav>` elements. To
 fix, add `aria-label` to the `Breadcrumb` opening tag:
 
-<!-- prettier-ignore-start -->
-```html
+```jsx
 <Breadcrumb noTrailingSlash aria-label="Page navigation">
 ```
-<!-- prettier-ignore-end -->
 
 Same goes for the `TabList` opening tag:
 
-<!-- prettier-ignore-start -->
-```html
+```jsx
 <TabList className="tabs-group" aria-label="Tab navigation">
 ```
-<!-- prettier-ignore-end -->
 
 Next, we'll need to add some styling overrides to move the tabs to the right on
 large viewports. Create a file `_overrides.scss` in `src/content/LandingPage`
@@ -380,7 +383,6 @@ names, you have a consolidated list of styling declaration blocks to review.
 We can now add our images and text for each column in the first `Tab` in
 `LandingPage.js`.
 
-<!-- prettier-ignore-start -->
 ```jsx path=src/content/LandingPage/LandingPage.js
 <Column md={4} lg={{ span: 8, offset: 7 }} sm={4}>
   <img
@@ -390,7 +392,6 @@ We can now add our images and text for each column in the first `Tab` in
   />
 </Column>
 ```
-<!-- prettier-ignore-end -->
 
 Now let's set the image size in `_landing-page.scss`:
 
@@ -409,7 +410,6 @@ we'll leave the code as is.
 The third row will be created in a later tutorial, so we'll just add the headers
 for now.
 
-<!-- prettier-ignore-start -->
 ```jsx path=src/content/LandingPage/LandingPage.js
 <Column lg={16} md={8} sm={4} className="landing-page__r3">
   <Grid>
@@ -428,7 +428,6 @@ for now.
   </Grid>
 </Column>
 ```
-<!-- prettier-ignore-end -->
 
 ## Style landing page
 
@@ -746,7 +745,6 @@ import {
 Then, let's create the `RepoTable` component and export it at the very bottom of
 `RepoTable.js`.
 
-<!-- prettier-ignore-start -->
 ```javascript path=src/content/RepoPage/RepoTable.js
 const RepoTable = ({ rows, headers }) => {
   return (
@@ -762,12 +760,13 @@ const RepoTable = ({ rows, headers }) => {
       }) => (
         <TableContainer
           title="Carbon Repositories"
-          description="A collection of public Carbon repositories.">
+          description="A collection of public Carbon repositories."
+        >
           <Table {...getTableProps()}>
             <TableHead>
               <TableRow>
                 <TableExpandHeader />
-                {headers.map(header => (
+                {headers.map((header) => (
                   <TableHeader {...getHeaderProps({ header })}>
                     {header.header}
                   </TableHeader>
@@ -775,10 +774,10 @@ const RepoTable = ({ rows, headers }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map(row => (
+              {rows.map((row) => (
                 <React.Fragment key={row.id}>
                   <TableExpandRow {...getRowProps({ row })}>
-                    {row.cells.map(cell => (
+                    {row.cells.map((cell) => (
                       <TableCell key={cell.id}>{cell.value}</TableCell>
                     ))}
                   </TableExpandRow>
@@ -797,7 +796,6 @@ const RepoTable = ({ rows, headers }) => {
 
 export default RepoTable;
 ```
-<!-- prettier-ignore-end -->
 
 This component uses two props, `rows` and `headers`, and returns a Carbon
 `DataTable`. As for where the various `Table*` components came from? The
@@ -895,11 +893,9 @@ const rows = [
 Lastly in `RepoPage.js`, we need to simply replace `Data table will go here`
 with:
 
-<!-- prettier-ignore-start -->
-```html path=src/content/RepoPage/RepoPage.js
+```jsx path=src/content/RepoPage/RepoPage.js
 <RepoTable headers={headers} rows={rows} />
 ```
-<!-- prettier-ignore-end -->
 
 ## Style repo page
 
