@@ -1,6 +1,4 @@
 import React from 'react';
-const ogimage =
-  'https://raw.githubusercontent.com/carbon-design-system/carbon-website/main/src/images/ogimage.png';
 
 export const onRenderBody = ({ setHeadComponents }) => {
   const script = `
@@ -23,13 +21,25 @@ export const onRenderBody = ({ setHeadComponents }) => {
   }`;
 
   return setHeadComponents([
-    <meta key="og:image" property="og:image" content={ogimage} />,
+    <meta key="image" name="image" content={'/ogimage.png'} />,
+    <meta
+      key="og:url"
+      property="og:url"
+      content="https://www.carbondesignsystem.com"
+    />,
+    <meta key="og:title" property="og:title" content="Carbon Design System" />,
+    <meta
+      key="og:description"
+      property="og:description"
+      content="Carbon is IBM’s open source design system for products and digital experiences. With the IBM Design Language as its foundation, the system consists of working code, design tools and resources, human interface guidelines, and a vibrant community of contributors."
+    />,
+    <meta key="og:image" property="og:image" content={'/ogimage.png'} />,
     <meta
       key="og:image:alt"
       property="og:image:alt"
       content="Carbon Design System logo"
     />,
-    <meta key="twitter:image" property="og:image" content={ogimage} />,
+    <meta key="twitter:image" name="twitter:image" content={'/ogimage.png'} />,
     <meta
       key="twitter:image:alt"
       property="twitter:image:alt"
@@ -44,6 +54,11 @@ export const onRenderBody = ({ setHeadComponents }) => {
     <meta
       property="twitter:site"
       key="twitter:site"
+      content="@_carbondesign"
+    />,
+    <meta
+      key="twitter:creator"
+      name="twitter:creator"
       content="@_carbondesign"
     />,
     <script

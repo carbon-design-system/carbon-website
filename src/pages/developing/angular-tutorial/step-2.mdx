@@ -200,13 +200,13 @@ We'll start adding HTML elements and components by row.
 In our first row we'll need a `Breadcrumb` component. First, let's import the
 components we need in `home.module.ts` and `landing-page.component.spec.ts`.
 
-```javascript path=src/app/home/home.module.ts,src/app/home/landing-page/landing-page.component.spec.ts
+```javascript path=src/app/home/home.module.ts
 import { BreadcrumbModule, GridModule } from 'carbon-components-angular';
 ```
 
 <!-- prettier-ignore-end -->
 
-```javascript path=src/app/home/home.module.ts,src/app/home/landing-page/landing-page.component.spec.ts
+```javascript path=src/app/home/landing-page/landing-page.component.spec.ts
 imports: [BreadcrumbModule, GridModule];
 ```
 
@@ -232,7 +232,7 @@ In our second row we'll need `Tabs` and `Button` components also in
 `carbon-components-angular` import to:
 
 <!-- prettier-ignore-start -->
-```javascript path=src/app/home/home.module.ts,src/app/home/landing-page/landing-page.component.spec.ts
+```javascript path=src/app/home/home.module.ts
 import {
   BreadcrumbModule,
   ButtonModule,
@@ -242,7 +242,7 @@ import {
 ```
 <!-- prettier-ignore-end -->
 
-```javascript path=src/app/home/home.module.ts,src/app/home/landing-page/landing-page.component.spec.ts
+```javascript path=src/app/home/landing-page/landing-page.component.spec.ts
 imports: [BreadcrumbModule, ButtonModule, GridModule, TabsModule];
 ```
 
@@ -390,7 +390,7 @@ We can now add our images and text for each column in the first `Tab` in
           design tools and resources, human interface guidelines,
           and a vibrant community of contributors.
         </p>
-        <button ibmButton>Learn more</button>
+        <button ibmButton="primary">Learn more</button>
       </div>
       <div ibmCol class="cds--offset-lg-1" [columnNumbers]="{'md': 4, 'lg': 8}">
         <img
@@ -599,7 +599,7 @@ baseline, for consistency as well as development ease so `margins` and
 
 .landing-page__subheading {
   @include type-style('productive-heading-03');
-  @include font-weight('semibold');
+  @include carbon--font-weight('semibold');
 }
 
 .landing-page__p {
@@ -607,7 +607,7 @@ baseline, for consistency as well as development ease so `margins` and
   margin-top: $spacing-06;
   margin-bottom: $spacing-08;
 
-  @include breakpoint-between((320px + 1), md) {
+  @include carbon--breakpoint-between((320px + 1), md) {
     max-width: 75%;
   }
 }
@@ -653,12 +653,12 @@ First, we’ll add our grid and table by importing a few components in
 `repositories.module.ts` and `repo-page.component.spec.ts`:
 
 <!-- prettier-ignore-start -->
-```javascript path=src/app/repositories/repositories.module.ts,src/app/repositories/repo-page/repo-page.component.spec.ts
+```javascript path=src/app/repositories/repositories.module.ts
 import { GridModule, TableModule } from 'carbon-components-angular';
 ```
 <!-- prettier-ignore-end -->
 
-```javascript path=src/app/repositories/repositories.module.ts,src/app/repositories/repo-page/repo-page.component.spec.ts
+```javascript path=src/app/repositories/repo-page/repo-page.component.spec.ts
 imports: [GridModule, TableModule];
 ```
 
@@ -681,7 +681,7 @@ separate data fetching from the presentation components, go ahead and create a
 `repo-table` component as a sibling to `repo-page`.
 
 ```bash
-ng g component repositories/repo-table --lint-fix
+ng g component repositories/repo-table
 ```
 
 ##### Folder structure
