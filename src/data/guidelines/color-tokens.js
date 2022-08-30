@@ -1240,12 +1240,12 @@ const colorTokens = {
           hex: '#8d8d8d',
         },
         g90: {
-          name: 'Gray 10, 25% opacity',
-          hex: '#f4f4f4 @ 25%',
+          name: '$text-on-color, 25% opacity',
+          hex: '#ffffff @ 25%',
         },
         g100: {
-          name: 'Gray 10, 25% opacity',
-          hex: '#f4f4f4 @ 25%',
+          name: '$text-on-color, 25% opacity',
+          hex: '#ffffff @ 25%',
         },
       },
     },
