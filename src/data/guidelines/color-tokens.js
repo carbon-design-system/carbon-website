@@ -1240,11 +1240,11 @@ const colorTokens = {
           hex: '#8d8d8d',
         },
         g90: {
-          name: '$text-on-color, 25%',
+          name: 'White, 25%',
           hex: '#ffffff @ 25%',
         },
         g100: {
-          name: '$text-on-color, 25%',
+          name: 'White, 25%',
           hex: '#ffffff @ 25%',
         },
       },
@@ -1316,19 +1316,19 @@ const colorTokens = {
       role: ['Disabled text color'],
       value: {
         white: {
-          name: '$text-primary, 25%',
+          name: 'Gray 100, 25%',
           hex: '#161616 @ 25%',
         },
         g10: {
-          name: '$text-primary, 25%',
+          name: 'Gray 100, 25%',
           hex: '#161616 @ 25%',
         },
         g90: {
-          name: '$tex-primary, 25%',
+          name: 'Gray 10, 25%',
           hex: '#f4f4f4 @ 25%',
         },
         g100: {
-          name: '$text-primary, 25%',
+          name: 'Gray 10, 25%',
           hex: '#f4f4f4 @ 25%',
         },
       },
@@ -1517,12 +1517,12 @@ const colorTokens = {
           hex: '#8d8d8d',
         },
         g90: {
-          name: '$icon-on-color, 25%',
-          hex: '#8d8d8d @ 25%',
+          name: 'White, 25%',
+          hex: '#ffffff @ 25%',
         },
         g100: {
-          name: '$icon-on-color, 25%',
-          hex: '#6f6f6f @ 25%',
+          name: 'White, 25%',
+          hex: '#ffffff @ 25%',
         },
       },
     },
@@ -1551,19 +1551,19 @@ const colorTokens = {
       role: ['Disabled icon color'],
       value: {
         white: {
-          name: '$icon-primary, 25%',
+          name: 'Gray 100, 25%',
           hex: '#161616 @ 25%',
         },
         g10: {
-          name: '$icon-primary, 25%',
+          name: 'Gray 100, 25%',
           hex: '#161616 @ 25%',
         },
         g90: {
-          name: '$icon-primary, 25%',
+          name: 'Gray 10, 25%',
           hex: '#f4f4f4 @ 25%',
         },
         g100: {
-          name: '$icon-primary, 25%',
+          name: 'Gray 10, 25%',
           hex: '#f4f4f4 @ 25%',
         },
       },
