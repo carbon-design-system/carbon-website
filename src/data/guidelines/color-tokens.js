@@ -30,19 +30,19 @@ const colorTokens = {
       value: {
         white: {
           name: 'Gray 50, 12%',
-          hex: '#8d8d8d, 12%',
+          hex: '#8d8d8d @ 12%',
         },
         g10: {
           name: 'Gray 50, 12%',
-          hex: '#8d8d8d, 12%',
+          hex: '#8d8d8d @ 12%',
         },
         g90: {
           name: 'Gray 50, 16%',
-          hex: '#8d8d8d, 16%',
+          hex: '#8d8d8d @ 16%',
         },
         g100: {
           name: 'Gray 50, 16%',
-          hex: '#8d8d8d, 16%',
+          hex: '#8d8d8d @ 16%',
         },
       },
     },
@@ -51,19 +51,19 @@ const colorTokens = {
       value: {
         white: {
           name: 'Gray 50, 50%',
-          hex: '#8d8d8d, 50%',
+          hex: '#8d8d8d @ 50%',
         },
         g10: {
           name: 'Gray 50, 50%',
-          hex: '#8d8d8d, 50%',
+          hex: '#8d8d8d @ 50%',
         },
         g90: {
           name: 'Gray 50, 40%',
-          hex: '#8d8d8d, 40%',
+          hex: '#8d8d8d @ 40%',
         },
         g100: {
           name: 'Gray 50, 40%',
-          hex: '#8d8d8d, 40%',
+          hex: '#8d8d8d @ 40%',
         },
       },
     },
@@ -72,19 +72,19 @@ const colorTokens = {
       value: {
         white: {
           name: 'Gray 50, 20%',
-          hex: '#8d8d8d, 20%',
+          hex: '#8d8d8d @ 20%',
         },
         g10: {
           name: 'Gray 50, 20%',
-          hex: '#8d8d8d, 20%',
+          hex: '#8d8d8d @ 20%',
         },
         g90: {
           name: 'Gray 50, 24%',
-          hex: '#8d8d8d, 24%',
+          hex: '#8d8d8d @ 24%',
         },
         g100: {
           name: 'Gray 50, 24%',
-          hex: '#8d8d8d, 24%',
+          hex: '#8d8d8d @ 24%',
         },
       },
     },
@@ -93,19 +93,19 @@ const colorTokens = {
       value: {
         white: {
           name: 'Gray 50, 32%',
-          hex: '#8d8d8d, 32%',
+          hex: '#8d8d8d @ 32%',
         },
         g10: {
           name: 'Gray 50, 32%',
-          hex: '#8d8d8d, 32%',
+          hex: '#8d8d8d @ 32%',
         },
         g90: {
           name: 'Gray 50, 32%',
-          hex: '#8d8d8d, 32%',
+          hex: '#8d8d8d @ 32%',
         },
         g100: {
           name: 'Gray 50, 32%',
-          hex: '#8d8d8d, 32%',
+          hex: '#8d8d8d @ 32%',
         },
       },
     },
@@ -1129,11 +1129,11 @@ const colorTokens = {
         },
         g90: {
           name: 'Gray 50, 50%',
-          hex: '#8d8d8d, 50%',
+          hex: '#8d8d8d @ 50%',
         },
         g100: {
           name: 'Gray 50, 50%',
-          hex: '#8d8d8d, 50%',
+          hex: '#8d8d8d @ 50%',
         },
       },
     },
@@ -1241,11 +1241,11 @@ const colorTokens = {
         },
         g90: {
           name: '$text-on-color, 25%',
-          hex: '#ffffff, 25%',
+          hex: '#ffffff @ 25%',
         },
         g100: {
           name: '$text-on-color, 25%',
-          hex: '#ffffff, 25%',
+          hex: '#ffffff @ 25%',
         },
       },
     },
@@ -1317,19 +1317,19 @@ const colorTokens = {
       value: {
         white: {
           name: '$text-primary, 25%',
-          hex: '#161616, 25%',
+          hex: '#161616 @ 25%',
         },
         g10: {
           name: '$text-primary, 25%',
-          hex: '#161616, 25%',
+          hex: '#161616 @ 25%',
         },
         g90: {
           name: '$tex-primary, 25%',
-          hex: '#f4f4f4, 25%',
+          hex: '#f4f4f4 @ 25%',
         },
         g100: {
           name: '$text-primary, 25%',
-          hex: '#f4f4f4, 25%',
+          hex: '#f4f4f4 @ 25%',
         },
       },
     },
@@ -1518,11 +1518,11 @@ const colorTokens = {
         },
         g90: {
           name: '$icon-on-color, 25%',
-          hex: '#8d8d8d, 25%',
+          hex: '#8d8d8d @ 25%',
         },
         g100: {
           name: '$icon-on-color, 25%',
-          hex: '#6f6f6f, 25%',
+          hex: '#6f6f6f @ 25%',
         },
       },
     },
@@ -1552,19 +1552,19 @@ const colorTokens = {
       value: {
         white: {
           name: '$icon-primary, 25%',
-          hex: '#161616, 25%',
+          hex: '#161616 @ 25%',
         },
         g10: {
           name: '$icon-primary, 25%',
-          hex: '#161616, 25%',
+          hex: '#161616 @ 25%',
         },
         g90: {
           name: '$icon-primary, 25%',
-          hex: '#f4f4f4, 25%',
+          hex: '#f4f4f4 @ 25%',
         },
         g100: {
           name: '$icon-primary, 25%',
-          hex: '#f4f4f4, 25%',
+          hex: '#f4f4f4 @ 25%',
         },
       },
     },
@@ -2205,19 +2205,19 @@ const colorTokens = {
       value: {
         white: {
           name: 'Gray 100, 50%',
-          hex: '#161616, 50%',
+          hex: '#161616 @ 50%',
         },
         g10: {
           name: 'Gray 100, 50%',
-          hex: '#161616, 50%',
+          hex: '#161616 @ 50%',
         },
         g90: {
           name: 'Gray 100, 70%',
-          hex: '#161616, 70%',
+          hex: '#161616 @70%',
         },
         g100: {
           name: 'Gray 100, 70%',
-          hex: '#161616, 70%',
+          hex: '#161616 @ 70%',
         },
       },
     },
