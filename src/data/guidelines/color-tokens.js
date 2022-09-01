@@ -29,20 +29,20 @@ const colorTokens = {
       ],
       value: {
         white: {
-          name: 'Gray 50 – 12%',
-          hex: '#8d8d8d – 12%',
+          name: 'Gray 50, 12%',
+          hex: '#8d8d8d @ 12%',
         },
         g10: {
-          name: 'Gray 50 – 12%',
-          hex: '#8d8d8d – 12%',
+          name: 'Gray 50, 12%',
+          hex: '#8d8d8d @ 12%',
         },
         g90: {
-          name: 'Gray 50 – 16%',
-          hex: '#8d8d8d – 16%',
+          name: 'Gray 50, 16%',
+          hex: '#8d8d8d @ 16%',
         },
         g100: {
-          name: 'Gray 50 – 16%',
-          hex: '#8d8d8d – 16%',
+          name: 'Gray 50, 16%',
+          hex: '#8d8d8d @ 16%',
         },
       },
     },
