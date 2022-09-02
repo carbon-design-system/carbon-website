@@ -25,7 +25,9 @@ const IconCategory = ({ category, pictograms, columnCount }) => {
           .filter((pictogram) => {
             if (
               pictogram.name === 'ibm--z' ||
-              pictogram.name === 'ibm--z--partition'
+              pictogram.name === 'ibm--z--partition' ||
+              pictogram.name === 'ibm--z-and-linuxone-multi-frame' ||
+              pictogram.name === 'ibm--z-and-linuxone-single-frame'
             ) {
               return false;
             }
