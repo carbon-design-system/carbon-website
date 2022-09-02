@@ -50,20 +50,20 @@ const colorTokens = {
       role: ['Active color for $background'],
       value: {
         white: {
-          name: 'Gray 50 – 50%',
-          hex: '#8d8d8d – 50%',
+          name: 'Gray 50, 50%',
+          hex: '#8d8d8d @ 50%',
         },
         g10: {
-          name: 'Gray 50 – 50%',
-          hex: '#8d8d8d – 50%',
+          name: 'Gray 50, 50%',
+          hex: '#8d8d8d @ 50%',
         },
         g90: {
-          name: 'Gray 50 – 40%',
-          hex: '#8d8d8d – 40%',
+          name: 'Gray 50, 40%',
+          hex: '#8d8d8d @ 40%',
         },
         g100: {
-          name: 'Gray 50 – 40%',
-          hex: '#8d8d8d – 40%',
+          name: 'Gray 50, 40%',
+          hex: '#8d8d8d @ 40%',
         },
       },
     },
@@ -71,20 +71,20 @@ const colorTokens = {
       role: ['Selected color for $background'],
       value: {
         white: {
-          name: 'Gray 50 – 20%',
-          hex: '#8d8d8d – 20%',
+          name: 'Gray 50, 20%',
+          hex: '#8d8d8d @ 20%',
         },
         g10: {
           name: 'Gray 50, 20%',
           hex: '#8d8d8d @ 20%',
         },
         g90: {
-          name: 'Gray 50 – 24%',
-          hex: '#8d8d8d – 24%',
+          name: 'Gray 50, 24%',
+          hex: '#8d8d8d @ 24%',
         },
         g100: {
-          name: 'Gray 50 – 24%',
-          hex: '#8d8d8d – 24%',
+          name: 'Gray 50, 24%',
+          hex: '#8d8d8d @ 24%',
         },
       },
     },
@@ -92,20 +92,20 @@ const colorTokens = {
       role: ['Hover color for $background-selected'],
       value: {
         white: {
-          name: 'Gray 50 – 32%',
-          hex: '#8d8d8d – 32%',
+          name: 'Gray 50, 32%',
+          hex: '#8d8d8d @ 32%',
         },
         g10: {
-          name: 'Gray 50 – 32%',
-          hex: '#8d8d8d – 32%',
+          name: 'Gray 50, 32%',
+          hex: '#8d8d8d @ 32%',
         },
         g90: {
-          name: 'Gray 50 – 32%',
-          hex: '#8d8d8d – 32%',
+          name: 'Gray 50, 32%',
+          hex: '#8d8d8d @ 32%',
         },
         g100: {
-          name: 'Gray 50 – 32%',
-          hex: '#8d8d8d – 32%',
+          name: 'Gray 50, 32%',
+          hex: '#8d8d8d @ 32%',
         },
       },
     },
@@ -1128,12 +1128,12 @@ const colorTokens = {
           hex: '#c6c6c6',
         },
         g90: {
-          name: 'Gray 50 – 50%',
-          hex: '#8d8d8d – 50%',
+          name: 'Gray 50, 50%',
+          hex: '#8d8d8d @ 50%',
         },
         g100: {
-          name: 'Gray 50 – 50%',
-          hex: '#8d8d8d – 50%',
+          name: 'Gray 50, 50%',
+          hex: '#8d8d8d @ 50%',
         },
       },
     },
