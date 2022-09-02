@@ -29,19 +29,19 @@ const colorTokens = {
       ],
       value: {
         white: {
-          name: 'Gray 50, 12% opacity',
+          name: 'Gray 50, 12%',
           hex: '#8d8d8d @ 12%',
         },
         g10: {
-          name: 'Gray 50, 12% opacity',
+          name: 'Gray 50, 12%',
           hex: '#8d8d8d @ 12%',
         },
         g90: {
-          name: 'Gray 50, 16% opacity',
+          name: 'Gray 50, 16%',
           hex: '#8d8d8d @ 16%',
         },
         g100: {
-          name: 'Gray 50. 16% opacity',
+          name: 'Gray 50, 16%',
           hex: '#8d8d8d @ 16%',
         },
       },
@@ -50,19 +50,19 @@ const colorTokens = {
       role: ['Active color for $background'],
       value: {
         white: {
-          name: 'Gray 50, 32% opacity',
-          hex: '#8d8d8d @ 32%',
+          name: 'Gray 50, 50%',
+          hex: '#8d8d8d @ 50%',
         },
         g10: {
-          name: 'Gray 50. 32% opacity',
-          hex: '#8d8d8d @ 32%',
+          name: 'Gray 50, 50%',
+          hex: '#8d8d8d @ 50%',
         },
         g90: {
-          name: 'Gray 50, 40% opacity',
+          name: 'Gray 50, 40%',
           hex: '#8d8d8d @ 40%',
         },
         g100: {
-          name: 'Gray 50. 40% opacity',
+          name: 'Gray 50, 40%',
           hex: '#8d8d8d @ 40%',
         },
       },
@@ -71,19 +71,19 @@ const colorTokens = {
       role: ['Selected color for $background'],
       value: {
         white: {
-          name: 'Gray 50, 20% opacity',
+          name: 'Gray 50, 20%',
           hex: '#8d8d8d @ 20%',
         },
         g10: {
-          name: 'Gray 50, 20% opacity',
+          name: 'Gray 50, 20%',
           hex: '#8d8d8d @ 20%',
         },
         g90: {
-          name: 'Gray 50, 24% opacity',
+          name: 'Gray 50, 24%',
           hex: '#8d8d8d @ 24%',
         },
         g100: {
-          name: 'Gray 50, 24% opacity',
+          name: 'Gray 50, 24%',
           hex: '#8d8d8d @ 24%',
         },
       },
@@ -92,19 +92,19 @@ const colorTokens = {
       role: ['Hover color for $background-selected'],
       value: {
         white: {
-          name: 'Gray 50, 32% opacity',
+          name: 'Gray 50, 32%',
           hex: '#8d8d8d @ 32%',
         },
         g10: {
-          name: 'Gray 50, 32% opacity',
+          name: 'Gray 50, 32%',
           hex: '#8d8d8d @ 32%',
         },
         g90: {
-          name: 'Gray 50, 32% opacity',
+          name: 'Gray 50, 32%',
           hex: '#8d8d8d @ 32%',
         },
         g100: {
-          name: 'Gray 50, 32% opacity',
+          name: 'Gray 50, 32%',
           hex: '#8d8d8d @ 32%',
         },
       },
@@ -663,12 +663,12 @@ const colorTokens = {
       role: ['Active color for $layer-accent-01'],
       value: {
         white: {
-          name: 'Gray 30',
-          hex: '#c6c6c6',
+          name: 'Gray 40',
+          hex: '#a8a8a8',
         },
         g10: {
-          name: 'Gray 30',
-          hex: '#c6c6c6',
+          name: 'Gray 40',
+          hex: '#a8a8a8',
         },
         g90: {
           name: 'Gray 60',
@@ -820,12 +820,12 @@ const colorTokens = {
           hex: '#e5e5e5',
         },
         g90: {
-          name: 'Gray 80 hover',
-          hex: '#4c4c4c',
+          name: 'Gray 70 hover',
+          hex: '#636363',
         },
         g100: {
-          name: 'Gray 90 hover',
-          hex: '#353535',
+          name: 'Gray 80 hover',
+          hex: '#474747',
         },
       },
     },
@@ -1128,11 +1128,11 @@ const colorTokens = {
           hex: '#c6c6c6',
         },
         g90: {
-          name: 'Gray 50, 50% opacity',
+          name: 'Gray 50, 50%',
           hex: '#8d8d8d @ 50%',
         },
         g100: {
-          name: 'Gray 50, 50% opacity',
+          name: 'Gray 50, 50%',
           hex: '#8d8d8d @ 50%',
         },
       },
@@ -1240,12 +1240,12 @@ const colorTokens = {
           hex: '#8d8d8d',
         },
         g90: {
-          name: 'Gray 50',
-          hex: '#8d8d8d',
+          name: 'White – 25%',
+          hex: '#ffffff – 25%',
         },
         g100: {
-          name: 'Gray 60',
-          hex: '#6f6f6f',
+          name: 'White – 25%',
+          hex: '#ffffff – 25%',
         },
       },
     },
@@ -1316,20 +1316,20 @@ const colorTokens = {
       role: ['Disabled text color'],
       value: {
         white: {
-          name: 'Gray 100, 25% opacity',
-          hex: '#161616 @ 25%',
+          name: 'Gray 100 – 25%',
+          hex: '#161616 – 25%',
         },
         g10: {
-          name: 'Gray 100, 25% opacity',
-          hex: '#161616 @ 25%',
+          name: 'Gray 100 – 25%',
+          hex: '#161616 – 25%',
         },
         g90: {
-          name: 'Gray 10, 25% opacity',
-          hex: '#f4f4f4 @ 25%',
+          name: 'Gray 10 – 25%',
+          hex: '#f4f4f4 – 25%',
         },
         g100: {
-          name: 'Gray 10, 25% opacity',
-          hex: '#f4f4f4 @ 25%',
+          name: 'Gray 10 – 25%',
+          hex: '#f4f4f4 – 25%',
         },
       },
     },
@@ -1517,12 +1517,12 @@ const colorTokens = {
           hex: '#8d8d8d',
         },
         g90: {
-          name: 'Gray 50',
-          hex: '#8d8d8d',
+          name: 'White – 25%',
+          hex: '#ffffff – 25%',
         },
         g100: {
-          name: 'Gray 60',
-          hex: '#6f6f6f',
+          name: 'White – 25%',
+          hex: '#ffffff – 25%',
         },
       },
     },
@@ -1551,20 +1551,20 @@ const colorTokens = {
       role: ['Disabled icon color'],
       value: {
         white: {
-          name: 'Gray 100, 25% opacity',
-          hex: '#161616 @ 25%',
+          name: 'Gray 100 – 25%',
+          hex: '#161616 – 25%',
         },
         g10: {
-          name: 'Gray 100, 25% opacity',
-          hex: '#161616 @ 25%',
+          name: 'Gray 100 – 25%',
+          hex: '#161616 – 25%',
         },
         g90: {
-          name: 'Gray 10, 25% opacity',
-          hex: '#f4f4f4 @ 25%',
+          name: 'Gray 10 – 25%',
+          hex: '#f4f4f4 – 25%',
         },
         g100: {
-          name: 'Gray 10, 25% opacity',
-          hex: '#f4f4f4 @ 25%',
+          name: 'Gray 10 – 25%',
+          hex: '#f4f4f4 – 25%',
         },
       },
     },
@@ -1981,6 +1981,27 @@ const colorTokens = {
         },
       },
     },
+    '$support-error-inverse': {
+      role: ['Error in high contrast moments'],
+      value: {
+        white: {
+          name: 'Red 50',
+          hex: '#fa4d56',
+        },
+        g10: {
+          name: 'Red 50',
+          hex: '#fa4d56',
+        },
+        g90: {
+          name: 'Red 60',
+          hex: '#da1e28',
+        },
+        g100: {
+          name: 'Red 60',
+          hex: '#da1e28',
+        },
+      },
+    },
     '$support-success-inverse': {
       role: ['Success in high contrast moments'],
       value: {
@@ -2020,27 +2041,6 @@ const colorTokens = {
         g100: {
           name: 'Yellow',
           hex: '#f1c21b',
-        },
-      },
-    },
-    '$support-error-inverse': {
-      role: ['Error in high contrast moments'],
-      value: {
-        white: {
-          name: 'Red 50',
-          hex: '#fa4d56',
-        },
-        g10: {
-          name: 'Red 50',
-          hex: '#fa4d56',
-        },
-        g90: {
-          name: 'Red 60',
-          hex: '#da1e28',
-        },
-        g100: {
-          name: 'Red 60',
-          hex: '#da1e28',
         },
       },
     },
@@ -2166,8 +2166,8 @@ const colorTokens = {
           hex: '#d0e2ff',
         },
         g10: {
-          name: 'Blue 10',
-          hex: '#edf5ff',
+          name: 'Blue 20',
+          hex: '#d0e2ff',
         },
         g90: {
           name: 'Blue 80',
@@ -2204,19 +2204,19 @@ const colorTokens = {
       role: ['Background overlay'],
       value: {
         white: {
-          name: 'Gray 100',
+          name: 'Gray 100, 50%',
           hex: '#161616 @ 50%',
         },
         g10: {
-          name: 'Gray 100',
+          name: 'Gray 100, 50%',
           hex: '#161616 @ 50%',
         },
         g90: {
-          name: 'Gray 100',
-          hex: '#161616 @ 70%',
+          name: 'Gray 100, 70%',
+          hex: '#161616 @70%',
         },
         g100: {
-          name: 'Gray 100',
+          name: 'Gray 100, 70%',
           hex: '#161616 @ 70%',
         },
       },
