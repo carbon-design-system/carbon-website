@@ -30,7 +30,7 @@ guide to start building.
 <AnchorLink>Incorporating the shell</AnchorLink>
 <AnchorLink>Alignments</AnchorLink>
 <AnchorLink>Techniques</AnchorLink>
-<AnchorLink>API</AnchorLink>
+<AnchorLink>API & Helpers</AnchorLink>
 <AnchorLink>Resources</AnchorLink>
 
 </AnchorLinks>
@@ -1344,12 +1344,11 @@ Image size can change ratios when the breakpoint changes.
   </DoDont>
 </DoDontRow>
 
-## API
+## API & Helpers
 
 There are many ways to make the 2x Grid work for your application using our API.
 The example below illustrates removing visibility of a given component based on
-the maximum width of the `md` breakpoint. Check out the table to learn more
-about our API.
+the maximum width of the `md` breakpoint.
 
 ```css
 .component {
@@ -1362,23 +1361,21 @@ about our API.
 }
 ```
 
-| Name                     | Description                                                                         | Type        | Default       |
-| :----------------------- | :---------------------------------------------------------------------------------- | :---------- | :------------ |
-| `css-grid`               | Generate the CSS for using the CSS Grid                                             | `@mixin`    |               |
-| `$prefix`                | Specify the prefix used for CSS selectors                                           | `String`    | `'cds'`       |
-| `$flex-grid-columns`     | Specify the number of columns for the flex grid                                     | `Number`    | `16`          |
-| `$grid-gutter`           | Specify the gutter of the grid                                                      | `Number`    | `32px (2rem)` |
-| `$grid-gutter-condensed` | Specify the gutter of the condensed grid                                            | `Number`    | `1px`         |
-| `$grid-breakpoints`      | Specify the breakpoints for the grid                                                | `Map`       |               |
-| `breakpoint-next`        | Get the value of the next breakpoint                                                | `@function` |               |
-| `breakpoint-prev`        | Get the value of the previous breakpoint                                            | `@function` |               |
-| `is-smallest-breakpoint` | Check to see if the given breakpoint is the smallest breakpoint                     | `@function` |               |
-| `is-largest-breakpoint`  | Check to see if the given breakpoint is the largest breakpoint                      | `@function` |               |
-| `breakpoint-up`          | Generate a media query from the width of the given breakpoint to infinity           | `@mixin`    |               |
-| `breakpoint-down`        | Generate a media query that applies below the maximum width of the given breakpoint | `@mixin`    |               |
-| `breakpoint-between`     | Generate a media query for the range between the lower and upper breakpoints        | `@mixin`    |               |
-| `largest-breakpoint`     | Generate a media query for the largest breakpoint                                   | `@mixin`    |               |
-| `breakpoint`             | Generate a media query for a given breakpoint, alias of `breakpoint-up`             | `@mixin`    |               |
+In addition, you can also use Helpers to control what is being displayed on the
+screen at a given breakpoint.
+
+```css
+@use '@carbon/styles/scss/utilities/helper-classes';
+
+.my-class {
+  @include helper-classes.hide-at-sm();
+}
+```
+
+Checkout the [resources](#resources) section for links to
+[the helpers on storybook](https://react.carbondesignsystem.com/?path=/story/helpers-hideatbreakpoint--hide-at-breakpoint)
+and the full
+[API list on Github](https://github.com/carbon-design-system/carbon/blob/main/packages/grid/docs/sass.md#api).
 
 ## Resources
 
@@ -1410,6 +1407,26 @@ about our API.
     >
 
 <MdxIcon name="bee" />
+
+  </ResourceCard>
+  </Column>
+  <Column colMd={4} colLg={4} noGutterSm>
+    <ResourceCard
+      subTitle="Carbon grid docs API"
+      href="https://github.com/carbon-design-system/carbon/blob/main/packages/grid/docs/sass.md#api"
+    >
+
+<MdxIcon name="github" />
+
+  </ResourceCard>
+  </Column>
+  <Column colMd={4} colLg={4} noGutterSm>
+    <ResourceCard
+      subTitle="Hide at Breakpoint Helpers on Storybook"
+      href="https://react.carbondesignsystem.com/?path=/story/helpers-hideatbreakpoint--hide-at-breakpoint"
+    >
+
+<MdxIcon name="storybook" />
 
   </ResourceCard>
   </Column>
