@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const onRenderBody = ({ setHeadComponents }) => {
+export const onRenderBody = ({ setHeadComponents, setPostBodyComponents }) => {
   const script = `
   if(!window) window = {};
   window.idaPageIsSPA = true;
@@ -20,7 +20,7 @@ export const onRenderBody = ({ setHeadComponents }) => {
     },
   }`;
 
-  return setHeadComponents([
+  setHeadComponents([
     <meta key="image" name="image" content={'/ogimage.png'} />,
     <meta
       key="og:url"
@@ -68,9 +68,12 @@ export const onRenderBody = ({ setHeadComponents }) => {
       key="fathom"
       defer
     />,
+  ]);
+
+  setPostBodyComponents([
     <script key="digital-data" dangerouslySetInnerHTML={{ __html: script }} />,
     <script
-      async="async"
+      defer
       key="core-metrics"
       src="https://1.www.s81c.com/common/stats/ibm-common.js"
       type="text/javascript"
