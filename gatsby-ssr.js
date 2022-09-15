@@ -70,7 +70,7 @@ export const onRenderBody = ({ setHeadComponents }) => {
     />,
     <script key="digital-data" dangerouslySetInnerHTML={{ __html: script }} />,
     <script
-      defer
+      async="async"
       key="core-metrics"
       src="https://1.www.s81c.com/common/stats/ibm-common.js"
       type="text/javascript"
