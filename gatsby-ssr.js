@@ -11,7 +11,7 @@ export const onRenderBody = ({ setHeadComponents, setPostBodyComponents }) => {
       },
       pageInfo: {
         ibm: {
-          siteID: 'CARBON_DESIGN_SYSTEM_TEST',
+          siteID: 'CARBON_DESIGN_SYSTEM',
           country: 'US',
           industry: 'Design',
           owner: 'carbon@us.ibm.com',
@@ -73,7 +73,7 @@ export const onRenderBody = ({ setHeadComponents, setPostBodyComponents }) => {
   setPostBodyComponents([
     <script key="digital-data" dangerouslySetInnerHTML={{ __html: script }} />,
     <script
-      async="async"
+      defer
       key="core-metrics"
       src="https://1.www.s81c.com/common/stats/ibm-common.js"
       type="text/javascript"
