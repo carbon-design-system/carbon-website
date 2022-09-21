@@ -45,32 +45,15 @@ individual components.
 ### Default theme
 
 Carbon provides four themes as shown in the
-[color usage](/guidelines/color/usage) page. When `carbon-components` is
-downloaded and installed, the components are preset to use the default (White)
-theme.
+[color usage](/guidelines/color/usage) page. When `@carbon/react` is downloaded
+and installed, the components are preset to use the default (White) theme.
 
 To use the Gray 10, Gray 90, or Gray 100 theme as your default instead of White,
-set the `$theme` variable to one of the available theme maps (`$theme--g10`,
-`$theme--g90`, `$theme--g100`) and then include your normal components in your
-Sass build. These need to be imported before the main Carbon styles.
+configure the sass module usign `with`.
 
 ```scss
-@import '@carbon/themes/scss/themes';
-
-// Use the gray 10 theme
-$theme: $theme--g10;
-@include theme();
-
-// Use the gray 90 theme
-$theme: $theme--g90;
-@include theme();
-
-// Use the gray 100 theme
-$theme: $theme--g100;
-@include theme();
-
-// import Carbon styles here
-@import 'carbon-components/scss/globals/scss/styles.scss';
+@use '@carbon/react/scss/themes';
+@use '@carbon/react/scss/theme' with ($theme: themes.$g100);
 ```
 
 ## Customizing a theme
@@ -78,130 +61,20 @@ $theme: $theme--g100;
 The default theme acts as a starting point; from there designers and developers
 can define how their own components and styles deviate from the default.
 Altering one, some, or all of the default token values will result in a new
-theme. The developer then packages those new values into a new theme SCSS
-stylesheet which will replace the values of the default theme.
-
-<Title>
-  1. Create a theme mixin that effectively mimics this structure, but changes up
-  values as needed:
-</Title>
+theme. The developer configures these new values by configuring the sass module
+using `with` which can replace the values of the default theme or add new custom
+tokens as well.
 
 ```scss
-$theme--white: (
-  // Background
-  background: #ffffff,
-  background-active: #c6c6c6,
-  background-hover: #e5e5e5,
-  background-selected: #e0e0e0,
-  background-selected-hover: #cacaca,
-  background-inverse: #393939,
-  background-inverse-hover: #4c4c4c,
-  background-brand: #0f62fe,
-
-  // Layer
-  layer: #f4f4f4,
-  layer-active: #c6c6c6,
-  layer-hover: #e5e5e5,
-  layer-selected: #e0e0e0,
-  layer-selected-hover: #cacaca,
-  layer-selected-inverse: #161616,
-  layer-selected-disabled: #8d8d8d,
-  layer-accent: #e0e0e0,
-  layer-accent-active: #a8a8a8,
-  layer-accent-hover: #d1d1d1,
-  layer-disabled: #f4f4f4,
-
-  // Field
-  field: #f4f4f4,
-  field-hover: #e5e5e5,
-  field-disabled: #f4f4f4,
-
-  // Interactive
-  interactive: #0f62fe,
-
-  // Border
-  border-subtle: #e0e0e0,
-  border-subtle-selected: #c6c6c6,
-  border-strong: #8d8d8d,
-  border-inverse: #161616,
-  border-interactive: #0f62fe,
-  border-disabled: #f4f4f4,
-
-  // Text
-  text-primary: #161616,
-  text-secondary: #525252,
-  text-placeholder: #a8a8a8,
-  text-helper: #6f6f6f,
-  text-on-color: #ffffff,
-  text-inverse: #ffffff,
-  text-disabled: #c6c6c6,
-  text-on-color-disabled: #8d8d8d,
-
-  //Link
-  link-primary: #0f62fe,
-  link-primary-hover: #0043ce,
-  link-secondary: #0043ce,
-  link-visited: #8a3ffc,
-  link-inverse: #78a9ff,
-
-  //Icon
-  icon-primary: #161616,
-  icon-secondary: #525252,
-  icon-on-color: #ffffff,
-  icon-inverse: #ffffff,
-  icon-disabled: #c6c6c6,
-  icon-on-color-disabled: #8d8d8d,
-
-  // Support
-  support-error: #da1e28,
-  support-success: #198038,
-  support-warning: #f1c21b,
-  support-info: #0043ce,
-  support-error-inverse: #fa4d56,
-  support-success-inverse: #42be65,
-  support-warning-inverse: #f1c21b,
-  support-info-inverse: #4589ff,
-
-  // Misc.
-  overlay: rgba(22, 22, 22, 0.5),
-  toggle-off: #8d8d8d,
-
-  // Button
-  button-primary: #0f62fe,
-  button-primary-active: #002d9c,
-  button-primary-hover: #0353e9,
-  button-secondary: #393939,
-  button-secondary-active: #6f6f6f,
-  button-secondary-hover: #4c4c4c,
-  button-tertiary: #0f62fe,
-  button-tertiary-active: #002d9c,
-  button-tertiary-hover: #0353e9,
-  button-danger-primary: #da1e28,
-  button-danger-secondary: #da1e28,
-  button-danger-active: #750e13,
-  button-danger-hover: #b81921,
-  button-disabled: #c6c6c6,
-
-// Focus
-  focus-inset: #ffffff,
-  focus-inverse: #ffffff,
-
-// Skeleton
-  skeleton-background: #e5e5e5,
-  skeleton-element: #c6c6c6,
+@use '@carbon/react/scss/theme' with
+  (
+    $theme: (
+      background: #e2e2e2,
+      text-primary: #ffffff,
+      custom-token-01: #000000,
+    )
+  );
 ```
-
-<Title> 2. Name the mixin: </Title>
-
-i.e., `$my-theme`
-
-<Title> 3. Include this in your SCSS, before importing components, etc.:</Title>
-
-`@include my-theme();`
-
-Alternatively, for relatively minor changes to an existing theme, a developer
-can make changes on a per-token basis. For example, after importing an existing
-Carbon theme, she could just set something like `$interactive: hotpink;`.
 
 ## Tokens
 
