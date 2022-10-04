@@ -22,7 +22,7 @@ const Banner = () => {
         </span>
       </p>
       <Button
-        href="https://www.carbondesignsystem.com"
+        href="https://next.carbondesignsystem.com"
         className={buttonBanner}
         kind="ghost"
         renderIcon={ArrowRight}>
