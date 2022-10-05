@@ -18,7 +18,7 @@ const Banner = () => {
           A new web experience is coming!
         </strong>
         <span className={bannerDetails}>
-          The v1 Carbon platform v1 is now available in public beta.
+          The v1 Carbon platform is now available in public beta.
         </span>
       </p>
       <Button
