@@ -8,7 +8,7 @@ import {
   bannerHeading,
   bannerDetails,
   buttonBanner,
-} from './banner.module.scss';
+} from './Banner.module.scss';
 
 const Banner = () => {
   return (
