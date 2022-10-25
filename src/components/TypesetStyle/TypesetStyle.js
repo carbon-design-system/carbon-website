@@ -181,7 +181,7 @@ const typeScale = {
     sm: {
       step: 8,
       font: 'IBM Plex Sans',
-      'font-weight': '300',
+      'font-weight': '400',
       'font-size': 2,
       'line-height': 2.5,
       'letter-spacing': '0',
@@ -273,7 +273,7 @@ const typeScale = {
     xlg: {
       step: 8,
       font: 'IBM Plex Sans',
-      'font-weight': '300',
+      'font-weight': '400',
       'font-size': 2,
       'line-height': 2.5,
       'letter-spacing': '0',
@@ -281,7 +281,7 @@ const typeScale = {
     max: {
       step: 8,
       font: 'IBM Plex Sans',
-      'font-weight': '300',
+      'font-weight': '400',
       'font-size': 2,
       'line-height': 2.5,
       'letter-spacing': '0',
@@ -291,7 +291,7 @@ const typeScale = {
     sm: {
       step: 8,
       font: 'IBM Plex Sans',
-      'font-weight': '300',
+      'font-weight': '400',
       'font-size': 2,
       'line-height': 2.5,
       'letter-spacing': '0',
