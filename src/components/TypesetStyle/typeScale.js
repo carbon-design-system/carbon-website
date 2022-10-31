@@ -201,7 +201,7 @@ export default {
     sm: {
       step: 8,
       font: 'IBM Plex Sans',
-      'font-weight': '300',
+      'font-weight': '400',
       'font-size': 2,
       'line-height': 2.5,
       'letter-spacing': 0,
@@ -281,7 +281,7 @@ export default {
     xlg: {
       step: 8,
       font: 'IBM Plex Sans',
-      'font-weight': '300',
+      'font-weight': '400',
       'font-size': 2,
       'line-height': 2.5,
       'letter-spacing': 0,
@@ -290,7 +290,7 @@ export default {
     max: {
       step: 8,
       font: 'IBM Plex Sans',
-      'font-weight': '300',
+      'font-weight': '400',
       'font-size': 2,
       'line-height': 2.5,
       'letter-spacing': 0,
@@ -301,7 +301,7 @@ export default {
     sm: {
       step: 8,
       font: 'IBM Plex Sans',
-      'font-weight': '300',
+      'font-weight': '400',
       'font-size': 2,
       'line-height': 2.5,
       'letter-spacing': 0,
