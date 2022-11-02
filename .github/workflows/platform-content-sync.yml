@@ -7,9 +7,6 @@ on:
     paths:
       - '**.mdx'
 
-permissions:
-  issues: write
-
 jobs:
   if_merged:
     if: github.event.pull_request.merged == true
@@ -19,9 +16,15 @@ jobs:
         with:
           repository: carbon-design-system/carbon-platform
           ref: main
+      - name: Generate token
+        uses: tibdex/github-app-token@v1
+        id: generate_token
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.APP_PRIVATE_KEY }}
       - name: Create issue on platform repo
         run: |
           gh issue create --title "[Content sync]: carbon-website PR ${{ github.event.number }}" --label "role: dev 🤖" --label "service: web-app 🌎" --body 'The following pull request on carbon-website was just merged. It contains .mdx content changes that may need synced to platform.
           - https://www.github.com/carbon-design-system/carbon-website/pull/${{ github.event.number }}'
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
