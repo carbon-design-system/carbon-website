@@ -11,7 +11,7 @@ export const onRenderBody = ({ setHeadComponents, setPostBodyComponents }) => {
       },
       pageInfo: {
         ibm: {
-          siteID: 'CARBON_DESIGN_SYSTEM',
+          siteID: 'CARBON_DESIGN_SYSTEM_WWW',
           country: 'US',
           industry: 'Design',
           owner: 'carbon@us.ibm.com',
