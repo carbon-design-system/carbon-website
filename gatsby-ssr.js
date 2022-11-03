@@ -3,7 +3,7 @@ import React from 'react';
 export const onRenderBody = ({ setHeadComponents, setPostBodyComponents }) => {
   const script = `
   if(!window) window = {};
-  window.idaPageIsSPA = true;
+  window.idaPageIsSPA = false;
   window.digitalData = {
     page: {
       category: {
