@@ -40,7 +40,6 @@ const links = {
     },
     { href: 'https://www.ibm.com/privacy', linkText: 'Privacy' },
     { href: 'https://www.ibm.com/legal', linkText: 'Terms of use' },
-    { href: 'https://www.ibm.com/able', linkText: 'Accessibility' },
     { href: 'https://www.ibm.com/', linkText: 'IBM.com' },
   ],
   secondCol: [
