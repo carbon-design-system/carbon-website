@@ -19,128 +19,93 @@ import {
 
 <PageDescription>
 
-Design annotations are needed for specific instances shown below, but for the
-standard UI shell header component, Carbon already incorporates accessibility.
+The UI shell React Carbon component has been tested against the latest
+[W3C Web Content Accessibility Guidelines (WCAG) 2.1 Level A and AA success criteria](https://www.w3.org/TR/WCAG21/)
+and violations have been identified as high priority issues. This document will
+be updated when these accessibility issues are resolved.
 
 </PageDescription>
 
 <AnchorLinks>
-
-<AnchorLink>What Carbon provides</AnchorLink>
-<AnchorLink>Design recommendations</AnchorLink>
-<AnchorLink>Development considerations</AnchorLink>
-
+  <AnchorLink>Accessibility considerations</AnchorLink>
+  <AnchorLink>Resources</AnchorLink>
+  <AnchorLink>Accessibility testing</AnchorLink>
 </AnchorLinks>
 
-## What Carbon provides
+## Accessibility considerations
 
-The Carbon header bakes in keyboard interaction, including a
-skip-to-main-content mechanism. Carbon also supports assistive technologies such
-as screen readers by setting labeling and page structure.
+1. Accessible Carbon components should be used to create the content that
+   displays within the UI shell.
+2. Labels should be clear and concise.
+3. Titles should be unique and clearly describe the content on the page.
+4. Avoid very long menu option names to facilitate understandability and
+   perceivability.
+5. Do not use the same word or phrase at the beginning of a set of menu items.
+6. Use a unique `id` for each menu item.
 
-### Keyboard interaction
+## Resources
 
-Each element in the header can be reached by the `Tab` key. A "Skip to main
-content" link appears when a keyboard user first tabs into the page. Links and
-icons are activated by `Enter`. Icons can also be activated by `Space`.
+- [IBM Accessibility Requirements](https://www.ibm.com/able/requirements/requirements/):
+  - [1.3.1 Info and Relationships](https://www.ibm.com/able/requirements/requirements/#1_3_1)
+    (WCAG Success Criteria
+    [1.3.1](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships))
+  - [1.3.2 Meaningful Sequence](https://www.ibm.com/able/requirements/requirements/#1_3_2)
+    (WCAG Success Criteria
+    [1.3.2](https://www.w3.org/WAI/WCAG21/Understanding/meaningful-sequence))
+  - [2.1.1 Keyboard](https://www.ibm.com/able/requirements/requirements/#2_1_1)
+    (WCAG Success Criteria
+    [2.1.1](https://www.w3.org/WAI/WCAG21/Understanding/keyboard))
+  - [2.4.3 Focus Order](https://www.ibm.com/able/requirements/requirements/#2_4_3)
+    (WCAG Success Criteria
+    [2.4.3](https://www.w3.org/WAI/WCAG21/Understanding/focus-order))
+  - [2.4.6 Headings and Labels](https://www.ibm.com/able/requirements/requirements/#2_4_6)
+    (WCAG Success Criteria
+    [2.4.6](https://www.w3.org/WAI/WCAG21/Understanding/headings-and-labels))
+  - [2.4.7 Focus Visible](https://www.ibm.com/able/requirements/requirements/#2_4_7)
+    (WCAG Success Criteria
+    [2.4.7](https://www.w3.org/WAI/WCAG21/Understanding/focus-visible))
+  - [4.1.2 Name, Role, Value](https://www.ibm.com/able/requirements/requirements/#4_1_2)
+    (WCAG Success Criteria
+    [4.1.2](https://www.w3.org/TR/UNDERSTANDING-WCAG20/ensure-compat-rsv.html))
 
-<Row>
-<Column colLg={8}>
+## Accessibility testing
 
-![example of header keyboard interaction](images/header-accessibility-1.png)
+Automated, manual and screen reader accessibility verification test has been
+performed on the UI shell React Carbon component.
+[WCAG 2.1 Level A and AA success criteria](https://www.w3.org/TR/WCAG21/) issues
+have been identified and the list of open accessibility violations is available
+in the Carbon component GitHub repository.
 
-<Caption>
-  Pressing the Tab key reveals a 'Skip to main' link and then moves between
-  other header elements.
-</Caption>
-
-</Column>
-</Row>
-
-### Regions
-
-<Row>
-<Column colLg={8}>
-
-![example of header keyboard interaction](images/header-accessibility-2.png)
-
-<Caption>
-  Carbon applies a header region around the whole UI shell header.
-</Caption>
-
-</Column>
-</Row>
-
-### Labeling
-
-Carbon provides default names for each icon-only button in the header, and these
-names are revealed on hover or focus. Interactions for some header components
-are covered under other component topics such as
-[search](/components/search/usage),
-[notifications](/components/notifications/usage), and the
-[UI shell right panel switcher](components/UI-shell-right-panel/usage/#switcher).
+### Automated test
 
 <Row>
-<Column colLg={8}>
-
-![annotation showing search, help, notification and app switcher icons](images/header-accessibility-3.png)
-
-<Caption>
-  Carbon provides default names for its icon-only components and reveals them on
-  hover or focus.
-</Caption>
-
-</Column>
+  <Column noGutterSm>
+    <StructuredListWrapper>
+      <StructuredListHead>
+        <StructuredListRow head>
+          <StructuredListCell head>
+            Automated test environment
+          </StructuredListCell>
+          <StructuredListCell head>Results</StructuredListCell>
+        </StructuredListRow>
+      </StructuredListHead>
+      <StructuredListBody>
+        <StructuredListRow>
+          <StructuredListCell>
+            - macOS Mojave version 10.14.2 with VoiceOver
+            <br />
+            - Chrome version 77.0.3865.90
+            <br />
+            - Dynamic Assessment Plugin (DAP) version 1.8.0.0 - IBM
+            Accessibility WCAG 2.1 Sept. 2019 Ruleset
+            <br />- Carbon React version 7.7.1
+          </StructuredListCell>
+          <StructuredListCell>
+            <strong>DAP test:</strong>
+            <br />- No violations
+          </StructuredListCell>
+        </StructuredListRow>
+      </StructuredListBody>
+    </StructuredListWrapper>
+  </Column>
 </Row>
-
-## Design recommendations
-
-For every product, there should be a one-time design exercise to annotate the UI
-shell keyboard interaction. This is an important step to carry out, since header
-functionality and component names vary significantly between products, even
-though they appear similar until interacted with. Annotating expected behavior
-increases consistent implementation. Where the product does not deviate from the
-standard Carbon implementation, it can merely be annotated that the behaviour
-matches what is in the 'How Carbon works' section.
-
-<Row>
-<Column colLg={8}>
-
-![Annotated header region stating 'Header functionality, roles and names match Carbon defaults'](images/header-accessibility-4.png)
-
-<Caption>
-  Annotate the header, even if your design matches the default Carbon UI shell
-  header behavior.
-</Caption>
-
-</Column>
-</Row>
-
-Once a product-specific header annotation exists, individual product pages only
-need to annotate the header if something differs.
-
-Where the header deviates from the default Carbon behavior or labeling, it
-should be annotated. Such annotations could call out different labels for icons
-or indicate interaction changes such as keyboard navigation.
-
-<Row>
-<Column colLg={8}>
-
-![an annotation stating the search bar is persistently expanded](images/header-accessibility-5.png)
-
-<Caption>
-  Annotate if the design modifies the default keyboard or component interaction.
-</Caption>
-
-</Column>
-</Row>
-
-## Development considerations
-
-Keep these considerations in mind if you are modifying Carbon or creating a
-custom component.
-
-- Carbon uses the HTML 5 `header` component instead of an ARIA landmark to set
-  the region.
-- Carbon includes the "Skip to main content" link as the first item on the page
-  with a `tabindex="0"`, but hides it through CSS until it receives focus.

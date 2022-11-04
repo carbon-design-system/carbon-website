@@ -66,9 +66,4 @@ exports.createPages = ({ actions }) => {
     toPath: '/developing/vue-tutorial/overview',
     isPermanent: true,
   });
-  createRedirect({
-    fromPath: '/guidelines/typography/styling-strategies',
-    toPath: '/guidelines/typography/style-strategies', 
-    isPermanent: true,
-  });
 };

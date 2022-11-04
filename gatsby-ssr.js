@@ -1,9 +1,9 @@
 import React from 'react';
 
-export const onRenderBody = ({ setHeadComponents, setPostBodyComponents }) => {
+export const onRenderBody = ({ setHeadComponents }) => {
   const script = `
   if(!window) window = {};
-  window.idaPageIsSPA = false;
+  window.idaPageIsSPA = true;
   window.digitalData = {
     page: {
       category: {
@@ -11,7 +11,7 @@ export const onRenderBody = ({ setHeadComponents, setPostBodyComponents }) => {
       },
       pageInfo: {
         ibm: {
-          siteID: 'CARBON_DESIGN_SYSTEM_WWW',
+          siteID: 'CARBON_DESIGN_SYSTEM',
           country: 'US',
           industry: 'Design',
           owner: 'carbon@us.ibm.com',
@@ -20,7 +20,7 @@ export const onRenderBody = ({ setHeadComponents, setPostBodyComponents }) => {
     },
   }`;
 
-  setHeadComponents([
+  return setHeadComponents([
     <meta key="image" name="image" content={'/ogimage.png'} />,
     <meta
       key="og:url"
@@ -68,9 +68,6 @@ export const onRenderBody = ({ setHeadComponents, setPostBodyComponents }) => {
       key="fathom"
       defer
     />,
-  ]);
-
-  setPostBodyComponents([
     <script key="digital-data" dangerouslySetInnerHTML={{ __html: script }} />,
     <script
       defer
