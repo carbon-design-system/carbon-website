@@ -43,7 +43,7 @@ efforts for adjusting small values.
 
 ### When to use
 
-- Enabling the user to type a number in the field
+- The user needs to input a numeric value
 - Adjusting small values when increasing or decreasing them requires only a few
   clicks
 - When users may not know exact values and only want to change the values that
@@ -52,8 +52,8 @@ efforts for adjusting small values.
 ### When not to use
 
 - It is best practice not to use number input if large value changes are
-  expected. For examples, when the value sets from 1 to 30, number input is not
-  a great option. In this case, use
+  expected. For example, when the value sets from 1 to 30, number input is not a
+  great option because it requires many clicks to reach 30. In this case, use
   [slider](https://carbondesignsystem.com/components/slider/usage/) when numeric
   values are large or when there is a wide range of numeric options.
 - It is also best to avoid number input for continuous variables such as prices,
@@ -74,8 +74,7 @@ efforts for adjusting small values.
       id: 'mobile-number-input',
       label: 'Mobile',
     },
-  ]}
->
+  ]}>
   <ComponentVariant
     id="number-input"
     links={{
@@ -86,8 +85,7 @@ efforts for adjusting small values.
       Vue: 'http://vue.carbondesignsystem.com/?path=/story/components-cvnumberinput--default',
       'Web Components':
         'https://web-components.carbondesignsystem.com/?path=/story/components-number-input--default',
-    }}
-  >
+    }}>
     {`
     <NumberInput
       helperText="Optional helper text"
@@ -111,8 +109,7 @@ efforts for adjusting small values.
       Vue: 'http://vue.carbondesignsystem.com/?path=/story/components-cvnumberinput--default',
       'Web Components':
         'https://web-components.carbondesignsystem.com/?path=/story/components-number-input--default',
-    }}
-  >
+    }}>
     {`
         <NumberInput
           isMobile
@@ -143,15 +140,17 @@ efforts for adjusting small values.
 
 1. **Label**: Text that informs the user about the content they need to enter in
    the field. It is required unless you get an approved accessibility exemption.
-2. **Numeric value**: The value changes when users entered into the field.
-3. **Helper text** (optional, except for error and warning): Assistive text that
-   can provide additional aid or context to the user. Often used to explain the
-   correct data format.
+2. **Numeric value**: The value changes when user enters a value into the field
+   or uses the subtract or add controls.
+3. **Helper text**: Assistive text that can provide additional aid or context to
+   the user. Often used to explain the correct data format.
 4. **Field**: The container in which a user enters data.
 5. **Subtract icon**: This icon triggers decremental values.
 6. **Add icon**: This icon triggers incremental values.
 7. **Status icon**: Indicates the state of the number input, either error or
    warning.
+8. **Error or Warning text**: It replaces the helper text when an error or
+   warning state appears.
 
 ### Sizing
 
@@ -178,7 +177,7 @@ The width varies in sizes based on content, layout, and design.
 
 #### Label
 
-- Always include a label so that users know what to complete the field
+- Always include a label so that users know how to complete the field
 - Keep the label short and concise
 - Use sentence-style capitalization for the label
 
@@ -188,7 +187,7 @@ The width varies in sizes based on content, layout, and design.
 ![Do include a label](images/number-input-usage-4.png)
 
   </DoDont>
-  <DoDont type="dont" caption="Do not hide label that helps user understand the context of number input">
+  <DoDont type="dont" caption="Do not hide a label that helps user understand the context of number input">
 
 ![Do not hide label](images/number-input-usage-5.png)
 
@@ -197,10 +196,11 @@ The width varies in sizes based on content, layout, and design.
 
 #### Helper text
 
-- Indicate the input value if it has a maximum or minimum
-- Helper text is an optional, but required for warning and error states
+- Indicates the input value if it has a maximum or minimum
+- Helper text is optional but if present will be replaced by warning and error
+  messages when needed
 
-### Overflow content
+#### Overflow content
 
 Label, numeric value, and helper text should be short and not exceed two lines.
 
@@ -214,8 +214,8 @@ The number input has a series of states for both field and controls elements:
 | State       | When to use                                                                                                                                                                                                                                                         |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | _Enabled_   | When the number input is live but a user is not directly interacting with it. This is commonly referred to as the default or normal state of the component. An enabled number input field should contain a default value.                                           |
-| _Hover_     | When a user is hovering over the value in the number input field or the button controls.                                                                                                                                                                            |
-| _Focus_     | When a user presses `Tab` to or clicks on the number input, the field or controlls become focused, indicating the user has successfully navigated to the component.                                                                                                 |
+| _Hover_     | When a user's mouse cursor is hovering over the field or the button controls.                                                                                                                                                                                       |
+| _Focus_     | When a user tabs to or clicks on the number input, the field or controls become focused, indicating the user has successfully navigated to the component.                                                                                                           |
 | _Error_     | When the required number input has not been filled in. It can also be triggered due to a system error. This state requires a user response before data can be submitted or saved.                                                                                   |
 | _Warning_   | When you need to call the user's attention to an exception condition. The condition might not be an error but can cause problems if not resolved.                                                                                                                   |
 | _Disabled_  | When the user is not allowed to interact with the number input due to either permissions, dependencies, or pre-requisites. The disabled state completely removes the interactive function from a component. The styling is not subject to WCAG contrast compliance. |
