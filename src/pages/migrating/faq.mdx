@@ -159,15 +159,6 @@ we suggest including them like so:
 @use '@carbon/react/scss/components/[componentname]';
 ```
 
-| Carbon package   | What is included                                                                                |
-| ---------------- | ----------------------------------------------------------------------------------------------- |
-| `@carbon/react`  | React components, Carbon component sass and helper mixins, color themes, typeface, Carbon grids |
-| `@carbon/styles` | Carbon component sass and helper mixins                                                         |
-| `@carbon/grid`   | Carbon CSS and flex grids                                                                       |
-| `@carbon/themes` | white, g10, g90, g100 themes                                                                    |
-| `@carbon/colors` | design language color tokens                                                                    |
-| `@carbon/type`   | IBM Plex fonts                                                                                  |
-
 ### What if I want to use a specific theme?
 
 In v11 we introduced a component called `<GlobalTheme/>`. This component makes
@@ -225,36 +216,42 @@ Check out the full example we built
 ### I'm not familiar with sass. How do I learn more?
 
 Hey, we get it. Sass can be a little different if you've never worked with it,
-especially sass modules. We recommend reading thru some of the Sass
+especially sass modules. We recommend reading through some of the Sass
 documentation to learn more. A great place to start is
 [Sass Basics](https://sass-lang.com/guide). To learn more about sass modules
 specifically (introduced in v11), we recommend reading the docs for
 [`@use`](https://sass-lang.com/documentation/at-rules/use).
 
-### How do I know what to sass modules to include at the top of my files?
+### How do I know what sass modules to include at the top of my files?
 
 Some of our most used sass assets are included below, along with what you would
-need to import at the top of your file to use it. The `@use` example is
+need to have at the top of your file to use it. The `@use` example is
 specifically if you are using our `@carbon/react` package. If you are using our
 `@carbon/styles` the path would be the same, simply replace `react` with
 `styles`. Essentially, all we are doing is including the path where we would
 [find these styles](https://github.com/carbon-design-system/carbon/tree/main/packages/react/scss)
-in our package. We recommend including them using `as *` if you don't want to
-worry about prefixing the sass.
+in our package.
 
-| Carbon sass I'm using           | Sass modules to include                                  |
-| ------------------------------- | -------------------------------------------------------- |
-| Theme tokens                    | `@use '@carbon/react/scss/theme' as *`                   |
-| Theme mixins                    | `@use '@carbon/react/scss/themes' as *`                  |
-| Design language color tokens    | `@use '@carbon/react/scss/colors' as *`                  |
-| Spacing tokens                  | `@use '@carbon/react/scss/spacing' as *`                 |
-| Breakpoint mixins               | `@use '@carbon/react/scss/breakpoint' as *`              |
-| Motion tokens and functions     | `@use '@carbon/react/scss/motion' as *`                  |
-| Rem and other convert functions | `@use '@carbon/react/scss/utilities/convert' as *`       |
-| Z-index helper                  | `@use '@carbon/react/scss/utilities/z-index' as *`       |
-| Focus outline helper            | `@use '@carbon/react/scss/utilities/focus-outline' as *` |
-| Transform rotate helper         | `@use '@carbon/react/scss/utilities/rotate' as *`        |
-| Skeleton animation helper       | `@use '@carbon/react/scss/utilities/skeleton' as *`      |
+| Carbon sass I'm using           | Sass modules to include                             |
+| ------------------------------- | --------------------------------------------------- |
+| Theme tokens                    | `@use '@carbon/react/scss/theme'`                   |
+| Theme mixins                    | `@use '@carbon/react/scss/themes'`                  |
+| Design language color tokens    | `@use '@carbon/react/scss/colors'`                  |
+| Spacing tokens                  | `@use '@carbon/react/scss/spacing'`                 |
+| Breakpoint mixins               | `@use '@carbon/react/scss/breakpoint'`              |
+| Motion tokens and functions     | `@use '@carbon/react/scss/motion'`                  |
+| Rem and other convert functions | `@use '@carbon/react/scss/utilities/convert'`       |
+| Z-index helper                  | `@use '@carbon/react/scss/utilities/z-index'`       |
+| Focus outline helper            | `@use '@carbon/react/scss/utilities/focus-outline'` |
+| Transform rotate helper         | `@use '@carbon/react/scss/utilities/rotate'`        |
+| Skeleton animation helper       | `@use '@carbon/react/scss/utilities/skeleton'`      |
+
+### What is the "as \*" used at the end of some `@use` statements?
+
+This relates to the
+[default namespace that sass provides](https://sass-lang.com/documentation/at-rules/use#choosing-a-namespace)
+to all modules. You can change this namespace, but it's oftentimes more helpful
+to completely omit the namespace. `as *` accomplishes this.
 
 For example, if you were using a color token like `$layer`, your scss file could
 look something like this:
