@@ -44,6 +44,11 @@ exports.createPages = ({ actions }) => {
     toPath: '/community/component-index',
     isPermanent: true,
   });
+  createRedirect({
+    fromPath: '/community/contribute-a-component',
+    toPath: '/community/component-index',
+    isPermanent: true,
+  });
 
   // Developing
   createRedirect({
@@ -64,6 +69,11 @@ exports.createPages = ({ actions }) => {
   createRedirect({
     fromPath: '/tutorial/vue/overview',
     toPath: '/developing/vue-tutorial/overview',
+    isPermanent: true,
+  });
+  createRedirect({
+    fromPath: '/guidelines/typography/styling-strategies',
+    toPath: '/guidelines/typography/style-strategies',
     isPermanent: true,
   });
 };
