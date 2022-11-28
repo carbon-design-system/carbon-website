@@ -1,15 +1,12 @@
 name: Sync content with platform
 
 on:
-  pull_request:
-    types:
-      - closed
+  push:
     paths:
       - '**.mdx'
 
 jobs:
-  if_merged:
-    if: github.event.pull_request.merged == true
+  create_issue:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -24,7 +21,7 @@ jobs:
           private_key: ${{ secrets.APP_PRIVATE_KEY }}
       - name: Create issue on platform repo
         run: |
-          gh issue create --title "[Content sync]: carbon-website PR ${{ github.event.number }}" --label "role: dev 🤖" --label "service: web-app 🌎" --body 'The following pull request on carbon-website was just merged. It contains .mdx content changes that may need synced to platform.
-          - https://www.github.com/carbon-design-system/carbon-website/pull/${{ github.event.number }}'
+          gh issue create --title "[Content sync]: carbon-website ref ${{ github.event.ref }}" --label "role: dev 🤖" --label "service: web-app 🌎" --body 'A pull request on carbon-website was just merged. It contains .mdx content changes that may need to be synced to platform:
+          - ${{ github.event.compare }}'
         env:
           GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
