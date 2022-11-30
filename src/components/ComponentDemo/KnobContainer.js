@@ -79,8 +79,7 @@ const Component = ({
       <div
         role="group"
         aria-labelledby={componentGroupId}
-        className={componentKnobWrapper}
-      >
+        className={componentKnobWrapper}>
         {booleanKnobs.length > 0 && (
           <FormGroup className={formGroup} legendText="Modifiers">
             {booleanKnobs.map(([name, info]) => (
@@ -228,22 +227,21 @@ const Knob = ({
     }
 
     return (
-      <FormGroup className={formGroup} legendText={name}>
-        <RadioButtonGroup
-          onChange={(val) => updateKnob(val)}
-          defaultSelected={defaultSelected}
-          name={name}
-          orientation="vertical"
-        >
-          {values.map(({ value }) => (
-            <RadioButton
-              key={`${inputId}-${value}`}
-              value={value}
-              labelText={value.replace(/'/g, '')}
-            />
-          ))}
-        </RadioButtonGroup>
-      </FormGroup>
+      <RadioButtonGroup
+        className={formGroup}
+        legendText={name}
+        onChange={(val) => updateKnob(val)}
+        defaultSelected={defaultSelected}
+        name={name}
+        orientation="vertical">
+        {values.map(({ value }) => (
+          <RadioButton
+            key={`${inputId}-${value}`}
+            value={value}
+            labelText={value.replace(/'/g, '')}
+          />
+        ))}
+      </RadioButtonGroup>
     );
   }
   return '';
@@ -291,15 +289,13 @@ const KnobContainer = ({ knobs, code, setCode, initialCode, variantId }) => {
     <Form
       className={cx(knobContainer, {
         [knobContainerCollapsed]: isMobile && isKnobContainerCollapsed,
-      })}
-    >
+      })}>
       {isMobile && (
         <div className={iconButtonRow}>
           <button
             className={iconButton}
             type="button"
-            onClick={() => setIsKnobContainerCollapsed(true)}
-          >
+            onClick={() => setIsKnobContainerCollapsed(true)}>
             <Close size={20} />
           </button>
         </div>
