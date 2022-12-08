@@ -43,29 +43,37 @@ Modal dialogs take focus on appearance, and the tab order is constrained to the 
 <Row>
 <Column colLg={8}>
 
-![example of modal dialog keyboard interaction](images/modal-accessibility-1.png)
+![illustration showing tab ring constrained within a modal with two buttons](images/modal-accessibility-1.png)
 
 <Caption>
-  Links are reached by Tab key and activated by Space and Enter keys.
+  Keyboard navigation is constrained to the dialog. Tab cycles through the components that take focus.
 </Caption>
 
 </Column>
 </Row>
 
-### Contrast
+<Row>
+<Column colLg={8}>
 
-Carbon’s modal dialog text color meets the minimum contrast requirement of 4.5:1 with
-its background. Carbon also uses a modal dialog color that contrast 3:1 against body
-text, so that modal dialog text is distinguishable even without an underline.
+![Esc closes a modal, while Space and Enter keys activate buttons](images/modal-accessibility-2.png)
+
+<Caption>
+  The dialog is resolved by the user pressing Esc or activating a button.
+</Caption>
+
+</Column>
+</Row>
+
+When the dialog appears, the first item that gets focus depends on the type of dialog. Passive dialogs only contain a close button (X), so that takes focus. For dialogs which prompt for confirmation or user decision, the primary button takes focus. For destructive interactions, the “cancel” button takes focus, not the red danger/delete button. 
+The tab order should proceed left and down from whichever item has focus before wrapping back to the Close button (X).
 
 <Row>
 <Column colLg={8}>
 
-![a blue modal dialog contrasts 4.5:1 against the white background and 3:1 against the black body text ](images/modal-accessibility-2.png)
+![initial focus in the dialog varies across four types of modals](images/modal-accessibility-3.png)
 
 <Caption>
-  modal dialog text has sufficient contrast with both its background and surrounding
-  body text.
+  The first item with focus varies depending on dialog type.
 </Caption>
 
 </Column>
@@ -73,13 +81,8 @@ text, so that modal dialog text is distinguishable even without an underline.
 
 ## Design recommendations
 
-### Ensure modal dialog context
-
-If your design uses generic modal dialog names such as “read more,” consider making them
-unique. Otherwise, annotate a connection with other text in the design that
-provides context. This will allow developers to implement in a way that
-increases accessibility. See the Equal Access Toolkit
-[modal dialog text topic](https://www.ibm.com/able/toolkit/design/content/#modal-text).
+### Designate the first input to take focus in a transactional
+The only time the starting focus would not be on a button is where a dialog contains input fields. For such transactional dialogs, designers should annotate that the first input field should receive focus. Note that text links are not considered a user input in this context.
 
 <Row>
 <Column colLg={8}>
