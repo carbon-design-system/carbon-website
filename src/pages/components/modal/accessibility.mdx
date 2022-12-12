@@ -66,8 +66,8 @@ Modal dialogs take focus on appearance, and the tab order is constrained to the 
 
 ### Focus handling
 
-When the dialog appears, the first item that gets focus depends on the type of dialog. Passive dialogs only contain a close button (X), so that takes focus. For dialogs which prompt for confirmation or user decision, the primary button takes focus. For destructive interactions, the “cancel” button takes focus, not the red danger/delete button. 
-The tab order should proceed left and down from whichever item has focus before wrapping back to the Close button (X).
+When the dialog appears, the first item that gets focus depends on the type of dialog. Passive dialogs only contain a close button (X), so that takes focus. For dialogs which prompt for confirmation or user decision, the primary button takes focus (regardless of number of buttons). For destructive interactions, the “cancel” button takes focus, not the red danger/delete button. 
+The tab order should proceed left and down from whichever item has focus then wrap back to the Close button (X).
 
 <Row>
 <Column colLg={8}>
@@ -86,17 +86,19 @@ The tab order should proceed left and down from whichever item has focus before 
 ### Designate the input that takes focus in a transactional
 The only time the starting focus would not be on a button is where a dialog contains input fields. For such transactional dialogs, designers should annotate that the first input field should receive focus. Note that text links are not considered a user input in this context.
 
-<Row>
-<Column colLg={8}>
+<DoDontRow>
+  <DoDont type="do" caption="Annotate the starting input that should take focus on a transactional dialog.">
 
-![the annotation indicates the input that takes focus](images/modal-accessibility-3.png)
+![annotation on input says 'focus lands here when modal opens'](images/modal-accessibility-4-do.png)
+  </DoDont>
 
-<Caption>
-  Annotate the starting input that should take focus on a transactional dialog
-</Caption>
+  <DoDont type="dont" caption="Do not give a link focus when a modal opens.">
 
-</Column>
-</Row>
+![annotation on link says 'focus lands here when modal opens'](images/modal-accessibility-4-dont.png)
+
+  </DoDont>
+</DoDontRow>
+
 
 ## Development considerations
 
