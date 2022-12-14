@@ -38,7 +38,9 @@ other accessibility considerations, some of which are described below.
 
 ### Keyboard interactions
 
-Modal dialogs take focus on appearance, and the tab order is constrained to the modal’s controls until the modal is closed by choosing one of the buttons with `Enter` or `Space`, or is dismissed by pressing `Esc`.
+Modal dialogs take focus on appearance, and the tab order is constrained to the
+modal’s controls until the modal is closed by choosing one of the buttons with
+`Enter` or `Space`, or is dismissed by pressing `Esc`.
 
 <Row>
 <Column colLg={8}>
@@ -46,7 +48,8 @@ Modal dialogs take focus on appearance, and the tab order is constrained to the 
 ![illustration showing tab ring constrained within a modal with two buttons](images/modal-accessibility-1.png)
 
 <Caption>
-  Keyboard navigation is constrained to the dialog. Tab cycles through the components that take focus.
+  Keyboard navigation is constrained to the dialog. Tab cycles through the
+  components that take focus.
 </Caption>
 
 </Column>
@@ -66,17 +69,20 @@ Modal dialogs take focus on appearance, and the tab order is constrained to the 
 
 ### Focus handling
 
-When the dialog appears, the first item that gets focus depends on the type of dialog. Passive dialogs only contain a close button (X), so that takes focus. For dialogs which prompt for confirmation or user decision, the primary button takes focus (regardless of number of buttons). For destructive interactions, the “cancel” button takes focus, not the red danger/delete button. 
-The tab order should proceed left and down from whichever item has focus then wrap back to the Close button (X).
+When the dialog appears, the first item that gets focus depends on the type of
+dialog. Passive dialogs only contain a close button (X), so that takes focus.
+For dialogs which prompt for confirmation or user decision, the primary button
+takes focus (regardless of number of buttons). For destructive interactions, the
+“cancel” button takes focus, not the red danger/delete button. The tab order
+should proceed left and down from whichever item has focus then wrap back to the
+Close button (X).
 
 <Row>
 <Column colLg={8}>
 
 ![initial focus in the dialog varies across four types of modals](images/modal-accessibility-3.png)
 
-<Caption>
-  The first item with focus varies depending on dialog type.
-</Caption>
+<Caption>The first item with focus varies depending on dialog type.</Caption>
 
 </Column>
 </Row>
@@ -84,12 +90,17 @@ The tab order should proceed left and down from whichever item has focus then wr
 ## Design recommendations
 
 ### Designate the input that takes focus in a transactional
-The only time the starting focus would not be on a button is where a dialog contains input fields. For such transactional dialogs, designers should annotate that the first input field should receive focus. Note that text links are not considered a user input in this context.
+
+The only time the starting focus would not be on a button is where a dialog
+contains input fields. For such transactional dialogs, designers should annotate
+that the first input field should receive focus. Note that text links are not
+considered a user input in this context.
 
 <DoDontRow>
   <DoDont type="do" caption="Annotate the starting input that should take focus on a transactional dialog.">
 
 ![annotation on input says 'focus lands here when modal opens'](images/modal-accessibility-4-do.png)
+
   </DoDont>
 
   <DoDont type="dont" caption="Do not give a link focus when a modal opens.">
@@ -99,12 +110,16 @@ The only time the starting focus would not be on a button is where a dialog cont
   </DoDont>
 </DoDontRow>
 
-
 ## Development considerations
 
 Keep these considerations in mind if you are modifying Carbon or creating a
 custom component.
 
-- Carbon assigns the container a role of "dialog" and sets `aria-modal` to `"true"`.
-- The dialog is labelled via `aria-label`, using the same string used for the modal’s title; `aria-labelledby` could also be used to assign the title’s string.
-- See the modal pattern in the [ARIA authoring practices](https://w3c.github.io/aria-practices/#dialog_modal) for more considerations.
+- Carbon assigns the container a role of "dialog" and sets `aria-modal` to
+  `"true"`.
+- The dialog is labelled via `aria-label`, using the same string used for the
+  modal’s title; `aria-labelledby` could also be used to assign the title’s
+  string.
+- See the modal pattern in the
+  [ARIA authoring practices](https://w3c.github.io/aria-practices/#dialog_modal)
+  for more considerations.
