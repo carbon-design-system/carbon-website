@@ -8,8 +8,7 @@ tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 
 <PageDescription>
 
-The select component allows users to choose one option from a list. It is used
-in forms for users to submit data.
+Select allows users to choose one option from a list of values.
 
 </PageDescription>
 
@@ -18,29 +17,72 @@ in forms for users to submit data.
 <AnchorLink>Overview</AnchorLink>
 <AnchorLink>Live demo</AnchorLink>
 <AnchorLink>Variants</AnchorLink>
-<AnchorLink>Best practices</AnchorLink>
-<AnchorLink>Accessibility</AnchorLink>
+<AnchorLink>Formatting</AnchorLink>
+<AnchorLink>Content</AnchorLink>
+<AnchorLink>Behaviors</AnchorLink>
 <AnchorLink>Feedback</AnchorLink>
 
 </AnchorLinks>
 
 ## Overview
 
-Select is a type of input that is used in forms, where a user is submitting data
-and chooses one option from a list.
+The select component collects user-provided information from a list of options.
+Selects are usually used in forms where a user submits data and chooses one
+option from a list.
 
-### Select versus Dropdown
+<Row>
+<Column colLg={8}>
 
-While the select and dropdown components look similar, they have different
-functions.
+![Select component](images/select-usage-1.png)
+
+</Column>
+</Row>
+
+#### When to use
 
 - Use the select component inside a form where users are selecting from a list
   of options and submitting data.
-- Use the dropdown component to filter or sort content on a page.
+
+- When the experience is mostly form-based.
+
+#### When not to use
+
+It is best practice not to use a select if there are fewer than three options
+for selection. In this case, use a
+[radio button](https://carbondesignsystem.com/components/radio-button/usage/)
+group instead.
+
+#### Select versus Dropdown
+
+While the select and
+[dropdown](https://carbondesignsystem.com/components/dropdown/usage/) components
+look similar, they have different functions.
+
+- A select presents a list of options from which the users can select only one
+  item from that list. It works best in forms when users choose an option from
+  the select list and submit data. It works best in forms when users choose an
+  option from the select list and submit data.
+
+- A dropdown presents a list of options that users can select one or several
+  options from that list. Dropdown options are used for taking an action,
+  filtering, or sorting existing content.
 
 Another important difference between the two components is the underlying code.
-The select component's appearance will be determined by the browser being used,
+The select component’s appearance will be determined by the browser being used,
 while the dropdown component can be styled as needed.
+
+<Row>
+<Column colLg={12}>
+
+![Dropdown versus Select](images/select-usage-2.png)
+
+<Caption>
+  Example of a dropdown list of actional options versus a select list of options
+  for data submission.
+</Caption>
+
+</Column>
+</Row>
 
 ## Live demo
 
@@ -112,23 +154,19 @@ while the dropdown component can be styled as needed.
 
 ## Variants
 
-| Variant         | Purpose                                                                                                                               |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| _Default_       | Typically used in forms with a variety of other components.                                                                           |
-| _Small select_  | When vertical space is a concern, or select is being paired with a larger component like [data tables](/components/data-table/usage). |
-| _Inline select_ | When multiple selects are grouped together.                                                                                           |
+| Variant         | Purpose                                                     |
+| --------------- | ----------------------------------------------------------- |
+| _Default_       | Typically used in forms with a variety of other components. |
+| _Inline select_ | Used when there are multiple select fields within a form.   |
 
-#### Small select
+#### Default select
 
-Small selects are commonly used in [data tables](/components/data-table/usage).
-When using a small select for a number selection, the increments in the select
-should be 10, 25, 50 and 100. The maximum amount of items a user can see per
-page is 100.
+Default selects are used in forms with other components.
 
 <Row>
 <Column colLg={8}>
 
-![Example of a small select](images/select-usage-3.png)
+![Example of a default select](images/select-usage-3.png)
 
 </Column>
 </Row>
@@ -141,59 +179,186 @@ Inline selects have less visual weight on a page because they are borderless.
 <Row>
 <Column colLg={8}>
 
-![Example of a small select](images/select-usage-4.png)
+![Example of a inline select](images/select-usage-4.png)
 
 </Column>
 </Row>
 
-## Best practices
+## Formatting
 
-### Labels
-
-Labels are essential to the usability of forms. Do not place a label inside a
-_select_ element. Use sentence case and no more than three words.
-
-### Validation
-
-Real-time validation helps to streamline the process and keep data clean when
-the user is filling out forms. For full guidelines, refer to the
-[forms](/components/form/usage) usage page.
+### Anatomy
 
 <Row>
 <Column colLg={8}>
 
-![Select invalid state](images/select-usage-1.gif)
+![Select anatomy image](images/select-usage-5.png)
 
 </Column>
 </Row>
 
-### Order
+1. **Labels:** Text that informs the user what to expect in the list of dropdown
+   options.
+2. **Default option:** Usually a frequent option that users would choose from a
+   select list.
+3. **Helper text** (optional, except for error and warning): Assistive text to
+   help the user choose the right selection.
+4. **Field:** Persists when the dropdown is open or closed.
+5. **Option:** A choice for the user, shown with other choices in a menu.
+6. **Menu:** A list of options to choose from, displayed as an open state.
+7. **Status icon:** Indicates the state of the select, either error or warning.
+8. **Error or Warning text**: It replaces the helper text when an error or
+   warning state appears.
+
+### Sizing
+
+Select has three sizes for both variants: **small**, **medium**, and **large**.
+The width varies in size based on content, layout, and design.
+
+| Size        | Height (px/rem) | Use case                                                                                                                                        |
+| ----------- | --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| Small (sm)  | 32 / 2          | Use when space is constricted or when placing a select in a form that is long and complex.                                                      |
+| Medium (md) | 40 / 2.5        | This is the default size and the most commonly used size. When in doubt, use the medium size.                                                   |
+| Large (lg)  | 48 / 3          | Use when there is a lot of space to work with. The large size is typically used in simple forms or when a select is placed by itself on a page. |
+
+<Row>
+<Column colLg={12}>
+
+![Select default sizes](images/select-usage-6.png)
+
+</Column>
+</Row>
+
+## Content
+
+### Main elements
+
+#### Label
+
+- Labels inform users what to expect in the list of select options.
+- Keep the label short and concise by limiting it to a single line of text.
+
+#### Helper text
+
+- Helper text is pertinent information that assists the user in choosing the
+  right selection from the select menu.
+- Helper text is optional but replaced with warning or error text when these
+  states appear.
+
+#### Order
 
 The order of the select list should be based on the frequency of use. If
-applicable, the list should be in increasing order relative to the content. In
-cases of forms, alternative orders such as alphabetical may be more fitting. A
-horizontal rule can be used to group similar items together.
+applicable, the list should be in alphabetical order or in increasing order
+relative to the content.
 
-## Accessibility
+<Row>
+<Column colLg={8}>
 
-### Styling select dropdowns
+![Select order](images/select-usage-8.png)
 
-To maximize accessibility, it is strongly recommended not to style select
-dropdowns. One of the
-[WCAG 2.0 standards](https://www.w3.org/TR/WCAG20-TECHS/G202.html) for
-accessibility is “ensuring keyboard control for all functionality”. CSS
-alternatives to select elements do not meet this requirement.
+</Column>
+</Row>
 
-While you can make a select element easily usable by a mouse, making it usable
-with keyboard navigation is complex. The default select element should follow
-this process:
+#### Overflow content
 
-| State    | Mouse                                    | Keyboard                                            |
-| -------- | ---------------------------------------- | --------------------------------------------------- |
-| _:hover_ | move your cursor over the select element | use the tab key to focus the select element         |
-| _:focus_ | click on the select element              | press enter                                         |
-| _:_      | move your cursor over the desired option | use the top and bottom arrow keys to pick an option |
-| :select  | click on the desired option              | press enter                                         |
+Avoid having multiple lines of text per item in a select menu. The menu items
+should be no longer than three words.
+
+## Behaviors
+
+### States
+
+The select has multiple interactive states for both default and inline variants:
+**enabled**, **hover**, **focus**, **open**, **error**, **warning**, and
+**disabled**.
+
+| State       | When to use                                                                                                                                                                                                                                                  |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| _Enabled_   | When the select is live and a user is not directly interacting with it. This is commonly referred to as the default or normal state of the component. An enabled select field should contain a default value.                                                |
+| _Hover_     | When a user's mouse cursor is hovering over the field.                                                                                                                                                                                                       |
+| _Focus_     | When a user tabs to or clicks on the select field, the field becomes focused, indicating the user has successfully navigated to the component.                                                                                                               |
+| _Error_     | When the required select value has not been selected. It can also be triggered due to a system error. This state requires a user response before data can be submitted or saved.                                                                             |
+| _Warning_   | When you need to call the user's attention to an exception condition. The condition might not be an error but can cause problems if not resolved.                                                                                                            |
+| _Disabled_  | When the user is not allowed to interact with the select due to either permissions, dependencies, or prerequisites. The disabled state completely removes the interactive function from a component. The styling is not subject to WCAG contrast compliance. |
+| _Skeleton_  | Used on an initial page load to indicate that the select has not yet fully loaded.                                                                                                                                                                           |
+| _Read-only_ | _Coming soon!_                                                                                                                                                                                                                                               |
+
+<Row>
+<Column colLg={12}>
+
+![Select interactive states](images/select-usage-9.png)
+
+</Column>
+</Row>
+
+### Interactions
+
+#### Mouse
+
+Users trigger a dropdown menu to open by clicking the chevron icon or clicking
+anywhere within the field. Users can close the menu by clicking the chevron icon
+or clicking outside of the menu. To select an option, the user can click
+anywhere inside an option container.
+
+<Row>
+<Column colLg={8}>
+
+![Select mouse interaction](images/select-usage-10.png)
+
+</Column>
+</Row>
+
+#### Keyboard
+
+- The dropdown field is the element that receives focus. All keyboard
+  interactions happen from this element.
+- Users can open the dropdown menu by pressing `Space`, `Enter`, the
+  `Down arrow`, or the `Up arrow`.
+- Users can move the highlighted option to the next option by pressing the
+  `Down arrow`.
+- Users can move the highlighted option to the previous option by pressing the
+  `Up arrow`.
+- Users can close the dropdown menu by pressing `Escape`, `Space`, or `Enter`.
+
+<Row>
+<Column colLg={8}>
+
+![Select keyboard interaction](images/select-usage-11.png)
+
+</Column>
+</Row>
+
+### Validation
+
+#### Invalid
+
+Real-time validation helps to streamline the process of filling out a form. The
+error state is triggered if the data is invalid or a required field is left
+empty. The error state has three visual indicators to signify invalid content: a
+red border, an error icon indicator, and an error message.
+
+<Row>
+<Column colLg={8}>
+
+![Select invalid state](images/select-usage-12.png)
+
+</Column>
+</Row>
+
+#### Default selection
+
+By default, the selected option is usually the first item in alphabetical order.
+The default selection could also be a call-to-action that asks users to select
+an option from the menu.
+
+## Related
+
+- If there are fewer than three options to choose from, use a
+  [radio button](https://carbondesignsystem.com/components/radio-button/usage/)
+  group instead.
+- If multi-select is necessary, use
+  [dropdown](https://carbondesignsystem.com/components/dropdown/usage/) instead.
+  Dropdown options are used to take an action, navigating outside of the current
+  context, filtering or sorting existing content.
 
 ## Feedback
 
