@@ -5,6 +5,16 @@ description:
   Carbon.
 ---
 
+<AnchorLinks>
+
+<AnchorLink>General</AnchorLink>
+<AnchorLink>Sass and package management</AnchorLink>
+<AnchorLink>Additional resources</AnchorLink>
+
+</AnchorLinks>
+
+## General
+
 ### What are the benefits of Carbon v11 for me as a designer?
 
 - Token names have been updated for easier application. Names are more logical
@@ -123,3 +133,190 @@ description:
 
 _We'll have more on this once we have interviewed teams that have successfully
 migrated to v11._
+
+## Sass and package management
+
+### What packages should I be installing?
+
+If you're using our React components, `@carbon/react` will have everything you
+need to use along with it: component styles, icons, grid, theming and type. This
+package essentially includes all our most used code assets in Carbon. If you've
+installed this package, you should not have to install our styles, grid, theme,
+icons or type packages.
+
+In order to use our styles with this package, all you need to include is the
+following in your `index.scss`:
+
+```scss
+@use '@carbon/react';
+```
+
+We understand that this can be a bit bulky, and sometimes you don't want all of
+the styles that come with that. To include styles for something more specific,
+we suggest including them like so:
+
+```scss
+@use '@carbon/react/scss/components/[componentname]';
+```
+
+### What if I want to use a specific theme?
+
+In v11 we introduced a component called `<GlobalTheme/>`. This component makes
+it really easy to change the default theme by using it as a wrapper in your app,
+and passing in a `theme` prop value of `white`, `g10`, `g90`, or `g100`.
+
+### What if I want to do zoned theming or toggle themes?
+
+We recommend using our `<Theme/>` component to include zoned themes. A great
+example of zoned theming using this component lives in our
+[tutorial](https://github.com/carbon-design-system/carbon-tutorial/blob/v11-react-step-5/src/App.js),
+where we themed the header differently than the application theme. If you are
+wanting to toggle themes, for a light and dark mode, we built an
+[example](https://github.com/carbon-design-system/carbon/tree/main/examples/light-dark-mode)
+for you using our `GlobalTheme` component.
+
+### What if I want to use a custom theme?
+
+If you are creating a custom theme or overriding theme tokens, you would do that
+like so:
+
+```scss
+@use '@carbon/react/scss/themes' as *;
+
+//overriding theme tokens and adding a custom token
+@use '@carbon/react/scss/theme' with
+  (
+    $theme: (
+      // add a completely new token
+      custom-token: #bada44,
+      // redefine existing tokens to new values
+      text-error: rebeccapurple,
+      focus: pink,
+    )
+  );
+
+// override a component token
+@use '@carbon/react/scss/components/button/tokens' as button-tokens with
+  ($button-primary: #3f51b5);
+@use '@carbon/react';
+
+:root {
+  @include theme.theme();
+}
+
+// You can access a custom variable via the theme.get() mixin
+.custom-token {
+  background: rgba(theme.get('custom-token'), 0.95);
+}
+```
+
+Check out the full example we built
+[here](https://github.com/carbon-design-system/carbon/tree/main/examples/custom-theme).
+
+### I'm not familiar with sass. How do I learn more?
+
+Hey, we get it. Sass can be a little different if you've never worked with it,
+especially sass modules. We recommend reading through some of the Sass
+documentation to learn more. A great place to start is
+[Sass Basics](https://sass-lang.com/guide). To learn more about sass modules
+specifically (introduced in v11), we recommend reading the docs for
+[`@use`](https://sass-lang.com/documentation/at-rules/use).
+
+### How do I know what sass modules to include at the top of my files?
+
+Some of our most used sass assets are included below, along with what you would
+need to have at the top of your file to use it. The `@use` example is
+specifically if you are using our `@carbon/react` package. If you are using our
+`@carbon/styles` the path would be the same, simply replace `react` with
+`styles`. Essentially, all we are doing is including the path where we would
+[find these styles](https://github.com/carbon-design-system/carbon/tree/main/packages/react/scss)
+in our package.
+
+| Carbon sass I'm using           | Sass modules to include                             |
+| ------------------------------- | --------------------------------------------------- |
+| Theme tokens                    | `@use '@carbon/react/scss/theme'`                   |
+| Theme mixins                    | `@use '@carbon/react/scss/themes'`                  |
+| Design language color tokens    | `@use '@carbon/react/scss/colors'`                  |
+| Spacing tokens                  | `@use '@carbon/react/scss/spacing'`                 |
+| Breakpoint mixins               | `@use '@carbon/react/scss/breakpoint'`              |
+| Motion tokens and functions     | `@use '@carbon/react/scss/motion'`                  |
+| Rem and other convert functions | `@use '@carbon/react/scss/utilities/convert'`       |
+| Z-index helper                  | `@use '@carbon/react/scss/utilities/z-index'`       |
+| Focus outline helper            | `@use '@carbon/react/scss/utilities/focus-outline'` |
+| Transform rotate helper         | `@use '@carbon/react/scss/utilities/rotate'`        |
+| Skeleton animation helper       | `@use '@carbon/react/scss/utilities/skeleton'`      |
+
+### What is the "as \*" used at the end of some `@use` statements?
+
+This relates to the
+[default namespace that sass provides](https://sass-lang.com/documentation/at-rules/use#choosing-a-namespace)
+to all modules. You can change this namespace, but it's oftentimes more helpful
+to completely omit the namespace. `as *` accomplishes this.
+
+For example, if you were using a color token like `$layer`, your scss file could
+look something like this:
+
+```scss
+@use '@carbon/react/scss/theme' as *;
+
+.some-class {
+  background: $layer;
+}
+```
+
+If you don't include `as *`, then it would look like this:
+
+```scss
+@use '@carbon/react/scss/theme';
+
+.some-class {
+  background: theme.$layer;
+}
+```
+
+Where the token is prefixed by the name of the sass file (in this case `theme`).
+
+## Additional resources
+
+<Row className="resource-card-group">
+  <Column colLg={4} colMd={4} noGutterSm>
+    <ResourceCard
+      subTitle="Custom theme example"
+      href="https://github.com/carbon-design-system/carbon/tree/main/examples/custom-theme"
+    >
+      <MdxIcon name="github" />
+    </ResourceCard>
+  </Column>
+  <Column colLg={4} colMd={4} noGutterSm>
+    <ResourceCard
+      subTitle="Light and dark mode example"
+      href="https://github.com/carbon-design-system/carbon/tree/main/examples/light-dark-mode"
+    >
+      <MdxIcon name="github" />
+    </ResourceCard>
+  </Column>
+  <Column colLg={4} colMd={4} noGutterSm>
+    <ResourceCard
+      subTitle="Zoned theming example"
+      href="https://github.com/carbon-design-system/carbon-tutorial/blob/v11-react-step-5/src/App.js"
+    >
+      <MdxIcon name="github" />
+    </ResourceCard>
+  </Column>
+  <Column colLg={4} colMd={4} noGutterSm>
+    <ResourceCard
+      subTitle="Sass basics"
+      href="https://github.com/carbon-design-system/carbon/blob/main/docs/migration/v11.md#design-tokens"
+    >
+      <MdxIcon name="github" />
+    </ResourceCard>
+  </Column>
+  <Column colLg={4} colMd={4} noGutterSm>
+    <ResourceCard
+      subTitle="v10 packages deprecation strategy"
+      href="https://github.com/carbon-design-system/carbon/discussions/12179"
+    >
+      <MdxIcon name="github" />
+    </ResourceCard>
+  </Column>
+</Row>
