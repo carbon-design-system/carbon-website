@@ -1,110 +1,103 @@
 ---
 title: Tooltip
 description:
-  Tooltips provide additional information upon hover or focus. The information
-  should be contextual, useful, and nonessential information.
+  Tooltips display additional information upon hover or focus. The information
+  should be contextual, useful, and nonessential.
 tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 ---
 
-import {
-  StructuredListWrapper,
-  StructuredListHead,
-  StructuredListBody,
-  StructuredListRow,
-  StructuredListInput,
-  StructuredListCell,
-  OrderedList,
-  ListItem,
-} from '@carbon/react';
-
 <PageDescription>
 
-The tooltip React Carbon component has been tested against the latest
-[W3C Web Content Accessibility Guidelines (WCAG) 2.1 Level A and AA success criteria](https://www.w3.org/TR/WCAG21/)
-and violations have been identified as high priority issues. This document will
-be updated when these accessibility issues are resolved.
+Carbon’s tooltips appear accessibly on both hover and focus. Designers need only
+annotate the tooltip’s text content.
 
 </PageDescription>
 
 <AnchorLinks>
-  <AnchorLink>Accessibility considerations</AnchorLink>
-  <AnchorLink>Resources</AnchorLink>
-  <AnchorLink>Accessibility testing</AnchorLink>
+  <AnchorLink>What Carbon provides</AnchorLink>
+  <AnchorLink>Design recommendations</AnchorLink>
+  <AnchorLink>Development considerations</AnchorLink>
 </AnchorLinks>
 
-## Accessibility considerations
+## What Carbon provides
 
-1. After the tooltip opens, initial focus should be set on the first focusable
-   element in the tooltip. See WAI-ARIA Authoring Practices
-   [Modal Dialog Example, Accessibility Features section](https://www.w3.org/TR/wai-aria-practices-1.1/examples/dialog-modal/dialog.html)
-   for best practices on setting focus. Note: This does not apply to the tooltip
-   icon or tooltip definition components.
-2. After the tooltip closes, focus should retain the user's point of regard and
-   return to the element that invoked it. Note: This does not apply to the
-   tooltip icon or tooltip definition components where focus never leaves the
-   element that invokes it.
-3. The tooltip component's focus must not move outside the modal until it is
-   closed. Note: This does not apply to the tooltip icon or tooltip definition
-   components, as noted above, focus never leaves the element that invokes it.
-4. The tooltip component has the same accessibility considerations as outlined
-   in the
-   [modal component documentation](https://pages.github.ibm.com/IBMa/Carbon_Integration/Doc/Modal-doc.html).
+No annotations are needed for keyboard operation, since Carbon bakes in the
+interaction.
 
-## Resources
+### Keyboard interactions
 
-- [W3C WAI-ARIA Authoring Practices Tooltip Design Pattern](https://www.w3.org/TR/wai-aria-practices-1.1/#tooltip)
-  covers the usage of ARIA names, state and roles, as well as the expected
-  keyboard interactions.
-- [ARIA1: Using the aria-describedby property to provide a descriptive label for user interface controls](https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA1)
-- [IBM Accessibility Requirements](https://www.ibm.com/able/requirements/requirements/):
-  - [1.3.1 Info and Relationships](https://www.ibm.com/able/requirements/requirements/#1_3_1)
-    (WCAG Success Criteria
-    [1.3.1](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships))
-  - [1.4.13 Content on Hover or Focus](https://www.ibm.com/able/requirements/requirements/#1_4_13)
-    (WCAG Success Criteria
-    [1.4.13](https://www.w3.org/WAI/WCAG21/Understanding/content-on-hover-or-focus.html))
-  - [3.3.2 Labels or Instructions](https://www.ibm.com/able/requirements/requirements/#3_3_2)
-    (WCAG Success Criteria
-    [3.3.2](https://www.w3.org/WAI/WCAG21/Understanding/labels-or-instructions))
+The primary use of tooltips is to display the text labels of icon-only buttons.
+Since each button is in the page’s tab order, the tooltip appears automatically
+when the button receives focus. Tooltips disappear when the user moves focus
+away from the button. The tips can also be dismissed by pressing `Esc`. The
+tooltips themselves only contain text and are not interactive, so do not have
+any other keyboard operations.
 
-## Accessibility testing
+The definition tooltip provides information about a term or text phrase. The
+text that serves as the trigger has a dotted underline. When the trigger
+receives focus, the definition tooltip is displayed. Like the button tooltip,
+the definition can be dismissed by pressing Esc or by navigating away from the
+trigger.
 
-Automated, manual and screen reader accessibility verification test has been
-performed on the tooltip React Carbon component.
-[WCAG 2.1 Level A and AA success criteria](https://www.w3.org/TR/WCAG21/) issues
-have been identified and the list of open accessibility violations is available
-in the Carbon Component GitHub repository.
-
-### Automated test
+Note: icon-only buttons retain their regular interaction. (They can be activated
+by pointer click or by pressing Enter or Space.) A definition tooltip is unusual
+in that its trigger only exists to take focus or hover, and is not otherwise
+interactive (it can’t be clicked or acted upon).
 
 <Row>
-  <Column noGutterSm>
-    <StructuredListWrapper>
-      <StructuredListHead>
-        <StructuredListRow head>
-          <StructuredListCell head>
-            Automated test environment
-          </StructuredListCell>
-          <StructuredListCell head>Results</StructuredListCell>
-        </StructuredListRow>
-      </StructuredListHead>
-      <StructuredListBody>
-        <StructuredListRow>
-          <StructuredListCell>
-            - macOS Mojave version 10.14.2 with VoiceOver
-            <br />
-            - Chrome version 77.0.3865.90
-            <br />
-            - Dynamic Assessment Plugin (DAP) version 1.8.0.0 - IBM
-            Accessibility WCAG 2.1 Sept. 2019 Ruleset
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>DAP test:</strong>
-            <br />- No violations
-          </StructuredListCell>
-        </StructuredListRow>
-      </StructuredListBody>
-    </StructuredListWrapper>
-  </Column>
+<Column colLg={8}>
+
+![tooltips appear on focus and disappear by pressing Esc or tabbing away from the trigger](images/tooltip-accessibility-1.png)
+
+<Caption>
+  Tooltips appear when the trigger receives focus and disappear when tabbing
+  away from the trigger.
+</Caption>
+
+</Column>
 </Row>
+
+<Row>
+<Column colLg={8}>
+
+![Esc dismisses a tooltip](images/tooltip-accessibility-2.png)
+
+<Caption>
+  Both definition and icon-button tooltips can be dismissed by pressing Esc.
+</Caption>
+
+</Column>
+</Row>
+
+## Design recommendations
+
+### Annotate the text for the tooltip
+
+Except for icon buttons with clearly pre-established names or functions (such as
+Bold and Italics), every tooltip should be annotated by the designer so the
+developer knows what text to use. See
+[Usage](https://carbondesignsystem.com/components/tooltip/usage) for information
+on the length and styling of tooltip content, whether for icon-buttons or for
+definitions.
+
+<Row>
+<Column colLg={8}>
+
+![annotation shows the text of the tooltip](images/tooltip-accessibility-3.png)
+
+<Caption>Specify the text that will appear in the tooltip.</Caption>
+
+</Column>
+</Row>
+
+## Development considerations
+
+Keep these considerations in mind if you are modifying Carbon or creating a
+custom component.
+
+- The span containing the tooltip has a role of `tooltip` with
+  `aria-hidden="true"`.
+- the trigger uses `aria-labelledby` to announce the tooltip text.
+- See the tooltip pattern in the
+  [ARIA authoring practices](https://w3c.github.io/aria-practices/#tooltip) for
+  more considerations.
