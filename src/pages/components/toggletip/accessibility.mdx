@@ -25,7 +25,10 @@ No annotations are needed for keyboard operation, since Carbon bakes in the inte
 
 ### Keyboard interactions
 
-Toggletips use an information icon button for the trigger. When these buttons have focus, pressing `Enter` or `Space` toggles the toggletip open and closed (while focus remains on the trigger). If the toggletip contains interactive elements, pressing `Tab` will move the focus from the trigger into the components in an open toggletip. The toggletip can be closed by pressing `Esc` (which puts focus back on the trigger) or by moving focus away from the toggletip and its trigger.
+Toggletips use an information icon button for the trigger. These buttons are in the tab order and are activated by pressing `Enter` or `Space`. The activation toggles the tip open and closed. Focus remains on the trigger.
+
+Where the toggletip contains interactive elements, pressing `Tab` will move the focus into the first of the components in the toggletip. Where the toggletip contains only non-interactive text, or where the focus is on the last component in the toggletip, pressing `Tab` will close the toggletip and move focus to the next tab stop on the page.
+Pressing `Esc` also closes an open toggletip and, if the focus is inside the tip, returns focus to the trigger.
 
 <Row>
 <Column colLg={8}>
@@ -51,28 +54,10 @@ Toggletips use an information icon button for the trigger. When these buttons ha
 </Column>
 </Row>
 
-## Design recommendations
-
-### Annotate the text for the toggletip
-
-Every toggletip should be annotated by the designer so the developer knows what content it has. See [Usage](https://carbondesignsystem.com/components/toggletip/usage) for information on the length and styling of toggletip content.
-
-<Row>
-<Column colLg={8}>
-
-![annotation shows the text of the toggletip](images/toggletip-accessibility-3.png)
-
-<Caption>
-  Specify the content that will appear in the toggletip.
-</Caption>
-
-</Column>
-</Row>
-
 ## Development considerations
 
 Keep these considerations in mind if you are modifying Carbon or creating a
 custom component.
 
-- Button trigger uses `aria-expanded` to set toggletip visibility and `aria-controls` to handle navigation to the content.
-- See the toggletip pattern in the [ARIA authoring practices](https://w3c.github.io/aria-practices/#toggletip) for more considerations.
+- The information icon button has `aria-label="Show information"`.
+- The button uses `aria-expanded` to set toggletip visibility and `aria-controls` to handle navigation to the content.
