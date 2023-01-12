@@ -8,7 +8,7 @@ tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 
 <PageDescription>
 
-Carbon’s tooltips appear accessibly on both hover and focus. Designers need only
+Carbon’s tooltips are accessible on hover and focus. Designers only need to
 annotate the tooltip’s text content.
 
 </PageDescription>
@@ -31,25 +31,22 @@ interaction.
 The primary use of tooltips is to display the text labels of icon-only buttons.
 Since each button is in the page’s tab order, the tooltip appears automatically
 when the button receives focus. Tooltips disappear when the user moves focus
-away from the button. The tips can also be dismissed by pressing `Esc`. The
-tooltips themselves only contain text and are not interactive, so do not have
-any other keyboard operations.
+away from the button or by pressing `Esc`. The tooltips contain only text and
+are not interactive, so they do not have any other keyboard operations.
 
 The definition tooltip provides information about a term or text phrase. The
 text that serves as the trigger has a dotted underline. When the trigger
 receives focus, the definition tooltip is displayed. Like the button tooltip,
-the definition can be dismissed by pressing Esc or by navigating away from the
-trigger.
-
-Note: icon-only buttons retain their regular interaction. (They can be activated
-by pointer click or by pressing Enter or Space.) A definition tooltip is unusual
-in that its trigger only exists to take focus or hover, and is not otherwise
-interactive (it can’t be clicked or acted upon).
+the definition can be dismissed by pressing `Esc` or navigating away from the
+trigger. Icon-only buttons retain their regular interaction. Icon-only buttons
+maintain their normal interaction and can be activated by clicking or pressing
+`Enter` or `Space`. A definition tooltip trigger only exists to take focus or
+hover and is otherwise not interactive.
 
 <Row>
 <Column colLg={8}>
 
-![tooltips appear on focus and disappear by pressing Esc or tabbing away from the trigger](images/tooltip-accessibility-1.png)
+![Tooltips appear on focus and disappear by pressing Esc or tabbing away from the trigger](images/tooltip-accessibility-tab-1.png)
 
 <Caption>
 
@@ -64,10 +61,11 @@ from the trigger.
 <Row>
 <Column colLg={8}>
 
-![Esc dismisses a tooltip](images/tooltip-accessibility-2.png)
+![Esc dismisses a tooltip](images/tooltip-accessibility-tab-2.png)
 
 <Caption>
-  Both definition and icon-button tooltips can be dismissed by pressing Esc.
+  Both definition and icon-only button tooltips can be dismissed by pressing
+  Esc.
 </Caption>
 
 </Column>
@@ -77,25 +75,25 @@ from the trigger.
 
 ### Annotate the text for the tooltip
 
-If designers do not specify the text, tooltips are less likely to be implemented
-by developers. Every icon-only button needs a tooltip, except for icons with
-clearly established names or functions (such as Bold and Italics). Designers can
-provide the text by using a tooltip in their designs or simply
-[annotating the icon-only button](https://carbondesignsystem-2xrdev89e-carbon-design-system.vercel.app/components/button/accessibility#labeling).
+If designers do not specify the text, developers are less likely to implement
+tooltips. Every icon-only button needs a tooltip, except for icons with clearly
+established names or functions (such as Bold and Italics). Designers can provide
+the text by using a tooltip in their designs or simply annotating the
+[icon-only button](https://carbondesignsystem.com/components/button/accessibility#labeling).
 For definition tooltips, see the
-[Usage](https://carbondesignsystem.com/components/tooltip/usage) page for
-information on the length and styling for tooltip content.
+[usage guidance](https://carbondesignsystem.com/components/tooltip/usage) for
+information on the length and styling of tooltip content.
 
 <DoDontRow>
-  <DoDont type="do" caption="Specify the text that will appear in the tooltip.">
+  <DoDont type="do" caption=" Do specify the text that will appear in the tooltip.">
 
-![icons have tooltips 'search' and 'switch sites'](images/tooltip-accessibility-3-do.png)
+![the search icon-only button has a 'search' tooltip](images/tooltip-accessibility-tab-3-do.png)
 
   </DoDont>
 
   <DoDont type="dont" caption="Do not use icon-only buttons with no tooltip or name annotated.">
 
-![icon buttons in the top navigation do not have tooltips or annotations](images/tooltip-accessibility-3-dont.png)
+![the icon-only button in the navigation does not have a tooltip or annotation](images/tooltip-accessibility-tab-3-dont.png)
 
   </DoDont>
 </DoDontRow>
@@ -107,7 +105,7 @@ custom component.
 
 - The span containing the tooltip has a role of `tooltip` with
   `aria-hidden="true"`.
-- the trigger uses `aria-labelledby` to announce the tooltip text.
+- The trigger uses `aria-labelledby` to announce the tooltip text.
 - See the tooltip pattern in the
   [ARIA authoring practices](https://w3c.github.io/aria-practices/#tooltip) for
   more considerations.
