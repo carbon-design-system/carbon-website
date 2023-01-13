@@ -17,9 +17,9 @@ export const statusLight = [
   {
     name: 'Orange 60 (outline)',
     hex: 'ba4e00',
-    light: false,
+    light: true,
   },
-  { name: 'Blue 70', hex: '0043ce', light: true },
+ 
   {
     name: 'Yellow 30',
     hex: 'f1c21b',
@@ -28,8 +28,9 @@ export const statusLight = [
   {
     name: 'Yellow 60 (outline)',
     hex: '8e6a00',
-    light: false,
+    light: true,
   },
+  { name: 'Blue 70', hex: '0043ce', light: true },
   { name: 'Purple 60', hex: '8a3ffc', light: true },
   {
     name: 'Gray 60',
