@@ -46,8 +46,8 @@ export const statusDark = [
     light: false,
   },
   {
-    name: 'Green 50',
-    hex: '24a148',
+    name: 'Green 40',
+    hex: '42be65',
     light: false,
   },
   {
