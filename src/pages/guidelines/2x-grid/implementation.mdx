@@ -15,8 +15,8 @@ with five default breakpoints and dozens of predefined classes.
 
 <InlineNotification>
 
-If you’re using `@carbon/styles` or `@carbon/react` there’s no reason to install
-the grid package separately. See our [get started](/get-started/develop/react)
+If you're using `@carbon/react`, you probably don't need need to install the
+grid package separately. See our [Carbon React](/developing/frameworks/react/)
 guide to start building.
 
 </InlineNotification>
@@ -30,6 +30,7 @@ guide to start building.
 <AnchorLink>Incorporating the shell</AnchorLink>
 <AnchorLink>Alignments</AnchorLink>
 <AnchorLink>Techniques</AnchorLink>
+<AnchorLink>API & Helpers</AnchorLink>
 <AnchorLink>Resources</AnchorLink>
 
 </AnchorLinks>
@@ -1343,6 +1344,39 @@ Image size can change ratios when the breakpoint changes.
   </DoDont>
 </DoDontRow>
 
+## API & Helpers
+
+There are many ways to make the 2x Grid work for your application using our API.
+The example below illustrates removing visibility of a given component based on
+the maximum width of the `md` breakpoint.
+
+```css
+.component {
+  display: inline;
+
+  /* applies styles inside mixin on md breakpoint or below, like max-width */
+  @include carbon--breakpoint-down('md') {
+    display: none;
+  }
+}
+```
+
+In addition, you can also use Helpers to control what is being displayed on the
+screen at a given breakpoint.
+
+```css
+@use '@carbon/styles/scss/utilities/helper-classes';
+
+.my-class {
+  @include helper-classes.hide-at-sm();
+}
+```
+
+Checkout the [resources](#resources) section for links to
+[the helpers on storybook](https://react.carbondesignsystem.com/?path=/story/helpers-hideatbreakpoint--hide-at-breakpoint)
+and the full
+[API list on Github](https://github.com/carbon-design-system/carbon/blob/main/packages/grid/docs/sass.md#api).
+
 ## Resources
 
 <Row className="resource-card-group">
@@ -1373,6 +1407,26 @@ Image size can change ratios when the breakpoint changes.
     >
 
 <MdxIcon name="bee" />
+
+  </ResourceCard>
+  </Column>
+  <Column colMd={4} colLg={4} noGutterSm>
+    <ResourceCard
+      subTitle="Carbon grid docs API"
+      href="https://github.com/carbon-design-system/carbon/blob/main/packages/grid/docs/sass.md#api"
+    >
+
+<MdxIcon name="github" />
+
+  </ResourceCard>
+  </Column>
+  <Column colMd={4} colLg={4} noGutterSm>
+    <ResourceCard
+      subTitle="Hide at Breakpoint Helpers on Storybook"
+      href="https://react.carbondesignsystem.com/?path=/story/helpers-hideatbreakpoint--hide-at-breakpoint"
+    >
+
+<MdxIcon name="storybook" />
 
   </ResourceCard>
   </Column>
