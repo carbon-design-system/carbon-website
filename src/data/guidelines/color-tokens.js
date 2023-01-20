@@ -242,19 +242,19 @@ const colorTokens = {
       value: {
         white: {
           name: 'Gray 10 hover',
-          hex: '#e5e5e5',
+          hex: '#e8e8e8',
         },
         g10: {
           name: 'Gray 10 hover',
-          hex: '#e5e5e5',
+          hex: '#e8e8e8',
         },
         g90: {
           name: 'Gray 80 hover',
-          hex: '#4c4c4c',
+          hex: '#474747',
         },
         g100: {
           name: 'Gray 90 hover',
-          hex: '#353535',
+          hex: '#333333',
         },
       },
     },
@@ -263,19 +263,19 @@ const colorTokens = {
       value: {
         white: {
           name: 'Gray 10 hover',
-          hex: '#e5e5e5',
+          hex: '#e8e8e8',
         },
         g10: {
           name: 'Gray 10 hover',
-          hex: '#e5e5e5',
+          hex: '#e8e8e8',
         },
         g90: {
           name: 'Gray 70 hover',
-          hex: '#656565',
+          hex: '#636363',
         },
         g100: {
           name: 'Gray 80 hover',
-          hex: '#4c4c4c',
+          hex: '#474747',
         },
       },
     },
@@ -284,11 +284,11 @@ const colorTokens = {
       value: {
         white: {
           name: 'Gray 10 hover',
-          hex: '#e5e5e5',
+          hex: '#e8e8e8',
         },
         g10: {
           name: 'Gray 10 hover',
-          hex: '#e5e5e5',
+          hex: '#e8e8e8',
         },
         g90: {
           name: 'Gray 60 hover',
@@ -296,7 +296,7 @@ const colorTokens = {
         },
         g100: {
           name: 'Gray 70 hover',
-          hex: '#656565',
+          hex: '#636363',
         },
       },
     },
@@ -792,19 +792,19 @@ const colorTokens = {
       value: {
         white: {
           name: 'Gray 10 hover',
-          hex: '#e5e5e5',
+          hex: '#e8e8e8',
         },
         g10: {
           name: 'Gray 10 hover',
-          hex: '#e5e5e5',
+          hex: '#e8e8e8',
         },
         g90: {
           name: 'Gray 80 hover',
-          hex: '#4c4c4c',
+          hex: '#474747',
         },
         g100: {
           name: 'Gray 90 hover',
-          hex: '#353535',
+          hex: '#333333',
         },
       },
     },
@@ -813,11 +813,11 @@ const colorTokens = {
       value: {
         white: {
           name: 'Gray 10 hover',
-          hex: '#e5e5e5',
+          hex: '#e8e8e8',
         },
         g10: {
           name: 'Gray 10 hover',
-          hex: '#e5e5e5',
+          hex: '#e8e8e8',
         },
         g90: {
           name: 'Gray 70 hover',
@@ -834,11 +834,11 @@ const colorTokens = {
       value: {
         white: {
           name: 'Gray 10 hover',
-          hex: '#e5e5e5',
+          hex: '#e8e8e8',
         },
         g10: {
           name: 'Gray 10 hover',
-          hex: '#e5e5e5',
+          hex: '#e8e8e8',
         },
         g90: {
           name: 'Gray 60 hover',
