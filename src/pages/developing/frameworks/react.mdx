@@ -59,29 +59,10 @@ behavior in prototype and production work.
 
 ## Install
 
-<InlineNotification>
-
-**`@carbon/react` is new for v11.** It houses all the components, styles, and
-icons within a single package. It replaces the need for `carbon-components`,
-`carbon-components-react`, `carbon-icons`, and `@carbon/icons-react` packages.
-
-It also includes the bulk of everything you should need from other Carbon
-packages including `@carbon/styles`, `@carbon/grid`, `@carbon/layout`,
-`@carbon/themes`, `@carbon/type`, etc.
-
-We recommend starting with `@carbon/react` and not installing other Carbon
-packages until you find it necessary.
-
-Full details are available in the [migration guide](/migrating/guide/develop)
-and the
-[v11 changelog](https://github.com/carbon-design-system/carbon/blob/main/docs/migration/v11.md).
-
-</InlineNotification>
-
 <Title> Using npm: </Title>
 
 ```bash
-npm install @carbon/react --save
+npm install --save @carbon/react
 ```
 
 <Title>
@@ -95,63 +76,20 @@ yarn add @carbon/react
 ## Getting started
 
 1.  These components require the use of
-    [webpack](https://webpack.js.org/guides/getting-started/), or a similar
-    module bundler such as Vite, in your project.
+    [webpack](https://webpack.js.org/guides/getting-started/) in your project.
+    See our
+    [webpack.config.js](https://github.com/carbon-design-system/carbon/blob/v10/packages/react/.storybook/webpack.config.js)
+    for an example configuration.
 
-2.  Components do not import any of the styles themselves. Styles are provided
-    through `@carbon/react` as
-    [Sass modules](https://sass-lang.com/blog/the-module-system-is-launched).
-    You will likely need to install the
-    [Dart Sass](https://npmjs.com/package/sass) package.
+2.  Components do not import any of the styles themselves, use the SCSS or CSS
+    from `carbon-components` to bring in styling. You can also use the `unpkg`
+    CDN to bring in the styles wholesale -
+    `unpkg.com/carbon-components/css/carbon-components.css` aliases the latest
+    CSS file.
 
-```bash
-npm install sass --save-dev
-
-// or via yarn:
-yarn add sass --dev
-```
-
-3.  Once `sass` is added and configured, `@use` the SCSS to bring in styling
-    within an `index.scss`.
-
-```scss path=./index.scss
-@use '@carbon/react';
-```
-
-4. In most cases you'll need to import this file within the root file of your
-   app
-
-```jsx path=./main.jsx
-import './index.scss';
-
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
-```
-
-4. Import components and begin building!
-
-```jsx path=./App.jsx
-import { Button } from '@carbon/react';
-import React from 'react';
-
-function App() {
-  return (
-    <div>
-      <Button>Hello world</Button>
-    </div>
-  );
-}
-
-export default App;
-```
+3.  For older browsers (e.g. IE11), polyfills listed in the
+    [@carbon/react/.storybook/polyfills.js file](https://github.com/carbon-design-system/carbon/blob/main/packages/react/.storybook/polyfills.js)
+    are required.
 
 ## Development
 
@@ -181,12 +119,13 @@ yarn storybook
 ### List of available components
 
 View available React Components [here](http://react.carbondesignsystem.com).
-Usage information is available when you select "Docs".
+Usage information is available when you click the blue "Show Info" button in the
+top right corner of the selected component.
 
 ## Troubleshooting
 
-If you experience any issues while getting set up with `@carbon/react`, please
-head over to the
+If you experience any issues while getting set up with Carbon Components React,
+please head over to the
 [GitHub repo](https://github.com/carbon-design-system/carbon/tree/v10/packages/react)
 for more guidelines and support. Please
 [create an issue](https://github.com/carbon-design-system/carbon/issues) if your

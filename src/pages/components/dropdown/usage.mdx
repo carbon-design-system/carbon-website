@@ -47,13 +47,13 @@ functionality—dropdown, multiselect, and combo box.
 | [Multiselect](#multiselect) | Allows the user to select multiple options from a list and filter.                       |
 | [Combo box](#combo-box)     | Allows the user to make a selection from a list of suggested, likely, or desired values. |
 
-#### When to use
+### When to use
 
 - Dropdowns can be used in forms on full pages, in modals, or on side panels.
   The dropdown component is used to filter or sort contents on a page. It is a
   stylized version of the select component, and can be styled as needed.
 
-#### When not to use
+### When not to use
 
 - It is best practice not to use a dropdown if there are two options to choose
   from. In this case, use a
@@ -62,10 +62,10 @@ functionality—dropdown, multiselect, and combo box.
 - Do not nest dropdowns or use them to display overly complex information. Keep
   option selections as straight forward as possible.
 - Consider using a
-  [select dropdown](https://www.carbondesignsystem.com/components/select/usage)
-  if most of your experience is form-based or frequently used on mobile
-  platforms. The native select works more easily with a native form when
-  submitting data and is also easier to use on a mobile platform.
+  [select](https://www.carbondesignsystem.com/components/select/usage) if most
+  of your experience is form-based or frequently used on mobile platforms. The
+  native select works more easily with a native form when submitting data and is
+  also easier to use on a mobile platform
 
 ## Live demo
 
@@ -210,7 +210,21 @@ selection.
 <Row>
 <Column colLg={8}>
 
+<Tabs>
+
+<Tab label="Fixed">
+
 ![Dropdown anatomy](images/dropdown-usage-1.png)
+
+</Tab>
+
+<Tab label="Fluid">
+
+![Dropdown anatomy](images/dropdown-usage-1-fluid.png)
+
+</Tab>
+
+</Tabs>
 
 </Column>
 </Row>
@@ -222,39 +236,74 @@ selection.
 4. **Option:** A choice for the user, shown with other choices in a menu.
 5. **Menu:** A list of options to choose from, displayed as an open state. from.
 
-### Sizing
+### Styling
 
-#### Height
+There are two styles of dropdown inputs, fixed and fluid. They share the same
+functionality but look visually different, influencing where to use them.
 
-There are three dropdown height sizes: small, medium, and large. Use a
-consistent dropdown height when it is being used alongside other form components
-on the same page. Supporting three different dropdown sizes gives you more
-flexibility when structuring layouts. When in doubt, use the default medium size
-height.
+| Style | Appearance                                                                                                               | Use case                                                                                                                                         |
+| ----- | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Fixed | A traditional style where the label is positioned outside and above the input field.                                     | Use when white space is needed between input components or in productive moments where space is at a premium, and smaller components are needed. |
+| Fluid | An alternative style where the label is placed inside of the input field and is stacked inline with the user input text. | Use in expressive moments, fluid forms, contained spaces, or attached to complex components, like a toolbar.                                     |
 
 <Row>
 <Column colLg={8}>
 
-![Dropdown sizes](images/dropdown-usage-2.png)
+![Fixed and fluid dropdown styles](images/dropdown-usage-formatting-1.png)
 
 </Column>
 </Row>
 
-| Dropdown size | Height (px/rem) | Use case                                                                                                                                                                           |
-| ------------- | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Small (sm)    | 32 / 2          | Use when space is constricted or when placing a dropdown in a form that is long and complex.                                                                                       |
-| Medium (md)   | 40 / 2.5        | This is our default size and should be used whenever possible.                                                                                                                     |
-| Large (lg)    | 48 / 3          | Choose this size when there is a lot of space to work with. This size is typically used in simple forms or when a dropdown is placed by itself on a page, for example as a filter. |
+### Sizing
+
+#### Fixed input heights
+
+There are three fixed dropdown height sizes: small, medium, and large.
+Supporting three different dropdown sizes gives you more flexibility when
+structuring layouts. However, use a consistent size for all form components on
+the same page. For example, if you are using a medium size dropdown also use the
+same size text inputs, buttons, and so on. When in doubt, use the default medium
+size height.
+
+| Fixed size  | Height (px/rem) | Use case                                                                                                                                                                           |
+| ----------- | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Small (sm)  | 32 / 2          | Use when space is constricted or when placing a dropdown in a form that is long and complex.                                                                                       |
+| Medium (md) | 40 / 2.5        | This is the default size and the most commonly used size. When in doubt, use the medium size.                                                                                      |
+| Large (lg)  | 48 / 3          | Choose this size when there is a lot of space to work with. This size is typically used in simple forms or when a dropdown is placed by itself on a page, for example as a filter. |
+
+<Row>
+<Column colLg={8}>
+
+![Dropdown sizes in the fixed style](images/dropdown-usage-2.png)
+
+</Column>
+</Row>
 
 When the menu is open, each option in the menu should be the same height as the
-field. Use a consistent size of form components on the same page. For example,
-if you are using a medium size dropdown also use the same size text inputs,
-buttons, and so on.
+field.
 
 <Row>
 <Column colLg={8}>
 
 ![Dropdown field and option size relationship](images/dropdown-usage-3.png)
+
+</Column>
+</Row>
+
+#### Fluid inputs heights
+
+In the fluid dropdown, there is only one input height but there are two menu
+item sizes–default and condensed.
+
+| Fluid size | Height (px/rem) | Use case                                                                              |
+| ---------- | --------------- | ------------------------------------------------------------------------------------- |
+| Default    | 64 / 4          | Use when there are fewer menu options in expressive moments.                          |
+| Condensed  | 40 / 2.5        | Use when there are many menu options so more can be viewed at once without scrolling. |
+
+<Row>
+<Column colLg={12}>
+
+![Dropdown sizes in the fluid style](images/dropdown-usage-3-fluid.png)
 
 </Column>
 </Row>
@@ -266,18 +315,32 @@ appropriately for its context.
 
 ### Placement
 
-Field containers should vertically align to the grid and with other form
-components on a page.
+Field containers should vertically align with other form components on a page.
+Whether it aligns flush to grid columns or hangs in the gutters depends on the
+style of dropdown you are using.
 
 <DoDontRow>
-  <DoDont type="do" caption="Do align field containers to the grid.">
+  <DoDont caption="Do align fixed dropdown containers flush to the grid so the input label aligns with other type on the page.">
 
-![Do align field containers to the grid.](images/dropdown-usage-4-do.png)
+![Do align fixed input dropdowns to the grid so the input label aligns with other type on the page.](images/dropdown-usage-4-do.png)
 
   </DoDont>
-  <DoDont type="dont" caption="Do not align field input text to the grid and hang the container.">
+  <DoDont type="dont" caption="Don't hang fixed dropdowns into the grid gutters.">
 
-![Do not align field input text to the grid and hang the container.](images/dropdown-usage-4-dont.png)
+![Don't hang fixed dropdowns into the grid gutters.](images/dropdown-usage-4-dont.png)
+
+  </DoDont>
+</DoDontRow>
+
+<DoDontRow>
+  <DoDont caption="Do place fluid components flush to on another with no spacing between them.">
+
+![Do place fluid components flush to on another with no spacing between them.](images/dropdown-usage-4-do-fluid.png)
+
+  </DoDont>
+  <DoDont type="dont" caption="Do not use fluid components with vertical or horizontal spacing between them.">
+
+![Do not use fluid components with vertical or horizontal spacing between them.](images/dropdown-usage-4-dont-fluid.png)
 
   </DoDont>
 </DoDontRow>
@@ -362,10 +425,11 @@ dropdowns open downward.
 
 ### Elevation
 
-Carbon has one layer style called a `box-shadow`. The box-shadow is placed
-behind the dropdown menu when open. Box-shadow is also used in other components
-that have overlayed menus, such as the overflow menu and date picker calendar.
-The SCSS for box-shadow is `0 2px 6px 0 rgba(0,0,0,.2)`.
+The dropdown menu has a style called `box-shadow` that is placed behind the menu
+when open to give the menu a perceived higher elevation than the content that
+may fall behind it. Box-shadow is also used in other components that have
+overlayed menus, such as the overflow menu and date picker calendar. The SCSS
+for box-shadow is `0 2px 6px 0 rgba(0,0,0,.2)`.
 
 ### Scrolling behavior
 
@@ -382,6 +446,40 @@ vary based on your specific use case.
 </Column>
 </Row>
 
+### States
+
+#### Invalid
+
+Real time validation helps to streamline the process of filling out a form. We
+have three indicators of an invalid state: a border, an icon indicator, and an
+error message. Having text, color, and weight differentiation as invalid
+indicators help meet accessibility requirements. For full guidelines, refer to
+the [form component](https://www.carbondesignsystem.com/components/form/usage)
+usage page.
+
+<Row>
+<Column colLg={8}>
+
+![Dropdown invalid state.](images/dropdown-usage-14.gif)
+
+</Column>
+</Row>
+
+#### Disabled
+
+A dropdown cannot be clicked, selected, or interacted with if it is disabled. It
+is not read by a screen reader and takes on the default disabled visual style.
+Tooltips on a disabled state are also not read by screen readers and we
+recommend having an alternative way to show descriptive text if needed.
+
+<Row>
+<Column colLg={8}>
+
+![Dropdown disabled state.](images/dropdown-usage-15.png)
+
+</Column>
+</Row>
+
 ### Interactions
 
 #### Mouse
@@ -393,7 +491,21 @@ or clicking outside of the menu.
 <Row>
 <Column colLg={8}>
 
-![Dropdown closed and open state click targets.](images/dropdown-usage-8a.png)
+<Tabs>
+
+<Tab label="Fixed">
+
+![Fixed dropdown closed and open state click targets.](images/dropdown-usage-8a.png)
+
+</Tab>
+
+<Tab label="Fluid">
+
+![Fluid dropdown closed and open state click targets.](images/dropdown-usage-8a-fluid.png)
+
+</Tab>
+
+</Tabs>
 
 </Column>
 </Row>
@@ -403,7 +515,21 @@ or clicking outside of the menu.
 <Row>
 <Column colLg={8}>
 
-![Dropdown menu option click target.](images/dropdown-usage-8b.png)
+<Tabs>
+
+<Tab label="Fixed">
+
+![Fixed dropdown menu option click target.](images/dropdown-usage-8b.png)
+
+</Tab>
+
+<Tab label="Fluid">
+
+![Fluid dropdown menu option click target.](images/dropdown-usage-8b-fluid.png)
+
+</Tab>
+
+</Tabs>
 
 </Column>
 </Row>
@@ -460,18 +586,6 @@ or clicking outside of the menu.
   select or deselect the option.
 - Users can open and close a dropdown menu by pressing `Space`.
 
-#### Screen readers
-
-- Labels must be announced to the screen reader on focus. Ensure the helper text
-  that appears under an input is read when an assistive technology user stops at
-  an input using ARIA.
-- VoiceOver: Users can trigger a state change by pressing `Control-Option-Space`
-  or `Space` while the dropdown field has screen reader focus.
-- JAWS: Users can trigger a state change by pressing `Space` while the dropdown
-  field has screen reader focus.
-- NVDA: Users can trigger a state change by pressing `Space` while the dropdown
-  field has screen reader focus.
-
 ## Dropdown
 
 Use when you can select only one option from a list at a time.
@@ -482,7 +596,21 @@ Use when you can select only one option from a list at a time.
 <Row>
 <Column colLg={8}>
 
-![Dropdown closed and open state.](images/dropdown-usage-9a.png)
+<Tabs>
+
+<Tab label="Fixed">
+
+![Fixed dropdown closed and open state.](images/dropdown-usage-9a.png)
+
+</Tab>
+
+<Tab label="Fluid">
+
+![Fluid dropdown closed and open state.](images/dropdown-usage-9a-fluid.png)
+
+</Tab>
+
+</Tabs>
 
 </Column>
 </Row>
@@ -514,7 +642,21 @@ Use when you can select multiple options from a list or to filter information.
 <Row>
 <Column colLg={8}>
 
-![Multiselect dropdown closed and open states.](images/dropdown-usage-10a.png)
+<Tabs>
+
+<Tab label="Fixed">
+
+![Fixed multiselect dropdown closed and open states.](images/dropdown-usage-10a.png)
+
+</Tab>
+
+<Tab label="Fluid">
+
+![Fluid multiselect dropdown closed and open states.](images/dropdown-usage-10a-fluid.png)
+
+</Tab>
+
+</Tabs>
 
 </Column>
 </Row>
@@ -530,7 +672,21 @@ Use when you can select multiple options from a list or to filter information.
 <Row>
 <Column colLg={8}>
 
-![Multiselect dropdown selected state.](images/dropdown-usage-10b.png)
+<Tabs>
+
+<Tab label="Fixed">
+
+![Fixed multiselect dropdown selected state.](images/dropdown-usage-10b.png)
+
+</Tab>
+
+<Tab label="Fluid">
+
+![Fluid multiselect dropdown selected state.](images/dropdown-usage-10b-fluid.png)
+
+</Tab>
+
+</Tabs>
 
 </Column>
 </Row>
@@ -563,7 +719,21 @@ to select.
 <Row>
 <Column colLg={8}>
 
-![Filterable dropdown closed and open state.](images/dropdown-usage-10d.png)
+<Tabs>
+
+<Tab label="Fixed">
+
+![Fixed filterable dropdown closed and open state.](images/dropdown-usage-10d.png)
+
+</Tab>
+
+<Tab label="Fluid">
+
+![Fluid filterable dropdown closed and open state.](images/dropdown-usage-10d-fluid.png)
+
+</Tab>
+
+</Tabs>
 
 </Column>
 </Row>
@@ -592,7 +762,21 @@ to select.
 <Row>
 <Column colLg={8}>
 
-![Filterable dropdown selected state.](images/dropdown-usage-10f.png)
+<Tabs>
+
+<Tab label="Fixed">
+
+![Fixed filterable dropdown selected state.](images/dropdown-usage-10f.png)
+
+</Tab>
+
+<Tab label="Fluid">
+
+![Fluid filterable dropdown selected state.](images/dropdown-usage-10f-fluid.png)
+
+</Tab>
+
+</Tabs>
 
 </Column>
 </Row>
@@ -633,7 +817,21 @@ typically used when there are a large amount of options to choose from.
 <Row>
 <Column colLg={8}>
 
-![Combo box selected state.](images/dropdown-usage-11c.png)
+<Tabs>
+
+<Tab label="Fixed">
+
+![Fixed combo box selected state.](images/dropdown-usage-11c.png)
+
+</Tab>
+
+<Tab label="Fluid">
+
+![Fluid combo box selected state.](images/dropdown-usage-11c-fluid.png)
+
+</Tab>
+
+</Tabs>
 
 </Column>
 </Row>
@@ -656,54 +854,12 @@ modifier for dropdown and does not have filtering functionality._
 </Column>
 </Row>
 
-#### Light
-
-Use the `light` prop modifier when using a dropdown on a background other than
-the UI background for that theme. The light prop changes the background color
-token of the dropdown from `field-01` to `field-02`. This is frequently used in
-form modals and side panels, or when a dropdown sits on top of a tile on a page.
-
-<Row>
-<Column colLg={8}>
-
-![Light prop applied to dropdowns in a filter panel.](images/dropdown-usage-13.png)
-
-</Column>
-</Row>
-
-#### Invalid
-
-Real time validation helps to streamline the process of filling out a form. We
-have three indicators of an invalid state: a border, an icon indicator, and an
-error message. Having text, color, and weight differentiation as invalid
-indicators help meet accessibility requirements. For full guidelines, refer to
-the [form component](https://www.carbondesignsystem.com/components/form/usage)
-usage page.
-
-<Row>
-<Column colLg={8}>
-
-![Dropdown invalid state.](images/dropdown-usage-14.gif)
-
-</Column>
-</Row>
-
-#### Disabled
-
-A dropdown cannot be clicked, selected, or interacted with if it is disabled. It
-is not read by a screen reader and takes on the default disabled visual style.
-Tooltips on a disabled state are also not read by screen readers and we
-recommend having an alternative way to show descriptive text if needed.
-
-<Row>
-<Column colLg={8}>
-
-![Dropdown disabled state.](images/dropdown-usage-15.png)
-
-</Column>
-</Row>
-
 ## Related
+
+- [Checkbox](https://www.carbondesignsystem.com/components/checkbox/code)
+- [Form](https://www.carbondesignsystem.com/components/form/code)
+- [Radio button](https://www.carbondesignsystem.com/components/radio-button/code)
+- [Select](https://www.carbondesignsystem.com/components/select/code)
 
 #### Dropdown versus Select
 
@@ -737,11 +893,6 @@ While the dropdown and combo box look similar they have different functions.
 Angie Li,
 [Dropdown: Design Guidelines](https://www.nngroup.com/articles/drop-down-menus/)
 (Nielsen Norman Group, 2017)
-
-- [Checkbox](https://www.carbondesignsystem.com/components/checkbox/code)
-- [Form](https://www.carbondesignsystem.com/components/form/code)
-- [Radio button](https://www.carbondesignsystem.com/components/radio-button/code)
-- [Select](https://www.carbondesignsystem.com/components/select/code)
 
 ## Feedback
 
