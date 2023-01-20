@@ -18,8 +18,10 @@ configure options.
 <AnchorLink>Overview</AnchorLink>
 <AnchorLink>Live demo</AnchorLink>
 <AnchorLink>Formatting</AnchorLink>
-<AnchorLink>Form logic</AnchorLink>
-<AnchorLink>Validation and errors</AnchorLink>
+<AnchorLink>Content</AnchorLink>
+<AnchorLink>Behaviors</AnchorLink>
+<AnchorLink>Additional form guidance</AnchorLink>
+<AnchorLink>Related</AnchorLink>
 <AnchorLink>Feedback</AnchorLink>
 
 </AnchorLinks>
@@ -68,7 +70,7 @@ configure and extend a form, see the
       id="test2"
       invalidText="Invalid error message."
       labelText="Text input label"
-      placeholder="Placeholder text"
+      placeholder="Optional laceholder text"
     />
   <TextArea
     cols={50}
@@ -76,7 +78,7 @@ configure and extend a form, see the
     id="test5"
     invalidText="Invalid error message."
     labelText="Text area label"
-    placeholder="Placeholder text"
+    placeholder="Optional placeholder text"
     rows={4}
   />
     <Select
@@ -115,15 +117,6 @@ configure and extend a form, see the
 
 ### Anatomy
 
-1. **Header** (optional): The addition of a title and description as a header
-   that can provide the user with additional context or instructions.
-2. **Form body**: Area where users provide information. Information can be
-   entered through various input fields, including text fields, checkboxes, and
-   many other types. Input components contain labels and helper text that the
-   user submits correct data.
-3. **Footer**: Provides actions that allow users to submit or cancel the data
-   entered in the form.
-
 <Row>
 <Column colLg={8}>
 
@@ -146,7 +139,16 @@ configure and extend a form, see the
 </Column>
 </Row>
 
-## Styling
+1. **Header** (optional): The addition of a title and description as a header
+   that can provide the user with additional context or instructions.
+2. **Form body**: Area where users provide information. Information can be
+   entered through various input fields, including text fields, checkboxes, and
+   many other types. Input components contain labels and helper text that the
+   user submits correct data.
+3. **Footer**: Provides actions that allow users to submit or cancel the data
+   entered in the form.
+
+### Styling
 
 Forms can use two styles of inputs: fixed and fluid. They share the same
 functionality but look visually different and have different alignment rules.
@@ -164,7 +166,7 @@ functionality but look visually different and have different alignment rules.
 </Column>
 </Row>
 
-## Alignment
+### Alignment
 
 In a form, input components should vertically align with all other form
 components. Whether a form aligns flush to grid columns or hangs in the gutters
@@ -178,12 +180,12 @@ between inputs.
 <DoDontRow>
   <DoDont type="do" caption="Do align fixed form inputs and labels to the grid columns using the wide grid mode.">
 
-![An example showing a properly aligned fixed inputs](images/number-input-usage-4.png)
+![An example showing a properly aligned fixed inputs](images/form-usage-3-do.png)
 
   </DoDont>
   <DoDont type="dont" caption="Don’t hang fixed inputs into the grid gutters. Doing so will cause labels to misalign with other form elements.">
 
-![An example showing incorrectly aligned fixed inputs](images/number-input-usage-5.png)
+![An example showing incorrectly aligned fixed inputs](images/form-usage-3-dont.png)
 
   </DoDont>
 </DoDontRow>
@@ -191,12 +193,12 @@ between inputs.
 <DoDontRow>
   <DoDont type="do" caption="Do stack fluid components flush to one another with no spacing between them using the condensed grid mode.">
 
-![An example showing a properly stacked fluid inputs](images/number-input-usage-4.png)
+![An example showing a properly stacked fluid inputs](images/form-usage-4-do.png)
 
   </DoDont>
   <DoDont type="dont" caption="Don’t add vertical or horizontal space between fluid components. Fluid forms are architectural and should remain a cohesive unit.">
 
-![An example showing incorrectly arranged fluid inputs](images/number-input-usage-5.png)
+![An example showing incorrectly arranged fluid inputs](images/form-usage-4-dont.png)
 
   </DoDont>
 </DoDontRow>
@@ -231,7 +233,7 @@ will also grow to account for the needed space.
 </Column>
 </Row>
 
-## Vertical spacing
+### Vertical spacing
 
 The typical recommended vertical spacing between components is 32px. For all
 guidance and recommendation for spacing for forms, see the
@@ -239,28 +241,19 @@ guidance and recommendation for spacing for forms, see the
 
 ## Content
 
-### Main elements
-
-#### Labels
+### Labels
 
 Effective labeling helps users understand what information to enter into a text
 input. Text fields should always have a label. There are rare instances where
 the context of an input negates the need for a visible label, but we advise you
 to consult an accessibility expert before proceeding with a label-less design.
 
+#### Best practices for labels
+
 - Use sentence-style capitalization for all labels except for product names and
   proper nouns.
 - Keep the label short and concise.
 - Do not use colons after label names.
-
-#### Accessibility best practices for labels:
-
-- Labels must be visible when an input gets focus.
-- Labels must be announced to the screen reader on focus.
-- Ensure the helper text that appears under an input is read when an assistive
-  technology user stops at an input using ARIA.
-- Use sentence-style capitalization (only the first word in a phrase and any
-  proper nouns capitalized).
 
 ### Default values
 
@@ -278,6 +271,8 @@ appears as persistent text under a fixed input (helper text is not available in
 fluid input, which uses tooltips instead). Helper text is the preferred method
 of assisting users because it is always visible for the user to reference
 without additional effort.
+
+#### Best practices for helper text
 
 - Use sentence-style capitalization, and in most cases, write the text as full
   sentences with punctuation.
@@ -304,10 +299,12 @@ simply and directly as helper text under the field and not be in a tooltip
 </Column>
 </Row>
 
-Fluid inputs are an exception. Due to their architectural nature, fluid inputs
-do not provide the allotted space under the field needed for helper text. All
-assistive text wither pertinent or additional is provided through a tooltip when
-using fluid inputs.
+#### Tooltips in fluid components
+
+Fluid inputs are an exception to the no critial information in tooltips rule.
+Due to their architectural nature, fluid inputs do not provide the allotted
+space under the field needed for helper text. All assistive text wither
+pertinent or additional is provided through a tooltip when using fluid inputs.
 
 <Row>
 <Column colLg={8}>
@@ -327,6 +324,8 @@ nor should it contain crucial information. Sometimes providing an example of the
 kind of thing the user might enter is useful. Using certain examples as
 placeholder text is allowed but it still should not contain essential
 information.
+
+#### Best practices for placeholder text
 
 - Use sentence-style capitalization, and in most cases, write the text as a
   direct statement without punctuation.
@@ -398,6 +397,10 @@ minimum, consistent between all of the same types of form within your product.
 
 ### Form controls
 
+Carbon provides a variety of data input components that enable a user to make a
+enter or select data. The components are divided into three different
+interaction types.
+
 | Type                                                         | Overview                                                                                                                                                                                                            |
 | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [Free form inputs](/patterns/forms-pattern/#text-inputs)     | Free-form text inputs are the most commonly used components in forms. They allow a user to enter any configuration of a letters or numbers. Common free form inputs include: text input and text area.              |
@@ -405,6 +408,9 @@ minimum, consistent between all of the same types of form within your product.
 | [Bound entry controls](/patterns/forms-pattern/#data-inputs) | Bound entry controls allow users to input numeric data, like dates and times and may restrict user input to a certain range. Common bound entry controls include: number input, date picker, and slider components. |
 
 ### States
+
+The following are common states that can be applied to components when used in a
+form.
 
 | State       | When to use                                                                                                                                                                                                                                                       |
 | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -418,7 +424,7 @@ minimum, consistent between all of the same types of form within your product.
 | _Read-only_ | _Coming soon!_                                                                                                                                                                                                                                                    |
 
 <Row>
-<Column colLg={8}>
+<Column colLg={12}>
 
 <Tabs>
 
@@ -442,16 +448,48 @@ minimum, consistent between all of the same types of form within your product.
 ## Additional form guidance
 
 The form pattern provides additional and elaborative guidance to the information
-found here on the form component page. Below is a list of key sections available
-in the pattern.
+found with the form component. Below is a list of key sections available in the
+pattern.
 
-| Topic                                                          | Overview                                                                                                        |
-| -------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| [Buttons in forms](/patterns/forms-pattern/#buttons])          | Provides guidance on button alignment, emphasis, placement and naming in relation to a form.                    |
-| [Errors and validation](/forms-pattern/#errors-and-validation) | Effective and immediate error messaging can help the user to understand the problem and how to fix it.          |
-| Form layout                                                    | Additional guidance around layout, spacing, columns in a form.                                                  |
-| Designing for longer forms                                     | Techniques to help make longer forms less overwhelming, including guidance for accordion and multistep forms.   |
-| Form variants                                                  | Forms may be presented as dedicated pages, side panels, or dialogs depending on the use case and the situation. |
+| Topic                                                                             | Overview                                                                                                        |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| [Buttons in forms](/patterns/forms-pattern/#buttons])                             | Provides guidance on button alignment, emphasis, placement and naming in relation to a form.                    |
+| [Errors and validation](/forms-pattern/#errors-and-validation)                    | Effective and immediate error messaging can help the user to understand the problem and how to fix it.          |
+| [Form layout](/patterns/forms-pattern/#designing-a-form)                          | Additional guidance around layout, spacing, columns in a form.                                                  |
+| [Designing for longer forms](/patterns/forms-pattern/#designing-for-longer-forms) | Techniques to help make longer forms less overwhelming, including guidance for accordion and multistep forms.   |
+| [Form variants](/patterns/forms-pattern/#variants)                                | Forms may be presented as dedicated pages, side panels, or dialogs depending on the use case and the situation. |
+
+## Related
+
+<Row>
+<Column colSm={2} colMd={2} colLg={3}>
+
+#### Components
+
+- [Button](/components/button/usage) <br/>
+- [Checkbox](/components/checkbox/usage) <br/>
+- [Combo box](http://react.carbondesignsystem.com/?path=/story/combobox--default)
+  <br />
+- [Multiselect](http://react.carbondesignsystem.com/?path=/story/multiselect--default)
+  <br />
+- [Password input](http://react.carbondesignsystem.com/?path=/story/textinput--toggle-password-visibility)
+  <br />
+- [Radio button](/components/radio-button/usage) <br/>
+- [Text area](http://react.carbondesignsystem.com/?path=/story/textarea--default)
+  <br />
+- [Text input](/components/text-input/usage) <br/>
+- [Toggle](/components/toggle/usage) <br/>
+
+</Column>
+<Column colSm={2} colMd={2} colLg={3}>
+
+#### Patterns
+
+- [Dialogs](/patterns/dialog-pattern) <br/>
+- [Notifications](/patterns/notification-pattern) <br/>
+
+</Column>
+</Row>
 
 ## Feedback
 
