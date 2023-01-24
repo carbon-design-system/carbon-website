@@ -11,14 +11,14 @@ on:
 
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js 14.x
-        uses: actions/setup-node@v2-beta
+      - uses: actions/checkout@v3
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v3
         with:
-          node-version: 14.x
+          node-version: 16.x
 
       - name: Install packages
         run: yarn install --frozen-lockfile --network-timeout 300000
@@ -26,19 +26,20 @@ jobs:
       - name: Build site
         run: yarn build:clean
 
-      - name: Install IBM Cloud CLI
-        run: curl -fsSL https://clis.cloud.ibm.com/install/osx | sh
-
-      - name: Install Cloud Foundry CLI
-        run: ibmcloud cf install -v 6.51.0
-
-      - name: Login to ibmcloud
-        env:
-          API_KEY: ${{ secrets.API_KEY }}
-        run:
-          ibmcloud login -a "https://cloud.ibm.com" -u apikey -p "$API_KEY" -o
-          "carbon-design-system" -s "production" -r "us-south"
-
-      - name: Deploy website
+      - name: Create CNAME
         run: |
-          ibmcloud cf v3-zdt-push v10-carbon-website -b https://github.com/cloudfoundry/nginx-buildpack.git
+          touch public/CNAME
+          echo "v10.carbondesignsystem.com" > public/CNAME
+
+      - name: Push to v10 repo
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        with:
+          source-directory: 'public'
+          destination-github-username: 'carbon-design-system'
+          destination-repository-name: 'carbon-website-v10'
+          user-name: carbon-bot
+          user-email: carbon@us.ibm.com
+          target-branch: main
+          commit-message: 'chore(release):  ${{ github.ref }}'
