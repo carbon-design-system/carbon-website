@@ -15,9 +15,11 @@ including information, getting started, how-to, next steps, and more.
 
 <InlineNotification>
 
-Tile guidance has been recently updated but is not yet applicable for all
-implementations. Please continue following the guidance and we'll work on fixing
-the issues.
+[Experimental tiles](https://react.carbondesignsystem.com/?path=/story/experimental-improved-contrast-tile--clickable)
+are now available. This addition enhances accessibility and only applies to the
+visual, not the functions of tiles. Though we are not deprecating the current
+tiles, we encourage all design teams to use the new experimental tiles in their
+products moving forward.
 
 </InlineNotification>
 
@@ -38,10 +40,10 @@ the issues.
 
 Carbon ships a basic tile structure that responds to the grid. Based on the
 layout structure, tiles can contain type, images and/or a block of color. As
-tiles have no pre-set styles for the content within them, the tile component
-usage guidance is purposefully high-level. It focuses specifically on the tile
-itself, not the structure of the information or interactive elements that the
-tile contains—that type of information will be found in the card pattern.
+tiles have no pre-set styles for the content inside, the tile component usage
+guidance focuses on basic tiles' functions. It does not include the complex
+structure of the information or additional interactive elements that a tile
+contains.
 
 #### Tiles versus Cards
 
@@ -61,12 +63,24 @@ ecosystem below:
 ### When to use
 
 Tiles are reusable components that provide shortcuts to building cards and other
-modules. Here are some common use cases for when to use tiles:
+modules. Use tiles as part of the user's main workstream. Here are some common
+use cases for when to use tiles:
 
 - To contain related groupings of information or actions
 - To guide users to take actions or navigate
 - To present options for single or multiple selections
 - To hide or show large amounts of content
+
+### When not to use
+
+Tiles reside in the same plane as the background layer—they do not have
+elevation. Tiles organize essential information and have the same visual
+hierarchy as content within the same page.
+
+Do not add drop shadow to tiles and use them on screen to reveal secondary
+information, actions, or notifications. Use [modals](/components/modal/usage),
+[popover](/components/popover/usage), and [diaglog](/components/dialog/usage)
+which have elevation and are appropriate for this function instead.
 
 ## Live demo
 
@@ -276,6 +290,13 @@ modules. Here are some common use cases for when to use tiles:
 
 ## Tile variants
 
+<InlineNotification>
+
+Except for base tiles, experimental tiles are applicable for clickable,
+selectable, and expandable tiles.
+
+</InlineNotification>
+
 Tiles can function or be implemented in four ways—base, clickable, selectable,
 or expandable. These variations of tiles are flexible enough to support a
 variety of different use cases when building more complicating card features.
@@ -348,8 +369,7 @@ Expandable tiles are helpful for hiding and showing large amounts of content to
 a user. When expanded, tiles push content down the page. They allow the user to
 specifically focus on featured content while having access to the rest of the
 information. Expandable tiles can contain internal CTAs (like links to docs) if
-they are given their own click targets and the click target is reduced to only
-the chevron icon.
+they are given their own click targets.
 
 <Row>
 <Column colLg={8}>
@@ -387,6 +407,11 @@ are written out as a formula of width to height, such as 3:2. It’s important t
 remember that while two images can have the same aspect ratio, they can have
 varying images sizes.
 
+Experimental tiles are now available. This addition enhances accessibility and
+only applies to the visual, not the functions of tiles. Though we are not
+deprecating the current tiles, we encourage all design teams to use the new
+experimental tiles in their products moving forward.
+
 <Row>
 <Column colLg={8}>
 
@@ -399,13 +424,14 @@ varying images sizes.
 
 ### Alignment
 
-Always strive for left alignment whenver possible. Type in tiles should always
-be left aligned. Icons or icon buttons can be aligned to either left or right
-edge depending on the tiles’ complexity.
+#### Icon and call-to-action button
 
-For example: In situations where there are both an icon or pictogram with an
-icon button, place the icon or pictorgram in the lower left corner of the tile
-and move the icon button (action) to the right corner.
+With clicktable tiles, place the icon at the bottom right to indicate
+navigation. Use the interactive token for the icon. Avoid using interactive link
+that can be confusing as multiple click targets.
+
+With non-clickable tiles(or base tile), place the interactive components, such
+as button or link, at the bottom left to indicate call-to-action.
 
 <DoDontRow>
   <DoDont type="do" caption="Do left align icon, link, or text when it is by itself.">
@@ -435,8 +461,6 @@ and move the icon button (action) to the right corner.
 
   </DoDont>
 </DoDontRow>
-
-### Placement
 
 #### Tile groups
 
@@ -540,37 +564,6 @@ version.
 </Column>
 </Row>
 
-### Elevation
-
-Tiles reside in the same plane as the background layer—they do not have
-elevation. Do not add drop shadows to tiles. Tiles organize essential
-information and have the same visual hierarchy as content within the same page.
-Modals, popovers, and dialogs do have elevation but are not inherently part of
-the user's main workstream and are invoked on screen to reveal secondary
-information, actions, or notifications.
-
-### Call-to-actions
-
-For **base, selectable, and expandable tiles**, use `$link-01` when icon and
-link are paired together or use `$interactive-04` when the icon stands alone.
-
-For **clickable tiles**, don’t highlight text or icons to avoid them being
-confused as links or clickable.
-
-<DoDontRow>
-
-  <DoDont type="do" caption="Do use text or icon for clickable tiles if needed.">
-
-![Do use text or icon for clickable tiles if needed.](images/tile-usage-22.png)
-
-  </DoDont>
-  <DoDont type="dont" caption="Do not use link or highlight the icon color for clickable tiles.">
-
-![Do not use link or highlight the icon color for clickable tiles.](images/tile-usage-23.png)
-
-  </DoDont>
-</DoDontRow>
-
 ## Behaviors
 
 ### Interactions
@@ -606,14 +599,6 @@ base tiles.
 Expandable tiles can either be triggered as a whole or only contain internal
 CTA's if they are given their own click targets and the tile’s click target is
 reduced to only the chevron icon.
-
-<InlineNotification>
-
-**Note:** Clickable targets are currently not available in coding. Teams can
-override the code to make smaller click targets while we're updating this in the
-future.
-
-</InlineNotification>
 
 <Row>
 <Column colLg={8}>
