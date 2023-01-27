@@ -1,0 +1,38 @@
+name: Sync Platform Branch
+on:
+  schedule:
+    # Runs on Fridays 6:00 UTC (-6 CT, -5 EST)
+    #       ┌───────────── minute (0 - 59)
+    #       │ ┌───────────── hour (0 - 23)
+    #       │ │ ┌───────────── day of the month (1 - 31)
+    #       │ │ │ ┌───────────── month (1 - 12 or JAN-DEC)
+    #       │ │ │ │ ┌───────────── day of the week (0 - 6 or SUN-SAT)
+    #       │ │ │ │ │
+    #       │ │ │ │ │
+    #       │ │ │ │ │
+    - cron: 0 6 * * 5
+    
+  # Enable running this workflow manually from the Actions tab
+  workflow_dispatch: # Allow for running this manually.
+
+jobs:
+  sync-branches:
+    runs-on: ubuntu-latest
+    name: Syncing branches
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Opening pull request
+        id: pull
+        uses: tretuna/sync-branches@1.4.0
+        with:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          FROM_BRANCH: "main"
+          TO_BRANCH: "carbon-platform"
+          PULL_REQUEST_BODY: "Platform Sync, pulling in new content from main into carbon-platform branch"
+          CONTENT_COMPARISON: true
+          REVIEWERS: '["francinelucca","andreancardona","alisonjoseph"]'
