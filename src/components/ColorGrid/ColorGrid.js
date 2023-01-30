@@ -2,7 +2,7 @@ import React from 'react';
 import {
   colors,
   black100,
-  green60,
+  green50,
   orange40,
   red60,
   white0,
@@ -34,7 +34,7 @@ export default function ColorGrid({ colorFamily, ...rest }) {
         <ColorSwatch hex={red60} />
         <ColorSwatch hex={orange40} />
         <ColorSwatch hex={yellow20} />
-        <ColorSwatch hex={green60} />
+        <ColorSwatch hex={green50} />
       </div>
     );
   }
