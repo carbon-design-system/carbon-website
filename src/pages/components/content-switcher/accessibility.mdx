@@ -2,7 +2,7 @@
 title: Content switcher
 description:
   Content switchers manipulate the content shown following an exclusive or
-  “either/or” pattern. It is used to toggle between two or more content sections
+  "either/or" pattern. It is used to toggle between two or more content sections
   within the same space on screen.
 tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 ---
@@ -20,83 +20,100 @@ import {
 
 <PageDescription>
 
-The content switcher React Carbon component has been tested against the latest
-[W3C Web Content Accessibility Guidelines (WCAG) 2.1 Level A and AA success criteria](https://www.w3.org/TR/WCAG21/)
-and violations have been identified as high priority issues. This document will
-be updated when these accessibility issues are resolved.
+Design annotations are needed for specific instances shown below, but for the
+standard content switcher component, Carbon already incorporates accessibility.
 
 </PageDescription>
 
 <AnchorLinks>
-  <AnchorLink>Accessibility considerations</AnchorLink>
-  <AnchorLink>Resources</AnchorLink>
-  <AnchorLink>Accessibility testing</AnchorLink>
+  <AnchorLink>What Carbon provides</AnchorLink>
+  <AnchorLink>Design recommendations</AnchorLink>
+  <AnchorLink>Development considerations</AnchorLink>
 </AnchorLinks>
 
-## Accessibility considerations
+## What Carbon provides
 
-1. Each content switcher tab must have a unique title that clearly describes the
-   content panel. This is particularly helpful for users of assistive
-   technologies so they have the necessary information to efficiently navigate
-   the content.
-2. Carbon components should be used to create the content that displays within
-   each content panel.
-3. Content authors need to ensure the content that is added to the tab panel is
-   accessible. For example, if you add an image to the panel you need to include
-   alternative text to pass accessibility testing.
+Carbon bakes keyboard operation into its components, improving the experience of
+blind users and others who operate via the keyboard. Carbon incorporates many
+other accessibility considerations, some of which are described below.
 
-## Resources
+### Keyboard interactions
 
-- [W3C WAI-ARIA Tab Design Pattern](https://www.w3.org/TR/wai-aria-practices-1.1/#tabpanel)
-  covers the usage of ARIA names, state and roles, as well as the expected
-  keyboard interactions.
-- [IBM Accessibility Requirements](https://www.ibm.com/able/requirements/requirements/):
-
-  - [1.3.1 Info and Relationships](https://www.ibm.com/able/requirements/requirements/#1_3_1)
-    (WCAG Success Criteria
-    [1.3.1](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships))
-  - [1.3.2 Meaningful Sequence](https://www.ibm.com/able/requirements/requirements/#1_3_2)
-    (WCAG Success Criteria
-    [1.3.2](https://www.w3.org/WAI/WCAG21/Understanding/meaningful-sequence))
-
-## Accessibility testing
-
-Automated, manual and screen reader accessibility verification test has been
-performed on the Content Switcher React Carbon Component.
-[WCAG 2.1 Level A and AA success criteria](https://www.w3.org/TR/WCAG21/) issues
-have been identified and the list of open accessibility violations is available
-in the Carbon Component GitHub repository.
-
-### Automated test
+Like tabs, content switchers can be automatic or manual. In both instances, the
+content switcher takes one tab stop, and arrow keys are used to navigate between
+content tabs.
 
 <Row>
-  <Column noGutterSm>
-    <StructuredListWrapper>
-      <StructuredListHead>
-        <StructuredListRow head>
-          <StructuredListCell head>
-            Automated test environment
-          </StructuredListCell>
-          <StructuredListCell head>Results</StructuredListCell>
-        </StructuredListRow>
-      </StructuredListHead>
-      <StructuredListBody>
-        <StructuredListRow>
-          <StructuredListCell>
-            - macOS Mojave version 10.14.2 with VoiceOver
-            <br />
-            - Chrome version 77.0.3865.90
-            <br />
-            - Dynamic Assessment Plugin (DAP) version 1.8.0.0 - IBM
-            Accessibility WCAG 2.1 Sept. 2019 Ruleset
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>DAP test:</strong>
-            <br />- Violations
-          </StructuredListCell>
-        </StructuredListRow>
-      </StructuredListBody>
-    </StructuredListWrapper>
-  </Column>
+<Column colLg={8}>
+
+![Tab to content switcher then operate with arrow keys](images/content-switcher-accessibility-1.png)
+
+<Caption>
+  Manual and automatic content switchers have the same basic keyboard
+  interaction.
+</Caption>
+
+</Column>
 </Row>
+
+Automatic and manual switchers differ in how they are activated. For automatic
+switchers, focus and selection are synchronized. The tabs are selected as the
+user arrows between them, and the content section under the switcher is updated
+in real time.
+
+Manual switchers allow the user to arrow between the content tabs without
+updating the content section underneath. In the following illustration, the All
+content tab can remain selected while focus moves to the Read tab. A content tab
+is selected (and its content section updated) by the user pressing `Enter` or
+`Space`.
+
+<Row>
+<Column colLg={8}>
+
+![Space and Enter keys select whatever manual content switcher tab has focus](images/content-switcher-accessibility-2.png)
+
+<Caption>
+  Arrows keys alone update the selected tab in an automatic content switcher.
+  The Space and Enter keys are used to select a content tab in a manual variant.
+</Caption>
+
+</Column>
+</Row>
+
+## Design recommendations
+
+### Indicate which variant to implement
+
+The automatic and manual switchers are visually indistinguishable in a
+wireframe, so designers must annotate which variant the team has decided to
+implement. Since the choice largely concerns technical considerations about
+potential latency when updating the content section’s information, architects or
+developers should be involved in the discussion.
+
+<Row>
+<Column colLg={8}>
+
+![Two switchers, one with a pink annotation reading "auto", the other with an annotation "manual"](images/content-switcher-accessibility-3.png)
+
+<Caption>
+  Annotate whether the switcher should be implemented as automatic or manual.
+</Caption>
+
+</Column>
+</Row>
+
+## Development considerations
+
+Keep these considerations in mind if you are modifying Carbon or creating a
+custom component.
+
+- The Content switcher is implemented as a `tablist`, with each content tab
+  implemented as a button with a role of `tab`.
+- The selected content tab has attributes `aria-selected="true"` and
+  `tabindex="0"`. All other tabs have these attribute values set to `"false"`
+  and `"-1"`.
+- See the
+  [ARIA authoring practices guidance for tabs](https://w3c.github.io/aria-practices/#tabpanel)
+  for more considerations.
+- See
+  [Deciding when to make selection automatically follow focus](https://w3c.github.io/aria-practices/#kbd_selection_follows_focus).
