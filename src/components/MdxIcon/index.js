@@ -6,6 +6,7 @@ import { mdxIcon, iconInverse } from './MdxIcon.module.scss';
 import sketch from './icons/sketch.svg';
 import ase from './icons/ase.png';
 import codesandbox from './icons/codesandbox.svg';
+import stackblitz from './icons/stackblitz.svg';
 import codepen from './icons/codepen.svg';
 import illustrator from './icons/illustrator.svg';
 import react from './icons/react.png';
@@ -23,6 +24,7 @@ const localIcons = {
   sketch,
   ase,
   codesandbox,
+  stackblitz,
   codepen,
   illustrator,
   react,
