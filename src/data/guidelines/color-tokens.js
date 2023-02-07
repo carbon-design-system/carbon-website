@@ -1922,12 +1922,12 @@ const colorTokens = {
       role: ['Success', 'On'],
       value: {
         white: {
-          name: 'Green 60',
-          hex: '#198038',
+          name: 'Green 50',
+          hex: '#24a148',
         },
         g10: {
-          name: 'Green 60',
-          hex: '#198038',
+          name: 'Green 50',
+          hex: '#24a148',
         },
         g90: {
           name: 'Green 40',
