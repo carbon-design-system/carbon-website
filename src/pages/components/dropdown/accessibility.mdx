@@ -6,98 +6,127 @@ description:
 tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 ---
 
-import {
-  StructuredListWrapper,
-  StructuredListHead,
-  StructuredListBody,
-  StructuredListRow,
-  StructuredListInput,
-  StructuredListCell,
-  OrderedList,
-  ListItem,
-} from '@carbon/react';
-
 <PageDescription>
 
-The dropdown React Carbon component has been tested against the latest
-[W3C Web Content Accessibility Guidelines (WCAG) 2.1 Level A and AA success criteria](https://www.w3.org/TR/WCAG21/)
-and violations have been identified as high priority issues. This document will
-be updated when these accessibility issues are resolved.
+No accessibility annotations are needed for dropdowns, but keep these
+considerations in mind if you are modifying Carbon or creating a custom
+component.
 
 </PageDescription>
 
 <AnchorLinks>
-  <AnchorLink>Accessibility considerations</AnchorLink>
-  <AnchorLink>Resources</AnchorLink>
-  <AnchorLink>Accessibility testing</AnchorLink>
+
+<AnchorLink>What Carbon provides</AnchorLink>
+<AnchorLink>Development considerations</AnchorLink>
+
 </AnchorLinks>
 
-## Accessibility considerations
+## What Carbon provides
 
-1. Avoid very long option names to facilitate understandability and
-   perceivability.
-2. Do not use the same word or phrase at the beginning of a set of options.
-3. Avoid options that contain headings and interactive elements such as links,
-   buttons, or checkboxes.
-4. If the dropdown is a required field include the
-   [aria-required property](https://www.w3.org/TR/WCAG20-TECHS/ARIA2.html) and
-   indicate that it is a required field and use the validation message for input
-   errors.
+Carbon bakes keyboard operation into its components, improving the experience of
+blind users and others who operate via the keyboard. Carbon incorporates many
+other accessibility considerations, some of which are described below.
 
-## Resources
+### Keyboard interactions
 
-- [W3C WAI-ARIA Authoring Practices Listbox Design Pattern](https://www.w3.org/TR/wai-aria-practices-1.1/#Listbox)
-  covers the usage of ARIA names, state and roles, as well as the expected
-  keyboard interactions.
-- [IBM Accessibility Requirements](https://www.ibm.com/able/requirements/requirements/):
-  - [2.4.7 Focus Visible](https://www.ibm.com/able/requirements/requirements/#2_4_7)
-    (WCAG Success Criteria
-    [2.4.7](https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-focus-visible.html))
-  - [3.2.2 On Input](https://www.ibm.com/able/requirements/requirements/#3_2_2)
-    (WCAG Success Criteria
-    [3.2.2](https://www.w3.org/TR/2016/NOTE-UNDERSTANDING-WCAG20-20161007/consistent-behavior-unpredictable-change.html))
-  - [4.1.2 Name, Role, Value](https://www.ibm.com/able/requirements/requirements/#4_1_2)
-    (WCAG Success Criteria
-    [4.1.2](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value))
-
-## Accessibility testing
-
-Automated, manual and screen reader accessibility verification test has been
-performed on the dropdown React Carbon Component.
-[WCAG 2.1 Level A and AA success criteria](https://www.w3.org/TR/WCAG21/) issues
-have been identified and the list of open accessibility violations is available
-in the Carbon Component GitHub repository.
-
-### Automated test
+A dropdown component and its variants multiselect and combo box are reached by
+`Tab`, with navigation of the options by `Up` and `Down` arrow keys. However,
+the keys for opening the component and selecting its options are different for
+each variant.
 
 <Row>
-  <Column noGutterSm>
-    <StructuredListWrapper>
-      <StructuredListHead>
-        <StructuredListRow head>
-          <StructuredListCell head>
-            Automated test environment
-          </StructuredListCell>
-          <StructuredListCell head>Results</StructuredListCell>
-        </StructuredListRow>
-      </StructuredListHead>
-      <StructuredListBody>
-        <StructuredListRow>
-          <StructuredListCell>
-            - macOS Mojave version 10.14.2 with VoiceOver
-            <br />
-            - Chrome version 77.0.3865.90
-            <br />
-            - Dynamic Assessment Plugin (DAP) version 1.8.0.0 - IBM
-            Accessibility WCAG 2.1 Sept. 2019 Ruleset
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>DAP test:</strong>
-            <br />- Violations
-          </StructuredListCell>
-        </StructuredListRow>
-      </StructuredListBody>
-    </StructuredListWrapper>
-  </Column>
+<Column colLg={8}>
+
+![Tab to dropdown then operate with arrow keys](images/dropdown-accessibility-1.png)
+
+<Caption>
+  Dropdowns are in the tab order and operable by Up and Down arrow keys, once
+  opened.
+</Caption>
+
+</Column>
 </Row>
+
+#### Dropdown
+
+The default dropdown opens with `Enter`, `Space`, or `Down arrow`, with focus
+moving to the currently selected option. Arrow keys change options, and any
+option with focus is selected with `Space` or `Enter`, which also closes the
+dropdown. Pressing `Esc` or `Tab` closes a dropdown without changing the
+selected option.
+
+<Row>
+<Column colLg={8}>
+
+![Dropdowns are activated and their options selected with Space or Enter keys. Esc closes without changing option](images/dropdown-accessibility-2.png)
+
+<Caption>
+  The Space and Enter keys can be used to open dropdowns and also select an
+  option with focus. Esc cancels and closes the interaction.
+</Caption>
+
+</Column>
+</Row>
+
+#### Multiselect
+
+The multiselect opens with the `Enter` or `Space` keys, which are also used to
+toggle the selection of any option. Once items are selected, a tag appears in
+the field, showing a numerical representation of the number of items selected
+along with an ‘x’. Pressing `Esc` closes the multiselect. Pressing `Delete`
+while focus is in the collapsed field will clear all selected options.
+
+<Row>
+<Column colLg={8}>
+
+![Space and Enter keys open multiselects and toggle the selection of checkbox options. Esc closes.](images/dropdown-accessibility-3.png)
+
+<Caption>
+  Space and Enter keys open multiselects and toggle the state of the checkboxes
+  in the list. Esc closes the list.
+</Caption>
+
+</Column>
+</Row>
+
+#### Combo box
+
+The combo box's operation is quite different, since it is a combination of a
+text input and a dropdown. `Enter` or the `Up` or `Down` arrow keys will open
+the list of options, as will typing any character or string of characters (which
+will also filter the list to only show items that match the typed string).
+Pressing `Esc` will clear the input and collapse the list. Pressing `Enter` will
+select a highlighted option and collapse the list. (If nothing is highlighted in
+the list, pressing `Enter` will toggle the combo box open and closed.) `Space`
+cannot be used for selecting, as pressing it will submit a space character into
+the filter string.
+
+<Row>
+<Column colLg={8}>
+
+![The Enter key opens and selects items in a combo box. Arrow keys can open and navigate the options. Esc clears the input and closes.](images/dropdown-accessibility-4.png)
+
+<Caption>
+  Combo boxes can be opened with the Enter or Up and Down arrow keys. Enter
+  selects the highlighted option in the list. Esc clears the input and closes
+  the combo box.
+</Caption>
+
+</Column>
+</Row>
+
+## Development considerations
+
+Keep these considerations in mind if you are modifying Carbon or creating a
+custom component.
+
+- The dropdown and multiselect variant use a `button` with
+  `aria-haspopup="listbox"`.
+- The combo box uses an input with `role="combo box"`,
+  `aria-autocomplete="list"`, `aria-haspopup="listbox"` and
+  `autocomplete="off"`.
+- The combo box uses `aria-controls` for a div with `role="listbox"`.
+- All variants use `aria-expanded` to track the state of the listbox.
+- See the
+  [ARIA authoring practices for combo box](https://w3c.github.io/aria-practices/#combbox)
+  for more considerations.
