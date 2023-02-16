@@ -18,62 +18,35 @@ clickable, selectable, and expandable tiles.
 
 </InlineNotification>
 
-| Element                  | Property         | Color token                                                                 |
-| ------------------------ | ---------------- | --------------------------------------------------------------------------- |
-| Tile                     | background-color | `$layer` \*                                                                 |
-| Tile border (White)      | border           | `gray 30` (on background), `gray 40` (on layer-01), `gray 30` (on layer-02) |
-| Tile border (Gray 10)    | border           | `gray 40` (on background), `gray 30` (on layer-01), `gray 40` (on layer-02) |
-| Tile border (Gray 90)    | border           | `gray 60` (on background), `gray 50` (on layer-01), `gray 40` (on layer-02) |
-| Tile border (Gray 100)   | border           | `gray 70` (on background), `gray 60` (on layer-01), `gray 50` (on layer-02) |
-| Tile: focus              | border           | `$focus`                                                                    |
-| Tile: hover              | background-color | `$layer-hover` \*                                                           |
-| Tile: selected           | border           | `$border-inverse`                                                           |
-| Arrow icon (light theme) | svg              | `$interactive`                                                              |
-| Arrow icon (dark theme)  | svg              | `$icon-primary`                                                             |
-| Chevron icon             | svg              | `$icon-primary`                                                             |
-| Checkbox icon            | svg              | `$icon-primary`                                                             |
-| Checkmark icon           | svg              | `$icon-primary`                                                             |
-
-<Caption>
-  * Denotes a contextual color token that will change values based on the layer
-  it is placed on.
-</Caption>
+| Element          | Property         | Color token       |
+| ---------------- | ---------------- | ----------------- |
+| Tile: background | background-color | `$layer` \*       |
+| Tile border      | border           | `$border-tile` \* |
+| Arrow icon       | svg              | `$interactive`    |
+| Checkbox icon    | svg              | `$icon-primary`   |
+| Checkmark icon   | svg              | `$icon-primary`   |
+| Chevron icon     | svg              | `$icon-primary`   |
 
 <Row>
-<Column colLg={12}>
+<Column colLg={8}>
 
-<Tabs>
-
-<Tab label="White">
-
-![In context contextual token example in the White theme](images/tile-style-1.png)
-
-</Tab>
-
-<Tab label="Gray 10">
-
-![In context contextual token example in the Gray 10 theme](images/tile-style-2.png)
-
-</Tab>
-
-<Tab label="Gray 90">
-
-![In context contextual token example in the Gray 90 theme](images/tile-style-3.png)
-
-</Tab>
-
-<Tab label="Gray 100">
-
-![In context contextual token example in the Gray 100 theme](images/tile-style-4.png)
-
-</Tab>
-
-</Tabs>
+![States of the base tile](images/tile-style-3.png)
 
 </Column>
 </Row>
 
-### States
+### Interactive states
+
+| Element       | Property         | Color token       |
+| ------------- | ---------------- | ----------------- |
+| Tile: hover   | background-color | `$layer-hover` \* |
+| Tile: focus   | border           | `$focus`          |
+| Tile:selected | border           | `$border-inverse` |
+
+#### Base tile
+
+The base tile doesn't have a border. It's not interactive, but can have
+interactive elements.
 
 <Row>
 <Column colLg={8}>
@@ -84,6 +57,10 @@ clickable, selectable, and expandable tiles.
 </Row>
 <Caption>States of the base tile</Caption>
 
+#### Clickable tile
+
+The clickable tile has states: enabled, hover, and focus.
+
 <Row>
 <Column colLg={8}>
 
@@ -93,41 +70,45 @@ clickable, selectable, and expandable tiles.
 </Row>
 <Caption>States of the clickable tile</Caption>
 
-<Row>
-<Column colLg={12}>
+#### Selectable tiles
+
+The selectable tiles have four states: enabled, hover, focus, and selected.
+
+<Tabs>
+
+<Tab label="Single-select">
 
 ![States of the single-select tile](images/tile-style-7.png)
 
-</Column>
-</Row>
-<Caption>States of the single-select tile</Caption>
+</Tab>
 
-<Row>
-<Column colLg={12}>
+<Tab label="Multi-select">
 
 ![States of the multi-select tile](images/tile-style-8.png)
 
-</Column>
-</Row>
+</Tab>
 
-<Row>
-<Column colLg={12}>
-<Caption>States of the multi-select tile</Caption>
+</Tabs>
+
+#### Expandable tiles
+
+The expandable tiles have three states: enabled, hover, and focus.
+
+<Tabs>
+
+<Tab label="Default">
 
 ![States of the expandable tile](images/tile-style-9.png)
 
-</Column>
-</Row>
-<Caption>States of the expandable tile</Caption>
+</Tab>
 
-<Row>
-<Column colLg={12}>
+<Tab label="Interactive">
 
 ![States of the expandable tile with interactive elements](images/tile-style-10.png)
 
-</Column>
-</Row>
-<Caption>States of the expandable tile with interactive elements</Caption>
+</Tab>
+
+</Tabs>
 
 ## Structure
 
