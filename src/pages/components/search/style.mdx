@@ -1,24 +1,20 @@
 ---
 title: Search
 description:
-  Search enables users to specify a word or a phrase to find relevant pieces of
-  content without the use of navigation.
+  Search enables users to specify a word or a phrase to find relevant content
+  without navigation.
 tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 ---
 
 ## Color
 
-Inputs come in two different colors. The default input color is `$field-01` and
-is used on `$ui-background` and `$ui-02` page backgrounds. The `--light` version
-input color is `$field-02` and is used on `$ui-01` page backgrounds.
-
-| Element     | Property         | Color token         |
-| ----------- | ---------------- | ------------------- |
-| Field       | background-color | `$field` \*         |
-|             | border-bottom    | `$border-strong` \* |
-| Field text  | text color       | `$text-primary`     |
-| Prompt text | text color       | `$text-placeholder` |
-| Icon        | fill             | `$icon-secondary`   |
+| Element            | Property         | Color token         |
+| ------------------ | ---------------- | ------------------- |
+| Field              | background-color | `$field` \*         |
+|                    | border-bottom    | `$border-strong` \* |
+| Label text (fluid) | text-color       | `$text-secondary`   |
+| Placeholder text   | text-color       | `$text-placeholder` |
+| Search icon        | fill             | `$icon-secondary`   |
 
 <Caption>
   * Denotes a contextual color token that will change values based on the layer
@@ -26,68 +22,123 @@ input color is `$field-02` and is used on `$ui-01` page backgrounds.
 </Caption>
 <div className="image--fixed">
 
-![Example of Search using $field-01](images/search-style-4.png)
+![Example of search](images/search-style-1.png)
 
 </div>
 
-<Caption>Example of Search using $field</Caption>
+<Caption>Example of search</Caption>
 
 ### Interactive colors
 
-| Element             | Property         | Color token      |
-| ------------------- | ---------------- | ---------------- |
-| Input:focus         | border           | `$focus`         |
-| Field:disabled      | background-color | `$field` \*      |
-|                     | border-bottom    | transparent      |
-| Field text:disabled | text color       | `$text-disabled` |
-| Icon:disabled       | fill             | `$icon-disabled` |
+| State    | Element            | Property      | Color token         |
+| -------- | ------------------ | ------------- | ------------------- |
+| Focus    | Field              | border        | `$focus`            |
+| Filled   | Field text         | text-color    | `$text-primary`     |
+|          | Close icon         | fill          | `$icon-primary`     |
+| Disabled | Field text         | text-color    | `$text-dsiabled`    |
+|          | Label text (fluid) | text-color    | `$text-disabled`    |
+|          | Search icon        | fill          | `$icon-disabled`    |
+|          | Field (fluid)      | border-bottom | `$border-subtle` \* |
 
-<div className="image--fixed">
+<Row>
+<Column colLg={8}>
 
-![Enabled, focus, and disabled search states](images/search-style-1.png)
+<Tabs>
 
-</div>
+<Tab label="Default">
 
-<Caption>Examples of enabled, focus, and disabled search states</Caption>
+![Examples of focus, filled, and disabled search states](images/search-style-fixed-2.png)
+
+</Tab>
+
+<Tab label="Fluid">
+
+![Examples of focus, filled, and disabled search states](images/search-style-fluid-2.png)
+
+</Tab>
+
+</Tabs>
+
+</Column>
+</Row>
 
 ## Typography
 
 Search text should be set in sentence case, with only the first letter of the
 first word capitalized.
 
-| Element    | Font-size (px/rem) | Font-weight   | Type token         |
-| ---------- | ------------------ | ------------- | ------------------ |
-| Field text | 14 / 0.875         | Regular / 400 | `$body-compact-01` |
+| Element            | Font-size (px/rem) | Font-weight   | Type token         |
+| ------------------ | ------------------ | ------------- | ------------------ |
+| Field text         | 14 / 0.875         | Regular / 400 | `$body-compact-01` |
+| Label text (fluid) | 12 / 0.75          | Regular / 400 | `$label-01`        |
 
 ## Structure
 
+#### Default inputs
+
 The width of the search field should appropriately fit the design and layout of
-content.
+content. The width may vary based on the grid and layout.
 
 | Element                      | Property                    | px / rem | Spacing token |
 | ---------------------------- | --------------------------- | -------- | ------------- |
 | Search icon <br/> Close icon | height, width               | 16 / 1   | –             |
-| Large field                  | padding-left, padding-right | 48 / 3   | `$spacing-09` |
 | Small field                  | padding-left, padding-right | 32 / 2   | `$spacing-07` |
+| Medium field                 | padding-left, padding-right | 40 / 2.5 | `$spacing-08` |
+| Large field                  | padding-left, padding-right | 48 / 3   | `$spacing-09` |
 
 <div className="image--fixed">
 
-![Structure and spacing measurements for large search](images/search-style-2.png)
+![Structure and spacing measurements for default small search](images/search-style-fixed-3a.png)
 
 </div>
 
 <Caption>
-  Structure and spacing measurements for large search | px | rem
+  Structure and spacing measurements for default small search | px | rem
 </Caption>
 
 <div className="image--fixed">
 
-![Structure and spacing measurements for small search](images/search-style-3.png)
+![Structure and spacing measurements for default medium search](images/search-style-fixed-3b.png)
 
 </div>
 
 <Caption>
-  Structure and spacing measurements for small search | px | rem
+  Structure and spacing measurements for default medium search | px | rem
+</Caption>
+
+<div className="image--fixed">
+
+![Structure and spacing measurements for default large search](images/search-style-fixed-3c.png)
+
+</div>
+
+<Caption>
+  Structure and spacing measurements for default large search | px | rem
+</Caption>
+
+#### Fluid inputs
+
+The width of the search field should appropriately fit the design and layout of
+content. The width may vary based on the grid and layout.
+
+| Element     | Property                    | px / rem   | Spacing token |
+| ----------- | --------------------------- | ---------- | ------------- |
+| Label       | margin-bottom               | 4 / 0.25   | `$spacing-02` |
+| Field       | padding-left                | 16 / 1     | `$spacing-05` |
+|             | padding-right               | 80 / 5     | `$spacing-11` |
+|             | border                      | 1px        | –             |
+|             | margin-top, margin-bottom   | 13 / .8125 | –             |
+| Close icon  | padding-right, padding-left | 12 / .75   | `$spacing-04` |
+| Search icon | padding-right, padding-left | 12 / .75   | `$spacing-04` |
+
+<div className="image--fixed">
+
+![Structure and spacing measurements for fluid search](images/search-style-fluid-3a.png)
+
+</div>
+
+<Caption>
+  Structure and spacing measurements for fluid search | px | rem
 </Caption>
 
 ## Sizes
