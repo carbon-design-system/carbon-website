@@ -195,14 +195,28 @@ You can customize the time picker's format depending on location or need.
 <Row>
 <Column colLg={12}>
 
-![Date picker anatomy](images/date-picker-anatomy.png)
+<Tabs>
 
-<Caption>
-  Anatomy of a simple date input and a single date calendar picker
-</Caption>
+<Tab label="Default">
+
+![Default date picker anatomy](images/date-picker-anatomy.png)
+
+</Tab>
+
+<Tab label="Fluid">
+
+![Fluid date picker anatomy](images/date-picker-anatomy-fluid.png)
+
+</Tab>
+
+</Tabs>
 
 </Column>
 </Row>
+
+<Caption>
+  Anatomy of a simple date input and a single date calendar picker.
+</Caption>
 
 1. **Label**: Instructs the user what to do with the control.
 2. **Date field**: A text input field where the user can manually type in the
@@ -213,9 +227,9 @@ You can customize the time picker's format depending on location or need.
 5. **Calendar**: The menu where a date may be selected.
 6. **Month and year controls**: Allows the user to navigate through past and
    future time frames.
-7. **Week day**: Days of the week.
-8. **Previous and next month controls**: Allows the user to move forward or
+7. **Previous and next month controls**: Allows the user to move forward or
    backward one month at a time.
+8. **Week day**: Days of the week.
 9. **Day**: Days in the month, see
    [calendar variants](/components/date-picker/usage#calendar-variants) for
    specific day styles.
@@ -225,12 +239,24 @@ You can customize the time picker's format depending on location or need.
 <Row>
 <Column colLg={8}>
 
-![Time picker anatomy](images/time-picker-anatomy.png)
+<Tabs>
+
+<Tab label="Default">
+
+![Default time picker anatomy](images/time-picker-anatomy.png)
+
+</Tab>
+
+<Tab label="Fluid">
+
+![Fluid time picker anatomy](images/time-picker-anatomy-fluid.png)
+
+</Tab>
+
+</Tabs>
 
 </Column>
 </Row>
-
-<Caption>Anatomy of a time picker</Caption>
 
 1. **Label**: Instructs the user what to do with the control.
 2. **Hour and minute field**: A text input field where the user types the hours
@@ -240,13 +266,67 @@ You can customize the time picker's format depending on location or need.
 4. **Timezone selector**: A select control that allows the user to set the
    associated time zone.
 
+### Styling
+
+There are two styles of date picker inputs, default and fluid. They share the
+same functionality but look visually different, influencing where to use them.
+
+| Style   | Appearance                                                                                                               | Use case                                                                                                                                         |
+| ------- | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Default | A traditional style where the label is positioned outside and above the input field.                                     | Use when white space is needed between input components or in productive moments where space is at a premium, and smaller components are needed. |
+| Fluid   | An alternative style where the label is placed inside of the input field and is stacked inline with the user input text. | Use in expressive moments, fluid forms, contained spaces, or attached to complex components, like a toolbar.                                     |
+
+<Row>
+<Column colLg={8}>
+
+![An example of a default and fluid date picker input](images/date-picker-formatting-styling.png)
+
+</Column>
+</Row>
+
+### Sizes
+
+#### Default input heights
+
+The default input fields for date and time picker come in three height sizes:
+small (32px), medium (40px), and large (48px). The calendar menu in the date
+picker is a fixed height and width and does not change with the input size.
+
+| Default size | Height (px/rem) | Use case                                                                                                                                                              |
+| ------------ | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Small (sm)   | 32 / 2          | Use when space is constricted or when placing a dropdown in a form that is long and complex.                                                                          |
+| Medium (md)  | 40 / 2.5        | This is the default size and the most commonly used size. When in doubt, use the medium size.                                                                         |
+| Large (lg)   | 48 / 3          | Use when there is a lot of space to work with. This size is typically used in simple forms or when a dropdown is placed by itself on a page, for example as a filter. |
+
+<Row>
+<Column colLg={8}>
+
+![Default input size example](images/date-picker-sizes.png)
+
+</Column>
+</Row>
+
+#### Fluid input heights
+
+There is only one fluid input height and it is visually larger than the default
+heights. The input is a set height of 64px except when a warning or error
+message has been added to the bottom.
+
+<Row>
+<Column colLg={8}>
+
+![Fluid input size example](images/date-picker-sizes-fluid.png)
+
+</Column>
+</Row>
+
 ### Alignment
 
-By default, the pickers have fixed widths. If you are placing the picker inline
-with other inputs, such as in form, then the widths can be adjusted to match the
-other inputs. The picker can either increase or decrease in width as needed. If
-you adjust the size, be aware that pickers have minimum widths and the date
-content should never horizontal scroll or overflow.
+By default, the pickers have set widths. If you are placing the picker inline
+with other inputs, such as in a form, then the widths can be adjusted to match
+the other inputs. The picker can either increase or decrease in width as needed.
+If you adjust the size, be aware that pickers have minimum widths and the date
+content should never horizontally scroll or overflow.
 
 <Row>
 <Column colLg={8}>
@@ -256,27 +336,15 @@ content should never horizontal scroll or overflow.
 </Column>
 </Row>
 
-The calendar itself will always remain a fixed width and is not adjustable. It
+#### Aligning the calendar menu
+
+The calendar itself will always remain a set width and is not adjustable. It
 should always be aligned to the left edge of its assigned text field.
 
 <Row>
 <Column colLg={12}>
 
 ![Alignment example](images/date-picker-alignment-02.png)
-
-</Column>
-</Row>
-
-### Sizes
-
-The input fields for date and time picker come in three height sizes: small
-(32px), medium (40px), and large (48px). The calendar menu in the date picker is
-a fixed height and width and does not change with the input size.
-
-<Row>
-<Column colLg={8}>
-
-![Size example](images/date-picker-sizes.png)
 
 </Column>
 </Row>
@@ -319,8 +387,8 @@ a fixed height and width and does not change with the input size.
 
 ### Further guidance
 
-For further content guidance, see
-Carbon’s [content guidelines](https://www.carbondesignsystem.com/guidelines/content/overview/).
+For further content guidance, see Carbon’s
+[content guidelines](/guidelines/content/overview/).
 
 ## Universal behaviors
 
@@ -329,6 +397,35 @@ For behaviors that are unique to each variant, see each of the component variant
 sections below.
 
 ### States
+
+The date input is a [text input](/components/text-input/usage) and has the same
+interactive state and behaviors. Only date pickers with calendars will have the
+calendar icon present in the right side of the input field. See the
+[style tab](/components/date-picker/style) for more details. For calendar menu
+states, see the
+[calendar variants](/components/date-picker/usage/#calendar-variants) section.
+
+<Row>
+<Column colLg={12}>
+
+<Tabs>
+
+<Tab label="Default">
+
+![Default date picker states](images/date-picker-usage-states.png)
+
+</Tab>
+
+<Tab label="Fluid">
+
+![Fluid date picker states](images/date-picker-usage-states-fluid.png)
+
+</Tab>
+
+</Tabs>
+
+</Column>
+</Row>
 
 #### Validation
 
@@ -362,14 +459,6 @@ interactions that come with the calendar menu or a dropdown.
 The simple date input can include _month/year_ or _month/day/year._ The
 formatting may be localized and rearranged in sequence of appearance.
 
-<Row>
-<Column colLg={8}>
-
-![Simple date input](images/single-date-input.png)
-
-</Column>
-</Row>
-
 ### When to use
 
 #### Use for memorable dates
@@ -384,16 +473,10 @@ instead of an exact date, especially in regards to past dates. For example, when
 was asking a user when a purchase was made they will most likely easily recall
 the month and year (November 2019) versus the specific date (November 22, 2019).
 
-### States
-
-The simple date input is a [text input](/components/text-input/usage) and has
-the same interactive state and behaviors. See the
-[style tab](/components/date-picker/style) for more details.
-
 <Row>
-<Column colLg={12}>
+<Column colLg={8}>
 
-![Simple date input states](images/simple-date-input-states.png)
+![Simple date input](images/single-date-input.png)
 
 </Column>
 </Row>
@@ -544,7 +627,7 @@ and minutes. Additionally, they can be accompanied by an AM/PM and a time zone
 control, both styled as selects.
 
 The time field format should include the hour and minutes, for example 11:30. It
-may be localized accommodate the 12-hour or 24-hour format.
+may be localized to accommodate the 12-hour or 24-hour format.
 
 #### Use for scheduling
 
