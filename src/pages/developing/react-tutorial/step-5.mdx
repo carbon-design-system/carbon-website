@@ -1,5 +1,5 @@
 ---
-title: 5. Deploying to IBM Cloud
+title: 5. Deploying to Github Pages
 description:
   Welcome to Carbon! This tutorial will guide you in creating a React app with
   the Carbon Design System.
@@ -35,11 +35,8 @@ have not been updated to reflect changes for our next major version.
 <AnchorLinks>
 
 <AnchorLink>Fork, clone and branch</AnchorLink>
-<AnchorLink>Create IBM Cloud account</AnchorLink>
 <AnchorLink>Build for production</AnchorLink>
-<AnchorLink>Create manifest file</AnchorLink>
-<AnchorLink>Create static file</AnchorLink>
-<AnchorLink>Deploy app</AnchorLink>
+<AnchorLink>Deploying to Github Pages</AnchorLink>
 <AnchorLink>Submit pull request</AnchorLink>
 
 </AnchorLinks>
@@ -103,12 +100,6 @@ yarn start
 You should see something similar to where the
 [previous step](/developing/react-tutorial/step-4) left off.
 
-## Create IBM Cloud account
-
-Before we get started,
-[create an IBM Cloud account](https://cloud.ibm.com/registration) if you don't
-already have one, as we'll be deploying there in a bit.
-
 ## Build for production
 
 Before we deploy our app, we need to create an optimized production build with
@@ -130,125 +121,46 @@ Create React App, go ahead and check out their
 [production build guidelines](https://facebook.github.io/create-react-app/docs/production-build)
 for a full description of what's happening.
 
-## Create manifest file
+## Deploying to Github Pages
 
-Now that we have a production build, let's get it on the cloud. We're going to
-use
-[staticfile-buildpack](https://github.com/cloudfoundry/staticfile-buildpack.git)
-to deploy our webapp. Since this is a Cloud Foundry buildpack, we'll be using
-the `cf` command line interface (CLI). If running `cf --help` doesn't work for
-you, chances are you need to
-[install the CLI](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html).
+Next we'll be deploying to
+[GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages)
+which allows you to host your files directly from your repository in GitHub.
 
-<InlineNotification>
+If you forked the tutorial earlier by copying only the `main` branch, you will
+have to create a `gh-pages` branch with the following steps. Otherwise, if you
+already have an existing `gh-pages` branch (you can easily check by going to
+your repository on `github.com` and checking the existing branches), skip the
+following `git` commands.
 
-**Note:** If unfamiliar with buildpacks, the
-[staticfile buildpack docs](https://docs.cloudfoundry.org/buildpacks/staticfile/index.html)
-has good definitions and configuration documentation.
-
-</InlineNotification>
-
-With the Cloud Foundry CLI installed, next, we need to create a `manifest.yml`
-file in the root of the project. To prevent multiple apps trying to use the
-`carbon-tutorial` name, replace `USERNAME` with your GitHub username below to
-make sure our apps are uniquely named.
-
-```bash path=manifest.yml
----
-applications:
-  - name: carbon-tutorial-USERNAME
-    memory: 64M
-    buildpack: https://github.com/cloudfoundry/staticfile-buildpack.git
-```
-
-<InlineNotification>
-
-**Note:** With this set-up we're still using a GitHub personal access token
-saved in `.env.local`. If you haven't created a GitHub access token yet, see
-[step 3](/developing/react-tutorial/step-3#create-access-token). You can put the
-environment variable in the manifest file, or manually add it in the IBM Cloud
-dashboard, but since we're building off previous tutorial steps nothing more is
-needed.
-
-</InlineNotification>
-
-## Create static file
-
-Create a new static file in the root of the project named `Staticfile`. This
-tells the app to deploy from the `build` folder and not the root of the project.
-
-```bash path=Staticfile
-root: build
-```
-
-### Cloud Foundry ignore
-
-After telling Cloud Foundry what to include, we can also specify what to ignore.
-Create a top-level `.cfignore` file. Cloud Foundry doesn't let you push
-read-only files (specifically, files with permissions < `400`), so to prevent
-issues with the deploy, add:
-
-```bash path=.cfignore
-node_modules/.cache
-```
-
-You can speed up deploys by decreasing the files uploaded through cloud foundry.
-To accomplish this, ignore any folder not required by the production application
-on IBM Cloud.
-
-In our case we can ignore everything except the `build/` directory and
-`Staticfile`. To speed up our deploys change `.cfignore` to:
-
-```bash path=.cfignore
-*
-
-!Staticfile
-!build
-```
-
-## Deploy app
-
-Login to IBM Cloud with:
+To do this, we'll first commit our `build` folder so that git knows we have a
+subtree (subfolder with our site).
 
 ```bash
-cf login -a https://api.us-south.cf.cloud.ibm.com --sso
+git add build && git commit -m "chore(deploy): publish build files"
 ```
 
-Deploy app using the `cf push` command. Since `manifest.yml` is in our root
-directory, we don't need to specify it in the push command. But, if you have
-multiple manifest files that target different environments, it's good practice
-to specify the file.
-
-<InlineNotification>
-
-**Note:** This step assumes your spaces are in the US South region. To
-successfully deploy, you might need to update the region code (e.g.
-`api.[REGION].cf.cloud.ibm.com`) to the region where your spaces were created,
-or create a space in the US South region.
-[Learn more.](https://cloud.ibm.com/docs/overview?topic=overview-whatsnew&origin_team=T02M79KSB#new-cloud-foundry-api-endpoints)
-
-</InlineNotification>
+Then we'll use `subtree push` to push to the `gh-pages` branch on Github.
 
 ```bash
-cf push -f manifest.yml
+git subtree push --prefix build origin gh-pages
 ```
 
-To make it easy on ourselves by not needing to remember that command, let's add
-a script in `package.json`. We can combine the build and deploy steps to make
-sure we only deploy immediately after running the build. In the `"scripts"`
-object in `package.json`, add:
+To have GitHub Pages point to the `gh-pages` branch, go to your forked Carbon
+tutorial repository on `github.com`. Go to your "Settings" and under the "Pages"
+tab, specify the branch, `gh-pages`, as your source.
 
-```bash path=package.json
-"deploy": "rm -rf ./build && yarn build && cf push -f manifest.yml"
-```
+![Screenshot of Github settings dashboard](../shared/step-5/images/deploy-on-github-pages.png)
 
-Next time you want to deploy, you can simply run `yarn deploy`.
+Once you click save, you should be able to see your site published at the
+`*.github.io/carbon-tutorial` link shown on the page.
+
+Congratulations! Your work is now hosted on GitHub Pages!
 
 ## Submit pull request
 
 That does it! We're going to submit a pull request to verify completion of this
-tutorial step. In doing so, **please include the mybluemix.net URL for your
-deployed app in your pull request description**.
+tutorial step.
 
 ### Continuous integration (CI) check
 
