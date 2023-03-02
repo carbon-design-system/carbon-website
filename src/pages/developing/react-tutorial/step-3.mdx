@@ -99,12 +99,8 @@ You should see something similar to where the
 
 ## Install dependencies
 
-We'll need to install three new dependencies to incorporate Apollo into our
-application.
-
-- `@octokit/core` - allows us to query github API's easily
-
-Install them with the command:
+We'll need to install `@octokit/core`, a package that allows us to query Github
+APIs easily.
 
 ```bash
 yarn add @octokit/core@4.2.0
@@ -118,7 +114,7 @@ We'll be using [React Hooks](https://reactjs.org/docs/hooks-intro.html) to call
 a function to fetch our data when the component renders.
 
 Import React's [useEffect](https://reactjs.org/docs/hooks-effect.html) by
-modifying the `React` import.
+modifying the `React` import in `RepoPage.js`.
 
 ```javascript path=src/content/RepoPage/RepoPage.js
 import React, { useEffect } from 'react';
@@ -249,7 +245,7 @@ Then, inside the `RepoPage` component:
 
 ```javascript path=src/content/RepoPage/RepoPage.js
 const RepoPage = () => {
-  const [loading, setIsLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState();
   const [rows, setRows] = useState([]);
 ...
@@ -358,7 +354,7 @@ component. We could stop here, but there's more to be done! Let's replace the
 [DataTableSkeleton component](https://react.carbondesignsystem.com/?path=/story/components-datatable--skeleton).
 
 To do so, back to `RepoPage.js`, add the `DataTableSkeleton` import by modifying
-the existing `carbon-components-react` import.
+the existing `@carbon/react` import.
 
 ```javascript path=src/content/RepoPage/RepoPage.js
 import { Link, DataTableSkeleton, Grid, Column } from '@carbon/react';
@@ -531,7 +527,7 @@ troubleshooting notes that may help.
 Finally, visit
 [carbon-tutorial](https://github.com/carbon-design-system/carbon-tutorial) to
 "Compare & pull request". In doing so, make sure that you are comparing to
-`react-step-3` into `base: react-step-3`.
+`v11-react-step-3` into `base: v11-react-step-3`.
 
 <InlineNotification>
 
