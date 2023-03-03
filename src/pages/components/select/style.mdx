@@ -23,32 +23,70 @@ tabs: ['Usage', 'Style', 'Code', 'Accessibility']
   it is placed on.
 </Caption>
 
-<div className="image--fixed">
+<Row>
+<Column colLg={8}>
 
-![Default and new selection state examples for Select](images/select-style-1.png)
+<Tabs>
 
-</div>
+<Tab label="Default">
 
-<Caption>Examples of default and new selection select states</Caption>
+![Select interactive states](images/select-style-color-fixed.png)
 
-### Interaction states
+</Tab>
 
-| Element             | Property      | Color token      |
-| ------------------- | ------------- | ---------------- |
-| Input:focus         | border        | `$focus`         |
-| Input:invalid       | border        | `$support-error` |
-| Error message       | text color    | `$support-error` |
-| Input:disabled      | background    | `$field` \*      |
-|                     | border-bottom | transparent      |
-| Field text:disabled | text color    | `$text-disabled` |
+<Tab label="Fluid">
 
-<div className="image--fixed">
+![Select interactive states](images/select-style-color-fluid.png)
 
-![Open, disabled, and more information/help state examples for Select](images/select-style-3.png)
+</Tab>
 
-</div>
+</Tabs>
 
-<Caption>Examples of open, disabled, and help select states</Caption>
+</Column>
+</Row>
+
+### Interactive states
+
+| State    | Element         | Property         | Color token         |
+| -------- | --------------- | ---------------- | ------------------- |
+| Hover    | Field           | background-color | `$field-hover` \*   |
+| Focus    | Field           | border           | `$focus`            |
+| Invalid  | Field           | border           | `$support-error`    |
+|          | Error message   | text-color       | `$text-error`       |
+|          | Error icon      | fill             | `$support-error`    |
+| Warning  | Warning message | text-color       | `$text-primary`     |
+|          | Warning icon    | fill             | `$support-warning`  |
+| Disabled | Field           | background-color | `$field` \*         |
+|          | Input text      | text-color       | `$text-disabled     |
+|          | Field           | border-bottom    | transparent         |
+|          | Field (fluid)   | border-bottom    | `$border-subtle` \* |
+|          | Label           | text-color       | `$text-disabled`    |
+|          | Chevron icon    | fill             | `$icon-disabled`    |
+
+- Denotes a contextual color token that will change values based on the layer it
+  is placed on.
+
+<Row>
+<Column colLg={12}>
+
+<Tabs>
+
+<Tab label="Default">
+
+![Select interactive states](images/select-style-states-fixed.png)
+
+</Tab>
+
+<Tab label="Fluid">
+
+![Select interactive states](images/select-style-states-fluid.png)
+
+</Tab>
+
+</Tabs>
+
+</Column>
+</Row>
 
 ## Typography
 
@@ -65,38 +103,79 @@ and any proper nouns capitalized. Select text should be three words or less.
 
 ## Structure
 
-### Select
+### Default select
 
-| Element | Property                    | px / rem | Spacing token |
-| ------- | --------------------------- | -------- | ------------- |
-| Label   | margin-bottom               | 8 / 0.5  | `$spacing-03` |
-| Input   | padding-left                | 16 / 1   | `$spacing-05` |
-| Arrow   | padding-left, padding-right | 16 / 1   | `$spacing-05` |
-| Field   | border-bottom               | 1px      | –             |
+#### Default
 
-<div className="image--fixed">
+<br />
 
-![Structure and spacing measurements for select](images/select-style-2.png)
-
-</div>
-
-<Caption>Structure and spacing measurements for select | px / rem</Caption>
-
-### Inline select
-
-| Element | Property                    | px / rem | Spacing token |
-| ------- | --------------------------- | -------- | ------------- |
-| Input   | padding-left                | 8 / 0.5  | `$spacing-03` |
-| Arrow   | padding-left, padding-right | 8 / 0.5  | `$spacing-03` |
+| Element      | Property                    | px / rem | Spacing token |
+| ------------ | --------------------------- | -------- | ------------- |
+| Label        | margin-bottom               | 8 / 0.5  | `$spacing-03` |
+| Input text   | padding-left                | 16 / 1   | `$spacing-05` |
+| Helper text  | margin-top                  | 4 / 0.25 | `$spacing-02` |
+| Field        | padding-left                | 16 / 1   | `$spacing-05` |
+|              | padding-right               | 48 / 3   | `$spacing-09` |
+|              | border-bottom               | 1px      | –             |
+| Chevron icon | padding-left, padding-right | 16 / 1   | `$spacing-05` |
+| State icon   | padding-left, padding-right | 16 / 1   | `$spacing-05` |
 
 <div className="image--fixed">
 
-![Structure and spacing measurements for Inline Select](images/select-style-6.png)
+![Structure and spacing measurements for default select](images/select-style-structure-default-fixed.png)
 
 </div>
 
 <Caption>
-  Structure and spacing measurements for inline select (focused) | px / rem
+  Structure and spacing measurements for default select | px / rem
+</Caption>
+
+#### Inline
+
+<br />
+
+| Element      | Property      | px / rem | Spacing token |
+| ------------ | ------------- | -------- | ------------- |
+| Input text   | padding-left  | 16 / 1   | `$spacing-05` |
+|              | padding-right | 8 / 0.5  | `$spacing-03` |
+| Chevron icon | padding-right | 16 / 1   | `$spacing-05` |
+|              | padding-left  | 8 / 0.5  | `$spacing-03` |
+
+<div className="image--fixed">
+
+![Structure and spacing measurements for default inline select](images/select-style-structure-inline-fixed.png)
+
+</div>
+
+<Caption>
+  Structure and spacing measurements for default inline select | px / rem
+</Caption>
+
+### Fluid select
+
+#### Default
+
+<br />
+
+| Element      | Property                    | px / rem | Spacing token |
+| ------------ | --------------------------- | -------- | ------------- |
+| Label        | margin-bottom               | 4 / .25  | `$spacing-02` |
+| Input text   | padding-left                | 16 / 1   | `$spacing-05` |
+| Helper text  | margin-top                  | 4 / .25  | `$spacing-02` |
+| Field        | padding-left                | 16 / 1   | `$spacing-05` |
+|              | padding-right               | 48 / 3   | `$spacing-09` |
+|              | border-bottom               | 1px      | –             |
+| Chevron icon | padding-left, padding-right | 16 / 1   | `$spacing-05` |
+| State icon   | padding-left, padding-right | 16 / 1   | `$spacing-05` |
+
+<div className="image--fixed">
+
+![Structure and spacing measurements for Inline Select](images/select-style-structure-default-fluid.png)
+
+</div>
+
+<Caption>
+  Structure and spacing measurements for fluid select | px / rem
 </Caption>
 
 ## Size
