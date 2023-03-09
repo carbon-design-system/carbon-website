@@ -4,10 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { groupBy, debounce } from 'lodash-es';
 import loadable from '@loadable/component';
 
-import {
-  icons as iconMetaData,
-  categories as iconCategoryMetadata,
-} from '@carbon/icons/metadata.json';
+import * as metaData from '@carbon/icons/metadata.json';
 import useColumnCount from '../shared/useColumnCount';
 
 import { svgPage, svgLibrary } from '../shared/SvgLibrary.module.scss';
@@ -15,6 +12,8 @@ import { svgPage, svgLibrary } from '../shared/SvgLibrary.module.scss';
 import FilterRow from '../shared/FilterRow';
 import IconCategory from './IconCategory';
 import NoResult from '../shared/NoResult';
+
+const { icons: iconMetaData, categories: iconCategoryMetadata } = metaData;
 
 const IconLibrary = () => {
   const [iconComponents, setIconComponents] = useState([]);
@@ -28,17 +27,28 @@ const IconLibrary = () => {
 
   useEffect(() => {
     const iconArray = iconMetaData.reduce((accumulator, icon) => {
-      if (icon.deprecated) return accumulator;
+      if (icon.deprecated) {
+        return accumulator;
+      }
 
-      const path = [...icon.namespace, icon.name].join('/');
+      const path = icon.moduleInfo.filepath;
 
+      if (icon.sizes.length === 1 && icon.sizes[0] === 'glyph') {
+        return [
+          ...accumulator,
+          {
+            ...icon,
+            Component: loadable(() =>
+              import(`@carbon/icons-react/lib/${path}`)
+            ),
+          },
+        ];
+      }
       return [
         ...accumulator,
         {
           ...icon,
-          Component: loadable(() =>
-            import(`@carbon/icons-react/lib/${path}/32`)
-          ),
+          Component: loadable(() => import(`@carbon/icons-react/lib/${path}`)),
         },
       ];
     }, []);
@@ -108,7 +118,7 @@ const IconLibrary = () => {
           setSelectedCategory={setSelectedCategory}
           allIconResults={filteredIcons.length}
           pageName="icon"
-          pageUrl="https://github.com/carbon-design-system/carbon/blob/main/packages/icons/master/ui-icon-master.ai"
+          pageUrl="https://github.com/carbon-design-system/carbon/blob/v10/packages/icons/master/ui-icon-master.ai"
         />
       ) : (
         <div className={svgLibrary}>

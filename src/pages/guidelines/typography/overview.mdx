@@ -1,12 +1,14 @@
 ---
 label:
-  When used properly, typography can help create clear hierarchies, organize
-  information, and guide users through the product or experience.
+  Our approach to the typographic system uses IBM Plex as its typeface. It has
+  been carefully engineered with suitable scales, styles, and weights to help
+  create clear hierarchies and organize information that guides users through
+  IBM products or experiences.
 title: Typography
 description:
   Typography can help create clear hierarchies, organize information, and guide
   users through a product or experience.
-tabs: ['Overview', 'Productive', 'Expressive', 'Code']
+tabs: ['Overview', 'Style strategies', 'Type sets', 'Code']
 ---
 
 import TypeScaleTable from '../../../../src/components/TypeScaleTable';
@@ -14,8 +16,10 @@ import TypeWeight from '../../../../src/components/TypeWeight';
 
 <PageDescription>
 
-Typography can help create clear hierarchies, organize information, and guide
-users through a product or experience.
+Our approach to the typographic system uses IBM Plex as its typeface. It has
+been carefully engineered with suitable scales, styles, and weights to help
+create clear hierarchies and organize information that guides users through IBM
+products or experiences.
 
 </PageDescription>
 
@@ -32,26 +36,35 @@ users through a product or experience.
 
 ## Type tokens and sets
 
-Carbon uses type tokens and themes to manage typography. Type tokens are pre-set
-configurations of typographic elements such as font size, weight, or leading
-(line height) that are specifically calibrated for use alongside
+Carbon uses type tokens across two type sets to manage typography. Type tokens
+are pre-set configurations of typographic elements such as font size, weight, or
+leading (line height) that are specifically calibrated for use alongside
 [IBM Plex](http://ibm.com/plex) in product. Selecting the appropriate type style
 is determined by layout or template structure. Layouts may have several levels
 of architecture or areas that require varying typographic hierarchies.
 
-### Productive vs. Expressive type sets
+### Productive and expressive type sets
 
-Productive type is reserved for use in web-based product design, where the user
-needs to focus on tasks. The Productive styles are curated to create a series of
-clear user expectations about hierarchy. Expressive type, on the other hand,
-allows for a more dramatic, graphic use of type in editorial and marketing
-design — which many users would find distracting in product.
+The productive type set is primarily used within product spaces, where users
+benefit from a more condensed treatment of content to maintain focus on tasks.
+The productive styles work together to support the hierarchy of information and
+set user expectations. On the other hand, the larger expressive type styles
+allow for a more dramatic, graphic use of type in editorial and marketing
+design. These type styles are excellent for long form reading and scanning, but
+would be distracting if used in product.
 
-There are two heading sets, one Productive and one Expressive. The difference
-between the Productive and Expressive styles is mainly evident in the Headings.
-Aside from the token names, which are specifically calibrated for product vs.
-editorial designers (e.g. $label-01 vs. $caption-01) — the Supporting and Body
-styles have the same values in both the Productive and Expressive sets.
+Within **Body styles** and **Utility styles**, the same set of styles are
+offered. Productive styles are named with a suffix of `-01` and expressive style
+names have a suffix of `-02`.
+
+There are two heading sets and the major difference between them is in how they
+are implemented in code. The productive type set uses fixed headings. Expressive
+headings are responsive and the type styles change size at different
+breakpoints.
+
+For more detail, see
+[Style strategies](/guidelines/typography/style-strategies/) and
+[Type sets](/guidelines/typography/type-sets/).
 
 ## Typeface: IBM Plex
 
@@ -85,7 +98,9 @@ font-family: 'IBM Plex Mono', 'Menlo', 'DejaVu Sans Mono',
 
 The IBM type scale is built on a single equation. The formula for our scale was
 created to provide hierarchy for all types of experiences. The formula assumes
-that y₀=12 px:
+that y₀=12 px.
+
+<br />
 
 <TypeScaleTable />
 
@@ -119,8 +134,8 @@ long text.
 ### Italic
 
 Each weight has an italic style, which should only be used when you need to
-emphasize certain words in a sentence (titles of works, technical terms, names
-of devices, and captions).
+emphasize certain words in a sentence (i.e., titles of works, technical terms,
+names of devices, and captions).
 
 <TypeWeight type="italic" />
 
@@ -131,7 +146,7 @@ paramount concerns. Keep type color neutral in running text. Use primary blue
 for primary actions.
 
 <DoDontRow>
-<DoDont>
+<DoDont type="do">
 
 ![Neutral color for text](images/Typography_overview_Type-color-1.svg)
 
@@ -144,7 +159,7 @@ for primary actions.
 </DoDontRow>
 
 <DoDontRow>
-<DoDont color="dark">
+<DoDont type="do" color="dark">
 
 ![Neutral color for text](images/Typography_overview_Type-color-3.svg)
 
@@ -157,12 +172,12 @@ for primary actions.
 </DoDontRow>
 
 <DoDontRow>
-<DoDont caption="Core blue colors are used for text links and primary actions">
+<DoDont type="do" caption="Core blue colors are used for text links and primary actions">
 
 ![Link with icon](images/Typography_overview_Type-color-5.svg)
 
 </DoDont>
-<DoDont caption="Secondary actions use Gray 100 and icons">
+<DoDont type="do" caption="Secondary actions use Gray 100 and icons">
 
 ![Download with icon](images/Typography_overview_Type-color-6.svg)
 
@@ -170,12 +185,12 @@ for primary actions.
 </DoDontRow>
 
 <DoDontRow>
-<DoDont caption="Other use cases for colored type are code snippets, warnings, alerts, etc.">
+<DoDont type="do" caption="Other use cases for colored type are code snippets, warnings, alerts, etc.">
 
 ![Oops, something went wrong! colored text](images/Typography_overview_Type-color-7.svg)
 
 </DoDont>
-<DoDont>
+<DoDont type="do">
 
 ![Code snippet with colored highlight type](images/Typography_overview_Type-color-8.svg)
 
@@ -206,7 +221,7 @@ for primary actions.
 <Column colMd={4} colLg={4} noGutterSm>
   <ResourceCard
     subTitle="Elements package: Type"
-    href="https://github.com/carbon-design-system/carbon/tree/main/packages/type"
+    href="https://github.com/carbon-design-system/carbon/tree/v10/packages/type"
     >
 
 <MdxIcon name="github" />
@@ -216,7 +231,7 @@ for primary actions.
 <Column colMd={4} colLg={4}  noGutterSm>
   <ResourceCard
     subTitle="Type package preview"
-    href="https://github.com/carbon-design-system/carbon/tree/main/packages/type"
+    href="https://github.com/carbon-design-system/carbon/tree/v10/packages/type"
     >
 
 <MdxIcon name="codesandbox" />

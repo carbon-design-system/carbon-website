@@ -68,7 +68,8 @@ file uploader.
       id: 'upload-states',
       label: 'Upload states',
     },
-  ]}>
+  ]}
+>
   <ComponentVariant
     id="file-uploader"
     knobs={{
@@ -79,11 +80,13 @@ file uploader.
         'https://react.carbondesignsystem.com/?path=/story/components-fileuploader--file-uploader',
       Angular:
         'https://angular.carbondesignsystem.com/?path=/story/components-file-uploader--basic',
-      Vue:
-        'http://vue.carbondesignsystem.com/?path=/story/components-cvfileuploader--default',
-      Vanilla: 'https://the-carbon-components.netlify.com/?nav=file-uploader',
-    }}>{`
-      <div className="bx--file__container">
+      Vue: 'http://vue.carbondesignsystem.com/?path=/story/components-cvfileuploader--default',
+      'Web Components':
+        'https://web-components.carbondesignsystem.com/?path=/story/components-file-uploader--default',
+    }}
+  >
+    {`
+      <div className="cds--file__container">
         <FileUploader
           accept={[
             '.jpg',
@@ -97,7 +100,8 @@ file uploader.
           labelTitle="Upload"
         />
       </div>
-    `}</ComponentVariant>
+    `}
+  </ComponentVariant>
   <ComponentVariant
     id="drag-and-drop"
     knobs={{
@@ -108,13 +112,15 @@ file uploader.
         'https://react.carbondesignsystem.com/?path=/story/components-fileuploader--drag-and-drop-upload-container-example-application',
       Angular:
         'https://angular.carbondesignsystem.com/?path=/story/components-file-uploader--drag-and-drop',
-      Vue:
-        'http://vue.carbondesignsystem.com/?path=/story/components-cvfileuploader--default',
-      Vanilla: 'https://the-carbon-components.netlify.com/?nav=file-uploader',
-    }}>{`
-      <div className="bx--file__container">
-        <strong className='bx--file--label'>Account photo</strong>
-        <p className='bx--label-description'>
+      Vue: 'http://vue.carbondesignsystem.com/?path=/story/components-cvfileuploader--default',
+      'Web Components':
+        'https://web-components.carbondesignsystem.com/?path=/story/components-file-uploader--default',
+    }}
+  >
+    {`
+      <div className="cds--file__container">
+        <strong className='cds--file--label'>Account photo</strong>
+        <p className='cds--label-description'>
           Only .jpg and .png files. 500kb max file size
         </p>
         <FileUploaderDropContainer
@@ -126,7 +132,8 @@ file uploader.
           tabIndex={0}
         />
       </div>
-    `}</ComponentVariant>
+    `}
+  </ComponentVariant>
   <ComponentVariant
     id="upload-states"
     knobs={{
@@ -137,14 +144,17 @@ file uploader.
         'https://react.carbondesignsystem.com/?path=/story/components-fileuploader--file-uploader-item',
       Angular:
         'https://angular.carbondesignsystem.com/?path=/story/components-file-uploader--basic',
-      Vue:
-        'http://vue.carbondesignsystem.com/?path=/story/components-cvfileuploader--default',
-      Vanilla: 'https://the-carbon-components.netlify.com/?nav=file-uploader',
-    }}>{`
-      <div className="bx--file__container">
+      Vue: 'http://vue.carbondesignsystem.com/?path=/story/components-cvfileuploader--default',
+      'Web Components':
+        'https://web-components.carbondesignsystem.com/?path=/story/components-file-uploader--default',
+    }}
+  >
+    {`
+      <div className="cds--file__container">
         <FileUploaderItem name='color.jpg' errorSubject='File size exceeds limits' errorBody='500 kb max file size. Select a new file and try again.'/>
       </div>
-    `}</ComponentVariant>
+    `}
+  </ComponentVariant>
 </ComponentDemo>
 
 ## Formatting
@@ -159,10 +169,11 @@ file uploader.
 </Column>
 </Row>
 
-1. **Label:** Text to describe the action that needs to be taken.
-2. **Description:** Assistive text to help the user make an informed selection.
-3. **Button or drop zone:** The action to select a file to upload.
+1. **Heading:** Text to describe the upload section.
+2. **Description:** Text to help the user make an informed selection.
+3. **Button or drop zone label:** The action to select a file to upload.
 4. **Uploaded file:** A file that has successfully been uploaded.
+5. **x:** The delete `x` icon will remove the uploaded file.
 
 ### Sizing
 
@@ -216,23 +227,24 @@ conflict with the primary action.
 
 ### Main elements
 
-#### Label
+#### Heading
 
-- Labels inform users what needs to be uploaded.
-- Keep the label short and concise by limiting it to a single line of text.
+- Informs users about the purpose of the upload section. "Upload files" is the
+  default text that appears with the file uploader.
+- Keep the heading short and concise by limiting it to a single line of text.
 
 #### Description
 
 - Descriptions help communicate to the user what file size or format limitations
   there are.
 
-#### Button or drop zone text
+#### Button or drop zone label
 
 - Button labels should be concise and describe the action that will be taken
   upon click. "Add files" is the default text that appears with the file
   uploader.
-- Drop zone area text should describe that you can either drag and drop a file
-  into the drop zone or click on the text to upload a file.
+- Drop zone area label should describe that you can either drag and drop a file
+  into the drop zone or click on the button to upload a file.
 
 #### Uploaded file text
 
@@ -273,7 +285,7 @@ uploaded.
 
 #### Mouse
 
-Moving your mouse anywhere within the bounds of the drop zone area with an
+Dragging your mouse anywhere within the bounds of the drop zone area with an
 attached file will enable you to drop it inside of the area and begin to upload.
 
 <Row>
@@ -284,7 +296,7 @@ attached file will enable you to drop it inside of the area and begin to upload.
 </Column>
 </Row>
 
-To remove an uploaded file, click the "x” (or close) icon.
+To remove an uploaded file, click the "x” (or delete) icon.
 
 <Row>
 <Column colLg={8}>
@@ -300,8 +312,6 @@ To remove an uploaded file, click the "x” (or close) icon.
 
 - The file uploader button or drop zone can be activated by pressing `Space` or
   `Enter`.
-- The file uploader button or drop zone should have text or a label that
-  accurately describes the action that will be taken.
 - After the file selection dialog closes, focus should retain the user’s point
   of regard and return to the element that invoked it.
 
@@ -311,14 +321,8 @@ To remove an uploaded file, click the "x” (or close) icon.
 - Pressing `Space` or `Enter` while the "x" icon is in focus will delete the
   file.
 
-#### Screen readers
-
-- VoiceOver: Users can upload a file by pressing `VO+Space` while the button or
-  drop zone area is in focus.
-- JAWS: Users can upload a file by pressing `Enter` or `Space` while the button
-  or drop zone area is in focus.
-- NVDA: Users can upload a file by pressing `Enter` or `Space` while the button
-  or drop zone area is in focus.
+For additional keyboard interactions, see the
+[accessibility tab](/components/file-uploader/accessibility).
 
 ### Validation
 

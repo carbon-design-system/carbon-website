@@ -15,326 +15,95 @@ import {
   StructuredListCell,
   OrderedList,
   ListItem,
-} from 'carbon-components-react';
+} from '@carbon/react';
+
+<PageDescription>
+
+Design annotations are needed for specific instances shown below, but for the
+standard link component, Carbon already incorporates accessibility.
+
+</PageDescription>
 
 <AnchorLinks>
-  <AnchorLink>How it works</AnchorLink>
-  <AnchorLink>Accessibility considerations</AnchorLink>
-  <AnchorLink>Resources</AnchorLink>
-  <AnchorLink>Accessibility testing</AnchorLink>
+  <AnchorLink>What Carbon provides</AnchorLink>
+  <AnchorLink>Design recommendations</AnchorLink>
+  <AnchorLink>Development considerations</AnchorLink>
 </AnchorLinks>
 
-## How it works
+## What Carbon provides
 
-The link Carbon component is primarily a native HTML hyperlink navigational
-element. The `Enter` key activates the link and causes the user agent to move
-focus to the link destination. When you use the disabled link component the ARIA
-state is set to `aria-disabled="true"`, which changes the appearance and the
-`tabindex="-1"` which removes the link for the tab order. When the link becomes
-active the ARIA state changes to `aria-disabled="false"` and the link is present
-in the tab order.
+Carbon bakes keyboard operation into its components, improving the experience of
+blind users and others who operate via the keyboard. Carbon incorporates many
+other accessibility considerations, some of which are described below.
 
-## Accessibility considerations
+### Keyboard interactions
 
-This component has been validated to meet the
-[WCAG 2.0 AA](https://www.w3.org/TR/WCAG20/) and
-[Section 508](http://www.section508.gov/) accessibility guidelines, however
-changes made by the content owner can affect accessibility compliance. Be sure
-to review and follow the guidance in this section when updating or adding new
-content to this component.
-
-1. Link text is the visible label for the native HTML link and is used to
-   provide the purpose of the link which is clear and easy to understand for all
-   users.
-2. The alt attribute for the img element is used to describe the purpose of a
-   graphical link with an image inside the link.
-3. The title attribute can be used to supplement the link text with any
-   additional useful description.
-
-## Resources
-
-#### Helpful resources for creating customized accessible implementations
-
-- [W3C WAI-ARIA Authoring Practices Link Design Pattern](https://www.w3.org/TR/wai-aria-practices/#link)
-  covers the usage of ARIA names, state and roles, as well as the expected
-  keyboard interactions.
-- [IBM Accessibility Checklist - Checkpoint 2.4.4 Link Purpose (In Context)](https://www.ibm.com/able/requirements/requirements/#2_4_4)
-  (WCAG Success Criteria
-  [2.4.4](https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-refs.html))
-
-## Accessibility testing
-
-Accessibility issues are tracked in the
-[Carbon Component GitHub repository](https://github.com/carbon-design-system/carbon/milestones)
-
-### Automated test
+No annotations for keyboard interactions are needed. All links are in the tab
+order, and activated with standard keys. Where Carbon links are not persistently
+underlined, they receive an underline on focus.
 
 <Row>
-  <Column noGutterSm>
-    <StructuredListWrapper>
-      <StructuredListHead>
-        <StructuredListRow head>
-          <StructuredListCell head>
-            Automated test environment
-          </StructuredListCell>
-          <StructuredListCell head>Results</StructuredListCell>
-        </StructuredListRow>
-      </StructuredListHead>
-      <StructuredListBody>
-        <StructuredListRow>
-          <StructuredListCell>
-            - macOS Mojave version 10.14.6 with VoiceOver
-            <br />
-            - Chrome version 77.0.3865.90
-            <br />
-            - Dynamic Assessment Plugin version 1.8.0.0 - IBM Accessibility WCAG
-            2.1 Sept. 2019 Ruleset
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>DAP test</strong>
-            <br />- No violations
-          </StructuredListCell>
-        </StructuredListRow>
-      </StructuredListBody>
-    </StructuredListWrapper>
-  </Column>
+<Column colLg={8}>
+
+![example of link keyboard interaction](images/link-accessibility-1.png)
+
+<Caption>
+  Links are reached by Tab key and activated by Space and Enter keys.
+</Caption>
+
+</Column>
 </Row>
 
-### macOS screen reader tests
+### Contrast
+
+Carbon’s link text color meets the minimum contrast requirement of 4.5:1 with
+its background. Carbon also uses a link color that contrast 3:1 against body
+text, so that link text is distinguishable even without an underline.
 
 <Row>
-  <Column noGutterSm>
-    <StructuredListWrapper>
-      <StructuredListHead>
-        <StructuredListRow head>
-          <StructuredListCell head>Environment </StructuredListCell>
-          <StructuredListCell head>Results</StructuredListCell>
-        </StructuredListRow>
-      </StructuredListHead>
-      <StructuredListBody>
-        <StructuredListRow>
-          <StructuredListCell>
-            - macOS Mojave version 10.14.6 with VoiceOver
-            <br />
-            - Chrome version 77.0.3865.90
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>VoiceOver(VO) test:</strong>
-            <OrderedList>
-              <ListItem>
-                Tab to the link. VO announces, that you are on a link, and the
-                link text.
-              </ListItem>
-              <ListItem>
-                Press Control-Option-Space (or Enter) to navigate to the link
-                destination.
-              </ListItem>
-              <ListItem>
-                Note: Disabled link is not in the tab order as expected.
-              </ListItem>
-            </OrderedList>
-          </StructuredListCell>
-        </StructuredListRow>
-        <StructuredListRow>
-          <StructuredListCell>
-            - macOS Mojave version 10.14.6 with VoiceOver
-            <br />
-            - Safari version 13.0.2
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>VoiceOver(VO) test:</strong>
-            <OrderedList>
-              <ListItem>
-                Press Control-Option-Right Arrow to read all content.
-              </ListItem>
-              <ListItem>
-                Press Control-Option-Space to navigate to the link destination.
-              </ListItem>
-              <ListItem>
-                Note: The link is not in the tab order and the Enter key does
-                not navigate to the link destination.
-              </ListItem>
-            </OrderedList>
-          </StructuredListCell>
-        </StructuredListRow>
-      </StructuredListBody>
-    </StructuredListWrapper>
-  </Column>
+<Column colLg={8}>
+
+![a blue link contrasts 4.5:1 against the white background and 3:1 against the black body text ](images/link-accessibility-2.png)
+
+<Caption>
+  Link text has sufficient contrast with both its background and surrounding
+  body text.
+</Caption>
+
+</Column>
 </Row>
 
-### Windows screen reader tests
+## Design recommendations
+
+### Ensure link context
+
+If your design uses generic link names such as “read more,” consider making them
+unique. Otherwise, annotate a connection with other text in the design that
+provides context. This will allow developers to implement in a way that
+increases accessibility. See the Equal Access Toolkit
+[link text topic](https://www.ibm.com/able/toolkit/design/content/#link-text).
 
 <Row>
-  <Column noGutterSm>
-    <StructuredListWrapper>
-      <StructuredListHead>
-        <StructuredListRow head>
-          <StructuredListCell head>Environment</StructuredListCell>
-          <StructuredListCell head>Results</StructuredListCell>
-        </StructuredListRow>
-      </StructuredListHead>
-      <StructuredListBody>
-        <StructuredListRow>
-          <StructuredListCell>
-            - Microsoft Windows 10
-            <br />
-            - Firefox version 67
-            <br />
-            - JAWS 19.1810.64
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>JAWS test:</strong>
-            <OrderedList>
-              <ListItem>
-                Navigate to an active link using the Tab key or Shift-Tab keys
-                and JAWS announces, "Link example link".
-              </ListItem>
-              <ListItem>
-                Navigate to an active link using the Arrow keys. JAWS announces,
-                "Link link example".
-              </ListItem>
-              <ListItem>
-                It is not possible to Tab to the disabled link, but using the
-                Arrow keys JAWS announces, "Unavailable disabled link".
-              </ListItem>
-            </OrderedList>
-          </StructuredListCell>
-        </StructuredListRow>
-        <StructuredListRow>
-          <StructuredListCell>
-            - Microsoft Windows 10
-            <br />
-            - Chrome version 71.0.3578.98 (Official Build) (64-bit)
-            <br />
-            - JAWS version 19.1810.64
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>JAWS test:</strong>
-            <OrderedList>
-              <ListItem>
-                Navigate to an active link using the Tab key or Shift-Tab keys
-                and JAWS announces, "Link example link".
-              </ListItem>
-              <ListItem>
-                Navigate to an active link using the Arrow keys. JAWS announces,
-                "Link link example".
-              </ListItem>
-              <ListItem>
-                It is not possible to Tab to the disabled link, but using the
-                Arrow keys JAWS announces, "Unavailable disabled link".
-              </ListItem>
-            </OrderedList>
-          </StructuredListCell>
-        </StructuredListRow>
-        <StructuredListRow>
-          <StructuredListCell>
-            - Microsoft Windows 10
-            <br />
-            - Chrome version 71.0.3578.98 (Official Build) (64-bit)
-            <br />
-            - NVDA version 2018.4.1
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>NVDA test:</strong>
-            <OrderedList>
-              <ListItem>
-                Navigate to an active link using the Tab key or Shift-Tab keys
-                and NVDA announces, "Link example link".
-              </ListItem>
-              <ListItem>
-                Navigate to an active link using the Arrow keys. NVDA announces,
-                "Link link example".
-              </ListItem>
-              <ListItem>
-                It is not possible to Tab to the disabled link, but using the
-                Arrow keys JAWS announces, "Unavailable disabled link".
-              </ListItem>
-            </OrderedList>
-          </StructuredListCell>
-        </StructuredListRow>
-      </StructuredListBody>
-    </StructuredListWrapper>
-  </Column>
+<Column colLg={8}>
+
+![an annotation, connecting an IBM Cloud heading with a Learn more link, reads "associate link with heading"](images/link-accessibility-3.png)
+
+<Caption>
+  Annotate the connection between generic links and text that gives context.
+</Caption>
+
+</Column>
 </Row>
 
-### Android screen reader tests
+## Development considerations
 
-<Row>
-  <Column noGutterSm>
-    <StructuredListWrapper>
-      <StructuredListHead>
-        <StructuredListRow head>
-          <StructuredListCell head>Environment </StructuredListCell>
-          <StructuredListCell head>Results</StructuredListCell>
-        </StructuredListRow>
-      </StructuredListHead>
-      <StructuredListBody>
-        <StructuredListRow>
-          <StructuredListCell>
-            - Android version 9 with Talkback
-            <br />
-            - Chrome version 71.0.3578.98 (Official Build) (64-bit)
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>Talkback test:</strong>
-            <OrderedList>
-              <ListItem>
-                Navigate to an active link by swiping left or right, or press
-                the Alt-Leftor Alt-Right keys and Talkback announces, "Link
-                example link".
-              </ListItem>
-              <ListItem>
-                Navigate to the disabled link. Talkback announces, "Disabled
-                link link disabled".
-              </ListItem>
-            </OrderedList>
-          </StructuredListCell>
-        </StructuredListRow>
-      </StructuredListBody>
-    </StructuredListWrapper>
-  </Column>
-</Row>
+Keep these considerations in mind if you are modifying Carbon or creating a
+custom component.
 
-### iOS screen reader tests
-
-<Row>
-  <Column noGutterSm>
-    <StructuredListWrapper>
-      <StructuredListRow head>
-        <StructuredListCell head>Environment </StructuredListCell>
-        <StructuredListCell head>Results</StructuredListCell>
-      </StructuredListRow>
-      <StructuredListBody>
-        <StructuredListRow>
-          <StructuredListCell>
-            - iOS version 13.1.3 with VoiceOver
-            <br />
-            - Safari version 13.1.3
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>VoiceOver test:</strong>
-            <OrderedList>
-              <ListItem>
-                Navigate to an active link by swiping left or right, or press
-                the Left-Arrow or Right-Arrow keys and VO announces, "Link
-                example link".
-              </ListItem>
-              <ListItem>
-                Navigate to the disabled link. VO announces, "Disabled link
-                dimmed link".
-              </ListItem>
-            </OrderedList>
-          </StructuredListCell>
-        </StructuredListRow>
-      </StructuredListBody>
-    </StructuredListWrapper>
-  </Column>
-</Row>
+- Associate generic links such as “read more” with other contextual text, using
+  either `aria-describedby` or `aria-labelledby` (to concatenate multiple text
+  strings). See the
+  [Equal Access Toolkit guidance](https://www.ibm.com/able/toolkit/develop/text-and-non-text/#aria-labelling)
+  for more details.
+- See the [ARIA authoring practices](https://w3c.github.io/aria-practices/#link)
+  for more considerations.

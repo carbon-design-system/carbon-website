@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Row, Column, Link } from 'carbon-components-react';
+import { Row, Column, Link } from '@carbon/react';
 import React from 'react';
 
 function ChartIndexNotFound() {
@@ -23,7 +23,7 @@ function ChartIndexNotFound() {
       <Row>
         <Column sm={4} md={6} lg={6}>
           <p className="component-index-not-found__text">
-            If you have designs or code for a chart that isn't listed here,
+            If you have designs or code for a chart that isn’t listed here,
             please
             <Link
               className="component-index-not-found__link"

@@ -4,7 +4,16 @@ description:
   Welcome to Carbon! This tutorial will guide you in creating a React app with
   the Carbon Design System.
 tabs:
-  ['Overview', 'Step 1', 'Step 2', 'Step 3', 'Step 4', 'Step 5', 'Wrapping up']
+  [
+    'Overview',
+    'Step 1',
+    'Step 2',
+    'Step 3',
+    'Step 4',
+    'Step 5',
+    'Wrapping up',
+    'FAQ',
+  ]
 ---
 
 import Preview from 'components/Preview';
@@ -16,11 +25,17 @@ environment. We'll be deploying the production build to IBM Cloud.
 
 </PageDescription>
 
+<InlineNotification>
+
+**Note:** The following tutorial instructions are based on our v10 packages and
+have not been updated to reflect changes for our next major version.
+
+</InlineNotification>
+
 <AnchorLinks>
 
 <AnchorLink>Fork, clone and branch</AnchorLink>
 <AnchorLink>Create IBM Cloud account</AnchorLink>
-<AnchorLink>Optimize Sass</AnchorLink>
 <AnchorLink>Build for production</AnchorLink>
 <AnchorLink>Create manifest file</AnchorLink>
 <AnchorLink>Create static file</AnchorLink>
@@ -93,60 +108,6 @@ You should see something similar to where the
 Before we get started,
 [create an IBM Cloud account](https://cloud.ibm.com/registration) if you don't
 already have one, as we'll be deploying there in a bit.
-
-## Optimize Sass
-
-So far we've been developing in a, well, development environment where static
-asset optimization hasn't been a priority. If you reference `/src/index.scss`,
-you'll see one `@import` that is pulling in Carbon's full Sass build.
-
-```scss path=src/index.scss
-$feature-flags: (
-  grid-columns-16: true,
-);
-
-@import 'carbon-components/scss/globals/scss/styles.scss';
-```
-
-To give you an idea of what's all included, open up
-`node_modules/carbon-components/scss/globals/scss/styles.scss`. You'll see
-imports for components like accordion, slider, tooltip, etc. Since we aren't
-using those components, let's exclude them from our built stylesheets. Keeping
-the `$feature-flags` Sass map, replace the `styles.scss` import with:
-
-```scss path=src/index.scss
-// Feature flags
-$css--font-face: true;
-$css--plex: true;
-
-// Global styles
-@import 'carbon-components/scss/globals/scss/css--font-face';
-@import 'carbon-components/scss/globals/grid/grid';
-
-// Carbon components
-@import 'carbon-components/scss/components/breadcrumb/breadcrumb';
-@import 'carbon-components/scss/components/button/button';
-@import 'carbon-components/scss/components/data-table/data-table';
-@import 'carbon-components/scss/components/link/link';
-@import 'carbon-components/scss/components/pagination/pagination';
-@import 'carbon-components/scss/components/tabs/tabs';
-@import 'carbon-components/scss/components/ui-shell/ui-shell';
-```
-
-In comparing to the included `carbon-components/scss/globals/scss/styles.scss`,
-you may be asking what happened to importing `_vars.scss`, `_colors.scss`,
-`_theme.scss`, etc.?
-
-Many of those global Sass partials get imported through the components. For
-example, open
-`node_modules/carbon-components/scss/components/button/_button.scss` to see its
-dependencies. No harm in importing them as
-`carbon-components/scss/globals/scss/styles.scss` does, but for simplicity here,
-we'll let the components pull them in.
-
-You can read more about optimizing Carbon's Sass in the
-[Carbon Design System publication](https://medium.com/carbondesign/minimal-css-with-carbon-b0c089ccfa71)
-on Medium.
 
 ## Build for production
 
@@ -224,7 +185,7 @@ root: build
 
 After telling Cloud Foundry what to include, we can also specify what to ignore.
 Create a top-level `.cfignore` file. Cloud Foundry doesn't let you push
-read-only files (specifically, files with permissions <`400`), so to prevent
+read-only files (specifically, files with permissions < `400`), so to prevent
 issues with the deploy, add:
 
 ```bash path=.cfignore

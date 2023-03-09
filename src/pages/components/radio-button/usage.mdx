@@ -36,15 +36,13 @@ the previous choice is automatically deselected.
 
 #### Form
 
-Can be used in forms on a full page, in modals, or on side panels.
+Can be used in tiles, data tables, modals, side panels, and in forms on full
+pages.
 
 #### Settings
 
-Used to change from one setting to another in a menu, page, or component.
-
-#### Selection in lists
-
-Used to choose a singular item within data tables or lists.
+Used to change from one setting to another in a menu, page, or component. It can
+often act as a filtering mechanism.
 
 <Row>
 <Column colLg={8}>
@@ -56,12 +54,12 @@ Used to choose a singular item within data tables or lists.
 
 ### When not to use
 
-If a user can select many option from a list, use checkboxes instead of radio
+If a user can select from multiple options, use checkboxes instead of radio
 buttons. Radio buttons allow the user to select only one item in a set whereas
-checkboxes allow the user to select multiple options.
+checkboxes allow the user to select multiple items.
 
 <DoDontRow>
-  <DoDont caption="Do use checkboxes when multiple items can be selected.">
+  <DoDont type="do" caption="Do use checkboxes when multiple items can be selected.">
 
 ![Do use checkboxes when multiple items can be selected.](images/radio-button-usage-2-do.png)
 
@@ -81,7 +79,8 @@ checkboxes allow the user to select multiple options.
       id: 'radio-button',
       label: 'Radio button',
     },
-  ]}>
+  ]}
+>
   <ComponentVariant
     id="radio-button"
     knobs={{
@@ -92,16 +91,15 @@ checkboxes allow the user to select multiple options.
         'https://react.carbondesignsystem.com/?path=/story/components-radiobutton--default',
       Angular:
         'https://angular.carbondesignsystem.com/?path=/story/components-radio--basic',
-      Vue:
-        'http://vue.carbondesignsystem.com/?path=/story/components-cvradiobutton--default',
-      Vanilla: 'https://the-carbon-components.netlify.com/?nav=radio-button',
-    }}>{`
-  <FormGroup
-  legendText="Radio button heading"
->
+      Vue: 'http://vue.carbondesignsystem.com/?path=/story/components-cvradiobutton--default',
+      'Web Components':
+        'https://web-components.carbondesignsystem.com/?path=/story/components-radio-button--default',
+    }}
+  >
+    {`
   <RadioButtonGroup
     defaultSelected="default-selected"
-    legend="Group Legend"
+    legendText="Radio button heading"
     name="radio-button-group"
     valueSelected="default-selected"
   >
@@ -121,8 +119,8 @@ checkboxes allow the user to select multiple options.
       value="disabled"
     />
   </RadioButtonGroup>
-</FormGroup>
-  `}</ComponentVariant>
+  `}
+  </ComponentVariant>
 </ComponentDemo>
 
 ## Formatting
@@ -141,8 +139,8 @@ buttons, a group label can be added.
 </Column>
 </Row>
 
-1. **Radio button group label (optional):** Describes the group of options or
-   provides guidance for making a selection.
+1. **Group label (optional):** Describes the group of options or provides
+   guidance for making a selection.
 2. **Radio button input:** A radio button indicating the appropriate state. By
    default an option is selected.
 3. **Radio button label:** Describes the information you want to select or
@@ -219,26 +217,18 @@ For more information on spacing in forms, see our
 
 #### Group labels (optional)
 
-If necessary, a heading can accompany a set of radio buttons to provide further
-context or clarity.
+A heading can accompany a set of radio buttons to provide further context or
+clarity. In some cases, a group of radio buttons may be within a larger group of
+components that already have a group label. In this case, an additional group
+label for the radio button component itself is not needed.
 
-- A group label can either state the category of the grouping or describe what
-  actions to take below.
+- A group label can either state the category of the grouping or consicely
+  instruct what actions to take below depending on the context.
 - Use sentence case for group labels.
-- In some cases, a group of radio buttons may be within a larger group of
-  components that already have a group label. In this case, an additional group
-  label for the radio button component itself is not needed.
-- Regardless of whether the label is visible in the interface, a group label is
-  always needed in code, whether it’s for one checkbox or a group of them. See
-  the
-  [radio button code tab](https://www.carbondesignsystem.com/components/radio-button/code)
-  for more information.
 
 #### Radio button labels
 
 - Always use clear and concise labels for radio buttons.
-- Be explicit about the results that will follow if the radio button is
-  selected.
 - Labels appear to the right of radio button inputs.
 
 ### Overflow content
@@ -259,7 +249,7 @@ context or clarity.
 </Row>
 
 <DoDontRow>
-<DoDont caption="Do let text wrap beneath the radio button so the control and label are top aligned.">
+<DoDont type="do" caption="Do let text wrap beneath the radio button so the control and label are top aligned.">
 
 ![Do let text wrap beneath the radio button so the control and label are top aligned.](images/radio-button-usage-12-do.png)
 
@@ -323,29 +313,11 @@ accessible click target.
 #### Keyboard
 
 One radio button should be selected by default. Users can navigate between radio
-button inputs by pressing `Up` or `Down` arrow keys. Users can trigger a state
-change by pressing `Space` while the checkbox input has focus. For additional
-keyboard interactions, see
+button inputs by pressing `Up` or `Down` arrow keys. If a user lands on a radio
+button set without a default indicator, they can press `Space` to select the
+radio button or they can press an arrow key to select the next radio button. For
+additional keyboard interactions, see
 the [accessibility tab](https://www.carbondesignsystem.com/components/radio-button/accessibility).
-
-#### Screenreader
-
-VoiceOver: Users can navigate between radio buttons by pressing the `Up` and
-`Down` arrow keys.
-
-JAWS: Users can navigate between radio buttons by pressing the `Up` and `Down`
-arrow keys.
-
-NVDA: Users can navigate between radio buttons by pressing the `Up` and `Down`
-arrow keys.
-
-For additional information,
-see [screen reader tests](https://www.carbondesignsystem.com/components/radio-button/accessibility#accessibility-testing).
-
-### Default selection
-
-A set of radio buttons should default to having one option selected. Never
-display them without a default selection.
 
 ## Related
 
@@ -364,6 +336,13 @@ is required to make a choice, like pricing plans or additional links, consider
 using a
 [selectable tile](https://www.carbondesignsystem.com/components/tile/usage#selectable).
 
+#### Radio button verses toggle switch
+
+[Toggle switches](https://www.carbondesignsystem.com/components/toggle/usage)
+are preferred when the user options are limited to two choices—on and off or
+true and false. By comparison, radio buttons, radio buttons can have many other
+options.
+
 #### Structured list
 
 If a user needs to choose a singular item from a list that has simple data and
@@ -376,12 +355,6 @@ can be used.
 See the
 [data table component](https://www.carbondesignsystem.com/components/data-table/usage#radio-selection)
 for guidance on how to use radio buttons within a table.
-
-#### Radio button verses toggle switch
-
-[Toggle switches](https://www.carbondesignsystem.com/components/toggle/usage)
-are preferred when the user options are true or false. By comparison, radio
-buttons are mutually exclusive and can have many other options.
 
 ## References
 

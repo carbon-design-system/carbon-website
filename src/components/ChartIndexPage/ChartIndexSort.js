@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Dropdown } from 'carbon-components-react';
+import { Dropdown } from '@carbon/react';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -31,15 +31,15 @@ function ChartIndexSort({ initialSortOption, options, onChange }) {
 
 ChartIndexSort.propTypes = {
   /**
-   * Provide the available sort options to be selected
-   */
-  options: PropTypes.arrayOf(PropTypes.string),
-
-  /**
    * Receive an update for the latest value and use it to update the passed in
    * `value`
    */
   onChange: PropTypes.func.isRequired,
+
+  /**
+   * Provide the available sort options to be selected
+   */
+  options: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default ChartIndexSort;

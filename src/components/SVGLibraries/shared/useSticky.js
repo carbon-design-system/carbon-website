@@ -1,16 +1,17 @@
 import { useEffect, useState, useRef } from 'react';
 
+const eventsToBind =
+  typeof window !== 'undefined'
+    ? [
+        [document, 'scroll'],
+        [window, 'resize'],
+        [window, 'orientationchange'],
+      ]
+    : [];
+
 export default () => {
   const stickyRef = useRef(null);
   const [sticky, setSticky] = useState(false);
-  const eventsToBind =
-    typeof window !== 'undefined'
-      ? [
-          [document, 'scroll'],
-          [window, 'resize'],
-          [window, 'orientationchange'],
-        ]
-      : [];
 
   useEffect(() => {
     // Observe when ref enters or leaves sticky state
@@ -23,8 +24,11 @@ export default () => {
       );
       const stickyActive = refPageOffset <= stickyOffset;
 
-      if (stickyActive && !sticky) setSticky(true);
-      else if (!stickyActive && sticky) setSticky(false);
+      if (stickyActive && !sticky) {
+        setSticky(true);
+      } else if (!stickyActive && sticky) {
+        setSticky(false);
+      }
     }
     observe();
 
@@ -38,7 +42,7 @@ export default () => {
         eventPair[0].removeEventListener(eventPair[1], observe);
       });
     };
-  }, [stickyRef, sticky, eventsToBind]);
+  }, [stickyRef, sticky]);
 
   return [stickyRef, sticky];
 };

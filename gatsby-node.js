@@ -7,7 +7,7 @@ exports.onCreateWebpackConfig = ({ actions, getConfig }) => {
       rules: [
         {
           test: /\.md$/,
-          loaders: ['html-loader', 'markdown-loader'],
+          use: ['html-loader', 'markdown-loader'],
         },
         {
           test: /\.html$/,
@@ -33,4 +33,47 @@ exports.onCreateWebpackConfig = ({ actions, getConfig }) => {
       devtool: false,
     });
   }
+};
+
+exports.createPages = ({ actions }) => {
+  const { createRedirect } = actions;
+
+  // Community index
+  createRedirect({
+    fromPath: '/community/components',
+    toPath: '/community/component-index',
+    isPermanent: true,
+  });
+  createRedirect({
+    fromPath: '/community/contribute-a-component',
+    toPath: '/community/component-index',
+    isPermanent: true,
+  });
+
+  // Developing
+  createRedirect({
+    fromPath: '/resources',
+    toPath: '/developing/developer-resources',
+    isPermanent: true,
+  });
+  createRedirect({
+    fromPath: '/tutorial/react/overview',
+    toPath: '/developing/react-tutorial/overview',
+    isPermanent: true,
+  });
+  createRedirect({
+    fromPath: '/tutorial/angular/overview',
+    toPath: '/developing/angular-tutorial/overview',
+    isPermanent: true,
+  });
+  createRedirect({
+    fromPath: '/tutorial/vue/overview',
+    toPath: '/developing/vue-tutorial/overview',
+    isPermanent: true,
+  });
+  createRedirect({
+    fromPath: '/guidelines/typography/styling-strategies',
+    toPath: '/guidelines/typography/style-strategies',
+    isPermanent: true,
+  });
 };

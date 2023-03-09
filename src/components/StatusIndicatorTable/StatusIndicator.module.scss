@@ -6,11 +6,15 @@
 .iconGroup {
   padding: 1rem;
   display: flex;
-  width: 50%;
+  width: 100%;
+
+  @include breakpoint('lg') {
+    width: 50%;
+  }
 }
 
 .iconGroup.isDark {
-  background-color: $carbon--gray-100;
+  background-color: $gray-100;
   position: relative;
 }
 
@@ -79,16 +83,43 @@
   border-bottom: none;
 }
 
-@media (max-width: 600px) {
+.statusIndicatorTableWrapper {
+  margin-left: -1rem;
+  margin-right: -1rem;
+}
+
+@include breakpoint-between('sm', 'lg') {
   .statusIndicatorTableWrapper {
-    margin-right: -1rem;
-    margin-left: -1rem;
     overflow: scroll;
-  }
-  .iconGroup {
-    width: 100%;
   }
   .iconGroup.isDark {
     display: none;
+  }
+}
+
+//Needed for Safari
+.statusIndicatorTableWrapper {
+  @include breakpoint('md') {
+    :global(.cds--col-md-1) {
+      width: 12.5%;
+    }
+
+    :global(.cds--col-md-2) {
+      width: 25%;
+    }
+
+    :global(.cds--col-md-3) {
+      width: 37.5%;
+    }
+  }
+
+  @include breakpoint('lg') {
+    :global(.cds--col-lg-4) {
+      width: 33.333333%;
+    }
+
+    :global(.cds--col-lg-2) {
+      width: 16.66667%;
+    }
   }
 }

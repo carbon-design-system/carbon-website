@@ -52,18 +52,14 @@ table display settings, and other utilities.
 
 | Variant          | Purpose                                                                                                                                                                                                                                |
 | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| _Default_        | The default data table comes with a base style with only the title, header, and table elements. rows.                                                                                                                                  |
+| _Default_        | The default data table comes with a base style with only the title, header, and table elements rows.                                                                                                                                   |
 | _With selection_ | Batch actions are functions that may be performed on multiple items within a table. This variant of table enables the user to select individual rows and apply an action. A batch action toolbar appears when table rows are selected. |
 | _With expansion_ | The expandable data table is useful for presenting large amounts of data in a small space. Rows are collapsed and can be expanded to reveal extra information.                                                                         |
 
 ## Live demo
 
 import { rowData, headerData } from '../../../data/components/data-table.js';
-import {
-  Delete16 as Delete,
-  Save16 as Save,
-  Download16 as Download,
-} from '@carbon/icons-react';
+import { TrashCan, Save, Download } from '@carbon/icons-react';
 
 <ComponentDemo
   components={[
@@ -84,19 +80,21 @@ import {
       label: 'With batch actions',
     },
   ]}
-  scope={{ rowData, headerData, React, Delete, Save, Download }}>
+  scope={{ rowData, headerData, React, TrashCan, Save, Download }}
+>
   <ComponentVariant
     id="default-table"
     knobs={{ DataTable: ['isSortable'], Table: ['size', 'useZebraStyles'] }}
     links={{
       React:
-        'https://react.carbondesignsystem.com/?path=/story/components-datatable--usage',
+        'https://react.carbondesignsystem.com/?path=/story/components-datatable--default',
       Angular:
         'https://angular.carbondesignsystem.com/?path=/story/components-table--basic',
-      Vue:
-        'http://vue.carbondesignsystem.com/?path=/story/components-cvdatatable--minimal',
-      Vanilla: 'https://the-carbon-components.netlify.com/?nav=data-table',
-    }}>
+      Vue: 'http://vue.carbondesignsystem.com/?path=/story/components-cvdatatable--minimal',
+      'Web Components':
+        'https://web-components.carbondesignsystem.com/?path=/story/components-data-table--default',
+    }}
+  >
     {`<DataTable rows={rowData} headers={headerData}>
   {({ rows, headers, getHeaderProps, getTableProps }) => (
     <TableContainer title="DataTable">
@@ -129,13 +127,14 @@ import {
     knobs={{ DataTable: ['isSortable'], Table: ['size', 'useZebraStyles'] }}
     links={{
       React:
-        'https://react.carbondesignsystem.com/?path=/story/components-datatable-selection--usage',
+        'https://react.carbondesignsystem.com/?path=/story/components-datatable-selection--default',
       Angular:
         'https://angular.carbondesignsystem.com/?path=/story/components-table--basic',
-      Vue:
-        'http://vue.carbondesignsystem.com/?path=/story/components-cvdatatable--default',
-      Vanilla: 'https://the-carbon-components.netlify.com/?nav=data-table',
-    }}>
+      Vue: 'http://vue.carbondesignsystem.com/?path=/story/components-cvdatatable--default',
+      'Web Components':
+        'https://web-components.carbondesignsystem.com/?path=/story/components-data-table--default',
+    }}
+  >
     {`<DataTable rows={rowData} headers={headerData}>
   {({
     rows,
@@ -177,13 +176,14 @@ import {
     knobs={{ DataTable: ['isSortable'] }}
     links={{
       React:
-        'https://react.carbondesignsystem.com/?path=/story/components-datatable-expansion--usage',
+        'https://react.carbondesignsystem.com/?path=/story/components-datatable-expansion--default',
       Angular:
         'https://angular.carbondesignsystem.com/?path=/story/components-table--with-expansion',
-      Vue:
-        'http://vue.carbondesignsystem.com/?path=/story/components-cvdatatable--slotted-expanding-data',
-      Vanilla: 'https://the-carbon-components.netlify.com/?nav=data-table',
-    }}>
+      Vue: 'http://vue.carbondesignsystem.com/?path=/story/components-cvdatatable--slotted-expanding-data',
+      'Web Components':
+        'https://web-components.carbondesignsystem.com/?path=/story/components-data-table--expandable',
+    }}
+  >
     {`<DataTable
   rows={rowData}
   headers={headerData}>
@@ -225,13 +225,14 @@ import {
     id="with-batch-actions"
     links={{
       React:
-        'https://react.carbondesignsystem.com/?path=/story/components-datatable-batch-actions--usage',
+        'https://react.carbondesignsystem.com/?path=/story/components-datatable-batch-actions--default',
       Angular:
         'https://angular.carbondesignsystem.com/?path=/story/components-table--with-toolbar',
-      Vue:
-        'http://vue.carbondesignsystem.com/?path=/story/components-cvdatatable--default',
-      Vanilla: 'https://the-carbon-components.netlify.com/?nav=data-table',
-    }}>
+      Vue: 'http://vue.carbondesignsystem.com/?path=/story/components-cvdatatable--default',
+      'Web Components':
+        'https://web-components.carbondesignsystem.com/?path=/story/components-data-table--default',
+    }}
+  >
     {`<DataTable rows={rowData} headers={headerData}>
   {({
     rows,
@@ -248,7 +249,7 @@ import {
         <TableBatchActions {...getBatchActionProps()}>
           <TableBatchAction
             tabIndex={getBatchActionProps().shouldShowBatchActions ? 0 : -1}
-            renderIcon={Delete}
+            renderIcon={TrashCan}
             onClick={() => console.log('clicked')}
           >
             Delete
@@ -349,8 +350,8 @@ import {
 
 ### Sizing
 
-The data table is available in four different
-[row sizes](/data-table/style#row-sizes): tall, normal, short, compact.
+The data table is available in five different row sizes: extra large, large,
+medium, small, extra small.
 
 <Row>
 <Column colLg={8}>
@@ -360,12 +361,13 @@ The data table is available in four different
 </Column>
 </Row>
 
-The column header row `.bx--data-table thead` should always match the row size
-of the table. Tall row heights are only recommended if your data is expected to
-have 2 lines of content in a single row.
+The column header row `.cds--data-table thead` should always match the row size
+of the table. Extra large row heights are only recommended if your data is
+expected to have 2 lines of content in a single row.
 
 <DoDontRow>
 <DoDont
+type="do"
 colMd={4} colLg={4}
 caption="Do use the same row height for the table and header rows.">
 
@@ -383,8 +385,9 @@ caption="Don’t mix row heights for the table and header rows.">
 </DoDontRow>
 
 Two heights are available to be paired with the row heights of the data table.
-The tall toolbar should only be paired with the normal and tall row heights and
-the small toolbar should only be used with the small and compact row heights.
+The tall toolbar should only be paired with the large and extra large row
+heights and the small toolbar should only be used with the small and extra small
+row heights.
 
 <Row>
 <Column colLg={12}>
@@ -474,7 +477,7 @@ other.
 - A description can be added under the title to provide more information about
   the data or its source.
 - A data table's title and description should use
-  [sentence-case capitalization.](/guidelines/content/guidance#use-sentence-case-capitalization)
+  [sentence-case capitalization.](/guidelines/content/writing-style#use-sentence-case-capitalization)
 
 #### Column titles
 
@@ -484,7 +487,7 @@ other.
   truncate the rest of the text. The full text should be shown in a tooltip on
   hover.
 - Column titles should use
-  [sentence-case capitalization.](/guidelines/content/guidance#use-sentence-case-capitalization)
+  [sentence-case capitalization.](/guidelines/content/writing-style#use-sentence-case-capitalization)
 
 #### Primary button
 
@@ -592,7 +595,7 @@ A sorted data table has three states: unsorted (`arrows`), sorted-up
 sorted state and is only shown if sorting is activated. Only the column being
 sorted should display an icon, and unsorted icons are only visible on hover. You
 can see a demo of table sorting in
-Carbon’s [React Storybook](http://react.carbondesignsystem.com/?path=/story/datatable--with-sorting).
+Carbon’s [React Storybook](https://react.carbondesignsystem.com/?path=/story/components-datatable-sorting--default).
 
 <Row>
 <Column colLg={12}>

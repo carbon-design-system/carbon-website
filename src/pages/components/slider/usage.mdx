@@ -45,14 +45,6 @@ value range.
 </Column>
 </Row>
 
-<Row>
-<Column colLg={8}>
-
-![Example of volume slider](images/slider-usage-1.png)
-
-</Column>
-</Row>
-
 ## Live demo
 
 <ComponentDemo
@@ -61,7 +53,8 @@ value range.
       id: 'slider',
       label: 'Slider',
     },
-  ]}>
+  ]}
+>
   <ComponentVariant
     id="slider"
     knobs={{ Slider: ['disabled', 'hideTextInput', 'light'] }}
@@ -70,10 +63,12 @@ value range.
         'https://react.carbondesignsystem.com/?path=/story/components-slider--default',
       Angular:
         'https://angular.carbondesignsystem.com/?path=/story/components-slider--basic',
-      Vue:
-        'http://vue.carbondesignsystem.com/?path=/story/components-cvslider--default',
-      Vanilla: 'https://the-carbon-components.netlify.com/?nav=slider',
-    }}>{`
+      Vue: 'http://vue.carbondesignsystem.com/?path=/story/components-cvslider--default',
+      'Web Components':
+        'https://web-components.carbondesignsystem.com/?path=/story/components-slider--default',
+    }}
+  >
+    {`
   <div className="some-container">
 <Slider
   ariaLabelInput="Label for slider value"
@@ -86,26 +81,29 @@ value range.
   value={50}
 />
 </div>
-  `}</ComponentVariant>
+  `}
+  </ComponentVariant>
 </ComponentDemo>
 
 ## Interactions
 
-Users can choose a numerical value by:
+### Mouse
 
-- Entering the exact value into the text field.
-- Moving the slider handle with their mouse, which automatically updates the
-  value in the text input.
-- Using the ↑ ↓ ← → arrow keys automatically updates the value in the text input
-  and moves the slider handle to the corresponding value.
-- The **step size increment** is how many increments the inputted value and
-  slider handle will jump when using the arrow keys. Make sure to set the step
-  size increments to reasonable values.
-- ↑ ↓ ← → changes the value by one step size increment. _Example: Pressing `→`
-  changes the inputted value from 59 to 60, increasing the value by 1 unit._
-- `Shift` + ↑ ↓ ← → changes the value by 10 step size increments. _Example:
-  Typing_ `Shift` + → _changes the value from 60 to 70, increasing the inputted
-  value by 10 units._
+Users can trigger a value change by clicking anywhere on the horizontal track.
+Users can also drag the slider handle. Either method repositions the slider and
+automatically updates the value in the text input.
+
+### Keyboard
+
+Users can enter an exact numeric value into the text input field. While in the
+text field, using the ↑ ↓ ← → arrow keys increments the value in the text input.
+Either method adjusts the slider handle to the corresponding position.
+
+With the focus on the slider itself, users can also increment the value using
+the arrow keys. The arrow keys in combination with the `Shift` key can alter the
+slider by the value of the **stepMultiplier**. _Example: With `stepMultiplier`
+set at `10`, typing `Shift` + `→` changes the value from 60 to 70, increasing
+the inputted value by 10 units._
 
 <Row>
 <Column colLg={8}>

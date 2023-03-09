@@ -17,16 +17,15 @@ Use the themes package to customize your product while maintaining consistency.
 
 <InlineNotification>
 
-If you’re using carbon-components there’s no reason to install the themes
-package separately. See our [get started](/get-started/develop/react) guide to
-start building.
+If you're using `@carbon/react`, you probably don't need need to install the
+themes package separately. See our [Carbon React](/developing/frameworks/react/)
+guide to start building.
 
 </InlineNotification>
 
 <AnchorLinks>
 
-<AnchorLink>Get started</AnchorLink>
-<AnchorLink>Usage</AnchorLink>
+<AnchorLink>Get started</AnchorLink> <AnchorLink>Usage</AnchorLink>
 <AnchorLink>Resources</AnchorLink>
 
 </AnchorLinks>
@@ -52,11 +51,10 @@ yarn add @carbon/themes
 You can use `@carbon/themes` in JavaScript or Sass by including this package in
 your project. By default, `@carbon/themes` provides a set of color tokens that
 are pre-defined for a specific theme. Currently, we offer the following color
-themes: white, gray 10, gray 90, gray 100 .
+themes: white, gray 10, gray 90, gray 100.
 
 You can preview all of the token values for this on the
-[Carbon Design System website](https://www.carbondesignsystem.com/guidelines/color/usage)
-.
+[color guidelines](/guidelines/color/usage) page.
 
 ### Sass
 
@@ -64,55 +62,65 @@ If your project is using Sass, you can include this package and the
 corresponding default theme by writing the following in your Sass file:
 
 ```scss
-@import '@carbon/themes/scss/themes';
+@use '@carbon/themes';
+
+.my-component {
+  // Use tokens from the theme, this will map to a CSS Custom Property
+  color: themes.$token-01;
+}
+
+:root {
+  // Emit CSS Custom Properties for the current theme
+  @include themes.theme();
+}
+
+// Get the value of a specific token
+$custom-variable: rgba(themes.get('token-01'), 0.25);
 ```
 
 By default, the white theme will be initialized. If you would like to include
-another theme, you can do so by calling our mixin. For example:
+another theme, you can do so by configuring the sass module using `with`. For
+example:
 
 ```scss
-@import '@carbon/themes/scss/themes';
-
-// Use the gray 10 theme
-@include carbon--theme($carbon--theme--g10);
-
-// Use the gray 90 theme
-@include carbon--theme($carbon--theme--g90);
-
-// Use the gray 100 theme
-@include carbon--theme($carbon--theme--g100);
+@use '@carbon/themes/scss/themes' as *;
+@use '@carbon/themes' with ($theme: $g100);
 ```
 
-Alternatively, you can set the global theme variable then call the mixin without
-passing in a theme name.
+Inline theming of theme switching can be done by using the mixin. For example:
 
 ```scss
-@import '@carbon/themes/scss/themes';
+@use '@carbon/themes/scss/themes' as *;
+@use '@carbon/themes';
 
-$carbon--theme: $carbon--theme--g10;
+:root {
+  @include themes.theme($white);
+}
 
-// Use the gray 10 theme
-@include carbon--theme();
+[data-carbon-theme='g10'] {
+  @include themes.theme($g10);
+}
+
+[data-carbon-theme='g90'] {
+  @include themes.theme($g90);
+}
+
+[data-carbon-theme='g100'] {
+  @include themes.theme($g100);
+}
 ```
 
-Inline theming can be done by using the mixin. For example:
+Themes can also be extended with your own custom tokens:
 
 ```scss
-@import '@carbon/themes/scss/themes';
-
-// Use the default white theme here
-
-.my-dark-theme {
-  @include carbon--theme($carbon--theme--g90) {
-    // Use the dark theme here
-  }
-}
-
-.my-darker-theme {
-  @include carbon--theme($carbon--theme--g100) {
-    // Use the darker theme here
-  }
-}
+@use '@carbon/themes/scss/themes';
+@use '@carbon/themes' with
+  (
+    $fallback: themes.$g100,
+    $theme: (
+      token-01: #000000,
+    )
+  );
 ```
 
 ### JavaScript
@@ -143,7 +151,7 @@ import {
   <Column colMd={4} colLg={4} noGutterSm>
     <ResourceCard
       subTitle="Carbon theme package"
-      href="https://github.com/carbon-design-system/carbon/blob/main/packages/themes"
+      href="https://github.com/carbon-design-system/carbon/tree/main/packages/themes"
     >
 
 <MdxIcon name="bee" />

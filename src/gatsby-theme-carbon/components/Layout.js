@@ -1,6 +1,4 @@
 /* eslint-disable global-require */
-/* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable import/no-unresolved */
 import React, { useLayoutEffect } from 'react';
 
 import LeftNav from 'gatsby-theme-carbon/src/components/LeftNav';
@@ -9,6 +7,7 @@ import Header from 'gatsby-theme-carbon/src/components/Header';
 import Switcher from 'gatsby-theme-carbon/src/components/Switcher';
 import Footer from 'gatsby-theme-carbon/src/components/Footer';
 import Container from 'gatsby-theme-carbon/src/components/Container';
+import Banner from '../../components/Banner';
 
 import 'gatsby-theme-carbon/src/styles/index.scss';
 import { layout } from '../../styles/Layout.module.scss';
@@ -45,6 +44,7 @@ const Layout = ({
         pageDescription={pageDescription}
         pageKeywords={pageKeywords}
       />
+      {homepage && <Banner />}
       <Header />
       <Switcher />
       <LeftNav homepage={homepage} is404Page={is404} theme={theme} />

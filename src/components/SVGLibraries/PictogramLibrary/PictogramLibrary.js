@@ -4,10 +4,7 @@ import loadable from '@loadable/component';
 
 import { groupBy, debounce } from 'lodash-es';
 
-import {
-  icons as pictogramMetaData,
-  categories as pictogramCatagoryMetadata,
-} from '@carbon/pictograms/metadata.json';
+import * as metaData from '@carbon/pictograms/metadata.json';
 import useColumnCount from '../shared/useColumnCount';
 
 import FilterRow from '../shared/FilterRow';
@@ -15,6 +12,9 @@ import { svgPage, svgLibrary } from '../shared/SvgLibrary.module.scss';
 
 import PictogramCategory from './PictogramCategory';
 import NoResult from '../shared/NoResult';
+
+const { icons: pictogramMetaData, categories: pictogramCategoryMetadata } =
+  metaData;
 
 const IconLibrary = () => {
   const [pictogramComponents, setPictogramComponents] = useState([]);
@@ -29,7 +29,9 @@ const IconLibrary = () => {
   useEffect(() => {
     const pictogramArray = pictogramMetaData.reduce(
       (accumulator, pictogram) => {
-        if (pictogram.deprecated) return accumulator;
+        if (pictogram.deprecated) {
+          return accumulator;
+        }
 
         const path = [...pictogram.namespace, pictogram.name].join('/');
 
@@ -46,7 +48,7 @@ const IconLibrary = () => {
       []
     );
 
-    setCategoryList(pictogramCatagoryMetadata.map(({ name }) => name).sort());
+    setCategoryList(pictogramCategoryMetadata.map(({ name }) => name).sort());
     setCategoriesLoaded(true);
 
     setPictogramComponents(pictogramArray);
@@ -107,7 +109,7 @@ const IconLibrary = () => {
           setSelectedCategory={setSelectedCategory}
           allIconResults={filteredPictograms.length}
           pageName="pictogram"
-          pageUrl="https://github.com/carbon-design-system/carbon/raw/main/packages/pictograms/master/productive-pictogram-master.ai"
+          pageUrl="https://github.com/carbon-design-system/carbon/raw/v10/packages/pictograms/master/productive-pictogram-master.ai"
         />
       ) : (
         <div className={svgLibrary}>
