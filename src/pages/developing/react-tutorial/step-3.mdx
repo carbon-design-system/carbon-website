@@ -28,8 +28,6 @@ repository information in a data table.
 
 <AnchorLink>Fork, clone and branch</AnchorLink>
 <AnchorLink>Install dependencies</AnchorLink>
-<AnchorLink>Create access token</AnchorLink>
-<AnchorLink>Connect to Apollo</AnchorLink>
 <AnchorLink>Fetch data</AnchorLink>
 <AnchorLink>Populate data table</AnchorLink>
 <AnchorLink>Add loading</AnchorLink>
@@ -40,16 +38,13 @@ repository information in a data table.
 
 ### Preview
 
-The [GitHub GraphQL API](https://docs.github.com/en/graphql) is very well
-documented, and even though the focus of this tutorial isn't learning and using
-GraphQL, it's a great opportunity to fetch Carbon-related data for this Carbon
+The [Github REST API](https://docs.github.com/en/rest?apiVersion=2022-11-28) is
+very well documented, we'll use it to fetch Carbon-related data for this Carbon
 tutorial.
 
-To do so, we'll be using Apollo Client, the front-end component of the
-[Apollo Platform](https://www.apollographql.com/docs/intro/platform/). Apollo
-provides several open source tools for using GraphQL throughout your
-application’s stack. Apollo Client is a sophisticated GraphQL client that
-manages data and state in an application.
+To do so, we'll be using
+[Octokit Core](https://github.com/octokit/core.js/#readme), a client that makes
+it easy to interact with Github's APIs.
 
 A [preview](https://react-step-4--carbon-tutorial.netlify.com) of what you will
 build (see repositories page):
@@ -102,170 +97,89 @@ You should see something similar to where the
 
 ## Install dependencies
 
-We'll need to install three new dependencies to incorporate Apollo into our
-application.
-
-- `@apollo/client` - package containing everything you need to set up Apollo
-  Client
-- `graphql` - parses your GraphQL queries
-
-Install them with the command:
+We'll need to install `@octokit/core`, a package that allows us to query Github
+APIs easily. Stop your development server with `CTRL-C` and install the octokit
+dependency with:
 
 ```bash
-yarn add @apollo/client@3.4.10 graphql@15.5.2
+yarn add @octokit/core@4.2.0
 ```
 
-## Create access token
+Then, start the app again. If your app's currently running, you'll need to
+restart it.
 
-You'll need a personal access token from your GitHub account in order to make
-requests to the GitHub API. Check out
-[this guide](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
-to see how to get one.
-
-When you get to the scope/permissions step, you can leave them all unchecked. We
-don't need any special permissions, we just need access to the public API.
-
-Once you have your token, we need to put it in a place where create-react-app
-can use it. When your application is being built and developed, create-react-app
-will parse environmental variables in any file that starts with `.env` and make
-them available under `process.env.MY_VARIABLE`.
-
-One caveat is that we need to start our variables with `REACT_APP_`. You can
-read more about environmental variables in
-[create-react-app's guide](https://create-react-app.dev/docs/adding-custom-environment-variables/).
-
-Since we don't want to commit this file to Git, we can put it in `.env.local`
-which is in our `.gitignore` list. Your file should just have a single line like
-this one, where the `x`s are replaced with your unique token.
-
-```bash path=.env.local
-REACT_APP_GITHUB_PERSONAL_ACCESS_TOKEN=xxxxxx
-```
-
-Go ahead and start your app with `yarn start`, or, if your app is running,
-you'll need to restart it to get access to this token.
-
-## Connect to Apollo
-
-The `@apollo/client` library gives us the components that we need to put at the
-base of our application. Typically the best place for things that need to wrap
-the entire application is at the root of the application. For us, that's at
-`src/index.js`.
-
-Add these imports to `src/index.js`:
-
-```javascript path=src/index.js
-import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
-```
-
-Next, define the cache and make your client by providing a URI for the GitHub
-GraphQL API as well as an authorization header using the environmental variable
-you just added to `.env.local`.
-
-```javascript path=src/index.js
-const cache = new InMemoryCache();
-
-const client = new ApolloClient({
-  cache: cache,
-  uri: 'https://api.github.com/graphql',
-  headers: {
-    authorization: `Bearer ${process.env.REACT_APP_GITHUB_PERSONAL_ACCESS_TOKEN}`,
-  },
-});
-```
-
-Now we can wrap our application with `ApolloProvider`. At the same time, we'll
-pass in the client we just made as a prop to the `ApolloProvider` component.
-Replace:
-
-```jsx path=src/index.js
-<Router>
-  <App />
-</Router>
-```
-
-With:
-
-```jsx path=src/index.js
-<ApolloProvider client={client}>
-  <Router>
-    <App />
-  </Router>
-</ApolloProvider>
+```bash
+yarn start
 ```
 
 ## Fetch data
 
 ### Imports
 
-Add the following imports below the react import in `RepoPage.js`:
+We'll be using [React Hooks](https://reactjs.org/docs/hooks-intro.html) to call
+a function to fetch our data when the component renders.
+
+Import React's [useEffect](https://reactjs.org/docs/hooks-effect.html) by
+modifying the `React` import in `RepoPage.js`.
 
 ```javascript path=src/content/RepoPage/RepoPage.js
-import { gql, useQuery } from '@apollo/client';
+import React, { useEffect } from 'react';
 ```
 
-### Query
+Add the following import below the react import in `RepoPage.js`:
 
-Next we'll assemble our GraphQL query to fetch only the data we need from the
-GraphQL API. We'll do this using the `gql` helper we just imported. The `gql`
-helper lets you write GraphQL queries using interpolated strings (backticks) in
-JavaScript. In addition, we'll be using the `useQuery` component from
-`@apollo/client` which gives us some great information about our query's loading
-state in addition to the data.
+```javascript path=src/content/RepoPage/RepoPage.js
+import { Octokit } from '@octokit/core';
+```
 
-You can use GitHub's
-[explorer](https://docs.github.com/en/graphql/overview/explorer) tool to write
-and test your own queries. Try copying the query below and experiment with
-changing the properties. You can also click the "Docs" button in the top right
-of the explorer to view all of the available data and query parameters.
+### Initializing Octokit client
 
-If you'd like some more information regarding writing queries and using the
-Query component, we recommend
-[Apollo's documentation](https://www.apollographql.com/tutorials/fullstack-quickstart/fetching-data-with-queries)
-on this topic.
+Directly below all your imports, initialize an octokit client which we'll use to
+query our `RepoTable` data:
 
-Add this after your imports:
+```javascript path=src/content/RepoPage/RepoPage.js
+const octokitClient = new Octokit({});
+```
 
-```graphql path=src/content/RepoPage/RepoPage.js
-const REPO_QUERY = gql`
-  query REPO_QUERY {
-    # Let's use carbon as our organization
-    organization(login: "carbon-design-system") {
-      # We'll grab all the repositories in one go. To load more resources
-      # continuously, see the advanced topics.
-      repositories(first: 75, orderBy: { field: UPDATED_AT, direction: DESC }) {
-        totalCount
-        nodes {
-          url
-          homepageUrl
-          issues(filterBy: { states: OPEN }) {
-            totalCount
-          }
-          stargazers {
-            totalCount
-          }
-          releases(first: 1) {
-            totalCount
-            nodes {
-              name
-            }
-          }
-          name
-          updatedAt
-          createdAt
-          description
-          id
-        }
+### API Request
+
+Next, we'll assemble our Github API request to fetch a list of repositories that
+belong to the `carbon-design-system` Github organization. We'll do this by using
+a `useEffect` hook that will use octokit to query Github's API
+[repositories endpoint](https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#list-organization-repositories).
+
+Let's declare a `useEffect` hook immediately below the component definition.
+We'll use this to query Github's API when the component first renders:
+
+```javascript path=src/content/RepoPage/RepoPage.js
+const RepoPage = () => {
+  useEffect(() => {
+    async function getCarbonRepos() {
+      const res = await octokitClient.request('GET /orgs/{org}/repos', {
+        org: 'carbon-design-system',
+        per_page: 75,
+        sort: 'updated',
+        direction: 'desc',
+      });
+
+      if (res.status === 200) {
+        console.log(res.data);
+      } else {
+        console.log('Error obtaining repository data');
       }
     }
-  }
-`;
+
+    getCarbonRepos();
+  }, []);
+...
 ```
 
-### Helpers
+At this point, if you navigate to the `Repositories` page in your running app
+and view your browser's console (e.g.
+[Chrome DevTools](https://developer.chrome.com/docs/devtools/)), you should see
+the response from GitHub!
 
-Below that, we should have our table headers set in a previous step that are
-good to go. Let's also keep our example rows below that.
+### Helpers
 
 Our last column in the data table will be a comma-separated list of repository
 and home page links, so let's create a component called `LinkList`.
@@ -305,37 +219,77 @@ const getRowItems = (rows) =>
   rows.map((row) => ({
     ...row,
     key: row.id,
-    stars: row.stargazers.totalCount,
-    issueCount: row.issues.totalCount,
-    createdAt: new Date(row.createdAt).toLocaleDateString(),
-    updatedAt: new Date(row.updatedAt).toLocaleDateString(),
-    links: <LinkList url={row.url} homepageUrl={row.homepageUrl} />,
+    stars: row.stargazers_count,
+    issueCount: row.open_issues_count,
+    createdAt: new Date(row.created_at).toLocaleDateString(),
+    updatedAt: new Date(row.updated_at).toLocaleDateString(),
+    links: <LinkList url={row.html_url} homepageUrl={row.homepage} />,
   }));
 ```
 
-### Query component
+### Populate data table
 
-At this point, we should run our query and `console.log()` the results to verify
-that the request is working.
+Now that we have our data, let's dispose of our dummy `rows` and populate the
+data table with real data.
 
-The `useQuery` component from `@apollo/client` lets us render different content
-based on the state of our request. When `loading` is true, we'll render
-`Loading...` for the time being. If there's an issue, we'll render the
-corresponding error message using `error`.
+First, towards the top of `RepoPage.js` delete the `rows` array because we no
+longer need the example rows.
 
-Finally, if neither of those are true, it means we have our data! One nice
-advantage of GraphQL is that as long as there are no errors, we can be certain
-the properties on the data we requested aren't `null`.
+Next, let's add a couple variables that will help us store useful information
+when fetching the data and keep track of the loading state.
 
-We need to define the `loading`, `error`, and `data` using `useQuery`. We will
-update the beginning of the `RepoPage` component with the following.
+We'll be using [React Hooks](https://reactjs.org/docs/hooks-intro.html) again to
+manage our state.
+
+Import React's [useState](https://reactjs.org/docs/hooks-state.html) by
+modifying the `React` import.
 
 ```javascript path=src/content/RepoPage/RepoPage.js
-const { loading, error, data } = useQuery(REPO_QUERY);
+import React, { useEffect, useState } from 'react';
 ```
 
-Notice how we're passing the `REPO_QUERY` that we previously defined into the
-`useQuery` hook.
+Then, inside the `RepoPage` component:
+
+```javascript path=src/content/RepoPage/RepoPage.js
+const RepoPage = () => {
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState();
+  const [rows, setRows] = useState([]);
+...
+```
+
+Now, instead of using `console.log` to log the github data response, let's treat
+the response data by passing it through our `getRowItems` helper and saving the
+result in our new `rows` variable. Replace the `console.log(res.data);` line
+inside `if (res.status === 200)` with:
+
+```javascript path=src/content/RepoPage/RepoPage.js
+setRows(getRowItems(res.data));
+```
+
+Let's also replace our error log line inside the `else` statement with:
+
+```javascript path=src/content/RepoPage/RepoPage.js
+setError('Error obtaining repository data');
+```
+
+To complete our `getCarbonRepos` function, let's set the loading state to false
+right after the `else` statement:
+
+```javascript path=src/content/RepoPage/RepoPage.js
+...
+  if (res.status === 200) {
+    setRows(getRowItems(res.data));
+  } else {
+    setError('Error obtaining repository data');
+  }
+  setLoading(false);
+...
+```
+
+Finally, let's modify our component's `return()` statement to display different
+information depending on the states of our request: loading, error or complete.
+Replace the current return statement with:
 
 ```javascript path=src/content/RepoPage/RepoPage.js
 if (loading) {
@@ -343,35 +297,10 @@ if (loading) {
 }
 
 if (error) {
-  return `Error! ${error.message}`;
+  return `Error! ${error}`;
 }
 
-if (data) {
-  // If we're here, we've got our data!
-  console.log(data.organization);
-}
-```
-
-The page will look the same as we're still rendering our static example rows,
-but if you view your browser's console (e.g.
-[Chrome DevTools](https://developer.chrome.com/docs/devtools/)), you should see
-the response from GitHub!
-
-## Populate data table
-
-Now that we have that data, let's populate the data table. Replace
-`console.log(data.organization);` inside `if (data)` with the following that
-destructures the `data.organization` object. Once we have the repositories, we
-can call our `getRowItems()` helper to build the data table rows.
-
-Here will will also add our grid we previously made. The `data` should now look
-like this:
-
-```javascript path=src/content/RepoPage/RepoPage.js
 // If we're here, we've got our data!
-const { repositories } = data.organization;
-const rows = getRowItems(repositories.nodes);
-
 return (
   <Grid className="repo-page">
     <Column lg={16} md={8} sm={4} className="repo-page__r1">
@@ -380,9 +309,6 @@ return (
   </Grid>
 );
 ```
-
-Then, towards the top of `RepoPage.js` delete the `rows` array because we no
-longer need the example rows.
 
 ### Render repository descriptions
 
@@ -435,7 +361,7 @@ component. We could stop here, but there's more to be done! Let's replace the
 [DataTableSkeleton component](https://react.carbondesignsystem.com/?path=/story/components-datatable--skeleton).
 
 To do so, back to `RepoPage.js`, add the `DataTableSkeleton` import by modifying
-the existing `carbon-components-react` import.
+the existing `@carbon/react` import.
 
 ```javascript path=src/content/RepoPage/RepoPage.js
 import { Link, DataTableSkeleton, Grid, Column } from '@carbon/react';
@@ -470,18 +396,8 @@ you may need to fetch new data each time that you interact with the pagination
 component, but for simplicity, we're going to make one request to fetch all
 data, and then paginate the in-memory row data.
 
-We'll be using [React Hooks](https://reactjs.org/docs/hooks-intro.html) to
-manage our state.
-
-Import React's [useState](https://reactjs.org/docs/hooks-state.html) by
-modifying the `React` import.
-
-```javascript path=src/content/RepoPage/RepoPage.js
-import React, { useState } from 'react';
-```
-
-Then initialize the new state variables that we'll use for pagination as the
-first lines inside the `RepoPage`.
+Initialize the new state variables that we'll use for pagination as the first
+lines inside the `RepoPage`.
 
 ```javascript path=src/content/RepoPage/RepoPage.js
 const RepoPage = () => {
@@ -618,7 +534,7 @@ troubleshooting notes that may help.
 Finally, visit
 [carbon-tutorial](https://github.com/carbon-design-system/carbon-tutorial) to
 "Compare & pull request". In doing so, make sure that you are comparing to
-`react-step-3` into `base: react-step-3`.
+`v11-react-step-3` into `base: v11-react-step-3`.
 
 <InlineNotification>
 
