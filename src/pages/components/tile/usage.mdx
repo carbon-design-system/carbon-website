@@ -15,9 +15,11 @@ including information, getting started, how-to, next steps, and more.
 
 <InlineNotification>
 
-Tile guidance has been recently updated but is not yet applicable for all
-implementations. Please continue following the guidance and we'll work on fixing
-the issues.
+[Experimental tiles](https://react.carbondesignsystem.com/?path=/story/experimental-improved-contrast-tile--clickable)
+are now available. This addition enhances accessibility and only applies to the
+visual appearance, not the function of tiles. Though we are not deprecating the
+current tiles, we encourage all design teams to use the new experimental tiles
+in their products moving forward.
 
 </InlineNotification>
 
@@ -27,7 +29,7 @@ the issues.
 <AnchorLink>Live demo</AnchorLink>
 <AnchorLink>Tile variants</AnchorLink>
 <AnchorLink>Formatting</AnchorLink>
-<AnchorLink>Behaviors</AnchorLink>
+<AnchorLink>Universal behaviors</AnchorLink>
 <AnchorLink>Related</AnchorLink>
 <AnchorLink>References</AnchorLink>
 <AnchorLink>Feedback</AnchorLink>
@@ -36,20 +38,27 @@ the issues.
 
 ## Overview
 
-Carbon ships a basic tile structure that responds to the grid. Based on the
-layout structure, tiles can contain type, images and/or a block of color. As
-tiles have no pre-set styles for the content within them, the tile component
-usage guidance is purposefully high-level. It focuses specifically on the tile
-itself, not the structure of the information or interactive elements that the
-tile contains—that type of information will be found in the card pattern.
+Carbon ships a basic tile structure that responds to the grid. Tiles can contain
+type, images and/or blocks of color. However, Carbon tiles have no pre-set
+styles for the content inside. Tile usage guidance focuses solely on basic tile
+functions—not the information hierarchy within the tile or guidance around
+additional interactive elements that the tile may contain.
+
+<Row>
+<Column colLg={12}>
+
+![Example image of tiles on the dashboard](images/tile-usage-1.png)
+
+</Column>
+</Row>
 
 #### Tiles versus Cards
 
-Tiles are simple and foundational. Cards can be very complex. They are built
-upon the tile foundation and have various patterns, multiple actions, overflow
-menus, selectable features, etc. Carbon does not have a Card pattern yet, but we
-link out to several card patterns within our pattern asset library (PAL)
-ecosystem below:
+Tiles are simple and foundational. Cards can be very complex. Cards are built
+upon the tile foundation and have various patterns of information hierarchy,
+multiple actions, overflow menus, selectable features, etc. Carbon does not have
+a Card pattern yet, but we link out to several card patterns within our pattern
+asset library (PAL) ecosystem below:
 
 - [Productive vs. Expressive cards](https://pages.github.ibm.com/cdai-design/pal/components/card/overview/)
   (Carbon for Cloud & Cognitive)
@@ -61,12 +70,25 @@ ecosystem below:
 ### When to use
 
 Tiles are reusable components that provide shortcuts to building cards and other
-modules. Here are some common use cases for when to use tiles:
+modules. Use tiles to group related information in flexible containers. Here are
+some common use cases for when to use tiles:
 
 - To contain related groupings of information or actions
 - To guide users to take actions or navigate
 - To present options for single or multiple selections
 - To hide or show large amounts of content
+
+### When not to use
+
+Tiles reside in the same plane as the background layer—they do not have
+**elevation**. Tiles organize essential information and have the same visual
+hierarchy as content within the same page.
+
+Do not add a drop shadow to tiles and use them on the screen to reveal secondary
+information, actions, or notifications. Use [modals](/components/modal/usage),
+[popover](/components/popover/usage), and
+[dialogs](https://carbondesignsystem.com/patterns/dialog-pattern/) which have
+elevation and are appropriate for this function instead.
 
 ## Live demo
 
@@ -276,44 +298,51 @@ modules. Here are some common use cases for when to use tiles:
 
 ## Tile variants
 
+<InlineNotification>
+
+The experimental tiles are applicable to clickable, selectable and expandable
+tiles — not to base tiles.
+
+</InlineNotification>
+
 Tiles can function or be implemented in four ways—base, clickable, selectable,
 or expandable. These variations of tiles are flexible enough to support a
-variety of different use cases when building more complicating card features.
+variety of different use cases when building more complicated card features.
 
 | Variant                   | Purpose                                                                                                  |
 | ------------------------- | -------------------------------------------------------------------------------------------------------- |
 | [Base](#base)             | For high-level, short, and digestible content pieces such as features, plans, or services offered        |
 | [Clickable](#clickable)   | For prompting an action, navigating or directing to other pieces of information about the subject matter |
 | [Selectable](#selectable) | For presenting options to a user in a structured manner, such as a set of pricing plans                  |
-| [Expandable](#expandable) | For hiding and revealing a large amount of content in order to focus on specific pieces of info          |
+| [Expandable](#expandable) | For hiding and revealing a large amount of content to focus on specific pieces of information            |
 
 ### Base
 
 Base tiles are used to display information to the user, such as features or
 services offered. Base tiles are often seen on marketing pages to promote
-content or on dashboards that are highly interactive. These tiles can have
-internal calls-to-action (CTAs), such as a [button](/components/button/usage) or
-a [link](/components/link/usage).
+content or on highly-interactive dashboards. These tiles can have internal
+calls-to-action (CTAs), such as a [button](/components/button/usage) or a
+[link](/components/link/usage).
 
 <Row>
-<Column colLg={12}>
+<Column colLg={8}>
 
-![Example image of base tiles.](images/tile-usage-1.png)
+![Example image of base tiles](images/tile-usage-2.png)
 
 </Column>
 </Row>
 
 ### Clickable
 
-Clickable tiles can be used as navigational items, where the entire tile is a
-clickable state, which redirects the user to a new page. Clickable tiles cannot
-contain separate internal CTAs but can contain pictograms, icons, or media such
-as illustrations or images.
+Clickable tiles can be used as navigational elements that redirect the user to a
+new page. In these situations, the entire tile is in a clickable state. Due to
+accessibility concerns, clickable tiles cannot contain separate internal CTAs
+but can contain pictograms, icons, or media such as illustrations or images.
 
 <Row>
-<Column colLg={12}>
+<Column colLg={8}>
 
-![Example image of clickable tiles](images/tile-usage-2.png)
+![Example image of clickable tiles](images/tile-usage-3.png)
 
 </Column>
 </Row>
@@ -324,20 +353,20 @@ Selectable tiles work well for presenting options to a user in a structured
 manner, such as a set of pricing plans. Selectable tiles may contain internal
 CTAs (like links to docs) if the internal CTA is given its own click target.
 
-Selectable tiles can either have a single select state working like a
+Selectable tiles can either have a single-select state working like a
 [radio button](/components/radio-button/usage), or multi-select state working as
 a [checkbox](/components/checkbox/usage).
 
 <Row>
 <Column colLg={8}>
 
-![Selectable radio-button / single select tiles](images/tile-usage-3.png)
+![Example image of radio-button/single-select tile](images/tile-usage-4.png)
 
-<Caption>Single select tiles work like radio-buttons</Caption>
+<Caption>Single-select tiles</Caption>
 
-![Selectable checkbox / multi-select tiles](images/tile-usage-4.png)
+![Example image of checkbox/multi-select tile](images/tile-usage-5.png)
 
-<Caption>Multi-select tiles work like checkboxes </Caption>
+<Caption>Multi-select tiles</Caption>
 
 </Column>
 </Row>
@@ -348,13 +377,18 @@ Expandable tiles are helpful for hiding and showing large amounts of content to
 a user. When expanded, tiles push content down the page. They allow the user to
 specifically focus on featured content while having access to the rest of the
 information. Expandable tiles can contain internal CTAs (like links to docs) if
-they are given their own click targets and the click target is reduced to only
-the chevron icon.
+they are given their own click targets.
 
 <Row>
 <Column colLg={8}>
 
-![Example image of expandable tiles/ single select tiles](images/tile-usage-5.gif)
+![Example image of expandable tile with interactive elements](images/tile-usage-6.png)
+
+<Caption>Expandable tile with interactive elements</Caption>
+
+![Example image of expandable tile without interactive elements](images/tile-usage-7.png)
+
+<Caption>Expandable tile without interactive elements</Caption>
 
 </Column>
 </Row>
@@ -366,88 +400,95 @@ the chevron icon.
 <Row>
 <Column colLg={8}>
 
-![Tile anatomy](images/tile-usage-6.png)
+![Tile anatomy](images/tile-usage-8.png)
 
 </Column>
 </Row>
 
-1. **Container**: Includes a title, optional label, and the close icon.
+1. **Image (optional)** : The image size follows standard Carbon aspect ratios
+   (in this case, with a default size of 4:3)
 
-2. **Content area**: Contains the information and/or controls needed to complete
+2. **Container**: Contains the content area
+
+3. **Content area**: Contains the information and/or controls needed to complete
    the modal's task. It can include message text and components.
 
 ### Sizing
 
 The **width** varies depending on three basic grid modes: wide, narrow, and
-condensed. The **height** varies depending on the amount of content placed
-within it, but still follows the aspect ratio.
-
-[Aspect ratios](https://www.carbondesignsystem.com/guidelines/2x-grid/overview/#aspect-ratio)
-are written out as a formula of width to height, such as 3:2. It’s important to
-remember that while two images can have the same aspect ratio, they can have
-varying images sizes.
-
-<Row>
-<Column colLg={8}>
-
-![Example image of expandable tiles.](images/tile-usage-7.png)
-
-<Caption>Tiles get wider as the browser gets larger </Caption>
-
-</Column>
-</Row>
+condensed. Tile **height** varies depending on the amount of content placed
+within it, but applies the
+[spacing](https://carbondesignsystem.com/guidelines/spacing/overview/) and
+follows Carbon's standard
+[aspect ratios](https://www.carbondesignsystem.com/guidelines/2x-grid/overview/#aspect-ratio).
+The minimum height starts with 2:1 aspect ratio. As the content grows, set
+vertical spacing between sections within the content area.
 
 ### Alignment
 
-Always strive for left alignment whenver possible. Type in tiles should always
-be left aligned. Icons or icon buttons can be aligned to either left or right
-edge depending on the tiles’ complexity.
+#### Icon and call-to-action button
 
-For example: In situations where there are both an icon or pictogram with an
-icon button, place the icon or pictorgram in the lower left corner of the tile
-and move the icon button (action) to the right corner.
+On clickable tiles, use the arrow icon as default with the `$icon-interactive`
+token. Place the icon at the bottom right to indicate navigation. Avoid
+confusing the user with multiple click targets (like interactive links or
+buttons) on clickable tiles.
 
 <DoDontRow>
-  <DoDont type="do" caption="Do left align icon, link, or text when it is by itself.">
+  <DoDont type="do" caption="Do right align the icon when it is by itself.">
 
-![Do left align icon, link, or text when it is by itself.](images/tile-usage-8.png)
+![Example of "do" on clickable tile](images/tile-usage-9.png)
 
   </DoDont>
 
-  <DoDont type="dont" caption="Do not right align an icon, link, or text when it is by itself">
+  <DoDont type="do" caption="Do right align the icon when there is additional text.">
 
-![Do not right align an icon, link, or text when it is by itself.](images/tile-usage-9.png)
+![Example of "do" on clickable tile](images/tile-usage-10.png)
 
   </DoDont>
 </DoDontRow>
 
 <DoDontRow>
 
-  <DoDont type="do" caption="Do move icon to the right when there is an icon or pictogram.">
+  <DoDont type="do" caption="Do right align the icon when there is an icon or pictogram.">
 
-![Do move icon to the right when there is an icon or pictogram.](images/tile-usage-10.png)
+![Example of "do" on clickable tile](images/tile-usage-11.png)
 
   </DoDont>
 
-  <DoDont type="do" caption="Do move icon to the right when there is text or link.">
+  <DoDont type="dont" caption="Do not add interactive links or components on clickable tiles.">
 
-![Do move icon to the right when there is text or link.](images/tile-usage-11.png)
+![Example of "do not" on clickable tile](images/tile-usage-12.png)
 
   </DoDont>
 </DoDontRow>
 
-### Placement
+On base tiles, place the interactive link at the bottom left or the button at
+the bottom to indicate call-to-action items.
+
+<DoDontRow>
+  <DoDont type="do" caption="Do left align the interactive link at the bottom on base tile.">
+
+![Example of "do" on base tile](images/tile-usage-13.png)
+
+  </DoDont>
+
+  <DoDont type="do" caption="Do place the button at the bottom on base tile.">
+
+![Example of "do" on base tile](images/tile-usage-14.png)
+
+  </DoDont>
+</DoDontRow>
 
 #### Tile groups
 
-Tile groups are a useful way of aligning tiles that have a strong relationship.
-Tile groups flow horizontally left to right usually and have similar
-hierarchical importance like navigation or catalog tiles.
+Tile groups are useful for aligning tiles that have a strong relationship. Tile
+groups flow horizontally from left to right usually and have similar
+hierarchical importance as with navigation or catalog tiles.
 
 <Row>
 <Column colLg={12}>
 
-![Example image of how tiles are built on the wide grid.](images/tile-usage-13.png)
+![Example image of how tiles are built on the wide grid.](images/tile-usage-15.png)
 
 <Caption>Example image of how tiles are built on the wide grid.</Caption>
 
@@ -457,17 +498,24 @@ hierarchical importance like navigation or catalog tiles.
 <Row>
 <Column colLg={12}>
 
-![Example image of how tiles are built on the narrow grid.](images/tile-usage-14.png)
+![Example image of how tiles are built on the narrow grid.](images/tile-usage-27.png)
 
 <Caption>Example image of how tiles are built on the narrow grid.</Caption>
 
 </Column>
 </Row>
 
+<InlineNotification>
+
+The image below should show the icons in blue color instead of gray. We will
+update this soon.
+
+</InlineNotification>
+
 <Row>
 <Column colLg={12}>
 
-![Example image of how tiles are built on the condensed grid.](images/tile-usage-15.png)
+![Example image of how tiles are built on the condensed grid.](images/tile-usage-28.png)
 
 <Caption>Example image of how tiles are built on the condensed grid.</Caption>
 
@@ -480,98 +528,43 @@ There are three basic layouts for tiles: **standard**, **vertical masonry**, and
 **horizontal masonry**. The standard layout will be the most commonly used
 version.
 
-- Standard layout tiles are the same in height and width as the rest of them in
+- Standard layout tiles are the same in height and width as all other tiles in
   the group.
-- A vertical masonry layout can vary in height, but is consistent in width.
-- A horizontal masonry layout can vary in width. Rows of tiles may vary in
-  height, but the tiles within a row should be consistent in height.
+- In a vertical masonry layout, tiles can vary in height, but are consistent in
+  width.
+- In a horizontal masonry layout, tiles can vary in width; different rows of
+  tiles may vary in height, but tiles within a row should be consistent in
+  height.
 
 <Row>
-<Column colLg={4}>
+<Column colLg={8}>
 
-![Standard layout for tiles](/images/tile-usage-16.png)
+![Layouts for tiles](/images/tile-usage-18.png)
 
-<Caption>Standard layout for tiles</Caption>
-
-</Column>
-
-<Column colLg={4}>
-
-![An example of the standard layout](/images/tile-usage-17.png)
-
-<Caption>An example of the standard layout</Caption>
+<Caption>
+  Examples of tile layouts: standard, vertical masonry, and horizontal masonry.
+</Caption>
 
 </Column>
 </Row>
 
-<Row>
-<Column colLg={4}>
+## Universal behaviors
 
-![Vertical masonry layout for tiles](/images/tile-usage-18.png)
+The behaviors listed in this section are universal across all tile variants. For
+behaviors that are unique to each variant, see each of the component variants
+sections below.
 
-<Caption>Vertical masonry layout for tiles</Caption>
+### States
 
-</Column>
+For detailed visual information about the various states for this component, see
+the [Style](https://carbondesignsystem.com/components/tile/style) tab.
 
-<Column colLg={4}>
-
-![An example of the vertical masonry layout](images/tile-usage-19.png)
-
-<Caption>An example of the vertical masonry layout </Caption>
-
-</Column>
-</Row>
-
-<Row>
-<Column colLg={4}>
-
-![Horizonal masonry layout for tiles](/images/tile-usage-20.png)
-
-<Caption>Horizonal masonry layout for tiles</Caption>
-
-</Column>
-
-<Column colLg={4}>
-
-![An example of the horizonal masonry layout](images/tile-usage-21.png)
-
-<Caption>An example of the horizonal masonry layout </Caption>
-
-</Column>
-</Row>
-
-### Elevation
-
-Tiles reside in the same plane as the background layer—they do not have
-elevation. Do not add drop shadows to tiles. Tiles organize essential
-information and have the same visual hierarchy as content within the same page.
-Modals, popovers, and dialogs do have elevation but are not inherently part of
-the user's main workstream and are invoked on screen to reveal secondary
-information, actions, or notifications.
-
-### Call-to-actions
-
-For **base, selectable, and expandable tiles**, use `$link-01` when icon and
-link are paired together or use `$interactive-04` when the icon stands alone.
-
-For **clickable tiles**, don’t highlight text or icons to avoid them being
-confused as links or clickable.
-
-<DoDontRow>
-
-  <DoDont type="do" caption="Do use text or icon for clickable tiles if needed.">
-
-![Do use text or icon for clickable tiles if needed.](images/tile-usage-22.png)
-
-  </DoDont>
-  <DoDont type="dont" caption="Do not use link or highlight the icon color for clickable tiles.">
-
-![Do not use link or highlight the icon color for clickable tiles.](images/tile-usage-23.png)
-
-  </DoDont>
-</DoDontRow>
-
-## Behaviors
+| State      | When to use                                                                                                                                         |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _Enabled_  | When a tile is live but a user is not directly interacting with it. This is commonly referred to as the default or normal state of the component    |
+| _Hover_    | When a user is hovering over the tile with the mouse cursor to interact with it (except base tile)                                                  |
+| _Focus_    | When a user `tabs` to or clicks on the tile, it becomes focused, indicating the user has successfully navigated to the component (except base tile) |
+| _Selected_ | When a user `enters` or clicks on the single-select tile or the multi-select tile to select an option or multiple options                           |
 
 ### Interactions
 
@@ -598,22 +591,14 @@ base tiles.
 
 ![Base tiles are static, except buttons or links .](images/tile-usage-25.png)
 
-<Caption>Base tiles are static, except buttons or links .</Caption>
+<Caption>Base tiles are static, except buttons or links.</Caption>
 
 </Column>
 </Row>
 
-Expandable tiles can either be triggered as a whole or only contain internal
-CTA's if they are given their own click targets and the tile’s click target is
-reduced to only the chevron icon.
-
-<InlineNotification>
-
-**Note:** Clickable targets are currently not available in coding. Teams can
-override the code to make smaller click targets while we're updating this in the
-future.
-
-</InlineNotification>
+Expandable tiles can either be triggered as a whole or contain internal CTAs
+only if they are given their own click targets. In these cases, the tile’s click
+target is reduced to only the icon button.
 
 <Row>
 <Column colLg={8}>
@@ -628,12 +613,12 @@ future.
 Specific keyboard interactions will depend on the type of tile you are using and
 what content it contains but all types of tiles can take focus.
 
-| Key             | Interaction                                                                                                                                                                |
-| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Tab             | Move forward through tiles (if tiles themselves are clickable) and interactive elements within the tiles in a logical order                                                |
-| Shift + Tab     | Move backward through tiles (if tiles themselves are clickable) and interactive elements within the tiles in a logical order                                               |
-| Return or Enter | Return or enter will open the tile (if the tile itself is clickable). If the tile is not clickable but has interactive elements, their corresponding actions are performed |
-| Space           | If the tile is selectable, the space bar will toggle tile selection                                                                                                        |
+| Key             | Interaction                                                                                                                                                                 |
+| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Tab             | Move forward through tiles (if tiles themselves are clickable) and interactive elements within the tiles in a logical order                                                 |
+| Shift + Tab     | Move backward through tiles (if tiles themselves are clickable) and interactive elements within the tiles in a logical order                                                |
+| Return or Enter | Return or enter will open the tile (if the tile itself is clickable). If the tile is not clickable but has interactive elements, their corresponding actions are performed. |
+| Space           | If the tile is selectable, the space bar will toggle tile selection.                                                                                                        |
 
 ## Related
 
@@ -644,21 +629,27 @@ To learn more about how to build tiles correctly on the grid, see Carbon’s
 
 #### Aspect ratio
 
-Aspect ratio is important when building tiles and images. For further guidance,
-see Carbon’s
-[Aspect ratio](https://www.carbondesignsystem.com/guidelines/2x-grid/overview/#aspect-ratio)
+The aspect ratio is important when building tiles and images. For further
+guidance, see Carbon’s
+[aspect ratio](https://www.carbondesignsystem.com/guidelines/2x-grid/overview/#aspect-ratio)
 and its
 [implementation](https://www.carbondesignsystem.com/guidelines/2x-grid/implementation#screen-regions).
 
 #### Buttons
 
 When in doubt, use full-span button alignment within tiles. For further
-guidance, see Carbon’s [buttons](/components/buttons/usage).
+guidance, see Carbon’s
+[buttons](https://carbondesignsystem.com/components/button/usage/).
 
 #### Link
 
 Link has variants depending on the context. For further guidance, see Carbon’s
-[link](/components/buttons/usage).
+[link](https://carbondesignsystem.com/components/link/usage/).
+
+#### Spacing
+
+Spacing helps deliver clear and functional layouts. For further guidance, see
+Carbon’s [spacing](https://carbondesignsystem.com/guidelines/spacing/overview/).
 
 ## References
 

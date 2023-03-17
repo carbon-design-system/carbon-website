@@ -881,8 +881,8 @@ const colorTokens = {
           hex: '#e0e0e0',
         },
         g10: {
-          name: 'Gray 20',
-          hex: '#e0e0e0',
+          name: 'Gray 30',
+          hex: '#c6c6c6',
         },
         g90: {
           name: 'Gray 70',
@@ -898,8 +898,8 @@ const colorTokens = {
       role: ['Subtle borders paired with $layer-01'],
       value: {
         white: {
-          name: 'Gray 20',
-          hex: '#e0e0e0',
+          name: 'Gray 30',
+          hex: '#c6c6c6',
         },
         g10: {
           name: 'Gray 20',
@@ -923,8 +923,8 @@ const colorTokens = {
           hex: '#e0e0e0',
         },
         g10: {
-          name: 'Gray 20',
-          hex: '#e0e0e0',
+          name: 'Gray 30',
+          hex: '#c6c6c6',
         },
         g90: {
           name: 'Gray 60',
@@ -940,8 +940,8 @@ const colorTokens = {
       role: ['Subtle borders paired with $layer-03'],
       value: {
         white: {
-          name: 'Gray 20',
-          hex: '#e0e0e0',
+          name: 'Gray 30',
+          hex: '#c6c6c6',
         },
         g10: {
           name: 'Gray 20',
@@ -1092,6 +1092,69 @@ const colorTokens = {
         g100: {
           name: 'Gray 40',
           hex: '#a8a8a8',
+        },
+      },
+    },
+    '$border-tile-01': {
+      role: ['Operable tile indicator paired with $layer-01'],
+      value: {
+        white: {
+          name: 'Gray 30',
+          hex: '#c6c6c6',
+        },
+        g10: {
+          name: 'Gray 40',
+          hex: '#a8a8a8',
+        },
+        g90: {
+          name: 'Gray 60',
+          hex: '#6f6f6f',
+        },
+        g100: {
+          name: 'Gray 70',
+          hex: '#525252',
+        },
+      },
+    },
+    '$border-tile-02': {
+      role: ['Operable tile indicator paired with $layer-02'],
+      value: {
+        white: {
+          name: 'Gray 40',
+          hex: '#a8a8a8',
+        },
+        g10: {
+          name: 'Gray 30',
+          hex: '#c6c6c6',
+        },
+        g90: {
+          name: 'Gray 50',
+          hex: '#8d8d8d',
+        },
+        g100: {
+          name: 'Gray 60',
+          hex: '#6f6f6f',
+        },
+      },
+    },
+    '$border-tile-03': {
+      role: ['Operable tile indicator paired with $layer-03'],
+      value: {
+        white: {
+          name: 'Gray 30',
+          hex: '#c6c6c6',
+        },
+        g10: {
+          name: 'Gray 40',
+          hex: '#a8a8a8',
+        },
+        g90: {
+          name: 'Gray 40',
+          hex: '#a8a8a8',
+        },
+        g100: {
+          name: 'Gray 50',
+          hex: '#8d8d8d',
         },
       },
     },
@@ -1523,6 +1586,27 @@ const colorTokens = {
         g100: {
           name: 'White – 25%',
           hex: '#ffffff – 25%',
+        },
+      },
+    },
+    '$icon-interactive': {
+      role: ['Icons that indicate operability'],
+      value: {
+        white: {
+          name: 'Blue 60',
+          hex: '#0f62fe',
+        },
+        g10: {
+          name: 'Blue 60',
+          hex: '#0f62fe',
+        },
+        g90: {
+          name: 'White',
+          hex: '#ffffff',
+        },
+        g100: {
+          name: 'White',
+          hex: '#ffffff',
         },
       },
     },
