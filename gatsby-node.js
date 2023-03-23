@@ -44,6 +44,11 @@ exports.createPages = ({ actions }) => {
     toPath: '/community/component-index',
     isPermanent: true,
   });
+  createRedirect({
+    fromPath: '/community/contribute-a-component',
+    toPath: '/community/component-index',
+    isPermanent: true,
+  });
 
   // Developing
   createRedirect({
@@ -68,7 +73,7 @@ exports.createPages = ({ actions }) => {
   });
   createRedirect({
     fromPath: '/guidelines/typography/styling-strategies',
-    toPath: '/guidelines/typography/style-strategies', 
+    toPath: '/guidelines/typography/style-strategies',
     isPermanent: true,
   });
 };
