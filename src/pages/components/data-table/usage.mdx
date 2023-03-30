@@ -20,6 +20,7 @@ your product's users.
 <AnchorLink>Live demo</AnchorLink>
 <AnchorLink>Formatting</AnchorLink>
 <AnchorLink>Content</AnchorLink>
+<AnchorLink>Variants</AnchorLink>
 <AnchorLink>Behaviors</AnchorLink>
 <AnchorLink>Modifiers</AnchorLink>
 <AnchorLink>Related</AnchorLink>
@@ -48,13 +49,13 @@ table display settings, and other utilities.
 - When a more complex display of the data or interactions are required.
 - As a replacement for a spreadsheet application.
 
-### Variants
+### Data table variants
 
-| Variant          | Purpose                                                                                                                                                                                                                                |
-| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| _Default_        | The default data table comes with a base style with only the title, header, and table elements rows.                                                                                                                                   |
-| _With selection_ | Batch actions are functions that may be performed on multiple items within a table. This variant of table enables the user to select individual rows and apply an action. A batch action toolbar appears when table rows are selected. |
-| _With expansion_ | The expandable data table is useful for presenting large amounts of data in a small space. Rows are collapsed and can be expanded to reveal extra information.                                                                         |
+| Variant          | Purpose                                                                                                                                                                                                                                                     |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _Default_        | The basic data table has only the header and table element rows. It is available in five row sizes.                                                                                                                                                         |
+| _With selection_ | The selection variant enables users to select individual rows in a data table. Selection options include a single-select radio button option and a multi-select checkbox option. Users can perform a single action or batch actions against selected items. |
+| _With expansion_ | The expandable variant helps present large amounts of data in a small space. Users can expand and collapse row panels to reveal and hide additional information.                                                                                            |
 
 ## Live demo
 
@@ -498,17 +499,105 @@ other.
 For further content guidance, see Carbon's
 [content guidelines](/guidelines/content/overview).
 
+## Variants
+
+### Expandable
+
+The expandable data table helps present large amounts of data in a small space.
+Use the expanded section for supplementary information or data that needs
+additional query time. When the content in the expanded area feels cramped,
+consider taking the user to a dedicated page, side panel, or modal to view the
+information and complete tasks.
+
+<Row>
+<Column colLg={12}>
+
+![Example of data table with row expansion](images/datatable-expand.png)
+
+</Column>
+</Row>
+
+#### Batch expansion
+
+When appropriate, a batch expansion feature can be added to the table column
+header to allow the user to open all collapsed sections simultaneously. However,
+the expand-all chevron is not shown by default in the expandable data table
+variant. Keeping detailed information in the expanded section saves user loading
+time by postponing some data queries until needed. Expanding all rows at once
+will typically negate this advantage of the expandable table.
+
+<Row>
+<Column colLg={12}>
+
+![Example of data table with batch expansion](images/datatable-expand-all.png)
+
+</Column>
+</Row>
+
+### Selectable
+
+By default, the selectable variant allows users to select more than one row in a
+data table simultaneously. To select a row, the user must select the checkbox
+associated with the row. The user can select all rows at once by selecting the
+checkbox in the column header. Checkboxes in the rows have only two states,
+checked and unchecked. However, the check all checkbox in the column header has
+three states, check, unchecked, and indeterminate.
+
+Actions applied to the chosen selected items are found in the default
+[table toolbar](/components/data-table/usage/#table-toolbar) or
+[batch action mode](/components/data-table/usage/#batch-actions).
+
+<Row>
+<Column colLg={12}>
+
+![Example of a data table with selection](images/datatable-multi-select.png)
+
+</Column>
+</Row>
+
+#### Radio selection
+
+The data table also supports a single-select radio button control, limiting the
+user to selecting only one row at a time. The radio button is placed in the
+first column on the left side. Single actions applied to the chosen radio item
+are often placed on the right side of the table toolbar area. They can manifest
+as primary, ghost, or icon-only buttons.
+
+<Row>
+<Column colLg={12}>
+
+![Example of a data table with radio select](images/datatable-radio-select.png)
+
+</Column>
+</Row>
+
+### Expandable + selectable
+
+Data tables can be configured to have both expandable and selectable features.
+The expandable icon always appears first and to the left of the selection icon.
+
+<Row>
+<Column colLg={12}>
+
+![Example of a data table with expansion and selection](images/datatable-expandable+selectable.png)
+
+</Column>
+</Row>
+
 ## Behaviors
 
 ### Interactions
 
+The data table’s toolbar and rows follow interaction conventions found in other
+Carbon components. Buttons, checkboxes, radio buttons, overflow menus, search,
+and expanding elements are used in the data table, and all behave accordingly to
+their guidelines.
+
 #### Mouse
 
-The data table's toolbar and rows follow interaction conventions found in other
-Carbon components. Buttons, checkboxes, radio buttons, overflow menus, search,
-and expanding elements can be found in the data table and all behave the same
-way across Carbon components. See the style tab for detailed visual information
-about the various states.
+Users can trigger an action or function in the table by clicking the associated
+button or component. Each action or function has its own distinct click target.
+See the accessibility tab for additional interactive guidance.
 
 <Row>
 <Column colLg={12}>
@@ -520,10 +609,11 @@ about the various states.
 </Column>
 </Row>
 
-### Hover
+#### Hover
 
-The data table's row hover state can help your user visually scan the columns of
-data in a row even if the row is not interactive.
+The data table’s row hover state should always be enabled as it can help the
+user visually scan the columns of data in a row even if the row is not
+interactive.
 
 <Row>
 <Column colLg={8}>
@@ -540,7 +630,7 @@ the current page in view and offers controls to incrementally navigate to the
 previous or next page. Advanced pagination is accompanied by an option that
 enables the user to change the number of items per page and to jump to a
 specific page number. The pagination component is always placed at the bottom of
-the data table. See the [pagination](/components/pagination/code) component for
+the data table. See the [pagination](/components/pagination/usage) component for
 further guidelines and configurations.
 
 <Row>
@@ -553,7 +643,23 @@ further guidelines and configurations.
 </Column>
 </Row>
 
-### Search
+### Table toolbar
+
+The table toolbar is reserved for global table actions such as table settings,
+complex filters, exporting or editing table data. Actions in the toolbar can use
+primary, ghost, or icon-only buttons. We recommend showing at most five actions
+within the table toolbar. Additional actions can be made available through an
+overflow menu, combo button, or similar components.
+
+<Row>
+<Column colLg={8}>
+
+![data table sorting in descending order](images/datatable-toolbar.png)
+
+</Column>
+</Row>
+
+### Searching
 
 #### Collapsed search
 
@@ -605,48 +711,22 @@ Carbon’s [React Storybook](https://react.carbondesignsystem.com/?path=/story/
 </Column>
 </Row>
 
-### Table toolbar
+### Batch actions
 
-The table toolbar is reserved for global table actions such as table settings,
-complex filters, exporting, or editing table data. Additional options can be
-added if you have an icon to support that function. Icons should be 16x16 px
-(glyphs). We recommend using no more than 5 icons within the table toolbar.
+Users can perform batch actions on one or more items within a table. Once an
+item from the table is selected, the batch action bar appears at the top of the
+table, presenting a set of possible actions to apply to all select items. This
+feature can increase user efficiency compared to the effort of repetitively
+performing the same inline action across multiple table items. When batch mode
+is active, single action icons and overflow menus on the row should be disabled.
 
-<Row>
-<Column colLg={8}>
-
-![data table sorting in descending order](images/datatable-toolbar.png)
-
-</Column>
-</Row>
-
-### Multi-select & batch action
-
-Batch actions are functions that may be performed on multiple items within a
-table. Once the user selects at least one row from the table, the batch action
-bar appears at the top of the table, presenting the user with actions they can
-take. To exit or escape “batch action mode”, the user can cancel out or deselect
-the items.
+To exit the batch action mode, the user can select the cancel button on the far
+right of the bar or deselect all items.
 
 <Row>
 <Column colLg={12}>
 
-![data table multi select](images/datatable-multi-select.png)
-
-</Column>
-</Row>
-
-### Radio selection
-
-Instead of a multiselect checkbox function, the data table supports a single
-selection radio button control. Only one row can be selected at a time when
-using the radio selection. The radio button is placed in the first column on the
-left side.
-
-<Row>
-<Column colLg={12}>
-
-![data table multi select](images/datatable-radio-select.png)
+![data table multi select](images/datatable-batch-action.png)
 
 </Column>
 </Row>
@@ -692,31 +772,10 @@ supports hover-over and persist the overflow menus even if the
 </Column>
 </Row>
 
-### Expandable
+### Loading
 
-The expandable data table is useful for presenting large amounts of data in a
-small space. Use the expanded section for supplementary information or data that
-needs additional query time. When the content in the expanded area begins to
-feel cramped, consider taking the user to a dedicated page or opening a modal to
-view the information and complete tasks.
-
-<Row>
-<Column colLg={12}>
-
-![data table in expanded and collapsed state](images/datatable-expand.png)
-
-<Caption>Expandable data table with one row expanded</Caption>
-
-</Column>
-</Row>
-
-#### Loading
-
-By default, the expand-all chevron is not shown. Keeping detailed information in
-the expanded section saves user loading time by postponing some data queries
-until needed. Expanding all rows at once will typically negate this advantage of
-the expandable table. If additional load time is expected to display expanded
-information, use skeleton states instead of spinners.
+If additional load time is expected to display information, use skeleton states
+instead of spinners.
 
 <Row>
 <Column colLg={12}>
@@ -741,7 +800,19 @@ alternating colors to make scanning horizontal information easier for the user.
 </Column>
 </Row>
 
-### Related
+## Related
+
+### Community extensions
+
+#### Carbon for IBM Product
+
+_This content is accessible to IBMers only._
+
+- [Data table extensions](https://pages.github.ibm.com/cdai-design/pal/components/data-table/overview)
+- [Data table on Cloud](https://pages.github.ibm.com/cdai-design/cloud-pal/components/data-table/usage/)
+- [Data spreadsheet](https://pages.github.ibm.com/cdai-design/pal/components/data-spreadsheet/usage/)
+
+### Similar components
 
 The following components are additional ways to organize and navigate data.
 
@@ -753,7 +824,7 @@ The following components are additional ways to organize and navigate data.
 
 - [Structured list](/components/structured-list/code/)
 
-### Feedback
+## Feedback
 
 Help us improve this pattern by providing feedback, asking questions, and
 leaving any other comments on
