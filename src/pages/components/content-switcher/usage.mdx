@@ -20,6 +20,7 @@ within the same space on the screen.
 <AnchorLink>Formatting</AnchorLink>
 <AnchorLink>Content</AnchorLink>
 <AnchorLink>Behaviors</AnchorLink>
+<AnchorLink>Icon content switcher</AnchorLink>
 <AnchorLink>Related</AnchorLink>
 <AnchorLink>References</AnchorLink>
 <AnchorLink>Feedback</AnchorLink>
@@ -31,12 +32,12 @@ within the same space on the screen.
 Content switchers allow users to toggle between alternate views of similar or
 related content, showing only one content section at a time.
 
-### Variants
+### variants
 
-| Variant     | Purpose                                                                                                                                            |
-| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| _Default_   | Uses a text label to represent the content inside each tab.                                                                                        |
-| _Icon only_ | Uses an icon to represent the content inside each tab. They are often used when space is limited or if icons can adequately describe the sections. |
+| Variant                 | Purpose                                                                                                                                            |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _Content switcher_      | Uses a text label to represent the content inside each tab.                                                                                        |
+| _Icon content switcher_ | Uses an icon to represent the content inside each tab. They are often used when space is limited or if icons can adequately describe the sections. |
 
 <Row>
 <Column colLg={12}>
@@ -122,23 +123,7 @@ view but should not be used as a binary input control.
 1. **Selected content tab:** Only one content tab can be selected at a time and
    there should always be one selected.
 2. **Content tab:** Selectable container for each content view.
-3. **Text label:** Describes the content view.
-
-#### Icon-only anatomy
-
-<Row>
-<Column colLg={8}>
-
-![Anatomy of an icon only content switcher.](images/contentswitcher-usage-2.png)
-
-</Column>
-</Row>
-
-1. **Selected content tab:** Only one content tab can be selected at a time and
-   one tab must always be selected.
-2. **Content tab:** Selectable container for each content view.
-3. **Icon:** Visual representation of the content view.
-4. **Tooltip:** Contextual information that describes the icon and content view.
+3. **Label:** Text label or iccon that describes the content view.
 
 ### Sizing
 
@@ -158,8 +143,9 @@ the switcher’s prominence.
 
 #### Width
 
-The overall width of the content switcher can be content-driven or grid aware.
-In either case, each content tab in the group should be the same width.
+Each content tab in the group should be the same width. The content tab with the
+longest text label should have at minimum 16px spacing to the right of the
+label.
 
 <DoDontRow>
   <DoDont type="do" caption="Do base content tab width on the longest text label.">
@@ -174,9 +160,14 @@ In either case, each content tab in the group should be the same width.
   </DoDont>
 </DoDontRow>
 
-For content-driven widths, the content tab with the longest text label should
-have 16px spacing to the right of the label, and then the widths of all other
-tabs should match that widest tab.
+### Alignment
+
+A content switcher can align to a grid column or hang in the gutter to create
+type alignment. Use layout and hierarchy cues to determine which alignment is
+best. In contained space, the content switcher should never be flush to an edge
+and instead left-align with other content in the container.
+
+#### Aligning to the grid
 
 For grid-aware width, the content swither spans a set of columns, with each tab
 being equal in size. Depending on placement, the first tab or the tab’s label
@@ -184,12 +175,11 @@ should align to the first column you are using, with the last tab in the group
 always ending at a column’s edge. The tabs in between will flow accordingly and
 may or may not align with the grid, but they will always be the same width.
 
-### Alignment
+#### Aligning to the content
 
-A content switcher can align to a grid column or hang in the gutter to create
-type alignment. Use layout and hierarchy cues to determine which alignment is
-best. In contained space, the content switcher should never be flush to an edge
-and instead left-align with other content in the container.
+For content-driven widths, the content tab with the longest text label should
+have 16px spacing to the right of the label, and then the widths of all other
+tabs should match that widest tab.
 
 ### Placement
 
@@ -248,6 +238,21 @@ content tab.
 
 Users can activate and navigate between content switcher tabs by pressing the
 `left` or `right` arrow.
+
+## Icon content switcher
+
+Icon content switchers use an icon instead of to text label to indicate
+alternative views of similar or related content. Icon content switchers are
+often used when space is limited or when icons can adequately describe the
+sections (for example, a list view versus a card view).
+
+<Row>
+<Column colLg={8}>
+
+![An example of an icon content switcher.](images/content-switcher-icon.png)
+
+</Column>
+</Row>
 
 ### Responsiveness
 
