@@ -63,8 +63,8 @@ export const onRenderBody = ({ setHeadComponents, setPostBodyComponents }) => {
     />,
     <script
       src="https://cdn.usefathom.com/script.js"
-      spa="auto" //eslint-disable-line react/no-unknown-property
-      site="VMSGXQRS" //eslint-disable-line react/no-unknown-property
+      spa="auto"
+      site="VMSGXQRS"
       key="fathom"
       defer
     />,
