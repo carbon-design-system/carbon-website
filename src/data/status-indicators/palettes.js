@@ -5,21 +5,32 @@ export const statusLight = [
     light: true,
   },
   {
-    name: 'Green 60',
-    hex: '198038',
+    name: 'Green 50',
+    hex: '24A148',
     light: true,
   },
   {
-    name: 'Orange 50',
-    hex: 'eb6200',
+    name: 'Orange 40',
+    hex: 'ff832b',
     light: false,
   },
-  { name: 'Blue 60', hex: '0f62fe', light: true },
+  {
+    name: 'Orange 60 (outline)',
+    hex: 'ba4e00',
+    light: true,
+  },
+ 
   {
     name: 'Yellow 30',
     hex: 'f1c21b',
     light: false,
   },
+  {
+    name: 'Yellow 60 (outline)',
+    hex: '8e6a00',
+    light: true,
+  },
+  { name: 'Blue 70', hex: '0043ce', light: true },
   { name: 'Purple 60', hex: '8a3ffc', light: true },
   {
     name: 'Gray 60',
@@ -35,8 +46,8 @@ export const statusDark = [
     light: false,
   },
   {
-    name: 'Green 50',
-    hex: '24a148',
+    name: 'Green 40',
+    hex: '42be65',
     light: false,
   },
   {
