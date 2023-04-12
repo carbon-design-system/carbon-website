@@ -26,6 +26,7 @@ to start building.
 
 <AnchorLink>Documentation</AnchorLink>
 <AnchorLink>Getting started</AnchorLink>
+<AnchorLink>API & Helpers</AnchorLink>
 <AnchorLink>Resources</AnchorLink>
 
 </AnchorLinks>
@@ -116,6 +117,39 @@ Sass files:
 @include grid.flex-grid();
 ```
 
+## API & Helpers
+
+There are many ways to make the 2x Grid work for your application using our API.
+The example below illustrates removing visibility of a given component based on
+the maximum width of the `md` breakpoint.
+
+```css
+.component {
+  display: inline;
+
+  /* applies styles inside mixin on md breakpoint or below, like max-width */
+  @include breakpoint-down('md') {
+    display: none;
+  }
+}
+```
+
+In addition, you can also use Helpers to control what is being displayed on the
+screen at a given breakpoint.
+
+```css
+@use '@carbon/styles/scss/utilities/helper-classes';
+
+.my-class {
+  @include helper-classes.hide-at-sm();
+}
+```
+
+Checkout the [resources](#resources) section for links to
+[the helpers on storybook](https://react.carbondesignsystem.com/?path=/story/helpers-hideatbreakpoint--hide-at-breakpoint)
+and the full
+[API list on Github](https://github.com/carbon-design-system/carbon/blob/main/packages/grid/docs/sass.md#api).
+
 ## Resources
 
 <Row className="resource-card-group">
@@ -146,6 +180,26 @@ Sass files:
     >
 
 <MdxIcon name="bee" />
+
+  </ResourceCard>
+  </Column>
+  <Column colMd={4} colLg={4} noGutterSm>
+    <ResourceCard
+      subTitle="Carbon grid docs API"
+      href="https://github.com/carbon-design-system/carbon/blob/main/packages/grid/docs/sass.md#api"
+    >
+
+<MdxIcon name="github" />
+
+  </ResourceCard>
+  </Column>
+  <Column colMd={4} colLg={4} noGutterSm>
+    <ResourceCard
+      subTitle="Hide at Breakpoint Helpers on Storybook"
+      href="https://react.carbondesignsystem.com/?path=/story/helpers-hideatbreakpoint--hide-at-breakpoint"
+    >
+
+<MdxIcon name="storybook" />
 
   </ResourceCard>
   </Column>

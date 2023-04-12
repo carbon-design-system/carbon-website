@@ -26,97 +26,16 @@ implementation which will be documented soon.
 
 <AnchorLinks>
 
-<AnchorLink>Under the hood</AnchorLink>
-<AnchorLink>Get started</AnchorLink>
 <AnchorLink>How it works</AnchorLink>
 <AnchorLink>Grid modes</AnchorLink>
 <AnchorLink>Incorporating the shell</AnchorLink>
 <AnchorLink>Alignments</AnchorLink>
 <AnchorLink>Techniques</AnchorLink>
-<AnchorLink>API & Helpers</AnchorLink>
 <AnchorLink>Resources</AnchorLink>
 
 </AnchorLinks>
 
-## Under the hood
-
-Our grid is built with Flexbox and closely mirrors Bootstrap's grid in that it
-uses containers, rows and columns to layout and align content. Below is an
-in-depth look at how it all comes together.
-
-If you’re new to Flexbox, this
-[CSS Tricks Flexbox guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
-will provide more detail around everything from basic terminology to code.
-
-## Get started
-
-### With `@carbon/styles`
-
-We provide multiple ways for you to use the grid for the Carbon Design System.
-By default, the grid code is included when you use `@carbon/styles`. To get
-started, you'll need to install this package using `npm`:
-
-```bash
-npm install @carbon/styles --save
-```
-
-<br />
-
-Or, if you prefer Yarn:
-
-```bash
-yarn add @carbon/styles
-```
-
-<br />
-
-You can include the grid in one of two ways:
-
-```scss
-// If you're including all the styles for Carbon
-@use '@carbon/styles';
-
-// Or if you're wanting to use just the grid
-@use '@carbon/styles/scss/grid';
-
-// Emit the flex-grid styles
-@include grid.flex-grid();
-```
-
-### Without `@carbon/styles`
-
-If you'd like to use the grid without including `@carbon/styles`, we offer the
-`@carbon/grid` package. You can install this with `npm`:
-
-```bash
-npm install @carbon/grid --save
-```
-
-<br />
-
-Or, if you prefer Yarn:
-
-```bash
-yarn add @carbon/grid
-```
-
-<br />
-
-You can then include the grid by doing the following in your Sass files:
-
-```scss
-@use '@carbon/grid';
-
-// Emit the flex-grid styles
-@include grid.flex-grid();
-```
-
 ## How it works
-
-We won't spend a lot of time here recapping the basics of the
-[Bootstrap grid](https://getbootstrap.com/docs/4.0/layout/grid/). Instead we'll
-emphasize the features that make this system unique, especially concerning
-gutter structure, type alignment, and the UI Shell.
 
 ### Basic grid explainer
 
@@ -137,15 +56,19 @@ centered in the page within the parent container.
       </div>
     </div>
 
-```html
-<div class="cds--grid">
-  <div class="cds--row">
-    <div class="cds--col">1 of 4</div>
-    <div class="cds--col">2 of 4</div>
-    <div class="cds--col">3 of 4</div>
-    <div class="cds--col">4 of 4</div>
-  </div>
-</div>
+```js
+import { Grid, Column } from '@carbon/react';
+
+function MyComponent() {
+  return (
+    <Grid>
+      <Column lg={4}>Span 4 of 16</Column>
+      <Column lg={4}>Span 4 of 16</Column>
+      <Column lg={4}>Span 4 of 16</Column>
+      <Column lg={4}>Span 4 of 16</Column>
+    </Grid>
+  );
+}
 ```
 
   </Column>
@@ -153,38 +76,15 @@ centered in the page within the parent container.
 
 <br />
 
-#### Container
-
-`cds--grid` defines the overall grid context at the top level and applies the
-proper margin and our default max-width (1584px.) You can also remove this max
-width, by using the grid modifier class `cds--grid--full-width`.
-
-#### Rows
-
-`cds--row` defines a row of items inside the grid — think of rows as wrappers
-for columns. Each column has horizontal padding (aka a gutter) that defines the
-space between them. You can negate this padding at the row level with negative
-margins, allowing the content within your columns to be aligned along the left
-side.
-
-#### Columns
-
-`cds--col` defines individual columns inside a row. Use as many columns as you’d
-like out of the possible 16 per row. With Flexbox columns widths are set in
-percentages relative to their parent element so columns without a spec’d width
-will automatically be equal. For example, four instances of `cds--col` will will
-give you four equal width columns — each 25% of the parent from the small
-breakpoint on up. See the auto-layout columns for more on this.
-
 ### Responsive options
 
-| Breakpoints             | Class prefix     | # of cols | Gutter width\* |
-| ----------------------- | ---------------- | --------- | -------------- |
-| Small (<672)            | `.cds--col-sm-`  | 4         | 32px           |
-| Medium (672 - 1056px)   | `.cds--col-md-`  | 8         | 32px           |
-| Large (1056 - 1312px)   | `.cds--col-lg-`  | 16        | 32px           |
-| X-Large (1312 - 1584px) | `.cds--col-xlg-` | 16        | 32px           |
-| Max (>1584)             | `.cds--col-max-` | 16        | 32px           |
+| Breakpoints             | # of cols | Gutter width\* |
+| ----------------------- | --------- | -------------- |
+| Small (<672)            | 4         | 32px           |
+| Medium (672 - 1056px)   | 8         | 32px           |
+| Large (1056 - 1312px)   | 16        | 32px           |
+| X-Large (1312 - 1584px) | 16        | 32px           |
+| Max (>1584)             | 16        | 32px           |
 
 <Caption>
   * Gutter width is 32px — with 16px on each side of a column — at every
@@ -193,231 +93,6 @@ breakpoint on up. See the auto-layout columns for more on this.
 
 <br />
 <br />
-
-#### Responsive classes
-
-Here's a look at all the width classes available for our 16 column grid. Use the
-column helpers to specify different column spans at different widths.
-
-If you want to change it up, use a combination of different classes for each
-grid tier as needed. See the markup below. Note: 3 and 5 column arrangements are
-discouraged, however, in specific instances, you are allowed to generate a three
-columns within our system.
-
-<Row>
-  <Column noGutterSm>
-    <div className="grid-demo override override">
-      <div class="cds--grid">
-        <div class="cds--row">
-          <div class="cds--col-lg-16">
-            <div class="cds-lg">16</div>
-            <div class="cds-md">8</div>
-            <div class="cds-sm">4</div>
-          </div>
-        </div>
-        <div class="cds--row">
-          <div class="cds--col-lg-15 cds--col-md-7 cds--col-sm-3">
-            <div class="cds-lg">15</div>
-            <div class="cds-md">7</div>
-            <div class="cds-sm">3</div>
-          </div>
-          <div class="cds--col-sm-1 cds--col-md-1 cds--col-lg-1">1</div>
-        </div>
-        <div class="cds--row">
-          <div class="cds--col-lg-14 cds--col-md-6 hide-sm">
-            <div class="cds-lg">14</div>
-            <div class="cds-md">6</div>
-          </div>
-          <div class="cds--col-lg-2 cds--col-md-2 hide-sm">2</div>
-        </div>
-        <div class="cds--row">
-          <div class="cds--col-lg-13 cds--col-md-5 hide-sm">
-            <div class="cds-lg">13</div>
-            <div class="cds-md">5</div>
-          </div>
-          <div class="cds--col-lg-3 cds--col-md-3 hide-sm">3</div>
-        </div>
-        <div class="cds--row">
-          <div class="cds--col-lg-12 hide-md">12</div>
-          <div class="cds--col-lg-4 hide-md">4</div>
-        </div>
-        <div class="cds--row">
-          <div class="cds--col-lg-11 hide-md">11</div>
-          <div class="cds--col-lg-5 hide-md">5</div>
-        </div>
-        <div class="cds--row">
-          <div class="cds--col-lg-10 hide-md">10</div>
-          <div class="cds--col-lg-6 hide-md">6</div>
-        </div>
-        <div class="cds--row">
-          <div class="cds--col-lg-9 hide-md">9</div>
-          <div class="cds--col-lg-7 hide-md">7</div>
-        </div>
-        <div class="cds--row">
-          <div class="cds--col-lg-8 cds--col-md-4 cds--col-sm-2">
-            <div class="cds-lg">8</div>
-            <div class="cds-md">4</div>
-            <div class="cds-sm">2</div>
-          </div>
-          <div class="cds--col-lg-8 cds--col-md-4 cds--col-sm-2">
-            <div class="cds-lg">8</div>
-            <div class="cds-md">4</div>
-            <div class="cds-sm">2</div>
-          </div>
-        </div>
-        <div class="cds--row">
-          <div class="cds--col-lg-4 cds--col-md-2 cds--col-sm-1">
-            <div class="cds-lg">4</div>
-            <div class="cds-md">2</div>
-            <div class="cds-sm">1</div>
-          </div>
-          <div class="cds--col-lg-4 cds--col-md-2 cds--col-sm-1">
-            <div class="cds-lg">4</div>
-            <div class="cds-md">2</div>
-            <div class="cds-sm">1</div>
-          </div>
-          <div class="cds--col-lg-4 cds--col-md-2 cds--col-sm-1">
-            <div class="cds-lg">4</div>
-            <div class="cds-md">2</div>
-            <div class="cds-sm">1</div>
-          </div>
-          <div class="cds--col-lg-4 cds--col-md-2 cds--col-sm-1">
-            <div class="cds-lg">4</div>
-            <div class="cds-md">2</div>
-            <div class="cds-sm">1</div>
-          </div>
-        </div>
-        <div class="cds--row">
-          <div class="cds--col-lg-2 cds--col-md-1 hide-sm">
-            <div class="cds-lg">2</div>
-            <div class="cds-md">1</div>
-          </div>
-          <div class="cds--col-lg-2 cds--col-md-1 hide-sm">
-            <div class="cds-lg">2</div>
-            <div class="cds-md">1</div>
-          </div>
-          <div class="cds--col-lg-2 cds--col-md-1 hide-sm">
-            <div class="cds-lg">2</div>
-            <div class="cds-md">1</div>
-          </div>
-         <div class="cds--col-lg-2 cds--col-md-1 hide-sm">
-            <div class="cds-lg">2</div>
-            <div class="cds-md">1</div>
-          </div>
-          <div class="cds--col-lg-2 cds--col-md-1 hide-sm">
-            <div class="cds-lg">2</div>
-            <div class="cds-md">1</div>
-          </div>
-          <div class="cds--col-lg-2 cds--col-md-1 hide-sm">
-            <div class="cds-lg">2</div>
-            <div class="cds-md">1</div>
-          </div>
-          <div class="cds--col-lg-2 cds--col-md-1 hide-sm">
-            <div class="cds-lg">2</div>
-            <div class="cds-md">1</div>
-          </div>
-          <div class="cds--col-lg-2 cds--col-md-1 hide-sm">
-            <div class="cds-lg">2</div>
-            <div class="cds-md">1</div>
-          </div>
-        </div>
-        <div class="cds--row">
-          <div class="cds--col-lg-1 hide-md">1</div>
-          <div class="cds--col-lg-1 hide-md">1</div>
-          <div class="cds--col-lg-1 hide-md">1</div>
-          <div class="cds--col-lg-1 hide-md">1</div>
-          <div class="cds--col-lg-1 hide-md">1</div>
-          <div class="cds--col-lg-1 hide-md">1</div>
-          <div class="cds--col-lg-1 hide-md">1</div>
-          <div class="cds--col-lg-1 hide-md">1</div>
-          <div class="cds--col-lg-1 hide-md">1</div>
-          <div class="cds--col-lg-1 hide-md">1</div>
-          <div class="cds--col-lg-1 hide-md">1</div>
-          <div class="cds--col-lg-1 hide-md">1</div>
-          <div class="cds--col-lg-1 hide-md">1</div>
-          <div class="cds--col-lg-1 hide-md">1</div>
-          <div class="cds--col-lg-1 hide-md">1</div>
-          <div class="cds--col-lg-1 hide-md">1</div>
-        </div>
-    </div>
-  </div>
-
-```html
-<div class="cds--grid">
-  <div class="cds--row">
-    <div class="cds--col-lg-16">16</div>
-  </div>
-  <div class="cds--row">
-    <div class="cds--col-lg-15 cds--col-md-7 cds--col-sm-3">15</div>
-    <div class="cds--col-sm-1 cds--col-md-1 cds--col-lg-1">1</div>
-  </div>
-  <div class="cds--row">
-    <div class="cds--col-lg-14 cds--col-md-6">14</div>
-    <div class="cds--col-lg-2 cds--col-md-2">2</div>
-  </div>
-  <div class="cds--row">
-    <div class="cds--col-lg-13 cds--col-md-5">13</div>
-    <div class="cds--col-lg-3 cds--col-md-3">3</div>
-  </div>
-  <div class="cds--row">
-    <div class="cds--col-lg-12">12</div>
-    <div class="cds--col-lg-4">4</div>
-  </div>
-  <div class="cds--row">
-    <div class="cds--col-lg-11">11</div>
-    <div class="cds--col-lg-5">5</div>
-  </div>
-  <div class="cds--row">
-    <div class="cds--col-lg-10">10</div>
-    <div class="cds--col-lg-6">6</div>
-  </div>
-  <div class="cds--row">
-    <div class="cds--col-lg-9">9</div>
-    <div class="cds--col-lg-7">7</div>
-  </div>
-  <div class="cds--row">
-    <div class="cds--col-lg-8 cds--col-md-4 cds--col-sm-2">8</div>
-    <div class="cds--col-lg-8 cds--col-md-4 cds--col-sm-2">8</div>
-  </div>
-  <div class="cds--row">
-    <div class="cds--col-lg-4 cds--col-md-2 cds--col-sm-1">4</div>
-    <div class="cds--col-lg-4 cds--col-md-2 cds--col-sm-1">4</div>
-    <div class="cds--col-lg-4 cds--col-md-2 cds--col-sm-1">4</div>
-    <div class="cds--col-lg-4 cds--col-md-2 cds--col-sm-1">4</div>
-  </div>
-  <div class="cds--row">
-    <div class="cds--col-lg-2 cds--col-md-1">2</div>
-    <div class="cds--col-lg-2 cds--col-md-1">2</div>
-    <div class="cds--col-lg-2 cds--col-md-1">2</div>
-    <div class="cds--col-lg-2 cds--col-md-1">2</div>
-    <div class="cds--col-lg-2 cds--col-md-1">2</div>
-    <div class="cds--col-lg-2 cds--col-md-1">2</div>
-    <div class="cds--col-lg-2 cds--col-md-1">2</div>
-    <div class="cds--col-lg-2 cds--col-md-1">2</div>
-  </div>
-  <div class="cds--row">
-    <div class="cds--col-lg-1">1</div>
-    <div class="cds--col-lg-1">1</div>
-    <div class="cds--col-lg-1">1</div>
-    <div class="cds--col-lg-1">1</div>
-    <div class="cds--col-lg-1">1</div>
-    <div class="cds--col-lg-1">1</div>
-    <div class="cds--col-lg-1">1</div>
-    <div class="cds--col-lg-1">1</div>
-    <div class="cds--col-lg-1">1</div>
-    <div class="cds--col-lg-1">1</div>
-    <div class="cds--col-lg-1">1</div>
-    <div class="cds--col-lg-1">1</div>
-    <div class="cds--col-lg-1">1</div>
-    <div class="cds--col-lg-1">1</div>
-    <div class="cds--col-lg-1">1</div>
-    <div class="cds--col-lg-1">1</div>
-  </div>
-</div>
-```
-
-  </Column>
-</Row>
 
 <DoDontRow>
   <DoDont type="do" caption="Do feel free to mix and match column structure.">
@@ -431,74 +106,6 @@ columns within our system.
 
   </DoDont>
 </DoDontRow>
-
-#### Equal width columns
-
-Use these classes for easy column sizing when you want to maintain the same grid
-tiers at every breakpoint. In the example below, the grid layouts apply to every
-breakpoint: from `sm` to `max`. Add any number of unit-less classes per row you
-need and every column will be the same width.
-
-<Row>
-  <Column noGutterSm>
-    <div className="grid-demo override override">
-      <div class="cds--grid">
-        <div class="cds--row">
-          <div class="cds--col hide-sm">1 of 8</div>
-          <div class="cds--col hide-md">1 of 8</div>
-          <div class="cds--col hide-md">1 of 8</div>
-          <div class="cds--col hide-md">1 of 8</div>
-          <div class="cds--col hide-md">1 of 8</div>
-          <div class="cds--col hide-md">1 of 8</div>
-          <div class="cds--col hide-md">1 of 8</div>
-          <div class="cds--col hide-md">1 of 8</div>
-        </div>
-        <div class="cds--row">
-          <div class="cds--col">1 of 4</div>
-          <div class="cds--col">1 of 4</div>
-          <div class="cds--col">1 of 4</div>
-          <div class="cds--col">1 of 4</div>
-        </div>
-        <div class="cds--row">
-          <div class="cds--col">1 of 2</div>
-          <div class="cds--col">1 of 2</div>
-        </div>
-        <div class="cds--row">
-          <div class="cds--col">1 of 1</div>
-        </div>
-      </div>
-    </div>
-
-```html
-<div class="cds--grid">
-  <div class="cds--row">
-    <div class="cds--col">1 of 8</div>
-    <div class="cds--col">1 of 8</div>
-    <div class="cds--col">1 of 8</div>
-    <div class="cds--col">1 of 8</div>
-    <div class="cds--col">1 of 8</div>
-    <div class="cds--col">1 of 8</div>
-    <div class="cds--col">1 of 8</div>
-    <div class="cds--col">1 of 8</div>
-  </div>
-  <div class="cds--row">
-    <div class="cds--col">1 of 4</div>
-    <div class="cds--col">1 of 4</div>
-    <div class="cds--col">1 of 4</div>
-    <div class="cds--col">1 of 4</div>
-  </div>
-  <div class="cds--row">
-    <div class="cds--col">1 of 2</div>
-    <div class="cds--col">1 of 2</div>
-  </div>
-  <div class="cds--row">
-    <div class="cds--col">1 of 1</div>
-  </div>
-</div>
-```
-
-  </Column>
-</Row>
 
 ## Grid modes
 
@@ -571,15 +178,13 @@ Use vertical helpers here.
       </div>
     </div>
 
-```html
-<div class="cds--grid">
-  <div class="cds--row">
-    <div class="cds--col"></div>
-    <div class="cds--col"></div>
-    <div class="cds--col"></div>
-    <div class="cds--col"></div>
-  </div>
-</div>
+```js
+<Grid>
+  <Column sm={4} />
+  <Column sm={4} />
+  <Column sm={4} />
+  <Column sm={4} />
+</Grid>
 ```
 
   </Column>
@@ -630,12 +235,14 @@ to accommodate languages that read right to left, like Arabic or Hebrew.
 Rows that are adjacent will have 16px of margin between them to match gutter.
 Use vertical helpers here.
 
+<s>
 <InlineNotification>
 
 **Note:** Code for the narrow grid mode was added in
 [v10.17.0](https://github.com/carbon-design-system/carbon/releases/tag/v10.17.0)
 
 </InlineNotification>
+</s>
 
 <Row>
   <Column noGutterSm>
@@ -650,15 +257,13 @@ Use vertical helpers here.
       </div>
     </div>
 
-```html
-<div class="cds--grid cds--grid--narrow">
-  <div class="cds--row">
-    <div class="cds--col"></div>
-    <div class="cds--col"></div>
-    <div class="cds--col"></div>
-    <div class="cds--col"></div>
-  </div>
-</div>
+```js
+<Grid narrow>
+  <Column sm={4} />
+  <Column sm={4} />
+  <Column sm={4} />
+  <Column sm={4} />
+</Grid>
 ```
 
   </Column>
@@ -721,15 +326,13 @@ Use vertical helpers here.
       </div>
     </div>
 
-```html
-<div class="cds--grid cds--grid--condensed">
-  <div class="cds--row">
-    <div class="cds--col"></div>
-    <div class="cds--col"></div>
-    <div class="cds--col"></div>
-    <div class="cds--col"></div>
-  </div>
-</div>
+```js
+<Grid condensed>
+  <Column sm={4} />
+  <Column sm={4} />
+  <Column sm={4} />
+  <Column sm={4} />
+</Grid>
 ```
 
   </Column>
@@ -864,13 +467,13 @@ product.
       </div>
     </div>
 
-```html
-<aside class="side-nav">
-  <!-- Toggle side-nav--expanded class above -->
-</aside>
-<div class="cds--grid">
+```js
+<SideNav expanded={false}>
+  <!-- Toggle side-nav -->
+</SideNav>
+<Grid>
   <!-- ... -->
-</grid>
+</Grid>
 ```
 
   </Column>
@@ -909,13 +512,13 @@ product.
       </div>
     </div>
 
-```html
-<aside class="side-nav--expanded">
-  <!-- Toggle side-nav--expanded class above -->
-</aside>
-<div class="cds--grid">
+```js
+<SideNav expanded={true}>
+  <!-- Toggle side-nav -->
+</SideNav>
+<Grid>
   <!-- ... -->
-</grid>
+</Grid>
 ```
 
   </Column>
@@ -934,149 +537,22 @@ they push content beyond the edge of the browser.
 
 ## Alignments
 
-### Offsetting
-
-Use offset classes to offset content by a given column span. These classes
-increase the left margin of a column by \* columns. For example,
-`cds--offset-lg-8` moves `cds--col-lg-8` over eight columns.
-
-<Row>
-  <Column noGutterSm>
-    <div className="grid-demo override override">
-      <div class="cds--grid">
-        <div class="cds--row">
-          <div class="cds--offset-lg-15 cds--col-lg-1 cds--offset-md-7 cds--col-md-1 cds--offset-sm-3 cds--col-sm-1">1</div>
-        </div>
-        <div class="cds--row">
-          <div class="cds--offset-lg-14 cds--col-lg-2 cds--offset-md-6 cds--col-md-2 cds--offset-sm-2 cds--col-sm-2">2</div>
-        </div>
-        <div class="cds--row">
-          <div class="cds--offset-lg-13 cds--col-lg-3 cds--offset-md-5 cds--col-md-3 cds--offset-sm-1 cds--col-sm-3">3</div>
-        </div>
-        <div class="cds--row">
-          <div class="cds--offset-lg-12 cds--col-lg-4 cds--offset-md-4 cds--col-md-4 cds--col-sm-4">4</div>
-        </div>
-        <div class="cds--row">
-          <div class="cds--offset-lg-11 cds--col-lg-5 cds--offset-md-3 cds--col-md-5 hide-sm">5</div>
-        </div>
-        <div class="cds--row">
-          <div class="cds--offset-lg-10 cds--col-lg-6 cds--offset-md-2 cds--col-md-6 hide-sm">6</div>
-        </div>
-        <div class="cds--row">
-          <div class="cds--offset-lg-9 cds--col-lg-7 cds--offset-md-1 cds--col-md-7 hide-sm">7</div>
-        </div>
-        <div class="cds--row">
-          <div class="cds--offset-lg-8 cds--col-lg-8 hide-sm">8</div>
-        </div>
-        <div class="cds--row">
-          <div class="cds--offset-lg-7 cds--col-lg-9 hide-md">9</div>
-        </div>
-        <div class="cds--row">
-          <div class="cds--offset-lg-6 cds--col-lg-10 hide-md">10</div>
-        </div>
-        <div class="cds--row">
-          <div class="cds--offset-lg-5 cds--col-lg-11 hide-md">11</div>
-        </div>
-        <div class="cds--row">
-          <div class="cds--offset-lg-4 cds--col-lg-12 hide-md">12</div>
-        </div>
-        <div class="cds--row">
-          <div class="cds--offset-lg-3 cds--col-lg-13 hide-md">13</div>
-        </div>
-        <div class="cds--row">
-          <div class="cds--offset-lg-2 cds--col-lg-14 hide-md">14</div>
-        </div>
-        <div class="cds--row">
-          <div class="cds--offset-lg-1 cds--col-lg-15 hide-md">15</div>
-        </div>
-        <div class="cds--row">
-          <div class="cds--col-lg-16 hide-md">16</div>
-        </div>
-      </div>
-    </div>
-
-```html
-<div class="cds--grid">
-  <div class="cds--row">
-    <div
-      class="cds--offset-lg-15 cds--col-lg-1 cds--offset-md-7 cds--col-md-1 cds--offset-sm-3 cds--col-sm-1"
-    >
-      1
-    </div>
-  </div>
-  <div class="cds--row">
-    <div
-      class="cds--offset-lg-14 cds--col-lg-2 cds--offset-md-6 cds--col-md-2 cds--offset-sm-2 cds--col-sm-2"
-    >
-      2
-    </div>
-  </div>
-  <div class="cds--row">
-    <div
-      class="cds--offset-lg-13 cds--col-lg-3 cds--offset-md-5 cds--col-md-3 cds--offset-sm-1 cds--col-sm-3"
-    >
-      3
-    </div>
-  </div>
-  <div class="cds--row">
-    <div
-      class="cds--offset-lg-12 cds--col-lg-4 cds--offset-md-4 cds--col-md-4 cds--col-sm-4"
-    >
-      4
-    </div>
-  </div>
-  <div class="cds--row">
-    <div class="cds--offset-lg-11 cds--col-lg-5 cds--offset-md-3 cds--col-md-5">
-      5
-    </div>
-  </div>
-  <div class="cds--row">
-    <div class="cds--offset-lg-10 cds--col-lg-6 cds--offset-md-2 cds--col-md-6">
-      6
-    </div>
-  </div>
-  <div class="cds--row">
-    <div class="cds--offset-lg-9 cds--col-lg-7 cds--offset-md-1 cds--col-md-7">
-      7
-    </div>
-  </div>
-  <div class="cds--row">
-    <div class="cds--offset-lg-8 cds--col-lg-8">8</div>
-  </div>
-  <div class="cds--row">
-    <div class="cds--offset-lg-7 cds--col-lg-9">9</div>
-  </div>
-  <div class="cds--row">
-    <div class="cds--offset-lg-6 cds--col-lg-10">10</div>
-  </div>
-  <div class="cds--row">
-    <div class="cds--offset-lg-5 cds--col-lg-11">11</div>
-  </div>
-  <div class="cds--row">
-    <div class="cds--offset-lg-4 cds--col-lg-12">12</div>
-  </div>
-  <div class="cds--row">
-    <div class="cds--offset-lg-3 cds--col-lg-13">13</div>
-  </div>
-  <div class="cds--row">
-    <div class="cds--offset-lg-2 cds--col-lg-14">14</div>
-  </div>
-  <div class="cds--row">
-    <div class="cds--offset-lg-1 cds--col-lg-15">15</div>
-  </div>
-  <div class="cds--row">
-    <div class="cds--col-lg-16">16</div>
-  </div>
-</div>
-```
-
-</Column>
-</Row>
-
 ### Vertical spacing
 
-We intend to add a demo on vertical spacing soon, along with more guidance and
-examples around key heights and spacers.
+Add info about `Stack` component
+
+<Row className="resource-card-group">
+  <Column colLg={4} colMd={4} noGutterSm>
+  <ResourceCard
+    subTitle="React"
+    href="https://react.carbondesignsystem.com/?path=/story/layout-stack--default"
+    >
+
+<MdxIcon name="react" />
+
+  </ResourceCard>
+</Column>
+</Row>
 
 ## Techniques
 
@@ -1085,44 +561,7 @@ examples around key heights and spacers.
 By default, the grid maintains a max width of 1584px, but allows content to span
 infinitely. When you want background colors or an image to go edge-to-edge, you
 will need to create a wrapping node around your grid with the color that you are
-looking to apply. In this example, we create an outer div and give it the class
-name bleed which we then style with a background color.
-
-If you want to remove the default max width, you can do it by using a grid
-modifier class. This will allow your grid to span infinitely.
-
-<Row>
-  <Column noGutterSm>
-    <div className="grid-demo--bleed">
-      <div className="grid-demo override override grid-demo--wide">
-        <div class="cds--grid">
-          <div class="cds--row">
-            <div class="cds--col"><div class="grid-demo-content"></div></div>
-            <div class="cds--col"><div class="grid-demo-content"></div></div>
-            <div class="cds--col"><div class="grid-demo-content"></div></div>
-            <div class="cds--col "><div class="grid-demo-content"></div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-```html
-<div class="bleed">
-  <div class="cds--grid">
-    <div class="cds--row">
-      <div class="cds--col"></div>
-      <div class="cds--col"></div>
-      <div class="cds--col"></div>
-      <div class="cds--col"></div>
-    </div>
-  </div>
-</div>
-```
-
-  </Column>
-</Row>
-
-<br />
+looking to apply.
 
 #### Usage
 
@@ -1133,176 +572,27 @@ modifier class. This will allow your grid to span infinitely.
 ### Aspect ratios
 
 When designing fluid layouts, it’s helpful for an asset or card to be a specific
-aspect ratio. We offer several classes for specifying aspect ratio for given
-content. We use these classes to maintain consistency throughout our UI.
+aspect ratio. We offer a
+[React](https://react.carbondesignsystem.com/?path=/story/components-aspectratio--default)
+component to automatically render your content to a specific ratio.
 
 We discuss aspect ratios and various grid behaviors more in depth on the 2x Grid
 Basics tab, both in the
 [Aspect ratios](/guidelines/2x-grid/overview/#aspect-ratio) section and in the
 [Grid behaviors](/guidelines/2x-grid/overview/#grid-behaviors) section.
 
-<InlineNotification>
+<Row className="resource-card-group">
+  <Column colLg={4} colMd={4} noGutterSm>
+  <ResourceCard
+    subTitle="React"
+    href="https://react.carbondesignsystem.com/?path=/story/components-aspectratio--default"
+    >
 
-**Note:** As of now, the 3:2 aspect ratio is not included in the grid package
-but there is an issue to add it.
+<MdxIcon name="react" />
 
-</InlineNotification>
-
-<Row>
-  <Column noGutterSm>
-    <div className="grid-demo override override aspect-ratio-demo">
-      <div class="cds--grid">
-        <div class="cds--row">
-          <div class="cds--col">
-            <div class="cds--aspect-ratio cds--aspect-ratio--2x1">
-              <div class="cds--aspect-ratio--object">
-                <div class="aspect-ratio-content">2:1</div>
-              </div>
-            </div>
-          </div>
-          <div class="cds--col">
-            <div class="cds--aspect-ratio cds--aspect-ratio--2x1">
-              <div class="cds--aspect-ratio--object">
-                <div class="aspect-ratio-content">2:1</div>
-              </div>
-            </div>
-          </div>
-          <div class="cds--col">
-            <div class="cds--aspect-ratio cds--aspect-ratio--2x1">
-              <div class="cds--aspect-ratio--object">
-                <div class="aspect-ratio-content">2:1</div>
-              </div>
-            </div>
-          </div>
-          <div class="cds--col">
-            <div class="cds--aspect-ratio cds--aspect-ratio--2x1">
-              <div class="cds--aspect-ratio--object">
-                <div class="aspect-ratio-content">2:1</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="cds--grid">
-        <div class="cds--row">
-          <div class="cds--col">
-            <div class="cds--aspect-ratio cds--aspect-ratio--16x9">
-              <div class="cds--aspect-ratio--object">
-                <div class="aspect-ratio-content">16:9</div>
-              </div>
-            </div>
-          </div>
-          <div class="cds--col">
-            <div class="cds--aspect-ratio cds--aspect-ratio--16x9">
-              <div class="cds--aspect-ratio--object">
-                <div class="aspect-ratio-content">16:9</div>
-              </div>
-            </div>
-          </div>
-          <div class="cds--col">
-            <div class="cds--aspect-ratio cds--aspect-ratio--16x9">
-              <div class="cds--aspect-ratio--object">
-                <div class="aspect-ratio-content">16:9</div>
-              </div>
-            </div>
-          </div>
-          <div class="cds--col">
-            <div class="cds--aspect-ratio cds--aspect-ratio--16x9">
-              <div class="cds--aspect-ratio--object">
-                <div class="aspect-ratio-content">16:9</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="cds--grid">
-        <div class="cds--row">
-          <div class="cds--col">
-             <div class="cds--aspect-ratio cds--aspect-ratio--4x3">
-              <div class="cds--aspect-ratio--object">
-                <div class="aspect-ratio-content">4:3</div>
-              </div>
-            </div>
-          </div>
-          <div class="cds--col">
-             <div class="cds--aspect-ratio cds--aspect-ratio--4x3">
-              <div class="cds--aspect-ratio--object">
-                <div class="aspect-ratio-content">4:3</div>
-              </div>
-            </div>
-          </div>
-          <div class="cds--col">
-             <div class="cds--aspect-ratio cds--aspect-ratio--4x3">
-              <div class="cds--aspect-ratio--object">
-                <div class="aspect-ratio-content">4:3</div>
-              </div>
-            </div>
-          </div>
-          <div class="cds--col">
-            <div class="cds--aspect-ratio cds--aspect-ratio--4x3">
-              <div class="cds--aspect-ratio--object">
-                <div class="aspect-ratio-content">4:3</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-       <div class="cds--grid">
-        <div class="cds--row">
-          <div class="cds--col">
-            <div class="cds--aspect-ratio cds--aspect-ratio--1x1">
-              <div class="cds--aspect-ratio--object">
-                <div class="aspect-ratio-content">1:1</div>
-              </div>
-            </div>
-          </div>
-          <div class="cds--col">
-            <div class="cds--aspect-ratio cds--aspect-ratio--1x1">
-              <div class="cds--aspect-ratio--object">
-                <div class="aspect-ratio-content">1:1</div>
-              </div>
-            </div>
-          </div>
-          <div class="cds--col">
-            <div class="cds--aspect-ratio cds--aspect-ratio--1x1">
-              <div class="cds--aspect-ratio--object">
-                <div class="aspect-ratio-content">1:1</div>
-              </div>
-            </div>
-          </div>
-          <div class="cds--col">
-            <div class="cds--aspect-ratio cds--aspect-ratio--1x1">
-              <div class="cds--aspect-ratio--object">
-                <div class="aspect-ratio-content">1:1</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-```html
-<div class="cds--aspect-ratio cds--aspect-ratio--2x1">
-  <div class="cds--aspect-ratio--object">2x1</div>
-</div>
-
-<div class="cds--aspect-ratio cds--aspect-ratio--16x9">
-  <div class="cds--aspect-ratio--object">16:19</div>
-</div>
-
-<div class="cds--aspect-ratio cds--aspect-ratio--4x3">
-  <div class="cds--aspect-ratio--object">4:3</div>
-</div>
-
-<div class="cds--aspect-ratio cds--aspect-ratio--1x1">
-  <div class="cds--aspect-ratio--object">1:1</div>
-</div>
-```
-
-  </Column>
+  </ResourceCard>
+</Column>
 </Row>
-
-<br />
 
 #### Basic usage
 
@@ -1347,66 +637,33 @@ Image size can change ratios when the breakpoint changes.
   </DoDont>
 </DoDontRow>
 
-## API & Helpers
-
-There are many ways to make the 2x Grid work for your application using our API.
-The example below illustrates removing visibility of a given component based on
-the maximum width of the `md` breakpoint.
-
-```css
-.component {
-  display: inline;
-
-  /* applies styles inside mixin on md breakpoint or below, like max-width */
-  @include carbon--breakpoint-down('md') {
-    display: none;
-  }
-}
-```
-
-In addition, you can also use Helpers to control what is being displayed on the
-screen at a given breakpoint.
-
-```css
-@use '@carbon/styles/scss/utilities/helper-classes';
-
-.my-class {
-  @include helper-classes.hide-at-sm();
-}
-```
-
-Checkout the [resources](#resources) section for links to
-[the helpers on storybook](https://react.carbondesignsystem.com/?path=/story/helpers-hideatbreakpoint--hide-at-breakpoint)
-and the full
-[API list on Github](https://github.com/carbon-design-system/carbon/blob/main/packages/grid/docs/sass.md#api).
-
 ## Resources
 
 <Row className="resource-card-group">
   <Column colMd={4} colLg={4} noGutterSm>
     <ResourceCard
       subTitle="Carbon grid package"
-      href="https://github.com/carbon-design-system/carbon/blob/v10/packages/grid"
+      href="https://github.com/carbon-design-system/carbon/tree/main/packages/grid"
+    >
+
+<MdxIcon name="github" />
+
+  </ResourceCard>
+  </Column>
+  <Column colMd={4} colLg={4} noGutterSm>
+    <ResourceCard
+      subTitle="Carbon CSS Grid demo"
+      href="https://carbon-elements.netlify.app/grid/examples/css-grid/"
     >
 
 <MdxIcon name="bee" />
 
   </ResourceCard>
   </Column>
-  <Column colMd={4} colLg={4} noGutterSm>
+    <Column colMd={4} colLg={4} noGutterSm>
     <ResourceCard
-      subTitle="Grid demo"
+      subTitle="Carbon Flex Grid demo"
       href="https://carbon-elements.netlify.app/grid/examples/preview/"
-    >
-
-<MdxIcon name="bee" />
-
-  </ResourceCard>
-  </Column>
-  <Column colMd={4} colLg={4} noGutterSm>
-    <ResourceCard
-      subTitle="React Storybook"
-      href="https://react.carbondesignsystem.com/?path=/story/grid--auto-columns"
     >
 
 <MdxIcon name="bee" />
@@ -1420,6 +677,16 @@ and the full
     >
 
 <MdxIcon name="github" />
+
+  </ResourceCard>
+  </Column>
+  <Column colMd={4} colLg={4} noGutterSm>
+    <ResourceCard
+      subTitle="React Storybook"
+      href="https://react.carbondesignsystem.com/?path=/story/grid--auto-columns"
+    >
+
+<MdxIcon name="storybook" />
 
   </ResourceCard>
   </Column>
