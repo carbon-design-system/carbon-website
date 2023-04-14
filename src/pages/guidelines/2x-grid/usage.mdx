@@ -3,7 +3,7 @@ title: 2x Grid
 description:
   The grid is the framework for all the visual elements and typography at IBM.
   It’s fundamental to everything we design.
-tabs: ['Overview', 'Implementation', 'Code']
+tabs: ['Overview', 'Usage', 'Code']
 ---
 
 <PageDescription>
@@ -13,20 +13,8 @@ with five default breakpoints and dozens of predefined classes.
 
 </PageDescription>
 
-<InlineNotification>
-
-The documentation regarding our grid system on this page is partially outdated
-and refers to the
-[FlexGrid](https://react.carbondesignsystem.com/?path=/docs/elements-flexgrid--auto-columns#grid)
-implementation. Our latest version, v11, includes a
-[CSS Grid](https://react.carbondesignsystem.com/?path=/docs/elements-grid--default#grid)
-implementation which will be documented soon.
-
-</InlineNotification>
-
 <AnchorLinks>
 
-<AnchorLink>How it works</AnchorLink>
 <AnchorLink>Grid modes</AnchorLink>
 <AnchorLink>Incorporating the shell</AnchorLink>
 <AnchorLink>Alignments</AnchorLink>
@@ -34,59 +22,6 @@ implementation which will be documented soon.
 <AnchorLink>Resources</AnchorLink>
 
 </AnchorLinks>
-
-## How it works
-
-### Basic grid explainer
-
-The below example creates four equal-width columns at small, medium, large, and
-extra large breakpoints using our predefined grid classes. The columns are
-centered in the page within the parent container.
-
-<Row>
-  <Column noGutterSm>
-    <div className="grid-demo override override">
-      <div class="cds--grid">
-        <div class="cds--row">
-          <div class="cds--col">1 of 4</div>
-          <div class="cds--col">2 of 4</div>
-          <div class="cds--col">3 of 4</div>
-          <div class="cds--col">4 of 4</div>
-        </div>
-      </div>
-    </div>
-
-```html
-<Grid>
-  <Column lg="{4}">Span 4 of 16</Column>
-  <Column lg="{4}">Span 4 of 16</Column>
-  <Column lg="{4}">Span 4 of 16</Column>
-  <Column lg="{4}">Span 4 of 16</Column>
-</Grid>
-```
-
-  </Column>
-</Row>
-
-<br />
-
-### Responsive options
-
-| Breakpoints             | # of cols | Gutter width\* |
-| ----------------------- | --------- | -------------- |
-| Small (<672)            | 4         | 32px           |
-| Medium (672 - 1056px)   | 8         | 32px           |
-| Large (1056 - 1312px)   | 16        | 32px           |
-| X-Large (1312 - 1584px) | 16        | 32px           |
-| Max (>1584)             | 16        | 32px           |
-
-<Caption>
-  * Gutter width is 32px — with 16px on each side of a column — at every
-  breakpoint.
-</Caption>
-
-<br />
-<br />
 
 <DoDontRow>
   <DoDont type="do" caption="Do feel free to mix and match column structure.">
@@ -159,33 +94,6 @@ the gutter, so the type within the container does not sit on the columns.
 Rows that are adjacent will have 32px of margin between them to match gutter.
 Use vertical helpers here.
 
-<Row>
-  <Column noGutterSm>
-    <div className="grid-demo override override grid-demo--wide">
-      <div class="cds--grid">
-        <div class="cds--row">
-          <div class="cds--col"><div class="grid-demo-content"></div></div>
-          <div class="cds--col"><div class="grid-demo-content"></div></div>
-          <div class="cds--col"><div class="grid-demo-content"></div></div>
-          <div class="cds--col"><div class="grid-demo-content"></div></div>
-        </div>
-      </div>
-    </div>
-
-```html
-<Grid>
-  <Column sm="{4}" />
-  <Column sm="{4}" />
-  <Column sm="{4}" />
-  <Column sm="{4}" />
-</Grid>
-```
-
-  </Column>
-</Row>
-
-<br />
-
 #### Usage
 
 Use the Wide grid mode when you are dealing with separate pieces of information
@@ -229,42 +137,6 @@ to accommodate languages that read right to left, like Arabic or Hebrew.
 Rows that are adjacent will have 16px of margin between them to match gutter.
 Use vertical helpers here.
 
-<s>
-<InlineNotification>
-
-**Note:** Code for the narrow grid mode was added in
-[v10.17.0](https://github.com/carbon-design-system/carbon/releases/tag/v10.17.0)
-
-</InlineNotification>
-</s>
-
-<Row>
-  <Column noGutterSm>
-    <div className="grid-demo override override override override grid-demo--narrow">
-      <div class="cds--grid cds--grid--narrow">
-        <div class="cds--row">
-          <div class="cds--col"><div class="grid-demo-content"></div></div>
-          <div class="cds--col"><div class="grid-demo-content"></div></div>
-          <div class="cds--col"><div class="grid-demo-content"></div></div>
-          <div class="cds--col"><div class="grid-demo-content"></div></div>
-        </div>
-      </div>
-    </div>
-
-```html
-<Grid narrow>
-  <Column sm="{4}" />
-  <Column sm="{4}" />
-  <Column sm="{4}" />
-  <Column sm="{4}" />
-</Grid>
-```
-
-  </Column>
-</Row>
-
-<br />
-
 #### Usage
 
 Use the Narrow grid mode when you are dealing with separate pieces of
@@ -306,33 +178,6 @@ borders is `$ui-03`.
 
 Rows that are adjacent will have a 1px of margin between them to match gutter.
 Use vertical helpers here.
-
-<Row>
-  <Column noGutterSm>
-    <div className="grid-demo override override grid-demo--condensed">
-      <div class="cds--grid cds--grid--condensed">
-        <div class="cds--row">
-          <div class="cds--col"><div class="grid-demo-content"></div></div>
-          <div class="cds--col"><div class="grid-demo-content"></div></div>
-          <div class="cds--col"><div class="grid-demo-content"></div></div>
-          <div class="cds--col "><div class="grid-demo-content"></div></div>
-        </div>
-      </div>
-    </div>
-
-```html
-<Grid condensed>
-  <Column sm="{4}" />
-  <Column sm="{4}" />
-  <Column sm="{4}" />
-  <Column sm="{4}" />
-</Grid>
-```
-
-  </Column>
-</Row>
-
-<br />
 
 #### Usage
 
@@ -430,96 +275,6 @@ product.
 
 <Title> Collapsed state </Title>
 
-<Row>
-  <Column noGutterSm>
-    <div className="grid-demo override override">
-      <aside class="side-nav"></aside>
-      <div class="cds--grid">
-        <div class="cds--row hide-sm">
-          <div class="cds--col hide-sm">1 of 8</div>
-          <div class="cds--col hide-sm">1 of 8</div>
-          <div class="cds--col hide-sm">1 of 8</div>
-          <div class="cds--col hide-sm">1 of 8</div>
-          <div class="cds--col hide-sm">1 of 8</div>
-          <div class="cds--col hide-sm">1 of 8</div>
-          <div class="cds--col hide-sm">1 of 8</div>
-          <div class="cds--col hide-sm">1 of 8</div>
-        </div>
-        <div class="cds--row">
-          <div class="cds--col">1 of 4</div>
-          <div class="cds--col">1 of 4</div>
-          <div class="cds--col">1 of 4</div>
-          <div class="cds--col">1 of 4</div>
-        </div>
-        <div class="cds--row">
-          <div class="cds--col">1 of 2</div>
-          <div class="cds--col">1 of 2</div>
-        </div>
-        <div class="cds--row">
-          <div class="cds--col">1 of 1</div>
-        </div>
-      </div>
-    </div>
-
-```html
-<SideNav expanded="{false}">
-  <!-- Toggle side-nav -->
-</SideNav>
-<Grid>
-  <!-- ... -->
-</Grid>
-```
-
-  </Column>
-</Row>
-
-<Title> Expanded state</Title>
-
-<Row>
-  <Column noGutterSm>
-    <div className="grid-demo override override">
-      <aside class="side-nav side-nav--expanded"></aside>
-      <div class="cds--grid">
-        <div class="cds--row">
-          <div class="cds--col hide-sm">1 of 8</div>
-          <div class="cds--col hide-sm">1 of 8</div>
-          <div class="cds--col hide-sm">1 of 8</div>
-          <div class="cds--col hide-sm">1 of 8</div>
-          <div class="cds--col hide-sm">1 of 8</div>
-          <div class="cds--col hide-sm">1 of 8</div>
-          <div class="cds--col hide-sm">1 of 8</div>
-          <div class="cds--col hide-sm">1 of 8</div>
-        </div>
-        <div class="cds--row">
-          <div class="cds--col">1 of 4</div>
-          <div class="cds--col">1 of 4</div>
-          <div class="cds--col">1 of 4</div>
-          <div class="cds--col">1 of 4</div>
-        </div>
-        <div class="cds--row">
-          <div class="cds--col">1 of 2</div>
-          <div class="cds--col">1 of 2</div>
-        </div>
-        <div class="cds--row">
-          <div class="cds--col">1 of 1</div>
-        </div>
-      </div>
-    </div>
-
-```html
-<SideNav expanded="{true}">
-  <!-- Toggle side-nav -->
-</SideNav>
-<Grid>
-  <!-- ... -->
-</Grid>
-```
-
-  </Column>
-</Row>
-
-<br />
-
 #### Usage
 
 The most commonly used product shell is the flexible panel. The collapsed
@@ -575,19 +330,6 @@ Basics tab, both in the
 [Aspect ratios](/guidelines/2x-grid/overview/#aspect-ratio) section and in the
 [Grid behaviors](/guidelines/2x-grid/overview/#grid-behaviors) section.
 
-<Row className="resource-card-group">
-  <Column colLg={4} colMd={4} noGutterSm>
-  <ResourceCard
-    subTitle="React"
-    href="https://react.carbondesignsystem.com/?path=/story/components-aspectratio--default"
-    >
-
-<MdxIcon name="react" />
-
-  </ResourceCard>
-</Column>
-</Row>
-
 #### Basic usage
 
 We understand that when using responsive grid classes, it's not always possible
@@ -634,6 +376,26 @@ Image size can change ratios when the breakpoint changes.
 ## Resources
 
 <Row className="resource-card-group">
+    <Column colMd={4} colLg={4} noGutterSm>
+    <ResourceCard
+      subTitle="React: Grid"
+      href="https://react.carbondesignsystem.com/?path=/story/grid--auto-columns"
+    >
+
+<MdxIcon name="react" />
+
+  </ResourceCard>
+  </Column>
+    <Column colMd={4} colLg={4} noGutterSm>
+    <ResourceCard
+      subTitle="React: AspectRatio"
+      href="https://react.carbondesignsystem.com/?path=/story/components-aspectratio--default"
+    >
+
+<MdxIcon name="react" />
+
+  </ResourceCard>
+  </Column>
   <Column colMd={4} colLg={4} noGutterSm>
     <ResourceCard
       subTitle="Carbon grid package"
@@ -674,23 +436,14 @@ Image size can change ratios when the breakpoint changes.
 
   </ResourceCard>
   </Column>
-  <Column colMd={4} colLg={4} noGutterSm>
-    <ResourceCard
-      subTitle="React Storybook"
-      href="https://react.carbondesignsystem.com/?path=/story/grid--auto-columns"
-    >
 
-<MdxIcon name="storybook" />
-
-  </ResourceCard>
-  </Column>
   <Column colMd={4} colLg={4} noGutterSm>
     <ResourceCard
       subTitle="Hide at Breakpoint Helpers on Storybook"
       href="https://react.carbondesignsystem.com/?path=/story/helpers-hideatbreakpoint--hide-at-breakpoint"
     >
 
-<MdxIcon name="storybook" />
+<MdxIcon name="react" />
 
   </ResourceCard>
   </Column>
