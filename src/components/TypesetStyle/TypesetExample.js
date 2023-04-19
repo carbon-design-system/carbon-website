@@ -5,7 +5,7 @@ import {
   baseFontSize,
   breakpoints as carbonBreakpoints,
 } from '@carbon/elements';
-import { CodeSnippet } from '@carbon/react';
+import { CodeSnippet, Layer } from '@carbon/react';
 
 const breakpoints = {
   sm: Number(carbonBreakpoints.sm.width.replace('rem', '')) * baseFontSize,
@@ -112,10 +112,10 @@ const TypesetExample = (props) => (
         warning: currentBreakpointSpecs.warning,
       };
 
-      const versionClassName = type.version ? `bx--type-${type.version}` : '';
+      const versionClassName = type.version ? `cds--type-${type.version}` : '';
 
       const versionClassNames = classnames(
-        `bx--type-${type.key}`,
+        `cds--type-${type.key}`,
         versionClassName
       );
 
@@ -132,39 +132,41 @@ const TypesetExample = (props) => (
             </div>
             <div
               className={`cds--typeset-example-specs cds--col-md-3 cds--padding`}>
-              <span className={`bx--type-body-short-01`}>
-                <span className={`bx--type-semibold`}>{type.name} </span>
-                <br />
-                Type: {displaySpecs.font}
-                <br />
-                Size: {displaySpecs.fontSize}
-                <br />
-                Line height: {displaySpecs.lineHeight}
-                <br />
-                Weight:{' '}
-                <span style={{ textTransform: 'capitalize' }}>
-                  {displaySpecs.fontWeight}
-                </span>
-                <br />
-                Letter spacing: {displaySpecs.letterSpacing}px
-                <br />
-                Type set: {displaySpecs.typeSet}
-                {displaySpecs.warning != null ? (
-                  <span>
-                    <br />
-                    <span className={`bx--type-semibold`}>warning: </span>
-                    {displaySpecs.warning}
-                    <br />
-                  </span>
-                ) : (
+              <Layer>
+                <span className={`cds--type-body-short-01`}>
+                  <span className={`cds--type-semibold`}>{type.name} </span>
                   <br />
-                )}
-                <div className={`cds--typeset-example-code-style`}>
-                  <CodeSnippet type="inline" feedback="Copied!" light>
-                    ${type.name.split(' ')[0]}
-                  </CodeSnippet>
-                </div>
-              </span>
+                  Type: {displaySpecs.font}
+                  <br />
+                  Size: {displaySpecs.fontSize}
+                  <br />
+                  Line height: {displaySpecs.lineHeight}
+                  <br />
+                  Weight:{' '}
+                  <span style={{ textTransform: 'capitalize' }}>
+                    {displaySpecs.fontWeight}
+                  </span>
+                  <br />
+                  Letter spacing: {displaySpecs.letterSpacing}px
+                  <br />
+                  Type set: {displaySpecs.typeSet}
+                  {displaySpecs.warning != null ? (
+                    <span>
+                      <br />
+                      <span className={`cds--type-semibold`}>warning: </span>
+                      {displaySpecs.warning}
+                      <br />
+                    </span>
+                  ) : (
+                    <br />
+                  )}
+                  <div className={`cds--typeset-example-code-style`}>
+                    <CodeSnippet type="inline" feedback="Copied!" light>
+                      ${type.name.split(' ')[0]}
+                    </CodeSnippet>
+                  </div>
+                </span>
+              </Layer>
             </div>
           </div>
         </div>
