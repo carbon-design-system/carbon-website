@@ -25,7 +25,7 @@ to start building.
 
 <AnchorLink>Documentation</AnchorLink>
 <AnchorLink>API & Helpers</AnchorLink>
-<AnchorLink>Resources</AnchorLink>
+<AnchorLink>Legacy</AnchorLink>
 
 </AnchorLinks>
 
@@ -74,6 +74,74 @@ Add words about aspect ratio component
   </ResourceCard>
 </Column>
 </Row>
+
+## API & Helpers
+
+There are many ways to make the 2x Grid work for your application using our API.
+The example below illustrates removing visibility of a given component based on
+the maximum width of the `md` breakpoint.
+
+```css
+.component {
+  display: inline;
+
+  /* applies styles inside mixin on sm breakpoint or below, like max-width */
+  @include breakpoint-down('sm') {
+    display: none;
+  }
+  /* applies styles inside mixin on lg breakpoint and above */
+  @include breakpoint('lg') {
+    display: block;
+  }
+}
+```
+
+In addition, you can also use Helpers to control what is being displayed on the
+screen at a given breakpoint.
+
+```css
+@use '@carbon/styles/scss/utilities/helper-classes';
+
+.my-class {
+  @include helper-classes.hide-at-sm();
+}
+```
+
+<Row className="resource-card-group">
+  <Column colMd={4} colLg={4} noGutterSm>
+    <ResourceCard
+      subTitle="Carbon grid package"
+      href="https://github.com/carbon-design-system/carbon/tree/main/packages/grid"
+    >
+
+<MdxIcon name="github" />
+
+  </ResourceCard>
+  </Column>
+   <Column colMd={4} colLg={4} noGutterSm>
+    <ResourceCard
+      subTitle="Carbon grid docs API"
+      href="https://github.com/carbon-design-system/carbon/blob/main/packages/grid/docs/sass.md#api"
+    >
+
+<MdxIcon name="github" />
+
+  </ResourceCard>
+  </Column>
+
+  <Column colMd={4} colLg={4} noGutterSm>
+    <ResourceCard
+      subTitle="Hide at Breakpoint Helpers on Storybook"
+      href="https://react.carbondesignsystem.com/?path=/story/helpers-hideatbreakpoint--hide-at-breakpoint"
+    >
+
+<MdxIcon name="react" />
+
+  </ResourceCard>
+  </Column>
+</Row>
+
+## Legacy
 
 ### Flexbox Grid
 
@@ -132,157 +200,4 @@ your Sass files:
 
   </ResourceCard>
   </Column>
-</Row>
-
-## API & Helpers
-
-There are many ways to make the 2x Grid work for your application using our API.
-The example below illustrates removing visibility of a given component based on
-the maximum width of the `md` breakpoint.
-
-```css
-.component {
-  display: inline;
-
-  /* applies styles inside mixin on sm breakpoint or below, like max-width */
-  @include breakpoint-down('sm') {
-    display: none;
-  }
-  /* applies styles inside mixin on lg breakpoint and above */
-  @include breakpoint('lg') {
-    display: block;
-  }
-}
-```
-
-In addition, you can also use Helpers to control what is being displayed on the
-screen at a given breakpoint.
-
-```css
-@use '@carbon/styles/scss/utilities/helper-classes';
-
-.my-class {
-  @include helper-classes.hide-at-sm();
-}
-```
-
-Checkout the [resources](#resources) section for links to
-[the helpers on storybook](https://react.carbondesignsystem.com/?path=/story/helpers-hideatbreakpoint--hide-at-breakpoint)
-and the full
-[API list on Github](https://github.com/carbon-design-system/carbon/blob/main/packages/grid/docs/sass.md#api).
-
-## Resources
-
-<Row className="resource-card-group">
-  <Column colMd={4} colLg={4} noGutterSm>
-    <ResourceCard
-      subTitle="Carbon grid package"
-      href="https://github.com/carbon-design-system/carbon/tree/main/packages/grid"
-    >
-
-<MdxIcon name="github" />
-
-  </ResourceCard>
-  </Column>
-   <Column colMd={4} colLg={4} noGutterSm>
-    <ResourceCard
-      subTitle="Carbon grid docs API"
-      href="https://github.com/carbon-design-system/carbon/blob/main/packages/grid/docs/sass.md#api"
-    >
-
-<MdxIcon name="github" />
-
-  </ResourceCard>
-  </Column>
-
-  <Column colMd={4} colLg={4} noGutterSm>
-    <ResourceCard
-      subTitle="Hide at Breakpoint Helpers on Storybook"
-      href="https://react.carbondesignsystem.com/?path=/story/helpers-hideatbreakpoint--hide-at-breakpoint"
-    >
-
-<MdxIcon name="react" />
-
-  </ResourceCard>
-  </Column>
-</Row>
-
-<Row className="resource-card-group">
-    <Column colMd={4} colLg={4} noGutterSm>
-    <ResourceCard
-      subTitle="React: Grid"
-      href="https://react.carbondesignsystem.com/?path=/story/grid--auto-columns"
-    >
-
-<MdxIcon name="react" />
-
-  </ResourceCard>
-  </Column>
-    <Column colMd={4} colLg={4} noGutterSm>
-    <ResourceCard
-      subTitle="React: AspectRatio"
-      href="https://react.carbondesignsystem.com/?path=/story/components-aspectratio--default"
-    >
-
-<MdxIcon name="react" />
-
-  </ResourceCard>
-  </Column>
-</Row>
-
-<Row className="resource-card-group">
-   <Column colMd={4} colLg={4} noGutterSm>
-    <ResourceCard
-      subTitle="React: FlexGrid"
-      href="https://react.carbondesignsystem.com/?path=/story/elements-flexgrid--auto-columns"
-    >
-
-<MdxIcon name="react" />
-
-  </ResourceCard>
-  </Column>
-  <Column colMd={4} colLg={4} noGutterSm>
-    <ResourceCard
-      subTitle="Angular"
-      href="https://angular.carbondesignsystem.com/?path=/story/components-grid--basic"
-    >
-
-<MdxIcon name="angular" />
-
-  </ResourceCard>
-  </Column>
-  <Column colMd={4} colLg={4} noGutterSm>
-    <ResourceCard
-      subTitle="Vue"
-      href="https://vue.carbondesignsystem.com/?path=/story/components-cvgrid--auto-columns"
-    >
-
-<MdxIcon name="vue" />
-
-  </ResourceCard>
-  </Column>
-  </Row>
-  <Row className="resource-card-group">
-
-  <Column colMd={4} colLg={4} noGutterSm>
-    <ResourceCard
-      subTitle="CSS Grid demo"
-      href="https://carbon-elements.netlify.app/grid/examples/css-grid/"
-    >
-
-<MdxIcon name="bee" />
-
-  </ResourceCard>
-  </Column>
-    <Column colMd={4} colLg={4} noGutterSm>
-    <ResourceCard
-      subTitle="FlexGrid demo"
-      href="https://carbon-elements.netlify.app/grid/examples/preview/"
-    >
-
-<MdxIcon name="bee" />
-
-  </ResourceCard>
-  </Column>
- 
 </Row>
