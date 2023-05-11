@@ -9,7 +9,7 @@ tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 <PageDescription>
 
 Content switchers allow users to toggle between two or more content sections
-within the same space on the screen.
+within the same space on screen.
 
 </PageDescription>
 
@@ -20,7 +20,6 @@ within the same space on the screen.
 <AnchorLink>Formatting</AnchorLink>
 <AnchorLink>Content</AnchorLink>
 <AnchorLink>Behaviors</AnchorLink>
-<AnchorLink>Icon variant</AnchorLink>
 <AnchorLink>Related</AnchorLink>
 <AnchorLink>References</AnchorLink>
 <AnchorLink>Feedback</AnchorLink>
@@ -30,14 +29,15 @@ within the same space on the screen.
 ## Overview
 
 Content switchers allow users to toggle between alternate views of similar or
-related content, showing only one content section at a time.
+related content. Only one content section is shown at a time.
 
-### Variants
+### When to use
 
-| Variant                 | Purpose                                                                                                                                            |
-| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| _Content switcher_      | Uses a text label to represent the content inside each tab.                                                                                        |
-| _Icon content switcher_ | Uses an icon to represent the content inside each tab. They are often used when space is limited or if icons can adequately describe the sections. |
+Content switchers are frequently used to let users toggle between different
+formatting, like with a grid view and a table view. They are also often used to
+narrow content groups. For example, use a content switcher if you have a single
+category, such as “E-mail” and you want to divide it into views such as “All”,
+“Read”, and “Unread”.
 
 <Row>
 <Column colLg={12}>
@@ -47,30 +47,20 @@ related content, showing only one content section at a time.
 </Column>
 </Row>
 
-### When to use
-
-Content switchers are frequently used to let users toggle between different
-formattings, like a grid view and a table view. They are also often used to
-narrow large content groups. For example, a messaging tool may use a content
-switcher to divide messages into three views such as “All,” “Read,” and
-“Unread.”
-
 ### When not to use
 
 #### Tabs
 
-When navigating between distinct content areas like subpages, use
-[tabs](/components/tabs/usage) instead of a content switcher. Tabs follow the
-metaphor for sections in a filing cabinet, and two tabs wouldn’t contain the
-same sheet of paper, so the role of tabs in the information hierarchy is to
-separate content.
+Use [tabs](/components/tabs/usage) when the content on the page is divided into
+related sections, but without any overlap. Tabs follow the metaphor for sections
+in a filing cabinet and two tabs wouldn’t contain the same sheet of paper. So
+the role of tabs in information hierarchy is to separate content.
 
 #### Toggle
 
-For binary actions or choices, such as “yes/no” or “on/off” use a
-[toggle](/components/toggle/usage) instead of a content switcher. A content
-switcher can be used for binary views, like switching between a grid and list
-view but should not be used as a binary input control.
+The content switcher is used for large groups of content, as opposed to the
+[toggle](/components/toggle/usage) which is meant for a “yes/no” or “on/off”
+binary decision.
 
 ## Live demo
 
@@ -115,7 +105,7 @@ view but should not be used as a binary input control.
 <Row>
 <Column colLg={8}>
 
-![Anatomy of a content switcher.](images/contentswitcher-usage-2.png)
+![Anatomy of a content switcher group.](images/contentswitcher-usage-2.png)
 
 </Column>
 </Row>
@@ -123,43 +113,30 @@ view but should not be used as a binary input control.
 1. **Selected content tab:** Only one content tab can be selected at a time and
    there should always be one selected.
 2. **Content tab:** Selectable container for each content view.
-3. **Label:** Text label or icon that describes the content view.
+3. **Text label:** Describes the content view.
 
 ### Sizing
 
 #### Height
 
 There are three height sizes for the content switcher: small (32px), medium
-(40px), and large (48px). Choose a size that best fits your layout’s density or
-the switcher’s prominence.
+(40px), and large (48px). Choose a size that best fits the density of your
+layout or the prominence of the switcher.
 
 <Row>
 <Column colLg={8}>
 
-<Tabs>
-
-<Tab label="Default">
-
-![Height options for the default content switcher](images/content-switcher-usage-sizes.png)
-
-</Tab>
-
-<Tab label="Icon">
-
-![Height options for the icon content switcher](images/content-switcher-usage-sizes-icon.png)
-
-</Tab>
-
-</Tabs>
+![Height options for content switcher](images/content-switcher-usage-sizes.png)
 
 </Column>
 </Row>
 
 #### Width
 
-Each content tab in the group should be the same width. The content tab with the
-longest text label should have at minimum 16px spacing to the right of the
-label.
+The overall content switcher width varies based on the content and layout. Each
+individual content tab should be the same width. The content tab with the
+longest text label should have 16px spacing to the right of the label. The width
+of all other tabs should match the widest tab.
 
 <DoDontRow>
   <DoDont type="do" caption="Do base content tab width on the longest text label.">
@@ -173,63 +150,6 @@ label.
 
   </DoDont>
 </DoDontRow>
-
-### Alignment
-
-A content switcher can align to a grid column or hang in the gutter to create
-type alignment. Use layout and hierarchy cues to determine which alignment is
-best. In contained space, the content switcher should never be flush to an edge
-and instead left-align with other content in the container.
-
-<DoDontRow>
-  <DoDont type="do" caption="Do vertically align swichers with other page content.">
-
-![Do base content tab width on the longest text label.](images/content-switcher-usage-alignment-do.png)
-
-  </DoDont>
-  <DoDont type="dont" caption="Do not flush align the switcher to the edges of containers.">
-
-![Do not use a different width for each content tab.](images/content-switcher-usage-alignment-dont.png)
-
-  </DoDont>
-</DoDontRow>
-
-#### Aligning to the grid
-
-For grid-aware width, the content swither spans a set of columns, with each tab
-being equal in size. Depending on placement, the first tab or the tab’s label
-should align to the first column you are using, with the last tab in the group
-always ending at a column’s edge. The tabs in between will flow accordingly and
-may or may not align with the grid, but they will always be the same width.
-
-<Row>
-<Column colLg={8}>
-
-![An example of a content switcher aligning to the grid.](images/content-switcher-alignment-3.png)
-
-</Column>
-</Row>
-
-#### Aligning to the content
-
-For content-driven widths, the content tab with the longest text label should
-have 16px spacing to the right of the label, and then the widths of all other
-tabs should match that widest tab.
-
-<Row>
-<Column colLg={8}>
-
-![An example of a content-driven width content switcher.](images/content-switcher-alignment-2.png)
-
-</Column>
-</Row>
-
-### Placement
-
-Place the content switcher above the content area to create a clear hierarchy
-for the section that the switcher controls. It can be aligned to the left or
-right side of the content area but should never be centered in the content
-space.
 
 ## Content
 
@@ -267,8 +187,8 @@ The content switcher includes two content tab states: **selected** and
 </Column>
 </Row>
 
-For detailed visual information about the various interactive states for this
-component, see the [Style](/components/content-switcher/style) tab.
+For detailed visual information about the various states for this component, see
+the [Style](/components/content-switcher/style) tab.
 
 ### Interactions
 
@@ -282,35 +202,16 @@ content tab.
 Users can activate and navigate between content switcher tabs by pressing the
 `left` or `right` arrow.
 
-## Icon variant
+#### Screen readers
 
-The icon content switcher variant uses an icon instead of a text label to
-indicate alternative views of similar or related content. Icon content switchers
-are often used when space is limited or when icons can adequately describe the
-sections (for example, a list view versus a card view).
+VoiceOver: Users can activate and navigate between content switcher tabs by
+pressing the `left` or `right` arrow.
 
-<Row>
-<Column colLg={8}>
+Jaws: Users can activate and navigate between content switcher tabs by pressing
+the `left` or `right` arrow.
 
-![An example of an icon content switcher.](images/content-switcher-icon.png)
-
-</Column>
-</Row>
-
-### Responsiveness
-
-Icon content switchers are compact and do not take up much screen space, and
-therefore they often work in different screen sizes. Where necessary, icon
-content switchers can also be used as a responsive replacement for content
-switchers.
-
-<Row>
-<Column colLg={8}>
-
-![Example of an icon switcher in a mobile setting.](images/content-switcher-icon-reponsive.png)
-
-</Column>
-</Row>
+NVDA: Users can activate and navigate between content switcher tabs by pressing
+the `left` or `right` arrow.
 
 ## Related
 
