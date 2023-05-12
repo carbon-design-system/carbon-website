@@ -75,19 +75,51 @@ yarn add @carbon/react
 
 ## Getting started
 
-1.  These components require the use of a build pipeline in your project. This
-    could be in the form of a bundler, framework, or other build tool. Some
-    examples include NextJS, Vite, Parcel, and Webpack. A comprehensive list is
-    available in the
-    [react documentation](https://react.dev/learn/start-a-new-react-project).
+The `@carbon/react` package provides components, styles and icons for the Carbon
+Design System.
 
-2.  Components do not import any of the styles themselves, use the SCSS provided
-    through `@carbon/react`.
+Components require the use of a build pipeline in your project. This could be in
+the form of a bundler, framework, or other build tool. Some examples include
+NextJS, Vite, Parcel, and Webpack. A comprehensive list is available in the
+[react documentation](https://react.dev/learn/start-a-new-react-project).
 
-```SCSS
-// Place this in your root/global stylesheet
-@use '@carbon/react';
+To use a component, you can import it directly from the package:
+
+```js
+import { Button } from '@carbon/react';
+
+function MyComponent() {
+  return <Button>Example usage</Button>;
+}
 ```
+
+To include the styles for a specific component, you can either import all the
+styles from the project or include the styles for a specific component:
+
+```js
+// Bring in all the styles for Carbon in your root/global stylesheet
+@use '@carbon/react';
+
+// Or bring in the styles for one component
+@use '@carbon/react/scss/components/button';
+```
+
+### Icons
+
+The @carbon/react package also provides icon components that you can include in
+your project. You can import these icon components from the
+`@carbon/react/icons` entrypoint:
+
+```js
+import { Add } from '@carbon/react/icons';
+
+function MyComponent() {
+  return <Add />;
+}
+```
+
+A full list of available icons is provided in the
+[icon library](/guidelines/icons/library/).
 
 For a more in depth introduction to using `@carbon/react` in a webpack-based
 app, [check out our react tutorial](/developing/react-tutorial/overview/).
