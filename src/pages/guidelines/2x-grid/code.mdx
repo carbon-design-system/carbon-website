@@ -1,0 +1,221 @@
+---
+title: 2x Grid
+description:
+  The grid is the framework for all the visual elements and typography at IBM.
+  It’s fundamental to everything we design.
+tabs: ['Overview', 'Implementation', 'Code']
+---
+
+<PageDescription>
+
+The Carbon Grid package helps developers build digital experiences with the 2x
+Grid. The project allows you to use CSS grid to build a variety of layouts.
+
+</PageDescription>
+
+<InlineNotification>
+
+If you're using `@carbon/react`, you you probably don't need to install the grid
+package separately. See our [Carbon React](/developing/frameworks/react/) guide
+to start building.
+
+</InlineNotification>
+
+<AnchorLinks>
+
+<AnchorLink>Documentation</AnchorLink>
+<AnchorLink>API & Helpers</AnchorLink>
+<AnchorLink>Legacy</AnchorLink>
+
+</AnchorLinks>
+
+## Documentation
+
+### CSS Grid
+
+Carbon provides grid components, using CSS Grid to help developers use the 2x
+Grid. These components include `Grid` and `Column` and allow you to define
+column widths by breakpoint, based on a 16 column grid.
+
+<Row className="resource-card-group">
+  <Column colLg={4} colMd={4} noGutterSm>
+  <ResourceCard
+    subTitle="React"
+    href="https://react.carbondesignsystem.com/?path=/docs/elements-grid--default"
+    >
+
+<MdxIcon name="react" />
+
+  </ResourceCard>
+</Column>
+<Column colMd={4} colLg={4} noGutterSm>
+    <ResourceCard
+      subTitle="CSS Grid demo"
+      href="https://carbon-elements.netlify.app/grid/examples/css-grid/"
+    >
+
+<MdxIcon name="bee" />
+
+  </ResourceCard>
+  </Column>
+</Row>
+
+### AspectRatio
+
+When designing fluid layouts, it’s helpful for an asset or card to be a specific
+aspect ratio. The `AspectRatio` component supports rendering your content in a
+specific aspect ratio through the ratio prop. This allows you to specify the
+proportion between the width and the height of your content.
+
+<Row className="resource-card-group">
+  <Column colLg={4} colMd={4} noGutterSm>
+  <ResourceCard
+    subTitle="React"
+    href="https://react.carbondesignsystem.com/?path=/story/components-aspectratio--default"
+    >
+
+<MdxIcon name="react" />
+
+  </ResourceCard>
+</Column>
+ <Column colLg={4} colMd={4} noGutterSm>
+  <ResourceCard
+    subTitle="Vue"
+    href="https://vue.carbondesignsystem.com/?path=/story/components-cvaspectratio--default"
+    >
+
+<MdxIcon name="vue" />
+
+  </ResourceCard>
+</Column>
+</Row>
+
+## API & Helpers
+
+There are many ways to make the 2x Grid work for your application using our API.
+The examples below illustrate two ways of removing visibility of a given
+component based on the breakpoint.
+
+```css
+.component {
+  display: block;
+
+  /* applies styles inside mixin on md breakpoint or below, like max-width */
+  @include breakpoint-down('md') {
+    display: none;
+  }
+}
+
+.component {
+  display: none;
+
+  /* applies styles inside mixin on lg breakpoint and above */
+  @include breakpoint('lg') {
+    display: block;
+  }
+}
+```
+
+In addition, you can also use Helpers to control what is being displayed on the
+screen at a given breakpoint.
+
+```css
+@use '@carbon/styles/scss/utilities/helper-classes';
+
+.my-class {
+  @include helper-classes.hide-at-sm();
+}
+```
+
+<Row className="resource-card-group">
+  <Column colMd={4} colLg={4} noGutterSm>
+    <ResourceCard
+      subTitle="Carbon grid package"
+      href="https://github.com/carbon-design-system/carbon/tree/main/packages/grid"
+    >
+
+<MdxIcon name="github" />
+
+  </ResourceCard>
+  </Column>
+   <Column colMd={4} colLg={4} noGutterSm>
+    <ResourceCard
+      subTitle="Carbon grid docs API"
+      href="https://github.com/carbon-design-system/carbon/blob/main/packages/grid/docs/sass.md#api"
+    >
+
+<MdxIcon name="github" />
+
+  </ResourceCard>
+  </Column>
+
+  <Column colMd={4} colLg={4} noGutterSm>
+    <ResourceCard
+      subTitle="Hide at Breakpoint Helpers on Storybook"
+      href="https://react.carbondesignsystem.com/?path=/story/helpers-hideatbreakpoint--hide-at-breakpoint"
+    >
+
+<MdxIcon name="react" />
+
+  </ResourceCard>
+  </Column>
+</Row>
+
+## Legacy
+
+### Flexbox Grid
+
+The default grid in v11 is based off of CSS Grid, to enable the legacy
+[FlexGrid](https://react.carbondesignsystem.com/?path=/docs/elements-flexgrid--auto-columns)
+implementation, built using Flexbox, you will need to include the following in
+your Sass files:
+
+```scss
+@use '@carbon/grid';
+
+// Emit the flex-grid styles
+@include grid.flex-grid();
+```
+
+<Row className="resource-card-group">
+   <Column colMd={4} colLg={4} noGutterSm>
+    <ResourceCard
+      subTitle="React"
+      href="https://react.carbondesignsystem.com/?path=/story/elements-flexgrid--auto-columns"
+    >
+
+<MdxIcon name="react" />
+
+  </ResourceCard>
+  </Column>
+<Column colMd={4} colLg={4} noGutterSm>
+    <ResourceCard
+      subTitle="Angular"
+      href="https://angular.carbondesignsystem.com/?path=/story/components-grid--basic"
+    >
+
+<MdxIcon name="angular" />
+
+  </ResourceCard>
+  </Column>
+  <Column colMd={4} colLg={4} noGutterSm>
+    <ResourceCard
+      subTitle="Vue"
+      href="https://vue.carbondesignsystem.com/?path=/story/components-cvgrid--auto-columns"
+    >
+
+<MdxIcon name="vue" />
+
+  </ResourceCard>
+  </Column>
+  <Column colMd={4} colLg={4} noGutterSm>
+    <ResourceCard
+      subTitle="FlexGrid demo"
+      href="https://carbon-elements.netlify.app/grid/examples/preview/"
+    >
+
+<MdxIcon name="bee" />
+
+  </ResourceCard>
+  </Column>
+</Row>
