@@ -75,21 +75,54 @@ yarn add @carbon/react
 
 ## Getting started
 
-1.  These components require the use of
-    [webpack](https://webpack.js.org/guides/getting-started/) in your project.
-    See our
-    [webpack.config.js](https://github.com/carbon-design-system/carbon/blob/v10/packages/react/.storybook/webpack.config.js)
-    for an example configuration.
+The `@carbon/react` package provides components, styles and icons for the Carbon
+Design System.
 
-2.  Components do not import any of the styles themselves, use the SCSS or CSS
-    from `carbon-components` to bring in styling. You can also use the `unpkg`
-    CDN to bring in the styles wholesale -
-    `unpkg.com/carbon-components/css/carbon-components.css` aliases the latest
-    CSS file.
+Components require the use of a build pipeline in your project. This could be in
+the form of a bundler, framework, or other build tool. Some examples include
+NextJS, Vite, Parcel, and Webpack. A comprehensive list is available in the
+[react documentation](https://react.dev/learn/start-a-new-react-project).
 
-3.  For older browsers (e.g. IE11), polyfills listed in the
-    [@carbon/react/.storybook/polyfills.js file](https://github.com/carbon-design-system/carbon/blob/main/packages/react/.storybook/polyfills.js)
-    are required.
+To use a component, you can import it directly from the package:
+
+```js
+import { Button } from '@carbon/react';
+
+function MyComponent() {
+  return <Button>Example usage</Button>;
+}
+```
+
+To include the styles for a specific component, you can either import all the
+styles from the project or include the styles for a specific component:
+
+```js
+// Bring in all the styles for Carbon in your root/global stylesheet
+@use '@carbon/react';
+
+// Or bring in the styles for one component
+@use '@carbon/react/scss/components/button';
+```
+
+### Icons
+
+The @carbon/react package also provides icon components that you can include in
+your project. You can import these icon components from the
+`@carbon/react/icons` entrypoint:
+
+```js
+import { Add } from '@carbon/react/icons';
+
+function MyComponent() {
+  return <Add />;
+}
+```
+
+A full list of available icons is provided in the
+[icon library](/guidelines/icons/library/).
+
+For a more in depth introduction to using `@carbon/react` in a webpack-based
+app, [check out our react tutorial](/developing/react-tutorial/overview/).
 
 ## Development
 
@@ -99,8 +132,7 @@ before starting any work.
 
 ### Using the server
 
-We recommend the use of
-[React Storybook](https://github.com/storybooks/react-storybook) for developing
+We use [Storybook](https://github.com/storybookjs/storybook) for developing
 components.
 
 <Title> Start the server: </Title>
@@ -114,13 +146,13 @@ yarn storybook
 3.  Develop components in their respective folders (`/components` or
     `/internal`).
 
-4.  Write stories for your components in `/.storybook`.
+4.  Author stories within the `*.stories.js*` files.
 
 ### List of available components
 
-View available React Components [here](http://react.carbondesignsystem.com).
-Usage information is available when you click the blue "Show Info" button in the
-top right corner of the selected component.
+View available React Components in
+[the `@carbon/react` storybook](http://react.carbondesignsystem.com). Usage
+information is available under the "docs" tab.
 
 ## Troubleshooting
 
