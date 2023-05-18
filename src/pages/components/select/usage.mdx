@@ -67,8 +67,8 @@ look similar, they have different functions.
   filtering, or sorting existing content.
 
 Another important difference between the two components is the underlying code.
-The select component’s appearance will be determined by the browser being used,
-while the dropdown component can be styled as needed.
+The select list appearance will be determined by the browser being used, while
+the dropdown list can be styled as needed.
 
 <Row>
 <Column colLg={12}>
@@ -76,8 +76,8 @@ while the dropdown component can be styled as needed.
 ![Dropdown versus Select](images/select-usage-2.png)
 
 <Caption>
-  Example of a dropdown list of actional options versus a select list of options
-  for data submission.
+  Example of a select list of options for data submission on the left versus a
+  dropdown list of actional options on the right.
 </Caption>
 
 </Column>
@@ -194,7 +194,7 @@ Inline selects have less visual weight on a page because they are borderless.
 
 <Tab label="Default">
 
-![Select anatomy](images/select-anatomy-fixed.png)
+![Select anatomy](images/select-anatomy-default.png)
 
 </Tab>
 
@@ -211,17 +211,21 @@ Inline selects have less visual weight on a page because they are borderless.
 
 1. **Labels:** Text that informs the user what to expect in the list of dropdown
    options.
-2. **Default option:** Usually a frequent option that users would choose from a
-   select list.
+2. **Default option:** An empty option selected by default. The user can decide
+   whether to choose a different option from the list. Depending on the use
+   case, this defaulted behavior can be modified to be a prefilled selection to
+   the first option in the list, which is typically shown in alphabetical order,
+   or the prefilled selection could be a frequent or commonly used option that
+   is on the list.
 3. **Helper text** (optional, except for error and warning): Assistive text to
    help the user choose the right selection. Helper text is shown in a tooltip
    for fluid styles.
 4. **Field:** Persists when the dropdown is open or closed.
-5. **Option:** A choice for the user, shown with other choices in a menu.
-6. **Menu:** A list of options to choose from, displayed as an open state.
+5. **Option:** A choice for the user, shown with other choices in a list.
+6. **List:** A list of options to choose from, displayed as an open state.
 7. **Status icon:** Indicates the state of the select, either error or warning.
-8. **Error or Warning text**: It replaces the helper text when an error or
-   warning state appears.
+8. **Error or Warning text**: Replaces the helper text when an error or warning
+   state appears.
 
 ### Styling
 
@@ -236,7 +240,7 @@ functionality but look visually different, influencing where to use them.
 <Row>
 <Column colLg={8}>
 
-![Default and fluid select styles](images/select-styles.png)
+![Default and fluid select styles](images/select-usage-styling.png)
 
 </Column>
 </Row>
@@ -268,7 +272,7 @@ size height.
 
 #### Fluid inputs heights
 
-In the fluid select, there is only one input height. The menu height is
+In the fluid select, there is only one input height. The list height is
 controlled by the browser.
 
 <Row>
@@ -290,49 +294,49 @@ appropriately for its context.
 
 #### Label
 
+Concise labels for text and data inputs help users understand what information
+is being requested of them.
+
 - Labels inform users what to expect in the list of select options.
-- Keep the label short and concise by limiting it to a single line of text.
+- Labels are not helper text; be succinct. Use one to three words only.
 
 #### Helper text
 
 - Helper text is pertinent information that assists the user in choosing the
-  right selection from the select menu.
+  right selection from the select list.
 - Helper text is optional but replaced with warning or error text when these
   states appear.
 
-#### Order
+#### List order
 
-The order of the select list should be based on the frequency of use. If
-applicable, the list should be in alphabetical order or in increasing order
-relative to the content.
+If applicable, the list should be in alphabetical order or in increasing order
+relative to the content. Otherwise, the order of the select list should be based
+on the frequency of use.
 
 <Row>
 <Column colLg={8}>
 
-![Select menu order](images/select-menu-order.png)
+![Select list order](images/select-list-order.png)
 
 </Column>
 </Row>
-
-#### Overflow content
-
-Avoid having multiple lines of text per item in a select menu. The menu items
-should be no longer than three words.
 
 ## Behaviors
 
 ### States
 
 The select has multiple interactive states for both default and inline variants:
-**enabled**, **hover**, **focus**, **open**, **error**, **warning**,
-**disabled**, and **read-only**.
+**enabled**, **hover**, **selected**, **focus**, **open**, **error**,
+**warning**, **disabled**, skeleton, and **read-only**.
 
 | State       | When to use                                                                                                                                                                                                                                                                                   |
 | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | _Enabled_   | When the select is live and a user is not directly interacting with it. This is commonly referred to as the default or normal state of the component. An enabled select field should contain a default value.                                                                                 |
 | _Hover_     | When a user's mouse cursor is hovering over the field.                                                                                                                                                                                                                                        |
+| _Selected_  | When a user opens the list and selects an option within the list.                                                                                                                                                                                                                             |
 | _Focus_     | When a user tabs to or clicks on the select field, the field becomes focused, indicating the user has successfully navigated to the component.                                                                                                                                                |
-| _Error_     | When the required select value has not been selected. It can also be triggered due to a system error. This state requires a user response before data can be submitted or saved.                                                                                                              |
+| _Open_      | When a user opens the list.                                                                                                                                                                                                                                                                   |
+| _Error_     | When a select component marked as "required" has not had an option selected. It can also be triggered due to a system error. This state requires a user response before data can be submitted or saved.                                                                                       |
 | _Warning_   | When you need to call the user's attention to an exception condition. The condition might not be an error but can cause problems if not resolved.                                                                                                                                             |
 | _Disabled_  | When the user cannot interact with a component and all interactive functions have been removed. Unlike read-only states, disabled states are not focusable, are not read by screen readers, and do not need to pass visual contrast, making them inaccessible if they need to be interpreted. |
 | _Skeleton_  | Used on an initial page load to indicate that the select has not yet fully loaded.                                                                                                                                                                                                            |
@@ -345,7 +349,7 @@ The select has multiple interactive states for both default and inline variants:
 
 <Tab label="Default">
 
-![Select interactive states](images/select-states-fixed.png)
+![Select interactive states](images/select-states-default.png)
 
 </Tab>
 
@@ -364,10 +368,9 @@ The select has multiple interactive states for both default and inline variants:
 
 #### Mouse
 
-Users trigger a dropdown menu to open by clicking the chevron icon or clicking
-anywhere within the field. Users can close the menu by clicking the chevron icon
-or clicking outside of the menu. To select an option, the user can click
-anywhere inside an option container.
+Users can open and close the list by clicking the chevron icon or clicking
+anywhere within the field. To select an option, the user can click anywhere
+inside an option list.
 
 <Row>
 <Column colLg={8}>
@@ -376,13 +379,13 @@ anywhere inside an option container.
 
 <Tab label="Default">
 
-![Select mouse interaction](images/select-mouse-interaction-fixed.png)
+![Select mouse interaction](images/select-usage-interaction-default.png)
 
 </Tab>
 
 <Tab label="Fluid">
 
-![Select mouse interaction](images/select-mouse-interaction-fluid.png)
+![Select mouse interaction](images/select-usage-interaction-fluid.png)
 
 </Tab>
 
@@ -395,13 +398,13 @@ anywhere inside an option container.
 
 - The dropdown field is the element that receives focus. All keyboard
   interactions happen from this element.
-- Users can open the dropdown menu by pressing `Space`, `Enter`, the
-  `Down arrow`, or the `Up arrow`.
+- Users can open the list by pressing `Space`, `Enter`, the `Down arrow`, or the
+  `Up arrow`.
 - Users can move the highlighted option to the next option by pressing the
   `Down arrow`.
 - Users can move the highlighted option to the previous option by pressing the
   `Up arrow`.
-- Users can close the dropdown menu by pressing `Escape`, `Space`, or `Enter`.
+- Users can close the list by pressing `Escape`, `Space`, or `Enter`.
 
 <Row>
 <Column colLg={8}>
@@ -410,13 +413,13 @@ anywhere inside an option container.
 
 <Tab label="Default">
 
-![Select keyboard interaction](images/select-keyboard-interaction-fixed.png)
+![Select keyboard interaction](images/select-usage-keyboard-interaction-default.png)
 
 </Tab>
 
 <Tab label="Fluid">
 
-![Select keyboard interaction](images/select-keyboard-interaction-fluid.png)
+![Select keyboard interaction](images/select-usage-keyboard-interaction-fluid.png)
 
 </Tab>
 
@@ -455,12 +458,6 @@ red border, an error icon indicator, and an error message.
 
 </Column>
 </Row>
-
-#### Default selection
-
-By default, the selected option is usually the first item in alphabetical order.
-The default selection could also be a call-to-action that asks users to select
-an option from the menu.
 
 ## Related
 
