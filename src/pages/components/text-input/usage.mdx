@@ -17,12 +17,13 @@ and short-form entries.
 
 <AnchorLink>Overview</AnchorLink>
 <AnchorLink>Live demo</AnchorLink>
+<AnchorLink>Text input</AnchorLink>
+<AnchorLink>Text area</AnchorLink>
 <AnchorLink>Formatting</AnchorLink>
 <AnchorLink>Content</AnchorLink>
 <AnchorLink>Universal behaviors</AnchorLink>
-<AnchorLink>Text input</AnchorLink>
-<AnchorLink>Text area</AnchorLink>
-<AnchorLink>References</AnchorLink>
+<AnchorLink>Modifiers</AnchorLink>
+<AnchorLink>Related</AnchorLink>
 <AnchorLink>Feedback</AnchorLink>
 
 </AnchorLinks>
@@ -33,6 +34,14 @@ Text inputs enable users to enter free-form text data. The type of text field
 used should reflect the length of the content you expect the user to enter. The
 default text input is for short, one-line content, whereas text area is for
 longer, multi-line entries.
+
+<Row>
+<Column colLg={8}>
+
+![Text input and text area example](images/text-input-usage-2.png)
+
+</Column>
+</Row>
 
 #### When to use
 
@@ -80,38 +89,35 @@ longer, multi-line entries.
     links={{
       React:
         'https://react.carbondesignsystem.com/?path=/story/components-textinput--default',
+      'Web Components':
+        'https://web-components.carbondesignsystem.com/?path=/story/components-input--default',
       Angular:
         'https://angular.carbondesignsystem.com/?path=/story/components-input--label',
       Vue: 'http://vue.carbondesignsystem.com/?path=/story/components-cvtextinput--default',
-      'Web Components':
-        'https://web-components.carbondesignsystem.com/?path=/story/components-input--default',
     }}
-  >
-    {`
+  >{`
     <div>
       <TextInput
         helperText="Optional helper text"
         id="test2"
         invalidText="A valid value is required"
         labelText="Text input label"
-        placeholder="Placeholder text"
+        placeholder="Optional placeholder text"
       />
     </div>
-  `}
-  </ComponentVariant>
+  `}</ComponentVariant>
   <ComponentVariant
     id="password-input"
     links={{
       React:
         'https://react.carbondesignsystem.com/?path=/story/components-textinput--toggle-password-visibility',
+      'Web Components':
+        'https://web-components.carbondesignsystem.com/?path=/story/components-input--default',
       Angular:
         'https://angular.carbondesignsystem.com/?path=/story/components-input--label',
       Vue: 'http://vue.carbondesignsystem.com/?path=/story/components-cvtextinput--default',
-      'Web Components':
-        'https://web-components.carbondesignsystem.com/?path=/story/components-input--default',
     }}
-  >
-    {`
+  >{`
     <div>
     <TextInput.PasswordInput
       helperText="Optional helper text"
@@ -119,12 +125,11 @@ longer, multi-line entries.
       id="test2"
       invalidText="A valid value is required"
       labelText="Text input label"
-      placeholder="Placeholder text"
+      placeholder="Optional placeholder text"
       showPasswordLabel="Show password"
     />
     </div>
-  `}
-  </ComponentVariant>
+  `}</ComponentVariant>
   <ComponentVariant
     id="text-area"
     knobs={{
@@ -133,14 +138,13 @@ longer, multi-line entries.
     links={{
       React:
         'https://react.carbondesignsystem.com/?path=/story/components-textarea--default',
+      'Web Components':
+        'https://web-components.carbondesignsystem.com/?path=/story/components-textarea--default',
       Angular:
         'https://angular.carbondesignsystem.com/?path=/story/components-input--textarea',
       Vue: 'http://vue.carbondesignsystem.com/?path=/story/components-cvtextarea--default',
-      'Web Components':
-        'https://web-components.carbondesignsystem.com/?path=/story/components-textarea--default',
     }}
-  >
-    {`
+  >{`
     <div>
     <TextArea
       cols={50}
@@ -148,22 +152,47 @@ longer, multi-line entries.
       id="test2"
       invalidText="A valid value is required"
       labelText="Text area label"
-      placeholder="Placeholder text"
+      placeholder="Optional placeholder text"
       rows={4}
     />
     </div>
-  `}
-  </ComponentVariant>
+  `}</ComponentVariant>
 </ComponentDemo>
 
-## Formatting
+## Text input
+
+Use a text input when the expected user input is a single line of text. Text
+inputs have a fixed height and are used to enter simple free-form data entries
+with any combination of letters, numbers, or symbols. There are two styles of
+text input, default and fluid, which share the same functionality but look
+visually different. The context of how or where the component is used will
+dictate which style to use.
+
+| Style   | Purpose                                                                                                                                                                                                                                               |
+| ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Default | Default is the most commonly used text input style with the label and helper text outside the field. Use when white space is needed between input components or in productive moments where space is at a premium, and smaller components are needed. |
+| Fluid   | Fluid is an alternate styling for text input used in more expressive moments. Use in fluid forms, contained spaces, or attached to complex components, like a toolbar. Fluid components always sit flush with components around them.                 |
 
 ### Anatomy
 
 <Row>
 <Column colLg={8}>
 
-![Text input anatomy](images/text-input-usage-anatomy.png)
+<Tabs>
+
+<Tab label="Default">
+
+![Anatomy of a text input in the default style](images/text-input-usage-anatomy-fixed.png)
+
+</Tab>
+
+<Tab label="Fluid">
+
+![Anatomy of a text input in the fluid style](images/text-input-usage-anatomy-fluid.png)
+
+</Tab>
+
+</Tabs>
 
 </Column>
 </Row>
@@ -171,20 +200,16 @@ longer, multi-line entries.
 1. **Label**: Text that informs the user about the content they need to enter in
    the field. It is required unless you get an approved accessibility exemption.
 2. **Value**: The content the user has entered into the field.
-3. **Helper text** (optional): Assistive text that can provide additional aid or
-   context to the user. Often used to explain the correct data format.
-4. **Field**: The container in which a user enters data. Must meet 3:1 non-text
+3. **Field**: The container in which a user enters data. Must meet 3:1 non-text
    contrast requirements.
-5. **Input requirement** (optional): This label indicates if the field is
-   optional or required for the user to complete.
-6. **Character counter** (text area only): Indicate the number of characters
-   being entered and the total number of characters allowed.
-7. **Resize handle** (text area only): Allows a user to manipulate the field
-   height by making it longer or shorter.
+4. **Helper text** (optional): Assistive text that can provide additional aid or
+   context to the user. Often used to explain the correct data format. It is
+   positioned below the field in the default style and surfaced through a
+   tooltip in the fluid style.
 
 ### Sizing
 
-#### Text input heights
+#### Default input heights
 
 There are three text input height sizes: small, medium, and large. Supporting
 three sizes gives you more flexibility in structuring layouts. Be sure to use a
@@ -199,26 +224,120 @@ consistent field height when pairing form components on the same page.
 <Row>
 <Column colLg={8}>
 
-![Text input heights](images/text-input-usage-size.png)
+![Default text input heights](images/text-input-usage-size.png)
 
 </Column>
 </Row>
 
-#### Text area height
+#### Fluid input heights
 
-Text area has a variable height that can be lengthened or shortened by the user
-using the `resize` handle in the bottom right of the field. By default, text
-area has a minimum height of 40px/2.5rem but no maximum height.
+There is only one fluid input height and it is visually larger than the default
+heights. The input is a set height expect for when a warning or error message
+has been added to the bottom.
 
 <Row>
-<Column colLg={12}>
+<Column colLg={8}>
 
-![Text input heights](images/text-area-usage-size.png)
+![Fluid text input heights](images/text-input-usage-size-fluid.png)
 
 </Column>
 </Row>
 
-#### Widths
+## Text area
+
+Use a text area when the expected user input is more than a few words and could
+span multiple lines. It is commonly used for features like user commentary or
+descriptions. It supports all the same states and functionality as text input
+except for the password functionality. Text area has several unique
+functionalities not included in the text input, like the resize handle and
+character counter.
+
+| Style   | Purpose                                                                                                                                                                                                                                              |
+| ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Default | Default is the most commonly used text area style with the label and helper text outside the field. Use when white space is needed between input components or in productive moments where space is at a premium, and smaller components are needed. |
+| Fluid   | Fluid is an alternate styling for text area used in more expressive moments. Use in fluid forms, contained spaces, or attached to complex components, like a toolbar. Fluid components always sit flush with components around them.                 |
+
+### Anatomy
+
+<Row>
+<Column colLg={8}>
+
+<Tabs>
+
+<Tab label="Default">
+
+![Anatomy of a text area in the default style](images/text-area-usage-anatomy-fixed.png)
+
+</Tab>
+
+<Tab label="Fluid">
+
+![Anatomy of a text area in the fluid style](images/text-area-usage-anatomy-fluid.png)
+
+</Tab>
+
+</Tabs>
+
+</Column>
+</Row>
+
+1. **Label**: Text that informs the user about the content they need to enter in
+   the field. It is required unless you get an approved accessibility exemption.
+2. **Value**: The content the user has entered into the field.
+3. **Field**: The container in which a user enters data. Must meet 3:1 non-text
+   contrast requirements.
+4. **Resize hanle**: Allows a user to manipulate the field height by making it
+   longer or shorter.
+5. **Optional versus required indicator** (optional): This label indicates if
+   the field is optional or required for the user to complete.
+6. **Character counter** (optional): Indicate the number of characters being
+   entered and the total number of characters allowed.
+
+### Sizing
+
+Text area has a variable height that can be lengthened or shortened by the user
+using the resize handle in the bottom right of the field. By default, text area
+has a minimum height of 40px/2.5rem but no maximum height.
+
+#### Resize handle
+
+Included by default in both default and fluid text area is the resize handle. It
+allows a user to manipulate the field height by making it longer or shorter. The
+resize handle has no effect on the width of the text area container, it only
+effects the height. If the user makes the field size shorter than the content
+inside the field then a vertical scroll will become available.
+
+<Row>
+<Column colLg={8}>
+
+![Example showing the resize handle in text area](images/text-area-usage-resize.png)
+
+</Column>
+</Row>
+
+## Formatting
+
+### Alignment
+
+Input labels should vertically align to the grid and with other type elements on
+the page. The alignment of the input container will differ based on the style of
+text input you are using. Default inputs are always flush to the columns and
+fluid inputs will hang into the gutters.
+
+<DoDontRow>
+  <DoDont caption="Align default input containers to the grid so the input label alignes with other type of the page.">
+
+![Do align field containers to the grid.](images/text-input-usage-4-do.png)
+
+  </DoDont>
+  <DoDont caption="Hang fluid input containers into the gutters so the input label alignes with other type of the page.">
+
+![Do hang fluid field containers to the gutter.](images/text-input-usage-4-do-fluid.png)
+
+  </DoDont>
+</DoDontRow>
+
+#### Placement
 
 The field widths of both text input and text area should reflect the intended
 length of the content while still aligning to the grid columns or mini unit
@@ -271,7 +390,6 @@ consult an accessibility expert before proceeding with a label-less design.
 - Use sentence-style capitalization for all labels, except for product names and
   proper nouns.
 - Keep the label short and concise.
-- Labels should clearly state the requirement status.
 - Do not use colons after label names.
 
 #### Helper text
@@ -281,16 +399,15 @@ completing a field. It is often used to explain the correct data format.
 
 - Use sentence-style capitalization, and in most cases, write the text as full
   sentences with punctuation.
-- Helper text is an optional feature and can be used in place of a tooltip.
-- When used, helper text is always available when the input is focused and
-  appears underneath the field. The exceptions are when an error or warning
-  message replaces the helper text.
+- When used, helper text appears persistently underneath the field, except when
+  an error or warning message replaces it.
 
 #### Placeholder text
 
 Optional placeholder text provides hints or examples of what to enter.
-Placeholder text disappears after the user begins entering data into the input
-and should not contain crucial information.
+Placeholder text disappears after the user begins entering data into the input.
+As such, it should not be used as a replacement for a persistent label nor
+should it contain crucial information.
 
 - Use sentence-style capitalization, and in most cases, write the text as a
   direct statement without punctuation.
@@ -298,12 +415,6 @@ and should not contain crucial information.
   fields.
 - Placeholder text can be harmful to user interactions and should only be added
   when necessary.
-
-#### Accessibility best practices
-
-- Labels must be announced to the screen reader on focus.
-- Ensure the helper text that appears under an input is read when an assistive
-  technology user stops at an input using ARIA.
 
 ### Overflow content
 
@@ -332,24 +443,21 @@ sections below.
 
 ### States
 
-| State       | When to use                                                                                                                                                                                                                                                       |
-| ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| _Enabled_   | When a text input is live but a user is not directly interacting with it. This is commonly referred to as the default or normal state of the component. An enabled text input field can contain no content, placeholder text, or user generate content.           |
-| _Active_    | When a user is actively typing content into the field.                                                                                                                                                                                                            |
-| _Focus_     | When a user `tabs` to or clicks on the text input, it becomes focused, indicating the user has successfully navigated to the component.                                                                                                                           |
-| _Error_     | When the user input is invalid or a required text input has not been filled in. It can also be triggered due to a system error. This state requires a user response before data can be submitted or saved.                                                        |
-| _Warning_   | When you need to call the user's attention to an exception condition. The condition might not be an error but can cause problems if not resolved.                                                                                                                 |
-| _Disabled_  | When the user is not allowed to interact with the text input due to either permissions, dependencies, or pre-requisites. The disabled state completely removes the interactive function from a component. The styling is not subject to WCAG contrast compliance. |
-| _Skeleton_  | Use on an initial page load to indicate that the text input has not yet fully loaded.                                                                                                                                                                             |
-| _Read-only_ | _Coming soon!_                                                                                                                                                                                                                                                    |
+The text input and text area have multiple interactive states: **enabled**,
+**active**, **focus**, **error**, **warning**, **disabled**, **skeleton**, and
+**read-only**. For more details on text input and text area interactive states,
+see the [style tab](https://carbondesignsystem.com/components/text-input/style).
 
-<Row>
-<Column colLg={12}>
-
-![Text input states](images/text-input-states.png)
-
-</Column>
-</Row>
+| State       | When to use                                                                                                                                                                                                                                                                                   |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _Enabled_   | When a text input or text area is live but a user is not directly interacting with it. This is commonly referred to as the default or normal state of the component. An enabled text input field can contain no content, placeholder text, or user generate content.                          |
+| _Active_    | When a user is actively typing content into the field.                                                                                                                                                                                                                                        |
+| _Focus_     | When a user `tabs` to or clicks on the text input or text area, it becomes focused, indicating the user has successfully navigated to the component.                                                                                                                                          |
+| _Error_     | When the user input is invalid or a required text input or text area has not been filled in. It can also be triggered due to a system error. This state requires a user response before data can be submitted or saved.                                                                       |
+| _Warning_   | When you need to call the user's attention to an exception condition. The condition might not be an error but can cause problems if not resolved.                                                                                                                                             |
+| _Disabled_  | When the user cannot interact with a component and all interactive functions have been removed. Unlike read-only states, disabled states are not focusable, are not read by screen readers, and do not need to pass visual contrast, making them inaccessible if they need to be interpreted. |
+| _Skeleton_  | Use on an initial page load to indicate that the text input or text area has not yet fully loaded.                                                                                                                                                                                            |
+| _Read-only_ | When the user can review but not modify the component. This state removes all interactive functions like the disabled state but can still be focusable, accessible by screen readers, and passes visual contrast for readability.                                                             |
 
 ### Validation
 
@@ -372,14 +480,7 @@ red border, an error icon indicator, and an error message.
 </Column>
 </Row>
 
-### Default values
-
-Where possible, add programmatic assistance. Detect and pre-fill inputs to
-reduce errors and save time. When the software can’t determine the value that
-belongs in an input, use type-ahead to make suggestions. Use sentence-case for
-default values, detected values, and auto-completion text.
-
-### Required vs. optional
+### Required versus optional
 
 Text inputs can be labeled as either optional or required depending on the
 depending on the circumstance. For more guidance on requirement labeling, see
@@ -410,12 +511,26 @@ caption="If the majority of the fields are optional, mark only the required fiel
 
 Users can activate a text input by clicking on the field container. A separate
 click is required to activate any additional actions associated with the text
-input such as a tooltip or password visibility toggle.
+input such as a password visibility toggle.
 
 <Row>
 <Column colLg={8}>
 
-![Example showing click target areas for text input](images/text-input-usage-mouse.png)
+<Tabs>
+
+<Tab label="Default">
+
+![Example showing click target areas for text input in the default style](images/text-input-usage-mouse-fixed.png)
+
+</Tab>
+
+<Tab label="Fluid">
+
+![Example showing click target areas for text input in the fluid style](images/text-input-usage-mouse-fluid.png)
+
+</Tab>
+
+</Tabs>
 
 </Column>
 </Row>
@@ -433,19 +548,7 @@ For additional keyboard interactions, see the
 | _ctrl_ or _opt_ + _left/right arrows_ | Moves you word by word inside the field.                                               |
 | _ctrl_ or _opt_ + _up/down arrows_    | Relocates you to the start or end of the input content.                                |
 
-## Text input
-
-Use a text input when the expected user input is a single line of text. Text
-inputs have a fixed height and are used as a simple free-form data entry. Users
-can enter any combination of letters, numbers, or symbols.
-
-<Row>
-<Column colLg={8}>
-
-![Example of text input in context](images/text-input-usage-1.png)
-
-</Column>
-</Row>
+## Modifiers
 
 ### Password input
 
@@ -460,39 +563,6 @@ characters allowed or date structure.
 <Column colLg={8}>
 
 ![Example of a password input](images/text-input-usage-password.png)
-
-</Column>
-</Row>
-
-## Text area
-
-Use a text area when the expected user input is more than a few words and could
-span multiple lines. It is commonly used for features like user commentary or
-descriptions. It supports all the same states and functionality as text input
-except for the password functionality. Text area has several unique
-functionalities not included in the default text input, like the resize handle
-and character counter.
-
-<Row>
-<Column colLg={8}>
-
-![Example of a text area](images/text-input-usage-2.png)
-
-</Column>
-</Row>
-
-### Resize handle
-
-Included by default in text area is the `resize` handle. It allows a user to
-manipulate the field height by making it longer or shorter. The resize handle
-has no effect on the width of the text area container, it only effects the
-height. If the user makes the field size shorter than the content inside the
-field then a vertical scroll will become available.
-
-<Row>
-<Column colLg={8}>
-
-![Example showing the resize handle in text area](images/text-area-usage-resize.png)
 
 </Column>
 </Row>
@@ -513,11 +583,9 @@ has been met.
 </Column>
 </Row>
 
-## References
+## Related
 
-- Katie Sherwin,
-  [Placeholders in Form Fields Are Harmful](https://www.nngroup.com/articles/form-design-placeholders/)
-  (Nielsen Norman Group, 2018)
+- [Form pattern](/patterns/forms-pattern/)
 
 ## Feedback
 

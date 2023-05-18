@@ -107,11 +107,11 @@ import { Add } from '@carbon/react/icons';
     links={{
       React:
         'https://react.carbondesignsystem.com/?path=/story/components-button--default',
+      'Web Components':
+        'https://web-components.carbondesignsystem.com/?path=/story/components-button--default',
       Angular:
         'https://angular.carbondesignsystem.com/?path=/story/components-button--basic',
       Vue: 'http://vue.carbondesignsystem.com/?path=/story/components-cvbutton--default',
-      'Web Components':
-        'https://web-components.carbondesignsystem.com/?path=/story/components-button--default',
     }}
   >
     {`
@@ -126,11 +126,11 @@ import { Add } from '@carbon/react/icons';
     links={{
       React:
         'https://react.carbondesignsystem.com/?path=/story/components-button--default',
+      'Web Components':
+        'https://web-components.carbondesignsystem.com/?path=/story/components-button--default',
       Angular:
         'https://angular.carbondesignsystem.com/?path=/story/components-button--basic',
       Vue: 'http://vue.carbondesignsystem.com/?path=/story/components-cvbutton--default',
-      'Web Components':
-        'https://web-components.carbondesignsystem.com/?path=/story/components-button--default',
     }}
   >
     {`
@@ -143,11 +143,11 @@ import { Add } from '@carbon/react/icons';
     links={{
       React:
         'https://react.carbondesignsystem.com/?path=/story/components-button--icon-button',
+      'Web Components':
+        'https://web-components.carbondesignsystem.com/?path=/story/components-button--icon',
       Angular:
         'https://angular.carbondesignsystem.com/?path=/story/components-button--basic',
       Vue: 'http://vue.carbondesignsystem.com/?path=/story/components-cvbutton--icon-only',
-      'Web Components':
-        'https://web-components.carbondesignsystem.com/?path=/story/components-button--icon',
     }}
   >
     {`
@@ -325,20 +325,20 @@ button locations include:
 | _Right-justified_ | Inline notifications, inline field buttons and data tables, progressive forms, wizards, and single-button dialogs                                               |
 | _Full-span_       | Dialogs, side panels, and small tiles; currently Carbon does not offer a way to implement full-span buttons in code, without an override, they max out at 320px |
 
-#### Fluid versus fixed buttons
+#### Fluid versus default buttons
 
 Button alignment is also closely related to whether the button is treated as a
-fixed or a fluid element within a layout. When we say “fluid”, we mean that the
-button becomes a part of a larger, compound component by bleeding to two or more
-edges of its container. Rather than defining the a fluid button’s width in
+default or a fluid element within a layout. When we say “fluid”, we mean that
+the button becomes a part of a larger, compound component by bleeding to two or
+more edges of its container. Rather than defining the a fluid button’s width in
 columns or mini units, its width is defined as a percentage (often 50%) of the
-container’s width. Also, as a general rule, fluid buttons are never left-aligned
-in a layout or a container—they’re always either right-aligned, or span the full
-width of the container.
+container’s width. Also, as a general rule, fluid primary buttons are never
+left-aligned in a layout or a container—they’re always either right-aligned, or
+span the full width of the container.
 
 Fluid components like button never exist in isolation. As you can see in the
 examples above, they are always part of another component, like modal or form.
-Other fluid components include tiles and most recently,
+Other fluid components include tiles and most recently, form inputs such as
 [text inputs](/components/text-input/usage).
 
 <Row>
@@ -386,15 +386,20 @@ recommended feature to improve accessibility.
 </Column>
 </Row>
 
-#### Using the grid
+#### Fluid-width default buttons
 
-By default the container’s width is set to the size of the text label with 64px
-fixed padding on the right side and 16px fixed padding on the left. However,
-when possible set the button container’s relative position to the responsive
-layout grid and match button width to the other elements on the page. Ideally,
-when using groups of related buttons (not including ghost buttons), they should
-all be the same width. See [button groups](#Button-groups) below for more
-detailed information.
+The default button’s width is set to the size of the text label with 64px fixed
+padding on the right side and 16px fixed padding on the left. However, there is
+a hybrid scenario where a floating default-style button can span a designated
+number of columns on the responsive column grid, giving it a fluid width. These
+are called "fluid-width default buttons."
+
+Fluid-width default buttons are always preferable to fixed-width default buttons
+in a layout. When possible set the default button container’s relative position
+to the responsive layout grid and match button width to the width of other
+elements on the page. Ideally, when using groups of related buttons (not
+including ghost buttons), they should all be the same width. See button groups
+below for more detailed information.
 
 <Row>
 <Column colLg={8}>
@@ -525,15 +530,15 @@ button groups are also common in products, to save real estate in narrow columns
 and occasionally side panels. In these instances, the primary button is always
 on top and the secondary or tertiary button is below.
 
-Generally, when designers stack buttons, they tend to use the fixed buttons.
-However, stacked fluid buttons are also an option in desktop side panels with
-especially long calls to action. _Note: experimenting with stacked fluid buttons
-would require an override to the existing code._
+Generally, when designers stack buttons, they tend to use the hybrid fluid
+buttons. However, stacked fluid buttons are also an option in desktop side
+panels with especially long calls to action. Note: experimenting with stacked
+fluid buttons would require an override to the existing code.
 
 <Row>
 <Column colLg={12}>
 
-![Fluid and fixed stacked button group examples](images/button_usage_24.png)
+![Fluid and default stacked button group examples](images/button_usage_24.png)
 
 </Column>
 </Row>

@@ -33,7 +33,21 @@ tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 <Row>
 <Column colLg={12}>
 
-![Dropdown variant examples](images/dropdown-style-1.png)
+<Tabs>
+
+<Tab label="Default">
+
+![Default dropdown variant examples](images/dropdown-style-1.png)
+
+</Tab>
+
+<Tab label="Fluid">
+
+![Fluid dropdown variant examples](images/dropdown-style-1b.png)
+
+</Tab>
+
+</Tabs>
 
 </Column>
 </Row>
@@ -44,27 +58,39 @@ tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 
 ### Interactive states
 
-| State          | Element         | Property         | Color token           |
-| -------------- | --------------- | ---------------- | --------------------- |
-| Focus          | Field           | border           | `$focus`              |
-| Hover          | Field           | background-color | `$field-hover` \*     |
-|                | Menu option     | background-color | `$layer-hover` \*     |
-|                | Menu option     | text-color       | `$text-primary`       |
-| Invalid        | Error icon      | svg              | `$support-error`      |
-|                | Field           | border           | `$support-error`      |
-|                | Error message   | text-color       | `$text-error`         |
-| Warning        | Warning message | text-color       | `$text-primary`       |
-|                | Warning icon    | svg              | `$support-warning`    |
-| Active         | Menu option     | background-color | `$layer-active` \*    |
-| Selected       | Menu option     | background-color | `$layer-selected` \*  |
-|                | Menu option     | checkmark        | `$icon-primary`       |
-| Multi-selected | Tag             | background-color | `$background-inverse` |
-|                | Tag             | text-color       | `$text-inverse`       |
-| Disabled       | Field           | background-color | `$field` \*           |
-|                | Field           | border-bottom    | transparent           |
-|                | Field           | text-color       | `$text-disabled`      |
-|                | Label           | text-color       | `$text-disabled`      |
-|                | Chevron icon    | svg              | `$icon-disabled`      |
+| State         | Element              | Property         | Color token           |
+| ------------- | -------------------- | ---------------- | --------------------- |
+| Focus         | Field                | border           | `$focus`              |
+| Hover         | Field                | background-color | `$field-hover` \*     |
+|               | Menu option          | background-color | `$layer-hover` \*     |
+|               | Menu option          | text-color       | `$text-primary`       |
+| Invalid       | Error icon           | svg              | `$support-error`      |
+|               | Field                | border           | `$support-error`      |
+|               | Error message        | text-color       | `$text-error`         |
+| Warning       | Warning message      | text-color       | `$text-primary`       |
+|               | Warning icon         | svg              | `$support-warning`    |
+| Active        | Menu option          | background-color | `$layer-active` \*    |
+| Selected      | Menu option          | background-color | `$layer-selected` \*  |
+|               | Menu option          | checkmark        | `$icon-primary`       |
+| Multiselected | Tag                  | background-color | `$background-inverse` |
+|               | Tag                  | text-color       | `$text-inverse`       |
+| Disabled      | Field                | background-color | `$field` \*           |
+|               | Field (default)      | border-bottom    | transparent           |
+|               | Field (fluid)        | border-bottom    | `$border-subtle` \*   |
+|               | Field                | text-color       | `$text-disabled`      |
+|               | Label                | text-color       | `$text-disabled`      |
+|               | Chevron icon         | svg              | `$icon-disabled`      |
+| Read-only     | Field                | border-bottom    | `$border-subtle` \*   |
+|               | Field (default)      | background-color | transparent           |
+|               | Field (fluid)        | background-color | `$field` \*           |
+|               | Label                | text-color       | `$text-secondary`     |
+|               | Field text (default) | text-color       | `$text-primary`       |
+|               | Field text (fluid)   | text-color       | `$text-secondary`     |
+|               | Tag                  | background-color | transparent           |
+|               | Tag                  | border           | `$border-subtle`      |
+|               | Tag (default)        | text-color       | `$text-primary`       |
+|               | Tag (fluid)          | text-color       | `$text-secondary`     |
+|               | Tag                  | svg              | `$icon-disabled`      |
 
 <Caption>
   * Denotes a contextual color token that will change values based on the layer
@@ -74,7 +100,21 @@ tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 <Row>
 <Column colLg={12}>
 
-![Dropdown and combo-box states](images/dropdown-style-2.png)
+<Tabs>
+
+<Tab label="Default">
+
+![Default dropdown and combo box states](images/dropdown-combobox-style-default-states.png)
+
+</Tab>
+
+<Tab label="Fluid">
+
+![Fluid dropdown and combo box states](images/dropdown-combobox-style-fluid-states.png)
+
+</Tab>
+
+</Tabs>
 
 </Column>
 </Row>
@@ -84,7 +124,21 @@ tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 <Row>
 <Column colLg={12}>
 
-![Multi-select dropdown states](images/dropdown-style-3.png)
+<Tabs>
+
+<Tab label="Default">
+
+![Default multiselect dropdown states](images/dropdown-multiselect-style-default-states.png)
+
+</Tab>
+
+<Tab label="Fluid">
+
+![Fluid multiselect dropdown states](images/dropdown-multiselect-style-fluid-states.png)
+
+</Tab>
+
+</Tabs>
 
 </Column>
 </Row>
@@ -142,10 +196,9 @@ exceed three words.
 ## Structure
 
 Dropdowns have two states, open and closed. An open and closed dropdown should
-be the same width and appropriately fit the design, layout, and content. The
-height of a closed dropdown stays consistent while the height of an open
-dropdown will vary based on the amount of options it has. Please note the
-various color differences for closed and open dropdowns.
+be the same width and appropriately fit the design, layout, and content.
+
+### Default dropdown
 
 | Element      | Property                    | px / rem | Spacing token |
 | ------------ | --------------------------- | -------- | ------------- |
@@ -159,33 +212,35 @@ various color differences for closed and open dropdowns.
 
 <div className="image--fixed">
 
-![Structure and spacing for a closed dropdown](images/dropdown-style-5.png)
+![Structure and spacing for a default dropdown](images/dropdown-style-5.png)
 
 </div>
 
-<Caption>Structure and spacing measurements for dropdown | px / rem</Caption>
+<Caption>
+  Structure and spacing measurements for default dropdown | px / rem
+</Caption>
 
-### Sizes
+### Fluid dropdown
 
-The field height and menu option height should always match. These sizes options
-can be applied to all variants of dropdown.
-
-| Element     | Size        | Height px / rem |
-| ----------- | ----------- | --------------- |
-| Field       | Small (sm)  | 32 / 2          |
-|             | Medium (md) | 40 / 2.5        |
-|             | Large (lg)  | 48 / 3          |
-| Menu option | Small (sm)  | 32 / 2          |
-|             | Medium (sm) | 40 / 2.5        |
-|             | Large (lg)  | 48 / 3          |
+| Element      | Property                    | px / rem   | Spacing token |
+| ------------ | --------------------------- | ---------- | ------------- |
+| Label        | margin-bottom               | 4 / 0.25   | `$spacing-02` |
+| Field        | padding-left                | 16 / 1     | `$spacing-05` |
+|              | padding-right               | 48 / 3     | `$spacing-09` |
+|              | border-bottom               | 1px        | –             |
+|              | margin-top, margin-bottom   | 13 / .8125 | –             |
+| Chevron icon | padding-right, padding-left | 16 / 1     | `$spacing-05` |
+| State icon   | padding-right, padding-left | 16 / 1     | `$spacing-05` |
 
 <div className="image--fixed">
 
-![Sizes for dropdown](images/dropdown-style-size.png)
+![Structure and spacing for a fluid dropdown](images/dropdown-style-5b.png)
 
 </div>
 
-<Caption>Dropdown sizes | px / rem</Caption>
+<Caption>
+  Structure and spacing measurements for a fluid dropdown | px / rem
+</Caption>
 
 ### Combo box
 
@@ -243,3 +298,50 @@ can be applied to all variants of dropdown.
 </div>
 
 <Caption>Structure and spacing for inline dropdown | px / rem</Caption>
+
+## Sizes
+
+### Default inputs
+
+The field height and menu option height should always match. These size options
+can be applied to all variants of dropdown.
+
+| Element   | Size        | Height px / rem |
+| --------- | ----------- | --------------- |
+| Field     | Small (sm)  | 32 / 2          |
+|           | Medium (md) | 40 / 2.5        |
+|           | Large (lg)  | 48 / 3          |
+| Menu item | Small (sm)  | 32 / 2          |
+|           | Medium (md) | 40 / 2.5        |
+|           | Large (lg)  | 48 / 3          |
+
+<Row>
+<Column colLg={12}>
+
+![Sizes for dropdown](images/dropdown-style-size-fixed.png)
+
+</Column>
+</Row>
+
+<Caption>Default dropdown sizes | px / rem</Caption>
+
+### Fluid inputs
+
+There is only one input height but there are two menu item sizes–default and
+condensed.
+
+| Element   | Size      | Height px / rem |
+| --------- | --------- | --------------- |
+| Field     | Default   | 64 / 4          |
+| Menu item | Default   | 64 / 4          |
+|           | Condensed | 40 / 2.5        |
+
+<Row>
+<Column colLg={8}>
+
+![Sizes for dropdown](images/dropdown-style-size-fluid.png)
+
+</Column>
+</Row>
+
+<Caption>Fluid dropdown sizes | px / rem</Caption>

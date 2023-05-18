@@ -62,8 +62,7 @@ around in v11 but they will only be re-exports of `@carbon/styles` and
 ## carbon-components-react
 
 Starting in v11, the React components for Carbon live in the `@carbon/react`
-package. Alternatively, you can continue to use `carbon-components` as it
-re-exports components from the `@carbon/react` package.
+package.
 
 The `@carbon/react` package also includes the styles for Carbon along with
 icons.
@@ -236,7 +235,7 @@ longer necessary.
 
 <InlineNotification>
   This step can be automated using the `@carbon/upgrade` CLI. For full details,
-  see the `@carbon/upgrade` [package
+  see the [`@carbon/upgrade` package
   documentation](https://github.com/carbon-design-system/carbon/tree/main/packages/upgrade)
 </InlineNotification>
 
@@ -255,7 +254,7 @@ import { Accordion, AccordionItem } from '@carbon/react';
 
 <InlineNotification>
   This step can be automated using the `@carbon/upgrade` CLI. For full details,
-  see the `@carbon/upgrade` [package
+  see the [`@carbon/upgrade` package
   documentation](https://github.com/carbon-design-system/carbon/tree/main/packages/upgrade)
 </InlineNotification>
 
@@ -701,7 +700,16 @@ our
 
 If you were using specific variables, mixins, or functions from Carbon, it may
 be that you will need to update their name in v11. In general, all `carbon--`
-prefixed names have been renamed to drop the `carbon--` prefix.
+prefixed names have been renamed to drop the `carbon--` prefix. To remove the
+`carbon--` prefix and update it perform a find and replace operation, as
+illustrated in the following example.
+
+```diff
+- @include carbon--breakpoint(lg) {
++ @include breakpoint(lg) {
+      width: 42%;
+  }
+```
 
 For a full list of the changes to variables, mixins, and functions that have
 changed, check out our
