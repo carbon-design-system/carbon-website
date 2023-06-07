@@ -5,6 +5,14 @@ description:
 tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 ---
 
+<AnchorLinks>
+
+<AnchorLink>Color</AnchorLink> <AnchorLink>Typography</AnchorLink>
+<AnchorLink>Structure</AnchorLink> <AnchorLink>Size</AnchorLink>
+<AnchorLink>Feedback</AnchorLink>
+
+</AnchorLinks>
+
 ## Color
 
 ### Line tabs
@@ -29,7 +37,7 @@ tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 
 <br />
 
-#### Interactive states
+#### Interactive state color
 
 <br />
 
@@ -82,6 +90,56 @@ tabs: ['Usage', 'Style', 'Code', 'Accessibility']
   tabs.
 </Caption>
 
+### Dismissible line tabs
+
+| Type       | Element | Property         | Color token           |
+| ---------- | ------- | ---------------- | --------------------- |
+| Unselected | Tab     | background-color | transparent           |
+|            |         | border-bottom    | `$border-subtle` \*   |
+|            | Label   | text-color       | `$text-secondary`     |
+|            | Icon    | svg              | `$icon-secondary`     |
+| Selected   | Label   | text-color       | `$text-primary`       |
+|            | Icon    | svg              | `$icon-primary`       |
+|            | Tab     | border-bottom    | `$border-interactive` |
+
+<div className="image--fixed">
+
+![Example of selected and unselected dismissible line tabs](images/tab-style-9.png)
+
+</div>
+
+<Caption>Example of selected and unselected dismissible line tabs.</Caption>
+
+<br />
+
+#### Interactive state color
+
+<br />
+
+| State    | Element         | Property         | Color token        |
+| -------- | --------------- | ---------------- | ------------------ |
+| Hover    | Label           | text-color       | `$text-primary`    |
+|          | Icon            | svg              | `$icon-primary`    |
+|          |                 | background-color | `$background-hover` |
+|          | Tab             | border-bottom    | `$border-strong`   |
+| Focus    | Tab: unselected | border           | `$focus`           |
+|          | Tab: selected   | border           | `$focus`           |
+| Disabled | Label           | text-color       | `$text-disabled`   |
+|          | Icon            | svg              | `$icon-disabled`   |
+|          | Tab             | background-color | transparent        |
+|          |                 | border-bottom    | `$border-disabled` |
+
+<div className="image--fixed">
+
+![Examples of hover, focus-unselected, focus-selected, and disabled states for dismissible line tabs](images/tab-style-11.png)
+
+</div>
+
+<Caption>
+  Examples of hover, focus-unselected, focus-selected, and disabled states for
+  dismissible line tabs.
+</Caption>
+
 ### Contained tabs
 
 | Type       | Element | Property         | Color token           |
@@ -110,7 +168,7 @@ tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 
 <br />
 
-#### Interactive states
+#### Interactive state color
 
 <br />
 
@@ -167,6 +225,70 @@ tabs.](images/tab-style-5.png)
   tabs.
 </Caption>
 
+### Dismissible contained tabs
+
+| Type       | Element | Property         | Color token           |
+| ---------- | ------- | ---------------- | --------------------- |
+| Unselected | Tab     | background-color | `$layer-accent` \*    |
+|            |         | border-right     | `$border-strong` \*   |
+|            | Label   | text-color       | `$text-secondary`     |
+|            | Icon    | svg              | `$icon-secondary`     |
+|            | Dismissible icon    | svg              | `$icon-secondary`     |
+| Selected   | Tab     | background-color | `$layer` \*           |
+|            |         | border-top       | `$border-interactive` |
+|            | Label   | text-color       | `$text-primary`       |
+|            | Icon    | svg              | `$icon-primary`       |
+|            | Dismissible icon    | svg              | `$icon-primary`       |
+
+<Caption>
+  * Denotes a contextual color token that will change values based on the layer
+  it is placed on.
+</Caption>
+
+<div className="image--fixed">
+
+![Examples of selected and unselected dismissible contained tabs](images/tab-style-10.png)
+
+</div>
+
+<Caption>Examples of selected and unselected dismissible contained tabs.</Caption>
+
+<br />
+
+#### Interactive state color
+
+<br />
+
+| State    | Element | Property         | Color token              |
+| -------- | ------- | ---------------- | ------------------------ |
+| Hover    | Tab     | background-color | `$layer-accent-hover` \* |
+|          | Label   | text-color       | `$text-primary`          |
+|          | Icon    | svg              | `$icon-primary`          |
+|          | Dismissible icon    | svg              | `$icon-primary`          |
+|          | Selected: dismissible icon    | background-color              | `$layer-hover` \*         |
+|          | Unselected: dismissible icon    | background-color              | `$layer-accent-hover` \*         |
+| Focus    | Tab     | border           | `$focus`                 |
+| Disabled | Label   | text-color       | `$text-disabled`         |
+|          | Icon    | svg              | `$icon-disabled`         |
+|          | Tab     | background-color | `$button-disabled`       |
+|          |         | border-right     | `$border-disabled`       |
+
+<Caption>
+  * Denotes a contextual color token that will change values based on the layer
+  it is placed on.
+</Caption>
+
+<div className="image--fixed">
+
+![Hover, focus-enabled, focus-selected, and disabled states for dismissible contained
+tabs.](images/tab-style-12.png)
+
+</div>
+
+<Caption>
+  Hover, focus-enabled, focus-selected, and disabled states for dismissible contained tabs.
+</Caption>
+
 ## Typography
 
 Tab labels should be set in sentence case, and should not exceed three words.
@@ -175,6 +297,8 @@ Tab labels should be set in sentence case, and should not exceed three words.
 | ----------------- | ------------------ | -------------- | --------------------- |
 | Label: unselected | 14 / 0.875         | Regular / 400  | `$body-compact-01`    |
 | Label: selected   | 14 / 0.875         | SemiBold / 600 | `$heading-compact-01` |
+
+
 
 ## Structure
 
@@ -224,6 +348,34 @@ Tab labels should be set in sentence case, and should not exceed three words.
   Structure and spacing measurements for icon-only line tabs | px / rem
 </Caption>
 
+### Dismissible line tabs
+
+| Element         | Property                    | px / rem   | Spacing token |
+| --------------- | --------------------------- | ---------- | ------------- |
+| Tab             | height                      | 40 / 2.5   | –             |
+|                 | border-bottom               | 2px        | –             |
+|                 | width                       | auto-width | –             |
+|                 | margin-left                 | 1px        | –             |
+| Label           | padding-left, padding-right | 16 / 1     | `$spacing-05` |
+|                 | padding-top, padding-bottom | 8 / 0.5    | `$spacing-03` |
+| Dismissible icon | padding-right               | 16 / 1     | `$spacing-05` |
+|                 | padding-left                | 8 / 0.5    | `$spacing-03` |
+|                 | svg                         | 16 x 16    | –             |
+| Icon            | padding-right               | 8 / 0.5    | `$spacing-03` |
+|                 | padding-left                | 16 / 1     | `$spacing-05` |
+|                 | svg                         | 16 x 16    | –             |
+
+
+<div className="image--fixed">
+
+![Structure and spacing measurements for dismissible line tabs without icons (top) and with icons (bottom).](images/tab-style-13.png)
+
+</div>
+
+<Caption>Structure and spacing measurements for line tabs without icons (top) and with icons (bottom) | px / rem</Caption>
+
+<br />
+
 ### Contained tabs
 
 | Element           | Property                    | px / rem         | Spacing token |
@@ -270,3 +422,31 @@ Tab labels should be set in sentence case, and should not exceed three words.
 <Caption>
   Structure and spacing measurements for icon-only contained tabs | px / rem
 </Caption>
+
+### Dismissible contained tabs
+
+| Element           | Property                    | px / rem         | Spacing token |
+| ----------------- | --------------------------- | ---------------- | ------------- |
+| Tab               | height                      | 40 / 2.5         | –             |
+|                   | border-top                  | 2px              | –             |
+|                   | width                       | auto-width, grid | –             |
+| Label             | padding-left, padding-right | 16 / 1           | `$spacing-05` |
+| Dismissible icon  | padding-right               | 16 / 1           | `$spacing-05` |
+|                   | padding-left                | 8 / .5           | `$spacing-03` |
+|                   | svg                         | 16 x 16          | –             |
+| Icon              | padding-right               | 8 / .5           | `$spacing-03` |
+|                   | padding-left                | 16 / 1           | `$spacing-05` |
+|                   | svg                         | 16 x 16          | –             |
+| Tab               | border-right                | 1px              | –             |
+
+<div className="image--fixed">
+
+![Structure and spacing measurements for dismissible contained tabs in px and rem](images/tab-style-14.png)
+
+</div>
+
+<Caption>
+  Structure and spacing measurements for dismissible contained tabs without icons (top) and with icons (bottom)| px / rem
+</Caption>
+
+<br />
