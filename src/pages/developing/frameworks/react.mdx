@@ -50,38 +50,19 @@ behavior in prototype and production work.
 </Column>
     <Column colMd={4} colLg={4} noGutterSm>
     <ResourceCard
-      subTitle="Try React components with CodeSandbox"
-      href="https://codesandbox.io/s/x2mjypo6pp">
-      <MdxIcon name="codesandbox" />
+      subTitle="Try React components with Stackblitz"
+      href="https://stackblitz.com/github/carbon-design-system/carbon/tree/main/examples/vite">
+      <MdxIcon name="stackblitz" />
     </ResourceCard>
   </Column>
 </Row>
 
 ## Install
 
-<InlineNotification>
-
-**`@carbon/react` is new for v11.** It houses all the components, styles, and
-icons within a single package. It replaces the need for `carbon-components`,
-`carbon-components-react`, `carbon-icons`, and `@carbon/icons-react` packages.
-
-It also includes the bulk of everything you should need from other Carbon
-packages including `@carbon/styles`, `@carbon/grid`, `@carbon/layout`,
-`@carbon/themes`, `@carbon/type`, etc.
-
-We recommend starting with `@carbon/react` and not installing other Carbon
-packages until you find it necessary.
-
-Full details are available in the [migration guide](/migrating/guide/develop)
-and the
-[v11 changelog](https://github.com/carbon-design-system/carbon/blob/main/docs/migration/v11.md).
-
-</InlineNotification>
-
 <Title> Using npm: </Title>
 
 ```bash
-npm install @carbon/react --save
+npm install --save @carbon/react
 ```
 
 <Title>
@@ -94,64 +75,54 @@ yarn add @carbon/react
 
 ## Getting started
 
-1.  These components require the use of
-    [webpack](https://webpack.js.org/guides/getting-started/), or a similar
-    module bundler such as Vite, in your project.
+The `@carbon/react` package provides components, styles and icons for the Carbon
+Design System.
 
-2.  Components do not import any of the styles themselves. Styles are provided
-    through `@carbon/react` as
-    [Sass modules](https://sass-lang.com/blog/the-module-system-is-launched).
-    You will likely need to install the
-    [Dart Sass](https://npmjs.com/package/sass) package.
+Components require the use of a build pipeline in your project. This could be in
+the form of a bundler, framework, or other build tool. Some examples include
+NextJS, Vite, Parcel, and Webpack. A comprehensive list is available in the
+[react documentation](https://react.dev/learn/start-a-new-react-project).
 
-```bash
-npm install sass --save-dev
+To use a component, you can import it directly from the package:
 
-// or via yarn:
-yarn add sass --dev
-```
-
-3.  Once `sass` is added and configured, `@use` the SCSS to bring in styling
-    within an `index.scss`.
-
-```scss path=./index.scss
-@use '@carbon/react';
-```
-
-4. In most cases you'll need to import this file within the root file of your
-   app
-
-```jsx path=./main.jsx
-import './index.scss';
-
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
-```
-
-4. Import components and begin building!
-
-```jsx path=./App.jsx
+```js
 import { Button } from '@carbon/react';
-import React from 'react';
 
-function App() {
-  return (
-    <div>
-      <Button>Hello world</Button>
-    </div>
-  );
+function MyComponent() {
+  return <Button>Example usage</Button>;
 }
-
-export default App;
 ```
+
+To include the styles for a specific component, you can either import all the
+styles from the project or include the styles for a specific component:
+
+```js
+// Bring in all the styles for Carbon in your root/global stylesheet
+@use '@carbon/react';
+
+// Or bring in the styles for one component
+@use '@carbon/react/scss/components/button';
+```
+
+### Icons
+
+The @carbon/react package also provides icon components that you can include in
+your project. You can import these icon components from the
+`@carbon/react/icons` entrypoint:
+
+```js
+import { Add } from '@carbon/react/icons';
+
+function MyComponent() {
+  return <Add />;
+}
+```
+
+A full list of available icons is provided in the
+[icon library](/guidelines/icons/library/).
+
+For a more in depth introduction to using `@carbon/react` in a webpack-based
+app, [check out our react tutorial](/developing/react-tutorial/overview/).
 
 ## Development
 
@@ -161,8 +132,7 @@ before starting any work.
 
 ### Using the server
 
-We recommend the use of
-[React Storybook](https://github.com/storybooks/react-storybook) for developing
+We use [Storybook](https://github.com/storybookjs/storybook) for developing
 components.
 
 <Title> Start the server: </Title>
@@ -176,17 +146,18 @@ yarn storybook
 3.  Develop components in their respective folders (`/components` or
     `/internal`).
 
-4.  Write stories for your components in `/.storybook`.
+4.  Author stories within the `*.stories.js*` files.
 
 ### List of available components
 
-View available React Components [here](http://react.carbondesignsystem.com).
-Usage information is available when you select "Docs".
+View available React Components in
+[the `@carbon/react` storybook](http://react.carbondesignsystem.com). Usage
+information is available under the "docs" tab.
 
 ## Troubleshooting
 
-If you experience any issues while getting set up with `@carbon/react`, please
-head over to the
+If you experience any issues while getting set up with Carbon Components React,
+please head over to the
 [GitHub repo](https://github.com/carbon-design-system/carbon/tree/v10/packages/react)
 for more guidelines and support. Please
 [create an issue](https://github.com/carbon-design-system/carbon/issues) if your

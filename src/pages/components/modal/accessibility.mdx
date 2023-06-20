@@ -17,400 +17,109 @@ import {
   ListItem,
 } from '@carbon/react';
 
+<PageDescription>
+
+Design annotations are needed for specific instances shown below, but for the
+standard modal dialog component, Carbon already incorporates accessibility.
+
+</PageDescription>
+
 <AnchorLinks>
-  <AnchorLink>How it works</AnchorLink>
-  <AnchorLink>Accessibility considerations</AnchorLink>
-  <AnchorLink>Resources</AnchorLink>
-  <AnchorLink>Accessibility testing</AnchorLink>
+  <AnchorLink>What Carbon provides</AnchorLink>
+  <AnchorLink>Design recommendations</AnchorLink>
+  <AnchorLink>Development considerations</AnchorLink>
 </AnchorLinks>
 
-## How it works
+## What Carbon provides
 
-The modal Carbon component is a secondary window that displays over the primary
-window to allow the user to maintain the context of a particular task. When the
-modal is displayed the primary window is inert, so users cannot interact with
-content outside an active modal.
+Carbon bakes keyboard operation into its components, improving the experience of
+blind users and others who operate via the keyboard. Carbon incorporates many
+other accessibility considerations, some of which are described below.
 
-The modal dialog contains the tab sequence so that `Tab` and `Shift-Tab` keys do
-not move the focus outside of the modal. To support screen reader users each
-modal component includes a WAI ARIA `role="dialog"` and `aria-modal="true"` so
-assistive technologies understand that the windows underneath the current dialog
-are not available for interaction (inert). Focus, accessible descriptions, and
-labels are set based on the content of each modal. Modals that contain static
-text have the `aria-describeby` property set on the element with the ARIA
-`role="dialog"` to indicate which element or elements in the dialog contain
-content describes the primary purpose or message of the dialog. A value is also
-set for the `aria-labelledby` property that refers to a visible dialog title.
+### Keyboard interactions
 
-## Accessibility considerations
-
-This component has been validated to meet the
-[WCAG 2.0 AA](https://www.w3.org/TR/WCAG20/) and
-[Section 508](http://www.section508.gov/) accessibility guidelines, however
-changes made by the content owner can affect accessibility compliance. Be sure
-to review and follow the guidance in this section when updating or adding new
-content to this component.
-
-1. After the modal opens, initial focus should be set on the first focusable
-   element in the modal. See WAI-ARIA Authoring Practices
-   [Modal Dialog Example, Accessibility Features section](https://www.w3.org/TR/wai-aria-practices-1.1/examples/dialog-modal/dialog.html)
-   for best practices on setting focus.
-2. After a modal closes, focus should retain the user's point of regard and
-   return to the element that invoked the modal.
-3. Focus must not move outside the modal until it is closed.
-4. It is strongly recommended that the tab sequence of all modal dialogs include
-   a visible element with button role that closes the dialog, such as a close
-   icon or cancel button.
-5. Use the Alert modal dialog for special case that interrupts user’s workflow
-   to communicate a brief, important message and require a user’s response.
-
-## Resources
-
-#### Helpful resources for creating customized accessible implementations
-
-- [W3C WAI-ARIA Authoring Practices Dialog Modal Design Pattern](https://www.w3.org/TR/wai-aria-practices-1.1/#dialog_modal)
-  covers the usage of ARIA names, state and roles, as well as the expected
-  keyboard interactions.
-- [IBM Accessibility Requirements](https://www.ibm.com/able/requirements/requirements/):
-  - [1.4.13 Content on Hover or Focus](https://www.ibm.com/able/requirements/requirements/#1_4_13)
-    (WCAG Success Criteria
-    [1.4.13](https://www.w3.org/WAI/WCAG21/Understanding/content-on-hover-or-focus.html))
-  - [2.1.2 No Keyboard Traps](https://www.ibm.com/able/requirements/requirements/#2_1_2)
-    (WCAG Success Criteria
-    [2.1.2](https://www.w3.org/TR/UNDERSTANDING-WCAG20/keyboard-operation-trapping.html))
-  - [2.4.3 Focus Order](https://www.ibm.com/able/requirements/requirements/#2_4_3)
-    (WCAG Success Criteria
-    [2.4.3](https://www.w3.org/WAI/WCAG21/Understanding/focus-order))
-
-## Accessibility testing
-
-Accessibility issues are tracked in the
-[Carbon Component GitHub repository](https://github.com/carbon-design-system/carbon/issues?q=is%3Aopen+label%3A%22type%3A+a11y+%E2%99%BF%22+label%3A%22component%3A+modal%22+).
-
-### Automated test
+Modal dialogs take focus on appearance, and the tab order is constrained to the
+modal’s controls until the modal is closed by choosing one of the buttons with
+`Enter` or `Space`, or is dismissed by pressing `Esc`.
 
 <Row>
-  <Column noGutterSm>
-    <StructuredListWrapper>
-      <StructuredListHead>
-        <StructuredListRow head>
-          <StructuredListCell head>
-            Automated test environment
-          </StructuredListCell>
-          <StructuredListCell head>Results</StructuredListCell>
-        </StructuredListRow>
-      </StructuredListHead>
-      <StructuredListBody>
-        <StructuredListRow>
-          <StructuredListCell>
-            - macOS Mojave version 10.14.6 with VoiceOver
-            <br />
-            - Chrome version 77.0.3865.90
-            <br />
-            - Dynamic Assessment Plugin version 1.8.0.0 - IBM Accessibility WCAG
-            2.1 Sept. 2019 Ruleset
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>DAP test</strong>
-            <br />- No violations
-          </StructuredListCell>
-        </StructuredListRow>
-      </StructuredListBody>
-    </StructuredListWrapper>
-  </Column>
-</Row>
+<Column colLg={8}>
 
-### macOS Screen reader tests
+![illustration showing tab ring constrained within a modal with two buttons](images/modal-accessibility-1.png)
+
+<Caption>
+  Keyboard navigation is constrained to the dialog. Tab cycles through the
+  components that take focus.
+</Caption>
+
+</Column>
+</Row>
 
 <Row>
-  <Column noGutterSm>
-    <StructuredListWrapper>
-      <StructuredListHead>
-        <StructuredListRow head>
-          <StructuredListCell head>Environment </StructuredListCell>
-          <StructuredListCell head>Results</StructuredListCell>
-        </StructuredListRow>
-      </StructuredListHead>
-      <StructuredListBody>
-        <StructuredListRow>
-          <StructuredListCell>
-            - macOS Mojave version 10.14.6 with VoiceOver
-            <br />
-            - Chrome version 77.0.3865.90
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>VoiceOver(VO) test:</strong>
-            <OrderedList>
-              <ListItem>
-                Tab to Launch modal button. VO announces the button label.
-              </ListItem>
-              <ListItem>
-                Select Enter or Space key to launch the modal. VO announces the
-                button label, headings, and text.
-              </ListItem>
-              <ListItem>
-                Tab or Shift-Tab navigate through the modal buttons and
-                announces each label.
-              </ListItem>
-              <ListItem>
-                Select Control-Option-Right Arrow or Left Arrow to navigate
-                through the modal message.
-              </ListItem>
-              <ListItem>
-                Select the Esc key, Close button or Cancel button to close the
-                modal and return focus to the Launch modal button in the primary
-                window.
-              </ListItem>
-            </OrderedList>
-          </StructuredListCell>
-        </StructuredListRow>
-        <StructuredListRow>
-          <StructuredListCell>
-            - macOS Mojave version 10.14.6 with VoiceOver
-            <br />
-            - Safari version 13.0.2
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>VoiceOver(VO) test:</strong>
-            <OrderedList>
-              <ListItem>
-                Tab to Launch modal button. VO announces the button label.
-              </ListItem>
-              <ListItem>
-                Select Enter or Space key to launch the modal. VO announces the
-                Button label.
-              </ListItem>
-              <ListItem>
-                Tab or Shift-Tab navigate through the modal buttons and
-                announces each label.
-              </ListItem>
-              <ListItem>
-                Select Control-Option-Right Arrow or Left Arrow to navigate
-                through the modal message.
-              </ListItem>
-              <ListItem>
-                Select the Esc key, Close button or Cancel button to close the
-                modal and return focus to the Launch modal button in the primary
-                window.
-              </ListItem>
-            </OrderedList>
-          </StructuredListCell>
-        </StructuredListRow>
-      </StructuredListBody>
-    </StructuredListWrapper>
-  </Column>
+<Column colLg={8}>
+
+![Esc closes a modal, while Space and Enter keys activate buttons](images/modal-accessibility-2.png)
+
+<Caption>
+  The dialog is resolved by the user pressing Esc or activating a button.
+</Caption>
+
+</Column>
 </Row>
 
-### Windows screen reader tests
+### Focus handling
+
+When the dialog appears, the first item that gets focus depends on the type of
+dialog. Passive dialogs only contain a close button (X), so that takes focus.
+For dialogs which prompt for confirmation or user decision, the primary button
+takes focus (regardless of number of buttons). For destructive interactions, the
+“cancel” button takes focus, not the red danger/delete button. The tab order
+should proceed left and down from whichever item has focus then wrap back to the
+close button (X).
 
 <Row>
-  <Column noGutterSm>
-    <StructuredListWrapper>
-      <StructuredListHead>
-        <StructuredListRow head>
-          <StructuredListCell head>Environment</StructuredListCell>
-          <StructuredListCell head>Results</StructuredListCell>
-        </StructuredListRow>
-      </StructuredListHead>
-      <StructuredListBody>
-        <StructuredListRow>
-          <StructuredListCell>
-            - Microsoft Windows 10
-            <br />
-            - Firefox version 67
-            <br />
-            - JAWS version 19.1810.64
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>JAWS test:</strong>
-            <OrderedList>
-              <ListItem>
-                Tab to Launch modal button. JAWS announces the button label.
-              </ListItem>
-              <ListItem>
-                Select Enter or Space key to launch the modal.
-              </ListItem>
-              <ListItem>
-                Tab or Shift-Tab to navigate through the modal buttons and
-                announces each label. Focus does not move out of the modal when
-                tabbing.
-              </ListItem>
-              <ListItem>
-                Select Control-Option-Right Arrow or Left Arrow to navigate
-                through the modal message.
-              </ListItem>
-              <ListItem>
-                Press Close button or Cancel button to close the modal and
-                return focus to the Launch modal button in the primary window.
-              </ListItem>
-            </OrderedList>
-          </StructuredListCell>
-        </StructuredListRow>
-        <StructuredListRow>
-          <StructuredListCell>
-            - Microsoft Windows 10
-            <br />
-            - Chrome version 73.0.3683.103 (Official Build) (64-bit)
-            <br />
-            - JAWS version 19.1810.64
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>JAWS test:</strong>
-            <OrderedList>
-              <ListItem>
-                Tab to Launch modal button. JAWS announces the button label.
-              </ListItem>
-              <ListItem>
-                Select Enter or Space key to launch the modal.
-              </ListItem>
-              <ListItem>
-                Tab or Shift-Tab to navigate through the modal buttons and
-                announces each label. Focus does not move out of the modal when
-                tabbing.
-              </ListItem>
-              <ListItem>
-                Select Control-Option-Right Arrow or Left Arrow to navigate
-                through the modal message.
-              </ListItem>
-              <ListItem>
-                Press Close button or Cancel button to close the modal and
-                return focus to the Launch modal button in the primary window.
-              </ListItem>
-            </OrderedList>
-          </StructuredListCell>
-        </StructuredListRow>
-        <StructuredListRow>
-          <StructuredListCell>
-            - Microsoft Windows 10
-            <br />
-            - Chrome version 73.0.3683.103 (Official Build) (64-bit)
-            <br />
-            - NVDA Version 2018.4.1
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>NVDA test:</strong>
-            <OrderedList>
-              <ListItem>
-                Tab to Launch modal button. NVDA announces the button label
-              </ListItem>
-              <ListItem>
-                Select Enter or Space key to launch the modal. NVDA announces
-                the text and buttons automatically.
-              </ListItem>
-              <ListItem>
-                Tab or Shift-Tab to navigate through the modal buttons and
-                announces each label. Focus does not move out of the modal when
-                tabbing.
-              </ListItem>
-              <ListItem>
-                Select Control-Option-Right Arrow or Left Arrow to navigate
-                through the modal message.
-              </ListItem>
-              <ListItem>
-                Press Close button or Cancel button to close the modal and
-                return focus to the Launch modal button in the primary window.
-              </ListItem>
-            </OrderedList>
-          </StructuredListCell>
-        </StructuredListRow>
-      </StructuredListBody>
-    </StructuredListWrapper>
-  </Column>
+<Column colLg={8}>
+
+![initial focus in the dialog varies across four types of modals](images/modal-accessibility-3.png)
+
+<Caption>The first item with focus varies depending on dialog type.</Caption>
+
+</Column>
 </Row>
 
-### Android screen reader tests
+## Design recommendations
 
-<Row>
-  <Column noGutterSm>
-    <StructuredListWrapper>
-      <StructuredListRow head>
-        <StructuredListCell head>Environment </StructuredListCell>
-        <StructuredListCell head>Results</StructuredListCell>
-      </StructuredListRow>
-      <StructuredListBody>
-        <StructuredListRow>
-          <StructuredListCell>
-            - Android version 9 with Talkback
-            <br />
-            - Chrome Version 73.0.3683.103 (Official Build) (64-bit)
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>Talkback test:</strong>
-            <OrderedList>
-              <ListItem>
-                Swipe left or right, or use the Alt+Arrow keys in quick nav mode
-                until you find the Launch modal button.
-              </ListItem>
-              <ListItem>
-                Double tap the button or press the Alt-Enter keys to launch the
-                modal. The close modal button is announces and has focus.
-              </ListItem>
-              <ListItem>
-                Swipe Left or Right to explore the modal. VO announces the text,
-                and focus on the Cancel and Save buttons.
-              </ListItem>
-              <ListItem>
-                Note: that navigation is not restricted to the modal only, after
-                the modal is open there is no way to know if there is an open
-                modal present, the user needs to remember it. Doubletap or press
-                Alt+Enter on the Close or Cancel buttons to close the modal.
-              </ListItem>
-            </OrderedList>
-          </StructuredListCell>
-        </StructuredListRow>
-      </StructuredListBody>
-    </StructuredListWrapper>
-  </Column>
-</Row>
+### Designate the input that takes focus in a transactional
 
-### iOS screen reader tests
+The only time the starting focus would not be on a button is where a dialog
+contains input fields. For such transactional dialogs, designers should annotate
+that the first input field should receive focus. Note that text links are not
+considered a user input in this context.
 
-<Row>
-  <Column noGutterSm>
-    <StructuredListWrapper>
-      <StructuredListRow head>
-        <StructuredListCell head>Environment </StructuredListCell>
-        <StructuredListCell head>Results</StructuredListCell>
-      </StructuredListRow>
-      <StructuredListBody>
-        <StructuredListRow>
-          <StructuredListCell>
-            - iOS version 13.1.3 with VoiceOver
-            <br />
-            - Safari version 13.1.3
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>VoiceOver test:</strong>
-            <OrderedList>
-              <ListItem>
-                Swipe left or right, or use the Arrow keys in quick nav mode
-                until you find the Launch modal button.
-              </ListItem>
-              <ListItem>
-                Double tap the button to launch the modal. The close modal
-                button is announces and has focus.
-              </ListItem>
-              <ListItem>
-                Swipe Left or Right to explore the modal. VO announces the text,
-                and focus on the Cancel and Save buttons.
-              </ListItem>
-              <ListItem>
-                After Double tapping on the close or cancel button, the modal
-                closes but focus is stuck on the selected button. Touch the
-                screen anywhere to move out of the focus trap.
-              </ListItem>
-            </OrderedList>
-          </StructuredListCell>
-        </StructuredListRow>
-      </StructuredListBody>
-    </StructuredListWrapper>
-  </Column>
-</Row>
+<DoDontRow>
+  <DoDont type="do" caption="Annotate the starting input that should take focus on a transactional dialog.">
+
+![annotation on input says 'focus lands here when modal opens'](images/modal-accessibility-4-do.png)
+
+  </DoDont>
+
+  <DoDont type="dont" caption="Do not give a link focus when a modal opens.">
+
+![annotation on link says 'focus lands here when modal opens'](images/modal-accessibility-4-dont.png)
+
+  </DoDont>
+</DoDontRow>
+
+## Development considerations
+
+Keep these considerations in mind if you are modifying Carbon or creating a
+custom component.
+
+- Carbon assigns the container a role of "dialog" and sets `aria-modal` to
+  `"true"`.
+- The dialog is labelled via `aria-label`, using the same string used for the
+  modal’s title; `aria-labelledby` could also be used to assign the title’s
+  string.
+- See the modal pattern in the
+  [ARIA authoring practices](https://w3c.github.io/aria-practices/#dialog_modal)
+  for more considerations.

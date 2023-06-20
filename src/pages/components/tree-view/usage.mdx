@@ -64,12 +64,268 @@ child nodes.
 
 ## Live demo
 
-<InlineNotification>
+import { Document, Folder } from '@carbon/icons-react';
 
-**Coming soon:** The live demo for tree view is underdevelopment and will be
-available soon.
-
-</InlineNotification>
+<ComponentDemo
+  components={[
+    {
+      id: 'default-treeview',
+      label: 'Default',
+    },
+    {
+      id: 'treeview-with-icons',
+      label: 'With Icons',
+    },
+  ]}
+  scope={{ Document, Folder }}
+>
+  <ComponentVariant
+    id="default-treeview"
+    knobs={{
+      TreeView: ['size', 'hideLabel'],
+    }}
+    links={{
+      React:
+        'https://react.carbondesignsystem.com/?path=/story/components-treeview--default',
+    }}
+  >
+    {`
+      <div style={{width: '300px'}}>
+        <TreeView label="Tree View">
+          <TreeNode
+            key='1'
+            id='1'
+            value='Artificial intelligence'
+            label={<span>Artificial intelligence</span>}
+          />
+          <TreeNode
+            key='2'
+            id='2'
+            value='Blockchain'
+            label='Blockchain'
+          />
+          <TreeNode
+            key='3'
+            id='3'
+            value='Business automation'
+            label='Business automation'
+          >
+            <TreeNode
+              key='3-1'
+              id='3-1'
+              value='Business process automation'
+              label='Business process automation'
+            />
+            <TreeNode
+              key='3-2'
+              id='3-2'
+              value='Business process mapping'
+              label='Business process mapping'
+            />
+          </TreeNode>
+          <TreeNode
+            key='4'
+            id='4'
+            value='Business operations'
+            label='Business operations'
+          />
+          <TreeNode
+            key='5'
+            id='5'
+            value='Cloud computing'
+            label='Cloud computing'
+            isExpanded={true}
+          >
+            <TreeNode
+              key='5-1'
+              id='5-1'
+              value='Containers'
+              label='Containers'
+            />
+            <TreeNode
+              key='5-2'
+              id='5-2'
+              value='Databases'
+              label='Databases'
+            />
+            <TreeNode
+              key='5-3'
+              id='5-3'
+              value='DevOps'
+              label='DevOps'>
+                <TreeNode
+                  key='5-4'
+                  id='5-4'
+                  value='Solutions'
+                  label='Solutions'
+                />
+                <TreeNode
+                  key='5-5'
+                  id='5-5'
+                  value='Case studies'
+                  label='Case studies'>
+                  <TreeNode
+                      key='5-6'
+                      id='5-6'
+                      value='Resources'
+                      label='Resources'
+                  />
+                </TreeNode>
+            </TreeNode>
+          </TreeNode>
+          <TreeNode
+            key='6'
+            id='6'
+            value='Data & Analytics'
+            label='Data & Analytics'>
+            <TreeNode
+              key='6-1'
+              id='6-1'
+              value='Big data'
+              label='Big data'
+            />
+            <TreeNode
+              id='6-2'
+              value='Business intelligence'
+              label='Business intelligence'
+            />
+          </TreeNode>
+        </TreeView>
+      </div>
+  `}
+  </ComponentVariant>
+  <ComponentVariant
+    id="treeview-with-icons"
+    knobs={{
+      TreeView: ['size', 'hideLabel'],
+    }}
+    links={{
+      React:
+        'https://react.carbondesignsystem.com/?path=/story/components-treeview--with-icons',
+    }}
+  >
+    {`
+      <div style={{width: '300px'}}>
+        <TreeView label="Tree View">
+          <TreeNode
+            key='1'
+            id='1'
+            value='Artificial intelligence'
+            label={<span>Artificial intelligence</span>}
+            renderIcon={Document}
+            />
+          <TreeNode
+            key='2'
+            id='2'
+            value='Blockchain'
+            label='Blockchain'
+            renderIcon={Document}
+            />
+          <TreeNode
+            key='3'
+            id='3'
+            value='Business automation'
+            label='Business automation'
+            renderIcon={Folder}
+          >
+            <TreeNode
+              key='3-1'
+              id='3-1'
+              value='Business process automation'
+              label='Business process automation'
+              renderIcon={Document}
+            />
+            <TreeNode
+              key='3-2'
+              id='3-2'
+              value='Business process mapping'
+              label='Business process mapping'
+              renderIcon={Document}
+            />
+          </TreeNode>
+          <TreeNode
+            key='4'
+            id='4'
+            value='Business operations'
+            label='Business operations'
+            renderIcon={Document}
+          />
+          <TreeNode
+            key='5'
+            id='5'
+            value='Cloud computing'
+            label='Cloud computing'
+            isExpanded={true}
+            renderIcon={Folder}
+          >
+            <TreeNode
+              key='5-1'
+              id='5-1'
+              value='Containers'
+              label='Containers'
+              renderIcon={Document}
+            />
+            <TreeNode
+              key='5-2'
+              id='5-2'
+              value='Databases'
+              label='Databases'
+              renderIcon={Document}
+            />
+            <TreeNode
+              key='5-3'
+              id='5-3'
+              value='DevOps'
+              label='DevOps'
+              renderIcon={Folder}>
+                <TreeNode
+                  key='5-4'
+                  id='5-4'
+                  value='Solutions'
+                  label='Solutions'
+                  renderIcon={Document}
+                />
+                <TreeNode
+                  key='5-5'
+                  id='5-5'
+                  value='Case studies'
+                  label='Case studies'
+                  renderIcon={Folder}>
+                  <TreeNode
+                      key='5-6'
+                      id='5-6'
+                      value='Resources'
+                      label='Resources'
+                      renderIcon={Document}
+                  />
+                </TreeNode>
+            </TreeNode>
+          </TreeNode>
+          <TreeNode
+            key='6'
+            id='6'
+            value='Data & Analytics'
+            label='Data & Analytics'
+            renderIcon={Folder}>
+            <TreeNode
+              key='6-1'
+              id='6-1'
+              value='Big data'
+              label='Big data'
+              renderIcon={Document}
+            />
+            <TreeNode
+              id='6-2'
+              value='Business intelligence'
+              label='Business intelligence'
+              renderIcon={Document}
+            />
+          </TreeNode>
+        </TreeView>
+      </div>
+  `}
+  </ComponentVariant>
+</ComponentDemo>
 
 ## Formatting
 
@@ -301,6 +557,7 @@ cause alignment inconsistencies and make groupings of nodes harder to visualize.
 
 <DoDontRow>
 <DoDont
+type="do"
 colMd={4} colLg={4}
 caption="Do consistently use icons for each node in a tree view.">
 

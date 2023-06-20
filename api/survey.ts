@@ -3,7 +3,7 @@ import fetch, { FetchError } from 'node-fetch';
 
 import { WebClient } from '@slack/web-api';
 
-require('dotenv').config();
+require('dotenv').config(); //eslint-disable-line @typescript-eslint/no-var-requires
 
 const permittedOrigins = [
   'https://www.carbondesignsystem.com',

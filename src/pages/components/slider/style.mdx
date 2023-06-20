@@ -10,54 +10,99 @@ tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 
 | Element       | Property         | Color token         |
 | ------------- | ---------------- | ------------------- |
-| Slider thumb  | fill             | `$icon-primary`     |
+| Thumb         | fill             | `$icon-primary`     |
 | Track         | background-color | `$border-subtle` \* |
 | Track: filled | background-color | `$border-inverse`   |
-| Label         | text color       | `$text-secondary`   |
-| Rangel label  | text color       | `$text-primary`     |
+| Label         | text-color       | `$text-secondary`   |
+| Rangel label  | text-color       | `$text-primary`     |
 
 <Caption>
   * Denotes a contextual color token that will change values based on the layer
   it is placed on.
 </Caption>
 
+<Row>
+<Column colLg={8}>
+
+![Slider enabled state](images/slider-style-color.png)
+
+</Column>
+</Row>
+
 ### Interactive states
 
-| Element        | Property         | Color token        |
-| -------------- | ---------------- | ------------------ |
-| Thumb:focus    | border           | `$focus`           |
-| Thumb:active   | fill             | `$interactive`     |
-| Track:active   | background-color | `$interactive`     |
-| Label:disabled | text color       | `$text-disabled`   |
-| Thumb:disabled | fill             | `$border-disabled` |
-| Track:disabled | background-color | `$border-disabled` |
+Slider uses a text input to type in values. See
+[text input](https://carbondesignsystem.com/components/text-input/usage/#states)
+for more information on its interactive states.
+
+| State     | Element         | Property         | Color token         |
+| --------- | --------------- | ---------------- | ------------------- |
+| Focus     | Thumb           | border           | `$focus`            |
+|           | Track           | background-color | `$interactive`      |
+| Active    | Thumb           | fill             | `$interactive`      |
+|           | Track           | background-color | `$interactive`      |
+| Error     | Text input      | border           | `$support-error`    |
+|           | Error icon      | svg              | `$support-error`    |
+|           | Error message   | text-color       | `$text-error`       |
+| Warning   | Warning icon    | svg              | `$support-warning`  |
+|           | Warning message | text-color       | `$text-primary`     |
+| Disabled  | Label           | text-color       | `$text-disabled`    |
+|           | Range label     | text-color       | `$text-disabled`    |
+|           | Thumb           | fill             | `$border-disabled`  |
+|           | Track           | background-color | `$border-disabled`  |
+| Read-only | Label           | text-color       | `$text-secondary`   |
+|           | Range label     | text-color       | `$text-primary`     |
+|           | Track           | background-color | `$border-subtle` \* |
+|           | Track:filled    | background-color | `$border-inverse`   |
+
+<Caption>
+  * Denotes a contextual color token that will change values based on the layer
+  it is placed on.
+</Caption>
+
+<Row>
+<Column colLg={12}>
+
+![Slider interactive states](images/slider-style-states.png)
+
+</Column>
+</Row>
 
 ## Typography
 
 Slider labels should be set in sentence case, with only the first word in a
 phrase and any proper nouns capitalized, and no more than three words.
 
-| Element     | Font-size (px/rem) | Font-weight   | Type token  |
-| ----------- | ------------------ | ------------- | ----------- |
-| Label       | 12 / 0.75          | Regular / 400 | `$label-01` |
-| Range label | 14 / 0.875         | Regular / 400 | `$code-02`  |
+| Element     | Font-size (px/rem) | Font-weight   | Type token         |
+| ----------- | ------------------ | ------------- | ------------------ |
+| Label       | 12 / 0.75          | Regular / 400 | `$label-01`        |
+| Range label | 14 / 0.875         | Regular / 400 | `$body-compact-01` |
 
 ## Structure
 
 The width of a slider varies based on page content and layout.
 
-| Element      | Property                  | px / rem   | Spacing token |
-| ------------ | ------------------------- | ---------- | ------------- |
-| Thumb        | height, width             | 14 / 0.875 | –             |
-| Thumb:active | height, width             | 20 / 1.25  | –             |
-| Track        | height                    | 4 / 0.25   | –             |
-|              | margin-left, margin-right | 8 / 0.5    | `$spacing-03` |
-| Label        | margin-bottom             | 16 / 1     | `$spacing-05` |
-| Range label  | margin-right              | 16 / 1     | `$spacing-05` |
+| Element       | Property                    | px / rem   | Spacing token |
+| ------------- | --------------------------- | ---------- | ------------- |
+| Thumb         | height, width               | 14 / 0.875 | –             |
+| Thumb:active  | height, width               | 20 / 1.25  | –             |
+| Thumb:active  | height, width               | 20 / 1.25  | –             |
+| Track         | height                      | 4 / 0.25   | –             |
+|               | margin-left, margin-right   | 8 / 0.5    | `$spacing-03` |
+| Label         | margin-bottom               | 8 / 0.5    | `$spacing-03` |
+| Range label   | margin-right                | 16 / 1     | `$spacing-05` |
+| Error message | margin-top                  | 16 / 1     | `$spacing-05` |
+| State icon    | padding-right, padding-left | 16 / 1     | `$spacing-05` |
 
 <div className="image--fixed">
 
-![Structure and spacing measurements for slider](images/slider-style-1.png)
+![Structure and spacing measurements for slider enabled state](images/slider-style-spec-enabled.png)
+
+</div>
+
+<div className="image--fixed">
+
+![Structure and spacing measurements for slider error state](images/slider-style-spec-error.png)
 
 </div>
 
