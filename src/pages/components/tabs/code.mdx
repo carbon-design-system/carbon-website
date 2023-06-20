@@ -61,27 +61,40 @@ documentation, see the Storybooks for each framework below.
 
 ## Live demo
 
-<!-- knobs={{ Tabs: ['type'], Tab: ['disabled', 'selected'] }} -->
+import { Bat, Bee, Corn, Home, Monster } from '@carbon/react/icons';
 
 <ComponentDemo
-  components={[
-    {
-      id: 'tabs',
-      label: 'Tabs',
-    },
-  ]}
   scope={{
+    Bat,
+    Bee,
+    Corn,
+    Home,
+    Monster,
     Tabs,
     TabList,
     Tab,
     TabPanels,
     TabPanel,
   }}
+  components={[
+    {
+      id: 'tabs',
+      label: 'Tabs',
+    },
+    {
+      id: 'tabs--with-icons',
+      label: 'Tabs with icon',
+    },
+    {
+      id: 'icon-only',
+      label: 'Icon only',
+    },
+  ]}
 >
   <ComponentVariant
     id="tabs"
     knobs={{
-      TabList: ['activation', 'contained'],
+      TabList: ['contained'],
       Tab: ['disabled'],
     }}
     links={{
@@ -100,7 +113,7 @@ documentation, see the Storybooks for each framework below.
     <TabList aria-label="List of tabs">
       <Tab>Tab Label 1</Tab>
       <Tab>Tab Label 2</Tab>
-      <Tab>Tab Label 3</Tab>
+      <Tab disabled>Tab Label 3</Tab>
       <Tab>
           Tab Label 4 with a very long long title
       </Tab>
@@ -114,6 +127,102 @@ documentation, see the Storybooks for each framework below.
       <TabPanel>Tab Panel 3</TabPanel>
       <TabPanel>Tab Panel 4</TabPanel>
       <TabPanel>Tab Panel 5</TabPanel>
+    </TabPanels>
+  </Tabs>
+</div>
+  `}
+  </ComponentVariant>
+  <ComponentVariant
+    id="tabs--with-icons"
+    knobs={{
+      TabList: ['contained'],
+      Tab: ['type', 'disabled'],
+    }}
+    links={{
+      React:
+        'https://react.carbondesignsystem.com/?path=/story/components-tabs--with-icons',
+      Angular:
+        'https://angular.carbondesignsystem.com/?path=/story/components-tabs--basic',
+      Vue: 'http://vue.carbondesignsystem.com/?path=/story/components-cvtabs--default',
+      'Web Components':
+        'https://web-components.carbondesignsystem.com/?path=/story/components-tabs--default',
+    }}
+  >
+    {`
+<div style={{ width: '75%' }}>
+  <Tabs>
+    <TabList activation="manual" aria-label="List of tabs">
+      <Tab renderIcon={Bee}>Tab label 1</Tab>
+      <Tab renderIcon={Monster}>Tab label 2</Tab>
+      <Tab renderIcon={Corn}>
+        Tab label 3
+      </Tab>
+      <Tab title="Tab label 4" renderIcon={Bat} disabled>
+         Tab label 4
+       </Tab>
+       <Tab renderIcon={Home}>Tab label 5</Tab>
+     </TabList>
+     <TabPanels>
+       <TabPanel>Tab Panel 1</TabPanel>
+       <TabPanel>
+         <form style={{ margin: '2em' }}>
+           <legend className='cds--label'>Validation example</legend>
+           <Checkbox id="cb" labelText="Accept privacy policy" />
+           <Button
+             style={{ marginTop: '1rem', marginBottom: '1rem' }}
+             type="submit">
+             Submit
+           </Button>
+           <TextInput
+             type="text"
+             labelText="Text input label"
+             helperText="Optional help text"
+             id="text-input-1"
+           />
+         </form>
+       </TabPanel>
+       <TabPanel>Tab Panel 3</TabPanel>
+       <TabPanel>Tab Panel 4</TabPanel>
+       <TabPanel>Tab Panel 5</TabPanel>
+     </TabPanels>
+   </Tabs>
+</div>
+  `}
+  </ComponentVariant>
+  <ComponentVariant
+    id="icon-only"
+    knobs={{
+      TabList: ['contained'],
+      IconTab: ['disabled'],
+    }}
+    links={{
+      React:
+        'https://react.carbondesignsystem.com/?path=/story/components-tabs--icon-only',
+      Angular:
+        'https://angular.carbondesignsystem.com/?path=/story/components-tabs--basic',
+      Vue: 'http://vue.carbondesignsystem.com/?path=/story/components-cvtabs--default',
+      'Web Components':
+        'https://web-components.carbondesignsystem.com/?path=/story/components-tabs--default',
+    }}
+  >
+    {`
+<div style={{ width: '75%' }}>
+  <Tabs>
+    <TabList iconSize="default" aria-label="List of tabs">
+      <IconTab label="Monster">
+        <Monster aria-label="Monster" />
+      </IconTab>
+      <IconTab label="Corn">
+        <Corn aria-label="Corn" />
+      </IconTab>
+      <IconTab label="Bat" disabled>
+        <Bat aria-label="Bat" />
+      </IconTab>
+    </TabList>
+    <TabPanels>
+      <TabPanel>Tab Panel 1</TabPanel>
+      <TabPanel>Tab Panel 2</TabPanel>
+      <TabPanel>Tab Panel 3</TabPanel>
     </TabPanels>
   </Tabs>
 </div>
