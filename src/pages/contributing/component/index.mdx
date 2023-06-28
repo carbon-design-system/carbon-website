@@ -855,14 +855,15 @@ tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 
 <!--
 There are 2 stock page descriptions.
-Choose the first if designers need to include annotations in their wireframes to make the component accessible.
+Choose the first example if designers need to include annotations in their wireframes to make the component accessible. Choose the second if the component is accessible without additional design decisions.
+** If example 2 is used, the Design recommendations section and its anchor link should be removed.
 
-Example 1: Design annotations are needed for specific instances shown below, but for the
-standard (component name) component, Carbon already incorporates accessibility.
+Example 1:
+Design annotations are needed for specific instances shown below, but for the
+standard [component_name] component, Carbon already incorporates accessibility.
 
-Choose the second if the component is accessible without additional design decisions. If this is the case, the Design recommendations section should also be removed and the anchor link removed.
-
-Example 2: No accessibility annotations are needed for (component name)s, but keep these considerations in
+Example 2:
+No accessibility annotations are needed for [component_name]s, but keep these considerations in
 mind if you are modifying Carbon or creating a custom component.
 -->
 
@@ -883,71 +884,89 @@ Carbon bakes keyboard operation into its components, improving the experience of
 blind users and others who operate via the keyboard. Carbon incorporates many
 other accessibility considerations, some of which are described below.
 
-### Keyboard interactions
+### Keyboard interaction
 
 <!--
-This keyboard section introduction text can give details of keyboard operation. For actionable components, begin by talking about the navigation via the tab stop, then discuss common interactions keys. For components with subcomponents, unless there is little interaction for the subcomponent, consider splitting the subcomponent considerations into a separate paragraph, separated by an illustration. Keyboard keys should be referred to with code styling.
+This keyboard section introduction text can give details of keyboard operation. For actionable components, begin by talking about the navigation via the tab stop, then discuss common interactions keys. For components with subcomponents, unless there is little interaction for the subcomponent, consider splitting the subcomponent considerations into a separate paragraph, separated by an illustration. Where operation is more complicated, separate headings for Keyboard navigation and Keyboard interaction can exist.Keyboard keys should be referred to with code styling.
 
-Example 1: Each accordion is a tab stop. `Space` or `Enter` keys expand or collapse accordions, which are
-collapsed by default. Interactive elements within expanded accordions integrate into the tab order automatically.
+Example 1:
+-->
 
-Example 2: Each page link in the breadcrumb is reached by `Tab` and activated by `Enter`. The current
+Each accordion is a tab stop. `Space` or `Enter` keys expand or collapse
+accordions, which are collapsed by default. Interactive elements within expanded
+accordions integrate into the tab order automatically.
+
+<!--
+Example 2:
+Each page link in the breadcrumb is reached by `Tab` and activated by `Enter`. The current
 page, if listed in the breadcrumb, is not a link. If the breadcrumb is truncated, the ellipsis button
 for the overflow menu is in the tab order. See [overflow menu]((https://carbondesignsystem.com/components/overflow-menu/usage/)) for details on its keyboard operation
 -->
 
-### Skeleton
+<!--
+**Images**
+Use one image to document keyboard navigation. If the component has limited operation functionality, it may also be incorporated in the same image. Otherwise, the operation should be dealt with in a separate image.
+Normally these images go across 8 columns.
+images should follow the naming convention (component_name-accessibility-1.png
+The ALT text text for the first image can be fairly generic, since the image is just restating information in the prior paragraph.
+The caption should likewise summarize something already described in the preceding paragraph. No new information should be given in the caption. Due to technology constraints, keystroke names in the captions are not given any markdown styling.
+Example:
+![example of breadcrumb keyboard interaction](images/breadcrumb-accessibility-1.png)
+<Caption>
+  The breadcrumb's links are reached by Tab and activated by Enter.
+</Caption>
+-->
+<Row>
+<Column colLg={8}>
+
+![example of (componet_name) keyboard interaction](images/component_name-accessibility-1.png)
+
+<Caption>
+  The (component_name) is reached by Tab and activated by Enter.
+</Caption>
+
+</Column>
+</Row>
 
 <!--
-Include which component/s to use for the skeleton state and why it might be useful.
+The Design recommendations section should only be included if annotations are needed
+-->
+
+## Design recommendations
+
+Design annotations are needed for the following instances.
+
+<!--
+Some of the possible subheadings here include:
+- headings
+- alignment
+- labeling
+- meaningful order
+
+Each should have a level 3 heading, a descriptive paragraph and a supporting image.
 
 Example:
 
-*You can use the BreadcrumbSkeleton component to render a skeleton variant of an breadcrumb. This is useful to display while content in your breadcrumb is being fetched from an external resource like an API.*
+### Headings
+Carbon accordions are not set as headings by default. For improved accessibility, annotate accordions as headings on the first occurrence in a product. Annotate the heading level of accordions as needed.
+
 -->
 
-## [Use case, for example, Skeleton state or Sorting]
+## Development considerations
+
+Keep these considerations in mind if you are modifying Carbon or creating a
+custom component.
 
 <!--
-Each use-case of this component becomes its own section. For example,
-if an accordion had a skeleton then you would name this section Skeleton.
+Provide a bulleted list of implementation considerations for ensuring accessibility. If there is the ability to refernce the IBM toolkit or the ARIA authoring practices, that should be done.
 
-If the component had a specific piece of functionality or behavior, like
-how you can sort with a Data Table, then Sorting would be the name of this
-section.
+- Use dashed bullets and ensure code is styled as code and consistently appears with the
+following symbols: <element>, 'variable' and "value".
+- End each bulleted list item with a period.
 
-This section should include an explainer for the use-case and when to use it,
-along with a code snippet that someone could bring into their project.
--->
+Example:
+- See the [ARIA authoring practices](https://w3c.github.io/aria-practices/#tooltip) for more considerations.
 
-## Component API
-
-### [Component name] props
-
-| Prop        | Type     | Required | Default | Description |
-| ----------- | -------- | -------- | ------- | ----------- |
-| `className` | `string` | –        | –       | –           |
-
-<!--
-* Only specific required as `true`, if it's false you don't need to indicate that
-* Specify the default value if applicable
-* Provide a description if applicable
-* Annotate the type using TypeScript type annotations
-* Empty cells should be filled with en dashes (–)
-* Table should be sorted in alphabetical order
--->
-
-#### [Component name][prop name]
-
-<!--
-Used to clarify prop usage, provide additional info or snippets
--->
-
-## References
-
-<!--
-A place for references, links, or a way clarify points made earlier
-in the documentation.
 -->
 ```
 
