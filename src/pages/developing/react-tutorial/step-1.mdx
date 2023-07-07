@@ -146,7 +146,7 @@ with.
 Stop your development server with `CTRL-C` and install Carbon dependencies with:
 
 ```bash
-yarn add @carbon/react@1.1.0
+yarn add @carbon/react@1.32.0
 ```
 
 ## Install and build Sass
@@ -514,11 +514,10 @@ deployments in upcoming tutorial steps. Learn more about the React Router
 Then, update the `render()` function to include the `Router`.
 
 ```javascript path=src/index.js
-ReactDOM.render(
+createRoot(document.getElementById('root')).render(
   <Router>
     <App />
-  </Router>,
-  document.getElementById('root')
+  </Router>
 );
 ```
 
@@ -526,7 +525,8 @@ In order to render our content pages, we need to add the following imports in
 `App.js` below our existing imports.
 
 ```javascript path=src/App.js
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
+import { Content } from '@carbon/react';
 import LandingPage from './content/LandingPage';
 import RepoPage from './content/RepoPage';
 ```
@@ -535,17 +535,21 @@ This allows us to use our page content components and routing components from
 `react-router-dom`.
 
 The next thing we need to do is update what we're returning to `App.js`. We
-currently just have a button in our content. In order to render our pages
-correctly, we need to delete the `Button` component within `Content` (and remove
-the Button import).
+currently just have a div with some dummy content. In order to render our pages
+correctly, we need to replace the `div` with `<BrowserRouter>` (and remove the
+text inside).
 
-Now inside `Content` we'll add the following:
+Now inside `App.js` we'll add the following:
 
 ```jsx path=src/App.js
-<Switch>
-  <Route exact path="/" component={LandingPage} />
-  <Route path="/repos" component={RepoPage} />
-</Switch>
+<BrowserRouter>
+  <Content>
+    <Switch>
+      <Route exact path="/" component={LandingPage} />
+      <Route path="/repos" component={RepoPage} />
+    </Switch>
+  </Content>
+</BrowserRouter>
 ```
 
 After that we need to do a couple quick fixes to the UI Shell to have it work
@@ -563,7 +567,7 @@ To use `Link`, update the `HeaderName` component to use the `element` prop and
 replace the `href` with `to`:
 
 ```javascript path=src/components/TutorialHeader/TutorialHeader.js
-<HeaderName element={Link} to="/" prefix="IBM">
+<HeaderName as={Link} to="/" prefix="IBM">
   Carbon Tutorial
 </HeaderName>
 ```
@@ -571,7 +575,7 @@ replace the `href` with `to`:
 Do the same with the components that contain `href="/repos"`, updating them to:
 
 ```javascript path=src/components/TutorialHeader/TutorialHeader.js
-<HeaderMenuItem element={Link} to="/repos">
+<HeaderMenuItem as={Link} to="/repos">
   Repositories
 </HeaderMenuItem>
 ```
@@ -592,7 +596,7 @@ Then, we will wrap `Theme` around our header, and set the zoned theme using the
 `"g100"`.
 
 ```javascript path=src/App.js
-<>
+<BrowserRouter>
   <Theme theme="g100">
     <TutorialHeader />
   </Theme>
@@ -602,7 +606,7 @@ Then, we will wrap `Theme` around our header, and set the zoned theme using the
       <Route path="/repos" component={RepoPage} />
     </Switch>
   </Content>
-</>
+</BrowserRouter>
 ```
 
 You might have noticed that the landing and repo page content disappeared. This
