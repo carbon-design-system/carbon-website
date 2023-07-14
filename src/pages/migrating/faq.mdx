@@ -262,6 +262,20 @@ If you don't include `as *`, then it would look like this:
 
 Where the token is prefixed by the name of the sass file (in this case `theme`).
 
+### What do I do with my old Feature flags?
+
+If you were providing any configuration options before you imported Carbon you
+can now provide them using the `with` syntax:
+
+```scss
+@use '@carbon/react' with ($css--default-type: true, $css--reset: true);
+```
+
+If you were using any feature flags in v10, you can safely remove them in v11.
+
+**Note:** you can also use `@import` to bring in Carbon, if you prefer, although
+`@use` is recommended.
+
 ## Additional resources
 
 <Row className="resource-card-group">
@@ -314,17 +328,3 @@ Where the token is prefixed by the name of the sass file (in this case `theme`).
     </ResourceCard>
   </Column>
 </Row>
-
-### Feature flags
-
-If you were providing any configuration options before you imported Carbon you
-can now provide them using the `with` syntax:
-
-```scss
-@use '@carbon/react' with ($css--default-type: true, $css--reset: true);
-```
-
-If you were using any feature flags in v10, you can safely remove them in v11.
-
-**Note:** you can also use `@import` to bring in Carbon, if you prefer, although
-`@use` is recommended.

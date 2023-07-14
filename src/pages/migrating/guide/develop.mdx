@@ -98,7 +98,7 @@ yarn remove carbon-components carbon-components-react carbon-icons @carbon/icons
 Next, install the `@carbon/react` package:
 
 <Row>
-<Column colLg={12}>
+<Column colLg={8}>
 
 <Tabs>
 
@@ -127,7 +127,7 @@ Now that you've removed the old packages and brought in the new ones, run the
 codemod below to fix your pathing.
 
 ```bash
-npx @carbon/upgrade migrate update-carbon-components-react-import-to-scoped
+npx @carbon/upgrade migrate update-carbon-components-react-import-to-scoped --write
 ```
 
 After running the command, your code should start looking like this:
@@ -149,7 +149,8 @@ For full details, including options and commands availabe when using the
 
 ### Step 2: Install Dart Sass
 
-If you were previously importing styles from `carbon-components`, you can now import styles directly from `@carbon/react` or the `@carbon/react/scss` folder.
+If you were previously importing styles from `carbon-components`, you can now
+import styles directly from `@carbon/react` or the `@carbon/react/scss` folder.
 
 Before you're able to bring in these styles, you'll need to make sure your
 project is setup to use Dart Sass. Starting in v11, Carbon styles requires Dart
@@ -161,7 +162,7 @@ First, let's remove `node-sass` from your project. If you don't have
 `node-sass`, no worries, just skip down and begin adding `sass`.
 
 <Row>
-<Column colLg={12}>
+<Column colLg={8}>
 
 <Tabs>
 
@@ -189,7 +190,7 @@ yarn remove node-sass
 Now, let's install `sass`:
 
 <Row>
-<Column colLg={12}>
+<Column colLg={8}>
 
 <Tabs>
 
@@ -226,17 +227,62 @@ We also have published a guide over on
 [Medium](https://medium.com/carbondesign/migrating-from-node-sass-to-sass-eba9db004a3a)
 to help out with common problems that come from this migration.
 
+<Row className="resource-card-group">
+<Column colMd={4} colLg={4} noGutterSm>
+  <ResourceCard
+    subTitle="Sass Configuration"
+    href="https://github.com/carbon-design-system/carbon/blob/main/packages/styles/docs/sass.md#configuration"
+    actionIcon="launch"
+    >
+    <MdxIcon name="github" />
+
+  </ResourceCard>
+</Column>
+<Column colMd={4} colLg={4} noGutterSm>
+  <ResourceCard
+    subTitle="One quick way to get ready for Carbon v11"
+    href="https://medium.com/carbondesign/migrating-from-node-sass-to-sass-eba9db004a3a"
+    actionIcon="launch"
+    >
+    <MdxIcon name="medium" />
+
+  </ResourceCard>
+</Column>
+</Row>
+
 ### Step 3: Update style import paths
 
-Now, open your project's main stylesheet:
-
-- Any line of code with `@import` can be removed.
-- Any feature flags can be removed.
-
-All you need is the following:
+Now, open your project's root stylesheet and add the following. SHOULD I BE
+TELLING THEM TO REMOVE ANYTHING?
 
 ```scss
 @use '@carbon/react';
+```
+
+If you were providing any configuration options before you imported Carbon you
+can now provide them using the `with` syntax:
+
+```scss
+@use '@carbon/react' with ($css--default-type: true, $css--reset: true);
+```
+
+If you were using any feature flags in v10, you can safely remove them in v11.
+
+You can also use @import to bring in Carbon, if you prefer, although @use is
+recommended.
+
+For cases where your projects does't need to include everything via
+`@use '@carbon/react'`; and just want to do individual component styles.
+
+```scss
+// configure feature flags if needed, if not this line can be removed
+@use '@carbon/react/scss/config' with ($font-path: '@ibm/plex');
+
+// ensure the css reset is included
+@use '@carbon/react/scss/reset';
+
+// add styles for components individually
+@use '@carbon/react/scss/components/button';
 ```
 
 When migrating your custom components, some of our most used sass assets are
@@ -265,7 +311,36 @@ find for `carbon--` and replace it with nothing to remove across all your files.
 The full list of changes are available in our
 [Migration Docs](https://github.com/carbon-design-system/carbon/blob/main/docs/migration/v11.md#changing-import-paths-from-scssglobalsscss-to-scss).
 
-### Step 4: Update icon imports
+Once you've removed the prefix, your styles should all be set using the old, v10
+tokens. We recommend teams install the community supported
+[stylelint-plugin-carbon-tokens](https://github.com/carbon-design-system/stylelint-plugin-carbon-tokens)
+to further assist in migrating your tokens to v11 tokens as the old v10 tokens
+will be removed in our next major release.
+
+<Row className="resource-card-group">
+<Column colMd={4} colLg={4} noGutterSm>
+  <ResourceCard
+    subTitle="Changing import paths"
+    href="https://github.com/carbon-design-system/carbon/blob/main/docs/migration/v11.md#changing-import-paths-from-scssglobalsscss-to-scss"
+    actionIcon="launch"
+    >
+    <MdxIcon name="github" />
+
+  </ResourceCard>
+</Column>
+<Column colMd={4} colLg={4} noGutterSm>
+  <ResourceCard
+    subTitle="Stylelint Plugin Carbon Tokens"
+    href="https://github.com/carbon-design-system/stylelint-plugin-carbon-tokens"
+    actionIcon="launch"
+    >
+    <MdxIcon name="github" />
+
+  </ResourceCard>
+</Column>
+</Row>
+
+### Step 4: Update icon sizes and imports
 
 The `@carbon/icons-react` package has been updated to minimize the number of
 exports from the package to help reduce build and compile times. This package is
@@ -276,11 +351,28 @@ this package. Previously, we would export icons that included the size of the
 asset. This update allows you to bring the icon directly and specify the size
 using the `size` prop.
 
-Run the following codemod to update your project's icons.
+Run the following codemods to update your project's icons.
 
 ```bash
-npx @carbon/upgrade migrate update-carbon-components-react-import-to-scoped
+npx @carbon/upgrade migrate small-to-size-props --write
+npx @carbon/upgrade migrate size-prop-updates --write
+npx @carbon/upgrade migrate update-carbon-icons-react-import-to-carbon-react --write
 ```
+
+By running the series of codemods, they will do the following, in order:
+
+1. Removes the `small` boolean prop and replaces it with `size="sm"`.
+2. Removes old, v10 size props and replaces them with new, v11 sizes. If you're
+   curious about what changes are being made. Check out the _Changes to size_
+   section in [step 5](#step-5:-update-components-that-have-changed).
+3. Remove the `@carbon/icons-react` pathing and replace it with
+   `@carbon/react/icons`.
+
+<InlineNotification>
+  It's important to run the npx commands in the order that they are presented
+  above. Doing them out of order might result in the codemod not working as
+  intended.
+</InlineNotification>
 
 After running the command, instead of your icons imports looking like this:
 
@@ -325,14 +417,61 @@ function MyComponent() {
 In v11, we have updated the APIs of certain components in one of the following
 ways:
 
-- Update `className` usage to be applied to the outermost element of a component
 - Update `size` to have consistent values across the codebase
+- Update `className` usage to be applied to the outermost element of a component
 - Remove props that have been deprecated in v10
 - Refactor the API to ship an accessible component
 
 For a full list of changes to components, check out our
 [Migration Docs](https://github.com/carbon-design-system/carbon/blob/main/docs/migration/v11.md#carbon-components-react).
 Below are some common changes that may impact you and your usage of Carbon.
+
+#### Changes to `size`
+
+Components with size variants have been updated to use the same API options.
+Previously, the size options were inconsistent: `field`, `medium`, `short`. Now,
+size options fall under the following values:
+
+| Prop value | Size |
+| ---------- | ---- |
+| `xs`       | 24px |
+| `sm`       | 32px |
+| `md`       | 40px |
+| `lg`       | 48px |
+| `xl`       | 64px |
+| `2xl`      | 80px |
+
+**Note:** the default size in v11 is `md` (`40px`).
+
+The following components all have size variants that may be affected in your
+code. To update, you will need to switch to one of the size options above. The
+codemod in [step 4](#step-4:-update-icon-sizes-and-imports) will make short work
+of these changes.
+
+- Accordion
+- Button
+- ComboBox
+- Dropdown
+- Multiselect
+- Filterable multiselect
+- ContentSwitcher
+- DataTable
+- DatePicker
+- FileUploader
+- FileUploaderItem
+- FileUploaderDropContainer
+- FileUploaderButton
+- Link
+- Modal
+- ComposedModal
+- NumberInput
+- OverflowMenu
+- Search
+- Select
+- Tag
+- TextInput
+- TimePicker
+- Toggle
 
 #### Changes to `className`
 
@@ -376,66 +515,6 @@ now account for the `className` being placed on the outermost element.
 - TimePicker
 - Tooltip
 - HeaderContainer
-
-#### Changes to `size`
-
-Components with size variants have been updated to use the same API options.
-Previously, the size options were inconsistent: `field`, `medium`, `short`. Now,
-size options fall under the following values:
-
-| Prop value | Size |
-| ---------- | ---- |
-| `xs`       | 24px |
-| `sm`       | 32px |
-| `md`       | 40px |
-| `lg`       | 48px |
-| `xl`       | 64px |
-| `2xl`      | 80px |
-
-**Note:** the default size in v11 is `md` (`40px`).
-
-Automate size prop changes by running the following codemods.
-
-```bash
-npx @carbon/upgrade migrate small-to-size-props
-npx @carbon/upgrade migrate size-prop-updates
-```
-
-<InlineNotification>
-
-For full details, including options and commands availabe when using the
-`@carbon/upgrade` CLI, see the
-[package documentation](https://github.com/carbon-design-system/carbon/tree/main/packages/upgrade).
-
-</InlineNotification>
-
-The following components all have size variants that may be affected in your
-code. To update, you will need to switch to one of the size options above.
-
-- Accordion
-- Button
-- ComboBox
-- Dropdown
-- Multiselect
-- Filterable multiselect
-- ContentSwitcher
-- DataTable
-- DatePicker
-- FileUploader
-- FileUploaderItem
-- FileUploaderDropContainer
-- FileUploaderButton
-- Link
-- Modal
-- ComposedModal
-- NumberInput
-- OverflowMenu
-- Search
-- Select
-- Tag
-- TextInput
-- TimePicker
-- Toggle
 
 #### Notification
 
@@ -568,47 +647,71 @@ us over on Slack or open up a discussion on
 We want to make this migration experience as seamless as possible and will be
 monitoring both areas to help out.
 
-## carbon-components
+## Migrating an app using just styles
 
 Starting in v11, the styles for Carbon live in the `@carbon/styles` package.
 Alternatively, you can continue to use `carbon-components` as it re-exports
 styles from this package directly.
 
-<InlineNotification>
-
-If you are using carbon-components-react, you can bring in styles directly from
-the new package @carbon/react. To learn more, visit the
-[carbon-components-react](#carbon-components-react) section.
-
-</InlineNotification>
-
 ### Step 1: Install @carbon/styles
 
 To get started, uninstall `carbon-components` from your project:
+
+<Row>
+<Column colLg={8}>
+
+<Tabs>
+
+<Tab label="npm">
 
 ```bash
 npm uninstall carbon-components
 ```
 
-Or, with [Yarn](https://yarnpkg.com/):
+</Tab>
+
+<Tab label="yarn">
 
 ```bash
 yarn remove carbon-components
 ```
 
+</Tab>
+
+</Tabs>
+
+</Column>
+</Row>
+
 Next, install the `@carbon/styles` package:
+
+<Row>
+<Column colLg={8}>
+
+<Tabs>
+
+<Tab label="npm">
 
 ```bash
 npm install @carbon/styles
 ```
 
-Or, with [Yarn](https://yarnpkg.com/):
+</Tab>
+
+<Tab label="yarn">
 
 ```bash
 yarn add @carbon/styles
 ```
 
-### Step 2: Install Dart Sass
+</Tab>
+
+</Tabs>
+
+</Column>
+</Row>
+
+### Step 2: Install and configure Dart Sass
 
 Previously, `carbon-components` supported being compiled by different Sass
 libraries. Starting in v11, the `@carbon/styles` package requires Dart Sass
@@ -618,22 +721,36 @@ project structure.
 
 If you don't have this dependency already in your project, you can install it:
 
+<Row>
+<Column colLg={8}>
+
+<Tabs>
+
+<Tab label="npm">
+
 ```bash
 npm install sass
 ```
 
-Or, with [Yarn](https://yarnpkg.com/):
+</Tab>
+
+<Tab label="yarn">
 
 ```bash
 yarn add sass
 ```
 
+</Tab>
+
+</Tabs>
+
+</Column>
+</Row>
+
 Similarly, if you currently use `node-sass` now is a good time to remove that
 dependency from your project. In most situations, Dart Sass is a drop-in
 replacement for `node-sass` and should require no changes on your end in order
 to use it once you install the dependency.
-
-### Step 3: Setup Dart Sass
 
 One you have Dart Sass installed, it's important that you configure your project
 to support resolving imports in Sass from `node_modules`. Typically, this means
@@ -647,40 +764,33 @@ We also have published a guide over on
 [Medium](https://medium.com/carbondesign/migrating-from-node-sass-to-sass-eba9db004a3a)
 to help out with common problems that come from this migration.
 
-### Step 4: Update import paths
+<Row className="resource-card-group">
+<Column colMd={4} colLg={4} noGutterSm>
+  <ResourceCard
+    subTitle="Sass Configuration"
+    href="https://github.com/carbon-design-system/carbon/blob/main/packages/styles/docs/sass.md#configuration"
+    actionIcon="launch"
+    >
+    <MdxIcon name="github" />
 
-In v10, you may have been bringing in styles from `carbon-components` by either
-importing the styles directly with:
+  </ResourceCard>
+</Column>
+<Column colMd={4} colLg={4} noGutterSm>
+  <ResourceCard
+    subTitle="One quick way to get ready for Carbon v11"
+    href="https://medium.com/carbondesign/migrating-from-node-sass-to-sass-eba9db004a3a"
+    actionIcon="launch"
+    >
+    <MdxIcon name="medium" />
 
-```scss
-@import 'carbon-components/scss/globals/scss/styles.scss';
-```
+  </ResourceCard>
+</Column>
+</Row>
 
-Or, you imported the styles through specific entrypoints:
+### Step 3: Update import paths
 
-```scss
-// Feature flags
-$feature-flags: (
-  enable-columns-16: true,
-);
-// Options
-$css--default-type: true;
-$css--reset: true;
-// Top-level imports
-@import 'carbon-components/scss/globals/scss/vars';
-@import 'carbon-components/scss/globals/scss/colors';
-@import 'carbon-components/scss/globals/scss/theme';
-@import 'carbon-components/scss/globals/scss/spacing';
-@import 'carbon-components/scss/globals/scss/typography';
-@import 'carbon-components/scss/globals/scss/css--reset';
-@import 'carbon-components/scss/globals/scss/css--body';
-// Component imports
-@import 'carbon-components/scss/components/accordion/accordion';
-@import 'carbon-components/scss/components/button/button';
-```
-
-If you imported the entrypoint from `carbon-components`, you can now do this
-directly from `@carbon/styles` without any additional paths by writing:
+Now, open your project's root stylesheet and add the following. SHOULD I BE
+TELLING THEM TO REMOVE ANYTHING?
 
 ```scss
 @use '@carbon/styles';
@@ -693,37 +803,76 @@ can now provide them using the `with` syntax:
 @use '@carbon/styles' with ($css--default-type: true, $css--reset: true);
 ```
 
-If you were using any feature flags in v10, you can safely remove them in v11.
-
-**Note:** you can also use `@import` to bring in Carbon, if you prefer, although
-`@use` is recommended.
-
-If you were bringing parts of Carbon, you'll need to update the paths to reflect
-the new paths in `@carbon/styles`. In general, most paths moved from
-`scss/globals/scss/filename` to `scss/filename`.
+For cases where your projects does't need to include everything via
+`@use '@carbon/styles'`; and just want to do individual component styles.
 
 ```scss
-// Configuration
-@use '@carbon/styles/scss/config' with
-  ($css--default-type: true, $css--reset: true);
-// Reset
+// configure feature flags if needed, if not this line can be removed
+@use '@carbon/styles/scss/config' with ($font-path: '@ibm/plex');
+
+// ensure the css reset is included
 @use '@carbon/styles/scss/reset';
-// Grid
-@use '@carbon/styles/scss/grid';
-// Helpers
-@use '@carbon/styles/scss/theme';
-@use '@carbon/styles/scss/spacing';
-@use '@carbon/styles/scss/type';
-// Components
-@use '@carbon/styles/scss/components/accordion';
+
+// add styles for components individually
 @use '@carbon/styles/scss/components/button';
 ```
 
-For a full list of the paths that have changed in `carbon-components`, check out
-our
+When migrating your custom components, some of our most used sass assets are
+included below, along with what you would need to have at the top of your file
+to use it. Essentially, all we are doing is including the path where we would
+[find these stylesPOINTS TO A REACT RESOURCE. CONFIRM.](https://github.com/carbon-design-system/carbon/tree/main/packages/react/scss)
+in our package.
+
+| Carbon sass I'm using           | Sass modules to include                                   |
+| ------------------------------- | --------------------------------------------------------- |
+| Theme tokens                    | `@use '@carbon/styles/scss/theme' as *`                   |
+| Theme mixins                    | `@use '@carbon/styles/scss/themes' as *`                  |
+| Design language color tokens    | `@use '@carbon/styles/scss/colors' as *`                  |
+| Spacing tokens                  | `@use '@carbon/styles/scss/spacing' as *`                 |
+| Breakpoint mixins               | `@use '@carbon/styles/scss/breakpoint' as *`              |
+| Motion tokens and functions     | `@use '@carbon/styles/scss/motion' as *`                  |
+| Rem and other convert functions | `@use '@carbon/styles/scss/utilities/convert' as *`       |
+| Z-index helper                  | `@use '@carbon/styles/scss/utilities/z-index' as *`       |
+| Focus outline helper            | `@use '@carbon/styles/scss/utilities/focus-outline' as *` |
+| Transform rotate helper         | `@use '@carbon/styles/scss/utilities/rotate' as *`        |
+| Skeleton animation helper       | `@use '@carbon/styles/scss/utilities/skeleton' as *`      |
+
+Now that you've migrated all of your imports, do a find/replace using your
+favorite code editor. The prefix`carbon--` is no longer necessary, you can do a
+find for `carbon--` and replace it with nothing to remove across all your files.
+The full list of changes are available in our
 [Migration Docs](https://github.com/carbon-design-system/carbon/blob/main/docs/migration/v11.md#changing-import-paths-from-scssglobalsscss-to-scss).
 
-### Step 5: Update imports
+Once you've removed the prefix, your styles should all be set using the old, v10
+tokens. We recommend teams install the community supported
+[stylelint-plugin-carbon-tokens](https://github.com/carbon-design-system/stylelint-plugin-carbon-tokens)
+to further assist in migrating your tokens to v11 tokens as the old v10 tokens
+will be removed in our next major release.
+
+<Row className="resource-card-group">
+<Column colMd={4} colLg={4} noGutterSm>
+  <ResourceCard
+    subTitle="Changing import paths"
+    href="https://github.com/carbon-design-system/carbon/blob/main/docs/migration/v11.md#changing-import-paths-from-scssglobalsscss-to-scss"
+    actionIcon="launch"
+    >
+    <MdxIcon name="github" />
+
+  </ResourceCard>
+</Column>
+<Column colMd={4} colLg={4} noGutterSm>
+  <ResourceCard
+    subTitle="Stylelint Plugin Carbon Tokens"
+    href="https://github.com/carbon-design-system/stylelint-plugin-carbon-tokens"
+    actionIcon="launch"
+    >
+    <MdxIcon name="github" />
+
+  </ResourceCard>
+</Column>
+</Row>
+
+### Step 4: Update imports
 
 If you were using specific variables, mixins, or functions from Carbon, it may
 be that you will need to update their name in v11. In general, all `carbon--`
@@ -747,7 +896,7 @@ For a full list of the paths that have changed in `carbon-components`, check out
 our
 [Migration Docs](https://github.com/carbon-design-system/carbon/blob/main/docs/migration/v11.md#changing-import-paths-from-scssglobalsscss-to-scss).
 
-### Step 6: Update bx to cds
+### Step 5: Update bx to cds
 
 If you are targeting specific selectors that use the `bx` prefix, you will need
 to update your code to either target the `cds` prefix for selectors or update
@@ -760,7 +909,7 @@ Carbon's configuration to use `bx` as the prefix by writing the following:
 @use '@carbon/styles/scss/config' with ($prefix: 'bx');
 ```
 
-### Step 7: Enable flexbox grid
+### Step 6: Enable flexbox grid
 
 If you are using the flexbox-based grid in your project, you can continue to use
 this feature in v11 by importing the following:
@@ -773,7 +922,7 @@ This is important due to the fact that the CSS Grid implementation is used by
 default in v11. However, bringing in the flexbox grid styles in this way means
 that your layouts will continue to work the same as in v10.
 
-### Step 8: Update color tokens
+### Step 7: Update color tokens
 
 If you are using color tokens from Carbon, you can either update to use the new
 tokens in v11 or use the compatability theme for incremental adoption of the new
@@ -804,7 +953,7 @@ not need to be migrated immediately.
 
 </InlineNotification>
 
-### Step 9: Done with @carbon/styles!
+### Step 8: Done with @carbon/styles!
 
 And that's it! You're done. At this point you have migrated to use Carbon v11
 using the `@carbon/styles` package.
@@ -914,7 +1063,7 @@ covered by an automated codemod. To run this codemod, follow the instructions in
 Update imports and size usage for @carbon/icons-react
 
 ```bash
-npx @carbon/upgrade migrate icons-react-size-prop
+npx @carbon/upgrade migrate icons-react-size-prop --write
 ```
 
 However, in certain situations, we will be unable to infer what the correct
