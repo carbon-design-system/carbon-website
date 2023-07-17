@@ -19,8 +19,12 @@ Step-by-step guide to updating your code from Carbon v10 to v11.
 <AnchorLink>Overview</AnchorLink>
 <AnchorLink>Migrating a React app</AnchorLink>
 <AnchorLink>Migrating an app using just styles</AnchorLink>
-<AnchorLink>Migrating an app using Angular, Svelte, Vue, etc.</AnchorLink>
-<AnchorLink>Migrating a library</AnchorLink>
+<AnchorLink>
+  Migrating an app using Angular, Svelte, Vue, etc. MISSING!
+</AnchorLink>
+<AnchorLink>Migrating a library MISSING!</AnchorLink>
+<AnchorLink>carbon-icons</AnchorLink>
+<AnchorLink>Elements</AnchorLink>
 
 </AnchorLinks>
 
@@ -306,10 +310,17 @@ in our package.
 | Skeleton animation helper       | `@use '@carbon/react/scss/utilities/skeleton' as *`      |
 
 Now that you've migrated all of your imports, do a find/replace using your
-favorite code editor. The prefix `carbon--` is no longer necessary, you can do a
-find for `carbon--` and replace it with nothing to remove across all your files.
-The full list of changes are available in our
+favorite code editor. The prefix `carbon--` is no longer necessary. You can do a
+find for `carbon--` and replace it with nothing to remove across all your files
+like the example below. The full list of changes are available in our
 [Migration Docs](https://github.com/carbon-design-system/carbon/blob/main/docs/migration/v11.md#changing-import-paths-from-scssglobalsscss-to-scss).
+
+```diff
+- @include carbon--breakpoint(lg) {
++ @include breakpoint(lg) {
+      width: 42%;
+  }
+```
 
 Once you've removed the prefix, your styles should all be set using the old, v10
 tokens. We recommend teams install the community supported
@@ -363,8 +374,8 @@ By running the series of codemods, they will do the following, in order:
 
 1. Removes the `small` boolean prop and replaces it with `size="sm"`.
 2. Removes old, v10 size props and replaces them with new, v11 sizes. If you're
-   curious about what changes are being made. Check out the _Changes to size_
-   section in [step 5](#step-5:-update-components-that-have-changed).
+   curious about what changes are being made, check out the _Changes to size_
+   section below.
 3. Remove the `@carbon/icons-react` pathing and replace it with
    `@carbon/react/icons`.
 
@@ -412,20 +423,6 @@ function MyComponent() {
 }
 ```
 
-### Step 5: Update components that have changed
-
-In v11, we have updated the APIs of certain components in one of the following
-ways:
-
-- Update `size` to have consistent values across the codebase
-- Update `className` usage to be applied to the outermost element of a component
-- Remove props that have been deprecated in v10
-- Refactor the API to ship an accessible component
-
-For a full list of changes to components, check out our
-[Migration Docs](https://github.com/carbon-design-system/carbon/blob/main/docs/migration/v11.md#carbon-components-react).
-Below are some common changes that may impact you and your usage of Carbon.
-
 #### Changes to `size`
 
 Components with size variants have been updated to use the same API options.
@@ -445,8 +442,8 @@ size options fall under the following values:
 
 The following components all have size variants that may be affected in your
 code. To update, you will need to switch to one of the size options above. The
-codemod in [step 4](#step-4:-update-icon-sizes-and-imports) will make short work
-of these changes.
+codemod [above](#step-4:-update-icon-sizes-and-imports) will make short work of
+these changes.
 
 - Accordion
 - Button
@@ -472,6 +469,105 @@ of these changes.
 - TextInput
 - TimePicker
 - Toggle
+
+#### Removed icons
+
+The following deprecated icons have been removed. Use the table below to find
+their replacement, if available, in v11.
+
+| Asset                           | v10                         | v11                         |
+| :------------------------------ | :-------------------------- | :-------------------------- |
+| app-switcher                    | AppSwitcher                 | Switcher                    |
+| arrows                          | Arrows                      | ArrowsVertical              |
+| back-to-top                     | BackToTop                   | UpToTop                     |
+| checkbox--undeterminate         | CheckboxUndeterminate       | CheckboxIndeterminate       |
+| checkbox--undeterminate--filled | CheckboxUndeterminateFilled | CheckboxIndeterminateFilled |
+| cloud--lightning                | CloudLightning              | Removed                     |
+| cloud--rain                     | CloudRain                   | Removed                     |
+| cloud--snow                     | CloudSnow                   | Removed                     |
+| delete                          | Delete                      | TrashCan                    |
+| edit-filter                     | EditFilter                  | FilterEdit                  |
+| sunny                           | Sunny                       | Removed                     |
+| research--bloch-sphere          | ResearchBlockSphere         | BlochSphere                 |
+| research--hinton-plot           | ResearchHintonPlot          | HintonPlot                  |
+| research--matrix                | ResearchMatrix              | Matrix                      |
+| misuse--alt                     | MisuseAlt                   | MisuseOutline               |
+| logo--google                    | LogoGoogle                  | Removed                     |
+| mammogram--stacked              | MammogramStacked            | Removed                     |
+| logo--delicious                 | LogoDelicious               | Removed                     |
+| logo--stumbleupon               | LogoStumbleUpon             | Removed                     |
+| letter--Aa--large               | LetterAaLarge               | TextFont                    |
+| glyph--caution-inverted         | GlyphCautionInverted        | CautionInverted             |
+| glyph--caution                  | GlyphCaution                | Caution                     |
+| glyph--circle-fill              | GlyphCircleFill             | CircleFill                  |
+| glyph--circle-stroke            | GlyphCircleStroke           | CircleStroke                |
+| glyph--critical                 | GlyphCritical               | Critical                    |
+| glyph--incomplete               | GlyphIncomplete             | Incomplete                  |
+| glyph--square-fill              | GlyphSquareFill             | SquareFill                  |
+| glyph--undefined                | GlyphUndefined              | Undefined                   |
+
+However, in certain situations, we will be unable to infer what the correct
+update should be for a certain usage of the icon component. We have written the
+codemod to work for most situations, but you will see console warnings for files
+that will require you to manually review them to make sure the transforms were
+applied correctly.
+
+The most common manual update that teams will need to make is if a `prop` where
+the icon is passed to places a `ref` on the icon. For example,
+
+```jsx
+function MyComponent({ renderIcon: Icon }) {
+  const ref = useRef(null);
+  return <Icon ref={ref} />;
+}
+
+// Before
+<MyComponent renderIcon={Search16} />
+
+// After the codemod
+<MyComponent renderIcon={props => <Search size={16} {...props} />} />
+```
+
+In this situation, you will need to update your code to use `React.forwardRef`:
+
+```jsx
+<MyComponent
+  renderIcon={React.forwardRef((props, ref) => (
+    <Search ref={ref} size={16} {...props} />
+  ))}
+/>;
+
+// Or, alternatively:
+const Search16 = React.forwardRef((props, ref) => {
+  return <Search ref={ref} size={16} {...props} />;
+});
+
+<MyComponent renderIcon={Search16} />;
+```
+
+#### Manual migration
+
+In addition to the automated codemods above, there are several patterns in your
+codebase that you will need to update manually:
+
+- If you use the name `ForwardRef(IconName16)` in a test you will need to
+  manually change this. Prefer to use the component directly if using enzyme
+- If you use snapshot tests, the structure will change and include a `size`
+  prop. Make sure that the `size` prop value matches what your icon name used to
+  be. For example, `<Add16 />` should become `<Add size={16} />`
+
+### Step 5: Update components that have changed
+
+In v11, we have updated the APIs of certain components in one of the following
+ways:
+
+- Update `className` usage to be applied to the outermost element of a component
+- Remove props that have been deprecated in v10
+- Refactor the API to ship an accessible component
+
+For a full list of changes to components, check out our
+[Migration Docs](https://github.com/carbon-design-system/carbon/blob/main/docs/migration/v11.md#carbon-components-react).
+Below are some common changes that may impact you and your usage of Carbon.
 
 #### Changes to `className`
 
@@ -530,7 +626,7 @@ Automatic placement of focus can be turned off via the new `hasFocus` prop.
 
 All notifications have a new optional `closeOnEscape` prop, it enables
 notifications to closed by pressing the `escape` key. For more details, see the
-[notification components accessibility page](https://v11.carbondesignsystem.com/components/notification/accessibility).
+[notification components accessibility page](https://www.carbondesignsystem.com/components/notification/accessibility).
 
 #### Update `ToastNotification` usage
 
@@ -611,10 +707,10 @@ Those same Tabs, migrated to v11:
 #### Update `Tabs` and `Tab` usage
 
 All the same functionality for Tabs is available in v11 and more! However, some
-props have been deprecated becuase they have either been renamed or are no
+props have been deprecated because they have either been renamed or are no
 longer needed. Below are the minor tweaks in naming or implementation.
 
-- the `type` prop is deprecated. Both "container" and "default" tabs still exist
+- the `type` prop is deprecated. Both "contained" and "default" tabs still exist
   but now can be called by adding the prop `contained` to the `TabList`.
 - Default tabs are now referred to as line tabs in our documentation here and in
   our storybook.
@@ -787,7 +883,7 @@ to help out with common problems that come from this migration.
 </Column>
 </Row>
 
-### Step 3: Update import paths
+### Step 3: Update import paths and tokens
 
 Now, open your project's root stylesheet and add the following. SHOULD I BE
 TELLING THEM TO REMOVE ANYTHING?
@@ -838,10 +934,17 @@ in our package.
 | Skeleton animation helper       | `@use '@carbon/styles/scss/utilities/skeleton' as *`      |
 
 Now that you've migrated all of your imports, do a find/replace using your
-favorite code editor. The prefix`carbon--` is no longer necessary, you can do a
-find for `carbon--` and replace it with nothing to remove across all your files.
-The full list of changes are available in our
+favorite code editor. The prefix`carbon--` is no longer necessary. You can do a
+find for `carbon--` and replace it with nothing to remove across all your files
+like the example below. The full list of changes are available in our
 [Migration Docs](https://github.com/carbon-design-system/carbon/blob/main/docs/migration/v11.md#changing-import-paths-from-scssglobalsscss-to-scss).
+
+```diff
+- @include carbon--breakpoint(lg) {
++ @include breakpoint(lg) {
+      width: 42%;
+  }
+```
 
 Once you've removed the prefix, your styles should all be set using the old, v10
 tokens. We recommend teams install the community supported
@@ -872,31 +975,7 @@ will be removed in our next major release.
 </Column>
 </Row>
 
-### Step 4: Update imports
-
-If you were using specific variables, mixins, or functions from Carbon, it may
-be that you will need to update their name in v11. In general, all `carbon--`
-prefixed names have been renamed to drop the `carbon--` prefix. To remove the
-`carbon--` prefix and update it perform a find and replace operation, as
-illustrated in the following example.
-
-```diff
-- @include carbon--breakpoint(lg) {
-+ @include breakpoint(lg) {
-      width: 42%;
-  }
-```
-
-For a full list of the changes to variables, mixins, and functions that have
-changed, check out our
-[Migration Docs](https://github.com/carbon-design-system/carbon/blob/main/docs/migration/v11.md#changing-import-paths-from-scssglobalsscss-to-scss)
-and find the specific file that you were importing from.
-
-For a full list of the paths that have changed in `carbon-components`, check out
-our
-[Migration Docs](https://github.com/carbon-design-system/carbon/blob/main/docs/migration/v11.md#changing-import-paths-from-scssglobalsscss-to-scss).
-
-### Step 5: Update bx to cds
+### Step 4: Update bx to cds
 
 If you are targeting specific selectors that use the `bx` prefix, you will need
 to update your code to either target the `cds` prefix for selectors or update
@@ -909,7 +988,7 @@ Carbon's configuration to use `bx` as the prefix by writing the following:
 @use '@carbon/styles/scss/config' with ($prefix: 'bx');
 ```
 
-### Step 6: Enable flexbox grid
+### Step 5: Enable flexbox grid
 
 If you are using the flexbox-based grid in your project, you can continue to use
 this feature in v11 by importing the following:
@@ -922,38 +1001,7 @@ This is important due to the fact that the CSS Grid implementation is used by
 default in v11. However, bringing in the flexbox grid styles in this way means
 that your layouts will continue to work the same as in v10.
 
-### Step 7: Update color tokens
-
-If you are using color tokens from Carbon, you can either update to use the new
-tokens in v11 or use the compatability theme for incremental adoption of the new
-tokens while maintaining existing work from v10.
-
-For an overview of the changes to tokens, check out our
-[Migration Docs](https://github.com/carbon-design-system/carbon/blob/main/docs/migration/v11.md#design-tokens).
-
-If you would like to use the compatability theme, you can write the following in
-your project where you are currently bringing in theme:
-
-```scss
-@use '@carbon/themes/scss/compat/themes' as compat;
-@use '@carbon/themes/scss/themes';
-@use '@carbon/themes/scss/theme' with
-  ($fallback: compat.$g100, $theme: themes.$g100);
-```
-
-Doing this will allow you to use tokens from the g100 theme in v10 along with
-the tokens in v11. This will work for any of the themes in v10 including white,
-g10, g90, and g100.
-
-<InlineNotification>
-
-Other tokens that were deprecated in V11, like those in the `Spacing`, `Motion`,
-and `Type` packages, have been reexported as of `@carbon/react@1.30.0` and do
-not need to be migrated immediately.
-
-</InlineNotification>
-
-### Step 8: Done with @carbon/styles!
+### Step 6: Done with @carbon/styles!
 
 And that's it! You're done. At this point you have migrated to use Carbon v11
 using the `@carbon/styles` package.
@@ -963,158 +1011,6 @@ us over on Slack or open up a discussion on
 [GitHub](https://github.com/carbon-design-system/carbon/discussions/categories/help).
 We want to make this migration experience as seamless as possible and will be
 monitoring both areas to help out.
-
-## @carbon/icons-react
-
-The `@carbon/icons-react` package has been updated to minimize the number of
-exports from the package to help reduce build and compile times. It also has
-been updated to remove icons that were deprecated in v10.
-
-<InlineNotification>
-
-If you are using @carbon/react, you can now import icons directly from
-@carbon/react/icons.
-
-</InlineNotification>
-
-### Changes to size
-
-This update includes a change to the API of the icon components that come from
-this package. Previously, we would export icons that included the size of the
-asset. This update allows you to bring the icon directly and specify the size
-using the `size` prop.
-
-**Before**
-
-```jsx
-import { Add32, Add24, Add20, Add16 } from '@carbon/icons-react';
-
-function MyComponent() {
-  return (
-    <>
-      <Add32 />
-      <Add24 />
-      <Add20 />
-      <Add16 />
-    </>
-  );
-}
-```
-
-**After**
-
-```jsx
-import { Add } from '@carbon/icons-react';
-
-function MyComponent() {
-  return (
-    <>
-      <Add size={32} />
-      <Add size={24} />
-      <Add size={20} />
-      <Add />
-    </>
-  );
-}
-```
-
-### Removed icons
-
-The following deprecated icons have been removed. Use the table below to find
-their replacement, if available, in v11.
-
-| Asset                           | v10                         | v11                         |
-| :------------------------------ | :-------------------------- | :-------------------------- |
-| app-switcher                    | AppSwitcher                 | Switcher                    |
-| arrows                          | Arrows                      | ArrowsVertical              |
-| back-to-top                     | BackToTop                   | UpToTop                     |
-| checkbox--undeterminate         | CheckboxUndeterminate       | CheckboxIndeterminate       |
-| checkbox--undeterminate--filled | CheckboxUndeterminateFilled | CheckboxIndeterminateFilled |
-| cloud--lightning                | CloudLightning              | Removed                     |
-| cloud--rain                     | CloudRain                   | Removed                     |
-| cloud--snow                     | CloudSnow                   | Removed                     |
-| delete                          | Delete                      | TrashCan                    |
-| edit-filter                     | EditFilter                  | FilterEdit                  |
-| sunny                           | Sunny                       | Removed                     |
-| research--bloch-sphere          | ResearchBlockSphere         | BlochSphere                 |
-| research--hinton-plot           | ResearchHintonPlot          | HintonPlot                  |
-| research--matrix                | ResearchMatrix              | Matrix                      |
-| misuse--alt                     | MisuseAlt                   | MisuseOutline               |
-| logo--google                    | LogoGoogle                  | Removed                     |
-| mammogram--stacked              | MammogramStacked            | Removed                     |
-| logo--delicious                 | LogoDelicious               | Removed                     |
-| logo--stumbleupon               | LogoStumbleUpon             | Removed                     |
-| letter--Aa--large               | LetterAaLarge               | TextFont                    |
-| glyph--caution-inverted         | GlyphCautionInverted        | CautionInverted             |
-| glyph--caution                  | GlyphCaution                | Caution                     |
-| glyph--circle-fill              | GlyphCircleFill             | CircleFill                  |
-| glyph--circle-stroke            | GlyphCircleStroke           | CircleStroke                |
-| glyph--critical                 | GlyphCritical               | Critical                    |
-| glyph--incomplete               | GlyphIncomplete             | Incomplete                  |
-| glyph--square-fill              | GlyphSquareFill             | SquareFill                  |
-| glyph--undefined                | GlyphUndefined              | Undefined                   |
-
-### Migration
-
-Most use-cases of the icons from the `@carbon/icons-react` package will be
-covered by an automated codemod. To run this codemod, follow the instructions in
-[`@carbon/upgrade`](https://github.com/carbon-design-system/carbon/tree/main/packages/upgrade).
-
-Update imports and size usage for @carbon/icons-react
-
-```bash
-npx @carbon/upgrade migrate icons-react-size-prop --write
-```
-
-However, in certain situations, we will be unable to infer what the correct
-update should be for a certain usage of the icon component. We have written the
-codemod to work for most situations, but you will see console warnings for files
-that will require you to manually review them to make sure the transforms were
-applied correctly.
-
-The most common manual update that teams will need to make is if a `prop` where
-the icon is passed to places a `ref` on the icon. For example,
-
-```jsx
-function MyComponent({ renderIcon: Icon }) {
-  const ref = useRef(null);
-  return <Icon ref={ref} />;
-}
-
-// Before
-<MyComponent renderIcon={Search16} />
-
-// After the codemod
-<MyComponent renderIcon={props => <Search size={16} {...props} />} />
-```
-
-In this situation, you will need to update your code to use `React.forwardRef`:
-
-```jsx
-<MyComponent
-  renderIcon={React.forwardRef((props, ref) => (
-    <Search ref={ref} size={16} {...props} />
-  ))}
-/>;
-
-// Or, alternatively:
-const Search16 = React.forwardRef((props, ref) => {
-  return <Search ref={ref} size={16} {...props} />;
-});
-
-<MyComponent renderIcon={Search16} />;
-```
-
-### Manual migration
-
-In addition to the automated codemods above, there are several patterns in your
-codebase that you will need to update manually:
-
-- If you use the name `ForwardRef(IconName16)` in a test you will need to
-  manually change this. Prefer to use the component directly if using enzyme
-- If you use snapshot tests, the structure will change and include a `size`
-  prop. Make sure that the `size` prop value matches what your icon name used to
-  be. For example, `<Add16 />` should become `<Add size={16} />`
 
 ## carbon-icons
 
