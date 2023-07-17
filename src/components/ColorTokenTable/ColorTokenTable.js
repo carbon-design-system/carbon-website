@@ -102,7 +102,7 @@ export default class ColorTokenTable extends React.Component {
                 value[currentTheme].hex === '#ffffff' && '1px solid #BEBEBE',
             }}
           />
-          <OverflowMenu floatingMenu={false} flipped>
+          <OverflowMenu floatingMenu={false} flipped align="top-right">
             <CopyToClipboard text={value[currentTheme].hex}>
               <OverflowMenuItem primaryFocus itemText="Copy hex" />
             </CopyToClipboard>
