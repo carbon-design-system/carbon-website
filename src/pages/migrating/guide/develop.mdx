@@ -279,14 +279,31 @@ For cases where your projects does't need to include everything via
 `@use '@carbon/react'`; and just want to do individual component styles.
 
 ```scss
-// configure feature flags if needed, if not this line can be removed
-@use '@carbon/react/scss/config' with ($font-path: '@ibm/plex');
+// Configure feature flags if needed, if not these
+// lines can be removed
+@use '@carbon/react/scss/config' with
+  ($font-path: '@ibm/plex', $use-flexbox-grid: 'true');
 
-// ensure the css reset is included
+// Emit the css reset
 @use '@carbon/react/scss/reset';
 
-// add styles for components individually
+// Emit the Plex font-face declarations
+@use '@carbon/react/scss/fonts';
+
+// Optional: emit the grid styles if using the grid.
+// This will emit the flex-grid styles if
+// $use-flexbox-grid is configured to 'true'
+@use '@carbon/react/scss/grid';
+
+// Emit the layer styles
+@use '@carbon/react/scss/layer';
+
+// Emit individual component styles
 @use '@carbon/react/scss/components/button';
+@use '@carbon/react/scss/components/tile';
+
+// Use additional local stylesheets
+@use 'sample-grid';
 ```
 
 When migrating your custom components, some of our most used sass assets are
