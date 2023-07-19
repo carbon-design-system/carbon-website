@@ -17,14 +17,10 @@ Step-by-step guide to updating your code from Carbon v10 to v11.
 <AnchorLinks>
 
 <AnchorLink>Overview</AnchorLink>
-<AnchorLink>Migrating a React app</AnchorLink>
-<AnchorLink>Migrating an app using just styles</AnchorLink>
-<AnchorLink>
-  Migrating an app using Angular, Svelte, Vue, etc. MISSING!
-</AnchorLink>
-<AnchorLink>Migrating a library MISSING!</AnchorLink>
-<AnchorLink>carbon-icons</AnchorLink>
-<AnchorLink>Elements</AnchorLink>
+<AnchorLink>Migrating a React app or library</AnchorLink>
+<AnchorLink>Migrating an app or library using just styles</AnchorLink>
+<AnchorLink>Migrating carbon-icons</AnchorLink>
+<AnchorLink>Migrating Carbon elements</AnchorLink>
 
 </AnchorLinks>
 
@@ -56,7 +52,7 @@ Both the `carbon-components` and `carbon-components-react` packages will stick
 around in v11 but they are only re-exports of `@carbon/styles` and
 `@carbon/react` respectively.
 
-## Migrating a React app
+## Migrating a React app or library
 
 Starting in v11, the React components for Carbon live in the `@carbon/react`
 package.
@@ -256,11 +252,11 @@ to help out with common problems that come from this migration.
 
 ### Step 3: Update style import paths
 
-Now, open your project's root stylesheet and add the following. SHOULD I BE
-TELLING THEM TO REMOVE ANYTHING?
+Now, open your project's root stylesheet to make the following changes:
 
-```scss
-@use '@carbon/react';
+```diff
+- @import 'carbon-components/scss/globals/scss/styles.scss';
++ @use '@carbon/react';
 ```
 
 If you were providing any configuration options before you imported Carbon you
@@ -760,11 +756,15 @@ us over on Slack or open up a discussion on
 We want to make this migration experience as seamless as possible and will be
 monitoring both areas to help out.
 
-## Migrating an app using just styles
+## Migrating an app or library using just styles
 
 Starting in v11, the styles for Carbon live in the `@carbon/styles` package.
 Alternatively, you can continue to use `carbon-components` as it re-exports
 styles from this package directly.
+
+For teams using Svelte, Angular, Vue, LWC, or Web Components, please
+[review the documention](https://carbondesignsystem.com/developing/frameworks/web-components),
+for those respective frameworks before making the migration to v11.
 
 ### Step 1: Install @carbon/styles
 
@@ -933,7 +933,7 @@ For cases where your projects does't need to include everything via
 When migrating your custom components, some of our most used sass assets are
 included below, along with what you would need to have at the top of your file
 to use it. Essentially, all we are doing is including the path where we would
-[find these stylesPOINTS TO A REACT RESOURCE. CONFIRM.](https://github.com/carbon-design-system/carbon/tree/main/packages/react/scss)
+[find these styles](https://github.com/carbon-design-system/carbon/tree/main/packages/styles/scss)
 in our package.
 
 | Carbon sass I'm using           | Sass modules to include                                   |
@@ -1029,7 +1029,7 @@ us over on Slack or open up a discussion on
 We want to make this migration experience as seamless as possible and will be
 monitoring both areas to help out.
 
-## carbon-icons
+## Migrating carbon-icons
 
 The `carbon-icons` package has been deprecated and is no longer supported. To
 use icons from the Carbon Design System, you should install the appropriate
@@ -1046,7 +1046,7 @@ library to use with your framework:
 If you are using `@carbon/react`, you can directly import icons from
 `@carbon/react/icons`.
 
-## Elements
+## Migrating Carbon elements
 
 The packages that we ship for the IBM Design Language have been updated in v11.
 The most notable change is that these packages now require Dart Sass in order to
@@ -1060,15 +1060,31 @@ Carbon itself.
 For teams using these packages directly, you will need to update each of the
 elements packages you're using to the latest version.
 
+<Row>
+<Column colLg={8}>
+
+<Tabs>
+
+<Tab label="npm">
+
 ```bash
 npm install @carbon/<package-name>@latest
 ```
 
-Or, with [Yarn](https://yarnpkg.com/):
+</Tab>
+
+<Tab label="yarn">
 
 ```bash
 yarn upgrade @carbon/<package-name>@latest
 ```
+
+</Tab>
+
+</Tabs>
+
+</Column>
+</Row>
 
 Afterwards, you will need to update the import paths and import names themselves
 that you bring in. In general, each package now supports importing from the
