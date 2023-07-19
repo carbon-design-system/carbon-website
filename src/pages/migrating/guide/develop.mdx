@@ -364,7 +364,78 @@ will be removed in our next major release.
 </Column>
 </Row>
 
-### Step 4: Update icon sizes and imports
+### Step 4: Updating component size props
+
+Components with size variants have been updated to use the same API options.
+Previously, the size options were inconsistent: `field`, `medium`, `short`. Now,
+size options fall under the following values:
+
+| Prop value | Size |
+| ---------- | ---- |
+| `xs`       | 24px |
+| `sm`       | 32px |
+| `md`       | 40px |
+| `lg`       | 48px |
+| `xl`       | 64px |
+| `2xl`      | 80px |
+
+**Note:** the default size in v11 is `md` (`40px`).
+
+Run the following codemods to update the size prop across the effected
+components in your project.
+
+```bash
+npx @carbon/upgrade migrate small-to-size-props --write
+npx @carbon/upgrade migrate size-prop-updates --write
+```
+
+By running the series of codemods, they will do the following, in order:
+
+1. Removes the deprecated `small` boolean prop and replaces it with `size="sm"`.
+2. Removes v10 size props and replaces them with v11 sizes props.
+
+It's important to run the npx commands in the order that they are presented
+above. Doing them out of order might result in the codemod not working as
+intended.
+
+<InlineNotification>
+
+For full details, including options and commands availabe when using the
+`@carbon/upgrade` CLI, see the
+[package documentation](https://github.com/carbon-design-system/carbon/tree/main/packages/upgrade).
+
+</InlineNotification>
+
+The following components all have size variants that may be affected in your
+code. To update, you will need to switch to one of the size options listed
+above. The codemod will make short work of these changes.
+
+- Accordion
+- Button
+- ComboBox
+- Dropdown
+- Multiselect
+- Filterable multiselect
+- ContentSwitcher
+- DataTable
+- DatePicker
+- FileUploader
+- FileUploaderItem
+- FileUploaderDropContainer
+- FileUploaderButton
+- Link
+- Modal
+- ComposedModal
+- NumberInput
+- OverflowMenu
+- Search
+- Select
+- Tag
+- TextInput
+- TimePicker
+- Toggle
+
+### Step 5: Update icon sizes and imports
 
 The `@carbon/icons-react` package has been updated to minimize the number of
 exports from the package to help reduce build and compile times. This package is
@@ -378,24 +449,26 @@ using the `size` prop.
 Run the following codemods to update your project's icons.
 
 ```bash
-npx @carbon/upgrade migrate small-to-size-props --write
-npx @carbon/upgrade migrate size-prop-updates --write
+npx @carbon/upgrade migrate icons-react-size-prop --write
 npx @carbon/upgrade migrate update-carbon-icons-react-import-to-carbon-react --write
 ```
 
 By running the series of codemods, they will do the following, in order:
 
-1. Removes the `small` boolean prop and replaces it with `size="sm"`.
-2. Removes old, v10 size props and replaces them with new, v11 sizes. If you're
-   curious about what changes are being made, check out the _Changes to size_
-   section below.
-3. Remove the `@carbon/icons-react` pathing and replace it with
+1. Removes the size from the import and places it on the icon directly.
+2. Remove the `@carbon/icons-react` pathing and replace it with
    `@carbon/react/icons`.
 
+It's important to run the npx commands in the order that they are presented
+above. Doing them out of order might result in the codemod not working as
+intended.
+
 <InlineNotification>
-  It's important to run the npx commands in the order that they are presented
-  above. Doing them out of order might result in the codemod not working as
-  intended.
+
+For full details, including options and commands availabe when using the
+`@carbon/upgrade` CLI, see the
+[package documentation](https://github.com/carbon-design-system/carbon/tree/main/packages/upgrade).
+
 </InlineNotification>
 
 After running the command, instead of your icons imports looking like this:
@@ -435,53 +508,6 @@ function MyComponent() {
   );
 }
 ```
-
-#### Changes to `size`
-
-Components with size variants have been updated to use the same API options.
-Previously, the size options were inconsistent: `field`, `medium`, `short`. Now,
-size options fall under the following values:
-
-| Prop value | Size |
-| ---------- | ---- |
-| `xs`       | 24px |
-| `sm`       | 32px |
-| `md`       | 40px |
-| `lg`       | 48px |
-| `xl`       | 64px |
-| `2xl`      | 80px |
-
-**Note:** the default size in v11 is `md` (`40px`).
-
-The following components all have size variants that may be affected in your
-code. To update, you will need to switch to one of the size options above. The
-codemod [above](#step-4:-update-icon-sizes-and-imports) will make short work of
-these changes.
-
-- Accordion
-- Button
-- ComboBox
-- Dropdown
-- Multiselect
-- Filterable multiselect
-- ContentSwitcher
-- DataTable
-- DatePicker
-- FileUploader
-- FileUploaderItem
-- FileUploaderDropContainer
-- FileUploaderButton
-- Link
-- Modal
-- ComposedModal
-- NumberInput
-- OverflowMenu
-- Search
-- Select
-- Tag
-- TextInput
-- TimePicker
-- Toggle
 
 #### Removed icons
 
@@ -569,7 +595,7 @@ codebase that you will need to update manually:
   prop. Make sure that the `size` prop value matches what your icon name used to
   be. For example, `<Add16 />` should become `<Add size={16} />`
 
-### Step 5: Update components that have changed
+### Step 6: Update components that have changed
 
 In v11, we have updated the APIs of certain components in one of the following
 ways:
@@ -745,7 +771,7 @@ longer needed. Below are the minor tweaks in naming or implementation.
 For more details about the changes to Tabs, see our storybook documentation
 [here](https://react.carbondesignsystem.com/?path=/docs/components-tabs--default).
 
-### Step 9: Done with @carbon/react!
+### Step 7: Done with @carbon/react!
 
 And that's it! You're done. At this point you have migrated to use Carbon v11
 using the `@carbon/react` package.
@@ -902,11 +928,11 @@ to help out with common problems that come from this migration.
 
 ### Step 3: Update import paths and tokens
 
-Now, open your project's root stylesheet and add the following. SHOULD I BE
-TELLING THEM TO REMOVE ANYTHING?
+Now, open your project's root stylesheet to make the following changes:
 
-```scss
-@use '@carbon/styles';
+```diff
+- @import 'carbon-components/scss/globals/scss/styles.scss';
++ @use '@carbon/styles';
 ```
 
 If you were providing any configuration options before you imported Carbon you
