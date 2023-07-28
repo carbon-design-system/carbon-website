@@ -15,174 +15,104 @@ import {
   StructuredListCell,
   OrderedList,
   ListItem,
-} from 'carbon-components-react';
+} from '@carbon/react';
+
+<PageDescription>
+
+Design annotations are needed for specific instances shown below, but for the
+standard loading component, Carbon already incorporates accessibility.
+
+</PageDescription>
 
 <AnchorLinks>
-  <AnchorLink>How it works</AnchorLink>
-  <AnchorLink>Accessibility considerations</AnchorLink>
-  <AnchorLink>Resources</AnchorLink>
-  <AnchorLink>Accessibility testing</AnchorLink>
+
+<AnchorLink>What Carbon provides</AnchorLink>
+<AnchorLink>Design recommendations</AnchorLink>
+<AnchorLink>Development considerations</AnchorLink>
+
 </AnchorLinks>
 
-## How it works
+## What Carbon provides
 
-The Carbon inline loading component is used to notify user’s that the page
-content is loading. W3C WAI-ARIA `role="alert"` and `aria-live="assertive"` are
-used to ensure screen reader users are also provided the same information.
+The loading component has no keyboard accessibility considerations since it is
+intentionally not operable or navigable. However, Carbon incorporates other
+accessibility considerations, some of which are described below.
 
-## Accessibility considerations
+### Status updates
 
-This component has been validated to meet the
-[WCAG 2.0 AA](https://www.w3.org/TR/WCAG20/) and
-[Section 508](http://www.section508.gov/) accessibility guidelines, however
-changes made by the content owner can affect accessibility compliance. Be sure
-to review and follow the guidance in this section when updating or adding new
-content to this component.
-
-1. If the inline loading message is changed, be sure it is clear and concise.
-
-## Resources
-
-#### Helpful resources for creating customized accessible implementations
-
-- [IBM Accessibility Checklist - Checkpoint 4.1.3 Status Message](https://www.ibm.com/able/requirements/requirements/#4_1_3)
-  (WCAG Success Criteria
-  [4.1.3](https://www.w3.org/WAI/WCAG21/Understanding/status-messages.html))
-
-## Accessibility testing
-
-Accessibility issues are tracked in the
-[Carbon Component GitHub repository](https://github.com/carbon-design-system/carbon/issues?q=is%3Aopen+label%3A%22type%3A+a11y+%E2%99%BF%22+label%3A%22component%3A+loading%22+).
-
-### Automated test
+The primary accessibility consideration for the loading component is to convey
+its meaning to assistive technologies so users are aware of changes in status.
+Carbon achieves this by exposing the `title` value (normally “loading”) of the
+spinning wheel SVG image.
 
 <Row>
-  <Column noGutterSm>
-    <StructuredListWrapper>
-      <StructuredListHead>
-        <StructuredListRow head>
-          <StructuredListCell head>
-            Automated test environment
-          </StructuredListCell>
-          <StructuredListCell head>Results</StructuredListCell>
-        </StructuredListRow>
-      </StructuredListHead>
-      <StructuredListBody>
-        <StructuredListRow>
-          <StructuredListCell>
-            - macOS Mojave version 10.14.6 with VoiceOver
-            <br />
-            - Chrome version 77.0.3865.90
-            <br />
-            - Dynamic Assessment Plugin version 1.8.0.0 - IBM Accessibility WCAG
-            2.1 Sept. 2019 Ruleset
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>DAP test</strong>
-            <br />- No violations
-          </StructuredListCell>
-        </StructuredListRow>
-      </StructuredListBody>
-    </StructuredListWrapper>
-  </Column>
+<Column colLg={8}>
+
+![the loading wheel with a purple annotation showing "loading"](images/loading-accessibility-1.png)
+
+<Caption>
+  Screen readers hear “loading” when a spinning icon appears on the screen.
+</Caption>
+
+</Column>
 </Row>
 
-### macOS Screen reader tests
+## Design recommendations
+
+Design annotations are needed for the following instance.
+
+### Convey when loading has completed
+
+When the loading indicator disappears, it conveys a second meaning, which is
+‘not loading’ or ‘finished’. However, especially where loads may take more than
+a few seconds, a user who cannot see the icon disappear needs to be made aware
+the system is no longer “loading” and is thus available for usage.
+
+There are several ways to do this. If new content takes focus when the loading
+is completed (for instance after a full page load), then users will understand
+the system is now available. Annotating what component takes focus will ensure
+this is properly implemented.
 
 <Row>
-  <Column noGutterSm>
-    <StructuredListWrapper>
-      <StructuredListHead>
-        <StructuredListRow head>
-          <StructuredListCell head>Environment </StructuredListCell>
-          <StructuredListCell head>Results</StructuredListCell>
-        </StructuredListRow>
-      </StructuredListHead>
-      <StructuredListBody>
-        <StructuredListRow>
-          <StructuredListCell>
-            - macOS Mojave version 10.14.6 with VoiceOver
-            <br />
-            - Chrome version 77.0.3865.90
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>VoiceOver(VO) test:</strong>
-            <OrderedList>
-              <ListItem>
-                On page load. VO announces "Active Loading Indicator".
-              </ListItem>
-            </OrderedList>
-          </StructuredListCell>
-        </StructuredListRow>
-      </StructuredListBody>
-    </StructuredListWrapper>
-  </Column>
+<Column colLg={8}>
+
+![File uploader with annotation on file's remove button stating 'takes focus after loading completes'](images/loading-accessibility-2.png)
+
+<Caption>Annotate if a control takes focus after a loading completes.</Caption>
+
+</Column>
 </Row>
 
-### Windows screen reader tests
+Where a change of focus is not appropriate when the loading icon disappears, the
+information can be surfaced to users through a non-displayed status message,
+such as "finished" or "loading complete," that can be conveyed to users through
+assistive technology.
 
 <Row>
-  <Column noGutterSm>
-    <StructuredListWrapper>
-      <StructuredListHead>
-        <StructuredListRow head>
-          <StructuredListCell head>Environment</StructuredListCell>
-          <StructuredListCell head>Results</StructuredListCell>
-        </StructuredListRow>
-      </StructuredListHead>
-      <StructuredListBody>
-        <StructuredListRow>
-          <StructuredListCell>
-            - Microsoft Windows 10
-            <br />
-            - Firefox version 68
-            <br />
-            - JAWS 18
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>JAWS test:</strong>
-            <OrderedList>
-              <ListItem>
-                On page load. JAWS announces "Active Loading Indicator".
-              </ListItem>
-            </OrderedList>
-          </StructuredListCell>
-        </StructuredListRow>
-      </StructuredListBody>
-    </StructuredListWrapper>
-  </Column>
+<Column colLg={8}>
+
+![Annotation states 'when loading is complete, create a Complete status message for assistive technology](images/loading-accessibility-3.png)
+
+<Caption>
+  Annotate the information that developers need to convey programmatically to
+  assistive technology.
+</Caption>
+
+</Column>
 </Row>
 
-### iOS screen reader tests
+## Development considerations
 
-<Row>
-  <Column noGutterSm>
-    <StructuredListWrapper>
-      <StructuredListRow head>
-        <StructuredListCell head>Environment </StructuredListCell>
-        <StructuredListCell head>Results</StructuredListCell>
-      </StructuredListRow>
-      <StructuredListBody>
-        <StructuredListRow>
-          <StructuredListCell>
-            - iOS version 13.1.3 with VoiceOver
-            <br />
-            - Safari version 13.1.3
-            <br />- Carbon 10 - React
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>VoiceOver test:</strong>
-            <OrderedList>
-              <ListItem>
-                On page load. VO announces "Active Loading Indicator".
-              </ListItem>
-            </OrderedList>
-          </StructuredListCell>
-        </StructuredListRow>
-      </StructuredListBody>
-    </StructuredListWrapper>
-  </Column>
-</Row>
+Keep these considerations in mind if you are modifying Carbon or creating a
+custom component.
+
+- Carbon uses `aria-live` set to “assertive” to immediately surface a loading
+  status to assistive technologies.
+- Carbon provides an SVG `title` value for the loading icon, which is exposed
+  through the `aria-live` section.
+- The completion of the loading state should be conveyed to assistive
+  technologies. A non-visible status message such as "loading complete" could be
+  put in the `aria-live` section or exposed through a `role="status"`.
+  Alternatively, focus could be set to an appropriate element.
+- See the Equal Access Toolkit information on
+  [status messages](https://www.ibm.com/able/toolkit/develop/dynamic-updates/#role-status).

@@ -4,8 +4,8 @@ import packageJson from '../../../../package.json';
 
 const currentYear = new Date().getFullYear();
 const versions = {
-  components: packageJson.dependencies['carbon-components'],
-  react: packageJson.dependencies['carbon-components-react'],
+  styles: packageJson.dependencies['@carbon/styles'],
+  react: packageJson.dependencies['@carbon/react'],
 };
 
 const Content = ({ buildTime }) => (
@@ -21,7 +21,7 @@ const Content = ({ buildTime }) => (
       </a>
     </p>
     <p>
-      Vanilla Components version {versions.components}
+      Styles version {versions.styles}
       <br />
       React Components version {versions.react}
       <br />
@@ -40,6 +40,7 @@ const links = {
     },
     { href: 'https://www.ibm.com/privacy', linkText: 'Privacy' },
     { href: 'https://www.ibm.com/legal', linkText: 'Terms of use' },
+    { href: 'https://www.ibm.com/able', linkText: 'Accessibility' },
     { href: 'https://www.ibm.com/', linkText: 'IBM.com' },
   ],
   secondCol: [

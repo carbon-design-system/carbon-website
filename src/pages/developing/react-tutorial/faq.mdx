@@ -1,0 +1,78 @@
+---
+title: FAQs
+description:
+  Welcome to Carbon! This tutorial will guide you in creating a React app with
+  the Carbon Design System.
+tabs:
+  [
+    'Overview',
+    'Step 1',
+    'Step 2',
+    'Step 3',
+    'Step 4',
+    'Step 5',
+    'Wrapping up',
+    'FAQ',
+  ]
+---
+
+### I am getting an error that says <span className='tutorial-faq-header-code'>`failed to find manifest for cf`</span>. What do I do?
+
+- The 5th step assumes your spaces are in the US South region. To successfully
+  deploy, you might need to update the region code (e.g.
+  `api.[REGION].cf.cloud.ibm.com`) to the region where your spaces were created,
+  or create a space in the US South region.
+
+- If you don't have an org, create one
+  [here](https://cloud.ibm.com/account/cloud-foundry).
+  - In the top nav go to Manage > Account > Account resources > Cloud Foundry
+    orgs
+  - The name you give it doesn't matter, just take note of the region you
+    select, and use that region's API endpoint (e.g.
+    `api.[REGION].cf.cloud.ibm.com`)
+  - Find regions and endpoints
+    [here](https://cloud.ibm.com/docs/cloud-foundry-public?topic=cloud-foundry-public-endpoints).
+
+### I am getting an error that says <span className='tutorial-faq-header-code'>`yarn lockfile missing`</span>. How do I fix this?
+
+- This error can occur when the `yarn.lock` file is either missing or differs
+  from the one used in the tutorial step. To fix this, you can go to the Github
+  branch for the step you are on, find the `yarn.lock` file, and copy that file
+  into your working directory. You may need to delete your `node_modules` folder
+  and run `yarn` afterwards.
+
+### I am getting a <span className='tutorial-faq-header-code'>`yarn offline cache`</span> error. How do I fix this?
+
+- Try running
+  `rm -rf .yarn-offline-mirror node_modules && yarn cache clean && yarn install`
+  and push up any changes. If this still does not work, ensure your `yarn.lock`
+  file matches the one at the start of the tutorial step
+
+### When will my PR be reviewed?
+
+- If your PR is passing, it will automatically get approved and closed by a bot.
+  After it's closed, you can move on to the next step.
+
+- If your PR is failing, try out the troubleshooting tips on this page first to
+  fix it. If it's still failing, reach out for help in our slack channel
+  `#carbon-react` or tag `@carbon-design-system/developers` in a comment on your
+  PR for help.
+
+### How can I show others my completion status?
+
+- Proof of your completion of the tutorial can be seen by filtering the PR list
+  to show your five PRs with the `status: approved` label.
+
+- You can filter the pull request list to show only pull requests authored by
+  your username. Replace `YOURUSERNAMEHERE` with your username in the following
+  link:
+
+  - https://github.com/carbon-design-system/carbon-tutorial/pulls?q=author%3AYOURUSERNAMEHERE
+
+### Other troubleshooting tips
+
+- We updated the `react-scripts` dependency to `v5.0.1`. Pull from `upstream`
+  and run `yarn` or `npm install` to update your remote branch.
+- You no longer need the `.env` with the updated `react-scripts` dependency. If
+  you are up to date, you can delete that file (previously at the root level).
+- Run `yarn format` and commit any changes made.

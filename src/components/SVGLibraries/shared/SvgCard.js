@@ -11,11 +11,11 @@ import {
 } from './SvgLibrary.module.scss';
 
 const SvgCard = ({ icon, containerIsVisible, isLastCard, ...rest }) => {
-  const { name, Component, friendlyName, assets } = icon;
+  const { name, Component, friendlyName, assets, moduleInfo, output } = icon;
   const [isActionBarVisible, setIsActionBarVisible] = useState(false);
+  const moduleName = moduleInfo?.global ?? output[0].moduleName;
 
   let { source } = assets[0];
-  const glyphOnly = assets[0].size === 'glyph' && assets.length <= 1;
 
   if (assets.length > 1) {
     source = assets.find(({ size }) => size === 32).source;
@@ -29,14 +29,15 @@ const SvgCard = ({ icon, containerIsVisible, isLastCard, ...rest }) => {
       onMouseLeave={() => {
         setIsActionBarVisible(false);
       }}
-      className={svgCard}>
+      className={svgCard}
+    >
       <div className={svgCardInside}>
         <span className={triggerText}>{friendlyName}</span>
         {containerIsVisible && (
           <>
             <div className={flexContainer}>
               {Component ? (
-                <Component {...rest}>
+                <Component size={32} {...rest}>
                   <title>{friendlyName}</title>
                 </Component>
               ) : (
@@ -47,10 +48,9 @@ const SvgCard = ({ icon, containerIsVisible, isLastCard, ...rest }) => {
               isLastCard={isLastCard}
               name={name}
               source={source}
-              friendlyName={friendlyName}
+              moduleName={moduleName}
               isActionBarVisible={isActionBarVisible}
               setIsActionBarVisible={setIsActionBarVisible}
-              glyphOnly={glyphOnly}
             />
           </>
         )}

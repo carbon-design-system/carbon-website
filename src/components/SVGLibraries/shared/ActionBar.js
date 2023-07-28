@@ -1,32 +1,21 @@
 import React, { useRef, useContext, useState } from 'react';
-import { pascalCase } from 'change-case';
-import { Code16, Download16 } from '@carbon/icons-react';
-import { Button } from 'carbon-components-react';
+import { Code, Download } from '@carbon/icons-react';
+import { Button } from '@carbon/react';
 import copy from 'copy-to-clipboard';
 import cx from 'classnames';
 import { LibraryContext } from './LibraryProvider';
 import { container, trigger, hidden, tooltip } from './ActionBar.module.scss';
 
 const ActionBar = ({
+  moduleName,
   name,
-  friendlyName,
   source,
   setIsActionBarVisible,
   isActionBarVisible,
   isLastCard,
-  glyphOnly,
 }) => {
-  const { site, type } = useContext(LibraryContext);
-  let suffix;
-  if (type === 'pictogram') {
-    suffix = '';
-  } else if (glyphOnly) {
-    suffix = 'Glyph';
-  } else {
-    suffix = '32';
-  }
-  const component = `<${pascalCase(friendlyName) + suffix} />`;
-  const [copyText, setCopyText] = useState(`Copy ${component}`);
+  const { site } = useContext(LibraryContext);
+  const [copyText, setCopyText] = useState(`Copy <${moduleName} />`);
   const actionBarRef = useRef();
 
   // Don't show copy button on IDL deployment
@@ -52,9 +41,9 @@ const ActionBar = ({
   const handleCopy = () => {
     setCopyText('Copied!');
     setTimeout(() => {
-      setCopyText(`Copy ${component}`);
+      setCopyText(`Copy ${moduleName}`);
     }, 2000);
-    copy(component, { format: 'text/plain' });
+    copy(`<${moduleName} />`, { format: 'text/plain' });
   };
 
   return (
@@ -64,7 +53,8 @@ const ActionBar = ({
       aria-hidden={!isActionBarVisible}
       className={cx(container, {
         [hidden]: !isActionBarVisible,
-      })}>
+      })}
+    >
       <Button
         kind="ghost"
         size="small"
@@ -72,7 +62,7 @@ const ActionBar = ({
         tooltipAlignment={tooltipAlignment}
         tooltipPosition="top"
         iconDescription="Download SVG"
-        renderIcon={Download16}
+        renderIcon={Download}
         onFocus={() => setIsActionBarVisible(true)}
         onClick={handleDownload}
         className={tooltip}
@@ -86,7 +76,7 @@ const ActionBar = ({
           tooltipAlignment={tooltipAlignment}
           tooltipPosition="top"
           iconDescription={copyText}
-          renderIcon={Code16}
+          renderIcon={Code}
           onClick={handleCopy}
           onFocus={() => setIsActionBarVisible(true)}
           className={tooltip}

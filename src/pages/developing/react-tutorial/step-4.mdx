@@ -4,7 +4,16 @@ description:
   Welcome to Carbon! This tutorial will guide you in creating a React app with
   the Carbon Design System.
 tabs:
-  ['Overview', 'Step 1', 'Step 2', 'Step 3', 'Step 4', 'Step 5', 'Wrapping up']
+  [
+    'Overview',
+    'Step 1',
+    'Step 2',
+    'Step 3',
+    'Step 4',
+    'Step 5',
+    'Wrapping up',
+    'FAQ',
+  ]
 ---
 
 import Preview from 'components/Preview';
@@ -40,13 +49,13 @@ Next, we're going to use Carbon assets to build application-specific components.
 We'll do so by including accessibility and responsive considerations all
 throughout.
 
-A [preview](https://react-step-5--carbon-tutorial.netlify.com) of what you'll
-build (see bottom of page):
+A [preview](https://v11-react-step-5--carbon-tutorial.netlify.app) of what
+you'll build (see bottom of page):
 
 <Preview
   height="400"
   title="Carbon Tutorial Step 4"
-  src="https://react-step-5--carbon-tutorial.netlify.com"
+  src="https://v11-react-step-5--carbon-tutorial.netlify.app"
   frameborder="no"
   allowtransparency="true"
   allowfullscreen="true"
@@ -68,7 +77,7 @@ step's starting point.
 
 ```bash
 git fetch upstream
-git checkout -b react-step-4 upstream/react-step-4
+git checkout -b v11-react-step-4 upstream/v11-react-step-4
 ```
 
 <InlineNotification>
@@ -125,10 +134,11 @@ src/components/Info
 └──Info.js
 ```
 
-Import `_info.scss` in `app.scss` after all of the `carbon-component` imports.
+Import `_info.scss` in `app.scss` after all of the `tutorial-header.scss`
+import.
 
 ```scss path=src/app.scss
-@import './components/Info/info.scss';
+@use './components/Info/info';
 ```
 
 Like our other components, `index.js` will serve as an entrypoint. Since
@@ -144,27 +154,35 @@ export * from './Info';
 Let's create the parent component that includes the "The Principles" heading.
 That markup currently looks like this in `LandingPage.js`:
 
-```html path=src/content/LandingPage/LandingPage.js
-<div className="bx--row landing-page__r3">
-  <div className="bx--col-md-4 bx--col-lg-4">
-    <h3 className="landing-page__label">The Principles</h3>
-  </div>
-  <div className="bx--col-md-4 bx--col-lg-4">Carbon is Open</div>
-  <div className="bx--col-md-4 bx--col-lg-4">Carbon is Modular</div>
-  <div className="bx--col-md-4 bx--col-lg-4">Carbon is Consistent</div>
-</div>
+```jsx path=src/content/LandingPage/LandingPage.js
+<Column lg={16} md={8} sm={4} className="landing-page__r3">
+  <Grid>
+    <Column md={4} lg={4}>
+      <h3 className="landing-page__label">The Principles</h3>
+    </Column>
+    <Column md={4} lg={4}>
+      Carbon is Open
+    </Column>
+    <Column md={4} lg={4}>
+      Carbon is Modular
+    </Column>
+    <Column md={4} lg={4}>
+      Carbon is Consistent
+    </Column>
+  </Grid>
+</Column>
 ```
 
 We want to do a few things when abstracting it to a component. First, we only
-want Carbon (`bx--`) and this component's class names; we don't want to include
-`landing-page__r3` as that's specific to the landing page. For that we'll use
-React `props` so we can pass in and use `props.className`.
+want this component's class names; we don't want to include `landing-page__r3`
+as that's specific to the landing page. For that we'll use React `props` so we
+can pass in and use `props.className`.
 
 We'll also:
 
-- Add component class names like `info-section` and `info-section__heading`
-- Semantically use `<section>` instead of `<div>`
-- Update the grid columns to match the design
+- Add component class names like `info-section`, `info-card`, and
+  `info-section__heading`
+- We will be using the `Grid` and `Column` components
 - Replace `The Principles` with `{props.heading}`
 - Replace columns 2 - 4 with `{props.children}`
 
@@ -173,39 +191,43 @@ Using `props` we can render any heading and any number of children components
 
 ```javascript path=src/components/Info/Info.js
 import React from 'react';
+import { Grid, Column } from '@carbon/react';
 
 const InfoSection = (props) => (
-  <section className={`bx--row ${props.className} info-section`}>
-    <div className="bx--col-md-8 bx--col-lg-4 bx--col-xlg-3">
+  <Grid className={`${props.className} info-section`}>
+    <Column md={8} lg={4} xlg={3}>
       <h3 className="info-section__heading">{props.heading}</h3>
-    </div>
+    </Column>
     {props.children}
-  </section>
+  </Grid>
 );
 ```
 
-At this point let's add styling for the new class names that we just added.
+At this point let's import our needed styles and add styling for the new class
+names that we just added.
 
 ```scss path=src/components/Info/_info.scss
+@use '@carbon/react/scss/type' as *;
+
 .info-section__heading {
-  @include carbon--type-style('heading-01');
+  @include type-style('heading-01');
 }
 ```
 
 ### InfoCard component
 
 Next up we're going to build a component for columns 2 - 4, which currently
-looks like `<div className="bx--col-md-4 bx--col-lg-4">Carbon is Open</div>`. At
-the bottom of `Info.js`, add:
+looks like `<Column md={4} lg={4}>Carbon is Open</Column>`. At the bottom of
+`Info.js`, add:
 
 ```javascript path=src/components/Info/Info.js
 const InfoCard = (props) => {
   return (
-    <article className="info-card bx--col-md-4 bx--col-lg-4 bx--col-xlg-3 bx--offset-xlg-1">
+    <Column sm={4} md={8} lg={4} className="info-card">
       <h4 className="info-card__heading">{props.heading}</h4>
       <p className="info-card__body">{props.body}</p>
-      {props.icon}
-    </article>
+      {props.icon()}
+    </Column>
   );
 };
 
@@ -220,18 +242,9 @@ export { InfoSection, InfoCard };
 
 In doing so, we:
 
-- Used the semantic `<article>` instead of `<div>`
 - Added `info-card` classes
 - Used `props` to render the heading, body copy, and icon
 - Set columns to match the grid
-
-<InlineNotification>
-
-**Note:** At extra large viewports, we are using
-`bx--col-xlg-3 bx--offset-xlg-1` so each column takes up 3 of the 16 grid
-columns, with a 1 column offset.
-
-</InlineNotification>
 
 ## Use components
 
@@ -246,59 +259,54 @@ While we're at the top of `LandingPage.js`, import the icons that we'll need as
 well.
 
 ```javascript path=src/content/LandingPage/LandingPage.js
-import { Application32, Globe32, PersonFavorite32 } from '@carbon/icons-react';
+import { Globe, Application, PersonFavorite } from '@carbon/react/icons';
 ```
-
-<InlineNotification>
-
-**Note:** You'll notice that these 32px icons aren't the pictograms as designed.
-The Carbon team is currently working on adding pictograms to the icons packages.
-Until then, we'll use the biggest SVGs.
-
-</InlineNotification>
 
 With everything imported, replace the current:
 
-```html path=src/content/LandingPage/LandingPage.js
-<div className="bx--row landing-page__r3">
-  <div className="bx--col-md-4 bx--col-lg-4">
+```jsx path=src/content/LandingPage/LandingPage.js
+<Grid>
+  <Column md={4} lg={4}>
     <h3 className="landing-page__label">The Principles</h3>
-  </div>
-  <div className="bx--col-md-4 bx--col-lg-4">Carbon is Open</div>
-  <div className="bx--col-md-4 bx--col-lg-4">Carbon is Modular</div>
-  <div className="bx--col-md-4 bx--col-lg-4">Carbon is Consistent</div>
-</div>
+  </Column>
+  <Column md={4} lg={4}>
+    Carbon is Open
+  </Column>
+  <Column md={4} lg={4}>
+    Carbon is Modular
+  </Column>
+  <Column md={4} lg={4}>
+    Carbon is Consistent
+  </Column>
+</Grid>
 ```
 
 With the new components:
 
-<!-- prettier-ignore-start -->
 ```javascript path=src/content/LandingPage/LandingPage.js
 <InfoSection heading="The Principles" className="landing-page__r3">
   <InfoCard
     heading="Carbon is Open"
     body="It's a distributed effort, guided by the principles of the open-source movement. Carbon's users are also it's makers, and everyone is encouraged to contribute."
-    icon={<PersonFavorite32/>}
+    icon={() => <PersonFavorite size={32} />}
   />
   <InfoCard
     heading="Carbon is Modular"
     body="Carbon's modularity ensures maximum flexibility in execution. It's components are designed to work seamlessly with each other, in whichever combination suits the needs of the user."
-    icon={<Application32/>}
+    icon={() => <Application size={32} />}
   />
   <InfoCard
     heading="Carbon is Consistent"
     body="Based on the comprehensive IBM Design Language, every element and component of Carbon was designed from the ground up to work elegantly together to ensure consistent, cohesive user experiences."
-    icon={<Globe32/>}
+    icon={() => <Globe size={32} />}
   />
 </InfoSection>
 ```
-<!-- prettier-ignore-end -->
 
 <InlineNotification>
 
-**Note:** Now is a good time to resize your browser from phone to extra large
-viewport widths to see how the responsive grid is working before we add further
-styling.
+**Note:** Now is a good time to resize your browser from phone to large viewport
+widths to see how the responsive grid is working before we add further styling.
 
 </InlineNotification>
 
@@ -311,40 +319,50 @@ to set type style and borders.
 
 ### Layout
 
-Starting with layout, add the following to `src/components/Info/_info.scss`.
+Starting with layout, import the following carbon styles to
+`src/components/Info/_info.scss`. Make sure to import the needed carbon styles.
+
+```scss path=src/components/Info/_info.scss
+@use '@carbon/react/scss/spacing' as *;
+@use '@carbon/react/scss/breakpoint' as *;
+@use '@carbon/react/scss/theme' as *;
+```
+
+We will then add the following styles to the same file to style our info cards.
 
 ```scss path=src/components/Info/_info.scss
 .info-card {
   margin-top: $spacing-09;
   display: flex;
   flex-direction: column;
+  padding-left: 1rem;
 
   svg {
     margin-top: $spacing-09;
   }
 
   // top border in only small breakpoints to prevent overrides
-  @include carbon--breakpoint-down(md) {
+  @include breakpoint-down(md) {
     &:not(:nth-child(2)) {
-      border-top: 1px solid $ui-03;
+      border-top: 1px solid $border-subtle-01;
       padding-top: $spacing-09;
     }
   }
 
   // left border in just the 2nd column items
-  @include carbon--breakpoint(md) {
+  @include breakpoint(md) {
     &:nth-child(odd) {
-      border-left: 1px solid $ui-03;
+      border-left: 1px solid $border-subtle-01;
     }
   }
 
   // left border in all items
-  @include carbon--breakpoint(lg) {
+  @include breakpoint(lg) {
     margin-top: 0;
-    border-left: 1px solid $ui-03;
+    border-left: 1px solid $border-subtle-01;
 
     svg {
-      margin-top: $layout-06;
+      margin-top: $spacing-12;
     }
   }
 }
@@ -357,11 +375,12 @@ There are also a few breakpoint mixins that may be new to you.
 ### Type
 
 Our `InfoCard` headings look to be too small. We need to increase their font
-sizes according to the design spec with:
+sizes according to the design spec. Lets update the heading with the following
+type style:
 
 ```scss path=src/components/Info/_info.scss
 .info-card__heading {
-  @include carbon--type-style('productive-heading-03');
+  @include type-style('productive-heading-03');
 }
 ```
 
@@ -384,14 +403,14 @@ const InfoCard = (props) => {
   const splitHeading = createArrayFromPhrase(props.heading);
 
   return (
-    <article className="info-card bx--col-md-4 bx--col-lg-4 bx--col-xlg-3 bx--offset-xlg-1">
+    <Column sm={4} md={8} lg={4} className="info-card">
       <h4 className="info-card__heading">
         {`${splitHeading[0]} `}
         <strong>{splitHeading[1]}</strong>
       </h4>
       <p className="info-card__body">{props.body}</p>
-      {props.icon}
-    </article>
+      {props.icon()}
+    </Column>
   );
 };
 ```
@@ -406,7 +425,7 @@ styles and to bottom-align the icons.
   @include type-style('body-long-01');
 
   // prevent large line lengths between small and medium viewports
-  @include carbon--breakpoint-between(321px, md) {
+  @include breakpoint-between(321px, md) {
     max-width: 75%;
   }
 }
@@ -420,65 +439,6 @@ our rendered markup is on the right track for accessibility.
 
 With the browser extension installed, Chrome in this example, open Dev Tools and
 run Accessibility Assessment.
-
-![Equal Access Checker violations](../shared/step-4/images/EqualAccessChecker-violations.png)
-
-<Caption>Equal Access Checker violations</Caption>
-
-All these violations came from the `<Tab>` element used in `LandingPage`.
-`<Tab>` element expects a unique value for the ARIA properties `aria-controls`
-and `aria-labelledby`. Setting a unique `id` attribute for all the three tabs
-will solve the problem.
-
-In `LandingPage.js`, replace the `<Tabs>` element with:
-
-```javascript path=src/content/LandingPage/LandingPage.js
-<Tabs {...props.tabs} aria-label="Tab navigation">
-  <Tab {...props.tab} label="About" id="about">
-    <div className="bx--grid bx--grid--no-gutter bx--grid--full-width">
-      <div className="bx--row landing-page__tab-content">
-        <div className="bx--col-md-4 bx--col-lg-7">
-          <h2 className="landing-page__subheading">What is Carbon?</h2>
-          <p className="landing-page__p">
-            Carbon is IBM’s open-source design system for digital products and
-            experiences. With the IBM Design Language as its foundation, the
-            system consists of working code, design tools and resources, human
-            interface guidelines, and a vibrant community of contributors.
-          </p>
-          <Button>Learn more</Button>
-        </div>
-        <div className="bx--col-md-4 bx--offset-lg-1 bx--col-lg-8">
-          <img
-            className="landing-page__illo"
-            src={`${process.env.PUBLIC_URL}/tab-illo.png`}
-            alt="Carbon illustration"
-          />
-        </div>
-      </div>
-    </div>
-  </Tab>
-  <Tab {...props.tab} label="Design" id="design">
-    <div className="bx--grid bx--grid--no-gutter bx--grid--full-width">
-      <div className="bx--row landing-page__tab-content">
-        <div className="bx--col-lg-16">
-          Rapidly build beautiful and accessible experiences. The Carbon kit
-          contains all resources you need to get started.
-        </div>
-      </div>
-    </div>
-  </Tab>
-  <Tab {...props.tab} label="Develop" id="develop">
-    <div className="bx--grid bx--grid--no-gutter bx--grid--full-width">
-      <div className="bx--row landing-page__tab-content">
-        <div className="bx--col-lg-16">
-          Carbon provides styles and components in Vanilla, React, Angular, and
-          Vue for anyone building on the web.
-        </div>
-      </div>
-    </div>
-  </Tab>
-</Tabs>
-```
 
 ## Submit pull request
 
@@ -502,16 +462,18 @@ has troubleshooting notes that may help.
 
 ### Git commit and push
 
-Before we can create a pull request, stage and commit all of your changes:
+Before we can create a pull request, format your code, then stage and commit all
+of your changes:
 
 ```bash
+yarn format
 git add --all && git commit -m "feat(tutorial): complete step 4"
 ```
 
 Then, push to your repository:
 
 ```bash
-git push origin react-step-4
+git push origin v11-react-step-4
 ```
 
 <InlineNotification>
@@ -527,7 +489,7 @@ troubleshooting notes that may help.
 Finally, visit
 [carbon-tutorial](https://github.com/carbon-design-system/carbon-tutorial) to
 "Compare & pull request". In doing so, make sure that you are comparing to
-`react-step-4` into `base: react-step-4`.
+`v11-react-step-4` into `base: v11-react-step-4`.
 
 <InlineNotification>
 

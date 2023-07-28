@@ -119,7 +119,7 @@ class GlossaryNav extends Component {
       const isActiveItem = letter.id === this.state.activeLetter;
       const classNames = classnames({
         'glossary-nav__item': true,
-        'bx--list__item': true,
+        'cds--list__item': true,
         'glossary-nav__item--active': isActiveItem,
       });
       glossaryNavItems.push(

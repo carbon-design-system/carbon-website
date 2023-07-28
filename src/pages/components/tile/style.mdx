@@ -6,41 +6,160 @@ description:
 tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 ---
 
+import { Checkmark } from '@carbon/icons-react';
+import { white } from '@carbon/themes';
+
 ## Color
 
-| Class                        | Property         | Color token |
-| ---------------------------- | ---------------- | ----------- |
-| `.bx--tile`                  | background-color | `$ui-01`    |
-| `.bx--tile:focus`            | border           | `$focus`    |
-| `.bx--tile:hover`            | background-color | `$hover-ui` |
-| `.bx--tile--is-selected`     | border           | `$ui-05`    |
-| `.bx--tile__chevron`         | svg              | `$icon-01`  |
-| `.bx--tile__checkmark`       | svg              | `$icon-01`  |
-| `.bx--tile__checkmark:hover` | svg              | `$icon-02`  |
+<InlineNotification>
+
+The tile border applies to clickable, selectable and expandable tiles — not to
+base tiles.
+
+</InlineNotification>
+
+| Element         | Property         | Color token         |
+| --------------- | ---------------- | ------------------- |
+| Tile:background | background-color | `$layer` \*         |
+| Tile border     | border           | `$border-tile` \*   |
+| Icon            | svg              | `$icon-interactive` |
+| Checkbox icon   | svg              | `$icon-primary`     |
+| Checkmark icon  | svg              | `$icon-primary`     |
+| Chevron icon    | svg              | `$icon-primary`     |
+
+<Row>
+<Column colLg={8}>
+
+![State of the base tile](images/tile-style-3.png)
+
+</Column>
+</Row>
+
+<Caption>
+  The example shows layering tokens applied across layers in the Gray 100 theme.
+</Caption>
+
+### Interactive states
+
+| Element                      | Property         | Color token        |
+| ---------------------------- | ---------------- | ------------------ |
+| Tile:hover                   | background-color | `$layer-hover` \*  |
+| Tile:focus                   | border           | `$focus`           |
+| Tile:selected                | border           | `$border-inverse`  |
+| Tile:disabled                | border           | `$border-disabled` |
+| Icon:disabled (or pictogram) | svg              | `$icon-disabled`   |
+| Text:disabled                | text color       | `$text-disabled`   |
+
+#### Base tile
+
+Base tile doesn't have a border. It's not interactive, but can have interactive
+elements. Base tile only has the enabled state.
+
+<Row>
+<Column colLg={8}>
+
+![State of the base tile](images/tile-style-5.png)
+
+</Column>
+</Row>
+
+#### Clickable tile
+
+Clickable tile has four states: enabled, hover, focus, and disabled.
+
+<Row>
+<Column colLg={8}>
+
+![States of the clickable tile](images/tile-style-6.png)
+
+</Column>
+</Row>
+
+#### Selectable tiles
+
+Selectable tiles have five states: enabled, hover, focus, selected, and
+disabled.
+
+<Row>
+<Column colLg={8}>
+
+<Tabs>
+
+<Tab label="Single-select">
+
+![States of the single-select tile](images/tile-style-7.png)
+
+</Tab>
+
+<Tab label="Multi-select">
+
+![States of the multi-select tile](images/tile-style-8.png)
+
+</Tab>
+
+</Tabs>
+
+</Column>
+</Row>
+
+#### Expandable tiles
+
+Expandable tiles have three states: enabled, hover, and focus.
+
+<Row>
+<Column colLg={8}>
+<Tabs>
+
+<Tab label="Default">
+
+![States of the expandable tile](images/tile-style-9.png)
+
+</Tab>
+
+<Tab label="Interactive">
+
+![States of the expandable tile with interactive elements](images/tile-style-10.png)
+
+</Tab>
+
+</Tabs>
+
+</Column>
+</Row>
 
 ## Structure
 
-| Class       | Property          | px / rem | Spacing token |
-| ----------- | ----------------- | -------- | ------------- |
-| `.bx--tile` | min-height        | 64 / 4   | –             |
-| `.bx--tile` | min-width         | 128 / 8  | –             |
-| `.bx--tile` | padding (minimum) | 16 / 1   | `$spacing-05` |
+| Element | Property          | px / rem | Spacing token |
+| ------- | ----------------- | -------- | ------------- |
+| Tile    | min-height        | 64 / 4   | –             |
+|         | min-width         | 128 / 8  | –             |
+|         | padding (minimum) | 16 / 1   | `$spacing-05` |
 
-<div className="image--fixed">
+<Row>
+<Column colLg={12}>
 
-![Structure and spacing measurements for tile](images/tile-style-1.png)
+![Structure and measurements for tiles](images/tile-style-11.png)
 
-</div>
+</Column>
+</Row>
+
+<Row>
+<Column colLg={12}>
+
+![Structure and measurements for single-select, multi-select, and expandable tiles](images/tile-style-12.png)
+
+</Column>
+</Row>
 
 <Caption>Structure and spacing measurements for tile | px / rem</Caption>
 
 ### Proportions for grid
 
-| Percentage | XL 1600-1200 | L 1200-992 | M 992-768 | S 768-576 | XS 576-0 |
-| ---------- | ------------ | ---------- | --------- | --------- | -------- |
-| 100%       | ✅           | ✅         | ✅        | ✅        | ✅       |
-| 1/2        | ✅           | ✅         | ✅        | ✅        | ✅       |
-| 2/3        | ✅           | ✅         | ✅        | ✅        |          |
-| 1/3        | ✅           | ✅         | ✅        | ✅        |          |
-| 1/4        | ✅           | ✅         | ✅        | ✅        |          |
-| 1/6        | ✅           | ✅         |           |           |          |
+| Percentage | XL 1600-1200                            | L 1200-992                              | M 992-768                               | S 768-576                               | XS 576-0                                |
+| ---------- | --------------------------------------- | --------------------------------------- | --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| 100%       | <Checkmark color={white.iconPrimary} /> | <Checkmark color={white.iconPrimary} /> | <Checkmark color={white.iconPrimary} /> | <Checkmark color={white.iconPrimary} /> | <Checkmark color={white.iconPrimary} /> |
+| 1/2        | <Checkmark color={white.iconPrimary} /> | <Checkmark color={white.iconPrimary} /> | <Checkmark color={white.iconPrimary} /> | <Checkmark color={white.iconPrimary} /> | <Checkmark color={white.iconPrimary} /> |
+| 2/3        | <Checkmark color={white.iconPrimary} /> | <Checkmark color={white.iconPrimary} /> | <Checkmark color={white.iconPrimary} /> | <Checkmark color={white.iconPrimary} /> |                                         |
+| 1/3        | <Checkmark color={white.iconPrimary} /> | <Checkmark color={white.iconPrimary} /> | <Checkmark color={white.iconPrimary} /> | <Checkmark color={white.iconPrimary} /> |                                         |
+| 1/4        | <Checkmark color={white.iconPrimary} /> | <Checkmark color={white.iconPrimary} /> | <Checkmark color={white.iconPrimary} /> | <Checkmark color={white.iconPrimary} /> |                                         |
+| 1/6        | <Checkmark color={white.iconPrimary} /> | <Checkmark color={white.iconPrimary} /> |                                         |                                         |                                         |

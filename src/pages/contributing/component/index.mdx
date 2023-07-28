@@ -25,10 +25,11 @@ Our component usage documentation typically contains three parts: usage
 guidance, style guidance, and code guidance. Some components are more complex
 than others but you should cover each topic included in these templates.
 
-### Template for components with one variant
+### Usage template: for components with one variant
 
-Use this template for documenting components with only one variant. You can see
-this template in use for [Accordion](/components/accordion/usage) and
+The usage template helps describe when to use a component and how it works. You
+can see this template in use for components with only one variant:
+[Accordion](/components/accordion/usage) and
 [Checkbox](/components/checkbox/usage).
 
 ```markdown
@@ -259,7 +260,7 @@ leaving any other comments on
 [GitHub](https://github.com/carbon-design-system/carbon-website/issues/new?assignees=&labels=feedback&template=feedback.md).
 ```
 
-### Template for components with multiple variants
+### Usage template: for components with multiple variants
 
 Use this template for documenting components that have multiple types or
 variants. You can see this template in use for
@@ -419,7 +420,7 @@ Example:
 
 *The behaviors listed in this section are universal across all of the types. For behaviors that are unique to each type, see each of the component type sections below.*
 
-Choose from this list of possible behaviors that are *universal* across all types, and include them here as H3 headings.
+Choose from this list of possible behaviors that are *universal* across all types, and include them here as h3 headings.
 -->
 
 ### States
@@ -497,7 +498,6 @@ The modifiers section shows different ways of styling the component. Here are so
 - adding a button to a [notification](https://www.carbondesignsystem.com/components/notification/usage/#anatomy)
 - styling a dropdown to appear inline with other content
 - using high and low contrast styles for [notifications](https://www.carbondesignsystem.com/components/notification/usage/#high-and-low-contrast)
-- using a "light" variant in a [text input](https://www.carbondesignsystem.com/components/text-input/code)
 -->
 
 ## Related
@@ -521,19 +521,227 @@ leaving any other comments on
 [GitHub](https://github.com/carbon-design-system/carbon-website/issues/new?assignees=&labels=feedback&template=feedback.md).
 ```
 
-### Style guidance
+### Style template
 
-We're still working on this template. We'd love your
-[help and feedback](https://github.com/carbon-design-system/carbon-website/issues/1246)!
+The style template helps describe how a component looks, including visual
+specifications such as color, typography, structure, and size.
 
 ```markdown
-Help wanted!
+---
+title: [Component name]
+description: [Explains what the component is in one or two sentences.]
+tabs: ['Usage', 'Style', 'Code', 'Accessibility']
+---
+
+<PageDescription>
+
+The following page documents visual specifications such as color, typography,
+structure, and size.
+
+</PageDescription>
+
+<AnchorLinks>
+
+<AnchorLink>Color</AnchorLink> <AnchorLink>Typography</AnchorLink>
+<AnchorLink>Structure</AnchorLink> <AnchorLink>Size</AnchorLink>
+<AnchorLink>Feedback</AnchorLink>
+
+</AnchorLinks>
+
+## Color
+
+<!--
+Use a table to document properties and color tokens in this section. You can reference this [table generator](https://www.tablesgenerator.com/markdown_tables) for easy table creation.
+
+The following table shows an example from [Accordion](https://carbondesignsystem.com/components/accordion/style).
+-->
+
+| Element | Property      | Color token        |
+| ------- | ------------- | ------------------ |
+| Title   | color         | `$text-primary`    |
+| Content | color         | `$text-primary`    |
+| Icon    | fill          | `$icon-primary`    |
+| Header  | border-top    | `$border-subtle`\* |
+|         | background    | Transparent        |
+| Panel   | border-bottom | `$border-subtle`\* |
+|         | background    | Transparent        |
+
+<Caption>
+  * Denotes a contextual color token that will change values based on the layer
+  it is placed on.
+</Caption>
+
+<Row>
+<Column colLg={8}>
+
+![enabled state](images/accordion-style-1.png)
+
+</Column>
+</Row>
+
+### Interactive state color
+
+<!--
+Use a table to document properties and color tokens for interactive states. Begin the table with the State column, not the Element column; this helps users scan faster and better reference accompanying images, which are also organized by state. You can reference this [table generator](https://www.tablesgenerator.com/markdown_tables) for easy table creation.
+
+You may also choose to include images or tabs to illustrate variants.
+
+The following table shows an example from [Accordion](https://carbondesignsystem.com/components/accordion/style).
+-->
+
+| State    | Element | Property   | Color token        |
+| -------- | ------- | ---------- | ------------------ |
+| Hover    | Header  | background | `$layer-hover`\*   |
+| Focus    | Header  | border     | `$focus`           |
+| Disabled | Header  | border-top | `$border-subtle`\* |
+|          | Title   | background | `$text-disabled`   |
+|          | Icon    | fill       | `$icon-disabled`   |
+
+<Caption>
+  * Denotes a contextual color token that will change values based on the layer
+  it is placed on.
+</Caption>
+
+<Row>
+<Column colLg={12}>
+
+<Tabs>
+
+<Tab label="Default">
+
+![default accordion alignment interactive states](images/accordion-style-2.png)
+
+</Tab>
+
+<Tab label="Flush">
+
+![flush accordion alignment interactive states](images/accordion-style-3.png)
+
+</Tab>
+
+</Tabs>
+
+</Column>
+</Row>
+
+## Typography
+
+<!--
+Begin this section with any brief content guidelines. Link out to additional guidelines if needed.
+
+Then, use a table to document font-size, font-weight, and type tokens in this section. You can reference this [table generator](https://www.tablesgenerator.com/markdown_tables) for easy table creation.
+
+The following table shows an example from [Accordion](https://carbondesignsystem.com/components/accordion/style).
+-->
+
+All accordion titles are set in sentence case. See the accordion
+[content guidelines](/components/accordion/usage#content) for more details.
+
+| Element | Font-size (px/rem) | Font-weight   | Type token |
+| ------- | ------------------ | ------------- | ---------- |
+| Title   | 14 / 0.875         | Regular / 400 | `$body-01` |
+| Content | 14 / 0.875         | Regular / 400 | `$body-01` |
+
+## Structure
+
+<!--
+Begin the structure section with a table to document states, spacing, and any other component-specific configurations. You can reference this [table generator](https://www.tablesgenerator.com/markdown_tables) for easy table creation.
+
+Add supporting images to this section, with at least one image showing structure and another showing spacing measurements. Images should be accompanied by a descriptive caption and relate to the spec charts. Note we use the `image--fixed` markdown component in the Structure section to maintain size accuracy.
+
+Variants: You may need to provide additional specs for component variants like default versus flush alignment. For each variant, make a new h3 section and give it a name. The following are example pairs of section headers:
+
+Default style text area structure
+Fluid style text area structure
+
+Default style text input structure
+Fluid style text input structure
+
+Default alignment structure
+Flush alignment structure
+
+Modifiers: If you need to document additional ways of styling a component, add h3 sections under Structure as needed. Here are some example cases where a modifier section has been added:
+
+- adding an icon to a [button](https://www.carbondesignsystem.com/components/button/usage/#variations)
+- adding a button to a [notification](https://www.carbondesignsystem.com/components/notification/usage/#anatomy)
+- using high and low contrast styles for [notifications](https://www.carbondesignsystem.com/components/notification/usage/#high-and-low-contrast)
+
+The following content shows example documentation from [Accordion](https://carbondesignsystem.com/components/accordion/style), which has no variants and therefore does not need any h3 headers.
+-->
+
+| Element | Property    | px/rem   | Spacing token |
+| ------- | ----------- | -------- | ------------- |
+| Header  | height      | 40 / 2.5 | –             |
+| Item    | border-top  | 1        | –             |
+| Title   | margin-left | 16 / 1   | `$spacing-05` |
+
+<div className="image--fixed">
+
+![Structure measurements for default accordion alignment](images/accordion-style-4.png)
+
+</div>
+
+<Caption>
+  Structure measurements for default accordion alignment. | px / rem
+</Caption>
+
+<br />
+
+<div className="image--fixed">
+
+![Spacing measurements for default accordion alignment](images/accordion-style-5.png)
+
+</div>
+
+<Caption>
+  Spacing measurements for default accordion alignment. | px / rem
+</Caption>
+
+## Size
+
+<!--
+In the size section, provide a table of component size names and height. Be sure to cross-link this to the size section in the usage tab, which is where you should provide guidance about how to choose the best size for a given use case.
+
+Example: The following table shows an example from [Button](https://carbondesignsystem.com/components/button/style).
+-->
+
+There are six button sizes: small, medium, large productive, large expressive,
+extra large, and 2XL. The large expressive button is used in editorial and
+digital marketing experiences. See
+[Button sizes](/components/button/usage#button-sizes) on the Usage tab for more
+information about specific use cases for each button size.
+
+| Variant           | Size             | Height (px / rem) |
+| ----------------- | ---------------- | ----------------- |
+| Button            | Small            | 32 / 2            |
+|                   | Medium           | 40 / 2.5          |
+|                   | Large productive | 48 / 3            |
+|                   | Large expressive | 48 / 3            |
+| Full bleed button | Extra large      | 64 / 4            |
+|                   | 2xl              | 80 / 5            |
+
+<Row>
+<Column colLg={8}>
+
+![Button sizes](images/button_usage_3.png)
+
+</Column>
+</Row>
+
+## Feedback
+
+<!--Include a request for feedback here.-->
+
+Help us improve this component by providing feedback, asking questions, and
+leaving any other comments on
+[GitHub](https://github.com/carbon-design-system/carbon-website/issues/new?assignees=&labels=feedback&template=feedback.md).
 ```
 
-### Code guidance
+### Code template
 
-This page helps developers implement your component. Be specific, include code
-snippets, and be sure to update as dependencies and versions change.
+The code template helps developers implement your component. Be specific,
+include code snippets, and be sure to update as dependencies and versions
+change.
 
 ```markdown
 ---
@@ -629,6 +837,140 @@ leaving any other comments on
 [GitHub](https://github.com/carbon-design-system/carbon-website/issues/new?assignees=&labels=feedback&template=feedback.md).
 ```
 
+### Accessibility template
+
+The accessibility template helps designers and developers ensure components are
+accessible. The published information helps users understand all the
+accessibility considerations that are baked into Carbon. Refer to our guidance
+on creating the
+[keyboard interaction visuals](https://github.com/hiraaeth/component-contribution-accessibility/wiki/High-fidelity-keyboard-interaction-visuals).
+
+```markdown
+---
+title: Component name (you won't need to write this)
+description: Component description (you won't need to write this)
+tabs: ['Usage', 'Style', 'Code', 'Accessibility']
+---
+
+<PageDescription>
+
+<!--
+There are 2 stock page descriptions.
+Choose the first example if designers need to include annotations in their wireframes to make the component accessible. Choose the second if the component is accessible without additional design decisions.
+** If example 2 is used, the Design recommendations section and its anchor link should be removed.
+
+Example 1:
+Design annotations are needed for specific instances shown below, but for the
+standard [component_name] component, Carbon already incorporates accessibility.
+
+Example 2:
+No accessibility annotations are needed for [component_name]s, but keep these considerations in
+mind if you are modifying Carbon or creating a custom component.
+-->
+
+</PageDescription>
+
+<AnchorLinks>
+  <AnchorLink>What Carbon provides</AnchorLink>
+  <!--
+  Only include Design recommendations if there are actually tasks for a designer to do
+  -->
+  <AnchorLink>Design recommendations</AnchorLink>
+  <AnchorLink>Development considerations</AnchorLink>
+</AnchorLinks>
+
+## What Carbon provides
+
+Carbon bakes keyboard operation into its components, improving the experience of
+blind users and others who operate via the keyboard. Carbon incorporates many
+other accessibility considerations, some of which are described below.
+
+### Keyboard interaction
+
+<!--
+This keyboard section introduction text can give details of keyboard operation. For actionable components, begin by talking about the navigation via the tab stop, then discuss common interactions keys. For components with subcomponents, unless there is little interaction for the subcomponent, consider splitting the subcomponent considerations into a separate paragraph, separated by an illustration. Where operation is more complicated, separate headings for Keyboard navigation and Keyboard interaction can exist.Keyboard keys should be referred to with code styling.
+
+Example 1:
+-->
+
+Each accordion is a tab stop. `Space` or `Enter` keys expand or collapse
+accordions, which are collapsed by default. Interactive elements within expanded
+accordions integrate into the tab order automatically.
+
+<!--
+Example 2:
+Each page link in the breadcrumb is reached by `Tab` and activated by `Enter`. The current
+page, if listed in the breadcrumb, is not a link. If the breadcrumb is truncated, the ellipsis button
+for the overflow menu is in the tab order. See [overflow menu]((https://carbondesignsystem.com/components/overflow-menu/usage/)) for details on its keyboard operation
+-->
+
+<!--
+**Images**
+Use one image to document keyboard navigation. If the component has limited operation functionality, it may also be incorporated in the same image. Otherwise, the operation should be dealt with in a separate image.
+Normally these images go across 8 columns.
+images should follow the naming convention (component_name-accessibility-1.png
+The ALT text text for the first image can be fairly generic, since the image is just restating information in the prior paragraph.
+The caption should likewise summarize something already described in the preceding paragraph. No new information should be given in the caption. Due to technology constraints, keystroke names in the captions are not given any markdown styling.
+Example:
+![example of breadcrumb keyboard interaction](images/breadcrumb-accessibility-1.png)
+<Caption>
+  The breadcrumb's links are reached by Tab and activated by Enter.
+</Caption>
+-->
+<Row>
+<Column colLg={8}>
+
+![example of (componet_name) keyboard interaction](images/component_name-accessibility-1.png)
+
+<Caption>
+  The (component_name) is reached by Tab and activated by Enter.
+</Caption>
+
+</Column>
+</Row>
+
+<!--
+The Design recommendations section should only be included if annotations are needed
+-->
+
+## Design recommendations
+
+Design annotations are needed for the following instances.
+
+<!--
+Some of the possible subheadings here include:
+- headings
+- alignment
+- labeling
+- meaningful order
+
+Each should have a level 3 heading, a descriptive paragraph and a supporting image.
+
+Example:
+
+### Headings
+Carbon accordions are not set as headings by default. For improved accessibility, annotate accordions as headings on the first occurrence in a product. Annotate the heading level of accordions as needed.
+
+-->
+
+## Development considerations
+
+Keep these considerations in mind if you are modifying Carbon or creating a
+custom component.
+
+<!--
+Provide a bulleted list of implementation considerations for ensuring accessibility. If there is the ability to refernce the IBM toolkit or the ARIA authoring practices, that should be done.
+
+- Use dashed bullets and ensure code is styled as code and consistently appears with the
+following symbols: <element>, 'variable' and "value".
+- End each bulleted list item with a period.
+
+Example:
+- See the [ARIA authoring practices](https://w3c.github.io/aria-practices/#tooltip) for more considerations.
+
+-->
+```
+
 ## Parts of a component contribution
 
 Component contributions ideally include all of the following parts.
@@ -722,7 +1064,14 @@ specific repo you intend to contribute to.
 </Column>
 </Row>
 
-#### 6. Code documentation
+#### 6. Accessibility documentation
+
+Use this
+[component accessibility documentation](https://github.com/hiraaeth/component-contribution-accessibility/wiki/component-accessibility-documentation)
+to document the accessibility considerations to ensure the implemented component
+is usable by assistive technologies.
+
+#### 7. Code documentation
 
 Start with our [Code guidance](#code-guidance) template. We recommend reading
 through existing code documentation on this site for inspiration.

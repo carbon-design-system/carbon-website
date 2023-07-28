@@ -17,6 +17,7 @@ increase or decrease the value by moving the handle along a horizontal track.
 
 <AnchorLink>Overview</AnchorLink>
 <AnchorLink>Live demo</AnchorLink>
+<AnchorLink>Behaviors</AnchorLink>
 <AnchorLink>Interactions</AnchorLink>
 <AnchorLink>Best practices</AnchorLink>
 <AnchorLink>Feedback</AnchorLink>
@@ -40,7 +41,7 @@ value range.
 <Row>
 <Column colLg={8}>
 
-![Example of volume slider](images/slider-usage-1.png)
+![Example of a slider in context](images/slider-usage-overview.png)
 
 </Column>
 </Row>
@@ -53,20 +54,22 @@ value range.
       id: 'slider',
       label: 'Slider',
     },
-  ]}>
+  ]}
+>
   <ComponentVariant
     id="slider"
     knobs={{ Slider: ['disabled', 'hideTextInput', 'light'] }}
     links={{
       React:
         'https://react.carbondesignsystem.com/?path=/story/components-slider--default',
+      'Web Components':
+        'https://web-components.carbondesignsystem.com/?path=/story/components-slider--default',
       Angular:
         'https://angular.carbondesignsystem.com/?path=/story/components-slider--basic',
-      Vue:
-        'http://vue.carbondesignsystem.com/?path=/story/components-cvslider--default',
-      Vanilla: 'https://the-carbon-components.netlify.com/?nav=slider',
-      "Web Components": 'https://web-components.carbondesignsystem.com/?path=/story/components-slider--default',
-    }}>{`
+      Vue: 'http://vue.carbondesignsystem.com/?path=/story/components-cvslider--default',
+    }}
+  >
+    {`
   <div className="some-container">
 <Slider
   ariaLabelInput="Label for slider value"
@@ -79,41 +82,50 @@ value range.
   value={50}
 />
 </div>
-  `}</ComponentVariant>
+  `}
+  </ComponentVariant>
 </ComponentDemo>
 
-## Interactions
+## Behaviors
 
-Users can choose a numerical value by:
+### States
 
-- Entering the exact value into the text field.
-- Moving the slider handle with their mouse, which automatically updates the
-  value in the text input.
-- Using the ↑ ↓ ← → arrow keys automatically updates the value in the text input
-  and moves the slider handle to the corresponding value.
-- The **step size increment** is how many increments the inputted value and
-  slider handle will jump when using the arrow keys. Make sure to set the step
-  size increments to reasonable values.
-- ↑ ↓ ← → changes the value by one step size increment. _Example: Pressing `→`
-  changes the inputted value from 59 to 60, increasing the value by 1 unit._
-- `Shift` + ↑ ↓ ← → changes the value by 10 step size increments. _Example:
-  Typing_ `Shift` + → _changes the value from 60 to 70, increasing the inputted
-  value by 10 units._
+The slider component has the following states for both the track and the text
+input: **enabled**, **hover**, **focus**, **active**, **error**, **warning**,
+**disabled**, **read-only**, and **skeleton**.
 
 <Row>
-<Column colLg={8}>
+<Column colLg={12}>
 
-![slider interaction](images/slider-usage-animation-1.gif)
+![Example of slider states](images/slider-usage-states.png)
 
 </Column>
 </Row>
+
+## Interactions
+
+### Mouse
+
+Users can trigger a value change by clicking anywhere on the horizontal track.
+Users can also drag the slider handle. Either method repositions the slider and
+automatically updates the value in the text input.
+
+### Keyboard
+
+Users can enter an exact numeric value into the text input field or use the
+`up`, `down`, `left`, and `right` arrow keys to change the value. Either method
+adjusts the slider handle to the corresponding position.
+
+Users can also increment the value by using the arrow keys when the slider
+receives focus. The arrow keys, in combination with the `shift` key can alter
+the slider by the value of the `stepMultiplier`.
 
 ## Best practices
 
 - The slider label should indicate what value the slider is changing.
 - Range values are used to describe the range in numbers.
-- Do not use for ranges that are extremely large _i.e. 1-1000_.
-- Do not use for ranges that are too small _i.e. 1-3_.
+- Do not use for extremely large ranges, for example, 1-1000.
+- Do not use ranges that are too small, for example, 1-3.
 
 ## Feedback
 

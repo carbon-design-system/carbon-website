@@ -50,6 +50,9 @@ module.exports = {
           subDirectory: '',
         },
         mediumAccount: 'carbondesign',
+        theme: {
+          homepage: 'white',
+        },
       },
     },
     {
@@ -74,5 +77,6 @@ module.exports = {
       },
     },
     'gatsby-plugin-remove-serviceworker',
+    'gatsby-plugin-meta-redirect',
   ],
 };

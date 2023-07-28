@@ -1,8 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { settings } from 'carbon-components';
-
-const { prefix } = settings;
 
 const InputRange = ({ step, min, max, value, onChange, id }) => (
   <input
@@ -14,7 +11,7 @@ const InputRange = ({ step, min, max, value, onChange, id }) => (
     value={value}
     onChange={onChange}
     style={{ '--track-width': `${((value - min) / (max - min)) * 100}%` }}
-    className={`${prefix}--input-range`}
+    className={`cds--input-range`}
   />
 );
 

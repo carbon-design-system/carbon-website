@@ -8,33 +8,46 @@ tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 
 ## Color
 
-Inputs come in two different colors. The default input color is `$field-01` and
-is used on `$ui-background` and `$ui-02` page backgrounds. The `--light` version
-input color is `$field-02` and is used on `$ui-01` page backgrounds.
-
 | Element            | Property         | Color token                  |
 | ------------------ | ---------------- | ---------------------------- |
-| Label              | text color       | `$text-02`                   |
-| Field text         | text color       | `$text-01`                   |
-| Field text: prompt | text color       | `$text-05`                   |
-| Helper text        | text color       | `$text-05`                   |
-| Field              | background-color | `$field-01`                  |
-|                    | border-bottom    | `$ui-04`                     |
-| Field: light       | background-color | `$field-02`                  |
-| Chevron            | svg              | `$icon-01`                   |
-| Menu option        | text color       | `$text-02`                   |
-|                    | background-color | `$field-01`                  |
-|                    | border-top       | `$ui-03`                     |
-| Menu option: light | background-color | `$field-02`                  |
+| Label              | text-color       | `$text-secondary`            |
+| Field text         | text-color       | `$text-primary`              |
+| Field text: prompt | text-color       | `$text-helper`               |
+| Helper text        | text-color       | `$text-helper`               |
+| Field              | background-color | `$field` \*                  |
+|                    | border-bottom    | `$border-strong` \*          |
+| Chevron icon       | svg              | `$icon-primary`              |
+| Menu option        | text-color       | `$text-secondary`            |
+|                    | background-color | `$layer` \*                  |
+|                    | border-top       | `$border-subtle` \*          |
 | Menu               | box-shadow       | `0 2px 6px 0 rgba(0,0,0,.2)` |
-| Checkbox           | background-color | `$icon-01`                   |
-|                    | check            | `$inverse-01`                |
-|                    | border           | `$icon-01`                   |
+| Checkbox icon      | background-color | `$icon-primary`              |
+|                    | check            | `$icon-inverse`              |
+|                    | border           | `$icon-primary`              |
+
+<Caption>
+  * Denotes a contextual color token that will change values based on the layer
+  it is placed on.
+</Caption>
 
 <Row>
 <Column colLg={12}>
 
-![Dropdown variant examples](images/dropdown-style-1.png)
+<Tabs>
+
+<Tab label="Default">
+
+![Default dropdown variant examples](images/dropdown-style-1.png)
+
+</Tab>
+
+<Tab label="Fluid">
+
+![Fluid dropdown variant examples](images/dropdown-style-1b.png)
+
+</Tab>
+
+</Tabs>
 
 </Column>
 </Row>
@@ -45,34 +58,63 @@ input color is `$field-02` and is used on `$ui-01` page backgrounds.
 
 ### Interactive states
 
-| State          | Element            | Property         | Color token          |
-| -------------- | ------------------ | ---------------- | -------------------- |
-| Focus          | Field              | border           | `$focus`             |
-| Hover          | Field              | background-color | `$hover-ui`          |
-|                | Menu option        | background-color | `$hover-ui`          |
-|                | Menu option        | text color       | `$text-01`           |
-|                | Field: light       | background-color | `$hover-light-ui`    |
-|                | Menu option: light | background-color | `$hover-light-ui`    |
-| Invalid        | Error icon         | svg              | `$support-01`        |
-|                | Field              | border           | `$support-01`        |
-|                | Error message      | text-color       | `$text-error`        |
-| Warning        | Warning message    | text-color       | `$text-01`           |
-|                | Warning icon       | svg              | `$support-03`        |
-| Active         | Menu option        | background-color | `$selected-ui`       |
-|                | Menu option: light | background-color | `$selected-light-ui` |
-| Selected       | Menu option        | background-color | `$selected-ui`       |
-|                | Menu option        | checkmark        | `$icon-01`           |
-| Multi-selected | Tag                | background-color | `$inverse-02`        |
-|                | Tag                | text color       | `$inverse-02`        |
-| Disabled       | Field              | background-color | `$disabled-01`       |
-|                | Field              | text color       | `$disabled-02`       |
-|                | Label              | text color       | `$disabled-02`       |
-|                | Chevron            | svg              | `$disabled-02`       |
+| State         | Element              | Property         | Color token           |
+| ------------- | -------------------- | ---------------- | --------------------- |
+| Focus         | Field                | border           | `$focus`              |
+| Hover         | Field                | background-color | `$field-hover` \*     |
+|               | Menu option          | background-color | `$layer-hover` \*     |
+|               | Menu option          | text-color       | `$text-primary`       |
+| Invalid       | Error icon           | svg              | `$support-error`      |
+|               | Field                | border           | `$support-error`      |
+|               | Error message        | text-color       | `$text-error`         |
+| Warning       | Warning message      | text-color       | `$text-primary`       |
+|               | Warning icon         | svg              | `$support-warning`    |
+| Active        | Menu option          | background-color | `$layer-active` \*    |
+| Selected      | Menu option          | background-color | `$layer-selected` \*  |
+|               | Menu option          | checkmark        | `$icon-primary`       |
+| Multiselected | Tag                  | background-color | `$background-inverse` |
+|               | Tag                  | text-color       | `$text-inverse`       |
+| Disabled      | Field                | background-color | `$field` \*           |
+|               | Field (default)      | border-bottom    | transparent           |
+|               | Field (fluid)        | border-bottom    | `$border-subtle` \*   |
+|               | Field                | text-color       | `$text-disabled`      |
+|               | Label                | text-color       | `$text-disabled`      |
+|               | Chevron icon         | svg              | `$icon-disabled`      |
+| Read-only     | Field                | border-bottom    | `$border-subtle` \*   |
+|               | Field (default)      | background-color | transparent           |
+|               | Field (fluid)        | background-color | `$field` \*           |
+|               | Label                | text-color       | `$text-secondary`     |
+|               | Field text (default) | text-color       | `$text-primary`       |
+|               | Field text (fluid)   | text-color       | `$text-secondary`     |
+|               | Tag                  | background-color | transparent           |
+|               | Tag                  | border           | `$border-subtle`      |
+|               | Tag (default)        | text-color       | `$text-primary`       |
+|               | Tag (fluid)          | text-color       | `$text-secondary`     |
+|               | Tag                  | svg              | `$icon-disabled`      |
+
+<Caption>
+  * Denotes a contextual color token that will change values based on the layer
+  it is placed on.
+</Caption>
 
 <Row>
 <Column colLg={12}>
 
-![Dropdown and combo-box states](images/dropdown-style-2.png)
+<Tabs>
+
+<Tab label="Default">
+
+![Default dropdown and combo box states](images/dropdown-combobox-style-default-states.png)
+
+</Tab>
+
+<Tab label="Fluid">
+
+![Fluid dropdown and combo box states](images/dropdown-combobox-style-fluid-states.png)
+
+</Tab>
+
+</Tabs>
 
 </Column>
 </Row>
@@ -82,7 +124,21 @@ input color is `$field-02` and is used on `$ui-01` page backgrounds.
 <Row>
 <Column colLg={12}>
 
-![Multi-select dropdown states](images/dropdown-style-3.png)
+<Tabs>
+
+<Tab label="Default">
+
+![Default multiselect dropdown states](images/dropdown-multiselect-style-default-states.png)
+
+</Tab>
+
+<Tab label="Fluid">
+
+![Fluid multiselect dropdown states](images/dropdown-multiselect-style-fluid-states.png)
+
+</Tab>
+
+</Tabs>
 
 </Column>
 </Row>
@@ -91,25 +147,27 @@ input color is `$field-02` and is used on `$ui-01` page backgrounds.
 
 ### Inline dropdown
 
-| Element  | State              | Property         | Color token          |
-| -------- | ------------------ | ---------------- | -------------------- |
-| Enabled  | Field              | background-color | `transparent`        |
-|          | Field text         | text color       | `$text-01`           |
-|          | Chevron            | svg              | `$icon-01`           |
-|          | Menu option        | text color       | `$text-02`           |
-|          | Menu option        | background-color | `$field-01`          |
-|          | Menu option: light | background-color | `$field-02`          |
-| Hover    | Field              | background-color | `$hover-ui`          |
-|          | Menu option        | background-color | `$hover-ui`          |
-|          | Menu option        | text color       | `$text-01`           |
-|          | Menu option: light | background-color | `$hover-light-ui`    |
-| Active   | Menu option        | background-color | `$selected-ui`       |
-|          | Menu option: light | background-color | `$selected-light-ui` |
-| Selected | Menu option        | background-color | `$selected-ui`       |
-|          | Menu option        | checkmark        | `$icon-01`           |
-| Invalid  | Error icon         | svg              | `$support-01`        |
-|          | Field              | border           | `$support-01`        |
-|          | Error message      | text-color       | `$text-error`        |
+| State    | Element       | Property         | Color token          |
+| -------- | ------------- | ---------------- | -------------------- |
+| Enabled  | Field         | background-color | transparent          |
+|          | Field text    | text-color       | `$text-primary`      |
+|          | Chevron icon  | svg              | `$icon-primary`      |
+|          | Menu option   | text-color       | `$text-secondary`    |
+|          | Menu option   | background-color | `$layer` \*          |
+| Hover    | Field         | background-color | `$field-hover` \*    |
+|          | Menu option   | background-color | `$layer-hover` \*    |
+|          | Menu option   | text-color       | `$text-primary`      |
+| Active   | Menu option   | background-color | `$layer-active` \*   |
+| Selected | Menu option   | background-color | `$layer-selected` \* |
+|          | Menu option   | checkmark        | `$icon-primary`      |
+| Invalid  | Field         | border           | `$support-error`     |
+|          | Error message | text-color       | `$text-error`        |
+|          | Error icon    | svg              | `$support-error`     |
+
+<Caption>
+  * Denotes a contextual color token that will change values based on the layer
+  it is placed on.
+</Caption>
 
 <Row>
 <Column colLg={12}>
@@ -124,74 +182,75 @@ input color is `$field-02` and is used on `$ui-01` page backgrounds.
 ## Typography
 
 All dropdown text should be set in sentence case, with only the first word in a
-phrase and any proper nouns capitalized. Dropdown options should not exceed
-three words.
+phrase and any proper nouns capitalized. Dropdown menu option text should not
+exceed three words.
 
-| Class            | Font-size  | Font-weight   | Type style        |
-| ---------------- | ---------- | ------------- | ----------------- |
-| Label            | 12 / 0.75  | Regular / 400 | `$label-01`       |
-| Field text       | 14 / 0.875 | Regular / 400 | `$body-short-01`  |
-| Menu option text | 14 / 0.875 | Regular / 400 | `$body-short-01`  |
-| Error message    | 12 / 0.75  | Regular / 400 | `$label-01`       |
-| Helper text      | 12 / 0.75  | Regular / 400 | `$helper-text-01` |
+| Element          | Font-size (px/rem) | Font-weight   | Type token         |
+| ---------------- | ------------------ | ------------- | ------------------ |
+| Label            | 12 / 0.75          | Regular / 400 | `$label-01`        |
+| Field text       | 14 / 0.875         | Regular / 400 | `$body-compact-01` |
+| Menu option text | 14 / 0.875         | Regular / 400 | `$body-compact-01` |
+| Helper text      | 12 / 0.75          | Regular / 400 | `$helper-text-01`  |
+| Error message    | 12 / 0.75          | Regular / 400 | `$label-01`        |
 
 ## Structure
 
 Dropdowns have two states, open and closed. An open and closed dropdown should
-be the same width and appropriately fit the design, layout, and content. The
-height of a closed dropdown stays consistent while the height of an open
-dropdown will vary based on the amount of options it has. Please note the
-various color differences for closed and open dropdowns.
+be the same width and appropriately fit the design, layout, and content.
 
-| Element     | Property                    | px / rem | Spacing tokens |
-| ----------- | --------------------------- | -------- | -------------- |
-| Label       | margin-bottom               | 8 / 0.5  | `$spacing-03`  |
-| Field       | padding-left                | 16 / 1   | `$spacing-05`  |
-|             | padding-right               | 48 / 3   | `$spacing-09`  |
-|             | border-bottom               | 1px      | –              |
-| Chevron     | padding-right, padding-left | 16 / 1   | `$spacing-05`  |
-| Helper text | margin-top                  | 4 / 0.25 | `$spacing-02`  |
-| State icon  | padding-right, padding-left | 16 / 1   | `$spacing-05`  |
+### Default dropdown
 
-<div className="image--fixed">
-
-![Structure and spacing for a closed dropdown](images/dropdown-style-5.png)
-
-</div>
-
-<Caption>Structure and spacing measurements for dropdown | px / rem</Caption>
-
-### Sizes
-
-The field height and menu option height should always match. These sizes options
-can be applied to all variants of dropdown.
-
-| Element     | Property | Size    | px / rem |
-| ----------- | -------- | ------- | -------- |
-| Field       | height   | Small   | 32 / 2   |
-|             | height   | Default | 40 / 2.5 |
-|             | height   | Large   | 48 / 3   |
-| Menu option | height   | Small   | 32 / 2   |
-|             | height   | Default | 40 / 2.5 |
-|             | height   | Large   | 48 / 3   |
+| Element      | Property                    | px / rem | Spacing token |
+| ------------ | --------------------------- | -------- | ------------- |
+| Label        | margin-bottom               | 8 / 0.5  | `$spacing-03` |
+| Field        | padding-left                | 16 / 1   | `$spacing-05` |
+|              | padding-right               | 48 / 3   | `$spacing-09` |
+|              | border-bottom               | 1px      | –             |
+| Chevron icon | padding-right, padding-left | 16 / 1   | `$spacing-05` |
+| Helper text  | margin-top                  | 4 / 0.25 | `$spacing-02` |
+| State icon   | padding-right, padding-left | 16 / 1   | `$spacing-05` |
 
 <div className="image--fixed">
 
-![Dropdown sizes](images/dropdown-style-9.png)
+![Structure and spacing for a default dropdown](images/dropdown-style-5.png)
 
 </div>
 
-<Caption>Dropdown sizes | px / rem</Caption>
+<Caption>
+  Structure and spacing measurements for default dropdown | px / rem
+</Caption>
+
+### Fluid dropdown
+
+| Element      | Property                    | px / rem   | Spacing token |
+| ------------ | --------------------------- | ---------- | ------------- |
+| Label        | margin-bottom               | 4 / 0.25   | `$spacing-02` |
+| Field        | padding-left                | 16 / 1     | `$spacing-05` |
+|              | padding-right               | 48 / 3     | `$spacing-09` |
+|              | border-bottom               | 1px        | –             |
+|              | margin-top, margin-bottom   | 13 / .8125 | –             |
+| Chevron icon | padding-right, padding-left | 16 / 1     | `$spacing-05` |
+| State icon   | padding-right, padding-left | 16 / 1     | `$spacing-05` |
+
+<div className="image--fixed">
+
+![Structure and spacing for a fluid dropdown](images/dropdown-style-5b.png)
+
+</div>
+
+<Caption>
+  Structure and spacing measurements for a fluid dropdown | px / rem
+</Caption>
 
 ### Combo box
 
-| Element    | Property      | px / rem | Spacing token |
-| ---------- | ------------- | -------- | ------------- |
-| Label      | margin-bottom | 8 / 0.5  | `$spacing-03` |
-| Field      | padding-left  | 16 / 1   | `$spacing-05` |
-|            | padding-right | 72 / 4.5 | –             |
-| Chevron    | padding-right | 16 / 1   | `$spacing-05` |
-| Clear icon | padding-right | 8 / .5   | `$spacing-03` |
+| Element      | Property      | px / rem | Spacing token |
+| ------------ | ------------- | -------- | ------------- |
+| Label        | margin-bottom | 8 / 0.5  | `$spacing-03` |
+| Field        | padding-left  | 16 / 1   | `$spacing-05` |
+|              | padding-right | 72 / 4.5 | –             |
+| Chevron icon | padding-right | 16 / 1   | `$spacing-05` |
+| Clear icon   | padding-right | 8 / 0.5  | `$spacing-03` |
 
 <div className="image--fixed">
 
@@ -203,16 +262,16 @@ can be applied to all variants of dropdown.
 
 ### Multiselect dropdown
 
-| Element  | Property                    | px / rem | Spacing tokens |
-| -------- | --------------------------- | -------- | -------------- |
-| Label    | margin-bottom               | 8 / 0.5  | `$spacing-03`  |
-| Field    | padding-left                | 16 / 1   | `$spacing-05`  |
-|          | padding-right               | 48 / 3   | `$spacing-09`  |
-| Chevron  | padding-left, padding-right | 16 / 1   | `$spacing-05`  |
-| Tag      | height                      | 24 / 1.5 | –              |
-|          | padding-right               | 8 / .5   | `$spacing-03`  |
-| Checkbox | padding-left                | 16 / 1   | `$spacing-05`  |
-|          | padding-right               | 8 / .5   | `$spacing-03`  |
+| Element       | Property                    | px / rem | Spacing token |
+| ------------- | --------------------------- | -------- | ------------- |
+| Label         | margin-bottom               | 8 / 0.5  | `$spacing-03` |
+| Field         | padding-left                | 16 / 1   | `$spacing-05` |
+|               | padding-right               | 48 / 3   | `$spacing-09` |
+| Chevron icon  | padding-left, padding-right | 16 / 1   | `$spacing-05` |
+| Tag           | height                      | 24 / 1.5 | –             |
+|               | padding-right               | 8 / 0.5  | `$spacing-03` |
+| Checkbox icon | padding-left                | 16 / 1   | `$spacing-05` |
+|               | padding-right               | 8 / 0.5  | `$spacing-03` |
 
 <div className="image--fixed">
 
@@ -226,11 +285,11 @@ can be applied to all variants of dropdown.
 
 ### Inline dropdown
 
-| Class       | Property                    | px / rem | Spacing token |
-| ----------- | --------------------------- | -------- | ------------- |
-| Field text  | padding-right, padding-left | 16 / 1   | `$spacing-05` |
-| Menu option | padding-right, padding-left | 16 / 1   | `$spacing-05` |
-| Chevron     | padding-left                | 16 / 1   | `$spacing-05` |
+| Element      | Property                    | px / rem | Spacing token |
+| ------------ | --------------------------- | -------- | ------------- |
+| Field text   | padding-right, padding-left | 16 / 1   | `$spacing-05` |
+| Menu option  | padding-right, padding-left | 16 / 1   | `$spacing-05` |
+| Chevron icon | padding-left                | 16 / 1   | `$spacing-05` |
 
 <div className="image--fixed">
 
@@ -239,3 +298,50 @@ can be applied to all variants of dropdown.
 </div>
 
 <Caption>Structure and spacing for inline dropdown | px / rem</Caption>
+
+## Sizes
+
+### Default inputs
+
+The field height and menu option height should always match. These size options
+can be applied to all variants of dropdown.
+
+| Element   | Size        | Height px / rem |
+| --------- | ----------- | --------------- |
+| Field     | Small (sm)  | 32 / 2          |
+|           | Medium (md) | 40 / 2.5        |
+|           | Large (lg)  | 48 / 3          |
+| Menu item | Small (sm)  | 32 / 2          |
+|           | Medium (md) | 40 / 2.5        |
+|           | Large (lg)  | 48 / 3          |
+
+<Row>
+<Column colLg={12}>
+
+![Sizes for dropdown](images/dropdown-style-size-fixed.png)
+
+</Column>
+</Row>
+
+<Caption>Default dropdown sizes | px / rem</Caption>
+
+### Fluid inputs
+
+There is only one input height but there are two menu item sizes–default and
+condensed.
+
+| Element   | Size      | Height px / rem |
+| --------- | --------- | --------------- |
+| Field     | Default   | 64 / 4          |
+| Menu item | Default   | 64 / 4          |
+|           | Condensed | 40 / 2.5        |
+
+<Row>
+<Column colLg={8}>
+
+![Sizes for dropdown](images/dropdown-style-size-fluid.png)
+
+</Column>
+</Row>
+
+<Caption>Fluid dropdown sizes | px / rem</Caption>

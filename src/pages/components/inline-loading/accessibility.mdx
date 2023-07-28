@@ -1,5 +1,5 @@
 ---
-title: Inline Loading
+title: Inline loading
 tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 ---
 
@@ -12,199 +12,76 @@ import {
   StructuredListCell,
   OrderedList,
   ListItem,
-} from 'carbon-components-react';
+} from '@carbon/react';
+
+<PageDescription>
+
+No accessibility annotations are needed for inline loading components, but keep
+these considerations in mind if you are modifying Carbon or creating a custom
+component.
+
+</PageDescription>
 
 <AnchorLinks>
-  <AnchorLink>How it works</AnchorLink>
-  <AnchorLink>Accessibility considerations</AnchorLink>
-  <AnchorLink>Resources</AnchorLink>
-  <AnchorLink>Accessibility testing</AnchorLink>
+
+<AnchorLink>What Carbon provides</AnchorLink>
+<AnchorLink>Development considerations</AnchorLink>
+
 </AnchorLinks>
 
-## How it works
+## What Carbon provides
 
-The Carbon inline loading component is used to notify users that their action is
-being processed. W3C WAI-ARIA `role="alert"` and `aria-live="assertive"` are
-used to ensure screen reader users are also provided the same information.
+Carbon bakes keyboard operation into its components, improving the experience of
+blind users and others who operate via keyboard. Carbon also incorporates other
+accessibility considerations, some of which are described below.
 
-## Accessibility considerations
+### Keyboard interaction
 
-This component has been validated to meet the
-[WCAG 2.0 AA](https://www.w3.org/TR/WCAG20/) and
-[Section 508](http://www.section508.gov/) accessibility guidelines, however
-changes made by the content owner can affect accessibility compliance. Be sure
-to review and follow the guidance in this section when updating or adding new
-content to this component.
-
-1. If the inline loading message is changed, be sure it is clear and concise.
-
-## Resources
-
-- [IBM Accessibility Checklist - Checkpoint 4.1.3 Status Message](https://www.ibm.com/able/requirements/requirements/#4_1_3)
-  (WCAG Success Criteria
-  [4.1.3](https://www.w3.org/WAI/WCAG21/Understanding/status-messages.html))
-
-## Accessibility testing
-
-Accessibility issues are tracked in the
-[Carbon Component GitHub repository](https://github.com/carbon-design-system/carbon/issues?q=is%3Aopen+label%3A%22type%3A+a11y+%E2%99%BF%22+label%3A%22component%3A+loading%22+).
-
-### Automated test
+The inline loading component is not keyboard operable; however, when inline
+loading is in an active state, it may temporarily replace or disable an
+associated component. For instance, if inline loading is showing the result of a
+button action, relevant input controls as well as other actions may be disabled
+and inoperable until the loading state changes to either error or complete.
 
 <Row>
-  <Column noGutterSm>
-    <StructuredListWrapper>
-      <StructuredListHead>
-        <StructuredListRow head>
-          <StructuredListCell head>
-            Automated test environment
-          </StructuredListCell>
-          <StructuredListCell head>Results</StructuredListCell>
-        </StructuredListRow>
-      </StructuredListHead>
-      <StructuredListBody>
-        <StructuredListRow>
-          <StructuredListCell>
-            - macOS Mojave version 10.14.6 with VoiceOver
-            <br />
-            - Chrome version 77.0.3865.90
-            <br />
-            - Dynamic Assessment Plugin (DAP) version 1.8.0.0 - IBM
-            Accessibility WCAG 2.1 Sept. 2019 Ruleset
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>DAP test:</strong>
-            <br />- No violations
-          </StructuredListCell>
-        </StructuredListRow>
-      </StructuredListBody>
-    </StructuredListWrapper>
-  </Column>
+<Column colLg={8}>
 
+![example of Cancel button in disabled state while the Submit button is replaced by inline loading icon and "Submitting" message](images/inline-loading-accessibility-1.png)
+
+<Caption>
+  Inline loading components are not interactive, but may temporarily disable
+  dependent components.
+</Caption>
+
+</Column>
 </Row>
 
-### MacOS screen reader tests
+### Labeling and states
 
-<Row>
-  <Column>
-    <StructuredListWrapper>
-      <StructuredListHead>
-        <StructuredListRow head>
-          <StructuredListCell head>Environment </StructuredListCell>
-          <StructuredListCell head>Results</StructuredListCell>
-        </StructuredListRow>
-      </StructuredListHead>
-      <StructuredListBody>
-        <StructuredListRow>
-          <StructuredListCell>
-            - macOS Mojave version 10.14.6 with VoiceOver
-            <br />
-            - Chrome version 77.0.3865.90
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>VoiceOver(VO) Test:</strong>
-            <OrderedList>
-              <ListItem>
-                Tab to the "Toggle state" button. VO announces "You are
-                currently on a button, to select this button press
-                Control-Option-Space."
-              </ListItem>
-              <ListItem>
-                Press Control-Option-Space keys. VO announces, "Loading data".
-              </ListItem>
-              <ListItem>
-                Press Control-Option-Space keys again and VO announces, "Data
-                loaded".
-              </ListItem>
-            </OrderedList>
-          </StructuredListCell>
-        </StructuredListRow>
-      </StructuredListBody>
-    </StructuredListWrapper>
-  </Column>
-</Row>
+Where there is displayed text for inline loading, Carbon provides the text as
+the status to assistive technologies like screen readers. Where there is no
+text, Carbon provides a text equivalent (“loading”) for the loading symbol.
 
-### Windows screen reader tests
+<DoDontRow>
+  <DoDont type="do" caption="Inline loading text is provided to assistive technologies.">
 
-<Row>
-  <Column noGutterSm>
-    <StructuredListWrapper>
-      <StructuredListHead>
-        <StructuredListRow head>
-          <StructuredListCell head>Environment</StructuredListCell>
-          <StructuredListCell head>Results</StructuredListCell>
-        </StructuredListRow>
-      </StructuredListHead>
-      <StructuredListBody>
-        <StructuredListRow>
-          <StructuredListCell>
-            - Microsoft Windows 10
-            <br />
-            - JAWS 19.1810.64
-            <br />
-            - Firefox version 67
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>JAWS test:</strong>
-            <OrderedList>
-              <ListItem>
-                Tab to the "Toggle state" button. JAWS announces "Toggle state
-                button, to activate press the Space bar."
-              </ListItem>
-              <ListItem>
-                Press the Space key. JAWS announces, "Alert, Loading data".
-              </ListItem>
-              <ListItem>
-                Press the Space key again and JAWS announces, "Alert, Data
-                loaded".
-              </ListItem>
-            </OrderedList>
-          </StructuredListCell>
-        </StructuredListRow>
-      </StructuredListBody>
-    </StructuredListWrapper>
-  </Column>
-</Row>
+![a loading icon with a text message of "Submitting..."](images/inline-loading-accessibility-2.png)
 
-### iOS screen reader tests
+  </DoDont>
+  <DoDont type="do" caption="Where there is no text, Carbon provides a text equivalent for the loading symbol.">
 
-<Row>
-  <Column noGutterSm>
-    <StructuredListWrapper>
-      <StructuredListRow head>
-        <StructuredListCell head>Environment </StructuredListCell>
-        <StructuredListCell head>Results</StructuredListCell>
-      </StructuredListRow>
-      <StructuredListBody>
-        <StructuredListRow>
-          <StructuredListCell>
-            - iOS version 13.1.3 with VoiceOver
-            <br />
-            - Safari version 13.1.3
-            <br />- Carbon React version 7.7.1
-          </StructuredListCell>
-          <StructuredListCell>
-            <strong>VoiceOver test:</strong>
-            <OrderedList>
-              <ListItem>
-                Swipe Right to the Toggle state button. VO announces, "Toggle
-                state button".
-              </ListItem>
-              <ListItem>
-                Double tap to select the button. VO announces, "Loading data
-                eclipse".
-              </ListItem>
-              <ListItem>
-                Double tap to select the button again. VO announces, "Data
-                loaded".
-              </ListItem>
-            </OrderedList>
-          </StructuredListCell>
-        </StructuredListRow>
-      </StructuredListBody>
-    </StructuredListWrapper>
-  </Column>
-</Row>
+![An input with a loading symbol, showing the alt text of "loading](images/inline-loading-accessibility-3.png)
+
+  </DoDont>
+</DoDontRow>
+
+## Development considerations
+
+Keep these considerations in mind if you are modifying Carbon or creating a
+custom component.
+
+- Carbon uses an `aria-live` region set to “polite” to surface inline loading
+  text messages, where they are used.
+- Where no text is displayed for inline loading, Carbon uses the SVG title of
+  the status icon to surface the status (“active”, “finished”, “error”) to
+  assistive technologies.
