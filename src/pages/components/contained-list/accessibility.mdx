@@ -9,7 +9,7 @@ tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 <PageDescription>
 
 Design annotations are needed for specific instances shown below, but for the
-standard accordion component, Carbon already incorporates accessibility.
+standard contained list component, Carbon already incorporates accessibility.
 
 </PageDescription>
 
@@ -24,3 +24,84 @@ This page is underdevelopment. Please check back later for updates.
   <AnchorLink>Design recommendations</AnchorLink>
   <AnchorLink>Development considerations</AnchorLink>
 </AnchorLinks>
+
+## What Carbon provides
+
+Carbon bakes keyboard operation into its components, improving the experience of
+blind users and others who operate via the keyboard. Carbon incorporates many
+other accessibility considerations, some of which are described below.
+
+### Keyboard interactions
+
+The default contained list is not interactive, but a number of its variants
+include keyboard operation. In all interactive variants, the `Tab` key is used
+for navigation, and `Space` or `Enter` are used to activate components.
+
+Users tab between any actionable items in the list, whether each item is itself
+clickable or contains an action button (such as ‘delete’). It is possible for
+multiple tab stops to exist for each list item.
+
+<Row>
+<Column colLg={8}>
+
+![A user tabs to the content switcher then changes the selection with left and right arrow keys. Pressing tab again moves focus to a link inside the section's content.](images/content-switcher-accessibility-1.png)
+
+<Caption>
+  Manual and automatic content switchers have the same basic keyboard
+  interaction.
+</Caption>
+
+</Column>
+</Row>
+
+There are two kinds of filterable contained lists: persistent or expandable.
+Both follow the standard Carbon
+[search input interaction](https://carbondesignsystem.com/components/search/accessibility/),
+the difference being that a Filter button hides the input until it is activated
+with `Enter` or `Space`.
+
+<Row>
+<Column colLg={8}>
+
+![Two variants of a content switcher with tabs called All, Read and Unread. In the first, the Read tab is selected and focused. In the second the All tab is selected and the Read tab has a focus indicator](images/content-switcher-accessibility-2.png)
+
+<Caption>
+  Arrows keys alone update the selected tab in an automatic content switcher.
+  The Space and Enter keys are used to select a content tab after arrowing to it
+  in a manual variant.
+</Caption>
+
+</Column>
+</Row>
+
+## Design recommendations
+
+### Indicate when the contained list is clickable
+
+There is no persistent visual indicator that the list items in a contained list
+are clickable. To help developers distinguish them from the default contained
+list in your designs, annotate where the rows in a list are intended to be
+clickable.
+
+<Row>
+<Column colLg={8}>
+
+![Two content switchers, one with a pink annotation reading "auto", the other with an annotation "manual"](images/content-switcher-accessibility-3.png)
+
+<Caption>
+  Annotate whether the switcher should be implemented as automatic or manual.
+</Caption>
+
+</Column>
+</Row>
+
+## Development considerations
+
+Keep these considerations in mind if you are modifying Carbon or creating a
+custom component.
+
+- The contained list is implemented as a list (usually a `<ul>`) with each item
+  an `<li>`, and the list title associated with the list through use of
+  `aria-labelledby`.
+- Any operable variant, whether a clickable list or a list with action items, is
+  a `<button>` implemented as a child of the `<li>`.
