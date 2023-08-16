@@ -33,7 +33,8 @@ This library uses Custom Elements v1 and Shadow DOM v1 specs.
 For support, contact the
 [Carbon Web Components team](https://github.com/carbon-design-system/carbon-for-ibm-dotcom/issues/new/choose).
 
-v11 upgrade for Carbon Web Components is coming soon.
+Info on Carbon Web Components v1 can be found
+[here](https://v10.carbondesignsystem.com/developing/frameworks/web-components).
 
 </InlineNotification>
 
@@ -53,7 +54,7 @@ v11 upgrade for Carbon Web Components is coming soon.
   <Column colMd={4} colLg={4} noGutterSm>
     <ResourceCard
       subTitle="Try web components with CodeSandbox"
-      href="https://codesandbox.io/s/github/carbon-design-system/carbon-web-components/tree/main/examples/codesandbox/basic"
+      href="https://codesandbox.io/s/github/carbon-design-system/carbon-for-ibm-dotcom/tree/feat/cwc-v2/packages/carbon-web-components/examples/codesandbox/basic"
     >
       <MdxIcon name="codesandbox" />
     </ResourceCard>
@@ -69,7 +70,7 @@ v11 upgrade for Carbon Web Components is coming soon.
 All components are available via CDN. This means that they can be added to your
 application without the need of any bundler configuration. Each component is
 available by the `latest` tag, or referencing a specific version (starting at
-version `v1.16.0`):
+version `v2.0.0`):
 
 ```html
 <!-- By `latest` tag -->
@@ -81,7 +82,7 @@ version `v1.16.0`):
 <!-- By specific version -->
 <script
   type="module"
-  src="https://1.www.s81c.com/common/carbon/web-components/version/v1.16.0/accordion.min.js"
+  src="https://1.www.s81c.com/common/carbon/web-components/version/v2.0.0/accordion.min.js"
 ></script>
 ```
 
@@ -94,6 +95,7 @@ These are the list of available components via CDN:
 - code-snippet.min.js
 - combo-box.min.js
 - content-switcher.min.js
+- copy.min.js
 - copy-button.min.js
 - data-table.min.js
 - date-picker.min.js
@@ -102,7 +104,7 @@ These are the list of available components via CDN:
 - floating-menu.min.js
 - form.min.js
 - inline-loading.min.js
-- input.min.js
+- layer.min.js
 - link.min.js
 - list.min.js
 - loading.min.js
@@ -123,9 +125,11 @@ These are the list of available components via CDN:
 - structured-list.min.js
 - tabs.min.js
 - tag.min.js
+- text-input.min.js
 - textarea.min.js
 - tile.min.js
 - toggle.min.js
+- toggle-tip.min.js
 - tooltip.min.js
 - ui-shell.min.js
 
@@ -142,7 +146,7 @@ extention from `.min.js` to `.rtl.min.js`. For example:
 <!-- By specific version (RTL) -->
 <script
   type="module"
-  src="https://1.www.s81c.com/common/carbon/web-components/version/v1.16.0/accordion.rtl.min.js"
+  src="https://1.www.s81c.com/common/carbon/web-components/version/v2.0.0/accordion.rtl.min.js"
 ></script>
 ```
 
@@ -161,21 +165,19 @@ directly used once the script tag has been added to the page. For example:
     ></script>
     <style type="text/css">
       // Suppresses the custom element until it has been defined
-      bx-dropdown:not(:defined),
-      bx-dropdown-item:not(:defined) {
+      cds-dropdown:not(:defined),
+      cds-dropdown-item:not(:defined) {
         visibility: hidden;
       }
     </style>
   </head>
   <body>
     <div id="app">
-      <bx-dropdown trigger-content="Select an item">
-        <bx-dropdown-item value="all">Option 1</bx-dropdown-item>
-        <bx-dropdown-item value="cloudFoundry">Option 2</bx-dropdown-item>
-        <bx-dropdown-item value="staging">Option 3</bx-dropdown-item>
-        <bx-dropdown-item value="dea">Option 4</bx-dropdown-item>
-        <bx-dropdown-item value="router">Option 5</bx-dropdown-item>
-      </bx-dropdown>
+      <cds-dropdown value="bar">
+        <cds-dropdown-item value="foo">Foo</cds-dropdown-item>
+        <cds-dropdown-item value="bar">Bar</cds-dropdown-item>
+        <cds-dropdown-item value="baz">Baz</cds-dropdown-item>
+      </cds-dropdown>
     </div>
   </body>
 </html>
@@ -184,31 +186,31 @@ directly used once the script tag has been added to the page. For example:
 Our example at [CodeSandbox](https://codesandbox.io) shows usage with only CDN
 artifacts:
 
-[![Edit carbon-web-components](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/carbon-design-system/carbon-web-components/tree/main/examples/codesandbox/cdn)
+[![Edit @carbon/web-components](https://codesandbox.io/static/img/play-codesandbox.svg)](https://github.com/carbon-design-system/carbon-for-ibm-dotcom/tree/feat/cwc-v2/packages/carbon-web-components/examples/codesandbox/cdn)
 
 ### Using ES imports
 
 #### How to install
 
-To install `carbon-web-components` in your project, you will need to run the
+To install `@carbon/web-components` in your project, you will need to run the
 following command using [npm](https://www.npmjs.com/):
 
 ```bash
-npm install -S carbon-web-components carbon-components lit-html lit-element
+npm install -S @carbon/web-components
 ```
 
 If you prefer [Yarn](https://yarnpkg.com/en/), use the following command
 instead:
 
 ```bash
-yarn add carbon-web-components carbon-components lit-html lit-element
+yarn add @carbon/web-components
 ```
 
 #### Basic usage
 
 Our example at [CodeSandbox](https://codesandbox.io) shows the most basic usage:
 
-[![Edit carbon-web-components](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/carbon-design-system/carbon-web-components/tree/main/examples/codesandbox/basic)
+[![Edit @carbon/web-components](https://codesandbox.io/static/img/play-codesandbox.svg)](https://github.com/carbon-design-system/carbon-for-ibm-dotcom/tree/feat/cwc-v2/packages/carbon-web-components/examples/codesandbox/basic)
 
 The first thing you need to do is **set up a module bundler** to resolve
 ECMAScript `import`s. The above example uses [Webpack](https://webpack.js.org)
@@ -218,20 +220,18 @@ Once you set up a module bundler, you can start importing our component modules,
 for example:
 
 ```javascript
-import 'carbon-web-components/es/components/dropdown/index.js';
+import '@carbon/web-components/es/components/dropdown/index.js';
 ```
 
 Once you've imported the component modules, you can use our components in the
 same manner as native HTML tags, for example:
 
 ```html
-<bx-dropdown trigger-content="Select an item">
-  <bx-dropdown-item value="all">Option 1</bx-dropdown-item>
-  <bx-dropdown-item value="cloudFoundry">Option 2</bx-dropdown-item>
-  <bx-dropdown-item value="staging">Option 3</bx-dropdown-item>
-  <bx-dropdown-item value="dea">Option 4</bx-dropdown-item>
-  <bx-dropdown-item value="router">Option 5</bx-dropdown-item>
-</bx-dropdown>
+<cds-dropdown value="bar">
+  <cds-dropdown-item value="foo">Foo</cds-dropdown-item>
+  <cds-dropdown-item value="bar">Bar</cds-dropdown-item>
+  <cds-dropdown-item value="baz">Baz</cds-dropdown-item>
+</cds-dropdown>
 ```
 
 ### List of available components
@@ -251,11 +251,7 @@ with your React application.
 
 This is achievable since web components is the modern browser standard, and
 works well with other front-end frameworks that exist in the application. In
-turn, this also comes with the benefits of encapsulation within the Shadow DOM:
-
-- [Carbon Web Components with Angular](https://web-components.carbondesignsystem.com/angular/index.html)
-- [Carbon Web Components with React](https://web-components.carbondesignsystem.com/react/index.html)
-- [Carbon Web Components with Vue](https://web-components.carbondesignsystem.com/vue/index.html)
+turn, this also comes with the benefits of encapsulation within the Shadow DOM.
 
 <InlineNotification>
 
@@ -270,7 +266,7 @@ Angular, Carbon Vue).
 
 If you experience any issues while getting set up with Carbon Web Components,
 please head over to the
-[GitHub repo](https://github.com/carbon-design-system/carbon-web-components) for
-more guidelines and support. Please
-[create an issue](https://github.com/carbon-design-system/carbon-web-components/issues)
+[GitHub repo](https://github.com/carbon-design-system/carbon-for-ibm-dotcom/tree/feat/cwc-v2/packages/carbon-web-components)
+for more guidelines and support. Please
+[create an issue](https://github.com/carbon-design-system/carbon-for-ibm-dotcom/issues)
 if your issue does not already exist.
