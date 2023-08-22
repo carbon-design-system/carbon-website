@@ -35,6 +35,7 @@ const knobs = {
 const links = {
   React:
     'https://react.carbondesignsystem.com/?path=/story/components-popover--playground',
+  'Web Components': 'https://web-components.carbondesignsystem.com/?path=/story/components-popover--playground'
 };
 
 function PopoverComponentDemo() {
