@@ -20,6 +20,7 @@ const knobs = {
 const links = {
   React:
     'https://react.carbondesignsystem.com/?path=/story/components-progressbar--playground',
+  'Web Components': 'https://web-components.carbondesignsystem.com/?path=/story/components-progress-bar--playground'
 };
 
 function PopoverComponentDemo() {
