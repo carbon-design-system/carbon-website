@@ -1,7 +1,7 @@
 ---
 title: 1. Installing Carbon
 description:
-  Welcome to Carbon! This tutorial will guide you in creating a React app with
+  Welcome to Carbon! This tutorial will guide you in creating a NextJS app with
   the Carbon Design System.
 tabs:
   [
@@ -20,9 +20,9 @@ import Preview from 'components/Preview';
 
 <PageDescription>
 
-Starting with Create React App, let's install Carbon and begin using Carbon
-components. By the end you will have a React app that uses the UI Shell to
-navigate between pages.
+Starting from a base Create Next App, let's install Carbon and begin using
+Carbon components. By the end you will have a NextJS app that uses the UI Shell
+to navigate between pages.
 
 </PageDescription>
 
@@ -41,13 +41,13 @@ navigate between pages.
 
 ## Preview
 
-A [preview](https://v11-react-step-2--carbon-tutorial.netlify.app) of what you
+A [preview](https://v11-next-step-2--carbon-tutorial.netlify.app) of what you
 will build:
 
 <Preview
   height="200"
-  title="Carbon Tutorial Step 1"
-  src="https://v11-react-step-2--carbon-tutorial.netlify.app"
+  title="Carbon Next Tutorial Step 1"
+  src="https://v11-next-step-2--carbon-tutorial.netlify.app"
   frameborder="no"
   allowtransparency="true"
   allowfullscreen="true"
@@ -56,14 +56,14 @@ will build:
 ## Fork, clone and branch
 
 This tutorial has an accompanying GitHub repository called
-[carbon-tutorial](https://github.com/carbon-design-system/carbon-tutorial) that
-we'll use as a starting point for each step.
+[carbon-tutorial-nextjs](https://github.com/carbon-design-system/carbon-tutorial-nextjs)
+that we'll use as a starting point for each step.
 
 ### Fork
 
 To begin, fork
-[carbon-tutorial](https://github.com/carbon-design-system/carbon-tutorial) using
-your GitHub account.
+[carbon-tutorial](https://github.com/carbon-design-system/carbon-tutorial-nextjs)
+using your GitHub account.
 
 ### Clone
 
@@ -73,7 +73,7 @@ directory.
 
 ```bash
 git clone [your fork SSH/HTTPS]
-cd carbon-tutorial
+cd carbon-tutorial-nextjs
 ```
 
 ### Add upstream remote
@@ -84,13 +84,13 @@ you have completed this tutorial step. There are two choices: SSH or HTTPS
 #### SSH
 
 ```bash
-git remote add upstream git@github.com:carbon-design-system/carbon-tutorial.git
+git remote add upstream git@github.com:carbon-design-system/carbon-tutorial-nextjs.git
 ```
 
 #### HTTPS
 
 ```bash
-git remote add upstream https://github.com/carbon-design-system/carbon-tutorial.git
+git remote add upstream https://github.com/carbon-design-system/carbon-tutorial-nextjs.git
 ```
 
 Verify that your forked repository remotes are correct:
@@ -104,8 +104,8 @@ Your terminal should output something like this:
 ```bash
 origin	[your forked repo] (fetch)
 origin	[your forked repo] (push)
-upstream	git@github.com:carbon-design-system/carbon-tutorial.git (fetch)
-upstream	git@github.com:carbon-design-system/carbon-tutorial.git (push)
+upstream	git@github.com:carbon-design-system/carbon-tutorial-nextjs.git (fetch)
+upstream	git@github.com:carbon-design-system/carbon-tutorial-nextjs.git (push)
 ```
 
 ### Branch
@@ -115,27 +115,36 @@ tutorial step's starting point. Run the two commands:
 
 ```bash
 git fetch upstream
-git checkout -b v11-react-step-1 upstream/v11-react-step-1
+git checkout -b v11-next-step-1 upstream/v11-next-step-1
 ```
 
 ## Build and start
 
 We have the repository forked to your GitHub account, cloned down to your
-machine, and the starting branch checked out. Next, install the React app's
+machine, and the starting branch checked out. Next, install the NextJS app's
 dependencies with:
 
 ```bash
 yarn
 ```
 
-After the dependencies are installed, you can start the app with:
+After the dependencies are installed, create a build with:
 
 ```bash
-yarn start
+yarn build
 ```
 
+After the build and dependencies are installed, you can start the app with:
+
+```bash
+yarn dev
+```
+
+This is a NextJS 13 app with a home page, its root layout and a global style
+sheet.
+
 Your default browser should open up with an empty page that says:
-`Hello Carbon! Well, not quite yet. This is the starting point for the Carbon tutorial.`
+`Hello Carbon! Well, not quite yet. This is the starting point for the Carbon NextJS tutorial.`
 
 ## Install Carbon
 
@@ -146,7 +155,7 @@ with.
 Stop your development server with `CTRL-C` and install Carbon dependencies with:
 
 ```bash
-yarn add @carbon/react@1.32.0
+yarn add @carbon/react@1.33.0
 ```
 
 ## Install and build Sass
@@ -155,66 +164,75 @@ We need to run a Sass build as the Carbon styles are authored in Sass, so run
 the following command to install `sass` as a dependency.
 
 ```bash
-yarn add sass@1.51.0
+yarn add sass@1.63.6
 ```
 
 Then, start the app again. If your app's currently running, you'll need to
 restart it for the new environment variable to be used.
 
 ```bash
-yarn start
+yarn dev
 ```
 
 The app looks as it did before. Next, let's prepare our app for a Sass build.
 
-In the `src` directory, rename `index.css` as `index.scss`. Then in `index.js`
-update the `index.css` import to `index.scss`.
+In `src` directory, rename `globals.css` as `globals.scss` and change the import
+in `layout.js` from `global.css` to `globals.scss`.
 
 ### Import carbon-component styles
 
-In `index.scss`, import the Carbon styles by adding the following at the top of
-the file:
+In `globals.scss`, import the Carbon styles by adding the following at the top
+of the file:
 
-```scss path=src/index.scss
+```scss path=src/app/globals.scss
 @use '@carbon/react';
+
+/// Remove overrides once Carbon bugs are fixed upstream.
+/// Need grid option to not add page gutters at large viewports, to also use when nesting grids
+/// @link https://github.com/carbon-design-system/carbon/issues/2792
+@media (min-width: 42rem) {
+  .cds--grid--no-gutter {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/// Padding was introduced in 10.3.0, needs an option to let grid set the viewport gutter
+/// @link https://github.com/carbon-design-system/carbon/issues/3010
+.cds--content {
+  margin-top: 3rem;
+  background: var(--cds-background);
+}
 ```
 
-Making this change to `index.scss` will cause all of the Carbon Sass to
-re-compile. Once finished re-compiling the Carbon base styling is applied (IBM
-Plex Sans font family, font size, weight, colors, etc.)
-
-Re-compiling all of the Carbon Sass takes a while, even on fast systems. Let's
-speed this up by moving our custom app Sass into a separate file, `app.scss` in
-the 'src' directory, and import that from `App.js`.
-
-```javascript path=src/App.js
-import './app.scss';
-```
-
-By modifying `index.scss` as little as possible and storing all app-specific
-styling in `app.scss` we will make compile times much quicker. Storing the
-app-specific styling in a separate file also makes good organizational sense.
+In NextJS 13 there is a global style sheet and then every page has it own,
+optional, style sheet.
 
 Next, we'll import a `Button` from Carbon to test that our dependencies are
-working properly. At the top of `App.js`, import the `Button` by adding the
+working properly. At the top of `page.js`, import the `Button` by adding the
 following:
 
-```javascript path=src/App.js
+```javascript path=src/app/page.js
+'use client';
 import { Button } from '@carbon/react';
 ```
 
-In the `App` component return, you can now replace:
+We need `use client` since the Carbon components we use are all client
+components. In Next 13 pages are pulled in as children to layout files (see
+RootLayout `src/app/layout.js`) and these are always server side components.
 
-```html path=src/App.js
+In the `Page` component return, you can now replace:
+
+```html path=src/app/page.js
 <div>
   Hello Carbon! Well, not quite yet. This is the starting point for the Carbon
-  tutorial.
+  NextJS tutorial.
 </div>
 ```
 
 with:
 
-```jsx path=src/App.js
+```jsx path=src/app/page.js
 <Button>Button</Button>
 ```
 
@@ -231,34 +249,24 @@ the following files inside `src/components/TutorialHeader`:
 ```bash
 src/components/TutorialHeader
 ├──_tutorial-header.scss
-├──index.js
 └──TutorialHeader.js
 ```
 
 ### Add UI Shell Sass
 
-Next, in `app.scss`, we'll import our `TutorialHeader` styles. Your file should
-now look like this:
+Next, in `globals.scss`, we'll import our `TutorialHeader` styles. Your file
+should now look like this:
 
-```scss path=src/app.scss
-@use './components/TutorialHeader/tutorial-header';
+```scss path=src/app/globals.scss
+@use '@/components/TutorialHeader/tutorial-header';
 ```
 
 ### Import and export the header
-
-In `src/components/TutorialHeader/index.js`, import and export our
-`TutorialHeader` component like so:
-
-```javascript path=src/components/TutorialHeader/index.js
-import TutorialHeader from './TutorialHeader';
-export default TutorialHeader;
-```
 
 Next we'll import our Carbon UI Shell components into `TutorialHeader.js`. Set
 up the file like so:
 
 ```javascript path=src/components/TutorialHeader/TutorialHeader.js
-import React from 'react';
 import {
   Header,
   HeaderContainer,
@@ -329,11 +337,17 @@ straight to the main content.
 
 ### Import icons
 
+First we will install the icons we will use in the header
+
+```bash
+yarn add @carbon/icons-react
+```
+
 Now let's import the icons. In the `TutorialHeader.js` file, we need to import
 each individual icon we will use.
 
 ```javascript path=src/components/TutorialHeader/TutorialHeader.js
-import { Switcher, Notification, UserAvatar } from '@carbon/react/icons';
+import { Switcher, Notification, UserAvatar } from '@carbon/icons-react';
 ```
 
 Then we need to add the `HeaderGlobalAction` component inside of the
@@ -363,30 +377,52 @@ With:
 ### Render the header
 
 Next we'll render our UI Shell by importing our `TutorialHeader` component and
-`Content` into `App.js`. Your imports should look like this:
+`Content` into a provider components in the Root Layout. We do this because
+layout components in NextJS 13 are server-side components.
 
-```javascript path=src/App.js
-import React, { Component } from 'react';
-import './app.scss';
-import { Button, Content } from '@carbon/react';
-import TutorialHeader from './components/TutorialHeader';
+<InlineNotification>
+
+**Note:** We can wrap the `{children}` in Root Layout with a Provider component
+that will use to hold the components we want across all pages. See this
+[explanation](https://nextjs.org/docs/getting-started/react-essentials#rendering-third-party-context-providers-in-server-components)
+in Next docs.
+
+</InlineNotification>
+
+```javascript path=src/app/layout.js
+import './globals.scss';
+import { Providers } from './providers';
+
+export const metadata = {
+  title: 'Carbon + Next13',
+  description: 'IBM Carbon Tutorial with NextJS 13',
+};
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <body>
+        <Providers>{children}</Providers>
+      </body>
+    </html>
+  );
+}
 ```
 
-Our `return` currently just contains a `Button`. Let's update that to include
-our imported components. This should look like the following:
+Create a `providers.js` file within the app folder with the following content.
 
-```javascript path=src/App.js
-class App extends Component {
-  render() {
-    return (
-      <>
-        <TutorialHeader />
-        <Content>
-          <Button>Button</Button>
-        </Content>
-      </>
-    );
-  }
+```javascript path=src/app/providers.js
+'use client';
+
+import TutorialHeader from '@/components/TutorialHeader/TutorialHeader';
+
+export function Providers({ children }) {
+  return (
+    <div>
+      <TutorialHeader />
+      <Content>{children}</Content>
+    </div>
+  );
 }
 ```
 
@@ -394,200 +430,123 @@ You should now see a styled UI Shell header and a button below it.
 
 ## Create pages
 
-Next thing we need to do is create the files for our content. Start by creating
-a folder called `content` in `src`. This should be a sibling of
-`src/components`.
+Next thing we need to do is create the files for our content. We already have a
+folder called `app` in `src`. This should be a sibling of `src/components`.
 
-Since our app will have two pages, we'll create two folders in `src/content`.
+Since our app will have two pages, we'll create two folders in `src/app`.
 
 ```bash
-src/content
-├── LandingPage
-└── RepoPage
+src/app
+├── home
+└── repos
 ```
 
-Next, we'll set up these folders the same way we set up
-`src/components/TutorialHeader`.
+NextJS uses these folders for page routing which is built into the framework, we
+do not need separate React routing. In each there is a `page.js` and optionally
+a `layout.js` and styling sheet.
 
-Create the following files in the `LandingPage` folder:
+Create the following files in the `home` folder:
 
 ```bash
-src/content/LandingPage
+src/app/home
 ├── _landing-page.scss
-├── index.js
-└── LandingPage.js
+└── page.js
 ```
 
-Create the following files in the `RepoPage` folder:
+Create the following files in the `repos` folder:
 
 ```bash
-src/content/RepoPage
+src/app/repos
 ├── _repo-page.scss
-├── index.js
-└── RepoPage.js
+└── page.js
 ```
 
 ### Set up content Sass
 
-Next, we'll import our content Sass files in `app.scss`, like so:
+Next, we'll import our content Sass files in `globals.scss`, like so:
 
-```scss path=src/app.scss
-@use './components/TutorialHeader/tutorial-header';
-@use './content/LandingPage/landing-page';
-@use './content/RepoPage/repo-page';
+```scss path=src/app/globals.scss
+@use '@/app/home/landing-page';
+@use '@/app/repos/repo-page';
 ```
 
 ### Import and export content pages
 
 Now that our stylesheets are set up, we need to create our pages' components.
 Starting with `LandingPage`, just like with our header, we need to export the
-component in `src/content/LandingPage/index.js` by adding:
+component in `javascript path=src/app/home/page.js` by adding:
 
-```javascript path=src/content/LandingPage/index.js
-import LandingPage from './LandingPage';
-export default LandingPage;
+```javascript path=src/app/home/page.js
+`use client`;
+
+export default function LandingPage() {
+  return <div>LANDING PAGE</div>;
+}
 ```
 
-Next in `LandingPage.js`, we'll create our component.
+And we pull this page into our root page:
 
-```javascript path=src/content/LandingPage/LandingPage.js
-import React from 'react';
+```javascript path=src/app/page.js
+import LandingPage from './home/page';
 
-const LandingPage = () => {
-  return <div>LANDING PAGE</div>;
-};
-
-export default LandingPage;
+export default function Page() {
+  return <LandingPage />;
+}
 ```
 
 We'll repeat this process with `RepoPage`.
 
-In `src/content/RepoPage/index.js`, import and export the `RepoPage` component
-like so:
+```javascript path=src/app/repos/page.js
+`use client`;
 
-```javascript path=src/content/RepoPage/index.js
-import RepoPage from './RepoPage';
-export default RepoPage;
-```
-
-Then in `RepoPage.js` create the component.
-
-```javascript path=src/content/RepoPage/RepoPage.js
-import React from 'react';
-
-const RepoPage = () => {
+export default function RepoPage() {
   return <div>REPO PAGE</div>;
-};
-
-export default RepoPage;
+}
 ```
 
-Awesome! We've just created our content pages. Next thing we need to do is
-render them with our router.
+Navigate to the repos page by adding `/repos` at the end of your locally hosted
+site to see your repos page.
 
-## Add routing
+Awesome! We've just created our content pages with automatic page routing
+courtesy of NextJS.
 
-We've updated our app to render our header, but now we need to add routing
-functionality. To do this we need to install `react-router-dom`. Go ahead and
-stop your development server (with `CTRL-C`) and then:
-
-```bash
-yarn add react-router-dom@5.0.0
-yarn start
-```
-
-First, we need to wrap our app in the `Router` component. In the root
-`index.js`, add the import:
-
-```javascript path=src/index.js
-import { HashRouter as Router } from 'react-router-dom';
-```
-
-<InlineNotification>
-
-**Note:** We're using `HashRouter` instead of `BrowserRouter` to simplify
-deployments in upcoming tutorial steps. Learn more about the React Router
-[here](https://reacttraining.com/react-router/web/api/BrowserRouter).
-
-</InlineNotification>
-
-Then, update the `render()` function to include the `Router`.
-
-```javascript path=src/index.js
-createRoot(document.getElementById('root')).render(
-  <Router>
-    <App />
-  </Router>
-);
-```
-
-In order to render our content pages, we need to add the following imports in
-`App.js` below our existing imports.
-
-```javascript path=src/App.js
-import { Route, Switch, BrowserRouter } from 'react-router-dom';
-import { Content } from '@carbon/react';
-import LandingPage from './content/LandingPage';
-import RepoPage from './content/RepoPage';
-```
-
-This allows us to use our page content components and routing components from
-`react-router-dom`.
-
-The next thing we need to do is update what we're returning to `App.js`. We
-currently just have a div with some dummy content. In order to render our pages
-correctly, we need to replace the `div` with `<BrowserRouter>` (and remove the
-text inside).
-
-Now inside `App.js` we'll add the following:
-
-```jsx path=src/App.js
-<BrowserRouter>
-  <Content>
-    <Switch>
-      <Route exact path="/" component={LandingPage} />
-      <Route path="/repos" component={RepoPage} />
-    </Switch>
-  </Content>
-</BrowserRouter>
-```
-
-After that we need to do a couple quick fixes to the UI Shell to have it work
-with the React router.
+After that we need to do a couple of quick fixes to the UI Shell to work with
+NextJS links.
 
 Add the `Link` import in `TutorialHeader.js`:
 
 ```javascript path=src/components/TutorialHeader/TutorialHeader.js
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 ```
 
 We need to use the `Link` component instead of the default anchor elements to
 prevent full page reload when navigating to different pages with React Router.
-To use `Link`, update the `HeaderName` component to use the `element` prop and
-replace the `href` with `to`:
+To use `Link`, we wrap `HeaderName` component and pass through `href` elements
+to it:
 
 ```javascript path=src/components/TutorialHeader/TutorialHeader.js
-<HeaderName as={Link} to="/" prefix="IBM">
-  Carbon Tutorial
-</HeaderName>
+<Link href="/" passHref legacyBehavior>
+  <HeaderName prefix="IBM">Carbon Tutorial</HeaderName>
+</Link>
 ```
 
-Do the same with the components that contain `href="/repos"`, updating them to:
+Do the same with the components `HeaderNavigation` and `HeaderSideNavItems` that
+contain `href="/repos"`, updating them to:
 
 ```javascript path=src/components/TutorialHeader/TutorialHeader.js
-<HeaderMenuItem as={Link} to="/repos">
-  Repositories
-</HeaderMenuItem>
+<Link href="/repos" passHref legacyBehavior>
+  <HeaderMenuItem>Repositories</HeaderMenuItem>
+</Link>
 ```
 
 You should now have a working header that routes to different pages without full
 page reload! However, our page does not match the design specs. We need to
 change the header theme to `g100` to match the specs.
 
-In `App.js` we will add inline theming for our navigation. First, we need to
-import our new `Theme` component.
+In `providers.js` we will add inline theming for our navigation. First, we need
+to import our new `Theme` component.
 
-```javascript path=src/App.js
+```javascript path=src/app/providers.js
 import { Content, Theme } from '@carbon/react';
 ```
 
@@ -596,28 +555,12 @@ Then, we will wrap `Theme` around our header, and set the zoned theme using the
 `"g100"`.
 
 ```javascript path=src/App.js
-<BrowserRouter>
+<div>
   <Theme theme="g100">
     <TutorialHeader />
   </Theme>
-  <Content>
-    <Switch>
-      <Route exact path="/" component={LandingPage} />
-      <Route path="/repos" component={RepoPage} />
-    </Switch>
-  </Content>
-</BrowserRouter>
-```
-
-You might have noticed that the landing and repo page content disappeared. This
-is because we now have a wrapper around the UI Shell, and the spacing is off. To
-fix this, we'll add the following override in `index.scss` below our style
-import:
-
-```scss path=src/index.scss
-.cds--content {
-  margin-top: 3rem;
-}
+  <Content>{children}</Content>
+</div>
 ```
 
 We have one last thing to fix before we're done. Because we changed the header
@@ -687,7 +630,7 @@ have `.yarn/cache` commit changes.
 Then, push to your repository:
 
 ```bash
-git push origin v11-react-step-1
+git push origin v11-next-step-1
 ```
 
 <InlineNotification>
@@ -707,7 +650,7 @@ over HTTPS.
 **Note:** If you receive a `non-fast-forward` error, it's likely that your
 forked repository is behind the original repository and needs to be updated.
 This can happen if the tutorial was updated after you began working on it. To
-fix, run `git pull upstream v11-react-step-1` to merge the changes into your
+fix, run `git pull upstream v11-next-step-1` to merge the changes into your
 branch, then you can try pushing again. Or, you can
 [manually merge](https://help.github.com/en/articles/syncing-a-fork) in the
 upstream changes.
@@ -717,9 +660,9 @@ upstream changes.
 ### Pull request (PR)
 
 Finally, visit
-[carbon-tutorial](https://github.com/carbon-design-system/carbon-tutorial) to
-"Compare & pull request". In doing so, make sure that you are comparing to
-`v11-react-step-1` into `base: v11-react-step-1`. Take notice of the
+[carbon-next-tutorial](https://github.com/carbon-design-system/carbon-tutorial-nextjs)
+to "Compare & pull request". In doing so, make sure that you are comparing to
+`v11-next-step-1` into `base: v11-next-step-1`. Take notice of the
 [Netlify](https://www.netlify.com) bot that deploys a preview of your PR every
 time that you push new commits. These previews can be shared and viewed by
 anybody to assist the PR review process.
