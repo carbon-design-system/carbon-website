@@ -6,7 +6,7 @@
  */
 
 import React from 'react';
-import { Dropdown, Link } from '@carbon/react';
+import { unstable__FluidDropdown as FluidDropdown, Link } from '@carbon/react';
 import { Caption, Row, Column } from 'gatsby-theme-carbon';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
@@ -89,7 +89,8 @@ const StorybookDemo = ({ tall, themeSelector, wide, url, variants }) => {
             colLg={4}
             noGutterSm
             className={styles.column}>
-            <Dropdown
+            <FluidDropdown
+              isCondensed
               id="theme-selector"
               titleText="Theme selector"
               label="theme"
@@ -107,7 +108,8 @@ const StorybookDemo = ({ tall, themeSelector, wide, url, variants }) => {
             colLg={4}
             noGutterSm
             className={styles.column}>
-            <Dropdown
+            <FluidDropdown
+              isCondensed
               id="variant-selector"
               titleText="Variant selector"
               label="variant"

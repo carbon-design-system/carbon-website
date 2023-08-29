@@ -5,9 +5,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use '@carbon/react/scss/spacing' as spacing;
-@use '@carbon/react/scss/theme' as theme;
-@use '@carbon/react/scss/type' as type;
 @use '@carbon/react/scss/utilities/convert' as convert;
 
 .column {
@@ -15,22 +12,20 @@
 }
 
 .dropdowns {
-  :global(.cds--label) {
-    padding-left: spacing.$spacing-05;
-  }
-
   :global(.cds--dropdown) {
-    border-bottom: 1px solid theme.$layer-selected-01;
+    border-bottom: 1px solid $border-subtle-01;
   }
 }
 
 .theme-selector {
-  :global(.cds--dropdown_wrapper) {
-    margin-right: -1px;
+  @include breakpoint('md') {
+    :global(.cds--dropdown_wrapper) {
+      margin-right: -1px;
+    }
   }
 
   :global(.cds--dropdown) {
-    border-right: 1px solid theme.$background;
+    border-right: 1px solid $border-subtle-01;
   }
 }
 
@@ -39,18 +34,18 @@
 }
 
 .demo {
-  height: convert.rem(320px);
-  padding: spacing.$spacing-03;
-  background: theme.$layer-01;
+  height: rem(320px);
+  padding: $spacing-03;
+  background: $layer-01;
 }
 
 .tall,
 .wide {
-  height: convert.rem(480px);
+  height: rem(480px);
 }
 
 .wide.tall {
-  height: convert.rem(640px);
+  height: rem(640px);
 }
 
 .iframe {
