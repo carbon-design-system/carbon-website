@@ -1,5 +1,5 @@
 ---
-title: 5. Deploying to Github Pages
+title: 5. Deploying to Vercel
 description:
   Welcome to Carbon! This tutorial will guide you in creating a NextJS app with
   the Carbon Design System.
@@ -21,7 +21,8 @@ import Preview from 'components/Preview';
 <PageDescription>
 
 This step takes what we've built so far and optimizes the app for a production
-environment. We'll be deploying the production build to IBM Cloud.
+environment. We'll be deploying the production build to
+[Vercel](https://vercel.com/).
 
 </PageDescription>
 
@@ -36,20 +37,19 @@ have not been updated to reflect changes for our next major version.
 
 <AnchorLink>Fork, clone and branch</AnchorLink>
 <AnchorLink>Build for production</AnchorLink>
-<AnchorLink>Deploying to Github Pages</AnchorLink>
-<AnchorLink>Submit pull request</AnchorLink>
+<AnchorLink>Deploying to Vercel</AnchorLink>
 
 </AnchorLinks>
 
 ## Preview
 
-A [preview](https://v11-next-step-5--carbon-tutorial.netlify.app) of what you'll
-build (visually no different, but built for production):
+A [preview](https://carbon-tutorial-nextjs.vercel.app/) of what you'll build
+(visually no different, but built for production):
 
 <Preview
   height="400"
   title="Carbon Next Tutorial Step 5"
-  src="https://v11-next-step-5--carbon-tutorial.netlify.app"
+  src="https://carbon-tutorial-nextjs.vercel.app/"
   frameborder="no"
   allowtransparency="true"
   allowfullscreen="true"
@@ -120,99 +120,36 @@ Create Next App, go ahead and check out their
 [going to production checklist](https://nextjs.org/docs/pages/building-your-application/deploying/production-checklist)
 for a full description of what's happening.
 
-## Deploying to Github Pages
+## Deploying to Vercel
 
 Next we'll be deploying to
-[GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages)
-which allows you to host your files directly from your repository in GitHub.
+[Vercel](https://nextjs.org/learn/basics/deploying-nextjs-app/deploy) which
+allows you to host your files directly from your repository in GitHub.
 
-If you forked the tutorial earlier by copying only the `main` branch, you will
-have to create a `gh-pages` branch with the following steps. Otherwise, if you
-already have an existing `gh-pages` branch (you can easily check by going to
-your repository on `github.com` and checking the existing branches), skip the
-following `git` commands.
+Watch or read the instructions below:
 
-To do this, we'll first commit our `build` folder so that git knows we have a
-subtree (subfolder with our site).
-
-```bash
-git add build && git commit -m "chore(deploy): publish build files"
-```
-
-Then we'll use `subtree push` to push to the `gh-pages` branch on Github.
-
-```bash
-git subtree push --prefix build origin gh-pages
-```
-
-To have GitHub Pages point to the `gh-pages` branch, go to your forked Carbon
-tutorial repository on `github.com`. Go to your "Settings" and under the "Pages"
-tab, specify the branch, `gh-pages`, as your source.
-
-![Screenshot of Github settings dashboard](../shared/step-5/images/deploy-on-github-pages.png)
-
-Once you click save, you should be able to see your site published at the
-`*.github.io/carbon-tutorial-nextjs` link shown on the page.
-
-Congratulations! Your work is now hosted on GitHub Pages!
-
-## Submit pull request
-
-That does it! We're going to submit a pull request to verify completion of this
-tutorial step.
-
-### Continuous integration (CI) check
-
-Run the CI check to make sure we're all set to submit a pull request.
-
-```bash
-yarn ci-check
-```
+First go to your Dashboard on Vercel and click on "Add New" then "Project".
+After that you will have to find the the repository you have forked, probably
+called `carbon-tutorial-nextjs` and import.
 
 <InlineNotification>
 
-**Note:** Having issues running the CI check?
-[Step 1](</developing/next-tutorial/step-1#continuous-integration-(ci)-check>)
-has troubleshooting notes that may help.
+**Note:** Can't find the repository? Remember to give access on Github to
+Vercel.
 
 </InlineNotification>
 
-### Git push
+Once you found the repository you just have to click on "Deploy" and wait for
+the project to build.
 
-Push to your repository:
+Once the project was successfully deployed, we will need to select which branch
+we want to use in production, by default is the `main` branch, but for this
+tutorial we are going to use the `v11-next-step-5`. So on your project page, go
+to Settings -> Git, then look for "Production Branch" and change the name from
+`main` to `v11-next-step-5`.
 
-```bash
-git push origin v11-next-step-5
-```
+This change will not take effect until after the next commit to the branch, so
+once the build is complete, you will need to go to the `v11-next-step-5` branch
+and make a new push to GitHub.
 
-<InlineNotification>
-
-**Note:** Having issues pushing your changes?
-[Step 1](/developing/next-tutorial/step-1#git-commit-and-push) has
-troubleshooting notes that may help.
-
-</InlineNotification>
-
-### Pull request (PR)
-
-Finally, visit
-[carbon-tutorial](https://github.com/carbon-design-system/carbon-tutorial) to
-"Compare & pull request". In doing so, make sure that you are comparing to
-`v11-next-step-5` into `base: v11-next-step-5`.
-
-<InlineNotification>
-
-**Note:** Expect your tutorial step PRs to be reviewed by the Carbon team but
-not merged. We'll close your PR so we can keep the repository's remote branches
-pristine and ready for the next person!
-
-</InlineNotification>
-
-<InlineNotification>
-
-**Note:** If your PR fails the CircleCI test with the error
-`Can't make a request in offline mode`, try running the following command:
-`rm -rf .yarn-offline-mirror node_modules && yarn cache clean && yarn install`.
-Add and commit the changes once this completes, and try pushing again.
-
-</InlineNotification>
+Congratulations! Your work is now hosted on Vercel
