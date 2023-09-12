@@ -32,7 +32,7 @@ usage documentation, see the Storybooks for each framework below.
 <Column colLg={4} colMd={4} noGutterSm>
   <ResourceCard
       subTitle="Web Components"
-      href="https://web-components.carbondesignsystem.com/?path=/story/components-data-table--default"
+      href="https://web-components.carbondesignsystem.com/?path=/story/components-datatable-basic--default"
       >
 
 <MdxIcon name="webcomponents" />
@@ -63,269 +63,70 @@ usage documentation, see the Storybooks for each framework below.
 
 ## Live demo
 
-<ComponentDemo
-  components={[
+<StorybookDemo
+  themeSelector
+  url="https://react.carbondesignsystem.com"
+  wide
+  tall
+  variants={[
     {
-      id: 'default-table',
-      label: 'Default',
+      label: 'Basic',
+      variant: 'components-datatable-basic--default',
     },
     {
-      id: 'with-selection',
-      label: 'With selection',
+      label: 'Batch Actions',
+      variant: 'components-datatable-batch-actions--default',
     },
     {
-      id: 'with-expansion',
-      label: 'With expansion',
+      label: 'Dynamic',
+      variant: 'components-datatable-dynamic--default',
     },
     {
-      id: 'with-batch-actions',
-      label: 'With batch actions',
+      label: 'Expansion',
+      variant: 'components-datatable-expansion--default',
+    },
+    {
+      label: 'Batch Expansion',
+      variant: 'components-datatable-expansion--batch-expansion',
+    },
+    {
+      label: 'Filtering',
+      variant: 'components-datatable-filtering--default',
+    },
+    {
+      label: 'Selection',
+      variant: 'components-datatable-selection--default',
+    },
+    {
+      label: 'With Radio Selection',
+      variant: 'components-datatable-selection--with-radio-selection',
+    },
+    {
+      label: 'With Selection And Sorting',
+      variant: 'components-datatable-selection--with-selection-and-sorting',
+    },
+    {
+      label: 'Sorting',
+      variant: 'components-datatable-sorting--default',
+    },
+    {
+      label: 'Toolbar',
+      variant: 'components-datatable-toolbar--default',
+    },
+    {
+      label: 'Persistent Toolbar',
+      variant: 'components-datatable-toolbar--persistent-toolbar',
+    },
+    {
+      label: 'Small Persistent Toolbar',
+      variant: 'components-datatable-toolbar--small-persistent-toolbar',
+    },
+    {
+      label: 'With Overflow Menu',
+      variant: 'components-datatable-toolbar--with-overflow-menu',
     },
   ]}
-  scope={{ rowData, headerData, React, TrashCan, Save, Download }}
->
-  <ComponentVariant
-    id="default-table"
-    knobs={{ DataTable: ['isSortable'], Table: ['size', 'useZebraStyles'] }}
-    links={{
-      React:
-        'https://react.carbondesignsystem.com/?path=/story/components-datatable--default',
-      'Web Components':
-        'https://web-components.carbondesignsystem.com/?path=/story/components-data-table--default',
-      Angular:
-        'https://angular.carbondesignsystem.com/?path=/story/components-table--basic',
-      Vue: 'http://vue.carbondesignsystem.com/?path=/story/components-cvdatatable--minimal',
-    }}
-  >
-    {`<DataTable rows={rowData} headers={headerData}>
-  {({ rows, headers, getHeaderProps, getTableProps }) => (
-    <TableContainer title="DataTable">
-      <Table {...getTableProps()}>
-        <TableHead>
-          <TableRow>
-            {headers.map((header) => (
-              <TableHeader {...getHeaderProps({ header })}>
-                {header.header}
-              </TableHeader>
-            ))}
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.id}>
-              {row.cells.map((cell) => (
-                <TableCell key={cell.id}>{cell.value}</TableCell>
-              ))}
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-  )}
-</DataTable>`}
-  </ComponentVariant>
-  <ComponentVariant
-    id="with-selection"
-    knobs={{ DataTable: ['isSortable'], Table: ['size', 'useZebraStyles'] }}
-    links={{
-      React:
-        'https://react.carbondesignsystem.com/?path=/story/components-datatable-selection--default',
-      'Web Components':
-        'https://web-components.carbondesignsystem.com/?path=/story/components-data-table--default',
-      Angular:
-        'https://angular.carbondesignsystem.com/?path=/story/components-table--basic',
-      Vue: 'http://vue.carbondesignsystem.com/?path=/story/components-cvdatatable--default',
-    }}
-  >
-    {`<DataTable rows={rowData} headers={headerData}>
-  {({
-    rows,
-    headers,
-    getHeaderProps,
-    getSelectionProps,
-    getRowProps,
-    getTableProps,
-  }) => (
-    <TableContainer title="DataTable with selection">
-      <Table {...getTableProps()}>
-        <TableHead>
-          <TableRow>
-            <TableSelectAll {...getSelectionProps()} />
-            {headers.map((header) => (
-              <TableHeader {...getHeaderProps({ header })}>
-                {header.header}
-              </TableHeader>
-            ))}
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow {...getRowProps({ row })}>
-              <TableSelectRow {...getSelectionProps({ row })} />
-              {row.cells.map((cell) => (
-                <TableCell key={cell.id}>{cell.value}</TableCell>
-              ))}
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-  )}
-</DataTable>`}
-  </ComponentVariant>
-  <ComponentVariant
-    id="with-expansion"
-    knobs={{ DataTable: ['isSortable'] }}
-    links={{
-      React:
-        'https://react.carbondesignsystem.com/?path=/story/components-datatable-expansion--default',
-      'Web Components':
-        'https://web-components.carbondesignsystem.com/?path=/story/components-data-table--expandable',
-      Angular:
-        'https://angular.carbondesignsystem.com/?path=/story/components-table--with-expansion',
-      Vue: 'http://vue.carbondesignsystem.com/?path=/story/components-cvdatatable--slotted-expanding-data',
-    }}
-  >
-    {`<DataTable
-  rows={rowData}
-  headers={headerData}>
-    {({ rows, headers, getHeaderProps, getRowProps, getTableProps }) => (
-      <TableContainer title="DataTable with expansion">
-        <Table {...getTableProps()}>
-          <TableHead>
-            <TableRow>
-              <TableExpandHeader />
-              {headers.map(header => (
-                <TableHeader {...getHeaderProps({ header })}>
-                  {header.header}
-                </TableHeader>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map(row => (
-              <React.Fragment key={row.id}>
-                <TableExpandRow {...getRowProps({ row })}>
-                  {row.cells.map(cell => (
-                    <TableCell key={cell.id}>{cell.value}</TableCell>
-                  ))}
-                </TableExpandRow>
-                {row.isExpanded && (
-                  <TableExpandedRow colSpan={headers.length + 1}>
-                    <p>Aux squad rules</p>
-                  </TableExpandedRow>
-                )}
-              </React.Fragment>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    )}
-  </DataTable>`}
-  </ComponentVariant>
-  <ComponentVariant
-    id="with-batch-actions"
-    links={{
-      React:
-        'https://react.carbondesignsystem.com/?path=/story/components-datatable-batch-actions--default',
-      'Web Components':
-        'https://web-components.carbondesignsystem.com/?path=/story/components-data-table--default',
-      Angular:
-        'https://angular.carbondesignsystem.com/?path=/story/components-table--with-toolbar',
-      Vue: 'http://vue.carbondesignsystem.com/?path=/story/components-cvdatatable--default',
-    }}
-  >
-    {`<DataTable rows={rowData} headers={headerData}>
-  {({
-    rows,
-    headers,
-    getHeaderProps,
-    getRowProps,
-    getSelectionProps,
-    getBatchActionProps,
-    onInputChange,
-    selectedRows,
-  }) => (
-    <TableContainer title="DataTable with batch actions">
-      <TableToolbar>
-        <TableBatchActions {...getBatchActionProps()}>
-          <TableBatchAction
-            tabIndex={getBatchActionProps().shouldShowBatchActions ? 0 : -1}
-            renderIcon={TrashCan}
-            onClick={() => console.log('clicked')}
-          >
-            Delete
-          </TableBatchAction>
-          <TableBatchAction
-            tabIndex={getBatchActionProps().shouldShowBatchActions ? 0 : -1}
-            renderIcon={Save}
-            onClick={() => console.log('clicked')}
-          >
-            Save
-          </TableBatchAction>
-          <TableBatchAction
-            tabIndex={getBatchActionProps().shouldShowBatchActions ? 0 : -1}
-            renderIcon={Download}
-            onClick={() => console.log('clicked')}
-          >
-            Download
-          </TableBatchAction>
-        </TableBatchActions>
-        <TableToolbarContent>
-          <TableToolbarSearch
-            tabIndex={getBatchActionProps().shouldShowBatchActions ? -1 : 0}
-            onChange={onInputChange}
-          />
-          <TableToolbarMenu
-            tabIndex={getBatchActionProps().shouldShowBatchActions ? -1 : 0}
-          >
-            <TableToolbarAction primaryFocus onClick={() => alert('Alert 1')}>
-              Action 1
-            </TableToolbarAction>
-            <TableToolbarAction onClick={() => alert('Alert 2')}>
-              Action 2
-            </TableToolbarAction>
-            <TableToolbarAction onClick={() => alert('Alert 3')}>
-              Action 3
-            </TableToolbarAction>
-          </TableToolbarMenu>
-          <Button
-            tabIndex={getBatchActionProps().shouldShowBatchActions ? -1 : 0}
-            onClick={() => console.log('clicked')}
-            size="small"
-            kind="primary"
-          >
-            Add new
-          </Button>
-        </TableToolbarContent>
-      </TableToolbar>
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableSelectAll {...getSelectionProps()} />
-            {headers.map((header) => (
-              <TableHeader {...getHeaderProps({ header })}>
-                {header.header}
-              </TableHeader>
-            ))}
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow {...getRowProps({ row })}>
-              <TableSelectRow {...getSelectionProps({ row })} />
-              {row.cells.map((cell) => (
-                <TableCell key={cell.id}>{cell.value}</TableCell>
-              ))}
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-  )}
-</DataTable>`}
-  </ComponentVariant>
-</ComponentDemo>
+/>
 
 ## Sample data
 
