@@ -22,10 +22,8 @@ src
 ## 👩‍💻 Develop
 
 - 🤝 [Contribution guidelines](.github/CONTRIBUTING.md)
-- 📚
-  [Content and Markdown guidelines](https://gatsby-theme-carbon.now.sh/components/markdown)
-- 🗺
-  [Navigation guidelines](https://gatsby-theme-carbon.now.sh/guides/navigation/sidebar)
+- 📚 [Content and Markdown guidelines](https://gatsby-theme-carbon.now.sh/components/markdown)
+- 🗺 [Navigation guidelines](https://gatsby-theme-carbon.now.sh/guides/navigation/sidebar)
 
 - `yarn install` – install dependencies
 - `yarn dev` – start the development server
