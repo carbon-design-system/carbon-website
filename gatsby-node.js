@@ -58,7 +58,7 @@ exports.createPages = ({ actions }) => {
   });
   createRedirect({
     fromPath: '/tutorial/react/overview',
-    toPath: '/developing/next-tutorial/overview',
+    toPath: '/developing/react-tutorial/overview',
     isPermanent: true,
   });
   createRedirect({
