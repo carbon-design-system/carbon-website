@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import { Column, Row } from 'gatsby-theme-carbon';
-import ArticleCard from 'gatsby-theme-carbon/src/components/ArticleCard';
+import ArticleCard from '../../gatsby-theme-carbon/components/ArticleCard';
 import { imageStyle } from './Contributions.module.scss';
 
 export default function Contributions({ contributionLimit = 9, ...rest }) {
