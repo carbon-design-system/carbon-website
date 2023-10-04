@@ -3696,6 +3696,11 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-20.4.8.tgz#b5dda19adaa473a9bf0ab5cbd8f30ec7d43f5c85"
   integrity sha512-0mHckf6D2DiIAzh8fM8f3HQCvMKDpK94YQ0DSVkfWTG9BZleYIWudw9cJxX8oCk9bM+vAkDyujDV6dmKHbvQpg==
 
+"@types/node@>=8.0.0 <15":
+  version "14.18.63"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.18.63.tgz#1788fa8da838dbb5f9ea994b834278205db6ca2b"
+  integrity sha512-fAtCfv4jJg+ExtXhvCkCqUKZ+4ok/JQk01qDKhL5BDDoS3AxKXhV5/MAVUZyQnSEd2GT92fkgZl0pz0Q0AzcIQ==
+
 "@types/node@^17.0.5":
   version "17.0.45"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-17.0.45.tgz#2c0fafd78705e7a18b7906b5201a522719dc5190"
@@ -4127,7 +4132,14 @@
   resolved "https://registry.yarnpkg.com/@xtuc/long/-/long-4.2.2.tgz#d291c6a4e97989b5c61d9acf396ae4fe133a718d"
   integrity sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ==
 
-abortcontroller-polyfill@^1.1.9:
+abort-controller@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/abort-controller/-/abort-controller-3.0.0.tgz#eaf54d53b62bae4138e809ca225c8439a6efb392"
+  integrity sha512-h8lQ8tacZYnR3vNQTgibj+tODHI5/+l06Au2Pcriv/Gmet0eaj4TwWH41sO9wnHDiQsEj19q0drzdWdeAHtweg==
+  dependencies:
+    event-target-shim "^5.0.0"
+
+abortcontroller-polyfill@^1.1.9, abortcontroller-polyfill@^1.4.0:
   version "1.7.5"
   resolved "https://registry.yarnpkg.com/abortcontroller-polyfill/-/abortcontroller-polyfill-1.7.5.tgz#6738495f4e901fbb57b6c0611d0c75f76c485bed"
   integrity sha512-JMJ5soJWP18htbbxJjG7bG6yuI6pRhgJ0scHHTfkUjf6wjP912xZWvM+A4sJK3gqd9E8fcPbDnOefbA9Th/FIQ==
@@ -4226,6 +4238,17 @@ aggregate-error@^3.0.0:
   dependencies:
     clean-stack "^2.0.0"
     indent-string "^4.0.0"
+
+airtable@^0.12.1:
+  version "0.12.2"
+  resolved "https://registry.yarnpkg.com/airtable/-/airtable-0.12.2.tgz#e53e66db86744f9bc684faa58881d6c9c12f0e6f"
+  integrity sha512-HS3VytUBTKj8A0vPl7DDr5p/w3IOGv6RXL0fv7eczOWAtj9Xe8ri4TAiZRXoOyo+Z/COADCj+oARFenbxhmkIg==
+  dependencies:
+    "@types/node" ">=8.0.0 <15"
+    abort-controller "^3.0.0"
+    abortcontroller-polyfill "^1.4.0"
+    lodash "^4.17.21"
+    node-fetch "^2.6.7"
 
 ajv-keywords@^3.4.1, ajv-keywords@^3.5.2:
   version "3.5.2"
@@ -8236,6 +8259,11 @@ event-source-polyfill@1.0.25:
   resolved "https://registry.yarnpkg.com/event-source-polyfill/-/event-source-polyfill-1.0.25.tgz#d8bb7f99cb6f8119c2baf086d9f6ee0514b6d9c8"
   integrity sha512-hQxu6sN1Eq4JjoI7ITdQeGGUN193A2ra83qC0Ltm9I2UJVAten3OFVN6k5RX4YWeCS0BoC8xg/5czOCIHVosQg==
 
+event-target-shim@^5.0.0:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/event-target-shim/-/event-target-shim-5.0.1.tgz#5d4d3ebdf9583d63a5333ce2deb7480ab2b05789"
+  integrity sha512-i/2XbnSz/uxRCU6+NdVJgKWDTM427+MqYbkQzD321DuCQJUqOuJKIA0IM2+W2xtYHdKOmZ4dR6fExsd4SXL+WQ==
+
 eventemitter3@^3.1.0:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-3.1.2.tgz#2d3d48f9c346698fce83a85d7d664e98535df6e7"
@@ -9318,6 +9346,15 @@ gatsby-sharp@^0.19.0:
   dependencies:
     "@types/sharp" "^0.30.5"
     sharp "^0.30.7"
+
+gatsby-source-airtable@^2.4.1:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/gatsby-source-airtable/-/gatsby-source-airtable-2.4.1.tgz#c381f07905b3772b303e2d6067e88741ef02f7d4"
+  integrity sha512-wm0om4Q7s8fWBZExCpDT/OakKh5XxK/5zL6ernNsLWHrySI6Q7e7H2rqKGUJFkMgiWMMom2vZwkfTqu+GlFL4A==
+  dependencies:
+    airtable "^0.12.1"
+    bluebird "^3.7.2"
+    mime "^2.6.0"
 
 gatsby-source-filesystem@^4.25.0, gatsby-source-filesystem@^4.9.0:
   version "4.25.0"
@@ -11971,7 +12008,7 @@ mime@1.6.0:
   resolved "https://registry.yarnpkg.com/mime/-/mime-1.6.0.tgz#32cd9e5c64553bd58d19a568af452acff04981b1"
   integrity sha512-x0Vn8spI+wuJ1O6S7gnbaQg8Pxh4NNHb7KSINmEWKiPE4RKOplvijn+NkmYmmRgP68mc70j2EbeTFRsrswaQeg==
 
-mime@^2.4.4, mime@^2.4.6, mime@^2.5.2:
+mime@^2.4.4, mime@^2.4.6, mime@^2.5.2, mime@^2.6.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/mime/-/mime-2.6.0.tgz#a2a682a95cd4d0cb1d6257e28f83da7e35800367"
   integrity sha512-USPkMeET31rOMiarsBNIHZKLGgvKc/LrjofAnBlOttf5ajRvqiRA8QsenbcooctK6d6Ts6aqZXBA+XbkKthiQg==

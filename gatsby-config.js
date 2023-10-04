@@ -71,6 +71,20 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-source-airtable`,
+      options: {
+        apiKey: `AIRTABLE_CONTRIBUTION_API_KEY`,
+        concurrency: 5, // default, see using markdown and attachments for more information
+        tables: [
+          {
+            baseId: `AIRTABLE_CONTRIBUTION_BASEID`,
+            tableName: `AIRTABLE_CONTRIBUTION_TABLENAME`,
+            tableView: `AIRTABLE_CONTRIBUTION_TABLEVIEW`,
+          },
+        ],
+      },
+    },
+    {
       resolve: 'gatsby-plugin-chart-index',
       options: {
         directory: path.resolve(__dirname, './src/data/chart-index'),
