@@ -3,7 +3,7 @@
 ![Deployment status](https://github.com/carbon-design-system/carbon-website/workflows/Deployment%20status/badge.svg)
 
 This is the [Carbon Design System website](http://www.carbondesignsystem.com).
-It's built using the [gatsby-theme-carbon](https://gatsby-theme-carbon.now.sh/)
+It's built using the [gatsby-theme-carbon](https://gatsby.carbondesignsystem.com/)
 with [GatsbyJS](https://www.gatsbyjs.org/).
 
 ## 📂 Structure
