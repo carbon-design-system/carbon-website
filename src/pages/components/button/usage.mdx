@@ -80,83 +80,40 @@ actions.
 
 ## Live demo
 
-import { Add } from '@carbon/react/icons';
-
-<ComponentDemo
-  scope={{ Add }}
-  components={[
+<StorybookDemo
+  themeSelector
+  url="https://react.carbondesignsystem.com"
+  variants={[
     {
-      id: 'button',
-      label: 'Button',
+      label: 'Default',
+      variant: 'components-button--default',
     },
     {
-      id: 'button-with-icon',
-      label: 'Button with icon',
+      label: 'Danger',
+      variant: 'components-button--danger',
     },
     {
-      id: 'icon-only',
-      label: 'Icon only',
+      label: 'Ghost',
+      variant: 'components-button--ghost',
+    },
+    {
+      label: 'Icon Button',
+      variant: 'components-button--icon-button',
+    },
+    {
+      label: 'Secondary',
+      variant: 'components-button--secondary',
+    },
+    {
+      label: 'Set of Buttons',
+      variant: 'components-button--set-of-buttons',
+    },
+    {
+      label: 'Tertiary',
+      variant: 'components-button--tertiary',
     },
   ]}
->
-  <ComponentVariant
-    id="button"
-    knobs={{
-      Button: ['kind', 'disabled', 'size'],
-    }}
-    links={{
-      React:
-        'https://react.carbondesignsystem.com/?path=/story/components-button--default',
-      'Web Components':
-        'https://web-components.carbondesignsystem.com/?path=/story/components-button--default',
-      Angular:
-        'https://angular.carbondesignsystem.com/?path=/story/components-button--basic',
-      Vue: 'http://vue.carbondesignsystem.com/?path=/story/components-cvbutton--default',
-    }}
-  >
-    {`
-      <Button>Button</Button>
-    `}
-  </ComponentVariant>
-  <ComponentVariant
-    id="button-with-icon"
-    knobs={{
-      Button: ['kind', 'disabled', 'size'],
-    }}
-    links={{
-      React:
-        'https://react.carbondesignsystem.com/?path=/story/components-button--default',
-      'Web Components':
-        'https://web-components.carbondesignsystem.com/?path=/story/components-button--default',
-      Angular:
-        'https://angular.carbondesignsystem.com/?path=/story/components-button--basic',
-      Vue: 'http://vue.carbondesignsystem.com/?path=/story/components-cvbutton--default',
-    }}
-  >
-    {`
-      <Button renderIcon={Add}>Button</Button>
-    `}
-  </ComponentVariant>
-  <ComponentVariant
-    id="icon-only"
-    knobs={{}}
-    links={{
-      React:
-        'https://react.carbondesignsystem.com/?path=/story/components-button--icon-button',
-      'Web Components':
-        'https://web-components.carbondesignsystem.com/?path=/story/components-button--icon',
-      Angular:
-        'https://angular.carbondesignsystem.com/?path=/story/components-button--basic',
-      Vue: 'http://vue.carbondesignsystem.com/?path=/story/components-cvbutton--icon-only',
-    }}
-  >
-    {`
-     <IconButton align='top' label='Icon button' className='cds--btn--icon-only'>
-       <Add size={16}/>
-     </IconButton>
-  `}
-  </ComponentVariant>
-</ComponentDemo>
+/>
 
 ## Formatting
 
@@ -419,7 +376,7 @@ Button groups are a useful way of aligning buttons that have a relationship.
 Group the buttons logically into sets based on usage and importance. Too many
 calls to action will overwhelm and confuse users so they should be avoided.
 
-As mentioned in the [Emphasis section](#Emphasis), you don’t necessarily need to
+As mentioned in the [Emphasis section](#emphasis), you don’t necessarily need to
 use the buttons in the order that their labels imply. Either a secondary or a
 tertiary button can be used in conjunction with a primary button. In fact, due
 to the visual weight of the secondary button, it’s recommended to use tertiary
@@ -451,9 +408,9 @@ or ghost buttons in layouts with more than three calls to action.
 Ideally, when using groups of related buttons (not including ghost buttons),
 they should all be the same width. This can be achieved in one of two ways, both
 of which are acceptable. The first approach involves using the
-[narrow grid mode](/guidelines/2x-grid/implementation#grid-modes). In this
+[narrow gutter mode](/guidelines/2x-grid/implementation#gutter-modes). In this
 situation each button would be set individually on the column grid. _Note:
-Carbon developers are working on the narrow grid mode, currently left-hanging
+Carbon developers are working on the narrow gutter mode, currently left-hanging
 buttons can only be achieved with an override._
 
 <Row>
@@ -501,7 +458,7 @@ container with a programmatic 16px gutter between them.
 #### Horizontally arranged groups
 
 When using multiple buttons, the position of the primary button adheres to the
-[alignment guidance](#Alignment) above. To sum up, a primary button will be
+[alignment guidance](#alignment) above. To sum up, a primary button will be
 left-aligned and positioned to the left of the secondary/tertiary button on
 full-page designs. The primary button will be right-aligned and appear to the
 right of the secondary/tertiary button within wizards and dialog windows.
