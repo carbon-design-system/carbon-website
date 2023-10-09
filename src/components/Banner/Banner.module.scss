@@ -1,0 +1,50 @@
+// banner styles
+.banner {
+  position: fixed;
+  top: 0;
+  z-index: 99999;
+  display: flex;
+  width: 100%;
+  height: 48px;
+  justify-content: space-between;
+
+  background: $blue-70;
+  color: $text-on-color;
+}
+
+.banner-text {
+  display: none;
+
+  @include carbon--breakpoint('md') {
+    @include carbon--type-style('body-short-01');
+
+    display: block;
+    padding: 15px 0 0 $spacing-05;
+  }
+}
+
+.banner-details {
+  display: none;
+
+  @include carbon--breakpoint('lg') {
+    display: inline;
+    padding-left: $spacing-03;
+  }
+}
+
+// override carbon button styles
+.buttonBanner,
+a[class*='buttonBanner'] {
+  width: 100%;
+  max-width: 100%;
+  color: $text-04;
+
+  @include carbon--breakpoint('md') {
+    width: auto;
+  }
+
+  &:hover {
+    background: $blue-70-hover;
+    color: $text-04;
+  }
+}
