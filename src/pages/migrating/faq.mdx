@@ -170,20 +170,20 @@ like so:
 @use '@carbon/react/scss/themes' as *;
 
 //overriding theme tokens and adding a custom token
-@use '@carbon/react/scss/theme' with (
-  $theme: (
-    // add a completely new token
-    custom-token: #bada44,
-    // redefine existing tokens to new values
-    text-error: rebeccapurple,
-    focus: pink,
-  )
-);
+@use '@carbon/react/scss/theme' with
+  (
+    $theme: (
+      // add a completely new token
+      custom-token: #bada44,
+      // redefine existing tokens to new values
+      text-error: rebeccapurple,
+      focus: pink,
+    )
+  );
 
 // override a component token
-@use '@carbon/react/scss/components/button/tokens' as button-tokens with (
-  $button-primary: #3f51b5
-);
+@use '@carbon/react/scss/components/button/tokens' as button-tokens with
+  ($button-primary: #3f51b5);
 @use '@carbon/react';
 
 :root {
@@ -268,10 +268,7 @@ If you were providing any configuration options before you imported Carbon you
 can now provide them using the `with` syntax:
 
 ```scss
-@use '@carbon/react' with (
-  $css--default-type: true,
-  $css--reset: true
-);
+@use '@carbon/react' with ($css--default-type: true, $css--reset: true);
 ```
 
 If you were using any feature flags in v10, you can safely remove them in v11.
