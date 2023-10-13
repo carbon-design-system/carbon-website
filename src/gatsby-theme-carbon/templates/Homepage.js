@@ -47,7 +47,7 @@ const customProps = {
                 className={callToAction}
                 subTitle="Now available"
                 title="Carbon v11"
-                href="/whats-happening/v11-release/"
+                href="https://carbondesignsystem.com/migrating/guide/overview/"
                 color="dark"
                 actionIcon="arrowRight"
               />
