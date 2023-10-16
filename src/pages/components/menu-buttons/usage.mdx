@@ -5,8 +5,9 @@ tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 
 <InlineNotification>
 
-**New in v11!** Apart from the overflow menu, the menu button and combo button
-components have been added to our system and they are only available in v11.
+**New in Carbon v11!** Apart from the overflow menu, the menu button and combo
+button components have been added to our system and they are only available in
+v11.
 
 </InlineNotification>
 
@@ -29,11 +30,18 @@ components have been added to our system and they are only available in v11.
 
 ## Overview
 
-There are three variants of menu buttons: menu button, combo button, and
-overflow menu button. Menu buttons comprise a button and a [menu](), which can
-be clicked to trigger an action or selected to initiate an action from a menu.
+There are three variants of menu buttons (or menu triggers): menu button, combo
+button, and overflow menu button. Menu buttons comprise a button and a [menu](),
+which can be clicked to trigger an action or selected to initiate an action from
+a menu.
 
-![Overview image of menu buttons](images/usage-menu-overview.png)
+<Row>
+<Column colLg={12}>
+
+![Overview image of menu buttons](images/usage-menu-button-overview.png)
+
+</Column>
+</Row>
 
 ### When to use
 
@@ -44,21 +52,30 @@ numerous options but have limited screen space available to display them. By
 hiding less frequently used or advanced options until the user needs them, it
 avoids cluttering the main interface with too many options.
 
-| Variant                         | Purpose                                                                                                                      |
-| ------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| [Menu button](#menu-button)     | When all actions in the menu list share the same level of importance. Usually used in the page header.                       |
-| [Combo button](#combo-button)   | Where screen real estate is limited and one of the actions has particular importance. Usually used in the page header.       |
-| [Overflow menu](#overflow-menu) | When additional options are available to the user and there is a space constraint. Usually used in tiles or data table rows. |
+| Variant                         | Purpose                                                                                                                                                      |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [Menu button](#menu-button)     | Use a menu button when all actions in the menu list share the same level of importance. Usually used in the page header.                                     |
+| [Combo button](#combo-button)   | Use a combo button when screen real estate is limited and one of the actions has particular importance. They are usually used in the page header.            |
+| [Overflow menu](#overflow-menu) | Use an overflow button when additional options are available to the user and there is a space constraint. They are usually used in tiles or data table rows. |
 
 ## Live demo
 
 <StorybookDemo
   themeSelector
   url="https://react.carbondesignsystem.com"
+  short
   variants={[
     {
-      label: 'Default',
+      label: 'Menu button',
       variant: 'components-menubutton--default',
+    },
+    {
+      label: 'Combo button',
+      variant: 'components-combobutton--default',
+    },
+    {
+      label: 'Overflow menu',
+      variant: 'components-overflowmenu--default',
     },
   ]}
 />
@@ -86,30 +103,29 @@ A. Primary button <br /> C. Menu <br />
 
 A. Primary button <br /> B. Icon button <br /> C. Menu <br />
 
+</Column>
+</Row>
+
 #### 3. Overflow menu
 
 A. Icon button <br /> C. Menu <br />
-
-</Column>
-</Row>
 
 ### Sizing
 
 #### Height
 
-There are three sizes of menu buttons: small, medium, and large. See more in
-[style](https://carbondesignsystem.com/components/menu-button/style). When using
-a menu button trigger, the height of the
-[menu](https://carbondesignsystem.com/components/menu/usage) items reflects the
-size of the button being used.
+Menu items come four sizes: extra small, small, medium, and large. See more
+about size specifications on the [style](/components/menu/style) tab. When using
+a menu button trigger, the height of the menu item (singular) reflects the size
+of the button being used.
 
 <InlineNotification>
 
 **Note** Currently, Carbon does not support the extra-small size for
-[buttons](https://carbondesignsystem.com/components/button/usage/). Therefore,
-this menu size cannot be utilized with contextual menu button triggers. However,
-the extra-small menu size remains available for implementation in other contexts
-if needed.
+[buttons](https://carbondesignsystem.com/components/button/usage/), only for
+rows or menu items. Therefore, this menu size cannot be utilized with menu
+button triggers. However, the extra-small menu size remains available for
+implementation in other contexts if needed.
 
 </InlineNotification>
 
@@ -120,43 +136,85 @@ if needed.
 | Medium      | 40 / 2.5          |
 | Large       | 48 / 3            |
 
-<DoDontRow>
-  <DoDont type="do" caption="Do match the height of the menu button trigger and the contextual menu">
+<Row>
+<Column colLg={8}>
 
-![Do match the height of the menu button trigger and the contextual menu](images/usage-sizing-height-do.png)
+![Menu height](images/usage-menu-button-height.png)
+
+</Column>
+</Row>
+
+<DoDontRow>
+  <DoDont type="do" caption="Do match the height of the menu buttons and the menu">
+
+![Do match the height of the menu buttons and the menu](images/usage-sizing-height-do.png)
 
   </DoDont>
-  <DoDont type="dont" caption="Do not mix the height of the menu button trigger and the contextual menu">
+  <DoDont type="dont" caption="Do not mix the height of the menu buttons and the menu">
 
-![Do not mix the height of the menu button trigger and the contextual menu](images/usage-sizing-height-dont.png)
+![Do not mix the height of the menu buttons and the menu](images/usage-sizing-height-dont.png)
 
   </DoDont>
 </DoDontRow>
 
 #### Width
 
-For menu buttons and menu items with short labels, this could lead to a
-condensed and narrow visual. For this reason, menus have a fixed minimum width
-of 160px, to ensure menu items have sufficient horizontal space, while also
-having a fixed maximum width of 288px.
+By default, the [menu button](/components/menu-buttons/usage/#menu-button) and
+[combo button](/components/menu-buttons/usage/#combo-button) follow the
+[button structure style](https://carbondesignsystem.com/components/button/style#structure),
+and the menu maintains a minimum width of 160px to prevent a narrow appearance.
+
+<Row>
+<Column colLg={12}>
+
+![Menu width](images/usage-menu-alignment-menu-buttons-default.png)
+
+</Column>
+</Row>
+
+<Caption>Menu default width when labels are short </Caption>
+
+If the menu item labels become longer, the menu button and combo button remain
+the same size while the menu component can expand up to a maximum of 288px.
+Conversely, if the button labels become longer, the menu component should not
+appear narrower but should extend to match the width of the menu buttons.
+
+If you opt for
+[fluid-width default buttons](https://carbondesignsystem.com/components/button/usage/#alignment),
+both the menu button (or the combo button) and the menu should have the same
+width.
 
 <DoDontRow>
-  <DoDont type="do" caption="Do use the minimum width for short titles in both contextual menu and its trigger">
+  <DoDont type="do" caption="Do use the minimum width">
 
-![Do use the minimum width for short titles in both contextual menu and its trigger](images/usage-menu-width-short-do.png)
+![Do use the minimum width of menu](images/usage-menu-width-do-1.png)
 
   </DoDont>
-  <DoDont type="dont" caption="Do not narrow the contextual menu to fit with other elements">
+  <DoDont type="dont" caption="Do not narrow the menu to fit with other elements">
 
-![Do not narrow the contextual menu to fit with other elements](images/usage-menu-width-short-donot.png)
+![Do not narrow the menu to fit with other elements](images/usage-menu-width-dont-1.png)
 
   </DoDont>
 </DoDontRow>
 
-Ghost buttons adhere to the button style. This is because enlarging the ghost
-button's width to match the menu's width would result in the chevron appearing
-disconnected from its associated button, especially when the menu button is in
-its closed state.
+<DoDontRow>
+  <DoDont type="do" caption="Do match the width when the menu or combo button label becomes longer">
+
+![Do match the width when the menu or combo button labels become longer](images/usage-menu-width-do-2.png)
+
+  </DoDont>
+  <DoDont type="dont" caption="Do not make the menu appear shorter than the menu or combo buttons">
+
+![Do not make the menu appear shorter than the menu or combo buttons](images/usage-menu-width-dont-2.png)
+
+  </DoDont>
+</DoDontRow>
+
+Ghost buttons only adhere to the
+[button](https://carbondesignsystem.com/components/button/style/) style. This is
+because enlarging the ghost button's width to match the menu's width would
+result in the chevron appearing disconnected from its associated button,
+especially when the menu button is in its closed state.
 
 <DoDontRow>
   <DoDont type="do" caption="Do use default ghost button in all cases">
@@ -175,45 +233,20 @@ its closed state.
 
 #### Default
 
-By default, combo button and menu button triggers share the same width as their
-open menus. The overflow menu button trigger stays on the left or right side of
-the menu when it is open, depending on the available space and layout.
-
-<Row>
-<Column colLg={8}>
-
-![Menu alignment](images/usage-menu-alignment-menu-buttons-default.png)
-
-</Column>
-</Row>
-
-<Caption>Menu default alignment with menu buttons</Caption>
+By default, combo button, menu button, or overflow button remains positioned at
+the top, to the left or right side of the menu when it is open, depending on the
+available space and layout.
 
 #### Alternatives
 
-Alternatively, open menus can be positioned to the left or right of its
-associated menu button trigger, depending on the available space and layout.
+Alternatively, open menus can be positioned at the bottom, to the left or right
+of its associated menu button trigger, depending on the available space and
+layout.
 
 <Row>
 <Column colLg={8}>
 
-![Menu button alignment](images/usage-menu-alignment-menu-buttons-alternatives-1.png)
-
-</Column>
-</Row>
-
-<Row>
-<Column colLg={8}>
-
-![Combo button alignment](images/usage-menu-alignment-menu-buttons-alternatives-2.png)
-
-</Column>
-</Row>
-
-<Row>
-<Column colLg={8}>
-
-![Overflow menu alignment](images/usage-menu-alignment-menu-buttons-alternatives-3.png)
+![Menu alternative alignments](images/usage-menu-alignment-menu-buttons-alternatives.png)
 
 </Column>
 </Row>
@@ -224,10 +257,10 @@ associated menu button trigger, depending on the available space and layout.
 
 These buttons are ideal for page headers, where multiple, distinct, actions may
 impact the page content, and where real-estate is limited. In the page header
-component, multiple buttons in the header will become an action button at
-smaller screen sizes. They should only be used when the actions affect a full
-page or a large object on a page (examples include a canvas UI, diagram or whole
-data table).
+component, multiple buttons will become a single action button at smaller screen
+sizes. These buttons should only be used when the actions affect a full page or
+a large object on a page (examples include a canvas UI, diagram or whole data
+table).
 
 <Row>
 <Column colLg={8}>
@@ -270,23 +303,14 @@ For further content guidance, see Carbon's
 
 ### States
 
-Menu buttons’ states should follow the
-[button style](https://carbondesignsystem.com/components/button/style) guidance.
+The default and interactive states of menu buttons should follow the button
+style guidelines.
 
+- Combo buttons are available only as primary buttons.
 - Menu buttons come in three different button types: primary, tertiary, and
   ghost.
-- Combo buttons are available only as primary buttons.
-- Overflow menu is treated as the ghost button, displaying only an icon and
+- Overflow button is treated as the ghost button, displaying only an icon and
   following its designated color and style.
-
-<Row>
-<Column colLg={8}>
-
-![Menu button states](images/usage-menu-states.png)
-
-</Column>
-</Row>
-<Caption>States of menu button variants</Caption>
 
 ### Interactions
 
@@ -300,7 +324,7 @@ Users can reveal the menu by:
 <Row>
 <Column colLg={8}>
 
-![Modal focus example](images/usage-menu-mouse-keyboard-menu-button.png)
+![Modal focus example](images/usage-menu-keyboard-menu-button.png)
 
 </Column>
 </Row>
@@ -346,7 +370,7 @@ Users can reveal the overflow menu by:
 <Row>
 <Column colLg={8}>
 
-![Modal focus example](imagesusage-menu-mouse-keyboard-overflow-menu.png)
+![Modal focus example](images/usage-menu-mouse-keyboard-overflow-menu.png)
 
 </Column>
 </Row>
@@ -358,10 +382,11 @@ Users can reveal the overflow menu by:
 Menu buttons group actions that share the same level of importance. The icon
 used within the menu button should always be a chevron in order to visually
 convey to the user that there are options to select from. There are three main
-use cases where using a menu button is recommended.
+use cases where using a menu button is recommended:
 
-Grouping objects with the same common action Actions related to a common title
-Distinct actions applied to the same object/page
+- Grouping objects with the same common action
+- Actions related to a common title
+- Distinct actions applied to the same object or page
 
 Menu button and combo button come in three different button types: primary,
 tertiary, and ghost.
@@ -390,8 +415,8 @@ clutter and makes each option less distinct at a glance.
 
 ![Do add distinct items for the action](images/usage-menu-button-2.png)
 
-  </DoDont>
-  <DoDont type="dont" caption="Do not repeat the action in the action item">
+</DoDont>
+<DoDont type="dont" caption="Do not repeat the action in the action item">
 
 ![Do not repeat the action in the action item](images/usage-menu-button-3.png)
 
@@ -494,7 +519,7 @@ conceptual understanding of the site information structure.
 
 Overflow menu is also another option that is available to the user when there is
 a space constraint, usually used in data table rows or in tiles. Overflow menu
-has the ghost button style only.y.
+has the ghost button style only.
 
 <Row>
 <Column colLg={8}>
@@ -528,7 +553,7 @@ to maintain consistency across the product and ensure a consistent user
 experience.
 
 <Row>
-<Column colLg={8}>
+<Column colLg={4}>
 
 ![An example of another overflow menu icon](images/usage-overflow-3.png)
 
@@ -541,6 +566,26 @@ Overflow menu employs the menu component to display extra options, typically
 utilized within data table rows, tiles, or cards. In contrast,
 [tab tip popovers](https://carbondesignsystem.com/components/popover/usage/#tab-tip)
 appear as nested elements on a page, tethered to a toolbar or header area.
+
+<Row>
+<Column colLg={4}>
+
+![An example of another overflow menu icon](images/usage-overflow-menu.png)
+
+<Caption>Use overflows in data table row</Caption>
+
+</Column>
+
+<Column colLg={4}>
+
+![An example of another overflow menu icon](images/usage-popover.png)
+
+</Column>
+
+<Caption>
+  Use tab tip popovers in toolbar or header area
+</Caption>
+</Row>
 
 ## Related
 

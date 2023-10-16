@@ -1,8 +1,5 @@
 ---
-title: Modal
-description:
-  Modals focus the user’s attention exclusively on one task or piece of
-  information via a window that sits on top of the page content.
+title: Menu buttons
 tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 ---
 
@@ -19,37 +16,48 @@ import {
 
 <PageDescription>
 
-Design annotations are needed for specific instances shown below, but for the
-standard modal dialog component, Carbon already incorporates accessibility.
+No accessibility annotations are needed for overflow menus, but keep these
+considerations in mind if you are modifying Carbon or creating a custom
+component.
 
 </PageDescription>
 
+<InlineNotification>
+
+**Coming soon!** The accessibility information for the menu button and combo
+button is going to be updated soon.
+
+</InlineNotification>
+
 <AnchorLinks>
-  <AnchorLink>What Carbon provides</AnchorLink>
-  <AnchorLink>Design recommendations</AnchorLink>
-  <AnchorLink>Development considerations</AnchorLink>
+
+<AnchorLink>What Carbon provides</AnchorLink>
+<AnchorLink>Development considerations</AnchorLink>
+
 </AnchorLinks>
 
 ## What Carbon provides
 
 Carbon bakes keyboard operation into its components, improving the experience of
-blind users and others who operate via the keyboard. Carbon incorporates many
-other accessibility considerations, some of which are described below.
+blind users and others who operate via keyboard. Carbon also incorporates other
+accessibility considerations, some of which are described below.
 
-### Keyboard interactions
+### Keyboard interaction
 
-Modal dialogs take focus on appearance, and the tab order is constrained to the
-modal’s controls until the modal is closed by choosing one of the buttons with
-`Enter` or `Space`, or is dismissed by pressing `Esc`.
+Each overflow menu is in the tab order and is activated by `Space` or `Enter`.
+When the menu is open, the first item takes focus. Focus is moved between menu
+items with the `Up` and `Down` arrow keys. `Space` or `Enter` activates the item
+with focus (which causes focus to go somewhere else and the menu to close).
+`Esc` collapses the menu and puts focus onto the menu button.
 
 <Row>
 <Column colLg={8}>
 
-![illustration showing tab ring constrained within a modal with two buttons](images/modal-accessibility-1.png)
+![example of overflow menu keyboard interaction](images/overflow-menu-accessibility-1.png)
 
 <Caption>
-  Keyboard navigation is constrained to the dialog. Tab cycles through the
-  components that take focus.
+  Overflow menus are reached by Tab. Space and Enter keys open the menu as well
+  as activating menu items with focus.
 </Caption>
 
 </Column>
@@ -58,68 +66,25 @@ modal’s controls until the modal is closed by choosing one of the buttons with
 <Row>
 <Column colLg={8}>
 
-![Esc closes a modal, while Space and Enter keys activate buttons](images/modal-accessibility-2.png)
+![illustration showing an open menu with the focus on the first item, and the arrow and Esc keys called out](images/overflow-menu-accessibility-2.png)
 
 <Caption>
-  The dialog is resolved by the user pressing Esc or activating a button.
+  When opened, the first item in the menu takes focus. Arrow keys move focus,
+  Esc closes the menu.
 </Caption>
 
 </Column>
 </Row>
-
-### Focus handling
-
-When the dialog appears, the first item that gets focus depends on the type of
-dialog. Passive dialogs only contain a close button (X), so that takes focus.
-For dialogs which prompt for confirmation or user decision, the primary button
-takes focus (regardless of number of buttons). For destructive interactions, the
-“cancel” button takes focus, not the red danger/delete button. The tab order
-should proceed left and down from whichever item has focus then wrap back to the
-close button (X).
-
-<Row>
-<Column colLg={8}>
-
-![initial focus in the dialog varies across four types of modals](images/modal-accessibility-3.png)
-
-<Caption>The first item with focus varies depending on dialog type.</Caption>
-
-</Column>
-</Row>
-
-## Design recommendations
-
-### Designate the input that takes focus in a transactional
-
-The only time the starting focus would not be on a button is where a dialog
-contains input fields. For such transactional dialogs, designers should annotate
-that the first input field should receive focus. Note that text links are not
-considered a user input in this context.
-
-<DoDontRow>
-  <DoDont type="do" caption="Annotate the starting input that should take focus on a transactional dialog.">
-
-![annotation on input says 'focus lands here when modal opens'](images/modal-accessibility-4-do.png)
-
-  </DoDont>
-
-  <DoDont type="dont" caption="Do not give a link focus when a modal opens.">
-
-![annotation on link says 'focus lands here when modal opens'](images/modal-accessibility-4-dont.png)
-
-  </DoDont>
-</DoDontRow>
 
 ## Development considerations
 
 Keep these considerations in mind if you are modifying Carbon or creating a
 custom component.
 
-- Carbon assigns the container a role of "dialog" and sets `aria-modal` to
-  `"true"`.
-- The dialog is labelled via `aria-label`, using the same string used for the
-  modal’s title; `aria-labelledby` could also be used to assign the title’s
-  string.
-- See the modal pattern in the
-  [ARIA authoring practices](https://w3c.github.io/aria-practices/#dialog_modal)
+- Overflow menus are buttons with `aria-haspopup` set to "true".
+- The overflow menu is named with `aria-label`.
+- Each menu item is an `li` in a `ul`.
+- Each list item contains a button with `role="menuitem"` and `tabindex="-1"`.
+  See the
+  [ARIA authoring practices on menubutton](https://w3c.github.io/aria-practices/#menubutton)
   for more considerations.
