@@ -27,7 +27,10 @@ const IconCategory = ({ category, pictograms, columnCount }) => {
               pictogram.name === 'ibm--z' ||
               pictogram.name === 'ibm--z--partition' ||
               pictogram.name === 'ibm--z-and-linuxone-multi-frame' ||
-              pictogram.name === 'ibm--z-and-linuxone-single-frame'
+              pictogram.name === 'ibm--z-and-linuxone-single-frame' ||
+              pictogram.name === 'watsonx--ai' ||
+              pictogram.name === 'watsonx--data' ||
+              pictogram.name === 'watsonx--governance'
             ) {
               return false;
             }
