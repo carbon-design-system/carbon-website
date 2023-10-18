@@ -63,7 +63,7 @@ that we'll use as a starting point for each step.
 ### Fork
 
 To begin, fork
-[carbon-tutorial](https://github.com/carbon-design-system/carbon-tutorial-nextjs)
+[carbon-tutorial-nextjs](https://github.com/carbon-design-system/carbon-tutorial-nextjs)
 using your GitHub account.
 
 ### Clone
@@ -255,8 +255,8 @@ src/components/TutorialHeader
 
 ### Add UI Shell Sass
 
-Next, in `globals.scss`, we'll import our `TutorialHeader` styles. Your file
-should now look like this:
+Next, in `globals.scss`, we'll import our `TutorialHeader` styles. Add this line
+to the top of the file:
 
 ```scss path=src/app/globals.scss
 @use '@/components/TutorialHeader/tutorial-header';
@@ -416,6 +416,7 @@ Create a `providers.js` file within the app folder with the following content.
 'use client';
 
 import TutorialHeader from '@/components/TutorialHeader/TutorialHeader';
+import { Content } from '@carbon/react';
 
 export function Providers({ children }) {
   return (
@@ -555,7 +556,7 @@ Then, we will wrap `Theme` around our header, and set the zoned theme using the
 `theme` prop, which accepts one of four strings: `"white"`, `"g10"`, `"g90"` or
 `"g100"`.
 
-```javascript path=src/App.js
+```javascript path=src/app/providers.js
 <div>
   <Theme theme="g100">
     <TutorialHeader />
