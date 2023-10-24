@@ -1,9 +1,5 @@
 const path = require('path');
 
-require('dotenv').config({
-  path: `.env.${process.env.NODE_ENV}`,
-});
-
 module.exports = {
   siteMetadata: {
     title: 'Carbon Design System',
@@ -72,20 +68,6 @@ module.exports = {
       resolve: 'gatsby-plugin-component-index',
       options: {
         directory: path.resolve(__dirname, './src/data/index'),
-      },
-    },
-    {
-      resolve: `gatsby-source-airtable`,
-      options: {
-        apiKey: process.env.AIRTABLE_CONTRIBUTION_API_KEY,
-        concurrency: 5, // default, see using markdown and attachments for more information
-        tables: [
-          {
-            baseId: process.env.AIRTABLE_CONTRIBUTION_BASEID,
-            tableName: process.env.AIRTABLE_CONTRIBUTION_TABLENAME,
-            tableView: process.env.AIRTABLE_CONTRIBUTION_TABLEVIEW,
-          },
-        ],
       },
     },
     {
