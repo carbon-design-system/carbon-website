@@ -62,36 +62,45 @@ contact the
 Assuming we're starting with a new Vue CLI project:
 
 ```bash
-vue create --default my-project
-cd my-project
+npm create vue@latest
+cd vue-project
 ```
-
-Using Yarn
-
-```bash
-yarn add @carbon/vue
-```
-
-Or npm
 
 ```bash
 npm install @carbon/vue
 ```
 
-In src/main.js, after "import Vue from 'vue'", add the following to include the
+In src/main.js, after `import App from './App.vue'`, add the following to include the
 carbon styles and components.
 
 ```js
 import 'carbon-components/css/carbon-components.css';
 import CarbonComponentsVue from '@carbon/vue';
-Vue.use(CarbonComponentsVue);
+
+const app = createApp(App);
+app.use(CarbonComponentsVue);
+app.mount("#app");
+// remove the line: createApp(App).mount('#app') 
 ```
 
 Replace the contents of src/components/HelloWorld.vue with the following
 
 ```html
+<script setup>
+import { ref } from 'vue';
+
+const yourName = ref('fgfgfg')
+const visible = ref(false)
+function onClick() {
+  visible.value = true;
+}
+function modalClosed() {
+  visible.value = false;
+}
+</script>
+
 <template>
-  <div class="sample">
+  <div class="sample" id="me">
     <h1>Example use of @carbon/vue</h1>
     <cv-text-input
       label="Who are you?"
@@ -100,8 +109,8 @@ Replace the contents of src/components/HelloWorld.vue with the following
     />
     <cv-button @click="onClick">Hello {{yourName}}</cv-button>
     <cv-modal :visible="visible" @modal-hidden="modalClosed">
-      <template slot="title">Welcome to @carbon/vue {{yourName}}</template>
-      <template slot="content">
+      <template #title>Welcome to @carbon/vue {{yourName}}</template>
+      <template #content>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, seed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -110,62 +119,34 @@ Replace the contents of src/components/HelloWorld.vue with the following
         </p>
       </template>
     </cv-modal>
-  </div>
+  </div>	
 </template>
 
-<script>
-  export default {
-    name: 'HelloWorld',
-    data() {
-      return {
-        yourName: '',
-        visible: false,
-      };
-    },
-    methods: {
-      onClick() {
-        this.visible = true;
-      },
-      modalClosed() {
-        this.visible = false;
-      },
-    },
-  };
-</script>
-
-<style>
-  .sample {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    max-width: 600px;
-    margin: 5% auto;
-  }
-
-  .cv-text-input {
-    margin: 30px 0;
-  }
+<style scoped lang="css">
+.sample {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 600px;
+  margin: 5% auto;
+}
+.sample > div {
+  margin: 30px 0;
+}
 </style>
 ```
 
 That's it! Now start the server and start building.
 
-Using Yarn
-
 ```bash
-yarn serve
-```
-
-Or npm
-
-```bash
-npm run serve
+npm run dev
 ```
 
 _Note: This isn't the only way to bootstrap a_ `carbon-components-vue`
 _application, but the combination of_ `Vue CLI` _and the_ `carbon-components`
 _scss is our recommended setup._
+See [Hello carbon vue3](https://github.com/IBM/hello-carbon-vue3) for a complete example app.
 
 ### List of available components
 
