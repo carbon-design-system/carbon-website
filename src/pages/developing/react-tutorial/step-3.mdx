@@ -253,11 +253,10 @@ import React, { useEffect, useState } from 'react';
 Then, inside the `RepoPage` component:
 
 ```javascript path=src/app/repos/page.js
-const RepoPage = () => {
+function RepoPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState();
   const [rows, setRows] = useState([]);
-...
 ```
 
 Now, instead of using `console.log` to log the github data response, let's treat
@@ -279,14 +278,12 @@ To complete our `getCarbonRepos` function, let's set the loading state to false
 right after the `else` statement:
 
 ```javascript path=src/app/repos/page.js
-...
   if (res.status === 200) {
     setRows(getRowItems(res.data));
   } else {
     setError('Error obtaining repository data');
   }
   setLoading(false);
-...
 ```
 
 Finally, let's modify our component's `return()` statement to display different
@@ -402,7 +399,7 @@ Initialize the new state variables that we'll use for pagination as the first
 lines inside the `RepoPage`.
 
 ```javascript path=src/app/repos/page.js
-const RepoPage = () => {
+function RepoPage() {
   const [firstRowIndex, setFirstRowIndex] = useState(0);
   const [currentPageSize, setCurrentPageSize] = useState(10);
 ...
