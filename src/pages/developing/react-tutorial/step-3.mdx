@@ -151,8 +151,9 @@ belong to the `carbon-design-system` Github organization. We'll do this by using
 a `useEffect` hook that will use octokit to query Github's API
 [repositories endpoint](https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#list-organization-repositories).
 
-Let's declare a `useEffect` hook immediately below the component definition and above the return.
-We'll use this to query Github's API when the component first renders:
+Let's declare a `useEffect` hook immediately below the component definition and
+above the return. We'll use this to query Github's API when the component first
+renders:
 
 ```javascript path=src/app/repos/page.js
 function RepoPage() {
@@ -176,8 +177,8 @@ function RepoPage() {
   }, []);
 ```
 
-At this point, if you navigate to the Repositories page `/repos` in your running app
-and view your browser's console (e.g.
+At this point, if you navigate to the Repositories page `/repos` in your running
+app and view your browser's console (e.g.
 [Chrome DevTools](https://developer.chrome.com/docs/devtools/)), you should see
 the response from GitHub!
 
@@ -186,7 +187,8 @@ the response from GitHub!
 Our last column in the data table will be a comma-separated list of repository
 and home page links, so let's create a component called `LinkList`.
 
-Import `Link` at the top of `/app/repos/page.js`. The imports should look like this.
+Import `Link` at the top of `/app/repos/page.js`. The imports should look like
+this.
 
 ```javascript path=src/app/repos/page.js
 import { Link, Grid, Column } from '@carbon/react';
@@ -278,12 +280,12 @@ To complete our `getCarbonRepos` function, let's set the loading state to false
 right after the `else` statement:
 
 ```javascript path=src/app/repos/page.js
-  if (res.status === 200) {
-    setRows(getRowItems(res.data));
-  } else {
-    setError('Error obtaining repository data');
-  }
-  setLoading(false);
+if (res.status === 200) {
+  setRows(getRowItems(res.data));
+} else {
+  setError('Error obtaining repository data');
+}
+setLoading(false);
 ```
 
 Finally, let's modify our component's `return()` statement to display different
