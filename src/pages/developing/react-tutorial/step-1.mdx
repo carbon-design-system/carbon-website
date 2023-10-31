@@ -487,7 +487,7 @@ export default function LandingPage() {
 }
 ```
 
-And we pull this page into our root page:
+And we will add this into our root page:
 
 ```javascript path=src/app/page.js
 import LandingPage from './home/page';
@@ -537,9 +537,20 @@ Do the same with the components `HeaderNavigation` and `HeaderSideNavItems` that
 contain `href="/repos"`, updating them to:
 
 ```javascript path=src/components/TutorialHeader/TutorialHeader.js
-<Link href="/repos" passHref legacyBehavior>
-  <HeaderMenuItem>Repositories</HeaderMenuItem>
-</Link>
+<HeaderNavigation aria-label="Carbon Tutorial">
+  <Link href="/repos" passHref legacyBehavior>
+    <HeaderMenuItem>Repositories</HeaderMenuItem>
+  </Link>
+</HeaderNavigation>
+```
+and the following:
+
+```javascript path=src/components/TutorialHeader/TutorialHeader.js
+<HeaderSideNavItems>
+  <Link href="/repos" passHref legacyBehavior>
+    <HeaderMenuItem>Repositories</HeaderMenuItem>
+  </Link>
+</HeaderSideNavItems>
 ```
 
 You should now have a working header that routes to different pages without full
