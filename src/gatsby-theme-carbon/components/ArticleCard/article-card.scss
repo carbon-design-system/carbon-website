@@ -1,0 +1,142 @@
+// $carbon--white-0
+@use '@carbon/react/scss/colors' as *;
+// $spacing-0X
+@use '@carbon/react/scss/spacing' as *;
+// carbon--type-style
+@use '@carbon/react/scss/type' as *;
+// color tokens
+@use '@carbon/react/scss/compat/theme' as *;
+// $standard-easing $transition-x
+@use '@carbon/react/scss/motion' as *;
+// carbon--breakpoint
+@use '@carbon/react/scss/breakpoint' as *;
+
+.cds--article-card .cds--tile {
+  height: 100%;
+  padding: 0;
+  position: relative;
+  transition: background $duration-fast-01;
+  text-decoration: none;
+  border: 1px solid $border-tile-01;
+
+  @include breakpoint('lg') {
+    margin-bottom: var(--space);
+  }
+}
+
+.cds--article-card__tile {
+  border-top: 1px solid $border-tile-01;
+  padding: $spacing-05 25% $spacing-05 $spacing-05;
+}
+
+// Dark
+.cds--article-card--dark .cds--article-card__tile {
+  background: $gray-90; //$ui-background for gray 90 theme
+}
+
+.cds--article-card:hover .cds--article-card__tile {
+  background: $hover-ui;
+}
+
+.cds--article-card__title {
+  @include type-style('body-short-02');
+  text-decoration: none;
+  color: $text-01;
+}
+
+.cds--article-card__subtitle {
+  @include type-style('heading-01');
+  font-weight: 400;
+  text-decoration: none;
+  color: $text-01;
+}
+
+.cds--article-card__info {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  padding: 0;
+  color: $text-02;
+}
+
+.cds--article-card__info p {
+  @include type-style('label-01');
+}
+
+// At the moment, we force 16:9 for medium posts, this
+// is how we would force 16:9 for all article cards
+// .cds--article-card__img {
+//   aspect-ratio: 16 / 9;
+// }
+
+.cds--article-card__img .gatsby-resp-image-wrapper {
+  margin-bottom: 0;
+}
+
+.cds--article-card__icon--action {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  width: 20px;
+  height: 20px;
+}
+
+.cds--article-card__icon--action svg {
+  fill: $icon-01;
+}
+
+.cds--article-card--dark:hover .cds--article-card__tile {
+  background: $gray-80; //$hover-ui for gray 90 theme
+}
+
+.cds--article-card--dark .cds--article-card__title,
+.cds--article-card--dark .cds--article-card__subtitle {
+  color: $text-04;
+}
+
+.cds--article-card--dark .cds--article-card__info {
+  color: $gray-30; //$text-02 for gray 90 theme
+}
+
+.cds--article-card--dark .cds--article-card__icon--action svg {
+  fill: $gray-10; //$icon-01 for grsay 90 theme
+}
+
+// Disabled
+.cds--article-card--disabled {
+  cursor: not-allowed;
+}
+
+.cds--article-card--disabled .cds--article-card__tile:hover {
+  background: $ui-01;
+  cursor: not-allowed;
+}
+
+.cds--article-card--disabled .cds--article-card__title,
+.cds--article-card--disabled .cds--article-card__subtitle,
+.cds--article-card--disabled .cds--article-card__info {
+  color: $disabled-03;
+}
+
+.cds--article-card--disabled .cds--article-card__icon--action svg {
+  fill: $disabled-02;
+}
+
+// Disabled dark
+.cds--article-card--disabled.cds--article-card--dark
+  .cds--article-card__tile:hover {
+  background: $gray-90; //$ui-background for gray 90 theme
+}
+
+.cds--article-card--disabled.cds--article-card--dark .cds--article-card__title,
+.cds--article-card--disabled.cds--article-card--dark
+  .cds--article-card__subtitle,
+.cds--article-card--disabled.cds--article-card--dark .cds--article-card__info {
+  color: $gray-50; //$disabled-03 for gray 90
+}
+
+.cds--article-card--disabled.cds--article-card--dark
+  .cds--article-card__icon--action
+  svg {
+  fill: $gray-70; //$disabled-02 for gray 90
+}
