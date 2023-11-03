@@ -1,8 +1,8 @@
 ---
 title: 2. Building pages
 description:
-  Welcome to Carbon! This tutorial will guide you in creating a React app with
-  the Carbon Design System.
+  Welcome to Carbon! This tutorial will guide you in creating a React app using
+  Next.js with the Carbon Design System.
 tabs:
   [
     'Overview',
@@ -20,7 +20,7 @@ import Preview from 'components/Preview';
 
 <PageDescription>
 
-Now that we have a React app using the UI Shell, it's time to build a few static
+Now that we have our app using the UI Shell, it's time to build a few static
 pages. In this step, we'll become comfortable with the Carbon grid and various
 Carbon components.
 
@@ -41,13 +41,14 @@ Carbon components.
 
 ## Preview
 
-A [preview](https://v11-react-step-3--carbon-tutorial.netlify.app) of what
-you'll build:
+A
+[preview](https://carbon-tutorial-nextjs-huv7un4ex-carbon-design-system.vercel.app/)
+of what you'll build:
 
 <Preview
   height="400"
-  title="Carbon Tutorial Step 2"
-  src="https://v11-react-step-3--carbon-tutorial.netlify.app"
+  title="Carbon Next Tutorial Step 2"
+  src="https://carbon-tutorial-nextjs-huv7un4ex-carbon-design-system.vercel.app/"
   frameborder="no"
   allowtransparency="true"
   allowfullscreen="true"
@@ -70,7 +71,7 @@ step's starting point.
 
 ```bash
 git fetch upstream
-git checkout -b v11-react-step-2 upstream/v11-react-step-2
+git checkout -b v11-next-step-2 upstream/v11-next-step-2
 ```
 
 <InlineNotification>
@@ -93,41 +94,15 @@ yarn
 Then, start the app:
 
 ```bash
-yarn start
+yarn dev
 ```
 
 You should see something similar to where the
 [previous step](/developing/react-tutorial/step-1) left off.
 
-### IE11 polyfills
-
-Before we get started with this step, we'll be adding some components that
-require IE11 polyfills. As shown in the
-[Carbon React documentation](https://github.com/carbon-design-system/carbon/blob/v10/packages/react/.storybook/polyfills.js),
-go ahead and add these imports to the top of the root `index.js`. They aren't
-all needed, but we'll add them all to play it safe for the duration of the
-tutorial.
-
-```javascript path=src/index.js
-import 'core-js/modules/es7.array.includes';
-import 'core-js/modules/es6.array.fill';
-import 'core-js/modules/es6.string.includes';
-import 'core-js/modules/es6.string.trim';
-import 'core-js/modules/es7.object.values';
-```
-
-<InlineNotification>
-
-**Note:** You may be wondering where `core-js`came from because it's not a
-Carbon package and we haven't explicitly installed it. Run `yarn why core-js`
-and you'll see there are a number of packages that have brought it in as a
-dependency.
-
-</InlineNotification>
-
 ## Add landing page grid
 
-Let's add our grid elements to `LandingPage.js`.
+Let's add our grid elements to our `LandingPage` page component.
 
 In order to use the grid, we need to wrap everything in a `<Grid>`. Because
 we're building with the new CSS Grid, we won't be using typical rows. We'll use
@@ -138,7 +113,7 @@ the `sm`, `md`, and `lg` props. For example, `<Column sm={2} md={8} lg={8}/>`
 means the column will span 2/4 columns at the small breakpoint, 8/8 columns at
 the medium breakpoint, 8/16 columns at the large breakpoint.
 
-We've included the designs for this tutorial app in the `design.sketch` file
+We've included the designs for this tutorial app in the `design.figma` file
 found as a top-level file in the `carbon-tutorial` repository. But, if you don't
 have Sketch installed and available to inspect the design, we'll provide
 screenshots.
@@ -153,9 +128,10 @@ screenshots.
 
 </InlineNotification>
 
-First, we need to import our grid components at the top of `LandingPage.js`:
+First, we need to import our grid components at the top of `LandingPage`:
 
-```javascript path=src/content/LandingPage/LandingPage.js
+```javascript path=src/app/home/page.js
+'use client';
 import { Grid, Column } from '@carbon/react';
 ```
 
@@ -166,7 +142,7 @@ background looks like it has four columns of equal width.
 
 We'll make rows like so:
 
-```jsx path=src/content/LandingPage/LandingPage.js
+```jsx path=src/app/home/page.js
 return (
   <Grid className="landing-page" fullWidth>
     <Column lg={16} md={8} sm={4} className="landing-page__banner">
@@ -218,13 +194,13 @@ components we need. Because we'll be importing several components for this page,
 we'll import them directly from the `@carbon/react` package instead of the
 direct path for each one.
 
-```javascript path=src/content/LandingPage/LandingPage.js
+```javascript path=src/app/home/page.js
 import { Breadcrumb, BreadcrumbItem, Grid, Column } from '@carbon/react';
 ```
 
 We can now add our component to the first row, along with a header, like so:
 
-```jsx path=src/content/LandingPage/LandingPage.js
+```jsx path=src/app/home/page.js
 <Column lg={16} md={8} sm={4} className="landing-page__banner">
   <Breadcrumb noTrailingSlash>
     <BreadcrumbItem>
@@ -242,7 +218,7 @@ You may notice that the styles look off. Don't worry, we'll fix these later.
 In our second row we'll need `Tabs` and `Button` components. We'll update the
 `@carbon/react` import to:
 
-```javascript path=src/content/LandingPage/LandingPage.js
+```javascript path=src/app/home/page.js
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -269,7 +245,7 @@ supported.
 
 </InlineNotification>
 
-```jsx path=src/content/LandingPage/LandingPage.js
+```jsx path=src/app/home/page.js
 <Column lg={16} md={8} sm={4} className="landing-page__r2">
   <Tabs defaultSelectedIndex={0}>
     <TabList className="tabs-group">
@@ -341,10 +317,10 @@ Same goes for the `TabList` opening tag:
 ```
 
 Next, we'll need to add some styling overrides to move the tabs to the right on
-large viewports. Create a file `_overrides.scss` in `src/content/LandingPage`
-with this declaration block.
+large viewports. Create a file `_overrides.scss` in `src/app/home` with this
+declaration block.
 
-```scss path=src/content/LandingPage/_overrides.scss
+```scss path=src/app/home/_overrides.scss
 .landing-page__r2 .cds--tabs--scrollable {
   transform: translateZ(0);
   justify-content: flex-end;
@@ -367,7 +343,7 @@ with this declaration block.
 
 Then in `_landing-page.scss` add this import at the top of the file.
 
-```scss path=src/content/LandingPage/_landing-page.scss
+```scss path=src/app/home/_landing-page.scss
 @use './overrides.scss';
 ```
 
@@ -381,21 +357,28 @@ names, you have a consolidated list of styling declaration blocks to review.
 </InlineNotification>
 
 We can now add our images and text for each column in the first `Tab` in
-`LandingPage.js`.
+`LandingPage`.
 
-```jsx path=src/content/LandingPage/LandingPage.js
+Let's import `Image` from Next.js by adding the following import under our
+Carbon React component imports.
+
+```jsx path=src/app/home/page.js
+import Image from 'next/image';
+
 <Column md={4} lg={{ span: 8, offset: 7 }} sm={4}>
-  <img
+  <Image
     className="landing-page__illo"
-    src={`${process.env.PUBLIC_URL}/tab-illo.png`}
+    src="/tab-illo.png"
     alt="Carbon illustration"
+    width={786}
+    height={647}
   />
-</Column>
+</Column>;
 ```
 
 Now let's set the image size in `_landing-page.scss`:
 
-```scss path=src/content/LandingPage/_landing-page.scss
+```scss path=src/app/home/_landing-page.scss
 .landing-page__illo {
   max-width: 100%;
 }
@@ -410,7 +393,7 @@ we'll leave the code as is.
 The third row will be created in a later tutorial, so we'll just add the headers
 for now.
 
-```jsx path=src/content/LandingPage/LandingPage.js
+```jsx path=src/app/home/page.js
 <Column lg={16} md={8} sm={4} className="landing-page__r3">
   <Grid>
     <Column md={4} lg={4} sm={4}>
@@ -438,7 +421,7 @@ In `_landing-page.scss`, add these imports at the **top** of the file (above our
 overrides import) so we can use Carbon breakpoints, tokens, and typography Sass
 mixins and functions:
 
-```scss path=src/content/LandingPage/_landing-page.scss
+```scss path=src/app/home/_landing-page.scss
 @use '@carbon/react/scss/spacing' as *;
 @use '@carbon/react/scss/type' as *;
 @use '@carbon/react/scss/breakpoint' as *;
@@ -466,7 +449,7 @@ mixins and functions:
 Back to `_landing-page.scss`, we need to add space above the breadcrumb and
 below the heading. For that, add:
 
-```scss path=src/content/LandingPage/_landing-page.scss
+```scss path=src/app/home/_landing-page.scss
 .landing-page__banner {
   padding-top: $spacing-05;
   padding-bottom: $spacing-07 * 4;
@@ -486,7 +469,7 @@ Looking at the design, we need a wall-to-wall light gray background behind the
 banner and also behind the third row. This is a great opportunity to use a Sass
 mixin. We could put this at the top of `_landing-page.scss`, but it's best
 practice to place mixins in a dedicated file, so create a `_mixins.scss` file in
-`src/content/LandingPage`.
+`src/app/home`.
 
 Add the following in `_mixins.scss`. Per the design we need to use Gray 10 for
 our banner background color, which can be set with the `$layer-01`
@@ -495,7 +478,7 @@ we want the background to extend into the grid's outermost gutters to go the
 full width of the viewport, so given the DOM structure, we can achieve that by
 setting the background in an absolutely positioned pseudo element.
 
-```scss path=src/content/LandingPage/_mixins.scss
+```scss path=src/app/home/_mixins.scss
 @use '@carbon/react/scss/spacing' as *;
 @use '@carbon/react/scss/theme' as *;
 
@@ -508,7 +491,7 @@ setting the background in an absolutely positioned pseudo element.
 After you have created `_mixins.scss`, import it at the **top** of
 `_landing-page.scss`. By now you should have six imports:
 
-```scss path=src/content/LandingPage/_landing-page.scss
+```scss path=src/app/home/_landing-page.scss
 @use '@carbon/react/scss/spacing' as *;
 @use '@carbon/react/scss/type' as *;
 @use '@carbon/react/scss/breakpoint' as *;
@@ -520,7 +503,7 @@ After you have created `_mixins.scss`, import it at the **top** of
 Now to use the new mixin, update the `.landing-page__banner` declaration block
 to:
 
-```scss path=src/content/LandingPage/_landing-page.scss
+```scss path=src/app/home/_landing-page.scss
 .landing-page__banner {
   padding-top: $spacing-05;
   padding-bottom: $spacing-07 * 4;
@@ -546,7 +529,7 @@ translate design to development. So, looking up the
 [type token](https://www.carbondesignsystem.com/guidelines/typography/productive),
 we know to use `productive-heading-05`:
 
-```scss path=src/content/LandingPage/_landing-page.scss
+```scss path=src/app/home/_landing-page.scss
 .landing-page__heading {
   @include type-style('productive-heading-05');
 }
@@ -559,7 +542,7 @@ design. By inspecting the tabs component, you can see that the tab height
 computes to `40px`. We can use that to create our negative top margin in rem
 units.
 
-```scss path=src/content/LandingPage/_landing-page.scss
+```scss path=src/app/home/_landing-page.scss
 .landing-page__r2 {
   margin-top: rem(-40px);
 }
@@ -588,7 +571,7 @@ baseline, for consistency as well as development ease so `margins` and
 
 </InlineNotification>
 
-```scss path=src/content/LandingPage/_landing-page.scss
+```scss path=src/app/home/_landing-page.scss
 .tabs-group-content {
   padding: $spacing-10 $spacing-06;
 }
@@ -630,7 +613,7 @@ Let's also add some styles for the last row, even though that will get used
 later in the tutorial. You'll notice that we get to re-use the
 `landing-page-background` mixin that we just created.
 
-```scss path=src/content/LandingPage/_landing-page.scss
+```scss path=src/app/home/_landing-page.scss
 .landing-page__r3 {
   padding-top: $spacing-09;
   padding-bottom: $spacing-09;
@@ -646,7 +629,7 @@ later in the tutorial. You'll notice that we get to re-use the
 Lastly, we'll fix some grid alignment issues. We'll use one of our breakpoint
 mixins for the media queries, like so:
 
-```scss path=src/content/LandingPage/_landing-page.scss
+```scss path=src/app/home/_landing-page.scss
 .landing-page__banner,
 .landing-page__r2,
 .landing-page__r3 {
@@ -661,12 +644,12 @@ mixins for the media queries, like so:
 ```
 
 We are almost done with the landing page. You may notice a few styles are off.
-To fix this, we'll update some of the overriding styles in `index.scss`. We
+To fix this, we'll update some of the overriding styles in `globals.scss`. We
 already have some overriding styles for `.cds--content`. We need to add
 `padding: 0;` to this selector and add one more selector for the grid below
 that:
 
-```scss path=src/index.scss
+```scss path=src/app/globals.scss
 .cds--content {
   margin-top: 3rem;
   padding: 0;
@@ -682,10 +665,10 @@ that:
 }
 ```
 
-Since we are using out `breakpoint` mixin, we need to import the styles for that
+Since we are using our `breakpoint` mixin, we need to import the styles for that
 below our Carbon styles import:
 
-```scss path=src/index.scss
+```scss path=src/app/globals.scss
 @use '@carbon/react';
 @use '@carbon/react/scss/breakpoint' as *;
 ```
@@ -695,18 +678,20 @@ page.
 
 ## Add repo page grid
 
-Now in our `RepoPage.js` we'll import our `Grid` components at the top:
+Now in our `RepoPage`component in the `src/app/repos/page.js` file we'll import
+our `Grid` components at the top:
 
-```javascript path=src/content/RepoPage/RepoPage.js
+```javascript path=src/app/repos/page.js
+'use client';
 import { Grid, Column } from '@carbon/react';
 ```
 
 Then add our grid containers in the `return` section.
 
-```javascript path=src/content/RepoPage/RepoPage.js
+```javascript path=src/app/repos/page.js
 return (
   <Grid className="repo-page">
-    <Column lg={16} className="repo-page__r1">
+    <Column lg={16} md={8} sm={4} className="repo-page__r1">
       Data table will go here
     </Column>
   </Grid>
@@ -715,17 +700,17 @@ return (
 
 ## Build repo page
 
-We currently have `RepoPage.js` that just contains a grid and placeholder
-content for the time being. In the next tutorial step we're going to be querying
-an API to populate the `DataTable` component in this page. As a best practice to
+We currently have `RepoPage` that just contains a grid and placeholder content
+for the time being. In the next tutorial step we're going to be querying an API
+to populate the `DataTable` component in this page. As a best practice to
 separate data fetching from the presentation components, go ahead and create a
-`RepoTable.js` as a sibling to `RepoPage.js` in `src/content/RepoPage`.
+`RepoTable.js` as a sibling to `page.js` in `src/app/repos`.
 
 ### Build data table
 
 First, we'll add our data table by importing a few components in `RepoTable.js`:
 
-```javascript path=src/content/RepoPage/RepoTable.js
+```javascript path=src/app/repos/RepoTable.js
 import React from 'react';
 import {
   DataTable,
@@ -745,7 +730,7 @@ import {
 Then, let's create the `RepoTable` component and export it at the very bottom of
 `RepoTable.js`.
 
-```javascript path=src/content/RepoPage/RepoTable.js
+```javascript path=src/app/repos/RepoTable.js
 const RepoTable = ({ rows, headers }) => {
   return (
     <DataTable
@@ -767,7 +752,7 @@ const RepoTable = ({ rows, headers }) => {
               <TableRow>
                 <TableExpandHeader />
                 {headers.map((header) => (
-                  <TableHeader {...getHeaderProps({ header })}>
+                  <TableHeader key={header.key} {...getHeaderProps({ header })}>
                     {header.header}
                   </TableHeader>
                 ))}
@@ -814,15 +799,15 @@ into the component.
 
 </InlineNotification>
 
-At this point, return to `RepoPage.js` because now we need to render a static
+At this point, return to `RepoPage` because now we need to render a static
 `RepoTable`.
 
 ### Render data table
 
-Import `RepoTable` in `RepoPage.js`.
+Import `RepoTable` into `RepoPage`.
 
-```javascript path=src/content/RepoPage/RepoPage.js
-import React from 'react';
+```javascript path=src/app/repos/page.js
+'use client';
 import RepoTable from './RepoTable';
 import { Grid, Column } from '@carbon/react';
 ```
@@ -831,7 +816,7 @@ Then below the imports, include the following arrays to pass into the
 `RepoTable` component. We'll be setting the `rows` array from an API in the next
 tutorial step, but for now, static example rows will suffice.
 
-```javascript path=src/content/RepoPage/RepoPage.js
+```javascript path=src/app/repos/page.js
 const headers = [
   {
     key: 'name',
@@ -890,10 +875,9 @@ const rows = [
 ];
 ```
 
-Lastly in `RepoPage.js`, we need to simply replace `Data table will go here`
-with:
+Lastly in `RepoPage`, we need to simply replace `Data table will go here` with:
 
-```jsx path=src/content/RepoPage/RepoPage.js
+```jsx path=src/app/repos/page.js
 <RepoTable headers={headers} rows={rows} />
 ```
 
@@ -904,7 +888,7 @@ vertical spacing issues.
 
 In `_repo-page.scss`, add the following styles:
 
-```scss path=src/content/RepoPage/_repo-page.scss
+```scss path=src/app/repos/_repo-page.scss
 @use '@carbon/react/scss/spacing' as *;
 
 .repo-page__r1 {
@@ -929,9 +913,10 @@ yarn ci-check
 
 <InlineNotification>
 
-**Note:** Having issues running the CI check?
-[Step 1](</developing/react-tutorial/step-1#continuous-integration-(ci)-check>)
-has troubleshooting notes that may help.
+**Note:** If the `ci-check` is giving an error, it's likely that some of your
+source files are not properly formatted. This could happen if your text editor
+isn't formatting with Prettier on save. To get `ci-check` to pass, run
+`yarn format` then re-run `yarn ci-check`.
 
 </InlineNotification>
 
@@ -948,7 +933,7 @@ git add --all && git commit -m "feat(tutorial): complete step 2"
 Then, push to your repository:
 
 ```bash
-git push origin v11-react-step-2
+git push origin v11-next-step-2
 ```
 
 <InlineNotification>
@@ -962,9 +947,9 @@ troubleshooting notes that may help.
 ### Pull request (PR)
 
 Finally, visit
-[carbon-tutorial](https://github.com/carbon-design-system/carbon-tutorial) to
-"Compare & pull request". In doing so, make sure that you are comparing to
-`v11-react-step-2` into `base: v11-react-step-2`.
+[carbon-react-tutorial](https://github.com/carbon-design-system/carbon-tutorial)
+to "Compare & pull request". In doing so, make sure that you are comparing to
+`v11-next-step-2` into `base: v11-next-step-2`.
 
 <InlineNotification>
 
