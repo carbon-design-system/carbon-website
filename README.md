@@ -2,7 +2,9 @@
 
 ![Deployment status](https://github.com/carbon-design-system/carbon-website/workflows/Deployment%20status/badge.svg)
 
-This is the [Carbon Design System website](http://www.carbondesignsystem.com). It's built using the [gatsby-theme-carbon](https://gatsby-theme-carbon.now.sh/) with [GatsbyJS](https://www.gatsbyjs.org/).
+This is the [Carbon Design System website](http://www.carbondesignsystem.com).
+It's built using the [gatsby-theme-carbon](https://gatsby.carbondesignsystem.com/)
+with [GatsbyJS](https://www.gatsbyjs.org/).
 
 ## 📂 Structure
 
@@ -29,11 +31,14 @@ src
 - `lint:js` – lint your JavaScript files
 - `format` - run Prettier
 
-If you need more detailed information on how to set up your machine to develop locally, please take a look at our [wiki](https://github.com/carbon-design-system/carbon-website/wiki).
+If you need more detailed information on how to set up your machine to develop
+locally, please take a look at our
+[wiki](https://github.com/carbon-design-system/carbon-website/wiki).
 
 ## 🚀 Build
 
-Runing the build command generates all the files and places them in the `public` folder.
+Running the build command generates all the files and places them in the
+`public` folder.
 
 ```
 yarn build
