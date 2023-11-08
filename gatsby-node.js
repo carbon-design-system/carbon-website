@@ -76,4 +76,9 @@ exports.createPages = ({ actions }) => {
     toPath: '/guidelines/typography/style-strategies',
     isPermanent: true,
   });
+  createRedirect({
+    fromPath: '/whats-happening/releases',
+    toPath: '/all-about-carbon/releases',
+    isPermanent: true,
+  });
 };
