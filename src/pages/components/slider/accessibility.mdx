@@ -1,8 +1,9 @@
 ---
 title: Slider
 description:
-  Sliders provide a visual indication of adjustable content, where the user can
-  move the handle along a horizontal track to increase or decrease the value.
+  No accessibility annotations are needed for sliders, but keep these
+  considerations in mind if you are modifying Carbon or creating a custom
+  component.
 tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 ---
 
@@ -28,11 +29,12 @@ Carbon bakes keyboard operation into its components, improving the experience of
 blind users and others who operate via the keyboard. Carbon incorporates many
 other accessibility considerations, some of which are described below.
 
-### Keyboard interactions
+### Keyboard interactions (default slider)
 
-Tab order goes from slider to text input. Arrow keys are used to change the
-slider value. `Shift`+arrow changes the slider value by a larger increment (such
-as by 10 instead of 1). Users can also directly enter a value in the input.
+Tab order goes from slider to number input. Arrow keys are used to change the
+slider value. `Shift` + `Arrow` changes the slider value by a larger increment
+(such as by 10 instead of 1). Users can also directly enter a value in the
+input.
 
 <Row>
 <Column colLg={8}>
@@ -46,16 +48,16 @@ as by 10 instead of 1). Users can also directly enter a value in the input.
 </Column>
 </Row>
 
-### Labeling and updates
+### Labeling and updates (default slider)
 
 <Row>
 <Column colLg={8}>
 
-![slider label is connected to slider control and text input](images/slider-accessibility-2.png)
+![slider label is connected to slider control and number input](images/slider-accessibility-2.png)
 
 <Caption>
-  The slider label is programmatically associated with both the slider and
-  input.
+  The input value and slider position are in sync. An update to either causes
+  the other to update.
 </Caption>
 
 </Column>
@@ -71,8 +73,57 @@ as by 10 instead of 1). Users can also directly enter a value in the input.
 />
 
 <Caption>
+  The multiple ways of updating a value within the default slider component.
+</Caption>
+
+</Column>
+</Row>
+
+### Keyboard interactions (range slider)
+
+For the range slider, tab order goes from the first number input, to the two
+handles in turn, and then to the second number input. The handle keyboard
+operation is the same as with the default slider. Users can also directly enter
+numbers into the minimum and maximum value inputs.
+
+<Row>
+<Column colLg={8}>
+
+![Both the slider and inputs are in the tab order and keyboard operable.](images/slider-accessibility-4.png)
+
+<Caption>
+  Both the slider and inputs are in the tab order and keyboard operable.
+</Caption>
+
+</Column>
+</Row>
+
+### Labeling and updates (range slider)
+
+The slider label is a description what kind of values will be selected from the
+range slider. The minimum and maximum values are labeled with placeholder text
+of min and max due to space constraints.
+
+<Row>
+<Column colLg={8}>
+
+![The input value and slider position are in sync. An update to either causes the other to update.](images/slider-accessibility-5.png)
+
+<Caption>
   The input value and slider position are in sync. An update to either causes
   the other to update.
+</Caption>
+
+</Column>
+</Row>
+
+<Row>
+<Column colLg={8}>
+
+![The multiple ways of updating a value within the range slider component.](images/slider-accessibility-6.png)
+
+<Caption>
+  The multiple ways of updating a value within the range slider component.
 </Caption>
 
 </Column>
@@ -91,3 +142,14 @@ custom component:
 - See the
   [ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices-1.2/#slider)
   for more considerations.
+
+#### Error handling
+
+If an inputted value is outside the allowed range, the slider will auto-correct
+to the nearest allowed digit. When the inputted value results in an error, the
+error will display alongside the corresponding text input.
+
+In the range slider, if the inputted value is not logically correct (for
+example, if a minimum value is greater than the maximum value), a warning
+message will be generated that informs the user that a value was autocorrected
+to the nearest allowed digit.
