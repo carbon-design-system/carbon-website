@@ -2,7 +2,7 @@
 
 1. Update and install dependencies
    ```bash
-   git pull upstream main && yarn install --frozen-lockfile
+   git pull upstream main && yarn install --immutable
    ```
 2. Run build and test locally
 
