@@ -1,8 +1,8 @@
 ---
 title: 3. Using APIs
 description:
-  Welcome to Carbon! This tutorial will guide you in creating a React app with
-  the Carbon Design System.
+  Welcome to Carbon! This tutorial will guide you in creating a React app using
+  Next.js with the Carbon Design System.
 tabs:
   [
     'Overview',
@@ -48,13 +48,14 @@ To do so, we'll be using
 [Octokit Core](https://github.com/octokit/core.js/#readme), a client that makes
 it easy to interact with Github's APIs.
 
-A [preview](https://v11-react-step-4--carbon-tutorial.netlify.app) of what you
-will build (see repositories page):
+A
+[preview](https://carbon-tutorial-nextjs-8xoxdcixk-carbon-design-system.vercel.app/)
+of what you will build (see repositories page):
 
 <Preview
   height="400"
   title="Carbon Tutorial Step 3"
-  src="https://v11-react-step-4--carbon-tutorial.netlify.app"
+  src="https://carbon-tutorial-nextjs-8xoxdcixk-carbon-design-system.vercel.app/"
   frameborder="no"
   allowtransparency="true"
   allowfullscreen="true"
@@ -63,10 +64,10 @@ will build (see repositories page):
 ## Fork, clone and branch
 
 This tutorial has an accompanying GitHub repository called
-[carbon-tutorial](https://github.com/carbon-design-system/carbon-tutorial) that
-we'll use as a starting point for each step. If you haven't forked and cloned
-that repository yet, and haven't added the upstream remote, go ahead and do so
-by following the
+[carbon-tutorial-nextjs](https://github.com/carbon-design-system/carbon-tutorial-nextjs)
+that we'll use as a starting point for each step. If you haven't forked and
+cloned that repository yet, and haven't added the upstream remote, go ahead and
+do so by following the
 [step 1 instructions](/developing/react-tutorial/step-1#fork-clone-and-branch).
 
 ### Branch
@@ -76,15 +77,15 @@ step's starting point.
 
 ```bash
 git fetch upstream
-git checkout -b v11-react-step-3 upstream/v11-react-step-3
+git checkout -b v11-next-step-3 upstream/v11-next-step-3
 ```
 
 ### Build and start app
 
-Install the app's dependencies:
+Install the app's dependencies and build the app:
 
 ```bash
-yarn
+yarn && yarn build
 ```
 
 Then, start the app:
@@ -111,7 +112,7 @@ Then, start the app again. If your app's currently running, you'll need to
 restart it.
 
 ```bash
-yarn start
+yarn dev
 ```
 
 ## Fetch data
@@ -122,15 +123,15 @@ We'll be using [React Hooks](https://reactjs.org/docs/hooks-intro.html) to call
 a function to fetch our data when the component renders.
 
 Import React's [useEffect](https://reactjs.org/docs/hooks-effect.html) by
-modifying the `React` import in `RepoPage.js`.
+modifying the `React` import in `src/app/repos/page.js`.
 
-```javascript path=src/content/RepoPage/RepoPage.js
+```javascript path=src/app/repos/page.js
 import React, { useEffect } from 'react';
 ```
 
-Add the following import below the react import in `RepoPage.js`:
+Add the following import below the react import in `RepoPage`:
 
-```javascript path=src/content/RepoPage/RepoPage.js
+```javascript path=src/app/repos/page.js
 import { Octokit } from '@octokit/core';
 ```
 
@@ -139,7 +140,7 @@ import { Octokit } from '@octokit/core';
 Directly below all your imports, initialize an octokit client which we'll use to
 query our `RepoTable` data:
 
-```javascript path=src/content/RepoPage/RepoPage.js
+```javascript path=src/app/repos/page.js
 const octokitClient = new Octokit({});
 ```
 
@@ -150,11 +151,12 @@ belong to the `carbon-design-system` Github organization. We'll do this by using
 a `useEffect` hook that will use octokit to query Github's API
 [repositories endpoint](https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#list-organization-repositories).
 
-Let's declare a `useEffect` hook immediately below the component definition.
-We'll use this to query Github's API when the component first renders:
+Let's declare a `useEffect` hook immediately below the component definition and
+above the return. We'll use this to query Github's API when the component first
+renders:
 
-```javascript path=src/content/RepoPage/RepoPage.js
-const RepoPage = () => {
+```javascript path=src/app/repos/page.js
+function RepoPage() {
   useEffect(() => {
     async function getCarbonRepos() {
       const res = await octokitClient.request('GET /orgs/{org}/repos', {
@@ -173,11 +175,10 @@ const RepoPage = () => {
 
     getCarbonRepos();
   }, []);
-...
 ```
 
-At this point, if you navigate to the `Repositories` page in your running app
-and view your browser's console (e.g.
+At this point, if you navigate to the Repositories page `/repos` in your running
+app and view your browser's console (e.g.
 [Chrome DevTools](https://developer.chrome.com/docs/devtools/)), you should see
 the response from GitHub!
 
@@ -186,17 +187,18 @@ the response from GitHub!
 Our last column in the data table will be a comma-separated list of repository
 and home page links, so let's create a component called `LinkList`.
 
-Import `Link` at the top of `RepoPage.js`. The imports should look like this.
+Import `Link` at the top of `/app/repos/page.js`. The imports should look like
+this.
 
-```javascript path=src/content/RepoPage/RepoPage.js
+```javascript path=src/app/repos/page.js
 import { Link, Grid, Column } from '@carbon/react';
 ```
 
-Then use `Link` in this component that has two props (`url` and `homepageUrl`)
+Then use `Link` in this component. It has two props (`url` and `homepageUrl`)
 and returns an unordered list. If the repository does not have a home page URL,
 only render the repository link.
 
-```javascript path=src/content/RepoPage/RepoPage.js
+```javascript path=src/app/repos/page.js
 const LinkList = ({ url, homepageUrl }) => (
   <ul style={{ display: 'flex' }}>
     <li>
@@ -216,7 +218,7 @@ As a final helper, let's create a function that transforms row data to our
 expected header keys. Notice how we're using our new `LinkList` component to
 generate the value of the `links` key in each row.
 
-```javascript path=src/content/RepoPage/RepoPage.js
+```javascript path=src/app/repos/page.js
 const getRowItems = (rows) =>
   rows.map((row) => ({
     ...row,
@@ -234,7 +236,7 @@ const getRowItems = (rows) =>
 Now that we have our data, let's dispose of our dummy `rows` and populate the
 data table with real data.
 
-First, towards the top of `RepoPage.js` delete the `rows` array because we no
+First, towards the top of `RepoPage` delete the `rows` array because we no
 longer need the example rows.
 
 Next, let's add a couple variables that will help us store useful information
@@ -246,18 +248,17 @@ manage our state.
 Import React's [useState](https://reactjs.org/docs/hooks-state.html) by
 modifying the `React` import.
 
-```javascript path=src/content/RepoPage/RepoPage.js
+```javascript path=src/app/repos/page.js
 import React, { useEffect, useState } from 'react';
 ```
 
 Then, inside the `RepoPage` component:
 
-```javascript path=src/content/RepoPage/RepoPage.js
-const RepoPage = () => {
+```javascript path=src/app/repos/page.js
+function RepoPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState();
   const [rows, setRows] = useState([]);
-...
 ```
 
 Now, instead of using `console.log` to log the github data response, let's treat
@@ -265,35 +266,33 @@ the response data by passing it through our `getRowItems` helper and saving the
 result in our new `rows` variable. Replace the `console.log(res.data);` line
 inside `if (res.status === 200)` with:
 
-```javascript path=src/content/RepoPage/RepoPage.js
+```javascript path=src/app/repos/page.js
 setRows(getRowItems(res.data));
 ```
 
 Let's also replace our error log line inside the `else` statement with:
 
-```javascript path=src/content/RepoPage/RepoPage.js
+```javascript path=src/app/repos/page.js
 setError('Error obtaining repository data');
 ```
 
 To complete our `getCarbonRepos` function, let's set the loading state to false
 right after the `else` statement:
 
-```javascript path=src/content/RepoPage/RepoPage.js
-...
-  if (res.status === 200) {
-    setRows(getRowItems(res.data));
-  } else {
-    setError('Error obtaining repository data');
-  }
-  setLoading(false);
-...
+```javascript path=src/app/repos/page.js
+if (res.status === 200) {
+  setRows(getRowItems(res.data));
+} else {
+  setError('Error obtaining repository data');
+}
+setLoading(false);
 ```
 
 Finally, let's modify our component's `return()` statement to display different
 information depending on the states of our request: loading, error or complete.
 Replace the current return statement with:
 
-```javascript path=src/content/RepoPage/RepoPage.js
+```javascript path=src/app/repos/page.js
 if (loading) {
   return 'Loading...';
 }
@@ -341,7 +340,7 @@ to a column.
 To do so, in `RepoTable.js`, add this look-up function as the first lines inside
 the `RepoTable`. This should go immediately before the component's `return()`.
 
-```javascript path=src/content/RepoPage/RepoTable.js
+```javascript path=src/app/repos/RepoTable.js
 const getRowDescription = (rowId) => {
   const row = rows.find(({ id }) => id === rowId);
   return row ? row.description : '';
@@ -350,7 +349,7 @@ const getRowDescription = (rowId) => {
 
 Finally, in `RepoTable.js`, replace `<p>Row description</p>` with:
 
-```html path=src/content/RepoPage/RepoTable.js
+```html path=src/app/repos/RepoTable.js
 <p>{getRowDescription(row.id)}</p>
 ```
 
@@ -362,16 +361,16 @@ component. We could stop here, but there's more to be done! Let's replace the
 `Loading...` string with the
 [DataTableSkeleton component](https://react.carbondesignsystem.com/?path=/story/components-datatable--skeleton).
 
-To do so, back to `RepoPage.js`, add the `DataTableSkeleton` import by modifying
+To do so, back to `RepoPage`, add the `DataTableSkeleton` import by modifying
 the existing `@carbon/react` import.
 
-```javascript path=src/content/RepoPage/RepoPage.js
+```javascript path=src/app/repos/page.js
 import { Link, DataTableSkeleton, Grid, Column } from '@carbon/react';
 ```
 
 Then replace the `if (loading) return 'Loading...';` with:
 
-```javascript path=src/content/RepoPage/RepoPage.js
+```javascript path=src/app/repos/page.js
 if (loading) {
   return (
     <Grid className="repo-page">
@@ -401,8 +400,8 @@ data, and then paginate the in-memory row data.
 Initialize the new state variables that we'll use for pagination as the first
 lines inside the `RepoPage`.
 
-```javascript path=src/content/RepoPage/RepoPage.js
-const RepoPage = () => {
+```javascript path=src/app/repos/page.js
+function RepoPage() {
   const [firstRowIndex, setFirstRowIndex] = useState(0);
   const [currentPageSize, setCurrentPageSize] = useState(10);
 ...
@@ -415,7 +414,7 @@ Then we need to update our `RepoTable` `rows` prop to only render the subset of
 rows for the current "page". Update
 `<RepoTable headers={headers} rows={rows} />` to:
 
-```javascript path=src/content/RepoPage/RepoPage.js
+```javascript path=src/app/repos/page.js
 <RepoTable
   headers={headers}
   rows={rows.slice(firstRowIndex, firstRowIndex + currentPageSize)}
@@ -434,7 +433,7 @@ data table to render new rows.
 
 Import `Pagination` by updating the `@carbon/react` import.
 
-```javascript path=src/content/RepoPage/RepoPage.js
+```javascript path=src/app/repos/page.js
 import {
   Link,
   DataTableSkeleton,
@@ -447,7 +446,7 @@ import {
 Immediately after the `RepoTable` closing tag (`/>`), add the `Pagination`
 component using the state variables that we previously initialized.
 
-```javascript path=src/content/RepoPage/RepoPage.js
+```javascript path=src/app/repos/page.js
 <Pagination
   totalItems={rows.length}
   backwardText="Previous page"
@@ -520,7 +519,7 @@ git add --all && git commit -m "feat(tutorial): complete step 3"
 Then, push to your repository:
 
 ```bash
-git push origin v11-react-step-3
+git push origin v11-next-step-3
 ```
 
 <InlineNotification>
@@ -534,9 +533,9 @@ troubleshooting notes that may help.
 ### Pull request (PR)
 
 Finally, visit
-[carbon-tutorial](https://github.com/carbon-design-system/carbon-tutorial) to
-"Compare & pull request". In doing so, make sure that you are comparing to
-`v11-react-step-3` into `base: v11-react-step-3`.
+[carbon-tutorial-nextjs](https://github.com/carbon-design-system/carbon-tutorial-nextjs)
+to "Compare & pull request". In doing so, make sure that you are comparing to
+`v11-next-step-3` into `base: v11-next-step-3`.
 
 <InlineNotification>
 
