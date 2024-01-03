@@ -6,13 +6,14 @@ description:
 tabs: ['Components', 'Accessibility Status']
 ---
 
+import { Tag } from '@carbon/react';
 import A11yStatus from 'components/A11yStatus';
-
-<A11yStatus />
 
 <PageDescription>
 
-TODO: We need copy for the page description here.
+Components are one of the key building blocks of the design system. Their
+systematic reuse helps to create visual and functional consistency across
+products.
 
 </PageDescription>
 
@@ -26,11 +27,36 @@ TODO: We need copy for the page description here.
 
 ## Accessibility tag status
 
+For every latest release, Carbon runs tests on all components to meet the
+accessibility requirements. These different statuses report the work that Carbon
+has done in the back end. These tests appear only when the components are
+stable.
+
+| Tag                                     | Meaning                                                                                                                                                                                                             |
+| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <Tag type="green">Tested</Tag>          | When all tests pass and there are no violations when running the automated Equal Access Checker on default state, advanced states, and keyboard navigation                                                          |
+| <Tag type="blue">Partially tested</Tag> | When some tests pass or are removed, they are either combined into existing tests or substituted with new ones and moved to a different file. Skipped tests stay in the file but are clearly marked with test.skip. |
+| <Tag type="teal">Manually tested</Tag>  | When screen reader tests are conducted manually and validated by a human to ensure quality                                                                                                                          |
+| <Tag>Not available</Tag>                | Usually, with keyboard navigation tests, when this type of test is not available for certain components                                                                                                             |
+| <Tag type="purple">Not yet tested</Tag> | Usually, with experimental or unstable components, tests have not been conducted for either automated or manual testing                                                                                             |
+
 ## Accessibility tests
+
+Accessibility AVT (Accessibility Automated Verification Testing) involves the
+use of automated tools and software to assess the accessibility of a digital
+product against established accessibility standards, such as the Web Content
+Accessibility Guidelines (WCAG).
+
+| Test                | Meaning                                                                                                                               | Possible Tags                                                                                                                  |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| Default state       | The default state of the component                                                                                                    | <Tag type="green">Tested</Tag><br/><Tag type="purple">Not yet tested</Tag><br/><Tag type="blue">Partially tested</Tag>         |
+| Advanced states     | Other states rather than the default state of a component. These could be interactive states of a component or its multiple variants. | <Tag type="green">Tested</Tag><br/><Tag type="purple">Not yet tested</Tag><br/><Tag type="blue">Partially tested</Tag>         |
+| Keyboard navigation | This test ensures every action a mouse user can do should have a keyboard equivalent.                                                 | <Tag type="green">Tested</Tag><br/><Tag>Not available</Tag><br/><Tag type="blue">Partially tested</Tag>                        |
+| Screen reader       | This test ensures that the visual information on the screen is reinforced programmatically.                                           | <Tag type="purple">Not yet tested</Tag><br/><Tag type="teal">Manually tested</Tag><br/><Tag type="blue">Partially tested</Tag> |
 
 ## All component accessibility status
 
 This table reflects the latest accessibility testing of only the stable
-components in React framework at the moment.
+components in the React framework at the moment.
 
-**Latest version:** 14.1.1 | **Framework:** React (carbon/carbon-react)
+<A11yStatus />

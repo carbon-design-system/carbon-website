@@ -3,15 +3,31 @@ import React from 'react';
 import { Tag } from '@carbon/react';
 import componentList from '../../data/components.json';
 import * as avtTestData from '@carbon/react/.playwright/INTERNAL_AVT_REPORT_DO_NOT_USE.json';
+import packageJson from '../../../package.json';
+
+import { table } from './a11y-status.module.scss';
 
 class A11yStatus extends React.Component {
   render() {
-    const Tested = <Tag type="green">Tested</Tag>;
-    const NotTested = <Tag type="purple">Not yet tested</Tag>;
+    const reactVersion = packageJson.dependencies['@carbon/react'];
+    const TestedTag = <Tag type="green">Tested</Tag>;
+    const NotTestedTag = <Tag type="purple">Not yet tested</Tag>;
+    const PartiallyTestedTag = <Tag type="blue">Partially tested</Tag>;
+    const ManuallyTestedTag = <Tag type="teal">Manually tested</Tag>;
+    const NotAvailableTag = <Tag>Not available</Tag>;
+
+    console.log(reactVersion);
 
     return (
       <div className="cds--row">
-        <div className="cds--col-lg-12 cds--col-no-gutter page-table__container">
+        <div className="cds--col-lg-12">
+          <p>
+            <strong>Latest version:</strong> {reactVersion} |{' '}
+            <strong>Framework</strong> React (@carbon/react)
+          </p>
+        </div>
+        <div
+          className={`${table} cds--col-lg-12 cds--col-no-gutter page-table__container`}>
           <table className="page-table">
             <thead>
               <tr>
@@ -53,6 +69,9 @@ class A11yStatus extends React.Component {
                 let hasDefaultAVT = false;
                 let hasComplexAVT = false;
                 let hasKeyboardNavAVT = false;
+                let hasDefaultAVTManual = false;
+                let hasDefaultAVTPartial = false;
+
                 if (componentTestData) {
                   // Iterate through all specs in the suite, and all tags in
                   // each spec, to determine if there is _any_ spec that includes
@@ -83,6 +102,8 @@ class A11yStatus extends React.Component {
                   });
                 }
 
+                console.log('hasDefaultAVT', hasDefaultAVT);
+
                 return (
                   <>
                     <tr key={`avt-tests-${componentName}`}>
@@ -90,7 +111,15 @@ class A11yStatus extends React.Component {
                         <a href={componentUrl}>{componentName}</a>
                       </td>
                       <td>Default state</td>
-                      <td>{hasDefaultAVT ? Tested : NotTested}</td>
+                      <td>
+                        {hasDefaultAVT
+                          ? TestedTag
+                          : hasDefaultAVTManual
+                          ? ManuallyTestedTag
+                          : hasDefaultAVTPartial
+                          ? PartiallyTestedTag
+                          : NotTestedTag}
+                      </td>
                       <td>
                         <a href={githubUrl}>Github link</a>
                       </td>
@@ -98,13 +127,13 @@ class A11yStatus extends React.Component {
                     <tr>
                       <td></td>
                       <td>Advanced states</td>
-                      <td>{hasComplexAVT ? Tested : NotTested}</td>
+                      <td>{hasComplexAVT ? TestedTag : NotTestedTag}</td>
                       <td></td>
                     </tr>
                     <tr>
                       <td></td>
                       <td>Keyboard states</td>
-                      <td>{hasKeyboardNavAVT ? Tested : NotTested}</td>
+                      <td>{hasKeyboardNavAVT ? TestedTag : NotAvailableTag}</td>
                       <td></td>
                     </tr>
                     <tr>
