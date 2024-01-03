@@ -50,34 +50,38 @@ class A11yStatus extends React.Component {
                     .replace(' ', '-')}/usage`;
                 }
 
-                // Iterate through all specs in the suite, and all tags in
-                // each spec, to determine if there is _any_ spec that includes
-                // a tag we're looking for.
-                const hasDefaultAVT = componentTestData.suites.some((suite) => {
-                  return suite.specs.some((spec) => {
-                    return spec.tags.some((tag) => {
-                      return tag.includes('avt-default-state');
+                let hasDefaultAVT = false;
+                let hasComplexAVT = false;
+                let hasKeyboardNavAVT = false;
+                if (componentTestData) {
+                  // Iterate through all specs in the suite, and all tags in
+                  // each spec, to determine if there is _any_ spec that includes
+                  // a tag we're looking for.
+
+                  hasDefaultAVT = componentTestData.suites.some((suite) => {
+                    return suite.specs.some((spec) => {
+                      return spec.tags.some((tag) => {
+                        return tag.includes('avt-default-state');
+                      });
                     });
                   });
-                });
 
-                const hasComplexAVT = componentTestData.suites.some((suite) => {
-                  return suite.specs.some((spec) => {
-                    return spec.tags.some((tag) => {
-                      return tag.includes('avt-advanced-states');
+                  hasComplexAVT = componentTestData.suites.some((suite) => {
+                    return suite.specs.some((spec) => {
+                      return spec.tags.some((tag) => {
+                        return tag.includes('avt-advanced-states');
+                      });
                     });
                   });
-                });
 
-                const hasKeyboardNavAVT = componentTestData.suites.some(
-                  (suite) => {
+                  hasKeyboardNavAVT = componentTestData.suites.some((suite) => {
                     return suite.specs.some((spec) => {
                       return spec.tags.some((tag) => {
                         return tag.includes('avt-keyboard-nav');
                       });
                     });
-                  }
-                );
+                  });
+                }
 
                 return (
                   <>
