@@ -66,31 +66,9 @@ class A11yStatus extends React.Component {
                     .replace(' ', '-')}/usage`;
                 }
 
-                const screenReaderAVT =
-                  componentList.components[component].testing.screenreader;
-                let screenReaderAVTTag;
-                switch (screenReaderAVT) {
-                  case 'manual':
-                    screenReaderAVTTag = ManuallyTestedTag;
-                    break;
-                  case 'partial':
-                    screenReaderAVTTag = PartiallyTestedTag;
-                    break;
-                  case 'nottested':
-                    screenReaderAVTTag = NotTestedTag;
-                    break;
-                  default:
-                    screenReaderAVTTag = NotTestedTag;
-                }
-
                 let hasDefaultAVT = false;
-                // let hasDefaultAVTPartial = false;
-
                 let hasAdvancedAVT = false;
-                // let hasAdvancedAVTPartial = false;
-
                 let hasKeyboardNavAVT = false;
-                // let hasKeyboardNavA VTPartial = false;
 
                 if (componentTestData) {
                   // Iterate through all specs in the suite, and all tags in
@@ -122,6 +100,56 @@ class A11yStatus extends React.Component {
                   });
                 }
 
+                let defaultAVTTag;
+                switch (hasDefaultAVT) {
+                  case true:
+                    defaultAVTTag = TestedTag;
+                    break;
+                  // case 'partial':
+                  //   defaultAVTTag = PartiallyTestedTag;
+                  //   break;
+                  default:
+                    defaultAVTTag = NotTestedTag;
+                }
+
+                let advancedAVTTag;
+                switch (hasAdvancedAVT) {
+                  case true:
+                    advancedAVTTag = TestedTag;
+                    break;
+                  // case 'partial':
+                  //   advancedAVTTag = PartiallyTestedTag;
+                  //   break;
+                  default:
+                    advancedAVTTag = NotTestedTag;
+                }
+
+                let keyboardNavAVTTag;
+                switch (hasKeyboardNavAVT) {
+                  case true:
+                    keyboardNavAVTTag = TestedTag;
+                    break;
+                  // case 'partial':
+                  //   advancedAVTTag = PartiallyTestedTag;
+                  //   break;
+                  default:
+                    keyboardNavAVTTag = NotAvailableTag;
+                }
+
+                const screenReaderAVT =
+                  componentList.components[component].testing.screenreader;
+                let screenReaderAVTTag;
+                switch (screenReaderAVT) {
+                  case 'manual':
+                    screenReaderAVTTag = ManuallyTestedTag;
+                    break;
+                  case 'partial':
+                    screenReaderAVTTag = PartiallyTestedTag;
+                    break;
+                  default:
+                    screenReaderAVTTag = NotTestedTag;
+                }
+
                 return (
                   <>
                     <tr key={`avt-tests-${componentName}`}>
@@ -129,7 +157,7 @@ class A11yStatus extends React.Component {
                         <a href={componentUrl}>{componentName}</a>
                       </td>
                       <td>Default state</td>
-                      <td>{hasDefaultAVT ? TestedTag : NotTestedTag}</td>
+                      <td>{defaultAVTTag}</td>
                       <td>
                         <a href={githubUrl}>Github link</a>
                       </td>
@@ -137,13 +165,13 @@ class A11yStatus extends React.Component {
                     <tr>
                       <td></td>
                       <td>Advanced states</td>
-                      <td>{hasAdvancedAVT ? TestedTag : NotTestedTag}</td>
+                      <td>{advancedAVTTag}</td>
                       <td></td>
                     </tr>
                     <tr>
                       <td></td>
                       <td>Keyboard states</td>
-                      <td>{hasKeyboardNavAVT ? TestedTag : NotAvailableTag}</td>
+                      <td>{keyboardNavAVTTag}</td>
                       <td></td>
                     </tr>
                     <tr>
