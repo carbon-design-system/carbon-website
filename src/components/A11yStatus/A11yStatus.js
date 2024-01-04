@@ -66,11 +66,31 @@ class A11yStatus extends React.Component {
                     .replace(' ', '-')}/usage`;
                 }
 
+                const screenReaderAVT =
+                  componentList.components[component].testing.screenreader;
+                let screenReaderAVTTag;
+                switch (screenReaderAVT) {
+                  case 'manual':
+                    screenReaderAVTTag = ManuallyTestedTag;
+                    break;
+                  case 'partial':
+                    screenReaderAVTTag = PartiallyTestedTag;
+                    break;
+                  case 'nottested':
+                    screenReaderAVTTag = NotTestedTag;
+                    break;
+                  default:
+                    screenReaderAVTTag = NotTestedTag;
+                }
+
                 let hasDefaultAVT = false;
-                let hasComplexAVT = false;
+                // let hasDefaultAVTPartial = false;
+
+                let hasAdvancedAVT = false;
+                // let hasAdvancedAVTPartial = false;
+
                 let hasKeyboardNavAVT = false;
-                let hasDefaultAVTManual = false;
-                let hasDefaultAVTPartial = false;
+                // let hasKeyboardNavA VTPartial = false;
 
                 if (componentTestData) {
                   // Iterate through all specs in the suite, and all tags in
@@ -85,7 +105,7 @@ class A11yStatus extends React.Component {
                     });
                   });
 
-                  hasComplexAVT = componentTestData.suites.some((suite) => {
+                  hasAdvancedAVT = componentTestData.suites.some((suite) => {
                     return suite.specs.some((spec) => {
                       return spec.tags.some((tag) => {
                         return tag.includes('avt-advanced-states');
@@ -102,8 +122,6 @@ class A11yStatus extends React.Component {
                   });
                 }
 
-                console.log('hasDefaultAVT', hasDefaultAVT);
-
                 return (
                   <>
                     <tr key={`avt-tests-${componentName}`}>
@@ -111,15 +129,7 @@ class A11yStatus extends React.Component {
                         <a href={componentUrl}>{componentName}</a>
                       </td>
                       <td>Default state</td>
-                      <td>
-                        {hasDefaultAVT
-                          ? TestedTag
-                          : hasDefaultAVTManual
-                          ? ManuallyTestedTag
-                          : hasDefaultAVTPartial
-                          ? PartiallyTestedTag
-                          : NotTestedTag}
-                      </td>
+                      <td>{hasDefaultAVT ? TestedTag : NotTestedTag}</td>
                       <td>
                         <a href={githubUrl}>Github link</a>
                       </td>
@@ -127,7 +137,7 @@ class A11yStatus extends React.Component {
                     <tr>
                       <td></td>
                       <td>Advanced states</td>
-                      <td>{hasComplexAVT ? TestedTag : NotTestedTag}</td>
+                      <td>{hasAdvancedAVT ? TestedTag : NotTestedTag}</td>
                       <td></td>
                     </tr>
                     <tr>
@@ -139,7 +149,7 @@ class A11yStatus extends React.Component {
                     <tr>
                       <td></td>
                       <td>Screen reader</td>
-                      <td></td>
+                      <td>{screenReaderAVTTag}</td>
                       <td></td>
                     </tr>
                   </>
