@@ -146,19 +146,7 @@ class A11yStatus extends React.Component {
                     screenReaderAVTTag = NotTestedTag;
                 }
 
-                // let componentUrl;
-                // if (componentName === 'Multiselect') {
-                //   componentUrl = '/components/dropdown/usage';
-                // } else if (componentName === 'Combo box') {
-                //   componentUrl = '/components/dropdown/usage';
-                // } else if (componentName === 'UI shell') {
-                //   componentUrl = '/components/UI-shell-header/usage';
-                // } else {
-                //   componentUrl = `/components/${componentName
-                //     .toLowerCase()
-                //     .replace(' ', '-')}/usage`;
-                // }
-
+                // link for component name in table
                 let componentUrl;
                 if (componentName === 'Aspect ratio') {
                   componentUrl = '/2x-grid/overview/#aspect-ratio';
@@ -169,16 +157,19 @@ class A11yStatus extends React.Component {
                   componentUrl = '/2x-grid/overview';
                 } else if (componentName === 'Theme') {
                   componentUrl = '/guidelines/themes/overview/';
-                } else if (
-                  filteredComponentList[component]?.parentComponent !==
-                  undefined
-                ) {
+                }
+                // if a parent component is set link to the parent component
+                else if (filteredComponentList[component].parentComponent) {
                   componentUrl = `/components/${filteredComponentList[
                     component
                   ].parentComponent
                     .toLowerCase()
                     .replace(' ', '-')}/usage`;
-                } else if (
+                }
+                // if component isn't linked on overview page and no parent
+                // component set then there is no where to link to so set
+                // to null
+                else if (
                   filteredComponentList[component].overview === false &&
                   filteredComponentList[component].parentComponent === undefined
                 ) {
