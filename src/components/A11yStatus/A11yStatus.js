@@ -1,12 +1,12 @@
 /* eslint-disable global-require */
 import React from 'react';
-import { Tag } from '@carbon/react';
+import { Link, Tag } from '@carbon/react';
 import { Launch } from '@carbon/icons-react';
 import componentList from '../../data/components.json';
 import * as avtTestData from '@carbon/react/.playwright/INTERNAL_AVT_REPORT_DO_NOT_USE.json';
 import packageJson from '../../../package.json';
 
-import { table, launchIcon } from './a11y-status.module.scss';
+import { table } from './a11y-status.module.scss';
 
 const filteredComponentList = componentList.components.filter(
   (item) => item.a11ystatus !== false
@@ -196,9 +196,11 @@ class A11yStatus extends React.Component {
                       <td>Default state</td>
                       <td>{defaultAVTTag}</td>
                       <td>
-                        <a href={githubUrl}>
-                          Github link <Launch className={launchIcon} />
-                        </a>
+                        <Link
+                          href={githubUrl}
+                          renderIcon={() => <Launch aria-label="Launch" />}>
+                          Github link
+                        </Link>
                       </td>
                     </tr>
                     <tr>
