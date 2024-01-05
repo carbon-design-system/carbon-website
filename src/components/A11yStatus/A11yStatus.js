@@ -7,6 +7,10 @@ import packageJson from '../../../package.json';
 
 import { table } from './a11y-status.module.scss';
 
+const filteredComponentList = componentList.components.filter(
+  (item) => item.a11ystatus !== false
+);
+
 class A11yStatus extends React.Component {
   render() {
     const reactVersion = packageJson.dependencies['@carbon/react'];
@@ -36,9 +40,9 @@ class A11yStatus extends React.Component {
               </tr>
             </thead>
             <tbody>
-              {Object.keys(componentList.components).map((component) => {
+              {Object.keys(filteredComponentList).map((component) => {
                 const componentName =
-                  componentList.components[component].component;
+                  filteredComponentList[component].component;
                 const componentTestData = avtTestData.default.suites.find(
                   (suite) => {
                     return suite.title
@@ -51,113 +55,51 @@ class A11yStatus extends React.Component {
                   .replace(/\b\w/g, (char) => char.toUpperCase())
                   .replace(' ', '')}`;
 
-                let componentUrl;
-                if (componentName === 'Multiselect') {
-                  componentUrl = '/components/dropdown/usage';
-                } else if (componentName === 'Combo box') {
-                  componentUrl = '/components/dropdown/usage';
-                } else if (componentName === 'UI shell') {
-                  componentUrl = '/components/UI-shell-header/usage';
-                } else {
-                  componentUrl = `/components/${componentName
-                    .toLowerCase()
-                    .replace(' ', '-')}/usage`;
+                // Function to check if the spec has a specific tag and
+                // if the status is skipped
+                function checkAVTStatus(componentTestData, tag) {
+                  let hasAVT = false;
+                  let hasSkippedAVT = false;
+
+                  if (componentTestData) {
+                    hasAVT = componentTestData.suites.some((suite) => {
+                      const searchSuites = suite.suites || [suite];
+                      return searchSuites.some((innerSuite) =>
+                        innerSuite.specs.some((spec) =>
+                          spec.tags.some((specTag) => specTag.includes(tag))
+                        )
+                      );
+                    });
+
+                    hasSkippedAVT = componentTestData.suites.some((suite) =>
+                      (suite.suites || [suite]).some((innerSuite) =>
+                        innerSuite.specs.some(
+                          (spec) =>
+                            spec.tags?.includes(tag) &&
+                            spec.tests.some((test) => test.status === 'skipped')
+                        )
+                      )
+                    );
+                  }
+
+                  return { hasAVT, hasSkippedAVT };
                 }
 
-                let hasDefaultAVT = false;
-                let hasAdvancedAVT = false;
-                let hasKeyboardNavAVT = false;
-
-                let hasSkippedDefaultAVT = false;
-                let hasSkippedAdvancedAVT = false;
-                let hasSkippedKeyboardNavAVT = false;
-
-                if (componentTestData) {
-                  // Check if the spec has the tag 'avt-default-state'
-                  hasDefaultAVT = componentTestData.suites.some((suite) => {
-                    return suite.specs.some((spec) => {
-                      return spec.tags.some((tag) => {
-                        return tag.includes('avt-default-state');
-                      });
-                    });
-                  });
-
-                  hasSkippedDefaultAVT = componentTestData.suites.some(
-                    (suite) => {
-                      return suite.specs.some((spec) => {
-                        // Check if the spec has the tag 'avt-default-state'
-                        if (
-                          spec.tags &&
-                          spec.tags.includes('avt-default-state')
-                        ) {
-                          // Check if any test in the spec is skipped
-                          return spec.tests.some(
-                            (test) => test.status === 'skipped'
-                          );
-                        }
-                        return false;
-                      });
-                    }
-                  );
-
-                  // Check if the spec has the tag 'avt-advanced-states'
-                  hasAdvancedAVT = componentTestData.suites.some((suite) => {
-                    return suite.specs.some((spec) => {
-                      return spec.tags.some((tag) => {
-                        return tag.includes('avt-advanced-states');
-                      });
-                    });
-                  });
-
-                  hasSkippedAdvancedAVT = componentTestData.suites.some(
-                    (suite) => {
-                      return suite.specs.some((spec) => {
-                        // Check if the spec has the tag 'avt-advanced-states'
-                        if (
-                          spec.tags &&
-                          spec.tags.includes('avt-advanced-states')
-                        ) {
-                          // Check if any test in the spec is skipped
-                          return spec.tests.some(
-                            (test) => test.status === 'skipped'
-                          );
-                        }
-                        return false;
-                      });
-                    }
-                  );
-
-                  // Check if the spec has the tag 'avt-keyboard-nav'
-                  hasKeyboardNavAVT = componentTestData.suites.some((suite) => {
-                    return suite.specs.some((spec) => {
-                      return spec.tags.some((tag) => {
-                        return tag.includes('avt-keyboard-nav');
-                      });
-                    });
-                  });
-
-                  hasSkippedKeyboardNavAVT = componentTestData.suites.some(
-                    (suite) => {
-                      return suite.specs.some((spec) => {
-                        // Check if the spec has the tag 'avt-keyboard-nav'
-                        if (
-                          spec.tags &&
-                          spec.tags.includes('avt-keyboard-nav')
-                        ) {
-                          // Check if any test in the spec is skipped
-                          return spec.tests.some(
-                            (test) => test.status === 'skipped'
-                          );
-                        }
-                        return false;
-                      });
-                    }
-                  );
-                }
+                const {
+                  hasAVT: hasDefaultAVT,
+                  hasSkippedAVT: hasSkippedDefaultAVT,
+                } = checkAVTStatus(componentTestData, 'avt-default-state');
+                const {
+                  hasAVT: hasAdvancedAVT,
+                  hasSkippedAVT: hasSkippedAdvancedAVT,
+                } = checkAVTStatus(componentTestData, 'avt-advanced-states');
+                const {
+                  hasAVT: hasKeyboardNavAVT,
+                  hasSkippedAVT: hasSkippedKeyboardNavAVT,
+                } = checkAVTStatus(componentTestData, 'avt-keyboard-nav');
 
                 // tag for default AVT
                 let defaultAVTTag;
-
                 if (hasSkippedDefaultAVT == true) {
                   defaultAVTTag = PartiallyTestedTag;
                 } else if (hasDefaultAVT == true) {
@@ -166,7 +108,7 @@ class A11yStatus extends React.Component {
                   defaultAVTTag = NotTestedTag;
                 }
 
-                // tag for Advanced AVT
+                // tag for advanced AVT
                 let advancedAVTTag;
                 if (hasSkippedAdvancedAVT == true) {
                   advancedAVTTag = PartiallyTestedTag;
@@ -176,7 +118,7 @@ class A11yStatus extends React.Component {
                   advancedAVTTag = NotTestedTag;
                 }
 
-                // tag for Keyboard AVT
+                // tag for keyboard AVT
                 let keyboardNavAVTTag;
                 if (hasSkippedKeyboardNavAVT == true) {
                   keyboardNavAVTTag = PartiallyTestedTag;
@@ -188,7 +130,7 @@ class A11yStatus extends React.Component {
 
                 // tag for screen reader AVT
                 const screenReaderAVT =
-                  componentList.components[component].testing.screenreader;
+                  filteredComponentList[component].testing.screenreader;
                 let screenReaderAVTTag;
                 switch (screenReaderAVT) {
                   case 'manual':
@@ -197,15 +139,65 @@ class A11yStatus extends React.Component {
                   case 'partial':
                     screenReaderAVTTag = PartiallyTestedTag;
                     break;
+                  case 'notavailable':
+                    screenReaderAVTTag = NotAvailableTag;
+                    break;
                   default:
                     screenReaderAVTTag = NotTestedTag;
+                }
+
+                // let componentUrl;
+                // if (componentName === 'Multiselect') {
+                //   componentUrl = '/components/dropdown/usage';
+                // } else if (componentName === 'Combo box') {
+                //   componentUrl = '/components/dropdown/usage';
+                // } else if (componentName === 'UI shell') {
+                //   componentUrl = '/components/UI-shell-header/usage';
+                // } else {
+                //   componentUrl = `/components/${componentName
+                //     .toLowerCase()
+                //     .replace(' ', '-')}/usage`;
+                // }
+
+                let componentUrl;
+                if (componentName === 'Aspect ratio') {
+                  componentUrl = '/2x-grid/overview/#aspect-ratio';
+                } else if (
+                  componentName === 'Grid' ||
+                  componentName === 'FlexGrid'
+                ) {
+                  componentUrl = '/2x-grid/overview';
+                } else if (componentName === 'Theme') {
+                  componentUrl = '/guidelines/themes/overview/';
+                } else if (
+                  filteredComponentList[component]?.parentComponent !==
+                  undefined
+                ) {
+                  componentUrl = `/components/${filteredComponentList[
+                    component
+                  ].parentComponent
+                    .toLowerCase()
+                    .replace(' ', '-')}/usage`;
+                } else if (
+                  filteredComponentList[component].overview === false &&
+                  filteredComponentList[component].parentComponent === undefined
+                ) {
+                  componentUrl = null;
+                } else {
+                  componentUrl = `/components/${componentName
+                    .toLowerCase()
+                    .replace(' ', '-')}/usage`;
                 }
 
                 return (
                   <React.Fragment key={`avt-tests-${componentName}`}>
                     <tr>
                       <td>
-                        <a href={componentUrl}>{componentName}</a>
+                        {componentUrl === null ? (
+                          componentName
+                        ) : (
+                          <a href={componentUrl}>{componentName}</a>
+                        )}
                       </td>
                       <td>Default state</td>
                       <td>{defaultAVTTag}</td>
