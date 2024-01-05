@@ -156,6 +156,8 @@ class A11yStatus extends React.Component {
                   componentName === 'FlexGrid'
                 ) {
                   componentUrl = '/2x-grid/overview';
+                } else if (componentName === 'UI Shell') {
+                  componentUrl = '/components/UI-shell-header/usage';
                 } else if (componentName === 'Theme') {
                   componentUrl = '/guidelines/themes/overview/';
                 }
