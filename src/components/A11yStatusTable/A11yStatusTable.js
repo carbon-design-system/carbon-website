@@ -10,14 +10,15 @@ import packageJson from '../../../package.json';
 import { table } from './a11y-status-table.module.scss';
 
 const A11yStatusTable = ({ components }) => {
-  const filteredComponentList = componentList.components.filter(
-    (item) => item.a11ystatus !== false
-  );
   const reactVersion = packageJson.dependencies['@carbon/react'];
 
-  // TODO: filter table and only display components listed
-  // default is to display full list
-  console.log(components);
+  // filter data to only display components listed
+  const filteredComponentList =
+    components && components.length
+      ? componentList.components.filter((item) =>
+          components.includes(item.component)
+        )
+      : componentList.components.filter((item) => item.a11ystatus !== false);
 
   return (
     <div className="cds--row">
@@ -236,7 +237,10 @@ A11yStatusTable.propTypes = {
   /**
    * Components to render in the table
    */
-  components: PropTypes.object,
+  components: PropTypes.oneOfType([
+    PropTypes.string, // for a single component
+    PropTypes.arrayOf(PropTypes.string), // for multiple components
+  ]),
 };
 
 export default A11yStatusTable;
