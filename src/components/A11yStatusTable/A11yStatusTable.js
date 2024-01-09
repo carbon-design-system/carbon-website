@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { DefinitionTooltip, Link } from '@carbon/react';
 import A11yStatusTag from '../A11yStatusTag';
-import { Launch } from '@carbon/icons-react';
+import { ArrowRight, Launch } from '@carbon/icons-react';
 import componentList from '../../data/components.json';
 import * as avtTestData from '@carbon/react/.playwright/INTERNAL_AVT_REPORT_DO_NOT_USE.json';
 import packageJson from '../../../package.json';
@@ -12,19 +12,22 @@ import { table } from './a11y-status-table.module.scss';
 const A11yStatusTable = ({ components }) => {
   const reactVersion = packageJson.dependencies['@carbon/react'];
 
+  // Check if 'components' is a string and convert it to an array
+  const componentsArray =
+    typeof components === 'string' ? [components] : components;
+
+  // Check if 'componentsArray' exists and has elements
   const filteredComponentList =
-    components && components.length
-      ? // Filter components based on if they exist in 'componentList.components'
-        components
+    componentsArray && componentsArray.length
+      ? // If 'componentsArray' is valid, filter 'componentList.components' based on the order of 'componentsArray'
+        componentsArray
           .map((component) =>
-            // For each component, find the corresponding item in 'componentList.components' based on the 'component' property
             componentList.components.find(
               (item) => item.component === component
             )
           )
-          // Filter out items that are either undefined or have 'a11ystatus' set to false
-          .filter((item) => item && item.a11ystatus !== false)
-      : // If 'components' is undefined or empty, filter 'componentList.components' directly based on 'a11ystatus'
+          .filter((item) => item !== undefined)
+      : // If 'componentsArray' is not provided or is empty, filter based on 'a11ystatus'
         componentList.components.filter((item) => item.a11ystatus !== false);
 
   return (
@@ -270,6 +273,21 @@ const A11yStatusTable = ({ components }) => {
             })}
           </tbody>
         </table>
+        {components && (
+          <p>
+            <Link
+              href="/components/overview/accessibility-status"
+              renderIcon={() => <ArrowRight />}>
+              Learn more about tag and test statuses
+            </Link>
+            <br />
+            <Link
+              href="/components/overview/accessibility-status#all-component-accessibility-status"
+              renderIcon={() => <ArrowRight />}>
+              View all component accessibility statuses
+            </Link>
+          </p>
+        )}
       </div>
     </div>
   );
