@@ -151,16 +151,21 @@ class A11yStatus extends React.Component {
                 let componentUrl;
                 if (componentName === 'Aspect ratio') {
                   componentUrl = '/2x-grid/overview/#aspect-ratio';
-                } else if (
-                  componentName === 'Grid' ||
-                  componentName === 'FlexGrid'
-                ) {
-                  componentUrl = '/2x-grid/overview';
+                } else if (componentName === 'Grid') {
+                  componentUrl = '/guidelines/2x-grid/code#css-grid';
+                } else if (componentName === 'Flex grid') {
+                  componentUrl = '/guidelines/2x-grid/code#flexbox-grid';
                 } else if (componentName === 'UI Shell') {
                   componentUrl = '/components/UI-shell-header/usage';
                 } else if (componentName === 'Theme') {
                   componentUrl = '/guidelines/themes/overview/';
+                } else if (componentName === 'Skeleton') {
+                  componentUrl = '/patterns/loading-pattern/#skeleton-states';
+                } else if (componentName === 'Layer') {
+                  componentUrl =
+                    '/guidelines/color/usage#implementing-layering';
                 }
+
                 // if a parent component is set link to the parent component
                 else if (filteredComponentList[component].parentComponent) {
                   componentUrl = `/components/${filteredComponentList[
