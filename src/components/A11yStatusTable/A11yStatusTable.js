@@ -1,25 +1,21 @@
 /* eslint-disable global-require */
 import React from 'react';
-import { Link, Tag } from '@carbon/react';
+import { Link } from '@carbon/react';
+import A11yStatusTag from '../A11yStatusTag';
 import { Launch } from '@carbon/icons-react';
 import componentList from '../../data/components.json';
 import * as avtTestData from '@carbon/react/.playwright/INTERNAL_AVT_REPORT_DO_NOT_USE.json';
 import packageJson from '../../../package.json';
 
-import { table } from './a11y-status.module.scss';
+import { table } from './a11y-status-table.module.scss';
 
 const filteredComponentList = componentList.components.filter(
   (item) => item.a11ystatus !== false
 );
 
-class A11yStatus extends React.Component {
+class A11yStatusTable extends React.Component {
   render() {
     const reactVersion = packageJson.dependencies['@carbon/react'];
-    const TestedTag = <Tag type="green">Tested</Tag>;
-    const NotTestedTag = <Tag type="purple">Not yet tested</Tag>;
-    const PartiallyTestedTag = <Tag type="blue">Partially tested</Tag>;
-    const ManuallyTestedTag = <Tag type="teal">Manually tested</Tag>;
-    const NotAvailableTag = <Tag>Not available</Tag>;
 
     return (
       <div className="cds--row">
@@ -102,31 +98,31 @@ class A11yStatus extends React.Component {
                 // tag for default AVT
                 let defaultAVTTag;
                 if (hasSkippedDefaultAVT == true) {
-                  defaultAVTTag = PartiallyTestedTag;
+                  defaultAVTTag = <A11yStatusTag tag="partial" />;
                 } else if (hasDefaultAVT == true) {
-                  defaultAVTTag = TestedTag;
+                  defaultAVTTag = <A11yStatusTag tag="tested" />;
                 } else {
-                  defaultAVTTag = NotTestedTag;
+                  defaultAVTTag = <A11yStatusTag tag="nottested" />;
                 }
 
                 // tag for advanced AVT
                 let advancedAVTTag;
                 if (hasSkippedAdvancedAVT == true) {
-                  advancedAVTTag = PartiallyTestedTag;
+                  advancedAVTTag = <A11yStatusTag tag="partial" />;
                 } else if (hasAdvancedAVT == true) {
-                  advancedAVTTag = TestedTag;
+                  advancedAVTTag = <A11yStatusTag tag="tested" />;
                 } else {
-                  advancedAVTTag = NotTestedTag;
+                  advancedAVTTag = <A11yStatusTag tag="nottested" />;
                 }
 
                 // tag for keyboard AVT
                 let keyboardNavAVTTag;
                 if (hasSkippedKeyboardNavAVT == true) {
-                  keyboardNavAVTTag = PartiallyTestedTag;
+                  keyboardNavAVTTag = <A11yStatusTag tag="partial" />;
                 } else if (hasKeyboardNavAVT == true) {
-                  keyboardNavAVTTag = TestedTag;
+                  keyboardNavAVTTag = <A11yStatusTag tag="tested" />;
                 } else {
-                  keyboardNavAVTTag = NotAvailableTag;
+                  keyboardNavAVTTag = <A11yStatusTag tag="notavailable" />;
                 }
 
                 // tag for screen reader AVT
@@ -135,16 +131,16 @@ class A11yStatus extends React.Component {
                 let screenReaderAVTTag;
                 switch (screenReaderAVT) {
                   case 'manual':
-                    screenReaderAVTTag = ManuallyTestedTag;
+                    screenReaderAVTTag = <A11yStatusTag tag="manual" />;
                     break;
                   case 'partial':
-                    screenReaderAVTTag = PartiallyTestedTag;
+                    screenReaderAVTTag = <A11yStatusTag tag="partial" />;
                     break;
                   case 'notavailable':
-                    screenReaderAVTTag = NotAvailableTag;
+                    screenReaderAVTTag = <A11yStatusTag tag="notavailable" />;
                     break;
                   default:
-                    screenReaderAVTTag = NotTestedTag;
+                    screenReaderAVTTag = <A11yStatusTag tag="nottested" />;
                 }
 
                 // link for component name in table
@@ -237,4 +233,4 @@ class A11yStatus extends React.Component {
   }
 }
 
-export default A11yStatus;
+export default A11yStatusTable;
