@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from '@carbon/react';
+import { DefinitionTooltip, Link } from '@carbon/react';
 import A11yStatusTag from '../A11yStatusTag';
 import { Launch } from '@carbon/icons-react';
 import componentList from '../../data/components.json';
@@ -195,7 +195,14 @@ const A11yStatusTable = ({ components }) => {
                         <a href={componentUrl}>{componentName}</a>
                       )}
                     </td>
-                    <td>Default state</td>
+                    <td>
+                      {' '}
+                      <DefinitionTooltip
+                        openOnHover
+                        definition="Test(s) that ensure the initial render state of a component is accessible.">
+                        Default state
+                      </DefinitionTooltip>
+                    </td>
                     <td>{defaultAVTTag}</td>
                     <td>
                       <Link
@@ -207,19 +214,38 @@ const A11yStatusTable = ({ components }) => {
                   </tr>
                   <tr>
                     <td></td>
-                    <td>Advanced states</td>
+                    <td>
+                      <DefinitionTooltip
+                        openOnHover
+                        definition="Tests that ensure additional states of the component are accessible. This could be interactive states of a component or its multiple variants.">
+                        Advanced states
+                      </DefinitionTooltip>
+                    </td>
                     <td>{advancedAVTTag}</td>
                     <td></td>
                   </tr>
                   <tr>
                     <td></td>
-                    <td>Keyboard states</td>
+                    <td>
+                      {' '}
+                      <DefinitionTooltip
+                        openOnHover
+                        definition="Tests that ensure focus is properly managed, and all interactive functions of a component have a proper keyboard-accessible equivalent.">
+                        Keyboard navigation
+                      </DefinitionTooltip>
+                    </td>
                     <td>{keyboardNavAVTTag}</td>
                     <td></td>
                   </tr>
                   <tr>
                     <td></td>
-                    <td>Screen reader</td>
+                    <td>
+                      <DefinitionTooltip
+                        openOnHover
+                        definition="This manual testing ensures that the visual information on the screen is properly conveyed and read correctly by screen readers such as JAWS, VoiceOver, and NVDA.">
+                        Screen reader
+                      </DefinitionTooltip>
+                    </td>
                     <td>{screenReaderAVTTag}</td>
                     <td></td>
                   </tr>
