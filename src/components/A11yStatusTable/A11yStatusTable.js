@@ -12,13 +12,20 @@ import { table } from './a11y-status-table.module.scss';
 const A11yStatusTable = ({ components }) => {
   const reactVersion = packageJson.dependencies['@carbon/react'];
 
-  // filter data to only display components listed
   const filteredComponentList =
     components && components.length
-      ? componentList.components.filter((item) =>
-          components.includes(item.component)
-        )
-      : componentList.components.filter((item) => item.a11ystatus !== false);
+      ? // Filter components based on if they exist in 'componentList.components'
+        components
+          .map((component) =>
+            // For each component, find the corresponding item in 'componentList.components' based on the 'component' property
+            componentList.components.find(
+              (item) => item.component === component
+            )
+          )
+          // Filter out items that are either undefined or have 'a11ystatus' set to false
+          .filter((item) => item && item.a11ystatus !== false)
+      : // If 'components' is undefined or empty, filter 'componentList.components' directly based on 'a11ystatus'
+        componentList.components.filter((item) => item.a11ystatus !== false);
 
   return (
     <div className="cds--row">
@@ -60,7 +67,9 @@ const A11yStatusTable = ({ components }) => {
                 let hasAVT = false;
                 let hasSkippedAVT = false;
 
+                // Check if componentTestData exists
                 if (componentTestData) {
+                  // Check for the presence of the specified tag in any spec
                   hasAVT = componentTestData.suites.some((suite) => {
                     const searchSuites = suite.suites || [suite];
                     return searchSuites.some((innerSuite) =>
@@ -70,6 +79,8 @@ const A11yStatusTable = ({ components }) => {
                     );
                   });
 
+                  // Check if any spec with the specified tag has tests with status 'skipped'
+                  // this will render partially tested tag
                   hasSkippedAVT = componentTestData.suites.some((suite) =>
                     (suite.suites || [suite]).some((innerSuite) =>
                       innerSuite.specs.some(
@@ -84,14 +95,19 @@ const A11yStatusTable = ({ components }) => {
                 return { hasAVT, hasSkippedAVT };
               }
 
+              // Check AVT status for 'avt-default-state'
               const {
                 hasAVT: hasDefaultAVT,
                 hasSkippedAVT: hasSkippedDefaultAVT,
               } = checkAVTStatus(componentTestData, 'avt-default-state');
+
+              // Check AVT status for 'avt-advanced-states'
               const {
                 hasAVT: hasAdvancedAVT,
                 hasSkippedAVT: hasSkippedAdvancedAVT,
               } = checkAVTStatus(componentTestData, 'avt-advanced-states');
+
+              // Check AVT status for 'avt-keyboard-nav'
               const {
                 hasAVT: hasKeyboardNavAVT,
                 hasSkippedAVT: hasSkippedKeyboardNavAVT,
