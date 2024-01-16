@@ -1,13 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { DefinitionTooltip, Link } from '@carbon/react';
+import {
+  DefinitionTooltip,
+  Link,
+  Toggletip,
+  ToggletipButton,
+  ToggletipContent,
+} from '@carbon/react';
 import A11yStatusTag from '../A11yStatusTag';
-import { ArrowRight, Launch } from '@carbon/icons-react';
+import H2 from 'gatsby-theme-carbon/src/components/markdown/H2';
+import H3 from 'gatsby-theme-carbon/src/components/markdown/H3';
+import { ArrowRight, Help, Launch } from '@carbon/icons-react';
 import componentList from '../../data/components.json';
 import * as avtTestData from '@carbon/react/.playwright/INTERNAL_AVT_REPORT_DO_NOT_USE.json';
 import packageJson from '../../../package.json';
 
-import { table } from './a11y-status-table.module.scss';
+import { help, table, version } from './a11y-status-table.module.scss';
 
 const A11yStatusTable = ({ components }) => {
   const reactVersion = packageJson.dependencies['@carbon/react'];
@@ -30,10 +38,45 @@ const A11yStatusTable = ({ components }) => {
       : // If 'componentsArray' is not provided or is empty, filter based on 'a11ystatus'
         componentList.components.filter((item) => item.a11ystatus !== false);
 
+  const helpTooltip = (
+    <Toggletip className={help}>
+      <ToggletipButton label="Help">
+        <Help size={20} />
+      </ToggletipButton>
+      <ToggletipContent>
+        <p>
+          For every latest release, Carbon runs tests on all components to meet
+          the{' '}
+          <Link
+            inline
+            href="https://www.ibm.com/able/requirements/requirements/">
+            accessibility requirements
+          </Link>
+          . These different statuses report the work that Carbon has done in the
+          back end. These tests appear only when the components are stable.
+        </p>
+      </ToggletipContent>
+    </Toggletip>
+  );
+
   return (
     <div className="cds--row">
       <div className="cds--col-lg-12">
-        <p>
+        {components ? (
+          <H3>
+            Accessibility testing status
+            {helpTooltip}
+          </H3>
+        ) : (
+          <>
+            <H2>All component accessibility status{helpTooltip}</H2>
+            <p>
+              This table reflects the current AVT status of stable components
+              within @carbon/react.
+            </p>
+          </>
+        )}
+        <p className={version}>
           <strong>Latest version:</strong> {reactVersion} |{' '}
           <strong>Framework</strong> React (@carbon/react)
         </p>

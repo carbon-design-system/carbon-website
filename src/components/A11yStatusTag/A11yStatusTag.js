@@ -9,31 +9,31 @@ const A11yStatusTag = ({ tag, tooltip }) => {
     tested: {
       color: 'green',
       text: 'Tested',
-      definition: 'Tests have been implemented, pass, and show no violations ',
+      definition:
+        'Passes all automated tests with no reported accessibility violations.',
     },
     partial: {
       color: 'blue',
       text: 'Partially tested',
       definition:
-        'Some testing has been done, but is still incomplete and in progress.',
+        'Some tests are incomplete, in progress, invalid, or temporarily skipped.',
     },
     manual: {
       color: 'teal',
       text: 'Manually tested',
       definition:
-        'Manual testing has been performed and validated by a human to ensure proper accessibility, such as screen reader testing.',
+        'A human has manually tested this component, e.g. screen reader testing.',
     },
     notavailable: {
       color: 'gray',
       text: 'Not available',
       definition:
-        'In some cases, testing data is not available for certain components or component states. For instance, keyboard navigation testing is not necessary for components that are non-interactive.',
+        'Test data is either not available or not applicable for this component state.',
     },
     nottested: {
       color: 'purple',
       text: 'Not tested',
-      definition:
-        'Manual and/or automated testing has been deferred. Most often this applies to experimental or unstable components',
+      definition: 'Automated or manual testing has been temporarily deferred.',
     },
   };
 
