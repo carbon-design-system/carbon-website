@@ -15,7 +15,12 @@ import componentList from '../../data/components.json';
 import * as avtTestData from '@carbon/react/.playwright/INTERNAL_AVT_REPORT_DO_NOT_USE.json';
 import packageJson from '../../../package.json';
 
-import { help, table, version } from './a11y-status-table.module.scss';
+import {
+  help,
+  moreLink,
+  table,
+  version,
+} from './a11y-status-table.module.scss';
 
 const A11yStatusTable = ({ components }) => {
   const reactVersion = packageJson.dependencies['@carbon/react'];
@@ -317,7 +322,7 @@ const A11yStatusTable = ({ components }) => {
           </tbody>
         </table>
         {components && (
-          <p>
+          <p className={moreLink}>
             <Link
               href="/components/overview/accessibility-status"
               renderIcon={() => <ArrowRight />}>
