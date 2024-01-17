@@ -107,8 +107,6 @@ const A11yStatusTable = ({ components }) => {
                 .replace(/\b\w/g, (char) => char.toUpperCase())
                 .replace(/\s+/g, '')}`;
 
-              console.log(componentName, +' : ', githubUrl);
-
               // Function to check if the spec has a specific tag and
               // if the status is skipped
               function checkAVTStatus(componentTestData, tag) {
