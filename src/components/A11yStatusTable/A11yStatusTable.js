@@ -105,7 +105,9 @@ const A11yStatusTable = ({ components }) => {
 
               const githubUrl = `https://github.com/carbon-design-system/carbon/tree/main/packages/react/src/components/${componentName
                 .replace(/\b\w/g, (char) => char.toUpperCase())
-                .replace(' ', '')}`;
+                .replace(/\s+/g, '')}`;
+
+              console.log(componentName, +' : ', githubUrl);
 
               // Function to check if the spec has a specific tag and
               // if the status is skipped
