@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   DefinitionTooltip,
@@ -20,12 +20,14 @@ import packageJson from '../../../package.json';
 
 import {
   cardGroup,
+  dropdown,
   help,
+  hidden,
   moreLink,
   table,
   variant,
   version,
-} from './a11y-status.module.scss';
+} from './A11yStatus.module.scss';
 
 const A11yStatus = ({ components, layout }) => {
   const reactVersion = packageJson.dependencies['@carbon/react'];
@@ -68,6 +70,13 @@ const A11yStatus = ({ components, layout }) => {
       </ToggletipContent>
     </Toggletip>
   );
+
+  const [selectedComponent, setSelectedComponent] = useState(
+    components ? components[0] : null
+  );
+  const onComponentChange = (selectedItem) => {
+    setSelectedComponent(selectedItem);
+  };
 
   const componentA11yData = Object.keys(filteredComponentList).map(
     (component) => {
@@ -218,16 +227,29 @@ const A11yStatus = ({ components, layout }) => {
           .replace(' ', '-')}/usage`;
       }
 
+      const accessibilityPageUrl =
+        location.pathname.replace(/\/[^\/]+\/?$/, '') +
+        '/accessibility#accessibility-testing-status';
+
+      console.log('Original pathname:', location.pathname);
+      console.log('Modified URL:', accessibilityPageUrl);
+
       if (layout === 'cards') {
         return (
           <React.Fragment key={`avt-tests-${componentName}`}>
             <Row
-              className={`${cardGroup} resource-card-group`}
+              className={`${cardGroup} ${
+                selectedComponent.selectedItem === componentName ||
+                selectedComponent === componentName ||
+                !Array.isArray(components)
+                  ? ''
+                  : hidden
+              }`}
               id={componentName}>
               <Column colLg={4} colMd={4} noGutterSm>
                 <ResourceCard
                   title="Default state"
-                  href="#"
+                  href={accessibilityPageUrl}
                   actionIcon="arrowRight">
                   {defaultAVTTag}
                 </ResourceCard>
@@ -235,7 +257,7 @@ const A11yStatus = ({ components, layout }) => {
               <Column colLg={4} colMd={4} noGutterSm>
                 <ResourceCard
                   title="Advanced states"
-                  href="#"
+                  href={accessibilityPageUrl}
                   actionIcon="arrowRight">
                   {advancedAVTTag}
                 </ResourceCard>
@@ -243,7 +265,7 @@ const A11yStatus = ({ components, layout }) => {
               <Column colLg={4} colMd={4} noGutterSm>
                 <ResourceCard
                   title="Screen reader"
-                  href="#"
+                  href={accessibilityPageUrl}
                   actionIcon="arrowRight">
                   {screenReaderAVTTag}
                 </ResourceCard>
@@ -251,7 +273,7 @@ const A11yStatus = ({ components, layout }) => {
               <Column colLg={4} colMd={4} noGutterSm>
                 <ResourceCard
                   title="Keyboard navigation"
-                  href="#"
+                  href={accessibilityPageUrl}
                   actionIcon="arrowRight">
                   {keyboardNavAVTTag}
                 </ResourceCard>
@@ -267,7 +289,7 @@ const A11yStatus = ({ components, layout }) => {
                 {componentUrl === null ? (
                   componentName
                 ) : (
-                  <a href={componentUrl}>{componentName}</a>
+                  <Link href={componentUrl}>{componentName}</Link>
                 )}
               </td>
               <td>
@@ -330,22 +352,22 @@ const A11yStatus = ({ components, layout }) => {
     }
   );
 
-  const onComponentChange = (item) => {
-    console.log(item);
-  };
-
   if (layout === 'cards') {
     return (
       <>
-        <H3>
-          Accessibility testing status
+        <H3 id="accessibility-testing-status">
+          <span id="accessibility-testing-status">
+            Accessibility testing status
+          </span>
           {helpTooltip}
         </H3>
+        {/* Only display the dropdown if there are multiple components being displayed */}
         {Array.isArray(components) && (
           <Row className={variant}>
             <Column sm={2} colMd={4} colLg={4} noGutterSm>
               <FluidDropdown
                 isCondensed
+                className={dropdown}
                 id="variant"
                 titleText="Variant"
                 label="Variant"
@@ -364,8 +386,10 @@ const A11yStatus = ({ components, layout }) => {
       <Row>
         <Column colLg={12}>
           {components ? (
-            <H3>
-              Accessibility testing status
+            <H3 id="accessibility-testing-status">
+              <span id="accessibility-testing-status">
+                Accessibility testing status
+              </span>
               {helpTooltip}
             </H3>
           ) : (
