@@ -15,14 +15,9 @@ import componentList from '../../data/components.json';
 import * as avtTestData from '@carbon/react/.playwright/INTERNAL_AVT_REPORT_DO_NOT_USE.json';
 import packageJson from '../../../package.json';
 
-import {
-  help,
-  moreLink,
-  table,
-  version,
-} from './a11y-status-table.module.scss';
+import { help, moreLink, table, version } from './a11y-status.module.scss';
 
-const A11yStatusTable = ({ components }) => {
+const A11yStatus = ({ components }) => {
   const reactVersion = packageJson.dependencies['@carbon/react'];
 
   // Check if 'components' is a string and convert it to an array
@@ -341,7 +336,7 @@ const A11yStatusTable = ({ components }) => {
   );
 };
 
-A11yStatusTable.propTypes = {
+A11yStatus.propTypes = {
   /**
    * Components to render in the table
    */
@@ -351,4 +346,4 @@ A11yStatusTable.propTypes = {
   ]),
 };
 
-export default A11yStatusTable;
+export default A11yStatus;
