@@ -254,7 +254,7 @@ const A11yStatus = ({ components }) => {
                       {componentUrl === null ? (
                         componentName
                       ) : (
-                        <a href={componentUrl}>{componentName}</a>
+                        <Link href={componentUrl}>{componentName}</Link>
                       )}
                     </td>
                     <td>
