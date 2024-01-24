@@ -141,9 +141,9 @@ const A11yStatus = ({ components, layout }) => {
 
       // tag for default AVT
       let defaultAVTTag;
-      if (hasSkippedDefaultAVT == true) {
+      if (hasSkippedDefaultAVT) {
         defaultAVTTag = <A11yStatusTag tag="partial" />;
-      } else if (hasDefaultAVT == true) {
+      } else if (hasDefaultAVT) {
         defaultAVTTag = <A11yStatusTag tag="tested" />;
       } else {
         defaultAVTTag = <A11yStatusTag tag="nottested" />;
@@ -151,9 +151,9 @@ const A11yStatus = ({ components, layout }) => {
 
       // tag for advanced AVT
       let advancedAVTTag;
-      if (hasSkippedAdvancedAVT == true) {
+      if (hasSkippedAdvancedAVT) {
         advancedAVTTag = <A11yStatusTag tag="partial" />;
-      } else if (hasAdvancedAVT == true) {
+      } else if (hasAdvancedAVT) {
         advancedAVTTag = <A11yStatusTag tag="tested" />;
       } else {
         advancedAVTTag = <A11yStatusTag tag="nottested" />;
@@ -161,9 +161,9 @@ const A11yStatus = ({ components, layout }) => {
 
       // tag for keyboard AVT
       let keyboardNavAVTTag;
-      if (hasSkippedKeyboardNavAVT == true) {
+      if (hasSkippedKeyboardNavAVT) {
         keyboardNavAVTTag = <A11yStatusTag tag="partial" />;
-      } else if (hasKeyboardNavAVT == true) {
+      } else if (hasKeyboardNavAVT) {
         keyboardNavAVTTag = <A11yStatusTag tag="tested" />;
       } else {
         keyboardNavAVTTag = <A11yStatusTag tag="notavailable" />;
