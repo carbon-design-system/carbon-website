@@ -1,5 +1,5 @@
-import React from 'react';
-import { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { globalHistory } from '@reach/router';
 import PropTypes from 'prop-types';
 import {
   DefinitionTooltip,
@@ -228,11 +228,8 @@ const A11yStatus = ({ components, layout }) => {
       }
 
       const accessibilityPageUrl =
-        location.pathname.replace(/\/[^\/]+\/?$/, '') +
+        globalHistory.location.pathname.replace(/\/[^\/]+\/?$/, '') +
         '/accessibility#accessibility-testing-status';
-
-      console.log('Original pathname:', location.pathname);
-      console.log('Modified URL:', accessibilityPageUrl);
 
       if (layout === 'cards') {
         return (
