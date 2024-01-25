@@ -15,7 +15,13 @@ import componentList from '../../data/components.json';
 import * as avtTestData from '@carbon/react/.playwright/INTERNAL_AVT_REPORT_DO_NOT_USE.json';
 import packageJson from '../../../package.json';
 
-import { help, moreLink, table, version } from './a11y-status.module.scss';
+import {
+  headingLink,
+  help,
+  moreLink,
+  table,
+  version,
+} from './a11y-status.module.scss';
 
 const A11yStatus = ({ components }) => {
   const reactVersion = packageJson.dependencies['@carbon/react'];
@@ -69,7 +75,14 @@ const A11yStatus = ({ components }) => {
           </H3>
         ) : (
           <>
-            <H2>All component accessibility status{helpTooltip}</H2>
+            <span
+              id="all-component-accessibility-status-anchor"
+              className={headingLink}></span>
+            <H2>
+              <span id="all-component-accessibility-status"></span>
+              All component accessibility status
+              {helpTooltip}
+            </H2>
             <p>
               This table reflects the current AVT status of stable components
               within @carbon/react.
@@ -321,13 +334,13 @@ const A11yStatus = ({ components }) => {
             <Link
               href="/components/overview/accessibility-status"
               renderIcon={() => <ArrowRight />}>
-              Learn more about tag and test statuses
+              Learn more about tag and test meaning
             </Link>
             <br />
             <Link
-              href="/components/overview/accessibility-status#all-component-accessibility-status"
+              href="/components/overview/accessibility-status#all-component-accessibility-status-anchor"
               renderIcon={() => <ArrowRight />}>
-              View all component accessibility statuses
+              View all component accessibility status
             </Link>
           </p>
         )}
