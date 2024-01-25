@@ -290,7 +290,6 @@ const A11yStatus = ({ components, layout }) => {
                 )}
               </td>
               <td>
-                {' '}
                 <DefinitionTooltip
                   openOnHover
                   definition="Test(s) that ensure the initial render state of a component is accessible.">
@@ -321,7 +320,6 @@ const A11yStatus = ({ components, layout }) => {
             <tr>
               <td></td>
               <td>
-                {' '}
                 <DefinitionTooltip
                   openOnHover
                   definition="Tests that ensure focus is properly managed, and all interactive functions of a component have a proper keyboard-accessible equivalent.">
