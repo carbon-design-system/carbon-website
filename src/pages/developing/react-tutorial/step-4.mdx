@@ -1,8 +1,8 @@
 ---
 title: 4. Creating components
 description:
-  Welcome to Carbon! This tutorial will guide you in creating a React app with
-  the Carbon Design System.
+  Welcome to Carbon! This tutorial will guide you in creating a React app using
+  Next.js with the Carbon Design System.
 tabs:
   [
     'Overview',
@@ -21,8 +21,8 @@ import Preview from 'components/Preview';
 <PageDescription>
 
 With two pages comprised entirely of Carbon components, let's revisit the
-landing page and build a couple components of our own by using Carbon icons and
-tokens.
+landing page and build a couple components of our own by using Carbon pictograms
+and tokens.
 
 </PageDescription>
 
@@ -49,13 +49,14 @@ Next, we're going to use Carbon assets to build application-specific components.
 We'll do so by including accessibility and responsive considerations all
 throughout.
 
-A [preview](https://v11-react-step-5--carbon-tutorial.netlify.app) of what
-you'll build (see bottom of page):
+A
+[preview](https://carbon-tutorial-nextjs-9hg9rmepp-carbon-design-system.vercel.app/)
+of what you'll build (see bottom of page):
 
 <Preview
   height="400"
-  title="Carbon Tutorial Step 4"
-  src="https://v11-react-step-5--carbon-tutorial.netlify.app"
+  title="Carbon Next Tutorial Step 4"
+  src="https://carbon-tutorial-nextjs-9hg9rmepp-carbon-design-system.vercel.app/"
   frameborder="no"
   allowtransparency="true"
   allowfullscreen="true"
@@ -64,10 +65,10 @@ you'll build (see bottom of page):
 ## Fork, clone and branch
 
 This tutorial has an accompanying GitHub repository called
-[carbon-tutorial](https://github.com/carbon-design-system/carbon-tutorial) that
-we'll use as a starting point for each step. If you haven't forked and cloned
-that repository yet, and haven't added the upstream remote, go ahead and do so
-by following the
+[carbon-tutorial-nextjs](https://github.com/carbon-design-system/carbon-tutorial-nextjs)
+that we'll use as a starting point for each step. If you haven't forked and
+cloned that repository yet, and haven't added the upstream remote, go ahead and
+do so by following the
 [step 1 instructions](/developing/react-tutorial/step-1#fork-clone-and-branch).
 
 ### Branch
@@ -77,7 +78,7 @@ step's starting point.
 
 ```bash
 git fetch upstream
-git checkout -b v11-react-step-4 upstream/v11-react-step-4
+git checkout -b v11-next-step-4 upstream/v11-next-step-4
 ```
 
 <InlineNotification>
@@ -100,7 +101,7 @@ yarn
 Then, start the app:
 
 ```bash
-yarn start
+yarn dev
 ```
 
 You should see something similar to where the
@@ -130,43 +131,34 @@ components. Create these files:
 ```bash
 src/components/Info
 ├──_info.scss
-├──index.js
 └──Info.js
 ```
 
 Import `_info.scss` in `app.scss` after all of the `tutorial-header.scss`
 import.
 
-```scss path=src/app.scss
-@use './components/Info/info';
-```
-
-Like our other components, `index.js` will serve as an entrypoint. Since
-`Info.js` will export multiple components, we'll use the `*` wildcard in the
-entrypoint export.
-
-```javascript path=src/components/Info/index.js
-export * from './Info';
+```scss path=src/app/globals.scss
+@use '@/components/Info/info';
 ```
 
 ### InfoSection component
 
 Let's create the parent component that includes the "The Principles" heading.
-That markup currently looks like this in `LandingPage.js`:
+That markup currently looks like this in `LandingPage`:
 
-```jsx path=src/content/LandingPage/LandingPage.js
+```jsx path=src/app/home/page.js
 <Column lg={16} md={8} sm={4} className="landing-page__r3">
   <Grid>
-    <Column md={4} lg={4}>
+    <Column lg={4} md={4} sm={4}>
       <h3 className="landing-page__label">The Principles</h3>
     </Column>
-    <Column md={4} lg={4}>
+    <Column lg={4} md={4} sm={4}>
       Carbon is Open
     </Column>
-    <Column md={4} lg={4}>
+    <Column lg={4} md={4} sm={4}>
       Carbon is Modular
     </Column>
-    <Column md={4} lg={4}>
+    <Column lg={4} md={4} sm={4}>
       Carbon is Consistent
     </Column>
   </Grid>
@@ -190,7 +182,6 @@ Using `props` we can render any heading and any number of children components
 (`InfoCard` that we'll build soon.)
 
 ```javascript path=src/components/Info/Info.js
-import React from 'react';
 import { Grid, Column } from '@carbon/react';
 
 const InfoSection = (props) => (
@@ -249,22 +240,32 @@ In doing so, we:
 ## Use components
 
 Nothing is styled yet, but with our components built let's put them to use. In
-`LandingPage.js`, import the components towards the top of the file.
+`LandingPage`, import the components towards the top of the file.
 
-```javascript path=src/content/LandingPage/LandingPage.js
-import { InfoSection, InfoCard } from '../../components/Info';
+```javascript path=src/app/home/page.js
+import { InfoSection, InfoCard } from '@/components/Info/Info';
 ```
 
-While we're at the top of `LandingPage.js`, import the icons that we'll need as
-well.
+Next, we will install the pictograms we will use in the header.
 
-```javascript path=src/content/LandingPage/LandingPage.js
-import { Globe, Application, PersonFavorite } from '@carbon/react/icons';
+```bash
+yarn add @carbon/pictograms-react
+```
+
+While we're at the top of `LandingPage`, import the pictograms that we'll need
+as well.
+
+```javascript path=src/app/home/page.js
+import {
+  Advocate,
+  Globe,
+  AcceleratingTransformation,
+} from '@carbon/pictograms-react';
 ```
 
 With everything imported, replace the current:
 
-```jsx path=src/content/LandingPage/LandingPage.js
+```jsx path=src/app/home/page.js
 <Grid>
   <Column md={4} lg={4}>
     <h3 className="landing-page__label">The Principles</h3>
@@ -283,17 +284,17 @@ With everything imported, replace the current:
 
 With the new components:
 
-```javascript path=src/content/LandingPage/LandingPage.js
+```javascript path=src/app/home/page.js
 <InfoSection heading="The Principles" className="landing-page__r3">
   <InfoCard
     heading="Carbon is Open"
     body="It's a distributed effort, guided by the principles of the open-source movement. Carbon's users are also it's makers, and everyone is encouraged to contribute."
-    icon={() => <PersonFavorite size={32} />}
+    icon={() => <Advocate size={32} />}
   />
   <InfoCard
     heading="Carbon is Modular"
     body="Carbon's modularity ensures maximum flexibility in execution. It's components are designed to work seamlessly with each other, in whichever combination suits the needs of the user."
-    icon={() => <Application size={32} />}
+    icon={() => <AcceleratingTransformation size={32} />}
   />
   <InfoCard
     heading="Carbon is Consistent"
@@ -416,12 +417,12 @@ const InfoCard = (props) => {
 ```
 
 Finally, add the declaration block in `_info.scss` to set `InfoCard` body copy
-styles and to bottom-align the icons.
+styles and to bottom-align the pictograms.
 
 ```scss path=src/components/Info/_info.scss
 .info-card__body {
   margin-top: $spacing-06;
-  flex-grow: 1; // fill space so icons are bottom aligned
+  flex-grow: 1; // fill space so pictograms are bottom aligned
   @include type-style('body-long-01');
 
   // prevent large line lengths between small and medium viewports
@@ -473,7 +474,7 @@ git add --all && git commit -m "feat(tutorial): complete step 4"
 Then, push to your repository:
 
 ```bash
-git push origin v11-react-step-4
+git push origin v11-next-step-4
 ```
 
 <InlineNotification>
@@ -487,9 +488,9 @@ troubleshooting notes that may help.
 ### Pull request (PR)
 
 Finally, visit
-[carbon-tutorial](https://github.com/carbon-design-system/carbon-tutorial) to
-"Compare & pull request". In doing so, make sure that you are comparing to
-`v11-react-step-4` into `base: v11-react-step-4`.
+[carbon-tutorial-nextjs](https://github.com/carbon-design-system/carbon-tutorial-nextjs)
+to "Compare & pull request". In doing so, make sure that you are comparing to
+`v11-next-step-4` into `base: v11-next-step-4`.
 
 <InlineNotification>
 

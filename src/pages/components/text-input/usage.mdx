@@ -65,99 +65,40 @@ longer, multi-line entries.
 
 ## Live demo
 
-<ComponentDemo
-  components={[
+<StorybookDemo
+  themeSelector
+  url="https://react.carbondesignsystem.com"
+  variants={[
     {
-      id: 'text-input',
-      label: 'Text input',
+      label: 'Default',
+      variant: 'components-textinput--default',
     },
     {
-      id: 'password-input',
-      label: 'Password input',
+      label: 'Fluid',
+      variant: 'components-textinput--fluid',
     },
     {
-      id: 'text-area',
-      label: 'Text area',
+      label: 'Read only',
+      variant: 'components-textinput--read-only',
+    },
+    {
+      label: 'Toggle password with visibility',
+      variant: 'components-textinput--toggle-password-visibility',
+    },
+    {
+      label: 'Fluid (unstable)',
+      variant: 'experimental-unstable-fluidtextinput--default',
+    },
+    {
+      label: 'Fluid with Tooltip (unstable)',
+      variant: 'experimental-unstable-fluidtextinput--default-with-tooltip',
+    },
+    {
+      label: 'Fluid with Password Input (unstable)',
+      variant: 'experimental-unstable-fluidtextinput--password-input',
     },
   ]}
->
-  <ComponentVariant
-    id="text-input"
-    knobs={{
-      TextInput: ['disabled', 'invalid', 'light'],
-    }}
-    links={{
-      React:
-        'https://react.carbondesignsystem.com/?path=/story/components-textinput--default',
-      'Web Components':
-        'https://web-components.carbondesignsystem.com/?path=/story/components-input--default',
-      Angular:
-        'https://angular.carbondesignsystem.com/?path=/story/components-input--label',
-      Vue: 'http://vue.carbondesignsystem.com/?path=/story/components-cvtextinput--default',
-    }}
-  >{`
-    <div>
-      <TextInput
-        helperText="Optional helper text"
-        id="test2"
-        invalidText="A valid value is required"
-        labelText="Text input label"
-        placeholder="Optional placeholder text"
-      />
-    </div>
-  `}</ComponentVariant>
-  <ComponentVariant
-    id="password-input"
-    links={{
-      React:
-        'https://react.carbondesignsystem.com/?path=/story/components-textinput--toggle-password-visibility',
-      'Web Components':
-        'https://web-components.carbondesignsystem.com/?path=/story/components-input--default',
-      Angular:
-        'https://angular.carbondesignsystem.com/?path=/story/components-input--label',
-      Vue: 'http://vue.carbondesignsystem.com/?path=/story/components-cvtextinput--default',
-    }}
-  >{`
-    <div>
-    <TextInput.PasswordInput
-      helperText="Optional helper text"
-      hidePasswordLabel="Hide password"
-      id="test2"
-      invalidText="A valid value is required"
-      labelText="Text input label"
-      placeholder="Optional placeholder text"
-      showPasswordLabel="Show password"
-    />
-    </div>
-  `}</ComponentVariant>
-  <ComponentVariant
-    id="text-area"
-    knobs={{
-      TextArea: ['disabled', 'invalid', 'light'],
-    }}
-    links={{
-      React:
-        'https://react.carbondesignsystem.com/?path=/story/components-textarea--default',
-      'Web Components':
-        'https://web-components.carbondesignsystem.com/?path=/story/components-textarea--default',
-      Angular:
-        'https://angular.carbondesignsystem.com/?path=/story/components-input--textarea',
-      Vue: 'http://vue.carbondesignsystem.com/?path=/story/components-cvtextarea--default',
-    }}
-  >{`
-    <div>
-    <TextArea
-      cols={50}
-      helperText="Optional helper text"
-      id="test2"
-      invalidText="A valid value is required"
-      labelText="Text area label"
-      placeholder="Optional placeholder text"
-      rows={4}
-    />
-    </div>
-  `}</ComponentVariant>
-</ComponentDemo>
+/>
 
 ## Text input
 
@@ -249,8 +190,8 @@ Use a text area when the expected user input is more than a few words and could
 span multiple lines. It is commonly used for features like user commentary or
 descriptions. It supports all the same states and functionality as text input
 except for the password functionality. Text area has several unique
-functionalities not included in the text input, like the resize handle and
-character counter.
+functionalities not included in the text input, like the resize handle, word
+counter and character counter.
 
 | Style   | Purpose                                                                                                                                                                                                                                              |
 | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -286,12 +227,15 @@ character counter.
 2. **Value**: The content the user has entered into the field.
 3. **Field**: The container in which a user enters data. Must meet 3:1 non-text
    contrast requirements.
-4. **Resize hanle**: Allows a user to manipulate the field height by making it
+4. **Resize handle**: Allows a user to manipulate the field height by making it
    longer or shorter.
 5. **Optional versus required indicator** (optional): This label indicates if
    the field is optional or required for the user to complete.
-6. **Character counter** (optional): Indicate the number of characters being
-   entered and the total number of characters allowed.
+6. **Counter** (optional)
+   - Character counter: Indicate the number of characters being entered and the
+     total number of characters allowed.
+   - Word counter: Indicate the number of words being entered and the total
+     number of words allowed.
 
 ### Sizing
 
@@ -578,7 +522,23 @@ has been met.
 <Row>
 <Column colLg={8}>
 
-![Example showing a character counter in text area](images/text-area-usage-counter.png)
+![Example showing a character counter in text area](images/text-area-character-counter.png)
+
+</Column>
+</Row>
+
+### Word counter
+
+A word counter can be added to text area to indicate both the number of words
+being entered and the total number of words allowed. Once the max number of
+words is reached the text area should prevent the user from entering any
+additional character and provide messaging to the user that a limit has been
+met.
+
+<Row>
+<Column colLg={8}>
+
+![Example showing a word counter in text area](images/text-area-word-counter.png)
 
 </Column>
 </Row>

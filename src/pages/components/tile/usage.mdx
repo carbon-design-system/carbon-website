@@ -15,7 +15,7 @@ including information, getting started, how-to, next steps, and more.
 
 <InlineNotification>
 
-[Experimental tiles](https://react.carbondesignsystem.com/?path=/story/experimental-improved-contrast-tile--clickable)
+[Experimental tiles](https://react.carbondesignsystem.com/?path=/docs/experimental-feature-flags-tile--overview)
 are now available. This addition enhances accessibility and only applies to the
 visual appearance, not the function of tiles. Though we are not deprecating the
 current tiles, we encourage all design teams to use the new experimental tiles
@@ -64,7 +64,7 @@ asset library (PAL) ecosystem below:
   (Carbon for Cloud & Cognitive)
 - [Dashboard cards](https://pages.github.ibm.com/ai-applications/design/patterns/dashboards-v2/overview/#dashboard-cards)
   (AI Applications Design)
-- [Card](https://www.ibm.com/standards/carbon/components/card) (Carbon for
+- [Card](https://www.ibm.com/standards/carbon/components/cards) (Carbon for
   IBM.com)
 
 ### When to use
@@ -92,209 +92,60 @@ elevation and are appropriate for this function instead.
 
 ## Live demo
 
-<ComponentDemo
-  components={[
+<StorybookDemo
+  themeSelector
+  url="https://react.carbondesignsystem.com"
+  variants={[
     {
-      id: 'tile',
-      label: 'Default tile',
+      label: 'Default',
+      variant: 'components-tile--default',
     },
     {
-      id: 'clickable-tile',
-      label: 'Clickable tile',
+      label: 'Clickable',
+      variant: 'components-tile--clickable',
     },
     {
-      id: 'radio-tile',
-      label: 'Radio tile',
+      label: 'Expandable',
+      variant: 'components-tile--expandable',
     },
     {
-      id: 'selectable-tile',
-      label: 'Selectable tile',
+      label: 'Expandable with interactive',
+      variant: 'components-tile--expandable-with-interactive',
     },
     {
-      id: 'expandable-tile',
-      label: 'Expandable tile',
+      label: 'Multiselect',
+      variant: 'components-tile--multi-select',
+    },
+    {
+      label: 'Radio',
+      variant: 'components-tile--radio',
+    },
+    {
+      label: 'Selectable',
+      variant: 'components-tile--selectable',
+    },
+    {
+      label: 'Clickable with Improved Contrast (unstable)',
+      variant: 'experimental-feature-flags-tile--clickable',
+    },
+    {
+      label: 'Expandable with Improved Contrast (unstable)',
+      variant: 'experimental-feature-flags-tile--expandable',
+    },
+    {
+      label: 'Multiselect with Improved Contrast (unstable)',
+      variant: 'experimental-feature-flags-tile--multi-select',
+    },
+    {
+      label: 'Radio with Improved Contrast (unstable)',
+      variant: 'experimental-feature-flags-tile--radio',
+    },
+    {
+      label: 'Selectable with Improved Contrast (unstable)',
+      variant: 'experimental-feature-flags-tile--selectable',
     },
   ]}
->
-  <ComponentVariant
-    id="tile"
-    knobs={{
-      Tile: ['light'],
-    }}
-    links={{
-      React:
-        'https://react.carbondesignsystem.com/?path=/story/components-tile--default',
-      Angular:
-        'https://angular.carbondesignsystem.com/?path=/story/components-tiles--basic',
-      Vue: 'http://vue.carbondesignsystem.com/?path=/story/components-cvtile--default',
-      'Web Components':
-        'https://web-components.carbondesignsystem.com/?path=/story/components-tile--default',
-    }}
-  >
-    {`
-    <Tile>
-      Default tile
-    </Tile>
-  `}
-  </ComponentVariant>
-  <ComponentVariant
-    id="clickable-tile"
-    knobs={{
-      ClickableTile: ['light', 'clicked'],
-    }}
-    links={{
-      React:
-        'https://react.carbondesignsystem.com/?path=/story/components-tile--clickable',
-      Angular:
-        'https://angular.carbondesignsystem.com/?path=/story/components-tiles--basic',
-      Vue: 'http://vue.carbondesignsystem.com/?path=/story/components-cvtile--default',
-      'Web Components':
-        'https://web-components.carbondesignsystem.com/?path=/story/components-tile--clickable',
-    }}
-  >
-    {`
-    <ClickableTile
-      href="#"
-    >
-      Clickable tile
-    </ClickableTile>
-  `}
-  </ComponentVariant>
-  <ComponentVariant
-    id="radio-tile"
-    knobs={{
-      RadioTile: ['light'],
-    }}
-    links={{
-      React:
-        'https://react.carbondesignsystem.com/?path=/story/components-tile--radio',
-      Angular:
-        'https://angular.carbondesignsystem.com/?path=/story/components-tiles--clickable',
-      Vue: 'http://vue.carbondesignsystem.com/?path=/story/components-cvtile--clickable',
-      'Web Components':
-        'https://web-components.carbondesignsystem.com/?path=/story/components-tile--single-selectable',
-    }}
-  >
-    {`
-    <TileGroup
-      defaultSelected="default-selected"
-      legend="Radio tile group"
-      name="tile-group"
-    >
-      <RadioTile
-        id="tile-1"
-        name="tiles"
-        tabIndex={0}
-        value="standard"
-      >
-        Radio tile
-      </RadioTile>
-      <RadioTile
-        id="tile-2"
-        name="tiles"
-        tabIndex={0}
-        value="default-selected"
-      >
-        Radio tile
-      </RadioTile>
-      <RadioTile
-        id="tile-3"
-        name="tiles"
-        tabIndex={0}
-        value="selected"
-      >
-        Radio tile
-      </RadioTile>
-    </TileGroup>
-  `}
-  </ComponentVariant>
-  <ComponentVariant
-    id="selectable-tile"
-    knobs={{
-      SelectableTile: ['light', 'selected'],
-    }}
-    links={{
-      React:
-        'https://react.carbondesignsystem.com/?path=/story/components-tile--multi-select',
-      Angular:
-        'https://angular.carbondesignsystem.com/?path=/story/components-tiles--selectable',
-      Vue: 'http://vue.carbondesignsystem.com/?path=/story/components-cvtile--selectable',
-      'Web Components':
-        'https://web-components.carbondesignsystem.com/?path=/story/components-tile--single-selectable',
-    }}
-  >
-    {`
-    <div
-      aria-label="selectable tiles"
-      role="group"
-    >
-      <SelectableTile
-        id="tile-1"
-        name="tiles"
-        tabIndex={0}
-        title="title"
-        value="value"
-      >
-        Multiselect tile
-      </SelectableTile>
-      <SelectableTile
-        id="tile-2"
-        name="tiles"
-        tabIndex={0}
-        title="title"
-        value="value"
-      >
-        Multiselect tile
-      </SelectableTile>
-      <SelectableTile
-        id="tile-3"
-        name="tiles"
-        tabIndex={0}
-        title="title"
-        value="value"
-      >
-        Multiselect tile
-      </SelectableTile>
-    </div>
-  `}
-  </ComponentVariant>
-  <ComponentVariant
-    id="expandable-tile"
-    knobs={{
-      ExpandableTile: ['light', 'expanded'],
-    }}
-    links={{
-      React:
-        'https://react.carbondesignsystem.com/?path=/story/components-tile--expandable',
-      Angular:
-        'https://angular.carbondesignsystem.com/?path=/story/components-tiles--expandable',
-      Vue: 'http://vue.carbondesignsystem.com/?path=/story/components-cvtile--expandable',
-      'Web Components':
-        'https://web-components.carbondesignsystem.com/?path=/story/components-tile--expandable',
-    }}
-  >
-    {`
-    <ExpandableTile
-      tabIndex={0}
-      tileCollapsedIconText="Interact to Expand tile"
-      tileExpandedIconText="Interact to Collapse tile"
-      tileMaxHeight={0}
-      tilePadding={0}
-    >
-      <TileAboveTheFoldContent>
-        <div style={{ height: '64px'}}>
-          Above the fold content here
-        </div>
-      </TileAboveTheFoldContent>
-      <TileBelowTheFoldContent>
-        <div style={{ height: '64px'}}>
-          Below the fold content here
-        </div>
-      </TileBelowTheFoldContent>
-    </ExpandableTile>
-  `}
-  </ComponentVariant>
-</ComponentDemo>
+/>
 
 ## Tile variants
 
@@ -415,7 +266,7 @@ they are given their own click targets.
 
 ### Sizing
 
-The **width** varies depending on three basic grid modes: wide, narrow, and
+The **width** varies depending on three basic gutter modes: wide, narrow, and
 condensed. Tile **height** varies depending on the amount of content placed
 within it, but applies the
 [spacing](https://carbondesignsystem.com/guidelines/spacing/overview/) and
