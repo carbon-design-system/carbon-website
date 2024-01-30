@@ -190,7 +190,7 @@ const A11yStatus = ({ components, layout }) => {
       // link for component name in table
       let componentUrl;
       if (componentName === 'Aspect ratio') {
-        componentUrl = '/2x-grid/overview/#aspect-ratio';
+        componentUrl = '/guidelines/2x-grid/overview/#aspect-ratio';
       } else if (componentName === 'Grid') {
         componentUrl = '/guidelines/2x-grid/code#css-grid';
       } else if (componentName === 'Flex grid') {
@@ -381,14 +381,15 @@ const A11yStatus = ({ components, layout }) => {
       <Row>
         <Column colLg={12}>
           {components ? (
-            <H3 id="accessibility-testing-status">
-              <span id="accessibility-testing-status">
-                Accessibility testing status
-              </span>
+            <H3>
+              Accessibility testing status
               {helpTooltip}
             </H3>
           ) : (
             <>
+              <span
+                id="all-component-accessibility-status-anchor"
+                className={headingLink}></span>
               <H2>All component accessibility status{helpTooltip}</H2>
               <p>
                 This table reflects the current AVT status of stable components
