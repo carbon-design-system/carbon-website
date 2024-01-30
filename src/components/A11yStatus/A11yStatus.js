@@ -223,7 +223,7 @@ const A11yStatus = ({ components }) => {
               // link for component name in table
               let componentUrl;
               if (componentName === 'Aspect ratio') {
-                componentUrl = '/2x-grid/overview/#aspect-ratio';
+                componentUrl = '/guidelines/2x-grid/overview/#aspect-ratio';
               } else if (componentName === 'Grid') {
                 componentUrl = '/guidelines/2x-grid/code#css-grid';
               } else if (componentName === 'Flex grid') {
