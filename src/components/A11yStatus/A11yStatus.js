@@ -27,6 +27,7 @@ import {
   table,
   variant,
   version,
+  headingLink,
 } from './A11yStatus.module.scss';
 
 const A11yStatus = ({ components, layout }) => {
@@ -139,53 +140,43 @@ const A11yStatus = ({ components, layout }) => {
         hasSkippedAVT: hasSkippedKeyboardNavAVT,
       } = checkAVTStatus(componentTestData, 'avt-keyboard-nav');
 
-      // tag for default AVT
-      let defaultAVTTag;
-      if (hasSkippedDefaultAVT) {
-        defaultAVTTag = <A11yStatusTag tag="partial" />;
-      } else if (hasDefaultAVT) {
-        defaultAVTTag = <A11yStatusTag tag="tested" />;
-      } else {
-        defaultAVTTag = <A11yStatusTag tag="nottested" />;
+      // Render tag types
+      let tagTooltip = true;
+      if (layout === 'cards') {
+        tagTooltip = false;
       }
+      let defaultTagType = hasSkippedDefaultAVT
+        ? 'partial'
+        : hasDefaultAVT
+        ? 'tested'
+        : 'nottested';
+      let advTagType = hasSkippedAdvancedAVT
+        ? 'partial'
+        : hasAdvancedAVT
+        ? 'tested'
+        : 'nottested';
+      let keyboardTagType = hasSkippedKeyboardNavAVT
+        ? 'partial'
+        : hasKeyboardNavAVT
+        ? 'tested'
+        : 'notavailable';
 
-      // tag for advanced AVT
-      let advancedAVTTag;
-      if (hasSkippedAdvancedAVT) {
-        advancedAVTTag = <A11yStatusTag tag="partial" />;
-      } else if (hasAdvancedAVT) {
-        advancedAVTTag = <A11yStatusTag tag="tested" />;
-      } else {
-        advancedAVTTag = <A11yStatusTag tag="nottested" />;
-      }
-
-      // tag for keyboard AVT
-      let keyboardNavAVTTag;
-      if (hasSkippedKeyboardNavAVT) {
-        keyboardNavAVTTag = <A11yStatusTag tag="partial" />;
-      } else if (hasKeyboardNavAVT) {
-        keyboardNavAVTTag = <A11yStatusTag tag="tested" />;
-      } else {
-        keyboardNavAVTTag = <A11yStatusTag tag="notavailable" />;
-      }
+      const defaultAVTTag = (
+        <A11yStatusTag tag={defaultTagType} tooltip={tagTooltip} />
+      );
+      const advancedAVTTag = (
+        <A11yStatusTag tag={advTagType} tooltip={tagTooltip} />
+      );
+      const keyboardNavAVTTag = (
+        <A11yStatusTag tag={keyboardTagType} tooltip={tagTooltip} />
+      );
 
       // tag for screen reader AVT
-      const screenReaderAVT =
+      const screenReaderTagType =
         filteredComponentList[component]?.testing.screenreader;
-      let screenReaderAVTTag;
-      switch (screenReaderAVT) {
-        case 'manual':
-          screenReaderAVTTag = <A11yStatusTag tag="manual" />;
-          break;
-        case 'partial':
-          screenReaderAVTTag = <A11yStatusTag tag="partial" />;
-          break;
-        case 'notavailable':
-          screenReaderAVTTag = <A11yStatusTag tag="notavailable" />;
-          break;
-        default:
-          screenReaderAVTTag = <A11yStatusTag tag="nottested" />;
-      }
+      const screenReaderAVTTag = (
+        <A11yStatusTag tag={screenReaderTagType} tooltip={tagTooltip} />
+      );
 
       // link for component name in table
       let componentUrl;
