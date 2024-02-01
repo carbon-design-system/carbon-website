@@ -369,63 +369,84 @@ const A11yStatus = ({ components, layout }) => {
     );
   } else {
     return (
-      <Row>
-        <Column colLg={12}>
-          {components ? (
-            <H3>
-              Accessibility testing status
-              {helpTooltip}
-            </H3>
-          ) : (
-            <>
-              <span
-                id="all-component-accessibility-status-anchor"
-                className={headingLink}></span>
-              <H2>All component accessibility status{helpTooltip}</H2>
-              <p>
-                This table reflects the current AVT status of stable components
-                within @carbon/react.
-              </p>
-            </>
-          )}
-          <p className={version}>
-            <strong>Latest version:</strong> {reactVersion} |{' '}
-            <strong>Framework</strong> React (@carbon/react)
-          </p>
-        </Column>
-
-        <Column
-          colLg={12}
-          noGutterSm
-          className={`${table} page-table__container`}>
-          <table className="page-table">
-            <thead>
-              <tr>
-                <th>Component</th>
-                <th>Accessibility test</th>
-                <th>Status</th>
-                <th>Link to source code</th>
-              </tr>
-            </thead>
-            <tbody>{componentA11yData}</tbody>
-          </table>
-          {components && (
-            <p className={moreLink}>
-              <Link
-                href="/components/overview/accessibility-status"
-                renderIcon={() => <ArrowRight />}>
-                Learn more about tag and test statuses
-              </Link>
-              <br />
-              <Link
-                href="/components/overview/accessibility-status#all-component-accessibility-status"
-                renderIcon={() => <ArrowRight />}>
-                View all component accessibility statuses
-              </Link>
+      <>
+        <Row>
+          <Column colLg={12}>
+            {components ? (
+              <H3>
+                Accessibility testing status
+                {helpTooltip}
+              </H3>
+            ) : (
+              <>
+                <span
+                  id="all-component-accessibility-status-anchor"
+                  className={headingLink}></span>
+                <H2>All component accessibility status{helpTooltip}</H2>
+                <p>
+                  This table reflects the current AVT status of stable
+                  components within @carbon/react.
+                </p>
+              </>
+            )}
+            <p className={version}>
+              <strong>Latest version:</strong> {reactVersion} |{' '}
+              <strong>Framework</strong> React (@carbon/react)
             </p>
-          )}
-        </Column>
-      </Row>
+          </Column>
+          <Column
+            colLg={12}
+            noGutterSm
+            className={`${table} page-table__container`}>
+            <table className="page-table">
+              <thead>
+                <tr>
+                  <th>Component</th>
+                  <th>Accessibility test</th>
+                  <th>Status</th>
+                  <th>Link to source code</th>
+                </tr>
+              </thead>
+              <tbody>{componentA11yData}</tbody>
+            </table>
+            {components && (
+              <p className={moreLink}>
+                <Link
+                  href="/components/overview/accessibility-status"
+                  renderIcon={() => <ArrowRight />}>
+                  Learn more about tag and test statuses
+                </Link>
+                <br />
+                <Link
+                  href="/components/overview/accessibility-status#all-component-accessibility-status"
+                  renderIcon={() => <ArrowRight />}>
+                  View all component accessibility statuses
+                </Link>
+              </p>
+            )}
+          </Column>
+        </Row>
+
+        {components && (
+          <Row>
+            <Column colLg={12}>
+              <p className={moreLink}>
+                <Link
+                  href="/components/overview/accessibility-status"
+                  renderIcon={() => <ArrowRight />}>
+                  Learn more about tag and test meaning
+                </Link>
+                <br />
+                <Link
+                  href="/components/overview/accessibility-status#all-component-accessibility-status-anchor"
+                  renderIcon={() => <ArrowRight />}>
+                  View all component accessibility status
+                </Link>
+              </p>
+            </Column>
+          </Row>
+        )}
+      </>
     );
   }
 };
