@@ -1,5 +1,5 @@
 ---
-title: Flow & Relationship Charts
+title: Flow
 description:
   Uncover intricate data relationships and flows, providing valuable insights
   into complex data sets.
@@ -31,7 +31,6 @@ go to the
 
 <AnchorLinks>
   <AnchorLink>Alluvial/sankey diagrams</AnchorLink>
-  <AnchorLink>Heat maps</AnchorLink>
   <AnchorLink>Network diagrams</AnchorLink>
   <AnchorLink>Parallel coordinates</AnchorLink>
   <AnchorLink>Tree diagrams</AnchorLink>
@@ -52,68 +51,6 @@ block.
 <div>
   <ChartDemoGroup demoGroup={getDemoGroupByTitle('alluvial')} light={true} />
 </div>
-
-## Heat maps
-
-A heat map is a two-dimensional visualization in which individual values
-contained in a matrix are represented as colors. This technique makes it easy to
-visualize complex data at a glance. When it comes to heat maps, the most common
-color ranges are expressed in either sequential and diverging color scales
-according to the type of data represented.
-
-#### Sequential scales
-
-Sequential scales use a blended progression, typically of a single color, from
-the lowest contrast to the highest contrast values, representing lows to highs.
-It’s best practice to use a sequential scale with values that are all positive
-or all negative. Sequential heat maps can leverage the full range of the palette
-(from 10–100) to maximize contrast. Please note that the 3:1 minimum contrast
-requirement does not apply to heat maps.
-
-<ChartDemoGroup demoGroup={getDemoGroupByTitle('heatmap')} light={true} />
-
-<Caption>
-  When cells get extremely small, a white border can hinder the intended effect.
-</Caption>
-
-#### Heat map behaviors
-
-Axis ticks and legend can be used to leverage the chart potential giving the
-users additional information and dedicated kinds of interaction.
-
-<Row>
-<Column  colLg={4} colMd={4} colSm={4} >
-
-![Heat map hover detail](images/04a_adv_heatmap_detail_288.png)
-
-<Caption>Exploration of a domain axis hover behavior</Caption>
-
-</Column>
-</Row>
-
-#### Divergent scales
-
-Diverging scales show color progression in two directions: dialing down the
-contrast of the first hue from one end to a neutral color at the midpoint, then
-increasing the contrast of the second hue to the other end of the scale. The
-neutral midpoint is often referred to as the "inflection point" (for example, a
-0 value midway between -100 and +100).
-
-[Divergent scales](/data-visualization/color-palettes#diverging-palettes)
-require three colors for their correspondent values (min, max, and inflection
-point) and Carbon has provided two approved palettes for divergent
-visualizations. Although the examples here use the "discrete" (stepped scale)
-provided by the Carbon palette, divergent heat maps often leverage "continuous"
-values (gradients) to accommodate situations that require more than 10 values.
-
-#### Inflection points
-
-While min/max values can be automatically detected from data, inflection points
-can vary depending on data type. We default to zero in order to accommodate the
-most common cases and include a feature flag within the code to specify
-exceptions. The data for a divergent heat map does not need to be symmetrical on
-either side of the inflection point. For example, the data set could have a zero
-value between -20 and +100 as well.
 
 ## Network diagrams
 
