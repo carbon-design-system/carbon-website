@@ -377,7 +377,9 @@ const A11yStatus = ({ components, layout }) => {
           <Column colLg={12}>
             {components ? (
               <H3>
-                Accessibility testing status
+                <span id="accessibility-testing-status">
+                  Accessibility testing status
+                </span>
                 {helpTooltip}
               </H3>
             ) : (
