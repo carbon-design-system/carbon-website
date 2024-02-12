@@ -36,12 +36,14 @@
 .dropdown {
   :global(.cds--dropdown) {
     border-bottom-color: $border-subtle-01;
+    border: none;
   }
 }
 
+.variant > div,
 .variant + .card-group,
 .variant + .card-group ~ .card-group {
-  --space: -1px;
+  --space: 0;
 }
 
 .card-group :global(.cds--col-lg-4:nth-child(2n)) {
@@ -54,17 +56,27 @@
   div {
     --space: 0;
   }
+  @include breakpoint('md') {
+    border-left: 1px solid $border-subtle-01;
+  }
 
   :global(.cds--resource-card) {
-    border-right: 1px solid $border-subtle-01;
-    border-bottom: 1px solid $border-subtle-01;
-  }
-  :global(div:first-child .cds--resource-card),
-  :global(div:nth-child(2) .cds--resource-card) {
+    border: none;
     border-top: 1px solid $border-subtle-01;
+
+    @include breakpoint('md') {
+      border-right: 1px solid $border-subtle-01;
+    }
   }
-  :global(div:nth-child(odd) .cds--resource-card) {
-    border-left: 1px solid $border-subtle-01;
+
+  @include breakpoint('md') {
+    :global(div:nth-last-child(-n + 2) .cds--resource-card) {
+      border-bottom: 1px solid $border-subtle-01;
+    }
+  }
+
+  :global(div:last-child .cds--resource-card) {
+    border-bottom: 1px solid $border-subtle-01;
   }
 }
 

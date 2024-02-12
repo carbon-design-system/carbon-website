@@ -175,7 +175,10 @@ const A11yStatus = ({ components, layout }) => {
       const screenReaderTagType =
         filteredComponentList[component]?.testing.screenreader;
       const screenReaderAVTTag = (
-        <A11yStatusTag tag={screenReaderTagType} tooltip={tagTooltip} />
+        <A11yStatusTag
+          tag={screenReaderTagType || 'notavailable'}
+          tooltip={tagTooltip}
+        />
       );
 
       // link for component name in table
@@ -350,7 +353,7 @@ const A11yStatus = ({ components, layout }) => {
         {/* Only display the dropdown if there are multiple components being displayed */}
         {Array.isArray(components) && (
           <Row className={variant}>
-            <Column sm={2} colMd={4} colLg={4} noGutterSm>
+            <Column sm={4} colMd={4} colLg={4} noGutterSm>
               <FluidDropdown
                 isCondensed
                 className={dropdown}
@@ -409,24 +412,8 @@ const A11yStatus = ({ components, layout }) => {
               </thead>
               <tbody>{componentA11yData}</tbody>
             </table>
-            {components && (
-              <p className={moreLink}>
-                <Link
-                  href="/components/overview/accessibility-status"
-                  renderIcon={() => <ArrowRight />}>
-                  Learn more about tag and test statuses
-                </Link>
-                <br />
-                <Link
-                  href="/components/overview/accessibility-status#all-component-accessibility-status"
-                  renderIcon={() => <ArrowRight />}>
-                  View all component accessibility statuses
-                </Link>
-              </p>
-            )}
           </Column>
         </Row>
-
         {components && (
           <Row>
             <Column colLg={12}>
