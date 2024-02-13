@@ -3,6 +3,10 @@ import React from 'react';
 import { Link } from 'gatsby';
 import componentList from '../../data/components.json';
 
+// only display components where overview is true in the data
+const filteredComponentList = componentList.components.filter(
+  (item) => item.overview !== false
+);
 class ComponentOverview extends React.Component {
   renderItems = (currentItem) => {
     const { component } = currentItem;
@@ -48,8 +52,8 @@ class ComponentOverview extends React.Component {
       <div className="cds--row">
         <div className="cds--col-lg-12 cds--no-gutter">
           <ul className="component-overview">
-            {Object.keys(componentList.components).map((component) =>
-              this.renderItems(componentList.components[component])
+            {Object.keys(filteredComponentList).map((component) =>
+              this.renderItems(filteredComponentList[component])
             )}
           </ul>
         </div>
