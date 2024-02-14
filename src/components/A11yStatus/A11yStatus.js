@@ -239,7 +239,7 @@ const A11yStatus = ({ components, layout }) => {
               id={componentName}>
               <Column colLg={4} colMd={4} noGutterSm>
                 <ResourceCard
-                  title="Default state"
+                  subTitle="Default state"
                   href={accessibilityPageUrl}
                   actionIcon="arrowRight">
                   {defaultAVTTag}
@@ -247,7 +247,7 @@ const A11yStatus = ({ components, layout }) => {
               </Column>
               <Column colLg={4} colMd={4} noGutterSm>
                 <ResourceCard
-                  title="Advanced states"
+                  subTitle="Advanced states"
                   href={accessibilityPageUrl}
                   actionIcon="arrowRight">
                   {advancedAVTTag}
@@ -255,7 +255,7 @@ const A11yStatus = ({ components, layout }) => {
               </Column>
               <Column colLg={4} colMd={4} noGutterSm>
                 <ResourceCard
-                  title="Screen reader"
+                  subTitle="Screen reader"
                   href={accessibilityPageUrl}
                   actionIcon="arrowRight">
                   {screenReaderAVTTag}
@@ -263,7 +263,7 @@ const A11yStatus = ({ components, layout }) => {
               </Column>
               <Column colLg={4} colMd={4} noGutterSm>
                 <ResourceCard
-                  title="Keyboard navigation"
+                  subTitle="Keyboard navigation"
                   href={accessibilityPageUrl}
                   actionIcon="arrowRight">
                   {keyboardNavAVTTag}
