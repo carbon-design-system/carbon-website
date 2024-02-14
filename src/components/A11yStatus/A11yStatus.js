@@ -396,7 +396,7 @@ const A11yStatus = ({ components, layout }) => {
             )}
             <p className={version}>
               <strong>Latest version:</strong> {reactVersion} |{' '}
-              <strong>Framework</strong> React (@carbon/react)
+              <strong>Framework:</strong> React (@carbon/react)
             </p>
           </Column>
           <Column
