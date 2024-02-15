@@ -6,6 +6,8 @@ description:
 tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 ---
 
+import A11yStatus from 'components/A11yStatus';
+
 <PageDescription>
 
 File uploaders allow users to select one or more files to upload to a specific
@@ -15,8 +17,8 @@ location.
 
 <AnchorLinks>
 
-<AnchorLink>Overview</AnchorLink>
 <AnchorLink>Live demo</AnchorLink>
+<AnchorLink>Overview</AnchorLink>
 <AnchorLink>Formatting</AnchorLink>
 <AnchorLink>Content</AnchorLink>
 <AnchorLink>Universal behaviors</AnchorLink>
@@ -26,6 +28,25 @@ location.
 <AnchorLink>Feedback</AnchorLink>
 
 </AnchorLinks>
+
+## Live demo
+
+<StorybookDemo
+  themeSelector
+  url="https://react.carbondesignsystem.com"
+  variants={[
+    {
+      label: 'Default',
+      variant: 'components-fileuploader--default',
+    },
+    {
+      label: 'File Uploader Drop Container',
+      variant: 'components-fileuploader--file-uploader-drop-container',
+    },
+  ]}
+/>
+
+<A11yStatus layout="cards" components="File uploader" />
 
 ## Overview
 
@@ -51,23 +72,6 @@ file uploader.
 
 - Do not use upload in a modal when multiple files are uploaded, as uploaded
   files stack vertically.
-
-## Live demo
-
-<StorybookDemo
-  themeSelector
-  url="https://react.carbondesignsystem.com"
-  variants={[
-    {
-      label: 'Default',
-      variant: 'components-fileuploader--default',
-    },
-    {
-      label: 'File Uploader Drop Container',
-      variant: 'components-fileuploader--file-uploader-drop-container',
-    },
-  ]}
-/>
 
 ## Formatting
 
@@ -165,7 +169,8 @@ conflict with the primary action.
 ### Overflow
 
 Use an ellipsis (…) if the filename extends beyond the width of its parent
-element.
+element. A tooltip should appear on hover to disclose the full length of the
+filename.
 
 <Row>
 <Column colLg={8}>
@@ -273,12 +278,14 @@ has been successfully completed.
 ## Drag and drop file uploader
 
 Drag and drop file uploaders are used to directly upload files by dragging and
-dropping them into a drop zone area. Alternatively, you can also traditionally
-open files through a file selection dialog by clicking the text link description
-inside the drop zone.
+dropping them into a drop zone area. Alternatively, you can open files through a
+file selection dialog by clicking the text link description inside the drop
+zone.
 
 The drop zone component lets users upload files by dragging and dropping the
-files into an area on a page, or activating a button.
+files into an area on a page, or activating a button. By default, the drag and
+drop file uploader allows multiple files to be dropped into the drop zone area.
+However, we also offer functionality to limit a single file to be uploaded.
 
 <Row>
 <Column colLg={12}>
@@ -287,6 +294,8 @@ files into an area on a page, or activating a button.
 
 </Column>
 </Row>
+
+### Uploading multiple files
 
 When dragging files into the drop zone area, the drop zone border changes in
 color and thickness to indicate the area has been activated and is ready for
@@ -301,6 +310,40 @@ rendered by the browser you use.
 
 </Column>
 </Row>
+
+<Caption>A file being dragged into the drop zone area.</Caption>
+
+<Row>
+<Column colLg={8}>
+
+![Drag and drop file uploader in context example](images/file-uploader-usage-10c.png)
+
+</Column>
+</Row>
+
+<Caption>
+  A file successfully uploaded when you can upload multiple files.
+</Caption>
+
+### Uploading a single file
+
+When using a drag and drop file uploader, if the requirement only allows a
+single file to be uploaded, drag the single file into the drop zone area to
+upload it. Once uploaded, the drop zone area will be removed to show that you
+have successfully uploaded a single file. Click the close icon in the uploaded
+file to remove it.
+
+<Row>
+<Column colLg={8}>
+
+![Drag and drop file uploader in context example](images/file-uploader-usage-10d.png)
+
+</Column>
+</Row>
+
+<Caption>
+  A file successfully uploaded when you can only upload a single file.
+</Caption>
 
 ## References
 

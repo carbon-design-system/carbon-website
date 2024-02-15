@@ -1,0 +1,85 @@
+.help {
+  position: relative;
+  padding-left: $spacing-03;
+  top: $spacing-01;
+}
+
+.version,
+.moreLink {
+  --space: 1.5rem;
+}
+
+:global(.cds--definition-term),
+:global(.cds--tag) {
+  white-space: nowrap;
+}
+
+:global(.cds--tag .cds--popover) {
+  white-space: normal;
+}
+
+.heading-link {
+  &::before {
+    content: '';
+    display: block;
+    height: 96px;
+    margin-top: -96px;
+  }
+}
+
+// table view
+.table {
+  margin-top: $spacing-06;
+}
+
+// card view
+.dropdown {
+  :global(.cds--dropdown) {
+    border-bottom-color: $border-subtle-01;
+    border: none;
+  }
+}
+
+.variant > div,
+.variant + .card-group,
+.variant + .card-group ~ .card-group {
+  --space: 0;
+}
+
+.card-group :global(.cds--col-lg-4:nth-child(2n)) {
+  @include breakpoint('lg') {
+    margin-right: 33%;
+  }
+}
+
+.card-group {
+  div {
+    --space: 0;
+  }
+  @include breakpoint('md') {
+    border-left: 1px solid $border-subtle-01;
+  }
+
+  :global(.cds--resource-card) {
+    border: none;
+    border-top: 1px solid $border-subtle-01;
+
+    @include breakpoint('md') {
+      border-right: 1px solid $border-subtle-01;
+    }
+  }
+
+  @include breakpoint('md') {
+    :global(div:nth-last-child(-n + 2) .cds--resource-card) {
+      border-bottom: 1px solid $border-subtle-01;
+    }
+  }
+
+  :global(div:last-child .cds--resource-card) {
+    border-bottom: 1px solid $border-subtle-01;
+  }
+}
+
+.hidden {
+  @include visually-hidden;
+}
