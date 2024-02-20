@@ -412,6 +412,29 @@ export default class ColorTokenTable extends React.Component {
               </tbody>
             </table>
           </div>
+          <div className="cds--col-lg-7">
+            <h3 className="page-h3">Tag</h3>
+          </div>
+          <div className="cds--col-lg-12 cds--no-gutter">
+            <table className="page-table">
+              <thead>
+                <tr>
+                  <th>Token</th>
+                  <th>Role</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                {Object.keys(colorTokens['miscellaneous']).map((token, i) =>
+                  this.renderToken(
+                    token,
+                    colorTokens['miscellaneous'][token],
+                    i
+                  )
+                )}
+              </tbody>
+            </table>
+          </div>
         </section>
       </div>
     );

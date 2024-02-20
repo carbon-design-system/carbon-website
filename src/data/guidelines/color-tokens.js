@@ -2348,6 +2348,848 @@ const colorTokens = {
       },
     },
   },
+  tag: {
+    '$tag-background-gray': {
+      role: ['Tag background'],
+      value: {
+        white: {
+          name: 'Gray 20',
+          hex: '#e0e0e0',
+        },
+        g10: {
+          name: 'Gray 20',
+          hex: '#e0e0e0',
+        },
+        g90: {
+          name: 'Gray 70',
+          hex: '#525252',
+        },
+        g100: {
+          name: 'Gray 70',
+          hex: '#525252',
+        },
+      },
+    },
+    '$tag-color-gray': {
+      role: ['Tag text', 'Tag icon'],
+      value: {
+        white: {
+          name: 'Gray 100',
+          hex: '#161616',
+        },
+        g10: {
+          name: 'Gray 100',
+          hex: '#161616',
+        },
+        g90: {
+          name: 'Gray 20',
+          hex: '#e0e0e0',
+        },
+        g100: {
+          name: 'Gray 20',
+          hex: '#e0e0e0',
+        },
+      },
+    },
+    '$tag-hover-gray': {
+      role: ['Hover color for $tag-background'],
+      value: {
+        white: {
+          name: 'Gray 20 hover',
+          hex: '#d1d1d1',
+        },
+        g10: {
+          name: 'Gray 20 hover',
+          hex: '#d1d1d1',
+        },
+        g90: {
+          name: 'Gray 70 hover',
+          hex: '#636363',
+        },
+        g100: {
+          name: 'Gray 70 hover',
+          hex: '#636363',
+        },
+      },
+    },
+    '$tag-border-gray': {
+      role: ['Border for operational tag'],
+      value: {
+        white: {
+          name: 'Gray 40',
+          hex: '#a8a8a8',
+        },
+        g10: {
+          name: 'Gray 40',
+          hex: '#a8a8a8',
+        },
+        g90: {
+          name: 'Gray 50',
+          hex: '#8d8d8d',
+        },
+        g100: {
+          name: 'Gray 50',
+          hex: '#8d8d8d',
+        },
+      },
+    },
+    '$tag-background-cool-gray': {
+      role: ['Tag background'],
+      value: {
+        white: {
+          name: 'Cool gray 20',
+          hex: '#dde1e6',
+        },
+        g10: {
+          name: 'Cool gray 20',
+          hex: '#dde1e6',
+        },
+        g90: {
+          name: 'Cool gray 70',
+          hex: '#4d5358',
+        },
+        g100: {
+          name: 'Cool gray 70',
+          hex: '#4d5358',
+        },
+      },
+    },
+    '$tag-color-cool-gray': {
+      role: ['Tag text', 'Tag icon'],
+      value: {
+        white: {
+          name: 'Cool gray 100',
+          hex: '#121619',
+        },
+        g10: {
+          name: 'Cool gray 100',
+          hex: '#121619',
+        },
+        g90: {
+          name: 'Cool gray 20',
+          hex: '#dde1e6',
+        },
+        g100: {
+          name: 'Cool gray 20',
+          hex: '#dde1e6',
+        },
+      },
+    },
+    '$tag-hover-cool-gray': {
+      role: ['Hover color for $tag-background'],
+      value: {
+        white: {
+          name: 'Cool gray 20 hover',
+          hex: '#cdd3da',
+        },
+        g10: {
+          name: 'Cool gray 20 hover',
+          hex: '#cdd3da',
+        },
+        g90: {
+          name: 'Cool gray 70 hover',
+          hex: '#5d646a',
+        },
+        g100: {
+          name: 'Cool gray 70 hover',
+          hex: '#5d646a',
+        },
+      },
+    },
+    '$tag-border-cool-gray': {
+      role: ['Border for operational tag'],
+      value: {
+        white: {
+          name: 'Cool gray 40',
+          hex: '#a2a9b0',
+        },
+        g10: {
+          name: 'Cool gray 40',
+          hex: '#a2a9b0',
+        },
+        g90: {
+          name: 'Cool gray 50',
+          hex: '#878d96',
+        },
+        g100: {
+          name: 'Cool gray 50',
+          hex: '#878d96',
+        },
+      },
+    },
+    '$tag-background-warm-gray': {
+      role: ['Tag background'],
+      value: {
+        white: {
+          name: 'Warm gray 20',
+          hex: '#e5e0df',
+        },
+        g10: {
+          name: 'Warm gray 20',
+          hex: '#e5e0df',
+        },
+        g90: {
+          name: 'Warm gray 70',
+          hex: '#565151',
+        },
+        g100: {
+          name: 'Warm gray 70',
+          hex: '#565151',
+        },
+      },
+    },
+    '$tag-color-warm-gray': {
+      role: ['Tag text', 'Tag icon'],
+      value: {
+        white: {
+          name: 'Warm gray 100',
+          hex: '#171414',
+        },
+        g10: {
+          name: 'Warm gray 100',
+          hex: '#171414',
+        },
+        g90: {
+          name: 'Warm gray 20',
+          hex: '#e5e0df',
+        },
+        g100: {
+          name: 'Warm gray 20',
+          hex: '#e5e0df',
+        },
+      },
+    },
+    '$tag-hover-warm-gray': {
+      role: ['Hover color for $tag-background'],
+      value: {
+        white: {
+          name: 'Warm gray 20 hover',
+          hex: '#d8d0cf',
+        },
+        g10: {
+          name: 'Warm gray 20 hover',
+          hex: '#d8d0cf',
+        },
+        g90: {
+          name: 'Warm gray 70 hover',
+          hex: '#696363',
+        },
+        g100: {
+          name: 'Warm gray 70 hover',
+          hex: '#696363',
+        },
+      },
+    },
+    '$tag-border-warm-gray': {
+      role: ['Border for operational tag'],
+      value: {
+        white: {
+          name: 'Warm gray 40',
+          hex: '#ada8a8',
+        },
+        g10: {
+          name: 'Warm gray 40',
+          hex: '#ada8a8',
+        },
+        g90: {
+          name: 'Warm gray 50',
+          hex: '#8f8b8b',
+        },
+        g100: {
+          name: 'Warm gray 50',
+          hex: '#8f8b8b',
+        },
+      },
+    },
+    '$tag-background-red': {
+      role: ['Tag background'],
+      value: {
+        white: {
+          name: 'Red 20',
+          hex: '#ffd7d9',
+        },
+        g10: {
+          name: 'Red 20',
+          hex: '#ffd7d9',
+        },
+        g90: {
+          name: 'Red 70',
+          hex: '#a2191f',
+        },
+        g100: {
+          name: 'Red 70',
+          hex: '#a2191f',
+        },
+      },
+    },
+    '$tag-color-red': {
+      role: ['Tag text', 'Tag icon'],
+      value: {
+        white: {
+          name: 'Red 70',
+          hex: '#a2191f',
+        },
+        g10: {
+          name: 'Red 70',
+          hex: '#a2191f',
+        },
+        g90: {
+          name: 'Red 20',
+          hex: '#ffd7d9',
+        },
+        g100: {
+          name: 'Red 20',
+          hex: '#ffd7d9',
+        },
+      },
+    },
+    '$tag-hover-red': {
+      role: ['Hover color for $tag-background'],
+      value: {
+        white: {
+          name: 'Red 20 hover',
+          hex: '#ffc2c5',
+        },
+        g10: {
+          name: 'Red 20 hover',
+          hex: '#ffc2c5',
+        },
+        g90: {
+          name: 'Red 70 hover',
+          hex: '#c21e25',
+        },
+        g100: {
+          name: 'Red 70 hover',
+          hex: '#c21e25',
+        },
+      },
+    },
+    '$tag-border-red': {
+      role: ['Border for operational tag'],
+      value: {
+        white: {
+          name: 'Red 40',
+          hex: '#ff8389',
+        },
+        g10: {
+          name: 'Red 40',
+          hex: '#ff8389',
+        },
+        g90: {
+          name: 'Red 50',
+          hex: '#fa4d56',
+        },
+        g100: {
+          name: 'Red 50',
+          hex: '#fa4d56',
+        },
+      },
+    },
+    '$tag-background-magenta': {
+      role: ['Tag background'],
+      value: {
+        white: {
+          name: 'Magenta 20',
+          hex: '#ffd6e8',
+        },
+        g10: {
+          name: 'Magenta 20',
+          hex: '#ffd6e8',
+        },
+        g90: {
+          name: 'Magenta 70',
+          hex: '#9f1853',
+        },
+        g100: {
+          name: 'Magenta 70',
+          hex: '#9f1853',
+        },
+      },
+    },
+    '$tag-color-magenta': {
+      role: ['Tag text', 'Tag icon'],
+      value: {
+        white: {
+          name: 'Magenta 70',
+          hex: '#9f1853',
+        },
+        g10: {
+          name: 'Magenta 70',
+          hex: '#9f1853',
+        },
+        g90: {
+          name: 'Magenta 20',
+          hex: '#ffd6e8',
+        },
+        g100: {
+          name: 'Magenta 20',
+          hex: '#ffd6e8',
+        },
+      },
+    },
+    '$tag-hover-magenta': {
+      role: ['Hover color for $tag-background'],
+      value: {
+        white: {
+          name: 'Magenta 20 hover',
+          hex: '#ffbdda',
+        },
+        g10: {
+          name: 'Magenta 20 hover',
+          hex: '#ffbdda',
+        },
+        g90: {
+          name: 'Magenta 70 hover',
+          hex: '#bf1d63',
+        },
+        g100: {
+          name: 'Magenta 70 hover',
+          hex: '#bf1d63',
+        },
+      },
+    },
+    '$tag-border-magenta': {
+      role: ['Border for operational tag'],
+      value: {
+        white: {
+          name: 'Magenta 40',
+          hex: '#ff7eb6',
+        },
+        g10: {
+          name: 'Magenta 40',
+          hex: '#ff7eb6',
+        },
+        g90: {
+          name: 'Magenta 50',
+          hex: '#ee5396',
+        },
+        g100: {
+          name: 'Magenta 50',
+          hex: '#ee5396',
+        },
+      },
+    },
+    '$tag-background-purple': {
+      role: ['Tag background'],
+      value: {
+        white: {
+          name: 'Purple 20',
+          hex: '#e8daff',
+        },
+        g10: {
+          name: 'Purple 20',
+          hex: '#e8daff',
+        },
+        g90: {
+          name: 'Purple 70',
+          hex: '#6929c4',
+        },
+        g100: {
+          name: 'Purple 70',
+          hex: '#6929c4',
+        },
+      },
+    },
+    '$tag-color-purple': {
+      role: ['Tag text', 'Tag icon'],
+      value: {
+        white: {
+          name: 'Purple 70',
+          hex: '#6929c4',
+        },
+        g10: {
+          name: 'Purple 70',
+          hex: '#6929c4',
+        },
+        g90: {
+          name: 'Purple 20',
+          hex: '#e8daff',
+        },
+        g100: {
+          name: 'Purple 20',
+          hex: '#e8daff',
+        },
+      },
+    },
+    '$tag-hover-purple': {
+      role: ['Hover color for $tag-background'],
+      value: {
+        white: {
+          name: 'Purple 20 hover',
+          hex: '#dcc7ff',
+        },
+        g10: {
+          name: 'Purple 20 hover',
+          hex: '#dcc7ff',
+        },
+        g90: {
+          name: 'Purple 70 hover',
+          hex: '#7c3dd6',
+        },
+        g100: {
+          name: 'Purple 70 hover',
+          hex: '#7c3dd6',
+        },
+      },
+    },
+    '$tag-border-purple': {
+      role: ['Border for operational tag'],
+      value: {
+        white: {
+          name: 'Purple 40',
+          hex: '#be95ff',
+        },
+        g10: {
+          name: 'Purple 40',
+          hex: '#be95ff',
+        },
+        g90: {
+          name: 'Purple 50',
+          hex: '#a56eff',
+        },
+        g100: {
+          name: 'Purple 50',
+          hex: '#a56eff',
+        },
+      },
+    },
+    '$tag-background-blue': {
+      role: ['Tag background'],
+      value: {
+        white: {
+          name: 'Blue 20',
+          hex: '#d0e2ff',
+        },
+        g10: {
+          name: 'Blue 20',
+          hex: '#d0e2ff',
+        },
+        g90: {
+          name: 'Blue 70',
+          hex: '#0043ce',
+        },
+        g100: {
+          name: 'Blue 70',
+          hex: '#0043ce',
+        },
+      },
+    },
+    '$tag-color-blue': {
+      role: ['Tag text', 'Tag icon'],
+      value: {
+        white: {
+          name: 'Blue 70',
+          hex: '#0043ce',
+        },
+        g10: {
+          name: 'Blue 70',
+          hex: '#0043ce',
+        },
+        g90: {
+          name: 'Blue 20',
+          hex: '#d0e2ff',
+        },
+        g100: {
+          name: 'Blue 20',
+          hex: '#d0e2ff',
+        },
+      },
+    },
+    '$tag-hover-blue': {
+      role: ['Hover color for $tag-background'],
+      value: {
+        white: {
+          name: 'Blue 20 hover',
+          hex: '#b8d3ff',
+        },
+        g10: {
+          name: 'Blue 20 hover',
+          hex: '#b8d3ff',
+        },
+        g90: {
+          name: 'Blue 70 hover',
+          hex: '#0053ff',
+        },
+        g100: {
+          name: 'Blue 70 hover',
+          hex: '#0053ff',
+        },
+      },
+    },
+    '$tag-border-blue': {
+      role: ['Border for operational tag'],
+      value: {
+        white: {
+          name: 'Blue 40',
+          hex: '#78a9ff',
+        },
+        g10: {
+          name: 'Blue 40',
+          hex: '#78a9ff',
+        },
+        g90: {
+          name: 'Blue 50',
+          hex: '#4589ff',
+        },
+        g100: {
+          name: 'Blue 50',
+          hex: '#4589ff',
+        },
+      },
+    },
+    '$tag-background-cyan': {
+      role: ['Tag background'],
+      value: {
+        white: {
+          name: 'Cyan 20',
+          hex: '#bae6ff',
+        },
+        g10: {
+          name: 'Cyan 20',
+          hex: '#bae6ff',
+        },
+        g90: {
+          name: 'Cyan 70',
+          hex: '#00539a',
+        },
+        g100: {
+          name: 'Cyan 70',
+          hex: '#00539a',
+        },
+      },
+    },
+    '$tag-color-cyan': {
+      role: ['Tag text', 'Tag icon'],
+      value: {
+        white: {
+          name: 'Cyan 70',
+          hex: '#00539a',
+        },
+        g10: {
+          name: 'Cyan 70',
+          hex: '#00539a',
+        },
+        g90: {
+          name: 'Cyan 20',
+          hex: '#bae6ff',
+        },
+        g100: {
+          name: 'Cyan 20',
+          hex: '#bae6ff',
+        },
+      },
+    },
+    '$tag-hover-cyan': {
+      role: ['Hover color for $tag-background'],
+      value: {
+        white: {
+          name: 'Cyan 20 hover',
+          hex: '#99daff',
+        },
+        g10: {
+          name: 'Cyan 20 hover',
+          hex: '#99daff',
+        },
+        g90: {
+          name: 'Cyan 70 hover',
+          hex: '#bae6ff',
+        },
+        g100: {
+          name: 'Cyan 70 hover',
+          hex: '#bae6ff',
+        },
+      },
+    },
+    '$tag-border-cyan': {
+      role: ['Border for operational tag'],
+      value: {
+        white: {
+          name: 'Cyan 40',
+          hex: '#33b1ff',
+        },
+        g10: {
+          name: 'Cyan 40',
+          hex: '#33b1ff',
+        },
+        g90: {
+          name: 'Cyan 50',
+          hex: '#1192e8',
+        },
+        g100: {
+          name: 'Cyan 50',
+          hex: '#1192e8',
+        },
+      },
+    },
+    '$tag-background-teal': {
+      role: ['Tag background'],
+      value: {
+        white: {
+          name: 'Teal 20',
+          hex: '#9ef0f0',
+        },
+        g10: {
+          name: 'Teal 20',
+          hex: '#9ef0f0',
+        },
+        g90: {
+          name: 'Teal 70',
+          hex: '#005D5D',
+        },
+        g100: {
+          name: 'Teal 70',
+          hex: '#005D5D',
+        },
+      },
+    },
+    '$tag-color-teal': {
+      role: ['Tag text', 'Tag icon'],
+      value: {
+        white: {
+          name: 'Teal 70',
+          hex: '#005d5d',
+        },
+        g10: {
+          name: 'Teal 70',
+          hex: '#005d5d',
+        },
+        g90: {
+          name: 'Teal 20',
+          hex: '#9ef0f0',
+        },
+        g100: {
+          name: 'Teal 20',
+          hex: '#9ef0f0',
+        },
+      },
+    },
+    '$tag-hover-teal': {
+      role: ['Hover color for $tag-background'],
+      value: {
+        white: {
+          name: 'Teal 20 hover',
+          hex: '#57e5e5',
+        },
+        g10: {
+          name: 'Teal 20 hover',
+          hex: '#57e5e5',
+        },
+        g90: {
+          name: 'Teal 70 hover',
+          hex: '#007070',
+        },
+        g100: {
+          name: 'Teal 70 hover',
+          hex: '#007070',
+        },
+      },
+    },
+    '$tag-border-teal': {
+      role: ['Border for operational tag'],
+      value: {
+        white: {
+          name: 'Teal 40',
+          hex: '#08bdba',
+        },
+        g10: {
+          name: 'Teal 40',
+          hex: '#08bdba',
+        },
+        g90: {
+          name: 'Teal 50',
+          hex: '#009d9a',
+        },
+        g100: {
+          name: 'Teal 50',
+          hex: '#009d9a',
+        },
+      },
+    },
+    '$tag-background-green': {
+      role: ['Tag background'],
+      value: {
+        white: {
+          name: 'Green 20',
+          hex: '#a7f0ba',
+        },
+        g10: {
+          name: 'Green 20',
+          hex: '#a7f0ba',
+        },
+        g90: {
+          name: 'Green 70',
+          hex: '#0e6027',
+        },
+        g100: {
+          name: 'Green 70',
+          hex: '#0e6027',
+        },
+      },
+    },
+    '$tag-color-green': {
+      role: ['Tag text', 'Tag icon'],
+      value: {
+        white: {
+          name: 'Green 70',
+          hex: '#0e6027',
+        },
+        g10: {
+          name: 'Green 70',
+          hex: '#0e6027',
+        },
+        g90: {
+          name: 'Green 20',
+          hex: '#a7f0ba',
+        },
+        g100: {
+          name: 'Green 20',
+          hex: '#a7f0ba',
+        },
+      },
+    },
+    '$tag-hover-green': {
+      role: ['Hover color for $tag-background'],
+      value: {
+        white: {
+          name: 'Green 20 hover',
+          hex: '#74e792',
+        },
+        g10: {
+          name: 'Green 20 hover',
+          hex: '#74e792',
+        },
+        g90: {
+          name: 'Green 70 hover',
+          hex: '#11742f',
+        },
+        g100: {
+          name: 'Green 70 hover',
+          hex: '#11742f',
+        },
+      },
+    },
+    '$tag-border-green': {
+      role: ['Border for operational tag'],
+      value: {
+        white: {
+          name: 'Green 40',
+          hex: '#42be65',
+        },
+        g10: {
+          name: 'Green 40',
+          hex: '#42be65',
+        },
+        g90: {
+          name: 'Green 50',
+          hex: '#24a148',
+        },
+        g100: {
+          name: 'Green 50',
+          hex: '#24a148',
+        },
+      },
+    },
+  },
 };
 
 export default colorTokens;
