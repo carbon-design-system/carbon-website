@@ -2288,11 +2288,11 @@ const colorTokens = {
       role: ['Background overlay'],
       value: {
         white: {
-          name: 'Gray 100, 50%',
+          name: '#222222, 50%',
           hex: '#222222 @ 50%',
         },
         g10: {
-          name: 'Gray 100, 50%',
+          name: '#222222, 50%',
           hex: '#222222 @ 50%',
         },
         g90: {
