@@ -373,32 +373,30 @@ const A11yStatus = ({ components, layout }) => {
   } else {
     return (
       <>
-        <Row>
-          <Column colLg={12}>
-            {components ? (
-              <H3>
-                <span id="accessibility-testing-status">
-                  Accessibility testing status
-                </span>
-                {helpTooltip}
-              </H3>
-            ) : (
-              <>
-                <span
-                  id="all-component-accessibility-status-anchor"
-                  className={headingLink}></span>
-                <H2>All component accessibility status{helpTooltip}</H2>
-                <p>
-                  This table reflects the current AVT status of stable
-                  components within @carbon/react.
-                </p>
-              </>
-            )}
-            <p className={version}>
-              <strong>Latest version:</strong> {reactVersion} |{' '}
-              <strong>Framework:</strong> React (@carbon/react)
+        {components ? (
+          <H3>
+            <span id="accessibility-testing-status">
+              Accessibility testing status
+            </span>
+            {helpTooltip}
+          </H3>
+        ) : (
+          <>
+            <span
+              id="all-component-accessibility-status-anchor"
+              className={headingLink}></span>
+            <H2>All component accessibility status{helpTooltip}</H2>
+            <p>
+              This table reflects the current AVT status of stable components
+              within @carbon/react.
             </p>
-          </Column>
+          </>
+        )}
+        <p className={version}>
+          <strong>Latest version:</strong> {reactVersion} |{' '}
+          <strong>Framework:</strong> React (@carbon/react)
+        </p>
+        <Row>
           <Column
             colLg={12}
             noGutterSm
