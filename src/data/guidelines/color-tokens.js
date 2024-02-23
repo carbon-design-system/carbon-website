@@ -2350,7 +2350,7 @@ const colorTokens = {
   },
   tag: {
     '$tag-background-gray': {
-      role: ['Tag background'],
+      role: ['Gray tag background'],
       value: {
         white: {
           name: 'Gray 20',
@@ -2371,7 +2371,7 @@ const colorTokens = {
       },
     },
     '$tag-color-gray': {
-      role: ['Tag text', 'Tag icon'],
+      role: ['Gray tag text', 'Gray tag icon'],
       value: {
         white: {
           name: 'Gray 100',
@@ -2392,7 +2392,7 @@ const colorTokens = {
       },
     },
     '$tag-hover-gray': {
-      role: ['Hover color for $tag-background'],
+      role: ['Gray tag hover for $tag-background-gray'],
       value: {
         white: {
           name: 'Gray 20 hover',
@@ -2413,7 +2413,7 @@ const colorTokens = {
       },
     },
     '$tag-border-gray': {
-      role: ['Border for operational tag'],
+      role: ['Gray tag border for operational tag'],
       value: {
         white: {
           name: 'Gray 40',
@@ -2434,7 +2434,7 @@ const colorTokens = {
       },
     },
     '$tag-background-cool-gray': {
-      role: ['Tag background'],
+      role: ['Cool gray tag background'],
       value: {
         white: {
           name: 'Cool gray 20',
@@ -2455,7 +2455,7 @@ const colorTokens = {
       },
     },
     '$tag-color-cool-gray': {
-      role: ['Tag text', 'Tag icon'],
+      role: ['Cool gray tag text', 'Cool gray tag icon'],
       value: {
         white: {
           name: 'Cool gray 100',
@@ -2476,7 +2476,7 @@ const colorTokens = {
       },
     },
     '$tag-hover-cool-gray': {
-      role: ['Hover color for $tag-background'],
+      role: ['Cool gray tag hover for $tag-background-cool-gray'],
       value: {
         white: {
           name: 'Cool gray 20 hover',
@@ -2497,7 +2497,7 @@ const colorTokens = {
       },
     },
     '$tag-border-cool-gray': {
-      role: ['Border for operational tag'],
+      role: ['Cool gray tag border for operational tag'],
       value: {
         white: {
           name: 'Cool gray 40',
@@ -2518,7 +2518,7 @@ const colorTokens = {
       },
     },
     '$tag-background-warm-gray': {
-      role: ['Tag background'],
+      role: ['Warm gray tag background'],
       value: {
         white: {
           name: 'Warm gray 20',
@@ -2539,7 +2539,7 @@ const colorTokens = {
       },
     },
     '$tag-color-warm-gray': {
-      role: ['Tag text', 'Tag icon'],
+      role: ['Warm gray tag text', 'Warm gray tag icon'],
       value: {
         white: {
           name: 'Warm gray 100',
@@ -2560,7 +2560,7 @@ const colorTokens = {
       },
     },
     '$tag-hover-warm-gray': {
-      role: ['Hover color for $tag-background'],
+      role: ['Warm gray tag hover for $tag-background-warm-gray'],
       value: {
         white: {
           name: 'Warm gray 20 hover',
@@ -2581,7 +2581,7 @@ const colorTokens = {
       },
     },
     '$tag-border-warm-gray': {
-      role: ['Border for operational tag'],
+      role: ['Warm gray tag border for operational tag'],
       value: {
         white: {
           name: 'Warm gray 40',
@@ -2602,7 +2602,7 @@ const colorTokens = {
       },
     },
     '$tag-background-red': {
-      role: ['Tag background'],
+      role: ['Red tag background'],
       value: {
         white: {
           name: 'Red 20',
@@ -2623,7 +2623,7 @@ const colorTokens = {
       },
     },
     '$tag-color-red': {
-      role: ['Tag text', 'Tag icon'],
+      role: ['Red tag text', 'Red tag icon'],
       value: {
         white: {
           name: 'Red 70',
@@ -2644,7 +2644,7 @@ const colorTokens = {
       },
     },
     '$tag-hover-red': {
-      role: ['Hover color for $tag-background'],
+      role: ['Red tag hover for $tag-background-red'],
       value: {
         white: {
           name: 'Red 20 hover',
@@ -2665,7 +2665,7 @@ const colorTokens = {
       },
     },
     '$tag-border-red': {
-      role: ['Border for operational tag'],
+      role: ['Red tag border for operational tag'],
       value: {
         white: {
           name: 'Red 40',
@@ -2686,7 +2686,7 @@ const colorTokens = {
       },
     },
     '$tag-background-magenta': {
-      role: ['Tag background'],
+      role: ['Magenta tag background'],
       value: {
         white: {
           name: 'Magenta 20',
@@ -2707,7 +2707,7 @@ const colorTokens = {
       },
     },
     '$tag-color-magenta': {
-      role: ['Tag text', 'Tag icon'],
+      role: ['Magenta tag text', 'Magenta tag icon'],
       value: {
         white: {
           name: 'Magenta 70',
@@ -2728,7 +2728,7 @@ const colorTokens = {
       },
     },
     '$tag-hover-magenta': {
-      role: ['Hover color for $tag-background'],
+      role: ['Magenta tag hover for $tag-background-magenta'],
       value: {
         white: {
           name: 'Magenta 20 hover',
@@ -2749,7 +2749,7 @@ const colorTokens = {
       },
     },
     '$tag-border-magenta': {
-      role: ['Border for operational tag'],
+      role: ['Magenta tag border for operational tag'],
       value: {
         white: {
           name: 'Magenta 40',
@@ -2770,7 +2770,7 @@ const colorTokens = {
       },
     },
     '$tag-background-purple': {
-      role: ['Tag background'],
+      role: ['Purple tag background'],
       value: {
         white: {
           name: 'Purple 20',
@@ -2791,7 +2791,7 @@ const colorTokens = {
       },
     },
     '$tag-color-purple': {
-      role: ['Tag text', 'Tag icon'],
+      role: ['Purple tag text', 'Purple tag icon'],
       value: {
         white: {
           name: 'Purple 70',
@@ -2812,7 +2812,7 @@ const colorTokens = {
       },
     },
     '$tag-hover-purple': {
-      role: ['Hover color for $tag-background'],
+      role: ['Purple tag hover for $tag-background-purple'],
       value: {
         white: {
           name: 'Purple 20 hover',
@@ -2833,7 +2833,7 @@ const colorTokens = {
       },
     },
     '$tag-border-purple': {
-      role: ['Border for operational tag'],
+      role: ['Purple tag border for operational tag'],
       value: {
         white: {
           name: 'Purple 40',
@@ -2854,7 +2854,7 @@ const colorTokens = {
       },
     },
     '$tag-background-blue': {
-      role: ['Tag background'],
+      role: ['Blue tag background'],
       value: {
         white: {
           name: 'Blue 20',
@@ -2875,7 +2875,7 @@ const colorTokens = {
       },
     },
     '$tag-color-blue': {
-      role: ['Tag text', 'Tag icon'],
+      role: ['Blue tag text', 'Blue tag icon'],
       value: {
         white: {
           name: 'Blue 70',
@@ -2896,7 +2896,7 @@ const colorTokens = {
       },
     },
     '$tag-hover-blue': {
-      role: ['Hover color for $tag-background'],
+      role: ['Blue tag hover for $tag-background-blue'],
       value: {
         white: {
           name: 'Blue 20 hover',
@@ -2917,7 +2917,7 @@ const colorTokens = {
       },
     },
     '$tag-border-blue': {
-      role: ['Border for operational tag'],
+      role: ['Blue tag border for operational tag'],
       value: {
         white: {
           name: 'Blue 40',
@@ -2938,7 +2938,7 @@ const colorTokens = {
       },
     },
     '$tag-background-cyan': {
-      role: ['Tag background'],
+      role: ['Cyan tag background'],
       value: {
         white: {
           name: 'Cyan 20',
@@ -2959,7 +2959,7 @@ const colorTokens = {
       },
     },
     '$tag-color-cyan': {
-      role: ['Tag text', 'Tag icon'],
+      role: ['Cyan tag text', 'Cyan tag icon'],
       value: {
         white: {
           name: 'Cyan 70',
@@ -2980,7 +2980,7 @@ const colorTokens = {
       },
     },
     '$tag-hover-cyan': {
-      role: ['Hover color for $tag-background'],
+      role: ['Cyan tag hover for $tag-background-cyan'],
       value: {
         white: {
           name: 'Cyan 20 hover',
@@ -3001,7 +3001,7 @@ const colorTokens = {
       },
     },
     '$tag-border-cyan': {
-      role: ['Border for operational tag'],
+      role: ['Cyan tag border for operational tag'],
       value: {
         white: {
           name: 'Cyan 40',
@@ -3022,7 +3022,7 @@ const colorTokens = {
       },
     },
     '$tag-background-teal': {
-      role: ['Tag background'],
+      role: ['Teal tag background'],
       value: {
         white: {
           name: 'Teal 20',
@@ -3043,7 +3043,7 @@ const colorTokens = {
       },
     },
     '$tag-color-teal': {
-      role: ['Tag text', 'Tag icon'],
+      role: ['Teal tag text', 'Teal tag icon'],
       value: {
         white: {
           name: 'Teal 70',
@@ -3064,7 +3064,7 @@ const colorTokens = {
       },
     },
     '$tag-hover-teal': {
-      role: ['Hover color for $tag-background'],
+      role: ['Teal tag hover for $tag-background-teal'],
       value: {
         white: {
           name: 'Teal 20 hover',
@@ -3085,7 +3085,7 @@ const colorTokens = {
       },
     },
     '$tag-border-teal': {
-      role: ['Border for operational tag'],
+      role: ['Teal tag border for operational tag'],
       value: {
         white: {
           name: 'Teal 40',
@@ -3106,7 +3106,7 @@ const colorTokens = {
       },
     },
     '$tag-background-green': {
-      role: ['Tag background'],
+      role: ['Green tag background'],
       value: {
         white: {
           name: 'Green 20',
@@ -3127,7 +3127,7 @@ const colorTokens = {
       },
     },
     '$tag-color-green': {
-      role: ['Tag text', 'Tag icon'],
+      role: ['Green tag text', 'Green tag icon'],
       value: {
         white: {
           name: 'Green 70',
@@ -3148,7 +3148,7 @@ const colorTokens = {
       },
     },
     '$tag-hover-green': {
-      role: ['Hover color for $tag-background'],
+      role: ['Green tag hover for $tag-background-green'],
       value: {
         white: {
           name: 'Green 20 hover',
@@ -3169,7 +3169,7 @@ const colorTokens = {
       },
     },
     '$tag-border-green': {
-      role: ['Border for operational tag'],
+      role: ['Green tag border for operational tag'],
       value: {
         white: {
           name: 'Green 40',
