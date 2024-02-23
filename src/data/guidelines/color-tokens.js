@@ -2297,7 +2297,7 @@ const colorTokens = {
         },
         g90: {
           name: 'Black, 65%',
-          hex: '#000000 @65%',
+          hex: '#000000 @ 65%',
         },
         g100: {
           name: 'Black, 65%',
