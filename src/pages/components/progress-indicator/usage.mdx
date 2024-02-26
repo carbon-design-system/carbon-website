@@ -56,7 +56,7 @@ number of steps, and overall progress in completing a task.
 <Row>
 <Column colLg={8}>
 
-![Example of the progress indicator in a payment UI](images/progress-indicator-usage-1.png)
+![Example of progress indicator used in a payment UI](images/progress-indicator-usage-1.png)
 
 </Column>
 </Row>
@@ -95,20 +95,31 @@ number of steps, and overall progress in completing a task.
 </Column>
 </Row>
 
-1. **Icon:** Communicates what needs to be selected below.
-2. **Active step line:** Indicates these states–current and completed
-3. **Label:** A checkbox input indicating the appropriate state. By default it
-   is unselected.
-4. **Inactive step line:** Indicates these states–incomplete, error, disabled,
-   and skeleton
-5. **Optional label or error label:** Describes the information you want to
-   select or unselect.
+1. **Status indicator:** Communicates if a step is completed, incomplete, not
+   started, or has an error. See the
+   [status indicator pattern](/patterns/status-indicator-pattern/) for guidance.
+2. **Active step line:** Indicates completed steps and the step the user is
+   currently on.
+3. **Label:** users a word or two to communicate what the user will accomplish
+   in each step. Numbering each step also makes the progression more obvious.
+4. **Inactive step line:** Indicates incomplete steps as well as steps that are
+   in an error, disabled, or skeleton state.
+5. **Optional label or error label:** Shows that a step is optional or in an
+   error state.
 
 ### Alignment
 
 Progress indicators can be in vertical or horizontal position depending on the
 use case and the structure of the UI. When possible, arrange the progress
 indicator vertically for easier reading.
+
+<Row>
+<Column colLg={8}>
+
+![Example of a progress indicator used with vertical alignment](images/progress-indicator-usage-4.png)
+
+</Column>
+</Row>
 
 ### Placement
 
@@ -232,10 +243,24 @@ For additional information, see
 
 ### Validation
 
-Use validation to confirm that a previous step has been completed. If the user
-cannot proceed onto another step without first completing a task, use an
-[Inline Notification](/components/notification/code#inline-notification) to
-inform them.
+When possible, use validation to confirm that a step has been completed before
+the user continues. If any entry is invalid, the progress indicator should show
+an error state. Additionally, the invalid entry should be marked with an error
+state and include an inline error message that helps the user understand the
+problem and how to fix it. This kind of inline validation (aka client-side
+validation) should happen as soon as the field loses focus.
+
+If the user cannot proceed due to a server-side issue, then an
+[Inline Notification](/components/notification/code#inline-notification) should
+appear.
+
+<Row>
+<Column colLg={8}>
+
+![Example of progress indicator used with validation](images/progress-indicator-usage-5.png)
+
+</Column>
+</Row>
 
 ### Responsive behavior
 
@@ -287,11 +312,9 @@ The modifiers section shows different ways of styling the component. Here are so
 
 ## Related
 
-<!--
-Did you reference other components or patterns? List them here.
-
-If necessary, clarify any differences between this component and related components.
--->
+- [Dialogs](/patterns/dialog-pattern/)
+- [Forms](/patterns/forms-pattern/)
+- [Status indicators](/patterns/status-indicator-pattern/)
 
 ## References
 
