@@ -21,9 +21,8 @@ interactive variant also allows users to return to previously completed steps.
 <AnchorLink>Overview</AnchorLink>
 <AnchorLink>Formatting</AnchorLink>
 <AnchorLink>Content</AnchorLink>
-<AnchorLink>Modifiers</AnchorLink>
+<AnchorLink>Behaviors</AnchorLink>
 <AnchorLink>Related</AnchorLink>
-<AnchorLink>References</AnchorLink>
 <AnchorLink>Feedback</AnchorLink>
 
 </AnchorLinks>
@@ -100,8 +99,8 @@ number of steps, and overall progress in completing a task.
    [status indicator pattern](/patterns/status-indicator-pattern/) for guidance.
 2. **Active step line:** Indicates completed steps and the step the user is
    currently on.
-3. **Label:** users a word or two to communicate what the user will accomplish
-   in each step. Numbering each step also makes the progression more obvious.
+3. **Label:** Communicates what the user will accomplish in each step. Numbering
+   each step also makes the progression more obvious.
 4. **Inactive step line:** Indicates incomplete steps as well as steps that are
    in an error, disabled, or skeleton state.
 5. **Optional label or error label:** Shows that a step is optional or in an
@@ -148,20 +147,12 @@ For more information on spacing in forms, see our
 
 ### Main elements
 
-#### Indicate the current step
-
-- Keeping the user informed of where they currently are within the process or
-  task at hand will give them a sense of control. This helps the user to know
-  where they are in relation to where they have been, and what sections are to
-  follow.
-- When it comes to labels or optional labels in progress indicator, it is best
-  to keep them short, descriptive, and meaningful. Avoid using complex words or
-  sentences and use one or two words instead.
-
 #### Label
 
-Labels indicate steps which users need to complete to accomplish a task. Avoid
-vague terms like "Loading" and "Processing".
+The label should communicate what the user will accomplish in each step in one
+or two words. Choose a label that either starts with a verb ("Define endpoints")
+or is universally understood ("Shipping"), and avoid vague terms ("Processing").
+You may also number each step to make the progression more obvious.
 
 #### Optional label
 
@@ -170,53 +161,44 @@ Optional label is required when there step is invalid or in the error state.
 
 ### Overflow content
 
-- When there is not enough space, consider rewording the label or truncate the
-  label text with an ellipsis and provide a tooltip to convey additional
-  information.
-- Long optional labels may wrap to a second line, and this is preferable to
-  truncation.
-- Optional label should wrap beneath the label so both types of label are always
-  left aligned.
+#### Label
 
-  IMAGE TK: find high res version of Figma prototype
+When there is not enough space, consider rewording the label or truncate the
+label text with an ellipsis and provide a tooltip to convey additional
+information.
+
+#### Optional label
+
+Long optional labels may wrap to a second line, and this is preferable to
+truncation. Optional labels should wrap beneath the label so both types of label
+are always left aligned.
 
 ### Further guidance
 
 For further content guidance, see Carbon's
-[content guidelines](<[https://www.carbondesignsystem.com/guidelines/content/general](https://www.carbondesignsystem.com/guidelines/content/general)>).
+[content guidelines](/guidelines/content/overview/).
 
 ## Behaviors
 
-#### Logical progression
-
-Display the steps in order from left to right. Indicate to the user that they
-are performing a multistep process, and show the direction of movement. Allow
-the user to return to a previous step to review their data submission.
-
-#### Indicate the current step
-
-Keeping the user informed of where they currently are within the process or task
-at hand will give them a sense of control. This helps the user to know where
-they are in relation to where they have been, and what sections are to follow.
-Clear labels should accompany the progress indicator to indicate what the user
-will accomplish within each step. Keep labels between one to two words.
-
 ### States
 
-Progress indicator has five main progress states: **incomplete**, **current**,
-**completed**, **error**, and **disabled** and two main interactive states:
-**focus** and **hover**. View the [Style](/components/progress-indicator/style/)
-tab for more visual presentation of each state
+The progress indicator has five main progress states: **completed**,
+**current**, **not started**, **error**, and **disabled** and two main
+interactive states: **focus** and **hover**. View the
+[Style](/components/progress-indicator/style/) tab for visual specs of each
+state and see the
+[status indicator pattern](/patterns/status-indicator-pattern/) for additional
+guidance.
 
-| Variant    | Purpose                                                                                                                                                                                                                                                                                       |
-| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Incomplete | When users have not interacted with the information within a step                                                                                                                                                                                                                             |
-| Current    | When users are interacting with the info within the current step                                                                                                                                                                                                                              |
-| Completed  | When users complete filling out the information within a step                                                                                                                                                                                                                                 |
-| Error      | When users have interacted with the information within the step but have not completed the step. There could also be an error or failure has occurred during the process. It should provide clear information about the error and guidance on how to resolve the issue                        |
-| Disabled   | When the user cannot interact with a component and all interactive functions have been removed. Unlike read-only states, disabled states are not focusable, are not read by screen readers, and do not need to pass visual contrast, making them inaccessible if they need to be interpreted. |
-| Hover      | When a user's mouse cursor is hovering over the progress indicator's step                                                                                                                                                                                                                     |
-| Focus      | When a user tabs to or clicks on the progress indicator's step, the step becomes focused, indicating the user has successfully navigated to the component.                                                                                                                                    |
+| State       | Description                                                                                                                                                                                                                                                                                                                                   |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Completed   | A step is complete when a user has filled out the required information within a step and progressed to the following step. When possible, use validation to confirm that a step has been completed before the user continues. All steps that have been completed are indicated by an outlined circle with a checkmark and a blue active line. |
+| Current     | A step is current when a user is interacting with the information within that step. The current step the user is on is indicated by a half-filled circle and a blue active line.                                                                                                                                                              |
+| Not started | A step is not started when a user has not yet interacted with that step. Steps the user has not encountered yet, or future steps, are indicated by an outlined circle and a gray active line.                                                                                                                                                 |
+| Error       | A step may be in error when a user has entered invalid or incomplete information. There could also be a server-side error. Provide clear information about the error and guidance on how to resolve the issue.                                                                                                                                |
+| Disabled    | A step is disabled when all interactive functions have been removed. Unlike read-only states, disabled states are not focusable, are not read by screen readers, and do not need to pass visual contrast, making them inaccessible if they need to be interpreted.                                                                            |
+| Hover       | Use hover state when a user's mouse cursor is hovering over the progress indicator's step.                                                                                                                                                                                                                                                    |
+| Focus       | When a user tabs to or clicks on the progress indicator's step, the step becomes focused, indicating the user has successfully navigated to the component.                                                                                                                                                                                    |
 
 ### Interactions
 
@@ -227,8 +209,8 @@ Users can trigger a state change by clicking anywhere in the step progress area.
 #### Keyboard
 
 One tab should be selected by default. Users can navigate between tabs by
-pressing right or left arrow keys.. For additional keyboard interactions, see
-the [Accessibility](/components/progress-indicator/accessibility/) tab.
+pressing right or left arrow keys. For additional keyboard interactions, see the
+[Accessibility](/components/progress-indicator/accessibility/) tab.
 
 #### Screen readers
 
@@ -262,65 +244,11 @@ appear.
 </Column>
 </Row>
 
-### Responsive behavior
-
-Display the steps in order from left to right or top to bottom. Indicate to the
-user that they are performing a multistep process, and show the direction of
-movement. Allow the user to return to a previous step to review their data
-submission.
-
-### Default selection
-
-<!--
-Cover guidance around default settings and provide rationale. See [Form](https://www.carbondesignsystem.com/components/form/usage/#default-values) and [Radio button](https://www.carbondesignsystem.com/components/radio-button/usage/#default-selection) for examples.
--->
-
-### Clickable areas
-
-<!--
-Provide details about the clickable areas of the component.
--->
-
-### Loading
-
-<!--
-If applicable, use this section to cross reference to the specific loading type in the [Loading component](https://www.carbondesignsystem.com/patterns/loading-pattern) and/or the [Loading pattern](https://www.carbondesignsystem.com/patterns/loading-pattern/).
--->
-
-## Component type name
-
-<!--
-Rename this H2 heading with the first component type name, and include as many H2 sections as you have types.
-
-This section describes each of the component types listed in the Types table in the Overview, and highlights any behavior that is *unique* to the component type. Cover the topics from Universal behaviors above, as needed.
-
-And again, if any behavior is *universal* to the component, cover that in the "Universal behaviors" section above.
-
-For examples of how to lay out this kind of information, see [Dropdown](https://www.carbondesignsystem.com/components/dropdown/usage) and [Modal](https://www.carbondesignsystem.com/components/modal/usage#variations).
--->
-
-## Modifiers
-
-<!--
-The modifiers section shows different ways of styling the component. Here are some examples:
-
-- adding an icon to a [button](https://www.carbondesignsystem.com/components/button/usage/#variations)
-- adding a button to a [notification](https://www.carbondesignsystem.com/components/notification/usage/#anatomy)
-- styling a dropdown to appear inline with other content
-- using high and low contrast styles for [notifications](https://www.carbondesignsystem.com/components/notification/usage/#high-and-low-contrast)
--->
-
 ## Related
 
 - [Dialogs](/patterns/dialog-pattern/)
 - [Forms](/patterns/forms-pattern/)
 - [Status indicators](/patterns/status-indicator-pattern/)
-
-## References
-
-<!--
-Include links to any research, citations, books or articles that you found helpful.
--->
 
 ## Feedback
 
