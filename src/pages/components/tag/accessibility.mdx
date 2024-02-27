@@ -19,48 +19,132 @@ import {
   ListItem,
 } from '@carbon/react';
 
+<PageDescription>
+
+No accessibility annotations are needed for toggles, but keep these
+considerations in mind if you are modifying Carbon or creating a custom
+component.
+
+</PageDescription>
+
 <AnchorLinks>
-  <AnchorLink>How it works</AnchorLink>
-  <AnchorLink>Accessibility considerations</AnchorLink>
-  <AnchorLink>Resources</AnchorLink>
+  <AnchorLink>What Carbon provides</AnchorLink>
+  <AnchorLink>Design recommendations</AnchorLink>
+  <AnchorLink>Development considerations</AnchorLink>
   <AnchorLink>Accessibility testing</AnchorLink>
 </AnchorLinks>
 
 <A11yStatus layout="table" components="Tag" />
 
-## How it works
+## What Carbon provides
 
-Tags are used for web content that needs to be labeled, categorized, or
-organized using keywords that describe them. Tags are often used as a filter
-where all tags are in the same color, or used when content is mapped to multiple
-categories, where color is used to differentiate between categories.
+Carbon bakes keyboard operation into its components, improving the experience of
+blind users and others who operate via the keyboard. Carbon incorporates many
+other accessibility considerations, some of which are described below.
 
-## Accessibility considerations
+### Keyboard interaction
 
-This component has been validated to meet the
-[WCAG 2.0 AA](https://www.w3.org/TR/WCAG20/) and
-[Section 508](http://www.section508.gov/) accessibility guidelines, however
-changes made by the content owner can affect accessibility compliance. Be sure
-to review and follow the guidance in this section when updating or adding new
-content to this component.
+Read-only tags are not in the tab order and are not interactive and do not
+receive focus unless the tags title is truncated.
 
-1. Be sure the tag text is clear and concise.
-2. Color should not be used as the only means to differentiate tag categories.
-3. When using custom colors be sure the minimum contrast requirements are met.
-4. Tags that are modified as a link to filter content should also follow the
-   link Carbon Component guidance.
+<Row>
+<Column colLg={8}>
 
-## Resources
+![Read-only tag within the tab order displaying a tooltip activated on focus to reveal overflow tag title text.](images/tag-accessibility-read-only.png)
 
-#### Helpful resources for creating customized accessible implementations
+</Column>
+</Row>
 
-- [IBM Accessibility Requirements](https://www.ibm.com/able/requirements/requirements/):
-  - [1.4.1 Use of Color](https://www.ibm.com/able/requirements/requirements/#1_4_1)
-    (WCAG Success Criteria
-    [1.4.1](https://www.w3.org/WAI/WCAG21/Understanding/use-of-color))
-  - [1.4.3 Contrast (Minimum)](https://www.ibm.com/able/requirements/requirements/#1_4_3)
-    (WCAG Success Criteria
-    [1.4.3](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum))
+<Caption>
+  Read-only tag within the tab order displaying a tooltip activated on focus to
+  reveal overflow tag title text.
+</Caption>
+
+Dismissible tags are in the tab order and receive focus around the close icon by
+pressing the tab key. Pressing the enter or space keys will dismiss, close, or
+remove the tag. Tabbing away from the tag will move focus to the next element in
+the tab order.
+
+<Row>
+<Column colLg={8}>
+
+![Dismissible tag in the tab order receiving focus on the close icon to potentially dismiss the tag.](images/tag-accessibility-dismissible.png)
+
+</Column>
+</Row>
+
+<Caption>
+  Dismissible tag in the tab order receiving focus on the close icon to
+  potentially dismiss the tag.
+</Caption>
+
+Selectable tags are in the tab order and the the tag container receives focus by
+pressing the tab key. While the tag has focus, pressing the enter key or space
+key will select or deselect the tag. If navigating within a group of tags, use
+the tab key to move focus to and from different tags in the group. Tabbing away
+from the last tag in the group will move focus to the next element in the tab
+order.
+
+<Row>
+<Column colLg={8}>
+
+![A group of selectable tags in the tab order, with each tag receiving focus to select or deselect.](images/tag-accessibility-selectable.png)
+
+</Column>
+</Row>
+
+<Caption>
+  A group of selectable tags in the tab order, with each tag receiving focus to
+  select or deselect.
+</Caption>
+
+Operational tags are in the tab order and the tag container receives focus by
+pressing the tab key. Pressing the enter or space keys will disclose additional
+related tags, in a toggletip, popover, modal, or breadcrumb view. Closing the
+disclosed view or navigating away from it can vary depending on the method being
+used. After closing the disclosed view, tabbing away from the tag will move
+focus to the next element in the tab order.
+
+<Row>
+<Column colLg={8}>
+
+![An operational tag in the tab order, disclosing related tags.](images/tag-accessibility-operational.png)
+
+</Column>
+</Row>
+
+<Caption>An operational tag in the tab order, disclosing related tags.</Caption>
+
+## Design considerations
+
+Design annotations are not needed, but keep the following point in mind.
+
+### Overflow content
+
+When the tag's title is too long to fit within the available space of its
+container, the title can be truncated with an ellipsis. The full title will be
+disclosed in a tooltip on focus. Truncation should be set at the title's start,
+middle, or end, depending on what is best for the given use case.
+
+<Row>
+<Column colLg={8}>
+
+![A tag with a truncated title, disclosing the full title on focus in a tooltip.](images/tag-accessibility-overflow.png)
+
+</Column>
+</Row>
+
+<Caption>
+  A tag with a truncated title, disclosing the full title on focus in a tooltip.
+</Caption>
+
+## Developer considerations
+
+Keep this in mind if you’re modifying Carbon or creating a custom component.
+
+- I need dev help with this section in bullets.
+- I need dev help with this section in bullets.
+- I need dev help with this section in bullets.
 
 ## Accessibility testing
 
