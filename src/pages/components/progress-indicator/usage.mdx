@@ -10,8 +10,8 @@ import A11yStatus from 'components/A11yStatus';
 
 <PageDescription>
 
-A progress indicator shows where a user is in a linear, multistep process. The
-interactive variant also allows users to return to previously completed steps.
+A progress indicator guides users through any linear, multistep task by showing
+the user their completed, current, and future steps.
 
 </PageDescription>
 
@@ -75,13 +75,6 @@ number of steps, and overall progress in completing a task.
 - When the process may be completed in any order.
 - When the number of steps may change based on conditional logic.
 
-### Variants
-
-| Variant     | Purpose                                                            |
-| ----------- | ------------------------------------------------------------------ |
-| Default     | Allows users to see where they are in a linear, multistep process. |
-| Interactive | Allows users to return to a previously completed step.             |
-
 ## Formatting
 
 ### Anatomy
@@ -103,8 +96,7 @@ number of steps, and overall progress in completing a task.
    each step also makes the progression more obvious.
 4. **Inactive step line:** Indicates incomplete steps as well as steps that are
    in an error, disabled, or skeleton state.
-5. **Optional label or error label:** Shows that a step is optional or in an
-   error state.
+5. **Helper text:** Labels a step as optional or in an error state.
 
 ### Alignment
 
@@ -136,13 +128,6 @@ IMAGE TK: Get high res image. Likely needs design work first.
 </Column>
 </Row>
 
-Checkboxes in a form should be placed at least 32px (layout-03) below or before
-the next component. Spacing of 24px (layout-02) or 16px (layout-01) can also be
-used when space is more restricted or if the form is more complex.
-
-For more information on spacing in forms, see our
-[form style guidance](https://carbondesignsystem.com/components/form/style/).
-
 ## Content
 
 ### Main elements
@@ -150,14 +135,16 @@ For more information on spacing in forms, see our
 #### Label
 
 The label should communicate what the user will accomplish in each step in one
-or two words. Choose a label that either starts with a verb ("Define endpoints")
-or is universally understood ("Shipping"), and avoid vague terms ("Processing").
-You may also number each step to make the progression more obvious.
+or two words. One option is to clearly indicate the action of the step by using
+the {verb} + {noun} content formula. For example, "Configure IdP" or "Define
+endpoints." A label my use one word if it is universally understood, such as
+"Cart," "Shipping," or "Payment." Avoid vague terms like "Processing." You may
+also number each step to make the progression more obvious.
 
-#### Optional label
+#### Helper text
 
-Optional labels indicate a step as optional or additional context about a step.
-Optional label is required when there step is invalid or in the error state.
+Use the helper text to indicate that a step is optional or that a step is in an
+error state.
 
 ### Overflow content
 
@@ -167,11 +154,11 @@ When there is not enough space, consider rewording the label or truncate the
 label text with an ellipsis and provide a tooltip to convey additional
 information.
 
-#### Optional label
+#### Helper text
 
-Long optional labels may wrap to a second line, and this is preferable to
-truncation. Optional labels should wrap beneath the label so both types of label
-are always left aligned.
+Long helper text may wrap to a second line, and this is preferable to
+truncation. Wrap the helper text beneath the label so that both maintain left
+alignment.
 
 ### Further guidance
 
@@ -182,9 +169,8 @@ For further content guidance, see Carbon's
 
 ### States
 
-The progress indicator has five main progress states: **completed**,
-**current**, **not started**, **error**, and **disabled** and two main
-interactive states: **focus** and **hover**. View the
+The progress indicator has seven states: **completed**, **current**, **not
+started**, **error**, **disabled**, **focus**, and **hover**. View the
 [Style](/components/progress-indicator/style/) tab for visual specs of each
 state and see the
 [status indicator pattern](/patterns/status-indicator-pattern/) for additional
@@ -204,24 +190,14 @@ guidance.
 
 #### Mouse
 
-Users can trigger a state change by clicking anywhere in the step progress area.
+If the progress indicator is interactive, users can trigger a state change by
+clicking on the step label.
 
 #### Keyboard
 
-One tab should be selected by default. Users can navigate between tabs by
-pressing right or left arrow keys. For additional keyboard interactions, see the
-[Accessibility](/components/progress-indicator/accessibility/) tab.
-
-#### Screen readers
-
-VoiceOver: Users can navigate between tabs by pressing right or left arrow keys.
-
-JAWS: Users can navigate between tabs by pressing right or left arrow keys.
-
-NVDA: Users can navigate between tabs by pressing right or left arrow keys.
-
-For additional information, see
-[screen reader tests](/components/overview/accessibility-status#accessibility-test-categories).
+The first step should be selected by default. Users can navigate between steps
+by pressing right or left arrow keys. For additional keyboard interactions, see
+the [Accessibility](/components/progress-indicator/accessibility/) tab.
 
 ### Validation
 
@@ -229,7 +205,7 @@ When possible, use validation to confirm that a step has been completed before
 the user continues. If any entry is invalid, the progress indicator should show
 an error state. Additionally, the invalid entry should be marked with an error
 state and include an inline error message that helps the user understand the
-problem and how to fix it. This kind of inline validation (aka client-side
+problem and how to fix it. This kind of inline validation (or client-side
 validation) should happen as soon as the field loses focus.
 
 If the user cannot proceed due to a server-side issue, then an
