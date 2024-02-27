@@ -128,8 +128,33 @@ exports.createPages = ({ actions }) => {
     isPermanent: true,
   });
   createRedirect({
+    fromPath: '/guidelines/2x-grid/usage',
+    toPath: '/elements/2x-grid/usage',
+    isPermanent: true,
+  });
+  createRedirect({
+    fromPath: '/guidelines/2x-grid/code',
+    toPath: '/elements/2x-grid/code',
+    isPermanent: true,
+  });
+  createRedirect({
     fromPath: '/guidelines/color/overview',
     toPath: '/elements/color/overview',
+    isPermanent: true,
+  });
+  createRedirect({
+    fromPath: '/guidelines/color/usage',
+    toPath: '/elements/color/usage',
+    isPermanent: true,
+  });
+  createRedirect({
+    fromPath: '/guidelines/color/tokens',
+    toPath: '/elements/color/tokens',
+    isPermanent: true,
+  });
+  createRedirect({
+    fromPath: '/guidelines/color/code',
+    toPath: '/elements/color/code',
     isPermanent: true,
   });
   createRedirect({
@@ -138,13 +163,43 @@ exports.createPages = ({ actions }) => {
     isPermanent: true,
   });
   createRedirect({
+    fromPath: '/guidelines/icons/usage',
+    toPath: '/elements/icons/usage',
+    isPermanent: true,
+  });
+  createRedirect({
+    fromPath: '/guidelines/icons/code',
+    toPath: '/elements/icons/code',
+    isPermanent: true,
+  });
+  createRedirect({
     fromPath: '/guidelines/pictograms/library',
     toPath: '/elements/pictograms/library',
     isPermanent: true,
   });
   createRedirect({
+    fromPath: '/guidelines/pictograms/usage',
+    toPath: '/elements/pictograms/usage',
+    isPermanent: true,
+  });
+  createRedirect({
+    fromPath: '/guidelines/pictograms/code',
+    toPath: '/elements/pictograms/code',
+    isPermanent: true,
+  });
+  createRedirect({
     fromPath: '/guidelines/motion/overview',
     toPath: '/elements/motion/overview',
+    isPermanent: true,
+  });
+   createRedirect({
+    fromPath: '/guidelines/motion/choreography',
+    toPath: '/elements/motion/choreography',
+    isPermanent: true,
+  });
+   createRedirect({
+    fromPath: '/guidelines/motion/code',
+    toPath: '/elements/motion/code',
     isPermanent: true,
   });
   createRedirect({
@@ -153,13 +208,38 @@ exports.createPages = ({ actions }) => {
     isPermanent: true,
   });
   createRedirect({
+    fromPath: '/guidelines/spacing/code',
+    toPath: '/elements/spacing/code',
+    isPermanent: true,
+  });
+  createRedirect({
     fromPath: '/guidelines/themes/overview',
     toPath: '/elements/themes/overview',
     isPermanent: true,
   });
   createRedirect({
+    fromPath: '/guidelines/themes/code',
+    toPath: '/elements/themes/code',
+    isPermanent: true,
+  });
+  createRedirect({
     fromPath: '/guidelines/typography/overview',
     toPath: '/elements/typography/overview',
+    isPermanent: true,
+  });
+  createRedirect({
+    fromPath: '/guidelines/typography/style-strategies',
+    toPath: '/elements/typography/style-strategies',
+    isPermanent: true,
+  });
+  createRedirect({
+    fromPath: '/guidelines/typography/type-sets',
+    toPath: '/elements/typography/type-sets',
+    isPermanent: true,
+  });
+  createRedirect({
+    fromPath: '/guidelines/typography/code',
+    toPath: '/elements/typography/code',
     isPermanent: true,
   });
 };
