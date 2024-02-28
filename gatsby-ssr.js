@@ -61,13 +61,6 @@ export const onRenderBody = ({ setHeadComponents, setPostBodyComponents }) => {
       name="twitter:creator"
       content="@_carbondesign"
     />,
-    <script
-      src="https://cdn.usefathom.com/script.js"
-      spa="auto" //eslint-disable-line react/no-unknown-property
-      site="VMSGXQRS" //eslint-disable-line react/no-unknown-property
-      key="fathom"
-      defer
-    />,
   ]);
 
   setPostBodyComponents([
