@@ -1,44 +1,77 @@
 ---
 title: Content switcher
 description:
-  Content switchers manipulate the content shown following an exclusive or
-  “either/or” pattern. It is used to toggle between two or more content sections
-  within the same space on screen.
+  Content switchers allow users to toggle between two or more content sections
+  within the same space on the screen.
 tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 ---
 
+<PageDescription>
+
+The following page documents visual specifications such as color, typography,
+structure, and size.
+
+</PageDescription>
+
+<AnchorLinks>
+
+<AnchorLink>Color</AnchorLink>
+<AnchorLink>Typography</AnchorLink>
+<AnchorLink>Structure</AnchorLink>
+<AnchorLink>Size</AnchorLink>
+<AnchorLink>Feedback</AnchorLink>
+
+</AnchorLinks>
+
 ## Color
 
-Content switchers have two main states: `selected` and `unselected`. By default,
-content switcher buttons are unselected with the selected state using a high
-contrast color.
+Content switcher includes two default-enabled content states: **selected** and
+**unselected** with the selected state using a high contrast color.
 
-| Element           | Property         | Color token               |
-| ----------------- | ---------------- | ------------------------- |
-| Unselected button | background-color | Transparent               |
-|                   | text color       | `$text-secondary`         |
-|                   | svg              | `$icon-primary`           |
-|                   | border           | `$border-inverse`         |
-| Selected button   | background-color | `$layer-selected-inverse` |
-|                   | text color       | `$text-inverse`           |
-|                   | svg              | `$icon-inverse`           |
-| Divider           | border           | `$border-subtle`          |
+| Type       | Element    | Property         | Color token               |
+| ---------- | ---------- | ---------------- | ------------------------- |
+| Selected   | Container  | background-color | `$layer-selected-inverse` |
+|            | Label text | text color       | `$text-inverse`           |
+|            | Icon       | svg              | `$icon-inverse`           |
+| Unselected | Container  | background-color | Transparent               |
+|            | Label text | text-color       | `$text-secondary`         |
+|            | Icon       | svg              | `$icon-primary`           |
+|            | Border     | border           | `$border-inverse`         |
+|            | Divider    | border           | `$border-subtle`\*        |
+
+<div className="image--fixed">
+
+![Selected and unselected states of the content switcher](images/contentswitcher-usage-4.png)
+
+</div>
 
 ### Interactive states
 
-Hover states only apply to `unselected` buttons.
+Content switcher has three interactive states–**hover**, **focus**, and
+**disabled**. Hover states only apply to the unselected state.
 
-| State    | Property         | Color token         |
-| -------- | ---------------- | ------------------- |
-| Hover    | background-color | `$background-hover` |
-|          | text color       | `$text-primary`     |
-|          | svg              | `$icon-primary`     |
-| Focus    | border           | `$focus`            |
-|          | inner border     | `$focus-inset`      |
-| Disabled | background-color | `transparent`       |
-|          | text color       | `$text-disabled`    |
-|          | svg              | `$icon-disabled`    |
-|          | border           | `$border-disabled`  |
+| Type       | State    | Element    | Property         | Color token                |
+| ---------- | -------- | ---------- | ---------------- | -------------------------- |
+| Selected   | Focus    | Container  | background-color | `$layer-selected-inverse`  |
+|            |          | Label text | text-color       | `$text-inverse`            |
+|            |          | Icon       | svg              | `$text-inverse`            |
+|            |          | Border     | inner-border     | `$focus-inset`             |
+|            | Disabled | Container  | background-color | `$layer-selected-disabled` |
+|            |          | Label text | text-color       | `$text-disabled`           |
+|            |          | Icon       | text-color       | `$text-disabled`           |
+| Unselected | Hover    | Container  | background-color | `$background-hover`        |
+|            |          | Label text | text-color       | `$text-primary`            |
+|            |          | Icon       | svg              | `$icon-primary`            |
+|            |          | Border     | border           | `$border-inverse`          |
+|            | Focus    | Container  | background-color | Transparent                |
+|            |          | Label text | text-color       | `$text-secondary`          |
+|            |          | Icon       | svg              | `$icon-primary`            |
+|            |          | Border     | border           | `$focus`                   |
+|            | Disabled | Container  | background-color | Transparent                |
+|            |          | Label text | text-color       | `$text-disabled`           |
+|            |          | Icon       | text-color       | `$icon-disabled`           |
+|            |          | Border     | border           | `$border-disabled`         |
+|            |          | Divider    | border           | `$border-subtle`\*         |
 
 <Row>
 <Column colLg={8}>
@@ -47,7 +80,7 @@ Hover states only apply to `unselected` buttons.
 
 <Tab label="Default">
 
-![Example of default content switcher states](images/content-switcher-style-color.png)
+![Example of default content switcher states](images/content-switcher-style-color-text.png)
 
 </Tab>
 
@@ -68,51 +101,47 @@ Content switcher label text should be set in sentence case, with only the first
 word in a phrase and any proper nouns capitalized. The label text should not
 exceed three words.
 
-| Element | Font-size (px/rem) | Font-weight   | Type token         |
-| ------- | ------------------ | ------------- | ------------------ |
-| Label   | 14 / 0.875         | Regular / 400 | `$body-compact-01` |
+| Element    | Font-size (px/rem) | Font-weight   | Type token         |
+| ---------- | ------------------ | ------------- | ------------------ |
+| Label text | 14 / 0.875         | Regular / 400 | `$body-compact-01` |
 
 ## Structure
 
 Content switchers must have at least two options for the user to choose from.
-Each container that makes up the content switcher is equal in size. The width of
-a container is determined by the length of the longest container option text
-plus the 16 px / 1rem on both sides of the text.
+Each container that makes up the content switcher is equal in size.
 
-| Element      | Property                    | px / rem | Spacing token |
-| ------------ | --------------------------- | -------- | ------------- |
-| Container    | corner radius               | 4px      | –             |
-| Divider      | border                      | 1px      | –             |
-| Button label | padding-left, padding-right | 16 / 1   | `$spacing-05` |
+| Element    | Property                    | px / rem  | Spacing token |
+| ---------- | --------------------------- | --------- | ------------- |
+| Container  | corner radius               | 4px       | –             |
+| Label text | padding-left, padding-right | 16 / 1    | `$spacing-05` |
+| Icon (sm)  | padding-left, padding-right | 8 / 0.5   | `$spacing-03` |
+| Icon (md)  | padding-left, padding-right | 12 / 0.75 | `$spacing-04` |
+| Icon (lg)  | padding-left, padding-right | 14/ 0.875 | –             |
+| Divider    | border                      | 1px       | –             |
+
+### Text content switcher
+
+The width of a text container is determined by the length of the longest label
+text within its content switcher.
 
 <div className="image--fixed">
 
-![Content switcher structure and spacing measurements](images/content-switcher-style-1.png)
+![Text content switcher structure and spacing measurements](images/content-switcher-style-1.png)
 
 </div>
 
 <Caption>
-  Structure and spacing measurements for the default size content switcher | px
-  / rem
+  Structure and spacing measurements for the text content switcher | px / rem
 </Caption>
 
-### Icon variant
+### Icon content switcher
 
-| Element  | Property      | px / rem | Spacing token |
-| -------- | ------------- | -------- | ------------- |
-| Tab (sm) | height, width | 32 / 2   | –             |
-|          | svg           | 16 x 16  | –             |
-|          | padding       | centered | –             |
-| Tab (md) | height, width | 40 / 2.5 | –             |
-|          | svg           | 16 x 16  | –             |
-|          | padding       | centered | –             |
-| Tab (lg) | height, width | 48 / 3   | –             |
-|          | svg           | 20 x 20  | –             |
-|          | padding       | centered | –             |
+The width of an icon container is determined by the fixed size within its
+content switcher.
 
 <div className="image--fixed">
 
-![Structure and spacing measurements for icon content switcher in px and rem](images/content-switcher-style-4.png)
+![Icon content switcher structure and spacing measurements](images/content-switcher-style-structure-icon.png)
 
 </div>
 
@@ -120,18 +149,38 @@ plus the 16 px / 1rem on both sides of the text.
   Structure and spacing measurements for the icon content switcher | px / rem
 </Caption>
 
-## Sizes
+### Size
 
-| Size        | Height px / rem |
-| ----------- | --------------- |
-| Small (sm)  | 32 / 2          |
-| Medium (md) | 40 / 2.5        |
-| Large (lg)  | 48 / 3          |
+There are three content switcher sizes—small (32px), medium (40px), and large
+(48px).
+
+| Element   | Size        | Height (px / rem) |
+| --------- | ----------- | ----------------- |
+| Container | Small (sm)  | 32 / 2            |
+|           | Medium (md) | 40 / 2.5          |
+|           | Large (lg)  | 48 / 3            |
+| Icon      | Small (sm)  | 16 / 1            |
+|           | Medium (md) | 16 / 1            |
+|           | Large (lg)  | 20 / 1.25         |
 
 <div className="image--fixed">
 
-![Sizes for content switcher](images/content-switcher-style-size.png)
+![Text only content switcher sizes | px / rem](images/content-switcher-style-size-text.png)
 
 </div>
 
-<Caption>Content switcher sizes | px / rem</Caption>
+<Caption>Text only content switcher sizes | px / rem</Caption>
+
+<div className="image--fixed">
+
+![Icon content switcher sizes | px / rem](images/content-switcher-style-size-icon.png)
+
+</div>
+
+<Caption>Icon only content switcher sizes | px / rem</Caption>
+
+## Feedback
+
+Help us improve this component by providing feedback, asking questions, and
+leaving any other comments on
+[GitHub](https://github.com/carbon-design-system/carbon-website/issues/new?assignees=&labels=feedback&template=feedback.md).
