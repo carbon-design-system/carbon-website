@@ -295,7 +295,7 @@ const A11yStatus = ({ components, layout }) => {
                 <Link
                   href={githubUrl}
                   renderIcon={() => <Launch aria-label="Launch" />}>
-                  Github link
+                  GitHub link
                 </Link>
               </td>
             </tr>
