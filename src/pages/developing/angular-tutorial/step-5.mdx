@@ -97,11 +97,13 @@ So far we've been developing in a, well, development environment where static
 asset optimization hasn't been a priority. If you reference `/src/styles.scss`,
 you'll see one `@import` that is pulling in Carbon's full Sass build.
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
+
 ```scss path=src/styles.scss
 @import "~carbon-components/scss/globals/scss/styles";
 ```
-<!-- prettier-ignore-end -->
+
+{/* prettier-ignore-end */}
 
 To give you an idea of what's all included, open up
 `node_modules/carbon-components/scss/globals/scss/styles.scss`. You'll see
@@ -110,7 +112,8 @@ using those components, let's exclude them from our built stylesheets. Keeping
 the `$feature-flags` Sass map, and `carbon-overrides.scss`, replace the
 `styles.scss` import with:
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
+
 ```scss path=src/styles.scss
 // Feature flags
 $css--font-face: true;
@@ -129,7 +132,8 @@ $css--plex: true;
 @import "~carbon-components/scss/components/tabs/tabs";
 @import "~carbon-components/scss/components/ui-shell/ui-shell";
 ```
-<!-- prettier-ignore-end -->
+
+{/* prettier-ignore-end */}
 
 Looking at the new `styles.scss` file, you may be asking what happened to
 importing `_vars.scss`, `_colors.scss`, `_theme.scss`, etc.? Many of those
@@ -193,6 +197,8 @@ applications:
     buildpack: https://github.com/cloudfoundry/staticfile-buildpack.git
 ```
 
+interesting
+
 <InlineNotification>
 
 **Note:** With this set-up we're still using a GitHub personal access token
@@ -217,7 +223,7 @@ root: dist
 
 After telling Cloud Foundry what to include, we can also specify what to ignore.
 Create a top-level `.cfignore` file. Cloud Foundry doesn't let you push
-read-only files (specifically, files with permissions <`400`), so to prevent
+read-only files (specifically, files with permissions &lt;`400`), so to prevent
 issues with the deploy, add:
 
 ```bash path=.cfignore
