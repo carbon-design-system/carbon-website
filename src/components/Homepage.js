@@ -1,50 +1,75 @@
-import React from 'react';
-import { HomepageBanner, HomepageCallout } from 'gatsby-theme-carbon';
-import HomepageTemplate from 'gatsby-theme-carbon/src/components/Layouts/Homepage';
-import { calloutLink } from './Homepage.module.scss';
+import React from "react";
+import { HomepageCallout, ResourceCard } from "gatsby-theme-carbon";
+import HomepageTemplate from "gatsby-theme-carbon/src/components/Layouts/Homepage";
+import { blue20, purple20, gray100 } from "@carbon/elements";
+import { calloutLink, callToAction } from "./Homepage.module.scss";
+// import HomepageVideo from '../../components/HomepageVideo/HomepageVideo';
+import ImageV11 from "./Homepage/Carbon-V11-Banner-Image.jpg";
 
-import Carbon from './carbon.jpg';
-
-const FirstLeftText = () => <p>Callout component</p>;
+const FirstLeftText = () => <p>Carbon Design System</p>;
 
 const FirstRightText = () => (
   <p>
-    This is a callout component. You can edit the contents by updating the{' '}
-    <a href="https://github.com/carbon-design-system/gatsby-theme-carbon/blob/5fe12de31bb19fbfa2cab7c69cd942f55aa06f79/packages/example/src/gatsby-theme-carbon/templates/Homepage.js">
-      pre-shadowed homepage template
-    </a>
-    . You can also provide <code>color</code> and <code>backgroundColor</code>{' '}
-    props to suit your theme.
-    <a
-      className={calloutLink}
-      href="https://github.com/carbon-design-system/gatsby-theme-carbon/blob/main/packages/example/src/gatsby-theme-carbon/templates/Homepage.js">
-      Homepage source →
-    </a>
+    Carbon is IBM’s <strong>open source</strong> design system for products and
+    digital experiences. With the IBM Design Language as its foundation, the
+    system consists of working code, design tools and resources, human interface
+    guidelines, and a vibrant community of contributors.
   </p>
 );
 
-const SecondLeftText = () => <p>Callout component</p>;
+const SecondLeftText = () => (
+  <p>
+    Wondering how
+    <br />
+    to contribute?
+  </p>
+);
 
 const SecondRightText = () => (
   <p>
-    You can also not use these components at all by not providing the callout
-    props to the template or writing your own template.
-    <a
-      className={calloutLink}
-      href="https://github.com/carbon-design-system/gatsby-theme-carbon/blob/main/packages/example/src/gatsby-theme-carbon/templates/Homepage.js">
-      Homepage source →
+    We welcome all feedback, designs, or ideas in order to produce the best
+    possible experience for our users. If you’re interested in contributing,
+    check out our contributing guidelines to get started.
+    <a className={calloutLink} href="/contributing/get-started/">
+      Start contributing →
     </a>
   </p>
 );
 
-const BannerText = () => <h1>Carbon Gatsby theme</h1>;
-
 const customProps = {
-  Banner: <HomepageBanner renderText={BannerText} image={Carbon} />,
+  Banner: (
+    <>
+      {/* Remove the dots for now since we're using a static image for v11 */}
+      {/* <span className="homepage--dots" /> */}
+      <section className="homepage--header">
+        <div
+          className="cds--grid"
+          style={{
+            maxWidth: "100%",
+            overflow: "hidden",
+            backgroundImage: `url(${ImageV11})`,
+          }}
+        >
+          <div className="cds--row">
+            <div className="cds--col-lg-4 cds--col-md-4 cds--col-sm-2 cds--offset-lg-8 cds--offset-md-4 cds--offset-sm-2 homepage--tile-header">
+              <ResourceCard
+                className={callToAction}
+                subTitle="Migrate to"
+                title="Carbon v11"
+                href="/migrating/guide/overview/"
+                actionIcon="arrowRight"
+              />
+            </div>
+            {/* <HomepageVideo /> */}
+          </div>
+        </div>
+      </section>
+    </>
+  ),
   FirstCallout: (
     <HomepageCallout
-      backgroundColor="#030303"
-      color="white"
+      backgroundColor={blue20}
+      color={gray100}
       leftText={FirstLeftText}
       rightText={FirstRightText}
     />
@@ -53,8 +78,8 @@ const customProps = {
     <HomepageCallout
       leftText={SecondLeftText}
       rightText={SecondRightText}
-      color="white"
-      backgroundColor="#061f80"
+      color={gray100}
+      backgroundColor={purple20}
     />
   ),
 };

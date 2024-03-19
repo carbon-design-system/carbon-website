@@ -1,0 +1,111 @@
+.color-block {
+  position: relative;
+  @include type-style('body-short-01');
+}
+
+.color-block__color {
+  position: relative;
+  display: block;
+  margin-top: $spacing-01;
+  height: rem(14px);
+  width: rem(14px);
+  border-radius: rem(14px);
+
+  // needed to fix anti-aliasing issue in firefox
+  &:before {
+    position: absolute;
+    content: '';
+    height: rem(14px);
+    width: rem(14px);
+    border-radius: rem(14px);
+    border: 1px solid $gray-30;
+    left: 0px;
+    top: 0px;
+  }
+}
+
+.color-block__color--with-label {
+  position: absolute;
+  top: 0;
+  left: 5rem;
+}
+
+// Color blocks
+
+.color-blocks .cds--caption {
+  font-size: 14px;
+  margin-left: $spacing-05;
+}
+
+.color-blocks .cds--col-lg-2 {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.color-blocks .cds--col-lg-2:nth-child(1) {
+  min-width: 50%;
+
+  @include breakpoint('md') {
+    min-width: 16%;
+  }
+}
+
+.color-blocks .cds--col-lg-2:nth-child(2) {
+  min-width: 50%;
+
+  @include breakpoint('md') {
+    margin-right: 0px;
+    min-width: 16%;
+  }
+}
+
+.color-blocks .cds--col-lg-2:nth-child(3) {
+  min-width: 50%;
+
+  @include breakpoint('md') {
+    margin-left: $spacing-07;
+    min-width: 16%;
+  }
+}
+
+.color-blocks .cds--col-lg-2:nth-child(4) {
+  min-width: 50%;
+
+  @include breakpoint('md') {
+    margin-right: 0px;
+    min-width: 16%;
+  }
+}
+
+.color-square {
+  @include type-style('body-short-01');
+  padding: $spacing-05;
+}
+
+.color-square--white {
+  background: $white-0;
+}
+
+.color-square--gray-10 {
+  background: $gray-10;
+  outline: 1px solid $gray-30;
+  outline-offset: -1px;
+}
+
+.color-square--gray-100 {
+  background: $gray-100;
+}
+
+.color-square--gray-90 {
+  background: $gray-90;
+}
+
+.color-square--gray-80 {
+  background: $gray-80;
+}
+
+.color-square--gray-100,
+.color-square--gray-90,
+.color-square--gray-80 {
+  color: $white-0;
+}

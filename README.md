@@ -1,34 +1,45 @@
-# Gatsby Theme Carbon Starter
+# Carbon Design System
 
-> :exclamation: This project is maintained by community contributions. The original 
-> contributor, Carbon Design System, is no longer involved in maintaining this project.
+![Deployment status](https://github.com/carbon-design-system/carbon-website/workflows/Deployment%20status/badge.svg)
 
-## What is this?
+This is the [Carbon Design System website](http://www.carbondesignsystem.com).
+It's built using the [gatsby-theme-carbon](https://gatsby.carbondesignsystem.com/)
+with [GatsbyJS](https://www.gatsbyjs.org/).
 
-> Gatsby [themes](https://www.gatsbyjs.org/docs/themes/) encapsulate all of the
-> configuration and implementation details of Gatsby websites. This is a
-> starter-kit (boilerplate) with a dependency on the `gatsby-theme-carbon`
-> package. The primary goal of `gatsby-theme-carbon` is to get content authors
-> speaking the IBM Design Language with Carbon as soon as possible. It includes
-> some sample components/content demos in the `src/pages` directory.
+## 📂 Structure
 
-## How do I use it?
+```
+src
+├── components
+├── data
+├── gatsby-theme-carbon
+├── images
+├── pages
+├── styles
+├── util
+```
 
-Check out our quick
-[getting started](https://gatsby.carbondesignsystem.com/getting-started) guide and
-video!
+## 👩‍💻 Develop
 
-`gatsby-theme-carbon` at it’s core relies on [mdx](https://mdxjs.com/) for page
-creation. Check out the `src/pages` directory for some examples for using mdx.
+- 🤝 [Contribution guidelines](.github/CONTRIBUTING.md)
+- 📚 [Content and Markdown guidelines](https://gatsby-theme-carbon.now.sh/components/markdown)
+- 🗺 [Navigation guidelines](https://gatsby-theme-carbon.now.sh/guides/navigation/sidebar)
 
-A key feature of Gatsby themes is component shadowing. By simply placing a
-component into the `src/gatsby-theme-carbon/components` location, you can
-override components used by the theme. You can read more about component
-shadowing
-[here](https://www.gatsbyjs.org/docs/themes/api-reference#component-shadowing).
+- `yarn install` – install dependencies
+- `yarn dev` – start the development server
+- `yarn dev:clean` – use this if you have cache issues
+- `lint:js` – lint your JavaScript files
+- `format` - run Prettier
 
-You’re also free to make your own components and use them in your MDX pages.
+If you need more detailed information on how to set up your machine to develop
+locally, please take a look at our
+[wiki](https://github.com/carbon-design-system/carbon-website/wiki).
 
-## What’s Next?
+## 🚀 Build
 
-[Check out the docs!](https://gatsby.carbondesignsystem.com)
+Running the build command generates all the files and places them in the
+`public` folder.
+
+```
+yarn build
+```
