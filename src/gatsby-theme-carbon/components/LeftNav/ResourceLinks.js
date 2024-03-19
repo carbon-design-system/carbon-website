@@ -3,20 +3,14 @@ import ResourceLinks from 'gatsby-theme-carbon/src/components/LeftNav/ResourceLi
 
 const links = [
   {
-    title: 'Github',
-    href: 'https://github.com/carbon-design-system/gatsby-theme-carbon',
-  },
-  {
-    title: 'Carbon',
-    href: 'https://www.carbondesignsystem.com',
-  },
-  {
-    title: 'Configuration guide',
-    href: '/guides/configuration',
+    title: 'GitHub',
+    href: 'https://github.com/carbon-design-system/carbon',
   },
 ];
 
 // shouldOpenNewTabs: true if outbound links should open in a new tab
-const CustomResources = () => <ResourceLinks shouldOpenNewTabs links={links} />;
+const CustomResources = () => (
+  <ResourceLinks includeDividerSpace={false} shouldOpenNewTabs links={links} />
+);
 
 export default CustomResources;
