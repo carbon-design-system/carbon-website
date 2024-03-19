@@ -3,17 +3,38 @@
   "private": true,
   "version": "4.0.0-next.7",
   "license": "Apache 2.0",
-  "scripts": {
-    "dev": "gatsby develop -H 0.0.0.0",
-    "dev:clean": "gatsby clean && gatsby develop -H 0.0.0.0",
-    "build": "gatsby build",
-    "build:clean": "yarn clean && gatsby build",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean"
+  "workspaces": {
+    "packages": [
+      "plugins/*"
+    ]
   },
+  "scripts": {
+    "dev": "NODE_OPTIONS='--max-old-space-size=8192' gatsby develop -H 0.0.0.0",
+    "dev:clean": "gatsby clean && yarn dev",
+    "clean": "gatsby clean",
+    "build": "node --max-old-space-size=8192 ./node_modules/.bin/gatsby build",
+    "build:clean": "gatsby clean && yarn build",
+    "build:analyze": "yarn install --force && yarn clean && ANALYZE=true yarn build",
+    "serve": "gatsby serve",
+    "lint:js": "NODE_ENV=test eslint . --fix",
+    "format": "prettier --write 'src/**/*.{css,scss,json,html,yaml,md,mdx}'",
+    "format:check": "prettier --check 'src/**/*.{css,scss,json,html,yaml,md,mdx}'",
+    "update-browserslist": "npx browserslist-ga"
+  },
+  "browserslist": [
+    "last 1 edge version",
+    "last 1 firefox version",
+    "last 1 safari version",
+    "last 1 chrome version"
+  ],
+  "eslintIgnore": [
+    "/public/*",
+    "/.cache/*",
+    "/node_modules/*"
+  ],
   "dependencies": {
     "@carbon/charts-react": "0.55.0",
-    "@carbon/icons-react": "^11.37.0",
+    "@carbon/icons-react": "^11.38.0",
     "@carbon/pictograms": "^12.32.0",
     "@carbon/pictograms-react": "^11.58.0",
     "@loadable/babel-plugin": "^5.16.1",
@@ -27,10 +48,25 @@
     "gatsby-theme-carbon": "^4.0.0-next.7",
     "gatsby-transformer-sharp": "^5.13.1",
     "html-loader": "^5.0.0",
+    "husky": "^9.0.11",
     "markdown-it": "^14.1.0",
     "markdown-loader": "^8.0.0",
     "react": "^18.2.0",
     "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^18.2.0"
-  }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix"
+    ],
+    "*.{css,scss,json,html,yaml,md,mdx}": [
+      "prettier --write"
+    ]
+  },
+  "packageManager": "yarn@4.0.1"
 }
