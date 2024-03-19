@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export const onRenderBody = ({ setHeadComponents, setPostBodyComponents }) => {
   const script = `
