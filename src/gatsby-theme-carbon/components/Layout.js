@@ -1,16 +1,16 @@
 /* eslint-disable global-require */
-import React, { useLayoutEffect } from 'react';
+import React, { useLayoutEffect } from "react";
 
-import LeftNav from 'gatsby-theme-carbon/src/components/LeftNav';
-import Meta from 'gatsby-theme-carbon/src/components/Meta';
-import Header from 'gatsby-theme-carbon/src/components/Header';
-import { Switcher } from 'gatsby-theme-carbon/src/components/Switcher';
-import Footer from 'gatsby-theme-carbon/src/components/Footer';
-import Container from 'gatsby-theme-carbon/src/components/Container';
+import LeftNav from "gatsby-theme-carbon/src/components/LeftNav";
+import Meta from "gatsby-theme-carbon/src/components/Meta";
+import Header from "gatsby-theme-carbon/src/components/Header";
+import { Switcher } from "gatsby-theme-carbon/src/components/Switcher";
+import Footer from "gatsby-theme-carbon/src/components/Footer";
+import Container from "gatsby-theme-carbon/src/components/Container";
 // import Banner from '../../components/Banner';
 
-import 'gatsby-theme-carbon/src/styles/index.scss';
-import { layout } from '../../styles/Layout.module.scss';
+import "gatsby-theme-carbon/src/styles/index.scss";
+import { layout } from "../../styles/Layout.module.scss";
 
 const Layout = ({
   children,
@@ -25,11 +25,11 @@ const Layout = ({
   const is404 = children.key === null;
 
   useLayoutEffect(() => {
-    const scroll = require('smooth-scroll')('a[href*="#"]', {
+    const scroll = require("smooth-scroll")('a[href*="#"]', {
       speed: 400,
       durationMin: 250,
       durationMax: 700,
-      easing: 'easeInOutCubic',
+      easing: "easeInOutCubic",
       clip: true,
       offset: tabs ? 112 : 64,
     });
