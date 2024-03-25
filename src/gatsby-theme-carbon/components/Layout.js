@@ -4,7 +4,7 @@ import React, { useLayoutEffect } from 'react';
 import LeftNav from 'gatsby-theme-carbon/src/components/LeftNav';
 import Meta from 'gatsby-theme-carbon/src/components/Meta';
 import Header from 'gatsby-theme-carbon/src/components/Header';
-import Switcher from 'gatsby-theme-carbon/src/components/Switcher';
+import { Switcher } from 'gatsby-theme-carbon/src/components/Switcher';
 import Footer from 'gatsby-theme-carbon/src/components/Footer';
 import Container from 'gatsby-theme-carbon/src/components/Container';
 // import Banner from '../../components/Banner';

@@ -387,18 +387,21 @@ And below the name of the component add:
 
 Then make use of it in our template replacing:
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
+
 ```html path=src/views/RepoPage/RepoTable.vue
 <cv-data-table-cell
   v-for="(cell, cellIndex) in row.data"
   :key="`${cellIndex}`"
   >{{cell}}</cv-data-table-cell>
 ```
-<!-- prettier-ignore-end -->
+
+{/* prettier-ignore-end */}
 
 with
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
+
 ```html path=src/views/RepoPage/RepoTable.vue
 <cv-data-table-cell v-for="(cell, cellIndex) in row.data" :key="`${cellIndex}`">
   <template v-if="!cell.url">
@@ -407,7 +410,8 @@ with
   <link-list v-else :url="cell.url" :homepage-url="cell.homepageUrl" />
 </cv-data-table-cell>
 ```
-<!-- prettier-ignore-end -->
+
+{/* prettier-ignore-end */}
 
 Here in order to switch between the standard rendering of a data cell we've
 wrapped our standard `{{cell}}` rendering in a template tag. The template tag is
@@ -422,11 +426,13 @@ the final column.
 Next we'll update our row description. Update the computed property data() in
 `RepoTable.vue` to have the following description:
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
+
 ```javascript path=src/views/RepoPage/RepoTable.vue
   description: row.description
 ```
-<!-- prettier-ignore-end -->
+
+{/* prettier-ignore-end */}
 
 Check the output again and you should find the descriptions are updated.
 
@@ -451,8 +457,7 @@ with the following:
   :rows="rows"
   title="Carbon Repositories"
   helperText="A collection of public Carbon repositories."
-  :loading="$apollo.loading"
-/>
+  :loading="$apollo.loading" />
 ```
 
 Next add this property to the `RepoTable` component:
@@ -475,8 +480,7 @@ Replace:
 <cv-data-table
   :columns="columns"
   :title="title"
-  :helper-text="helperText"
-></cv-data-table>
+  :helper-text="helperText"></cv-data-table>
 ```
 
 with:
@@ -487,8 +491,7 @@ with:
   v-else
   :columns="columns"
   :title="title"
-  :helper-text="helperText"
-></cv-data-table>
+  :helper-text="helperText"></cv-data-table>
 ```
 
 Here we have made use of the v-if and v-else directives to switch content based
@@ -499,7 +502,8 @@ Now that we know this is works let's try something a bit more sophisticated and
 replace the div containing our loading message with use of the
 `CvDataTableSkeleton` component.
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
+
 ```html path=src/views/RepoPage/RepoTable.vue
 <cv-data-table-skeleton
   v-if="loading"
@@ -509,7 +513,8 @@ replace the div containing our loading message with use of the
   :rows="10"
 />
 ```
-<!-- prettier-ignore-end -->
+
+{/* prettier-ignore-end */}
 
 We need to tell the loading skeleton how many rows to render, so let's use 10
 skeleton rows to prepare for the next enhancement...
@@ -528,7 +533,8 @@ If you review the
 you'll see that pagination is added to the data table by supplying a pagination
 object and listening for pagination events as follows.
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
+
 ```html path=src/views/RepoPage/RepoTable.vue
   <cv-data-table
     v-else
@@ -539,7 +545,8 @@ object and listening for pagination events as follows.
     @pagination="$emit('pagination', $event)"
 >
 ```
-<!-- prettier-ignore-end -->
+
+{/* prettier-ignore-end */}
 
 <InlineNotification>
 
@@ -562,13 +569,15 @@ totalRows: Number,
 Next to our `RepoPage` component, let's first update our template by updating
 our `RepoTable` use with the following attributes.
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
+
 ```html path=src/views/RepoPage/RepoPage.vue
 :rows="pagedRows"
 :totalRows="rows.length"
 @pagination="onPagination"
 ```
-<!-- prettier-ignore-end -->
+
+{/* prettier-ignore-end */}
 
 replacing
 
