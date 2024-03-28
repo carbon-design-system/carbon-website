@@ -34,3 +34,16 @@ jobs:
         run: yarn install --immutable
       - name: Lint JavaScript files
         run: yarn lint:js
+
+  spellcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 20.x
+        uses: actions/setup-node@v2.4.1
+        with:
+          node-version: '20.x'
+      - name: Install dependencies
+        run: yarn install --immutable
+      - name: Spellcheck .mdx files
+        run: yarn lint:spellcheck
