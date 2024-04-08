@@ -44,10 +44,9 @@ other accessibility considerations, some of which are described below.
 Read-only tags are not in the tab order, are not interactive, and do not receive
 focus.
 
-Dismissible tags are in the tab order and receive focus around the close icon by
-pressing the tab key. Pressing the enter or space keys will dismiss, close, or
-remove the tag. Tabbing away from the tag will move focus to the next element in
-the tab order.
+Dismissible tags are in the tab order and receive focus around the close icon.
+Pressing `Enter` or `Space` will dismiss the tag. Tabbing away from the tag will
+move focus to the next element in the tab order.
 
 <Row>
 <Column colLg={8}>
@@ -57,17 +56,8 @@ the tab order.
 </Column>
 </Row>
 
-<Caption>
-  Dismissible tag in the tab order receiving focus on the close icon to
-  potentially dismiss the tag.
-</Caption>
-
-Selectable tags are in the tab order and the the tag container receives focus by
-pressing the tab key. While the tag has focus, pressing the enter key or space
-key will select or deselect the tag. If navigating within a group of tags, use
-the tab key to move focus to and from different tags in the group. Tabbing away
-from the last tag in the group will move focus to the next element in the tab
-order.
+Focus is shown around each selectable tag. Pressing `Enter` or `Space` toggles
+the selection on and off.
 
 <Row>
 <Column colLg={8}>
@@ -77,17 +67,8 @@ order.
 </Column>
 </Row>
 
-<Caption>
-  A group of selectable tags in the tab order, with each tag receiving focus to
-  select or deselect.
-</Caption>
-
-Operational tags are in the tab order and the tag container receives focus by
-pressing the tab key. Pressing the enter or space keys will disclose additional
-related tags, in a toggletip, popover, modal, or breadcrumb view. Closing the
-disclosed view or navigating away from it can vary depending on the method being
-used. After closing the disclosed view, tabbing away from the tag will move
-focus to the next element in the tab order.
+FOcus is shown around each operational tag. Pressing `Enter1 or `Space` will
+disclose additional related tags.
 
 <Row>
 <Column colLg={8}>
@@ -97,12 +78,11 @@ focus to the next element in the tab order.
 </Column>
 </Row>
 
-<Caption>An operational tag in the tab order, disclosing related tags.</Caption>
-
 ## Developer considerations
 
 Keep this in mind if you’re modifying Carbon or creating a custom component.
 
-- I need dev help with this section in bullets.
-- I need dev help with this section in bullets.
-- I need dev help with this section in bullets.
+- Do not add an `onClick` functionality to the dismissible tag, and only reserve
+  interactions for the close icon in the tag.
+- Do not nest buttons within the operational tag. Consider using
+  `PolymorphicProps` to change an element tag to avoid nesting buttons.
