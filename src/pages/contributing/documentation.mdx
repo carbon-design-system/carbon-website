@@ -35,7 +35,9 @@ templates: usage, style, code, and accessibility.
 
 Check out Carbon's handy markdown
 [styling cheatsheet](https://github.com/carbon-design-system/carbon-website/wiki/Markdown-cheatsheet)
-for how to style content.
+for how to style content. You may also use the
+[Figma template](https://www.figma.com/file/XQqHxu38CiY3Vx1iHdafIa/Image-production-guidelines?type=design&node-id=2651-218&mode=design&t=UbKwOlVeoU83hyGI-0)
+to draft content and images
 
 ### Usage template: for components with one variant
 
@@ -101,6 +103,14 @@ user not noticing or reading all of the included content.
 
 <!-- Overview image: Include an image that represents how the component is most often used in a product UI. The goal here is to show the component in context, rather than duplicating the Live Demo. Usually, this image is 8 collumns, but in cases where the UI requires more space, 12 columns is permissable such as in [content switcher](/content-switcher/usage/#overview). -->
 
+<Row>
+<Column colLg={8}>
+
+![accordion grid placement](images/accordion-placement-1.png)
+
+</Column>
+</Row>
+
 ### When to use
 
 <!--Include examples of when to use this component and how it helps a user accomplish a task. You may write this section as a list as shown in the accordion example, or in 1-2 sentences as shown in the dropdown example.
@@ -126,21 +136,6 @@ It is best practice not to use a dropdown if there are two or fewer options to c
 - If a user is likely to read all of the content, then don't use an accordion as
   it adds the burden of an extra click; instead use a full scrolling page with
   normal headers.
-
- <!-- Consider including a DoDon't image to provide further guidance on common component misuses. -->
-
-<DoDontRow>
-  <DoDont type="do" caption="Do use accordion to reduce scrolling.">
-
-![Do use accordion to reduce scrolling.](images/placeholder-do.png)
-
-  </DoDont>
-  <DoDont type="dont" caption="Don't use accordion for nested content.">
-
-![Don't use accordion for nested content.](images/placeholder-dont.png)
-
-  </DoDont>
-</DoDontRow>
 
 ## Formatting
 
@@ -175,20 +170,39 @@ Example:
 ### Alignment (optional)
 
 <!--
-How does the component work in groups or when paired with other similar components? What is their juxtaposition? This section seeks to clarify these alignment questions.
+The alignment section focuses primarily on padding and alignment within the component. This is sometimes confused with the placement section, which focuses on where the component is typically placed within the broader context of the page layout (such as in a side panel or modal).
 
-For example:
-
-- When using both checkbox and radio button, what is their relationship horizontally and vertically?
-- How do notifications stack together?
-- What happens when there is more than one button?
-
-Ensure that you link to the Structure section of the Style tab, where readers can find additional specs.
-
-Example:
-
-*Inside of a modal, body copy, including titles, have a 20% margin-right. However, form inputs and other components expand the full width of a modal window.*
+In the accordion example below, there are H4 headers for Flush alignment and Icon alignment. These headers will vary from component to component.
 -->
+
+#### Flush alignment
+
+Use flush alignment when designing within smaller spaces on a page such as side
+panels or sidebars to achieve better text alignment with other content. Flush
+alignment is also used to help avoid converging rule lines between components
+that are close to each other on a page.
+
+<Row>
+<Column colLg={8}>
+
+![accordion flush alignment](images/accordion-flush.png)
+
+</Column>
+</Row>
+
+Flush alignment places the row title and chevron icons with 0px padding, keeping
+them flush to the rule dividers. For hover and focus interactive states, the
+left and right padding receives an additional 16px padding.
+
+<Row>
+<Column colLg={8}>
+
+![accordion flush alignment spec](images/accordion-flush-spec.png)
+
+</Column>
+</Row>
+
+#### Icon alignment
 
 By default the chevron icon is placed on the `end` side of the header. This
 allows for the title on the `start` side to align with other type elements in
@@ -224,12 +238,9 @@ caption="In rare cases, you can place icons on the start side for tree like func
 ### Placement
 
 <!--
-Discuss placement of the component in a broader context, that is:
+The placement section focuses on where the component is typically placed within the broader context of the page layout.
 
-- alongside other components
-- within the grid
-
-You may want to include a link here to the Structure section of the Style tab.
+Start with an explanation on where it is typically placed in product UIs: main page content, a container, side panel, modal, etc. If placement impacts the component margins be sure to note this as well.
 -->
 
 Accordions can be placed with main page content or placed inside of a container
@@ -256,12 +267,14 @@ Tips:
 </Column>
 </Row>
 
+<!-- Optional: You may add additional H4 sections to discuss how a component appears alongside other components, groups of the same component, and within the grid. -->
+
 #### Grid placement
 
 When placing an accordion on the 2x Grid with its default alignment, the
 indented title and content align to the grid columns, and the top and bottom
 borders hang into the gutter. However, the accordion can be modified to have a
-[flush alignment](https://carbondesignsystem.com/components/accordion/usage#modifiers)
+[flush alignment](https://carbondesignsystem.com/components/accordion/usage#alignment)
 where the titles and content are instead flush aligned with the top and bottom
 borders having 0px padding.
 
@@ -285,11 +298,11 @@ Briefly explain any particular rules such as phrase structure, word limits, and 
 See [Checkbox](https://www.carbondesignsystem.com/components/checkbox/usage#content) and [Modal](https://www.carbondesignsystem.com/components/modal/usage#content) for additional examples.
 -->
 
-#### Title
+#### Label
 
-- The title should be as brief as possible while still being clear and
+- The label should be as brief as possible while still being clear and
   descriptive.
-- Each title should be wrapped in a
+- Each label should be wrapped in a
   [role heading](https://www.w3.org/TR/wai-aria-practices-1.1/#wai-aria-roles-states-and-properties)
   (h1-h6) that is appropriate for the information architecture of the page.
 
@@ -428,49 +441,85 @@ Users can trigger a state change by pressing `Enter` or `Space` while the header
 area has focus. For additional keyboard interactions, see the
 [accessibility tab](/components/accordion/accessibility#keyboard-interactions).
 
-## Modifiers
+### Validation
 
 <!--
-The modifiers section shows different ways of styling the component. Here are some examples:
-
-- Using flush alignment with [accordion] (https://carbondesignsystem.com/components/accordion/usage/#modifiers)
-- Adding an icon to a [button](https://www.carbondesignsystem.com/components/button/usage/#variations)
-- Adding a button to a [notification](https://www.carbondesignsystem.com/components/notification/usage/#anatomy)
-- Styling a [dropdown](https://carbondesignsystem.com/components/dropdown/usage#modifiers) to appear inline with other content
-- Using high and low contrast styles for [notifications](https://www.carbondesignsystem.com/components/notification/usage/#high-and-low-contrast)
+Include any guidelines for data validation and accompanying messaging. See [Form](https://www.carbondesignsystem.com/components/form/usage/#validation-and-errors) for an example.
 -->
 
-#### Flush alignment
+### Responsive behavior
 
-Use flush alignment when designing within smaller spaces on a page such as side
-panels or sidebars to achieve better text alignment with other content. Flush
-alignment is also used to help avoid converging rule lines between components
-that are close to each other on a page.
+<!--
+Include details about how the component should behave in responsive situations.
+-->
+
+### Default selection
+
+<!--
+Cover guidance around default settings and provide rationale. See [Form](https://www.carbondesignsystem.com/components/form/usage/#default-values) and [Radio button](https://www.carbondesignsystem.com/components/radio-button/usage/#default-selection) for examples.
+-->
+
+### Clickable areas
+
+<!--
+Provide details about the clickable areas of the component.
+-->
+
+### Loading
+
+<!--
+If applicable, use this section to cross reference to the specific loading type in the [Loading component](https://www.carbondesignsystem.com/patterns/loading-pattern) and/or the [Loading pattern](https://www.carbondesignsystem.com/patterns/loading-pattern/).
+-->
+
+## Modifiers (optional)
+
+<!--
+The modifiers section shows different ways of styling the component. The most common modifers documented here are adding icons and dividers to a component.
+
+Icon examples:
+- [Button](https://carbondesignsystem.com/components/button/usage/#buttons-with-icons)
+- [Content switcher](https://carbondesignsystem.com/components/content-switcher/usage/#content-switcher-with-icons)
+- [Tabs](https://carbondesignsystem.com/components/tabs/usage/#tabs-with-icons)
+
+Divider examples:
+- [Contained list](https://carbondesignsystem.com/components/contained-list/usage/#inset-row-dividers)
+- [Menu](https://carbondesignsystem.com/components/menu/usage/#modifiers)
+
+Accordion does not have modifiers. Below is an example from content switcher.
+-->
+
+### Content switcher with icons
+
+Use icons instead of label text to indicate alternative views of similar or
+related content. Icon content switchers are often used when space is limited or
+when icons can adequately describe the sections (for example, a list view versus
+a card view).
 
 <Row>
 <Column colLg={8}>
 
-![accordion flush alignment](images/accordion-flush.png)
+![Example shows the content switcher with icons only](images/content-switcher-icon.png)
 
 </Column>
 </Row>
 
-Flush alignment places the row title and chevron icons with 0px padding, keeping
-them flush to the rule dividers. For hover and focus interactive states, the
-left and right padding receives an additional 16px padding.
+<DoDontRow>
+  <DoDont type="do" caption="Do use consistent icon or text content tabs">
 
-<Row>
-<Column colLg={8}>
+![Do use consistent icon or text content tabs](images/content-switcher-usage-modifier-do.png)
 
-![accordion flush alignment spec](images/accordion-flush-spec.png)
+  </DoDont>
+  <DoDont type="dont" caption="Do not mix icon and text content tabs">
 
-</Column>
-</Row>
+![Do not mix icon and text content tabs](images/content-switcher-usage-modifier-dont.png)
+
+  </DoDont>
+</DoDontRow>
 
 ## Related
 
 <!--
-Did you reference other components or patterns? List them here and be sure to explain why these components are related. For example, if you provide alternative components, explain how their usage differs. This content may be similar to the 'What not to use' section.
+List all components or patterns you referenced throughout the docs page here and explain why these components are related. For example, if you provide alternative components, explain how their usage differs. Some of this content may be similar to the 'What not to use' section.
 -->
 
 The following components are additional ways to organize content. Consider the
@@ -478,11 +527,17 @@ type and length of content you are working with when choosing a content
 container. Longer form content may benefit from tabs or a content switcher while
 very short content might do better in a structured list.
 
-- [Content switcher](/components/content-switcher/usage)
-- [Progress indicator](/components/progress-indicator/usage)
-- [Structured list](/components/structured-list/usage)
-- [Tabs](/components/tabs/usage)
-- [Tree view](/components/tree-view/usage)
+- [Content switchers](/components/content-switcher/usage) allow users to toggle
+  between two or more content sections within the same space on the screen.
+- [Progress indicators](/components/progress-indicator/usage) guide users
+  through any linear, multistep task by showing the user their completed,
+  current, and future steps.
+- [Structured lists](/components/structured-list/usage) group content that is
+  similar or related, such as terms and definitions.
+- [Tabs](/components/tabs/usage) organize related content by allowing the user
+  to navigate between groups of information that appear within the same context.
+- [Tree view](/components/tree-view/usage) is a hierarchical structure that
+  provides nested levels of navigation.
 
 ## References
 
