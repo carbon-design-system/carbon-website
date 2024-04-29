@@ -274,16 +274,20 @@ supported.
       <TabPanel>
         <Grid className="tabs-group-content">
           <Column lg={16} md={8} sm={4} className="landing-page__tab-content">
-            Rapidly build beautiful and accessible experiences. The Carbon kit
-            contains all resources you need to get started.
+            <p className="landing-page__p">
+              Rapidly build beautiful and accessible experiences. The Carbon kit
+              contains all resources you need to get started.
+            </p>
           </Column>
         </Grid>
       </TabPanel>
       <TabPanel>
         <Grid className="tabs-group-content">
           <Column lg={16} md={8} sm={4} className="landing-page__tab-content">
-            Carbon provides styles and components in Vanilla, React, Angular,
-            and Vue for anyone building on the web.
+            <p className="landing-page__p">
+              Carbon provides styles and components in Vanilla, React, Angular,
+              and Vue for anyone building on the web.
+            </p>
           </Column>
         </Grid>
       </TabPanel>
@@ -376,12 +380,18 @@ import Image from 'next/image';
 </Column>;
 ```
 
-Now let's set the image size in `_landing-page.scss`:
+Now let's set the image size in `_landing-page.scss` and also set the background
+color of our page:
 
 ```scss path=src/app/home/_landing-page.scss
+html {
+  background-color: $layer-01;
+}
+
 .landing-page__illo {
   max-width: 100%;
   float: inline-end;
+  height: auto;
 }
 ```
 
@@ -636,8 +646,6 @@ later in the tutorial. You'll notice that we get to re-use the
   padding-bottom: $spacing-08;
   padding-left: $spacing-06;
   @include landing-page-background;
-  max-height: 450px;
-  height: 100vh;
 }
 
 .landing-page__label {
@@ -673,7 +681,8 @@ breakpoint mixins for the media queries, like so:
 @media (max-width: 672px) {
   .landing-page__illo {
     width: 528px;
-    height: 435px;
+    widht: 100%;
+    height: auto;
     float: inline-start;
   }
 }
