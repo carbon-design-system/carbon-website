@@ -7,6 +7,8 @@ description:
 tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 ---
 
+import A11yStatus from 'components/A11yStatus';
+
 <PageDescription>
 
 Dropdowns present a list of options from which a user can select one option, or
@@ -17,8 +19,8 @@ action to filter or sort existing content.
 
 <AnchorLinks>
 
-<AnchorLink>Overview</AnchorLink>
 <AnchorLink>Live demo</AnchorLink>
+<AnchorLink>Overview</AnchorLink>
 <AnchorLink>Formatting</AnchorLink>
 <AnchorLink>Content</AnchorLink>
 <AnchorLink>Universal behaviors</AnchorLink>
@@ -32,7 +34,75 @@ action to filter or sort existing content.
 
 </AnchorLinks>
 
-import items from '../../../data/components/dropdown.js';
+## Live demo
+
+<StorybookDemo
+  themeSelector
+  url="https://react.carbondesignsystem.com"
+  tall
+  variants={[
+    {
+      label: 'Dropdown',
+      variant: 'components-dropdown--default',
+    },
+    {
+      label: 'Inline dropdown',
+      variant: 'components-dropdown--inline',
+    },
+    {
+      label: 'Fluid dropdown (unstable)',
+      variant: 'experimental-fluid-components-unstable-fluiddropdown--default',
+    },
+    {
+      label: 'Fluid Condensed dropdown (unstable)',
+      variant:
+        'experimental-fluid-components-unstable-fluiddropdown--condensed',
+    },
+    {
+      label: 'Multiselect',
+      variant: 'components-multiselect--default',
+    },
+    {
+      label: 'Filterable multiselect',
+      variant: 'components-multiselect--filterable',
+    },
+    {
+      label: 'Fluid multiselect (unstable)',
+      variant:
+        'experimental-fluid-components-unstable-fluidmultiselect--default',
+    },
+    {
+      label: 'Fluid condensed multiselect (unstable)',
+      variant:
+        'experimental-fluid-components-unstable-fluidmultiselect--condensed',
+    },
+    {
+      label: 'Combobox',
+      variant: 'components-combobox--default',
+    },
+    {
+      label: 'Fluid combobox (unstable)',
+      variant: 'experimental-fluid-components-unstable-fluidcombobox--default',
+    },
+    {
+      label: 'Fluid condensed combobox (unstable)',
+      variant:
+        'experimental-fluid-components-unstable-fluidcombobox--condensed',
+    },
+  ]}
+/>
+
+<A11yStatus
+  layout="cards"
+  components={[
+    'Dropdown',
+    'Multiselect',
+    'Combo box',
+    'Fluid dropdown',
+    'Fluid multiselect',
+    'Fluid combo box',
+  ]}
+/>
 
 ## Overview
 
@@ -66,60 +136,6 @@ functionality—dropdown, multiselect, and combo box.
   of your experience is form-based or frequently used on mobile platforms. The
   native select works more easily with a native form when submitting data and is
   also easier to use on a mobile platform
-
-## Live demo
-
-<StorybookDemo
-  themeSelector
-  url="https://react.carbondesignsystem.com"
-  tall
-  variants={[
-    {
-      label: 'Dropdown',
-      variant: 'components-dropdown--default',
-    },
-    {
-      label: 'Inline dropdown',
-      variant: 'components-dropdown--inline',
-    },
-    {
-      label: 'Fluid dropdown (unstable)',
-      variant: 'experimental-unstable-fluiddropdown--default',
-    },
-    {
-      label: 'Fluid Condensed dropdown (unstable)',
-      variant: 'experimental-unstable-fluiddropdown--condensed',
-    },
-    {
-      label: 'Multiselect',
-      variant: 'components-multiselect--default',
-    },
-    {
-      label: 'Filterable multiselect',
-      variant: 'components-multiselect--filterable',
-    },
-    {
-      label: 'Fluid multiselect (unstable)',
-      variant: 'experimental-unstable-fluidmultiselect--default',
-    },
-    {
-      label: 'Fluid condensed multiselect (unstable)',
-      variant: 'experimental-unstable-fluidmultiselect--condensed',
-    },
-    {
-      label: 'Combobox',
-      variant: 'components-combobox--default',
-    },
-    {
-      label: 'Fluid combobox (unstable)',
-      variant: 'experimental-unstable-fluidcombobox--default',
-    },
-    {
-      label: 'Fluid condensed combobox (unstable)',
-      variant: 'experimental-unstable-fluidcombobox--condensed',
-    },
-  ]}
-/>
 
 ## Formatting
 
@@ -381,6 +397,42 @@ fields and menus: **enabled**, **hover**, **focus**, **error**, **warning**,
 visit the
 [interactive states](https://carbondesignsystem.com/components/dropdown/style#interactive-states)
 guidance on the style tab.
+
+### Vertical dividers in input fields
+
+Vertical dividers act as a visual separator between interactive elements in an
+input field. These vertical dividers are only present between two interactive
+elements, they should not be introduced between non-interactive elements like
+error states, other non-interactive icons, or buttons.
+
+A divider will also be present to the left of the leftmost interactive item set,
+even if it's next to a non-interactive item.
+
+<DoDontRow>
+  <DoDont caption="Do introduce a vertical divider between two interactive elements in an input field.">
+
+![Do introduce a vertical divider between two interactive elements in an input field.](images/usage-combobox-vertical-divider-do-1.png)
+
+  </DoDont>
+  <DoDont type="dont" caption="Do not introduce a vertical divider between interactive and non-interactive elements in an input field.">
+
+![Do not introduce a vertical divider between interactive and non-interactive elements in an input field.](images/usage-combobox-vertical-divider-dont.png)
+
+  </DoDont>
+</DoDontRow>
+
+<DoDontRow>
+  <DoDont caption="Do introduce a vertical divider to the left of the leftmost interactive set in an input field.">
+
+![Do introduce a vertical divider to the left of the leftmost interactive set in an input field.](images/usage-combobox-vertical-divider-do-3.png)
+
+  </DoDont>
+  <DoDont type="dont" caption="Do not use vertical dividers inconsistently in the same icon set, where some icons have vertical dividers and some do not.">
+
+![Do not use vertical dividers inconsistently in the same icon set, where some icons have vertical dividers and some do not.](images/usage-combobox-vertical-divider-dont-4.png)
+
+  </DoDont>
+</DoDontRow>
 
 ### Interactions
 

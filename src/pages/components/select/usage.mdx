@@ -6,23 +6,58 @@ description:
 tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 ---
 
+import A11yStatus from 'components/A11yStatus';
+
 <PageDescription>
 
 Select allows users to choose one option from a list of values.
 
 </PageDescription>
 
+<InlineNotification>
+
+Experimental slug is now available for
+[select](https://react.carbondesignsystem.com/?path=/story/experimental-unstable-slug-examples--select).
+This addition changes the visual appearance of the component and introduces an
+AI explainability feature when AI is present in the component.
+
+</InlineNotification>
+
 <AnchorLinks>
 
-<AnchorLink>Overview</AnchorLink>
 <AnchorLink>Live demo</AnchorLink>
-<AnchorLink>Variants</AnchorLink>
+<AnchorLink>Overview</AnchorLink>
 <AnchorLink>Formatting</AnchorLink>
 <AnchorLink>Content</AnchorLink>
-<AnchorLink>Behaviors</AnchorLink>
+<AnchorLink>Universal behaviors</AnchorLink>
+<AnchorLink>AI presence</AnchorLink>
+<AnchorLink>Related</AnchorLink>
 <AnchorLink>Feedback</AnchorLink>
 
 </AnchorLinks>
+
+## Live demo
+
+<StorybookDemo
+  themeSelector
+  url="https://react.carbondesignsystem.com"
+  variants={[
+    {
+      label: 'Default',
+      variant: 'components-select--default',
+    },
+    {
+      label: 'Inline',
+      variant: 'components-select--inline',
+    },
+    {
+      label: 'Fluid (unstable)',
+      variant: 'experimental-unstable-fluidselect--default',
+    },
+  ]}
+/>
+
+<A11yStatus layout="cards" components={['Select', 'Fluid select']} />
 
 ## Overview
 
@@ -83,28 +118,7 @@ the dropdown list can be styled as needed.
 </Column>
 </Row>
 
-## Live demo
-
-<StorybookDemo
-  themeSelector
-  url="https://react.carbondesignsystem.com"
-  variants={[
-    {
-      label: 'Default',
-      variant: 'components-select--default',
-    },
-    {
-      label: 'Inline',
-      variant: 'components-select--inline',
-    },
-    {
-      label: 'Fluid (unstable)',
-      variant: 'experimental-unstable-fluidselect--default',
-    },
-  ]}
-/>
-
-## Variants
+### Variants
 
 | Variant         | Purpose                                                     |
 | --------------- | ----------------------------------------------------------- |
@@ -274,7 +288,7 @@ on the frequency of use.
 </Column>
 </Row>
 
-## Behaviors
+## Universal behaviors
 
 ### States
 
@@ -404,6 +418,67 @@ red border, an error icon indicator, and an error message.
 <Tab label="Fluid">
 
 ![Select invalid state](images/select-invalid-state-fluid.png)
+
+</Tab>
+
+</Tabs>
+
+</Column>
+</Row>
+
+## AI presence
+
+Select has a modification that takes on the AI visual styling when the AI slug
+is present in the input. The AI variant functions the same as the normal version
+except with the addition of the AI slug which is both a visual indicator and the
+trigger for the explainability popover.
+
+More information about designing for AI guidelines is coming soon.
+
+<Row>
+<Column colLg={8}>
+
+<Tabs>
+
+<Tab label="Default">
+
+![Enabled state of default select with AI presence](images/select-usage-AI-presence-default.png)
+
+</Tab>
+
+<Tab label="Fluid">
+
+![Enabled state of fluid select with AI presence](images/select-usage-AI-presence-fluid.png)
+
+</Tab>
+
+</Tabs>
+
+</Column>
+</Row>
+
+### Revert to AI
+
+A select can toggle between the AI variant and the non-AI variant depending on
+the user’s interaction. If the user manually overrides the AI-suggested content
+then the input will change from the AI variant to the default variant. Once
+edited, the user should still be able to switch back to the initially AI
+generated content via a revert to AI button.
+
+<Row>
+<Column colLg={8}>
+
+<Tabs>
+
+<Tab label="Default">
+
+![Enabled state of default select with AI presence](images/select-usage-revert-to-AI-default.png)
+
+</Tab>
+
+<Tab label="Fluid">
+
+![Enabled state of fluid select with AI presence](images/select-usage-revert-to-AI-fluid.png)
 
 </Tab>
 

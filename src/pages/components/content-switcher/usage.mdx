@@ -2,9 +2,11 @@
 title: Content switcher
 description:
   Content switchers allow users to toggle between two or more content sections
-  within the same space on screen.
+  within the same space on the screen.
 tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 ---
+
+import A11yStatus from 'components/A11yStatus';
 
 <PageDescription>
 
@@ -15,62 +17,16 @@ within the same space on the screen.
 
 <AnchorLinks>
 
-<AnchorLink>Overview</AnchorLink>
 <AnchorLink>Live demo</AnchorLink>
+<AnchorLink>Overview</AnchorLink>
 <AnchorLink>Formatting</AnchorLink>
 <AnchorLink>Content</AnchorLink>
 <AnchorLink>Behaviors</AnchorLink>
-<AnchorLink>Icon variant</AnchorLink>
+<AnchorLink>Modifiers</AnchorLink>
 <AnchorLink>Related</AnchorLink>
-<AnchorLink>References</AnchorLink>
 <AnchorLink>Feedback</AnchorLink>
 
 </AnchorLinks>
-
-## Overview
-
-Content switchers allow users to toggle between alternate views of similar or
-related content, showing only one content section at a time.
-
-### Variants
-
-| Variant                 | Purpose                                                                                                                                            |
-| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| _Content switcher_      | Uses a text label to represent the content inside each tab.                                                                                        |
-| _Icon content switcher_ | Uses an icon to represent the content inside each tab. They are often used when space is limited or if icons can adequately describe the sections. |
-
-<Row>
-<Column colLg={12}>
-
-![Example of a content switcher](images/content-switcher-usage-1.png)
-
-</Column>
-</Row>
-
-### When to use
-
-Content switchers are frequently used to let users toggle between different
-formattings, like a grid view and a table view. They are also often used to
-narrow large content groups. For example, a messaging tool may use a content
-switcher to divide messages into three views such as “All,” “Read,” and
-“Unread.”
-
-### When not to use
-
-#### Tabs
-
-When navigating between distinct content areas like subpages, use
-[tabs](/components/tabs/usage) instead of a content switcher. Tabs follow the
-metaphor for sections in a filing cabinet, and two tabs wouldn’t contain the
-same sheet of paper, so the role of tabs in the information hierarchy is to
-separate content.
-
-#### Toggle
-
-For binary actions or choices, such as “yes/no” or “on/off” use a
-[toggle](/components/toggle/usage) instead of a content switcher. A content
-switcher can be used for binary views, like switching between a grid and list
-view but should not be used as a binary input control.
 
 ## Live demo
 
@@ -89,6 +45,49 @@ view but should not be used as a binary input control.
   ]}
 />
 
+<A11yStatus layout="cards" components="Content switcher" />
+
+## Overview
+
+Content switchers allow users to toggle between alternate views of similar or
+related content, showing only one content section at a time.
+
+<Row>
+<Column colLg={12}>
+
+![Example of a content switcher](images/content-switcher-usage-1.png)
+
+</Column>
+</Row>
+
+### When to use
+
+Content switchers are frequently used to let users toggle between different
+formattings, like a grid view and a table view. They are also often used to
+narrow large content groups or to sort related content. For example, a messaging
+tool may use a content switcher to divide messages into three views such as
+“All,” “Read,” and “Unread.”
+
+### When not to use
+
+### Distinct content areas
+
+When navigating between distinct content areas like subpages, use
+[tabs](/components/tabs/usage) instead of a content switcher. Tabs follow the
+metaphor for sections in a filing cabinet, and two tabs wouldn’t contain the
+same sheet of paper, so the role of tabs in the information hierarchy is to
+separate content.
+
+Content switcher is often used with tabs but at a lower hierarchy to sort
+related contents within that tab content.
+
+#### Binary actions
+
+For binary actions or choices, such as “yes/no” or “on/off” use a
+[toggle](/components/toggle/usage) instead of a content switcher. A content
+switcher can be used for binary views, like switching between a grid and list
+view but should not be used as a binary input control.
+
 ## Formatting
 
 ### Anatomy
@@ -96,21 +95,25 @@ view but should not be used as a binary input control.
 <Row>
 <Column colLg={8}>
 
-![Anatomy of a content switcher.](images/contentswitcher-usage-2.png)
+![Anatomy of a content switcher](images/content-switcher-usage-anatomy.png)
 
 </Column>
 </Row>
 
+<Caption>Anatomy of a content switcher</Caption>
+
 1. **Selected content tab:** Only one content tab can be selected at a time and
    there should always be one selected.
 2. **Content tab:** Selectable container for each content view.
-3. **Label:** Text label or icon that describes the content view.
+3. **Label text:** Text or icon that describes the content view.
+4. **Content view:** An area that can consist of component(s) and is usually
+   right below the content switcher. Its view changes based on the selection.
 
 ### Sizing
 
 #### Height
 
-There are three height sizes for the content switcher: small (32px), medium
+There are three height sizes for the content switcher—small (32px), medium
 (40px), and large (48px). Choose a size that best fits your layout’s density or
 the switcher’s prominence.
 
@@ -127,7 +130,7 @@ the switcher’s prominence.
 
 <Tab label="Icon">
 
-![Height options for the icon content switcher](images/content-switcher-usage-sizes-icon.png)
+![Height options for the icon content switcher](images/content-switcher-usage-size-icon.png)
 
 </Tab>
 
@@ -139,18 +142,18 @@ the switcher’s prominence.
 #### Width
 
 Each content tab in the group should be the same width. The content tab with the
-longest text label should have at minimum 16px spacing to the right of the
+longest label text should have at minimum 16px spacing to the right of the
 label.
 
 <DoDontRow>
-  <DoDont type="do" caption="Do base content tab width on the longest text label.">
+  <DoDont type="do" caption="Do base content tab width on the longest label text.">
 
-![Do base content tab width on the longest text label.](images/contentswitcher-usage-3-do.png)
+![Do base content tab width on the longest label text.](images/content-switcher-usage-size-do.png)
 
   </DoDont>
   <DoDont type="dont" caption="Do not use a different width for each content tab.">
 
-![Do not use a different width for each content tab.](images/contentswitcher-usage-3-dont.png)
+![Do not use a different width for each content tab.](images/content-switcher-usage-size-dont.png)
 
   </DoDont>
 </DoDontRow>
@@ -165,45 +168,53 @@ and instead left-align with other content in the container.
 <DoDontRow>
   <DoDont type="do" caption="Do vertically align swichers with other page content.">
 
-![Do base content tab width on the longest text label.](images/content-switcher-usage-alignment-do.png)
+![Do vertically align the switcher with other page content](images/content-switcher-usage-alignment-do.png)
 
   </DoDont>
   <DoDont type="dont" caption="Do not flush align the switcher to the edges of containers.">
 
-![Do not use a different width for each content tab.](images/content-switcher-usage-alignment-dont.png)
+![Do not flush align the switcher to the edges of containers](images/content-switcher-usage-alignment-dont.png)
 
   </DoDont>
 </DoDontRow>
 
-#### Aligning to the grid
-
-For grid-aware width, the content swither spans a set of columns, with each tab
-being equal in size. Depending on placement, the first tab or the tab’s label
-should align to the first column you are using, with the last tab in the group
-always ending at a column’s edge. The tabs in between will flow accordingly and
-may or may not align with the grid, but they will always be the same width.
-
-<Row>
-<Column colLg={8}>
-
-![An example of a content switcher aligning to the grid.](images/content-switcher-alignment-3.png)
-
-</Column>
-</Row>
-
 #### Aligning to the content
 
-For content-driven widths, the content tab with the longest text label should
+For content-driven widths, the content tab with the longest label text should
 have 16px spacing to the right of the label, and then the widths of all other
 tabs should match that widest tab.
 
 <Row>
 <Column colLg={8}>
 
-![An example of a content-driven width content switcher.](images/content-switcher-alignment-2.png)
+![An example of a content-driven width content switcher.](images/content-switcher-usage-size-content.png)
 
 </Column>
 </Row>
+
+<Caption>
+  Example shows the content-driven switcher’s text does not align with the grid.
+</Caption>
+
+#### Aligning to the grid
+
+For grid-aware width, the content switcher spans a set of columns, with each tab
+being equal in size. Depending on placement, the first tab or the tab’s label
+should align with the first column you are using, with the last tab in the group
+always ending at a column’s edge. The tabs in between will flow accordingly and
+may or may not align with the grid, but they will always be the same width.
+
+<Row>
+<Column colLg={8}>
+
+![An example of a content switcher's text aligning to the grid.](images/content-switcher-usage-size-grid.png)
+
+</Column>
+</Row>
+
+<Caption>
+  Example shows the grid-aware switcher’s text aligns on the grid.
+</Caption>
 
 ### Placement
 
@@ -216,29 +227,64 @@ space.
 
 ### Main elements
 
-#### Text label
+#### Label text
 
-- Be concise and specific and limit text labels to two to three words.
-- Text labels should clearly communicate the view users will see and the content
+- Be concise and specific and limit label text to two to three words.
+- Label text should communicate the view users will see and the content
   contained in the view.
+- Label text should be nouns or noun phrases with as few characters as possible.
+  Avoid phrasing label text as actions or long strings of text that could be
+  mistaken for action buttons.
 
-### Further guidance
+<DoDontRow>
+  <DoDont type="do" caption="Do phrase labels as nouns or noun phrases">
+
+![Do phrase labels as nouns or noun phrases](images/content-switcher-usage-content-do.png)
+
+  </DoDont>
+  <DoDont type="dont" caption="Do not phrase labels as actions">
+
+![Do not phrase labels as actions](images/content-switcher-usage-content-dont.png)
+
+  </DoDont>
+</DoDontRow>
+
+### Overflow content
+
+If the label text is too long in a content tab, add an ellipsis and accompany it
+with a browser-based tooltip to show the full string of text. If a label is too
+long to fit within its control tabs, consider using the icon modifier.
+
+<Row>
+<Column colLg={8}>
+
+![Example shows the overflow text in a content switcher’s tab.](images/content-switcher-usage-overflow.png)
+
+</Column>
+</Row>
+
+#### Further guidance
 
 For further content guidance, see Carbon's
 [content guidelines](/guidelines/content/overview/).
 
 ## Behaviors
 
-### Default selection
-
-Only one content section can be shown at a time. The first content tab in the
-switcher should be determined based on usage and should always be the default
-selection.
-
 ### States
 
-The content switcher includes two content tab states: **selected** and
-**unselected.** The selected state uses a high contrast color.
+Content switcher's default-enabled state includes two types—**selected** and
+**unselected** with the selected state using a high contrast color. Other
+interactive states are **hover**, **focus**, and **disabled**. Learn more about
+states on the
+[Style](https://carbondesignsystem.com/components/content-switcher/style) tab.
+
+| State        | When to use                                                                                                                                                                  |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _Unselected_ | When the first content tab is automatically selected.                                                                                                                        |
+| _Selected_   | When the content tab(s) after the first one is unselected.                                                                                                                   |
+| _Hover_      | When the user hovers the cursor over an unselected content tab.                                                                                                              |
+| _Focus_      | When the user presses the right or left arrow, or clicks on the content tab, it becomes focused, indicating the user has successfully navigated to the targeted content tab. |
+| _Disabled_   | When a user cannot interact with the entire content switcher or a content tab. The entire content switcher or the content tabs could be temporarily inactive or unavailable. |
 
 <Row>
 <Column colLg={8}>
@@ -247,6 +293,10 @@ The content switcher includes two content tab states: **selected** and
 
 </Column>
 </Row>
+
+<Caption>
+  Example shows selected and unselected content switcher states.
+</Caption>
 
 For detailed visual information about the various interactive states for this
 component, see the [Style](/components/content-switcher/style) tab.
@@ -260,43 +310,104 @@ content tab.
 
 #### Keyboard
 
-Users can activate and navigate between content switcher tabs by pressing the
-`left` or `right` arrow.
+Users can activate the content switcher by pressing `tab` and then navigating
+between content switcher tabs by pressing the `left` or `right` arrow.
 
-## Icon variant
+Users can choose to automatically change the selection on focus of the selected
+content tab, or manually change the focus state of the unselected content tab
+between tabs. For additional keyboard interactions, see the
+[Accessibility](https://carbondesignsystem.com/components/content-switcher/accessibility)
+tab.
 
-The icon content switcher variant uses an icon instead of a text label to
-indicate alternative views of similar or related content. Icon content switchers
-are often used when space is limited or when icons can adequately describe the
-sections (for example, a list view versus a card view).
+### Responsive behavior
 
-<Row>
-<Column colLg={8}>
-
-![An example of an icon content switcher.](images/content-switcher-icon.png)
-
-</Column>
-</Row>
-
-### Responsiveness
-
-Icon content switchers are compact and do not take up much screen space, and
+Icon content switchers are compact and do not take up much screen space,
 therefore they often work in different screen sizes. Where necessary, icon
 content switchers can also be used as a responsive replacement for content
 switchers.
 
+<Row>  
+<Column colLg={8}>  
+<GifPlayer color='dark'>
+
+![Example of the responsive behavior of the content switcher](/images/content-switcher-usage-responsive.gif)
+
+![Example of the responsive behavior of the content switcher](/images/content-switcher-usage-responsive.png)
+
+</GifPlayer>  
+</Column>  
+</Row>
+
+<Caption>
+  Example shows the text content switcher turns into the icon content switcher
+  in a smaller screen size.
+</Caption>
+
+### Default selection
+
+The default view typically preselects one tab, usually the first tab. Only one
+content tab can be selected at a time, displaying its content. When a user
+chooses a new item, the previous tab deselects automatically, and the new item
+becomes selected. The first content tab in the switcher should be determined by
+usage and consistently serve as the default selection.
+
+### Clickable areas
+
+The content tab is clickable anywhere within the container.
+
 <Row>
 <Column colLg={8}>
 
-![Example of an icon switcher in a mobile setting.](images/content-switcher-icon-reponsive.png)
+![Text and icon content switchers with their clickable areas](images/content-switcher-usage-clickable.png)
 
 </Column>
 </Row>
 
+<Caption>Text and icon content switchers with their clickable areas</Caption>
+
+## Modifiers
+
+### Content switcher with icons
+
+Use icons instead of label text to indicate alternative views of similar or
+related content. Icon content switchers are often used when space is limited or
+when icons can adequately describe the sections (for example, a list view versus
+a card view).
+
+<Row>
+<Column colLg={8}>
+
+![Example shows the content switcher with icons only](images/content-switcher-icon.png)
+
+</Column>
+</Row>
+
+<DoDontRow>
+  <DoDont type="do" caption="Do use consistent icon or text content tabs">
+
+![Do use consistent icon or text content tabs](images/content-switcher-usage-modifier-do.png)
+
+  </DoDont>
+  <DoDont type="dont" caption="Do not mix icon and text content tabs">
+
+![Do not mix icon and text content tabs](images/content-switcher-usage-modifier-dont.png)
+
+  </DoDont>
+</DoDontRow>
+
 ## Related
 
-- [Tabs](/components/tabs/usage)
-- [Toggle](/components/toggle/usage)
+#### Tabs
+
+Tabs are used to organize related content. They allow the user to navigate
+between groups of information that appear within the same context. For further
+guidance, see Carbon’s [tabs](/components/tabs/usage).
+
+#### Toggle
+
+A toggle is used to quickly switch between two possible states. They are
+commonly used for “on/off” switches. For further guidance, see Carbon’s
+[toggle](/components/toggle/usage).
 
 ## Feedback
 

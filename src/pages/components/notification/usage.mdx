@@ -7,6 +7,8 @@ description:
 tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 ---
 
+import A11yStatus from 'components/A11yStatus';
+
 <PageDescription>
 
 Notifications are messages that communicate information to the user. The three
@@ -27,8 +29,8 @@ interactive elements. For v10 implementation guidance, go to
 
 <AnchorLinks>
 
-<AnchorLink>Overview</AnchorLink>
 <AnchorLink>Live demo</AnchorLink>
+<AnchorLink>Overview</AnchorLink>
 <AnchorLink>Formatting</AnchorLink>
 <AnchorLink>Content</AnchorLink>
 <AnchorLink>Inline notifications</AnchorLink>
@@ -40,6 +42,29 @@ interactive elements. For v10 implementation guidance, go to
 <AnchorLink>Feedback</AnchorLink>
 
 </AnchorLinks>
+
+## Live demo
+
+<StorybookDemo
+  themeSelector
+  url="https://react.carbondesignsystem.com"
+  variants={[
+    {
+      label: 'Actionable',
+      variant: 'components-notifications-actionable--default',
+    },
+    {
+      label: 'Inline',
+      variant: 'components-notifications-inline--default',
+    },
+    {
+      label: 'Toast',
+      variant: 'components-notifications-toast--default',
+    },
+  ]}
+/>
+
+<A11yStatus layout="cards" components="Notification" />
 
 ## Overview
 
@@ -63,27 +88,6 @@ although some product teams also support banners and notification centers.
 | [Toast](#toast-notifications)          | Toasts are non-modal, time-based window elements used to display short messages; they usually appear at the top of the screen and disappear after a few seconds. |
 | [Actionable](#actionable-notification) | Actionable notifications allow for interactive elements within a notification styled like an inline or toast notification.                                       |
 
-## Live demo
-
-<StorybookDemo
-  themeSelector
-  url="https://react.carbondesignsystem.com"
-  variants={[
-    {
-      label: 'Actionable',
-      variant: 'components-notifications-actionable--default',
-    },
-    {
-      label: 'Inline',
-      variant: 'components-notifications-inline--default',
-    },
-    {
-      label: 'Toast',
-      variant: 'components-notifications-toast--default',
-    },
-  ]}
-/>
-
 ## Formatting
 
 ### Anatomy
@@ -91,7 +95,7 @@ although some product teams also support banners and notification centers.
 <Row>
 <Column colLg={8}>
 
-![notification anatomy image](images/01_notification_anatomy.png)
+![notification anatomy image](images/notification-usage-anatomy.png)
 
 </Column>
 </Row>
@@ -119,7 +123,7 @@ apprised of the situation, and know what to do next.
 - The title should be short and descriptive, explaining the most important piece
   of information.
 - When possible, communicate the main message using just the title.
-- Use a period only if the title is a full sentence.
+- Don't use a period to end a title.
 - When using rich text, such as in a title, a screen reader will read aloud the
   entire message as one sentence. Since the message will be read as one string,
   make sure that any text styling does not convey meaning.
@@ -188,7 +192,7 @@ inputs, they should supplement the error state on that specific input field.
 <Row>
 <Column colLg={8}>
 
-![Example of inline notification placement](images/03_notification_placement_inline_608.png)
+![Example of inline notification placement](images/notification-usage-placement.png)
 
 <Caption>
   Example of an inline notification supporting an error message on a form
@@ -243,10 +247,15 @@ the top of the list, with older notifications being pushed down until they are
 dismissed.
 
 <Row>
+
 <Column colLg={8}>
+<GifPlayer color='dark'>
 
 ![Example of toast notification placement](images/05_toast_context_608.gif)
 
+![Example of toast notification placement](/images/notification-usage-toast.png)
+
+</GifPlayer>
 </Column>
 </Row>
 
@@ -291,7 +300,7 @@ are alternative routes to navigate to the link destination.
 <Row>
 <Column colLg={8}>
 
-![Example of actionable notifications](images/07_actionable_types_608.png)
+![Example of actionable notifications](images/notification-usage-actionable.png)
 
 <Caption>
   Actionable toast notification (top); actionable inline notification (bottom)
@@ -353,7 +362,7 @@ low-contrast notifications.
 <Row>
 <Column colLg={8}>
 
-![High and low contrast inline notifications](images/06_notification_contrast_608.png)
+![High and low contrast inline notifications](images/notification-usage-contrast.png)
 
 <Caption>
     High contrast notification (top); low contrast notification (bottom)
