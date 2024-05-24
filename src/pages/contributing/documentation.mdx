@@ -12,6 +12,8 @@ All components and patterns require usage, style, code, and accessibility
 guidance on the Carbon website. Check out the markdown templates and
 instructions below to contribute documentation smoothly.
 
+{/* The component description should be no more than two sentences. Its purpose is to help readers quickly determine the general application of a component. More detailed information may be placed in the overview. */}
+
 </PageDescription>
 
 <AnchorLinks>
@@ -31,31 +33,44 @@ templates: usage, style, code, and accessibility.
 
 Check out Carbon's handy markdown
 [styling cheatsheet](https://github.com/carbon-design-system/carbon-website/wiki/Markdown-cheatsheet)
-for how to style content.
+for how to style content. You may also use the
+[Figma template](https://www.figma.com/file/XQqHxu38CiY3Vx1iHdafIa/Image-production-guidelines?type=design&node-id=2651-218&mode=design&t=UbKwOlVeoU83hyGI-0)
+to draft content and images
 
 ### Usage template: for components with one variant
 
-The usage template helps describe when to use a component and how it works. You
-can see this template in use for components with only one variant:
-[Accordion](/components/accordion/usage) and
-[Checkbox](/components/checkbox/usage).
+The usage template helps describe when to use a component and how it works. The
+template below provides example content from the
+[Accordion](/components/accordion/usage) usage tab, along with many tips on best
+ways to compose content and images. Check out
+[Content switcher](/components/content-switcher/usage) or
+[Checkbox](/components/checkbox/usage) for additional single variant references.
 
 ```markdown
 ---
-title: Component name
-description: Explains what the component is in one or two sentences.
+title: Accordion
+description:
+  An accordion is a vertically stacked list of headers that reveal or hide
+  associated sections of content.
 tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 ---
 
-<PageDescription>
+import A11yStatus from 'components/A11yStatus';
 
-<!-- Explains what the component is in one or two sentences. -->
+{/_ The page description should be the same as the component description, and no
+more than two sentences. Its purpose is to help readers quickly determine the
+general application of a component. More detailed information may be placed in
+the overview. _/}
+
+<PageDescription>
+An accordion is a vertically stacked list of headers that reveal or hide
+associated sections of content.
 
 </PageDescription>
 
 <AnchorLinks>
 
-<AnchorLink>Overview</AnchorLink> <AnchorLink>Live demo</AnchorLink>
+<AnchorLink>Live demo</AnchorLink> <AnchorLink>Overview</AnchorLink>
 <AnchorLink>Formatting</AnchorLink> <AnchorLink>Content</AnchorLink>
 <AnchorLink>Behaviors</AnchorLink> <AnchorLink>Modifiers</AnchorLink>
 <AnchorLink>Related</AnchorLink> <AnchorLink>References</AnchorLink>
@@ -63,205 +78,532 @@ tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 
 </AnchorLinks>
 
+## Live demo
+
+{/_ Since there is only one variant, the Accordion is labeled as 'Default' and
+no more variants are listed._/}
+
+<StorybookDemo themeSelector url="https://react.carbondesignsystem.com"
+variants={[ { label: 'Default', variant: 'components-accordion--default', }, ]}
+/>
+
+{/_ Since there is only one variant for the A11yStatus section, the only
+component listed is 'Accordion.'_/}
+
+<A11yStatus layout="cards" components="Accordion" />
+
 ## Overview
 
-<!--
-Include a paragraph or two that describes the primary use cases for the component and details about how it helps the user achieve any tasks.
+{/_ Include a paragraph or two that describes the primary use cases for the
+component and details about how it helps the user achieve specific tasks._/}
 
-Example:
+The accordion component delivers large amounts of content in a small space
+through progressive disclosure. The header title gives the user a high level
+overview of the content allowing the user to decide which sections to read.
 
-*The accordion component delivers large amounts of content in a small space through progressive disclosure. The header title give the user a high level overview of the content allowing the user to decide which sections to read.*
--->
+Accordions can make information processing and discovering more effective.
+However, it does hide content from users and it's important to account for a
+user not noticing or reading all of the included content.
+
+{/_ Overview image: Include an image that represents how the component is most
+often used in a product UI. The goal here is to show the component in context,
+rather than duplicating the Live Demo. Usually, this image is 8 collumns, but in
+cases where the UI requires more space, 12 columns is permissable such as in
+[content switcher](/content-switcher/usage/#overview). _/}
+
+<Row>
+<Column colLg={8}>
+
+![accordion grid placement](images/accordion-placement-1.png)
+
+</Column>
+</Row>
 
 ### When to use
 
-<!--
-Include examples for when to use this component and how it addresses the use case / solves a problem for the user.
+{/\*Include examples of when to use this component and how it helps a user
+accomplish a task. You may write this section as a list as shown in the
+accordion example, or in 1-2 sentences as shown in the dropdown example.
 
-Example:
+Example: Dropdowns can be used in forms on full pages, in modals, or on side
+panels. The dropdown component is used to filter or sort contents on a page. It
+is a stylized version of the select component, and can be styled as needed. \*/}
 
-*Dropdowns can be used in forms on full pages, in modals, or on side panels. The dropdown component is used to filter or sort contents on a page. It is a stylized version of the select component, and can be styled as needed.*
--->
+- To organize related information.
+- To shorten pages and reduce scrolling when content is not crucial to read in
+  full.
+- When space is at a premium and long content cannot be displayed all at once,
+  like on a mobile interface or in a side panel.
 
-### When not to use (optional)
+  ### When not to use
 
-<!--
-If there are two similar components that are used for different use cases, spell that out here and explain which component to use for each use case.
+{/\*If there are two seemingly similar components that should be used in
+distinctly different use cases, explain this distinction here. You may write
+this section as a list or in 1-2 sentences.
 
-Example:
+Example: It is best practice not to use a dropdown if there are two or fewer
+options to choose from. In this case, use a radio button group instead. \*/}
 
-*It is best practice not to use a dropdown if there are two or fewer options to choose from. In this case, use a radio button group instead.*
--->
-
-## Live demo
-
-<!--Include component demo here.-->
+- When organizing large amounts of information that can be nested, consider
+  using [tree view](/components/tree-view/usage) instead.
+- If a user is likely to read all of the content, then don't use an accordion as
+  it adds the burden of an extra click; instead use a full scrolling page with
+  normal headers.
 
 ## Formatting
 
 ### Anatomy
 
-<!--The anatomy section has a set format and includes an example component with numbered callouts to each of the component elements. A list below provides the name of the element in bold and explains its purpose. Be sure to note if the element is optional.
+{/\*The anatomy section includes an image of the component with numbered
+callouts to each of the component elements. A list below provides the name of
+the element in bold and explains its purpose. Be sure to note if the element is
+optional.
 
-See [Notification](https://www.carbondesignsystem.com/components/notification/usage#anatomy) for an example.-->
+See
+[Notification](https://www.carbondesignsystem.com/components/notification/usage#anatomy)
+for an additional example.\*/}
+
+<Row>
+<Column colLg={8}>
+
+![accordion anatomy](images/accordion-anatomy.png)
+
+</Column>
+</Row>
+
+1. **Header**: contains the section title and is control for revealing the
+   panel.
+2. **Icon**: indicates if the panel is open or closed.
+3. **Panel**: the section of content associated with an accordion header.
 
 ### Sizing (optional)
 
-<!--List out any component sizes that are available and provide some guidance about how to choose the best size for the use case. Other topics that may be covered here include considerations around maximum heights, maximum widths, and responsive resizing.
+{/\*List out any component sizes that are available and provide some guidance
+about how to choose the best size for the use case. Other topics that may be
+covered here include considerations around maximum heights, maximum widths, and
+responsive resizing.
 
 Example:
 
-*There are four responsive modal sizes: xs, small, default, large. Choose a size that works best for the amount of modal content you have. Modals with short messages should use a xs or small modal to avoid long single lines; for complex components, like data table the default or large modal will be more accommodating.*
--->
+_There are four responsive modal sizes: xs, small, default, large. Choose a size
+that works best for the amount of modal content you have. Modals with short
+messages should use a xs or small modal to avoid long single lines; for complex
+components, like data table the default or large modal will be more
+accommodating._ \*/}
 
 ### Alignment (optional)
 
-<!--
-Consider the relationship with other items that are the same. How do they sit in groups? What is their juxtaposition. For example:
+{/\* The alignment section focuses primarily on padding and alignment within the
+component. This is sometimes confused with the placement section, which focuses
+on where the component is typically placed within the broader context of the
+page layout (such as in a side panel or modal).
 
-- Checkbox, radio button—what is their relationship horizontally and vertically?
-- Notifications—how do they stack?
-- Button—what happens when there's more than one?
+In the accordion example below, there are H4 headers for Flush alignment and
+Icon alignment. These headers will vary from component to component. \*/}
 
-We have some alignment content in the Structure section of the Style tab, so consider the relationship between the two tabs and include a cross-reference if necessary.
+#### Flush alignment
 
-Example:
+Use flush alignment when designing within smaller spaces on a page such as side
+panels or sidebars to achieve better text alignment with other content. Flush
+alignment is also used to help avoid converging rule lines between components
+that are close to each other on a page.
 
-*Inside of a modal, body copy, including titles, have a 20% margin-right. However, form inputs and other components expand the full width of a modal window.*
--->
+<Row>
+<Column colLg={8}>
+
+![accordion flush alignment](images/accordion-flush.png)
+
+</Column>
+</Row>
+
+Flush alignment places the row title and chevron icons with 0px padding, keeping
+them flush to the rule dividers. For hover and focus interactive states, the
+left and right padding receives an additional 16px padding.
+
+<Row>
+<Column colLg={8}>
+
+![accordion flush alignment spec](images/accordion-flush-spec.png)
+
+</Column>
+</Row>
+
+#### Icon alignment
+
+By default the chevron icon is placed on the `end` side of the header. This
+allows for the title on the `start` side to align with other type elements in
+the layout, which is the preferred alignment scenario.
+
+However, in some rare scenarios, the accordion may be modified to place the icon
+in `start` front of the title to function more like a tree. Most instances
+should use the default `end` alignment, especially for any pure content or
+documentation purposes. Icon placement in accordions should be consistent
+throughout your page and should not alternate.
+
+{/_ A Do/Don’t image is often useful for the alignment section. In the accordion
+example, two ‘Do’ images are provided._/}
+
+<DoDontRow>
+<DoDont
+type="do"
+colMd={4} colLg={4}
+caption="In most cases, use the default end icon alignment to keep accordion text aligned with other content on the page.">
+
+![Do use the default end icon alignment to keep accordion text aligned with other content on the page.](./images/accordion-alignment-do.png)
+
+</DoDont>
+<DoDont
+type="do"
+colMd={4} colLg={4}
+caption="In rare cases, you can place icons on the start side for tree like functionality.">
+
+![Do place icons on the start side for tree like functionality.](./images/accordion-alignment-do-2.png)
+
+</DoDont>
+</DoDontRow>
 
 ### Placement
 
-<!--
-Discuss placement of the component in a broader context, that is:
+{/\* The placement section focuses on where the component is typically placed
+within the broader context of the page layout.
 
-- alongside other components
-- within the grid
+Start with an explanation on where it is typically placed in product UIs: main
+page content, a container, side panel, modal, etc. If placement impacts the
+component margins be sure to note this as well. \*/}
 
-You may want to include a link here to the Structure section of the Style tab.
+Accordions can be placed with main page content or placed inside of a container
+such as a side panel or tile.
 
-Example:
+{/\* Including placement images helps readers understand how a component should
+appear in main body content, a side panel, a modal, etc.
 
-*Accordions can be placed with main page content or placed inside of a container such as a side panel or tile. When placing an accordion on the 2x Grid the indented title aligns to the grid columns and the top and bottom borders hang in the gutter.*
--->
+Tips:
+
+- Create simplified illustrations of placement examples using the illustration
+  library.
+- Try for 1, 2, or 4 examples. If you only have 3 examples, keep the images on a
+  2x2 grid and leave the 4th quadrant empty.\*/}
+
+<Row>
+<Column  colLg={12} colMd={12} colSm={4}>
+<ArtDirection>
+
+![accordion placement](images/accordion-placement-2m.png)
+
+![accordion placement](images/accordion-placement-2.png)
+
+![accordion placement](images/accordion-placement-2.png)
+
+</ArtDirection>
+</Column>
+</Row>
+
+{/_ Optional: You may add additional H4 sections to discuss how a component
+appears alongside other components, groups of the same component, and within the
+grid. _/}
+
+#### Grid placement
+
+When placing an accordion on the 2x Grid with its default alignment, the
+indented title and content align to the grid columns, and the top and bottom
+borders hang into the gutter. However, the accordion can be modified to have a
+[flush alignment](https://carbondesignsystem.com/components/accordion/usage#alignment)
+where the titles and content are instead flush aligned with the top and bottom
+borders having 0px padding.
+
+<Row>
+<Column colLg={8}>
+
+![accordion grid placement](images/accordion-placement-1.png)
+
+</Column>
+</Row>
 
 ## Content
 
 ### Main elements
 
-<!--
-Identify the content elements within the component, for example, title, label, placeholder text, links. Use H4s for the element names and provide guidelines underneath for each element.
+{/\* Identify the content elements within the component, for example, title,
+label, placeholder text, links. Use H4s for the element names and provide
+guidelines underneath for each element.
 
-Briefly explain any particular rules such as phrase structure, word limits, and character limits. Where there's more than one rule, use bullets to list out the multiple rules for ease of reading. If necessary, refer out to main content guidelines for more detailed information, for example, capitalization, or recommended action labels.
+Briefly explain any particular rules such as phrase structure, word limits, and
+character limits. Where there's more than one rule, use bullets to list out the
+multiple rules for ease of reading. If necessary, refer out to main content
+guidelines for more detailed information, for example, capitalization, or
+recommended action labels.
 
-See [Checkbox](https://www.carbondesignsystem.com/components/checkbox/usage#content) and [Modal](https://www.carbondesignsystem.com/components/modal/usage#content) for examples.
--->
+See
+[Checkbox](https://www.carbondesignsystem.com/components/checkbox/usage#content)
+and [Modal](https://www.carbondesignsystem.com/components/modal/usage#content)
+for additional examples. \*/}
+
+#### Label
+
+- The label should be as brief as possible while still being clear and
+  descriptive.
+- Each label should be wrapped in a
+  [role heading](https://www.w3.org/TR/wai-aria-practices-1.1/#wai-aria-roles-states-and-properties)
+  (h1-h6) that is appropriate for the information architecture of the page.
+
+#### Body copy
+
+- Content inside of a section may be split into paragraphs and include
+  sub-headers if needed.
 
 ### Overflow content
 
-<!--
-Explain how overflow content should be handled.
+{/_Explain how overflow content should be handled. _/}
 
-Example:
-
-*When the accordion content is longer than the viewport the whole accordion should vertically scroll. Content should not scroll inside of an individual panel. Content should never scroll horizontally in an accordion.*
--->
+When the accordion content is longer than the viewport the whole accordion
+should vertically scroll. Content should not scroll inside of an individual
+panel. Content should never scroll horizontally in an accordion.
 
 ### Further guidance
 
-<!--
-For further content guidance, see Carbon's [content guidelines]([https://www.carbondesignsystem.com/guidelines/content/general](https://www.carbondesignsystem.com/guidelines/content/general)).
--->
+{/_This section should be the same in every component usage page. _/}
+
+For further content guidance, see Carbon's
+[content guidelines](<[https://www.carbondesignsystem.com/guidelines/content/general](https://www.carbondesignsystem.com/guidelines/content/general)>).
 
 ## Behaviors
 
-<!--
-Determine which component behaviors apply to your component, and include from the following sections as needed.
--->
+### States
+
+{/\* The states section is one of the most complex and varied sections, but here
+are a few tips:
+
+- Make a distinction between main states (i.e. collapsed and expanded) and
+  interactive states (i.e. focus, hover, and disabled).
+- Include a table that describes the user tasks associated with each state. Do
+  not italicize states in the table.
+- When possible, include images showing the states, with captions. However,
+  avoid overwhelming the reader with too many images, which can happen when the
+  states section is complex or there are variants.
+- Link out to style tab for more details with the phrase ‘See the style tab for
+  more details.’
+
+Take a look at
+[content switcher](/components/content-switcher/usage/#behaviors), our most
+recent, best example:
 
 ### States
 
-<!--
-If including any information on this topic, include the following line:
+Content switcher's default-enabled state includes two types—**selected** and
+**unselected** with the selected state using a high contrast color. Other
+interactive states are **hover**, **focus**, and **disabled**. Learn more about
+states on the
+[Style](https://carbondesignsystem.com/components/content-switcher/style) tab.
 
-For detailed visual information about the various states for this component, see the Style tab.
+| State        | When to use                                                                                                                                                                  |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _Unselected_ | When the first content tab is automatically selected.                                                                                                                        |
+| _Selected_   | When the content tab(s) after the first one is unselected.                                                                                                                   |
+| _Hover_      | When the user hovers the cursor over an unselected content tab.                                                                                                              |
+| _Focus_      | When the user presses the right or left arrow, or clicks on the content tab, it becomes focused, indicating the user has successfully navigated to the targeted content tab. |
+| _Disabled_   | When a user cannot interact with the entire content switcher or a content tab. The entire content switcher or the content tabs could be temporarily inactive or unavailable. |
 
-Example:
+<Row>
+<Column colLg={8}>
 
-*The accordion component has two main states: collapsed and expanded. The chevron icon at the end of the accordion indicates which state the accordion is in. The chevron points down to indicate collapsed and up to indicate expanded.*
--->
+![Selected and unselected content switcher states.](images/contentswitcher-usage-4.png)
+
+</Column>
+</Row>
+
+<Caption>
+  Example shows selected and unselected content switcher states.
+</Caption>
+
+For detailed visual information about the various interactive states for this
+component, see the [Style](/components/content-switcher/style) tab.
+
+\*/}
+
+The accordion component has two main states: **collapsed** and **expanded**. The
+chevron icon at the end of the accordion indicates which state the accordion is
+in. The chevron points down to indicate collapsed and up to indicate expanded.
+
+Accordions begin by default in the collapsed state with all content panels
+closed. Starting in a collapsed state gives the user a high level overview of
+the available information.
+
+<Row>
+<Column colLg={8}>
+
+![accordion states](images/accordion-state-1.png)
+
+</Column>
+</Row>
+
+A user can then independently expand each section of the accordion allowing for
+multiple sections to be open at once.
+
+<Row>
+<Column colLg={8}>
+
+![multiple sections expanded](images/accordion-state-2.png)
+
+</Column>
+</Row>
+
+In addition to the collapsed and expanded states, accordions also have
+interactive states for focus, hover, and disabled. See the
+[style tab](/components/accordion/style) for more details.
+
+<Row>
+<Column colLg={8}>
+
+![accordion interactives states](images/accordion-state-3.png)
+
+</Column>
+</Row>
 
 ### Interactions
 
-<!--
-Include all possible interactions with the component, including:
+{/\* Include all possible interactions with the component, including:
 
 - Mouse
 - Keyboard
-- Screen readers
+- Screen readers \*/}
 
-See [Accordion](https://www.carbondesignsystem.com/components/accordion/usage#interactions) for an example.
--->
+#### Mouse
+
+Users can trigger a state change by clicking on the chevron or clicking anywhere
+in the header area.
+
+<Row>
+<Column colLg={8}>
+
+![accordion click targets](images/accordion-click-target.png)
+
+</Column>
+</Row>
+
+#### Keyboard
+
+Users can navigate between accordion headers by pressing `Tab` or `Shift-Tab`.
+Users can trigger a state change by pressing `Enter` or `Space` while the header
+area has focus. For additional keyboard interactions, see the
+[accessibility tab](/components/accordion/accessibility#keyboard-interactions).
 
 ### Validation
 
-<!--
-Include any guidelines for data validation and accompanying messaging. See [Form](https://www.carbondesignsystem.com/components/form/usage/#validation-and-errors) for an example.
--->
+{/_ Include any guidelines for data validation and accompanying messaging. See
+[Form](https://www.carbondesignsystem.com/components/form/usage/#validation-and-errors)
+for an example. _/}
 
 ### Responsive behavior
 
-<!--
-Include details about how the component should behave in responsive situations.
--->
+{/_ Include details about how the component should behave in responsive
+situations. _/}
 
 ### Default selection
 
-<!--
-Cover guidance around default settings and provide rationale. See [Form](https://www.carbondesignsystem.com/components/form/usage/#default-values) and [Radio button](https://www.carbondesignsystem.com/components/radio-button/usage/#default-selection) for examples.
--->
+{/_ Cover guidance around default settings and provide rationale. See
+[Form](https://www.carbondesignsystem.com/components/form/usage/#default-values)
+and
+[Radio button](https://www.carbondesignsystem.com/components/radio-button/usage/#default-selection)
+for examples. _/}
 
 ### Clickable areas
 
-<!--
-Provide details about the clickable areas of the component.
--->
+{/_ Provide details about the clickable areas of the component. _/}
 
 ### Loading
 
-<!--
-If applicable, use this section to cross reference to the specific loading type in the [Loading component](https://www.carbondesignsystem.com/patterns/loading-pattern) and/or the [Loading pattern](https://www.carbondesignsystem.com/patterns/loading-pattern/).
--->
+{/_ If applicable, use this section to cross reference to the specific loading
+type in the
+[Loading component](https://www.carbondesignsystem.com/patterns/loading-pattern)
+and/or the
+[Loading pattern](https://www.carbondesignsystem.com/patterns/loading-pattern/).
+_/}
 
-## Modifiers
+## Modifiers (optional)
 
-<!--
-The modifiers section shows different ways of styling the component. Here are some examples:
+{/\* The modifiers section shows different ways of styling the component. The
+most common modifiers documented here are adding icons and dividers to a
+component.
 
-- adding an icon to a [button](https://www.carbondesignsystem.com/components/button/usage/#variations)
-- adding a button to a [notification](https://www.carbondesignsystem.com/components/notification/usage/#anatomy)
-- styling a dropdown to appear inline with other content
-- using high and low contrast styles for [notifications](https://www.carbondesignsystem.com/components/notification/usage/#high-and-low-contrast)
-- using a "light" variant in a [text input](https://www.carbondesignsystem.com/components/text-input/code)
--->
+Icon examples:
+
+- [Button](https://carbondesignsystem.com/components/button/usage/#buttons-with-icons)
+- [Content switcher](https://carbondesignsystem.com/components/content-switcher/usage/#content-switcher-with-icons)
+- [Tabs](https://carbondesignsystem.com/components/tabs/usage/#tabs-with-icons)
+
+Divider examples:
+
+- [Contained list](https://carbondesignsystem.com/components/contained-list/usage/#inset-row-dividers)
+- [Menu](https://carbondesignsystem.com/components/menu/usage/#modifiers)
+
+Accordion does not have modifiers. Below is an example from content switcher.
+\*/}
+
+### Content switcher with icons
+
+Use icons instead of label text to indicate alternative views of similar or
+related content. Icon content switchers are often used when space is limited or
+when icons can adequately describe the sections (for example, a list view versus
+a card view).
+
+<Row>
+<Column colLg={8}>
+
+![Example shows the content switcher with icons only](images/content-switcher-icon.png)
+
+</Column>
+</Row>
+
+<DoDontRow>
+  <DoDont type="do" caption="Do use consistent icon or text content tabs">
+
+![Do use consistent icon or text content tabs](images/content-switcher-usage-modifier-do.png)
+
+  </DoDont>
+  <DoDont type="dont" caption="Do not mix icon and text content tabs">
+
+![Do not mix icon and text content tabs](images/content-switcher-usage-modifier-dont.png)
+
+  </DoDont>
+</DoDontRow>
 
 ## Related
 
-<!--
-Did you reference other components or patterns? List them here.
+{/_ List all components or patterns you referenced throughout the docs page here
+and explain why these components are related. For example, if you provide
+alternative components, explain how their usage differs. Some of this content
+may be similar to the 'What not to use' section. _/}
 
-If necessary, clarify any differences between this component and related components.
--->
+The following components are additional ways to organize content. Consider the
+type and length of content you are working with when choosing a content
+container. Longer form content may benefit from tabs or a content switcher while
+very short content might do better in a structured list.
+
+- [Content switchers](/components/content-switcher/usage) allow users to toggle
+  between two or more content sections within the same space on the screen.
+- [Progress indicators](/components/progress-indicator/usage) guide users
+  through any linear, multistep task by showing the user their completed,
+  current, and future steps.
+- [Structured lists](/components/structured-list/usage) group content that is
+  similar or related, such as terms and definitions.
+- [Tabs](/components/tabs/usage) organize related content by allowing the user
+  to navigate between groups of information that appear within the same context.
+- [Tree view](/components/tree-view/usage) is a hierarchical structure that
+  provides nested levels of navigation.
 
 ## References
 
-<!--
-Include any research, citations, books or articles that you found helpful.
--->
+{/_ Include any research, citations, books or articles that you found helpful.
+Ensure that you select reputable, stable external links. Nielsen Norman is one
+adequate source. _/}
+
+- Hoa Loranger,
+  [Accordions Are Not Always the Answer for Complex Content on Desktops](https://www.nngroup.com/articles/accordions-complex-content/)
+  (Nielsen Norman Group, 2014)
 
 ## Feedback
 
-<!--Include a request for feedback here.-->
+{/_This section should be the same on every usage tab._/}
 
 Help us improve this component by providing feedback, asking questions, and
 leaving any other comments on
@@ -284,7 +626,7 @@ tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 
 <PageDescription>
 
-<!-- Explains what the component is in one or two sentences. -->
+{/_ Explains what the component is in one or two sentences. _/}
 
 </PageDescription>
 
@@ -301,82 +643,97 @@ name</AnchorLink> <AnchorLink>Modifiers</AnchorLink>
 
 ## Overview
 
-<!--
-Include a paragraph or two that describes the primary use cases for the component and details about how it helps the user achieve any tasks.
--->
+{/_ Include a paragraph or two that describes the primary use cases for the
+component and details about how it helps the user achieve any tasks. _/}
 
 ### When to use
 
-<!--
-Include examples for when to use this component and how it addresses the use case / solves a problem for the user.
+{/\* Include examples for when to use this component and how it addresses the
+use case / solves a problem for the user.
 
-*Use a dialog to request information that is preventing the system from continuing a user-initiated process.*
--->
+_Use a dialog to request information that is preventing the system from
+continuing a user-initiated process._ \*/}
 
 ### When not to use (optional)
 
-<!--
-If there are two similar components that are used for different use cases, spell that out here and explain which component to use for each use case.
+{/\* If there are two similar components that are used for different use cases,
+spell that out here and explain which component to use for each use case.
 
 Example:
 
-*Consider using a select dropdown if most of your experience is form based or frequently used on mobile platforms. The native select works more easily with a native form when submitting data and is also easier to use on a mobile platform.*
--->
+_Consider using a select dropdown if most of your experience is form based or
+frequently used on mobile platforms. The native select works more easily with a
+native form when submitting data and is also easier to use on a mobile
+platform._ \*/}
 
 ### Types
 
-<!--
-Types are different variations of the component with significant visual or interaction differences, for example, primary button vs. secondary button vs. ghost button. Minor visual differences, such as button height, should be placed under modifiers.
+{/\* Types are different variations of the component with significant visual or
+interaction differences, for example, primary button vs. secondary button vs.
+ghost button. Minor visual differences, such as button height, should be placed
+under modifiers.
 
-Include a table with types of components and their purpose. Include links on the type names to the types sections below. See [Modal](https://www.carbondesignsystem.com/components/modal/usage#passive-modal) for an example.
--->
+Include a table with types of components and their purpose. Include links on the
+type names to the types sections below. See
+[Modal](https://www.carbondesignsystem.com/components/modal/usage#passive-modal)
+for an example. \*/}
 
 ## Live demo
 
-<!--
-Include live demo here.
--->
+{/_ Include live demo here. _/}
 
 ## Formatting
 
-<!--
+{/\*
+
 ### Anatomy
 
-The anatomy section has a set format and includes an example component with numbered callouts to each of the component elements. A list below provides the name of the element in bold and explains its purpose. Be sure to note if the element is optional.
+The anatomy section has a set format and includes an example component with
+numbered callouts to each of the component elements. A list below provides the
+name of the element in bold and explains its purpose. Be sure to note if the
+element is optional.
 
-See [Notification](https://www.carbondesignsystem.com/components/notification/usage#anatomy) for an example.
--->
+See
+[Notification](https://www.carbondesignsystem.com/components/notification/usage#anatomy)
+for an example. \*/}
 
 ### Sizing (optional)
 
-<!--
-List out any component sizes that are available and provide some guidance about how to choose the best size for the use case. Other topics that may be covered here include considerations around maximum heights, maximum widths, and responsive resizing.
+{/\* List out any component sizes that are available and provide some guidance
+about how to choose the best size for the use case. Other topics that may be
+covered here include considerations around maximum heights, maximum widths, and
+responsive resizing.
 
 Example:
 
-*There are four responsive modal sizes: xs, small, default, large. Choose a size that works best for the amount of modal content you have. Modals with short messages should use a xs or small modal to avoid long single lines; for complex components, like data table the default or large modal will be more accommodating.*
--->
+_There are four responsive modal sizes: xs, small, default, large. Choose a size
+that works best for the amount of modal content you have. Modals with short
+messages should use a xs or small modal to avoid long single lines; for complex
+components, like data table the default or large modal will be more
+accommodating._ \*/}
 
 ### Alignment (optional)
 
-<!--
-Consider the relationship with other items that are the same. How do they sit in groups? What is their juxtaposition. For example:
+{/\* Consider the relationship with other items that are the same. How do they
+sit in groups? What is their juxtaposition. For example:
 
 - Checkbox, radio button—what is their relationship horizontally and vertically?
 - Notifications—how do they stack?
 - Button—what happens when there's more than one?
 
-Alignment content is covered in the Structure section of the Style tab, so consider the relationship between the two tabs and include a cross-reference if necessary.
+Alignment content is covered in the Structure section of the Style tab, so
+consider the relationship between the two tabs and include a cross-reference if
+necessary.
 
 Example:
 
-*Inside of a modal, body copy, including titles, have a 20% margin-right. However, form inputs and other components expand the full width of a modal window.*
--->
+_Inside of a modal, body copy, including titles, have a 20% margin-right.
+However, form inputs and other components expand the full width of a modal
+window._ \*/}
 
 ### Placement
 
-<!--
-Discuss placement of the component in a broader context, that is:
+{/\* Discuss placement of the component in a broader context, that is:
 
 - alongside other components
 - within the grid
@@ -385,30 +742,39 @@ You may want to include a link here to the Structure section of the Style tab.
 
 Example:
 
-*The checkbox component is often used in forms. Forms can be placed on a full page, in a modal or in a side panel. A checkbox can also be used for agreeing to terms and conditions or to filter information.*
--->
+_The checkbox component is often used in forms. Forms can be placed on a full
+page, in a modal or in a side panel. A checkbox can also be used for agreeing to
+terms and conditions or to filter information._ \*/}
 
 ## Content
 
 ### Main elements
 
-<!--
-Identify the content elements within the component, for example, title, label, placeholder text, body copy, links. Use H4s for the element names and provide guidelines underneath for each element.
+{/\* Identify the content elements within the component, for example, title,
+label, placeholder text, body copy, links. Use H4s for the element names and
+provide guidelines underneath for each element.
 
-Briefly explain any particular rules such as phrase structure, word limits, and character limits. Where there's more than one rule, use bullets to list out the multiple rules for ease of reading. If necessary, refer out to main content guidelines for more detailed information, for example, capitalization, recommended action labels.
+Briefly explain any particular rules such as phrase structure, word limits, and
+character limits. Where there's more than one rule, use bullets to list out the
+multiple rules for ease of reading. If necessary, refer out to main content
+guidelines for more detailed information, for example, capitalization,
+recommended action labels.
 
-See [Checkbox](https://www.carbondesignsystem.com/components/checkbox/usage#content) and [Modal](https://www.carbondesignsystem.com/components/modal/usage#content) for examples.
--->
+See
+[Checkbox](https://www.carbondesignsystem.com/components/checkbox/usage#content)
+and [Modal](https://www.carbondesignsystem.com/components/modal/usage#content)
+for examples. \*/}
 
 ### Overflow content (optional)
 
-<!--
-Explain how overflow content should be handled.
+{/\* Explain how overflow content should be handled.
 
 Example:
 
-*When the modal content is longer than the modal height then the body section should scroll vertically with the header and footer remaining fixed in place. The content should visibly fade at the end of the modal body area to indicate there is additional content out of view.*
--->
+_When the modal content is longer than the modal height then the body section
+should scroll vertically with the header and footer remaining fixed in place.
+The content should visibly fade at the end of the modal body area to indicate
+there is additional content out of view._ \*/}
 
 ### Further guidance
 
@@ -417,110 +783,124 @@ For further content guidance, see Carbon's
 
 ## Universal behaviors
 
-<!--
-If there are any *universal* behaviors that apply to all types listed in the types table above, include them here. For example, the Modal component has a heading here for "Trap focus" as this applies to all modal types.
+{/* If there are any *universal\* behaviors that apply to all types listed in
+the types table above, include them here. For example, the Modal component has a
+heading here for "Trap focus" as this applies to all modal types.
 
-Where behaviors are *unique* to each type of component, include them in the next section which goes into detail about each type.
+Where behaviors are _unique_ to each type of component, include them in the next
+section which goes into detail about each type.
 
 Include the following line to introduce the universal behaviors:
 
 Example:
 
-*The behaviors listed in this section are universal across all of the types. For behaviors that are unique to each type, see each of the component type sections below.*
+_The behaviors listed in this section are universal across all of the types. For
+behaviors that are unique to each type, see each of the component type sections
+below._
 
-Choose from this list of possible behaviors that are *universal* across all types, and include them here as h3 headings.
--->
+Choose from this list of possible behaviors that are _universal_ across all
+types, and include them here as h3 headings. \*/}
 
 ### States
 
-<!--
-If including any information on this topic, include the following line:
+{/\* If including any information on this topic, include the following line:
 
-For detailed visual information about the various states for this component, see the Style tab.
+For detailed visual information about the various states for this component, see
+the Style tab.
 
 Example:
 
-*The accordion component has two main states: collapsed and expanded. The chevron icon at the end of the accordion indicates which state the accordion is in. The chevron points down to indicate collapsed and up to indicate expanded.*
--->
+_The accordion component has two main states: collapsed and expanded. The
+chevron icon at the end of the accordion indicates which state the accordion is
+in. The chevron points down to indicate collapsed and up to indicate expanded._
+\*/}
 
 ### Interactions
 
-<!--
-Include all possible interactions with the component, including:
+{/\* Include all possible interactions with the component, including:
 
 - Mouse
 - Keyboard
 - Screen readers
 
-See [Accordion](https://www.carbondesignsystem.com/components/accordion/usage#interactions) for an example.
--->
+See
+[Accordion](https://www.carbondesignsystem.com/components/accordion/usage#interactions)
+for an example. \*/}
 
 ### Validation
 
-<!--
-Include any guidelines for data validation and accompanying messaging. See [Form](https://www.carbondesignsystem.com/components/form/usage/#validation-and-errors) for an example.
--->
+{/_ Include any guidelines for data validation and accompanying messaging. See
+[Form](https://www.carbondesignsystem.com/components/form/usage/#validation-and-errors)
+for an example. _/}
 
 ### Responsive behavior
 
-<!--
-Include details about how the component should behave in responsive situations.
--->
+{/_ Include details about how the component should behave in responsive
+situations. _/}
 
 ### Default selection
 
-<!--
-Cover guidance around default settings and provide rationale. See [Form](https://www.carbondesignsystem.com/components/form/usage/#default-values) and [Radio button](https://www.carbondesignsystem.com/components/radio-button/usage/#default-selection) for examples.
--->
+{/_ Cover guidance around default settings and provide rationale. See
+[Form](https://www.carbondesignsystem.com/components/form/usage/#default-values)
+and
+[Radio button](https://www.carbondesignsystem.com/components/radio-button/usage/#default-selection)
+for examples. _/}
 
 ### Clickable areas
 
-<!--
-Provide details about the clickable areas of the component.
--->
+{/_ Provide details about the clickable areas of the component. _/}
 
 ### Loading
 
-<!--
-If applicable, use this section to cross reference to the specific loading type in the [Loading component](https://www.carbondesignsystem.com/patterns/loading-pattern) and/or the [Loading pattern](https://www.carbondesignsystem.com/patterns/loading-pattern/).
--->
+{/_ If applicable, use this section to cross reference to the specific loading
+type in the
+[Loading component](https://www.carbondesignsystem.com/patterns/loading-pattern)
+and/or the
+[Loading pattern](https://www.carbondesignsystem.com/patterns/loading-pattern/).
+_/}
 
 ## Component type name
 
-<!--
-Rename this H2 heading with the first component type name, and include as many H2 sections as you have types.
+{/\* Rename this H2 heading with the first component type name, and include as
+many H2 sections as you have types.
 
-This section describes each of the component types listed in the Types table in the Overview, and highlights any behavior that is *unique* to the component type. Cover the topics from Universal behaviors above, as needed.
+This section describes each of the component types listed in the Types table in
+the Overview, and highlights any behavior that is _unique_ to the component
+type. Cover the topics from Universal behaviors above, as needed.
 
-And again, if any behavior is *universal* to the component, cover that in the "Universal behaviors" section above.
+And again, if any behavior is _universal_ to the component, cover that in the
+"Universal behaviors" section above.
 
-For examples of how to lay out this kind of information, see [Dropdown](https://www.carbondesignsystem.com/components/dropdown/usage) and [Modal](https://www.carbondesignsystem.com/components/modal/usage#variations).
--->
+For examples of how to lay out this kind of information, see
+[Dropdown](https://www.carbondesignsystem.com/components/dropdown/usage) and
+[Modal](https://www.carbondesignsystem.com/components/modal/usage#variations).
+\*/}
 
 ## Modifiers
 
-<!--
-The modifiers section shows different ways of styling the component. Here are some examples:
+{/\* The modifiers section shows different ways of styling the component. Here
+are some examples:
 
-- adding an icon to a [button](https://www.carbondesignsystem.com/components/button/usage/#variations)
-- adding a button to a [notification](https://www.carbondesignsystem.com/components/notification/usage/#anatomy)
+- adding an icon to a
+  [button](https://www.carbondesignsystem.com/components/button/usage/#variations)
+- adding a button to a
+  [notification](https://www.carbondesignsystem.com/components/notification/usage/#anatomy)
 - styling a dropdown to appear inline with other content
-- using high and low contrast styles for [notifications](https://www.carbondesignsystem.com/components/notification/usage/#high-and-low-contrast)
--->
+- using high and low contrast styles for
+  [notifications](https://www.carbondesignsystem.com/components/notification/usage/#high-and-low-contrast)
+  \*/}
 
 ## Related
 
-<!--
-Did you reference other components or patterns? List them here.
+{/\* Did you reference other components or patterns? List them here.
 
-If necessary, clarify any differences between this component and related components.
--->
+If necessary, clarify any differences between this component and related
+components. \*/}
 
 ## References
 
-<!--
-Include links to any research, citations, books or articles that you found helpful.
--->
+{/_ Include links to any research, citations, books or articles that you found
+helpful. _/}
 
 ## Feedback
 
@@ -558,11 +938,13 @@ structure, and size.
 
 ## Color
 
-<!--
-Use a table to document properties and color tokens in this section. You can reference this [table generator](https://www.tablesgenerator.com/markdown_tables) for easy table creation.
+{/\* Use a table to document properties and color tokens in this section. You
+can reference this
+[table generator](https://www.tablesgenerator.com/markdown_tables) for easy
+table creation.
 
-The following table shows an example from [Accordion](https://carbondesignsystem.com/components/accordion/style).
--->
+The following table shows an example from
+[Accordion](https://carbondesignsystem.com/components/accordion/style). \*/}
 
 | Element | Property      | Color token        |
 | ------- | ------------- | ------------------ |
@@ -589,13 +971,17 @@ The following table shows an example from [Accordion](https://carbondesignsystem
 
 ### Interactive state color
 
-<!--
-Use a table to document properties and color tokens for interactive states. Begin the table with the State column, not the Element column; this helps users scan faster and better reference accompanying images, which are also organized by state. You can reference this [table generator](https://www.tablesgenerator.com/markdown_tables) for easy table creation.
+{/\* Use a table to document properties and color tokens for interactive states.
+Begin the table with the State column, not the Element column; this helps users
+scan faster and better reference accompanying images, which are also organized
+by state. You can reference this
+[table generator](https://www.tablesgenerator.com/markdown_tables) for easy
+table creation.
 
 You may also choose to include images or tabs to illustrate variants.
 
-The following table shows an example from [Accordion](https://carbondesignsystem.com/components/accordion/style).
--->
+The following table shows an example from
+[Accordion](https://carbondesignsystem.com/components/accordion/style). \*/}
 
 | State    | Element | Property   | Color token        |
 | -------- | ------- | ---------- | ------------------ |
@@ -634,13 +1020,16 @@ The following table shows an example from [Accordion](https://carbondesignsystem
 
 ## Typography
 
-<!--
-Begin this section with any brief content guidelines. Link out to additional guidelines if needed.
+{/\* Begin this section with any brief content guidelines. Link out to
+additional guidelines if needed.
 
-Then, use a table to document font-size, font-weight, and type tokens in this section. You can reference this [table generator](https://www.tablesgenerator.com/markdown_tables) for easy table creation.
+Then, use a table to document font-size, font-weight, and type tokens in this
+section. You can reference this
+[table generator](https://www.tablesgenerator.com/markdown_tables) for easy
+table creation.
 
-The following table shows an example from [Accordion](https://carbondesignsystem.com/components/accordion/style).
--->
+The following table shows an example from
+[Accordion](https://carbondesignsystem.com/components/accordion/style). \*/}
 
 All accordion titles are set in sentence case. See the accordion
 [content guidelines](/components/accordion/usage#content) for more details.
@@ -652,30 +1041,41 @@ All accordion titles are set in sentence case. See the accordion
 
 ## Structure
 
-<!--
-Begin the structure section with a table to document states, spacing, and any other component-specific configurations. You can reference this [table generator](https://www.tablesgenerator.com/markdown_tables) for easy table creation.
+{/\* Begin the structure section with a table to document states, spacing, and
+any other component-specific configurations. You can reference this
+[table generator](https://www.tablesgenerator.com/markdown_tables) for easy
+table creation.
 
-Add supporting images to this section, with at least one image showing structure and another showing spacing measurements. Images should be accompanied by a descriptive caption and relate to the spec charts. Note we use the `image--fixed` markdown component in the Structure section to maintain size accuracy.
+Add supporting images to this section, with at least one image showing structure
+and another showing spacing measurements. Images should be accompanied by a
+descriptive caption and relate to the spec charts. Note we use the
+`image--fixed` markdown component in the Structure section to maintain size
+accuracy.
 
-Variants: You may need to provide additional specs for component variants like default versus flush alignment. For each variant, make a new h3 section and give it a name. The following are example pairs of section headers:
+Variants: You may need to provide additional specs for component variants like
+default versus flush alignment. For each variant, make a new h3 section and give
+it a name. The following are example pairs of section headers:
 
-Default style text area structure
-Fluid style text area structure
+Default style text area structure Fluid style text area structure
 
-Default style text input structure
-Fluid style text input structure
+Default style text input structure Fluid style text input structure
 
-Default alignment structure
-Flush alignment structure
+Default alignment structure Flush alignment structure
 
-Modifiers: If you need to document additional ways of styling a component, add h3 sections under Structure as needed. Here are some example cases where a modifier section has been added:
+Modifiers: If you need to document additional ways of styling a component, add
+h3 sections under Structure as needed. Here are some example cases where a
+modifier section has been added:
 
-- adding an icon to a [button](https://www.carbondesignsystem.com/components/button/usage/#variations)
-- adding a button to a [notification](https://www.carbondesignsystem.com/components/notification/usage/#anatomy)
-- using high and low contrast styles for [notifications](https://www.carbondesignsystem.com/components/notification/usage/#high-and-low-contrast)
+- adding an icon to a
+  [button](https://www.carbondesignsystem.com/components/button/usage/#variations)
+- adding a button to a
+  [notification](https://www.carbondesignsystem.com/components/notification/usage/#anatomy)
+- using high and low contrast styles for
+  [notifications](https://www.carbondesignsystem.com/components/notification/usage/#high-and-low-contrast)
 
-The following content shows example documentation from [Accordion](https://carbondesignsystem.com/components/accordion/style), which has no variants and therefore does not need any h3 headers.
--->
+The following content shows example documentation from
+[Accordion](https://carbondesignsystem.com/components/accordion/style), which
+has no variants and therefore does not need any h3 headers. \*/}
 
 | Element | Property    | px/rem   | Spacing token |
 | ------- | ----------- | -------- | ------------- |
@@ -707,11 +1107,12 @@ The following content shows example documentation from [Accordion](https://carbo
 
 ## Size
 
-<!--
-In the size section, provide a table of component size names and height. Be sure to cross-link this to the size section in the usage tab, which is where you should provide guidance about how to choose the best size for a given use case.
+{/\* In the size section, provide a table of component size names and height. Be
+sure to cross-link this to the size section in the usage tab, which is where you
+should provide guidance about how to choose the best size for a given use case.
 
-Example: The following table shows an example from [Button](https://carbondesignsystem.com/components/button/style).
--->
+Example: The following table shows an example from
+[Button](https://carbondesignsystem.com/components/button/style). \*/}
 
 There are six button sizes: small, medium, large productive, large expressive,
 extra large, and 2XL. The large expressive button is used in editorial and
@@ -738,7 +1139,7 @@ information about specific use cases for each button size.
 
 ## Feedback
 
-<!--Include a request for feedback here.-->
+{/_Include a request for feedback here._/}
 
 Help us improve this component by providing feedback, asking questions, and
 leaving any other comments on
@@ -760,8 +1161,8 @@ tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 
 <PageDescription>
 
-<!-- How to build a [component name] using React. For code usage with other
-frameworks, please follow the links in the live demo on the usage tab. -->
+{/_ How to build a [component name] using React. For code usage with other
+frameworks, please follow the links in the live demo on the usage tab. _/}
 
 </PageDescription>
 
@@ -775,38 +1176,37 @@ frameworks, please follow the links in the live demo on the usage tab. -->
 
 ## Overview
 
-<!--
-This should include the default use-case(s) for a component, at most 2.
-This should be the most common way the component is used.
-It should summarize what this common is for and provide snippets for how
-to accomplish these common use-cases.
+{/\* This should include the default use-case(s) for a component, at most 2.
+This should be the most common way the component is used. It should summarize
+what this common is for and provide snippets for how to accomplish these common
+use-cases.
 
-Example: You can build a breadcrumb using a combination of the Breadcrumb and BreadcrumbItem components. The Breadcrumb component accepts a list of BreadcrumbItem components as children and each BreadcrumbItem is responsible for displaying the page links in the hierarchy.
--->
+Example: You can build a breadcrumb using a combination of the Breadcrumb and
+BreadcrumbItem components. The Breadcrumb component accepts a list of
+BreadcrumbItem components as children and each BreadcrumbItem is responsible for
+displaying the page links in the hierarchy. \*/}
 
 ### Skeleton
 
-<!--
-Include which component/s to use for the skeleton state and why it might be useful.
+{/\* Include which component/s to use for the skeleton state and why it might be
+useful.
 
 Example:
 
-*You can use the BreadcrumbSkeleton component to render a skeleton variant of an breadcrumb. This is useful to display while content in your breadcrumb is being fetched from an external resource like an API.*
--->
+_You can use the BreadcrumbSkeleton component to render a skeleton variant of an
+breadcrumb. This is useful to display while content in your breadcrumb is being
+fetched from an external resource like an API._ \*/}
 
 ## [Use case, for example, Skeleton state or Sorting]
 
-<!--
-Each use-case of this component becomes its own section. For example,
-if an accordion had a skeleton then you would name this section Skeleton.
+{/\* Each use-case of this component becomes its own section. For example, if an
+accordion had a skeleton then you would name this section Skeleton.
 
-If the component had a specific piece of functionality or behavior, like
-how you can sort with a Data Table, then Sorting would be the name of this
-section.
+If the component had a specific piece of functionality or behavior, like how you
+can sort with a Data Table, then Sorting would be the name of this section.
 
 This section should include an explainer for the use-case and when to use it,
-along with a code snippet that someone could bring into their project.
--->
+along with a code snippet that someone could bring into their project. \*/}
 
 ## Component API
 
@@ -816,27 +1216,24 @@ along with a code snippet that someone could bring into their project.
 | ----------- | -------- | -------- | ------- | ----------- |
 | `className` | `string` | –        | –       | –           |
 
-<!--
-* Only specific required as `true`, if it's false you don't need to indicate that
-* Specify the default value if applicable
-* Provide a description if applicable
-* Annotate the type using TypeScript type annotations
-* Empty cells should be filled with en dashes (–)
-* Table should be sorted in alphabetical order
--->
+{/\*
+
+- Only specific required as `true`, if it's false you don't need to indicate
+  that
+- Specify the default value if applicable
+- Provide a description if applicable
+- Annotate the type using TypeScript type annotations
+- Empty cells should be filled with en dashes (–)
+- Table should be sorted in alphabetical order \*/}
 
 #### [Component name][prop name]
 
-<!--
-Used to clarify prop usage, provide additional info or snippets
--->
+{/_ Used to clarify prop usage, provide additional info or snippets _/}
 
 ## References
 
-<!--
-A place for references, links, or a way clarify points made earlier
-in the documentation.
--->
+{/_ A place for references, links, or a way clarify points made earlier in the
+documentation. _/}
 
 ## Feedback
 
@@ -862,27 +1259,27 @@ tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 
 <PageDescription>
 
-<!--
-There are 2 stock page descriptions.
-Choose the first example if designers need to include annotations in their wireframes to make the component accessible. Choose the second if the component is accessible without additional design decisions.
-** If example 2 is used, the Design recommendations section and its anchor link should be removed.
+{/\* There are 2 stock page descriptions. Choose the first example if designers
+need to include annotations in their wireframes to make the component
+accessible. Choose the second if the component is accessible without additional
+design decisions. \*\* If example 2 is used, the Design recommendations section
+and its anchor link should be removed.
 
-Example 1:
-Design annotations are needed for specific instances shown below, but for the
-standard [component_name] component, Carbon already incorporates accessibility.
+Example 1: Design annotations are needed for specific instances shown below, but
+for the standard [component_name] component, Carbon already incorporates
+accessibility.
 
-Example 2:
-No accessibility annotations are needed for [component_name]s, but keep these considerations in
-mind if you are modifying Carbon or creating a custom component.
--->
+Example 2: No accessibility annotations are needed for [component_name]s, but
+keep these considerations in mind if you are modifying Carbon or creating a
+custom component. \*/}
 
 </PageDescription>
 
 <AnchorLinks>
   <AnchorLink>What Carbon provides</AnchorLink>
-  <!--
+  {/*
   Only include Design recommendations if there are actually tasks for a designer to do
-  -->
+  */}
   <AnchorLink>Design recommendations</AnchorLink>
   <AnchorLink>Development considerations</AnchorLink>
 </AnchorLinks>
@@ -895,36 +1292,44 @@ other accessibility considerations, some of which are described below.
 
 ### Keyboard interaction
 
-<!--
-This keyboard section introduction text can give details of keyboard operation. For actionable components, begin by talking about the navigation via the tab stop, then discuss common interactions keys. For components with subcomponents, unless there is little interaction for the subcomponent, consider splitting the subcomponent considerations into a separate paragraph, separated by an illustration. Where operation is more complicated, separate headings for Keyboard navigation and Keyboard interaction can exist.Keyboard keys should be referred to with code styling.
+{/\* This keyboard section introduction text can give details of keyboard
+operation. For actionable components, begin by talking about the navigation via
+the tab stop, then discuss common interactions keys. For components with
+subcomponents, unless there is little interaction for the subcomponent, consider
+splitting the subcomponent considerations into a separate paragraph, separated
+by an illustration. Where operation is more complicated, separate headings for
+Keyboard navigation and Keyboard interaction can exist.Keyboard keys should be
+referred to with code styling.
 
-Example 1:
--->
+Example 1: \*/}
 
 Each accordion is a tab stop. `Space` or `Enter` keys expand or collapse
 accordions, which are collapsed by default. Interactive elements within expanded
 accordions integrate into the tab order automatically.
 
-<!--
-Example 2:
-Each page link in the breadcrumb is reached by `Tab` and activated by `Enter`. The current
-page, if listed in the breadcrumb, is not a link. If the breadcrumb is truncated, the ellipsis button
-for the overflow menu is in the tab order. See [overflow menu]((https://carbondesignsystem.com/components/overflow-menu/usage/)) for details on its keyboard operation
--->
+{/_ Example 2: Each page link in the breadcrumb is reached by `Tab` and
+activated by `Enter`. The current page, if listed in the breadcrumb, is not a
+link. If the breadcrumb is truncated, the ellipsis button for the overflow menu
+is in the tab order. See
+[overflow menu](<(https://carbondesignsystem.com/components/overflow-menu/usage/)>)
+for details on its keyboard operation _/}
 
-<!--
-**Images**
-Use one image to document keyboard navigation. If the component has limited operation functionality, it may also be incorporated in the same image. Otherwise, the operation should be dealt with in a separate image.
-Normally these images go across 8 columns.
-images should follow the naming convention (component_name-accessibility-1.png
-The ALT text text for the first image can be fairly generic, since the image is just restating information in the prior paragraph.
-The caption should likewise summarize something already described in the preceding paragraph. No new information should be given in the caption. Due to technology constraints, keystroke names in the captions are not given any markdown styling.
-Example:
+{/\* **Images** Use one image to document keyboard navigation. If the component
+has limited operation functionality, it may also be incorporated in the same
+image. Otherwise, the operation should be dealt with in a separate image.
+Normally these images go across 8 columns. images should follow the naming
+convention (component_name-accessibility-1.png The ALT text text for the first
+image can be fairly generic, since the image is just restating information in
+the prior paragraph. The caption should likewise summarize something already
+described in the preceding paragraph. No new information should be given in the
+caption. Due to technology constraints, keystroke names in the captions are not
+given any markdown styling. Example:
 ![example of breadcrumb keyboard interaction](images/breadcrumb-accessibility-1.png)
+
 <Caption>
   The breadcrumb's links are reached by Tab and activated by Enter.
 </Caption>
--->
+*/}
 <Row>
 <Column colLg={8}>
 
@@ -937,46 +1342,53 @@ Example:
 </Column>
 </Row>
 
-<!--
-The Design recommendations section should only be included if annotations are needed
--->
+{/_ The Design recommendations section should only be included if annotations
+are needed _/}
 
 ## Design recommendations
 
 Design annotations are needed for the following instances.
 
-<!--
-Some of the possible subheadings here include:
+{/\* Some of the possible subheadings here include:
+
 - headings
 - alignment
 - labeling
 - meaningful order
 
-Each should have a level 3 heading, a descriptive paragraph and a supporting image.
+Each should have a level 3 heading, a descriptive paragraph and a supporting
+image.
 
 Example:
 
 ### Headings
-Carbon accordions are not set as headings by default. For improved accessibility, annotate accordions as headings on the first occurrence in a product. Annotate the heading level of accordions as needed.
 
--->
+Carbon accordions are not set as headings by default. For improved
+accessibility, annotate accordions as headings on the first occurrence in a
+product. Annotate the heading level of accordions as needed.
+
+\*/}
 
 ## Development considerations
 
 Keep these considerations in mind if you are modifying Carbon or creating a
 custom component.
 
-<!--
-Provide a bulleted list of implementation considerations for ensuring accessibility. If there is the ability to refernce the IBM toolkit or the ARIA authoring practices, that should be done.
+{/\* Provide a bulleted list of implementation considerations for ensuring
+accessibility. If there is the ability to refernce the IBM toolkit or the ARIA
+authoring practices, that should be done.
 
-- Use dashed bullets and ensure code is styled as code and consistently appears with the
-following symbols: <element>, 'variable' and "value".
+- Use dashed bullets and ensure code is styled as code and consistently appears
+  with the following symbols: <element>, 'variable' and "value".
 - End each bulleted list item with a period.
 
 Example:
-- See the [ARIA authoring practices](https://w3c.github.io/aria-practices/#tooltip) for more considerations.
 
--->
+- See the
+  [ARIA authoring practices](https://w3c.github.io/aria-practices/#tooltip) for
+  more considerations.
+
+\*/}
 ```
 
 ## Documenting patterns
