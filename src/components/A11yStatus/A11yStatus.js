@@ -24,7 +24,6 @@ import {
   help,
   hidden,
   moreLink,
-  table,
   variant,
   version,
   headingLink,
