@@ -3190,7 +3190,7 @@ const colorTokens = {
       },
     },
   },
-  'AI': {
+  'ai': {
     '$ai-aura-start': {
       role: ['Linear gradient start value for large AI layers'],
       value: {
@@ -3552,7 +3552,7 @@ const colorTokens = {
       },
     },
   },
-  'Chat': {
+  'chat': {
     '$chat-avatar-bot': {
       role: ['Chat avatar background color for bots'],
       value: {
@@ -3785,7 +3785,7 @@ const colorTokens = {
       },
     },
   },
-  'Chat-button': {
+  'chat-button': {
     '$chat-button': {
       role: ['Chat quick action button color'],
       value: {
