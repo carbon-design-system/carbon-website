@@ -396,10 +396,7 @@ const A11yStatus = ({ components, layout }) => {
           <strong>Framework:</strong> React (@carbon/react)
         </p>
         <Row>
-          <Column
-            colLg={12}
-            noGutterSm
-            className={`${table} page-table__container`}>
+          <Column colLg={12} noGutterSm className="page-table__container">
             <table className="page-table">
               <thead>
                 <tr>
