@@ -35,6 +35,7 @@ v10 implementation guidance, go to
 <AnchorLink>Universal behaviors</AnchorLink>
 <AnchorLink>Line tabs</AnchorLink>
 <AnchorLink>Contained tabs</AnchorLink>
+<AnchorLink>Vertical tabs</AnchorLink>
 <AnchorLink>Modifiers</AnchorLink>
 <AnchorLink>Related</AnchorLink>
 <AnchorLink>References</AnchorLink>
@@ -142,6 +143,7 @@ complete a task.
 | ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [Line](#line-tabs)           | A standalone tab that can also be nested within components. It is commonly used within components or for content using the entire page for layout, not connected to any other components. |
 | [Contained](#contained-tabs) | An emphasized tab that is commonly used for defined content areas.                                                                                                                        |
+| [Vertical](#Vertical-tabs)   | An emphasized tab that is commonly used for defined content areas.                                                                                                                        |
 
 <Row>
 <Column colLg={8}>
@@ -223,6 +225,24 @@ B. Indicator <br /> D. Icon <br /> E. Container
 </Column>
 </Row>
 
+### Anatomy of Vertical tabs
+
+<Row>
+<Column colLg={8}>
+
+![Anatomy of vertical tabs](images/tab-usage-20 .png)
+
+</Column>
+</Row>
+
+<Row>
+<Column colSm={2} colMd={4} colLg={4}>
+
+#### Vertical tabs
+
+A. Label <br /> B. Indicator <br /> E. Container <br /> H. Tablist extended
+background <br /> G. Tab panel
+
 ### Alignment
 
 Much like
@@ -231,7 +251,9 @@ alignment of tabs depends on where they appear and whether or not they're
 contained within another component. As a general rule, the first label for both
 line tabs and contained tabs align with the grid and the text below. If tabs are
 within another component, such as a card, follow the grid that you are using
-inside the component and align the label with text in the component.
+inside the component and align the label with text in the component. Vertical
+tab labels also align with the grid, so all labels in a tablist will align on
+the same grid column.
 
 <DoDontRow>
   <DoDont type="do" caption="Do align tab labels with the grid">
@@ -248,9 +270,9 @@ inside the component and align the label with text in the component.
 
 #### Auto-width
 
-With both line tabs and contained tabs, auto-width is the default behavior. Each
-tab will be a different size depending on the label's character count but will
-have consistent padding on each side of the label. The first label, selected by
+With line tabs and contained tabs, auto-width is the default behavior. Each tab
+will be a different size depending on the label's character count but will have
+consistent padding on each side of the label. The first label, selected by
 default, should align to the grid. Where the tabs end will vary and may not end
 on the grid. If needed, you may also use a line to help balance tabs with other
 components on the page.
@@ -268,7 +290,7 @@ components on the page.
 #### Aligning to grid columns
 
 Instead of using the default auto-width behavior, contained tabs also have the
-option to align to the grid. As a group, the tabs span a set of columns with
+option to align to the grid. As a group, the tablist spans a set of columns with
 each tab being equal in size. The first tab’s label should align to the first
 column you are using with the last tab in the group always ending at a column’s
 edge. The tabs in between will flow accordingly and may or may not align to the
@@ -279,6 +301,18 @@ Use the
 to drive visual rhythm by spacing content in multiples of two columns and
 aligning the beginning and ending of the tab elements with content below the
 tabs when possible.
+
+Use grid aligned contained tabs when:
+
+- When there are 4 tabs or less
+- When the tablist can fit on the 2x grid easily without crowding labels
+- Labels are short and concise
+- When there are other elements on the page that can align to the tablist
+
+Depending on breakpoints, vertical tabs align to grid columns spanning 4 or 2
+columns, of the 16 column grid and connects to a tab panel that can be 8 or 12
+columns wide. See [vertical tabs](#Vertical-tabs) for more information on
+breakpoints and responsiveness.
 
 <InlineNotification>
 
@@ -323,7 +357,9 @@ tab to the edge of the content area.
 #### Labels
 
 - Use short tab labels that are clear and specific. Labels should be one to two
-  words, as these are easier to scan.
+  words, as these are easier to scan. Vertical tabs allow for more characters
+  within a tab, but stay as concise as possible to avoid truncation and allow
+  space for labels in various languages.
 - Text labels should clearly communicate the view users will see and the content
   contained in the view.
 
@@ -331,6 +367,28 @@ tab to the edge of the content area.
 
 - Contained tabs can have secondary labels to add clarity or assist the user in
   choosing the right selection.
+
+### Overflow content
+
+Line and tab labels do not need truncation since these types of tabs allow for
+horizontal scrolling. The tabs themselves can grow and shrink accordingly.
+However, when a label is too long within a vertical tab, the label overflows to
+2 lines and then truncates with an ellipsis. By mouse, the full title is
+disclosed in a browser tooltip on hover. By keyboard, the full title is
+disclosed on focus in a tooltip.
+
+<Row>
+<Column colLg={8}>
+
+![Overflow content within vertical tabs](images/tab-usage-10.png)
+
+</Column>
+</Row>
+
+<Caption>
+  On hover, full title is disclosed in a browser tooltip (Left) and on focus,
+  full title is disclosed in Carbon tooltip (right)
+</Caption>
 
 ### Further guidance
 
@@ -362,8 +420,8 @@ the [Style tab](https://carbondesignsystem.com/components/tabs/style).
 ### Scrollable
 
 When your page requires more tabs that can fit or needs to adapt to a new
-browser size, tabs should become scrollable. Left and right arrows appear to
-help navigate the user through tabs that might be off-page.
+browser size, line and contained tabs should become scrollable. Left and right
+arrows appear to help navigate the user through tabs that might be off-page.
 
 <Row>
 <Column colLg={8}>
@@ -447,10 +505,39 @@ complicated, especially within smaller areas.
 <Row>
 <Column colLg={12}>
 
-![Examples of tabs with icons](images/tab-usage-14.png)
+![Examples of contained tabs](images/tab-usage-14.png)
 
 </Column>
 </Row>
+
+## Vertical tabs
+
+Vertical tabs are left, vertically aligned tabs that allow a user to scan
+through information from top to bottom. This vertical orientation is good for
+quickly browsing and accessing information, such as a [get started]
+(https://pages.github.ibm.com/cdai-design/pal/patterns/onboarding/orientation/usage#get-started)
+pattern. Do not use vertical tabs in place of
+[navigation](https://carbondesignsystem.com/components/UI-shell-left-panel/usage/).
+
+The tab panel should stay the same height as tabs switch so content outside the
+tabs stays in a consistent place. The vertical tablist and panel height should
+be determined by the tab that has the most content to avoid excessive scrolling
+within the tab panel. If more space is needed than the tab panel allows,
+consider using line or contained tabs that allow for full page layouts. Both the
+tablist and the tab panels are always on the same layer. At extra large and
+large breakpoints, vertical tablist spans 4 columns of the 16 column grid. At
+medium breakpoint, the vertical tablist spans 2 columns. At the small
+breakpoint, the vertical tablist uses scrolling contained tabs.
+
+<Row>
+<Column colLg={12}>
+
+![Example of vertical tabs in a get started pattern](images/tab-usage-21.png)
+
+</Column>
+</Row>
+
+<Caption>Example of Vertical tabs in a get started pattern</Caption>
 
 ## Modifiers
 
@@ -490,7 +577,7 @@ and focus to add clarity.
 ### Secondary labels
 
 Contained tabs that align with the grid allow for a secondary label. Do not use
-secondary labels with line tabs or auto-width contained tabs.
+secondary labels with line tabs, auto-width contained tabs, or vertical tabs.
 
 <Row>
 <Column colLg={8}>
@@ -505,9 +592,9 @@ secondary labels with line tabs or auto-width contained tabs.
 ### Dismissible tabs
 
 Dismissible tabs allow users to close tabs providing a focused and relevant
-experience. Users can add or remove tabs as needed, accommodating future content
-additions or modifications without drastically changing the overall layout or
-structure.
+experience. Users can add or remove contained or line tabs as needed,
+accommodating future content additions or modifications without drastically
+changing the overall layout or structure.
 
 <Row>
 <Column colLg={8}>
