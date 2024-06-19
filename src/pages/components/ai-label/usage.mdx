@@ -31,8 +31,8 @@ reflected in code once it moves to stable.
 <AnchorLink>Formatting</AnchorLink>
 <AnchorLink>Content</AnchorLink>
 <AnchorLink>Behaviors</AnchorLink>
+<AnchorLink>Explainability popover</AnchorLink>
 <AnchorLink>Related</AnchorLink>
-<AnchorLink>References</AnchorLink>
 <AnchorLink>Feedback</AnchorLink>
 
 </AnchorLinks>
@@ -85,6 +85,16 @@ AI instances in a way that is identifiable across any IBM product.
 | Default | The default AI label used in most components and container type use cases. It can be used for both broad and focused AI instances. |
 | Inline  | A specific type of AI label used only in small focused AI instances and often paired inline with text content.                     |
 
+<Row>
+<Column colLg={8}>
+
+![A default and inline AI label](images/ai-label-variants.png)
+
+</Column>
+</Row>
+
+<Caption>Default (left), Inline (right)</Caption>
+
 ### When to use
 
 #### Mark AI-generated content
@@ -127,17 +137,15 @@ actions will have their own UI icons.
 ### Anatomy
 
 <Row>
-<Column colLg={12}>
+<Column colLg={8}>
 
 ![Anatomy of AI label](images/ai-label-anatomy.png)
 
 </Column>
 </Row>
 
-<Caption>A: Default AI label, B: Inline AI label</Caption>
-
-1. **Icon**: indicates AI is present and the button trigger for the
-   explainability popover.
+1. **Icon**: indicates AI is present and is the button trigger for the
+   explainability popover. It can be either the default or inline variant.
 2. **Text label**: the text abbreviation for artificial intelligence which can
    be translated as needed.
 3. **Explainability popover**: Area that contains explainability content and
@@ -231,7 +239,7 @@ If other icons are present along side the AI label, then the AI label should be
 placed in the far left position of the icon group.
 
 <Row>
-<Column colLg={8}>
+<Column colLg={12}>
 
 ![Example of an AI label placement with other icons](images/ai-label-placement-icons.png)
 
@@ -358,3 +366,154 @@ languages. Here are some examples of abbreviations in other languages.
 
 </Column>
 </Row>
+
+## Behaviors
+
+#### States
+
+AI label has three interactive states: **enabled**, **hover**, and **focus**.
+The AI label should never be disabled as part of a disabled or read-only state.
+Learn more about states on the [Style](/components/ai-label/style) tab.
+
+<Row>
+<Column colLg={8}>
+
+![AI labels shown in their three states](images/ai-label-states.png)
+
+</Column>
+</Row>
+
+<Caption>Enabled (left), hover (middle), focus (right)</Caption>
+
+### Clickable areas
+
+Although it may look like an icon button, the AI label is itself a button.
+Therefore, the clickable area is limited to the boundaries of the AI label
+without any additional external coverage, such as in a ghost button.
+
+<Row>
+<Column colLg={8}>
+
+![AI label click target](images/ai-label-click-target.png)
+
+</Column>
+</Row>
+
+### Keyboard navigation
+
+The AI label is reachable by `Tab` and opens the explainability popover with
+`Enter`. Press `Esc` or `Tab` away to close the popover. When AI is present in
+the input an additional tab stop is added to reach the AI label.
+
+### Revert function
+
+Users can manually override AI-suggested content, but they should always be able
+to programmatically switch back to the initially suggested AI content. In these
+instances, when the content is overridden by the user, the AI presence styling
+is removed and the AI label is replaced by a “revert” action icon-only button.
+If a user activates the revert action, the AI-generated content will reappear,
+along with the AI presence styling and AI label.
+
+<Row>
+<Column colLg={8}>
+
+![An example of user edited AI component](images/ai-label-revert.png)
+
+</Column>
+</Row>
+
+## Explainability popover
+
+The popover is the first layer of explainability that is accessed by clicking
+the AI label. This provides a consistent up-front way to access explainability
+with the ability to dig into more details on-demand. Use this popover any time
+AI needs to be explained in your experience.
+
+<Row>
+<Column colLg={12}>
+
+![An example of an AI explainability popover](images/ai-explainability-light.png)
+
+</Column>
+</Row>
+
+### Popover behaviors
+
+#### Opening and dismissing
+
+The AI label is the trigger that opens explainability popover. The interaction
+works like a toggletip where the popover remains open until the user clicks or
+tabs away from the AI label.
+
+#### Popover orientation
+
+The popover should auto-position itself to the best orientation on the screen so
+that it does not appear out of view for the user. It follows the same alignments
+as the primitive caret-tip popover.
+
+<Row>
+<Column colLg={8}>
+
+![Examples of various orientations for the explainability popover](images/ai-label-explainability-orientation.png)
+
+</Column>
+</Row>
+
+### Content template
+
+The popover container is a configurable content area but Carbon for AI provides
+a recommended content template for creating your explainability content. The
+template is split into four main content sections:
+
+1. Overview
+2. Supporting details
+3. Artifacts and resources
+4. Additional actions
+
+For more information and guidance on designing the content for your
+explainability popover, IBMers can go to the AI explainability popover pattern
+on
+[IBM Design for AI](https://w3.ibm.com/w3publisher/carbon-for-ai/ai-explainability-popover).
+
+<Row>
+<Column colLg={8}>
+
+![Content template anatomy](images/ai-label-explainability-anatomy.png)
+
+</Column>
+</Row>
+
+## Related
+
+#### Guidelines
+
+- [Carbon for AI](/guidelines/carbon-for-ai/)
+
+#### Components
+
+- [Checkbox](/components/checkbox/usage/#ai-presence)
+- [Data table](/components/data-table/usage/#ai-presence)
+- [Date picker](/components/date-picker/usage/#ai-presence)
+- [Dropdown](/components/dropdown/usage/#ai-presence)
+- [Form](/components/form/usage/#ai-presence)
+- [Modal](/components/modal/usage/#ai-presence)
+- [Number input](/components/number-input/usage/#ai-presence)
+- [Popover](/components/popover/usage/)
+- [Radio button](/components/radio-button/usage/#ai-presence)
+- [Select](/components/select/usage/#ai-presence)
+- [Tag](/components/tag/usage/#ai-presence)
+- [Text input](/components/text-input/usage/#ai-presence)
+- [Tile](/components/tile/usage/#ai-presence)
+
+#### IBM Design for AI
+
+- [AI label placement](https://w3.ibm.com/w3publisher/carbon-for-ai/ai-label-placement)
+- [AI explainability popover](https://w3.ibm.com/w3publisher/carbon-for-ai/ai-explainability-popover)
+
+## Feedback
+
+Help us improve this component by providing feedback, asking questions, and
+leaving any other comments on GitHub. For IBMers, questions and feedback can be
+directed to Slack in the channels
+[#carbon-design-system](https://ibm-studios.slack.com/messages/C0M053VPT/) or
+[#carbon-for-ai](https://ibm-studios.slack.com/messages/C0603LZUKRV).
