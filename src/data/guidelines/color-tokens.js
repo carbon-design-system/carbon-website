@@ -2992,11 +2992,11 @@ const colorTokens = {
         },
         g90: {
           name: 'Cyan 70 hover',
-          hex: '#bae6ff',
+          hex: '#0066bd',
         },
         g100: {
           name: 'Cyan 70 hover',
-          hex: '#bae6ff',
+          hex: '#0066bd',
         },
       },
     },
