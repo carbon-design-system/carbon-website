@@ -4,81 +4,126 @@ description: The AI label indicates an instance of AI in the UI.
 tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 ---
 
+<PageDescription>
+
+The following page documents visual specifications such as color, typography,
+structure, and sizes.
+
+</PageDescription>
+
+<AnchorLinks>
+
+<AnchorLink>Color</AnchorLink>
+<AnchorLink>Typography</AnchorLink>
+<AnchorLink>Structure</AnchorLink>
+<AnchorLink>Sizes</AnchorLink>
+
+</AnchorLinks>
+
 ## Color
 
-| Element | Property      | Color token      |
-| ------- | ------------- | ---------------- |
-| Title   | color         | `$text-primary`  |
-| Content | color         | `$text-primary`  |
-| Icon    | fill          | `$icon-primary`  |
-| Header  | border-top    | `$border-subtle` |
-|         | background    | Transparent      |
-| Panel   | border-bottom | `$border-subtle` |
-|         | background    | Transparent      |
+<Title>Default</Title>
 
-### Interactive states
+| State     | Element | Property   | Color token           |
+| --------- | ------- | ---------- | --------------------- |
+| _Enabled_ | Label   | text color | `$text-primary`       |
+|           | Button  | border     | `$border-inverse`     |
+|           |         | background | `transparent`         |
+| _Hover_   | Label   | text color | `$text-inverse`       |
+|           | Button  | border     | `$border-inverse`     |
+|           |         | background | `$background-inverse` |
+| _Focus_   | Button  | border     | `$focus`              |
 
-| Element | State    | Property   | Color token      |
-| ------- | -------- | ---------- | ---------------- |
-| Header  | Hover    | background | `$layer-hover`   |
-|         | Focus    | border     | `$focus`         |
-|         | Disabled | border-top | `$border-subtle` |
-| Title   | Disabled | background | `$text-disabled` |
-| Icon    | Disabled | fill       | `$icon-disabled` |
+<br />{' '}
 
-<Row>
-<Column colLg={12}>
+<Title>Inline</Title>
 
-<Tabs>
+| State     | Element | Property   | Color token       |
+| --------- | ------- | ---------- | ----------------- |
+| _Enabled_ | Label   | text color | `$text-primary`   |
+|           | Dot     | fill       | `$icon-primary`   |
+|           | Button  | background | `transparent`     |
+| _Hover_   | Label   | text color | `$text-secondary` |
+|           | Button  | border     | `$border-inverse` |
+|           |         | background | `transparent`     |
+| _Focus_   | Button  | border     | `$focus`          |
 
-<Tab label="Default">
+<br />{' '}
 
-![default accordion alignment interactive states](images/accordion-style-2.png)
+<Title>Explainability popover</Title>
 
-</Tab>
-
-<Tab label="Flush">
-
-![flush accordion alignment interactive states](images/accordion-style-3.png)
-
-</Tab>
-
-</Tabs>
-
-</Column>
-</Row>
+| Element            | Property               | Color token              |
+| ------------------ | ---------------------- | ------------------------ |
+| Popover background | background             | `$ai-popover-background` |
+|                    | linear-gradient: start | `$ai-aura-start`         |
+|                    | linear-gradient: end   | `$ai-aura-end`           |
+| Popover border     | linear-gradient: start | `$ai-border-start`       |
+|                    | linear-gradient: end   | `$ai-border-end`         |
 
 ## Typography
 
-All accordion titles are set in sentence case. See the accordion
-[content guidelines](/components/accordion/usage#content) for more details.
+<Title>Default</Title>
 
-| Element | Font-size (px/rem) | Font-weight   | Type token |
-| ------- | ------------------ | ------------- | ---------- |
-| Title   | 14 / 0.875         | Regular / 400 | `$body-01` |
-| Content | 14 / 0.875         | Regular / 400 | `$body-01` |
+| Element             | Font-size (px/rem) | Font-weight    | Type token    |
+| ------------------- | ------------------ | -------------- | ------------- |
+| Label text (xl)     | 20 / 1.25          | SemiBold / 600 | `$heading-03` |
+| Label text (sm–lg)  | 16 / 1             | SemiBold / 600 | `$heading-02` |
+| Label text (2xs–xs) | 12 / 0.75          | SemiBold / 600 | –             |
+| Label text (mini)   | 9 / 0.5625         | SemiBold / 600 | –             |
+
+<br />{' '}
+
+<Title>Inline</Title>
+
+| Element         | Font-size (px/rem) | Font-weight    | Type token    |
+| --------------- | ------------------ | -------------- | ------------- |
+| Label text (lg) | 16 / 1             | SemiBold / 600 | `$heading-02` |
+| Label text (md) | 14 / 0.875         | SemiBold / 600 | `$heading-01` |
+| Label text (sm) | 12 / 0.75          | SemiBold / 600 | –             |
+
+<br />{' '}
+
+<Title>Explainability popover</Title>
+
+| Element | Font-size (px/rem) | Font-weight   | Type token    |
+| ------- | ------------------ | ------------- | ------------- |
+| Label   | 14 / 0.875         | Regular / 400 | `$label-02`   |
+| Title   | 28 / 1.75          | Regular / 400 | `$heading-04` |
+| Body    | 14 / 0.875         | Regular / 400 | `$body-01`    |
 
 ## Structure
 
-There is no max-height for an open panel but an accordion may
-[scroll](/components/accordion/usage#scrolling-content) if constrained by
-vertical space. The width of an accordion varies based on the content, layout,
-and page design. The icon used in the header is a `chevron`. The accordion has
-an indented default alignment but can also be set to have a flush alignment.
+<Title>Default</Title>
 
-### Default alignment
+| Element    | Property | Value    | Spacing token |
+| ---------- | -------- | -------- | ------------- |
+| Button     | border   | 1px      | –             |
+| Text label | padding  | centered | –             |
 
-| Element | Property       | px/rem   | Spacing token |
-| ------- | -------------- | -------- | ------------- |
-| Header  | height         | 40 / 2.5 | –             |
-| Item    | border-top     | 1        | –             |
-| Title   | margin-left    | 16 / 1   | `$spacing-05` |
-| Panel   | padding-top    | 8 / 0.5  | `$spacing-03` |
-|         | padding-bottom | 24 / 1.5 | `$spacing-06` |
-|         | padding-right  | 25%      | –             |
-|         | padding-left   | 16 / 1   | `$spacing-05` |
-| Icon    | size           | 16 / 1   | –             |
-|         | padding-right  | 16 / 1   | `$spacing-05` |
+<br />{' '}
+
+<Title>Inline</Title>
+
+| Element     | Property                    | px/rem | Spacing token |
+| ----------- | --------------------------- | ------ | ------------- |
+| Text label  | padding-left                | 4px    | `$spacing-02` |
+| Button      | border                      | 1px    | –             |
+|             | padding-left, padding-right | 4px    | `$spacing-02` |
+| Button (sm) | height                      | 16px   | –             |
+|             | dot                         | 4px    | –             |
+| Button (md) | height                      | 18px   | –             |
+|             | dot                         | 4px    | –             |
+| Button (lg) | height                      | 22px   | –             |
+|             | dot                         | 8px    | –             |
+
+<br />{' '}
+
+<Title>Explainability popover</Title>
+
+| Element   | Property | px/rem | Spacing token |
+| --------- | -------- | ------ | ------------- |
+| Container | padding  | 24px   | `$spacing-06` |
+| Footer    | height   | 48px   | –             |
 
 <div className="image--fixed">
 
@@ -90,81 +135,26 @@ an indented default alignment but can also be set to have a flush alignment.
   Structure measurements for default accordion alignment. | px / rem
 </Caption>
 
-<br />
-
-<div className="image--fixed">
-
-![Spacing measurements for default accordion alignment](images/accordion-style-5.png)
-
-</div>
-
-<Caption>
-  Spacing measurements for default accordion alignment. | px / rem
-</Caption>
-
-### Flush alignment
-
-| Element | Property       | px/rem   | Spacing token |
-| ------- | -------------- | -------- | ------------- |
-| Header  | height         | 40 / 2.5 | –             |
-| Item    | border-top     | 1        | –             |
-| Title   | margin-left    | 0        | –             |
-| Panel   | padding-top    | 8 / 0.5  | `$spacing-03` |
-|         | padding-bottom | 24 / 1.5 | `$spacing-06` |
-|         | padding-right  | 25%      | –             |
-|         | padding-left   | 0        | –             |
-| Icon    | size           | 16 / 1   | –             |
-|         | padding-right  | 0        | –             |
-
-<div className="image--fixed">
-
-![Structure measurements for flush accordion alignment](images/accordion-style-6.png)
-
-</div>
-
-<Caption>
-  Structure measurements for flush accordion alignment. | px / rem
-</Caption>
-
-<br />
-
-<div className="image--fixed">
-
-![Spacing measurements for flush accordion alignment](images/accordion-style-7.png)
-
-</div>
-
-<Caption>
-  Spacing measurements for flush accordion alignment. | px / rem
-</Caption>
-
-### Margin right
-
-Accordions have a variable right margin that changes based on its width.
-Accordions that are 640px and wider have a `margin-right: 25%` with the
-percentage being based off the width of the container it is placed in. At
-smaller widths, the `margin-right` is a fixed size.
-
-Body copy, including titles, in an accordion always follows the margin-right
-rules. However, inputs and other components may still expand to the full width
-of the accordion panel.
-
-| Accordion width | Margin-right | Spacing token |
-| --------------- | ------------ | ------------- |
-| > 640           | 25%          | –             |
-| 420-640px       | 64px / 4rem  | `$spacing-10` |
-| < 420           | 16px / 1rem  | `$spacing-05` |
-
 ## Sizes
 
-| Element | Size        | Height (px/rem) |
-| ------- | ----------- | --------------- |
-| Header  | Small (sm)  | 32 / 2          |
-|         | Medium (md) | 40 / 2.5        |
-|         | Large (lg)  | 48 / 3          |
+<Title>Default</Title>{' '}
 
-<div className="image--fixed">
+| Default size     | Height (px/rem) |
+| ---------------- | --------------- |
+| Mini             | 16 / 1          |
+| 2x small (2xs)   | 20 / 1.25       |
+| Extra small (xs) | 24 / 1.5        |
+| Small (sm)       | 32 / 2          |
+| Medium (md)      | 40 / 2.5        |
+| Large (lg)       | 48 / 3          |
+| Extra large (xl) | 64 / 4          |
 
-![Sizes for accordion](images/accordion-style-size.png)
+<br />{' '}
 
-</div>
+<Title>Inline</Title>
+
+| Inline size | Height (px/rem) |
+| ----------- | --------------- |
+| Small (sm)  | 12 / 0.75       |
+| Medium (md) | 14 / 0.875      |
+| Large (lg)  | 16 / 1          |
