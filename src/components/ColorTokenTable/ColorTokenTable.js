@@ -426,11 +426,7 @@ export default class ColorTokenTable extends React.Component {
               </thead>
               <tbody>
                 {Object.keys(colorTokens['tag']).map((token, i) =>
-                  this.renderToken(
-                    token,
-                    colorTokens['tag'][token],
-                    i
-                  )
+                  this.renderToken(token, colorTokens['tag'][token], i)
                 )}
               </tbody>
             </table>
@@ -449,11 +445,7 @@ export default class ColorTokenTable extends React.Component {
               </thead>
               <tbody>
                 {Object.keys(colorTokens['ai']).map((token, i) =>
-                  this.renderToken(
-                    token,
-                    colorTokens['ai'][token],
-                    i
-                  )
+                  this.renderToken(token, colorTokens['ai'][token], i)
                 )}
               </tbody>
             </table>
@@ -472,11 +464,7 @@ export default class ColorTokenTable extends React.Component {
               </thead>
               <tbody>
                 {Object.keys(colorTokens['chat']).map((token, i) =>
-                  this.renderToken(
-                    token,
-                    colorTokens['chat'][token],
-                    i
-                  )
+                  this.renderToken(token, colorTokens['chat'][token], i)
                 )}
               </tbody>
             </table>
@@ -495,11 +483,7 @@ export default class ColorTokenTable extends React.Component {
               </thead>
               <tbody>
                 {Object.keys(colorTokens['chat-button']).map((token, i) =>
-                  this.renderToken(
-                    token,
-                    colorTokens['chat-button'][token],
-                    i
-                  )
+                  this.renderToken(token, colorTokens['chat-button'][token], i)
                 )}
               </tbody>
             </table>

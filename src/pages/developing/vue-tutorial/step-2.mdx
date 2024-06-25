@@ -269,19 +269,23 @@ accessibility violations, you'd see
 because both the `CvBreadcrumb` and `CvTabs` components use `<nav>` elements. To
 fix, add `aria-label` to the `CvBreadcrumb` opening tag:
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
+
 ```html
 <cv-breadcrumb noTrailingSlash aria-label="Page navigation">
 ```
-<!-- prettier-ignore-end -->
+
+{/* prettier-ignore-end */}
 
 Same goes for the `CvTabs` opening tag:
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
+
 ```html
 <cv-tabs selected="0" aria-label="Tab navigation">
 ```
-<!-- prettier-ignore-end -->
+
+{/* prettier-ignore-end */}
 
 Give yourself a pat on the back if you actually ran the DAP tool. We'll install
 the DAP tool in a later step, so don't worry if you didn't.
@@ -298,13 +302,15 @@ large viewports. Create a file `_carbon-overrides.scss` in
 
 Then in `LandingPage.vue` add a style section with this import.
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
+
 ```scss path=src/views/LandingPage/LandingPage.vue
 <style lang="scss">
 @import "./carbon-overrides";
 </style>
 ```
-<!-- prettier-ignore-end -->
+
+{/* prettier-ignore-end */}
 
 <InlineNotification>
 
@@ -317,7 +323,8 @@ can now add our images and text for each column in the first `CvTab` in
 
 </InlineNotification>
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
+
 ```html path=src/views/LandingPage/LandingPage.vue
 <cv-tab label="About">
   <div class="cds--grid cds--grid--no-gutter cds--grid--full-width">
@@ -345,7 +352,8 @@ can now add our images and text for each column in the first `CvTab` in
 </cv-tab>
 ```
 
-<!-- prettier-ignore-end -->
+
+{/* prettier-ignore-end */}
 
 Now let's set the image size in the style section of `LandingPage.vue`:
 
@@ -727,7 +735,8 @@ in our component.
 Lastly in the `RepoPage.vue` template, we need to simply replace
 `Data table will go here` with:
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
+
 ```html path=src/views/RepoPage/RepoPage.vue
 <repo-table
   :headers="headers"
@@ -736,7 +745,8 @@ Lastly in the `RepoPage.vue` template, we need to simply replace
   helperText="A collection of public Carbon repositories."
 />
 ```
-<!-- prettier-ignore-end -->
+
+{/* prettier-ignore-end */}
 
 OK. So now our `RepoPage.vue` component is ready to use a component called
 'RepoTable' so let's create it so our page displays again.
@@ -798,20 +808,23 @@ see an empty table with headings.
 
 Next add the rows inside of cv-data-table.
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
+
 ```html
 <template slot="data">
   <cv-data-table-row v-for="(row, rowIndex) in data" :key="`${rowIndex}`"> </cv-data-table-row>
 </template>
 ```
-<!-- prettier-ignore-end -->
+
+{/* prettier-ignore-end */}
 
 Here we use v-for to iterate through the data assigning a key and value to each
 row. The rendered output may not appear to have changed, although if you inspect
 using the developer tools you will find three empty rows. Next add the cell data
 inside the `cv-data-table-row` component.
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
+
 ```html
 <cv-data-table-cell
   v-for="(cell, cellIndex) in row.data"
@@ -819,7 +832,8 @@ inside the `cv-data-table-row` component.
   >{{cell}}</cv-data-table-cell
 >
 ```
-<!-- prettier-ignore-end -->
+
+{/* prettier-ignore-end */}
 
 Again we've used the v-for directive to iterate through our data adding key,
 value and the contents of the cell.
@@ -827,13 +841,15 @@ value and the contents of the cell.
 The last item we need to add is the description shown in the expanded content.
 Add the following as a sibling of cv-data-table-cell component.
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
+
 ```html
 <template slot="expandedContent">
 {{ row.description }}
 </template>
 ```
-<!-- prettier-ignore-end -->
+
+{/* prettier-ignore-end */}
 
 Now you should have a working page rendering the sample content from the rows
 array.

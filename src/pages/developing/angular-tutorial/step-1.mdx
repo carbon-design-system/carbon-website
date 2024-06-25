@@ -247,7 +247,8 @@ src/app/header
 Next we'll import our Carbon UI Shell components into `app.module.ts`,
 `app.component.spec.ts` and `header.component.spec.ts`. Set up the file like so:
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
+
 ```javascript path=src/app/app.module.ts
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -274,22 +275,27 @@ import { UIShellModule, IconModule } from 'carbon-components-angular';
 })
 export class AppModule { }
 ```
-<!-- prettier-ignore-end -->
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-end */}
+
+{/* prettier-ignore-start */}
+
 ```javascript path=src/app/app.component.spec.ts,src/app/header/header.component.spec.ts
 import { UIShellModule } from 'carbon-components-angular/ui-shell/ui-shell.module';
 ```
-<!-- prettier-ignore-end -->
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-end */}
+
+{/* prettier-ignore-start */}
+
 ```javascript path=src/app/app.component.spec.ts,src/app/header/header.component.spec.ts
 TestBed.configureTestingModule({
   declarations: [HeaderComponent],
   imports: [UIShellModule]
 });
 ```
-<!-- prettier-ignore-end -->
+
+{/* prettier-ignore-end */}
 
 <InlineNotification>
 
@@ -307,13 +313,15 @@ shaking & keep the size of our app small, import only the required icons. To do
 so, import `Notification20`, `UserAvatar20`, and `AppSwitcher20` in
 `app.module.ts`.
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
+
 ```javascript path=src/app/header/app.modules.ts
 import Notification20 from '@carbon/icons/es/notification/20';
 import UserAvatar20 from '@carbon/icons/es/user--avatar/20';
 import AppSwitcher20 from '@carbon/icons/es/app-switcher/20';
 ```
-<!-- prettier-ignore-end -->
+
+{/* prettier-ignore-end */}
 
 Now you need to register the icon via `IconService` that also needs to be
 imported from `carbon-components-angular` module. After importing IconService
@@ -323,7 +331,8 @@ accepts only one icon and `.registerAll()` which accepts array of icons. As we
 are going to use more than one icon we are going to use the later method as
 below.
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
+
 ```javascript path=src/app/header/header.component.ts
 import { IconService } from "carbon-components-angular";
 ...
@@ -334,12 +343,14 @@ constructor(protected iconService: IconService) {}
     this.iconService.registerAll([Notification20]);
   }
 ```
-<!-- prettier-ignore-end -->
+
+{/* prettier-ignore-end */}
 
 Next step is to import the `IconModule` in the `AppModule` module where the
 `HeaderComponent` is declared.
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
+
 ```javascript path=src/app/header/header.component.ts
 import { IconModule } from "carbon-components-angular";
 ...
@@ -349,12 +360,14 @@ imports: [
   IconModule
 ]
 ```
-<!-- prettier-ignore-end -->
+
+{/* prettier-ignore-end */}
 
 Now the icon is ready to be used in template code. Template in
 `header.component.html` should look like this:
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
+
 ```html path=src/app/header/header.component.html
 <ibm-header name="Carbon Tutorial Angular">
   <ibm-header-navigation ariaLabel="Carbon Tutorial Angular">
@@ -373,7 +386,8 @@ Now the icon is ready to be used in template code. Template in
   </ibm-header-global>
 </ibm-header>
 ```
-<!-- prettier-ignore-end -->
+
+{/* prettier-ignore-end */}
 
 Notice that the icon names are the same as their file path. This how the
 directive queries the service for the icon.
@@ -381,11 +395,13 @@ directive queries the service for the icon.
 Next import the header component in `app.component.spec.ts` and add the
 component in `app.component.html`
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
+
 ```javascript path=src/app/app.component.spec.ts
 import { HeaderComponent } from './header/header.component';
 ```
-<!-- prettier-ignore-end -->
+
+{/* prettier-ignore-end */}
 
 ```javascript path=src/app/app.component.spec.ts
 declarations: [HeaderComponent];
@@ -501,7 +517,8 @@ const routes: Routes = [
 ];
 ```
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
+
 
 ```javascript path=src/app/repositories/repositories-routing.module.ts
 import { RepoPageComponent } from './repo-page/repo-page.component';
@@ -514,7 +531,8 @@ const routes: Routes = [
 ];
 ```
 
-<!-- prettier-ignore-end -->
+
+{/* prettier-ignore-end */}
 
 After that we need to do a couple quick fixes to the UI Shell to have it route
 to the repo page.

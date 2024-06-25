@@ -38,14 +38,12 @@ export default {
       name: 'helper-text-02',
     },
     {
-      description:
-        'This is for legal copy appearing in product pages.',
+      description: 'This is for legal copy appearing in product pages.',
       key: 'legal-01',
       name: 'legal-01',
     },
     {
-      description:
-        'This is for legal copy appearing in web pages.',
+      description: 'This is for legal copy appearing in web pages.',
       key: 'legal-02',
       name: 'legal-02',
     },

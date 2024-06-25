@@ -3190,7 +3190,7 @@ const colorTokens = {
       },
     },
   },
-  'ai': {
+  ai: {
     '$ai-aura-start': {
       role: ['Linear gradient start value for large AI layers'],
       value: {
@@ -3360,10 +3360,11 @@ const colorTokens = {
       },
     },
     '$ai-border-strong': {
-      role: [        
-      'Medium contrast border for AI elements',
-      'Border-bottom paired with AI fields',
-      '3:1 AA non-text contrast'],
+      role: [
+        'Medium contrast border for AI elements',
+        'Border-bottom paired with AI fields',
+        '3:1 AA non-text contrast',
+      ],
       value: {
         white: {
           name: 'Blue 50',
@@ -3552,7 +3553,7 @@ const colorTokens = {
       },
     },
   },
-  'chat': {
+  chat: {
     '$chat-avatar-bot': {
       role: ['Chat avatar background color for bots'],
       value: {

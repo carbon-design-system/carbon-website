@@ -170,7 +170,7 @@ Once you have your token, we need to put it in a place where we can use it in
 our app. When your application is being built and developed, our app will parse
 environmental variables in any `environment` file and make them available.
 
-​<!-- prettier-ignore-start -->
+​{/* prettier-ignore-start */}
 
 ```javascript path=src/environment/environment.ts
 export const environment = {
@@ -179,7 +179,7 @@ export const environment = {
 };
 ```
 
-<!-- prettier-ignore-end -->
+{/* prettier-ignore-end */}
 
 Go ahead and start your app with `npm start`, or, if your app is running, you'll
 need to restart it to get access to this token.
@@ -189,17 +189,20 @@ need to restart it to get access to this token.
 We need to import the environment at the top of every file that we decide to use
 it in:
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
+
 ```javascript
 import { environment } from '../environments/environment';
 ```
-<!-- prettier-ignore-end -->
+
+{/* prettier-ignore-end */}
 
 Next, make your client by providing a URI for the GitHub GraphQL API as well as
 an authorization header using the environmental variable you just added to
 `environment.ts`.
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
+
 ```javascript path=src/app/graphql.module.ts
 import { HttpHeaders } from '@angular/common/http';
 
@@ -216,7 +219,8 @@ export function createApollo(httpLink: HttpLink) {
   };
 }
 ```
-<!-- prettier-ignore-end -->
+
+{/* prettier-ignore-end */}
 
 ## Fetch data
 
@@ -224,12 +228,14 @@ export function createApollo(httpLink: HttpLink) {
 
 Add the following import at the top of `repo-table.component.ts`:
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
+
 ```javascript path=src/app/repositories/repo-table/repo-table.component.ts
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 ```
-<!-- prettier-ignore-end -->
+
+{/* prettier-ignore-end */}
 
 ### Query
 
@@ -418,7 +424,8 @@ component. We could stop here, but there's more to be done! Let's add the
 To do so, we will need to modify `repo-table.component.html` and
 `repo-table.component.ts`:
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
+
 ```html path=src/app/repositories/repo-table/repo-table.component.html
 <ibm-table
   [skeleton]="skeleton"
@@ -427,7 +434,8 @@ To do so, we will need to modify `repo-table.component.html` and
   [striped]="false">
 </ibm-table>
 ```
-<!-- prettier-ignore-end -->
+
+{/* prettier-ignore-end */}
 
 We need to tell the loading skeleton how many rows to render, so let's use 10
 skeleton rows to prepare for the next enhancement...
@@ -517,14 +525,16 @@ imports: [LinkModule, PaginationModule];
 Immediately after the `ibm-table` closing tag (`/>`), add the `ibm-pagination`
 component.
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
+
 ```html path=src/app/repositories/repo-table/repo-table.component.html
 <ibm-pagination
   [model]="model"
   (selectPage)="selectPage($event)">
 </ibm-pagination>
 ```
-<!-- prettier-ignore-end -->
+
+{/* prettier-ignore-end */}
 
 <InlineNotification>
 

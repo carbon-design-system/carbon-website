@@ -1,10 +1,9 @@
 import React from 'react';
 import Footer from 'gatsby-theme-carbon/src/components/Footer';
-import packageJson from '../../../../package.json';
+import packageJson from 'gatsby-theme-carbon/package.json';
 
 const currentYear = new Date().getFullYear();
 const versions = {
-  styles: packageJson.dependencies['@carbon/styles'],
   react: packageJson.dependencies['@carbon/react'],
 };
 
@@ -21,8 +20,6 @@ const Content = ({ buildTime }) => (
       </a>
     </p>
     <p>
-      Styles version {versions.styles}
-      <br />
       React Components version {versions.react}
       <br />
       Last updated {buildTime}
