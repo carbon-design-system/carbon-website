@@ -53,9 +53,9 @@ const customProps = {
             <div className="cds--col-lg-4 cds--col-md-4 cds--col-sm-2 cds--offset-lg-8 cds--offset-md-4 cds--offset-sm-2 homepage--tile-header">
               <ResourceCard
                 className={callToAction}
-                subTitle="Migrate to"
-                title="Carbon v11"
-                href="/migrating/guide/overview/"
+                subTitle="Introducing"
+                title="Carbon for AI"
+                href="https://carbondesignsystem.com/guidelines/carbon-for-ai/"
                 actionIcon="arrowRight"
               />
             </div>
