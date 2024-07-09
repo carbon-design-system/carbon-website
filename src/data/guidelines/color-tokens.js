@@ -1482,69 +1482,6 @@ const colorTokens = {
         },
       },
     },
-    '$link-inverse-hover': {
-      role: ['Hover color for links on $background-inverse backgrounds'],
-      value: {
-        white: {
-          name: 'Blue 30',
-          hex: '#a6c8ff',
-        },
-        g10: {
-          name: 'Blue 30',
-          hex: '#a6c8ff',
-        },
-        g90: {
-          name: 'Blue 70',
-          hex: '#0043ce',
-        },
-        g100: {
-          name: 'Blue 70',
-          hex: '#0043ce',
-        },
-      },
-    },
-    '$link-inverse-active': {
-      role: ['Active color for links on $background-inverse backgrounds'],
-      value: {
-        white: {
-          name: 'Gray 10',
-          hex: '#f4f4f4',
-        },
-        g10: {
-          name: 'Gray 10',
-          hex: '#f4f4f4',
-        },
-        g90: {
-          name: 'Gray 100',
-          hex: '#161616',
-        },
-        g100: {
-          name: 'Gray 100',
-          hex: '#161616',
-        },
-      },
-    },
-    '$link-inverse-visited': {
-      role: ['Color for visited links on $background-inverse backgrounds'],
-      value: {
-        white: {
-          name: 'Purple 40',
-          hex: '#be95ff',
-        },
-        g10: {
-          name: 'Purple 40',
-          hex: '#be95ff',
-        },
-        g90: {
-          name: 'Purple 60',
-          hex: '#8a3ffc',
-        },
-        g100: {
-          name: 'Purple 60',
-          hex: '#8a3ffc',
-        },
-      },
-    },
     '$link-visited': {
       role: ['Color for visited links'],
       value: {
@@ -3253,7 +3190,7 @@ const colorTokens = {
       },
     },
   },
-  ai: {
+  'ai': {
     '$ai-aura-start': {
       role: ['Linear gradient start value for large AI layers'],
       value: {
@@ -3423,11 +3360,10 @@ const colorTokens = {
       },
     },
     '$ai-border-strong': {
-      role: [
-        'Medium contrast border for AI elements',
-        'Border-bottom paired with AI fields',
-        '3:1 AA non-text contrast',
-      ],
+      role: [        
+      'Medium contrast border for AI elements',
+      'Border-bottom paired with AI fields',
+      '3:1 AA non-text contrast'],
       value: {
         white: {
           name: 'Blue 50',
@@ -3616,7 +3552,7 @@ const colorTokens = {
       },
     },
   },
-  chat: {
+  'chat': {
     '$chat-avatar-bot': {
       role: ['Chat avatar background color for bots'],
       value: {
