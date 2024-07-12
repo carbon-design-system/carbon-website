@@ -6,8 +6,9 @@ tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 
 <PageDescription>
 
-The AI label display and hide explainability information upon the click of the
-UI trigger element and can contain interactive elements.
+No accessibility annotations are needed for AI labels, but keep these
+considerations in mind if you are modifying Carbon or creating a custom
+component.
 
 </PageDescription>
 
@@ -20,47 +21,30 @@ UI trigger element and can contain interactive elements.
 
 ## What Carbon provides
 
-Carbon already incorporates accessibility into the AI label component.
-
 ### Keyboard interactions
 
-AI labels use the AI icon for the trigger button. These buttons are in the tab
-order and are activated by pressing `Enter` or `Space`. The activation toggles
-the popover open and closed, and focus remains on the trigger.
+The AI labels is the trigger button. The AI label is in the tab order and is
+activated by pressing `Enter` or `Space`. The activation toggles the
+explainability popover open and closed, and focus remains on the trigger.
 
 When the popover contains interactive elements, pressing `Tab` will move focus
 to the first component in the popover. When the popover only has non-interactive
 text, or when the focus is on the last component in the popover, pressing `Tab`
 will close the popover and move focus to the next tab stop on the page. Pressing
-`Esc` also closes an open popover and returns focus to the trigger if the focus
-is inside the popover.
+`Esc` in an open popover closes it and returns focus to the trigger.
 
 <Row>
 <Column colLg={12}>
 
-![Diagram of AI label keyboard interaction](images/ai-label-accessibility-1.png)
+![Example of AI label keyboard interaction](images/ai-label-accessibility-1.png)
+
+</Column>
+</Row>
 
 <Caption>
   The AI label icon button that triggers the popover is in the page tab order,
   as are interactive elements inside an open popover.
 </Caption>
-
-</Column>
-</Row>
-
-<Row>
-<Column colLg={12}>
-
-![Diagram of AI label keyboard interaction](images/ai-label-accessibility-2.png)
-
-<Caption>
-  AI explainability popovers appear when the AI label icon button is activated
-  and disappears by activating the icon again, pressing Esc, or tabbing away
-  from the popover.
-</Caption>
-
-</Column>
-</Row>
 
 #### Input interactions
 
@@ -74,7 +58,7 @@ value in the input.
 <Row>
 <Column colLg={8}>
 
-![Diagram of AI label keyboard interaction in an input](images/ai-label-accessibility-3.png)
+![The AI label inside the input takes its own tab stop, and still toggles the explainability popover on and off.](images/ai-label-accessibility-3.png)
 
 <Caption>
   The AI label button is a second tab stop after the inital tab stop for the
@@ -87,15 +71,15 @@ value in the input.
 <Row>
 <Column colLg={8}>
 
-![Diagram of revert keyboard interaction in an input](images/ai-label-accessibility-4.png)
-
-<Caption>
-  The revert button replaces the AI label and is a second tab stop after the
-  inital tab stop for the input.
-</Caption>
+![The revert button replaces the AI label, but otherwise the keyboard navigation and operation is similar.](images/ai-label-accessibility-4.png)
 
 </Column>
 </Row>
+
+<Caption>
+  The AI label changes to a "revert" symbol if a user modifies the input value.
+  Activating "revert" restores the prior AI value.
+</Caption>
 
 ## Development considerations
 
