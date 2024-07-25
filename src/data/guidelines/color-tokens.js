@@ -1482,6 +1482,69 @@ const colorTokens = {
         },
       },
     },
+    '$link-inverse-hover': {
+      role: ['Hover color for links on $background-inverse backgrounds'],
+      value: {
+        white: {
+          name: 'Blue 30',
+          hex: '#a6c8ff',
+        },
+        g10: {
+          name: 'Blue 30',
+          hex: '#a6c8ff',
+        },
+        g90: {
+          name: 'Blue 70',
+          hex: '#0043ce',
+        },
+        g100: {
+          name: 'Blue 70',
+          hex: '#0043ce',
+        },
+      },
+    },
+    '$link-inverse-active': {
+      role: ['Active color for links on $background-inverse backgrounds'],
+      value: {
+        white: {
+          name: 'Gray 10',
+          hex: '#f4f4f4',
+        },
+        g10: {
+          name: 'Gray 10',
+          hex: '#f4f4f4',
+        },
+        g90: {
+          name: 'Gray 100',
+          hex: '#161616',
+        },
+        g100: {
+          name: 'Gray 100',
+          hex: '#161616',
+        },
+      },
+    },
+    '$link-inverse-visited': {
+      role: ['Color for visited links on $background-inverse backgrounds'],
+      value: {
+        white: {
+          name: 'Purple 40',
+          hex: '#be95ff',
+        },
+        g10: {
+          name: 'Purple 40',
+          hex: '#be95ff',
+        },
+        g90: {
+          name: 'Purple 60',
+          hex: '#8a3ffc',
+        },
+        g100: {
+          name: 'Purple 60',
+          hex: '#8a3ffc',
+        },
+      },
+    },
     '$link-visited': {
       role: ['Color for visited links'],
       value: {
@@ -2992,11 +3055,11 @@ const colorTokens = {
         },
         g90: {
           name: 'Cyan 70 hover',
-          hex: '#bae6ff',
+          hex: '#0066bd',
         },
         g100: {
           name: 'Cyan 70 hover',
-          hex: '#bae6ff',
+          hex: '#0066bd',
         },
       },
     },
