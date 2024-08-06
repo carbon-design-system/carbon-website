@@ -435,6 +435,75 @@ export default class ColorTokenTable extends React.Component {
               </tbody>
             </table>
           </div>
+          <div className="cds--col-lg-7">
+            <h3 className="page-h3">AI</h3>
+          </div>
+          <div className="cds--col-lg-12 cds--no-gutter">
+            <table className="page-table">
+              <thead>
+                <tr>
+                  <th>Token</th>
+                  <th>Role</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                {Object.keys(colorTokens['ai']).map((token, i) =>
+                  this.renderToken(
+                    token,
+                    colorTokens['ai'][token],
+                    i
+                  )
+                )}
+              </tbody>
+            </table>
+          </div>
+          <div className="cds--col-lg-7">
+            <h3 className="page-h3">Chat</h3>
+          </div>
+          <div className="cds--col-lg-12 cds--no-gutter">
+            <table className="page-table">
+              <thead>
+                <tr>
+                  <th>Token</th>
+                  <th>Role</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                {Object.keys(colorTokens['chat']).map((token, i) =>
+                  this.renderToken(
+                    token,
+                    colorTokens['chat'][token],
+                    i
+                  )
+                )}
+              </tbody>
+            </table>
+          </div>
+          <div className="cds--col-lg-7">
+            <h3 className="page-h3">Chat button</h3>
+          </div>
+          <div className="cds--col-lg-12 cds--no-gutter">
+            <table className="page-table">
+              <thead>
+                <tr>
+                  <th>Token</th>
+                  <th>Role</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                {Object.keys(colorTokens['chat-button']).map((token, i) =>
+                  this.renderToken(
+                    token,
+                    colorTokens['chat-button'][token],
+                    i
+                  )
+                )}
+              </tbody>
+            </table>
+          </div>
         </section>
       </div>
     );
