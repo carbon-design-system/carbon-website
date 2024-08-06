@@ -43,15 +43,15 @@ const A11yStatusTag = ({ tag, tooltip }) => {
 
   const { color, text, definition } = tags[tag];
 
-  return (
+  return tooltip ? (
+    <DefinitionTooltip openOnHover definition={definition}>
+      <Tag type={color} className={styles.tag}>
+        {text}
+      </Tag>
+    </DefinitionTooltip>
+  ) : (
     <Tag type={color} className={styles.tag}>
-      {tooltip ? (
-        <DefinitionTooltip openOnHover definition={definition}>
-          {text}
-        </DefinitionTooltip>
-      ) : (
-        text
-      )}
+      {text}
     </Tag>
   );
 };
