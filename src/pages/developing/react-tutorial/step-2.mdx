@@ -153,7 +153,7 @@ return (
         <Column md={4} lg={7} sm={4} className="landing-page__tab-content">
           7/16
         </Column>
-        <Column md={4} lg={{ span: 8, offset: 8 }} sm={4}>
+        <Column md={4} lg={{ span: 8, offset: 7 }} sm={4}>
           8/16
         </Column>
       </Grid>
@@ -257,7 +257,7 @@ supported.
       <TabPanel>
         <Grid className="tabs-group-content">
           <Column md={4} lg={7} sm={4} className="landing-page__tab-content">
-            <h3 className="landing-page__subheading">What is Carbon?</h3>
+            <h2 className="landing-page__subheading">What is Carbon?</h2>
             <p className="landing-page__p">
               Carbon is IBM’s open-source design system for digital products and
               experiences. With the IBM Design Language as its foundation, the
@@ -274,20 +274,16 @@ supported.
       <TabPanel>
         <Grid className="tabs-group-content">
           <Column lg={16} md={8} sm={4} className="landing-page__tab-content">
-            <p className="landing-page__p">
-              Rapidly build beautiful and accessible experiences. The Carbon kit
-              contains all resources you need to get started.
-            </p>
+            Rapidly build beautiful and accessible experiences. The Carbon kit
+            contains all resources you need to get started.
           </Column>
         </Grid>
       </TabPanel>
       <TabPanel>
         <Grid className="tabs-group-content">
           <Column lg={16} md={8} sm={4} className="landing-page__tab-content">
-            <p className="landing-page__p">
-              Carbon provides styles and components in Vanilla, React, Angular,
-              and Vue for anyone building on the web.
-            </p>
+            Carbon provides styles and components in Vanilla, React, Angular,
+            and Vue for anyone building on the web.
           </Column>
         </Grid>
       </TabPanel>
@@ -374,24 +370,17 @@ import Image from 'next/image';
     className="landing-page__illo"
     src="/tab-illo.png"
     alt="Carbon illustration"
-    width={604}
-    height={498}
+    width={786}
+    height={647}
   />
 </Column>;
 ```
 
-Now let's set the image size in `_landing-page.scss` and also set the background
-color of our page:
+Now let's set the image size in `_landing-page.scss`:
 
 ```scss path=src/app/home/_landing-page.scss
-html {
-  background-color: $layer-01;
-}
-
 .landing-page__illo {
   max-width: 100%;
-  float: inline-end;
-  height: auto;
 }
 ```
 
@@ -407,31 +396,16 @@ for now.
 ```jsx path=src/app/home/page.js
 <Column lg={16} md={8} sm={4} className="landing-page__r3">
   <Grid>
-    <Column lg={4} md={2} sm={4}>
+    <Column md={4} lg={4} sm={4}>
       <h3 className="landing-page__label">The Principles</h3>
     </Column>
-    <Column
-      lg={{ start: 5, span: 3 }}
-      md={{ start: 3, span: 6 }}
-      sm={4}
-      className="landing-page__title"
-    >
+    <Column md={4} lg={4} sm={4}>
       Carbon is Open
     </Column>
-    <Column
-      lg={{ start: 9, span: 3 }}
-      md={{ start: 3, span: 6 }}
-      sm={4}
-      className="landing-page__title"
-    >
+    <Column md={4} lg={4} sm={4}>
       Carbon is Modular
     </Column>
-    <Column
-      lg={{ start: 13, span: 3 }}
-      md={{ start: 3, span: 6 }}
-      sm={4}
-      className="landing-page__title"
-    >
+    <Column md={4} lg={4} sm={4}>
       Carbon is Consistent
     </Column>
   </Grid>
@@ -599,7 +573,7 @@ baseline, for consistency as well as development ease so `margins` and
 
 ```scss path=src/app/home/_landing-page.scss
 .tabs-group-content {
-  padding: $spacing-10 0 $spacing-10 $spacing-06;
+  padding: $spacing-10 $spacing-06;
 }
 
 .landing-page__subheading {
@@ -620,7 +594,6 @@ baseline, for consistency as well as development ease so `margins` and
 
 .tabs-group {
   background-color: $layer-01;
-  padding: 0 $spacing-03;
 }
 ```
 
@@ -642,28 +615,19 @@ later in the tutorial. You'll notice that we get to re-use the
 
 ```scss path=src/app/home/_landing-page.scss
 .landing-page__r3 {
-  padding-top: $spacing-08;
-  padding-bottom: $spacing-08;
+  padding-top: $spacing-09;
+  padding-bottom: $spacing-09;
   padding-left: $spacing-06;
   @include landing-page-background;
 }
 
 .landing-page__label {
   @include type-style('heading-01');
-
-  @include breakpoint-down(md) {
-    padding-bottom: 1.5rem;
-  }
-}
-
-.landing-page__title {
-  padding-bottom: 0.5rem;
 }
 ```
 
-Lastly, we'll fix some grid alignment issues along with the image size for
-smaller screens and the HeaderGobalAction component. We'll use one of our
-breakpoint mixins for the media queries, like so:
+Lastly, we'll fix some grid alignment issues. We'll use one of our breakpoint
+mixins for the media queries, like so:
 
 ```scss path=src/app/home/_landing-page.scss
 .landing-page__banner,
@@ -675,33 +639,6 @@ breakpoint mixins for the media queries, like so:
   @include breakpoint-down(md) {
     margin-left: 0;
     margin-right: 0;
-  }
-}
-
-@media (max-width: 672px) {
-  .landing-page__illo {
-    width: 528px;
-    widht: 100%;
-    height: auto;
-    float: inline-start;
-  }
-}
-
-@media (max-width: 320px) {
-  .landing-page__illo {
-    display: none;
-  }
-
-  .landing-page__banner {
-    padding-bottom: $spacing-05 * 4;
-  }
-}
-```
-
-```scss path=src/components/TutorialHeader/_tutorial-header.scss
-@media (max-width: 320px) {
-  .action-icons {
-    display: none;
   }
 }
 ```

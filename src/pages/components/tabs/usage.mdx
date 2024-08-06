@@ -16,16 +16,23 @@ between groups of information that appear within the same context.
 
 </PageDescription>
 
+<InlineNotification>
+
+**v11 update:** The tab component variant names have changed. Default tabs has
+become _Line tabs_ and Container tabs has become _Contained tabs_. The updated
+tabs component has new modifiers that allow for icons and secondary labels. For
+v10 implementation guidance, go to
+[v10 Tabs](https://v10.carbondesignsystem.com/components/tabs/usage/).
+
+</InlineNotification>
+
 <AnchorLinks>
 
 <AnchorLink>Live demo</AnchorLink>
 <AnchorLink>Overview</AnchorLink>
 <AnchorLink>Formatting</AnchorLink>
 <AnchorLink>Content</AnchorLink>
-<AnchorLink>Universal behaviors</AnchorLink>
-<AnchorLink>Line tabs</AnchorLink>
-<AnchorLink>Contained tabs</AnchorLink>
-<AnchorLink>Vertical tabs</AnchorLink>
+<AnchorLink>Behaviors</AnchorLink>
 <AnchorLink>Modifiers</AnchorLink>
 <AnchorLink>Related</AnchorLink>
 <AnchorLink>References</AnchorLink>
@@ -79,23 +86,25 @@ between groups of information that appear within the same context.
 ## Overview
 
 Tabs are used to group different but related content, allowing users to navigate
-views without leaving the page. Tabs can be used on full page layouts or in
-components such as modals, cards, or side panels.
+views without leaving the page. They always contain at least two items and one
+tab is active at a time. Tabs can be used on full page layouts or in components
+such as modals, cards, or side panels.
 
 <Row>
 <Column colLg={12}>
 
-![An example of tabs being used.](images/tab-usage-1.png)
+![An example of tabs being used.](images/tabs-usage-1.png)
 
 </Column>
 </Row>
 
 ### When to use
 
-To help reduce cognitive load, use tabs to group related information into
-different categories. Tabs can be used to organize content such as forms,
-settings, and dashboards so a user does not have to navigate away from their
-workflow to complete their task.
+- Use tabs to group related information into different categories, helping to
+  reduce cognitive load.
+- Tabs can be used to organize content such as forms, settings, and dashboards
+  so a user does not have to navigate away from their workflow to complete their
+  task.
 
 <Row>
 <Column colLg={8}>
@@ -107,53 +116,35 @@ workflow to complete their task.
 
 ### When not to use
 
-#### Filtering the same content
-
-When toggling between different formats of the same content or filtering the
-same content, use [content switcher](/components/content-switcher/usage)
-instead. Content switcher is often used alongside tabs, but it typically serves
-at a lower hierarchy to organize related content within the tab’s contents.
-
-#### Indicating progress
-
-When the user needs to work through a step by step linear process, use a
-[progress indicator](/components/progress-indicator/usage). Tabs help organize
-information hierarchically but remain flexible in how content can be designed
-and consumed.
-
-#### Comparing information
-
-Tabs should not be used if the user needs to compare information in different
-groups, as this would result in the user having to click back and forth to
-complete a task.
+- Tabs should never be used for primary navigation. If tabs become too complex,
+  consider using a standard navigation pattern.
+- Tabs should not be used to indicate progress. Use the progress indicator
+  instead.
+- Tabs should not be used if the user is comparing information in two groups, as
+  this would result in the user having to click back and forth to complete a
+  task.
 
 ### Variants
 
-| Variant                      | Purpose                                                                                                                                                                                   |
-| ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Line](#line-tabs)           | A standalone tab that can also be nested within components. It is commonly used within components or for content using the entire page for layout, not connected to any other components. |
-| [Contained](#contained-tabs) | An emphasized tab that is commonly used for defined content areas.                                                                                                                        |
-| [Vertical](#Vertical-tabs)   | A tablist with a vertical orientation to browse through content.                                                                                                                          |
+| Variant     | Purpose                                                                                                                                                                                   |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _Line_      | A standalone tab that can also be nested within components. It is commonly used within components or for content using the entire page for layout, not connected to any other components. |
+| _Contained_ | An emphasized tab that is always attached to a background container. It is commonly used for defined content areas, like sub-pages or attached to cards.                                  |
 
 <Row>
 <Column colLg={8}>
 
-![Examples of line tabs (top), contained tabs (middle), and vertical tabs (bottom)](images/tab-usage-3.png)
+![Examples of line tabs (top) and contained tabs (bottom)](images/tab-usage-3.png)
 
 </Column>
 </Row>
 
-<Caption>
-  Examples of line tabs (top), contained tabs (middle), and vertical tabs
-  (bottom)
-</Caption>
+<Caption>Examples of line tabs (top) and contained tabs (bottom)</Caption>
 
 ## Formatting
 
-The tab component consists of two distinct zones: selected and unselected. One
-tab is always selected by default. There are always at least two tabs in
-non-dismissible tab groups and at least one in dismissible tab groups. Icons are
-optional.
+The tab component consists of two distinct zones: selected and unselected. There
+are always at least two tabs and one is selected by default. Icons are optional.
 
 ### Anatomy of line tabs
 
@@ -170,18 +161,18 @@ optional.
 
 #### 1. Line tabs
 
-A. Label <br /> C. Indicator <br /> D. Scroll button
+A. Label <br /> B. Indicator <br />
 
 #### 3. Line tabs with icon
 
-A. Label <br /> C. Indicator <br /> E. Icon <br /> F. Tab panel
+A. Label <br /> B. Indicator <br /> C. Icon
 
 </Column>
 <Column colSm={2} colMd={4} colLg={4}>
 
 #### 2. Icon-only line tabs
 
-C. Indicator <br /> E. Icon
+B. Indicator <br /> C. Icon
 
 </Column>
 </Row>
@@ -201,37 +192,22 @@ C. Indicator <br /> E. Icon
 
 #### 1. Contained tabs
 
-A. Label <br /> C. Indicator <br /> D. Scroll button
+A. Label <br /> B. Indicator <br /> D. Container
 
 #### 3. Contained tabs with icon and secondary label
 
-A. Label <br /> B. Secondary label (optional) <br /> C. Indicator <br /> E. Icon
-(optional) <br /> F. Tab panel
+A. Label <br /> B. Indicator <br /> C. Icon (optional) <br /> D. Container<br />
+E. Secondary label (optional)
 
 </Column>
 <Column colSm={2} colMd={4} colLg={4}>
 
-#### 2. Icon-only contained tabs
+#### 2. Contained tab with icons only
 
-C. Indicator <br /> E. Icon
-
-</Column>
-</Row>
-
-### Anatomy of vertical tabs
-
-<Row>
-<Column colLg={8}>
-
-![Anatomy of vertical tabs](images/tab-usage-20.png)
+B. Indicator <br /> C. Icon <br /> D. Container
 
 </Column>
 </Row>
-
-#### Vertical tabs
-
-A. Label <br /> C. Indicator <br /> F. Tab panel <br /> G. Tablist extended
-background
 
 ### Alignment
 
@@ -241,9 +217,7 @@ alignment of tabs depends on where they appear and whether or not they're
 contained within another component. As a general rule, the first label for both
 line tabs and contained tabs align with the grid and the text below. If tabs are
 within another component, such as a card, follow the grid that you are using
-inside the component and align the label with text in the component. Vertical
-tab labels also align with the grid, so all labels in a tablist will align on
-the same grid column.
+inside the component and align the label with text in the component.
 
 <DoDontRow>
   <DoDont type="do" caption="Do align tab labels with the grid">
@@ -260,9 +234,9 @@ the same grid column.
 
 #### Auto-width
 
-With line tabs and contained tabs, auto-width is the default behavior. Each tab
-will be a different size depending on the label's character count but will have
-consistent padding on each side of the label. The first label, selected by
+With both line tabs and contained tabs, auto-width is the default behavior. Each
+tab will be a different size depending on the label's character count but will
+have consistent padding on each side of the label. The first label, selected by
 default, should align to the grid. Where the tabs end will vary and may not end
 on the grid. If needed, you may also use a line to help balance tabs with other
 components on the page.
@@ -280,7 +254,7 @@ components on the page.
 #### Aligning to grid columns
 
 Instead of using the default auto-width behavior, contained tabs also have the
-option to align to the grid. As a group, the tablist spans a set of columns with
+option to align to the grid. As a group, the tabs span a set of columns with
 each tab being equal in size. The first tab’s label should align to the first
 column you are using with the last tab in the group always ending at a column’s
 edge. The tabs in between will flow accordingly and may or may not align to the
@@ -291,18 +265,6 @@ Use the
 to drive visual rhythm by spacing content in multiples of two columns and
 aligning the beginning and ending of the tab elements with content below the
 tabs when possible.
-
-Use grid aligned contained tabs when:
-
-- When there are 4 tabs or less
-- When the tablist can fit on the 2x grid easily without crowding labels
-- Labels are short and concise
-- When there are other elements on the page that can align to the tablist
-
-Depending on breakpoints, vertical tabs align to grid columns spanning 4 or 2
-columns of the 16-column grid and connect to a tab panel that can be 8 or 12
-columns wide. See [vertical tabs](#Vertical-tabs) for more information on
-breakpoints and responsiveness.
 
 <InlineNotification>
 
@@ -347,9 +309,7 @@ tab to the edge of the content area.
 #### Labels
 
 - Use short tab labels that are clear and specific. Labels should be one to two
-  words, as these are easier to scan. Vertical tabs allow for more characters
-  within a tab, but stay as concise as possible to avoid truncation and allow
-  space for labels in various languages.
+  words, as these are easier to scan.
 - Text labels should clearly communicate the view users will see and the content
   contained in the view.
 
@@ -358,65 +318,47 @@ tab to the edge of the content area.
 - Contained tabs can have secondary labels to add clarity or assist the user in
   choosing the right selection.
 
-### Overflow content
-
-Line and tab labels do not need truncation since these types of tabs allow for
-horizontal scrolling. The tabs themselves can grow and shrink accordingly.
-However, when a label is too long within a vertical tab, the label overflows to
-two lines and then truncates with an ellipsis. By mouse, the full title is
-disclosed in a browser tooltip on hover. By keyboard, the full title is
-disclosed on focus in a tooltip.
-
-<Row>
-<Column colLg={8}>
-
-![Overflow content within vertical tabs](images/tab-usage-10.png)
-
-</Column>
-</Row>
-
-<Caption>
-  On hover, full title is disclosed in a browser tooltip (left) and on focus,
-  full title is disclosed in Carbon tooltip (right)
-</Caption>
-
 ### Further guidance
 
 For further content guidance, see Carbon's
 [content guidelines](/guidelines/content/overview).
 
-## Universal behaviors
+## Behaviors
 
 ### States
 
-Tabs have two main states—**selected** and **unselected**. Other interactive
-states are **hover, focus,** and **disabled**. The default view is one tab is
-preselected and is usually the first tab. Only one tab can be selected at a
-time. When a user chooses a new item, the previous tab is automatically
-deselected. If a user navigates away from a tab, it remains the selected tab
-until altered by the user.
+Tabs allow for three states: **selected, unselected,** and **disabled**. The
+default view is that one tab is preselected and is usually the first tab. Only
+one tab can be selected at a time. When a user chooses a new item, the previous
+tab is automatically deselected. If a user navigates away from a tab, a user
+should return to the last tab selected.
 
 For detailed visual information about the various states for this component, see
 the [Style tab](https://carbondesignsystem.com/components/tabs/style).
 
-| State      | When to use                                                                                                                                                                                                                                              |
-| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Selected   | When a user clicks or uses the arrows keys to activate the tab.                                                                                                                                                                                          |
-| Unselected | When the user navigates to another tab and the tab is inactive.                                                                                                                                                                                          |
-| Hover      | When a user is hovering over the tab with the mouse cursor to interact with it.                                                                                                                                                                          |
-| Focus      | When a user clicks on the tab or navigates using the keyboard with left and right arrows, it becomes focused, indicating the user has successfully navigated to the component.                                                                           |
-| Disabled   | When a user is not allowed to interact with the tab due to either permissions, dependencies, or pre-requisites. The disabled state completely removes the interactive function from a component. The styling is not subject to WCAG contrast compliance. |
+<Row>
+<Column colLg={8}>
+
+![Tab states](images/tab-usage-10.png)
+
+</Column>
+</Row>
+
+<Caption>
+  Example of selected, unselected, and disabled states in line tabs (top) and
+  contained tabs (bottom)
+</Caption>
 
 ### Scrollable
 
 When your page requires more tabs that can fit or needs to adapt to a new
-browser size, line and contained tabs should become scrollable. Left and right
-arrows appear to help navigate the user through tabs that might be off-page.
+browser size, tabs should become scrollable. Left and right arrows appear to
+help navigate the user through tabs that might be off-page.
 
 <Row>
 <Column colLg={8}>
 
-![Example of line and contained tabs that scroll](images/tab-usage-11.png)
+![Scrollable tabs](images/tab-usage-11.png)
 
 </Column>
 </Row>
@@ -437,98 +379,17 @@ One tab should be selected by default. Users can navigate between tabs by
 pressing right or left arrow keys. For additional keyboard interactions, see the
 [Accessibility tab](https://carbondesignsystem.com/components/tabs/accessibility).
 
-#### Automatic and manual
+#### Screenreader
 
-Automatic and manual tablists differ in how the tab items are activated.
+VoiceOver: Users can navigate between tabs by pressing `right` or `left` arrow
+keys.
 
-For automatic tablists, focus and selection are synchronized. When the user
-arrows to a tab, it becomes selected, and the tab panel under the tab updates
-automatically. Use automatic tabs when tab panel content can load quickly,
-allowing for users to scan quickly through information to make a decision
-without latency.
+JAWS: Users can navigate between tabs by pressing `right` or `left` arrow keys.
 
-Manual tablists allow the user to arrow between the tab items without updating
-the tab panel underneath. When the user navigates using arrows, the selected tab
-remains selected while focus moves to the next tab. In order to select the
-focused tab (and update the tabpanel under the tab), the user would press
-`Enter` or `Space`. Use manual tabs when information in the tab panel will take
-a longer time to load. This will allow a keyboard user or screen reader to
-navigate through the tablist without having to wait for content to load. Learn
-more about automatic verses manual tablists in the
-[Keyboard interactions](https://carbondesignsystem.com/components/tabs/accessibility#keyboard-interactions)
-section of the accessibility tab.
+NVDA: Users can navigate between tabs by pressing `right` or `left` arrow keys.
 
 For additional information, see the
 [Accessibility tab](https://carbondesignsystem.com/components/tabs/accessibility).
-
-## Line tabs
-
-A line tab is standalone tab that can also be nested within components. Although
-it is commonly used within components, such as a modal or header, line tabs can
-also be used for large content areas using the entire page for layout, not
-connected to any other components. Line tabs are highly flexible and can be
-placed on background or layer tokens, making it easy to use in many different
-scenarios. To help define the tab panel, which is the content area below the
-selected tab, a line can be used that extends from the tablist to the end of the
-panel. This is currently not part of the Carbon line tabs component and must be
-added by teams if desired.
-
-<Row>
-<Column colLg={12}>
-
-![Examples of tabs with icons](images/tab-usage-13.png)
-
-</Column>
-</Row>
-
-## Contained tabs
-
-Contained tabs are an emphasized tab commonly used for defined content areas
-like sub-pages. Contained tabs are always attached to a tab panel (background
-container) that uses the same layer token as the selected tab. Since the
-contained tabs are on layers, the tab content tends to stand out against the
-background and maintain a high visual hierarchy while line tabs tend to blend
-into content more easily. Because of the layering model, be mindful of the
-layers used within the tabs so the content does not get too visually
-complicated, especially within smaller areas.
-
-<Row>
-<Column colLg={12}>
-
-![Examples of contained tabs](images/tab-usage-14.png)
-
-</Column>
-</Row>
-
-## Vertical tabs
-
-Vertical tabs are left and vertically-aligned tabs that allow a user to scan
-through information from top to bottom. This vertical orientation is good for
-quickly browsing and accessing information, such as a
-[get started](https://pages.github.ibm.com/cdai-design/pal/patterns/onboarding/orientation/usage#get-started)
-pattern. Do not use vertical tabs in place of
-[navigation](https://carbondesignsystem.com/components/UI-shell-left-panel/usage/).
-
-The tab panel should stay the same height as tabs switch so content outside the
-tabs stays in a consistent place. The vertical tablist and panel height should
-be determined by the tab that has the most content. To avoid excessive scrolling
-within the tab panel, do not overload it with too much content. If more space is
-needed than the tab panel allows, consider using line or contained tabs that
-allow for full page layouts. Both the tablist and the tab panels are always on
-the same layer. At extra large and large breakpoints, vertical tablist spans 4
-columns of the 16-column grid. At the medium breakpoint, the vertical tablist
-spans 2 columns. At the small breakpoint, the vertical tablist uses scrolling
-contained tabs.
-
-<Row>
-<Column colLg={12}>
-
-![Example of vertical tabs in a get started pattern](images/tab-usage-21.png)
-
-</Column>
-</Row>
-
-<Caption>Example of Vertical tabs in a get started pattern</Caption>
 
 ## Modifiers
 
@@ -541,56 +402,50 @@ label.
 <Row>
 <Column colLg={8}>
 
-![Examples of contained tabs with icons](images/tab-usage-15.png)
+![Examples of tabs with icons](images/tab-usage-12.png)
 
 </Column>
 </Row>
-
-<Caption>Example of contained tabs with icons.</Caption>
 
 ### Icon-only tabs
 
 You may use icon-only tabs with both line and contained tabs. Icons must be
 easily recognized and globally accepted. These work best in small, defined
 spaces and in components. Always use a tooltip for an icon description on hover
-and focus to add clarity.
+to add clarity.
 
 <Row>
 <Column colLg={8}>
 
-![Example of icon-only tabs within a side panel](images/tab-usage-16.png)
+![Example of icon-only tabs within a side panel](images/tab-usage-13.png)
 
 </Column>
 </Row>
-
-<Caption>Example of icon-only tabs within a side panel.</Caption>
 
 ### Secondary labels
 
 Contained tabs that align with the grid allow for a secondary label. Do not use
-secondary labels with line tabs, auto-width contained tabs, or vertical tabs.
+secondary labels with line tabs or auto-width contained tabs.
 
 <Row>
 <Column colLg={8}>
 
-![Example of contained tabs with a secondary labe and icon](images/tab-usage-17.png)
+![Example of tabs with a secondary label](images/tab-usage-14.png)
 
 </Column>
 </Row>
 
-<Caption>Example of contained tabs with a secondary label and icon.</Caption>
-
 ### Dismissible tabs
 
 Dismissible tabs allow users to close tabs providing a focused and relevant
-experience. Users can add or remove contained or line tabs as needed,
-accommodating future content additions or modifications without drastically
-changing the overall layout or structure.
+experience. Users can add or remove tabs as needed, accommodating future content
+additions or modifications without drastically changing the overall layout or
+structure.
 
 <Row>
 <Column colLg={8}>
 
-![Dismissible tabs](images/tab-usage-18.png)
+![Dismissible tabs](images/tabs-usage-15.png)
 
 </Column>
 </Row>
@@ -640,7 +495,7 @@ creating a new tab in a place they expect.
 <Row>
 <Column colLg={8}>
 
-![Dismissible tabs](images/tab-usage-19.png)
+![Dismissible tabs](images/tabs-usage-16.png)
 
 </Column>
 </Row>
@@ -657,6 +512,16 @@ creating a new tab in a place they expect.
 allow users to compare and toggle between alternate views of similar or related
 content. Content that is grouped into tabs is part of the same bigger context
 but the content does not overlap.
+
+#### Navigation versus tabs
+
+Tabs should not be used for common navigation patterns. If your tab arrangements
+are becoming too complex with different levels of content, consider using
+[left](https://www.carbondesignsystem.com/components/UI-shell-left-panel/usage/)
+or
+[right](https://www.carbondesignsystem.com/components/UI-shell-right-panel/usage/)
+UI panels, possibly in conjunction with breadcrumbs, to help the user through
+the content.
 
 #### Progress indicator versus tabs
 

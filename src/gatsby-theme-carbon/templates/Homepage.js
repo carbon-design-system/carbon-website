@@ -4,7 +4,7 @@ import HomepageTemplate from 'gatsby-theme-carbon/src/templates/Homepage';
 import { blue20, purple20, gray100 } from '@carbon/elements';
 import { calloutLink, callToAction } from './Homepage.module.scss';
 // import HomepageVideo from '../../components/HomepageVideo/HomepageVideo';
-import ImageV11 from '../../components/Homepage/Carbon-AI-banner-image.jpg';
+import ImageV11 from '../../components/Homepage/Carbon-V11-Banner-Image.jpg';
 
 const FirstLeftText = () => <p>Carbon Design System</p>;
 
@@ -53,9 +53,9 @@ const customProps = {
             <div className="cds--col-lg-4 cds--col-md-4 cds--col-sm-2 cds--offset-lg-8 cds--offset-md-4 cds--offset-sm-2 homepage--tile-header">
               <ResourceCard
                 className={callToAction}
-                subTitle="Introducing"
-                title="Carbon for AI"
-                href="https://carbondesignsystem.com/guidelines/carbon-for-ai/"
+                subTitle="Migrate to"
+                title="Carbon v11"
+                href="/migrating/guide/overview/"
                 actionIcon="arrowRight"
               />
             </div>
