@@ -1,10 +1,10 @@
 import React from 'react';
 import { HomepageCallout, ResourceCard } from 'gatsby-theme-carbon';
-import HomepageTemplate from 'gatsby-theme-carbon/src/templates/Homepage';
+import HomepageTemplate from 'gatsby-theme-carbon/src/components/Layouts/Homepage';
 import { blue20, purple20, gray100 } from '@carbon/elements';
 import { calloutLink, callToAction } from './Homepage.module.scss';
 // import HomepageVideo from '../../components/HomepageVideo/HomepageVideo';
-import ImageV11 from '../../components/Homepage/Carbon-AI-banner-image.jpg';
+import ImageV11 from './Homepage/Carbon-AI-banner-image.jpg';
 
 const FirstLeftText = () => <p>Carbon Design System</p>;
 
