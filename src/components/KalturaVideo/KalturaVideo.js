@@ -10,7 +10,7 @@ import PropTypes from "prop-types";
 const KalturaVideo = ({ videoid }) => {
     return (
         <div>
-            <c4d-video-player-container video-id={videoid}></c4d-video-player-container>
+            <dds-video-player-container video-id={videoid}></dds-video-player-container>
         </div>
     );
 };

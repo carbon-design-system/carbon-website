@@ -64,7 +64,7 @@ export const onRenderBody = ({ setHeadComponents, setPostBodyComponents }) => {
     <script
       key="video-player"
       type="module"
-      src="https://1.www.s81c.com/common/carbon-for-ibm-dotcom/tag/v2/latest/video-player.min.js" />,
+      src="https://1.www.s81c.com/common/carbon-for-ibm-dotcom/tag/v1/latest/video-player.min.js" />,
   ]);
 
   setPostBodyComponents([
