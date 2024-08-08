@@ -2087,22 +2087,22 @@ const colorTokens = {
       },
     },
     '$support-warning': {
-      role: ['Warning', 'Caution'],
+      role: ['Warning'],
       value: {
         white: {
-          name: 'Yellow',
+          name: 'Yellow 30',
           hex: '#f1c21b',
         },
         g10: {
-          name: 'Yellow',
+          name: 'Yellow 30',
           hex: '#f1c21b',
         },
         g90: {
-          name: 'Yellow',
+          name: 'Yellow 30',
           hex: '#f1c21b',
         },
         g100: {
-          name: 'Yellow',
+          name: 'Yellow 30',
           hex: '#f1c21b',
         },
       },
@@ -2174,19 +2174,19 @@ const colorTokens = {
       role: ['Warning in high contrast moments'],
       value: {
         white: {
-          name: 'Yellow',
+          name: 'Yellow 30',
           hex: '#f1c21b',
         },
         g10: {
-          name: 'Yellow',
+          name: 'Yellow 30',
           hex: '#f1c21b',
         },
         g90: {
-          name: 'Yellow',
+          name: 'Yellow 30',
           hex: '#f1c21b',
         },
         g100: {
-          name: 'Yellow',
+          name: 'Yellow 30',
           hex: '#f1c21b',
         },
       },
@@ -2209,6 +2209,69 @@ const colorTokens = {
         g100: {
           name: 'Blue 70',
           hex: '#0043ce',
+        },
+      },
+    },
+    '$support-caution-minor': {
+      role: ['Minor caution status'],
+      value: {
+        white: {
+          name: 'Yellow 30',
+          hex: '#f1c21b',
+        },
+        g10: {
+          name: 'Yellow 30',
+          hex: '#f1c21b',
+        },
+        g90: {
+          name: 'Yellow 30',
+          hex: '#f1c21b',
+        },
+        g100: {
+          name: 'Yellow 30',
+          hex: '#f1c21b',
+        },
+      },
+    },
+    '$support-caution-major': {
+      role: ['Major caution status'],
+      value: {
+        white: {
+          name: 'Orange 40',
+          hex: '#ff832b',
+        },
+        g10: {
+          name: 'Orange 40',
+          hex: '#ff832b',
+        },
+        g90: {
+          name: 'Orange 40',
+          hex: '#ff832b',
+        },
+        g100: {
+          name: 'Orange 40',
+          hex: '#ff832b',
+        },
+      },
+    },
+    '$support-caution-undefined': {
+      role: ['Undefined status'],
+      value: {
+        white: {
+          name: 'Purple 60',
+          hex: '#8a3ffc',
+        },
+        g10: {
+          name: 'Purple 60',
+          hex: '#8a3ffc',
+        },
+        g90: {
+          name: 'Purple 50',
+          hex: '#a56eff',
+        },
+        g100: {
+          name: 'Purple 50',
+          hex: '#a56eff',
         },
       },
     },
