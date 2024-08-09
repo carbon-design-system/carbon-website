@@ -2,14 +2,6 @@ import React from 'react';
 import PropTypes from "prop-types";
 
 /**
- *
- *
- *
- * @param {boolean} hideCaption
- * @returns {JSX.Element}
- */
-
-/**
  * KalturaVideo component: A video player container for Kaltura videos.
  *
  * @param {object} videoProps - KalturaVideo component props
@@ -44,7 +36,6 @@ KalturaVideo.propTypes = {
 };
 
 /**
- *
  * @type {{hideCaption: boolean}}
  */
 KalturaVideo.defaultProps = {
