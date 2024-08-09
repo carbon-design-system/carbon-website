@@ -2,15 +2,33 @@ import React from 'react';
 import PropTypes from "prop-types";
 
 /**
+ *
+ *
+ *
+ * @param {boolean} hideCaption
+ * @returns {JSX.Element}
+ */
+
+/**
  * KalturaVideo component: A video player container for Kaltura videos.
  *
- * @param {string} videoid - The ID of the Kaltura video to be played.
+ * @param {object} videoProps - KalturaVideo component props
+ * @param {string} videoProps.videoid - The ID of the Kaltura video to be played.
+ * @param {boolean} videoProps.hideCaption - Determines if caption should be hidden.
  * @returns {JSX.Element} JSX element containing the video player container.
  */
-const KalturaVideo = ({ videoid }) => {
+const KalturaVideo = ({ videoid, hideCaption = false }) => {
+    let videoProps = {
+        'video-id': videoid,
+    }
+
+    if (hideCaption) {
+        videoProps['hide-caption'] = true;
+    }
+
     return (
         <div>
-            <dds-video-player-container video-id={videoid}></dds-video-player-container>
+            <dds-video-player-container {...videoProps}></dds-video-player-container>
         </div>
     );
 };
@@ -21,7 +39,16 @@ const KalturaVideo = ({ videoid }) => {
  * @property {string} videoid - The ID of the Kaltura video to be played.
  */
 KalturaVideo.propTypes = {
-    videoid: PropTypes.string,
+    hideCaption: PropTypes.bool,
+    videoid: PropTypes.string.isRequired,
 };
+
+/**
+ *
+ * @type {{hideCaption: boolean}}
+ */
+KalturaVideo.defaultProps = {
+    hideCaption: false,
+}
 
 export default KalturaVideo;
