@@ -16,23 +16,19 @@ import {
 
 const IconCategory = ({ category, pictograms, columnCount }) => {
   const [sectionRef, containerIsVisible] = useIntersectionObserver();
+  const hiddenPictograms = [
+    'ibm--z',
+    'ibm--z--partition',
+    'ibm--z-and-linuxone-multi-frame',
+    'ibm--z-and-linuxone-single-frame',
+  ];
 
   return (
     <section ref={sectionRef} className={svgCategory}>
       <h2 className={cx(h2, categoryTitle)}>{category}</h2>
       <ul className={cx(svgGrid, pictogramList)}>
         {pictograms
-          .filter((pictogram) => {
-            if (
-              pictogram.name === 'ibm--z' ||
-              pictogram.name === 'ibm--z--partition' ||
-              pictogram.name === 'ibm--z-and-linuxone-multi-frame' ||
-              pictogram.name === 'ibm--z-and-linuxone-single-frame'
-            ) {
-              return false;
-            }
-            return true;
-          })
+          .filter((pictogram) => !hiddenPictograms.includes(pictogram.name))
           .map((pictogram, i) => (
             <SvgCard
               isLastCard={(i + 1) % columnCount === 0}
