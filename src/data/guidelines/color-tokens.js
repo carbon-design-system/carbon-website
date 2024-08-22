@@ -4040,6 +4040,210 @@ const colorTokens = {
       },
     },
   },
+  notification: {
+    '$notification-background-error': {
+      role: ['Error low contrast notification background'],
+      value: {
+        white: {
+          name: 'Red 10',
+          hex: '#fff1f1',
+        },
+        g10: {
+          name: 'Red 10',
+          hex: '#fff1f1',
+        },
+        g90: {
+          name: 'Gray 80',
+          hex: '#8d8d8d',
+        },
+        g100: {
+          name: 'Gray 90',
+          hex: '#262626',
+        },
+      },
+    },
+    '$notification-background-success': {
+      role: ['Success low contrast notification background'],
+      value: {
+        white: {
+          name: 'Green 10',
+          hex: '#defbe6',
+        },
+        g10: {
+          name: 'Green 10',
+          hex: '#defbe6',
+        },
+        g90: {
+          name: 'Gray 80',
+          hex: '#8d8d8d',
+        },
+        g100: {
+          name: 'Gray 90',
+          hex: '#262626',
+        },
+      },
+    },
+    '$notification-background-info': {
+      role: ['Informational low contrast notification background'],
+      value: {
+        white: {
+          name: 'Blue 10',
+          hex: '#edf5ff',
+        },
+        g10: {
+          name: 'Blue 10',
+          hex: '#edf5ff',
+        },
+        g90: {
+          name: 'Gray 80',
+          hex: '#8d8d8d',
+        },
+        g100: {
+          name: 'Gray 90',
+          hex: '#262626',
+        },
+      },
+    },
+    '$notification-background-warning': {
+      role: ['Warning low contrast notification background'],
+      value: {
+        white: {
+          name: 'Gray 20',
+          hex: '#e0e0e0',
+        },
+        g10: {
+          name: 'Gray 20',
+          hex: '#e0e0e0',
+        },
+        g90: {
+          name: 'Gray 80',
+          hex: '#8d8d8d',
+        },
+        g100: {
+          name: 'Gray 90',
+          hex: '#262626',
+        },
+      },
+    },
+    '$notification-action-hover': {
+      role: ['Hover for notification ghost button'],
+      value: {
+        white: {
+          name: 'White',
+          hex: '#ffffff',
+        },
+        g10: {
+          name: 'White',
+          hex: '#ffffff',
+        },
+      },
+    },
+    '$notification-action-tertiary-inverse': {
+      role: ['Tertiary button color for notification'],
+      value: {
+        white: {
+          name: 'Gray 20',
+          hex: '#e0e0e0',
+        },
+        g10: {
+          name: 'Gray 20',
+          hex: '#e0e0e0',
+        },
+        g90: {
+          name: 'Gray 70',
+          hex: '#525252',
+        },
+        g100: {
+          name: 'Gray 70',
+          hex: '#525252',
+        },
+      },
+    },
+    '$notification-action-tertiary-inverse-active': {
+      role: ['Active color for tertiary button in notification'],
+      value: {
+        white: {
+          name: 'White',
+          hex: '#ffffff',
+        },
+        g10: {
+          name: 'White',
+          hex: '#ffffff',
+        },
+        g90: {
+          name: 'Gray 100',
+          hex: '#161616',
+        },
+        g100: {
+          name: 'Gray 100',
+          hex: '#161616',
+        },
+      },
+    },
+    '$notification-action-tertiary-inverse-hover': {
+      role: ['Hover color for tertiary button in notification'],
+      value: {
+        white: {
+          name: 'Gray 10',
+          hex: '#f4f4f4',
+        },
+        g10: {
+          name: 'Gray 10',
+          hex: '#f4f4f4',
+        },
+        g90: {
+          name: 'Gray 90',
+          hex: '#262626',
+        },
+        g100: {
+          name: 'Gray 90',
+          hex: '#262626',
+        },
+      },
+    },
+    '$notification-action-tertiary-inverse-text': {
+      role: ['Text color for tertiary button in notification'],
+      value: {
+        white: {
+          name: 'Gray 10, 0%',
+          hex: '#f4f4f4 @ 0%',
+        },
+        g10: {
+          name: 'Gray 10, 0%',
+          hex: '#f4f4f4 @ 0%',
+        },
+        g90: {
+          name: 'Gray 90, 0%',
+          hex: '#262626 @ 0%',
+        },
+        g100: {
+          name: 'Gray 90, 0%',
+          hex: '#262626 @ 0%',
+        },
+      },
+    },
+    '$notification-action-tertiary-inverse-text-on-color-disabled': {
+      role: ['Disabled color for tertiary button in notification'],
+      value: {
+        white: {
+          name: 'White',
+          hex: '#ffffff',
+        },
+        g10: {
+          name: 'White',
+          hex: '#ffffff',
+        },
+        g90: {
+          name: 'Gray 90',
+          hex: '#262626',
+        },
+        g100: {
+          name: 'Gray 90',
+          hex: '#262626',
+        },
+      },
+    },
+  },
 };
 
 export default colorTokens;
