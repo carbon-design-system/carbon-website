@@ -44,15 +44,17 @@ other accessibility considerations, some of which are described below.
 
 ### Keyboard interaction
 
+#### Pagination
+
 The tab order goes from left to right through the controls in the pagination
-component. On focus, the dropdowns are opened with `Space` or with up or down
+variant. On focus, the dropdowns are opened with `Space` or with up or down
 arrows, which also cycle through the values. Both `Space` and `Enter` select a
 value and close the dropdown. The dropdown can also be closed by pressing `Esc`.
 The previous and next page arrow buttons are activated by `Space` or `Enter`
 keys.
 
 <Row>
-<Column colLg={8}>
+<Column colLg={12}>
 
 ![example of tabbing into a pagination group and arrowing between selections](images/pagination-a11y-1.png)
 
@@ -81,21 +83,81 @@ operable, like any other disabled control.
 </Column>
 </Row>
 
+#### Pagination nav
+
+The tab order goes left to right through the button controls in the pagination
+nav variant. When page buttons have focus, both `Space` and `Enter` activates
+the page button and change the current page to the button that currently has
+selection. When the previous and next page arrow buttons have focus, both
+`Space` and `Enter` activates them.
+
+<Row>
+<Column colLg={12}>
+
+![Interactive elements in pagination nav maintain their usual Carbon keyboard behaviors and tab order.](images/pagination-a11y-3.png)
+
+<Caption>
+  Interactive elements in pagination nav maintain their usual Carbon keyboard
+  behaviors and tab order.
+</Caption>
+
+</Column>
+</Row>
+
+If an overflow ellipsis is present in the pagination nav, once focused, pressing
+Space activates the menu to choose an available page to navigate to. Enter or
+Tab selects a value from the menu and closes it. The menu can also be closed by
+pressing Esc.
+
+<Row>
+<Column colLg={12}>
+
+![The menu opens by pressing Space and pressing Tab or Enter selects a page from the menu and closes it.](images/pagination-a11y-4.png)
+
+<Caption>
+  The menu opens by pressing Space and pressing Tab or Enter selects a page from
+  the menu and closes it.
+</Caption>
+
+</Column>
+</Row>
+
 ### Labeling
+
+#### Pagination
 
 Not all the elements in pagination have static or visually isolated labels.
 Carbon constructs a programmatic name for the second dropdown by concatenating
-some dynamically generated text on the screen. Carbon also provides accessible
-names for the icon-only buttons.
+dynamically generated text on the screen. Carbon also provides accessible names
+for the icon-only buttons.
 
 <Row>
 <Column colLg={8}>
 
-![illustration showing labels for dropdown and icon-only buttons](images/pagination-a11y-3.png)
+![illustration showing labels for dropdown and icon-only buttons](images/pagination-a11y-5.png)
 
 <Caption>
-  Carbon provides the accessible names "page number, of 40 pages", "previous
-  page", and "next page" for assistive technology.
+  Carbon provides the accessible names "page number, of 40 pages", "previous",
+  and "next" for assistive technology.
+</Caption>
+
+</Column>
+</Row>
+
+#### Pagination nav
+
+Carbon constructs a programmatic name for the page ghost buttons by
+concatenating dynamically generated text on the screen. Carbon also provides
+accessible names for the icon-only buttons.
+
+<Row>
+<Column colLg={8}>
+
+![Carbon provides the accessible names "page", "previous", and "next" for assistive technology.](images/pagination-a11y-6.png)
+
+<Caption>
+  Carbon provides the accessible names "page", "previous", and "next" for
+  assistive technology.
 </Caption>
 
 </Column>
