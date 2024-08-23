@@ -819,10 +819,13 @@ leaving any other comments on
 [GitHub](https://github.com/carbon-design-system/carbon-website/issues/new?assignees=&labels=feedback&template=feedback.md).
 ```
 
-### Style template
+### Style template: for components with one variant
 
-The style template helps describe how a component looks, including visual
-specifications such as color, typography, structure, and size.
+The style template helps describe how a component with one variant looks,
+including visual specifications such as color, typography, structure, and size.
+The template below provides example content from the
+[Accordion](https://carbondesignsystem.com/components/accordion/style) style
+tab, along with many tips on best ways to compose content and images.
 
 ```markdown
 ---
@@ -841,28 +844,292 @@ structure, and size.
 <AnchorLinks>
 
 <AnchorLink>Color</AnchorLink> <AnchorLink>Typography</AnchorLink>
-<AnchorLink>Structure</AnchorLink> <AnchorLink>Size</AnchorLink>
-<AnchorLink>Feedback</AnchorLink>
+<AnchorLink>Structure</AnchorLink> <AnchorLink>Size</AnchorLink> <AnchorLink>AI
+presence</AnchorLink> <AnchorLink>Feedback</AnchorLink>
 
 </AnchorLinks>
 
 ## Color
 
 <!--
-Use a table to document properties and color tokens in this section. You can reference this [table generator](https://www.tablesgenerator.com/markdown_tables) for easy table creation.
+**Table**
+Use the table to document properties and color tokens for the enabled state. You can reference this [table generator](https://www.tablesgenerator.com/markdown_tables) for easy table creation.
 
-The following table shows an example from [Accordion](https://carbondesignsystem.com/components/accordion/style).
+**Image**
+Add an image that shows the enabled state of the component.
+
+The following table shows an example from [Checkbox](https://carbondesignsystem.com/components/checkbox/style#color).
 -->
 
-| Element | Property      | Color token        |
-| ------- | ------------- | ------------------ |
-| Title   | color         | `$text-primary`    |
-| Content | color         | `$text-primary`    |
-| Icon    | fill          | `$icon-primary`    |
-| Header  | border-top    | `$border-subtle`\* |
-|         | background    | Transparent        |
-| Panel   | border-bottom | `$border-subtle`\* |
-|         | background    | Transparent        |
+| Element            | Property         | Color token       |
+| ------------------ | ---------------- | ----------------- |
+| Group label        | text color       | `$text-secondary` |
+| Checkbox label     | text color       | `$text-primary`   |
+| Checkbox:unchecked | border           | `$icon-primary`   |
+|                    | background-color | transparent       |
+| Checkbox:checked   | background-color | `$icon-primary`   |
+|                    | checkmark        | `$icon-inverse`   |
+| Helper text        | text color       | `$text-secondary` |
+
+<Row>
+<Column colLg={8}>
+
+![Checkbox states](images/checkbox-style-1.png)
+
+</Column>
+</Row>
+
+### Interactive state color
+
+<!--
+**Table**
+Use the table to document properties and color tokens for interactive states. Begin the table with the State column, not the Element column; this helps users scan faster and better reference accompanying images, which are also organized by state. You can reference this [table generator](https://www.tablesgenerator.com/markdown_tables) for easy table creation.
+
+**Image**
+Add an image that shows all listed states in the table. The states are typically laid out in a grid.
+
+The following table shows an example from [Checkbox](https://carbondesignsystem.com/components/checkbox/style#interactive-states).
+-->
+
+| State     | Element         | Property   | Color token        |
+| --------- | --------------- | ---------- | ------------------ |
+| Focus     | Checkbox        | border     | `$focus`           |
+| Disabled  | Label           | text color | `$text-disabled`   |
+|           | Checkbox        | border     | `$icon-disabled`   |
+|           |                 | background | `$icon-disabled`   |
+| Read-only | Label           | text color | `$text-primary`    |
+|           | Checkbox        | border     | `$icon-disabled`   |
+|           |                 | inner fill | `$icon-primary`    |
+| Error     | Label           | text color | `$text-primary`    |
+|           | Checkbox        | border     | `$support-error`   |
+|           | Error message   | text color | `$text-error`      |
+|           | Error icon      | svg        | `$support-error`   |
+| Warning   | Label           | text color | `$text-primary`    |
+|           | Checkbox        | border     | `$icon-primary`    |
+|           | Warning message | text color | `$text-primary`    |
+|           | Warning icon    | svg        | `$support-warning` |
+|           |                 | inner fill | `$black`           |
+
+<Row>
+<Column colLg={12}>
+
+![Checkbox interactive states](images/checkbox-style-2.png)
+
+</Column>
+</Row>
+
+## Typography
+
+<!--
+Begin this section with any brief content guidelines. Link out to additional guidelines if needed. No images are required for this section.
+
+*Table*
+Use a table to document font-size, font-weight, and type tokens in this section. You can reference this [table generator](https://www.tablesgenerator.com/markdown_tables) for easy table creation.
+
+The following table shows an example from [Checkbox](https://carbondesignsystem.com/components/checkbox/style#typography).
+-->
+
+Checkbox labels and group labels should be sentence case, with only the first
+word in a phrase and any proper nouns capitalized. Checkbox labels and group
+labels should not exceed three words.
+
+| Element         | Font-size (px/rem) | Font-weight   | Type token         |
+| --------------- | ------------------ | ------------- | ------------------ |
+| Group label     | 12 / 0.75          | Regular / 400 | `$label-01`        |
+| Checkbox label  | 14 / 0.875         | Regular / 400 | `$body-compact-01` |
+| Helper text     | 12 / 0.75          | Regular / 400 | `$helper-text-01`  |
+| Error message   | 12 / 0.75          | Regular / 400 | `$label-01`        |
+| Warning message | 12 / 0.75          | Regular / 400 | `$label-01`        |
+
+## Structure
+
+<!--
+*Table*
+Begin the structure section with a table to document states, spacing, and any other component-specific configurations. You can reference this [table generator](https://www.tablesgenerator.com/markdown_tables) for easy table creation.
+
+*Images*
+Add supporting images to this section, with at least one image showing structure and another showing spacing measurements. Images should be accompanied by a descriptive caption and relate to the spec charts. Note we use the `image--fixed` markdown component in the Structure section to maintain size accuracy.
+
+*Modifiers*
+If you need to document additional ways of styling a component, add h3 sections under Structure as needed.
+
+The following content shows example documentation from [Checkbox](https://carbondesignsystem.com/components/checkbox/style#structure), which has no variants and therefore does not need any h3 headers.
+-->
+
+| Element        | Property       | px / rem | Spacing token |
+| -------------- | -------------- | -------- | ------------- |
+| Checkbox       | height & width | 16px     | –             |
+|                | border         | 1px      | –             |
+| Checkbox:focus | border         | 2px      | –             |
+|                | border inset   | 1px      | –             |
+| Group label    | margin-bottom  | 8 / 0.5  | `$spacing-03` |
+| Checkbox label | padding-left   | 8 / 0.5  | `$spacing-03` |
+| Checkbox item  | margin-bottom  | 4 / 0.25 | `$spacing-02` |
+
+<div className="image--fixed">
+
+![Structure and spacing measurements for a checkbox group](images/checkbox-style-3.png)
+
+</div>
+
+<Caption>
+  Structure and spacing measurements for a checkbox group | px / rem
+</Caption>
+
+<div className="image--fixed">
+
+![Structure and spacing measurements for vertical and horizontal checkbox groupings](images/checkbox-style-4.png)
+
+</div>
+
+<Caption>
+  Structure and spacing measurements for vertical and horizontal checkbox
+  groupings | px / rem
+</Caption>
+
+## Size
+
+<!--
+**Body**
+Using body copy below the header, cross-link this to the size section in the usage tab, which is where you should provide guidance about how to choose the best size for a given use case.
+
+*Table*
+In the size section, provide a table of component size names and height.
+
+**Image**
+Each size listed in the table should be included in the image, typically stacked horizontally or vertically. Note we use the `image--fixed` markdown component in the Size section to maintain size accuracy.
+
+If a component does not have sizes (i.e. Checkbox) then you can skip this section. The following shows an example from [Tag](https://carbondesignsystem.com/components/tag/style#size).
+-->
+
+There are three tag sizes: small, medium, and large. See
+[sizing](/components/tag/usage#sizing) on the usage tab for more information
+about specific use cases for each tag size.
+
+| Element   | Size        | Height (px/rem) |
+| --------- | ----------- | --------------- |
+| Container | Small (sm)  | 18 / 1.125      |
+|           | Medium (md) | 24 / 1.5        |
+|           | Large (lg)  | 32 / 2          |
+
+<div className="image--fixed">
+
+![Small, medium, and large sizes of tag](images/tag-style-size.png)
+
+</div>
+
+<Caption>Small, medium, and large sizes of tag</Caption>
+
+<Row>
+<Column colLg={8}>
+
+![Button sizes](images/button_usage_3.png)
+
+</Column>
+</Row>
+
+## AI presence
+
+<!--
+**Body**
+Include any content to help define the scope of the AI style in the component. Then add a link to the Carbon for AI guidelines page so the user can learn more about the AI styling.
+
+**Table**
+Provide a table of any AI specific color tokens and elements used in the component. You do not need to repeat any tokens that are the same as the default version.
+
+**Images**
+Show the component with AI presence in an image. You only need to show the enabled and revert states.
+
+The following content shows an example from (Checkbox)[https://carbondesignsystem.com/components/checkbox/style#ai-presence]
+-->
+
+The only style modification an AI version of the checkbox has is the addition of
+the slug. All other tokens in the component remain the same as the non-AI
+variants.
+
+For more information on the AI style elements, see the
+[Carbon for AI](/guidelines/carbon-for-ai/) guidelines.
+
+| Element | Property | Token / Size |
+| ------- | -------- | ------------ |
+| AI slug | size     | mini         |
+
+<Row>
+<Column colLg={8}>
+
+![Structure and spacing measurements for checkbox with AI presence](images/checkbox-style-5.png)
+
+</Column>
+</Row>
+
+## Feedback
+
+<!--Include a request for feedback here.-->
+
+Help us improve this component by providing feedback, asking questions, and
+leaving any other comments on
+[GitHub](https://github.com/carbon-design-system/carbon-website/issues/new?assignees=&labels=feedback&template=feedback.md).
+```
+
+### Style template: for components with multiple variants
+
+This style template helps describe how a component with multiple variants look,
+including visual specifications such as color, typography, structure, and size.
+The template below provides example content from the
+[Text input](https://carbondesignsystem.com/components/text-input/style) style
+tab, along with many tips on best ways to compose content and images.
+
+```markdown
+---
+title: [Component name]
+description: [Explains what the component is in one or two sentences.]
+tabs: ['Usage', 'Style', 'Code', 'Accessibility']
+---
+
+<PageDescription>
+
+The following page documents visual specifications such as color, typography,
+structure, size, and AI presence.
+
+</PageDescription>
+
+<AnchorLinks>
+
+<AnchorLink>Color</AnchorLink> <AnchorLink>Typography</AnchorLink>
+<AnchorLink>Structure</AnchorLink> <AnchorLink>Size</AnchorLink> <AnchorLink>AI
+presence</AnchorLink> <AnchorLink>Feedback</AnchorLink>
+
+</AnchorLinks>
+
+## Color
+
+<!--
+The color section for components with multiple variants is subdivided by `H3` headings to create separate color specifications for each variant.
+-->
+
+### Variant 1 color
+
+<!--
+**Header**
+In the h3 header, replace the text `Variant 1` with the variant’s name. For example: “Text input color.”
+
+**Table**
+Use the table to document properties and color tokens for the enabled state of the first variant. If a variant includes multiple styles (such as default and fluid) that share the same color tokens then those stylings can be presented together in the same table. You can reference this [table generator](https://www.tablesgenerator.com/markdown_tables) for easy table creation.
+
+**Images**
+Add an image that shows the enabled state of the variant. If a variant includes multiple styles (such as default and fluid) that share the same color tokens, those stylings can be presented together as a tabbed or side-by-side image.
+
+The following content is an example from text input: https://carbondesignsystem.com/components/text-input/style#color
+-->
+
+| Element          | Property         | Color token         |
+| ---------------- | ---------------- | ------------------- |
+| Label            | text color       | `$text-secondary`   |
+| Field text       | text color       | `$text-primary`     |
+| Placeholder text | text color       | `$text-placeholder` |
+| Helper text      | text color       | `$text-helper`      |
+| Field            | background-color | `$field` \*         |
+|                  | border-bottom    | `$border-strong` \* |
 
 <Caption>
   * Denotes a contextual color token that will change values based on the layer
@@ -872,28 +1139,57 @@ The following table shows an example from [Accordion](https://carbondesignsystem
 <Row>
 <Column colLg={8}>
 
-![enabled state](images/accordion-style-1.png)
+<Tabs>
+
+<Tab label="Default">
+
+![Example of an enabled text input in the default style](images/text-input-style-color-fixed.png)
+
+</Tab>
+
+<Tab label="Fluid">
+
+![Example of an enabled text input in the fluid style](images/text-input-style-color-fluid.png)
+
+</Tab>
+
+</Tabs>
 
 </Column>
 </Row>
 
-### Interactive state color
+#### Variant 1 interactive state color
 
 <!--
-Use a table to document properties and color tokens for interactive states. Begin the table with the State column, not the Element column; this helps users scan faster and better reference accompanying images, which are also organized by state. You can reference this [table generator](https://www.tablesgenerator.com/markdown_tables) for easy table creation.
+**Header**
+In the h4 header, replace the text `Variant 1` with the variant’s name. For example: “Text input interactive states color.”
 
-You may also choose to include images or tabs to illustrate variants.
+**Table**
+Use a table to document properties and color tokens for the interactive states of the first variant. This table will have four columns, beginning with the State column, not the Element column; this helps users scan faster and better reference accompanying images, which are also organized by state. You can reference this [table generator](https://www.tablesgenerator.com/markdown_tables) for easy table creation.
 
-The following table shows an example from [Accordion](https://carbondesignsystem.com/components/accordion/style).
+**Images**
+Each state listed in the table should be included in the image, typically laid out in a gridded image.
+
+The following content is an example from text input: https://carbondesignsystem.com/components/text-input/style#text-input-color
 -->
 
-| State    | Element | Property   | Color token        |
-| -------- | ------- | ---------- | ------------------ |
-| Hover    | Header  | background | `$layer-hover`\*   |
-| Focus    | Header  | border     | `$focus`           |
-| Disabled | Header  | border-top | `$border-subtle`\* |
-|          | Title   | background | `$text-disabled`   |
-|          | Icon    | fill       | `$icon-disabled`   |
+| State     | Element              | Property      | Color token         |
+| --------- | -------------------- | ------------- | ------------------- |
+| Focus     | Field                | border        | `$focus`            |
+| Invalid   | Field                | border        | `$support-error`    |
+|           | Error message        | text color    | `$text-error`       |
+|           | Error icon           | svg           | `$support-error`    |
+| Warning   | Warning message      | text color    | `$text-primary`     |
+|           | Warning icon         | svg           | `$support-warning`  |
+| Disabled  | Field                | background    | `$field` \*         |
+|           | Field (default)      | border-bottom | transparent         |
+|           | Field (fluid)        | border-bottom | `$border-subtle` \* |
+|           | Field text           | text color    | `$text-disabled`    |
+| Read-only | Field (default)      | background    | transparent         |
+|           | Field (fluid)        | background    | `$field` \*         |
+|           | Field text (default) | text color    | `$text-primary`     |
+|           | Field text (fluid)   | text color    | `$text-secondary`   |
+|           | Field                | border-bottom | `$border-subtle` \* |
 
 <Caption>
   * Denotes a contextual color token that will change values based on the layer
@@ -907,13 +1203,13 @@ The following table shows an example from [Accordion](https://carbondesignsystem
 
 <Tab label="Default">
 
-![default accordion alignment interactive states](images/accordion-style-2.png)
+![Examples of text input states in the default style](images/text-input-style-states-fixed.png)
 
 </Tab>
 
-<Tab label="Flush">
+<Tab label="Fluid">
 
-![flush accordion alignment interactive states](images/accordion-style-3.png)
+![Examples of text input states in the fluid style](images/text-input-style-states-fluid.png)
 
 </Tab>
 
@@ -922,106 +1218,300 @@ The following table shows an example from [Accordion](https://carbondesignsystem
 </Column>
 </Row>
 
+### Variant 2 color
+
+<!--
+Use the same guidance as in the `Variant 1 color` section.
+
+The following content is an example without additional styles.
+-->
+
+| Element          | Property         | Color token         |
+| ---------------- | ---------------- | ------------------- |
+| Label            | text color       | `$text-secondary`   |
+| Field text       | text color       | `$text-primary`     |
+| Placeholder text | text color       | `$text-placeholder` |
+| Helper text      | text color       | `$text-helper`      |
+| Field            | background-color | `$field` \*         |
+|                  | border-bottom    | `$border-strong` \* |
+
+<Caption>
+  * Denotes a contextual color token that will change values based on the layer
+  it is placed on.
+</Caption>
+
+<Row>
+<Column colLg={8}>
+
+![Examples of text area enabled state](images/text-area-style-1.png)
+
+</Column>
+</Row>
+
+#### Variant 2 interactive state color
+
+<!--
+Use the same guidance as in the `Variant 1 interactive state color` section.
+
+The following content is an example without additional styles.
+-->
+
+| State     | Element              | Property      | Color token         |
+| --------- | -------------------- | ------------- | ------------------- |
+| Focus     | Field                | border        | `$focus`            |
+| Invalid   | Field                | border        | `$support-error`    |
+|           | Error message        | text color    | `$text-error`       |
+|           | Error icon           | svg           | `$support-error`    |
+| Warning   | Warning message      | text color    | `$text-primary`     |
+|           | Warning icon         | svg           | `$support-warning`  |
+| Disabled  | Field                | background    | `$field` \*         |
+|           | Field (default)      | border-bottom | transparent         |
+|           | Field (fluid)        | border-bottom | `$border-subtle` \* |
+|           | Field text           | text color    | `$text-disabled`    |
+| Read-only | Field (default)      | background    | transparent         |
+|           | Field (fluid)        | background    | `$field` \*         |
+|           | Field text (default) | text color    | `$text-primary`     |
+|           | Field text (fluid)   | text color    | `$text-secondary`   |
+|           | Field                | border-bottom | `$border-subtle` \* |
+
+<Caption>
+  * Denotes a contextual color token that will change values based on the layer
+  it is placed on.
+</Caption>
+
+<Row>
+<Column colLg={12}>
+
+![Examples of text area interactive states](images/text-area-style-2.png)
+
+</Column>
+</Row>
+
 ## Typography
 
 <!--
-Begin this section with any brief content guidelines. Link out to additional guidelines if needed.
-
-Then, use a table to document font-size, font-weight, and type tokens in this section. You can reference this [table generator](https://www.tablesgenerator.com/markdown_tables) for easy table creation.
-
-The following table shows an example from [Accordion](https://carbondesignsystem.com/components/accordion/style).
+Typically, variants use smiliar type styling and can be grouped together in one table.  If the type is different across variants then subdivide this section with H3 for each variant.
 -->
 
-All accordion titles are set in sentence case. See the accordion
-[content guidelines](/components/accordion/usage#content) for more details.
+### Variant 1 typography
 
-| Element | Font-size (px/rem) | Font-weight   | Type token |
-| ------- | ------------------ | ------------- | ---------- |
-| Title   | 14 / 0.875         | Regular / 400 | `$body-01` |
-| Content | 14 / 0.875         | Regular / 400 | `$body-01` |
+<!--
+Begin this section with any brief content guidelines. Link out to additional guidelines if needed. No images are needed for this section.
+
+**Table**
+Use a table to document font-size, font-weight, and type tokens in this section. You can reference this [table generator](https://www.tablesgenerator.com/markdown_tables) for easy table creation.
+
+The following example is from [Text input](https://carbondesignsystem.com/components/text-input/style#typography).
+-->
+
+Text input labels and field text should be set in sentence case, with only the
+first word in a phrase and any proper nouns capitalized. See the text input
+[content guidelines](/components/text-input/usage#content) for more details.
+
+| Element                   | Font-size (px/rem) | Font-weight   | Type token         |
+| ------------------------- | ------------------ | ------------- | ------------------ |
+| Label                     | 12 / 0.75          | Regular / 400 | `$label-01`        |
+| Field text                | 14 / 0.875         | Regular / 400 | `$body-compact-01` |
+| Helper text               | 12 / 0.75          | Regular / 400 | `$helper-text-01`  |
+| Error and warning message | 12 / 0.75          | Regular / 400 | `$label-01`        |
+
+### Variant 2 typography
+
+<!--
+Use the same guidance as in the `Variant 1 typography` section.
+-->
 
 ## Structure
 
 <!--
-Begin the structure section with a table to document states, spacing, and any other component-specific configurations. You can reference this [table generator](https://www.tablesgenerator.com/markdown_tables) for easy table creation.
-
-Add supporting images to this section, with at least one image showing structure and another showing spacing measurements. Images should be accompanied by a descriptive caption and relate to the spec charts. Note we use the `image--fixed` markdown component in the Structure section to maintain size accuracy.
-
-Variants: You may need to provide additional specs for component variants like default versus flush alignment. For each variant, make a new h3 section and give it a name. The following are example pairs of section headers:
-
-Default style text area structure
-Fluid style text area structure
-
-Default style text input structure
-Fluid style text input structure
-
-Default alignment structure
-Flush alignment structure
-
-Modifiers: If you need to document additional ways of styling a component, add h3 sections under Structure as needed. Here are some example cases where a modifier section has been added:
-
-- adding an icon to a [button](https://www.carbondesignsystem.com/components/button/usage/#variations)
-- adding a button to a [notification](https://www.carbondesignsystem.com/components/notification/usage/#anatomy)
-- using high and low contrast styles for [notifications](https://www.carbondesignsystem.com/components/notification/usage/#high-and-low-contrast)
-
-The following content shows example documentation from [Accordion](https://carbondesignsystem.com/components/accordion/style), which has no variants and therefore does not need any h3 headers.
+The structure section for components with multiple variants is subdivided by `H3` headings to create separate specifications for each variant.
 -->
 
-| Element | Property    | px/rem   | Spacing token |
-| ------- | ----------- | -------- | ------------- |
-| Header  | height      | 40 / 2.5 | –             |
-| Item    | border-top  | 1        | –             |
-| Title   | margin-left | 16 / 1   | `$spacing-05` |
+### Variant 1 structure
+
+<!--
+**Header**
+In the h3 header, replace the text `Variant 1` with the variant’s name. For example: “Text input structure.” When an additional categorization is needed, keep the variant name first, for example: "Text input fluid structure."
+
+**Table**
+Begin the first variant structure section with a table to document the padding, spacing, and measurements of the component, including any specifications related to states or other configurations. You can reference this [table generator](https://www.tablesgenerator.com/markdown_tables) for easy table creation.
+
+**Images**
+Add supporting images under the table, with at least one image of the component that illustrates the spacing and measurements with annotations. Images should be accompanied by a descriptive caption and relate to the table. Note we use the `image--fixed` markdown component in the Structure section to maintain size accuracy.
+-->
+
+| Element     | Property                    | px / rem | Spacing token |
+| ----------- | --------------------------- | -------- | ------------- |
+| Label       | margin-bottom               | 8 / 0.5  | `$spacing-03` |
+| Helper text | margin-top                  | 4 / 0.25 | `$spacing-02` |
+| Input text  | padding-left, padding-right | 16 / 1   | `$spacing-05` |
+| Field       | border-bottom               | 1px      | –             |
+| Focus       | border                      | 2px      | –             |
+| Error       | border                      | 2px      | –             |
 
 <div className="image--fixed">
 
-![Structure measurements for default accordion alignment](images/accordion-style-4.png)
+![Structure and spacing measurements for default text input](images/text-input-style-structure-fixed.png)
 
 </div>
 
 <Caption>
-  Structure measurements for default accordion alignment. | px / rem
+  Structure and spacing measurements for default text input | px / rem
 </Caption>
+
+#### Variant 1 modifer structure
+
+<!--
+
+Optional: Some variants may have modifiers that can change the structure of the component. Use an H4 section under the parent variant and create a separate table and image for the modifier. For an example see tabs: https://carbondesignsystem.com/components/tabs/style#line-tab-structure
+
+-->
+
+| Element      | Property      | px / rem | Spacing token |
+| ------------ | ------------- | -------- | ------------- |
+| Element name | property type | 0 / 0    | `$token`      |
+
+<div className="image--fixed">
+
+![Text describing the image](images/component-style-structure-modifier.png)
+
+</div>
+
+<Caption>
+  Structure and spacing measurements for default component with modifier | px / rem
+</Caption>
+
+### Variant 2 structure
+
+<!--
+Use the same guidance as in the `Variant 1 strucutre` section.
+-->
+
+| Element | Property                    | px / rem    | Spacing token |
+| ------- | --------------------------- | ----------- | ------------- |
+| Label   | padding-bottom              | 4 / 0.25    | `$spacing-02` |
+| Field   | height                      | 64 / 4      | `$spacing-10` |
+|         | padding-left, padding-right | 16 / 1      | `$spacing-05` |
+|         | padding-top, padding-bottom | 13 / 0.8125 | –             |
+|         | border-bottom               | 1px         | –             |
+| Focus   | border                      | 2px         | –             |
+| Error   | border                      | 2px         | –             |
 
 <br />
 
 <div className="image--fixed">
 
-![Spacing measurements for default accordion alignment](images/accordion-style-5.png)
+![Structure and spacing measurements for fluid text input](images/text-input-style-structure-fluid.png)
 
 </div>
 
 <Caption>
-  Spacing measurements for default accordion alignment. | px / rem
+  Structure Structure and spacing measurements for fluid text input | px / rem
 </Caption>
 
 ## Size
 
 <!--
-In the size section, provide a table of component size names and height. Be sure to cross-link this to the size section in the usage tab, which is where you should provide guidance about how to choose the best size for a given use case.
-
-Example: The following table shows an example from [Button](https://carbondesignsystem.com/components/button/style).
+The size section for components with multiple variants can be subdivided by `H3` headings to create separate specifications for each variant.
 -->
 
-There are six button sizes: small, medium, large productive, large expressive,
-extra large, and 2XL. The large expressive button is used in editorial and
-digital marketing experiences. See
-[Button sizes](/components/button/usage#button-sizes) on the Usage tab for more
-information about specific use cases for each button size.
+### Variant 1 size
 
-| Variant           | Size             | Height (px / rem) |
-| ----------------- | ---------------- | ----------------- |
-| Button            | Small            | 32 / 2            |
-|                   | Medium           | 40 / 2.5          |
-|                   | Large productive | 48 / 3            |
-|                   | Large expressive | 48 / 3            |
-| Full bleed button | Extra large      | 64 / 4            |
-|                   | 2xl              | 80 / 5            |
+<!--
+**Header**
+In the h3 header, replace `Variant 1` with the second variant’s name. For example: “Text input sizes.”
+
+**Body**
+Using body copy below the header, cross-link this to the size section in the usage tab, which is where you should provide guidance about how to choose the best size for a given use case.
+
+**Table**
+Provide a table of component size names and heights. If needed, you can add another column to clarify which component element is changing with the size.
+
+**Image**
+Each size listed in the table should be included in the image, typically stacked horizontally or vertically. Note we use the `image--fixed` markdown component in the Size section to maintain size accuracy.
+
+The following content shows an example from text input: https://carbondesignsystem.com/components/text-input/style/#size.
+-->
+
+These following sizes apply only to the default style of text input. See
+[sizing](/components/text-input/usage#sizing) on the Usage tab for more
+information about specific use cases for each size.
+
+| Element | Size        | Height (px / rem) |
+| ------- | ----------- | ----------------- |
+| Input   | Small (sm)  | 32 / 2            |
+|         | Medium (md) | 40 / 2.5          |
+|         | Large (lg)  | 48 / 3            |
+
+<div className="image--fixed">
+
+![Sizes for text input](images/text-input-style-size.png)
+
+</div>
+
+<Caption>Text input default style sizes | px / rem</Caption>
+
+### Variant 2 size
+
+<!--
+Use the same guidance as in the `Variant 1 size` section.
+-->
+
+## AI presence
+
+<!--
+The AI presence section for components with multiple variants is typically combined into one section because the variants tend to share the same AI styling. If the AI styling is different across variants then subdivide this section with H3 for each AI variant.
+
+**Body**
+Include any content to help define the scope of the AI style in the component. Then add a link to the Carbon for AI guidelines page so the user can learn more about the AI styling.
+
+**Table**
+Provide a table of any AI specific color tokens and elements used in the component. You do not need to repeat any tokens that are the same as the default version.
+
+**Images**
+Show each variant that has an AI presence in a group or tabbed image.  You only need to show the enabled and revert states.
+
+The following content shows an example from text input: https://carbondesignsystem.com/components/text-input/style/#ai-presence.
+-->
+
+The following are the unique styles applied to the component when the AI slug is
+present. Unless specified, all other tokens in the component remain the same as
+the non-AI variant.
+
+For more information on the AI style elements, see the
+[Carbon for AI](/guidelines/carbon-for-ai/) guidelines.
+
+| Element         | Property         | Token / Size        |
+| --------------- | ---------------- | ------------------- |
+| Linear gradient | start            | `$ai-aura-start-sm` |
+|                 | stop             | `$ai-aura-stop`     |
+| Field           | border-bottom    | `$ai-border-strong` |
+|                 | background color | `$field`\*          |
+| AI Slug         | size             | mini                |
+
+<Caption>
+  * Denotes a contextual color token that will change values based on the layer
+  it is placed on.
+</Caption>
 
 <Row>
 <Column colLg={8}>
 
-![Button sizes](images/button_usage_3.png)
+<Tabs>
+
+<Tab label="Default">
+
+![Default text input and text area AI example](images/text-input-text-area-ai-presence-ai-revert-default.png)
+
+</Tab>
+
+<Tab label="Fluid">
+
+![Fluid text input and text area AI example](images/text-input-text-area-ai-presence-ai-revert-fluid.png)
+
+</Tab>
+
+</Tabs>
 
 </Column>
 </Row>
