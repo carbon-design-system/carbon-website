@@ -11,9 +11,8 @@ import A11yStatus from 'components/A11yStatus';
 
 <PageDescription>
 
-Notifications are messages that communicate information to the user. The three
-variants of notifications are toast notifications, inline notifications, and
-actionable notifications.
+Notifications are messages that communicate information to the user. The four
+variants of notifications are toast, inline, actionable, and callout.
 
 </PageDescription>
 
@@ -23,9 +22,10 @@ actionable notifications.
 <AnchorLink>Overview</AnchorLink>
 <AnchorLink>Formatting</AnchorLink>
 <AnchorLink>Content</AnchorLink>
-<AnchorLink>Inline notifications</AnchorLink>
-<AnchorLink>Toast notifications</AnchorLink>
-<AnchorLink>Actionable notifications</AnchorLink>
+<AnchorLink>Inline</AnchorLink>
+<AnchorLink>Toast</AnchorLink>
+<AnchorLink>Actionable</AnchorLink>
+<AnchorLink>Callout</AnchorLink>
 <AnchorLink>Universal behaviors</AnchorLink>
 <AnchorLink>Modifiers</AnchorLink>
 <AnchorLink>Related</AnchorLink>
@@ -58,6 +58,12 @@ actionable notifications.
 
 ## Overview
 
+Notifications provide a method for communicating with users and sharing
+feedback. They come in four statuses which when combined with the right variants
+make notifications that are relevant, timely, and informative for each use case.
+Their status signifies the purpose of the information being conveyed and allow
+you to tailor the disruptiveness of the notification to the specific situation.
+
 ### When to use
 
 Use notifications to inform users of updates or changes to system status.
@@ -72,11 +78,12 @@ although some product teams also support banners and notification centers.
 
 ### Variants
 
-| Variant                                | Purpose                                                                                                                                                          |
-| -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Inline](#inline-notifications)        | Inline notifications show up in task flows, to notify users of the status of an action. They usually appear at the top of the primary content area.              |
-| [Toast](#toast-notifications)          | Toasts are non-modal, time-based window elements used to display short messages; they usually appear at the top of the screen and disappear after a few seconds. |
-| [Actionable](#actionable-notification) | Actionable notifications allow for interactive elements within a notification styled like an inline or toast notification.                                       |
+| Variant                   | Purpose                                                                                                                                                          |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Inline](#inline)         | Inline notifications show up in task flows, to notify users of the status of an action. They usually appear at the top of the primary content area.              |
+| [Toast](#toast)           | Toasts are non-modal, time-based window elements used to display short messages; they usually appear at the top of the screen and disappear after a few seconds. |
+| [Actionable](#actionable) | Actionable notifications allow for interactive elements within a notification styled like an inline or toast notification.                                       |
+| [Callout](#callout)       | Callouts are used to highlight important information that load with the contents of the page, placed contextually and cannot be dismissed.                       |
 
 ## Formatting
 
@@ -90,15 +97,61 @@ although some product teams also support banners and notification centers.
 </Column>
 </Row>
 
-1. **Icon:** Informs users of the kind of notification at a glance.
-2. **Title:** Gives users a quick overview of the notification.
-3. **Action (actionable only):** Ghost or tertiary button that allows users to
-   address the notification or navigates them to a page with further details.
-4. **Close button (optional):** Closes the notification.
-5. **Message:** Provides additional detail and actionable steps for the user to
-   take.
-6. **Timestamp (optional for toast):** Shows the time the toast notification was
-   sent.
+<Row>
+<Column colSm={2} colMd={4} colLg={4}>
+
+#### 1. Inline
+
+A. Icon <br /> B. Title <br /> C. Body content <br /> D. Close button <br />
+
+#### 3. Actionable (inline and toast)
+
+A. Icon <br /> B. Title <br /> C. Body content <br /> D. Close button <br /> F.
+Action button <br />
+
+</Column>
+<Column colSm={2} colMd={4} colLg={4}>
+
+#### 2. Toast
+
+A. Icon <br /> B. Title <br /> C. Body content <br /> D. Close button <br /> E.
+Time stamp
+
+#### 4. Callout
+
+A. Icon <br /> B. Title <br /> C. Body content <br /> G. Link <br />
+
+</Column>
+</Row>
+
+### Notification status
+
+Notification status helps convey the information being communicated. These
+statuses correspond with a color and icon to provide a consistent, universal
+experience for users.
+
+<Row>
+<Column colLg={12}>
+
+![Example of notification status](/images/1_notification_status_1120.png)
+
+<Caption>Notification status using the inline notification component</Caption>
+
+</Column>
+</Row>
+
+<br />
+
+<Title> Deciding what to use </Title>
+
+| Status        | Usage                                                                                                                        | Color  | Icon                 |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------- | ------ | -------------------- |
+| Informational | Provide additional information to users that may not be tied to their current action or task                                 | Blue   | `information filled` |
+| Success\*     | Confirm a task was completed as expected                                                                                     | Green  | `checkmark filled`   |
+| Warning       | Inform users that they are taking actions that are not desirable or might have unexpected results                            | Yellow | `warning filled`     |
+| Error\*       | Inform users of an error or critical failure and optionally block the user from proceeding until the issue has been resolved | Red    | `error filled`       |
+
+\*[Callout](#callout) does not include success and error statuses.
 
 ## Content
 
@@ -112,28 +165,30 @@ apprised of the situation, and know what to do next.
 
 - The title should be short and descriptive, explaining the most important piece
   of information.
-- When possible, communicate the main message using just the title.
 - Don't use a period to end a title.
 - When using rich text, such as in a title, a screen reader will read aloud the
   entire message as one sentence. Since the message will be read as one string,
-  make sure that any text styling does not convey meaning.
+  do not depend on text styling to convey meaning.
 
 #### Body content
 
 - Be concise and avoid repeating or paraphrasing the title.
 - Limit content to one or two short sentences.
 - Explain how to resolve the issue by including any troubleshooting actions or
-  next steps. You can include links within the notification body that redirect
-  the user to next steps by using an actionable notification.
+  next steps.
 
-#### Action (actionable only)
+#### Action button
 
-- Only actionable notifications can contain interactive elements such as a link
-  or button.
 - Keep labels concise and clearly indicate the action the user can take.
 - Limit action labels to one or two words. For a list of recommended action
   labels, see Carbon's
   [content guidelines](https://www.carbondesignsystem.com/guidelines/content/action-labels).
+
+#### Link
+
+- They must be descriptive and meaningfully indicate the link’s destination.
+- They don’t necessarily have to be at the end of the sentence—they can also be
+  within the body content.
 
 ### Overflow
 
@@ -147,7 +202,7 @@ either a full page with more details or a modal.
 For further content guidance, see Carbon's
 [content guidelines](/guidelines/content/overview).
 
-## Inline notifications
+## Inline
 
 Inline notifications show up in task flows, to notify users of the status of an
 action or system. They usually appear at the top of the primary content area or
@@ -200,7 +255,7 @@ A small "x" in the top right corner is used to dismiss inline notifications.
 Including the close button is optional and should not be included if it is
 critical for a user to read or interact with the notification.
 
-## Toast notifications
+## Toast
 
 Toasts are non-modal, time-based window elements used to display short messages;
 they usually appear at the top of the screen and disappear after a few seconds.
@@ -259,7 +314,7 @@ can dismiss automatically, users should be able to access them elsewhere after
 the toast disappears. This allows them to be accessible for users who need more
 time reading the notification or who may want to refer back to the notification.
 
-## Actionable notifications
+## Actionable
 
 Actionable notifications allow for interactive elements within a notification
 styled like an inline or toast notification. Actionable notifications, since
@@ -281,11 +336,11 @@ notification.
 
 #### Toast
 
-Actionable toast notifications can include a button at the end of their body
-content. This button should be short and navigate users to a page or modal where
-they can take action to address the notification or find further information.
-Because toast notifications automatically dismiss, it is important that there
-are alternative routes to navigate to the link destination.
+Actionable toast notifications can include a tertiary button at the end of their
+body content. This button should be short and navigate users to a page or modal
+where they can take action to address the notification or find further
+information. Because toast notifications automatically dismiss, it is important
+that there are alternative routes to navigate to the link destination.
 
 <Row>
 <Column colLg={8}>
@@ -301,14 +356,122 @@ are alternative routes to navigate to the link destination.
 
 ### Dismissal
 
-All notifications, including actionable, persist by default until a user
-dismissed them. If using inline styling refer to
-[inline notifications](#inline-notifications) for inline dismissal. If using
-toast styling for an actionable notification, then the notification should
-remain on screen until the user dismisses it. With the notification remaining
-open, the user has enough time to interact with the button without the toast
-closing too soon. Refer to [toast notifications](#toast-notifications) for
-further information.
+Actionable notification, persist by default until a user dismiss them. If using
+inline styling refer to [inline notifications](#inline-notifications) for inline
+dismissal. If using toast styling for an actionable notification, then the
+notification should remain on screen until the user dismisses it. With the
+notification remaining open, the user has enough time to interact with the
+button without the toast closing too soon. Refer to
+[toast notifications](#toast-notifications) for further information.
+
+### Links
+
+If needed, actionable notifications can contain links. Links within an
+actionable notification can be used to redirect the user to next steps.
+
+### Actions
+
+If needed, actionable notifications can include a ghost button for inline
+notifications or a tertiary button for toasts. These action buttons enable users
+to address the notification or navigate to a page for more details.
+
+## Callout
+
+Callouts are used to highlight important information contextually within the
+contents of the page, and cannot be dismissed. Unlike other notification
+components they are not triggered by the user or system, rather load with the
+contents of the page. They do not act as a feedback mechanism, they are
+persistent, and always present on the screen to provide necessary information to
+the user.
+
+Callout can be used within forms, dashboard, articles, etc when there is a need
+to highlight information. It’s designed to draw attention to important
+information that can prevent a negative user experience. Additionally, it can be
+used to emphasize details that guide users toward making informed decisions,
+ultimately enhancing their overall experience.
+
+### Callout formatting
+
+<Row>
+<Column colLg={8}>
+
+![Example of callout usage](images/notification-usage-microlayouts.png)
+
+</Column>
+</Row>
+
+#### Status
+
+The callout variant only includes informational and warning statuses as they are
+provided to complete a user journey successfully. Hence, it does not include
+success and error statuses present in other notifications, which are reactive
+and provided as feedback after a task has been completed.
+
+#### Title
+
+The title can be omitted on callouts when it is redundant and might break the
+flow while reading through the information. Use a title only if it makes it
+easier for people to scan through the content without diverting focus from the
+task.
+
+#### Sizing
+
+The width of callout varies based on content and layout. They can expand to fill
+the container or content area they relate to. Their height is based on the
+content length.
+
+#### Alignment
+
+Avoid overloading a single page with multiple callouts, and refrain from
+stacking them together. Callout should be used sparingly to emphasize
+information that must not be overlooked. For all other content, use a standard
+text component.
+
+#### Placement
+
+Callouts are related to a particular page element and should be positioned near
+it to associate them more effectively.
+
+- **With button or input:** If important information affects an action, place
+  the callout above the relevant button or input. This highlighted message
+  ensures that users feel confident about their action before proceeding.
+- **With data or information:** Place the callout contextually, either before or
+  after the data being viewed by users, depending on what fits best.
+- **With inline notification:** When a callout and an inline notification need
+  to coexist during a part of the user journey, move the callout upward and
+  position the short-lived notification closer to the button or input that
+  triggered it.
+
+<Row>
+<Column colLg={8}>
+
+![Example of callout placement](images/notification-usage-calloutplacement.png)
+
+<Caption>
+  Example of how a callout is placed when an inline error notification appears
+</Caption>
+
+</Column>
+</Row>
+
+#### Dismissal
+
+Unlike other notifications, callouts do not dismiss because they are used to
+highlight important information for the user that cannot be dismissed. They are
+always present on the screen and load with the contents of the page.
+
+#### Links
+
+If needed, callouts can contain links. Links on callout should be used only when
+it provides additional context or relevant information necessary for the current
+user journey. It should not be used to promote navigation to a separate user
+journey.
+
+#### Actions
+
+Unlike actionable notifications, callouts do not have action button of their
+own. Place the callout contextually near an action button instead as they are
+meant to contextually provide information for users before they take an action.
 
 ## Universal behaviors
 
@@ -316,8 +479,7 @@ further information.
 
 #### Mouse
 
-Notifications are system generated. A user can close a dismissible notification
-by clicking the close `x`
+A user can close a dismissible notification by clicking the close `x`
 
 #### Keyboard
 
@@ -345,8 +507,8 @@ notifications are best for critical messaging while low-contrast notifications
 are less visually disruptive for users.
 
 It's up to the product team to decide which notification style to use in their
-product. Inline and toast notifications can use different styles but you should
-never mix styles within each notification variant. When in doubt, use
+product. Callouts, inline, and toast notifications can use different styles but
+you should never mix styles within each notification variant. When in doubt, use
 low-contrast notifications.
 
 <Row>
@@ -364,6 +526,9 @@ low-contrast notifications.
 
 - [Modal component](https://www.carbondesignsystem.com/components/modal/usage/)
 - [Notifications pattern](https://www.carbondesignsystem.com/patterns/notification-pattern)
+- [Inline link](https://carbondesignsystem.com/components/link/usage/#inline-link)
+- [Button](https://carbondesignsystem.com/components/button/usage/)
+- [Form](https://carbondesignsystem.com/components/form/usage/)
 
 ## Feedback
 
