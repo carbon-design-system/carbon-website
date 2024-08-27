@@ -4108,12 +4108,12 @@ const colorTokens = {
       role: ['Warning low contrast notification background'],
       value: {
         white: {
-          name: 'Gray 20',
-          hex: '#e0e0e0',
+          name: 'Yellow 30, White',
+          hex: '#f1c21b, #ffffff',
         },
         g10: {
-          name: 'Gray 20',
-          hex: '#e0e0e0',
+          name: 'Yellow 30, White',
+          hex: '#f1c21b, #ffffff',
         },
         g90: {
           name: 'Gray 80',
@@ -4142,20 +4142,20 @@ const colorTokens = {
       role: ['Tertiary button color for notification'],
       value: {
         white: {
-          name: 'Gray 20',
-          hex: '#e0e0e0',
+          name: 'White',
+          hex: '#ffffff',
         },
         g10: {
-          name: 'Gray 20',
-          hex: '#e0e0e0',
+          name: 'White',
+          hex: '#ffffff',
         },
         g90: {
-          name: 'Gray 70',
-          hex: '#525252',
+          name: 'Blue 60',
+          hex: '#0f62fe',
         },
         g100: {
-          name: 'Gray 70',
-          hex: '#525252',
+          name: 'Blue 60',
+          hex: '#0f62fe',
         },
       },
     },
@@ -4184,20 +4184,20 @@ const colorTokens = {
       role: ['Hover color for tertiary button in notification'],
       value: {
         white: {
-          name: 'Gray 10',
-          hex: '#f4f4f4',
+          name: 'Gray 30',
+          hex: '#c6c6c6',
         },
         g10: {
-          name: 'Gray 10',
-          hex: '#f4f4f4',
+          name: 'Gray 30',
+          hex: '#c6c6c6',
         },
         g90: {
-          name: 'Gray 90',
-          hex: '#262626',
+          name: 'Blue 80',
+          hex: '#002d9c',
         },
         g100: {
-          name: 'Gray 90',
-          hex: '#262626',
+          name: 'Blue 80',
+          hex: '#002d9c',
         },
       },
     },
@@ -4205,20 +4205,20 @@ const colorTokens = {
       role: ['Text color for tertiary button in notification'],
       value: {
         white: {
-          name: 'Gray 10, 0%',
-          hex: '#f4f4f4 @ 0%',
+          name: 'Gray 100',
+          hex: '#161616',
         },
         g10: {
-          name: 'Gray 10, 0%',
-          hex: '#f4f4f4 @ 0%',
+          name: 'Gray 100',
+          hex: '#161616',
         },
         g90: {
-          name: 'Gray 90, 0%',
-          hex: '#262626 @ 0%',
+          name: 'White',
+          hex: '#ffffff',
         },
         g100: {
-          name: 'Gray 90, 0%',
-          hex: '#262626 @ 0%',
+          name: 'White',
+          hex: '#ffffff',
         },
       },
     },
@@ -4234,12 +4234,12 @@ const colorTokens = {
           hex: '#ffffff',
         },
         g90: {
-          name: 'Gray 90',
-          hex: '#262626',
+          name: 'White',
+          hex: '#ffffff',
         },
         g100: {
-          name: 'Gray 90',
-          hex: '#262626',
+          name: 'White',
+          hex: '#ffffff',
         },
       },
     },
