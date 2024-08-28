@@ -83,14 +83,14 @@ although some product teams also support banners and notification centers.
 | [Inline](#inline)         | Inline notifications show up in task flows, to notify users of the status of an action. They usually appear at the top of the primary content area.              |
 | [Toast](#toast)           | Toasts are non-modal, time-based window elements used to display short messages; they usually appear at the top of the screen and disappear after a few seconds. |
 | [Actionable](#actionable) | Actionable notifications allow for interactive elements within a notification styled like an inline or toast notification.                                       |
-| [Callout](#callout)       | Callouts are used to highlight important information that load with the contents of the page, placed contextually and cannot be dismissed.                       |
+| [Callout](#callout)       | Callouts are used to highlight important information that loads with the contents of the page, is placed contextually, and cannot be dismissed.                  |
 
 ## Formatting
 
 ### Anatomy
 
 <Row>
-<Column colLg={8}>
+<Column colLg={12}>
 
 ![notification anatomy image](images/notification-usage-anatomy.png)
 
@@ -125,16 +125,16 @@ A. Icon <br /> B. Title <br /> C. Body content <br /> F. Link <br />
 
 ### Notification status
 
-Notification status helps convey the information being communicated. These
-statuses correspond with a color and icon to provide a consistent, universal
-experience for users.
+Notification statuses are designed to convey the emotional tone of the
+information being communicated. Each status is associated with a specific color
+and icon, ensuring a consistent and universal user experience
 
 <Row>
 <Column colLg={12}>
 
 ![Example of notification status](/images/1_notification_status_1120.png)
 
-<Caption>Notification status using the inline notification component</Caption>
+<Caption>Notification status for the inline variant</Caption>
 
 </Column>
 </Row>
@@ -143,14 +143,18 @@ experience for users.
 
 <Title> Deciding what to use </Title>
 
-| Status        | Usage                                                                                                                        | Color  | Icon                 |
-| ------------- | ---------------------------------------------------------------------------------------------------------------------------- | ------ | -------------------- |
-| Informational | Provide additional information to users that may not be tied to their current action or task                                 | Blue   | `information filled` |
-| Success\*     | Confirm a task was completed as expected                                                                                     | Green  | `checkmark filled`   |
-| Warning       | Inform users that they are taking actions that are not desirable or might have unexpected results                            | Yellow | `warning filled`     |
-| Error\*       | Inform users of an error or critical failure and optionally block the user from proceeding until the issue has been resolved | Red    | `error filled`       |
+When choosing between the various notification statuses, consider the context
+and the emotion that needs to be conveyed. All notification variants, except for
+callout, typically serve as feedback after an action or task is completed. The
+callout variant is unique, as it provides guidance before users begin a task or
+take action and, therefore, does not include success or error statuses.
 
-\*[Callout](#callout) does not include success and error statuses.
+| Status        | Usage                                                                                                                        | Color  | Icon                 | Variants                           |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------- | ------ | -------------------- | ---------------------------------- |
+| Informational | Provide additional information to users that may not be tied to their current action or task                                 | Blue   | `information filled` | Inline, Toast, Actionable, Callout |
+| Success       | Confirm a task was completed as expected                                                                                     | Green  | `checkmark filled`   | Inline, Toast, Actionable          |
+| Warning       | Inform users that they are taking actions that are not desirable or might have unexpected results                            | Yellow | `warning filled`     | Inline, Toast, Actionable, Callout |
+| Error         | Inform users of an error or critical failure and optionally block the user from proceeding until the issue has been resolved | Red    | `error filled`       | Inline, Toast, Actionable          |
 
 ## Content
 
@@ -453,20 +457,20 @@ it to associate them more effectively.
 </Column>
 </Row>
 
-#### Dismissal
+### Dismissal
 
 Unlike other notifications, callouts do not dismiss because they are used to
 highlight important information for the user that cannot be dismissed. They are
 always present on the screen and load with the contents of the page.
 
-#### Links
+### Links
 
 If needed, callouts can contain links. Links on callout should be used only when
 it provides additional context or relevant information necessary for the current
 user journey. It should not be used to promote navigation to a separate user
 journey.
 
-#### Actions
+### Actions
 
 Unlike actionable notifications, callouts do not have action button of their
 own. Place the callout contextually near an action button instead as they are
