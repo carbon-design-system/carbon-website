@@ -184,16 +184,18 @@ structure, and size.
 
 ### Contained tab color
 
-| Type       | Element | Property         | Color token           |
-| ---------- | ------- | ---------------- | --------------------- |
-| Unselected | Tab     | background-color | `$layer-accent` \*    |
-|            |         | border-right     | `$border-strong` \*   |
-|            | Label   | text-color       | `$text-secondary`     |
-|            | Icon    | svg              | `$icon-secondary`     |
-| Selected   | Tab     | background-color | `$layer` \*           |
-|            |         | border-top       | `$border-interactive` |
-|            | Label   | text-color       | `$text-primary`       |
-|            | Icon    | svg              | `$icon-primary`       |
+| Type       | Element         | Property         | Color token           |
+| ---------- | --------------- | ---------------- | --------------------- |
+| Unselected | Tab             | background-color | `$layer-accent` \*    |
+|            |                 | border-right     | `$border-strong` \*   |
+|            | Label           | text-color       | `$text-secondary`     |
+|            | Secondary label | text-color       | `$text-secondary`     |
+|            | Icon            | svg              | `$icon-secondary`     |
+| Selected   | Tab             | background-color | `$layer` \*           |
+|            |                 | border-top       | `$border-interactive` |
+|            | Label           | text-color       | `$text-primary`       |
+|            | Secondary label | text-color       | `$text-primary`       |
+|            | Icon            | svg              | `$icon-primary`       |
 
 <Caption>
   * Denotes a contextual color token that will change values based on the layer
@@ -216,15 +218,17 @@ structure, and size.
 
 <br />
 
-| State    | Element | Property         | Color token               |
-| -------- | ------- | ---------------- | ------------------------- |
-| Hover    | Tab     | background-color | `$layer-accent-hover` \*  |
-|          | Label   | text-color       | `$text-primary`           |
-|          | Icon    | svg              | `$icon-primary`           |
-| Focus    | Tab     | border           | `$focus`                  |
-| Disabled | Label   | text-color       | `$text-on-color-disabled` |
-|          | Icon    | svg              | `$icon-on-color-disabled` |
-|          | Tab     | background-color | `$button-disabled`        |
+| State    | Element         | Property         | Color token               |
+| -------- | --------------- | ---------------- | ------------------------- |
+| Hover    | Tab             | background-color | `$layer-accent-hover` \*  |
+|          | Label           | text-color       | `$text-primary`           |
+|          | Secondary label | text-color       | `$text-primary`           |
+|          | Icon            | svg              | `$icon-primary`           |
+| Focus    | Tab             | border           | `$focus`                  |
+| Disabled | Label           | text-color       | `$text-on-color-disabled` |
+|          | Secondary label | text-color       | `$text-on-color-disabled` |
+|          | Icon            | svg              | `$icon-on-color-disabled` |
+|          | Tab             | background-color | `$button-disabled`        |
 
 <Caption>
   * Denotes a contextual color token that will change values based on the layer
@@ -359,6 +363,65 @@ tabs.](images/tab-style-12.png)
   contained tabs.
 </Caption>
 
+### Vertical tab color
+
+| Type       | Element             | Property                                 | Color token              |
+| ---------- | ------------------- | ---------------------------------------- | ------------------------ |
+| Unselected | Tab                 | background-color                         | `$layer` \*              |
+|            |                     | border-bottom, border-right, border-left | `$border-subtle` \*      |
+|            | Label               | text-color                               | `$text-secondary`        |
+|            | Extended background | background-color                         | `$layer` \*              |
+|            |                     | border-right                             | `$border-subtle` \*      |
+| Selected   | Tab                 | background-color                         | `$layer` \*              |
+|            |                     | border-bottom                            | `$border-subtle` \*      |
+|            |                     | border-left                              | `$border-interactive` \* |
+|            | Label               | text-color                               | `$text-primary`          |
+| tab panel  | background          | background-color                         | `$layer` \*              |
+
+<Caption>
+  * Denotes a contextual color token that will change values based on the layer
+  it is placed on.
+</Caption>
+
+<Row>
+<Column colLg={8}>
+
+![Examples of selected and unselected vertical tabs.](images/tab-style-20.png)
+
+</Column>
+</Row>
+
+<Caption>Examples of selected and unselected vertical tabs.</Caption>
+
+#### Vertical tab interactive state color
+
+<br />
+
+| State    | Element           | Property         | Color token               |
+| -------- | ----------------- | ---------------- | ------------------------- |
+| Hover    | Label             | text-color       | `$text-primary`           |
+|          | Tab               | background-color | `$layer-hover` \*         |
+| Focus    | Tab: unselected   | border           | `$focus`                  |
+|          | Label: unselected | text-color       | `$text-secondary`         |
+|          | Tab: selected     | border           | `$focus`                  |
+|          | Label: selected   | text-color       | `$text-primary`           |
+| Disabled | Label             | text-color       | `$text-on-color-disabled` |
+
+<Row>
+<Column colLg={8}>
+
+![Examples of hover, unselected focus, selected focus, and disabled states for vertical tabs.](images/tab-style-21.png)
+
+</Column>
+</Row>
+
+<Caption>
+  Examples of hover, unselected focus, selected focus, and disabled states for
+  vertical tabs.
+</Caption>
+
+<br />
+
 ## Typography
 
 Tab labels should be set in sentence case, and should not exceed three words.
@@ -367,6 +430,7 @@ Tab labels should be set in sentence case, and should not exceed three words.
 | ----------------- | ------------------ | -------------- | --------------------- |
 | Label: unselected | 14 / 0.875         | Regular / 400  | `$body-compact-01`    |
 | Label: selected   | 14 / 0.875         | SemiBold / 600 | `$heading-compact-01` |
+| Secondary label   | 12 / 0.75          | Regular / 400  | `$label-01`           |
 
 ## Structure
 
@@ -516,6 +580,28 @@ Tab labels should be set in sentence case, and should not exceed three words.
 <Caption>
   Structure and spacing measurements for dismissible contained tabs without
   icons (top) and with icons (bottom)| px / rem
+</Caption>
+
+### Verical tab structure
+
+| Element             | Property                    | px / rem | Spacing token |
+| ------------------- | --------------------------- | -------- | ------------- |
+| Tab                 | height                      | 64 / 4   | –             |
+|                     | border-left                 | 3 px     | –             |
+| Tab: unselected     | border-bottom, border-right | 1 px     | –             |
+| Tab: selected       | border-bottom               | 1 px     | –             |
+| Label               | padding-left, padding-right | 16 / 1   | `$spacing-05` |
+| Extended background | border-right                | 1 px     | –             |
+
+<div className="image--fixed">
+
+![Structure and spacing measurements for vertical tabs in px and rem](images/tab-style-22.png)
+
+</div>
+
+<Caption>
+  Structure and spacing measurements for vertical tabs without overflow (left)
+  and with overflow (right) | px / rem
 </Caption>
 
 ## Feedback
