@@ -1,6 +1,7 @@
 const path = require('path');
 
 module.exports = {
+  trailingSlash: `always`,
   siteMetadata: {
     title: 'Carbon Design System',
     siteUrl: 'https://www.carbondesignsystem.com',
@@ -39,6 +40,16 @@ module.exports = {
     'gatsby-transformer-sharp',
     'gatsby-plugin-lodash',
     {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        name: 'Carbon Design System',
+        short_name: 'Carbon',
+        icon: 'src/images/favicon.svg',
+        start_url: '/',
+        display: 'browser',
+      },
+    },
+    {
       resolve: 'gatsby-theme-carbon',
       options: {
         mdxExtensions: ['.mdx'],
@@ -55,28 +66,12 @@ module.exports = {
         },
       },
     },
-    {
-      resolve: 'gatsby-plugin-manifest',
-      options: {
-        name: 'Carbon Design System',
-        short_name: 'Carbon',
-        icon: 'src/images/favicon.svg',
-      },
-    },
     'gatsby-plugin-sitemap',
-    {
-      resolve: 'gatsby-plugin-component-index',
-      options: {
-        directory: path.resolve(__dirname, './src/data/index'),
-      },
-    },
     {
       resolve: 'gatsby-plugin-chart-index',
       options: {
         directory: path.resolve(__dirname, './src/data/chart-index'),
       },
     },
-    'gatsby-plugin-remove-serviceworker',
-    'gatsby-plugin-meta-redirect',
   ],
 };

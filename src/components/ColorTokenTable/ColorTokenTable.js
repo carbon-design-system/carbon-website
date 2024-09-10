@@ -11,7 +11,6 @@ import StickyContainer from '../TypesetStyle/StickyContainer';
 import colorTokens from '../../data/guidelines/color-tokens';
 import H3 from 'gatsby-theme-carbon/src/components/markdown/H3';
 
-
 export default class ColorTokenTable extends React.Component {
   state = {
     theme: 'white',
@@ -41,10 +40,10 @@ export default class ColorTokenTable extends React.Component {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     return result
       ? {
-        r: parseInt(result[1], 16),
-        g: parseInt(result[2], 16),
-        b: parseInt(result[3], 16),
-      }
+          r: parseInt(result[1], 16),
+          g: parseInt(result[2], 16),
+          b: parseInt(result[3], 16),
+        }
       : null;
   };
 
@@ -86,8 +85,9 @@ export default class ColorTokenTable extends React.Component {
     if (bgColor.includes('@')) {
       const hex = bgColor.split('@')[0].trim();
       const alpha = bgColor.split('@')[1].trim();
-      bgColor = `rgba(${this.hexToRgb(hex).r}, ${this.hexToRgb(hex).g}, ${this.hexToRgb(hex).b
-        }, ${alpha})`;
+      bgColor = `rgba(${this.hexToRgb(hex).r}, ${this.hexToRgb(hex).g}, ${
+        this.hexToRgb(hex).b
+      }, ${alpha})`;
     }
     return (
       <div className="color-token-value">
@@ -165,7 +165,9 @@ export default class ColorTokenTable extends React.Component {
           {this.state.type === 'core' && (
             <>
               <div className="cds--col-lg-7">
-                <H3 className="page-H3" id="background">Background</H3>
+                <H3 className="page-H3" id="background">
+                  Background
+                </H3>
               </div>
               <div className="cds--col-lg-12 cds--no-gutter">
                 <table className="page-table">
@@ -177,12 +179,13 @@ export default class ColorTokenTable extends React.Component {
                     </tr>
                   </thead>
                   <tbody>
-                    {Object.keys(colorTokens['background-tokens']).map((token, i) =>
-                      this.renderToken(
-                        token,
-                        colorTokens['background-tokens'][token],
-                        i
-                      )
+                    {Object.keys(colorTokens['background-tokens']).map(
+                      (token, i) =>
+                        this.renderToken(
+                          token,
+                          colorTokens['background-tokens'][token],
+                          i
+                        )
                     )}
                   </tbody>
                 </table>
@@ -201,7 +204,11 @@ export default class ColorTokenTable extends React.Component {
                   </thead>
                   <tbody>
                     {Object.keys(colorTokens['layer-tokens']).map((token, i) =>
-                      this.renderToken(token, colorTokens['layer-tokens'][token], i)
+                      this.renderToken(
+                        token,
+                        colorTokens['layer-tokens'][token],
+                        i
+                      )
                     )}
                   </tbody>
                 </table>
@@ -244,7 +251,11 @@ export default class ColorTokenTable extends React.Component {
                   </thead>
                   <tbody>
                     {Object.keys(colorTokens['field-tokens']).map((token, i) =>
-                      this.renderToken(token, colorTokens['field-tokens'][token], i)
+                      this.renderToken(
+                        token,
+                        colorTokens['field-tokens'][token],
+                        i
+                      )
                     )}
                   </tbody>
                 </table>
@@ -286,7 +297,11 @@ export default class ColorTokenTable extends React.Component {
                   </thead>
                   <tbody>
                     {Object.keys(colorTokens['text-tokens']).map((token, i) =>
-                      this.renderToken(token, colorTokens['text-tokens'][token], i)
+                      this.renderToken(
+                        token,
+                        colorTokens['text-tokens'][token],
+                        i
+                      )
                     )}
                   </tbody>
                 </table>
@@ -305,7 +320,11 @@ export default class ColorTokenTable extends React.Component {
                   </thead>
                   <tbody>
                     {Object.keys(colorTokens['link-tokens']).map((token, i) =>
-                      this.renderToken(token, colorTokens['link-tokens'][token], i)
+                      this.renderToken(
+                        token,
+                        colorTokens['link-tokens'][token],
+                        i
+                      )
                     )}
                   </tbody>
                 </table>
@@ -324,7 +343,11 @@ export default class ColorTokenTable extends React.Component {
                   </thead>
                   <tbody>
                     {Object.keys(colorTokens['icon-tokens']).map((token, i) =>
-                      this.renderToken(token, colorTokens['icon-tokens'][token], i)
+                      this.renderToken(
+                        token,
+                        colorTokens['icon-tokens'][token],
+                        i
+                      )
                     )}
                   </tbody>
                 </table>
@@ -342,12 +365,13 @@ export default class ColorTokenTable extends React.Component {
                     </tr>
                   </thead>
                   <tbody>
-                    {Object.keys(colorTokens['support-tokens']).map((token, i) =>
-                      this.renderToken(
-                        token,
-                        colorTokens['support-tokens'][token],
-                        i
-                      )
+                    {Object.keys(colorTokens['support-tokens']).map(
+                      (token, i) =>
+                        this.renderToken(
+                          token,
+                          colorTokens['support-tokens'][token],
+                          i
+                        )
                     )}
                   </tbody>
                 </table>
@@ -366,7 +390,11 @@ export default class ColorTokenTable extends React.Component {
                   </thead>
                   <tbody>
                     {Object.keys(colorTokens['focus-tokens']).map((token, i) =>
-                      this.renderToken(token, colorTokens['focus-tokens'][token], i)
+                      this.renderToken(
+                        token,
+                        colorTokens['focus-tokens'][token],
+                        i
+                      )
                     )}
                   </tbody>
                 </table>
@@ -394,7 +422,8 @@ export default class ColorTokenTable extends React.Component {
                   </tbody>
                 </table>
               </div>
-            </>)}
+            </>
+          )}
           {this.state.type === 'component' && (
             <>
               <div className="cds--col-lg-7">
@@ -434,11 +463,7 @@ export default class ColorTokenTable extends React.Component {
                   </thead>
                   <tbody>
                     {Object.keys(colorTokens['tag']).map((token, i) =>
-                      this.renderToken(
-                        token,
-                        colorTokens['tag'][token],
-                        i
-                      )
+                      this.renderToken(token, colorTokens['tag'][token], i)
                     )}
                   </tbody>
                 </table>
@@ -484,11 +509,7 @@ export default class ColorTokenTable extends React.Component {
                   </thead>
                   <tbody>
                     {Object.keys(colorTokens['ai']).map((token, i) =>
-                      this.renderToken(
-                        token,
-                        colorTokens['ai'][token],
-                        i
-                      )
+                      this.renderToken(token, colorTokens['ai'][token], i)
                     )}
                   </tbody>
                 </table>
@@ -507,11 +528,7 @@ export default class ColorTokenTable extends React.Component {
                   </thead>
                   <tbody>
                     {Object.keys(colorTokens['chat']).map((token, i) =>
-                      this.renderToken(
-                        token,
-                        colorTokens['chat'][token],
-                        i
-                      )
+                      this.renderToken(token, colorTokens['chat'][token], i)
                     )}
                   </tbody>
                 </table>
