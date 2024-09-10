@@ -4136,6 +4136,14 @@ const colorTokens = {
           name: 'White',
           hex: '#ffffff',
         },
+        g90: {
+          name: 'Gray 80 hover',
+          hex: '#474747',
+        },
+        g100: {
+          name: 'Gray 90 hover',
+          hex: '#333333',
+        },
       },
     },
     '$notification-action-tertiary-inverse': {
