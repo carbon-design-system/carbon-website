@@ -29,26 +29,36 @@ accessibility considerations, some of which are described below.
 ### Keyboard interaction
 
 The menu is reached by tab. When the menu is open, the first item takes focus.
-The menu items are navigated using the `Up` and `Down` arrow keys. Pressing
-`Space` or `Enter` on a focused menu item activates it and collapses the menu or
-activates the sub-menu.
+The menu items are navigated using the `Up` and `Down` arrow keys.
 
-An activated menu item can result in a number of things.
+Row>
 
-- If it is a link or similar instance, it launches that selection.
-- If it is a toggle, it selects or deselects that item.
-- Where it is a one of many item, it switches to that item and it shows up as
-  selected when the menu is opened again.
-
-<Row>
-<Column colLg={12}>
+<Column colLg={8}>
 
 ![example of menu keyboard interaction](images/accessibility-menu-1.png)
 
 <Caption>
-  Menu button is reached by tab. When opened, the first item in the menu takes
-  focus. Arrow keys move focus. Space and Enter keys activates/selects/deselects
-  the menu items with focus.
+  Menu is reached by tab and when opened, the first menu item takes focus. Arrow
+  keys move focus.
+</Caption>
+
+</Column>
+</Row>
+
+Pressing `Space` or `Enter` on a focused menu item activates it and collapses
+the menu or activates the sub-menu. An activated menu item can have different
+results depending on its functionality. If the item is a link, it launches the
+selection. If the item is selectable, it selects or deselects the item. If
+multiple items are selectable in a menu, that is one of many, selection switches
+to that item, and it shows up as selected when the menu is opened again.
+
+<Row>
+<Column colLg={8}>
+
+![example of menu keyboard interaction](images/accessibility-menu-2.png)
+
+<Caption>
+  Space and Enter keys activates/selects/deselects the menu item with focus.
 </Caption>
 
 </Column>
@@ -59,13 +69,13 @@ An activated menu item can result in a number of things.
 Keep these considerations in mind if you are modifying Carbon or creating a
 custom component.
 
-- Each Menu, including nested Menus, are `ul` elements with `role="menu"`
-- MenuItems are `li` elements with `role="menuitem"`
-- If a MenuItem contains a sub-menu, it is given `aria-haspopup="true"` and
+- Each menu, including nested menus, are `ul` elements with `role="menu"`
+- Menu items are `li` elements with `role="menuitem"`
+- If a Menu item contains a sub-menu, it is given `aria-haspopup="true"` and
   `aria-expanded` of true or false depending on if the sub-menu is open/visible.
-- Selectable Menu Items are given `role="menuitemcheckbox"`
-- Menu Item Groups are 'li' elements with `role="group"`
-- Menu Item Radio Groups get `role="menuitemradio"`
+- Selectable menu items are given `role="menuitemcheckbox"`
+- Menu item groups are 'li' elements with `role="group"`
+- Menu item radio groups get `role="menuitemradio"`
 - Menu items with really long label can get truncated depending on screen sizes.
   This label will be exposed by a browser rendered tooltip on hover or focus.
 - Menu implements the
