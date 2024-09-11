@@ -6,23 +6,80 @@ description:
 tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 ---
 
+<PageDescription>
+
+The following page documents visual specifications such as color, typography, structure, and size.
+
+</PageDescription>
+
+<AnchorLinks>
+
+<AnchorLink>Color</AnchorLink>
+<AnchorLink>Typography</AnchorLink>
+<AnchorLink>Structure</AnchorLink>
+<AnchorLink>Size</AnchorLink>
+<AnchorLink>Feedback</AnchorLink>
+
+</AnchorLinks>
+
 ## Color
 
-By default, structured lists have a transparent background layer. Optionally,
-you can apply a colored background layer to a structured list. Structured lists
-with a colored background layer are only available in the hang alignment.
+Structured lists have a transparent background layer. Optionally,
+you can apply a background color to a structured list. Structured lists
+with a background color are only available in the hang alignment.
+
+### Default structured list
 
 | Element              | Property         | Color token         |
 | -------------------- | ---------------- | ------------------- |
-| Header text          | text-color       | `$text-primary`     |
-| Header row divider   | border-bottom    | `$border-subtle` \* |
-| Header (transparent) | background-color | transparent         |
-| Header (background)  | background-color | `$layer` \*         |
-| Row text             | text-color       | `$text-secondary`   |
-| Row divider          | border-bottom    | `$border-subtle` \* |
-| Row (transparent)    | background-color | transparent         |
-| Row (background)     | background-color | `$layer` \*         |
-| Icon                 | icon-color       | `$icon-primary`     |
+| Header               | background-color | transparent         |
+|                      | background-color | `$layer` \*         |
+| Header: text         | text color       | `$text-primary`     |
+| Row                  | background-color | transparent         |
+|                      | background-color | `$layer` \*         |
+| Row: text            | text color       | `$text-secondary`   |
+| Divider              | border-bottom    | `$border-subtle` \* |
+| Icon                 | svg              | `$icon-primary`     |
+
+<Caption>
+  * Denotes a contextual color token that will change values based on the layer
+  it is placed on.
+</Caption>
+
+<Row>
+<Column colLg={12}>
+
+![Default structured list transparent background](images/structured-list-style-color-default-transparent.png)
+
+<Caption> Default structured list transparent background </Caption>
+
+</Column>
+</Row>
+
+<Row>
+<Column colLg={12}>
+
+![Default structured list background color option](images/structured-list-style-color-default-background.png)
+
+<Caption> Default structured list background color option </Caption>
+
+</Column>
+</Row>
+
+### Selectable strcutured list color
+
+Selectable structured list has an available feature flag.
+
+| Element              | Property         | Color token         |
+| -------------------- | ---------------- | ------------------- |
+| Header               | background-color | transparent         |
+|                      | background-color | `$layer` \*         |
+| Header: text         | text color       | `$text-primary`     |
+| Row                  | background-color | transparent         |
+|                      | background-color | `$layer` \*         |
+| Row: text            | text color       | `$text-secondary`   |
+| Divider              | border-bottom    | `$border-subtle` \* |
+| Icon                 | svg              | `$icon-primary`     |
 
 <Caption>
   * Denotes a contextual color token that will change values based on the layer
@@ -33,15 +90,15 @@ with a colored background layer are only available in the hang alignment.
 <Column colLg={12}>
 <Tabs>
 
-<Tab label="Transparent">
+<Tab label="Flag enabled">
 
-![Color of the interactive structured list](images/structured-list-style-1.png)
+![Selectable structured list color feature flag enabled](images/structured-list-style-color-selectable-flag-enabled.png)
 
 </Tab>
 
-<Tab label="Background">
+<Tab label="Flag disabled">
 
-![Color of the interactive structured list](images/structured-list-style-2.png)
+![Selectable structured list color feature flag disabled](images/structured-list-style-color-selectable-flag-disabled.png)
 
 </Tab>
 
@@ -50,32 +107,39 @@ with a colored background layer are only available in the hang alignment.
 </Column>
 </Row>
 
-### Interactive states
+<Row>
+<Column colLg={12}>
 
-The structured list interactive states are shown below with its default
-transparent background layer and its optional color background layer.
+![Selectable structured list background color option with a feature flag](images/structured-list-style-color-selectable-background.png)
+
+<Caption> Selectable structured list background color option with a feature flag </Caption>
+
+</Column>
+</Row>
+
+#### Selectable structured list interactive color
 
 | State               | Element           | Proptery         | Color token                |
 | ------------------- | ----------------- | ---------------- | -------------------------- |
 | Enabled (selected)  | Row               | background-color | `$layer-selected` \*       |
-|                     | Row text          | text-color       | `$text-primary`            |
+|                     | Row: text         | text color       | `$text-primary`            |
 | Hover               | Row               | background-color | `$layer-hover` \*          |
-|                     | Row text          | text-color       | `$text-primary`            |
+|                     | Row: text         | text color       | `$text-primary`            |
 | Hover (selected)    | Row               | background-color | `$layer-selected-hover` \* |
-|                     | Row text          | text-color       | `$text-primary`            |
-| Focus               | Row (transparent) | background-color | transparent                |
-|                     | Row (background)  | background-color | `$layer` \*                |
+|                     | Row: text         | text color       | `$text-primary`            |
+| Focus               | Row               | background-color | transparent                |
+|                     | Row               | background-color | `$layer` \*                |
 |                     | Border            | border           | `$focus`                   |
 | Focus (selected)    | Row               | background-color | `$layer-selected` \*       |
-|                     | Row text          | text-color       | `$text-primary`            |
+|                     | Row: text         | text color       | `$text-primary`            |
 |                     | Border            | border           | `$focus`                   |
-| Disabled            | Row (transparent) | background-color | transparent                |
-|                     | Row (background)  | background-color | `$layer` \*                |
-|                     | Row text          | text-color       | `$text-disabled`           |
-|                     | Icon              | inner fill       | `$icon-disabled`           |
+| Disabled            | Row               | background-color | transparent                |
+|                     | Row               | background-color | `$layer` \*                |
+|                     | Row: text         | text color       | `$text-disabled`           |
+|                     | Icon              | svg              | `$icon-disabled`           |
 | Disabled (selected) | Row               | background-color | `$layer-selected` \*       |
-|                     | Row text          | text-color       | `$text-disabled`           |
-|                     | Icon              | inner fill       | `$icon-disabled`           |
+|                     | Row: text         | text color       | `$text-disabled`           |
+|                     | Icon              | svg              | `$icon-disabled`           |
 
 <Caption>
   * Denotes a contextual color token that will change values based on the layer
@@ -86,90 +150,112 @@ transparent background layer and its optional color background layer.
 <Column colLg={12}>
 <Tabs>
 
-<Tab label="Transparent">
+<Tab label="Flag enabled">
 
-![State of the interactive structured list](images/structured-list-style-3.png)
+![Selectable structured list interactive states feature flag enabled](images/structured-list-style-interactive-color-selectable-flag-enabled.png)
 
 </Tab>
 
-<Tab label="Background">
+<Tab label="Flag disabled">
 
-![State of the interactive structured list](images/structured-list-style-4.png)
+![Selectable structured list interactive states feature flag disabled](images/structured-list-style-interactive-color-selectable-flag-disabled.png)
 
 </Tab>
 
 </Tabs>
+
+</Column>
+</Row>
+
+<Row>
+<Column colLg={12}>
+
+![Selectable structured list interactive state background color option with a feature flag](images/structured-list-style-interactive-color-selectable-background.png)
+
+<Caption> Selectable structured list interactive state background color option with a feature flag </Caption>
 
 </Column>
 </Row>
 
 ## Typography
 
-Structured list headings should be set in title case, while all other text is
-set in sentence case. All typography is left aligned.
+Structured list header and row text should use sentence-case capitalization. All typography is left aligned.
 
-| Element   | px / rem   | Font-weight    | Type token            |
-| --------- | ---------- | -------------- | --------------------- |
-| Heading   | 14 / 0.875 | SemiBold / 600 | `$heading-compact-01` |
-| List text | 14 / 0.875 | Regular / 400  | `$body-01`            |
+| Element     | Font-size (px/rem) | Font-weight    | Type token            |
+| ----------- | ------------------ | -------------- | --------------------- |
+| Header text | 14 / 0.875         | SemiBold / 600 | `$heading-compact-01` |
+| Row text    | 14 / 0.875         | Regular / 400  | `$body-01`            |
 
 ## Structure
 
+### Default structured list structure
+
 | Element         | Property                    | px / rem    | Spacing token |
 | --------------- | --------------------------- | ----------- | ------------- |
-| Structured list | min-width                   | 500 / 31.25 | –             |
-| Header          | padding-top                 | 16 / 1      | `$spacing-05` |
+| Container       | min-width                   | 500 / 31.25 | –             |
+| Header: text    | padding-top                 | 16 / 1      | `$spacing-05` |
 |                 | padding-bottom              | 8 / 0.5     | `$spacing-03` |
 |                 | padding-right               | 16 / 1      | `$spacing-05` |
 |                 | padding-left (hang)         | 16 / 1      | `$spacing-05` |
 |                 | padding-left (flush)        | 0           | –             |
-| Row text        | padding-top                 | 16 / 1      | `$spacing-05` |
+| Row: text       | padding-top                 | 16 / 1      | `$spacing-05` |
 |                 | padding-bottom              | 24 / 1.5    | `$spacing-06` |
 |                 | padding-right               | 16 / 1      | `$spacing-05` |
 |                 | padding-left (hang)         | 16 / 1      | `$spacing-05` |
 |                 | padding-left (flush)        | 0           | –             |
+
+<div className="image--fixed">
+
+![Spacing and measurements for default structured list with hang and flush alignment | px / rem. ](images/structured-list-style-structure.png)
+
+</div>
+
+<Caption>
+  Spacing and measurements for default structured list with hang and flush alignment | px / rem. 
+</Caption>
+
+### Selectable structured list structure
+
+| Element         | Property                    | px / rem    | Spacing token |
+| --------------- | --------------------------- | ----------- | ------------- |
+| Container       | min-width                   | 500 / 31.25 | –             |
+| Header: text    | padding-top                 | 16 / 1      | `$spacing-05` |
+|                 | padding-bottom              | 8 / 0.5     | `$spacing-03` |
+|                 | padding-right               | 16 / 1      | `$spacing-05` |
+|                 | padding-left, padding-right | 16 / 1      | `$spacing-05` |
+| Row: text       | padding-top                 | 16 / 1      | `$spacing-05` |
+|                 | padding-bottom              | 24 / 1.5    | `$spacing-06` |
+|                 | padding-left, padding-right | 16 / 1      | `$spacing-05` |
 | Icon            | height, width               | 16px        | –             |
 |                 | padding-left, padding-right | 16 / 1      | `$spacing-05` |
 
-### Default structure
-
 <div className="image--fixed">
 
-![Spacing and measurements for default structured list](images/structured-list-style-5.png)
+![Structure and spacing measurements for selectable structured list with a feature flag | px / rem.](images/structured-list-style-structure-selectable-flag-enabled.png)
 
 </div>
 
 <Caption>
-  Spacing and measurements for default structured list with hang and flush
-  alignment | px / rem.
-</Caption>
-
-### Selectable structure
-
-<div className="image--fixed">
-
-![Spacing and measurements for selectable structured list](images/structured-list-style-6.png)
-
-</div>
-
-<Caption>
-  Spacing and measurements for selectable structured list with hang alignment |
-  px / rem.
+  Structure and spacing measurements for selectable structured list with a feature flag | px / rem.
 </Caption>
 
 ## Size
 
-There are two structured list sizes: default and condensed.
+There are two structured list height sizes: **default** and **condensed**.
 
-| Element  | Size      | px / rem  |
-| -------- | --------- | --------- |
-| Row item | Default   | 60 / 3.75 |
-|          | Condensed | 36 / 2.25 |
+| Element  | Size      | Height (px/rem)  |
+| -------- | --------- | ---------------- |
+| Row      | Default   | 60 / 3.75        |
+|          | Condensed | 36 / 2.25        |
 
 <div className="image--fixed">
 
-![Sizes of structured list with selection](images/structured-list-style-7.png)
+![Structured list sizes | px / rem](images/structured-list-style-size.png)
 
 </div>
 
-<Caption>Default and condensed sizes for structured lists</Caption>
+<Caption> Structured list sizes | px / rem </Caption>
+
+## Feedback
+
+Help us improve this component by providing feedback, asking questions, and leaving any other comments on [GitHub](https://github.com/carbon-design-system/carbon-website/issues/new?assignees=&labels=feedback&template=feedback.md).
