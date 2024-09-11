@@ -3,8 +3,9 @@
 ![Deployment status](https://github.com/carbon-design-system/carbon-website/workflows/Deployment%20status/badge.svg)
 
 This is the [Carbon Design System website](http://www.carbondesignsystem.com).
-It's built using the [gatsby-theme-carbon](https://gatsby.carbondesignsystem.com/)
-with [GatsbyJS](https://www.gatsbyjs.org/).
+It's built using the
+[gatsby-theme-carbon](https://gatsby.carbondesignsystem.com/) with
+[GatsbyJS](https://www.gatsbyjs.org/).
 
 ## 📂 Structure
 
@@ -22,8 +23,10 @@ src
 ## 👩‍💻 Develop
 
 - 🤝 [Contribution guidelines](.github/CONTRIBUTING.md)
-- 📚 [Content and Markdown guidelines](https://gatsby-theme-carbon.now.sh/components/markdown)
-- 🗺 [Navigation guidelines](https://gatsby-theme-carbon.now.sh/guides/navigation/sidebar)
+- 📚
+  [Content and Markdown guidelines](https://gatsby-theme-carbon.now.sh/components/markdown)
+- 🗺
+  [Navigation guidelines](https://gatsby-theme-carbon.now.sh/guides/navigation/sidebar)
 
 - `yarn install` – install dependencies
 - `yarn dev` – start the development server
