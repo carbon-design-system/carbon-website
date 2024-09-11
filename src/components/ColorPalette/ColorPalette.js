@@ -179,7 +179,8 @@ const ColorPalette = ({
             onChange={handleKeyboard}
             className={paletteSwitcher}
             selectionMode="automatic"
-            selectedIndex={0}>
+            selectedIndex={0}
+            size="lg">
             <Switch text={switcherOne} onClick={activateFirstSwitcher} />
             <Switch text={switcherTwo} onClick={activateSecondSwitcher} />
           </ContentSwitcher>

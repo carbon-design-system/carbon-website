@@ -9,12 +9,14 @@ import {
 import { CopyToClipboard } from 'react-copy-to-clipboard/lib/Component';
 import StickyContainer from '../TypesetStyle/StickyContainer';
 import colorTokens from '../../data/guidelines/color-tokens';
+import H3 from 'gatsby-theme-carbon/src/components/markdown/H3';
 
 export default class ColorTokenTable extends React.Component {
   state = {
     theme: 'white',
     sticky: false,
     mobile: false,
+    type: 'core',
   };
 
   componentDidMount() {
@@ -23,6 +25,7 @@ export default class ColorTokenTable extends React.Component {
         mobile: true,
       });
     }
+    this.setState({ type: this.props.type });
     this.addResizeListener();
     this.addScrollListener();
   }
@@ -159,351 +162,402 @@ export default class ColorTokenTable extends React.Component {
           </ContentSwitcher>
         </StickyContainer>
         <section>
-          <div className="cds--col-lg-7">
-            <h3 className="page-h3">Background</h3>
-          </div>
-          <div className="cds--col-lg-12 cds--no-gutter">
-            <table className="page-table">
-              <thead>
-                <tr>
-                  <th>Token</th>
-                  <th>Role</th>
-                  <th>Value</th>
-                </tr>
-              </thead>
-              <tbody>
-                {Object.keys(colorTokens['background-tokens']).map((token, i) =>
-                  this.renderToken(
-                    token,
-                    colorTokens['background-tokens'][token],
-                    i
-                  )
-                )}
-              </tbody>
-            </table>
-          </div>
-          <div className="cds--col-lg-7">
-            <h3 className="page-h3">Layer</h3>
-          </div>
-          <div className="cds--col-lg-12 cds--no-gutter">
-            <table className="page-table">
-              <thead>
-                <tr>
-                  <th>Token</th>
-                  <th>Role</th>
-                  <th>Value</th>
-                </tr>
-              </thead>
-              <tbody>
-                {Object.keys(colorTokens['layer-tokens']).map((token, i) =>
-                  this.renderToken(token, colorTokens['layer-tokens'][token], i)
-                )}
-              </tbody>
-            </table>
-          </div>
-          <div className="cds--col-lg-7">
-            <h3 className="page-h3">Layer accent</h3>
-          </div>
-          <div className="cds--col-lg-12 cds--no-gutter">
-            <table className="page-table">
-              <thead>
-                <tr>
-                  <th>Token</th>
-                  <th>Role</th>
-                  <th>Value</th>
-                </tr>
-              </thead>
-              <tbody>
-                {Object.keys(colorTokens['layer-accent-tokens']).map(
-                  (token, i) =>
-                    this.renderToken(
-                      token,
-                      colorTokens['layer-accent-tokens'][token],
-                      i
-                    )
-                )}
-              </tbody>
-            </table>
-          </div>
-          <div className="cds--col-lg-7">
-            <h3 className="page-h3">Field</h3>
-          </div>
-          <div className="cds--col-lg-12 cds--no-gutter">
-            <table className="page-table">
-              <thead>
-                <tr>
-                  <th>Token</th>
-                  <th>Role</th>
-                  <th>Value</th>
-                </tr>
-              </thead>
-              <tbody>
-                {Object.keys(colorTokens['field-tokens']).map((token, i) =>
-                  this.renderToken(token, colorTokens['field-tokens'][token], i)
-                )}
-              </tbody>
-            </table>
-          </div>
-          <div className="cds--col-lg-7">
-            <h3 className="page-h3">Border</h3>
-          </div>
-          <div className="cds--col-lg-12 cds--no-gutter">
-            <table className="page-table">
-              <thead>
-                <tr>
-                  <th>Token</th>
-                  <th>Role</th>
-                  <th>Value</th>
-                </tr>
-              </thead>
-              <tbody>
-                {Object.keys(colorTokens['border-tokens']).map((token, i) =>
-                  this.renderToken(
-                    token,
-                    colorTokens['border-tokens'][token],
-                    i
-                  )
-                )}
-              </tbody>
-            </table>
-          </div>
-          <div className="cds--col-lg-7">
-            <h3 className="page-h3">Text</h3>
-          </div>
-          <div className="cds--col-lg-12 cds--no-gutter">
-            <table className="page-table">
-              <thead>
-                <tr>
-                  <th>Token</th>
-                  <th>Role</th>
-                  <th>Value</th>
-                </tr>
-              </thead>
-              <tbody>
-                {Object.keys(colorTokens['text-tokens']).map((token, i) =>
-                  this.renderToken(token, colorTokens['text-tokens'][token], i)
-                )}
-              </tbody>
-            </table>
-          </div>
-          <div className="cds--col-lg-7">
-            <h3 className="page-h3">Link</h3>
-          </div>
-          <div className="cds--col-lg-12 cds--no-gutter">
-            <table className="page-table">
-              <thead>
-                <tr>
-                  <th>Token</th>
-                  <th>Role</th>
-                  <th>Value</th>
-                </tr>
-              </thead>
-              <tbody>
-                {Object.keys(colorTokens['link-tokens']).map((token, i) =>
-                  this.renderToken(token, colorTokens['link-tokens'][token], i)
-                )}
-              </tbody>
-            </table>
-          </div>
-          <div className="cds--col-lg-7">
-            <h3 className="page-h3">Icon</h3>
-          </div>
-          <div className="cds--col-lg-12 cds--no-gutter">
-            <table className="page-table">
-              <thead>
-                <tr>
-                  <th>Token</th>
-                  <th>Role</th>
-                  <th>Value</th>
-                </tr>
-              </thead>
-              <tbody>
-                {Object.keys(colorTokens['icon-tokens']).map((token, i) =>
-                  this.renderToken(token, colorTokens['icon-tokens'][token], i)
-                )}
-              </tbody>
-            </table>
-          </div>
-          <div className="cds--col-lg-7">
-            <h3 className="page-h3">Button</h3>
-          </div>
-          <div className="cds--col-lg-12 cds--no-gutter">
-            <table className="page-table">
-              <thead>
-                <tr>
-                  <th>Token</th>
-                  <th>Role</th>
-                  <th>Value</th>
-                </tr>
-              </thead>
-              <tbody>
-                {Object.keys(colorTokens['button-tokens']).map((token, i) =>
-                  this.renderToken(
-                    token,
-                    colorTokens['button-tokens'][token],
-                    i
-                  )
-                )}
-              </tbody>
-            </table>
-          </div>
-          <div className="cds--col-lg-7">
-            <h3 className="page-h3">Support</h3>
-          </div>
-          <div className="cds--col-lg-12 cds--no-gutter">
-            <table className="page-table">
-              <thead>
-                <tr>
-                  <th>Token</th>
-                  <th>Role</th>
-                  <th>Value</th>
-                </tr>
-              </thead>
-              <tbody>
-                {Object.keys(colorTokens['support-tokens']).map((token, i) =>
-                  this.renderToken(
-                    token,
-                    colorTokens['support-tokens'][token],
-                    i
-                  )
-                )}
-              </tbody>
-            </table>
-          </div>
-          <div className="cds--col-lg-7">
-            <h3 className="page-h3">Focus</h3>
-          </div>
-          <div className="cds--col-lg-12 cds--no-gutter">
-            <table className="page-table">
-              <thead>
-                <tr>
-                  <th>Token</th>
-                  <th>Role</th>
-                  <th>Value</th>
-                </tr>
-              </thead>
-              <tbody>
-                {Object.keys(colorTokens['focus-tokens']).map((token, i) =>
-                  this.renderToken(token, colorTokens['focus-tokens'][token], i)
-                )}
-              </tbody>
-            </table>
-          </div>
-          <div className="cds--col-lg-7">
-            <h3 className="page-h3">Miscellaneous</h3>
-          </div>
-          <div className="cds--col-lg-12 cds--no-gutter">
-            <table className="page-table">
-              <thead>
-                <tr>
-                  <th>Token</th>
-                  <th>Role</th>
-                  <th>Value</th>
-                </tr>
-              </thead>
-              <tbody>
-                {Object.keys(colorTokens['miscellaneous']).map((token, i) =>
-                  this.renderToken(
-                    token,
-                    colorTokens['miscellaneous'][token],
-                    i
-                  )
-                )}
-              </tbody>
-            </table>
-          </div>
-          <div className="cds--col-lg-7">
-            <h3 className="page-h3">Tag</h3>
-          </div>
-          <div className="cds--col-lg-12 cds--no-gutter">
-            <table className="page-table">
-              <thead>
-                <tr>
-                  <th>Token</th>
-                  <th>Role</th>
-                  <th>Value</th>
-                </tr>
-              </thead>
-              <tbody>
-                {Object.keys(colorTokens['tag']).map((token, i) =>
-                  this.renderToken(
-                    token,
-                    colorTokens['tag'][token],
-                    i
-                  )
-                )}
-              </tbody>
-            </table>
-          </div>
-          <div className="cds--col-lg-7">
-            <h3 className="page-h3">AI</h3>
-          </div>
-          <div className="cds--col-lg-12 cds--no-gutter">
-            <table className="page-table">
-              <thead>
-                <tr>
-                  <th>Token</th>
-                  <th>Role</th>
-                  <th>Value</th>
-                </tr>
-              </thead>
-              <tbody>
-                {Object.keys(colorTokens['ai']).map((token, i) =>
-                  this.renderToken(
-                    token,
-                    colorTokens['ai'][token],
-                    i
-                  )
-                )}
-              </tbody>
-            </table>
-          </div>
-          <div className="cds--col-lg-7">
-            <h3 className="page-h3">Chat</h3>
-          </div>
-          <div className="cds--col-lg-12 cds--no-gutter">
-            <table className="page-table">
-              <thead>
-                <tr>
-                  <th>Token</th>
-                  <th>Role</th>
-                  <th>Value</th>
-                </tr>
-              </thead>
-              <tbody>
-                {Object.keys(colorTokens['chat']).map((token, i) =>
-                  this.renderToken(
-                    token,
-                    colorTokens['chat'][token],
-                    i
-                  )
-                )}
-              </tbody>
-            </table>
-          </div>
-          <div className="cds--col-lg-7">
-            <h3 className="page-h3">Chat button</h3>
-          </div>
-          <div className="cds--col-lg-12 cds--no-gutter">
-            <table className="page-table">
-              <thead>
-                <tr>
-                  <th>Token</th>
-                  <th>Role</th>
-                  <th>Value</th>
-                </tr>
-              </thead>
-              <tbody>
-                {Object.keys(colorTokens['chat-button']).map((token, i) =>
-                  this.renderToken(
-                    token,
-                    colorTokens['chat-button'][token],
-                    i
-                  )
-                )}
-              </tbody>
-            </table>
-          </div>
+          {this.state.type === 'core' && (
+            <>
+              <div className="cds--col-lg-7">
+                <H3 className="page-H3" id="background">
+                  Background
+                </H3>
+              </div>
+              <div className="cds--col-lg-12 cds--no-gutter">
+                <table className="page-table">
+                  <thead>
+                    <tr>
+                      <th>Token</th>
+                      <th>Role</th>
+                      <th>Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Object.keys(colorTokens['background-tokens']).map(
+                      (token, i) =>
+                        this.renderToken(
+                          token,
+                          colorTokens['background-tokens'][token],
+                          i
+                        )
+                    )}
+                  </tbody>
+                </table>
+              </div>
+              <div className="cds--col-lg-7">
+                <H3 className="page-H3">Layer</H3>
+              </div>
+              <div className="cds--col-lg-12 cds--no-gutter">
+                <table className="page-table">
+                  <thead>
+                    <tr>
+                      <th>Token</th>
+                      <th>Role</th>
+                      <th>Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Object.keys(colorTokens['layer-tokens']).map((token, i) =>
+                      this.renderToken(
+                        token,
+                        colorTokens['layer-tokens'][token],
+                        i
+                      )
+                    )}
+                  </tbody>
+                </table>
+              </div>
+              <div className="cds--col-lg-7">
+                <H3 className="page-H3">Layer accent</H3>
+              </div>
+              <div className="cds--col-lg-12 cds--no-gutter">
+                <table className="page-table">
+                  <thead>
+                    <tr>
+                      <th>Token</th>
+                      <th>Role</th>
+                      <th>Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Object.keys(colorTokens['layer-accent-tokens']).map(
+                      (token, i) =>
+                        this.renderToken(
+                          token,
+                          colorTokens['layer-accent-tokens'][token],
+                          i
+                        )
+                    )}
+                  </tbody>
+                </table>
+              </div>
+              <div className="cds--col-lg-7">
+                <H3 className="page-H3">Field</H3>
+              </div>
+              <div className="cds--col-lg-12 cds--no-gutter">
+                <table className="page-table">
+                  <thead>
+                    <tr>
+                      <th>Token</th>
+                      <th>Role</th>
+                      <th>Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Object.keys(colorTokens['field-tokens']).map((token, i) =>
+                      this.renderToken(
+                        token,
+                        colorTokens['field-tokens'][token],
+                        i
+                      )
+                    )}
+                  </tbody>
+                </table>
+              </div>
+              <div className="cds--col-lg-7">
+                <H3 className="page-H3">Border</H3>
+              </div>
+              <div className="cds--col-lg-12 cds--no-gutter">
+                <table className="page-table">
+                  <thead>
+                    <tr>
+                      <th>Token</th>
+                      <th>Role</th>
+                      <th>Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Object.keys(colorTokens['border-tokens']).map((token, i) =>
+                      this.renderToken(
+                        token,
+                        colorTokens['border-tokens'][token],
+                        i
+                      )
+                    )}
+                  </tbody>
+                </table>
+              </div>
+              <div className="cds--col-lg-7">
+                <H3 className="page-H3">Text</H3>
+              </div>
+              <div className="cds--col-lg-12 cds--no-gutter">
+                <table className="page-table">
+                  <thead>
+                    <tr>
+                      <th>Token</th>
+                      <th>Role</th>
+                      <th>Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Object.keys(colorTokens['text-tokens']).map((token, i) =>
+                      this.renderToken(
+                        token,
+                        colorTokens['text-tokens'][token],
+                        i
+                      )
+                    )}
+                  </tbody>
+                </table>
+              </div>
+              <div className="cds--col-lg-7">
+                <H3 className="page-H3">Link</H3>
+              </div>
+              <div className="cds--col-lg-12 cds--no-gutter">
+                <table className="page-table">
+                  <thead>
+                    <tr>
+                      <th>Token</th>
+                      <th>Role</th>
+                      <th>Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Object.keys(colorTokens['link-tokens']).map((token, i) =>
+                      this.renderToken(
+                        token,
+                        colorTokens['link-tokens'][token],
+                        i
+                      )
+                    )}
+                  </tbody>
+                </table>
+              </div>
+              <div className="cds--col-lg-7">
+                <H3 className="page-H3">Icon</H3>
+              </div>
+              <div className="cds--col-lg-12 cds--no-gutter">
+                <table className="page-table">
+                  <thead>
+                    <tr>
+                      <th>Token</th>
+                      <th>Role</th>
+                      <th>Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Object.keys(colorTokens['icon-tokens']).map((token, i) =>
+                      this.renderToken(
+                        token,
+                        colorTokens['icon-tokens'][token],
+                        i
+                      )
+                    )}
+                  </tbody>
+                </table>
+              </div>
+              <div className="cds--col-lg-7">
+                <H3 className="page-H3">Support</H3>
+              </div>
+              <div className="cds--col-lg-12 cds--no-gutter">
+                <table className="page-table">
+                  <thead>
+                    <tr>
+                      <th>Token</th>
+                      <th>Role</th>
+                      <th>Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Object.keys(colorTokens['support-tokens']).map(
+                      (token, i) =>
+                        this.renderToken(
+                          token,
+                          colorTokens['support-tokens'][token],
+                          i
+                        )
+                    )}
+                  </tbody>
+                </table>
+              </div>
+              <div className="cds--col-lg-7">
+                <H3 className="page-H3">Focus</H3>
+              </div>
+              <div className="cds--col-lg-12 cds--no-gutter">
+                <table className="page-table">
+                  <thead>
+                    <tr>
+                      <th>Token</th>
+                      <th>Role</th>
+                      <th>Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Object.keys(colorTokens['focus-tokens']).map((token, i) =>
+                      this.renderToken(
+                        token,
+                        colorTokens['focus-tokens'][token],
+                        i
+                      )
+                    )}
+                  </tbody>
+                </table>
+              </div>
+              <div className="cds--col-lg-7">
+                <H3 className="page-H3">Miscellaneous</H3>
+              </div>
+              <div className="cds--col-lg-12 cds--no-gutter">
+                <table className="page-table">
+                  <thead>
+                    <tr>
+                      <th>Token</th>
+                      <th>Role</th>
+                      <th>Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Object.keys(colorTokens['miscellaneous']).map((token, i) =>
+                      this.renderToken(
+                        token,
+                        colorTokens['miscellaneous'][token],
+                        i
+                      )
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            </>
+          )}
+          {this.state.type === 'component' && (
+            <>
+              <div className="cds--col-lg-7">
+                <H3 className="page-H3">Button</H3>
+              </div>
+              <div className="cds--col-lg-12 cds--no-gutter">
+                <table className="page-table">
+                  <thead>
+                    <tr>
+                      <th>Token</th>
+                      <th>Role</th>
+                      <th>Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Object.keys(colorTokens['button-tokens']).map((token, i) =>
+                      this.renderToken(
+                        token,
+                        colorTokens['button-tokens'][token],
+                        i
+                      )
+                    )}
+                  </tbody>
+                </table>
+              </div>
+              <div className="cds--col-lg-7">
+                <H3 className="page-H3">Tag</H3>
+              </div>
+              <div className="cds--col-lg-12 cds--no-gutter">
+                <table className="page-table">
+                  <thead>
+                    <tr>
+                      <th>Token</th>
+                      <th>Role</th>
+                      <th>Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Object.keys(colorTokens['tag']).map((token, i) =>
+                      this.renderToken(token, colorTokens['tag'][token], i)
+                    )}
+                  </tbody>
+                </table>
+              </div>
+              <div className="cds--col-lg-7">
+                <H3 className="page-H3">Notification</H3>
+              </div>
+              <div className="cds--col-lg-12 cds--no-gutter">
+                <table className="page-table">
+                  <thead>
+                    <tr>
+                      <th>Token</th>
+                      <th>Role</th>
+                      <th>Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Object.keys(colorTokens['notification']).map((token, i) =>
+                      this.renderToken(
+                        token,
+                        colorTokens['notification'][token],
+                        i
+                      )
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            </>
+          )}
+          {this.state.type === 'ai' && (
+            <>
+              <div className="cds--col-lg-7">
+                <H3 className="page-h3">General AI</H3>
+              </div>
+              <div className="cds--col-lg-12 cds--no-gutter">
+                <table className="page-table">
+                  <thead>
+                    <tr>
+                      <th>Token</th>
+                      <th>Role</th>
+                      <th>Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Object.keys(colorTokens['ai']).map((token, i) =>
+                      this.renderToken(token, colorTokens['ai'][token], i)
+                    )}
+                  </tbody>
+                </table>
+              </div>
+              <div className="cds--col-lg-7">
+                <H3 className="page-h3">Chat</H3>
+              </div>
+              <div className="cds--col-lg-12 cds--no-gutter">
+                <table className="page-table">
+                  <thead>
+                    <tr>
+                      <th>Token</th>
+                      <th>Role</th>
+                      <th>Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Object.keys(colorTokens['chat']).map((token, i) =>
+                      this.renderToken(token, colorTokens['chat'][token], i)
+                    )}
+                  </tbody>
+                </table>
+              </div>
+              <div className="cds--col-lg-7">
+                <H3 className="page-h3">Chat button</H3>
+              </div>
+              <div className="cds--col-lg-12 cds--no-gutter">
+                <table className="page-table">
+                  <thead>
+                    <tr>
+                      <th>Token</th>
+                      <th>Role</th>
+                      <th>Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Object.keys(colorTokens['chat-button']).map((token, i) =>
+                      this.renderToken(
+                        token,
+                        colorTokens['chat-button'][token],
+                        i
+                      )
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            </>
+          )}
         </section>
       </div>
     );
