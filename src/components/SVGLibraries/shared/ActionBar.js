@@ -53,8 +53,7 @@ const ActionBar = ({
       aria-hidden={!isActionBarVisible}
       className={cx(container, {
         [hidden]: !isActionBarVisible,
-      })}
-    >
+      })}>
       <Button
         kind="ghost"
         size="small"
