@@ -2,11 +2,25 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import componentList from '../../data/components.json';
+import { Tag } from '@carbon/react';
 
 // only display components where overview is true in the data
 const filteredComponentList = componentList.components.filter(
   (item) => item.overview !== false
 );
+
+// We want to display tags for components that support feature flags
+const isFeatureFlagSupported = (component) => {
+  return [
+    'Menu buttons',
+    'Modal',
+    'Notification',
+    'Structured list',
+    'Tile',
+    'Treeview',
+  ].includes(component);
+};
+
 class ComponentOverview extends React.Component {
   renderItems = (currentItem) => {
     const { component } = currentItem;
@@ -39,7 +53,12 @@ class ComponentOverview extends React.Component {
                 alt={component}
                 className="component-item__img"
               />
-              <p className="component-name">{component}</p>
+              <p className="component-name">{component}</p>{' '}
+              {isFeatureFlagSupported(component) ? (
+                <Tag type="blue" className="feature-flag-tag">
+                  Feature flag
+                </Tag>
+              ) : null}
             </Link>
           </div>
         </div>
