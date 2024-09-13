@@ -43,7 +43,7 @@ class ComponentOverview extends React.Component {
               />
               <p className="component-name">{component}</p>{' '}
               {featureFlag ? (
-                <Tag type="blue" className="feature-flag-tag">
+                <Tag type="blue" className="component-tag--feature-flag">
                   Feature flag
                 </Tag>
               ) : null}
