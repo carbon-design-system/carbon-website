@@ -9,21 +9,9 @@ const filteredComponentList = componentList.components.filter(
   (item) => item.overview !== false
 );
 
-// We want to display tags for components that support feature flags
-const isFeatureFlagSupported = (component) => {
-  return [
-    'Menu buttons',
-    'Modal',
-    'Notification',
-    'Structured list',
-    'Tile',
-    'Treeview',
-  ].includes(component);
-};
-
 class ComponentOverview extends React.Component {
   renderItems = (currentItem) => {
-    const { component } = currentItem;
+    const { component, featureFlag } = currentItem;
     let componentUrl;
     if (component === 'Multiselect') {
       componentUrl = '/components/dropdown/usage';
@@ -54,7 +42,7 @@ class ComponentOverview extends React.Component {
                 className="component-item__img"
               />
               <p className="component-name">{component}</p>{' '}
-              {isFeatureFlagSupported(component) ? (
+              {featureFlag ? (
                 <Tag type="blue" className="feature-flag-tag">
                   Feature flag
                 </Tag>
