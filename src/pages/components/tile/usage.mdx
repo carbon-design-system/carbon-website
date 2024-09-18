@@ -506,9 +506,10 @@ The clickable tile is triggered by clicking anywhere within the tile container.
 
 #### Keyboard
 
-— `Tabs`moves focus forward through clickable tiles in a logical order. —
-`Shift` + `Tab`moves focus backward through clickable tiles in a logical order.
-— `Enter` activates the tile and navigates you to its destination.
+- `Tabs`moves focus forward through clickable tiles in a logical order. —
+  `Shift` + `Tab`moves focus backward through clickable tiles in a logical
+  order.
+- `Enter` activates the tile and navigates you to its destination.
 
 ### Clickable areas
 
@@ -531,120 +532,228 @@ tiles can contain internal CTAs, like links to documentation, if the CTA is
 given a click target in addition to the tile's. Selectable tiles can either have
 single-selection or multi-selection.
 
+Selectable tile has available feature flags.
+
+### Single-select
+
+Use single-select tiles when the user can only select one tile from a tile
+group.
+
+<Row>
+<Column colLg={12}>
+<Tabs>
+
+<Tab label="Flag enabled">
+
+![Single-select tile feature flag enabled](images/tile-usage-selectable-single-select-flag-enabled.png)
+
+</Tab>
+
+<Tab label="Flag disabled">
+
+![Single-select tile feature flag disabled](images/tile-usage-selectable-single-select-flag-disabled.png)
+
+</Tab>
+
+</Tabs>
+
+</Column>
+</Row>
+
+### Multi-select
+
+Use multi-select tiles when the user can select multiple tiles from a tile
+group.
+
+<Row>
+<Column colLg={12}>
+<Tabs>
+
+<Tab label="Flag enabled">
+
+![Multi-select tile feature flag enabled](images/tile-usage-selectable-multi-select-flag-enabled.png)
+
+</Tab>
+
+<Tab label="Flag disabled">
+
+![Multi-select tile feature flag disabled](images/tile-usage-selectable-multi-select-flag-disabled.png)
+
+</Tab>
+
+</Tabs>
+
+</Column>
+</Row>
+
+### Anatomy
+
 <Row>
 <Column colLg={8}>
 
-![Example image of radio-button/single-select tile](images/tile-usage-4.png)
+![Anatomy of selectable tile with feature flags](images/tile-usage-selectable-anatomy.png)
 
-<Caption>Single-select tiles</Caption>
+<Caption>Anatomy of selectable tile with feature flags</Caption>
 
-![Example image of checkbox/multi-select tile](images/tile-usage-5.png)
+</Column>
+</Row>
 
-<Caption>Multi-select tiles</Caption>
+1. **Container**: Contains all content within a tile.
+2. **Text**: The text within a tile.
+3. **Icon**: The icon that visually indicates the tile is selectable.
+4. **Border**: The border that visually indicates the tile is interactive.
+
+### States
+
+Selectable tiles have **enabled**, **hover**, **focus**, **hover selected**,
+**selected**, and **disabled** states. For more information about base tile
+states, see the [Style](https://carbondesignsystem.com/components/tile/style/)
+tab.
+
+### Interactions
+
+#### Mouse
+
+The clickable tile is triggered by clicking anywhere within the tile container.
+
+#### Keyboard
+
+- `Tab` moves focus forward through selectable tiles in a logical order.
+- `Shift` + `Tab` moves focus backward through selectable tiles in a logical
+  order.
+- `Enter` selects the tile.
+
+### Clickable areas
+
+Selectable tiles can be selected by clicking anywhere on the tiles container.
+
+<Row>
+<Column colLg={8}>
+
+![Clickable areas of selectable tile with feature flags](images/tile-usage-selectable-clickable-areas.png)
+
+<Caption>Clickable areas of selectable tile with feature flags</Caption>
 
 </Column>
 </Row>
 
 ### Expandable
 
-Expandable tiles are helpful for hiding and showing large amounts of content to
-a user. When expanded, tiles push content down the page. They allow the user to
-specifically focus on featured content while having access to the rest of the
-information. Expandable tiles can contain internal CTAs (like links to docs) if
-they are given their own click targets.
+Expandable tiles can either be triggered as a whole or contain internal CTAs
+only if they are given their own click targets. In these cases, the tile’s click
+target is reduced to only the icon button.
+
+Expandable tile has an available feature flag.
+
+### Without interactive elements
+
+Use the container expansion functionality to expand the tile when there are no
+interactive elements.
+
+<Row>
+<Column colLg={12}>
+<Tabs>
+
+<Tab label="Flag enabled">
+
+![Expandable tile without interactive elements feature flag enabled](images/tile-usage-expandable-non-interactive-flag-enabled.png)
+
+</Tab>
+
+<Tab label="Flag disabled">
+
+![Expandable tile without interactive elements feature flag disabled](images/tile-usage-expandable-non-interactive-flag-disabled.png)
+
+</Tab>
+
+</Tabs>
+
+</Column>
+</Row>
+
+### With interactive elements
+
+Use the button expansion functionality to expand the tile when including
+interactive elements.
+
+<Row>
+<Column colLg={12}>
+<Tabs>
+
+<Tab label="Flag enabled">
+
+![Expandable tile with interactive elements feature flag enabled](images/tile-usage-expandable-interactive-flag-enabled.png)
+
+</Tab>
+
+<Tab label="Flag disabled">
+
+![Expandable tile with interactive elements feature flag disabled](images/tile-usage-expandable-interactive-flag-disabled.png)
+
+</Tab>
+
+</Tabs>
+
+</Column>
+</Row>
+
+### Anatomy
 
 <Row>
 <Column colLg={8}>
 
-![Example image of expandable tile with interactive elements](images/tile-usage-6.png)
+![Anatomy of expandable tile with a feature flag](images/tile-usage-expandable-anatomy.png)
 
-<Caption>Expandable tile with interactive elements</Caption>
-
-![Example image of expandable tile without interactive elements](images/tile-usage-7.png)
-
-<Caption>Expandable tile without interactive elements</Caption>
+<Caption>Anatomy of expandable tile with a feature flag</Caption>
 
 </Column>
 </Row>
+
+1. **Container**: Contains all content within a tile.
+2. **Text**: The text within a tile.
+3. **Interactive elements (optional)**: Interactive elements like links or
+   buttons placed within a tile.
+4. **Icon**: The icon that visually indicates the tile is expandable.
+5. **Border**: The border that visually indicates the tile is interactive.
 
 ### States
 
-For detailed visual information about the various states for this component, see
-the [Style](https://carbondesignsystem.com/components/tile/style) tab.
-
-| State      | When to use                                                                                                                                                                                                                                                                                                        |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| _Enabled_  | When a tile is live but a user is not directly interacting with it. This is commonly referred to as the default or normal state of the component                                                                                                                                                                   |
-| _Hover_    | When a user is hovering over the tile with the mouse cursor to interact with it (except base tile)                                                                                                                                                                                                                 |
-| _Focus_    | When a user `tabs` to or clicks on the tile, it becomes focused, indicating the user has successfully navigated to the component (except base tile)                                                                                                                                                                |
-| _Selected_ | When a user `enters` or clicks on the single-select tile or the multi-select tile to select an option or multiple options                                                                                                                                                                                          |
-| _Disabled_ | When the user is not allowed to interact with clickable and selectable (single-select and multi-select) tiles due to either permissions, dependencies, or pre-requisites. The disabled state completely removes the interactive function from a component. The styling is not subject to WCAG contrast compliance. |
-
-<Row>
-<Column colLg={8}>
-
-![Clickable tiles vs disabled tiles](images/tile-usage-21.png)
-
-<Caption>
-  Clickable tile's disabled state turns the default icon into the error icon.
-</Caption>
-
-</Column>
-</Row>
+Selectable tiles have **enabled**, **hover**, **focus**, and **disabled**
+states. For more information about base tile states, see the
+[Style](https://carbondesignsystem.com/components/tile/style/) tab.
 
 ### Interactions
 
 #### Mouse
 
-Users can trigger an item by clicking anywhere in any tile container, except
-base tiles.
-
-<Row>
-<Column colLg={8}>
-
-![Clickable, expandable, and selectable tiles are clickable anywhere within the tile.](images/tile-usage-22.png)
-
-<Caption>
-  Clickable, expandable, and selectable tiles are clickable anywhere within the
-  tile.
-</Caption>
-
-</Column>
-</Row>
-
-<Row>
-<Column colLg={8}>
-
-![Base tiles are static, except buttons or links .](images/tile-usage-23.png)
-
-<Caption>Base tiles are static, except buttons or links.</Caption>
-
-</Column>
-</Row>
-
-Expandable tiles can either be triggered as a whole or contain internal CTAs
-only if they are given their own click targets. In these cases, the tile’s click
-target is reduced to only the icon button.
-
-<Row>
-<Column colLg={8}>
-
-![Expandable tiles click targets](images/tile-usage-24.png)
-
-</Column>
-</Row>
+- Without interactive elements: The tile is expanded by clicking anywhere within
+  the tile container.
+- With interactive elements: The tile is expanded by clicking on the ghost icon
+  button in the bottom right of the tile.
 
 #### Keyboard
 
-Specific keyboard interactions will depend on the type of tile you are using and
-what content it contains but all types of tiles can take focus.
+- `Tab` moves focus forward through tiles. If there are interactive elements,
+  `Tab` moves focus forward in a logical order. — `Shift` + `Tab` moves focus
+  backward through tiles. If there are interactive elements, `Tab` moves focus
+  forward in a logical order. — `Enter` expands the tile.
 
-| Key             | Interaction                                                                                                                                                                 |
-| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Tab             | Move forward through tiles (if tiles themselves are clickable) and interactive elements within the tiles in a logical order                                                 |
-| Shift + Tab     | Move backward through tiles (if tiles themselves are clickable) and interactive elements within the tiles in a logical order                                                |
-| Return or Enter | Return or enter will open the tile (if the tile itself is clickable). If the tile is not clickable but has interactive elements, their corresponding actions are performed. |
-| Space           | If the tile is selectable, the space bar will toggle tile selection.                                                                                                        |
+### Clickable areas
+
+Expandable tiles can be expanded by clicking anywhere on the tiles container. If
+the tile has interactive elements, it can be expanded by clicking on the ghost
+icon button in the bottom right corner. Interactive elements within the tile can
+be clicked on.
+
+<Row>
+<Column colLg={8}>
+
+![Clickable areas of expandable tile with a feature flag](images/tile-usage-expandable-clickable-areas.png)
+
+<Caption>Clickable areas of expandable tile with a feature flag</Caption>
+
+</Column>
+</Row>
 
 ## AI presence
 
