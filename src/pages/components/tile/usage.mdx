@@ -1,14 +1,18 @@
 ---
 title: Tile
 description:
-  Tiles are a flexible component for displaying a wide variety of content,
-  including informational, getting started, how-to, next steps, and more.
+  Tiles are a highly flexible component for displaying a wide variety of
+  content, including informational, getting started, how-to, next steps, and
+  more.
 tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 ---
 
 import A11yStatus from 'components/A11yStatus';
+import { Tag } from '@carbon/react';
 
 <PageDescription>
+
+<Tag type="blue">Feature flag</Tag>
 
 Tiles are a highly flexible component for displaying a wide variety of content,
 including information, getting started, how-to, next steps, and more.
@@ -22,13 +26,6 @@ Tile
 changes the visual appearance of the component and introduces an AI
 explainability feature when AI is present in the component.
 
-<br />
-
-Additionally, a visual accessibility enhancement is available with
-[experimental tiles](https://react.carbondesignsystem.com/?path=/docs/experimental-feature-flags-tile--overview).
-We encourage teams to start using these tiles, although current tiles are still
-supported.
-
 </InlineNotification>
 
 <AnchorLinks>
@@ -37,7 +34,11 @@ supported.
 <AnchorLink>Overview</AnchorLink>
 <AnchorLink>Variants</AnchorLink>
 <AnchorLink>Formatting</AnchorLink>
-<AnchorLink>Universal behaviors</AnchorLink>
+<AnchorLink>Content</AnchorLink>
+<AnchorLink>Base</AnchorLink>
+<AnchorLink>Clickable</AnchorLink>
+<AnchorLink>Selectable</AnchorLink>
+<AnchorLink>Expandable</AnchorLink>
 <AnchorLink>AI presence</AnchorLink>
 <AnchorLink>Related</AnchorLink>
 <AnchorLink>References</AnchorLink>
@@ -110,33 +111,35 @@ supported.
 
 ## Overview
 
-Carbon ships a basic tile structure that responds to the grid. Tiles can contain
-type, images and/or blocks of color. However, Carbon tiles have no pre-set
-styles for the content inside. Tile usage guidance focuses solely on basic tile
-functions—not the information hierarchy within the tile or guidance around
-additional interactive elements that the tile may contain.
+Tile is a component that can contain various content and nested components and
+can have interactive functions. Tile is often laid out in groups, is a different
+color than the UI background, and responds to the grid. Tiles have no pre-set
+styles, and it is up to product teams to determine what to include in tiles
+since the use cases can vary widely.
 
 <Row>
 <Column colLg={12}>
 
-![Example image of tiles on the dashboard](images/tile-usage-1.png)
+![Example of the tile component in a UI](images/tile-usage-overview.png)
+
+<Caption>Example of the tile component in a UI</Caption>
 
 </Column>
 </Row>
 
-#### Tiles versus Cards
+#### Tiles versus cards
 
 Tiles are simple and foundational. Cards can be very complex. Cards are built
 upon the tile foundation and have various patterns of information hierarchy,
 multiple actions, overflow menus, selectable features, etc. Carbon does not have
-a Card pattern yet, but we link out to several card patterns within our pattern
+a card pattern, but we link out to several card patterns within our pattern
 asset library (PAL) ecosystem below:
 
-- [Productive vs. Expressive cards](https://pages.github.ibm.com/cdai-design/pal/components/card/overview/)
-  (Carbon for Cloud & Cognitive)
+- [Productive versus Expressive cards](https://pages.github.ibm.com/cdai-design/pal/components/card/overview/)
+  (Carbon for IBM Products)
 - [Dashboard cards](https://pages.github.ibm.com/ai-applications/design/patterns/dashboards-v2/overview/#dashboard-cards)
-  (AI Applications Design)
-- [Card](https://www.ibm.com/standards/carbon/components/cards) (Carbon for
+  (IBM Sustainability Software Design)
+- [Cards](https://www.ibm.com/standards/carbon/components/cards) (Carbon for
   IBM.com)
 
 ### When to use
@@ -152,78 +155,381 @@ some common use cases for when to use tiles:
 
 ### When not to use
 
-Tiles reside in the same plane as the background layer—they do not have
-**elevation**. Tiles organize essential information and have the same visual
-hierarchy as content within the same page.
+Tiles reside on the same plane as the page background layer—they do not have
+elevation. Tiles organize essential information and have the same visual
+hierarchy as content on the same page.
 
-Do not add a drop shadow to tiles and use them on the screen to reveal secondary
-information, actions, or notifications. Use [modals](/components/modal/usage),
+Do not add a drop shadow to tiles and use them to reveal secondary information,
+actions, or notifications. Use [modals](/components/modal/usage),
 [popover](/components/popover/usage), and
 [dialogs](https://carbondesignsystem.com/patterns/dialog-pattern/) which have
-elevation and are appropriate for this function instead.
+elevation and are appropriate for this ues case instead.
 
-## Variants
+### Variants
 
-<InlineNotification>
+Tiles can have different functiosn and are implemented in four ways: base,
+clickable, selectable, and expandable. These tile variants are flexible to
+support various use cases when building more complicated card features.
 
-The
-[experimental tiles](https://react.carbondesignsystem.com/?path=/docs/experimental-feature-flags-tile--overview)
-are applicable to clickable, selectable and expandable tiles — not to base
-tiles.
+| Variant                   | Purpose                                                                                                                                               |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Base](#base)             | For high-level, short, and digestible content pieces such as features, plans, or services offered.                                                    |
+| [Clickable](#clickable)   | For prompting an action, navigating or directing to other pieces of information about the subject matter. This variant has an available feature flag. |
+| [Selectable](#selectable) | For presenting options to a user in a structured manner, such as a set of pricing plans. This variant has available feature flags.                    |
+| [Expandable](#expandable) | For hiding and revealing a large amount of content to focus on specific pieces of information. This variant has an available feature flag.            |
 
-</InlineNotification>
+### Feature flags
 
-Tiles can function or be implemented in four ways—base, clickable, selectable,
-or expandable. These variations of tiles are flexible enough to support a
-variety of different use cases when building more complicated card features.
+Feature flags have been added to the clickable, selectable, and expandable
+variants of tile to improve accessibility and changes its visual appearance, not
+its functionality. For code-specific feature flag information, refer to the
+[Code tab](https://carbondesignsystem.com/components/tile/code/). These current
+variants of tile are not being deprecated, but teams are encouraged to use the
+feature flag tile for their products moving forward.
 
-| Variant                   | Purpose                                                                                                  |
-| ------------------------- | -------------------------------------------------------------------------------------------------------- |
-| [Base](#base)             | For high-level, short, and digestible content pieces such as features, plans, or services offered        |
-| [Clickable](#clickable)   | For prompting an action, navigating or directing to other pieces of information about the subject matter |
-| [Selectable](#selectable) | For presenting options to a user in a structured manner, such as a set of pricing plans                  |
-| [Expandable](#expandable) | For hiding and revealing a large amount of content to focus on specific pieces of information            |
+- A border has been added to the clickable, selectable, and expandable variants
+  of tile to visually indicate they are operable.
+- Single-select tile icons have been changed from checkmark icons to radio
+  button icons, where as multi-select tile icons have been changed from
+  checkmark icons to checkbox icons. These icons appear in the enabled state
+  instead of only on hover before making a selection.
 
-### Base
+<Row>
+<Column colLg={12}>
+<Tabs>
+
+<Tab label="Flag enabled">
+
+![Interactive tiles feature flag enabled](images/tile-usage-feature-flag-enabled.png)
+
+</Tab>
+
+<Tab label="Flag disabled">
+
+![Interactive tiles feature flag disabled](images/tile-usage-feature-flag-disabled.png)
+
+</Tab>
+
+</Tabs>
+
+</Column>
+</Row>
+
+## Formatting
+
+### Sizing
+
+Tile width varies depending on the three basic gutter modes: **wide**,
+**narrow**, and **condensed**. Tile height varies depending on the content
+placed within it while using
+[spacing tokens](https://carbondesignsystem.com/elements/spacing/overview/) and
+following
+[aspect ratios](https://carbondesignsystem.com/elements/2x-grid/usage/#continuity).
+The minimum tile height is a 2:1 aspect ratio. As the content grows, set
+vertical spacing between sections within the content area.
+
+### Alignment
+
+#### Tile groups
+
+Tile groups are helpful when aligning tiles that have a strong relationship.
+Tile groups usually flow horizontally from left to right and have hierarchical
+importance, similar to navigation or catalog tiles.
+
+<Row>
+<Column colLg={12}>
+
+![Example image of tiles on the wide grid](images/tile-usage-wide-grid.png)
+
+<Caption>Example image of tiles on the wide grid</Caption>
+
+</Column>
+</Row>
+
+<Row>
+<Column colLg={12}>
+
+![Example image of tiles on the narrow grid.](images/tile-usage-narrow-grid.png)
+
+<Caption>Example image of tiles on the narrow grid.</Caption>
+
+</Column>
+</Row>
+
+<Row>
+<Column colLg={12}>
+
+![Example image of tiles on the condensed grid](images/tile-usage-condensed-grid.png)
+
+<Caption>Example image of tiles on the condensed grid</Caption>
+
+</Column>
+</Row>
+
+<DoDontRow>
+
+  <DoDont type="do" caption="Do match the tile variants in groups.">
+
+![Example of "do" of tile matching](images/tile-usage-group-do.png)
+
+  </DoDont>
+
+  <DoDont type="dont" caption="Do not mix different variants of tiles in groups.">
+
+![Example of "do not" of tile mixing](images/tile-usage-group-dont.png)
+
+  </DoDont>
+</DoDontRow>
+
+#### Layout
+
+There are three basic layouts for tiles: **standard**, **vertical masonry**, and
+**horizontal masonry**. The standard layout is the the most commonly used.
+
+- In a standard layout, tiles are the same in height and width as all other
+  tiles in the group.
+- In a vertical masonry layout, tiles can vary in height, but are consistent in
+  width.
+- In a horizontal masonry layout, tiles can vary in width; different rows of
+  tiles may vary in height, but tiles within a row should be consistent in
+  height.
+
+<Row>
+<Column colLg={8}>
+
+![Tile layouts](/images/tile-usage-18.png)
+
+<Caption>
+  Examples of standard, vertical masonry, and horizontal masonry tile layouts
+</Caption>
+
+</Column>
+</Row>
+
+## Content
+
+### Main elements
+
+#### Tile text
+
+Tile text can vary based on the content. It can consist of heading text, body
+text, label text, and include interactive elements.
+
+### Futher guidance
+
+For further content guidance, see
+Carbon’s [content guidelines](https://carbondesignsystem.com/guidelines/content/overview/).
+
+## Base
 
 Base tiles are used to display information to the user, such as features or
 services offered. Base tiles are often seen on marketing pages to promote
-content or on highly-interactive dashboards. These tiles can have internal
-calls-to-action (CTAs), such as a [button](/components/button/usage) or a
+content or on highly interactive dashboards. These tiles can have internal
+calls-to-action (CTAs), such as a [button](/components/button/usage) or
 [link](/components/link/usage).
 
 <Row>
 <Column colLg={8}>
 
-![Example image of base tiles](images/tile-usage-2.png)
+![Example of base tiles](images/tile-usage-base.png)
 
 </Column>
 </Row>
 
-### Clickable
+### Anatomy
+
+<Row>
+<Column colLg={8}>
+
+![Base tile anatomy](images/tile-usage-base-anatomy.png)
+
+</Column>
+</Row>
+
+1. **Container**: Contains all content in a tile.
+2. **Text**: The text in a tile.
+3. **Interactive elements (optional)**: Elements like links or buttons in a tile
+   that are interactive.
+
+### Alignment
+
+When placing interactive elements within base tiles, place links at the bottom
+left of the tile and span buttons in width at the bottom to indicate
+call-to-action items.
+
+<DoDontRow>
+  <DoDont type="do" caption="Do left align the link at the bottom of the base tile.">
+
+![Example of "do" on base tile](images/tile-usage-base-link-do.png)
+
+  </DoDont>
+
+  <DoDont type="do" caption="Do span the button in width at the bottom of the base tile.">
+
+![Example of "do" on base tile](images/tile-usage-base-button-do.png)
+
+  </DoDont>
+</DoDontRow>
+
+### States
+
+Base tiles only have an **enabled** state because it is not operable by a mouse
+or keyboard. For more information about about base tile states, see the
+[Style](https://carbondesignsystem.com/components/tile/style) tab.
+
+### Interactions
+
+#### Mouse
+
+Base tiles are not operable by a mouse unless they contain interactive elements
+within them. Interactive elements can be clicked on and activated.
+
+#### Keyboard
+
+- Base tiles do not receive focus unless they contain interactive elements. —
+  `Tab` moves focus forward through interactive elements within base tile in a
+  logical order. — `Shift` + `Tab` moves focus backward through interactive
+  elements within base tile in a logical order. — `Enter` activates the base
+  tiles interactive elements.
+
+### Clickable areas
+
+Base tiles can have interactive elements within them, like links or buttons,
+which can be clicked on.
+
+<Row>
+<Column colLg={8}>
+
+![Clickable areas of base tile with interactive elements](images/tile-usage-base-clickable-areas.png)
+
+<Caption>Clickable areas of base tile with interactive elements</Caption>
+
+</Column>
+</Row>
+
+## Clickable
 
 Clickable tiles can be used as navigational elements that redirect the user to a
 new page. In these situations, the entire tile is in a clickable state. Due to
 accessibility concerns, clickable tiles cannot contain separate internal CTAs
 but can contain pictograms, icons, or media such as illustrations or images.
 
+Clickable tile has an available feature flag.
+
+<Row>
+<Column colLg={12}>
+<Tabs>
+
+<Tab label="Flag enabled">
+
+![Clickable tile feature flag enabled](images/tile-usage-clickable-flag-enabled.png)
+
+</Tab>
+
+<Tab label="Flag disabled">
+
+![Clickable tile feature flag disabled](images/tile-usage-clickable-flag-disabled.png)
+
+</Tab>
+
+</Tabs>
+
+</Column>
+</Row>
+
+### Anatomy
+
 <Row>
 <Column colLg={8}>
 
-![Example image of clickable tiles](images/tile-usage-3.png)
+![Anatomy of clickable tile with a feature flag](images/tile-usage-clickable-anatomy.png)
+
+<Caption>Anatomy of clickable tile with a feature flag</Caption>
+
+</Column>
+</Row>
+
+1. **Container**: Contains all content within a tile.
+2. **Text**: The text within a tile.
+3. **Icon**: The icon that visually indicates the tile is navigational.
+4. **Border**: The border that visually indicates the tile is interactive.
+
+#### Alignment
+
+#### Icons
+
+On clickable tiles, use the arrow icon paired with the `$icon-interactive` color
+token. Place the icon at the bottom right to indicate navigation. Avoid
+confusing the user with multiple click targets, like interactive links or
+buttons, since the whole tile is already clickable.
+
+<DoDontRow>
+  <DoDont type="do" caption="Do right align the arrow icon when it is by itself.">
+
+![Example of "do" on clickable tile](images/tile-usage-clickable-arrow-do.png)
+
+  </DoDont>
+
+  <DoDont type="do" caption="Do right align the arrow icon when there is additional text.">
+
+![Example of "do" on clickable tile](images/tile-usage-clickable-arrow-pdf-do.png)
+
+  </DoDont>
+</DoDontRow>
+
+<DoDontRow>
+
+  <DoDont type="do" caption="Do right align the arrow icon when there is an additional icon or pictogram.">
+
+![Example of "do" on clickable tile](images/tile-usage-clickable-arrow-pictogram-do.png)
+
+  </DoDont>
+
+  <DoDont type="dont" caption="Do not add interactive links or components on clickable tiles.">
+
+![Example of "do not" on clickable tile](images/tile-usage-clickable-link-dont.png)
+
+  </DoDont>
+</DoDontRow>
+
+### States
+
+Clickable tiles have **enabled**, **hover**, **focus**, and **disabled** states.
+For more information about about clcikable tile states, see the
+[Style](https://carbondesignsystem.com/components/tile/style) tab.
+
+### Interactions
+
+#### Mouse
+
+The clickable tile is triggered by clicking anywhere within the tile container.
+
+#### Keyboard
+
+— `Tabs`moves focus forward through clickable tiles in a logical order. —
+`Shift` + `Tab`moves focus backward through clickable tiles in a logical order.
+— `Enter` activates the tile and navigates you to its destination.
+
+### Clickable areas
+
+Clickable tiles can be triggered by clicking anywhere on the tiles container.
+
+<Row>
+<Column colLg={8}>
+
+![Clickable areas of clickable tile with a feature flag](images/tile-usage-clickable-clickable-areas.png)
+
+<Caption>Clickable areas of clickable tile with a feature flag</Caption>
 
 </Column>
 </Row>
 
 ### Selectable
 
-Selectable tiles work well for presenting options to a user in a structured
-manner, such as a set of pricing plans. Selectable tiles may contain internal
-CTAs (like links to docs) if the internal CTA is given its own click target.
-
-Selectable tiles can either have a single-select state working like a
-[radio button](/components/radio-button/usage), or multi-select state working as
-a [checkbox](/components/checkbox/usage).
+Selectable tiles present different options for users to select from. Selectable
+tiles can contain internal CTAs, like links to documentation, if the CTA is
+given a click target in addition to the tile's. Selectable tiles can either have
+single-selection or multi-selection.
 
 <Row>
 <Column colLg={8}>
@@ -260,175 +566,6 @@ they are given their own click targets.
 
 </Column>
 </Row>
-
-## Formatting
-
-### Anatomy
-
-<Row>
-<Column colLg={8}>
-
-![Tile anatomy](images/tile-usage-8.png)
-
-</Column>
-</Row>
-
-1. **Image (optional)** : The image size follows standard Carbon aspect ratios
-   (in this case, with a default size of 4:3)
-
-2. **Container**: Contains the content area
-
-3. **Content area**: Contains the information and/or controls needed to complete
-   the modal's task. It can include message text and components.
-
-### Sizing
-
-The **width** varies depending on three basic gutter modes: wide, narrow, and
-condensed. Tile **height** varies depending on the amount of content placed
-within it, but applies the
-[spacing](https://carbondesignsystem.com/guidelines/spacing/overview/) and
-follows Carbon's standard
-[aspect ratios](https://www.carbondesignsystem.com/guidelines/2x-grid/overview/#aspect-ratio).
-The minimum height starts with 2:1 aspect ratio. As the content grows, set
-vertical spacing between sections within the content area.
-
-### Alignment
-
-#### Icon and call-to-action button
-
-On clickable tiles, use the arrow icon as default with the `$icon-interactive`
-token. Place the icon at the bottom right to indicate navigation. Avoid
-confusing the user with multiple click targets (like interactive links or
-buttons) on clickable tiles.
-
-<DoDontRow>
-  <DoDont type="do" caption="Do right align the icon when it is by itself.">
-
-![Example of "do" on clickable tile](images/tile-usage-9.png)
-
-  </DoDont>
-
-  <DoDont type="do" caption="Do right align the icon when there is additional text.">
-
-![Example of "do" on clickable tile](images/tile-usage-10.png)
-
-  </DoDont>
-</DoDontRow>
-
-<DoDontRow>
-
-  <DoDont type="do" caption="Do right align the icon when there is an icon or pictogram.">
-
-![Example of "do" on clickable tile](images/tile-usage-11.png)
-
-  </DoDont>
-
-  <DoDont type="dont" caption="Do not add interactive links or components on clickable tiles.">
-
-![Example of "do not" on clickable tile](images/tile-usage-12.png)
-
-  </DoDont>
-</DoDontRow>
-
-On base tiles, place the interactive link at the bottom left or the button at
-the bottom to indicate call-to-action items.
-
-<DoDontRow>
-  <DoDont type="do" caption="Do left align the interactive link at the bottom on base tile.">
-
-![Example of "do" on base tile](images/tile-usage-13.png)
-
-  </DoDont>
-
-  <DoDont type="do" caption="Do place the button at the bottom on base tile.">
-
-![Example of "do" on base tile](images/tile-usage-14.png)
-
-  </DoDont>
-</DoDontRow>
-
-#### Tile groups
-
-Tile groups are useful for aligning tiles that have a strong relationship. Tile
-groups flow horizontally from left to right usually and have similar
-hierarchical importance as with navigation or catalog tiles.
-
-<Row>
-<Column colLg={12}>
-
-![Example image of how tiles are built on the wide grid.](images/tile-usage-15.png)
-
-<Caption>Example image of how tiles are built on the wide grid.</Caption>
-
-</Column>
-</Row>
-
-<Row>
-<Column colLg={12}>
-
-![Example image of how tiles are built on the narrow grid.](images/tile-usage-16.png)
-
-<Caption>Example image of how tiles are built on the narrow grid.</Caption>
-
-</Column>
-</Row>
-
-<Row>
-<Column colLg={12}>
-
-![Example image of how tiles are built on the condensed grid.](images/tile-usage-17.png)
-
-<Caption>Example image of how tiles are built on the condensed grid.</Caption>
-
-</Column>
-</Row>
-
-<DoDontRow>
-
-  <DoDont type="do" caption="Do match the same type of tiles in a group">
-
-![Example of "do" of tile matching](images/tile-usage-19.png)
-
-  </DoDont>
-
-  <DoDont type="dont" caption="Do not mix types of tiles in a group.">
-
-![Example of "do not" of tile mixing](images/tile-usage-20.png)
-
-  </DoDont>
-</DoDontRow>
-
-#### Layout
-
-There are three basic layouts for tiles: **standard**, **vertical masonry**, and
-**horizontal masonry**. The standard layout will be the most commonly used
-version.
-
-- Standard layout tiles are the same in height and width as all other tiles in
-  the group.
-- In a vertical masonry layout, tiles can vary in height, but are consistent in
-  width.
-- In a horizontal masonry layout, tiles can vary in width; different rows of
-  tiles may vary in height, but tiles within a row should be consistent in
-  height.
-
-<Row>
-<Column colLg={8}>
-
-![Layouts for tiles](/images/tile-usage-18.png)
-
-<Caption>
-  Examples of tile layouts: standard, vertical masonry, and horizontal masonry.
-</Caption>
-
-</Column>
-</Row>
-
-## Universal behaviors
-
-The behaviors listed in this section are universal across all tile variants. For
-behaviors that are unique to each variant, see each of the component variants
-sections below.
 
 ### States
 
