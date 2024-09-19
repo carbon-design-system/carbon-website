@@ -114,8 +114,8 @@ explainability feature when AI is present in the component.
 Tile is a component that can contain various content and nested components and
 can have interactive functions. Tile is often laid out in groups, is a different
 color than the UI background, and responds to the grid. Tiles have no pre-set
-styles, and it is up to product teams to determine what to include in tiles
-since the use cases can vary widely.
+styles and are purposely flexible so product teams can determine their tile
+content for specific use cases.
 
 <Row>
 <Column colLg={12}>
@@ -155,19 +155,19 @@ some common use cases for when to use tiles:
 
 ### When not to use
 
-Tiles reside on the same plane as the page background layer—they do not have
+Tiles reside on the same plane as the page background layer and do not have
 elevation. Tiles organize essential information and have the same visual
 hierarchy as content on the same page.
 
 Do not add a drop shadow to tiles and use them to reveal secondary information,
 actions, or notifications. Use [modals](/components/modal/usage),
-[popover](/components/popover/usage), and
-[dialogs](https://carbondesignsystem.com/patterns/dialog-pattern/) which have
-elevation and are appropriate for this ues case instead.
+[popovers](/components/popover/usage), and
+[dialogs](https://carbondesignsystem.com/patterns/dialog-pattern/) that have
+elevation and are appropriate for this use case instead.
 
 ### Variants
 
-Tiles can have different functiosn and are implemented in four ways: base,
+Tiles can have different functions and are implemented in four ways: base,
 clickable, selectable, and expandable. These tile variants are flexible to
 support various use cases when building more complicated card features.
 
@@ -195,7 +195,7 @@ feature flag tile for their products moving forward.
   instead of only on hover before making a selection.
 
 <Row>
-<Column colLg={12}>
+<Column colLg={8}>
 <Tabs>
 
 <Tab label="Flag enabled">
@@ -249,9 +249,9 @@ importance, similar to navigation or catalog tiles.
 <Row>
 <Column colLg={12}>
 
-![Example image of tiles on the narrow grid.](images/tile-usage-narrow-grid.png)
+![Example image of tiles on the narrow grid](images/tile-usage-narrow-grid.png)
 
-<Caption>Example image of tiles on the narrow grid.</Caption>
+<Caption>Example image of tiles on the narrow grid</Caption>
 
 </Column>
 </Row>
@@ -325,13 +325,15 @@ Carbon’s [content guidelines](https://carbondesignsystem.com/guidelines/conte
 Base tiles are used to display information to the user, such as features or
 services offered. Base tiles are often seen on marketing pages to promote
 content or on highly interactive dashboards. These tiles can have internal
-calls-to-action (CTAs), such as a [button](/components/button/usage) or
-[link](/components/link/usage).
+calls-to-action (CTAs), such as a [buttons](/components/button/usage) or
+[links](/components/link/usage).
 
 <Row>
 <Column colLg={8}>
 
 ![Example of base tiles](images/tile-usage-base.png)
+
+<Caption>Example of base tiles</Caption>
 
 </Column>
 </Row>
@@ -341,7 +343,9 @@ calls-to-action (CTAs), such as a [button](/components/button/usage) or
 <Row>
 <Column colLg={8}>
 
-![Base tile anatomy](images/tile-usage-base-anatomy.png)
+![Anatomy of base tiles](images/tile-usage-base-anatomy.png)
+
+<Caption>Anatomy of base tiles</Caption>
 
 </Column>
 </Row>
@@ -373,8 +377,8 @@ call-to-action items.
 
 ### States
 
-Base tiles only have an **enabled** state because it is not operable by a mouse
-or keyboard. For more information about about base tile states, see the
+Base tiles only have an **enabled** state because they are not operable by a
+mouse or keyboard. For more information about base tile states, see the
 [Style](https://carbondesignsystem.com/components/tile/style) tab.
 
 ### Interactions
@@ -386,11 +390,12 @@ within them. Interactive elements can be clicked on and activated.
 
 #### Keyboard
 
-- Base tiles do not receive focus unless they contain interactive elements. —
-  `Tab` moves focus forward through interactive elements within base tile in a
-  logical order. — `Shift` + `Tab` moves focus backward through interactive
-  elements within base tile in a logical order. — `Enter` activates the base
-  tiles interactive elements.
+- Base tiles do not receive focus unless they contain interactive elements.
+- `Tab` moves focus forward through interactive elements within base tile in a
+  logical order.
+- `Shift` + `Tab` moves focus backward through interactive elements within base
+  tile in a logical order. — `Enter` activates the base tiles interactive
+  elements.
 
 ### Clickable areas
 
@@ -417,7 +422,7 @@ but can contain pictograms, icons, or media such as illustrations or images.
 Clickable tile has an available feature flag.
 
 <Row>
-<Column colLg={12}>
+<Column colLg={8}>
 <Tabs>
 
 <Tab label="Flag enabled">
@@ -454,7 +459,7 @@ Clickable tile has an available feature flag.
 3. **Icon**: The icon that visually indicates the tile is navigational.
 4. **Border**: The border that visually indicates the tile is interactive.
 
-#### Alignment
+### Alignment
 
 #### Icons
 
@@ -479,7 +484,7 @@ buttons, since the whole tile is already clickable.
 
 <DoDontRow>
 
-  <DoDont type="do" caption="Do right align the arrow icon when there is an additional icon or pictogram.">
+  <DoDont type="do" caption="Do right align the arrow icon when there is a decorative icon or pictogram.">
 
 ![Example of "do" on clickable tile](images/tile-usage-clickable-arrow-pictogram-do.png)
 
@@ -495,7 +500,7 @@ buttons, since the whole tile is already clickable.
 ### States
 
 Clickable tiles have **enabled**, **hover**, **focus**, and **disabled** states.
-For more information about about clcikable tile states, see the
+For more information about clickable tile states, see the
 [Style](https://carbondesignsystem.com/components/tile/style) tab.
 
 ### Interactions
@@ -506,8 +511,8 @@ The clickable tile is triggered by clicking anywhere within the tile container.
 
 #### Keyboard
 
-- `Tabs`moves focus forward through clickable tiles in a logical order. —
-  `Shift` + `Tab`moves focus backward through clickable tiles in a logical
+- `Tab` moves focus forward through clickable tiles in a logical order.
+- `Shift` + `Tab`moves focus backward through clickable tiles in a logical
   order.
 - `Enter` activates the tile and navigates you to its destination.
 
@@ -525,12 +530,12 @@ Clickable tiles can be triggered by clicking anywhere on the tiles container.
 </Column>
 </Row>
 
-### Selectable
+## Selectable
 
-Selectable tiles present different options for users to select from. Selectable
-tiles can contain internal CTAs, like links to documentation, if the CTA is
-given a click target in addition to the tile's. Selectable tiles can either have
-single-selection or multi-selection.
+Selectable tiles are used to present different options for users to select from.
+Selectable tiles can contain internal CTAs, like links to documentation, if the
+CTA is given a click target of its own in addition to the tile's click target.
+Selectable tiles can either have single-selection or multi-selection.
 
 Selectable tile has available feature flags.
 
@@ -540,7 +545,7 @@ Use single-select tiles when the user can only select one tile from a tile
 group.
 
 <Row>
-<Column colLg={12}>
+<Column colLg={8}>
 <Tabs>
 
 <Tab label="Flag enabled">
@@ -566,7 +571,7 @@ Use multi-select tiles when the user can select multiple tiles from a tile
 group.
 
 <Row>
-<Column colLg={12}>
+<Column colLg={8}>
 <Tabs>
 
 <Tab label="Flag enabled">
@@ -639,19 +644,21 @@ Selectable tiles can be selected by clicking anywhere on the tiles container.
 
 ### Expandable
 
-Expandable tiles can either be triggered as a whole or contain internal CTAs
-only if they are given their own click targets. In these cases, the tile’s click
-target is reduced to only the icon button.
+Expandable tiles are used to reveal or hide additional information to the user
+and can be expanded and collapsed differently depending on their content. If an
+expandable tile does not have interactive elements, clicking anywhere in the
+tile expands and collapses the tile. If an expandable tile has interactive
+elements, the chevron icon button expands and collapses the tile.
 
 Expandable tile has an available feature flag.
 
 ### Without interactive elements
 
-Use the container expansion functionality to expand the tile when there are no
-interactive elements.
+Use the container expansion functionality to expand and collapse the tile when
+there are no interactive elements.
 
 <Row>
-<Column colLg={12}>
+<Column colLg={8}>
 <Tabs>
 
 <Tab label="Flag enabled">
@@ -673,11 +680,11 @@ interactive elements.
 
 ### With interactive elements
 
-Use the button expansion functionality to expand the tile when including
-interactive elements.
+Use the button expansion functionality to expand and collapse the tile when
+including interactive elements.
 
 <Row>
-<Column colLg={12}>
+<Column colLg={8}>
 <Tabs>
 
 <Tab label="Flag enabled">
@@ -718,8 +725,8 @@ interactive elements.
 
 ### States
 
-Selectable tiles have **enabled**, **hover**, **focus**, and **disabled**
-states. For more information about base tile states, see the
+Expandable tiles have **enabled**, **hover**, **focus**, and **disabled**
+states. For more information about expandable tile states, see the
 [Style](https://carbondesignsystem.com/components/tile/style/) tab.
 
 ### Interactions
@@ -728,22 +735,24 @@ states. For more information about base tile states, see the
 
 - Without interactive elements: The tile is expanded by clicking anywhere within
   the tile container.
-- With interactive elements: The tile is expanded by clicking on the ghost icon
-  button in the bottom right of the tile.
+- With interactive elements: The tile is expanded by clicking on the button in
+  the bottom right of the tile.
 
 #### Keyboard
 
 - `Tab` moves focus forward through tiles. If there are interactive elements,
-  `Tab` moves focus forward in a logical order. — `Shift` + `Tab` moves focus
-  backward through tiles. If there are interactive elements, `Tab` moves focus
-  forward in a logical order. — `Enter` expands the tile.
+  `Tab` moves focus forward in a logical order.
+- `Shift` + `Tab` moves focus backward through tiles. If there are interactive
+  elements, `Tab` moves focus forward in a logical order.
+- `Enter` expands and collapses the tile.
 
 ### Clickable areas
 
-Expandable tiles can be expanded by clicking anywhere on the tiles container. If
-the tile has interactive elements, it can be expanded by clicking on the ghost
-icon button in the bottom right corner. Interactive elements within the tile can
-be clicked on.
+If the expandable tile does not have interactive elements, it can be expanded or
+collapsed by clicking anywhere on the tiles container. If the expandable tile
+has interactive elements, it can be expanded or collapsed by clicking on the
+button in the bottom right corner. Interactive elements within a tile can also
+be clicked on and have their own click targets.
 
 <Row>
 <Column colLg={8}>
@@ -768,7 +777,11 @@ For more information on designing for AI, see the
 <Row>
 <Column colLg={8}>
 
-![Base, clickable, single-select and multi-select tiles with AI presence](images/tile-AI-presence-usage.png)
+![Base, clickable, and selectable tiles with AI presence and feature flags](images/tile-usage-AI-presence.png)
+
+<Caption>
+  Base, clickable, and selectable tiles with AI presence and feature flags
+</Caption>
 
 </Column>
 </Row>
