@@ -4054,7 +4054,7 @@ const colorTokens = {
         },
         g90: {
           name: 'Gray 80',
-          hex: '#393939',
+          hex: '#8d8d8d',
         },
         g100: {
           name: 'Gray 90',
@@ -4075,7 +4075,7 @@ const colorTokens = {
         },
         g90: {
           name: 'Gray 80',
-          hex: '#393939',
+          hex: '#8d8d8d',
         },
         g100: {
           name: 'Gray 90',
@@ -4096,7 +4096,7 @@ const colorTokens = {
         },
         g90: {
           name: 'Gray 80',
-          hex: '#393939',
+          hex: '#8d8d8d',
         },
         g100: {
           name: 'Gray 90',
@@ -4108,16 +4108,16 @@ const colorTokens = {
       role: ['Warning low contrast notification background'],
       value: {
         white: {
-          name: 'Yellow 10',
-          hex: '#fcf4d6',
+          name: 'Yellow 30, White',
+          hex: '#f1c21b, #ffffff',
         },
         g10: {
-          name: 'Yellow 10',
-          hex: '#fcf4d6',
+          name: 'Yellow 30, White',
+          hex: '#f1c21b, #ffffff',
         },
         g90: {
           name: 'Gray 80',
-          hex: '#393939',
+          hex: '#8d8d8d',
         },
         g100: {
           name: 'Gray 90',
