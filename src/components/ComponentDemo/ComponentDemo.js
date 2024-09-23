@@ -126,7 +126,8 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
               className={exitFullscreenButton}
               onClick={() => {
                 setFullscreen(false);
-              }}>
+              }}
+            >
               <Close size={16} />
             </button>
           )}
@@ -136,7 +137,8 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
             noInline={noInline}
             theme={getTheme('white')}
             scope={{ ...CarbonComponents, ...scope }}
-            code={code}>
+            code={code}
+          >
             <div className={cx(container, { [knoblessContainer]: !knobs })}>
               <button
                 type="button"
@@ -146,7 +148,8 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
                 className={cx(theme, fullscreenButton)}
                 onClick={() => {
                   setFullscreen(!isFullscreen);
-                }}>
+                }}
+              >
                 {isFullscreen ? <Minimize size={16} /> : <Maximize size={16} />}
               </button>
               <LivePreview className={cx(theme, previewContainer)} />
@@ -155,7 +158,8 @@ const ComponentDemo = ({ children, src, scope, noInline, components }) => {
                   type="button"
                   aria-labelledby="expand-knob-container-button"
                   onClick={() => setIsKnobContainerCollapsed(false)}
-                  className={cx(theme, iconButton, iconButtonExpand)}>
+                  className={cx(theme, iconButton, iconButtonExpand)}
+                >
                   <span id="expand-knob-container-button" hidden>
                     Expand component knob container
                   </span>

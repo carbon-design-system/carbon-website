@@ -51,7 +51,8 @@ const ChartDemoGroup = ({ demoGroup, light }) => {
         <div className="cds--col-sm-4 cds--col-md-8 cds--col-lg-8">
           <div
             className="chart-demo-wrapper"
-            id={generateHeadingID(demo.title)}>
+            id={generateHeadingID(demo.title)}
+          >
             <div className="chart-demo">
               <DemoComponent
                 data={demo.data}
@@ -77,7 +78,8 @@ const ChartDemoGroup = ({ demoGroup, light }) => {
           title={`${numberOfRemainingDemos} more demo${
             numberOfRemainingDemos > 1 ? 's' : ''
           }`}
-          href={`https://carbon-design-system.github.io/carbon-charts/?path=/story/${demoGroupClassification}-charts-${demo.id}`}>
+          href={`https://carbon-design-system.github.io/carbon-charts/?path=/story/${demoGroupClassification}-charts-${demo.id}`}
+        >
           <img src={STORYBOOK_LOGO} alt="" style={{ height: 20 }} />
         </MiniCard>
       )}

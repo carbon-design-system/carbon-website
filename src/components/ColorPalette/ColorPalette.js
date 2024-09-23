@@ -174,13 +174,15 @@ const ColorPalette = ({
             [groupControls]: type === 'grouped',
             [sequentialControls]: type === 'sequential',
             [darkControls]: dark,
-          })}>
+          })}
+        >
           <ContentSwitcher
             onChange={handleKeyboard}
             className={paletteSwitcher}
             selectionMode="automatic"
             selectedIndex={0}
-            size="lg">
+            size="lg"
+          >
             <Switch text={switcherOne} onClick={activateFirstSwitcher} />
             <Switch text={switcherTwo} onClick={activateSecondSwitcher} />
           </ContentSwitcher>
@@ -239,7 +241,8 @@ const ColorPalette = ({
               key={`${i.name}-${index}`}
               color={i.color}
               index={index}
-              continuous={continuous}>
+              continuous={continuous}
+            >
               <div className={groupOption}>Option {index + 1}</div>
               {i.data.map((j, jIndex) => (
                 <ColorPaletteColor
@@ -263,7 +266,8 @@ const ColorPalette = ({
             <PalettesContainer
               key={`${i.color}-${index}`}
               color={i.color}
-              index={index}>
+              index={index}
+            >
               {i.data.map((j, jIndex) => (
                 <ColorPaletteColor
                   key={`${j.name - jIndex}`}

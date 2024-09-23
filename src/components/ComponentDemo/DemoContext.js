@@ -22,7 +22,8 @@ const DemoContextProvider = ({ children }) => {
         isMobile,
         isKnobContainerCollapsed,
         setIsKnobContainerCollapsed,
-      }}>
+      }}
+    >
       {children}
     </DemoContext.Provider>
   );

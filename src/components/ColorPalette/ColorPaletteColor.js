@@ -23,7 +23,8 @@ const ColorPaletteColor = ({
     <div
       key={index}
       className={cx(colorPaletteColor, { [textLight]: lightText })}
-      style={isSequential ? sequentialStyle : defaultStyle}>
+      style={isSequential ? sequentialStyle : defaultStyle}
+    >
       <span>
         {number}
         {name}

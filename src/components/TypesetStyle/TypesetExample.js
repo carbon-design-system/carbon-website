@@ -123,7 +123,8 @@ const TypesetExample = (props) => (
         <div
           key={`${props.name}${type.key}${type.version}`}
           style={{ padding: 0 }}
-          className={`cds--typeset-example`}>
+          className={`cds--typeset-example`}
+        >
           <div className={`cds--typeset-example-row cds--row`}>
             <div className={`cds--typeset-example-description cds--col-md-5`}>
               <p className={versionClassNames} style={specs}>
@@ -131,7 +132,8 @@ const TypesetExample = (props) => (
               </p>
             </div>
             <div
-              className={`cds--typeset-example-specs cds--col-md-3 cds--padding`}>
+              className={`cds--typeset-example-specs cds--col-md-3 cds--padding`}
+            >
               <Layer>
                 <span className={`cds--type-body-short-01`}>
                   <span className={`cds--type-semibold`}>{type.name} </span>

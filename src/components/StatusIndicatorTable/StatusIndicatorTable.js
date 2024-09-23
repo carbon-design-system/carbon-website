@@ -22,22 +22,26 @@ const StatusIndicatorTable = ({ attention }) => (
         <StructuredListRow className="cds--row" head>
           <StructuredListCell
             className={`cds--col-lg-4 cds--col-md-1 ${headerCell}`}
-            head>
+            head
+          >
             Icon
           </StructuredListCell>
           <StructuredListCell
             className={`cds--col-lg-2 cds--col-md-2 ${headerCell}`}
-            head>
+            head
+          >
             Name
           </StructuredListCell>
           <StructuredListCell
             className={`cds--col-lg-2 cds--col-md-2 ${headerCell}`}
-            head>
+            head
+          >
             Token
           </StructuredListCell>
           <StructuredListCell
             className={`cds--col-lg-4 cds--col-md-3 ${headerCell}`}
-            head>
+            head
+          >
             Description & usage
           </StructuredListCell>
         </StructuredListRow>
