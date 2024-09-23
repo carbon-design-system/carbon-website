@@ -110,8 +110,7 @@ class TypesetStyle extends React.Component {
           breakpoints[breakpointName]
         )}
         onClick={this.toggleBreakpoint}
-        key={`breakpoint-tab${breakpointName}`}
-      >
+        key={`breakpoint-tab${breakpointName}`}>
         {breakpointName}
       </button>
     ));
@@ -141,8 +140,7 @@ class TypesetStyle extends React.Component {
           navBar={navBar || true}
           banner={banner || true}
           secondary={secondary || false}
-          top={top || null}
-        >
+          top={top || null}>
           {breakpointControls && (
             <>
               <div className={`cds--typeset-style-title-shiv cds--row`} />
@@ -150,21 +148,18 @@ class TypesetStyle extends React.Component {
                 <div className={`cds--typeset-style-breakpoint-controls`}>
                   <span
                     className={`bx--type-body-long-01 ibm-padding--horizontal`}
-                    style={{ marginBottom: 0 }}
-                  >
+                    style={{ marginBottom: 0 }}>
                     Breakpoints
                   </span>
                   <div
-                    className={`cds--typeset-style-button-controls-container`}
-                  >
+                    className={`cds--typeset-style-button-controls-container`}>
                     {this.getButtons()}
                   </div>
                 </div>
                 <div className={`cds--typeset-style-screen-controls`}>
                   <span
                     className={`bx--type-body-long-01 cds--typeset-style-screen-width-label`}
-                    style={{ marginBottom: 0, whiteSpace: 'nowrap' }}
-                  >
+                    style={{ marginBottom: 0, whiteSpace: 'nowrap' }}>
                     Screen width
                   </span>
                   <InputRange
@@ -176,8 +171,7 @@ class TypesetStyle extends React.Component {
                   />
                   <label
                     className={`cds--typeset-style-screen-label bx--type-body-long-01`}
-                    htmlFor="screenWidthInput"
-                  >
+                    htmlFor="screenWidthInput">
                     {this.state.simulatedScreenWidth}
                   </label>
                 </div>

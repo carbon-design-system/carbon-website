@@ -88,8 +88,7 @@ const StorybookDemo = ({ tall, themeSelector, wide, url, variants }) => {
             colMd={4}
             colLg={4}
             noGutterSm
-            className={styles.column}
-          >
+            className={styles.column}>
             <FluidDropdown
               isCondensed
               id="theme-selector"
@@ -108,8 +107,7 @@ const StorybookDemo = ({ tall, themeSelector, wide, url, variants }) => {
             colMd={4}
             colLg={4}
             noGutterSm
-            className={styles.column}
-          >
+            className={styles.column}>
             <FluidDropdown
               isCondensed
               id="variant-selector"
@@ -127,8 +125,7 @@ const StorybookDemo = ({ tall, themeSelector, wide, url, variants }) => {
           colSm={4}
           colMd={8}
           colLg={columnWidth}
-          className={demoClassNames}
-        >
+          className={demoClassNames}>
           <iframe
             title="Component demo"
             className={styles.iframe}

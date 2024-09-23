@@ -25,8 +25,7 @@ const Banner = () => {
         href="https://next.carbondesignsystem.com"
         className={buttonBanner}
         kind="ghost"
-        renderIcon={ArrowRight}
-      >
+        renderIcon={ArrowRight}>
         Try the Carbon Platform
       </Button>
     </div>

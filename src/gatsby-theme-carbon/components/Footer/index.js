@@ -15,8 +15,7 @@ const Content = ({ buildTime }) => (
       or open an issue on{' '}
       <a
         style={{ textDecoration: 'underline' }}
-        href="https://github.com/carbon-design-system/carbon-website/issues/new"
-      >
+        href="https://github.com/carbon-design-system/carbon-website/issues/new">
         GitHub.
       </a>
     </p>

@@ -61,8 +61,7 @@ const A11yStatus = ({ components, layout }) => {
           the{' '}
           <Link
             inline
-            href="https://www.ibm.com/able/requirements/requirements/"
-          >
+            href="https://www.ibm.com/able/requirements/requirements/">
             accessibility requirements
           </Link>
           . These different statuses report the work that Carbon has done in the
@@ -236,14 +235,12 @@ const A11yStatus = ({ components, layout }) => {
                   ? ''
                   : hidden
               }`}
-              id={componentName}
-            >
+              id={componentName}>
               <Column colLg={4} colMd={4} noGutterSm>
                 <ResourceCard
                   subTitle="Default state"
                   href={accessibilityPageUrl}
-                  actionIcon="arrowRight"
-                >
+                  actionIcon="arrowRight">
                   {defaultAVTTag}
                 </ResourceCard>
               </Column>
@@ -251,8 +248,7 @@ const A11yStatus = ({ components, layout }) => {
                 <ResourceCard
                   subTitle="Advanced states"
                   href={accessibilityPageUrl}
-                  actionIcon="arrowRight"
-                >
+                  actionIcon="arrowRight">
                   {advancedAVTTag}
                 </ResourceCard>
               </Column>
@@ -260,8 +256,7 @@ const A11yStatus = ({ components, layout }) => {
                 <ResourceCard
                   subTitle="Screen reader"
                   href={accessibilityPageUrl}
-                  actionIcon="arrowRight"
-                >
+                  actionIcon="arrowRight">
                   {screenReaderAVTTag}
                 </ResourceCard>
               </Column>
@@ -269,8 +264,7 @@ const A11yStatus = ({ components, layout }) => {
                 <ResourceCard
                   subTitle="Keyboard navigation"
                   href={accessibilityPageUrl}
-                  actionIcon="arrowRight"
-                >
+                  actionIcon="arrowRight">
                   {keyboardNavAVTTag}
                 </ResourceCard>
               </Column>
@@ -291,8 +285,7 @@ const A11yStatus = ({ components, layout }) => {
               <td>
                 <DefinitionTooltip
                   openOnHover
-                  definition="Test(s) that ensure the initial render state of a component is accessible."
-                >
+                  definition="Test(s) that ensure the initial render state of a component is accessible.">
                   Default state
                 </DefinitionTooltip>
               </td>
@@ -300,8 +293,7 @@ const A11yStatus = ({ components, layout }) => {
               <td>
                 <Link
                   href={githubUrl}
-                  renderIcon={() => <Launch aria-label="Launch" />}
-                >
+                  renderIcon={() => <Launch aria-label="Launch" />}>
                   GitHub link
                 </Link>
               </td>
@@ -311,8 +303,7 @@ const A11yStatus = ({ components, layout }) => {
               <td>
                 <DefinitionTooltip
                   openOnHover
-                  definition="Tests that ensure additional states of the component are accessible. This could be interactive states of a component or its multiple variants."
-                >
+                  definition="Tests that ensure additional states of the component are accessible. This could be interactive states of a component or its multiple variants.">
                   Advanced states
                 </DefinitionTooltip>
               </td>
@@ -324,8 +315,7 @@ const A11yStatus = ({ components, layout }) => {
               <td>
                 <DefinitionTooltip
                   openOnHover
-                  definition="Tests that ensure focus is properly managed, and all interactive functions of a component have a proper keyboard-accessible equivalent."
-                >
+                  definition="Tests that ensure focus is properly managed, and all interactive functions of a component have a proper keyboard-accessible equivalent.">
                   Keyboard navigation
                 </DefinitionTooltip>
               </td>
@@ -337,8 +327,7 @@ const A11yStatus = ({ components, layout }) => {
               <td>
                 <DefinitionTooltip
                   openOnHover
-                  definition="This manual testing ensures that the visual information on the screen is properly conveyed and read correctly by screen readers such as JAWS, VoiceOver, and NVDA."
-                >
+                  definition="This manual testing ensures that the visual information on the screen is properly conveyed and read correctly by screen readers such as JAWS, VoiceOver, and NVDA.">
                   Screen reader
                 </DefinitionTooltip>
               </td>
@@ -394,8 +383,7 @@ const A11yStatus = ({ components, layout }) => {
           <>
             <span
               id="all-component-accessibility-status-anchor"
-              className={headingLink}
-            ></span>
+              className={headingLink}></span>
             <H2>All component accessibility status{helpTooltip}</H2>
             <p>
               This table reflects the current AVT status of stable components
@@ -428,15 +416,13 @@ const A11yStatus = ({ components, layout }) => {
               <p className={moreLink}>
                 <Link
                   href="/components/overview/accessibility-status"
-                  renderIcon={() => <ArrowRight />}
-                >
+                  renderIcon={() => <ArrowRight />}>
                   Learn more about tag and test meaning
                 </Link>
                 <br />
                 <Link
                   href="/components/overview/accessibility-status#all-component-accessibility-status-anchor"
-                  renderIcon={() => <ArrowRight />}
-                >
+                  renderIcon={() => <ArrowRight />}>
                   View all component accessibility status
                 </Link>
               </p>

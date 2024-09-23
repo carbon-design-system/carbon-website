@@ -151,8 +151,7 @@ export default class ColorTokenTable extends React.Component {
         <StickyContainer navBar banner secondary={false}>
           <ContentSwitcher
             className={themeSwitcherClasses}
-            onChange={this.switchTheme}
-          >
+            onChange={this.switchTheme}>
             <Switch name="white" text={this.state.mobile ? 'Wte' : 'White'} />
             <Switch name="g10" text={this.state.mobile ? 'G10' : 'Gray 10'} />
             <Switch name="g90" text={this.state.mobile ? 'G90' : 'Gray 90'} />

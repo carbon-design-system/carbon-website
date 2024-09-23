@@ -48,8 +48,7 @@ const customProps = {
             maxWidth: '100%',
             overflow: 'hidden',
             backgroundImage: `url(${ImageV11})`,
-          }}
-        >
+          }}>
           <div className="cds--row">
             <div className="cds--col-lg-4 cds--col-md-4 cds--col-sm-2 cds--offset-lg-8 cds--offset-md-4 cds--offset-sm-2 homepage--tile-header">
               <ResourceCard

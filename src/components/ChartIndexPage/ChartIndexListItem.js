@@ -39,8 +39,7 @@ const ChartIndexListItem = React.memo(
               <Link
                 className="component-index-item__link"
                 href={websiteUrl}
-                rel="noopener noreferrer"
-              >
+                rel="noopener noreferrer">
                 Docs
               </Link>
               {codeUrl && (
@@ -49,8 +48,7 @@ const ChartIndexListItem = React.memo(
                   <Link
                     className="component-index-item__link"
                     href={codeUrl}
-                    rel="noopener noreferrer"
-                  >
+                    rel="noopener noreferrer">
                     Code
                   </Link>
                 </>

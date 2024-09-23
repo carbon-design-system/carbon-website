@@ -28,8 +28,7 @@ const Sidebar = ({ src, path, live }) => {
           rel="noopener noreferrer"
           className={button}
           href={src}
-          style={{ zIndex: 200 }}
-        >
+          style={{ zIndex: 200 }}>
           <Launch size={16} />
         </a>
       )}

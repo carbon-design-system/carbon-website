@@ -28,8 +28,7 @@ function ChartIndexNotFound() {
             <Link
               className="component-index-not-found__link"
               href="/community/contribute-a-chart"
-              rel="noopener noreferrer"
-            >
+              rel="noopener noreferrer">
               add it
             </Link>
             to the index.
