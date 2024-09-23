@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from 'gatsby-theme-carbon/src/templates/Default';
+import Layout from 'gatsby-theme-carbon/src/components/Layouts/Default';
 import PictogramLibrary from '../../../components/SVGLibraries/PictogramLibrary';
 
 const frontmatter = {

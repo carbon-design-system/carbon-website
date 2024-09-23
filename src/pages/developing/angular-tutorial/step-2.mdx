@@ -104,13 +104,15 @@ default 12 columns. We do this by adding `grid-columns-16: true` in our
 `$feature-flags`. `$feature-flags` **must** be set before importing from
 `carbon-components`, otherwise they won't take affect.
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
+
 ```css path=src/styles.scss
 $feature-flags: (
   grid-columns-16: true
 );
 ```
-<!-- prettier-ignore-end -->
+
+{/* prettier-ignore-end */}
 
 Next we'll import our Carbon grid component into `home.module.ts` and
 `landing-page.component.spec.ts`.
@@ -204,7 +206,7 @@ components we need in `home.module.ts` and `landing-page.component.spec.ts`.
 import { BreadcrumbModule, GridModule } from 'carbon-components-angular';
 ```
 
-<!-- prettier-ignore-end -->
+{/* prettier-ignore-end */}
 
 ```javascript path=src/app/home/landing-page/landing-page.component.spec.ts
 imports: [BreadcrumbModule, GridModule];
@@ -231,7 +233,7 @@ In our second row we'll need `Tabs` and `Button` components also in
 `home.module.ts` and `landing-page.component.spec.ts`. We'll update the
 `carbon-components-angular` import to:
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
 ```javascript path=src/app/home/home.module.ts
 import {
   BreadcrumbModule,
@@ -240,7 +242,7 @@ import {
   TabsModule,
 } from 'carbon-components-angular';
 ```
-<!-- prettier-ignore-end -->
+{/* prettier-ignore-end */}
 
 ```javascript path=src/app/home/landing-page/landing-page.component.spec.ts
 imports: [BreadcrumbModule, ButtonModule, GridModule, TabsModule];
@@ -306,19 +308,23 @@ accessibility violations, you'd see
 because both the `Breadcrumb` and `Tabs` components use `<nav>` elements. To
 fix, add `ariaLabel` to the `Breadcrumb` opening tag:
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
+
 ```html path=src/app/home/landing-page/landing-page.component.html
 <ibm-breadcrumb noTrailingSlash="true" ariaLabel="Page navigation">
 ```
-<!-- prettier-ignore-end -->
+
+{/* prettier-ignore-end */}
 
 Same goes for the `Tabs` opening tag:
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
+
 ```html
 <ibm-tabs ariaLabel="Tab navigation">
 ```
-<!-- prettier-ignore-end -->
+
+{/* prettier-ignore-end */}
 
 Next, we'll need to add a styling override to move the tabs to the right on
 large viewports, and tidy up the alignment of the grid. Create a file
@@ -356,11 +362,13 @@ large viewports, and tidy up the alignment of the grid. Create a file
 
 Then in `styles.scss` add this import after the Carbon `styles.scss` import.
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
+
 ```scss path=src/styles.scss
 @import './assets/scss/carbon-overrides.scss';
 ```
-<!-- prettier-ignore-end -->
+
+{/* prettier-ignore-end */}
 
 <InlineNotification>
 
@@ -374,7 +382,8 @@ names, you have a consolidated list of styling declaration blocks to review.
 We can now add our images and text for each column in the first `Tab` in
 `landing-page.component.html`.
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
+
 ```html path=src/app/home/landing-page/landing-page.component.html
 <ibm-tab heading="About">
   <div ibmGrid class="cds--grid--no-gutter cds--grid--full-width">
@@ -403,7 +412,8 @@ We can now add our images and text for each column in the first `Tab` in
   </div>
 </ibm-tab>
 ```
-<!-- prettier-ignore-end -->
+
+{/* prettier-ignore-end */}
 
 Now let's download the image in `src/assests` and set the image size in
 `landing-page.component.scss`:
@@ -446,12 +456,14 @@ design. We'll be using our [spacing tokens](/guidelines/spacing/overview). In
 `landing-page.component.scss`, add these imports at the **top** of the file so
 we can use Carbon breakpoints, tokens, and typography Sass mixins and functions:
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
+
 ```scss path=src/app/home/landing-page/landing-page.component.scss
 @import '~carbon-components/scss/globals/scss/vendor/@carbon/type/scss/font-family';
 @import '~carbon-components/scss/globals/scss/typography';
 ```
-<!-- prettier-ignore-end -->
+
+{/* prettier-ignore-end */}
 
 ### Banner
 
@@ -546,13 +558,15 @@ translate design to development. So, looking up the
 [type token](https://www.carbondesignsystem.com/guidelines/typography/productive),
 we know to use `productive-heading-05`:
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
+
 ```scss path=src/app/home/landing-page/landing-page.component.scss
 .landing-page__heading {
   @include type-style('productive-heading-05');
 }
 ```
-<!-- prettier-ignore-end -->
+
+{/* prettier-ignore-end */}
 
 ### Row two
 
@@ -590,7 +604,8 @@ baseline, for consistency as well as development ease so `margins` and
 
 </InlineNotification>
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
+
 ```scss path=src/app/home/landing-page/landing-page.component.scss
 .landing-page__tab-content {
   padding-top: $layout-05;
@@ -612,7 +627,8 @@ baseline, for consistency as well as development ease so `margins` and
   }
 }
 ```
-<!-- prettier-ignore-end -->
+
+{/* prettier-ignore-end */}
 
 ### Row three
 
@@ -630,7 +646,8 @@ Let's also add some styles for the last row, even though that will get used
 later in the tutorial. You'll notice that we get to re-use the
 `landing-page-background` mixin that we just created.
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
+
 ```scss path=src/app/home/landing-page/landing-page.component.scss
 .landing-page__r3 {
   padding-top: $spacing-09;
@@ -642,7 +659,8 @@ later in the tutorial. You'll notice that we get to re-use the
   @include type-style('heading-01');
 }
 ```
-<!-- prettier-ignore-end -->
+
+{/* prettier-ignore-end */}
 
 Ta-da! You should see a finished landing page! Now we can move on to the repo
 page.
@@ -652,11 +670,13 @@ page.
 First, we’ll add our grid and table by importing a few components in
 `repositories.module.ts` and `repo-page.component.spec.ts`:
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
+
 ```javascript path=src/app/repositories/repositories.module.ts
 import { GridModule, TableModule } from 'carbon-components-angular';
 ```
-<!-- prettier-ignore-end -->
+
+{/* prettier-ignore-end */}
 
 ```javascript path=src/app/repositories/repo-page/repo-page.component.spec.ts
 imports: [GridModule, TableModule];
@@ -697,11 +717,13 @@ src/app/repositories
 Next we will add our newly generated repo-table to the declarations in
 `repo-page.component.spec.ts`
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
+
 ```javascript path=src/app/repositories/repo-page/repo-page.component.spec.ts
 import { RepoTableComponent } from '../repo-table/repo-table.component';
 ```
-<!-- prettier-ignore-end -->
+
+{/* prettier-ignore-end */}
 
 ```javascript path=src/app/repositories/repo-page/repo-page.component.spec.ts
 declarations: [ RepoPageComponent, RepoTableComponent ],
@@ -711,7 +733,8 @@ declarations: [ RepoPageComponent, RepoTableComponent ],
 
 Then, let's create the table in `repo-table.component.html`
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
+
 ```html path=src/app/repositories/repo-table/repo-table.component.html
 <ibm-table-container>
 	<ibm-table-header>
@@ -725,7 +748,8 @@ Then, let's create the table in `repo-table.component.html`
 	</ibm-table>
 </ibm-table-container>
 ```
-<!-- prettier-ignore-end -->
+
+{/* prettier-ignore-end */}
 
 Instead of the usual write-your-own-html approach you had with `<table>`, Carbon
 table uses the model-view-controller approach.
@@ -739,7 +763,8 @@ Then include the following arrays to pass into the `repo-table.component.ts`
 component. We'll be setting the `rows` array from an API in the next tutorial
 step, but for now, static example rows will suffice.
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
+
 ```javascript path=src/app/repositories/repo-table/repo-table.component.ts
 import { Component, OnInit } from '@angular/core';
 
@@ -797,7 +822,8 @@ export class RepoTableComponent implements OnInit {
   }
 }
 ```
-<!-- prettier-ignore-end -->
+
+{/* prettier-ignore-end */}
 
 At this point, go to `repo-page.component.html` because now we need to render a
 static `repo-table`.
@@ -819,7 +845,8 @@ vertical spacing issues.
 
 In `repo-page.component.scss`, add the following styles:
 
-<!-- prettier-ignore-start -->
+{/* prettier-ignore-start */}
+
 ```scss path=src/app/repositories/repo-page/repo-page.component.scss
 @import '~carbon-components/scss/globals/scss/typography';
 
@@ -828,7 +855,8 @@ In `repo-page.component.scss`, add the following styles:
   padding-bottom: $spacing-05;
 }
 ```
-<!-- prettier-ignore-end -->
+
+{/* prettier-ignore-end */}
 
 Congratulations! We've now created our static repo page!
 
