@@ -24,70 +24,99 @@ When building components in the Carbon ecosystem, it’s essential that we align
 
 ## Definition of done
 
-By aligning on the requirements for what it means for a component to be stable, we can create a backlog of work to be prioritized, better differentiate when an asset is a component vs pattern, share expectations with contributors, and begin to think about how we want to display the status of assets to users. We can also work backwards from this strict list of requirements to determine when an asset is in  experimental.
+By aligning on the requirements of component stability, we can easily prioritize a backlog of work, share the status of assets with contributors and
+better differentiate when an asset is a component versus a pattern. We can also work backward from this strict list of requirements to inform where a component currently is in the [Product Development Lifecycle](https://w3.ibm.com/w3publisher/winning-products/how-we-work/product-development-lifecycle) (PDLC). With each phase, the component should progress in its completeness. Once it has reached stable and all items in the following checklists have been completed, then the component will be considered done. 
 
 Note: Although not all published assets currently meet these requirements, moving forward, we’d like all new assets to adhere to them.
 
 | Status | PDLC Phase | Description | 
 | ------ | ---------- | ----------- |
-| `Draft` | Discovery | Partially complete and not ready for consumption. |
-| `Experimental` | Delivery |  Partially complete, not production ready. |
-| `Stable` | Launch and scale | Complete and ready for production use. |
+| `Draft` | Discovery | Partially complete, ready for validation. |
+| `Preview candidate` | Discovery | Partially complete, with measurable results, stakeholders, and clear business value. |
+| `Preview` | Delivery | Mostly complete, changes possible based on feedback, available to use in production. |
+| `Stable` | Launch and scale | Complete across code, kit, docs, design, and ready for production use. |
 
 ## Design spec
 
-The design specification (spec) is completed in the delivery phase of the product development lifecycle (PDLC). It is the blueprint used by developers to build the component in code and for designers making the component in Figma. It is referenced as the source of truth for the visuals and functionality of a component. Having an accurate and detailed design spec ensures the component will be built and represented consistently across experiences. 
+The design specification (spec) is the blueprint used by developers to build the component in code and for designers making the component in Figma. It is referenced as the source of truth for the visuals and functionality of a component. Having an accurate and detailed design spec ensures the component will be built and represented consistently across experiences. 
+
+<Row>
+<Column colMd={8} colLg={12} noGutterSm>
 
 | Requirement | Details | Why this matters |
 | ----------- | ------- | ---------------- |
-| **Color tokens** | <UnorderedList><ListItem>Design spec uses only color tokens available in the system.</ListItem><ListItem>Design spec only contains colors that are tokenized.</ListItem><ListItem>Color token usage is correct according to our documentation and matches applications across the system. </ListItem></UnorderedList> | Color tokens are essential to the reusability and scalability of the system; they support a11y requirements and reduce the maintenance burden. They also allow for consistent application of color across the system, and make color functionalities like theming possible. | 
+| **Color tokens** | <UnorderedList><ListItem>Design spec uses only color tokens available in the system.</ListItem><ListItem>Design spec only contains colors that are tokenized.</ListItem><ListItem>Color token usage is correct according to our documentation and matches applications across the system. </ListItem></UnorderedList> | Color tokens are essential to the reusability and scalability of the system; they support a11y requirements and reduce the maintenance burden. They also allow for consistent application of color across the system, and make color functionalities like theming possible.  | 
 | **Type tokens** | <UnorderedList><ListItem>Design specs use only type tokens available in the system.</ListItem><ListItem>Design specs only contain type styles and sizes that are tokenized.</ListItem><ListItem>Type token usage is correct and consistent with matching applications across the system.</ListItem></UnorderedList>| Type tokens are essential to the reusability and scalability of the system and they reduce the maintenance burden. They also allow for consistent type use across the system |
 | **Structure and measurements** | <UnorderedList><ListItem>Design spec uses only spacing tokens available in the system when designing your asset.</ListItem><ListItem>Clearly annotate spacing and alignment for all design elements.</ListItem><ListItem>Design spec includes all possible configurations such as sizes and content configurations.</ListItem></UnorderedList>| Detailed structure and measurement specs allow developers to build assets quicker and ensure that designs are accurately represented in the code. |
-| **Interaction states** | Includes specifications for states such as hover, focus, selected, disabled, read-only, error, warning, ect. | Each state of the component needs to be represented in the specification to ensure that accessibility requirements and quality of the designs are accurately represented in the code. |
-| **Behaviors** | Includes specs for behaviors such as responsiveness, content overflow or reflow, expansion, scrolling, ect. | Developers need to understand how the asset will behave when a user interacts with it. Detailed annotations and specs of the various behaviors will ensure that the designs are accurately represented in the code. |
+| **Interaction states** | <UnorderedList><ListItem>Includes specifications for states such as hover, focus, selected, disabled, read-only, error, warning, ect.</ListItem></UnorderedList> | Each state of the component needs to be represented in the specification to ensure that accessibility requirements and quality of the designs are accurately represented in the code. |
+| **Behaviors** | <UnorderedList><ListItem>Includes specs for behaviors such as responsiveness, content overflow or reflow, expansion, scrolling, ect.</ListItem></UnorderedList> | Developers need to understand how the asset will behave when a user interacts with it. Detailed annotations and specs of the various behaviors will ensure that the designs are accurately represented in the code. |
 | **Accessibility** | <UnorderedList><ListItem>All text colors pass 4.5:1 color contrast with the exceptions of disabled states.</ListItem><ListItem>All interactive non-text elements meet 3:1 contrast.</ListItem><ListItem>Flow of focus is clearly documented.</ListItem></UnorderedList>| IBM products must meet WCAG AA accessibility standards. |
+
+</Column>
+</Row>
 
 ## Code
 
 In order for code to be stable, it must meet all of the following requirements. Experimental code should plan for these requirements, but does not need to meet them in the discovery or delivery phases.
 
+<Row>
+<Column colMd={8} colLg={12} noGutterSm>
+
 | Requirement | Details | Why this matters |
 | ----------- | ------- | ---------------- | 
-| **API guiding principles** | <li> Prioritize end user: put the consumer/dev experience above how difficult it might be for us to implement.</li><li> Interoperability: support wide band coverage of multiple react versions, node LTS versions, etc. Prefer framework/library agnostic approaches to component APIs and designs. </li><li> Stability: always deprecate before removal, ensure long deprecation periods, consider the migration experience for developers. </li><li> Composition: components should be broken down into logical pieces to support the many disparate configurations that are required by the business. </li><li> Developer Experience: consider how a developer will use this component; will they find it approachable, confusing, complex, too simple? </li> | Careful consideration of API design ensures that future changes to the system can be made in an iterative way that minimize disruption. Developer experience and productivity can be heavily influenced by confusing or needlessly complex APIs. The business has a wide range of requirements and should meet as many of them as possible. Prioritize the user wherever possible - if we can make things easier for them by writing extra code, handling complexity internally, or taking care of a common concern, do so. It’s our job to contain chaos so that it’s easier and faster to build excellent software products. |
-| **Built to spec** | <li> Every interaction spec’d should be implemented. </li><li> The [design spec](/component-checklist/#design-spec) should match the implementation perfectly down to the pixel.</li> | Thorough implementation with intense attention to detail is pivotal to maintaining pervasive design excellence within the system. This high bar of quality is what sets our system apart and drives adoption, user satisfaction, and overall outcomes. |
-| **Tokens** | <li> Component styles use tokens available in the system </li> <li> Component styles do not contain magic numbers or colors that are not tokenized </li> | Tokens are essential to the reusability and scalability of the system - they support a11y requirements and reduce the maintenance burden within the system. |
-| **Globalization** | All strings are configurable and parameterized (props) in a way that is agnostic and compatible with a wide range of g11n i18n solutions/libraries | Ensures assets can be reused within products and offerings worldwide. |
-| **Responsiveness** | <li> Component layout, functionality, and ux works on all device sizes from very large to ~320px wide </li> <li> Component styles use media queries where needed </li> | Ensures assets work properly on small screens so that IBM products and offerings can be used on as many devices as possible. |
-| **Storybook** | A default and playground story exists in Storybook. | Ensures re-usable code and a demo are available. |
-| **Documentation** | Long-form documentation is provided in both storybook and the carbon website | Usage examples in storybook do not answer all questions, cover all interactions, or provide pointed helpful information regarding the intended component usage and configuration. |
-| **Fully Typed/JSDoc** | <li> Component has an interface with all props typed </li><li> Component interface is exported for use in consuming projects </li> | Ensures that components and assets are built using Typescript to attain the inherent benefits of strongly typed programming language, but also provides a best in class developer experience (particularly through intellisense), even for those not using TypeScript in their projects. |
-| **Codemods** | If the component/change will require migration by consuming teams, an automated code migration script should be written and made available through `@carbon/upgrade` | Ensure that consumers using a given component will have a graceful experience when breaking changes occur. Also holds a lot of weight as to the perception of the system’s ability to adapt and innovate while maintaining a laser-focus on stability. Reduces the cost spent by a team to migrate - compounded across all the teams we support across IBM this can have a significant impact on IBM’s bottom line in cost/productivity. |
+| **API guiding principles** | <UnorderedList><ListItem> Prioritize end user: put the consumer/dev experience above how difficult it might be for us to implement.</ListItem><ListItem> Interoperability: support wide band coverage of multiple react versions, node LTS versions, etc. Prefer framework/library agnostic approaches to component APIs and designs.</ListItem><ListItem>Stability: always deprecate before removal, ensure long deprecation periods, consider the migration experience for developers. </ListItem><ListItem> Composition: components should be broken down into logical pieces to support the many disparate configurations that are required by the business. </ListItem><ListItem> Developer Experience: consider how a developer will use this component; will they find it approachable, confusing, complex, too simple? </ListItem></UnorderedList>| Careful consideration of API design ensures that future changes to the system can be made in an iterative way that minimize disruption. Developer experience and productivity can be heavily influenced by confusing or needlessly complex APIs. The business has a wide range of requirements and should meet as many of them as possible. Prioritize the user wherever possible - if we can make things easier for them by writing extra code, handling complexity internally, or taking care of a common concern, do so. It’s our job to contain chaos so that it’s easier and faster to build excellent software products. |
+| **Built to spec** | <UnorderedList><ListItem> Every interaction spec’d should be implemented. </ListItem><ListItem> The [design spec](/component-checklist/#design-spec) should match the implementation perfectly down to the pixel.</ListItem></UnorderedList>| Thorough implementation with intense attention to detail is pivotal to maintaining pervasive design excellence within the system. This high bar of quality is what sets our system apart and drives adoption, user satisfaction, and overall outcomes. |
+| **Tokens** | <UnorderedList><ListItem> Component styles use tokens available in the system </ListItem><ListItem> Component styles do not contain magic numbers or colors that are not tokenized </ListItem></UnorderedList> | Tokens are essential to the reusability and scalability of the system - they support a11y requirements and reduce the maintenance burden within the system. |
+| **Globalization** | <UnorderedList><ListItem> All strings are configurable and parameterized (props) in a way that is agnostic and compatible with a wide range of g11n i18n solutions/libraries </ListItem></UnorderedList> | Ensures assets can be reused within products and offerings worldwide. |
+| **Responsiveness** | <UnorderedList><ListItem>Component layout, functionality, and ux works on all device sizes from very large to ~320px wide </ListItem><ListItem> Component styles use media queries where needed</ListItem></UnorderedList> | Ensures assets work properly on small screens so that IBM products and offerings can be used on as many devices as possible. |
+| **Storybook** | <UnorderedList><ListItem> A default and playground story exists in Storybook. </ListItem></UnorderedList> | Ensures re-usable code and a demo are available. |
+| **Documentation** | <UnorderedList><ListItem> Long-form documentation is provided in both storybook and the carbon website </ListItem></UnorderedList>  | Usage examples in storybook do not answer all questions, cover all interactions, or provide pointed helpful information regarding the intended component usage and configuration. |
+| **Fully Typed/JSDoc** | <UnorderedList><ListItem> Component has an interface with all props typed </ListItem><ListItem> Component interface is exported for use in consuming projects </ListItem></UnorderedList> | Ensures that components and assets are built using Typescript to attain the inherent benefits of strongly typed programming language, but also provides a best in class developer experience (particularly through intellisense), even for those not using TypeScript in their projects. |
+| **Codemods** | <UnorderedList><ListItem> If the component/change will require migration by consuming teams, an automated code migration script should be written and made available through `@carbon/upgrade` </ListItem></UnorderedList> | Ensure that consumers using a given component will have a graceful experience when breaking changes occur. Also holds a lot of weight as to the perception of the system’s ability to adapt and innovate while maintaining a laser-focus on stability. Reduces the cost spent by a team to migrate - compounded across all the teams we support across IBM this can have a significant impact on IBM’s bottom line in cost/productivity. |
+
+</Column>
+</Row>
 
 ### Testing 
 
 A crucial aspect to ensure continued quality of production stable code is testing. The following testing requirements must be met before a component can be considered stable. 
 
+<Row>
+<Column colMd={8} colLg={12} noGutterSm>
+
 | Requirement | Details | Why this matters |
 | ----------- | ------- | ---------------- | 
-| **Unit testing** | Component API and functionality should be thoroughly tested using jest and testing-library (therefore in a jsdom environment) <br /> <br /> Component unit test coverage should meet and exceed 80% of functions, lines, statements, etc. | Validates and ensures that components work as they’re expected to and regressions are not introduced as changes are made. |
-| **Visual regression tests (VRT)** | Component has at least one test for VRT using Percy - the default story <br /> <br /> Additional “problematic” or highly concerning component states, stories, viewport-widths can be covered by VRT | Ensures that components do not visually regress as changes are made. This catches bugs early, avoids disruptive mistakes, and supports the overall stability of the system. |
-| **Accessibility verification tests (AVT)** | Component has one test of it’s default state checked by [accessibility-checker](https://www.ibm.com/able/toolkit/verify/automated) <br /> <br /> Component has all additional “complex” states (open, closed, highlighted, expanded, focused, hovered, clicked, etc) checked by accessibility-checker | Ensures that components and assets are accessible. First and foremost this is a moral imperative; accessibility benefits everyone. It additionally supports the goal of IBM products and offerings being able to be sold and used in industries bound by law to have accessible experiences. |
-| **Screen reader/voiceover** | Component has been manually tested to read appropriately in JAWS, VoiceOver, and NVDA. | Ensures that components and assets are able to be used by disabled users who utilize screenreaders. First and foremost this is a moral imperative; accessibility benefits everyone. It additionally supports the goal of IBM products and offerings being able to be sold and used in industries bound by law to have accessible experiences. | 
+| **Unit testing** | <UnorderedList><ListItem> Component API and functionality should be thoroughly tested using jest and testing-library (therefore in a jsdom environment) </ListItem><ListItem> Component unit test coverage should meet and exceed 80% of functions, lines, statements, etc. </ListItem></UnorderedList> | Validates and ensures that components work as they’re expected to and regressions are not introduced as changes are made. |
+| **Visual regression tests (VRT)** | <UnorderedList><ListItem> Component has at least one test for VRT using Percy - the default story </ListItem><ListItem> Additional “problematic” or highly concerning component states, stories, viewport-widths can be covered by VRT </ListItem></UnorderedList> | Ensures that components do not visually regress as changes are made. This catches bugs early, avoids disruptive mistakes, and supports the overall stability of the system. |
+| **Accessibility verification tests (AVT)** | <UnorderedList><ListItem> Component has one test of it’s default state checked by [accessibility-checker](https://www.ibm.com/able/toolkit/verify/automated) </ListItem><ListItem> Component has all additional “complex” states (open, closed, highlighted, expanded, focused, hovered, clicked, etc) checked by accessibility-checker </ListItem></UnorderedList> | Ensures that components and assets are accessible. First and foremost this is a moral imperative; accessibility benefits everyone. It additionally supports the goal of IBM products and offerings being able to be sold and used in industries bound by law to have accessible experiences. |
+| **Screen reader/voiceover** | <UnorderedList><ListItem> Component has been manually tested to read appropriately in JAWS, VoiceOver, and NVDA.</ListItem></UnorderedList> | Ensures that components and assets are able to be used by disabled users who utilize screenreaders. First and foremost this is a moral imperative; accessibility benefits everyone. It additionally supports the goal of IBM products and offerings being able to be sold and used in industries bound by law to have accessible experiences. | 
+
+</Column>
+</Row>
 
 ## Documentation 
 
 All components and patterns require usage, style, code, and accessibility guidance published on a Carbon ecosystem website. Carbon provides documentation templates to help ensure visual and content expectations. Additional guidance on creating layouts and images for website documentation can be found in the [image production guidelines](https://carbondesignsystem.com/designing/design-resources/#image-production-guidelines).
 
+<Row>
+<Column colMd={8} colLg={12} noGutterSm>
+
 | Requirement | Details | Why this matters |
 | ----------- | ------- | ---------------- | 
-| **Usage docs** | [Single variant template](/contributing/documentation/#usage-template:-for-components-with-one-variant) *(last updated Q1 2024)*. <br /> <br /> [Multiple variant template](/contributing/documentation/#usage-template:-for-components-with-multiple-variants) *(last updated 2021)*. | The usage documentation helps describe when to use a component and how it works. |
-| **Style docs** | [Single variant template](/contributing/documentation/#style-template:-for-components-with-one-variant) *(last updated Q3 2024)*. <br /> <br /> [Multiple variant template](/contributing/documentation/#style-template:-for-components-with-multiple-variants) *(last updated Q3 2024)*. | The style documentation helps describe how a component looks, including visual specifications such as color, typography, structure, and size. |
-| **Code docs** | [Code template](/contributing/documentation/#code-template) *(last updated 2022)*. | The code documentation helps developers implement the component. It includes code snippets, dependencies, and version changes. Although Carbon developers write more detailed documentation in Storybook, they still provide several standard pieces of information on the Carbon website. |
-| **Accessibility docs** | [Accessibility template](/contributing/documentation/#accessibility-template) *(last updated 2023)*. | The published information, written by our A11y SMEs,  helps users understand all the accessibility considerations that are baked into Carbon.|
+| **Usage docs** |  <UnorderedList><ListItem> [Single variant template](/contributing/documentation/#usage-template:-for-components-with-one-variant) *(last updated Q1 2024)*. </ListItem><ListItem> [Multiple variant template](/contributing/documentation/#usage-template:-for-components-with-multiple-variants) *(last updated 2021)*. </ListItem></UnorderedList>  | The usage documentation helps describe when to use a component and how it works. |
+| **Style docs** |  <UnorderedList><ListItem> [Single variant template](/contributing/documentation/#style-template:-for-components-with-one-variant) *(last updated Q3 2024)*.</ListItem><ListItem> [Multiple variant template](/contributing/documentation/#style-template:-for-components-with-multiple-variants) *(last updated Q3 2024)*. </ListItem></UnorderedList>  | The style documentation helps describe how a component looks, including visual specifications such as color, typography, structure, and size. |
+| **Code docs** |  <UnorderedList><ListItem> [Code template](/contributing/documentation/#code-template) *(last updated 2022)*. </ListItem></UnorderedList>  | The code documentation helps developers implement the component. It includes code snippets, dependencies, and version changes. Although Carbon developers write more detailed documentation in Storybook, they still provide several standard pieces of information on the Carbon website. |
+| **Accessibility docs** |  <UnorderedList><ListItem> [Accessibility template](/contributing/documentation/#accessibility-template) *(last updated 2023)*. </ListItem></UnorderedList>  | The published information, written by our A11y SMEs,  helps users understand all the accessibility considerations that are baked into Carbon.|
+
+</Column>
+</Row>
 
 ## Design kit
 
 Our [IBM Figma best practices](https://www.figma.com/design/4UYvy6eey28bD3IvtNF8xP/IBM-Documentation-Library?node-id=654-4435&t=67lxOP8nwgq7z2E1-0) are maintained, tracked, and peer reviewed by IBM’s Figma guild. Although the guild is not part of the Carbon team, they are crucial partners in our governance model.
+
+<Row>
+<Column colMd={8} colLg={12} noGutterSm>
 
 | Requirement | Details | Why this matters |
 | ----------- | ------- | ---------------- | 
@@ -96,52 +125,5 @@ Our [IBM Figma best practices](https://www.figma.com/design/4UYvy6eey28bD3IvtNF8
 | **Built to spec** | The Figma component should match the [design spec](/component-checklist/#design-spec) perfectly down to the pixel. Every interaction spec’d should be included in the Figma component. | Thorough implementation with intense attention to detail is pivotal to maintaining pervasive design excellence within the system. This high bar of quality is what sets our system apart and drives adoption, user satisfaction, and overall outcomes. |
 | **Published to a library** | A Figma component must be published to the appropriate IBM Figma library. Components built in the Carbon repo are published in [(V11) All themes - Carbon Design System](https://www.figma.com/design/YAnB1jKx0yCUL29j6uSLpg/(v11)-Carbon-Design-System?m=auto). | A published connected component ensures accurate use across products. It also allows for Figma analytic tracking. |
 
-## Design spec checklist
-
-The design specification (spec) is referenced as the source of truth for the visuals and functionality of a component. Having an accurate and detailed design spec ensures the component will be built and represented consistently across experiences. 
-
-<Accordion>
-<AccordionItem title="Color tokens">
-
-Color tokens are essential to the reusability and scalability of the system; they support a11y requirements and reduce the maintenance burden. They also allow for consistent application of color across the system, and make color functionalities like theming possible.
-<br />
-**Requirements**
-- Design spec uses only color tokens available in the system.
-- Design spec only contains colors that are tokenized.
-- Color token usage is correct according to our documentation and matches applications across the system.
-
-</AccordionItem>
-  <AccordionItem title="Type tokens">Content Section</AccordionItem>
-  <AccordionItem title="Structure and measurements">Content Section</AccordionItem>
-  <AccordionItem title="Interaction states">Content Section</AccordionItem>
-  <AccordionItem title="Behaviors">Content Section</AccordionItem>
-  <AccordionItem title="Accessibility">Content Section</AccordionItem>
-</Accordion>
-
-
-## Code checklist
-
-In order for code to be stable, it must meet all of the following requirements. Experimental code should plan for these requirements, but does not need to meet them in the discovery or delivery phases.
-
-<Accordion>
-<AccordionItem title="API guiding principles">
-
-Careful consideration of API design ensures that future changes to the system can be made in an iterative way that minimize disruption. Developer experience and productivity can be heavily influenced by confusing or needlessly complex APIs. The business has a wide range of requirements and should meet as many of them as possible. Prioritize the user wherever possible - if we can make things easier for them by writing extra code, handling complexity internally, or taking care of a common concern, do so. It’s our job to contain chaos so that it’s easier and faster to build excellent software products.
-<br />
-**Requirements**
-- Prioritize end user: put the consumer/dev experience above how difficult it might be for us to implement.
-- Interoperability: support wide band coverage of multiple react versions, node LTS versions, etc. Prefer framework/library agnostic approaches to component APIs and designs
-- Stability: always deprecate before removal, ensure long deprecation periods, consider the migration experience for developers
-- Composition: components should be broken down into logical pieces to support the many disparate configurations that are required by the business. 
-- Developer Experience: consider how a developer will use this component; will they find it approachable, confusing, complex, too simple? 
-
-</AccordionItem>
-  <AccordionItem title="Built to spec">Content Section</AccordionItem>
-  <AccordionItem title="Tokens">Content Section</AccordionItem>
-  <AccordionItem title="Globalization">Content Section</AccordionItem>
-  <AccordionItem title="Responsiveness">Content Section</AccordionItem>
-  <AccordionItem title="Storybook">Content Section</AccordionItem>
-  <AccordionItem title="Documentation">Content Section</AccordionItem>
-  <AccordionItem title="Fully Typed/JSDoc">Content Section</AccordionItem>
-  <AccordionItem title="Codemods">Content Section</AccordionItem>
-</Accordion>
+</Column>
+</Row>
