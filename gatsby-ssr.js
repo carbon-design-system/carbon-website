@@ -52,6 +52,10 @@ export const onRenderBody = ({ setHeadComponents, setPostBodyComponents }) => {
       key="fathom"
       defer
     />,
+    <script
+      key="video-player"
+      type="module"
+      src="https://1.www.s81c.com/common/carbon-for-ibm-dotcom/tag/v1/latest/video-player.min.js" />,
   ]);
 
   setPostBodyComponents([
