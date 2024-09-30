@@ -9,7 +9,8 @@ const Banner = () => {
     <div aria-label="banner" className={banner}>
       <p className={bannerText}>
         <strong>
-          Carbon v10 is in maintenance mode. Support will end on Sept. 30, 2024.
+          Carbon v10 reached end of support on September 30, 2024 and will not
+          receive any more updates.
         </strong>
       </p>
       <Button
