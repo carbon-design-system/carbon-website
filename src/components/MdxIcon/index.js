@@ -19,8 +19,10 @@ import medium from './icons/medium.svg';
 import sass from './icons/sass.png';
 import figma from './icons/figma.svg';
 import yourlearning from './icons/yourlearning.svg';
+import carbon from './icons/carbon.svg';
 
 const localIcons = {
+  carbon,
   sketch,
   ase,
   codesandbox,
