@@ -1,9 +1,8 @@
 ---
 title: Dropdown
 description:
-  Dropdowns present a list of options from which a user can select one option,
-  or several. A selected option can represent a value in a form, or can be used
-  as an action to filter or sort existing content.
+  Dropdowns present a list of options that can be used to filter or sort
+  existing content. They can also be used as menus.
 tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 ---
 
@@ -19,13 +18,14 @@ action to filter or sort existing content.
 
 <InlineNotification>
 
-Experimental slug is now available for
-[dropdown](https://react.carbondesignsystem.com/?path=/story/experimental-unstable-slug-examples--dropdown),
-[combobox](https://react.carbondesignsystem.com/?path=/story/experimental-unstable-slug-examples--combobox),
-[multiselect](https://react.carbondesignsystem.com/?path=/story/experimental-unstable-slug-examples--multiselect),
-[filterable multiselect](https://react.carbondesignsystem.com/?path=/story/experimental-unstable-slug-examples--filterable-multiselect).
-This addition changes the visual appearance of the component and introduces an
-AI explainability feature when AI is present in the component.
+[Dropdown](https://react.carbondesignsystem.com/?path=/story/components-dropdown--with-ai-label),
+[combo box](https://react.carbondesignsystem.com/?path=/story/components-combobox--with-ai-label),
+and
+[multiselect](https://deploy-preview-16803--v11-carbon-react.netlify.app/?path=/story/components-multiselect--with-ai-label)
+with AI label are now stable. These additions change the visual appearance of
+the component and introduce an AI explainability feature when AI is present in
+the components. See the [AI presence](/components/dropdown/usage/#ai-presence)
+section for more details.
 
 </InlineNotification>
 
@@ -72,24 +72,20 @@ AI explainability feature when AI is present in the component.
         'experimental-fluid-components-unstable-fluiddropdown--condensed',
     },
     {
-      label: 'Dropdown with AI slug',
-      variant: 'experimental-unstable-slug-examples--dropdown',
+      label: 'Dropdown with AI Label',
+      variant: 'components-dropdown--with-ai-label',
     },
     {
       label: 'Multiselect',
       variant: 'components-multiselect--default',
     },
     {
-      label: 'Multiselect with AI slug',
-      variant: 'experimental-unstable-slug-examples--multiselect',
-    },
-    {
       label: 'Filterable multiselect',
       variant: 'components-multiselect--filterable',
     },
     {
-      label: 'Filterable multiselect with AI slug',
-      variant: 'experimental-unstable-slug-examples--filterable-multiselect',
+      label: 'Filterable multiselect with AI Label',
+      variant: 'components-multiselect--filterable-with-ai-label',
     },
     {
       label: 'Fluid multiselect (unstable)',
@@ -115,8 +111,8 @@ AI explainability feature when AI is present in the component.
         'experimental-fluid-components-unstable-fluidcombobox--condensed',
     },
     {
-      label: 'Combobox with AI slug',
-      variant: 'experimental-unstable-slug-examples--combobox',
+      label: 'Combobox with AI Label',
+      variant: 'components-combobox--with-ai-label',
     },
   ]}
 />
@@ -201,8 +197,10 @@ selection.
    options.
 2. **Helper text:** Assistive text to help the user choose the right selection.
 3. **Field:** Persists when the dropdown is open or closed.
-4. **Option:** A choice for the user, shown with other choices in a menu.
-5. **Menu:** A list of options to choose from, displayed as an open state. from.
+4. **Menu:** A list of options to choose from, displayed as an open state.
+5. **Option:** A choice for the user, shown with other choices in a menu.
+6. **Parent checkbox:** Used to select all the options from within the menu in
+   multiselect dropdowns.
 
 ### Styling
 
@@ -246,7 +244,7 @@ size height.
 <Row>
 <Column colLg={8}>
 
-![Dropdown sizes in the defauult style](images/dropdown-usage-2.png)
+![Dropdown sizes in the default style](images/dropdown-usage-2.png)
 
 </Column>
 </Row>
@@ -356,6 +354,22 @@ style of dropdown you are using.
 - Describe the dropdown option succinctly in one line of text.
 - Never use decorative images or icons within a dropdown.
 - We recommend presenting the options in alphabetical order.
+
+#### Parent checkbox
+
+- Since the parent checkbox is one among the options, do not describe it as an
+  action.
+- Use the word “All” to describe this parent checkbox.
+- Alternatively you can add a parent word along with the word All to describe
+  the options in the menu.
+
+<Row>
+<Column colLg={12}>
+
+![Parent checkbox content guidelines.](images/dropdown-usage-16.png)
+
+</Column>
+</Row>
 
 ### Optional versus required fields
 
@@ -554,33 +568,11 @@ or clicking outside of the menu.
 
 #### Keyboard
 
-#### Dropdown:
-
-- The dropdown field is the element that receives focus. All keyboard
-  interactions happen from this element.
-- Users can move the highlighted option to the next option by pressing the
-  `Down arrow`.
-- Users can move the highlighted option to the previous option by pressing the
-  `Up arrow`.
-- Users can open the dropdown menu by pressing `Space`, `Enter`, `Down arrow` or
-  the `Up arrow`.
-- Users can close the dropdown menu by pressing `Escape`, `Space`, or `Enter`.
-
-#### Combo box:
-
-- When typing a character, focus stays on the field while an option in the menu
-  is highlighted that best matches the typed character.
-- When typing multiple characters in rapid succession, focus stays on the field
-  while an option in the menu is highlighted that best matches the string of
-  characters typed.
-
-#### Multiple selection:
-
-- The multiselect field receives focus if none of the options are selected in
-  the menu.
-- Once an option in the dropdown menu receives focus, users can press `Enter` to
-  select or deselect the option.
-- Users can open and close a dropdown menu by pressing `Space`.
+A dropdown component and its variants multiselect and combo box are reached by
+`Tab`, with navigation of the options by `Up` and `Down` arrow keys. However,
+the keys for opening the component and selecting its options are different for
+each variant. For more information on keyboard interactions, see the
+[accessibility tab](https://carbondesignsystem.com/components/dropdown/accessibility/?_ga=2.84465055.789214944.1712051588-758524008.1712051588&_gl=1*16jmo7x*_ga*NzU4NTI0MDA4LjE3MTIwNTE1ODg.*_ga_FYECCCS21D*MTcxMjEzODc0OC4zLjEuMTcxMjE0MTQ5OC4wLjAuMA..#what-carbon-provides).
 
 ## Dropdown
 
@@ -657,10 +649,14 @@ Use when you can select multiple options from a list or to filter information.
 </Column>
 </Row>
 
+#### Feedback
+
 - Once options have been selected from the menu, a tag appears to the left of
-  the text in the field containing the total number of selected options. The
-  placeholder text can change to text that better reflects what is selected.
-- Selected options shift to the top of the menu in alphanumeric order.
+  the text in the field containing the total number of selected options, and
+  also provides a functionality to clear all the selected options.
+- The placeholder text can change to text that better reflects what is selected.
+- Selected options shift to the top of the menu in an alphanumeric order when
+  revisiting the menu after closing it.
 - Unlike dropdown and combo box, the menu does not close once the user makes
   selections. Because multiple selections are possible, the user needs to click
   outside of the dropdown or on the parent element to close the menu.
@@ -687,7 +683,37 @@ Use when you can select multiple options from a list or to filter information.
 </Column>
 </Row>
 
-#### Clear all
+#### Selecting all
+
+The parent checkbox associated to the parent option makes it possible for the
+user to select all options from the list. Although the parent checkbox element
+is used only for multiselect dropdowns, it is not mandated to be present in all
+multiselect dropdowns.
+
+- The bottom stroke for the parent option has no padding and bleeds to the end
+  of the dropdown menu.
+- The background fill for the all button does not change when selected and will
+  continue to have the same background as the enabled state
+
+The parent checkbox has a third indeterminate state and appears when some and
+not all options have been selected.
+
+- Clicking on the indeterminate state clears all options.
+- Clicking on the unselected checkbox selects all options.
+- Clicking on the selected checkbox clears all options.
+
+We recommend not to use the parent checkbox in scenarios like filters when
+choosing all and choosing none means the same.
+
+<Row>
+<Column colLg={12}>
+
+![Multiselect selecting all and partially.](images/dropdown-usage-17.png)
+
+</Column>
+</Row>
+
+#### Clearing all
 
 To clear all selected options from a list, hover over the filterable tag and
 click the “x” (or `close`) icon next to the value. To help with clarity, a
@@ -852,13 +878,14 @@ modifier for dropdown and does not have filtering functionality._
 
 ## AI presence
 
-Dropdown and its varinats have a modification that takes on the AI visual
-styling when the AI slug is present in the input. The AI variant of these
+Dropdown and its variants have a modification that takes on the AI visual
+styling when the AI label is present in the input. The AI variant of these
 components function the same as the normal version except with the addition of
-the AI slug which is both a visual indicator and the trigger for the
+the AI label which is both a visual indicator and the trigger for the
 explainability popover.
 
-More information about designing for AI guidelines is coming soon.
+For more information on designing for AI, see the
+[Carbon for AI](/guidelines/carbon-for-ai/) guidelines.
 
 <Row>
 <Column colLg={8}>
