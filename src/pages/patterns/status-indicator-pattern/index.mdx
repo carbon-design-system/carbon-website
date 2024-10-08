@@ -54,13 +54,13 @@ In this pattern we explore:
 
 ### Variants
 
-| Variant                                                | Usage                                                                                                                                                                     | Use cases                                                                                              |
-| ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| [Icon indicator](#icon-indicators)                     | Used any time the layout offers ample space and the content requires maximum attention. They require an icon, a shape, a meaningful color and a descriptive inline label. | Most often used in notifications, progress indicators, data tables, task lists, and dashboard widgets. |
-| [Shape indicators](#shape-indicators)                  | Useful in smaller spaces or when users need to scan large amount of data.                                                                                                 | Most often used in lists, dashboards, data tables, data visualizations, and network diagrams.          |
-| [Badge indicators (with number)](#badge-indicators)    | Useful when a count of new or updated items is available, and it is important for the user to know the number of updates.                                                 | Most often used in notification panes in the header, and used in conjunction with avatars or icons.    |
-| [Badge indicators (without number)](#badge-indicators) | Useful when new or updated items are available and the number of notifications is unknown or irrelevant to the user. The dot badge is also more compact and discrete.     | Most often used in notification panes in the header, and used in conjunction with avatars or icons.    |
-| [Differential indicators](#differential-indicators)    | Useful when users are monitoring differentials in large lists of statistics and when anything other than type would be too obtrusive.                                     | Most often used in financial dashboards for highlighting deltas or other types of data visualizations. |
+| Variant                                              | Usage                                                                                                                                                                     | Use cases                                                                                             |
+| ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| [Icon indicator](#icon-indicator)                    | Used any time the layout offers ample space and the content requires maximum attention. They require an icon, a shape, a meaningful color and a descriptive inline label. | Most often used in notifications, progress indicators, data tables, task lists, and dashboard widgets |
+| [Shape indicator](#shape-indicator)                  | Useful in smaller spaces or when users need to scan large amount of data.                                                                                                 | Most often used in lists, dashboards, data tables, data visualizations, and network diagrams          |
+| [Badge indicator (with number)](#badge-indicator)    | Useful when a count of new or updated items is available, and it is important for the user to know the number of updates.                                                 | Most often used in notification panes in the header, and used in conjunction with avatars or icons    |
+| [Badge indicator (without number)](#badge-indicator) | Useful when new or updated items are available and the number of notifications is unknown or irrelevant to the user. The dot badge is also more compact and discrete.     | Most often used in notification panes in the header and icon buttons in toolbars                      |
+| [Differential indicator](#differential-indicator)    | Useful when users are monitoring differentials in large lists of statistics and when anything other than type would be too obtrusive.                                     | Most often used in financial dashboards for highlighting deltas or other types of data visualizations |
 
 #### Icon indicators versus shape indicators
 
@@ -115,13 +115,16 @@ A. Text label <br /> B. Symbol (optional color)\* <br />
 </Row>
 
 <Caption>
-  *Differential indicators must have either a ‘+’ or ‘-’ sign, a caret, or an
+  *Differential indicators must have either a “+” or “-” sign, a caret, or an
   arrow icon to indicate positive or negative values.
 </Caption>
 
 ## Designing with status indicators
 
 ### Choosing for context
+
+Choosing the right indicator for the context is important to ensure users can
+quickly understand the information and respond appropriately.
 
 #### Consolidated statuses
 
@@ -140,9 +143,12 @@ difficult to focus.
 ### Standardization
 
 All status icons must be approved and published in the
-[icon library](https://carbondesignsystem.com/elements/icons/library/). This
-guidance only provides the most common status indicators used across products.
-If your product requires an icon not currently included, please reach out to
+[icon library](https://carbondesignsystem.com/elements/icons/library/) to ensure
+consistency across products. This guidance includes only the most common status
+indicators, helping maintain a unified user experience and preventing
+unnecessary variations in the design system.
+
+If your product needs an icon that’s not currently included, please reach out to
 suggest its addition.
 
 ### Severity levels
@@ -181,7 +187,7 @@ status types.
 - Colors
 - Type
 
-#### Status icons
+#### Status symbols
 
 Icons are visual symbols that represent ideas, objects, or actions. They help
 communicate messages quickly, encourage interactivity, and highlight important
@@ -241,12 +247,23 @@ haven’t been started, and purple indicates outliers or undefined statuses.
 #### Extended status palettes
 
 This palette is only for added contrast accessibility when using yellows and
-oranges. It’s not a part of the IBM brand palette and it’s also not included in
-the v2 color release because it’s for very selective use in data visualizations
-and certain status indicators. Do not use this palette in any other manner in
-your layouts.
+oranges.
 
 <ColorPalette type="status-extended" shouldShowControls={false} />
+
+#### Status type
+
+Status indicators have been paired with specific type sizes that work best in
+products. While shape indicators can be paired with a larger size, it’s
+recommended to use 14pt or 12pt in smaller spaces or when used as a secondary
+set of indicators alongside the icon indicator set.
+
+| Variant         | Icon size | Type size |
+| --------------- | --------- | --------- |
+| Icon indicator  | 20px      | 16pt      |
+|                 | 16px      | 14pt      |
+| Shape indicator | 16px      | 14pt      |
+|                 | 16px      | 12pt      |
 
 ## Icon indicator
 
@@ -268,6 +285,8 @@ widgets.
 </Column>
 </Row>
 
+### Icon indicator severity levels
+
 These severity levels are not intended to dictate the final status names in your
 product. They are suggested based on common use cases across products to help
 you define status names according to your system’s needs.
@@ -276,7 +295,7 @@ you define status names according to your system’s needs.
 
 #### Labeling and type pairing
 
-Icon indicators, also known as ‘contextual’ status indicators, are linked to
+Icon indicators, also known as "contextual" status indicators, are linked to
 specific UI elements or content and should be placed near these elements for
 clarity. When the label is not descriptive or paired only with numbers, it's
 best practice to provide a heading or additional content to clarify the status
@@ -339,6 +358,8 @@ clear even at small sizes.
 </Column>
 </Row>
 
+### Shape indicator severity levels
+
 These severity levels are not intended to dictate the final status names in your
 product. They are suggested based on common use cases across products to help
 you define status names according to your system’s needs.
@@ -347,7 +368,7 @@ you define status names according to your system’s needs.
 
 #### Labeling and type pairing
 
-Shape indicators are also ‘contextual’ status indicators. Like the status icons
+Shape indicators are also "contextual" status indicators. Like the status icons
 above, assets have been created for the shape indicators that take into account
 optical alignment.
 
@@ -495,8 +516,8 @@ most often paired with arrows or caret icons in our system for better clarity.
 #### Color
 
 Differential indicators are either displaying a positive or a negative value.
-Color is optional in these situations as long as the value has either a ‘+’ or
-‘-’ in front of it, a chevron icon, or an arrow icon. Unless the data involves
+Color is optional in these situations as long as the value has either a "+" or
+"-"in front of it, a chevron icon, or an arrow icon. Unless the data involves
 temperature, positive values are represented by the green spectrum and negative
 values are represented by the red spectrum.
 
@@ -516,12 +537,12 @@ values are represented by the red spectrum.
 
 #### Relying only on color is insufficient
 
-Relying solely on color to convey status is insufficient, covered by
-[Use of Color](https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html),
-especially for users with color vision deficiencies. While color can be useful,
-it must be paired with text or other visual cues. To meet accessibility
-standards, or to pass
-[Non-text Contrast](https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast),
+Relying solely on color to convey status is insufficient, especially for users
+with color vision deficiencies (refer to
+[Use of Color](https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html)).
+While color can be useful, it must be paired with text or other visual cues. To
+meet accessibility standards, and to pass
+[non-text contrast](https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast),
 ensure that there’s at least a 3:1 contrast between colors used for status
 indicators, as well as between the indicator and the page background. If the
 contrast is sufficient, even in grayscale, users should still be able to
@@ -571,22 +592,6 @@ such as orange and yellow in Carbon light themes.
 
 </Column>
 </Row>
-
-### Notifications
-
-#### Avoid dismissive notifications with a timer for critical messages
-
-Avoid using toast notifications for critical alerts or long messages, as they
-disappear automatically and may be hard for users with disabilities to fully
-read. Learn more about
-[No Timing](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits-no-exceptions.html).
-
-#### Allow users to manage non-critical notifications
-
-Alerts that vanish too quickly can cause important information to be missed.
-Provide an option to turn off nonessential alerts to improve usability for those
-with visual and cognitive disabilities. Learn more about
-[Interruptions](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits-postponed.html).
 
 ## Related
 
