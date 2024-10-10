@@ -1,8 +1,8 @@
 ---
 title: Tile
 description:
-  Tiles are a flexible component for displaying a wide variety of content,
-  including informational, getting started, how-to, next steps, and more.
+  The following page documents visual specifications such as color, typography,
+  and structure, and AI presence.
 tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 ---
 
@@ -12,7 +12,7 @@ import { white } from '@carbon/themes';
 <PageDescription>
 
 The following page documents visual specifications such as color, typography,
-and structure.
+structure, and AI presence.
 
 </PageDescription>
 
@@ -28,99 +28,53 @@ and structure.
 
 ## Color
 
-<InlineNotification>
+### Base tile color
 
-The tile border applies to clickable, selectable and expandable tiles — not to
-base tiles.
+| Element   | Property         | Color token     |
+| --------- | ---------------- | --------------- |
+| Container | background-color | `$layer` \*     |
+| Text      | text color       | `$text-primary` |
 
-</InlineNotification>
+<Row>
+<Column colLg={8}>
 
-| Element         | Property         | Color token         |
-| --------------- | ---------------- | ------------------- |
-| Tile:background | background-color | `$layer` \*         |
-| Tile border     | border           | `$border-tile` \*   |
-| Icon            | svg              | `$icon-interactive` |
-| Checkbox icon   | svg              | `$icon-primary`     |
-| Checkmark icon  | svg              | `$icon-primary`     |
-| Chevron icon    | svg              | `$icon-primary`     |
+![Base tile color](images/tile-style-color-base.png)
+
+<Caption>Base tile color</Caption>
+
+</Column>
+</Row>
+
+### Clickable tile color
+
+Clickable tiles have an available
+[feature flag](/components/overview/feature-flags/).
+
+| Element               | Property         | Color token         |
+| --------------------- | ---------------- | ------------------- |
+| Container             | background-color | `$layer` \*         |
+| Text                  | text color       | `$text-primary`     |
+| Border (feature flag) | border           | `$border-tile` \*   |
+| Icon                  | svg              | `$icon-interactive` |
 
 <Caption>
-  * Denotes a contextual color token that will change values based on the layer
+  \* Denotes a contextual color token that will change values based on the layer
   it is placed on.
 </Caption>
 
 <Row>
 <Column colLg={8}>
-
-![State of the base tile](images/tile-style-3.png)
-
-</Column>
-</Row>
-
-<Caption>
-  The example shows layering tokens applied across layers in the Gray 100 theme.
-</Caption>
-
-### Interactive states
-
-| Element                      | Property         | Color token        |
-| ---------------------------- | ---------------- | ------------------ |
-| Tile:hover                   | background-color | `$layer-hover` \*  |
-| Tile:focus                   | border           | `$focus`           |
-| Tile:selected                | border           | `$border-inverse`  |
-| Tile:disabled                | border           | `$border-disabled` |
-| Icon:disabled (or pictogram) | svg              | `$icon-disabled`   |
-| Text:disabled                | text color       | `$text-disabled`   |
-
-<Caption>
-  * Denotes a contextual color token that will change values based on the layer
-  it is placed on.
-</Caption>
-
-#### Base tile
-
-Base tile doesn't have a border. It's not interactive, but can have interactive
-elements. Base tile only has the enabled state.
-
-<Row>
-<Column colLg={8}>
-
-![State of the base tile](images/tile-style-5.png)
-
-</Column>
-</Row>
-
-#### Clickable tile
-
-Clickable tile has four states: enabled, hover, focus, and disabled.
-
-<Row>
-<Column colLg={8}>
-
-![States of the clickable tile](images/tile-style-6.png)
-
-</Column>
-</Row>
-
-#### Selectable tiles
-
-Selectable tiles have five states: enabled, hover, focus, selected, and
-disabled.
-
-<Row>
-<Column colLg={8}>
-
 <Tabs>
 
-<Tab label="Single-select">
+<Tab label="Flag enabled">
 
-![States of the single-select tile](images/tile-style-7.png)
+![Clickable tile color with the feature flag enabled](images/tile-style-color-clickable-flag-enabled.png)
 
 </Tab>
 
-<Tab label="Multi-select">
+<Tab label="Flag disabled">
 
-![States of the multi-select tile](images/tile-style-8.png)
+![Clickable tile color with the feature flag disabled](images/tile-style-color-clickable-flag-disabled.png)
 
 </Tab>
 
@@ -129,23 +83,201 @@ disabled.
 </Column>
 </Row>
 
-#### Expandable tiles
+<Title>Clickable tile interactive state color</Title>
 
-Expandable tiles have three states: enabled, hover, and focus.
+| State    | Element   | Property         | Color token        |
+| -------- | --------- | ---------------- | ------------------ |
+| Hover    | Container | background-color | `$layer-hover` \*  |
+| Focus    | Container | border           | `$focus`           |
+| Disabled | Container | border           | `$border-disabled` |
+|          | Text      | text color       | `$text-disabled`   |
+|          | Icon      | svg              | `$icon-disabled`   |
+
+<Caption>
+  \* Denotes a contextual color token that will change values based on the layer
+  it is placed on.
+</Caption>
 
 <Row>
 <Column colLg={8}>
 <Tabs>
 
-<Tab label="Default">
+<Tab label="Flag enabled">
 
-![States of the expandable tile](images/tile-style-9.png)
+![Clickable tile interactive color with the feature flag enabled](images/tile-style-interactive-color-clickable-flag-enabled.png)
 
 </Tab>
 
-<Tab label="Interactive">
+<Tab label="Flag disabled">
 
-![States of the expandable tile with interactive elements](images/tile-style-10.png)
+![Clickable tile interactive color with the feature flag disabled](images/tile-style-interactive-color-clickable-flag-disabled.png)
+
+</Tab>
+
+</Tabs>
+
+</Column>
+</Row>
+
+### Selectable tile color
+
+Selectable tiles have available
+[feature flags](/components/overview/feature-flags/).
+
+| Element   | Property         | Color token       |
+| --------- | ---------------- | ----------------- |
+| Container | background-color | `$layer` \*       |
+| Text      | text color       | `$text-primary`   |
+| Border    | border           | `$border-tile` \* |
+| Icon      | svg              | `$icon-primary`   |
+
+<Caption>
+  \* Denotes a contextual color token that will change values based on the layer
+  it is placed on.
+</Caption>
+
+<Row>
+<Column colLg={8}>
+<Tabs>
+
+<Tab label="Flag enabled">
+
+![Selectable tile color with the feature flag enabled](images/tile-style-color-selectable-flag-enabled.png)
+
+</Tab>
+
+<Tab label="Flag disabled">
+
+![Selectable tile color with the feature flag disabled](images/tile-style-color-selectable-flag-disabled.png)
+
+</Tab>
+
+</Tabs>
+
+</Column>
+</Row>
+
+<Title>Selectable tile interactive state color</Title>
+
+| State          | Element   | Property         | Color token        |
+| -------------- | --------- | ---------------- | ------------------ |
+| Hover          | Container | background-color | `$layer-hover` \*  |
+| Hover selected | Container | background-color | `$layer-hover` \*  |
+|                |           | border           | `$border-inverse`  |
+| Selected       | Container | border           | `$border-inverse`  |
+| Focus          | Container | border           | `$focus`           |
+| Disabled       | Container | border           | `$border-disabled` |
+|                | Text      | text color       | `$text-disabled`   |
+|                | Icon      | svg              | `$icon-disabled`   |
+
+<Caption>
+  \* Denotes a contextual color token that will change values based on the layer
+  it is placed on.
+</Caption>
+
+<Row>
+<Column colLg={8}>
+<Tabs>
+
+<Tab label="Flag enabled">
+
+![Selectable tile interactive color with the feature flag enabled](images/tile-style-interactive-color-single-select-flag-enabled.png)
+
+</Tab>
+
+<Tab label="Flag disabled">
+
+![Selectable tile interactive color with the feature flag disabled](images/tile-style-interactive-color-single-select-flag-disabled.png)
+
+</Tab>
+
+</Tabs>
+
+</Column>
+</Row>
+
+### Expandable tile color
+
+Expandable tiles have an available
+[feature flag](/components/overview/feature-flags/).
+
+| Element   | Property         | Color token       |
+| --------- | ---------------- | ----------------- |
+| Container | background-color | `$layer` \*       |
+|           | text color       | `$text-primary`   |
+|           | border           | `$border-tile` \* |
+| Icon      | svg              | `$icon-primary`   |
+
+<Row>
+<Column colLg={8}>
+<Tabs>
+
+<Tab label="Flag enabled">
+
+![Expandable tile color with the feature flag enabled](images/tile-style-color-expandable-flag-enabled.png)
+
+</Tab>
+
+<Tab label="Flag disabled">
+
+![Expandable tile color with the feature flag disabled](images/tile-style-color-expandable-flag-disabled.png)
+
+</Tab>
+
+</Tabs>
+
+</Column>
+</Row>
+
+<Title>Expandable tile interactive state color</Title>
+
+| State    | Element   | Property         | Color token        |
+| -------- | --------- | ---------------- | ------------------ |
+| Hover    | Container | background-color | `$layer-hover` \*  |
+| Focus    | Container | border           | `$focus`           |
+| Disabled | Container | border           | `$border-disabled` |
+|          | Text      | text color       | `$text-disabled`   |
+|          | Icon      | svg              | `$icon-disabled`   |
+
+<Caption>
+  \* Denotes a contextual color token that will change values based on the layer
+  it is placed on.
+</Caption>
+
+<Row>
+<Column colLg={8}>
+<Tabs>
+
+<Tab label="Flag enabled">
+
+![Expandable tile interactive color without interactive elements and the feature flag enabled](images/tile-style-interactive-color-expandable-flag-enabled.png)
+
+</Tab>
+
+<Tab label="Flag disabled">
+
+![Expandable tile interactive color without interactive elements and the feature flag disabled](images/tile-style-interactive-color-expandable-flag-disabled.png)
+
+</Tab>
+
+</Tabs>
+
+</Column>
+</Row>
+
+<Row>
+<Column colLg={8}>
+<Tabs>
+
+<Tab label="Flag enabled">
+
+![Expandable tile interactive color with interactive elements and feature flag enabled](images/tile-style-interactive-color-expandable-element-flag-enabled.png)
+
+</Tab>
+
+<Tab label="Flag disabled">
+
+![Expandable tile interactive color with interactive elements and feature flag disabled](images/tile-style-interactive-color-expandable-element-flag-disabled.png)
 
 </Tab>
 
@@ -156,39 +288,102 @@ Expandable tiles have three states: enabled, hover, and focus.
 
 ## Typography
 
-The default token for the title is `$body-compact-01`, although it can be
-altered as needed by the product teams.
+The default token for tile titles is `$body-compact-01`, although it can be
+customized as needed by product teams.
 
-| Element     | Font-size (px/rem) | Font-weight   | Type token         |
-| ----------- | ------------------ | ------------- | ------------------ |
-| Tile        | 14 / 0.875         | Regular / 400 | `$body-compact-01` |
-| Description | 14 / 0.875         | Regular / 400 | `$body-compact-01` |
+| Element | Font-size (px/rem) | Font-weight   | Type token         |
+| ------- | ------------------ | ------------- | ------------------ |
+| Title   | 14 / 0.875         | Regular / 400 | `$body-compact-01` |
 
 ## Structure
 
-| Element | Property          | px / rem | Spacing token |
-| ------- | ----------------- | -------- | ------------- |
-| Tile    | min-height        | 64 / 4   | –             |
-|         | min-width         | 128 / 8  | –             |
-|         | padding (minimum) | 16 / 1   | `$spacing-05` |
+### Base tile structure
 
-<Row>
-<Column colLg={12}>
+| Element   | Property                    | px / rem | Spacing token |
+| --------- | --------------------------- | -------- | ------------- |
+| Container | min-height                  | 64 / 4   | –             |
+|           | min-width                   | 128 / 8  | –             |
+| Content   | padding-top, padding-bottom | 16 / 1   | `$spacing-05` |
+|           | padding-left, padding-right | 16 / 1   | `$spacing-05` |
 
-![Structure and measurements for tiles](images/tile-style-11.png)
+<div className="image--fixed">
 
-</Column>
-</Row>
+![Structure and spacing measurements for base tile | px / rem](images/tile-style-structure-base.png)
 
-<Row>
-<Column colLg={12}>
+</div>
 
-![Structure and measurements for single-select, multi-select, and expandable tiles](images/tile-style-12.png)
+<Caption>Structure and spacing measurements for base tile | px / rem</Caption>
 
-</Column>
-</Row>
+### Clickable tile structure
 
-<Caption>Structure and spacing measurements for tile | px / rem</Caption>
+| Element   | Property                    | px / rem  | Spacing token |
+| --------- | --------------------------- | --------- | ------------- |
+| Container | min-height                  | 64 / 4    | –             |
+|           | min-width                   | 128 / 8   | –             |
+| Content   | padding-top, padding-bottom | 16 / 1    | `$spacing-05` |
+|           | padding-left, padding-right | 16 / 1    | `$spacing-05` |
+| Icon      | padding-top, padding-bottom | 12 / 0.75 | `$spacing-04` |
+|           | padding-left, padding-right | 12 / 0.75 | `$spacing-04` |
+|           | size                        | 20px      | –             |
+
+<div className="image--fixed">
+
+![Structure and spacing measurements for clickable tile with eth feature flag enabled | px / rem](images/tile-style-structure-clickable.png)
+
+</div>
+
+<Caption>
+  Structure and spacing measurements for clickable tile with the feature flag
+  enabled | px / rem
+</Caption>
+
+### Selectable tile structure
+
+| Element   | Property                    | px / rem | Spacing token |
+| --------- | --------------------------- | -------- | ------------- |
+| Container | min-height                  | 64 / 4   | –             |
+|           | min-width                   | 128 / 8  | –             |
+| Content   | padding-top, padding-bottom | 16 / 1   | `$spacing-05` |
+|           | padding-left, padding-right | 16 / 1   | `$spacing-05` |
+| Icon      | padding-top, padding-bottom | 16 / 1   | `$spacing-05` |
+|           | padding-left, padding-right | 16 / 1   | `$spacing-05` |
+|           | size                        | 16px     | –             |
+
+<div className="image--fixed">
+
+![Structure and spacing measurements for selectable tile with feature flags | px / rem](images/tile-style-structure-selectable.png)
+
+</div>
+
+<Caption>
+  Structure and spacing measurements for selectable tile with the feature flags
+  enabled | px / rem
+</Caption>
+
+### Expandable tile structure
+
+| Element   | Property                    | px / rem | Spacing token |
+| --------- | --------------------------- | -------- | ------------- |
+| Container | min-height                  | 64 / 4   | –             |
+|           | min-width                   | 128 / 8  | –             |
+| Content   | padding-top, padding-bottom | 16 / 1   | `$spacing-05` |
+|           | padding-left, padding-right | 16 / 1   | `$spacing-05` |
+| Icon      | padding-top, padding-bottom | 16 / 1   | `$spacing-05` |
+|           | padding-left, padding-right | 16 / 1   | `$spacing-05` |
+|           | size                        | 16px     | –             |
+| Link      | padding-bottom              | 16 / 1   | `$spacing-05` |
+|           | padding-left, padding-right | 16 / 1   | `$spacing-05` |
+
+<div className="image--fixed">
+
+![Structure and spacing measurements for expandable tile with the feature flag enabled | px / rem](images/tile-style-structure-expandable.png)
+
+</div>
+
+<Caption>
+  Structure and spacing measurements for expandable tile with the feature flag
+  enabled | px / rem
+</Caption>
 
 ### Proportions for grid
 
@@ -222,14 +417,14 @@ For more information on the AI style elements, see the
 | AI label                   | size             | mini               |
 
 <Caption>
-  * Denotes a contextual color token that will change values based on the layer
+  \* Denotes a contextual color token that will change values based on the layer
   it is placed on.
 </Caption>
 
 <Row>
 <Column colLg={8}>
 
-![Structure and spacing measurements for tile with AI presence](images/tile-AI-presence-style.png)
+![Structure and spacing measurements for tile with AI presence](images/tile-style-AI-presence.png)
 
 </Column>
 </Row>
