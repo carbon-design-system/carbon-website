@@ -2,14 +2,16 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import componentList from '../../data/components.json';
+import { Tag } from '@carbon/react';
 
 // only display components where overview is true in the data
 const filteredComponentList = componentList.components.filter(
   (item) => item.overview !== false
 );
+
 class ComponentOverview extends React.Component {
   renderItems = (currentItem) => {
-    const { component } = currentItem;
+    const { component, featureFlag } = currentItem;
     let componentUrl;
     if (component === 'Multiselect') {
       componentUrl = '/components/dropdown/usage';
@@ -39,7 +41,12 @@ class ComponentOverview extends React.Component {
                 alt={component}
                 className="component-item__img"
               />
-              <p className="component-name">{component}</p>
+              <p className="component-name">{component}</p>{' '}
+              {featureFlag ? (
+                <Tag type="blue" className="component-tag--feature-flag">
+                  Feature flag
+                </Tag>
+              ) : null}
             </Link>
           </div>
         </div>
