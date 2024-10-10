@@ -47,7 +47,7 @@ export const StatusIconGroup = ({ theme = 'light', children, attention }) => {
 const StatusIndicatorRow = ({
   attention,
   fileNames,
-  name,
+  severitylevel,
   token,
   description,
   usage,
@@ -77,7 +77,7 @@ const StatusIndicatorRow = ({
           </StatusIconGroup>
         </StatusIconWrapper>
       </StructuredListCell>
-      <StructuredListCell className={cell}>{name}</StructuredListCell>
+      <StructuredListCell className={cell}>{severitylevel}</StructuredListCell>
       <StructuredListCell className={cell}>{token}</StructuredListCell>
       <StructuredListCell className={cx(cell, descriptionCell)}>
         {description}
