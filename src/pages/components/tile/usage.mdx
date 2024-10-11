@@ -1,14 +1,18 @@
 ---
 title: Tile
 description:
-  Tiles are a flexible component for displaying a wide variety of content,
-  including informational, getting started, how-to, next steps, and more.
+  Tiles are a highly flexible component for displaying a wide variety of
+  content, including informational, getting started, how-to, next steps, and
+  more.
 tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 ---
 
 import A11yStatus from 'components/A11yStatus';
+import { Tag } from '@carbon/react';
 
 <PageDescription>
+
+<Tag type="blue">Feature flag</Tag>
 
 Tiles are a highly flexible component for displaying a wide variety of content,
 including information, getting started, how-to, next steps, and more.
@@ -22,13 +26,6 @@ Tile
 changes the visual appearance of the component and introduces an AI
 explainability feature when AI is present in the component.
 
-<br />
-
-Additionally, a visual accessibility enhancement is available with
-[experimental tiles](https://react.carbondesignsystem.com/?path=/docs/experimental-feature-flags-tile--overview).
-We encourage teams to start using these tiles, although current tiles are still
-supported.
-
 </InlineNotification>
 
 <AnchorLinks>
@@ -37,7 +34,11 @@ supported.
 <AnchorLink>Overview</AnchorLink>
 <AnchorLink>Variants</AnchorLink>
 <AnchorLink>Formatting</AnchorLink>
-<AnchorLink>Universal behaviors</AnchorLink>
+<AnchorLink>Content</AnchorLink>
+<AnchorLink>Base</AnchorLink>
+<AnchorLink>Clickable</AnchorLink>
+<AnchorLink>Selectable</AnchorLink>
+<AnchorLink>Expandable</AnchorLink>
 <AnchorLink>AI presence</AnchorLink>
 <AnchorLink>Related</AnchorLink>
 <AnchorLink>References</AnchorLink>
@@ -110,33 +111,35 @@ supported.
 
 ## Overview
 
-Carbon ships a basic tile structure that responds to the grid. Tiles can contain
-type, images and/or blocks of color. However, Carbon tiles have no pre-set
-styles for the content inside. Tile usage guidance focuses solely on basic tile
-functions—not the information hierarchy within the tile or guidance around
-additional interactive elements that the tile may contain.
+Tile is a component that can contain various content and nested components and
+can have interactive functions. Tile is often laid out in groups, is a different
+color than the UI background, and responds to the grid. Tiles have no pre-set
+styles and are purposely flexible so product teams can determine their tile
+content for specific use cases.
 
 <Row>
 <Column colLg={12}>
 
-![Example image of tiles on the dashboard](images/tile-usage-1.png)
+![Example of the tile component in a UI](images/tile-usage-overview.png)
+
+<Caption>Example of the tile component in a UI</Caption>
 
 </Column>
 </Row>
 
-#### Tiles versus Cards
+#### Tiles versus cards
 
 Tiles are simple and foundational. Cards can be very complex. Cards are built
 upon the tile foundation and have various patterns of information hierarchy,
 multiple actions, overflow menus, selectable features, etc. Carbon does not have
-a Card pattern yet, but we link out to several card patterns within our pattern
+a card pattern, but we link out to several card patterns within our pattern
 asset library (PAL) ecosystem below:
 
-- [Productive vs. Expressive cards](https://pages.github.ibm.com/cdai-design/pal/components/card/overview/)
-  (Carbon for Cloud & Cognitive)
+- [Productive versus Expressive cards](https://pages.github.ibm.com/cdai-design/pal/components/card/overview/)
+  (Carbon for IBM Products)
 - [Dashboard cards](https://pages.github.ibm.com/ai-applications/design/patterns/dashboards-v2/overview/#dashboard-cards)
-  (AI Applications Design)
-- [Card](https://www.ibm.com/standards/carbon/components/cards) (Carbon for
+  (IBM Sustainability Software Design)
+- [Cards](https://www.ibm.com/standards/carbon/components/cards) (Carbon for
   IBM.com)
 
 ### When to use
@@ -152,213 +155,95 @@ some common use cases for when to use tiles:
 
 ### When not to use
 
-Tiles reside in the same plane as the background layer—they do not have
-**elevation**. Tiles organize essential information and have the same visual
-hierarchy as content within the same page.
+Tiles reside on the same plane as the page background layer and do not have
+elevation. Tiles organize essential information and have the same visual
+hierarchy as content on the same page.
 
-Do not add a drop shadow to tiles and use them on the screen to reveal secondary
-information, actions, or notifications. Use [modals](/components/modal/usage),
-[popover](/components/popover/usage), and
-[dialogs](https://carbondesignsystem.com/patterns/dialog-pattern/) which have
-elevation and are appropriate for this function instead.
+Do not add a drop shadow to tiles and use them to reveal secondary information,
+actions, or notifications. Use [modals](/components/modal/usage),
+[popovers](/components/popover/usage), and
+[dialogs](https://carbondesignsystem.com/patterns/dialog-pattern/) that have
+elevation and are appropriate for this use case instead.
 
-## Variants
+### Variants
 
-<InlineNotification>
+Tiles can have different functions and are implemented in four ways: base,
+clickable, selectable, and expandable. These tile variants are flexible to
+support various use cases when building more complicated card features.
 
-The
-[experimental tiles](https://react.carbondesignsystem.com/?path=/docs/experimental-feature-flags-tile--overview)
-are applicable to clickable, selectable and expandable tiles — not to base
-tiles.
+| Variant                   | Purpose                                                                                                                                               |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Base](#base)             | For high-level, short, and digestible content pieces such as features, plans, or services offered.                                                    |
+| [Clickable](#clickable)   | For prompting an action, navigating or directing to other pieces of information about the subject matter. This variant has an available feature flag. |
+| [Selectable](#selectable) | For presenting options to a user in a structured manner, such as a set of pricing plans. This variant has available feature flags.                    |
+| [Expandable](#expandable) | For hiding and revealing a large amount of content to focus on specific pieces of information. This variant has an available feature flag.            |
 
-</InlineNotification>
+### Feature flags
 
-Tiles can function or be implemented in four ways—base, clickable, selectable,
-or expandable. These variations of tiles are flexible enough to support a
-variety of different use cases when building more complicated card features.
+[Feature flags](/components/overview/feature-flags/) have been added to the
+clickable, selectable, and expandable variants of tile to improve accessibility
+and changes its visual appearance, not its functionality. For code-specific
+feature flag information, refer to the [Code](/components/tile/code/) tab. These
+current variants of tile are not being deprecated, but teams are encouraged to
+use the feature flag tile for their products moving forward.
 
-| Variant                   | Purpose                                                                                                  |
-| ------------------------- | -------------------------------------------------------------------------------------------------------- |
-| [Base](#base)             | For high-level, short, and digestible content pieces such as features, plans, or services offered        |
-| [Clickable](#clickable)   | For prompting an action, navigating or directing to other pieces of information about the subject matter |
-| [Selectable](#selectable) | For presenting options to a user in a structured manner, such as a set of pricing plans                  |
-| [Expandable](#expandable) | For hiding and revealing a large amount of content to focus on specific pieces of information            |
+The following are the feature flag changes made to structured list.
 
-### Base
-
-Base tiles are used to display information to the user, such as features or
-services offered. Base tiles are often seen on marketing pages to promote
-content or on highly-interactive dashboards. These tiles can have internal
-calls-to-action (CTAs), such as a [button](/components/button/usage) or a
-[link](/components/link/usage).
-
-<Row>
-<Column colLg={8}>
-
-![Example image of base tiles](images/tile-usage-2.png)
-
-</Column>
-</Row>
-
-### Clickable
-
-Clickable tiles can be used as navigational elements that redirect the user to a
-new page. In these situations, the entire tile is in a clickable state. Due to
-accessibility concerns, clickable tiles cannot contain separate internal CTAs
-but can contain pictograms, icons, or media such as illustrations or images.
+- A border has been added to the clickable, selectable, and expandable variants
+  of tile to visually indicate they are operable.
+- Single-select tile icons have been changed from checkmark icons to radio
+  button icons, where as multi-select tile icons have been changed from
+  checkmark icons to checkbox icons. These icons appear in the enabled state
+  instead of only on hover before making a selection.
 
 <Row>
 <Column colLg={8}>
+<Tabs>
 
-![Example image of clickable tiles](images/tile-usage-3.png)
+<Tab label="Flag enabled">
 
-</Column>
-</Row>
+![Interactive tiles with the feature flag enabled](images/tile-usage-feature-flag-enabled.png)
 
-### Selectable
+</Tab>
 
-Selectable tiles work well for presenting options to a user in a structured
-manner, such as a set of pricing plans. Selectable tiles may contain internal
-CTAs (like links to docs) if the internal CTA is given its own click target.
+<Tab label="Flag disabled">
 
-Selectable tiles can either have a single-select state working like a
-[radio button](/components/radio-button/usage), or multi-select state working as
-a [checkbox](/components/checkbox/usage).
+![Interactive tiles with the feature flag disabled](images/tile-usage-feature-flag-disabled.png)
 
-<Row>
-<Column colLg={8}>
+</Tab>
 
-![Example image of radio-button/single-select tile](images/tile-usage-4.png)
-
-<Caption>Single-select tiles</Caption>
-
-![Example image of checkbox/multi-select tile](images/tile-usage-5.png)
-
-<Caption>Multi-select tiles</Caption>
-
-</Column>
-</Row>
-
-### Expandable
-
-Expandable tiles are helpful for hiding and showing large amounts of content to
-a user. When expanded, tiles push content down the page. They allow the user to
-specifically focus on featured content while having access to the rest of the
-information. Expandable tiles can contain internal CTAs (like links to docs) if
-they are given their own click targets.
-
-<Row>
-<Column colLg={8}>
-
-![Example image of expandable tile with interactive elements](images/tile-usage-6.png)
-
-<Caption>Expandable tile with interactive elements</Caption>
-
-![Example image of expandable tile without interactive elements](images/tile-usage-7.png)
-
-<Caption>Expandable tile without interactive elements</Caption>
+</Tabs>
 
 </Column>
 </Row>
 
 ## Formatting
 
-### Anatomy
-
-<Row>
-<Column colLg={8}>
-
-![Tile anatomy](images/tile-usage-8.png)
-
-</Column>
-</Row>
-
-1. **Image (optional)** : The image size follows standard Carbon aspect ratios
-   (in this case, with a default size of 4:3)
-
-2. **Container**: Contains the content area
-
-3. **Content area**: Contains the information and/or controls needed to complete
-   the modal's task. It can include message text and components.
-
 ### Sizing
 
-The **width** varies depending on three basic gutter modes: wide, narrow, and
-condensed. Tile **height** varies depending on the amount of content placed
-within it, but applies the
-[spacing](https://carbondesignsystem.com/guidelines/spacing/overview/) and
-follows Carbon's standard
-[aspect ratios](https://www.carbondesignsystem.com/guidelines/2x-grid/overview/#aspect-ratio).
-The minimum height starts with 2:1 aspect ratio. As the content grows, set
+Tile width varies depending on the three basic gutter modes: **wide**,
+**narrow**, and **condensed**. Tile height varies depending on the content
+placed within it while using
+[spacing tokens](https://carbondesignsystem.com/elements/spacing/overview/) and
+following
+[aspect ratios](https://carbondesignsystem.com/elements/2x-grid/usage/#continuity).
+The minimum tile height is a 2:1 aspect ratio. As the content grows, set
 vertical spacing between sections within the content area.
 
 ### Alignment
 
-#### Icon and call-to-action button
-
-On clickable tiles, use the arrow icon as default with the `$icon-interactive`
-token. Place the icon at the bottom right to indicate navigation. Avoid
-confusing the user with multiple click targets (like interactive links or
-buttons) on clickable tiles.
-
-<DoDontRow>
-  <DoDont type="do" caption="Do right align the icon when it is by itself.">
-
-![Example of "do" on clickable tile](images/tile-usage-9.png)
-
-  </DoDont>
-
-  <DoDont type="do" caption="Do right align the icon when there is additional text.">
-
-![Example of "do" on clickable tile](images/tile-usage-10.png)
-
-  </DoDont>
-</DoDontRow>
-
-<DoDontRow>
-
-  <DoDont type="do" caption="Do right align the icon when there is an icon or pictogram.">
-
-![Example of "do" on clickable tile](images/tile-usage-11.png)
-
-  </DoDont>
-
-  <DoDont type="dont" caption="Do not add interactive links or components on clickable tiles.">
-
-![Example of "do not" on clickable tile](images/tile-usage-12.png)
-
-  </DoDont>
-</DoDontRow>
-
-On base tiles, place the interactive link at the bottom left or the button at
-the bottom to indicate call-to-action items.
-
-<DoDontRow>
-  <DoDont type="do" caption="Do left align the interactive link at the bottom on base tile.">
-
-![Example of "do" on base tile](images/tile-usage-13.png)
-
-  </DoDont>
-
-  <DoDont type="do" caption="Do place the button at the bottom on base tile.">
-
-![Example of "do" on base tile](images/tile-usage-14.png)
-
-  </DoDont>
-</DoDontRow>
-
 #### Tile groups
 
-Tile groups are useful for aligning tiles that have a strong relationship. Tile
-groups flow horizontally from left to right usually and have similar
-hierarchical importance as with navigation or catalog tiles.
+Tile groups are helpful when aligning tiles that have a strong relationship.
+Tile groups usually flow horizontally from left to right and have hierarchical
+importance, similar to navigation or catalog tiles.
 
 <Row>
 <Column colLg={12}>
 
-![Example image of how tiles are built on the wide grid.](images/tile-usage-15.png)
+![Example image of tiles on the wide grid](images/tile-usage-wide-grid.png)
 
-<Caption>Example image of how tiles are built on the wide grid.</Caption>
+<Caption>Example image of tiles on the wide grid</Caption>
 
 </Column>
 </Row>
@@ -366,9 +251,9 @@ hierarchical importance as with navigation or catalog tiles.
 <Row>
 <Column colLg={12}>
 
-![Example image of how tiles are built on the narrow grid.](images/tile-usage-16.png)
+![Example image of tiles on the narrow grid](images/tile-usage-narrow-grid.png)
 
-<Caption>Example image of how tiles are built on the narrow grid.</Caption>
+<Caption>Example image of tiles on the narrow grid</Caption>
 
 </Column>
 </Row>
@@ -376,24 +261,24 @@ hierarchical importance as with navigation or catalog tiles.
 <Row>
 <Column colLg={12}>
 
-![Example image of how tiles are built on the condensed grid.](images/tile-usage-17.png)
+![Example image of tiles on the condensed grid](images/tile-usage-condensed-grid.png)
 
-<Caption>Example image of how tiles are built on the condensed grid.</Caption>
+<Caption>Example image of tiles on the condensed grid</Caption>
 
 </Column>
 </Row>
 
 <DoDontRow>
 
-  <DoDont type="do" caption="Do match the same type of tiles in a group">
+  <DoDont type="do" caption="Do match the tile variants in groups.">
 
-![Example of "do" of tile matching](images/tile-usage-19.png)
+![Example of "do" of tile matching](images/tile-usage-group-do.png)
 
   </DoDont>
 
-  <DoDont type="dont" caption="Do not mix types of tiles in a group.">
+  <DoDont type="dont" caption="Do not mix different variants of tiles in groups.">
 
-![Example of "do not" of tile mixing](images/tile-usage-20.png)
+![Example of "do not" of tile mixing](images/tile-usage-group-dont.png)
 
   </DoDont>
 </DoDontRow>
@@ -401,11 +286,10 @@ hierarchical importance as with navigation or catalog tiles.
 #### Layout
 
 There are three basic layouts for tiles: **standard**, **vertical masonry**, and
-**horizontal masonry**. The standard layout will be the most commonly used
-version.
+**horizontal masonry**. The standard layout is the the most commonly used.
 
-- Standard layout tiles are the same in height and width as all other tiles in
-  the group.
+- In a standard layout, tiles are the same in height and width as all other
+  tiles in the group.
 - In a vertical masonry layout, tiles can vary in height, but are consistent in
   width.
 - In a horizontal masonry layout, tiles can vary in width; different rows of
@@ -415,99 +299,481 @@ version.
 <Row>
 <Column colLg={8}>
 
-![Layouts for tiles](/images/tile-usage-18.png)
+![Tile layouts](/images/tile-usage-18.png)
 
 <Caption>
-  Examples of tile layouts: standard, vertical masonry, and horizontal masonry.
+  Examples of standard, vertical masonry, and horizontal masonry tile layouts
 </Caption>
 
 </Column>
 </Row>
 
-## Universal behaviors
+## Content
 
-The behaviors listed in this section are universal across all tile variants. For
-behaviors that are unique to each variant, see each of the component variants
-sections below.
+### Main elements
 
-### States
+#### Tile text
 
-For detailed visual information about the various states for this component, see
-the [Style](https://carbondesignsystem.com/components/tile/style) tab.
+Tile text can vary based on the content. It can consist of heading text, body
+text, label text, and include interactive elements.
 
-| State      | When to use                                                                                                                                                                                                                                                                                                        |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| _Enabled_  | When a tile is live but a user is not directly interacting with it. This is commonly referred to as the default or normal state of the component                                                                                                                                                                   |
-| _Hover_    | When a user is hovering over the tile with the mouse cursor to interact with it (except base tile)                                                                                                                                                                                                                 |
-| _Focus_    | When a user `tabs` to or clicks on the tile, it becomes focused, indicating the user has successfully navigated to the component (except base tile)                                                                                                                                                                |
-| _Selected_ | When a user `enters` or clicks on the single-select tile or the multi-select tile to select an option or multiple options                                                                                                                                                                                          |
-| _Disabled_ | When the user is not allowed to interact with clickable and selectable (single-select and multi-select) tiles due to either permissions, dependencies, or pre-requisites. The disabled state completely removes the interactive function from a component. The styling is not subject to WCAG contrast compliance. |
+### Futher guidance
+
+For further content guidance, see
+Carbon’s [content guidelines](https://carbondesignsystem.com/guidelines/content/overview/).
+
+## Base
+
+Base tiles are used to display information to the user, such as features or
+services offered. Base tiles are often seen on marketing pages to promote
+content or on highly interactive dashboards. These tiles can have internal
+calls-to-action (CTAs), such as a [buttons](/components/button/usage) or
+[links](/components/link/usage).
 
 <Row>
 <Column colLg={8}>
 
-![Clickable tiles vs disabled tiles](images/tile-usage-21.png)
+![Example of base tiles](images/tile-usage-base.png)
 
-<Caption>
-  Clickable tile's disabled state turns the default icon into the error icon.
-</Caption>
+<Caption>Example of base tiles</Caption>
 
 </Column>
 </Row>
+
+### Anatomy
+
+<Row>
+<Column colLg={8}>
+
+![Anatomy of base tiles](images/tile-usage-base-anatomy.png)
+
+<Caption>Anatomy of base tiles</Caption>
+
+</Column>
+</Row>
+
+1. **Container**: Contains all content in a tile.
+2. **Text**: The text in a tile.
+3. **Interactive elements (optional)**: Elements like links or buttons in a tile
+   that are interactive.
+
+### Alignment
+
+When placing interactive elements within base tiles, place links at the bottom
+left of the tile and span buttons in width at the bottom to indicate
+call-to-action items.
+
+<DoDontRow>
+  <DoDont type="do" caption="Do left align the link at the bottom of the base tile.">
+
+![Example of "do" on base tile](images/tile-usage-base-link-do.png)
+
+  </DoDont>
+
+  <DoDont type="do" caption="Do span the button in width at the bottom of the base tile.">
+
+![Example of "do" on base tile](images/tile-usage-base-button-do.png)
+
+  </DoDont>
+</DoDontRow>
+
+### States
+
+Base tiles only have an **enabled** state because they are not operable by a
+mouse or keyboard. For more information about base tile states, see the
+[Style](https://carbondesignsystem.com/components/tile/style) tab.
 
 ### Interactions
 
 #### Mouse
 
-Users can trigger an item by clicking anywhere in any tile container, except
-base tiles.
+Base tiles are not operable by a mouse unless they contain interactive elements
+within them. Interactive elements can be clicked on and activated.
+
+#### Keyboard
+
+- Base tiles do not receive focus unless they contain interactive elements.
+- `Tab` moves focus forward through interactive elements within base tile in a
+  logical order.
+- `Shift` + `Tab` moves focus backward through interactive elements within base
+  tile in a logical order.
+- `Enter` activates the base tiles interactive elements.
+
+### Clickable areas
+
+Base tiles can have interactive elements within them, like links or buttons,
+which can be clicked on.
 
 <Row>
 <Column colLg={8}>
 
-![Clickable, expandable, and selectable tiles are clickable anywhere within the tile.](images/tile-usage-22.png)
+![Clickable areas of base tile with interactive elements](images/tile-usage-base-clickable-areas.png)
+
+<Caption>Clickable areas of base tile with interactive elements</Caption>
+
+</Column>
+</Row>
+
+## Clickable
+
+Clickable tiles can be used as navigational elements that redirect the user to a
+new page. In these situations, the entire tile is in a clickable state. Due to
+accessibility concerns, clickable tiles cannot contain separate internal CTAs
+but can contain pictograms, icons, or media such as illustrations or images.
+
+Clickable tile has an available
+[feature flag](/components/overview/feature-flags/).
+
+<Row>
+<Column colLg={8}>
+<Tabs>
+
+<Tab label="Flag enabled">
+
+![Clickable tile with the feature flag enabled](images/tile-usage-clickable-flag-enabled.png)
+
+</Tab>
+
+<Tab label="Flag disabled">
+
+![Clickable tile with the feature flag disabled](images/tile-usage-clickable-flag-disabled.png)
+
+</Tab>
+
+</Tabs>
+
+</Column>
+</Row>
+
+### Anatomy
+
+<Row>
+<Column colLg={8}>
+
+![Anatomy of clickable tile with the feature flag enabled](images/tile-usage-clickable-anatomy.png)
+
+<Caption>Anatomy of clickable tile with the feature flag enabled</Caption>
+
+</Column>
+</Row>
+
+1. **Container**: Contains all content within a tile.
+2. **Text**: The text within a tile.
+3. **Icon**: The icon that visually indicates the tile is navigational.
+4. **Border**: The border that visually indicates the tile is interactive.
+
+### Alignment
+
+#### Icons
+
+On clickable tiles, use the arrow icon paired with the `$icon-interactive` color
+token. Place the icon at the bottom right to indicate navigation. Avoid
+confusing the user with multiple click targets, like interactive links or
+buttons, since the whole tile is already clickable.
+
+<DoDontRow>
+  <DoDont type="do" caption="Do right align the arrow icon when it is by itself.">
+
+![Example of "do" on clickable tile](images/tile-usage-clickable-arrow-do.png)
+
+  </DoDont>
+
+  <DoDont type="do" caption="Do right align the arrow icon when there is additional text.">
+
+![Example of "do" on clickable tile](images/tile-usage-clickable-arrow-pdf-do.png)
+
+  </DoDont>
+</DoDontRow>
+
+<DoDontRow>
+
+  <DoDont type="do" caption="Do right align the arrow icon when there is a decorative icon or pictogram.">
+
+![Example of "do" on clickable tile](images/tile-usage-clickable-arrow-pictogram-do.png)
+
+  </DoDont>
+
+  <DoDont type="dont" caption="Do not add interactive links or components on clickable tiles.">
+
+![Example of "do not" on clickable tile](images/tile-usage-clickable-link-dont.png)
+
+  </DoDont>
+</DoDontRow>
+
+### States
+
+Clickable tiles have **enabled**, **hover**, **focus**, and **disabled** states.
+For more information about clickable tile states, see the
+[Style](https://carbondesignsystem.com/components/tile/style) tab.
+
+### Interactions
+
+#### Mouse
+
+The clickable tile is triggered by clicking anywhere within the tile container.
+
+#### Keyboard
+
+- `Tab` moves focus forward through clickable tiles in a logical order.
+- `Shift` + `Tab`moves focus backward through clickable tiles in a logical
+  order.
+- `Enter` activates the tile and navigates you to its destination.
+
+### Clickable areas
+
+Clickable tiles can be triggered by clicking anywhere on the tiles container.
+
+<Row>
+<Column colLg={8}>
+
+![Clickable areas of clickable tile with the feature flag enabled](images/tile-usage-clickable-clickable-areas.png)
 
 <Caption>
-  Clickable, expandable, and selectable tiles are clickable anywhere within the
-  tile.
+  Clickable areas of clickable tile with the feature flag enabled
 </Caption>
 
 </Column>
 </Row>
 
+## Selectable
+
+Selectable tiles are used to present different options for users to select from.
+Selectable tiles can contain internal CTAs, like links to documentation, if the
+CTA is given a click target of its own in addition to the tile's click target.
+Selectable tiles can either have single-selection or multi-selection.
+
+Selectable tile has available
+[feature flags](/components/overview/feature-flags/).
+
+### Single-select
+
+Use single-select tiles when the user can only select one tile from a tile
+group.
+
 <Row>
 <Column colLg={8}>
+<Tabs>
 
-![Base tiles are static, except buttons or links .](images/tile-usage-23.png)
+<Tab label="Flag enabled">
 
-<Caption>Base tiles are static, except buttons or links.</Caption>
+![Single-select tile with the feature flag enabled](images/tile-usage-selectable-single-select-flag-enabled.png)
+
+</Tab>
+
+<Tab label="Flag disabled">
+
+![Single-select tile with the feature flag disabled](images/tile-usage-selectable-single-select-flag-disabled.png)
+
+</Tab>
+
+</Tabs>
 
 </Column>
 </Row>
 
-Expandable tiles can either be triggered as a whole or contain internal CTAs
-only if they are given their own click targets. In these cases, the tile’s click
-target is reduced to only the icon button.
+### Multi-select
+
+Use multi-select tiles when the user can select multiple tiles from a tile
+group.
+
+<Row>
+<Column colLg={8}>
+<Tabs>
+
+<Tab label="Flag enabled">
+
+![Multi-select tile with the feature flag enabled](images/tile-usage-selectable-multi-select-flag-enabled.png)
+
+</Tab>
+
+<Tab label="Flag disabled">
+
+![Multi-select tile with the feature flag disabled](images/tile-usage-selectable-multi-select-flag-disabled.png)
+
+</Tab>
+
+</Tabs>
+
+</Column>
+</Row>
+
+### Anatomy
 
 <Row>
 <Column colLg={8}>
 
-![Expandable tiles click targets](images/tile-usage-24.png)
+![Anatomy of selectable tile with feature flags](images/tile-usage-selectable-anatomy.png)
+
+<Caption>Anatomy of selectable tile with the feature flags enabled</Caption>
 
 </Column>
 </Row>
+
+1. **Container**: Contains all content within a tile.
+2. **Text**: The text within a tile.
+3. **Icon**: The radio or checkbox icon that visually indicates the tile is
+   selectable.
+4. **Border**: The border that visually indicates the tile is interactive.
+
+### States
+
+Selectable tiles have **enabled**, **hover**, **hover selected**, **selected**,
+**focus**, and **disabled** states. For more information about base tile states,
+see the [Style](https://carbondesignsystem.com/components/tile/style/) tab.
+
+### Interactions
+
+#### Mouse
+
+The clickable tile is triggered by clicking anywhere within the tile container.
 
 #### Keyboard
 
-Specific keyboard interactions will depend on the type of tile you are using and
-what content it contains but all types of tiles can take focus.
+- `Tab` moves focus forward through selectable tiles in a logical order.
+- `Shift` + `Tab` moves focus backward through selectable tiles in a logical
+  order.
+- `Enter` selects the tile.
 
-| Key             | Interaction                                                                                                                                                                 |
-| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Tab             | Move forward through tiles (if tiles themselves are clickable) and interactive elements within the tiles in a logical order                                                 |
-| Shift + Tab     | Move backward through tiles (if tiles themselves are clickable) and interactive elements within the tiles in a logical order                                                |
-| Return or Enter | Return or enter will open the tile (if the tile itself is clickable). If the tile is not clickable but has interactive elements, their corresponding actions are performed. |
-| Space           | If the tile is selectable, the space bar will toggle tile selection.                                                                                                        |
+### Clickable areas
+
+Selectable tiles can be selected by clicking anywhere on the tiles container.
+
+<Row>
+<Column colLg={8}>
+
+![Clickable areas of selectable tile with the feature flags enabled](images/tile-usage-selectable-clickable-areas.png)
+
+<Caption>
+  Clickable areas of selectable tile with the feature flags enabled
+</Caption>
+
+</Column>
+</Row>
+
+### Expandable
+
+Expandable tiles are used to reveal or hide additional information to the user
+and can be expanded and collapsed differently depending on their content. If an
+expandable tile does not have interactive elements, clicking anywhere in the
+tile expands and collapses the tile. If an expandable tile has interactive
+elements, the chevron icon button expands and collapses the tile.
+
+Expandable tile has an available
+[feature flag](/components/overview/feature-flags/).
+
+### Without interactive elements
+
+Use the container expansion functionality to expand and collapse the tile when
+there are no interactive elements.
+
+<Row>
+<Column colLg={8}>
+<Tabs>
+
+<Tab label="Flag enabled">
+
+![Expandable tile without interactive elements with the feature flag enabled](images/tile-usage-expandable-non-interactive-flag-enabled.png)
+
+</Tab>
+
+<Tab label="Flag disabled">
+
+![Expandable tile without interactive elements with the feature flag disabled](images/tile-usage-expandable-non-interactive-flag-disabled.png)
+
+</Tab>
+
+</Tabs>
+
+</Column>
+</Row>
+
+### With interactive elements
+
+Use the button expansion functionality to expand and collapse the tile when
+including interactive elements.
+
+<Row>
+<Column colLg={8}>
+<Tabs>
+
+<Tab label="Flag enabled">
+
+![Expandable tile with interactive elements with the feature flag enabled](images/tile-usage-expandable-interactive-flag-enabled.png)
+
+</Tab>
+
+<Tab label="Flag disabled">
+
+![Expandable tile with interactive elements with the feature flag disabled](images/tile-usage-expandable-interactive-flag-disabled.png)
+
+</Tab>
+
+</Tabs>
+
+</Column>
+</Row>
+
+### Anatomy
+
+<Row>
+<Column colLg={8}>
+
+![Anatomy of expandable tile with the feature flag enabled](images/tile-usage-expandable-anatomy.png)
+
+<Caption>Anatomy of expandable tile with the feature flag enabled</Caption>
+
+</Column>
+</Row>
+
+1. **Container**: Contains all content within a tile.
+2. **Text**: The text within a tile.
+3. **Interactive elements (optional)**: Interactive elements like links or
+   buttons placed within a tile.
+4. **Icon**: The icon that visually indicates the tile is expandable.
+5. **Border**: The border that visually indicates the tile is interactive.
+
+### States
+
+Expandable tiles have **enabled**, **hover**, **focus**, and **disabled**
+states. For more information about expandable tile states, see the
+[Style](https://carbondesignsystem.com/components/tile/style/) tab.
+
+### Interactions
+
+#### Mouse
+
+- Without interactive elements: The tile is expanded by clicking anywhere within
+  the tile container.
+- With interactive elements: The tile is expanded by clicking on the button in
+  the bottom right of the tile.
+
+#### Keyboard
+
+- `Tab` moves focus forward through tiles. If there are interactive elements,
+  `Tab` moves focus forward in a logical order.
+- `Shift` + `Tab` moves focus backward through tiles. If there are interactive
+  elements, `Tab` moves focus forward in a logical order.
+- `Enter` expands and collapses the tile.
+
+### Clickable areas
+
+If the expandable tile does not have interactive elements, it can be expanded or
+collapsed by clicking anywhere on the tiles container. If the expandable tile
+has interactive elements, it can be expanded or collapsed by clicking on the
+button in the bottom right corner. Interactive elements within a tile can also
+be clicked on and have their own click targets.
+
+<Row>
+<Column colLg={8}>
+
+![Clickable areas of expandable tile with the feature flag enabled](images/tile-usage-expandable-clickable-areas.png)
+
+<Caption>
+  Clickable areas of expandable tile with the feature flag enabled
+</Caption>
+
+</Column>
+</Row>
 
 ## AI presence
 
@@ -522,7 +788,12 @@ For more information on designing for AI, see the
 <Row>
 <Column colLg={8}>
 
-![Base, clickable, single-select and multi-select tiles with AI presence](images/tile-AI-presence-usage.png)
+![Base, clickable, and selectable tiles with AI presence and feature flags enabled](images/tile-usage-AI-presence.png)
+
+<Caption>
+  Base, clickable, and selectable tiles with AI presence and feature flags
+  enabled
+</Caption>
 
 </Column>
 </Row>
