@@ -28,7 +28,7 @@ const StatusIndicatorTable = ({ attention }) => (
           <StructuredListCell
             className={`cds--col-lg-1 cds--col-md-1 ${headerCell}`}
             head>
-            Severity level
+            Status name
           </StructuredListCell>
           <StructuredListCell
             className={`cds--col-lg-2 cds--col-md-2 ${headerCell}`}
