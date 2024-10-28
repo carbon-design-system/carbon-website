@@ -21,7 +21,7 @@ export const onRenderBody = ({ setHeadComponents, setPostBodyComponents }) => {
   }`;
 
   setHeadComponents([
-    <meta key="image" name="image" content={'/ogimage.png'} />,
+    <meta key="image" name="image" content={"/ogimage.png"} />,
     <meta
       key="og:url"
       property="og:url"
@@ -33,13 +33,13 @@ export const onRenderBody = ({ setHeadComponents, setPostBodyComponents }) => {
       property="og:description"
       content="Carbon is IBM’s open source design system for products and digital experiences. With the IBM Design Language as its foundation, the system consists of working code, design tools and resources, human interface guidelines, and a vibrant community of contributors."
     />,
-    <meta key="og:image" property="og:image" content={'/ogimage.png'} />,
+    <meta key="og:image" property="og:image" content={"/ogimage.png"} />,
     <meta
       key="og:image:alt"
       property="og:image:alt"
       content="Carbon Design System logo"
     />,
-    <meta key="twitter:image" name="twitter:image" content={'/ogimage.png'} />,
+    <meta key="twitter:image" name="twitter:image" content={"/ogimage.png"} />,
     <meta
       key="twitter:image:alt"
       property="twitter:image:alt"
@@ -61,6 +61,10 @@ export const onRenderBody = ({ setHeadComponents, setPostBodyComponents }) => {
       name="twitter:creator"
       content="@_carbondesign"
     />,
+    <script
+      key="video-player"
+      type="module"
+      src="https://1.www.s81c.com/common/carbon-for-ibm-dotcom/tag/v1/latest/video-player.min.js" />,
   ]);
 
   setPostBodyComponents([
