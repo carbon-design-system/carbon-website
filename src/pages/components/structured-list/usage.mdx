@@ -7,23 +7,16 @@ tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 ---
 
 import A11yStatus from 'components/A11yStatus';
+import { Tag } from '@carbon/react';
 
 <PageDescription>
+
+<Tag type="blue">Feature flag</Tag>
 
 Structured lists group content that is similar or related, such as terms and
 definitions.
 
 </PageDescription>
-
-<InlineNotification>
-
-[Experimental structured lists](https://react.carbondesignsystem.com/?path=/story/experimental-feature-flags-structuredlist--selection) are
-now available. This addition enhances accessibility and only applies to the
-visual appearance, not the function of structured lists. Though we are not
-deprecating the current structured lists, we encourage all design teams to use
-the new experimental structured lists in their products moving forward.
-
-</InlineNotification>
 
 <AnchorLinks>
 
@@ -65,10 +58,11 @@ the new experimental structured lists in their products moving forward.
 
 ## Overview
 
-Structured list displays a simple list with a considerable amount of items of
-read-only values. It helps organize and present grouped information into logical
-and scannable patterns. The content within a list can be stacked to create
-hierarchy within the data.
+Structured list displays a simple list with a considerable amount of items in
+multiple rows. It helps organize and present grouped information into logical
+and scannable patterns. The content within a structured list can be stacked to
+create hierarchy within the data. Structured lists can have read-only or
+selectable rows.
 
 ### When to use
 
@@ -79,151 +73,236 @@ hierarchy within the data.
 
 ### When not to use
 
-Nesting items is not recommended, as structured lists are used to present simple
-data. If you have more than 25 items or additional content that needs to be
-shown, consider using a
-[data table](https://www.carbondesignsystem.com/components/data-table/usage/),
-which supports nesting items and presents a larger set of content.
+- Nesting items is not recommended, as structured lists are used to present
+  simple data. If you have complex content that needs to be shown, consider
+  using a
+  [data table](https://www.carbondesignsystem.com/components/data-table/usage/),
+  which supports nesting items and presents a larger set of content.
+- If needing to use a list of items in a small or confined space rather than on
+  a full page, consider using a
+  [contained list](https://carbondesignsystem.com/components/contained-list/usage/)
+  instead.
 
 ### Variants
 
-<InlineNotification>
+| Variant                   | Purpose                                                                                                        |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| [Default](#default)       | Allows the user to quickly browse and view information within a group of data.                                 |
+| [Selectable](#selectable) | Allows the user to select a desired option within a group of data. This variant has an available feature flag. |
 
-The
-[experimental structured lists](https://react.carbondesignsystem.com/?path=/story/experimental-feature-flags-structuredlist--selection)
-with icons positioned on the left apply only to selectable structured lists, not
-to default structured lists.
+### Feature flags
 
-</InlineNotification>
+A [feature flag](/components/overview/feature-flags/) has been added to the
+selectable variant of structured list to improve accessibility and changes its
+visual appearance, not its functionality. For code-specific feature flag
+information, refer to the [Code](/components/structured-list/code/) tab. The
+current selectable structured list is not being deprecated, but teams are
+encouraged to use the feature flag structured list for their products moving
+forward.
 
-| Variant                   | Purpose                                                                       |
-| ------------------------- | ----------------------------------------------------------------------------- |
-| [Default](#default)       | Allows the user to quickly browse and view information within a group of data |
-| [Selectable](#selectable) | Allows the user to mark or select a desired option within a group of data     |
+The following are the feature flag changes made to structured list.
 
-## Formatting
-
-### Anatomy
-
-Structured list is composed of two sections—column header and data row.
+- Icons have been changed from checkmark icons to radio button icons and appear
+  in the enabled state instead of only on hover before making a selection.
+- Positioning of icons appear on the left of the component instead of on the
+  right.
 
 <Row>
 <Column colLg={12}>
+<Tabs>
 
-![structured list anatomy](images/structured-list-usage-1.png)
+<Tab label="Flag enabled">
+
+![Selectable structured list with feature flag enabled](images/structured-list-usage-feature-flag-enabled.png)
+
+</Tab>
+
+<Tab label="Flag disabled">
+
+![Selectable structured list with feature flag disabled](images/structured-list-usage-feature-flag-disabled.png)
+
+</Tab>
+
+</Tabs>
 
 </Column>
 </Row>
 
-1. **Column header**: Shows titles for the row header description.
-2. **Data row**: Shows different types of data. Rows can be selectable and
-   modified to show alternating zebra stripe background colors
+## Formatting
 
 ### Sizing
 
-The structured list is available in two different sizes in height: default and
-condensed. The structure list's width varies based on content and layout.
+The structured list is available in two different height sizes: **default** and
+**condensed**. The structure list's width varies based on content and layout.
 
 <Row>
 <Column colLg={12}>
 
-![data table sizing](images/structured-list-usage-2.png)
+![Default and condensed height sizes for structured list](images/structured-list-usage-sizing.png)
 
-<Caption> Default and condensed sizes for structured lists </Caption>
+<Caption>Default and condensed height sizes for structured list</Caption>
 
 </Column>
 </Row>
 
 ### Alignment
 
-The structured list is available in two alignment styles: hang and flush
-alignment. We do not offer the flush alignment with selectable functionality.
+The structured list is available in two alignment styles: **hang** and
+**flush**. The flush alignment is not offered with selectable functionality.
 
 <Row>
 <Column colLg={12}>
 
-![data table alignment](images/structured-list-usage-3.png)
+![Hang and flush alignment for structured list](images/structured-list-usage-alignment.png)
 
-<Caption> Hang and flush alignment for structured lists </Caption>
+<Caption>Hang and flush alignment for structured list</Caption>
 
 </Column>
 </Row>
 
 ## Content
 
+#### Row text
+
 - A maximum of three paragraphs of text is recommended per row.
-- A structured list’s title and row information should use sentence-case
-  capitalization.
+- Row text should use sentence-case capitalization.
 
 #### Column header titles
 
 - Column header titles should be short and clear, sticking to one or two words
   that describe the data in that column.
 - In cases where a column header title is too long, wrap the text to two lines
-  and then truncate the rest of the text. The full text should be shown in a
-  tooltip on hover.
+  and truncate the remaining text. The full text should be shown on hover.
 - Column header titles should use sentence-case capitalization.
 
-### States
+### Further guidance
 
-The default structured list variant is read-only and does not have any
-interactive states other than enabled. The selectable structured list variant
-has the following states: **enabled**, **hover**, **focus**, **selected**,
-**disabled**, and **skeleton**. For detailed visual information about the
-various states for this component, refer to the
-[style](/components/structured-list/style) tab.
-
-| State      | When to use                                                                                                                                                      |
-| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| _Enabled_  | When an action in the list is live but a user is not directly interacting with it. This is commonly referred to as the default or normal state of the component. |
-| _Hover_    | When a user’s mouse cursor is hovering over the structured list row.                                                                                             |
-| _Focus_    | When a user tabs or clicks on a row, it becomes focused, indicating the user has successfully navigated to the component (except default structured list).       |
-| _Selected_ | When a user presses space or clicks on a structured list row to select it.                                                                                       |
-| _Disabled_ | When the user is not allowed to interact with a selectable structured list due to either permissions, dependencies, or pre-requisites.                           |
-| _Skeleton_ | Use on an initial page load to indicate that the structured list has not yet fully loaded.                                                                       |
-
-## Interactions
-
-#### Selectable structured list
-
-- Only one item can be selected from the list.
-- By default, no option should be selected.
-- If you need to select multiple items, use a
-  [data table.](/components/data-table/usage)
-- When the user selects an item from the list, the selected row will appear with
-  the `radio-button--checked` icon.
+For further content guidance, see
+Carbon’s [content guidelines](https://carbondesignsystem.com/guidelines/content/overview/).
 
 ## Default
 
-Default structured lists are used to display information to the user, such as
-pricing plans. These structured lists can have internal calls-to-action (CTAs),
-such as a [button](/components/button/usage) or
-a [link](/components/link/usage).
+Default structured lists are used to display simple information to the user.
+These lists usually consist of read-only information and rows are not
+selectable.
 
 <Row>
 <Column colLg={12}>
 
-![default structured list](images/structured-list-usage-4.png)
+![Example of default structured list in a UI](images/structured-list-usage-default.png)
 
-<Caption> Default structured list </Caption>
+<Caption>Example of default structured list in a UI</Caption>
 
 </Column>
 </Row>
 
-## Selectable
-
-Selectable structured lists work well for presenting options to a user in a
-structured manner, such as a set of pricing plans. Selectable tiles may contain
-internal CTAs (like links to docs) if the internal CTA is given its own click
-target. Selectable structured lists have a single-select state working like
-a [radio button](/components/radio-button/usage).
+### Anatomy
 
 <Row>
 <Column colLg={12}>
 
-![selectable structured list](images/structured-list-usage-5.png)
+![Anatomy of default structured list](images/structured-list-usage-default-anatomy.png)
 
-<Caption> Selectable structured list </Caption>
+<Caption>Anatomy of default structured list</Caption>
+
+</Column>
+</Row>
+
+1. **Column header**: Displays title text in each column header
+2. **Data row**: Contains different types of data in each row. Rows can be
+   modified to have an optional background color
+
+### States
+
+The default structured list has an **enabled** and **skeleton** state and no
+interactive states because it is not operable by a mouse or keyboard. For more
+information on default structured list states, see the
+[Style](https://carbondesignsystem.com/components/structured-list/style/) tab.
+
+## Selectable
+
+Selectable structured lists work well for presenting options to a user in an
+ordered manner to make a selection, such as a set of pricing plans.
+
+Selectable structured list has an available
+[feature flag](/components/overview/feature-flags/).
+
+<Row>
+<Column colLg={12}>
+<Tabs>
+
+<Tab label="Flag enabled">
+
+![Selectable tructured list with feature flag enabled](images/structured-list-usage-selectable-flag-enabled.png)
+
+</Tab>
+
+<Tab label="Flag disabled">
+
+![Selectable structured list with feature flag disabled](images/structured-list-usage-selectable-flag-disabled.png)
+
+</Tab>
+
+</Tabs>
+
+</Column>
+</Row>
+
+### Anatomy
+
+<Row>
+<Column colLg={12}>
+
+![Anatomy of selectable structured list with a feature flag](images/structured-list-usage-selectable-anatomy.png)
+
+<Caption>Anatomy of selectable structured list with a feature flag</Caption>
+
+</Column>
+</Row>
+
+1. **Column header**: Displays title text in each column header
+2. **Data row**: Contains different types of data in each row. Rows can be
+   modified to have a background color
+3. **Icon**: An icon to indicate that the row is selectable
+
+### States
+
+The selectable structured list have **enabled**, **hover**, **focus**,
+**selected**, **disabled**, and **skeleton** states. For more information on
+selectable structured list states, see the
+[Style](https://carbondesignsystem.com/components/structured-list/style/) tab.
+
+### Interactions
+
+#### Mouse
+
+- The selectable structured list can be operated by a mouse by clicking on an
+  individual row to select or deselect it.
+- Rows are unselected by default, and only one row can be selected at a time.
+- Product teams can build in logic to provide preselection of a row based on the
+  use case. If multiple row selection is needed, use a
+  [data table](https://carbondesignsystem.com/components/data-table/usage/)
+  instead.
+
+#### Keyboard
+
+- `Tab` moves focus forward to the next following row.
+- `Space` selects a row.
+- `Up` and `Down` arrow keys move focus to previous and next rows.
+
+### Clickable areas
+
+The selectable structured list rows are clickable. You can click anywhere on the
+row to select it.
+
+<Row>
+<Column colLg={12}>
+
+![Clickable areas of selectable structured list with a feature flag](images/structured-list-usage-selectable-clickable-areas.png)
+
+<Caption>
+  Clickable areas of selectable structured list with a feature flag
+</Caption>
 
 </Column>
 </Row>
@@ -232,26 +311,25 @@ a [radio button](/components/radio-button/usage).
 
 ### Background
 
-A background has been added to the structured list, and it is optional. The
-background is only available for the hang alignment structured list, in default
-and selectable variants. It is not available for the flush alignment structured
-list.
+Structured lists can have a background color option. The background color option
+is only available for the hang alignment.
 
 <Row>
 <Column colLg={12}>
 
-![structured list with background](images/structured-list-usage-6.png)
+![Example of the color background modifier applied to structured list](images/structured-list-usage-modifiers.png)
 
-<Caption> Default and selectable structured list with background </Caption>
+<Caption>
+  Example of the color background modifier applied to structured list
+</Caption>
 
 </Column>
 </Row>
 
 ## Related
 
-These following components are additional ways to organize a group of data.
-
 - [Accordion](https://www.carbondesignsystem.com/components/accordion/usage/)
+- [Contained list](https://carbondesignsystem.com/components/contained-list/usage/)
 - [Data table](https://www.carbondesignsystem.com/components/data-table/usage/)
 - [List](https://www.carbondesignsystem.com/components/list/usage/)
 

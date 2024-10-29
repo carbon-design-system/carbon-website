@@ -19,7 +19,7 @@ export const statusLight = [
     hex: 'ba4e00',
     light: true,
   },
- 
+
   {
     name: 'Yellow 30',
     hex: 'f1c21b',
