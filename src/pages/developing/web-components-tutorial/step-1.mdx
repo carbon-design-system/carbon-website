@@ -2,7 +2,7 @@
 title: Wrapping up
 description:
   Welcome to Carbon! This tutorial will guide you in creating a Vanilla JS/HTML
-  app with the Carbon Design System.
+  app using Web Components from the Carbon Design System.
 tabs:
   ['Overview', 'Step 1', 'Step 2', 'Step 3', 'Step 4', 'Step 5', 'Wrapping up']
 ---
@@ -182,7 +182,7 @@ Next, we'll import a `Button` from Carbon to test that our dependencies are
 working properly. At the top of `main.js`, import the `Button` and delete
 everything else, leaving just:
 
-```js path=main.js
+```javascript path=main.js
 import './style.scss';
 import '@carbon/web-components/es/components/button/button.js';
 ```
@@ -253,7 +253,7 @@ will allow our button to theme the app.
 
 Then in `main.js` add the following code to hadle the button clicks.
 
-```js path=main.js
+```javascript path=main.js
 const bodyEl = document.querySelector('body');
 
 // button click handler
@@ -282,7 +282,7 @@ Now we're going to add the UI shell.
 
 First import the header into `main.js`
 
-```js path=main.js
+```javascript path=main.js
 import '@carbon/web-components/es/components/ui-shell/index';
 ```
 
@@ -499,7 +499,7 @@ The default panel behavior simply toggles the panel when clicked. This can
 result in multiple panels being open at once. Adding the following to `main.js`
 changes this behavior by listening for clicks and closing the other panels.
 
-```js path=main.js
+```javascript path=main.js
 const handleGlobalActionClick = (ev) => {
   const targetPanelId = ev.currentTarget.getAttribute('panel-id');
   const panels = document.querySelectorAll('cds-header-panel');
@@ -530,7 +530,7 @@ tag looking like this.
 
 In `main.js` remove this code handling the button click and initial load.
 
-```js path=main.js
+```javascript path=main.js
 // button click handler
 const handleClick = () => {
   bodyEl.classList.toggle('g10');
@@ -548,7 +548,7 @@ if (matchMedia('(prefers-color-scheme: dark)')) {
 
 Still in `main.js` add imports for checkbox and content-switcher.
 
-```js path=main.js
+```javascript path=main.js
 import '@carbon/web-components/es/components/checkbox/index';
 import '@carbon/web-components/es/components/content-switcher/index';
 ```
@@ -640,7 +640,7 @@ cds-content-switcher-item[selected] .theme-selector__icon {
 Currently the theme switcher looks good but needs the following Javascript to
 switch themes.
 
-```js path=main.js
+```javascript path=main.js
 const handleSwitch = (ev) => {
   // Applies new theme or defers to system preferences by removing theme
   switch (ev.detail.item.value) {
@@ -710,7 +710,7 @@ content.
 
 Import th ecomponent in `main.js`
 
-```js path=main.js
+```javascript path=main.js
 import '@carbon/web-components/es/components/skip-to-content/index.js';
 ```
 
@@ -786,26 +786,9 @@ upstream changes.
 ### Pull request (PR)
 
 Finally, visit
-[carbon-react-tutorial](https://github.com/carbon-design-system/carbon-tutorial-web-components)
+[carbon-web-components-tutorial](https://github.com/carbon-design-system/carbon-tutorial-web-components)
 to "Compare & pull request". In doing so, make sure that you are comparing to
 `step-1` into `base: step-1`. Take notice of the
 [Netlify](https://www.netlify.com) bot that deploys a preview of your PR every
 time that you push new commits. These previews can be shared and viewed by
 anybody to assist the PR review process.
-
-<InlineNotification>
-
-**Note:** Expect your tutorial step PRs to be reviewed by the Carbon team but
-not merged. We'll close your PR so we can keep the repository's remote branches
-pristine and ready for the next person!
-
-</InlineNotification>
-
-<InlineNotification>
-
-**Note:** If your PR fails the CircleCI test with the error
-`Can't make a request in offline mode`, try running the following command:
-`rm -rf .pnpm-offline-mirror node_modules && pnpm cache clean && pnpm install`.
-Add and commit the changes once this completes, and try pushing again.
-
-</InlineNotification>
