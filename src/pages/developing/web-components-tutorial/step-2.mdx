@@ -25,7 +25,7 @@ Carbon components.
 <AnchorLink>Style landing page</AnchorLink>
 <AnchorLink>Add repo page grid</AnchorLink>
 <AnchorLink>Build repo page</AnchorLink>
-<AnchorLink>Submit pull request</AnchorLink>
+<AnchorLink>Push to Github</AnchorLink>
 
 </AnchorLinks>
 
@@ -429,7 +429,7 @@ repo page.
 
 ## Build repo page
 
-### First a grid to contain our content
+### Add a grid to contain our content
 
 Now in our `repositories` page we will first add a grid wrapping
 `REPOSITORIES PAGE`
@@ -454,10 +454,19 @@ page in `style.scss`.
 
 ### Adding a table
 
-Before we can add the table we need to import it in `main.js`
+Before we can add the table we need to import the web component. As this is only
+used in our `repositories.htnl` page lets create a new script file `repos.js`
+and then add.
 
-```javascript path=main.js
+```javascript path=repos.js
 import '@carbon/web-components/es/components/data-table/index.js';
+```
+
+We need to include this file in `repositories.html` which we can do by adding
+the following next to the script tag that includes `main.js`.
+
+```html path=repositories.html
+<script type="module" src="/repos.js"></script>
 ```
 
 Next we add the table header and column titles.
@@ -550,10 +559,10 @@ row template.
 </template>
 ```
 
-Next in `main.js` add the following data that we will use to populate the table
+Next in `repos.js` add the following data that we will use to populate the table
 rows.
 
-```javascript path=main.js
+```javascript path=repos.js
 // cds-table-row data
 let data = [
   {
@@ -589,7 +598,7 @@ let data = [
 Next we create the function `updateTable` and make a call to it to populate add
 our rows.
 
-```javascript path=main.js
+```javascript path=repos.js
 const updateTable = () => {
   const tableRowTemplate = document.querySelector(
     'template#template--table-row'
@@ -618,37 +627,32 @@ the app.
 
 Congratulations! We've now created our static repo page!
 
-## Submit pull request
+## Push to Github
 
-We're going to submit a pull request to verify completion of this tutorial step.
+That is it you are done. Just one more push to save your completion of step 2.
 
 ### Git commit and push
 
-Before we can create a pull request, format your code, then stage and commit all
-of your changes:
+First, stage and commit all of your changes:
 
 ```bash
-pnpm format
 git add --all && git commit -m "feat(tutorial): complete step 2"
 ```
 
 Then, push to your repository:
 
 ```bash
-git push origin step-2
+git push -u origin step-2
 ```
 
 <InlineNotification>
 
-**Note:** Having issues pushing your changes?
-[Step 1](/developing/web-components-tutorial/step-1#git-commit-and-push) has
-troubleshooting notes that may help.
+**Note:** If your Git remote protocol is HTTPS instead of SSH, you may be
+prompted to authenticate with GitHub when you push changes. If your GitHub
+account has two-factor authentication enabled, we recommend that you follow
+these instructions to
+[create a personal access token for the command line](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line).
+That lets you use your token instead of password when performing Git operations
+over HTTPS.
 
 </InlineNotification>
-
-### Pull request (PR)
-
-Finally, visit
-[carbon-web-components-tutorial](https://github.com/carbon-design-system/carbon-tutorial)
-to "Compare & pull request". In doing so, make sure that you are comparing to
-`step-2` into `base: step-2`.

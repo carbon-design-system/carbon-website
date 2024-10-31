@@ -24,7 +24,7 @@ page and complete the principles section using Carbon pictograms and tokens.
 <AnchorLink>The info card</AnchorLink>
 <AnchorLink>Add styling</AnchorLink>
 <AnchorLink>Check accessibility</AnchorLink>
-<AnchorLink>Submit pull request</AnchorLink>
+<AnchorLink>Push to Github</AnchorLink>
 
 </AnchorLinks>
 
@@ -167,7 +167,7 @@ Before we make use of the template we need to remove the column settings from
 the remaining three elements `page-landing__title` and replace with `info-card
 to leave:
 
-```html
+```html index.html
 <div class="info-card">Carbon is open</div>
 <div class="info-card">Carbon is modular</div>
 <div class="info-card">Carbon is consistent</div>
@@ -175,10 +175,26 @@ to leave:
 
 ### The script
 
-Now in `main.js` we add the script to create the info card elements. First
-adding the data we will use to construct the info cards from.
+As the script in this file only affects our landing page, first lets create
+`landing.js`. Kicking things off by moving the breadcrumb and tabs import from
+`main.js`.
 
-```javascript path=main.js
+```javascript path=landing.js
+import '@carbon/web-components/es/components/breadcrumb/index';
+import '@carbon/web-components/es/components/tabs/index';
+```
+
+Then add a script tag to `index.html` to import `landing.js`
+
+```html path=index.html
+<script type="module" src="/landing.js"></script>
+```
+
+After making sure everything add, to `landing.js`, the script to create the info
+card elements. First adding the data we will use to construct the info cards
+from.
+
+```javascript path=landing.js
 const infoCardDetails = [
   {
     strongMsg: 'Open',
@@ -200,7 +216,7 @@ const infoCardDetails = [
 
 Then create the utility function `updateInfoCard`
 
-```javascript path=main.js
+```javascript path=landing.js
 const updateInfoCard = (here, { strongMsg, bodyMsg, pictogramName }) => {
   const infoCardTemplate = document.querySelector(
     'template#template--info-card'
@@ -226,7 +242,7 @@ const updateInfoCard = (here, { strongMsg, bodyMsg, pictogramName }) => {
 
 Followed by a query to find the info card elements and a loop to add our data.
 
-```javascript path=main.js
+```javascript path=landing.js
 const infoCards = document.querySelectorAll('.info-card');
 [...infoCards].forEach((infoCard, index) => {
   updateInfoCard(infoCard, infoCardDetails[index]);
@@ -317,45 +333,32 @@ our rendered markup is on the right track for accessibility.
 With the browser extension installed, Chrome in this example, open Dev Tools and
 run Accessibility Assessment.
 
-## Submit pull request
+## Push to Github
 
-We're going to submit a pull request to verify completion of this tutorial step.
-
-<InlineNotification>
-
-**Note:** Having issues running the CI check?
-[Step 1](</developing/web-components-tutorial/step-1#continuous-integration-(ci)-check>)
-has troubleshooting notes that may help.
-
-</InlineNotification>
+That is it you are done. Just one more push to save your completion of step 4.
 
 ### Git commit and push
 
-Before we can create a pull request, format your code, then stage and commit all
-of your changes:
+First, stage and commit all of your changes:
 
 ```bash
-pnpm format
 git add --all && git commit -m "feat(tutorial): complete step 4"
 ```
 
 Then, push to your repository:
 
 ```bash
-git push origin step-4
+git push -u origin step-4
 ```
 
 <InlineNotification>
 
-**Note:** Having issues pushing your changes?
-[Step 1](/developing/web-components-tutorial/step-1#git-commit-and-push) has
-troubleshooting notes that may help.
+**Note:** If your Git remote protocol is HTTPS instead of SSH, you may be
+prompted to authenticate with GitHub when you push changes. If your GitHub
+account has two-factor authentication enabled, we recommend that you follow
+these instructions to
+[create a personal access token for the command line](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line).
+That lets you use your token instead of password when performing Git operations
+over HTTPS.
 
 </InlineNotification>
-
-### Pull request (PR)
-
-Finally, visit
-[carbon-tutorial-web-components](https://github.com/carbon-design-system/carbon-tutorial-web-components)
-to "Compare & pull request". In doing so, make sure that you are comparing to
-`step-4` into `base: step-4`.

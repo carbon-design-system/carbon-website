@@ -133,7 +133,7 @@ For more details take a look at the packages
 At the command line you can now run the script `lint:style`. This should
 highlight just the one issue with the setting of `font-weight` to 600.
 
-```shell
+```bash
 $pnpm run lint:style
 
 > carbon-tutorial-web-components@0.0.0 lint:style /Users/leechase/Source/carbon/carbon-tutorial-web-components
@@ -167,7 +167,7 @@ consistency patterns like nesting depty and CSS class selector pattern.
 Even better the small number of issues that it raises, regarding use of logical
 properties, can be auto fixed bringing your CSS up to date.
 
-```json
+```json path=.stylelintrc.json
 {
   "extends": [
     "stylelint-config-standard-scss",
@@ -454,11 +454,6 @@ In this case
 
 The fix would be to change your base setting to `/[REPO-NAME]/`.
 
-## A bit of a tidy
-
-The tutorial, for simplicity, uses a single script file and a single repository
-file. This is something you should not do in your real projects.
-
 ## Using the CDN
 
 Lastly we've been using `main.js` to load components from `node_modules` but Web
@@ -473,8 +468,19 @@ import '@carbon/web-components/es/components/button/button.js';
 import '@carbon/web-components/es/components/ui-shell/index';
 import '@carbon/web-components/es/components/checkbox/index';
 import '@carbon/web-components/es/components/content-switcher/index';
+import '@carbon/web-components/es/components/skip-to-content/index.js';
+```
+
+Remove the component imports from `landing.js`.
+
+```javascript path=landing.js
 import '@carbon/web-components/es/components/breadcrumb/index';
 import '@carbon/web-components/es/components/tabs/index';
+```
+
+Remove the component imports from `repos.js`.
+
+```javascript path=repos.js
 import '@carbon/web-components/es/components/data-table/index.js';
 import '@carbon/web-components/es/components/link/index';
 import '@carbon/web-components/es/components/pagination/index';
@@ -482,7 +488,7 @@ import '@carbon/web-components/es/components/pagination/index';
 
 In the `head` of `index.html` add the following script tags.
 
-```html
+```html path=index.html
 <script
   type="module"
   src="https://1.www.s81c.com/common/carbon/web-components/version/v2.16.0/button.min.js"></script>
@@ -497,12 +503,18 @@ In the `head` of `index.html` add the following script tags.
   src="https://1.www.s81c.com/common/carbon/web-components/version/v2.16.0/content-switcher.min.js"></script>
 <script
   type="module"
+  src="https://1.www.s81c.com/common/carbon/web-components/version/v2.16.0/skip-to-content.min.js"></script>
+<script
+  type="module"
   src="https://1.www.s81c.com/common/carbon/web-components/version/v2.16.0/tabs.min.js"></script>
+<script
+  type="module"
+  src="https://1.www.s81c.com/common/carbon/web-components/version/v2.16.0/breadcrumb.min.js"></script>
 ```
 
 We also need to update `repositories.html` with:
 
-```html
+```html path=repositories.html
 <script
   type="module"
   src="https://1.www.s81c.com/common/carbon/web-components/version/v2.16.0/ui-shell.min.js"></script>
@@ -514,6 +526,9 @@ We also need to update `repositories.html` with:
   src="https://1.www.s81c.com/common/carbon/web-components/version/v2.16.0/content-switcher.min.js"></script>
 <script
   type="module"
+  src="https://1.www.s81c.com/common/carbon/web-components/version/v2.16.0/skip-to-content.min.js"></script>
+<script
+  type="module"
   src="https://1.www.s81c.com/common/carbon/web-components/version/v2.16.0/data-table.min.js"></script>
 <script
   type="module"
@@ -523,5 +538,35 @@ We also need to update `repositories.html` with:
   src="https://1.www.s81c.com/common/carbon/web-components/version/v2.16.0/pagination.min.js"></script>
 ```
 
-4. If you run the application again you are running with no dependency on
-   `node_modules/@carbon/web-components`.
+If you run the application again you are running with no dependency on
+`node_modules/@carbon/web-components`.
+
+## Push to Github
+
+That is it you are done. Just one more push to save your completion of step 5.
+
+### Git commit and push
+
+First, stage and commit all of your changes:
+
+```bash
+git add --all && git commit -m "feat(tutorial): complete step 5"
+```
+
+Then, push to your repository:
+
+```bash
+git push -u origin step-5
+```
+
+<InlineNotification>
+
+**Note:** If your Git remote protocol is HTTPS instead of SSH, you may be
+prompted to authenticate with GitHub when you push changes. If your GitHub
+account has two-factor authentication enabled, we recommend that you follow
+these instructions to
+[create a personal access token for the command line](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line).
+That lets you use your token instead of password when performing Git operations
+over HTTPS.
+
+</InlineNotification>
