@@ -157,9 +157,8 @@ Hovering over it you will see a popup explanation.
 
 Change `600` to `font-weight('semibold')`
 
-Out of scope, but included from [Step 1](#step-1), for this tutorial it is
-recommended that you use a more extensive rule set for stylelint. This can help
-keep code consistent and auto fix many potential issues.
+It is recommended that you use a more extensive rule set for stylelint. This can
+help keep code consistent and auto fix many potential issues.
 
 If for instance you were to adopt the following configuration it would check for
 a number of important issues such as accessiblity, right to left, and even
@@ -454,3 +453,75 @@ In this case
 - Asset location `https://[ACCOUNT].github.io/[ASSET]`
 
 The fix would be to change your base setting to `/[REPO-NAME]/`.
+
+## A bit of a tidy
+
+The tutorial, for simplicity, uses a single script file and a single repository
+file. This is something you should not do in your real projects.
+
+## Using the CDN
+
+Lastly we've been using `main.js` to load components from `node_modules` but Web
+Components do not require is to do this. All of Carbon Web Components is
+published via a CDN see
+[the documentation for further details](https://web-components.carbondesignsystem.com/?path=/docs/introduction-carbon-cdn-style-helpers--overview).
+
+Remove the component imports from `main.js`.
+
+```javascript path=main.js
+import '@carbon/web-components/es/components/button/button.js';
+import '@carbon/web-components/es/components/ui-shell/index';
+import '@carbon/web-components/es/components/checkbox/index';
+import '@carbon/web-components/es/components/content-switcher/index';
+import '@carbon/web-components/es/components/breadcrumb/index';
+import '@carbon/web-components/es/components/tabs/index';
+import '@carbon/web-components/es/components/data-table/index.js';
+import '@carbon/web-components/es/components/link/index';
+import '@carbon/web-components/es/components/pagination/index';
+```
+
+In the `head` of `index.html` add the following script tags.
+
+```html
+<script
+  type="module"
+  src="https://1.www.s81c.com/common/carbon/web-components/version/v2.16.0/button.min.js"></script>
+<script
+  type="module"
+  src="https://1.www.s81c.com/common/carbon/web-components/version/v2.16.0/ui-shell.min.js"></script>
+<script
+  type="module"
+  src="https://1.www.s81c.com/common/carbon/web-components/version/v2.16.0/checkbox.min.js"></script>
+<script
+  type="module"
+  src="https://1.www.s81c.com/common/carbon/web-components/version/v2.16.0/content-switcher.min.js"></script>
+<script
+  type="module"
+  src="https://1.www.s81c.com/common/carbon/web-components/version/v2.16.0/tabs.min.js"></script>
+```
+
+We also need to update `repositories.html` with:
+
+```html
+<script
+  type="module"
+  src="https://1.www.s81c.com/common/carbon/web-components/version/v2.16.0/ui-shell.min.js"></script>
+<script
+  type="module"
+  src="https://1.www.s81c.com/common/carbon/web-components/version/v2.16.0/checkbox.min.js"></script>
+<script
+  type="module"
+  src="https://1.www.s81c.com/common/carbon/web-components/version/v2.16.0/content-switcher.min.js"></script>
+<script
+  type="module"
+  src="https://1.www.s81c.com/common/carbon/web-components/version/v2.16.0/data-table.min.js"></script>
+<script
+  type="module"
+  src="https://1.www.s81c.com/common/carbon/web-components/version/v2.16.0/link.min.js"></script>
+<script
+  type="module"
+  src="https://1.www.s81c.com/common/carbon/web-components/version/v2.16.0/pagination.min.js"></script>
+```
+
+4. If you run the application again you are running with no dependency on
+   `node_modules/@carbon/web-components`.
