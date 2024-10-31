@@ -62,6 +62,11 @@ exports.createPages = ({ actions }) => {
     isPermanent: true,
   });
   createRedirect({
+    fromPath: '/tutorial/web-components/overview',
+    toPath: '/developing/web-components-tutorial/overview',
+    isPermanent: true,
+  });
+  createRedirect({
     fromPath: '/tutorial/angular/overview',
     toPath: '/developing/angular-tutorial/overview',
     isPermanent: true,
@@ -192,12 +197,12 @@ exports.createPages = ({ actions }) => {
     toPath: '/elements/motion/overview',
     isPermanent: true,
   });
-   createRedirect({
+  createRedirect({
     fromPath: '/guidelines/motion/choreography',
     toPath: '/elements/motion/choreography',
     isPermanent: true,
   });
-   createRedirect({
+  createRedirect({
     fromPath: '/guidelines/motion/code',
     toPath: '/elements/motion/code',
     isPermanent: true,
