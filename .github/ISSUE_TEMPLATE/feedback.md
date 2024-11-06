@@ -1,8 +1,9 @@
 ---
 name: Website feedback
 about: User feedback collected from the Carbon Design System Website.
-labels: "type: discussion 💬"
-assignees: ""
+type: 'task'
+labels: ['type: discussion 💬', 'status: needs triage 🕵️‍♀️']
+assignees: ''
 ---
 
 <!--
