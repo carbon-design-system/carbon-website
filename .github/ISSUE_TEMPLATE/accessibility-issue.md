@@ -1,9 +1,10 @@
 ---
 name: Accessibility issue ♿
 about: Report an accessibility or usability issue
-title: ""
-labels: "type: a11y ♿"
-assignees: ""
+title: ''
+type: 'bug'
+labels: ['type: a11y ♿', 'status: needs triage 🕵️‍♀️']
+assignees: ''
 ---
 
 <!-- Feel free to remove sections that aren't relevant.
