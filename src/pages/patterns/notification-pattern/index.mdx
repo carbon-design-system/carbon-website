@@ -68,6 +68,7 @@ notifications that are relevant, timely, and informative for each use case.
 - Inline
 - Toast
 - Actionable
+- Callout
 - Banner
 - Notification panel
 - Modal
@@ -124,16 +125,16 @@ and can lead to [alert fatigue](https://psnet.ahrq.gov/primer/alert-fatigue).
 
 ## Notification status
 
-Notification status helps convey the information being communicated. These
-statuses correspond with a color and icon to provide a consistent, universal
-experience for users.
+Notification statuses are designed to convey the emotional tone of the
+information being communicated. Each status is associated with a specific color
+and icon, ensuring a consistent and universal user experience.
 
 <Row>
 <Column colLg={12}>
 
 ![Example of notification status](/images/1_notification_status_1120.png)
 
-<Caption>Notification status using the inline notification component</Caption>
+<Caption>Notification status for the inline variant</Caption>
 
 </Column>
 </Row>
@@ -142,19 +143,19 @@ experience for users.
 
 <Title> Deciding what to use </Title>
 
-| Status        | Usage                                                                                                                        | Action                                                                                                         | Color  | Icon                 |
-| ------------- | ---------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ------ | -------------------- |
-| Informational | Provide additional information to users that may not be tied to their current action or task                                 | Do not require immediate action and can be dismissed on a timer or persist, depending on the content           | Blue   | `information filled` |
-| Success       | Confirm a task was completed as expected                                                                                     | Typically do not require further action and can be dismissed automatically or persist in a nonintrusive manner | Green  | `checkmark filled`   |
-| Warning       | Inform users that they are taking actions that are not desirable or might have unexpected results                            | Often persist until the user dismisses the notification or continues in their task                             | Yellow | `warning filled`     |
-| Error         | Inform users of an error or critical failure and optionally block the user from proceeding until the issue has been resolved | Always persist until the user dismisses them or resolves error                                                 | Red    | `error filled`       |
+| Status        | Usage                                                                                                                        | Color  | Icon                 |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------- | ------ | -------------------- |
+| Informational | Provide additional information to users that may not be tied to their current action or task                                 | Blue   | `information filled` |
+| Success       | Confirm a task was completed as expected                                                                                     | Green  | `checkmark filled`   |
+| Warning       | Inform users that they are taking actions that are not desirable or might have unexpected results                            | Yellow | `warning filled`     |
+| Error         | Inform users of an error or critical failure and optionally block the user from proceeding until the issue has been resolved | Red    | `error filled`       |
 
 ## Notification types
 
 <Row>
 <Column colLg={12}>
 
-![Examples of basic notification types](/images/2_Notification_types_1120.png)
+![Examples of basic notification types](/images/notification-pattern-types.png)
 
 </Column>
 </Row>
@@ -163,14 +164,15 @@ experience for users.
 
 <Title> Deciding what to use </Title>
 
-| Type               | Usage                                                                                                                     | Duration and interaction                                                                                                                                       |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Inline             | Provide users with nondisruptive feedback or the status of an action                                                      | Persist until the message is resolved or dismissed by user and may include a ghost button action                                                               |
-| Toast              | Short, time-based messages that slide in and out of a page and provide nondisruptive information                          | Toast notifications without actions can disappear automatically or can be dismissed by user. Toast notifications with actions persist until dismissed by user. |
-| Actionable         | Actionable notifications allow for interactive elements within a notification styled like an inline or toast notification | Persist until action is taken or dismissed by user                                                                                                             |
-| Banner             | System or product level notifications that are not specific to a task                                                     | Persist until dismissed by user and may include a ghost button or link                                                                                         |
-| Notification panel | Notification center that provides users with system-generated messages                                                    | Opened and closed by user                                                                                                                                      |
-| Modal              | Highly disruptive notifications that provide users with critical information that needs their attention or action         | Persist and block tasks until dismissed by user. Modals allow more user action than other notifications and can include other Carbon components.               |
+| Type               | Usage                                                                                                                     | Duration and interaction                                                                                                                                              |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Inline             | Provide users with nondisruptive feedback or the status of an action                                                      | Persist until the message is resolved or dismissed by user and may include a ghost button action                                                                      |
+| Toast              | Short, time-based messages that slide in and out of a page and provide nondisruptive information.                         | Toast notifications without actions can disappear automatically or can be dismissed by user. Toast notifications with actions persist until dismissed by user.        |
+| Actionable         | Actionable notifications allow for interactive elements within a notification styled like an inline or toast notification | Persist until action is taken or dismissed by user                                                                                                                    |
+| Callout            | Callouts are used to highlight important information, contextually within the contents of the page.                       | Unlike other notification components, they are not triggered by the user or system. They load with the contents of the page, are persistent, and cannot be dismissed. |
+| Banner             | System or product level notifications that are not specific to a task                                                     | Persist until dismissed by user and may include a ghost button or link                                                                                                |
+| Notification panel | Notification center that provides users with system-generated messages                                                    | Opened and closed by user                                                                                                                                             |
+| Modal              | Highly disruptive notifications that provide users with critical information that needs their attention or action         | Persist and block tasks until dismissed by user. Modals allow more user action than other notifications and can include other Carbon components.                      |
 
 ### Inline notification
 
@@ -222,7 +224,7 @@ message intent.
 ![Examples of nonactionable and actionable toast notifications](/images/4_toast_static_736.png)
 
 <Caption>
-  Example of atoast notification without actions (left) and actionable toast
+  Example of a toast notification without actions (left) and actionable toast
   notification (right)
 </Caption>
 
@@ -289,6 +291,37 @@ toast closing too soon.
 ![Actionable notification styled as a toast](/images/8_actionable_toast.png)
 
 <Caption>Actionable notification styled as a toast notification</Caption>
+
+</Column>
+</Row>
+
+### Callout
+
+Callouts are used to highlight important information contextually within the
+contents of the page, and cannot be dismissed. Unlike other notification
+components they are not triggered by the user or system, rather they load with
+the contents of the page. They do not act as a feedback mechanism, they are
+persistent, and always present on the screen to provide necessary information to
+the user. Further, since Callouts are intended to offer guidance before users
+begin a task or take action, they do not include success or error statuses.
+
+#### Best practices:
+
+- Use to highlight information to help users make good decisions or avoid bad
+  experience.
+- Place the callout contextually near an action button, input field or other
+  data to provide information that can influence how they complete the task.
+- Avoid overloading a single page with multiple callouts.
+- Use sparingly to emphasize information that must not be overlooked.
+- Omit the title when it is redundant and might break the flow while reading
+  through the information.
+
+<Row>
+<Column colLg={8}>
+
+![Example of callout influencing a user journey](/images/notification-pattern-callout.png)
+
+<Caption>Example of callout influencing a user journey</Caption>
 
 </Column>
 </Row>
@@ -409,8 +442,7 @@ Actionable notifications can include a ghost or tertiary button that lets users
 interact with them. Taking action on these notifications should be optional and
 should not block the user from continuing with their current task. This action
 frequently takes users to a flow or page related to the message, where they can
-resolve the notification. All notifications should be dismissed when users
-interact with them.
+resolve the notification.
 
 #### Required action
 
