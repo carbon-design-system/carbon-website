@@ -374,17 +374,12 @@ component and update it with the values defined for `pageSize` and
 ```javascript path=repos.js
 const handlePageChangeCurrent = ({ detail }) => {
   firstRowIndex = (detail.page - 1) * detail.pageSize;
-  // Unfortunately not working - seems to lose the expanding column
-  // https://github.com/carbon-design-system/carbon/issues/#17894
-
   udpateTable();
 };
 
 const handlePageSizeChange = ({ detail }) => {
-  // Unfortunately not working
-  // https://github.com/carbon-design-system/carbon/issues/17713
-
   pageSize = detail.pageSize;
+  updateTable();
 };
 
 const updatePagination = () => {
@@ -399,7 +394,7 @@ const updatePagination = () => {
       handlePageChangeCurrent
     );
     paginationEl.addEventListener(
-      'cds-pagination-changed-page-size',
+      'cds-page-sizes-select-changed',
       handlePageSizeChange
     );
   }, 10);
