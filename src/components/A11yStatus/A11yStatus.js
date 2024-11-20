@@ -87,8 +87,7 @@ const A11yStatus = ({ components, layout }) => {
           .includes(componentName.toLowerCase().replace(' ', ''));
       });
 
-      let githubUrl = '';
-      githubUrl = `https://github.com/carbon-design-system/carbon/tree/main/packages/react/src/components/${componentName
+      const githubUrl = `https://github.com/carbon-design-system/carbon/tree/main/packages/react/src/components/${componentName
         .replace(/\b\w/g, (char) => char.toUpperCase())
         .replace(/\s+/g, '')}`;
 
