@@ -88,17 +88,9 @@ const A11yStatus = ({ components, layout }) => {
       });
 
       let githubUrl = '';
-      // if (componentName === 'Menu buttons') {
-      //   const githubComponentName = 'Menu button';
-      //   githubUrl = `https://github.com/carbon-design-system/carbon/tree/main/packages/react/src/components/${githubComponentName
-      //     .replace(/\b\w/g, (char) => char.toUpperCase())
-      //     .replace(/\s+/g, '')}`;
-      // }
-      // else {
-        githubUrl = `https://github.com/carbon-design-system/carbon/tree/main/packages/react/src/components/${componentName
-          .replace(/\b\w/g, (char) => char.toUpperCase())
-          .replace(/\s+/g, '')}`;
-      // }
+      githubUrl = `https://github.com/carbon-design-system/carbon/tree/main/packages/react/src/components/${componentName
+        .replace(/\b\w/g, (char) => char.toUpperCase())
+        .replace(/\s+/g, '')}`;
 
       // Function to check if the spec has a specific tag and
       // if the status is skipped
