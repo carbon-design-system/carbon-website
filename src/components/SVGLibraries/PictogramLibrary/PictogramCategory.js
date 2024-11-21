@@ -21,6 +21,7 @@ const IconCategory = ({ category, pictograms, columnCount }) => {
     'ibm--z--partition',
     'ibm--z-and-linuxone-multi-frame',
     'ibm--z-and-linuxone-single-frame',
+    'tokyo--volcano',
   ];
 
   return (
