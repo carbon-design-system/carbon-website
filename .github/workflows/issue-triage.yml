@@ -11,7 +11,7 @@ env:
 
   PROJECT_ID: 39
   ITEM_FETCH_LIMIT: 1200
-  
+
   AREA_FIELD_ID: PVTSSF_lADOAYA3Ss1Nv84BfRL4
   AREA_WEBSITE: 113a0859
 jobs:
@@ -32,7 +32,7 @@ jobs:
       - name: Get issue ID
         id: get_issue_id
         run: |
-            ISSUE_ID=$(gh project item-list $PROJECT_ID --owner=$OWNER --limit=$ITEM_FETCH_LIMIT --format=json --jq ".items[] | select(.content.number == $ISSUE_NUMBER and .content.repository == $REPOSITORY) | .id" -r)
+            ISSUE_ID=$(gh project item-list $PROJECT_ID --owner=$OWNER --limit=$ITEM_FETCH_LIMIT --format=json --jq ".items[] | select(.content.number == $ISSUE_NUMBER and .content.repository == $REPOSITORY) | .id")
             if [ -z "$ISSUE_ID" ]; then
               echo "Issue ID not found for issue number $ISSUE_NUMBER"
               exit 1
