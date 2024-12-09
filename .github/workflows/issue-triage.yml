@@ -40,6 +40,8 @@ jobs:
             fi
             echo "Issue ID is $ISSUE_ID"
             echo "issue_id=$ISSUE_ID" >> "$GITHUB_OUTPUT"
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
       - name: Update issue with website area field
         run:
           gh project item-edit --project-id $PROJECT_ID --id $ISSUE_ID
