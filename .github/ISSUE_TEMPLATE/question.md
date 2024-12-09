@@ -5,6 +5,7 @@ title: ''
 type: 'task'
 labels: ['type: question ❓', 'status: needs triage 🕵️‍♀️']
 assignees: ''
+projects: ['carbon-design-system/39']
 ---
 
 <!--
