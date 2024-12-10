@@ -1,0 +1,665 @@
+---
+title: 2. Building pages
+description:
+  Welcome to Carbon! This tutorial will guide you in creating a Vanilla JS/HTML
+  app using Web Components from the Carbon Design System.
+tabs: ['Overview', 'Step 1', 'Step 2', 'Step 3', 'Step 4', 'Step 5']
+---
+
+import Preview from 'components/Preview';
+
+<PageDescription>
+
+Now that we have our app using the UI Shell, it's time to build a few static
+pages. In this step, we'll become comfortable with the Carbon grid and various
+Carbon components.
+
+</PageDescription>
+
+<AnchorLinks>
+
+<AnchorLink>Fork, clone and branch</AnchorLink>
+<AnchorLink>Add landing page grid</AnchorLink>
+<AnchorLink>Build landing page</AnchorLink>
+<AnchorLink>Style landing page</AnchorLink>
+<AnchorLink>Add repo page grid</AnchorLink>
+<AnchorLink>Build repo page</AnchorLink>
+<AnchorLink>Push to GitHub</AnchorLink>
+
+</AnchorLinks>
+
+## Preview
+
+A
+[preview](https://carbon-tutorial-nextjs-git-step-3-carbon-design-system.vercel.app/)
+of what you'll build:
+
+<Preview
+  height="400"
+  title="Carbon Next Tutorial Step 2"
+  src="https://carbon-tutorial-nextjs-git-v11-next-step-3-carbon-design-system.vercel.app/"
+  frameborder="no"
+  allowtransparency="true"
+  allowfullscreen="true"
+  className="cds--iframe cds--iframe--border"
+/>
+
+## Fork, clone and branch
+
+This tutorial has an accompanying GitHub repository called
+[carbon-tutorial-web-components](https://github.com/carbon-design-system/carbon-tutorial-web-components)
+that we'll use as a starting point for each step. If you haven't forked and
+cloned that repository yet, and haven't added the upstream remote, go ahead and
+do so by following the [step 1
+instructions]([previous step](/developing/web-components-tutorial/step-1#fork-clone-and-branch).
+
+### Branch
+
+With your repository all set up, let's check out the branch for this tutorial
+step's starting point.
+
+```bash
+git fetch upstream
+git checkout -b step-2 upstream/step-2
+```
+
+<InlineNotification>
+
+**Note:** This builds on top of step 1, but be sure to check out the upstream
+step 2 branch because it includes the static assets required to get through this
+step.
+
+</InlineNotification>
+
+### Build and start app
+
+Install the app's dependencies (in case you're starting fresh in your current
+directory and not continuing from the previous step):
+
+```bash
+pnpm i
+```
+
+Then, start the app:
+
+```bash
+pnpm dev
+```
+
+You should see something similar to where the
+[previous step](/developing/web-components-tutorial/step-1#fork-clone-and-branch/step-1)
+left off.
+
+## Add landing page grid
+
+Let's add our grid elements to our `LandingPage` page component.
+
+Now the Carbon grid does not currently exist in web component form. This may be
+because it is difficult to apply a CSS grid when traversing the shadow DOM of a
+grid and column component. This leaves us with writing our grid and columns out
+long hand, writing the styles ourselves, or using javascript utility to add
+classes to our columns.
+
+For the purposes of this tutorial the classes are written out long hand. In
+
+In `index.html` replace `LANDING PAGE` with
+
+```html path=index.html
+<div class="page page-landing cds--css-grid cds--css-grid--full-width">
+  <div class="page-landing__banner cds--css-grid-column cds--col-span-100">
+    1
+  </div>
+  <div class="page-landing__r2 cds--css-grid-column cds--col-span-100">
+    <div class="cds--subgrid cds--subgrid--full-wide">
+      <div
+        class="page-landing__tab-content cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-4 cds--lg:col-span-7">
+        7/16
+      </div>
+      <div
+        class="cds--sm:col-span-4 cds--md:col-span-4 cds--lg:col-start-9 cds--lg:col-span-8 cds--css-grid-column">
+        8/16
+      </div>
+    </div>
+  </div>
+  <div class="page-landing__r3 cds--css-grid-column cds--col-span-100">
+    <div class="cds--subgrid cds--subgrid--full-wide">
+      <div
+        class="page-landing__label cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-2 cds--lg:col-span-4">
+        1/4
+      </div>
+      <div
+        class="page-landing__title cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-2 cds--lg:col-span-4">
+        1/4
+      </div>
+      <div
+        class="page-landing__title cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-2 cds--lg:col-span-4">
+        1/4
+      </div>
+      <div
+        class="page-landing__title cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-2 cds--lg:col-span-4">
+        1/4
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+<InlineNotification>
+
+**Grid education** There are many options for the Carbon Grid. For more
+information review
+[2x Grid](https://carbondesignsystem.com/elements/2x-grid/overview/) on the
+Carbon Design System website. If apply classes manually it is also well worth
+checking out the
+[CSS Grid Demo](https://carbon-elements.netlify.app/grid/examples/css-grid/) to
+
+</InlineNotification>
+
+Then import the grid styles in `style.scss`.
+
+```scss path=style.scss
+@use '@carbon/styles/scss/grid';
+```
+
+In order to use the grid, we need to wrap everything in a `cds--css-grid`.
+Because we're building with the new CSS Grid, we won't be using typical rows. We
+have used a combination of `cds--css-grid-column` classes to create our layout.
+
+The CSS Grid is a 16 column grid. The column widths and positions are specified
+using a combination of `cds--BP:col-span-N` and `cds--BP:col-start-N`classes.
+Where BP is the Carbon breakpoint and N is column count or starting position.
+For example, `<div class="cds-lg:col-start-9 cds-lg:col-span-8" >` means the
+column will start at column 9 and span 8 columns when the large (lg) breakpoint
+is active. large breakpoint.
+
+https://carbon-elements.netlify.app/grid/examples/css-grid/
+
+We've included the designs for this tutorial app in the `design.figma` file
+found as a top-level file in the `carbon-tutorial` repository. But, if you don't
+have Figma installed and available to inspect the design, we'll provide
+screenshots.
+
+![Landing page grid](../shared/step-2/images/landing-layout.png)
+
+<Caption>Landing page grid</Caption>
+
+<InlineNotification>
+
+**Pro tip:** `SHIFT-G` toggles the layout in Figma.
+
+</InlineNotification>
+
+## Build landing page
+
+We'll start adding HTML elements and components by row.
+
+### First row
+
+<Row>
+<Column colLg={8}>
+
+![Banner vertical spacing](../shared/step-2/images/landing-r1-spacing.png)
+
+<Caption>Banner vertical spacing</Caption>
+
+</Column>
+</Row>
+
+In our first row we'll need a `Breadcrumb` component. First, let's import the
+components we need.
+
+```javascript path=main.js
+import '@carbon/web-components/es/components/breadcrumb/index';
+```
+
+We can now add our component to the first row, replace the content of the `div`
+with class `page-landing__banner` with:
+
+```html path=index.html
+<cds-breadcrumb noTrailingSlash aria-label="Page navigation">
+  <cds-breadcrumb-item>
+    <a href="./">Getting started</a>
+  </cds-breadcrumb-item>
+</cds-breadcrumb>
+<h1 class="page-landing__heading">Design &amp; build with Carbon</h1>
+```
+
+### Second row
+
+In our second row we'll need `Tabs` and `Button` components. Add the following
+import:
+
+```javascript path=main.js
+import '@carbon/web-components/es/components/tabs/index';
+```
+
+The tabs come next going inside `page-landing__r2` and before the sub
+`cds--subgrid`.
+
+```html path=index.html
+<cds-tabs value="about" class="page-landing__tabs">
+  <cds-tab id="tab-about" value="about" target="panel-about">About</cds-tab>
+  <cds-tab id="tab-design" value="design" target="panel-design">Design</cds-tab>
+  <cds-tab id="tab-develop" value="develop" target="panel-develop"
+    >Develop</cds-tab
+  >
+</cds-tabs>
+```
+
+Each of the `cds-tab` components has a `target` attribute. This is used to
+identify the content visible when that tab is selected.
+
+Wrap the subgrid element immediately after the closing `</cds-tabs>` with the
+following. This is where we will place our first tab panel.
+
+```html path=index.html
+<div id="panel-about" role="tabpanel" aria-labelledby="tab-about">
+  ... grid element is here
+</div>
+```
+
+Replace the content of the first column `7/16` with:
+
+```html path=index.html
+<h3 class="page-landing__subheading">What is Carbon?</h3>
+<p class="page-landing__p">
+  Carbon is IBM’s open-source design system for digital products and
+  experiences. With the IBM Design Language as its foundation, the system
+  consists of working code, design tools and resources, human interface
+  guidelines, and a vibrant community of contributors.
+</p>
+<cds-button>Learn more</cds-button>
+```
+
+The second column content `8/16` is replaced with:
+
+```html path=index.html
+<img
+  class="page-landing__illo"
+  src="./tab-illo.png"
+  alt="Carbon illustration"
+  width="640"
+  height="498" />
+```
+
+The `tab-illo.png` image is already located in the `public` folder.
+
+After the closing `</div>` of `id="panel-about"`, still inside
+`page-landing__r2` we add two further tab panels. This one
+
+```html path=index.html
+<div id="panel-design" role="tabpanel" aria-labelledby="tab-design">
+  <div class="cds--subgrid cds--subgrid--full-wide">
+    <div
+      class="cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-8 cds--lg:col-span-16">
+      <div class="page-landing__tab-content">
+        <p class="page-landing__p">
+          Rapidly build beautiful and accessible experiences. The Carbon kit
+          contains all resources you need to get started.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+and
+
+```html path=index.html
+<div id="panel-develop" role="tabpanel" aria-labelledby="tab-develop">
+  <div class="cds--subgrid cds--subgrid--full-wide">
+    <div
+      class="cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-8 cds--lg:col-span-16">
+      <div class="page-landing__tab-content">
+        <p class="page-landing__p">
+          Carbon provides components and styles for all. Whether using Vanilla,
+          Web Components, React, or another reactive library, you can build with
+          Carbon.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+### Third row
+
+Here we replace all four columns entirely adding some offsets for medium and
+large column sizes after the first column.
+
+```html path=index.html
+<div
+  class="page-landing__label cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-2 cds--lg:col-span-4">
+  The principles
+</div>
+<div
+  class="page-landing__title cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-6 cds--md:col-start-3 cds--lg:col-span-4 cds--lg:col-start-5">
+  Carbon is open
+</div>
+<div
+  class="page-landing__title cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-6 cds--md:col-start-3 cds--lg:col-span-4 cds--lg:col-start-9">
+  Carbon is modular
+</div>
+<div
+  class="page-landing__title cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-6 cds--md:col-start-3 cds--lg:col-span-4 cds--lg:col-start-13">
+  Carbon is consistent
+</div>
+```
+
+## Style landing page
+
+### First row
+
+Row one styling is fairly straight forward with some typography and positional
+adjustment so to align it with our other content.
+
+```scss path=style.scss
+.page {
+  padding: 0;
+
+  > * {
+    padding-inline: $spacing-06;
+    margin: 0;
+  }
+}
+
+.page-landing__banner {
+  padding-block: $spacing-05 $spacing-13;
+  background: $layer-01;
+  box-shadow: $spacing-06 0 0 $layer-01, -1 * $spacing-06 0 0 $layer-01;
+}
+
+.page-landing__heading {
+  @include type-style('productive-heading-05');
+
+  margin: 0;
+}
+```
+
+### Second row
+
+The styling for the second row adds further layout and typography changes. It
+also positions the image and prevents it from causing horizontal overflow. In
+order to make use of the Carbon SCSS mixin `breakpoint-down` we also add the
+breakpoint import to our list of `@use` near the top of the file.
+
+```scss path=style.scss
+@use '@carbon/styles/scss/breakpoint' as *; /* add near top of file */
+
+.page-landing__illo {
+  max-width: 100%;
+  float: inline-end;
+  height: auto;
+}
+
+@include breakpoint-down(md) {
+  .page-landing__illo {
+    max-width: 528px;
+    width: 100%;
+    height: 100%;
+    float: inline-start;
+  }
+}
+
+.page-landing__tabs {
+  margin: (-1 * $spacing-08) 0 $spacing-08;
+}
+
+.page-landing__tab-content {
+  padding-block: $spacing-06;
+}
+
+.page-landing__subheading {
+  @include type-style('productive-heading-03');
+
+  font-weight: 600;
+}
+
+.page-landing__p {
+  @include type-style('productive-heading-03');
+  margin-top: $spacing-06;
+  margin-bottom: $spacing-08;
+}
+```
+
+### Third row
+
+```scss path=style.scss
+.page-landing__r3 {
+  padding-block: $spacing-09;
+  background: $layer-01;
+}
+```
+
+Ta-da! You should see a step 2 complete landing page! Now we can move on to the
+repo page.
+
+## Build repo page
+
+### Add a grid to contain our content
+
+Now in our `repositories` page we will first add a grid wrapping
+`REPOSITORIES PAGE`
+
+```html path=repositories.html
+<div class="page page-repositories cds--css-grid cds--css-grid--full-width">
+  <div class="repo-page__r1 cds--css-grid-column cds--col-span-100">
+    REPOSITORIES PAGE
+  </div>
+</div>
+```
+
+Add a minimal amount of styling to move our content away from the edge of the
+page in `style.scss`.
+
+```scss style.scss
+.repo-page__r1 {
+  padding-block: $spacing-05;
+}
+```
+
+### Adding a table
+
+Before we can add the table we need to import the web component. As this is only
+used in our `repositories.html` page lets create a new script file `repos.js`
+and then add.
+
+```javascript path=repos.js
+import '@carbon/web-components/es/components/data-table/index.js';
+```
+
+We need to include this file in `repositories.html` which we can do by adding
+the following next to the script tag that includes `main.js`.
+
+```html path=repositories.html
+<script type="module" src="/repos.js"></script>
+```
+
+Next we add the table header and column titles to replace the text
+`REPOSITORIES PAGE`
+
+```html path=repositories.html
+<cds-table expandable>
+  <cds-table-header-title slot="title"
+    >Carbon Repositories</cds-table-header-title
+  >
+  <cds-table-header-description slot="description"
+    >A collection of public Carbon repositories.</cds-table-header-description
+  >
+  <cds-table-head>
+    <cds-table-header-row>
+      <cds-table-header-cell>Name</cds-table-header-cell>
+      <cds-table-header-cell>Created</cds-table-header-cell>
+      <cds-table-header-cell>Updated</cds-table-header-cell>
+      <cds-table-header-cell>Open issues</cds-table-header-cell>
+      <cds-table-header-cell>Stars</cds-table-header-cell>
+      <cds-table-header-cell>Links</cds-table-header-cell>
+    </cds-table-header-row>
+  </cds-table-head>
+  <cds-table-body>Table body goes here</cds-table-body>
+</cds-table>
+```
+
+The table header should already be visible on the repositories page.
+
+Now we can add the rows replacing `Table body goes here` with:
+
+```html path=repositories.html
+<cds-table-row>
+  <cds-table-cell>Repo 1</cds-table-cell>
+  <cds-table-cell>Date</cds-table-cell>
+  <cds-table-cell>Date</cds-table-cell>
+  <cds-table-cell>123</cds-table-cell>
+  <cds-table-cell>456</cds-table-cell>
+  <cds-table-cell>Links</cds-table-cell>
+</cds-table-row>
+<cds-table-expanded-row>Repo description</cds-table-expanded-row>
+<cds-table-row>
+  <cds-table-cell>Repo 2</cds-table-cell>
+  <cds-table-cell>Date</cds-table-cell>
+  <cds-table-cell>Date</cds-table-cell>
+  <cds-table-cell>123</cds-table-cell>
+  <cds-table-cell>456</cds-table-cell>
+  <cds-table-cell>Links</cds-table-cell>
+</cds-table-row>
+<cds-table-expanded-row>Repo description</cds-table-expanded-row>
+<cds-table-row>
+  <cds-table-cell>Repo 3</cds-table-cell>
+  <cds-table-cell>Date</cds-table-cell>
+  <cds-table-cell>Date</cds-table-cell>
+  <cds-table-cell>123</cds-table-cell>
+  <cds-table-cell>456</cds-table-cell>
+  <cds-table-cell>Links</cds-table-cell>
+</cds-table-row>
+<cds-table-expanded-row>Repo description</cds-table-expanded-row>
+```
+
+### Using HTML templates
+
+With the app running we can see that the repositories page now hosts a table.
+However, it is not realistic to populate a table with hard coded data way so
+we'll refactor to build the table from data.
+
+This involves the use of HTML Templates, take a look at
+[W3 Schools](https://www.w3schools.com/tags/tag_template.asp) if you need a
+quick refresh.
+
+In `index.html` remove the contents of the `<cds-table-body>` tag and return it
+to `Table body goes here`.
+
+Then before the end of the html tag and after the body closing tag add the
+following to define our table row template.
+
+```html path=repositories.html
+<template id="template--table-row">
+  <cds-table-row>
+    <cds-table-cell key="name">Repo 1</cds-table-cell>
+    <cds-table-cell key="created">Date</cds-table-cell>
+    <cds-table-cell key="updated">Date</cds-table-cell>
+    <cds-table-cell key="openIssues">123</cds-table-cell>
+    <cds-table-cell key="stars">456</cds-table-cell>
+    <cds-table-cell key="links">Links</cds-table-cell>
+  </cds-table-row>
+  <cds-table-expanded-row key="expansion"
+    >Repo description</cds-table-expanded-row
+  >
+</template>
+```
+
+Next in `repos.js` add the following data that we will use to populate the table
+rows.
+
+```javascript path=repos.js
+// cds-table-row data
+let data = [
+  {
+    name: 'Repo A',
+    created: 'Date',
+    updated: 'Date',
+    openIssues: 123,
+    stars: 456,
+    links: 'Links',
+    expansion: 'Row description',
+  },
+  {
+    name: 'Repo B',
+    created: 'Date',
+    updated: 'Date',
+    openIssues: 123,
+    stars: 456,
+    links: 'Links',
+    expansion: 'Row description',
+  },
+  {
+    name: 'Repo C',
+    created: 'Date',
+    updated: 'Date',
+    openIssues: 123,
+    stars: 456,
+    links: 'Links',
+    expansion: 'Row description',
+  },
+];
+```
+
+Next we create the function `updateTable` and make a call to it to populate add
+our rows.
+
+```javascript path=repos.js
+const updateTable = () => {
+  const tableRowTemplate = document.querySelector(
+    'template#template--table-row'
+  );
+  const tableBody = document.querySelector('cds-table-body');
+  if (tableBody && tableRowTemplate) {
+    tableBody.innerHTML = '';
+    // iterate over data and render rows
+    data.forEach((row) => {
+      let newRow = tableRowTemplate.content.cloneNode(true);
+      const keys = Object.keys(row);
+      keys.forEach((key) => {
+        const keyEl = newRow.querySelector(`[key="${key}"]`);
+        keyEl.innerHTML = row[key];
+      });
+      tableBody.appendChild(newRow);
+    });
+  }
+};
+
+updateTable();
+```
+
+Verify that the table rows are being generated by changing the data and running
+the app.
+
+Congratulations! We've now created our static repo page!
+
+## Push to GitHub
+
+That is it you are done. Just one more push to save your completion of step 2.
+
+### Git commit and push
+
+First, stage and commit all of your changes:
+
+```bash
+git add --all && git commit -m "feat(tutorial): complete step 2"
+```
+
+Then, push to your repository:
+
+```bash
+git push -u origin step-2
+```
+
+<InlineNotification>
+
+**Note:** If your Git remote protocol is HTTPS instead of SSH, you may be
+prompted to authenticate with GitHub when you push changes. If your GitHub
+account has two-factor authentication enabled, we recommend that you follow
+these instructions to
+[create a personal access token for the command line](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line).
+That lets you use your token instead of password when performing Git operations
+over HTTPS.
+
+</InlineNotification>
