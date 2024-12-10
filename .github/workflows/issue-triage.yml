@@ -25,11 +25,6 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'issues' && github.event.action == 'opened' }}
     steps:
-      - uses: actions/create-github-app-token@v1
-        id: app-token
-        with:
-          app-id: ${{ secrets.APP_ID }}
-          private-key: ${{ secrets.APP_PRIVATE_KEY }}
       - name: Get issue ID
         id: get_issue_id
         run: |
@@ -41,11 +36,11 @@ jobs:
             echo "Issue ID is $ISSUE_ID"
             echo "issue_id=$ISSUE_ID" >> "$GITHUB_OUTPUT"
         env:
-          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          GH_TOKEN: ${{ secrets.ADD_TO_PROJECT_PAT }}
       - name: Update issue with website area field
         run:
           gh project item-edit --project-id $PROJECT_ID --id $ISSUE_ID
           --field-id $AREA_FIELD_ID --single-select-option-id $AREA_WEBSITE
         env:
-          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          GH_TOKEN: ${{ secrets.ADD_TO_PROJECT_PAT }}
           $ISSUE_ID: ${{ steps.get_issue_id.outputs.issue_id }}
