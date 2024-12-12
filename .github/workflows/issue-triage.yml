@@ -7,7 +7,6 @@ on:
 env:
   ISSUE_NUMBER: ${{ github.event.issue.number }}
   OWNER: ${{ github.repository_owner }}
-  REPOSITORY: ${{ github.repository }}
 
   PROJECT_NUMBER: 39
   PROJECT_ID: PVT_kwDOAYA3Ss1Nvw
@@ -28,7 +27,7 @@ jobs:
       - name: Get issue ID
         id: get_issue_id
         run: |
-            ISSUE_ID=$(gh project item-list $PROJECT_NUMBER --owner=$OWNER --limit=$ITEM_FETCH_LIMIT --format=json --jq ".items[] | select(.content.number == $ISSUE_NUMBER and .content.repository == $REPOSITORY) | .id")
+            ISSUE_ID=$(gh project item-list $PROJECT_NUMBER --owner=$OWNER --limit=$ITEM_FETCH_LIMIT --format=json --jq '.items[] | select(.content.number == $ISSUE_NUMBER and .content.repository == "carbon-design-system/carbon-website") | .id')
             if [ -z "$ISSUE_ID" ]; then
               echo "Issue ID not found for issue number $ISSUE_NUMBER"
               exit 1
