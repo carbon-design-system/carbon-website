@@ -22,7 +22,6 @@ import vue from './icons/vue.png';
 import webcomponents from './icons/webcomponents.png';
 import yourlearning from './icons/yourlearning.svg';
 
-
 const localIcons = {
   angular,
   ase,
