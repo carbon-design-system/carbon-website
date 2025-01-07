@@ -1,9 +1,11 @@
 ---
-name: "Bug report 🐛"
+name: 'Bug report 🐛'
 about: Create a report to help us improve
-title: ""
-labels: "type: bug 🐛"
-assignees: ""
+title: ''
+type: 'bug'
+labels: ['type: bug 🐛', 'status: needs triage 🕵️‍♀️']
+assignees: ''
+projects: ['carbon-design-system/39']
 ---
 
 <!-- Feel free to remove sections that aren't relevant.
@@ -16,7 +18,8 @@ assignees: ""
 
 > Describe in detail the issue you're having.
 
-> What did you expect to happen? What happened instead? What would you like to see changed?
+> What did you expect to happen? What happened instead? What would you like to
+> see changed?
 
 > What browser are you working in?
 

@@ -1,0 +1,161 @@
+---
+title: Community frameworks
+description:
+  The Carbon Design System is built with official support for React and Web
+  Components. Community support exists for other frameworks like Angular,
+  vanilla JS, Vue, Svelte, and Lightning Web Components.
+tabs: ['Angular', 'Vue', 'Svelte', 'LWC', 'Vanilla', 'Other frameworks']
+---
+
+<PageDescription>
+
+The library provides front-end developers & engineers a collection of reusable
+Vue components to build websites and user interfaces. Adopting the library
+enables developers to use consistent markup, styles, and behavior in prototype
+and production work.
+
+</PageDescription>
+
+<InlineNotification>
+
+The Vue library is maintained by members of the Carbon community. For support,
+contact the
+[Carbon Vue team](https://github.com/carbon-design-system/carbon-components-vue/issues/new/choose).
+
+</InlineNotification>
+
+## Resources
+
+<Row className="resource-card-group">
+<Column colLg={4} colMd={4} noGutterSm>
+  <ResourceCard
+    subTitle="Carbon Components Vue Storybook"
+    href="https://vue.carbondesignsystem.com"
+    >
+
+![Storybook icon](images/storybook.svg)
+
+  </ResourceCard>
+</Column>
+  <Column colMd={4} colLg={4} noGutterSm>
+    <ResourceCard
+      subTitle="Try Vue components with CodeSandbox"
+      href="https://codesandbox.io/s/5zk452o9jp"
+    >
+      <MdxIcon name="codesandbox" />
+    </ResourceCard>
+  </Column>
+
+<Column colMd={4} colLg={4} noGutterSm>
+    <ResourceCard
+        subTitle="Carbon Vue tutorial"
+        href="/developing/vue-tutorial/overview/">
+        <MdxIcon name="vue" />
+    </ResourceCard>
+</Column>
+</Row>
+
+## Getting started
+
+Assuming we're starting with a new Vue CLI project:
+
+```bash
+npm create vue@latest
+cd vue-project
+```
+
+```bash
+npm install @carbon/vue
+```
+
+In src/main.js, after `import App from './App.vue'`, add the following to
+include the carbon styles and components.
+
+```js
+import 'carbon-components/css/carbon-components.css';
+import CarbonComponentsVue from '@carbon/vue';
+
+const app = createApp(App);
+app.use(CarbonComponentsVue);
+app.mount('#app');
+// remove the line: createApp(App).mount('#app')
+```
+
+Replace the contents of src/components/HelloWorld.vue with the following
+
+```html
+<script setup>
+  import { ref } from 'vue';
+
+  const yourName = ref('');
+  const visible = ref(false);
+  function onClick() {
+    visible.value = true;
+  }
+  function modalClosed() {
+    visible.value = false;
+  }
+</script>
+
+<template>
+  <div class="sample" id="me">
+    <h1>Example use of @carbon/vue</h1>
+    <cv-text-input
+      label="Who are you?"
+      v-model="yourName"
+      placeholder="your name" />
+    <cv-button @click="onClick">Hello {{yourName}}</cv-button>
+    <cv-modal :visible="visible" @modal-hidden="modalClosed">
+      <template #title>Welcome to @carbon/vue {{yourName}}</template>
+      <template #content>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, seed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat.
+        </p>
+      </template>
+    </cv-modal>
+  </div>
+</template>
+
+<style scoped lang="css">
+  .sample {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 600px;
+    margin: 5% auto;
+  }
+  .sample > div {
+    margin: 30px 0;
+  }
+</style>
+```
+
+That's it! Now start the server and start building.
+
+```bash
+npm run dev
+```
+
+_Note: This isn't the only way to bootstrap a_ `carbon-components-vue`
+_application, but the combination of_ `Vue CLI` _and the_ `carbon-components`
+_scss is our recommended setup._ See
+[Hello carbon vue3](https://github.com/IBM/hello-carbon-vue3) for a complete
+example app.
+
+### List of available components
+
+View available Vue Components [here](http://vue.carbondesignsystem.com). Usage
+information is available in the notes provided with each story.
+
+## Troubleshooting
+
+If you experience any issues while getting set up with Carbon Components Vue,
+please head over to the
+[GitHub repo](https://github.com/carbon-design-system/carbon-components-vue) for
+more guidelines and support. Please
+[create an issue](https://github.com/carbon-design-system/carbon-components-vue/issues)
+if your issue does not already exist.

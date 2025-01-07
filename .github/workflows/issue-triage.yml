@@ -4,9 +4,39 @@ on:
     types: [opened]
   issue_comment:
     types: [created]
+env:
+  OWNER: ${{ github.repository_owner }}
+
+  PROJECT_NUMBER: 39
+  PROJECT_ID: PVT_kwDOAYA3Ss1Nvw
+  ITEM_FETCH_LIMIT: 1200
+
+  AREA_FIELD_ID: PVTSSF_lADOAYA3Ss1Nv84BfRL4
+  AREA_WEBSITE: 113a0859
 jobs:
   issue-triage:
     uses: carbon-design-system/carbon/.github/workflows/issue-triage.yml@main
     secrets:
       APP_ID: ${{ secrets.APP_ID }}
       APP_PRIVATE_KEY: ${{ secrets.APP_PRIVATE_KEY }}
+  set-area-per-repo:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'issues' && github.event.action == 'opened' }}
+    steps:
+      - name: Get issue ID
+        id: get_issue_id
+        run: |
+          ISSUE_ID=$(gh project item-list $PROJECT_NUMBER --owner=$OWNER --limit=$ITEM_FETCH_LIMIT --format=json --jq '.items[] | select(.content.number == '"${{ github.event.issue.number }}"' and .content.repository == "carbon-design-system/carbon-website") | .id')
+          if [ -z "$ISSUE_ID" ]; then
+            echo "Issue ID not found for issue number ${{ github.event.issue.number }}"
+            exit 1
+          fi
+          echo "Issue ID is $ISSUE_ID"
+          echo "issue_id=$ISSUE_ID" >> "$GITHUB_OUTPUT"
+        env:
+          GH_TOKEN: ${{ secrets.ADD_TO_PROJECT_PAT }}
+      - name: Update issue with website area field
+        run: |
+          gh project item-edit --project-id $PROJECT_ID --id ${{ steps.get_issue_id.outputs.issue_id }} --field-id $AREA_FIELD_ID --single-select-option-id $AREA_WEBSITE
+        env:
+          GH_TOKEN: ${{ secrets.ADD_TO_PROJECT_PAT }}

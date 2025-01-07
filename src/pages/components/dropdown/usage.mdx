@@ -10,9 +10,8 @@ import A11yStatus from 'components/A11yStatus';
 
 <PageDescription>
 
-Dropdowns present a list of options from which a user can select one option, or
-several. A selected option can represent a value in a form, or can be used as an
-action to filter or sort existing content.
+Dropdowns have a list of options that a user can select from. These selections
+can fill in a form, filter, or sort content.
 
 </PageDescription>
 
@@ -134,33 +133,39 @@ section for more details.
 There are three different variants of dropdowns that support various kinds of
 functionality—dropdown, multiselect, and combo box.
 
-### Variants
-
-| Variant                     | Purpose                                                                                  |
-| --------------------------- | ---------------------------------------------------------------------------------------- |
-| [Dropdown](#dropdown)       | Allows the user to select one option from a list.                                        |
-| [Multiselect](#multiselect) | Allows the user to select multiple options from a list and filter.                       |
-| [Combo box](#combo-box)     | Allows the user to make a selection from a list of suggested, likely, or desired values. |
-
 ### When to use
 
-- Dropdowns can be used in forms on full pages, in modals, or on side panels.
-  The dropdown component is used to filter or sort contents on a page. It is a
-  stylized version of the select component, and can be styled as needed.
+Dropdowns can be used in forms on full pages, in modals, or on side panels. The
+dropdown component is used to filter or sort contents on a page. It is a
+stylized version of the select component, and can be styled as needed.
 
 ### When not to use
 
-- It is best practice not to use a dropdown if there are two options to choose
-  from. In this case, use a
-  [radio button](https://www.carbondesignsystem.com/components/radio-button/code)
-  group instead.
-- Do not nest dropdowns or use them to display overly complex information. Keep
-  option selections as straight forward as possible.
-- Consider using a
-  [select](https://www.carbondesignsystem.com/components/select/usage) if most
-  of your experience is form-based or frequently used on mobile platforms. The
-  native select works more easily with a native form when submitting data and is
-  also easier to use on a mobile platform
+#### Limited options
+
+It is best practice not to use a dropdown if there are two options to choose
+from. In this case, use a [radio button](/components/radio-button/code) group
+instead.
+
+#### Nesting
+
+Do not nest dropdowns or use them to display overly complex information. Keep
+option selections as straight forward as possible.
+
+#### Form-based or mobile platform
+
+Consider using a [select](/components/select/usage) if most of your experience
+is form-based or frequently used on mobile platforms. The native HTML select
+works more easily when submitting data and is also easier to use on a mobile
+platform.
+
+### Variants
+
+| Variant                     | Purpose                                                                                         |
+| --------------------------- | ----------------------------------------------------------------------------------------------- |
+| [Dropdown](#dropdown)       | Allows the user to select one option from a list.                                               |
+| [Multiselect](#multiselect) | Allows the user to select multiple options from a list and filter.                              |
+| [Combo box](#combo-box)     | Allows the user to either select an option from a large list or type in their own custom value. |
 
 ## Formatting
 
@@ -193,7 +198,7 @@ selection.
 </Column>
 </Row>
 
-1. **Labels:** Text that informs the user what to expect in the list of dropdown
+1. **Label:** Text that informs the user what to expect in the list of dropdown
    options.
 2. **Helper text:** Assistive text to help the user choose the right selection.
 3. **Field:** Persists when the dropdown is open or closed.
@@ -204,7 +209,7 @@ selection.
 
 ### Styling
 
-There are two styles of dropdown inputs, default and fluid. They share the same
+There are two styles of dropdown inputs: default and fluid. They share the same
 functionality but look visually different, influencing where to use them.
 
 | Style   | Appearance                                                                                                               | Use case                                                                                                                                         |
@@ -226,20 +231,18 @@ functionality but look visually different, influencing where to use them.
 
 ### Sizing
 
-#### Default input heights
-
-There are three Default dropdown height sizes: small, medium, and large.
+There are three default dropdown height sizes: small, medium, and large.
 Supporting three different dropdown sizes gives you more flexibility when
 structuring layouts. However, use a consistent size for all form components on
 the same page. For example, if you are using a medium size dropdown also use the
 same size text inputs, buttons, and so on. When in doubt, use the default medium
 size height.
 
-| Default size | Height (px/rem) | Use case                                                                                                                                                                           |
-| ------------ | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Small (sm)   | 32 / 2          | Use when space is constricted or when placing a dropdown in a form that is long and complex.                                                                                       |
-| Medium (md)  | 40 / 2.5        | This is the default size and the most commonly used size. When in doubt, use the medium size.                                                                                      |
-| Large (lg)   | 48 / 3          | Choose this size when there is a lot of space to work with. This size is typically used in simple forms or when a dropdown is placed by itself on a page, for example as a filter. |
+| Size        | Height (px/rem) | Use case                                                                                                                                                                           |
+| ----------- | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Small (sm)  | 32 / 2          | Use when space is constricted or when placing a dropdown in a form that is long and complex.                                                                                       |
+| Medium (md) | 40 / 2.5        | This is the default size and the most commonly used size.                                                                                                                          |
+| Large (lg)  | 48 / 3          | Choose this size when there is a lot of space to work with. This size is typically used in simple forms or when a dropdown is placed by itself on a page, for example as a filter. |
 
 <Row>
 <Column colLg={8}>
@@ -319,10 +322,12 @@ style of dropdown you are using.
 
 ### Main elements
 
-#### Labels
+#### Label text
 
-- Labels inform users what to expect in the list of dropdown options.
-- Keep the label short and concise by limiting it to a single line of text.
+- Label text informs users what to expect in the list of dropdown options.
+- Keep the label text short and concise by limiting it to a single line of text.
+- Do not remove label text in favor of using placeholder text in the dropdown
+  field. Labels are always strongly encouraged to be included when possible.
 
 #### Helper text
 
@@ -330,8 +335,6 @@ style of dropdown you are using.
   right selection from the dropdown menu.
 - Helper text is always available when the dropdown field is focused and appears
   underneath the label.
-- Use sentence-style capitalization and write the text as full sentences with
-  punctuation, unless space is limited.
 
 <Row>
 <Column colLg={8}>
@@ -343,25 +346,28 @@ style of dropdown you are using.
 
 #### Field placeholder text
 
-- Placeholder text is presented in the field by default if no selection has been
-  made from the dropdown. This is important to have in case the dropdown does
-  not have a label above it.
-- Use clear placeholder text for the dropdown trigger so that users understand
-  the purpose.
+- Placeholder text is optional to display in the dropdown field if no option has
+  been selected yet from the list. Do not put important information in
+  placeholder text because the text disappears once an option is selected from
+  the list. Reserve important information for dropdown label text or helper
+  text, which always remains visible.
+- Use clear and concise placeholder text in the dropdown field to indicate how
+  to interact with the dropdown. For example, "Choose an option" is commonly
+  used as placeholder text in dropdowns.
 
-#### Options in a menu
+#### Option text
 
-- Describe the dropdown option succinctly in one line of text.
+- Dropdown option text should be brief, accurate, and not descriptive.
 - Never use decorative images or icons within a dropdown.
 - We recommend presenting the options in alphabetical order.
 
-#### Parent checkbox
+#### Parent checkbox text
 
-- Since the parent checkbox is one among the options, do not describe it as an
-  action.
-- Use the word “All” to describe this parent checkbox.
-- Alternatively you can add a parent word along with the word All to describe
-  the options in the menu.
+- Since the parent checkbox text is one among the options, do not describe it as
+  an action.
+- Use the word “All” to describe the parent checkbox.
+- Alternatively, add a secondary descriptive word, for example, “All roles,” to
+  describe the options in the menu.
 
 <Row>
 <Column colLg={12}>
@@ -373,16 +379,15 @@ style of dropdown you are using.
 
 ### Optional versus required fields
 
-All fields in a form are assumed required, and optional fields are tagged. For
-more information, see the
-[form component](https://www.carbondesignsystem.com/components/form/usage) usage
-guidance.
+Dropdowns can be labeled as either optional or required depending on several
+factors. For more information, see the form
+[Usage](/components/form/usage/#optional-versus-required-fields) tab guidance.
 
 ### Overflow content
 
-Avoid having multiple lines of text in a dropdown. If the text is too long for
-one line, add an ellipsis (…) for overflow content, and accompany with a
-browser-based tooltip to show the full string of text.
+Avoid multiple lines of text in a dropdown. If the text is too long for a single
+line, add an ellipsis (…) for overflow, and use a tooltip to display the full
+text—preferably a Carbon tooltip for keyboard accessibility where possible.
 
 <Row>
 <Column colLg={8}>
@@ -555,8 +560,8 @@ or clicking outside of the menu.
 </Column>
 </Row>
 
-- To clear a selected value in a `combo box` or a filterable dropdown, click the
-  “x” icon to the right of the field input text.
+- To clear a selected value in a `combo box` or a filterable multiselect
+  dropdown, click the “x” icon to the right of the field input text.
 
 <Row>
 <Column colLg={8}>
@@ -576,10 +581,9 @@ each variant. For more information on keyboard interactions, see the
 
 ## Dropdown
 
-Use when you can select only one option from a list at a time.
-
-- By default, the dropdown displays placeholder text in the field when closed.
-- Clicking on a closed field opens a menu of options.
+Use a dropdown when the user needs to select one option from a list of
+predefined options. Dropdowns are the optimal default option to provide
+alternative choices. They are also a good choice when screen space is limited.
 
 <Row>
 <Column colLg={8}>
@@ -617,15 +621,19 @@ Use when you can select only one option from a list at a time.
 
 ## Multiselect
 
-Use when you can select multiple options from a list or to filter information.
+Use a multiselect when the user needs to select multiple options from a list of
+predefined options. Multiselects are a good option when the user needs to filter
+or sort content on a page based on multiple criteria. A checkbox icon is
+included for each option in the list to enable multiselection.
 
 #### Making a selection
 
-- By default, the dropdown displays placeholder text in the field when closed.
-- Clicking a closed field opens a menu of options. Each option contains a
-  checkbox input to the left of the option text.
+- By default, the dropdown displays any placeholder text in the field when
+  closed. Activating a closed field opens a menu of options.
+- Each option contains a checkbox input to the left of the option text.
 - The menu stays open while options are being selected. The menu closes by
-  clicking the field or outside of the dropdown.
+  clicking the field or outside of the dropdown, or by pressing `Esc` or tabbing
+  away from the component.
 
 <Row>
 <Column colLg={8}>
@@ -805,11 +813,10 @@ to select.
 
 ## Combo box
 
-Allows the the user to make a selection from a predefined list of options and is
-typically used when there are a large amount of options to choose from.
-
-- By default, the combo box displays placeholder text in the field when closed.
-- When hovering over the field, a text cursor appears.
+Use a combo box when the user needs to select one option, but the list of
+options may be very long or not predefined. Combo boxes allow the user to either
+select from a list of suggested options or type in their own custom value. Combo
+boxes are useful when the data populating the list may come from a database.
 
 <Row>
 <Column colLg={8}>
@@ -819,11 +826,11 @@ typically used when there are a large amount of options to choose from.
 </Column>
 </Row>
 
-- The menu opens by clicking anywhere in the field and you can start typing to
-  sort through the list of options. The option that best matches the typed
-  characters is highlighted.
-- After typing text in the field, the close (x) icon appears to the right of the
-  text in the field. This clears any text that’s been entered in the field.
+- The menu opens by clicking anywhere in the field, allowing users to type and
+  sort through the list of options. The best-matching option is highlighted as
+  users type.
+- A close (x) icon clears the input, and autocomplete refines options as users
+  type.
 
 <Row>
 <Column colLg={8}>
@@ -854,6 +861,25 @@ typically used when there are a large amount of options to choose from.
 </Tab>
 
 </Tabs>
+
+</Column>
+</Row>
+
+#### Entering a custom value
+
+In a combo box, users can type in a custom or unique value that is not included
+in the list of predefined options.
+
+- If the desired option isn’t available in the list, users can start typing
+  their custom value directly in the field, filtering out options as they type.
+- To save the new custom value, click outside the field with the mouse or press
+  `Tab` or `Enter` on the keyboard.
+- Once saved, the placeholder text changes to display the custom typed value.
+
+<Row>
+<Column colLg={8}>
+
+![Entering a custom value in a default combo box.](images/dropdown-usage-11d.png)
 
 </Column>
 </Row>
@@ -941,10 +967,25 @@ generated content via a revert to AI button.
 
 ## Related
 
-- [Checkbox](https://www.carbondesignsystem.com/components/checkbox/code)
-- [Form](https://www.carbondesignsystem.com/components/form/code)
-- [Radio button](https://www.carbondesignsystem.com/components/radio-button/code)
-- [Select](https://www.carbondesignsystem.com/components/select/code)
+#### Checkbox
+
+Checkboxes are used when there are multiple options to select in a list. Users
+can select zero, one, or any number of options. For further guidance, see
+Carbon’s [checkbox](/components/checkbox/code).
+
+#### Form
+
+A form is a group of related input controls that allows users to provide data or
+configure options. For further guidance, see Carbon’s
+[form](/components/form/code).
+
+#### Radio button
+
+Radio buttons are used when there is a group of mutually exclusive choices and
+only one selection from the group is allowed. For further guidance, see
+Carbon’s[radio button](/components/radio-button/code).
+
+[select](https://www.carbondesignsystem.com/components/select/code)
 
 #### Dropdown versus Select
 

@@ -1,9 +1,11 @@
 ---
 name: Question ❓
 about: Usage question or discussion about the Carbon Design System Website.
-title: ""
-labels: "type: question ❓"
-assignees: ""
+title: ''
+type: 'task'
+labels: ['type: question ❓', 'status: needs triage 🕵️‍♀️']
+assignees: ''
+projects: ['carbon-design-system/39']
 ---
 
 <!--
