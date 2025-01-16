@@ -104,13 +104,13 @@ communicate calls to action to the user and allow users to interact with pages
 in a variety of ways. Button labels express what action will occur when the user
 interacts with it.
 
-### When to use
+#### When to use
 
 Use buttons to communicate actions users can take and to allow users to interact
 with the page. Each page should have only one primary button. Any remaining
 calls to action should be represented as lower emphasis buttons.
 
-### When not to use
+#### When not to use
 
 Do not use buttons as navigational elements. Instead, use
 [links](https://www.carbondesignsystem.com/components/link/usage) when the
@@ -120,7 +120,7 @@ desired action is to take the user to a new page.
 
 Each button variant has a particular function and its design signals that
 function to the user. It is, therefore, very important that the different
-variants are implemented consistently across productsto convey the correct
+variants are implemented consistently across products to convey the correct
 actions.
 
 | Variant                        | Purpose                                                                                                                                                                                                                                                                                                                                       |
@@ -135,13 +135,13 @@ actions.
 
 ### Anatomy
 
-A button’s label is the most important element on a button, as it communicates
-the action that will be performed when the user interacts with it. In a button
-the label is always left-aligned, not center-aligned. By default Carbon uses
-sentence case for all button labels.
+A button’s label communicates the action that is performed when the user interacts 
+with it. In an icon only button, that has no label, the icon must accurately 
+represent what the button does.
 
-If a label is not used, an icon should be present to signify what the button
-does.
+In a Carbon button, the label is always left-aligned, not center-aligned. 
+The icons in a button with a label is right-aligned but in an icon only button, 
+the icon is centered. 
 
 <Row>
 <Column colLg={8}>
@@ -169,7 +169,7 @@ A. Label <br /> C. Icon (optional)
 
 #### 2. Tertiary button
 
-A. Text label <br /> B. Container <br /> C. Icon (optional)
+A. Label <br /> B. Container <br /> C. Icon (optional)
 
 #### 4. Icon button
 
@@ -180,19 +180,19 @@ B. Container <br /> C. Icon
 
 ### Button sizes
 
-The button is available in six different sizes: small, medium, large productive,
-large expressive, extra large, and 2XL. The table below adds more context around
+The button is available in six different sizes: small, medium, large (productive),
+large (expressive), extra large, and 2XL. The table below adds more context around
 the use case for each size. For guidance on button heights as well as type sizes
 and tokens, see [Sizes](/components/button/style#sizes.mdx) on the Style tab.
 
-| Button size        | Use case                                                                                                                                        |
-| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| Small              | Use when vertical space is limited or in areas with a confined layout.                                                                          |
-| Medium             | Use when buttons are paired with 40px medium sized input fields.                                                                                |
-| Large (productive) | This is the most common button size. Use 14px body copy.                                                                                        |
-| Large (expressive) | The larger expressive type size within this button provides balance when used with 16px body copy. Used by the IBM.com team in website banners. |
-| Extra large        | Use when buttons bleed to the edge of a larger component, like in the context of modals, side panel and narrow tearsheets.                      |
-| 2XL                | Use when buttons bleed to the edge of a larger component, like in the context of large tearsheets.                                              |
+| Button size        | Use case                                                                                                                                          |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Small              | Use when vertical space is limited or in areas with a confined layout.                                                                            |
+| Medium             | Use when buttons are paired with 40px medium sized input fields.                                                                                  |
+| Large (productive) | This is the most common button size in software products. Pairs with 14px body copy.                                                              |
+| Large (expressive) | The larger expressive type size within this button provides balance when paired with 16px body copy. Used by the IBM.com team in website banners. |
+| Extra large        | Use when buttons bleed to the edge of a larger component, like in the context of modals, side panel and narrow tearsheets.                        |
+| 2XL                | Use when buttons bleed to the edge of a full-screen component, like in the context of large tearsheets.                                           |
 
 <Row>
 <Column colLg={8}>
@@ -281,15 +281,15 @@ button locations include:
 | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Left-justified  | Banner call to actions, in-page forms, and nested buttons in components like tiles.                                                                             |
 | Right-justified | Inline notifications, inline field buttons and data tables, progressive forms, wizards, and single-button dialogs.                                              |
-| Full-span       | Dialogs, side panel, and small tiles; currently Carbon does not offer a way to implement full-span buttons in code, without an override, they max out at 320px. |
+| Full-span       | Dialogs, side panel, and small tiles; currently Carbon does not offer a way to implement full-span buttons in code, without an override as mentioned [here](https://github.com/carbon-design-system/carbon/blob/66c14c2d2631a868703073a6cfabf1fd03a0b9e7/packages/styles/scss/components/button/_mixins.scss#L56), they max out at 320px. |
 
 #### Fixed versus fluid buttons
 
 Button alignment is also closely related to whether the button is treated as a
 fixed or a fluid element within a layout. When we say “fixed,” there is a
-[fixed padding](/components/button/style#contained-button-structure.mdx) of 16px
-to the left and a 64px padding to the right of the button label. The button
-label determines the button’s width.
+fixed padding  of 16px to the left and a 64px padding to the right of the button 
+label. The button label determines the button’s width. Refer to the 
+[Style tab](/components/button/style#button-structure) for more guidance.
 
 When we say “fluid,” we mean that the button becomes a part of a larger,
 compound component by bleeding to two or more edges of its container. Rather
@@ -327,10 +327,11 @@ container—they’re either right-aligned or span the full width of the contain
 
 #### Fluid button border
 
-There is [a 1px border](/components/button/style#ghost-button-structure.mdx)
-between all fluid buttons that use the `$button-separator` token for borders.
-This feature adds a 3:1 distinction between the two interactive UI elements. The
-border is a recommended feature to improve accessibility.
+There is a 1px border between all fluid buttons that use the `$button-separator` 
+token for borders. This feature adds a 3:1 distinction between the two interactive 
+UI elements. The border is a recommended feature to improve accessibility. 
+Refer to the [Style tab](/components/button/style#button-groups-structure)
+for more guidance.
 
 <Row>
 <Column colLg={8}>
@@ -481,9 +482,9 @@ revised our position.
 
 #### Stacked button groups
 
-Typical landing pages for product have buttons side by side. However vertical
+Typical product landing pages have buttons side by side. However vertical
 button groups are also common in products, to save real estate in narrow columns
-and occasionally side panel. In these instances, the primary button is always on
+and occasionally side panels. In these instances, the primary button is always on
 top and the secondary or tertiary button is below.
 
 Generally, when designers stack buttons, they tend to use the hybrid fluid
@@ -532,6 +533,8 @@ There are exceptions to this rule for situations in which button length could
 cause problems in compact UIs or negatively impact translation, but the
 &#123;verb&#125; + &#123;noun&#125; formula is still best practice.
 
+By default Carbon uses sentence case for all button labels.
+
 For consistency, see Carbon’s
 [content guidelines](/guidelines/content/action-labels) for a list of
 recommended action labels.
@@ -552,9 +555,9 @@ recommended action labels.
 <Title>Label alignment</Title>
 
 <DoDontRow>
-  <DoDont type="do" caption="Do left-align text in a button, even if the button is wide.">
+  <DoDont type="do" caption="Do left-align the label in a button, even if the button is wide.">
 
-![Do left-align text in a button, even if the button is wide.](images/button_usage_5.png)
+![Do left-align the label in a button, even if the button is wide.](images/button_usage_5.png)
 
   </DoDont>
   <DoDont type="dont" caption="Do not center align the label in a button, even if the button is wide.">
@@ -566,7 +569,7 @@ recommended action labels.
 
 #### Internationalization (RTL)
 
-For RTL (right-to-left) languages, the entire button is mirrored horizontally.
+For right-to-left (RTL) languages, the entire button is mirrored horizontally.
 The label is right-aligned and the icon is left-aligned.
 
 <Row>
@@ -610,7 +613,7 @@ For further content guidance, see Carbon’s
 
 ### Primary button focus
 
-The Primary button is the default action. When dialogs appear, the primary
+The primary button is the default action. When dialogs appear, the primary
 button typically takes focus. On a form, if focus is on a component that is not
 actionable with the `Enter` key, pressing `Enter` will activate the primary
 button.
@@ -631,7 +634,7 @@ button.
 ### States
 
 The default and interactive states of buttons should follow the
-button [Style](/components/button/style#color.mdx) tab guidelines.
+button [Style](/components/button/style#color) tab guidelines.
 
 ### Interactions
 
@@ -654,30 +657,6 @@ Users can trigger a button by clicking anywhere within the button container.
 Users can trigger a button by pressing `Enter` or `Space` while the button has
 focus. For additional keyboard interactions, see the
 [Accessibility](/components/button/accessibility) tab.
-
-### Validation
-
-The icon only
-[copy button](https://carbondesignsystem.com/components/code-snippet/usage/#copy-to-clipboard)
-of code snippet conveys validation after interaction through a tooltip.  
-We do not recommend changing the label of the button to show a state change.
-
-<Row>
-
-<Column colLg={8}>
-<GifPlayer color='dark'>
-
-![Icon only copy button of code snippet conveying validation through a tooltip.](images/button-usage-ub-validation.gif)
-
-![Icon only copy button of code snippet conveying validation through a tooltip.](images/button_usage_ub_validation_4.png)
-
-</GifPlayer>
-</Column>
-</Row>
-
-<Caption>
-  Icon only copy button of code snippet conveying validation through a tooltip.
-</Caption>
 
 ### Loading
 
@@ -782,7 +761,7 @@ button executes the set's negative action, like "Cancel" or "Back."
 <Caption>Secondary button in the context of a product UI.</Caption>
 
 Secondary buttons should not be used in isolation or for a positive/primary
-action. [Button groups](#button-groups) contain more guidance on how to use
+action. See [button groups](#button-groups) for more guidance on how to use
 secondary buttons.
 
 <DoDontRow>
@@ -862,7 +841,7 @@ action.
 
 #### Tertiary buttons in button groups
 
-In [Button groups](#button-groups), where there is one primary and two other
+In [button groups](#button-groups), where there is one primary and two other
 actions with shared importance, consider using tertiary buttons.
 
 <Row>
@@ -926,10 +905,10 @@ label aligns with the text elsewhere on the page.
   </DoDont>
 </DoDontRow>
 
-Ghost buttons can be useful for small supplementary actions in side panel. In
+Ghost buttons can be useful for small supplementary actions in side panels. In
 this context, extending the width of the ghost button to the full width of the
 container makes this treatment seem intentional. Aligning to the full width of a
-container is only recommended when the containers are smaller in size such as
+container is only recommended when the containers are smaller in size such as a
 side panel of 480px (medium) and below.
 
 <DoDontRow>
@@ -940,7 +919,7 @@ side panel of 480px (medium) and below.
   </DoDont>
   <DoDont type="dont" caption="Do not leave a ghost button hanging halfway within the side panel.">
 
-![Do not leave a ghost button hanging halfway in the side panel.](images/button_usage_ghost_5.png)
+![Do not leave a ghost button hanging halfway within the side panel.](images/button_usage_ghost_5.png)
 
   </DoDont>
 </DoDontRow>
@@ -1005,9 +984,9 @@ for more details.
 #### Ghost button used as a cancel action
 
 Ghost buttons work well as a cancel button in progressive flows, as they draw
-less attention; users have to purposefully find and click it to cancel. In
-tearsheets, the buttons are fluid which wouldn’t be a suitable application for a
-tertiary button.
+less attention; users have to purposefully find and click the button to cancel. 
+In tearsheets, the buttons are fluid, which wouldn’t be a suitable application 
+for a tertiary button.
 
 <Row>
 <Column colLg={12}>
@@ -1068,23 +1047,23 @@ noise and make an experience less usable. If you use a button with an icon in
 one part of your UI it does not mean that you need to add icons to all other
 buttons.
 
-- Use 16px glyphs within buttons; use 20px glyphs within the large expressive
+- Use a 16px icon within buttons; use a 20px icon within the large expressive
   buttons.
-- Glyphs are distinguished by their solid shape and knocked-out details.
-- Glyphs should always appear to the right of the text.
-- Glyphs used in buttons must be directly related to the action that the user is
+- Icons are distinguished by their solid shape and knocked-out details.
+- Icons should always appear to the right of the label.
+- Icons used in buttons must be directly related to the action that the user is
   taking.
-- Glyphs must match the color value of the text within a button.
+- Icons must match the color value of the label within a button.
 
 <DoDontRow>
-  <DoDont type="do" caption="Do place the icon on the right side of the button after the text.">
+  <DoDont type="do" caption="Do place the icon on the right side of the button after the label.">
 
-![Do place the icon on the right side of the button after the text](images/button_usage_button_with_icon_1.png)
+![Do place the icon on the right side of the button after the label](images/button_usage_button_with_icon_1.png)
 
   </DoDont>
-  <DoDont type="dont" caption="Do not place the icon to the left of the text on the button.">
+  <DoDont type="dont" caption="Do not place the icon to the left of the label on the button.">
 
-![Do not place the icon to the left of the text on the button.](images/button_usage_button_with_icon_2.png)
+![Do not place the icon to the left of the label on the button.](images/button_usage_button_with_icon_2.png)
 
   </DoDont>
 </DoDontRow>
@@ -1113,6 +1092,11 @@ For this reason, we have defined a set of universal actions suitable for adding
 an icon alongside the button label. These have clearly defined and widely
 recognized icons within IBM Software and beyond.
 
+Icons that are not in this list can be used in buttons, as long as the icon
+clearly conveys the intended action. To determine the expected use of an icon,
+check its name in the
+[Carbon icon library](https://carbondesignsystem.com/elements/icons/library/).
+
 | Name of action | Associated icon                                    | Name in icon library |
 | -------------- | -------------------------------------------------- | -------------------- |
 | Create/Add     | <Add size={16} aria-label="Add" />                 | Add                  |
@@ -1131,11 +1115,6 @@ recognized icons within IBM Software and beyond.
 Do you think a universal action with a clearly defined icon is missing? Let us
 know [here](https://github.com/carbon-design-system/carbon/issues/new/choose).
 
-Icons that are not in this list can be used in buttons, as long as the icon
-clearly conveys the intended action. To determine the expected use of an icon,
-check its name in the
-[Carbon icon library](https://carbondesignsystem.com/elements/icons/library/).
-
 #### Do not use a defined icon to represent a different universal action
 
 Using icons in the above list for other actions can confuse the expected outcome
@@ -1147,9 +1126,9 @@ and experience.
 ![Do use a defined icon to represent a universal action.](images/button_usage_button_with_icon_5.png)
 
   </DoDont>
-  <DoDont type="dont" caption="Do not add an icon for an action that would not be associated with it.">
+  <DoDont type="dont" caption="Do not use an icon for an action that would not be associated with it.">
 
-![Do not add an icon for an action that would not be associated with it.](images/button_usage_button_with_icon_6.png)
+![Do not use an icon for an action that would not be associated with it.](images/button_usage_button_with_icon_6.png)
 
   </DoDont>
 </DoDontRow>
@@ -1161,8 +1140,11 @@ another tab (whether the content of the new tab is part of the same product or
 an entirely separate web resource). Buttons and links requiring the launch icon
 are often found in the UI left navigation area, side panel, cards, and modals.
 The target destination of the launch action should be made clear to the user
-through the button or link label and the surrounding context. For more guidance,
-see [this section](https://pages.github.ibm.com/carbon/ibm-products/guidelines/content/navigation-labels/) 
+through the button or link label and the surrounding context. 
+
+_This content is accessible to IBMers only._
+
+For more guidance, see the [navigation labels](https://pages.github.ibm.com/carbon/ibm-products/guidelines/content/navigation-labels/)
 of our content guide.
 
 <Row>
@@ -1178,8 +1160,6 @@ of our content guide.
   would launch a new page.
 </Caption>
 
-### Best practices
-
 #### Be consistent with icon usage for buttons in a button group
 
 Using icons in button groups is optional. We recommend showing an icon for each
@@ -1194,14 +1174,14 @@ above or for other actions where a particular icon is commonly paired and
 associated.
 
 <DoDontRow>
-  <DoDont type="do" caption="Do follow a consistent approach across button groups for introducing icons.">
+  <DoDont type="do" caption="Do follow a consistent approach across button groups when introducing icons.">
 
-![Do follow a consistent approach across button groups for introducing icons.](images/button_usage_button_with_icon_8.png)
+![Do follow a consistent approach across button groups when introducing icons.](images/button_usage_button_with_icon_8.png)
 
   </DoDont>
-  <DoDont type="do" caption="Do follow a consistent approach across button groups for introducing icons.">
+  <DoDont type="do" caption="Do follow a consistent approach across button groups when introducing icons.">
 
-![Do follow a consistent approach across button groups for introducing icons.](images/button_usage_button_with_icon_9.png)
+![Do follow a consistent approach across button groups when introducing icons.](images/button_usage_button_with_icon_9.png)
 
   </DoDont>
 </DoDontRow>
@@ -1247,10 +1227,10 @@ variant but most commonly will be styled as primary or ghost buttons.
 
 Icon only buttons should be used sparingly. “For most situations, users learn
 correct interpretations better with text alone than with icons alone.” —
-Wiedenbeck, S (1999). For this reason, using icon-only buttons is recommended
-for the following use cases.
+Wiedenbeck, S (1999). For this reason, using icon only buttons is recommended
+for the following use cases:
 
-- The icon must be standardized and recognizable without text or must represent
+- The icon must be standardized and recognizable without label or must represent
   an action with a strong visual attribute, such as a pin icon for a pinning
   action.
 - There is insufficient space and multiple actions, therefore a toolbar using
@@ -1290,7 +1270,7 @@ explaining what the icon button would do if clicked.
 
 #### Colors of icon only ghost buttons
 
-Carbon builds type, color and spacing tokens into its components, improving the
+Carbon builds type, color, and spacing tokens into its components, improving the
 ease of component usage. Do not change the color token for icon only ghost
 buttons. The same applies for specifications across components. Learn more about
 icon only ghost button colors in the
