@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { StructuredListRow, StructuredListCell } from '@carbon/react';
+import { StructuredListRow, StructuredListCell, CodeSnippet } from '@carbon/react';
 import {
   icon,
   iconGroup,
@@ -49,6 +49,7 @@ const StatusIndicatorRow = ({
   fileNames,
   statusname,
   token,
+  secondarytoken,
   description,
   usage,
 }) => {
@@ -78,7 +79,16 @@ const StatusIndicatorRow = ({
         </StatusIconWrapper>
       </StructuredListCell>
       <StructuredListCell className={cell}>{statusname}</StructuredListCell>
-      <StructuredListCell className={cell}>{token}</StructuredListCell>
+      <StructuredListCell className={cell}>
+<CodeSnippet type="inline" feedback="Copied!" light>
+          {token}
+</CodeSnippet>
+        {secondarytoken && (
+<CodeSnippet type="inline" feedback="Copied!" light>
+            {secondarytoken}
+</CodeSnippet>
+        )}
+</StructuredListCell>
       <StructuredListCell className={cx(cell, descriptionCell)}>
         {description}
         <br />
