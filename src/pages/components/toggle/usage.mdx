@@ -53,42 +53,46 @@ Toggle is a control that is used to quickly switch between two possible states.
 Toggles are only used for these binary actions that occur immediately after the
 user “flips the switch”. They are commonly used for “on/off” switches.
 
+![Example of the toggle component in a UI](images/toggle_usage_overview.png)
+
+<Caption>Example of the toggle component in a UI</Caption>
+
+### When to use
+
+- To enable or disable a single option that affects the system or page settings
+  immediately.
+- Ideal for settings or preferences that can be immediately applied.
+- Recommended for actions where the change is reversible without additional
+  confirmation.
+
+### When not to use
+
+- Avoid using toggles if the action requires immediate feedback or confirmation,
+  such as deleting a file.
+- Don’t use toggles for more than two options; instead, use a
+  [dropdown](/components/dropdown/usage/),
+  [radio button](/components/radio-button/usage/), or
+  [checkbox](/components/checkbox/usage/).
+- Avoid using toggles for settings that aren't binary in nature or don't provide
+  instant application; instead use a different UI component, like a checkbox, in
+  combination with a [button](/components/button/usage/).
+
 ### Variants
 
-<Row>
-<Column colLg={8}>
-
-![Toggle being used in context of a product UI](images/toggle_usage_overview.png)
-
-</Column>
-</Row>
-
-<Caption>Toggle being used in context of a product UI</Caption>
-
-| Variant                           | Purpose                                                                                                                                                                  |
-| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [Default toggle](#default-toggle) | Use the default toggle when you need to specify a label text in addition to the toggle action text. Default toggles appear in forms or within full pages of information. |
-| [Small toggle](#small-toggle)     | Use the small toggle when you do not need to specify label or action text. Small toggles are more compact in size and are used inline with other components.             |
-
-<Row>
-<Column colLg={8}>
-
-![Default and small toggle variants](images/toggle-usage-variants.png)
-
-</Column>
-</Row>
-
-<Caption>Default and small toggle variants</Caption>
+| Variant                           | Purpose                                                                                                                                                                 |
+| --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Default toggle](#default-toggle) | Use the default toggle when you need to specify a label text in addition to the toggle state text. Default toggles appear in forms or within full pages of information. |
+| [Small toggle](#small-toggle)     | Use the small toggle when you do not need to specify label or state text. Small toggles are more compact in size and are used inline with other components.             |
 
 ## Formatting
 
 ### Anatomy
 
-Default and small toggles are both comprised of a component label, a toggle
-button, and action text. Default toggles are required to display a component
-label and action text, unlike the small toggle, where both these elements are
-optional. The small toggle displays a checkmark tick in the on state to ensure
-the toggle is still accessible when label and action text are unavailable.
+Default and small toggles are both comprised of a label text, a toggle button,
+and state text. Default toggles are required to display a component label and
+state text, unlike the small toggle, where both these elements are optional. The
+small toggle displays a checkmark tick in the "on" state to ensure the toggle is
+still accessible when label and state text are unavailable.
 
 <Row>
 <Column colLg={8}>
@@ -105,31 +109,45 @@ the toggle is still accessible when label and action text are unavailable.
 
 #### 1. Default toggle
 
-A. Label <br /> B. Toggle <br /> C. Action text <br />
+A. Label text <br /> B. Toggle <br /> C. State text <br />
 
 </Column>
 <Column colSm={2} colMd={4} colLg={4}>
 
 #### 2. Small toggle
 
-A. Label (optional) <br /> B. Toggle <br /> C. Action text (optional) <br /> D.
-Checkmark tick (on state) <br />
+A. Label text(optional) <br /> B. Toggle <br /> C. State text (optional) <br />
+D. Checkmark tick (on state) <br />
 
 </Column>
 </Row>
+
+### Sizing
+
+The toggle component is available in two sizes: **default**, and **small**.
+
+<Row>
+<Column colLg={8}>
+
+![Sizes of toggle](images/toggle-usage-sizes.png)
+
+</Column>
+</Row>
+
+<Caption>Sizes of toggle</Caption>
 
 ## Content
 
 #### Label text
 
-Label text must accompany a toggle to further clarify the action that the toggle
-performs. Label text is optional for small toggle.
+The label text must accompany the toggle to provide additional context and
+clarify its state. However, the label text is optional for small toggle.
 
-#### Action text
+#### State text
 
 Use text to describe the binary action of toggle so that the action is clear.
-Action text must be three words or less and is displayed on the side of a
-toggle. Action text is optional for small toggle.
+state text must be three words or less and is displayed on the side of a toggle.
+state text is optional for small toggle.
 
 #### Language
 
@@ -148,7 +166,7 @@ For further content guidance, see Carbon’s
 The default and small toggle have two main states: **on** and **off**. Other
 interactive states are **focus**, **disabled**, **read-only**, and **skeleton**.
 For more information on toggle states, see the
-[Style tab](https://carbondesignsystem.com/components/toggle/style/).
+[Style](/components/toggle/style/) tab.
 
 | State     | When to use                                                                                                                                                                                                                                                 |
 | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -159,12 +177,42 @@ For more information on toggle states, see the
 | Read-only | When the user can review but not modify the component. This state removes all interactive functions like the disabled state but can still be focusable, accessible by screen readers, and passes visual contrast for readability.                           |
 | Skeleton  | Use on an initial page load to indicate that the toggle has not yet fully loaded.                                                                                                                                                                           |
 
+### Interactions
+
+#### Mouse
+
+Toggle component is triggered on `Click` which switches between the "on" and
+"off" states. It also has a visible focus state when selected, ensuring
+accessibility.
+
+#### Keyboard
+
+For keyboard navigation, users can focus the toggle using the `Tab` key,
+providing visual feedback for keyboard users. Pressing `Enter` or `Space`
+changes the toggle's state between "on" and "off".
+
+### Clickable areas
+
+The Toggle component has two clickable areas: the toggle switch itself and the
+label associated with it. Users can click either area to change the toggle's
+state.
+
+<Row>
+<Column colLg={8}>
+
+![Clickable areas of default and small toggle](images/toggle-usage-clickable-areas.png)
+
+</Column>
+</Row>
+
+<Caption>Clickable areas of default and small toggle</Caption>
+
 ## Default toggle
 
 The default toggle is larger in size than the small toggle. They are commonly
 used in forms and can appear within full pages of information that are not
 restricted in space. Default toggles are required to display a visible label and
-action text.
+state text.
 
 <Row>
 <Column colLg={8}>
@@ -179,23 +227,23 @@ action text.
 ## Small toggle
 
 Small toggle is often used in condensed spaces and appear inline with other
-components or content. The label and action text are optional for small toggle.
+components or content. The label and state text are optional for small toggle.
 
 <Row>
 <Column colLg={8}>
 
-![Example of a small toggle with action text in context](images/toggle-usage-small-with-action-text.png)
+![Example of a small toggle with state text in context](images/toggle-usage-small-with-action-text.png)
 
 </Column>
 </Row>
 
-<Caption>Example of a small toggle with action text in context</Caption>
+<Caption>Example of a small toggle with state text in context</Caption>
 
 <br />
 
 Unlike the default toggle, the small toggle is more compact in size and displays
 a checkmark tick in the on state to ensure the toggle is still accessible
-without requiring visible label or action text. For example, inside
+without requiring visible label or state text. For example, inside
 [data table](/components/data-table/usage) rows.
 
 <Row>
@@ -207,6 +255,14 @@ without requiring visible label or action text. For example, inside
 </Row>
 
 <Caption>Example of a small toggle in context</Caption>
+
+## Related
+
+- [Button](/components/button/usage/)
+- [Checkbox](/components/checkbox/usage/)
+- [Data table](/components/data-table/usage/)
+- [Dropdown](/components/dropdown/usage/)
+- [Radio button](/components/radio-button/usage/)
 
 ## Feedback
 
