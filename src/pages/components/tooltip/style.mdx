@@ -25,94 +25,52 @@ structure, and size.
 
 ## Color
 
-### Standard tooltip color
+A tooltip has two states: open and closed. The open state occurs when a user
+hovers or focuses on the UI elements, while the closed state means the tooltip
+is hidden. By default, the tooltip is hidden and inactive.
 
-| Element        | Property         | Color token           |
-| -------------- | ---------------- | --------------------- |
-| Label          | text-color       | `$text-secondary`     |
-| Trigger button | svg              | `$icon-secondary`     |
-| Container      | background-color | `$background-inverse` |
-| Text           | text-color       | `$text-inverse`       |
+| Element                     | Property | Color token      |
+| --------------------------- | -------- | ---------------- |
+| Trigger (other UI elements) | –        | –                |
+| Trigger (definition label)  | border   | `$border-strong` |
 
-#### Standard tooltip interactive states
+<Row>
+<Column colLg={8}>
+
+![Closed state of an icon button and definition tooltip](images/tooltip-style-1.png)
+
+</Column>
+</Row>
+
+<Caption>
+  Example of an icon button and definition tooltip in the closed state.
+</Caption>
+
+### Interactive state color
+
+The color table applies to the tooltip when the UI elements or definition label
+are triggered and in the open state.
 
 <br />
 
-| State  | Element | Property | Color token     |
-| ------ | ------- | -------- | --------------- |
-| Hover  | trigger | svg      | `$icon-primary` |
-| Active | trigger | svg      | `$icon-primary` |
-| Focus  | trigger | border   | `$focus`        |
+| State        | Element                                 | Property         | Color token           |
+| ------------ | --------------------------------------- | ---------------- | --------------------- |
+| Open         | container (all components with tooltip) | background-color | `$background-inverse` |
+| Open         | text (all components with tooltip)      | text-color       | `$text-inverse`       |
+| Open (hover) | trigger (definition tooltip)            | border           | `$border-interactive` |
+| Open (focus) | label and border (definition tooltip)   | border           | `$focus`              |
 
 <Row>
 <Column colLg={8}>
 
-![Closed and open states for an icon button tooltip](images/tooltip-style-1.png)
+![Open state of tooltip examples](images/tooltip-style-2.png)
 
 </Column>
 </Row>
 
 <Caption>
-  Example of closed (top), hover (middle), and focus (bottom) states for a
-  standard tooltip
-</Caption>
-
-### Icon button tooltip color
-
-| Element   | Property         | Color token           |
-| --------- | ---------------- | --------------------- |
-| Container | background-color | `$background-inverse` |
-| Text      | text-color       | `$text-inverse`       |
-
-#### Icon button tooltip interactive states
-
-Icon button tooltip states rely on what kind of button is being used. Refer to
-[button styles](https://carbondesignsystem.com/components/button/style) for
-specific hover and focus states.
-
-<Row>
-<Column colLg={8}>
-
-![Closed and open states for an icon button tooltip](images/tooltip-style-2.png)
-
-</Column>
-</Row>
-
-<Caption>
-  Example of closed (top), hover (middle), and focus (bottom) states for an icon
-  button tooltip
-</Caption>
-
-### Definition tooltip color
-
-| Element   | Property         | Color token           |
-| --------- | ---------------- | --------------------- |
-| Label     | text-color       | `$text-secondary`     |
-| Trigger   | border           | `$border-strong`      |
-| Container | background-color | `$background-inverse` |
-| Text      | text-color       | `$text-inverse`       |
-
-#### Definition tooltip interactive states
-
-<br />
-
-| State  | Element          | Property | Color token           |
-| ------ | ---------------- | -------- | --------------------- |
-| Hover  | trigger          | border   | `$border-interactive` |
-| Active | trigger          | border   | `$border-interactive` |
-| Focus  | label and border | border   | `$focus`              |
-
-<Row>
-<Column colLg={8}>
-
-![States for definition tooltip](images/tooltip-style-3.png)
-
-</Column>
-</Row>
-
-<Caption>
-  Example of closed (top-left), hover (top-right), active (bottom-left) and
-  focus (bottom-right) states for definition tooltip
+  Example of an icon button and a definition tooltip in the open state with
+  mouse and keyboard interactions
 </Caption>
 
 ## Typography
@@ -126,61 +84,48 @@ Tooltip labels and text should be set in sentence case.
 
 ## Structure
 
-All tooltip types have a varying height based on the amount of content they
-contain.
+All tooltip types vary in height based on their content.
 
-### Standard tooltip structure
+The tooltip is designed for both multi-line text, with 16px padding on all sides
+for better spacing, and single-line text, which is more compact since it
+typically contains only a few words and doesn’t wrap.
 
-| Class        | Property      | px / rem | Spacing token |
-| ------------ | ------------- | -------- | ------------- |
-| Container    | max-width     | 288 / 18 | –             |
-|              | padding       | 16 / 1   | `$spacing-05` |
-|              | margin-top    | 8 / 0.5  | `$spacing-03` |
-| Trigger icon | height, width | 16 / 1   | –             |
-|              | margin-left   | 8 / 0.5  | `$spacing-03` |
+| Element                 | Property                    | px / rem  | Spacing token |
+| ----------------------- | --------------------------- | --------- | ------------- |
+| Container (multi-line)  | max-width                   | 288 / 18  | —             |
+|                         | padding                     | 16 / 1    | `$spacing-05` |
+|                         | margin-top                  | 4 / 0.25  | `$spacing-02` |
+| Container (single-line) | max-width                   | 208 / 13  | —             |
+|                         | padding-left, padding-right | 16 / 1    | `$spacing-05` |
+|                         | padding-top, padding-bottom | 2 / 0.125 | `$spacing-01` |
+|                         | margin-top                  | 4 / 0.25  | `$spacing-02` |
+| Caret                   | popover-caret               | 6 / 0.375 | —             |
 
 <div className="image--fixed">
 
-![Structure and spacing measurements for a standard tooltip](images/tooltip-style-4.png)
+![Structure and spacing measurements for tooltips](images/tooltip-style-3.png)
 
 </div>
 
 <Caption>
-  Structure and spacing measurements for a standard tooltip | px / rem
-</Caption>
-
-### Icon button tooltip structure
-
-| Class     | Property                    | px / rem  | Spacing token |
-| --------- | --------------------------- | --------- | ------------- |
-| Container | max-width                   | 208 / 13  | –             |
-|           | padding-left, padding-right | 16 / 1    | `$spacing-05` |
-|           | padding-top, padding-bottom | 2 / 0.125 | `$spacing-01` |
-| Caret     | margin-top                  | 4 / 0.25  | `$spacing-02` |
-
-<div className="image--fixed">
-
-![Structure and spacing measurements for an icon button tooltip](images/tooltip-style-5.png)
-
-</div>
-
-<Caption>
-  Structure and spacing measurements for an icon button tooltip | px / rem
+  Structure and spacing measurements for multi-line and single-line text | px /
+  rem
 </Caption>
 
 ### Definition tooltip structure
 
-| Element   | Property                    | px / rem | Spacing token |
-| --------- | --------------------------- | -------- | ------------- |
-| Container | max-width                   | 176 / 11 | —             |
-|           | padding-top, padding-bottom | 8 / .5   | `$spacing-04` |
-|           | padding-left, padding-right | 8 / .5   | `$spacing-04` |
-|           | margin-top                  | 4 / 0.25 | `$spacing-02` |
-| Trigger   | border-bottom               | 1 px     | —             |
+| Element   | Property                    | px / rem  | Spacing token |
+| --------- | --------------------------- | --------- | ------------- |
+| Container | max-width                   | 176 / 11  | —             |
+|           | padding-left, padding-right | 16 / 1    | `$spacing-05` |
+|           | padding-top, padding-bottom | 8 / 0.5   | `$spacing-03` |
+|           | margin-top                  | 4 / 0.25  | `$spacing-02` |
+| Caret     | popover-caret               | 6 / 0.375 | –             |
+| Trigger   | border-bottom               | 1 px      | –             |
 
 <div className="image--fixed">
 
-![Structure and spacing measurements for a definition tooltip](images/tooltip-style-6.png)
+![Structure and spacing measurements for a definition tooltip](images/tooltip-style-4.png)
 
 </div>
 
