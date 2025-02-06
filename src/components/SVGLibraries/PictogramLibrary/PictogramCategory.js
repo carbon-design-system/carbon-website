@@ -17,7 +17,6 @@ import {
 const IconCategory = ({ category, pictograms, columnCount }) => {
   const [sectionRef, containerIsVisible] = useIntersectionObserver();
   const hiddenPictograms = [
-    'ibm--z',
     'ibm--z--partition',
     'ibm--z-and-linuxone-multi-frame',
     'ibm--z-and-linuxone-single-frame',
