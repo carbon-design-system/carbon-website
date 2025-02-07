@@ -18,10 +18,11 @@ clarity to a user.
 
 <InlineNotification>
 
-**New update** We have removed standard tooltip and icon button tooltip as
-variants from this guidance. There’s no need to include a separate tooltip
-within the component. There are no breaking changes, but we are working on
-making the tooltip visible for certain components.
+**Documentation update** We've updated the guidance to no longer call out
+standard and icon button tooltips as separate variants. Since tooltips are
+embedded within other components, there's no need to include them again. There
+are no breaking changes, and we're working on improving tooltip visibility for
+certain components in the code.
 
 </InlineNotification>
 
@@ -63,8 +64,11 @@ making the tooltip visible for certain components.
 
 ## Overview
 
-A tooltip displays a popup with text that provides additional information when a
-user hovers over or focuses on a UI element. It should be used only when
+A tolltip is embedded within other components rather than being used as a
+standalone component. Since tooltips are embedded within other components,
+there's no need to include them again. The only exception is the definition
+tooltip, which remains a separate component. They provide additional information
+when a user hovers over or focuses on a UI element and should only be used when
 necessary to offer quick context without cluttering the interface.
 
 <Row>
@@ -77,30 +81,34 @@ necessary to offer quick context without cluttering the interface.
 
 ### When to use
 
-By default, components like icon buttons, icon tabs, icon content switchers,
-slider, copy buttons, and more should come with integrated tooltips. Therefore,
-there’s no need to include a separate tooltip within the component. Tooltips can
-be exposed for the following reasons:
+By default, Most components, like icon buttons, icon tabs, sliders, and copy
+buttons, already have built-in tooltips, so you don’t need to add one
+separately. However, if customization is needed, it’s allowed but not
+recommended.
 
-- To expose names of controls, like icon buttons, that lack visual labels
-- To supply additional information for focusable elements, helping users make
+Tooltips can be used to:
+
+- Show names of controls, like icon buttons, that lack visual labels
+- Provide additional information for focusable elements, helping users make
   informed decisions
-- To offer more context or explanation for specific elements
-- To define a term or provide details for an inline item
+- Offer more context or explanation for specific elements
+- Define a term or provide details for an inline item (definition tooltip)
 
 #### Definition tooltip
 
-A definition tooltip provides extra help or defines a term inline. It’s similar
-to a regular tooltip but offers more alignment options and slightly different
-interaction patterns. Definition tooltips can be used on UI labels, words in
-paragraphs, or in compact spaces like data tables where icons can clutter the
-UI. They work well on headers, body copy, or labels.
+A definition tooltip is used to define terms or give extra help within text. It
+works well on UI labels, words in paragraphs, or compact spaces like data
+tables, where extra icons might clutter the interface.
 
 ### When not to use
+
+#### Provide critical information
 
 Since a tooltip disappears when a user hovers away, do not include pertinent
 information for the user to complete their task. Use helper text that is always
 visible and accessible for vital information, such as required fields.
+
+#### Include interactive elements
 
 Do not include interactive elements within a tooltip. Interactive elements in
 tooltips are inaccessible for some users and are hard to use for all users since
@@ -269,7 +277,7 @@ For further content guidance, see Carbon’s
 
 ### States
 
-The tooltip component has two states: active (hover and focus) and inactive. By
+The tooltip component has two states: on (hover and focus) and closed. By
 default, tooltip is hidden and inactive.
 
 ### Interactions
