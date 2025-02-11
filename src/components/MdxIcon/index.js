@@ -3,41 +3,43 @@ import cx from 'classnames';
 import { LogoGithub, Bee } from '@carbon/icons-react';
 import { mdxIcon, iconInverse } from './MdxIcon.module.scss';
 
-import sketch from './icons/sketch.svg';
-import ase from './icons/ase.png';
-import codesandbox from './icons/codesandbox.svg';
-import stackblitz from './icons/stackblitz.svg';
-import codepen from './icons/codepen.svg';
-import illustrator from './icons/illustrator.svg';
-import react from './icons/react.png';
-import vue from './icons/vue.png';
 import angular from './icons/angular.png';
-import webcomponents from './icons/webcomponents.png';
-import npm from './icons/npm.svg';
-import storybook from './icons/storybook.svg';
-import medium from './icons/medium.svg';
-import sass from './icons/sass.png';
-import figma from './icons/figma.svg';
-import yourlearning from './icons/yourlearning.svg';
+import ase from './icons/ase.png';
 import carbon from './icons/carbon.svg';
+import codepen from './icons/codepen.svg';
+import codesandbox from './icons/codesandbox.svg';
+import figma from './icons/figma.svg';
+import illustrator from './icons/illustrator.svg';
+import medium from './icons/medium.svg';
+import npm from './icons/npm.svg';
+import react from './icons/react.png';
+import sass from './icons/sass.png';
+import sketch from './icons/sketch.svg';
+import stackblitz from './icons/stackblitz.svg';
+import storybook from './icons/storybook.svg';
+import svelte from './icons/svelte.png';
+import vue from './icons/vue.png';
+import webcomponents from './icons/webcomponents.png';
+import yourlearning from './icons/yourlearning.svg';
 
 const localIcons = {
-  carbon,
-  sketch,
-  ase,
-  codesandbox,
-  stackblitz,
-  codepen,
-  illustrator,
-  react,
-  vue,
   angular,
-  webcomponents,
-  npm,
-  storybook,
-  medium,
-  sass,
+  ase,
+  carbon,
+  codepen,
+  codesandbox,
   figma,
+  illustrator,
+  medium,
+  npm,
+  react,
+  sass,
+  sketch,
+  stackblitz,
+  storybook,
+  svelte,
+  vue,
+  webcomponents,
   yourlearning,
 };
 

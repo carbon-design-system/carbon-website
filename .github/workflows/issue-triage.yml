@@ -5,13 +5,12 @@ on:
   issue_comment:
     types: [created]
 env:
-  ISSUE_NUMBER: ${{ github.event.issue.number }}
   OWNER: ${{ github.repository_owner }}
-  REPOSITORY: ${{ github.repository }}
 
-  PROJECT_ID: 39
+  PROJECT_NUMBER: 39
+  PROJECT_ID: PVT_kwDOAYA3Ss1Nvw
   ITEM_FETCH_LIMIT: 1200
-  
+
   AREA_FIELD_ID: PVTSSF_lADOAYA3Ss1Nv84BfRL4
   AREA_WEBSITE: 113a0859
 jobs:
@@ -24,25 +23,20 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'issues' && github.event.action == 'opened' }}
     steps:
-      - uses: actions/create-github-app-token@v1
-        id: app-token
-        with:
-          app-id: ${{ secrets.APP_ID }}
-          private-key: ${{ secrets.APP_PRIVATE_KEY }}
       - name: Get issue ID
         id: get_issue_id
         run: |
-            ISSUE_ID=$(gh project item-list $PROJECT_ID --owner=$OWNER --limit=$ITEM_FETCH_LIMIT --format=json --jq ".items[] | select(.content.number == $ISSUE_NUMBER and .content.repository == $REPOSITORY) | .id" -r)
-            if [ -z "$ISSUE_ID" ]; then
-              echo "Issue ID not found for issue number $ISSUE_NUMBER"
-              exit 1
-            fi
-            echo "Issue ID is $ISSUE_ID"
-            echo "issue_id=$ISSUE_ID" >> "$GITHUB_OUTPUT"
-      - name: Update issue with website area field
-        run:
-          gh project item-edit --project-id $PROJECT_ID --id $ISSUE_ID
-          --field-id $AREA_FIELD_ID --single-select-option-id $AREA_WEBSITE
+          ISSUE_ID=$(gh project item-list $PROJECT_NUMBER --owner=$OWNER --limit=$ITEM_FETCH_LIMIT --format=json --jq '.items[] | select(.content.number == '"${{ github.event.issue.number }}"' and .content.repository == "carbon-design-system/carbon-website") | .id')
+          if [ -z "$ISSUE_ID" ]; then
+            echo "Issue ID not found for issue number ${{ github.event.issue.number }}"
+            exit 1
+          fi
+          echo "Issue ID is $ISSUE_ID"
+          echo "issue_id=$ISSUE_ID" >> "$GITHUB_OUTPUT"
         env:
-          GH_TOKEN: ${{ steps.app-token.outputs.token }}
-          $ISSUE_ID: ${{ steps.get_issue_id.outputs.issue_id }}
+          GH_TOKEN: ${{ secrets.ADD_TO_PROJECT_PAT }}
+      - name: Update issue with website area field
+        run: |
+          gh project item-edit --project-id $PROJECT_ID --id ${{ steps.get_issue_id.outputs.issue_id }} --field-id $AREA_FIELD_ID --single-select-option-id $AREA_WEBSITE
+        env:
+          GH_TOKEN: ${{ secrets.ADD_TO_PROJECT_PAT }}

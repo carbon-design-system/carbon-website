@@ -5,6 +5,7 @@ title: ''
 type: 'bug'
 labels: ['type: bug 🐛', 'status: needs triage 🕵️‍♀️']
 assignees: ''
+projects: ['carbon-design-system/39']
 ---
 
 <!-- Feel free to remove sections that aren't relevant.

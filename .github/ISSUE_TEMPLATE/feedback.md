@@ -4,6 +4,7 @@ about: User feedback collected from the Carbon Design System Website.
 type: 'task'
 labels: ['type: discussion 💬', 'status: needs triage 🕵️‍♀️']
 assignees: ''
+projects: ['carbon-design-system/39']
 ---
 
 <!--

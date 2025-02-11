@@ -5,6 +5,7 @@ title: ''
 type: 'enhancement'
 labels: ['type: enhancement 💡', 'status: needs triage 🕵️‍♀️']
 assignees: ''
+projects: ['carbon-design-system/39']
 ---
 
 Use this template if you want to request a new feature, or a change to an

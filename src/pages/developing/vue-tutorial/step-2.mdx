@@ -387,7 +387,7 @@ for now.
 
 We've added basic layout styles in `LandingPage.vue`, so now let's add type,
 color and spacing styles to match the design. We'll be using our
-[spacing tokens](/guidelines/spacing/overview#spacing-scale). In a new file
+[spacing tokens](/elements/spacing/overview#spacing-scale). In a new file
 `src/styles/_carbon-utils.scss`, add these imports at the **top** of the file so
 we can use Carbon breakpoints, tokens, and typography Sass mixins and functions:
 
@@ -435,13 +435,12 @@ with the other imports and
 }
 ```
 
-Referencing the
-[spacing token table](/guidelines/spacing/overview#spacing-scale), `16px` can be
-set with the `$spacing-05` token. The design calls for `128px` of space below
-the heading and that's not in the spacing scale, we can achieve that in Sass by
-multiplying 32px (`$spacing-07`) by 4. We could use `128px` or `8rem` directly
-in our styling, but using our tokens preserves consistency should the token
-values get updated in the future.
+Referencing the [spacing token table](/elements/spacing/overview#spacing-scale),
+`16px` can be set with the `$spacing-05` token. The design calls for `128px` of
+space below the heading and that's not in the spacing scale, we can achieve that
+in Sass by multiplying 32px (`$spacing-07`) by 4. We could use `128px` or `8rem`
+directly in our styling, but using our tokens preserves consistency should the
+token values get updated in the future.
 
 Looking at the design, we need a wall-to-wall light gray background behind the
 banner and also behind the third row. This is a great opportunity to use a Sass
@@ -451,9 +450,9 @@ to place mixins in a dedicated file, so create a `_mixins.scss` file in
 
 Add the following in `_mixins.scss`. Per the design we need to use Gray 10 for
 our banner background color, which can be set with the `$ui-01`
-[color token](https://www.carbondesignsystem.com/guidelines/color/usage). Also,
-we want the background to extend into the grid's outermost gutters to go the
-full width of the viewport, so given the DOM structure, we can achieve that by
+[color token](https://www.carbondesignsystem.com/elements/color/usage). Also, we
+want the background to extend into the grid's outermost gutters to go the full
+width of the viewport, so given the DOM structure, we can achieve that by
 setting the background in an absolutely positioned pseudo element.
 
 ```scss path=src/views/LandingPage/_mixins.scss
@@ -512,7 +511,7 @@ Next, we can see that the `h1` is using the `heading-05` type token.
 
 The Sketch symbol naming is consistent with the development Sass tokens to help
 translate design to development. So, looking up the
-[type token](https://www.carbondesignsystem.com/guidelines/typography/productive),
+[type token](https://www.carbondesignsystem.com/elements/typography/productive),
 we know to use `productive-heading-05`:
 
 ```scss path=src/views/LandingPage/LandingPage.vue

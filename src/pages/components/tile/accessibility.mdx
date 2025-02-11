@@ -21,51 +21,190 @@ import {
 
 <PageDescription>
 
-The tile React Carbon component has been tested against the latest
-[W3C Web Content Accessibility Guidelines (WCAG) 2.1 Level A and AA success criteria](https://www.w3.org/TR/WCAG21/)
-and violations have been identified as high priority issues. This document will
-be updated when these accessibility issues are resolved.
+Design annotations are needed for specific instances shown below, but for the
+standard tile component, Carbon already incorporates accessibility.
 
 </PageDescription>
 
 <AnchorLinks>
-  <AnchorLink>Accessibility considerations</AnchorLink>
-  <AnchorLink>Resources</AnchorLink>
-  <AnchorLink>Accessibility testing</AnchorLink>
+  <AnchorLink>What Carbon provides</AnchorLink>
+  <AnchorLink>Design recommendations</AnchorLink>
+  <AnchorLink>Development considerations</AnchorLink>
 </AnchorLinks>
 
-## Accessibility considerations
+## What Carbon provides
 
-1. Labels should be clear and concise.
-2. Users should be warned if selecting a tile will cause a change in context.
-3. Carbon components should be used to create the content that displays within
-   each tile.
+Carbon bakes keyboard operation into its components, improving the experience of
+blind users and others who operate via the keyboard. Carbon incorporates many
+other accessibility considerations, some of which are described below.
 
-## Resources
+### Keyboard interaction
 
-- [W3C WAI-ARIA Authoring Practices Checkbox Design Pattern](https://www.w3.org/TR/wai-aria-practices/examples/checkbox/checkbox-1/checkbox-1.html)
-  covers the usage of ARIA names, state and roles, as well as the expected
-  keyboard interactions.
-- [W3C WAI-ARIA: Using aria-expanded to indicate the state of a collapsible element](https://www.w3.org/WAI/GL/wiki/Using_aria-expanded_to_indicate_the_state_of_a_collapsible_element)
-- [IBM Accessibility Requirements](https://www.ibm.com/able/requirements/requirements/):
-  - [1.3.1 Info and Relationships](https://www.ibm.com/able/requirements/requirements/#1_3_1)
-    (WCAG Success Criteria
-    [1.3.1](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships))
-  - [2.1.1 Keyboard](https://www.ibm.com/able/requirements/requirements/#2_1_1)
-    (WCAG Success Criteria
-    [2.1.1](https://www.w3.org/WAI/WCAG21/Understanding/keyboard))
-  - [2.4.3 Focus Order](https://www.ibm.com/able/requirements/requirements/#2_4_3)
-    (WCAG Success Criteria
-    [2.4.3](https://www.w3.org/WAI/WCAG21/Understanding/focus-order))
-  - [2.4.6 Headings and Labels](https://www.ibm.com/able/requirements/requirements/#2_4_6)
-    (WCAG Success Criteria
-    [2.4.6](https://www.w3.org/WAI/WCAG21/Understanding/headings-and-labels))
-  - [2.4.7 Focus Visible](https://www.ibm.com/able/requirements/requirements/#2_4_7)
-    (WCAG Success Criteria
-    [2.4.7](https://www.w3.org/WAI/WCAG21/Understanding/focus-visible))
-  - [4.1.2 Name, Role, Value](https://www.ibm.com/able/requirements/requirements/#4_1_2)
-    (WCAG Success Criteria
-    [4.1.2](https://www.w3.org/TR/UNDERSTANDING-WCAG20/ensure-compat-rsv.html))
+#### Non-interactive and interactive tiles
+
+A tile can serve as a non-interactive container that holds interactive elements
+or actions, such as buttons and links. Alternatively, it can be directly
+interactive—clickable, selectable, or expandable—without containing any
+interactive elements inside.
+
+For non-interactive tiles, users can press `Tab` to navigate between actionable
+elements within a tile or tile group. After navigating through the last
+interactive element within a tile, users can press `Tab` to move outside of the
+tile—to the next tile in the group (if there is a group of tiles) or to the next
+component in the tab order.
+
+For interactive tiles, users can press `Tab` to navigate between the tiles
+themselves. When tabbing through these tiles, a focus indicator appears around
+the currently selected tile, providing a visual cue that it is focused and ready
+to be interacted with. Users can press `Enter` to activate a clickable tile.
+
+<Row>
+<Column colLg={8}>
+
+![Example of tab stops for non-interactive tile with links and interactive tile
+  without any other actions](/images/tile-accessibility-1.png)
+
+<Caption>
+  Example of tab stops for non-interactive tile with links and interactive tile
+  without any other actions
+</Caption>
+
+</Column>
+</Row>
+
+#### Selectable tiles
+
+Selectable tiles can be configured as either single-select or multi-select.
+
+For single-select tiles, the group is treated as a single tab stop. By default,
+Carbon does not require any item to be pre-selected. If no selection is made,
+focus will land on the first item in the group. Users can navigate through the
+items using the arrow keys (up/down or left/right). Pressing `Tab` moves the
+focus out of the single-select tile group to the next component.
+
+For multi-select tiles, each tile can be navigated pressing `Tab` and selected
+or unselected pressing `Space` or `Enter`.
+
+These behaviors are based on radio button and checkbox components. This
+navigation difference is based on the principle that a checkbox represents one
+choice as a single element, while a group of radio buttons is treated as a
+single element because the buttons work together to form a mutually exclusive
+choice.
+
+<Row>
+<Column colLg={8}>
+
+![Example of tab stops and navigation of selectable tiles with single-select and
+  multi-select functionality](/images/tile-accessibility-2.png)
+
+<Caption>
+  Example of tab stops and navigation of selectable tiles with single-select and
+  multi-select functionality
+</Caption>
+
+</Column>
+</Row>
+
+#### Expandable tiles
+
+Similar to non-interactive and interactive tiles, expandable tiles come in two
+types: those containing interactive elements and those without.
+
+For non-interactive expandable tiles, users can `Tab` to navigate between
+interactive elements within the tile. Once users navigate to the expanding icon
+button, pressing `Space` or `Enter` expands or collapses the tile.
+
+For interactive expandable tiles, users can press `Space` or `Enter` to expand
+or collapse the tile.
+
+<Row>
+<Column colLg={8}>
+
+![Example shows the tab stops of a non-interactive expandable tile](/images/tile-accessibility-3.png)
+
+<Caption>
+  Example shows the tab stops of a non-interactive expandable tile
+</Caption>
+
+</Column>
+</Row>
+
+<Row>
+<Column colLg={8}>
+
+![Example shows the tab stops of an interactive expandable tile](/images/tile-accessibility-4.png)
+
+<Caption>Example shows the tab stops of an interactive expandable tile</Caption>
+
+</Column>
+</Row>
+
+## Design recommendations
+
+Design annotations are needed for the following instance.
+
+### Interactive elements
+
+For highly complex tiles, avoid placing interactive elements on top of a
+directly interactive tile, as actions should not overlap on an actionable
+surface. Instead, use the base tile (without a border around it) that is
+non-interactive.
+
+<Row>
+<Column colLg={8}>
+
+![Example shows base tile with interactive elements such as a tooltip,
+  definition tooltip, and a button](/images/tile-accessibility-5.png)
+
+<Caption>
+  Example shows base tile with interactive elements such as a tooltip,
+  definition tooltip, and a button
+</Caption>
+
+</Column>
+</Row>
+
+## Development considerations
+
+Keep these considerations in mind if you are modifying Carbon or creating a
+custom component.
+
+- Include descriptive labels for interactive tiles to ensure their purpose is
+  clear with. Provide an `aria-label` or `aria-labelledby` to the tile component
+  to comply with
+  [accessible naming](https://able.ibm.com/rules/archives/latest/doc/en-US/aria_accessiblename_exists.html).
+- Decorative images should have an empty `alt` attribute (`alt=""`) while
+  informative images should include descriptive `alt` text to convey their
+  content.
+- See the
+  [ARIA authoring practices](https://w3c.github.io/aria-practices/#tooltip) for
+  more considerations.
+
+<Row>
+<Column colLg={12}>
+
+![Example shows labeling annotation of a non-interactive tile with interactive
+  elements](/images/tile-accessibility-6.png)
+
+<Caption>
+  Example shows labeling annotation of a non-interactive tile with interactive
+  elements
+</Caption>
+
+</Column>
+</Row>
+
+<Row>
+<Column colLg={12}>
+
+![Example shows labeling annotation of a selectable interactive group of tiles](/images/tile-accessibility-7.png)
+
+<Caption>
+  Example shows labeling annotation of a selectable interactive group of tiles
+</Caption>
+
+</Column>
+</Row>
 
 ## Accessibility testing
 

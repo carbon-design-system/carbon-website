@@ -183,19 +183,19 @@ const A11yStatus = ({ components, layout }) => {
       // link for component name in table
       let componentUrl;
       if (componentName === 'Aspect ratio') {
-        componentUrl = '/guidelines/2x-grid/overview/#aspect-ratio';
+        componentUrl = '/elements/2x-grid/overview/#aspect-ratio';
       } else if (componentName === 'Grid') {
-        componentUrl = '/guidelines/2x-grid/code#css-grid';
+        componentUrl = '/elements/2x-grid/code#css-grid';
       } else if (componentName === 'Flex grid') {
-        componentUrl = '/guidelines/2x-grid/code#flexbox-grid';
+        componentUrl = '/elements/2x-grid/code#flexbox-grid';
       } else if (componentName === 'UI Shell') {
         componentUrl = '/components/UI-shell-header/usage';
       } else if (componentName === 'Theme') {
-        componentUrl = '/guidelines/themes/overview/';
+        componentUrl = '/elements/themes/overview/';
       } else if (componentName === 'Skeleton') {
         componentUrl = '/patterns/loading-pattern/#skeleton-states';
       } else if (componentName === 'Layer') {
-        componentUrl = '/guidelines/color/usage#implementing-layering';
+        componentUrl = '/elements/color/usage#implementing-layering';
       }
 
       // if a parent component is set link to the parent component
