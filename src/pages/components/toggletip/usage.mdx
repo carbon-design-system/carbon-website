@@ -1,9 +1,8 @@
 ---
 title: Toggletip
 description:
-  Toggletips use the disclosure pattern to toggle the visibility of a popover.
-  They display additional, hidden information upon the click of a UI trigger
-  element and can contain interactive elements.
+  Toggletips display and hide additional information upon the click of a UI
+  trigger element. Toggletips can contain interactive elements.
 tabs: ['Usage', 'Style', 'Code', 'Accessibility']
 ---
 
@@ -12,9 +11,8 @@ import { Toggletip } from '@carbon/react';
 
 <PageDescription>
 
-Toggletips use the disclosure pattern to toggle the visibility of a popover.
-They display additional, hidden information upon the click of a UI trigger
-element and can contain interactive elements.
+Toggletips display and hide additional information upon the click of a UI
+trigger element. Toggletips can contain interactive elements.
 
 </PageDescription>
 
@@ -48,15 +46,12 @@ element and can contain interactive elements.
 
 ## Overview
 
-Toggletips reveal supplemental content when a user clicks a button or another UI
-element and remains actively open until a user dismisses it. A toggletip is
-comprised of a UI trigger and the
-[popover component](/components/popover/usage/). Use the disclosure pattern to
-design supplemental content within the component. Toggletips can include a wide
-variety of information and interactive elements as long as
-[accessibility requirements](https://www.ibm.com/able/requirements/requirements/)
-are maintained including focus order and ensuring all functionality is operable
-through a keyboard interface.
+Toggletips reveal supplemental content when a user clicks a button and remains
+actively open until a user dismisses it. A toggletip is comprised of a UI
+trigger and toggletip content (based on the popover component). Toggletips can
+include a wide variety of information and interactive elements as long as
+accessibility requirements are maintained, including focus order and ensuring
+all functionality is operable through a keyboard interface.
 
 <Row>
 <Column colLg={8}>
@@ -66,38 +61,20 @@ through a keyboard interface.
 </Column>
 </Row>
 
-#### Toggletips verses Tooltips
+#### Toggletips versus tooltips
 
-Toggletips and tooltips are similar visually and both contain a popover and
-interactive trigger element. The two components differ in the way they are
-invoked and dismissed and if the user must interact with the contents. A tooltip
-is exposed on `Hover` or `Focus` when you need to expose brief, supplemental
-information that is not interactive. A toggletip is used on `Click` and `Enter`
-when you need to expose interactive elements, such as button, that a user needs
-to interact with.
-
-The exception here is that definition tooltip can be invoked on either `Hover`
-or `Click` depending on use case.
+Tooltips and toggletips look similar and both have interactive triggers, but
+they differ in how they are activated and what they can contain. A tooltip is
+exposed on hover or focus when you need to disclose brief, supplemental
+information that is not interactive. A toggletip is used on click or enter when
+you must expose interactive elements, such as a button, that a user needs to
+interact with.
 
 ### When to use
 
-- Use when an interactive element must be placed within the popover
-- Use for quick, in context editing
+- Use when an interactive element must be placed within the open toggletip
+- Use for quick, in-context editing
 - Use for filter panels that overlay content
-
-<Row>
-<Column colLg={8}>
-
-![Overview of when to use toggletips](images/toggle-tip-usage-2.png)
-
-</Column>
-</Row>
-
-<Caption>
-  The examples above are patterns. Carbon currently only supports the basic
-  toggletip outlined below. In the future, other toggletip styles will be
-  available.
-</Caption>
 
 ### When to not use
 
@@ -112,33 +89,20 @@ instead.
 <Row>
 <Column colLg={8}>
 
-![Toggletip anatomy](images/toggle-tip-usage-4.png)
+![Toggletip anatomy](images/toggle-tip-usage-anatomy.png)
 
 </Column>
 </Row>
 
-1. **UI trigger button:** Usually a button but as long as the trigger is
-   interactive, it can visually change its shape and size depending on the use
-   case.
-2. **Tip:** An indicator that is added to a popover container to help show the
-   relationship between the popover and where it was triggered from. Toggletips
-   can utilize no tip, caret tip, or tab tip types.
-3. **Content area:** Varies based on use case and follows disclosure guidelines.
-4. **Popover container:** Area that contains text and interactive elements.
+1. **UI trigger:** UI elements that triggers a toggletip on click or enter
+2. **Caret tip:** Closely associates the container of the content area.
+3. **Container** Contains text and interactive elements
 
 ### Sizing
 
-The width and height of a popover container can vary depending on the amount of
-content placed within it. We recommend to not exceed a popover width size of
-four columns. Refer to the popover component for more specifications.
-
-<Row>
-<Column colLg={8}>
-
-![Toggletip sizing](images/toggle-tip-usage-5.png)
-
-</Column>
-</Row>
+The toggletip container has a maximum width of 288px, and its height varies
+depending on the content inside. We recommend keeping the width within four
+columns. See details in [Style](/components/toggletip/style/#structure) tab.
 
 ### Placement
 
@@ -156,8 +120,7 @@ UI trigger.
 </Row>
 
 Placement of a popover in relation to the trigger depends on the type of popover
-used. Visit the popover component for specific guidelines for no tip, caret tip,
-and tab tip types.
+used.
 
 ## Content
 
@@ -166,11 +129,6 @@ and tab tip types.
 Heading, body, and footer content can vary based on your use case. To see
 examples of content used within toggletips, visit the
 [disclosure pattern](/patterns/disclosures-pattern/).
-
-Interactive tooltips may contain rich text and other interactive elements like
-buttons or links and must remain actively open until a user dismisses the
-toggletip. Maintain accessibility requirements including focus order and ensure
-all functionality is operable through a keyboard interface.
 
 ### Overflow content
 
@@ -196,39 +154,28 @@ scroll horizontally or let content bleed off the page.
 ### Further guidance
 
 For further content guidance, see Carbon's
-[content guidelines](/guidelines/content/general)).
+[content guidelines](/guidelines/content/general).
 
 ## Behaviors
 
 ### States
 
-The toggletip component has two states—active and inactive. By default, the
-toggletip is hidden and inactive. Toggletips are displayed on `Click` and
-`Enter`.
+The toggletip component has two states: open (click or enter) and closed. By
+default, the toggletip is hidden and inactive. See details in
+[Style](/components/toggletip/style/#color) tab.
 
 ### Interactions
 
 #### Mouse
 
-Toggletips are triggered on `Click` and is dismissed by clicking anywhere
-outside the toggletip's active popover or UI trigger.
+Toggletips are triggered on click and are dismissed by clicking again on the
+trigger or anywhere outside the active popover or UI trigger.
 
 #### Keyboard
 
-Users can trigger a toggletip by pressing `Enter` or `Space` while the trigger
+Toggletips are triggered by pressing `Enter` or `Space` while the trigger
 element has focus. Users can dismiss a toggletip by pressing `Escape`. For
 additional keyboard interactions, see the accessibility tab.
-
-#### Screen readers
-
-VoiceOver: Users can trigger a toggletip by pressing `Enter` or `Space` while
-the trigger element has focus.
-
-JAWS: Users can trigger a toggletip by pressing `Enter` or `Space` while the
-trigger element has focus.
-
-NVDA: Users can trigger a toggletip by pressing `Enter` or `Space` while the
-trigger element has focus.
 
 ## Related
 
