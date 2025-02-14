@@ -1,4 +1,4 @@
-name: Deploy Preview
+name: deploy preview
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -13,7 +13,7 @@ permissions:
   pull-requests: write
 
 jobs:
-  deploy-preview:
+  netlify:
     if: github.repository == 'carbon-design-system/carbon-website'
     runs-on: ubuntu-latest
     steps:
@@ -49,7 +49,7 @@ jobs:
       - name: Deploy to Netlify
         id: netlify_deploy
         run: |
-          netlify deploy \
+          yarn netlify deploy \
             --dir public \
             --site ${{ secrets.NETLIFY_SITE_ID }} \
             --auth ${{ secrets.NETLIFY_AUTH_TOKEN }}
