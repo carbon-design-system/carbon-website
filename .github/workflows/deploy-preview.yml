@@ -1,0 +1,78 @@
+name: Deploy Preview
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+ pull_request_target:
+    branches:
+      - main
+
+ permissions:
+  pull-requests: write
+
+jobs:
+  deploy-preview:
+    if: github.repository == 'carbon-design-system/carbon-website'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js 20.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.x
+      - name: Install packages
+        run: yarn install --immutable --network-timeout 300000
+      - name: Gatsby Cache Folder
+        uses: actions/cache@v3
+        id: gatsby-cache-folder
+        with:
+          path: .cache
+          key: ${{ runner.os }}-cache-gatsby
+          restore-keys: |
+            ${{ runner.os }}-cache-gatsby
+      - name: Gatsby Public Folder
+        uses: actions/cache@v3
+        id: gatsby-public-folder
+        with:
+          path: public/
+          key: ${{ runner.os }}-public-gatsby
+          restore-keys: |
+            ${{ runner.os }}-public-gatsby
+      - name: Build site
+        run: yarn build:clean
+        env:
+          GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES: true
+          NODE_ENV: production
+          CI: true
+      - name: Deploy to Netlify
+        id: netlify_deploy
+        run: |
+          netlify deploy \
+            --dir public \
+            --site ${{ secrets.NETLIFY_SITE_ID }} \
+            --auth ${{ secrets.NETLIFY_AUTH_TOKEN }}
+            --alias ${{ github.event.number }}
+            --json \
+            > deploy_output.json
+       - name: Generate URL Preview
+         id: url_preview
+         run: |
+            NETLIFY_PREVIEW_URL=$(jq -r '.deploy_url' deploy_output.json)
+            echo "NETLIFY_PREVIEW_URL=$NETLIFY_PREVIEW_URL" >> "$GITHUB_OUTPUT"
+        - name: Comment URL Preview on PR
+          uses: actions/github-script@v7
+          env:
+            NETLIFY_PREVIEW_URL: ${{ steps.url_preview.outputs.NETLIFY_PREVIEW_URL }}
+          with:
+            script: |
+              async function comment(){
+                await github.rest.issues.createComment({
+                    issue_number: context.issue.number,
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    body: 'Deploy Preview Successful: ' + process.env.NETLIFY_PREVIEW_URL + \n + 'Build with commit ' + context.sha
+                  })
+              }
+              comment()
