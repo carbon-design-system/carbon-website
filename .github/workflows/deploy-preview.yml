@@ -50,10 +50,10 @@ jobs:
         id: netlify_deploy
         run: |
           yarn netlify deploy \
-            --dir public \
-            --site ${{ secrets.NETLIFY_SITE_ID }} \
-            --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} \
-            --alias ${{ github.event.number }} \
+            --dir=public \
+            --site=${{ secrets.NETLIFY_SITE_ID }} \
+            --auth=${{ secrets.NETLIFY_AUTH_TOKEN }} \
+            --alias=${{ github.event.number }} \
             --json \
             > deploy_output.json
       - name: Generate URL Preview
