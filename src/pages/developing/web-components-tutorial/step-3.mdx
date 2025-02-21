@@ -1,0 +1,477 @@
+---
+title: 3. Using APIs
+description:
+  Welcome to Carbon! This tutorial will guide you in creating a Vanilla JS/HTML
+  app using Web Components from the Carbon Design System.
+tabs: ['Overview', 'Step 1', 'Step 2', 'Step 3', 'Step 4', 'Step 5']
+---
+
+import Preview from 'components/Preview';
+
+<PageDescription>
+
+This step takes our static components and populates them with data from the
+GitHub GraphQL API – loading states and all. We'll be displaying Carbon
+repository information in a data table.
+
+</PageDescription>
+
+<AnchorLinks>
+
+<AnchorLink>Fork, clone and branch</AnchorLink>
+<AnchorLink>Install dependencies</AnchorLink>
+<AnchorLink>Fetch and render data</AnchorLink>
+<AnchorLink>Ppagination</AnchorLink>
+<AnchorLink>Push to GitHub</AnchorLink>
+
+</AnchorLinks>
+
+## Preview
+
+The [GitHub REST API](https://docs.github.com/en/rest?apiVersion=2022-11-28) is
+very well documented, we'll use it to fetch Carbon-related data for this Carbon
+tutorial.
+
+To do so, we'll be using
+[Octokit Core](https://github.com/octokit/core.js/#readme), a client that makes
+it easy to interact with GitHub's APIs.
+
+A
+[preview](https://carbon-tutorial-nextjs-git-step-4-carbon-design-system.vercel.app/)
+of what you will build (see repositories page):
+
+<Preview
+  height="400"
+  title="Carbon Tutorial Step 3"
+  src="https://carbon-tutorial-nextjs-git-v11-next-step-4-carbon-design-system.vercel.app/"
+  frameborder="no"
+  allowtransparency="true"
+  allowfullscreen="true"
+/>
+
+## Fork, clone and branch
+
+This tutorial has an accompanying GitHub repository called
+[carbon-tutorial-web-components](https://github.com/carbon-design-system/carbon-tutorial-web-components)
+that we'll use as a starting point for each step. If you haven't forked and
+cloned that repository yet, and haven't added the upstream remote, go ahead and
+do so by following the [step 1
+instructions]([previous step](/developing/web-components-tutorial/step-1#fork-clone-and-branch).
+
+### Branch
+
+With your repository all set up, let's check out the branch for this tutorial
+step's starting point.
+
+```bash
+git fetch upstream
+git checkout -b step-3 upstream/step-3
+```
+
+### Build and start app
+
+Install the app's dependencies and build the app:
+
+```bash
+pnpm i
+```
+
+Then, start the app:
+
+```bash
+pnpm dev
+```
+
+You should see something similar to where the
+[previous step](/developing/web-components-tutorial/step-1#fork-clone-and-branch/step-2)
+left off. Stop your app with `CTRL-C` and let's get everything installed.
+
+## Install dependencies
+
+We'll need to install `@octokit/core`, a package that allows us to query GitHub
+APIs easily. Stop your development server with `CTRL-C` and install the octokit
+dependency with:
+
+```bash
+pnpm add @octokit/core
+```
+
+Then, start the app again. If your app's currently running, you'll need to
+restart it.
+
+```bash
+pnpm dev
+```
+
+## Fetch and render data
+
+### Imports
+
+Add the following import Octokit into `repos.js` and create a new instance of
+Octokit.
+
+```javascript path=repos.js
+import { Octokit } from '@octokit/core';
+
+const octokitClient = new Octokit({});
+```
+
+### API Request
+
+Next, we'll assemble our GitHub API request to fetch a list of repositories that
+belong to the `carbon-design-system` GitHub organization.
+
+First empty the data array in `repos.js`
+
+```javascript path=repos.js
+let data = [];
+```
+
+Then add the function `fetchData` calling it immediately afterwards.
+
+```javascript path=repos.js
+const fetchData = async () => {
+  const res = await octokitClient.request('GET /orgs/{org}/repos', {
+    org: 'carbon-design-system',
+    per_page: 75,
+    sort: 'updated',
+    direction: 'desc',
+  });
+
+  if (res.status === 200) {
+    data = res.data.map((row) => ({
+      name: row.name,
+      created: new Date(row.created_at).toLocaleDateString(),
+      updated: new Date(row.updated_at).toLocaleDateString(),
+      openIssues: row.open_issues_count,
+      stars: row.stargazers_count,
+      links: 'link',
+      expansion: row.description,
+    }));
+
+    // replace table here
+    // replaceSkeleton();
+  } else {
+    console.log('Error obtaining repository data');
+  }
+};
+fetchData();
+```
+
+### Rendering the data
+
+If you have the application running then the only change you see is an empty
+table. Let's fix that next.
+
+In `repositories.html` just above the `<cds-table>` add a table skeleton.
+
+```html path=repositories.html
+<cds-table-skeleton></cds-table-skeleton>
+```
+
+Then move the `<cds-table>` into a template called `template--table` at the
+bottom of the file.
+
+```html path=repositories.html
+<template id="template--table">
+  <cds-table expandable>
+    <cds-table-header-title slot="title"
+      >Carbon Repositories</cds-table-header-title
+    >
+    <cds-table-header-description slot="description"
+      >A collection of public Carbon repositories.</cds-table-header-description
+    >
+    <cds-table-head>
+      <cds-table-header-row>
+        <cds-table-header-cell>Name</cds-table-header-cell>
+        <cds-table-header-cell>Created</cds-table-header-cell>
+        <cds-table-header-cell>Updated</cds-table-header-cell>
+        <cds-table-header-cell>Open issues</cds-table-header-cell>
+        <cds-table-header-cell>Stars</cds-table-header-cell>
+        <cds-table-header-cell>Links</cds-table-header-cell>
+      </cds-table-header-row>
+    </cds-table-head>
+    <cds-table-body>Table body goes here</cds-table-body>
+  </cds-table>
+</template>
+```
+
+With the application running the repositories page now shows the skeleton table.
+Skeleton components are used in the Carbon Design System to information is still
+being loaded. For further details on
+[Carbon loading patterns](https://carbondesignsystem.com/patterns/loading-pattern/).
+
+Returning to `repos.js` we will makes use of the fetched data to replace the
+skeleton table. Find the current call to `updateTable`
+
+```javascript path=repos.js
+updateTable();
+```
+
+and replace it with the new function called `replaceSkeleton` below:
+
+```javascript path=repos.js
+const replaceSkeleton = () => {
+  const tableSkeleton = document.querySelector('cds-table-skeleton');
+  const tableTemplate = document.querySelector('template#template--table');
+
+  if (tableSkeleton && tableTemplate) {
+    tableSkeleton.replaceWith(tableTemplate.content.cloneNode(true));
+    // update table rows
+    updateTable();
+  }
+};
+```
+
+This function locates the `template--table` and replaces the skeleton with it.
+It then makes a call to `updateTable` to add the rows.
+
+We are now ready to display the data by adjusting the function `fetchData` by
+ucommenting the call to `replaceSkeleton`.
+
+```javascript path=repos.js
+// replace table here
+// replaceSkeleton();
+```
+
+to leave:
+
+```javascript path=repos.js
+// replace table here
+replaceSkeleton();
+```
+
+At this point when you refresh the `repositories` page the table skeleton is
+briefly shown before the table is populated with data from github. The link
+column however just shows `link` we will fix that next.
+
+At the top of `repos.js` import the `cds-link` component.
+
+```javascript path=repos.js
+import '@carbon/web-components/es/components/link/index';
+```
+
+Find `links: 'link'` in the `fetchData` function and replace it with:
+
+```javascrpt path=repos.js
+links: { url: row.html_url, homepage: row.homepage },
+```
+
+In our `updateTable` function we need to do something different for the links
+key. Replace
+
+```javascript path=repos.js
+keyEl.innerHTML = row[key];
+```
+
+with
+
+```javascript path=repos.js
+if (key === 'links') {
+  keyEl.innerHTML = `<ul class="link-list">
+  <li>
+    <cds-link href="${row[key].url}">GitHub</cds-link>
+  </li>
+  <li>
+    <cds-link href="${row[key].homepage}">Homepage</cds-link>
+  </li>
+</ul>`;
+} else {
+  keyEl.innerHTML = row[key];
+}
+```
+
+Now it we could have added the HTML for the links in `repositories.html` but
+this serves to demonstrate that as with standard HTML tags it is possible to
+simply insert Carbon Web Components as innerHTML using a string. Just a little
+bit of CSS is needed to present this as per our tutorial design.
+
+Open `styles.scss` and add the following.
+
+```scss path=style.scss
+.link-list {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
+.link-list li:not(:last-child) {
+  padding-inline-end: $spacing-02;
+
+  &::after {
+    content: '|';
+    display: inline;
+  }
+}
+
+.link-list li:not(:first-child) {
+  padding-left: $spacing-02;
+}
+```
+
+## Pagination
+
+The data rendered in our table produces quite a tall page which grows with each
+new Carbon repository. To complete our repositories page we will add pagination
+to the table.
+
+In `repos.js` import the pagination component.
+
+```javascript path=repos.js
+import '@carbon/web-components/es/components/pagination/index';
+```
+
+Now, as part of the `template--table` template we can add the pagination to
+`repositories.html` after the closing `<cds-table>` tag.
+
+```html path=repositories.html
+<cds-pagination
+  backward-text="Previous page"
+  forward-text="Next page"
+  itemsPerPageText="Items per page">
+  <cds-select-item value="10">10</cds-select-item>
+  <cds-select-item value="20">20</cds-select-item>
+  <cds-select-item value="30">30</cds-select-item>
+  <cds-select-item value="40">40</cds-select-item>
+  <cds-select-item value="50">50</cds-select-item>
+</cds-pagination>
+```
+
+<InlineNotification>
+
+**Note:** The `Pagination` component isn't inherently connected in any way to
+the `DataTable` - we need to tell it what to do when a change occurs using the
+`onChange` prop. This includes both page size changes and displaying different
+rows.
+
+</InlineNotification>
+
+<InlineNotification>
+
+**Note:** Like the other Carbon Web Components components, `Pagination`
+component examples can be found in
+[Storybook](https://web-components.carbondesignsystem.com/?path=/story/components-pagination--overview)
+by browsing the story and knobs.
+
+</InlineNotification>
+
+If you scroll to the bottom of the `repositories` page in the browser you should
+see the pagination component rendered.
+
+Back in `repos.js` next to the declaration of our data array add two further
+variables to work with the pagination component. Where we declare the data
+variable, add variables for page size and row index.
+
+```javascript path=repos.js
+let data = [];
+let pageSize = 10;
+let firstRowIndex = 0;
+```
+
+Next we need to add some script to handle events raised by the pagination
+component and update it with the values defined for `pageSize` and
+`firstRowIndex`.
+
+```javascript path=repos.js
+const handlePageChangeCurrent = ({ detail }) => {
+  firstRowIndex = (detail.page - 1) * detail.pageSize;
+  updateTable();
+};
+
+const handlePageSizeChange = ({ detail }) => {
+  pageSize = detail.pageSize;
+  updateTable();
+};
+
+const updatePagination = () => {
+  // update pagination to match data fetched
+  const paginationEl = document.querySelector('cds-pagination');
+  paginationEl.setAttribute('total-items', data.length);
+
+  setTimeout(() => {
+    // defer until after the dom is updated
+    paginationEl.addEventListener(
+      'cds-pagination-changed-current',
+      handlePageChangeCurrent
+    );
+    paginationEl.addEventListener(
+      'cds-page-sizes-select-changed',
+      handlePageSizeChange
+    );
+  }, 10);
+};
+```
+
+Add a call to `updatePagination` in `replaceSkeleton` just after the call to
+`updateTable`
+
+```javascript path=repos.js
+// update table rows
+updateTable();
+
+// update pagination
+updatePagination();
+```
+
+When triggered the handlers update `firstRowIndex` and `pageSize` before calling
+`updateTable` which re-renders our table rows. Before it all works we need to
+make a change to `updateTable` to render just the rows on the current page.
+
+Currently, we iterate over the data as follows:
+
+```javascript path=repos.js
+// iterate over data and render rows
+data.forEach((row) => {
+  // rows update here
+});
+```
+
+Change this introducing a filter before the `forEach`.
+
+```javascript path=repos.js
+// iterate over data and render rows
+data
+  .filter((v, i) => i >= firstRowIndex && i < firstRowIndex + pageSize)
+  .forEach((row) => {
+    // rows update here
+  });
+```
+
+Refreshing the repositories page should now show just ten rows. Try changing the
+page size and the current page number, this should result in new data being
+loaded.
+
+That does it! Your data table should fetch GitHub data on first render. You can
+expand each row to see the repository's description. You can modify the
+pagination items per page and cycle through pages or jump to a specific page of
+repositories.
+
+## Push to GitHub
+
+That is it you are done. Just one more push to save your completion of step 3.
+
+### Git commit and push
+
+First, stage and commit all of your changes:
+
+```bash
+git add --all && git commit -m "feat(tutorial): complete step 3"
+```
+
+Then, push to your repository:
+
+```bash
+git push -u origin step-3
+```
+
+<InlineNotification>
+
+**Note:** If your Git remote protocol is HTTPS instead of SSH, you may be
+prompted to authenticate with GitHub when you push changes. If your GitHub
+account has two-factor authentication enabled, we recommend that you follow
+these instructions to
+[create a personal access token for the command line](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line).
+That lets you use your token instead of password when performing Git operations
+over HTTPS.
+
+</InlineNotification>
