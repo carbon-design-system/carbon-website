@@ -1,0 +1,777 @@
+---
+title: 1. Installing Carbon
+description:
+  Welcome to Carbon! This tutorial will guide you in creating a Vanilla JS/HTML
+  app using Web Components from the Carbon Design System.
+tabs: ['Overview', 'Step 1', 'Step 2', 'Step 3', 'Step 4', 'Step 5']
+---
+
+import Preview from 'components/Preview';
+
+<PageDescription>
+
+Starting from a base `create-vite` app, created using the `Vanilla` and
+`Javascript` options, let's install Carbon and begin using Carbon components. By
+the end you will have a Vanilla app that uses the UI Shell to navigate between
+pages.
+
+</PageDescription>
+
+<AnchorLinks>
+
+<AnchorLink>Fork, clone and branch</AnchorLink>
+<AnchorLink>Build and start</AnchorLink>
+<AnchorLink>Install Carbon</AnchorLink>
+<AnchorLink>Install Sass</AnchorLink>
+<AnchorLink>A working Carbon button</AnchorLink>
+<AnchorLink>Add UI Shell</AnchorLink>
+<AnchorLink>Push to GitHub</AnchorLink>
+
+</AnchorLinks>
+
+## Preview
+
+A [preview](https://solid-carnival-1pg38np.pages.github.io/) of what you will
+build:
+
+<Preview
+  height="200"
+  title="Carbon Next Tutorial Step 1"
+  src="https://carbon-tutorial-nextjs-git-v11-next-step-2-carbon-design-system.vercel.app/"
+  frameborder="no"
+  allowtransparency="true"
+  allowfullscreen="true"
+/>
+
+## Fork, clone and branch
+
+This tutorial has an accompanying GitHub repository called
+[carbon-tutorial-web-components](https://github.com/carbon-design-system/carbon-tutorial-web-components)
+that we'll use as a starting point for each step.
+
+### Fork
+
+To begin, fork
+[carbon-tutorial-web-components](https://github.com/carbon-design-system/carbon-tutorial-web-components)
+using your GitHub account. Please note when forking you must untick “Copy the
+main branch only” so you can access all branches / steps of the tutorial.
+
+### Clone
+
+Go to your forked repository, copy the SSH or HTTPS URL and in your terminal run
+the two commands to get the repository in your local file system and enter that
+directory.
+
+```bash
+git clone [your fork SSH/HTTPS]
+cd carbon-tutorial-web-components
+```
+
+### Add upstream remote
+
+Add a remote called `upstream` so we can eventually submit a pull request once
+you have completed this tutorial step. There are two choices: SSH or HTTPS
+
+#### SSH
+
+```bash
+git remote add upstream git@github.com:carbon-design-system/carbon-tutorial-web-components.git
+```
+
+#### HTTPS
+
+```bash
+git remote add upstream https://github.com/carbon-design-system/carbon-tutorial-web-components.git
+```
+
+Verify that your forked repository remotes are correct:
+
+```bash
+git remote -v
+```
+
+Your terminal should output something like this:
+
+```bash
+origin	[your forked repo] (fetch)
+origin	[your forked repo] (push)
+upstream	git@github.com:carbon-design-system/carbon-tutorial-web-components.git (fetch)
+upstream	git@github.com:carbon-design-system/carbon-tutorial-web-components.git (push)
+```
+
+### Branch
+
+Now that we have our repository set up, let's check out the branch for this
+tutorial step's starting point. Run the two commands:
+
+```bash
+git fetch upstream
+git checkout -b step-1 upstream/step-1
+```
+
+## Build and start
+
+We have the repository forked to your GitHub account, cloned down to your
+machine, and the starting branch checked out. Next, install the app's
+dependencies (Vite) with:
+
+```bash
+pnpm i
+```
+
+After the dependencies are installed, you can start the app with:
+
+```bash
+pnpm dev
+```
+
+Open Your default browser should open up with an empty page that says:
+`Hello Carbon! Well, not quite yet. This is the starting point for the Carbon Web Components tutorial.`
+
+## Install Carbon
+
+Even though we installed existing dependencies, we've yet to install our any
+Carbon packages.
+
+Stop your development server with `CTRL-C` and install Carbon dependencies with:
+
+```bash
+pnpm add @carbon/web-components @carbon/styles
+```
+
+## Install Sass
+
+We need to run a Sass build as the Carbon styles are authored in Sass, so run
+the following command to install `sass` as a dependency.
+
+```bash
+pnpm add sass
+```
+
+Before restarting our app rename `style.css` to `style.scss` and change the
+inport in `main.js` from `import './style.css';` to `import './style.scss';`.
+
+Then, start the app again. If your app's currently running, you'll need to
+restart it for the new packages to be used.
+
+```bash
+pnpm dev
+```
+
+The app looks as it did before. We, need to import Carbon styles have an impact.
+
+### Import Carbon styles
+
+Replace the contents of `style.scss` with
+
+```scss path=style.scss
+@use '@carbon/styles/scss/reset';
+```
+
+This has reset the styles to a common base from which Carbon applications are
+built. What you see, if you run the application, is a largely unstyled page. It
+is however making use of the IBM Plex font, standard in all Carbon applications.
+
+## A working Carbon button
+
+### Import the button
+
+Next, we'll import a `Button` from Carbon to test that our dependencies are
+working properly. At the top of `main.js`, import the `Button` and delete
+everything else, leaving just:
+
+```javascript path=main.js
+import './style.scss';
+import '@carbon/web-components/es/components/button/button.js';
+```
+
+### Tidy up our HTML file
+
+In `index.html` first move this script tag up inside the `head` tag, so we don't
+accidentally delete it later. It's location does not matter in this tutorial.
+
+```html path=index.html
+<script type="module" src="/main.js"></script>
+```
+
+Then replace the Vite logo
+
+```html path=index.html
+<link rel="icon" type="image/svg+xml" href="/vite.svg" />
+```
+
+with the Carbon one:
+
+```html path=index.html
+<link rel="icon" type="image/svg+xml" href="/carbon.svg" />
+```
+
+Update the title `Vite App` to `Carbon tutorial web components`.
+
+### Add the button by replacing:
+
+```html path=index.html
+<div id="app"></div>
+```
+
+with:
+
+```html path=index.html
+<cds-button class="button">Click more than once</cds-button>
+```
+
+Congratulations, you've imported your first component! You should see a Carbon
+styled button on the page.
+
+### Make the button do something
+
+Before giving the button something to do, add the following to `style.scss`
+which will allow our button to theme the app.
+
+```scss path=style.scss
+@use '@carbon/styles/scss/theme' as *;
+@use '@carbon/styles/scss/themes';
+
+:root {
+  @include theme(themes.$g10);
+
+  @media (prefers-color-scheme: dark) {
+    @include theme(themes.$g100);
+  }
+}
+
+.g10 {
+  @include theme(themes.$g10);
+}
+
+.g100 {
+  @include theme(themes.$g100);
+}
+```
+
+Then in `main.js` add the following code to handle the button clicks.
+
+```javascript path=main.js
+const bodyEl = document.querySelector('body');
+
+// button click handler
+const handleClick = () => {
+  bodyEl.classList.toggle('g10');
+  bodyEl.classList.toggle('g100');
+};
+document.querySelector('.button').addEventListener('click', handleClick);
+
+// set initial theme based on preferences
+if (matchMedia('prefers-color-scheme').matches) {
+  bodyEl.classList.add('g100');
+} else {
+  bodyEl.classList.add('g10');
+}
+```
+
+After these changes clicking the button will toggle theme classes, which in the
+app changes the background color.
+
+## Add UI Shell
+
+Now we're going to add the UI shell.
+
+### UI Shell for the landing page
+
+First import the header into `main.js`
+
+```javascript path=main.js
+import '@carbon/web-components/es/components/ui-shell/index';
+```
+
+<InlineNotification>
+
+**Note:** you can find a description of the different components used in the UI
+Shell in our
+[Storybook](https://web-components.carbondesignsystem.com/?path=/docs/components-ui-shell--overview)
+package.
+
+</InlineNotification>
+
+Before we add the header to `index.html` add the class `app` to the body tag.
+
+```html path=index.html
+<body class="app"></body>
+```
+
+Wrap the button as follows.
+
+```html path=index.html
+<main class="main">
+  <cds-button class="button">Click more than once</cds-button>
+</main>
+```
+
+Then above `<main>` add our header.
+
+```html path=index.html
+<header>
+  <cds-header class="g100">
+    <cds-header-name href="./" prefix="IBM">Carbon Tutorial</cds-header-name>
+  </cds-header>
+</header>
+```
+
+Running the application at this point it looks like the button has dissapeared.
+Add the following to `style.scss`.
+
+```path=style.scss
+@use '@carbon/styles/scss/spacing' as *; /* near top of file */
+
+.app {
+  display: grid;
+  grid-template-rows: $spacing-09 1fr;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.main {
+  height: 100%;
+  overflow-y: auto;
+}
+```
+
+This imports the Carbon `spacing` and establishes a grid to contain our header
+and main. The overflow settings are there to ensure it is our `<main>` that
+scrolls if needed.
+
+### Adding the repositories page
+
+After the `<cds-header-name>` closing tag add a link to a new page.
+
+```html path=index.html
+<cds-header-nav menu-bar-label="Carbon Tutorial">
+  <cds-header-nav-item href="./repositories.html"
+    >Repositories</cds-header-nav-item
+  >
+</cds-header-nav>
+```
+
+Duplicate `index.html` and name it `repositories.html`.
+
+In this new file replace the contents of the `main` tag with the words
+`REPOSITORIES PAGE`.
+
+You can now switch between the two pages by clicking on `Repositories` and
+`IBM Carbon Tutorial` in the header. This will look a little glitchy, this is
+because it is a genuine page navigation, and the CSS is still being processed.
+When using Web Components inside libraries such as Lit, React, Angular, Vue etc
+this is resolved by taking control of the routing. We will not investigate
+further here.
+
+### Behaving responsively
+
+Switch back to the landing page by clicking on `IBM Carbon Tutorial`.
+
+Checking responsive behavior (window narrower than 1080px) you will notice the
+repositories page disappear from the menu. This goes into a sidebar controlled
+by a hamburger menu as follows.
+
+Before the `<cds-header-name>` tag add
+
+```html path=index.html
+<cds-header-menu-button
+  button-label-active="Close menu"
+  button-label-inactive="Open menu"></cds-header-menu-button>
+```
+
+Then after the closing `</cds-header-nav>` add
+
+```html path=index.html
+<cds-side-nav
+  is-not-persistent
+  aria-label="Side navigation"
+  collapse-mode="${SIDE_NAV_COLLAPSE_MODE.RESPONSIVE}">
+  <cds-side-nav-items>
+    <cds-side-nav-link href="./repositories.html">
+      Repositories
+    </cds-side-nav-link>
+  </cds-side-nav-items>
+</cds-side-nav>
+```
+
+### Global actions
+
+As part of the Carbon header we can also add global actions this involves making
+use of some Carbon Icons so first we will add that dependency.
+
+```bash
+pnpm add @carbon/icons
+```
+
+There are various ways to add SVGs to our page. Often the SVG is copied directly
+into source HTML or a bundler is used to load it. Rather than rely on a bundler
+or add them inline, which can make our HTML harder to read, we will use CSS to
+add refer directly to the icon files (which have been conveniently copied into
+the `./public` folder) from the `@carbon/icons` pacakge.
+
+```scss path=style.scss
+.action-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: $text-primary;
+}
+
+.notification .action-icon {
+  mask: url('/notification.svg') no-repeat center;
+}
+
+.user-avatar .action-icon {
+  mask: url('/user--avatar.svg') no-repeat center;
+}
+
+.app-switcher .action-icon {
+  mask: url('/switcher.svg') no-repeat center;
+}
+```
+
+The above CSS allows us to simply add the two classes associated with each icon
+to display it in a themable way in our application.
+
+Next we need to add the global actions and related panels to the `index.html`
+file after the closing `</cds-side-nav>`. The Carbon icons are applied to the
+slotted icon element using CSS.
+
+```html path=index.html
+<div class="cds--header__global">
+  <cds-header-global-action
+    aria-label="Notifications"
+    class="notification"
+    panel-id="notification-panel">
+    <div class="action-icon" slot="icon"></div>
+  </cds-header-global-action>
+  <cds-header-global-action
+    aria-label="User Profile"
+    class="user-avatar"
+    panel-id="user-profile-panel">
+    <div class="action-icon" slot="icon"></div>
+  </cds-header-global-action>
+  <cds-header-global-action
+    aria-label="App Switcher"
+    class="app-switcher"
+    panel-id="app-switcher-panel">
+    <div class="action-icon" slot="icon"></div>
+  </cds-header-global-action>
+</div>
+```
+
+<InlineNotification>
+
+**Note:** this is the first time we have seen the `slot` attribute. Standard
+HTML elements often have the ability to host child content. Web components are
+more flexible allowing both the default child and named child areas, it uses the
+term `slot` to refer to these. The slot attribute is used to target named slots,
+in this case `icon`.
+
+Further details on slots can be found on the
+[mdn docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot)
+package.
+
+</InlineNotification>
+
+The global action buttons are passed a `panel-id` used to identify the panels
+they toggle the visibility of. Just below the last global action add the
+follwoing HTML.
+
+```html path=index.html
+<cds-header-panel id="notification-panel" aria-label="Notification Panel"
+  >Notification Panel</cds-header-panel
+>
+<cds-header-panel id="user-profile-panel" aria-label="User profile Panel"
+  >User profile Panel</cds-header-panel
+>
+<cds-header-panel id="app-switcher-panel" aria-label="App switcher Panel"
+  >App switcher Panel</cds-header-panel
+>
+```
+
+Note as web components behave like native components we can add event handlers
+and interact with them directly.
+
+The default panel behavior simply toggles the panel when clicked. This can
+result in multiple panels being open at once. Adding the following to `main.js`
+changes this behavior by listening for clicks and closing the other panels.
+
+```javascript path=main.js
+const handleGlobalActionClick = (ev) => {
+  const targetPanelId = ev.currentTarget.getAttribute('panel-id');
+  const panels = document.querySelectorAll('cds-header-panel');
+  // check to see if other panels are open and close them
+  panels.forEach((panel) => {
+    if (panel.id !== targetPanelId) {
+      panel.expanded = false;
+    }
+  });
+};
+const globalActions = document.querySelectorAll('cds-header-global-action');
+[...globalActions].forEach((action) =>
+  action.addEventListener('click', handleGlobalActionClick)
+);
+```
+
+### A better them switcher
+
+The current theme switcher is not very practical, here we will move it inside
+the profile panel.
+
+First replace the button in `index.html` with `LANDING PAGE` leaving the main
+tag looking like this.
+
+```html path=index.html
+<main class="main">LANDING PAGE</main>
+```
+
+In `main.js` remove this code handling the button click and initial load.
+
+```javascript path=main.js
+// button click handler
+const handleClick = () => {
+  bodyEl.classList.toggle('g10');
+  bodyEl.classList.toggle('g100');
+};
+document.querySelector('.button').addEventListener('click', handleClick);
+
+// set initial theme based on preferences
+if (matchMedia('(prefers-color-scheme: dark)')) {
+  bodyEl.classList.add('g100');
+} else {
+  bodyEl.classList.add('g10');
+}
+```
+
+Still in `main.js` add imports for checkbox and content-switcher.
+
+```javascript path=main.js
+import '@carbon/web-components/es/components/checkbox/index';
+import '@carbon/web-components/es/components/content-switcher/index';
+```
+
+Locate the `cds-header-panel` with the id="user-profile-panel" in `index.html`
+and replace it's content with the following.
+
+```html path=index.html
+<div class="header-panel__content">
+  <h2 class="header-panel__title">User profile Panel</h2>
+
+  <cds-content-switcher value="system" class="theme-selector">
+    <cds-content-switcher-item icon value="light">
+      <div class="theme-selector__icon theme-selector__icon--light"></div>
+      <span slot="tooltip-content">Light theme</span>
+    </cds-content-switcher-item>
+    <cds-content-switcher-item icon value="system">
+      <div class="theme-selector__icon theme-selector__icon--system"></div>
+      <span slot="tooltip-content">System theme</span>
+    </cds-content-switcher-item>
+    <cds-content-switcher-item icon value="dark">
+      <div class="theme-selector__icon theme-selector__icon--dark"></div>
+      <span slot="tooltip-content">Dark theme</span>
+    </cds-content-switcher-item>
+  </cds-content-switcher>
+
+  <cds-checkbox
+    id="theme-header__compliment"
+    class="theme-header__compliment"
+    checked
+    name="theme-header__compliment"
+    >Global header reverse theme</cds-checkbox
+  >
+</div>
+```
+
+This adds a content switcher and checkbox to our user profile side panel. If you
+view it now it works but is in need of some styling.
+
+These styles import the Carbon typography features, define a layout for our
+panel, and set the title size.
+
+```scss path=style.scss
+@use '@carbon/styles/scss/type' as *; /* place at top of file */
+
+.header-panel__content {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-05;
+  padding: $spacing-05;
+}
+
+.header-panel__title {
+  @include type-style('productive-heading-02');
+}
+```
+
+As per the global actions we will use additional styling to add icons to our
+content switcher.
+
+```scss path=style.scss
+.theme-selector__icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: $text-primary;
+}
+
+cds-content-switcher-item[selected] .theme-selector__icon {
+  /* switch icon color when selected */
+  background-color: $background;
+}
+
+.theme-selector__icon--light {
+  mask: url('/sun.svg') no-repeat center;
+}
+
+.theme-selector__icon--system {
+  mask: url('/brightness-contrast.svg') no-repeat center;
+}
+
+.theme-selector__icon--dark {
+  mask: url('/moon.svg') no-repeat center;
+}
+```
+
+Currently the theme switcher looks good but needs the following Javascript to
+switch themes.
+
+```javascript path=main.js
+const handleSwitch = (ev) => {
+  // Applies new theme or defers to system preferences by removing theme
+  switch (ev.detail.item.value) {
+    case 'light':
+      bodyEl.classList.remove('g100');
+      bodyEl.classList.add('g10');
+      break;
+    case 'dark':
+      bodyEl.classList.remove('g10');
+      bodyEl.classList.add('g100');
+      break;
+    default:
+      bodyEl.classList.remove('g10');
+      bodyEl.classList.remove('g100');
+  }
+};
+document
+  .querySelector('.theme-selector')
+  .addEventListener('cds-content-switcher-selected', handleSwitch);
+
+const handleHeaderCompliment = (ev) => {
+  document
+    .querySelector('cds-header')
+    .classList.toggle('compliment', ev.target.checked);
+};
+document
+  .querySelector('.theme-header__compliment')
+  .addEventListener('cds-checkbox-changed', handleHeaderCompliment);
+```
+
+At this point our theme switcher is mostly working, only the checkbox
+`Global header reverse theme` appears to do nothing. In the script above the
+class `compliment` is being toggled on and off in the `<header>` tag.
+
+A little more CSS is needed to make this functionality work. Add the following
+in addition to the existing theme classes.
+
+```scss path=style.scss
+:root .compliment {
+  @include theme(themes.$g100);
+
+  @media (prefers-color-scheme: dark) {
+    @include theme(themes.$g10);
+  }
+}
+
+.g10 .compliment {
+  @include theme(themes.$g100);
+}
+
+.g100 .compliment {
+  @include theme(themes.$g10);
+}
+```
+
+Then replace the cds-header tags `g100` class in `index.html` with `compliment`.
+
+```html path=index.html
+<cds-header class="compliment"> . . . </cds-header>
+```
+
+### Skip to content
+
+When creating navigation headers, it's important to have a `Skip to content`
+link so keyboard users can skip the navigation items and go straight to the main
+content.
+
+Import th ecomponent in `main.js`
+
+```javascript path=main.js
+import '@carbon/web-components/es/components/skip-to-content/index.js';
+```
+
+Add in to our header in `index.html` as the first child of our `cds-header`
+component.
+
+```html path=index.html
+<cds-header class="compliment">
+  <cds-skip-to-content href="#main-content"></cds-skip-to-content>
+  <!-- keep existing content
+   .
+    .
+    .
+   -->
+</cds-header>
+```
+
+Then update the main tag to include the id `main-content`
+
+```html path=index.html
+<main id="main-content" class="main">
+  <!-- keep existing content
+   .
+    .
+    .
+   -->
+</main>
+```
+
+### Update the repositories page
+
+One final task before completing step 1. Our repositories page has missed out on
+all of the HTML updates we have been making to the landing page. Simply copy the
+contents of `index.html` to `repositories.html` and replace `LANDING` with
+`REPOSITORIES`.
+
+NOTE: We could do something better than duplicating our pages. This could be
+pure Javascript, HTML templates or native Web Components. However, that might
+distract from the message that no library is required.
+
+## Push to GitHub
+
+That is it you are done. Just one more push to save your completion of step 1.
+
+### Git commit and push
+
+First, stage and commit all of your changes:
+
+```bash
+git add --all && git commit -m "feat(tutorial): complete step 1"
+```
+
+Then, push to your repository:
+
+```bash
+git push -u origin step-1
+```
+
+<InlineNotification>
+
+**Note:** If your Git remote protocol is HTTPS instead of SSH, you may be
+prompted to authenticate with GitHub when you push changes. If your GitHub
+account has two-factor authentication enabled, we recommend that you follow
+these instructions to
+[create a personal access token for the command line](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line).
+That lets you use your token instead of password when performing Git operations
+over HTTPS.
+
+</InlineNotification>
