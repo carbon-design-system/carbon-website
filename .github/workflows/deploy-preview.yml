@@ -71,6 +71,10 @@ jobs:
             ${{ steps.url_preview.outputs.NETLIFY_PREVIEW_URL }}
         with:
           script: |
+            const { NETLIFY_PREVIEW_URL } = process.env;
+
+            console.log(`Hello ${FIRST_NAME} ${LAST_NAME}`)
+
             // Define a hidden reference we'll put in new comments and also use 
             // to find existing comments
             let hiddenReference = '<!--CarbonWebsiteDeployPreviewComment-DoNotDelete--> '  
@@ -88,7 +92,7 @@ jobs:
             // Craft the comment body
             let comment = hiddenReference + "Deploy preview "
             if (process.env.NETLIFY_PREVIEW_URL) {
-              comment = comment + "successfully published at <a href=\"${{ process.env.NETLIFY_PREVIEW_URL }}\">${{ process.env.NETLIFY_PREVIEW_URL }}</a> with commit (${{ github.sha }})"
+              comment = comment + "successfully published at <a href=\"" + NETLIFY_PREVIEW_URL + "\">" + NETLIFY_PREVIEW_URL + "</a> with commit (${{ github.sha }})"
             } else {
               comment = comment + "failed to publish"
             }
