@@ -1,88 +1,123 @@
 high:
-  - name: Failure
-    token: $support-error
+  - statusname: Failed
+    token: $status-red
     description: Indicates a process failure that needs immediate attention
     usage: failed processes, emergencies, urgent alerts
     fileNames:
       - critical-filled
-      - critical-outline
-  - name: Warning
+  - statusname: Caution major
     fileNames:
-      - warning-filled
-      - warning-outline
-    token: $support-error
-    description:
-      Indicates an error (often inline) that needs immediate attention
-    usage: warnings, errors, alerts, failure
-  - name: Warning alt
-    fileNames:
-      - warning-hex-filled
-      - warning-hex-outline
-    token: $support-error
-    description: Carries the same meaning as ‘Warning’
-  - name: Misuse
-    fileNames:
-      - misuse-filled
-      - misuse-outline
-    token: $support-error
-    description:
-      Indicates unavailability, an incorrect use case (especially in usage
-      guidance), or a run that has been cancelled
-    usage: incorrect usage, unavailability, cancellation
-  - name: Caution major
-    fileNames:
-      - caution-major-filled
-      - caution-major-outline
-    token: Orange 40/Orange 60 outline, Orange 40
+      - caution-major
+    token: $status-orange
+    secondarytoken: $black
     description:
       Indicates a threshold has been breached; alerts a user before a critical
       event is triggered (only used in conjunction with ‘Caution’)
     usage: major caution, serious situations, critical instability
-  - name: Caution minor
+  - statusname: Caution minor
     fileNames:
-      - caution-filled
-      - caution-outline
-    token: $support-warning/Yellow 60 outline, $support-warning
+      - caution-minor
+    token: $status-yellow
+    secondarytoken: $black
     description:
       Indicates the existence of a non-service affecting fault condition
       requiring corrective action to prevent a more serious fault
     usage: minor caution, prevention, instability
-medium:
-  - name: Undefined
+  - statusname: Undefined
     fileNames:
       - undefined-filled
-      - undefined-outline
+    token: $status-purple
+    description:
+      Indicates a value that is outside of an acceptable range or formatted
+      incorrectly
+    usage: experimental work, outliers
+  - statusname: Succeeded
+    fileNames:
+      - checkmark-circle-green-filled
+    token: $status-green
+    description:
+      Indicates success at the end of a process (usually used as an interactive
+      state within Carbon components, hence the color change)
+    usage: success, completion, stability
+  - statusname: Normal
+    fileNames:
+      - checkmark-circle-blue-outline
+    token: $status-blue
+    description:
+      Indicates stability or the clearing of one or more reported alarms;
+      implies no issues are present
+    usage: stability, active states
+  - statusname: In progress
+    fileNames:
+      - inprogress
+    token: $status-blue
+    description:
+      Indicates a process has started but has not finished running (icon will be
+      replaced by ‘checkmark’ or ‘warning’ icon when the status of the job
+      changes)
+    usage: unfinished, running processes
+  - statusname: Incomplete
+    fileNames:
+      - incomplete
+    token: $status-blue
+    description:
+      Indicates a stepped process has begun but is not yet finished (icon
+      appears in Carbon’s Progress Indicator component)
+    usage: incomplete tasks
+  - statusname: Not started
+    fileNames:
+      - not-started
+    token: $status-gray
+    description:
+      Indicates that a job or step (in Carbon’s Progress Indicator) has not yet
+      been started
+    usage: upstarted tasks or disabled processes
+  - statusname: Pending
+    fileNames:
+      - pending-filled
+    token: $status-gray
+    description:
+      Indicates a job has started but can not be scheduled due to insufficient
+      resources
+    usage: indefinite holds
+  - statusname: Unknown
+    token: $status-gray
+    description: Indicates that the status of an object is unknown
+    usage: unknown, undefined status
+    fileNames:
+      - unknown-filled
+  - statusname: Informative
+    token: $status-blue
+    description: Indicates additional (non-essential) information is available
+    usage: additional information, exceptions
+    fileNames:
+      - information-square-filled
+medium:
+  - severitylevel: Undefined
+    fileNames:
+      - undefined-filled
     token: Purple 60, Purple 50
     description:
       Indicates a value that is outside of an acceptable range or formatted
       incorrectly
     usage: experimental work, outliers
-  - name: Normal
+  - severitylevel: Normal
     fileNames:
       - checkmark-circle-green-filled
-      - checkmark-circle-green-outline
     token: $support-success
     description:
       Indicates stability or the clearing of one or more reported alarms;
       implies no issues are present
     usage: success, completion, stability, active states
-  - name: Normal alt
-    fileNames:
-      - checkmark
-    token: $support-success
-    description:
-      Carries the same meaning as ‘Normal’ but is more often used in data tables
-      and confined spaces
-  - name: Success
+  - severitylevel: Success
     fileNames:
       - checkmark-circle-blue-filled
-      - checkmark-circle-blue-outline
     token: $support-info
     description:
       Indicates success at the end of a process (usually used as an interactive
       state within Carbon components, hence the color change)
     usage: success, completion
-  - name: In progress
+  - severitylevel: In progress
     fileNames:
       - inprogress
     token: $support-info
@@ -91,7 +126,7 @@ medium:
       replaced by ‘checkmark’ or ‘warning’ icon when the status of the job
       changes)
     usage: unfinished, running processes
-  - name: Incomplete
+  - severitylevel: Incomplete
     fileNames:
       - incomplete
     token: $support-info
@@ -99,7 +134,7 @@ medium:
       Indicates a stepped process has begun but is not yet finished (icon
       appears in Carbon’s Progress Indicator component)
     usage: incomplete tasks
-  - name: Not started
+  - severitylevel: Not started
     fileNames:
       - circle-dash
     token: $support-info
@@ -107,132 +142,112 @@ medium:
       Indicates that a job or step (in Carbon’s Progress Indicator) has not yet
       been started
     usage: upstarted tasks or disabled processes
-  - name: Pending
+  - severitylevel: Pending
     fileNames:
       - pending-filled
-      - pending-outline
     token: Gray 60, Gray 50
     description:
       Indicates a job has started but can not be scheduled due to insufficient
       resources
     usage: indefinite holds
 low:
-  - name: Unknown
+  - severitylevel: Unknown
     token: Gray 60, Gray 50
     description: Indicates that the status of an object is unknown
     usage: unknown, undefined status
     fileNames:
       - unknown-filled
-      - unknown-outline
-  - name: Help
-    token: Gray 60, Gray 50
-    description: Indicates additional support or FAQ content is available
-    usage: help, guidance, exceptions
-    fileNames:
-      - help-filled
-      - help-outline
-  - name: Information
-    token: $support-info
-    description: Indicates additional (non-essential) information is available
-    usage: additional information, exceptions
-    fileNames:
-      - information-circle-filled
-      - information-circle-outline
-  - name: Information alt
+  - severitylevel: Information alt
     token: $support-info
     description: Carries the same meaning as ‘Information’
     fileNames:
       - information-square-filled
-      - information-square-outline
 glyph:
-  - name: Failure
-    token: $support-error
+  - statusname: Failed
+    token: $status-red
     description:
       Indicates a severe process failure or error that needs immediate attention
     usage:
       critical failures, emergencies urgent alerts, deprecation and cancellation
     fileNames:
       - failure
-  - name: Critical severity
-    token: $support-error
+  - statusname: Critical
+    token: $status-red
     description:
       Indicates critical severity threat, critical severity object (like an IP),
-      or critical  risk of a data breach; based on a 1–10 scale
+      or critical risk of a data breach; based on a 1–10 scale
     usage: critical (10) threat, critical risk, critical severity warnings
     fileNames:
       - critical-severity
-  - name: High severity
-    token: $support-error
+  - statusname: High
+    token: $status-red
     description:
       Indicates high severity threat, high severity object (like an IP), or high
       risk of a data breach; based on a 1–10 scale
     usage: high threat (7–9), high risk, high severity warnings
     fileNames:
       - high-severity
-  - name: Medium severity
-    token: Orange 40/Orange 60 stroke, Orange 40
+  - statusname: Medium
+    token: $status-orange
+    secondarytoken: $status-orange-outline
     description:
       Indicates medium severity threat, medium severity object (like an IP), or
       medium risk of a data breach; based on a 1–10 scale
     usage: medium threat (4–6), medium risk, medium severity warnings
     fileNames:
       - medium-severity
-  - name: Low severity
-    token: $support-warning/Yellow 60 stroke, $support-warning
+  - statusname: Low
+    token: $status-yellow
+    secondarytoken: $status-yellow-outline
     description:
       Indicates low severity threat, low severity object (like an IP), or low
       risk of a data breach; based on a 1–10 scale
     usage: low threat (0–3), low risk, low severity warnings
     fileNames:
       - low-severity
-  - name: Caution
-    token: $support-warning/Yellow 60 stroke, $support-warning
+  - statusname: Cautious
+    token: $status-yellow
+    secondarytoken: $status-yellow-outline
     description:
       When not using the Security risk/severity scale, this can be used to
-      indicate  the existence of a non-service affecting fault condition
+      indicate the existence of a non-service affecting fault condition
     usage: minor caution, prevention, instability
     fileNames:
       - caution
-  - name: Undefined
-    token: Purple 60, Purple 50
+  - statusname: Undefined
+    token: $status-purple
     description:
       Indicates a value that is outside of an acceptable range or formatted
       incorrectly
     usage: experimental work, outliers
     fileNames:
       - undefined
-  - name: Stable
-    token: $support-success
+  - statusname: Stable
+    token: $status-green
     description:
       Indicates stability or the clearing of one or more reported alarms;
       implies no issues are present
     usage: success, completion, stability, active states
     fileNames:
       - circle-fill
-  - name: New
-    token: $support-info
-    description: Indicates a new components, features or pieces of content
-    usage: new items, additional information
-    fileNames:
-      - new
-  - name: Information
-    token: $support-info
+  - statusname: Informative
+    token: $status-blue
     description:
       Indicates additional information is available (can be used adaptively for
       statuses not taken into account by this table)
     usage: additional information, wild card
     fileNames:
       - square-fill
-  - name: Incomplete
-    token: $support-info
+  - statusname: Incomplete
+    token: $status-blue
     description:
       Indicates a process has started but not finished running or a user task is
       unfinished
     usage: unfinished, running processes
     fileNames:
       - incomplete
-  - name: Draft
-    token: Gray 60, Gray 50
+  - statusname: Draft
+    token: $status-gray
     description:
       Indicates that a job has not been started, draft status of a job or a
       disabled process
