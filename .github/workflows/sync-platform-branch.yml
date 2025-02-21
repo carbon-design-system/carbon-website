@@ -11,22 +11,22 @@ on:
     #       │ │ │ │ │
     #       │ │ │ │ │
     - cron: 0 6 * * 5
-    
+
   # Enable running this workflow manually from the Actions tab
   workflow_dispatch: # Allow for running this manually.
-          
+
 jobs:
   sync-branches:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
-        
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
       - name: Create PR branch 🤖
         run: |
           git branch carbon-platform-sync
           git push origin carbon-platform-sync
-          
+
       - name: Create Pull Request
         uses: actions/github-script@v6
         with:
