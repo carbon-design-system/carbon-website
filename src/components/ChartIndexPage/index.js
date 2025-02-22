@@ -116,7 +116,7 @@ function ChartIndexPage() {
         selected.filter((checkedOption) => checkedOption !== selectedFilter)
       );
 
-      // Add checked filter option(s) to setSeleted state.
+      // Add checked filter option(s) to setSelected state.
     } else {
       setSelected([...selected, selectedFilter]);
     }
