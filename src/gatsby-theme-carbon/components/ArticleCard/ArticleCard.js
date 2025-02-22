@@ -154,7 +154,7 @@ ArticleCard.propTypes = {
   href: PropTypes.string,
 
   /**
-   * Reat time of article
+   * Read time of article
    */
   readTime: PropTypes.string,
 
