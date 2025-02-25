@@ -1,7 +1,7 @@
 name: deploy preview
 
 on:
-  pull_request_target:
+  pull_request:
     branches:
       - main
 
@@ -31,7 +31,7 @@ jobs:
           HIDDEN_REFERENCE: '${{env.HIDDEN_REFERENCE}}'
         with:
           script: |
-            const { NETLIFY_PREVIEW_URL, NETLIFY_LOGS_URL, HIDDEN_REFERENCE } = process.env;
+            const { HIDDEN_REFERENCE } = process.env;
 
             // Get the existing comments
             const {data: comments} = await github.rest.issues.listComments({
@@ -150,10 +150,11 @@ jobs:
 
             // Craft the comment body
             const runURL = "${{github.server_url}}/${{github.repository}}/actions/runs/${{github.run_id}}";
+            const commit = "${{ github.sha }}";
             const comment = `${HIDDEN_REFERENCE} 
               ### Deploy preview 
               
-              ${NETLIFY_PREVIEW_URL ? "✅ Successfully published" : "❌ Failed to publish"} at [${NETLIFY_PREVIEW_URL}](${NETLIFY_PREVIEW_URL}) with commit ${ github.sha }
+              ${NETLIFY_PREVIEW_URL ? "✅ Successfully published" : "❌ Failed to publish"} at [${NETLIFY_PREVIEW_URL}](${NETLIFY_PREVIEW_URL}) with commit ${commit}
 
               <details><summary>Logs</summary>
               <p>
