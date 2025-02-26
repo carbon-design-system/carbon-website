@@ -135,7 +135,7 @@ const Knob = ({
   const componentPropsRegex = new RegExp(pattern);
   const globalComponentPropsRegex = new RegExp(componentPropsRegex.source, 'g');
 
-  // stores whatever props are provided in the inital code
+  // stores whatever props are provided in the initial code
   const defaultKnobProps = useDefaultProps(
     initialCode,
     componentPropsRegex
