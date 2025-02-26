@@ -2043,6 +2043,75 @@ const colorTokens = {
       },
     },
   },
+  'content-switcher-background': {
+    '$content-switcher-background': {
+      role: ['Low contrast background color'],
+      value: {
+        white: {
+          name: 'Gray 20',
+          hex: '#e0e0e0',
+        },
+        g10: {
+          name: 'Gray 20',
+          hex: '#e0e0e0',
+        },
+        g90: {
+          name: 'Transparent',
+          hex: '',
+        },
+        g100: {
+          name: 'Transparent',
+          hex: '',
+        },
+      },
+    },
+  'content-switcher-background-hover': {
+    '$content-switcher-background-hover': {
+      role: ['Low contrast hover color for $content-switcher-background'],
+      value: {
+        white: {
+          name: 'Gray 20 hover',
+          hex: '#d1d1d1',
+        },
+        g10: {
+          name: 'Gray 20 hover',
+          hex: '#d1d1d1',
+        },
+        g90: {
+          name: 'Gray 50, 12%',
+          hex: '#8d8d8d @ 12%',
+        },
+        g100: {
+          name: 'Gray 50, 12%',
+          hex: '#8d8d8d @ 12%',
+        },
+      },
+    },
+  },
+  'content-switcher-selected': {
+    '$content-switcher-selected': {
+      role: ['Low contrast selected color'],
+      value: {
+        white: {
+          name: 'White',
+          hex: '#ffffff',
+        },
+        g10: {
+          name: 'White',
+          hex: '#ffffff',
+        },
+        g90: {
+          name: 'Gray 50, 24%',
+          hex: '#8d8d8d @ 24%',
+        },
+        g100: {
+          name: 'Gray 50, 24%',
+          hex: '#8d8d8d @ 24%',
+        },
+      },
+    },
+  },
+},
   'support-tokens': {
     '$support-error': {
       role: ['Error', 'Invalid state'],
