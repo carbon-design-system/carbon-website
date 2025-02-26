@@ -2043,7 +2043,7 @@ const colorTokens = {
       },
     },
   },
-  'content-switcher-background': {
+  'content-switcher-tokens': {
     '$content-switcher-background': {
       role: ['Low contrast background color'],
       value: {
@@ -2065,7 +2065,6 @@ const colorTokens = {
         },
       },
     },
-  'content-switcher-background-hover': {
     '$content-switcher-background-hover': {
       role: ['Low contrast hover color for $content-switcher-background'],
       value: {
@@ -2087,8 +2086,6 @@ const colorTokens = {
         },
       },
     },
-  },
-  'content-switcher-selected': {
     '$content-switcher-selected': {
       role: ['Low contrast selected color'],
       value: {
@@ -2111,7 +2108,6 @@ const colorTokens = {
       },
     },
   },
-},
   'support-tokens': {
     '$support-error': {
       role: ['Error', 'Invalid state'],
