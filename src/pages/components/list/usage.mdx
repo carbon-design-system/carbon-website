@@ -19,7 +19,11 @@ number or a bullet.
 
 <AnchorLink>Live demo</AnchorLink>
 <AnchorLink>Overview</AnchorLink>
+<AnchorLink>Formatting</AnchorLink>
 <AnchorLink>Content</AnchorLink>
+<AnchorLink>Unordered list</AnchorLink>
+<AnchorLink>Ordered list</AnchorLink>
+<AnchorLink>Related</AnchorLink>
 <AnchorLink>Feedback</AnchorLink>
 
 </AnchorLinks>
@@ -57,46 +61,264 @@ number or a bullet.
 
 ## Overview
 
-Lists consist of related content grouped together and organized vertically. Use
-bulleted lists when you don't need to convey a specific order for list items.
-Use numbered lists when you need to convey a priority, hierarchy, or sequence
-between list items.
+The list component displays related content in a structured and scannable
+format. It helps users easily navigate and understand grouped information. Lists
+can be styled as unordered (bulleted) or ordered (numbered) based on their
+content hierarchy and importance. They are commonly used for navigation menus,
+data presentations, and form-related elements
+
+<Row>
+<Column colLg={12}>
+
+![Example of the list component in a UI](images/list-usage-overview-in-context.png)
+
+</Column>
+</Row>
+
+<Caption>Example of the list component in a UI</Caption>
+
+### When to use
+
+- To display a simple, related set of items.
+- To provide structure and clarity in the content.
+
+### When not to use
+
+- Avoid using a list for complex, structured content, or when advanced features
+  like sorting, filtering, or selection are required—consider using
+  [data table](/components/data-table/usage/) instead.
+- If a basic hierarchy with tables or dividers is required, use the
+  [structured list](/components/structured-list/usage/) or
+  [contained list](/components/contained-list/usage/) components instead.
 
 ### Variants
 
-| Variant           | Purpose                                                                            |
-| ----------------- | ---------------------------------------------------------------------------------- |
-| _Unordered lists_ | To present content of equal status or value.                                       |
-| _Ordered lists_   | Imply sequence and order, and are commonly used when giving a set of instructions. |
+| Variant                           | Purpose                                                                     |
+| --------------------------------- | --------------------------------------------------------------------------- |
+| [Unordered list](#unordered-list) | Used to display items of equal importance without a specific order.         |
+| [Ordered list](#ordered-list)     | Use to indicate a clear sequence or hierarchy, often used for instructions. |
 
-## Content
+## Formatting
 
-#### Length
+### Anatomy
 
-Generally, lists should be used to present simple pieces of information. For
-more complex sets of data, consider using a
-[data table](/components/data-table/usage).
-
-#### Order
-
-Arrange list items in a logical way. For example, if the list is about resource
-use, the default order might be highest resource use to lowest. Grouping items
-in categories into smaller, more specific lists might be more meaningful in some
-contexts. Alternatively, organize in alphabetical or numeric order.
-
-#### Text
-
-Use list items that are grammatically parallel. For example, do not mix passive
-voice with active voice or declarative sentences (statements) with imperative
-sentences (direct command).
+Unordered and ordered lists are both comprised of a marker and a list item.
 
 <Row>
 <Column colLg={8}>
 
-![Example of a list](images/list-usage-1.png)
+![Anatomy of unordered and ordered list variants](images/list-usage-anatomy.png)
 
 </Column>
 </Row>
+
+<Caption>Anatomy of unordered and ordered list variants</Caption>
+
+<Row>
+<Column colSm={2} colMd={4} colLg={4}>
+
+#### 1. Unordered list
+
+A. Marker (level 1) <br /> B. Marker (level 2) <br /> C. List item
+(level 1)<br /> D. List item (level 2) <br />
+
+</Column>
+<Column colSm={2} colMd={4} colLg={4}>
+
+#### 2. Ordered list
+
+A. Marker (level 1) <br /> B. Marker (level 2) <br /> C. List item
+(level 1)<br /> D. List item (level 2) <br />
+
+</Column>
+</Row>
+
+### Sizing
+
+The list is available in two type sizes: **productive** and **expressive**. The
+productive list utilizes `$body-01`, while the expressive list uses `$body-02`.
+The productive list is best suited for functional, task-oriented experiences,
+whereas the expressive list is designed for more visual, engaging experiences.
+In most product designs, the productive list will likely be the preferred
+choice.
+
+<Row>
+<Column colLg={8}>
+
+![Productive and expressive type sizes for list](images/list-usage-sizing.png)
+
+</Column>
+</Row>
+
+<Caption>Productive and expressive type sizes for list</Caption>
+
+### Alignment
+
+Lists are typically presented in a vertical format to maintain readability and
+clarity. However, when dealing with a large number of list items, multiple
+columns can be used to optimize space.
+
+<Row>
+<Column colLg={12}>
+
+![Example shows the list with a large number of list items](images/list-usage-alignment-content.png)
+
+</Column>
+</Row>
+
+<Caption>Example shows the list with a large number of list items</Caption>
+
+<DoDontRow>
+  <DoDont type="do" caption="Do align the list vertically for clarity.">
+
+![Do align the list vertically for clarity.](images/list-usage-alignment-do.png)
+
+  </DoDont>
+  <DoDont type="dont" caption="Do not align the list horizontally, as it disrupts readability.">
+
+![Do not align the list horizontally, as it disrupts readability.](images/list-usage-alignment-dont.png)
+
+  </DoDont>
+</DoDontRow>
+
+For ordered lists with two-digit (10+) or more digit items, align numbers either
+left or right to maintain a clear structure without misalignment.
+
+<Row>
+<Column colLg={8}>
+
+![Number alignment in ordered lists for two or more digit items.](images/list-usage-ordered-alignment-number.png)
+
+</Column>
+</Row>
+
+<Caption>
+  Number alignment in ordered lists for two or more digit items.
+</Caption>
+
+#### Nested items
+
+Lists can include nested items to indicate hierarchy or subcategories, with
+indentation distinguishing each level.
+
+<Row>
+<Column colLg={8}>
+
+![Unordered and ordered lists with nested items](images/list-usage-alignment-nested.png)
+
+</Column>
+</Row>
+
+<Caption>Unordered and ordered lists with nested items</Caption>
+
+### Placement
+
+List items should be concise, aligning with grid columns to maintain a
+structured layout. Avoid overly long sentences; if content exceeds the available
+space, it should wrap to multiple lines rather than forcing excessive width.
+
+<DoDontRow>
+  <DoDont type="do" caption="Do align list markers flush with the grid.">
+
+![Do align the list vertically for clarity.](images/list-usage-placement-do.png)
+
+  </DoDont>
+  <DoDont type="dont" caption="Do not let list markers hang into the grid gutters.">
+
+![Do not let list markers hang into the grid gutters.](images/list-usage-placement-dont.png)
+
+  </DoDont>
+</DoDontRow>
+## Content
+
+### Main elements
+
+#### List item
+
+- Represents an individual entry within a list.
+- Can contain text, links, or other inline elements.
+- Supports multi-line wrapping for longer content while maintaining alignment.
+- Lists should present simple pieces of information; for complex data, consider
+  using a [data table](/components/data-table/usage) instead.
+- Level 1 list items define the main structure, while Level 2 (nested) list
+  items provide hierarchy or subcategories.
+- Arrange ordered list items logically, such as ranking by importance, highest
+  to lowest values, or in alphabetical/numeric order.
+- Ensure list items are grammatically parallel by maintaining consistent
+  sentence structures (e.g., avoid mixing passive and active voice).
+
+#### Marker
+
+Markers should be top-aligned with the list item for clarity and consistency.
+
+Unordered lists:
+
+- Level 1 items are marked with en dashes ("-").
+- Level 2 items are marked with squares ("▪").
+
+Ordered lists:
+
+- Level 1 items are numbered ("1, 2, 3...").
+- Level 2 items are marked with letters ("a, b, c...").
+
+### Overflow content
+
+Text in a list should wrap below the counter/marker, keeping it top-aligned with
+the list item to ensure readability. Truncation should be avoided and text
+should instead wrap to multiple lines.
+
+<Row>
+<Column colLg={12}>
+
+![Text wrapping for unordered and ordered lists](images/list-usage-overflow.png)
+
+</Column>
+</Row>
+
+<Caption>Text wrapping for unordered and ordered lists</Caption>
+
+### Further guidance
+
+For further content guidance, see Carbon's
+[Content guidelines](https://carbondesignsystem.com/guidelines/content/overview/).
+
+## Unordered list
+
+Unordered list is a collection of items presented without a specific order. Each
+list item begins with a en dash ("-"), making it ideal for non-sequential
+content.
+
+<Row>
+<Column colLg={12}>
+
+![Example of the unordered list variant in a UI](images/list-usage-unordered-in-context.png)
+
+</Column>
+</Row>
+
+<Caption>Example of the unordered list variant in a UI</Caption>
+
+## Ordered list
+
+Ordered list is a collection of items presented without a specific order. List
+item begins with a number ("1, 2, 3..."), indicating its position, making it
+suitable for sequential content.
+
+<Row>
+<Column colLg={12}>
+
+![Example of the ordered list variant in a UI](images/list-usage-ordered-in-context.png)
+
+</Column>
+</Row>
+
+<Caption>Example of the ordered list variant in a UI</Caption>
+
+## Related
+
+- [Contained list](/components/contained-list/usage/)
+- [Data table](/components/data-table/usage/)
+- [Structured list](/components/Structured-list/usage/)
 
 ## Feedback
 
