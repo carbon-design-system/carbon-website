@@ -19,7 +19,7 @@ app for a production environment.
 
 <AnchorLink>Fork, clone and branch</AnchorLink>
 <AnchorLink>Linting</AnchorLink>
-<AnchorLink>Deplying to gh-pages</AnchorLink>
+<AnchorLink>Deploying to gh-pages</AnchorLink>
 <AnchorLink>Using the CDN</AnchorLink>
 <AnchorLink>Push to GitHub</AnchorLink>
 <AnchorLink>Step 5 complete branch</AnchorLink>
@@ -166,8 +166,8 @@ It is recommended that you use a more extensive rule set for stylelint. This can
 help keep code consistent and auto fix many potential issues.
 
 If for instance you were to adopt the following configuration it would check for
-a number of important issues such as accessiblity, right to left, and even
-consistency patterns like nesting depty and CSS class selector pattern.
+a number of important issues such as accessibility, right to left, and even
+consistency patterns like nesting depth and CSS class selector pattern.
 
 Even better the small number of issues that it raises, regarding use of logical
 properties, can be auto fixed bringing your CSS up to date.
@@ -218,7 +218,7 @@ Running `pnpm run lint:style --fix` will fix the issues identified.
 ### ESLint & Prettier
 
 In addition to linting styles, it is recommended that you also check your script
-for dev time errors and consitency.
+for dev time errors and consistency.
 
 For more information on ESLint [visit eslint.org](https://eslint.org/).
 
@@ -288,7 +288,7 @@ Two more scripts for `package.json` to run eslint and prettier.
 Running these scripts will, not at the time of writing highlight any ESLint
 issues. If it does in future it may be possible to auto fix them.
 
-It will almost certainly refomat the code compared to your chosen editors
+It will almost certainly reformat the code compared to your chosen editors
 preferences.
 
 ### Spell checkers
@@ -364,7 +364,7 @@ will choose `Add: "illo" to config:...` from the list of options.
 
 If you view the `cspell.json` file you will find it has been added.
 
-## Deplying to gh-pages
+## Deploying to gh-pages
 
 GitHub packages can use a branch called `gh-pages` to deploy to. In order to do
 this a couple of important changes are needed first. Without completing these
@@ -372,7 +372,7 @@ steps correctly you will either end up attempting to deploy somewhere you do not
 have permission to do so, or deploy a page that cannot find any of its
 dependencies.
 
-Update and/or add `name` and `homepage` to `pacakge.json`.
+Update and/or add `name` and `homepage` to `package.json`.
 
 ```json path=package.json
 "name": "carbon-tutorial-web-components",
@@ -393,7 +393,7 @@ Next to run the deployment we will add two scripts to `package.json`
 "deploy": "gh-pages -d dist",
 ```
 
-Way back in step 1 you creted a fork of the tutorial repo. It is this URL you
+Way back in step 1 you created a fork of the tutorial repo. It is this URL you
 use for the projects homepage.
 
 Next you will need a `vite.config.js` file to ensure both `index.html` and
@@ -418,7 +418,7 @@ export default {
 };
 ```
 
-If part of an organisation use `base: '/'` instead.
+If part of an organization use `base: '/'` instead.
 
 After running the deploy script you will have a publicly visible page. You can
 locate the page by browsing to the settings page of your GitHub repository. At
@@ -450,10 +450,10 @@ against the guidance above and the latest Vite documentation.
 #### Deploy
 
 Deploy your application with a base value of `/`. If the page does not look
-correctc, e.g. not styled or missing icons, then you need to determine what the
+correct, e.g. not styled or missing icons, then you need to determine what the
 difference is between the asset location and your base.
 
-Open the deveveloper tools and view the console. Any missing assets should cause
+Open the developer tools and view the console. Any missing assets should cause
 messages such as the following to be displayed.
 
 ![Asset not found 404](./images/step-5/asset-404.png)

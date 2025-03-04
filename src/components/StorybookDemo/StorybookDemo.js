@@ -43,7 +43,7 @@ const themeItems = [
  * `wide` prop to span the full width, and `tall` for larger components. If you would like
  * to use the theme selector, please use the Carbon React Storybook url,
  * https://react.carbondesignsystem.com/?path=/story/components-button--default&globals=theme:g10
- *  as an example. The `themeSelctor` appends `&globals=theme:g10` to the url.
+ *  as an example. The `themeSelector` appends `&globals=theme:g10` to the url.
  */
 const StorybookDemo = ({ tall, themeSelector, wide, url, variants }) => {
   const columnWidth = wide ? 12 : 8;
