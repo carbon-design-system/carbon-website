@@ -22,7 +22,7 @@ jobs:
             // admin or write permissions to this repo.
             const author = context.payload.pull_request.user.login;
             core.info(`Getting collaborator permission level for pr author ${author} on ${context.repo.owner} ${context.repo.repo}`);
-            const response = github.rest.repos.getCollaboratorPermissionLevel({
+            const response = await github.rest.repos.getCollaboratorPermissionLevel({
               owner: context.repo.owner,
               repo: context.repo.repo,
               username: author
