@@ -1,16 +1,9 @@
 name: deploy preview
 
 on:
-  pull_request:
+  pull_request_target:
     branches:
       - main
-
-# permissions:
-#   pull-requests: write
-
-env:
-  # A unique identifier used to find existing deploy preview comments on PRs
-  HIDDEN_REFERENCE: '<!--CarbonWebsiteDeployPreviewComment-DoNotDelete--> '
 
 jobs:
   netlify:
@@ -20,46 +13,38 @@ jobs:
       name: Preview
       url: ${{ steps.url_preview.outputs.NETLIFY_PREVIEW_URL }}
     steps:
+      - name: Get user permissions
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
+        with:
+          script: |
+            // This workflow installs, builds, and deploys untrusted (pr) code. To prevent
+            // security issues, this workflow will only run if the user (pr author) has
+            // admin or write permissions to this repo.
+            console.log(context);
+            console.log(context.pull_request.user);
+            core.info(`Getting collaborator permission level for ${context.actor} on ${context.repo.owner} ${context.repo.repo}`);
+            const { role_name } = github.rest.repos.getCollaboratorPermissionLevel({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              username: github.actor
+            });
+            
+            if(role_name === "admin" || role_name === "write") {
+              core.info(`User has ${role_name} permission`);
+              return;
+            } else {
+              core.setFailed('User does not have sufficient permissions for deploy previews, pull down and build locally to review this PR.');
+              return;
+            }
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
       - name: Use Node.js 20.x
         uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
         with:
           node-version: 20.x
       - name: Install packages
         run: yarn install --immutable --network-timeout 300000
-      - uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
-        id: filter # do not use cache if image files have been changed
-        with:
-          filters: |
-            images:
-              - 'src/**/*.jpg'
-              - 'src/**/*.png'
-              - 'src/**/*.svg'
-      - name: Gatsby Cache Folder
-        if: ${{ steps.filter.outputs.images == 'false' }}
-        uses: actions/cache@1bd1e32a3bdc45362d1e726936510720a7c30a57 # v4.2.0
-        id: gatsby-cache-folder
-        with:
-          path: .cache
-          key: ${{ runner.os }}-cache-gatsby
-          restore-keys: |
-            ${{ runner.os }}-cache-gatsby
-      - name: Gatsby Public Folder
-        if: ${{ steps.filter.outputs.images == 'false' }}
-        uses: actions/cache@1bd1e32a3bdc45362d1e726936510720a7c30a57 # v4.2.0
-        id: gatsby-public-folder
-        with:
-          path: public/
-          key: ${{ runner.os }}-public-gatsby
-          restore-keys: |
-            ${{ runner.os }}-public-gatsby
-      - name: Build site with cache
-        if: ${{ steps.filter.outputs.images == 'false' }}
-        run: yarn build
-        env:
-          GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES: true
-          NODE_ENV: production
-          CI: true
       - name: Build site without cache
         if: ${{ steps.filter.outputs.images == 'true' }}
         run: yarn build:clean
