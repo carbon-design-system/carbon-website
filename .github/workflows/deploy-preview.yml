@@ -20,13 +20,11 @@ jobs:
             // This workflow installs, builds, and deploys untrusted (pr) code. To prevent
             // security issues, this workflow will only run if the user (pr author) has
             // admin or write permissions to this repo.
-            console.log(context);
-            console.log(context.pull_request.user);
-            core.info(`Getting collaborator permission level for ${context.actor} on ${context.repo.owner} ${context.repo.repo}`);
+            core.info(`Getting collaborator permission level for pr author ${context.payload.sender.login} on ${context.repo.owner} ${context.repo.repo}`);
             const { role_name } = github.rest.repos.getCollaboratorPermissionLevel({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              username: github.actor
+              username: context.payload.sender.login
             });
             
             if(role_name === "admin" || role_name === "write") {
