@@ -21,6 +21,7 @@ jobs:
             // security issues, this workflow will only run if the user (pr author) has
             // admin or write permissions to this repo.
             console.log(context);
+            console.log(context.pull_request.user);
             core.info(`Getting collaborator permission level for ${context.actor} on ${context.repo.owner} ${context.repo.repo}`);
             const { role_name } = github.rest.repos.getCollaboratorPermissionLevel({
               owner: context.repo.owner,
