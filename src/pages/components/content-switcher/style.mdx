@@ -27,16 +27,18 @@ structure, and size.
 
 Content switchers have two main enabled states: **unselected** and **selected**.
 
-| Type       | Element    | Property         | Color token               |
-| ---------- | ---------- | ---------------- | ------------------------- |
-| Unselected | Container  | background-color | transparent               |
-|            | Label text | text-color       | `$text-secondary`         |
-|            | Icon       | svg              | `$icon-primary`           |
-|            | Border     | border           | `$border-inverse`         |
-|            | Divider    | border           | `$border-subtle` \*       |
-| Selected   | Container  | background-color | `$layer-selected-inverse` |
-|            | Label text | text-color       | `$text-inverse`           |
-|            | Icon       | svg              | `$icon-inverse`           |
+### High contrast color
+
+| Type       | Element   | Property         | Color token               |
+| ---------- | --------- | ---------------- | ------------------------- |
+| Unselected | Container | background-color | transparent               |
+|            | Text      | text-color       | `$text-secondary`         |
+|            | Icon      | svg              | `$icon-primary`           |
+|            | Border    | border           | `$border-inverse`         |
+|            | Divider   | border           | `$border-subtle` \*       |
+| Selected   | Container | background-color | `$layer-selected-inverse` |
+|            | Text      | text-color       | `$text-inverse`           |
+|            | Icon      | svg              | `$icon-inverse`           |
 
 <Caption fullWidth>
   \* Denotes a contextual color token that will change values based on the layer
@@ -50,13 +52,13 @@ Content switchers have two main enabled states: **unselected** and **selected**.
 
 <Tab label="Default">
 
-![Example of default content switcher enabled state](images/content-switcher-style-color-text.png)
+![Example of default content switcher high contrast color](images/content-switcher-style-high-contrast-text-color.png)
 
 </Tab>
 
 <Tab label="Icon">
 
-![Example of icon content switcher enabled state](images/content-switcher-style-color-icon.png)
+![Example of icon content switcher high contrast color](images/content-switcher-style-high-contrast-icon-color.png)
 
 </Tab>
 
@@ -65,10 +67,11 @@ Content switchers have two main enabled states: **unselected** and **selected**.
 </Column>
 </Row>
 
-### Interactive states
+<br />
 
-Content switcher has three interactive states—**hover**, **focus**, and
-**disabled**. Hover states only apply to the unselected state.
+#### High contrast interactive state color
+
+<br />
 
 | Type       | State    | Element    | Property         | Color token                |
 | ---------- | -------- | ---------- | ---------------- | -------------------------- |
@@ -105,13 +108,98 @@ Content switcher has three interactive states—**hover**, **focus**, and
 
 <Tab label="Default">
 
-![Example of default content switcher interactive states](images/content-switcher-style-interactive-color-text.png)
+![Example of default content switcher high contrast interactive state color](images/content-switcher-style-high-contrast-text-interactive-color.png)
 
 </Tab>
 
 <Tab label="Icon">
 
-![Example of icon content switcher interactive states](images/content-switcher-style-interactive-color-icon.png)
+![Example of icon content switcher high contrast interactive state color](images/content-switcher-style-high-contrast-icon-interactive-color.png)
+
+</Tab>
+
+</Tabs>
+
+</Column>
+</Row>
+
+### Low contrast color
+
+| Type       | Element   | Property         | Color token                  |
+| ---------- | --------- | ---------------- | ---------------------------- |
+| Unselected | Container | background-color | $content-switcher-background |
+|            | Text      | text-color       | `$text-secondary`            |
+|            | Icon      | svg              | `$icon-secondary`            |
+|            | Border    | border           | `$border-strong` \*          |
+|            | Divider   | border           | `$border-strong` \*          |
+| Selected   | Container | background-color | `$content-switcher-selected` |
+|            | Text      | text-color       | `$text-primary`              |
+|            | Icon      | svg              | `$icon-primary`              |
+
+\* Denotes a contextual color token that will change values based on the layer
+it is placed on.
+
+</Caption>
+
+<Row>
+<Column colLg={8}>
+
+<Tabs>
+
+<Tab label="Default">
+
+![Example of default content switcher low contrast color](images/content-switcher-style-low-contrast-text-color.png)
+
+</Tab>
+
+<Tab label="Icon">
+
+![Example of icon content switcher low contrast color](images/content-switcher-style-low-contrast-icon-color.png)
+
+</Tab>
+
+</Tabs>
+
+</Column>
+</Row>
+
+<br />
+
+#### Low contrast interactive state color
+
+<br />
+
+| Type       | State    | Element   | Property         | Color token                          |
+| ---------- | -------- | --------- | ---------------- | ------------------------------------ |
+| Unselected | Hover    | Container | background-color | `$content-switcher-background-hover` |
+|            |          | Text      | text-color       | `$text-primary`                      |
+|            |          | Icon      | svg              | `$icon-primary`                      |
+|            | Focus    | Border    | border           | `$focus`                             |
+|            | Disabled | Container | background-color | `$content-switcher-background`       |
+|            |          | Text      | text-color       | `$text-disabled`                     |
+|            |          | Icon      | text-color       | `$icon-disabled`                     |
+|            |          | Border    | border           | `$border-disabled`                   |
+|            |          | Divider   | border           | `$border-disabled`                   |
+| Selected   | Focus    | Container | border           | `$focus`                             |
+|            | Disabled | Container | background-color | `$content-switcher-selected`         |
+|            |          | Text      | text-color       | `$text-disabled`                     |
+|            |          | Icon      | svg              | `$icon-disabled`                     |
+|            |          | Border    | border           | `$border-disabled`                   |
+
+<Row>
+<Column colLg={8}>
+
+<Tabs>
+
+<Tab label="Default">
+
+![Example of default content switcher low contrast interactive state color](images/content-switcher-style-low-contrast-text-interactive-color.png)
+
+</Tab>
+
+<Tab label="Icon">
+
+![Example of icon content switcher low contrast interactive state color](images/content-switcher-style-low-contrast-icon-interactive-color.png)
 
 </Tab>
 
@@ -126,9 +214,19 @@ Content switcher label text should be set in sentence case, with only the first
 word in a phrase and any proper nouns capitalized. The label text should not
 exceed three words.
 
-| Element    | Font size (px/rem) | Font weight   | Type token         |
-| ---------- | ------------------ | ------------- | ------------------ |
-| Label text | 14 / 0.875         | Regular / 400 | `$body-compact-01` |
+### High contrast typography
+
+| Element          | Font size (px/rem) | Font weight   | Type token         |
+| ---------------- | ------------------ | ------------- | ------------------ |
+| Text: unselected | 14 / 0.875         | Regular / 400 | `$body-compact-01` |
+| Text: selected   | 14 / 0.875         | Regular / 400 | `$body-compact-01` |
+
+### Low contrast typography
+
+| Element          | Font size (px/rem) | Font weight    | Type token            |
+| ---------------- | ------------------ | -------------- | --------------------- |
+| Text: unselected | 14 / 0.875         | Regular / 400  | `$body-compact-01`    |
+| Text: selected   | 14 / 0.875         | SemiBold / 600 | `$heading-compact-01` |
 
 ## Structure
 
