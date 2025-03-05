@@ -22,21 +22,25 @@ jobs:
             // admin or write permissions to this repo.
             
             const author = context.payload.pull_request.user.login;
-            core.info(`Getting collaborator permission level for pr author ${author} on ${context.repo.owner} ${context.repo.repo}`);
+            core.info(`Getting the permission level for ${author} on the ${context.repo.owner}/${context.repo.repo} repo...`);
             
-            const { role_name } = await github.rest.repos.getCollaboratorPermissionLevel({
+            const response = await github.rest.repos.getCollaboratorPermissionLevel({
               owner: context.repo.owner,
               repo: context.repo.repo,
               username: author
             });
 
-            core.info(`${author} permission level is: ${role_name}`);
+            console.log(response);
+            console.log(response.role_name);
+            
+
+            core.info(`${author} permission level is: ${response.role_name}`);
             
             if(role_name === "admin" || role_name === "write") {
               core.info(`${author} has sufficient permissions for deploy previews!`);
               return;
             } else {
-              core.setFailed('${author} does not have sufficient permissions for deploy previews. Pull down and build locally to review this PR.');
+              core.setFailed(`${author} does not have sufficient permissions for deploy previews. Pull down and build locally to review this PR.`);
               return;
             }
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
