@@ -239,6 +239,66 @@ background
 
 ### Alignment
 
+Tabs can have two kinds of width alignment: **auto-width** or **grid awar**
+width. Contained tabs can use either of these alignments, but line tabs must
+always use the auto-width alignment.
+
+#### Auto-width alignment
+
+Auto-width alignment is the default behavior for both line tabs and contained
+tabs. Each tab will be a different size depending on the label's character count
+but will have consistent padding on each side of the label. The first label,
+selected by default, should align to the grid. Where the tabs end will vary and
+may not end on the grid.
+
+<Row>
+<Column colLg={12}>
+
+![Auto-width tabs](images/tab-usage-7.png)
+
+</Column>
+</Row>
+
+<Caption>Example of line tabs using auto-width alignment</Caption>
+
+#### Grid aware width alignment
+
+Instead of using the default auto-width behavior, contained tabs can have
+grid-aware alignment. The tabs span a set of columns as a group, with each tab
+equal in width. The first tab’s label should align with the first column you are
+using, with the last tab in the group always ending at a column’s edge. The tabs
+in between will flow accordingly and may or may not align with the grid, but
+they will always be the same size.
+
+Use the
+[2x grid](https://carbondesignsystem.com/elements/2x-grid/overview/#2x-grid-fundamentals)
+to drive visual rhythm by spacing content in multiples of two columns and
+aligning the beginning and ending of the tab elements with content below the
+tabs when possible. Depending on breakpoints, vertical tabs align to grid
+columns spanning 4 or 2 columns of the 16-column grid and connect to a tab panel
+that can be 8 or 12 columns wide. See
+[vertical tabs](https://carbondesignsystem.com/components/tabs/usage/#vertical-tabs)
+for more information on breakpoints and responsiveness.
+
+Use grid aligned contained tabs when:
+
+- When there are four tabs or less
+- When the tablist can fit on the 2x grid easily without crowding labels
+- Labels are short and concise
+- When other elements on the page can align to the tablist
+
+<Row>
+<Column colLg={12}>
+
+![Grid aware tabs](images/tab-usage-8.png)
+
+</Column>
+</Row>
+
+<Caption>Example of contained tabs using grid aware alignment</Caption>
+
+#### Alignment with tab labels
+
 Much like
 [buttons](https://www.carbondesignsystem.com/components/button/usage/#alignment),
 alignment of tabs depends on where they appear and whether or not they're
@@ -262,77 +322,14 @@ the same grid column.
   </DoDont>
 </DoDontRow>
 
-#### Auto-width
-
-With line tabs and contained tabs, auto-width is the default behavior. Each tab
-will be a different size depending on the label's character count but will have
-consistent padding on each side of the label. The first label, selected by
-default, should align to the grid. Where the tabs end will vary and may not end
-on the grid. If needed, you may also use a line to help balance tabs with other
-components on the page.
-
-<Row>
-<Column colLg={12}>
-
-![Autowidth tabs](images/tab-usage-7.png)
-
-</Column>
-</Row>
-
-<Caption>Example of auto-width line tabs using a rule</Caption>
-
-#### Aligning to grid columns
-
-Instead of using the default auto-width behavior, contained tabs also have the
-option to align to the grid. As a group, the tablist spans a set of columns with
-each tab being equal in size. The first tab’s label should align to the first
-column you are using with the last tab in the group always ending at a column’s
-edge. The tabs in between will flow accordingly and may or may not align to the
-grid but will always be the same size.
-
-Use the
-[2x grid](https://www.carbondesignsystem.com/elements/2x-grid/overview#2x-grid-fundamentals)
-to drive visual rhythm by spacing content in multiples of two columns and
-aligning the beginning and ending of the tab elements with content below the
-tabs when possible.
-
-Use grid aligned contained tabs when:
-
-- When there are 4 tabs or less
-- When the tablist can fit on the 2x grid easily without crowding labels
-- Labels are short and concise
-- When there are other elements on the page that can align to the tablist
-
-Depending on breakpoints, vertical tabs align to grid columns spanning 4 or 2
-columns of the 16-column grid and connect to a tab panel that can be 8 or 12
-columns wide. See [vertical tabs](#Vertical-tabs) for more information on
-breakpoints and responsiveness.
-
-<InlineNotification>
-
-**Note:** Grid aligned tabs are not currently implemented in the components.
-Updates for grid alignment are incoming.
-
-</InlineNotification>
-
-<Row>
-<Column colLg={12}>
-
-![Aligning to grid columns](images/tab-usage-8.png)
-
-</Column>
-</Row>
-
-<Caption>Example of contained tabs using the grid</Caption>
-
 #### Alignment within a component
 
-When using line tabs within a component (like a modal) the first label should
+When using line tabs within a component (like a modal), the first label should
 always align to the other content in the space. Do not use contained tabs. The
 edges of the line tab may also bleed to the edges of the space if needed
-depending on the container's margins. To add hierarchical clarity and balance
-the tabs with the other content, a line may be added from the end of the last
-tab to the edge of the content area.
+depending on the container's margins. A trailing rule may be added from the end
+of the last tab to the edge of the content area to add hierarchical clarity and
+balance the tabs with the other content.
 
 <Row>
 <Column colLg={8}>
@@ -464,6 +461,22 @@ section of the accessibility tab.
 
 For additional information, see the
 [Accessibility tab](https://carbondesignsystem.com/components/tabs/accessibility).
+
+### Responsive behavior
+
+In responsive situations, horizontal tabs should not wrap to multiple lines or
+stack on top of each other; instead, they should scroll horizontally. Vertical
+tabs do not scroll horizontally because of their vertical persistent structure
+and always stack.
+
+#### Breakpoints
+
+When using tabs that have grid aware width alignment, they should follow these
+responsive rules:
+
+- Max, XLG, and LG breakpoints: Use eight grid aware tabs or less.
+- MD and SM breakpoints: Grid aware tabs will automatically change to auto-width
+  alignment to reduce extra space on smaller screens.
 
 ## Line tabs
 
