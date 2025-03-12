@@ -5,9 +5,6 @@ on:
     branches:
       - main
 
-permissions:
-  pull-requests: write
-
 jobs:
   netlify:
     if: github.repository == 'carbon-design-system/carbon-website'
@@ -16,33 +13,45 @@ jobs:
       name: Preview
       url: ${{ steps.url_preview.outputs.NETLIFY_PREVIEW_URL }}
     steps:
+      - name: Get user permissions
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
+        with:
+          script: |
+            // This workflow installs, builds, and deploys untrusted (pr) code. To prevent
+            // security issues, this workflow will only run if the user (pr author) has
+            // admin or write permissions to this repo.
+            
+            const author = context.payload.pull_request.user.login;
+            core.info(`Getting the permission level for ${author} on the ${context.repo.owner}/${context.repo.repo} repo...`);
+            
+            const response = await github.rest.repos.getCollaboratorPermissionLevel({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              username: author
+            });
+
+            const role = response.data.role_name;
+            core.info(`${author} permission level is: ${role}`);
+            
+            if(role === "admin" || role === "write") {
+              core.info(`${author} has sufficient permissions for deploy previews!`);
+              return;
+            } else {
+              core.setFailed(`${author} does not have sufficient permissions for deploy previews. Pull down and build locally to review this PR.`);
+              return;
+            }
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
       - name: Use Node.js 20.x
         uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
         with:
           node-version: 20.x
       - name: Install packages
         run: yarn install --immutable --network-timeout 300000
-      - name: Gatsby Cache Folder
-        uses: actions/cache@1bd1e32a3bdc45362d1e726936510720a7c30a57 # v4.2.0
-        id: gatsby-cache-folder
-        with:
-          path: .cache
-          key: ${{ runner.os }}-cache-gatsby
-          restore-keys: |
-            ${{ runner.os }}-cache-gatsby
-      - name: Gatsby Public Folder
-        uses: actions/cache@1bd1e32a3bdc45362d1e726936510720a7c30a57 # v4.2.0
-        id: gatsby-public-folder
-        with:
-          path: public/
-          key: ${{ runner.os }}-public-gatsby
-          restore-keys: |
-            ${{ runner.os }}-public-gatsby
-      - name: Build site
-        run: yarn build
+      - name: Build site without cache
+        run: yarn build:clean
         env:
-          GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES: true
           NODE_ENV: production
           CI: true
       - name: Deploy to Netlify
@@ -53,57 +62,17 @@ jobs:
             --site=${{ secrets.NETLIFY_SITE_ID }} \
             --auth=${{ secrets.NETLIFY_AUTH_TOKEN }} \
             --alias=${{ github.event.number }} \
+            --message=${{ github.event.pull_request.issue_url }} \
             --json \
             > deploy_output.json
-      - name: Generate URL Preview
+      - name: Gather netlify deploy details
         id: url_preview
         run: |
           NETLIFY_PREVIEW_URL=$(jq -r '.deploy_url' deploy_output.json)
           echo "NETLIFY_PREVIEW_URL=$NETLIFY_PREVIEW_URL" >> "$GITHUB_OUTPUT"
-      - name: Comment URL Preview on PR
-        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
-        env:
-          NETLIFY_PREVIEW_URL:
-            ${{ steps.url_preview.outputs.NETLIFY_PREVIEW_URL }}
-        with:
-          script: |
-            const { NETLIFY_PREVIEW_URL } = process.env;
-
-            // Define a hidden reference we'll put in new comments and also use 
-            // to find existing comments
-            let hiddenReference = '<!--CarbonWebsiteDeployPreviewComment-DoNotDelete--> '  
-
-            // Get the existing comments
-            const {data: comments} = await github.rest.issues.listComments({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.payload.number,
-            })
-
-            // Find the existing deploy preview comment
-            const deployPreviewComment = comments.find(comment => comment.body.includes(hiddenReference))
-
-            // Craft the comment body
-            let comment = hiddenReference + "Deploy preview "
-            if (process.env.NETLIFY_PREVIEW_URL) {
-              comment = comment + "successfully published at <a href=\"" + NETLIFY_PREVIEW_URL + "\">" + NETLIFY_PREVIEW_URL + "</a> with commit (${{ github.sha }})"
-            } else {
-              comment = comment + "failed to publish"
-            }
-
-            // Create or update comment
-            if (deployPreviewComment) {
-              await github.rest.issues.updateComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                comment_id: deployPreviewComment.id,
-                body: comment
-              })
-            } else {
-              await github.rest.issues.createComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: context.payload.number,
-                body: comment
-              })
-            }
+          echo "$NETLIFY_PREVIEW_URL" >> $GITHUB_STEP_SUMMARY
+          NETLIFY_LOGS_URL=$(jq -r '.logs' deploy_output.json)
+          echo "NETLIFY_LOGS_URL=$NETLIFY_LOGS_URL" >> "$GITHUB_OUTPUT"
+          echo "$NETLIFY_LOGS_URL" >> $GITHUB_STEP_SUMMARY
+          echo "$(jq -c . < ./deploy_output.json)" >> $GITHUB_STEP_SUMMARY
+  
