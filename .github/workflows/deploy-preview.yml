@@ -1,16 +1,9 @@
 name: deploy preview
 
 on:
-  pull_request:
+  pull_request_target:
     branches:
       - main
-
-permissions:
-  pull-requests: write
-
-env:
-  # A unique identifier used to find existing deploy preview comments on PRs
-  HIDDEN_REFERENCE: '<!--CarbonWebsiteDeployPreviewComment-DoNotDelete--> '
 
 jobs:
   netlify:
@@ -20,88 +13,43 @@ jobs:
       name: Preview
       url: ${{ steps.url_preview.outputs.NETLIFY_PREVIEW_URL }}
     steps:
+      - name: Get user permissions
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
+        with:
+          script: |
+            // This workflow installs, builds, and deploys untrusted (pr) code. To prevent
+            // security issues, this workflow will only run if the user (pr author) has
+            // admin or write permissions to this repo.
+            
+            const author = context.payload.pull_request.user.login;
+            core.info(`Getting the permission level for ${author} on the ${context.repo.owner}/${context.repo.repo} repo...`);
+            
+            const response = await github.rest.repos.getCollaboratorPermissionLevel({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              username: author
+            });
+
+            const role = response.data.role_name;
+            core.info(`${author} permission level is: ${role}`);
+            
+            if(role === "admin" || role === "write") {
+              core.info(`${author} has sufficient permissions for deploy previews!`);
+              return;
+            } else {
+              core.setFailed(`${author} does not have sufficient permissions for deploy previews. Pull down and build locally to review this PR.`);
+              return;
+            }
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
       - name: Use Node.js 20.x
         uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
         with:
           node-version: 20.x
-      - name: Post in progress comment on PR
-        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
-        env:
-          HIDDEN_REFERENCE: '${{env.HIDDEN_REFERENCE}}'
-        with:
-          script: |
-            const { HIDDEN_REFERENCE } = process.env;
-
-            // Get the existing comments
-            const {data: comments} = await github.rest.issues.listComments({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.payload.number,
-            })
-
-            // Find the existing deploy preview comment
-            const deployPreviewComment = comments.find(comment => comment.body.includes(HIDDEN_REFERENCE))
-
-            // Craft the comment body
-            const runURL = "${{github.server_url}}/${{github.repository}}/actions/runs/${{github.run_id}}";
-            const comment = `${HIDDEN_REFERENCE} 
-              ### Deploy preview 
-              Publish [in progress](${runURL}) ⏳`;
-
-            // Create or update comment
-            if (deployPreviewComment) {
-              await github.rest.issues.updateComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                comment_id: deployPreviewComment.id,
-                body: comment
-              })
-            } else {
-              await github.rest.issues.createComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: context.payload.number,
-                body: comment
-              })
-            }
       - name: Install packages
         run: yarn install --immutable --network-timeout 300000
-      - uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
-        id: filter # do not use cache if image files have been changed
-        with:
-          filters: |
-            images:
-              - 'src/**/*.jpg'
-              - 'src/**/*.png'
-              - 'src/**/*.svg'
-      - name: Gatsby Cache Folder
-        if: ${{ steps.filter.outputs.images == 'false' }}
-        uses: actions/cache@1bd1e32a3bdc45362d1e726936510720a7c30a57 # v4.2.0
-        id: gatsby-cache-folder
-        with:
-          path: .cache
-          key: ${{ runner.os }}-cache-gatsby
-          restore-keys: |
-            ${{ runner.os }}-cache-gatsby
-      - name: Gatsby Public Folder
-        if: ${{ steps.filter.outputs.images == 'false' }}
-        uses: actions/cache@1bd1e32a3bdc45362d1e726936510720a7c30a57 # v4.2.0
-        id: gatsby-public-folder
-        with:
-          path: public/
-          key: ${{ runner.os }}-public-gatsby
-          restore-keys: |
-            ${{ runner.os }}-public-gatsby
-      - name: Build site with cache
-        if: ${{ steps.filter.outputs.images == 'false' }}
-        run: yarn build
-        env:
-          GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES: true
-          NODE_ENV: production
-          CI: true
       - name: Build site without cache
-        if: ${{ steps.filter.outputs.images == 'true' }}
         run: yarn build:clean
         env:
           NODE_ENV: production
@@ -117,70 +65,14 @@ jobs:
             --message=${{ github.event.pull_request.issue_url }} \
             --json \
             > deploy_output.json
-      - name: Add Netlify deploy output to job summary
-        run: echo "$(jq -c . < ./deploy_output.json)" >> $GITHUB_STEP_SUMMARY
       - name: Gather netlify deploy details
         id: url_preview
         run: |
           NETLIFY_PREVIEW_URL=$(jq -r '.deploy_url' deploy_output.json)
           echo "NETLIFY_PREVIEW_URL=$NETLIFY_PREVIEW_URL" >> "$GITHUB_OUTPUT"
+          echo "$NETLIFY_PREVIEW_URL" >> $GITHUB_STEP_SUMMARY
           NETLIFY_LOGS_URL=$(jq -r '.logs' deploy_output.json)
           echo "NETLIFY_LOGS_URL=$NETLIFY_LOGS_URL" >> "$GITHUB_OUTPUT"
-      - name: Post comment on PR
-        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
-        env:
-          HIDDEN_REFERENCE: '${{env.HIDDEN_REFERENCE}}'
-          NETLIFY_PREVIEW_URL:
-            ${{ steps.url_preview.outputs.NETLIFY_PREVIEW_URL }}
-          NETLIFY_LOGS_URL:
-            ${{ steps.url_preview.outputs.NETLIFY_LOGS_URL }}
-        with:
-          script: |
-            const { NETLIFY_PREVIEW_URL, NETLIFY_LOGS_URL, HIDDEN_REFERENCE } = process.env;
-
-            // Get the existing comments
-            const {data: comments} = await github.rest.issues.listComments({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.payload.number,
-            })
-
-            // Find the existing deploy preview comment
-            const deployPreviewComment = comments.find(comment => comment.body.includes(HIDDEN_REFERENCE))
-
-            // Craft the comment body
-            const runURL = "${{github.server_url}}/${{github.repository}}/actions/runs/${{github.run_id}}";
-            const commit = "${{ github.sha }}";
-            const comment = `${HIDDEN_REFERENCE} 
-              ### Deploy preview 
-              
-              ${NETLIFY_PREVIEW_URL ? "✅ Successfully published" : "❌ Failed to publish"} at [${NETLIFY_PREVIEW_URL}](${NETLIFY_PREVIEW_URL}) with commit ${commit}
-
-              <details><summary>Logs</summary>
-              <p>
-              
-              * [Build and deploy log](${runURL})
-              * [Netlify deploy details](${NETLIFY_LOGS_URL})
-              
-              ![Deploys by Netlify](https://www.netlify.com/v3/img/components/netlify-color-accent.svg)
-              
-              </p>
-              </details>
-              `;
-
-            // Create or update comment
-            if (deployPreviewComment) {
-              await github.rest.issues.updateComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                comment_id: deployPreviewComment.id,
-                body: comment
-              })
-            } else {
-              await github.rest.issues.createComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: context.payload.number,
-                body: comment
-              })
-            }
+          echo "$NETLIFY_LOGS_URL" >> $GITHUB_STEP_SUMMARY
+          echo "$(jq -c . < ./deploy_output.json)" >> $GITHUB_STEP_SUMMARY
+  

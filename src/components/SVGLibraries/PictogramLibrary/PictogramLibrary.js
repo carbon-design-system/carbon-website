@@ -54,7 +54,7 @@ const IconLibrary = () => {
     setPictogramComponents(pictogramArray);
   }, []);
 
-  const getFilteredPictorams = () => {
+  const getFilteredPictograms = () => {
     if (!searchInputValue) {
       return pictogramComponents;
     }
@@ -76,11 +76,11 @@ const IconLibrary = () => {
     );
   };
 
-  const filteredPictograms = getFilteredPictorams();
+  const filteredPictograms = getFilteredPictograms();
 
   const allCategories = Object.entries(
     groupBy(filteredPictograms, 'category')
-  ).sort(([catagoryA], [catagoryB]) => catagoryA > catagoryB);
+  ).sort(([categoryA], [categoryB]) => categoryA > categoryB);
 
   const filteredCategories =
     selectedCategory === 'All pictograms'
