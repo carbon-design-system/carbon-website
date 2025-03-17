@@ -21,14 +21,14 @@ const StatusIndicatorTable = ({ attention }) => (
       <StructuredListHead className="cds--grid">
         <StructuredListRow className="cds--row" head>
           <StructuredListCell
-            className={`cds--col-lg-4 cds--col-md-1 ${headerCell}`}
+            className={`cds--col-lg-1 cds--col-md-1 ${headerCell}`}
             head>
             Icon
           </StructuredListCell>
           <StructuredListCell
-            className={`cds--col-lg-2 cds--col-md-2 ${headerCell}`}
+            className={`cds--col-lg-1 cds--col-md-1 ${headerCell}`}
             head>
-            Name
+            Status name
           </StructuredListCell>
           <StructuredListCell
             className={`cds--col-lg-2 cds--col-md-2 ${headerCell}`}
