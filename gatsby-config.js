@@ -60,7 +60,7 @@ module.exports = {
           baseUrl: 'https://github.com/carbon-design-system/carbon-website',
           subDirectory: '',
         },
-        mediumAccount: 'carbondesign',
+        mediumAccount: ['carbondesign', 'design-ibm'],
         theme: {
           homepage: 'white',
         },
