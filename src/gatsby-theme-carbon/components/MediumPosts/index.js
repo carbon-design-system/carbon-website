@@ -22,31 +22,27 @@ const MediumPosts = ({ postLimit = 3, cardProps, ...rest }) => {
     }
   `);
 
-    const allPosts = data.allMediumFeed.edges.map(({ node }) => node);
-    const designIbmPost = ["https://medium.com/design-ibm/the-quest-for-usable-ai-e649b6cb9e9a?source=rss----9d530348b622---4"]
-    const filteredPosts = allPosts.reduce((acc, post) => {
-  if (post.link.includes('design-ibm')) {
-    // Only add the specific "design-ibm" post
-    if (designIbmPost.includes(post.link)) {
+  const allPosts = data.allMediumFeed.edges.map(({ node }) => node);
+  const designIbmPost = [
+    'https://medium.com/design-ibm/the-quest-for-usable-ai-e649b6cb9e9a?source=rss----9d530348b622---4',
+  ];
+  const filteredPosts = allPosts.reduce((acc, post) => {
+    if (post.link.includes('design-ibm')) {
+      // Only add the specific "design-ibm" post
+      if (designIbmPost.includes(post.link)) {
+        acc.push(post);
+      }
+    } else if (post.link.includes('carbondesign')) {
+      // Add all "carbondesign" posts
       acc.push(post);
     }
-  } else if (post.link.includes('carbondesign')) {
-    // Add all "carbondesign" posts
-    acc.push(post);
-  }
-  return acc;
-}, []);
+    return acc;
+  }, []);
 
   return (
     <Row {...rest}>
       {filteredPosts.slice(0, postLimit).map((latestPost) => (
-        <Column
-          key={latestPost.slug}
-          sm={4}
-          md={4}
-          lg={4}
-          noGutterMdLeft
-          >
+        <Column key={latestPost.slug} sm={4} md={4} lg={4} noGutterMdLeft>
           <ArticleCard
             title={latestPost.title}
             author={latestPost.author}
@@ -54,10 +50,7 @@ const MediumPosts = ({ postLimit = 3, cardProps, ...rest }) => {
             date={latestPost.date}
             color="dark"
             {...cardProps}>
-            <img
-              alt={latestPost.title}
-              src={latestPost.thumbnail}
-            />
+            <img alt={latestPost.title} src={latestPost.thumbnail} />
           </ArticleCard>
         </Column>
       ))}
