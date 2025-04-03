@@ -24,6 +24,7 @@ const MediumPosts = ({ postLimit = 3, cardProps, ...rest }) => {
 
   const allPosts = data.allMediumFeed.edges.map(({ node }) => node);
   const designIbmPost = [
+    'https://medium.com/design-ibm/usable-ai-chat-46dedcca6a8f?source=rss----9d530348b622---4',
     'https://medium.com/design-ibm/the-quest-for-usable-ai-e649b6cb9e9a?source=rss----9d530348b622---4',
   ];
   const filteredPosts = allPosts.reduce((acc, post) => {
