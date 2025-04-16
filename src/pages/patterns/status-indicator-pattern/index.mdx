@@ -10,7 +10,7 @@ import StatusIndicatorTable from 'components/StatusIndicatorTable';
 
 <PageDescription>
 
-Status indicators are an important method of communicating severity level
+Status indicators are an important method of communicating severity-level
 information to users. Different shapes and colors enable users to quickly assess
 and identify status and respond accordingly.
 
@@ -19,10 +19,11 @@ and identify status and respond accordingly.
 <AnchorLinks>
 
 <AnchorLink>Overview</AnchorLink>
-<AnchorLink>Choosing for context</AnchorLink>
-<AnchorLink>Ingredients</AnchorLink>
-<AnchorLink>Variants</AnchorLink>
-<AnchorLink>Formatting</AnchorLink>
+<AnchorLink>Designing with status indicators</AnchorLink>
+<AnchorLink>Icon indicator</AnchorLink>
+<AnchorLink>Shape indicator</AnchorLink>
+<AnchorLink>Badge indicator</AnchorLink>
+<AnchorLink>Differential indicator</AnchorLink>
 <AnchorLink>Accessibility</AnchorLink>
 <AnchorLink>Related</AnchorLink>
 <AnchorLink>References</AnchorLink>
@@ -32,12 +33,10 @@ and identify status and respond accordingly.
 
 ## Overview
 
-An indicator highlights a page element and informs the user of something that
-needs the user’s attention. Often, the indicator will denote that there has been
-a change to a particular item. They are frequently used to signal validation
-errors or notifications, changes, or updates. They can also be used on their
-own. Indicators are visual cues intended to attract the user's attention to a
-piece of content or UI element that is dynamic in nature.
+Indicators help users notice important changes or issues on a page. They are
+often used to show notifications, prioritized tasks, statuses, or updates. By
+drawing attention to specific elements, indicators guide users to what they need
+to focus on.
 
 In this pattern we explore:
 
@@ -45,59 +44,140 @@ In this pattern we explore:
 - The different status indicator variants
 - What elements they are comprised of and how each element works to communicate
 
-## Choosing for context
+<Row>
+<Column colLg={12}>
 
-In the UI landscape, examples of status indicators are everywhere. However this
-pattern will focus less on the components or patterns in which indicators tend
-to appear (notifications, inline errors, dashboards, and so on) and more on the
-urgency of the communication.
+![Overview image of status indicators](./images/status-overview.png)
 
-For ease of use, status indicators can be classified into levels of severity
-such as high, medium, and low attention. See more information on choosing
-between alias icons and outlined versus filled icons in the
-[Status shapes](#status-shapes) section below.
+</Column>
+</Row>
+
+### Variants
+
+| Variant                                              | Usage                                                                                                                                                                  | Use cases                                                                                             |
+| ---------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| [Icon indicator](#icon-indicator)                    | Used when the layout offers ample space and the content requires maximum attention. They require an icon, a shape, a meaningful color, and a descriptive inline label. | Most often used in notifications, progress indicators, data tables, task lists, and dashboard widgets |
+| [Shape indicator](#shape-indicator)                  | Useful in smaller spaces or when users need to scan large amounts of data.                                                                                             | Most often used in lists, dashboards, data tables, data visualizations, and network diagrams          |
+| [Badge indicator (with number)](#badge-indicator)    | Useful when a count of new or updated items is available, and it is important for the user to know the number of updates.                                              | Most often used in notification panes in the header and used in conjunction with avatars or icons     |
+| [Badge indicator (without number)](#badge-indicator) | Useful when new or updated items are available and the number of notifications is unknown or irrelevant to the user. The dot badge is also more compact and discrete.  | Most often used in notification panes in the header and icon buttons in toolbars                      |
+| [Differential indicator](#differential-indicator)    | Useful when users are monitoring differentials in large lists of statistics and when anything other than type would be too obtrusive.                                  | Most often used in financial dashboards for highlighting deltas or other types of data visualizations |
+
+#### Icon indicators versus shape indicators
+
+Status and shape indicators play a key role in providing feedback and guidance
+within products. However, they are used in different situations and serve
+distinct purposes depending on the product's needs.
+
+Icon indicators reflect system health, notifying users if everything is running
+smoothly or if issues arise, such as when a task is completed or fails after
+submitting a form. They provide feedback on the product’s overall state through
+system-wide notifications.
+
+Shape indicators, as a secondary set of indicators, can be defined differently
+depending on the product. Their use cases include helping users prioritize
+tasks, like a red triangle for high-priority tasks, or showing the current phase
+of a component's lifecycle, such as activated or deactivated. They don’t always
+necessarily indicate urgency.
+
+### Anatomy
+
+<Row>
+<Column colLg={8}>
+
+![Anatomy images of the five types of status indicators](./images/status-anatomy.png)
+
+</Column>
+</Row>
+
+<Row>
+<Column colSm={2} colMd={4} colLg={4}>
+
+#### 1. Icon indicator
+
+A. Text label <br /> B. Icon (shape, color, and symbol) <br />
+
+#### 3. Badge indicator
+
+A. Shape with or without number (color) <br /> B. Icon (outline) <br />
+
+</Column>
+<Column colSm={2} colMd={4} colLg={4}>
+
+#### 2. Shape indicator
+
+A. Text label <br /> B. Icon (shape and color) <br />
+
+#### 4. Differential indicator
+
+A. Text label <br /> B. Symbol (optional color)\* <br />
+
+</Column>
+</Row>
+
+<Caption>
+  *Differential indicators must have either a “+” or “-” sign, a caret, or an
+  arrow icon to indicate positive or negative values.
+</Caption>
+
+## Designing with status indicators
+
+### Choosing for context
+
+Choosing the right indicator for the context is important to ensure users can
+quickly understand the information and respond appropriately.
 
 #### Consolidated statuses
 
 When multiple statuses are consolidated, use the highest-attention color to
 represent the group. For example, if the statuses of underlying components are
-green, yellow, and red, the consolidated indicator is red.
+green, yellow, and red, the consolidated indicator should be red.
 
 #### Cognitive load
 
-Don't use status indicators when no user action is necessary and status
-information is not important enough to highlight. Use plain text instead to
-avoid the overuse of status indicators. While we won’t go as far a prescribing a
-maximum number, more than 5 or 6 indicators begins to tax a user and makes it
-difficult to focus.
+Avoid using status indicators when no user action is required or when the status
+information isn’t significant enough to highlight. Instead, use plain text to
+prevent overloading the interface with unnecessary indicators. While we won’t
+set a strict limit, having more than five or six indicators can overwhelm users
+and make it harder for them to focus.
 
-### High attention
+### Standardization
 
-These indicators signal that user action is needed immediately—that is, there is
-an irregularity in the system, something malfunctioned, or a user needs to
-confirm a potentially destructive action. Some examples include alerts,
-exceptions, confirmations, and errors.
+All status icons must be approved and published in the
+[icon library](https://carbondesignsystem.com/elements/icons/library/) to ensure
+consistency across products. This guidance includes only the most common status
+indicators, helping maintain a unified user experience and preventing
+unnecessary variations in the design system.
 
-<StatusIndicatorTable attention="high" />
+If your product needs an icon that’s not currently in this pattern, please reach
+out to the Carbon team to suggest its addition by
+[creating a GitHub issue](https://github.com/carbon-design-system/carbon/issues/new?template=FEATURE_REQUEST_OR_ENHANCEMENT.yaml).
 
-### Medium attention
+### Severity levels
+
+For ease of use, status indicators can be classified by severity levels, such as
+high, medium, and low attention. Product teams should define these levels based
+on their specific needs and use cases, considering how each level may impact the
+user’s response. High-severity levels, for example, may prompt immediate action,
+while lower levels may allow for a more passive response.
+
+#### High attention
+
+Use these indicators when immediate user action is required due to a system
+irregularity, malfunction, or potentially destructive action. Examples include
+alerts, exceptions, confirmations, and errors.
+
+#### Medium attention
 
 Use these indicators when no immediate user action is required or to provide
-feedback to a user action. Some examples include acknowledgements and progress
+feedback to a user action. Examples include acknowledgements and progress
 indicators.
 
-<StatusIndicatorTable attention="medium" />
-
-### Low attention
+#### Low attention
 
 Use these indicators when something is ready to view, for system feedback, or to
-signify that something has changed since the last interaction. Some examples
-include tooltip triggers that offer explanatory or added information, and
-passive notifications.
+signify that something has changed since the last interaction.
 
-<StatusIndicatorTable attention="low" />
-
-## Ingredients
+### Visual guidance
 
 To communicate their message, indicators can take many forms—they're not
 confined to iconography. There are four basic elements that comprise Carbon
@@ -111,16 +191,16 @@ status types.
 - Colors
 - Type
 
-### Status icons
+#### Status symbols
 
-Icons are visual symbols used to represent ideas, objects, or actions. Ideally,
-they communicate messages at a glance, afford interactivity, and draw attention
-to important information. For example, using exclamation points for warnings,
-checkmarks for success, and question marks for help or unknown.
+Icons are visual symbols that represent ideas, objects, or actions. They help
+communicate messages quickly, encourage interactivity, and highlight important
+information—like exclamation points for warnings, checkmarks for success, and
+question marks for help.
 
-To standardize the icons that are used most widely in IBM product, we’ve
-included only the most universally recognized icons. Certain products may have
-certain modifications or most robust sets.
+To keep icons consistent across IBM products, we’ve included only the most
+widely recognized symbols in the icon library. Some products may have specific
+modifications or need a more extensive set.
 
 <Row>
 <Column colLg={8}>
@@ -132,7 +212,7 @@ certain modifications or most robust sets.
 </Column>
 </Row>
 
-### Status shapes
+#### Status shapes
 
 In this context, shapes refer to geometric figures like squares, circles,
 rectangles, and so on, as they are instantly readable even at small sizes. These
@@ -156,139 +236,53 @@ users, possibly hurting their overall experience.
 </Column>
 </Row>
 
-#### Outline versus filled shapes
-
-We offer two options that can be flexible for usage based on your team's
-preference. Keep in mind that filled icons are more visible and tend to carry
-more weight, therefore they’re often used for high attention statuses. Outlined
-icons are more delicate and not as readily scannable.
-
-In addition, the more line work an icon has—and the more breaks in those
-lines—the more difficult it is to use a filled icon. For this reason, some
-product teams may occasionally mix in an outline icon with a filled icon. This
-is okay but for the most part, designers should try to be consistent throughout
-the product or application. At the very least, designers should avoid mixing
-outlined and filled indicators on the same page.
-
-#### Alias status icons
-
-In several cases, we offer multiple shape options for one type of status
-indicator. For example, ‘warning’ ‘help’ and ‘information’ status icons have
-multiple variants to convey similar or exactly the same information. Often
-times, users of certain products have grown accustomed to say, a hexagon instead
-of a circle to convey a critical warning. Or a team perhaps wants to go the
-extra mile and offer yet another differentiator for accessibility. Although
-consistency is always the goal, there’s no need to avoid differentiation to
-accommodate user preferences. Whichever style you choose however, avoid mixing
-throughout the UI.
-
-If an alias that your product frequently uses has been removed from the set and
-you can make a case for the importance of including it here, please let us know.
-
-### Status palette
+#### Status color palette
 
 The status palette includes all of the colors that can be used to reflect
 status. Typically, red represents danger or error, orange represents a serious
 warning, yellow represents a regular warning, green represents normal or
 success, and blue represents passive notifications, usually involving additional
-information and workflow progress. We’ve also included gray and purple to add
-more depth to the system. Gray indicates drafts or jobs that haven’t been
-started, and purple indicates outliers or undefined statuses.
+information and workflow progress. This status color palette also includes gray
+and purple to add more depth to the system. Gray indicates drafts or jobs that
+haven’t been started, and purple indicates outliers or undefined statuses.
 
 <ColorPalette twoColumn type="status" />
 
 #### Extended status palettes
 
 This palette is only for added contrast accessibility when using yellows and
-oranges. It’s not a part of the IBM brand palette and it’s also not included in
-the v2 color release (that is, it’s not in ASE, Sketch kit palettes, and so on)
-because it’s for very selective use in data visualizations and certain status
-indicators. Do not use this palette in any other manner in your layouts.
+oranges. It’s not part of the IBM brand palette and is reserved for very
+selective use in data visualizations and certain status indicators. Do not use
+this palette in any other context or layout.
 
 <ColorPalette type="status-extended" shouldShowControls={false} />
 
-## Variants
+#### Status type
 
-There are at least four possible ways to implement status indicators:
+Status indicators have been paired with specific type sizes that work best in
+products. While shape indicators can be paired with a larger size, it’s
+recommended to use 14pt or 12pt in smaller spaces or when used as a secondary
+set of indicators alongside the icon indicator set.
 
-- Icon indicators
-- Badge indicators (with and without numbers)
-- Shape indicators
-- Differential indicators
+| Variant         | Icon size | Type size |
+| --------------- | --------- | --------- |
+| Icon indicator  | 20px      | 16pt      |
+|                 | 16px      | 14pt      |
+| Shape indicator | 16px      | 14pt      |
+|                 | 16px      | 12pt      |
 
-| Variant                           | Usage                                                                                                                                                                     | Context                                                                                                                                                                                                                         |
-| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Icon indicators                   | Used any time the layout offers ample space and the content requires maximum attention. They require an icon, a shape, a meaningful color and a descriptive inline label. | Icon indicators are widely used in [Notifications](/components/notification/usage), [Progress indicators](/components/progress-indicator/usage), [Data tables](/components/data-table/usage), task lists and dashboard widgets. |
-| Badge indicators (with number)    | Useful when a count of new or updated items is available, and it is important for the user to know the number of updates.                                                 | Most often used in notification panes in the header, and used in conjunction with avatars or icons.                                                                                                                             |
-| Badge indicators (without number) | Useful when new or updated items are available and the number of notifications is unknown or irrelevant to the user. The dot badge is also more compact and discrete.     | Most often used in notification panes in the header, and used in conjunction with avatars or icons.                                                                                                                             |
-| Shape indicators                  | Useful in smaller spaces or when users need to scan large amount of data.                                                                                                 | Most often used in lists, dashboards, data tables, data visualizations, and network diagrams.                                                                                                                                   |
-| Differential indicators           | Useful when users are monitoring differentials in large lists of statistics and when anything other than type would be too obtrusive.                                     | Most often used in financial dashboards for highlighting deltas or other types of data visualizations.                                                                                                                          |
+## Icon indicator
 
-### Anatomy
-
-Like a button, a status indicator’s text label is the most important element, as
-it communicates progress. By default, Carbon uses sentence case for all button
-labels.
-
-Text labels, column labels (or a legend, when inline labels aren’t an option)
-are strongly recommended.
+Icon indicators consist of an icon, a shape, a meaningful color, and a
+descriptive label. They are highly effective for communication and enhance
+scannability, especially in content-heavy layouts. Common uses include
+notifications, progress indicators, data tables, task lists, and dashboard
+widgets.
 
 <Row>
 <Column colLg={8}>
 
-![Anatomy images of the five types of status indicators](./images/status_indicator_3.png)
-
-</Column>
-</Row>
-
-<Row>
-<Column colSm={2} colMd={4} colLg={4}>
-
-#### 1. Icon indicator
-
-A. Text label <br /> B. Symbol <br /> C. Shape <br /> D. Color
-
-#### 3. Badge indicator (no number)
-
-A. Shape without number <br /> B. Symbol <br /> C. Color
-
-#### 5. Differential indicator
-
-A. Text label <br /> B. Symbol\* <br /> C. Color (optional)
-
-</Column>
-<Column colSm={2} colMd={4} colLg={4}>
-
-#### 2. Badge indicator (number)
-
-A. Shape with number <br /> B. Icon <br /> C. Color
-
-#### 4. Shape indicator
-
-A. Text label <br /> B. Shape <br /> C. Color
-
-</Column>
-</Row>
-
-<Caption>
-  *Differential indicators must have either a ‘+’ or ‘-’ sign, a caret, or an
-  arrow icon to indicate positive or negative values.
-</Caption>
-
-## Formatting
-
-### Icon indicators
-
-Icon indicators require an icon, a shape, a meaningful color, and a descriptive
-label. Easily recognizable icons can make very effective communication tools and
-greatly improve scannability, especially with large amounts of content. Icon
-indicators are widely used in notifications, progress indicators, data tables,
-task lists and dashboard widgets.
-
-<Row>
-<Column colLg={8}>
-
-![Carbon notification component](./images/status_indicator_4.png)
+![Carbon notification component](./images/status-icon-indicator.png)
 
 <Caption>
   Notifications are the most prevalent example of this type of status indicator.
@@ -297,33 +291,170 @@ task lists and dashboard widgets.
 </Column>
 </Row>
 
-#### Type pairing and alignment
+### Icon indicator statuses
 
-Icon indicators are sometimes referred to as ‘contextual’ status indicators as
-well because they are associated with a UI element or with a piece of content.
-As such they should be shown in close proximity to that element.
+Suggested icon indicator status names are based on common use cases across
+products to help guide you in defining status notifications according to your
+system’s needs. These names are not intended to dictate the final status names
+in your product.
 
-There are also cases, especially in data tables and lists, where the column
-heading or row label may provide context that is additive to the inline label.
-When very common ‘stop light’ associations are present, as in the following
-example, it may not be necessary to explicitly label an icon as ‘warning,’ or
-‘stable’ — as these interpretations are widely understood in product. However it
-is good practice to clarify the status intention in the text label.
+<StatusIndicatorTable attention="high" />
+
+#### Labeling and type pairing
+
+Icon indicators, also known as "contextual" status indicators, are linked to
+specific UI elements or content and should be placed near these elements for
+clarity. When the label is not descriptive or paired only with numbers, it's
+best practice to provide a heading or additional content to clarify the status
+intention.
+
+Status indicators within
+[notification](https://carbondesignsystem.com/components/notification/usage/)
+have different spacing since they are integrated into the notification component
+and do not follow the inline spacing rules.
+
+<Row>
+<Column colLg={8}>
+
+![Icon indicators are available in two sizes](./images/status-icon-sizes.png)
+
+<Caption>
+  Icon indicators are available in two sizes, each with recommended type size
+  pairings.
+</Caption>
+
+</Column>
+</Row>
+
+#### Alignment
+
+When stacked vertically, ensure the icons remain left-aligned with the
+accompanying text for easier scanning.
 
 <DoDontRow>
-  <DoDont type="do" caption="Do left align icons and type in lists and data tables, regardless of whether you’re using the responsive grid or spacers." colLg={6}>
+  <DoDont type="do" caption="Do left align icons and type in lists and data tables, regardless of whether you’re using the responsive grid or spacers.">
 
-![Aligned status indicator icons.](images/status_indicator_5.png)
+![Aligned status indicator icons.](images/status-alignment-do.png)
 
   </DoDont>
-  <DoDont type="dont" colLg={6} caption="Do not push icons out of alignment with label length. In this case, where the status indicators are flush right, the two digit labels are pushing the icons out of alignment.">
+  <DoDont type="dont" caption="Do not push icons out of alignment with label length. In this case, where the status indicators are flush right, the two digit labels are pushing the icons out of alignment.">
 
-![Misaligned status indicator icons](images/status_indicator_6.png)
+![Misaligned status indicator icons](images/status-alignment-dont.png)
 
   </DoDont>
 </DoDontRow>
 
-### Badge indicators
+## Shape indicator
+
+Shape indicators use a shape, color, and descriptive label to convey the status
+of a device, feature, or version—without relying on a symbol.
+
+Their use cases include helping users prioritize tasks, like a red triangle for
+high-priority tasks, or showing the current phase of a component's lifecycle,
+such as activated or deactivated. They don’t always necessarily indicate
+urgency. Shape indicators are also used in diagrams and are designed to remain
+clear even at small sizes.
+
+<Row>
+<Column colLg={8}>
+
+![Example of a contextual shape status indicator](./images/status-shape-indicator.png)
+
+<Caption>Example of the status label directly next to the shape</Caption>
+
+</Column>
+</Row>
+
+### Shape indicator statuses
+
+Suggested shape indicator status names are based on common use cases across
+products to help guide you in defining status notifications according to your
+system’s needs. These names are not intended to dictate the final status names
+in your product.
+
+<StatusIndicatorTable attention="glyph" />
+
+#### Labeling and type pairing
+
+Shape indicators are also "contextual" status indicators. Like the status icons
+above, assets have been created for the shape indicators that take into account
+optical alignment.
+
+Shape indicators don’t have the added recognition of an icon, therefore, it’s
+important that they are paired with a status label.
+
+<Row>
+<Column colLg={8}>
+
+![Shape indicators size and type pairing](./images/status-shape-sizes.png)
+
+<Caption>
+  Shape indicators are available in one size, but paired with two recommended
+  type sizes.
+</Caption>
+
+</Column>
+</Row>
+
+<Row>
+<Column colLg={8}>
+
+![Example of shape indicator paired with a label](./images/status_indicator_10.png)
+
+<Caption>Example shows shape indicator paired with a label</Caption>
+
+</Column>
+</Row>
+
+#### Alignment
+
+When stacked vertically, ensure the icons remain left-aligned with the
+accompanying text for easier scanning.
+
+<DoDontRow>
+<DoDont
+type="do"
+caption="Do place shape indicators before labels; they can be placed after other text only if there is no character count variation.">
+
+![Do place shape indicators before labels; they can be placed after other text only if there is no character count variation.](./images/status-legend-do.png)
+
+</DoDont>
+
+<DoDont
+type="dont"
+caption="Do not place shape indicators after the labels to avoid pushing them out of alignment.">
+
+![Do not place shape indicators after the labels to avoid pushing them out of alignment](./images/status-legend-dont.png)
+
+</DoDont>
+</DoDontRow>
+
+#### Best practices
+
+The status shapes offer more flexibility in interpretation compared to status
+icons, as shapes can have different colors for various situations. For best
+practices, consider avoiding the use of the same shape with different colors
+within the same experience.
+
+<DoDontRow>
+<DoDont
+type="do"
+caption="Do use shape, color, and status labels for better scanning">
+
+![Do use shape, color, and status labels to improve scannability.](./images/status-shape-do.png)
+
+</DoDont>
+
+<DoDont
+type="dont"
+caption="Avoid using only color and status labels to differentiate your content">
+
+![Avoid using only color and status labels to differentiate your content.](./images/status-shape-dont.png)
+
+</DoDont>
+</DoDontRow>
+
+## Badge indicator
 
 Badge indicators let the user know that something is new or updated. A badge
 status is displayed over a ghost icon button, usually in the header, to indicate
@@ -334,169 +465,53 @@ launch a modal, pane, or flyout.
 <Row>
 <Column colLg={8}>
 
-![Example of badge indicators in a global header](./images/status_indicator_7.png)
+![Example of badge indicators in a global header](./images/status-badge-indicator.png)
 
-<Caption>
-  Badge statuses with numbers are usually used for global notifications.
-</Caption>
+<Caption>Examples of badge indicators used for global notifications</Caption>
 
 </Column>
 </Row>
 
-#### Badge status with number
+#### Badge with number
 
-Numbers are used in conjunction with a badge status when a count of new or
-updated items is available and it's important for the user to know the number of
-updates.
+A numbered badge is used when a count of new or updated items is available, and
+it's important for the user to know the exact number of updates. This badge has
+a limit of three digits, with the last character using a plus symbol.
 
-Badge status numbers can only be used in conjunction with the large icon button
-because with anything smaller, the icon gets covered. In very rare cases badge
-number may exceed two digits.
+The badge with a number can only be used with the large icon button (48px) as
+global actions in the UI shell header.
 
 <Row>
 <Column colLg={8}>
 
-![Four icons with badges that included numbers ranging from one to three digits. The last badge has a plus.](./images/badge-status-with-number.jpg)
+![Four icons with badges that included numbers ranging from one to three digits. The last badge has a plus.](./images/status-badge-with-number.png)
+
+<Caption>Badges with numbers ranging from one to three digits</Caption>
 
 </Column>
 </Row>
 
-#### Badge status without number
+#### Badge without number
 
-A badge indicator with no number is used when a new notification is available
-and the number of notifications is either unknown or irrelevant to the user. The
-dot badge is less noticeable than the numbered badge, but still draws the user’s
-attention to the icon button.
+A badge without a number (or dot badge) is used when a new notification is
+available, but the exact number of notifications is either unknown or irrelevant
+to the user. This dot badge is more subtle than the numbered badge but still
+effectively draws the user’s attention to the icon button.
 
-### Shape indicators
+The badge without a number is commonly seen in toolbars' icon buttons.
 
-Shape indicators combine color shape and text to create a standard and
-consistent way to indicate the status of a device, feature, or version. Icons
-are not present. These shapes are also seen in certain diagrams and data
-visualizations, for example network diagrams.
+## Differential indicator
 
-The shapes are only the most basic geometries, derived from the larger icon
-containers, so they can be easily discerned at small sizes. Shape indicators are
-not available in outline because they are so small. The only situations in which
-you would use an outline is to ensure contrast accessibility for yellows or
-oranges in the Carbon light themes.
+Differential indicators consist of a symbol, an optional color, and a
+descriptive label to help users track changes or movements in information. They
+are especially useful for monitoring differences in large sets of statistics,
+where more complex indicators might be too distracting. Common examples include
+color-coded stock symbols in investment accounts that reflect significant price
+changes. Designers also use differential indicators to highlight deltas in data
+visualizations.
 
-The table below is a first pass at establishing a standard lexicon for symbol
-indicators across IBM products.
-
-#### Same shape, different color
-
-The status shapes naturally allow more room for interpretation than the status
-icons. Certain shapes can take on different colors for different circumstances.
-However, NEVER use the same shape, in different colors, within the same
-experience.
-
-<StatusIndicatorTable attention="glyph" />
-
-#### Type pairing and alignment
-
-Shape indicators are also ‘contextual’ status indicators. Like the status icons
-above, assets have been created for the shape indicators that take into account
-optical alignment. Do not attempt to create these shapes yourself. Use the
-approved shape indicator provided for you in the icon library.
-
-As with the icons, choose the appropriate canvas size depending on the size of
-the status label with which it is paired. 16px symbols are optimized to feel
-balanced when paired with both 12px and 14px IBM Plex. Since shape indicators
-are most often reserved for small usage scenarios in product, we would advise
-you to use full status indicators with 16px IBM Plex.
-
-<Row>
-<Column colLg={8}>
-
-![IBM Plex type and shape indicator pairing example](./images/status_indicator_8.png)
-
-<Caption>
-  Shape status canvases should be placed 4px from the beginning of the text box.
-</Caption>
-
-</Column>
-</Row>
-
-<Row>
-<Column colLg={8}>
-
-![Example of a contextual shape status indicator](./images/status_indicator_9.png)
-
-<Caption>Example of the status label directly next to the shape</Caption>
-
-</Column>
-</Row>
-
-#### Legends
-
-Because shape indicators don’t have the added recognition of an icon, it’s even
-more important that they are paired with a status label. Alternately, the
-designer can provide the user with a legend if a status label isn’t an option.
-
-<Row>
-<Column colLg={8}>
-
-![Example of a legend paired with a shape indicator](./images/status_indicator_10.png)
-
-<Caption>
-  Example where the status symbol indicator depends on the legend at the top of
-  the page
-</Caption>
-
-</Column>
-</Row>
-
-<Title>Best practices</Title>
-
-<DoDontRow>
-<DoDont
-type="do"
-caption="Do place shape indicators before labels; they can be placed after other text only if there is no character count variation.">
-
-![Do place shape indicators before labels; they can be placed after other text only if there is no character count variation.](./images/status_indicator_11.png)
-
-</DoDont>
-
-<DoDont
-type="dont"
-caption="Do not place shape indicators after the labels to avoid pushing them out of alignment.">
-
-![Do not place shape indicators after the labels to avoid pushing them out of alignment](./images/status_indicator_12.png)
-
-</DoDont>
-</DoDontRow>
-
-<DoDontRow>
-<DoDont
-type="do"
-caption="Do use shape, color, and status labels to improve scannability.">
-
-![Do use shape, color, and status labels to improve scannability.](./images/status_indicator_13.png)
-
-</DoDont>
-
-<DoDont
-type="dont"
-caption="Avoid using only color and status labels to differentiate your content.">
-
-![Avoid using only color and status labels to differentiate your content.](./images/status_indicator_14.png)
-
-</DoDont>
-</DoDontRow>
-
-### Differential indicators
-
-Differential indicators often help users understand the movement or changes in
-information. They are especially useful when users are monitoring differences in
-large lists of statistics and anything other than type would be too obtrusive.
-Examples include the common convention of color-coding stock symbols in an
-investment account if their price has changed substantially. Designers also rely
-on them to highlight deltas in data visualizations.
-
-Although typographic indicators can be used without an icon as long as a minus
-or a plus sign is used, they are most often paired with arrow or caret icons in
-our system.
+While typographic indicators can work with just a plus or minus sign, they are
+most often paired with arrows or caret icons in our system for better clarity.
 
 <Row>
 <Column colLg={8}>
@@ -509,8 +524,8 @@ our system.
 #### Color
 
 Differential indicators are either displaying a positive or a negative value.
-Color is optional in these situations as long as the value has either a ‘+’ or
-‘-’ in front of it, a chevron icon, or an arrow icon. Unless the data involves
+Color is optional in these situations as long as the value has either a "+" or
+"-" in front of it, a chevron icon, or an arrow icon. Unless the data involves
 temperature, positive values are represented by the green spectrum and negative
 values are represented by the red spectrum.
 
@@ -526,46 +541,68 @@ values are represented by the red spectrum.
 
 ## Accessibility
 
-Accessible design not only helps users with disabilities, it provides better
-user experiences for everyone. The most common form of color blindness is
-red/green color blindness. The inability for some users to distinguish between
-red and green means that products cannot simply rely on color to show status. As
-a result, the status system relies on three key elements; color, shape, and
-symbol.
+### Elements
 
-For example, the critical icon is not just “red”, it is the sum of the following
-elements.
+#### Relying only on color is insufficient
 
-Color = Red <br /> Shape = Circle <br /> Symbol = \ <br /> Text = Critical
+Relying solely on color to convey status is insufficient, especially for users
+with color vision deficiencies (refer to
+[Use of Color](https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html)).
+While color can be useful, it must be paired with text or other visual cues. To
+meet accessibility standards and to pass
+[non-text contrast](https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast),
+ensure that there’s at least a 3:1 contrast between colors used for status
+indicators, as well as between the indicator and the page background. If the
+contrast is sufficient, even in grayscale, users should still be able to
+differentiate statuses without relying solely on color.
 
-<br />
+As a result, status indicators should rely on at least two of the following
+elements: color, shape, or symbol. When the icon itself meets accessibility
+standards, pairing it with text helps users better understand and scan the
+content.
 
-<DoDontRow>
-  <DoDont type="do" caption="Do include at least three out of four indicators of status to meet accessibility requirements." colLg={6}>
+#### Using icons alone is acceptable
 
-![Example of accessible status indicators](images/status_indicator_17.png)
+We are committed to providing status indicators that include both the icon and a
+label for clarity. While icons alone can be effective if they meet non-text
+contrast requirements (3:1 contrast), pairing each icon with a label ensures
+that all users, including those with visual impairments, can understand the
+status at a glance.
 
-  </DoDont>
-  <DoDont type="dont" colLg={6} caption="Avoid designs with less than three indicators of status; using solely color and symbols is inaccessible.">
+<Row>
+<Column colLg={8}>
 
-![Example of inaccessible status indicators](images/status_indicator_18.png)
+![Examples of sufficient status indicators](./images/status-accessibility-examples.png)
 
-  </DoDont>
-</DoDontRow>
+<Caption>Example shows sufficient status indicators</Caption>
 
-### Status notifications
+</Column>
+</Row>
 
-#### Don’t use notifications that dismiss on a timer for critical or emergency messages.
+### Outlines
 
-Some users with disabilities need more time to read or interact with messages
-and timed toasts may not provide sufficient time. WCAG 2.1 success criterion
-2.2.4 (AAA)
+Our current icon indicators are static and used either inline or alongside other
+components. Since they are not interactive and the symbols have sufficient
+contrast against their shape colors, outlines are not necessary.
 
-#### Users should be able to manage or limit non-critical notifications.
+However, shape indicators rely solely on shapes and colors, which might not
+provide enough accessibility for screen readers and individuals with low color
+vision. Therefore, using outlines and pairing text with shape indicators is
+essential to enhance their accessibility, especially with lighter status colors
+such as orange and yellow in Carbon light themes.
 
-This gives users the control to reduce the number of distractions or disruptions
-they receive, which is particularly helpful for users with cognitive
-limitations. WCAG 2.1 success criterion 2.2.3 (AAA)
+<Row>
+<Column colLg={8}>
+
+![Outlines in icon and shape indicators](./images/status-outlines.png)
+
+<Caption>
+  Example shows the icon indicators do not need outlines, while icon indicators
+  do due to the lack of symbols
+</Caption>
+
+</Column>
+</Row>
 
 ## Related
 
