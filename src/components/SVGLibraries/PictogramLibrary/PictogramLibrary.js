@@ -54,7 +54,7 @@ const IconLibrary = () => {
     setPictogramComponents(pictogramArray);
   }, []);
 
-  const getFilteredPictorams = () => {
+  const getFilteredPictograms = () => {
     if (!searchInputValue) {
       return pictogramComponents;
     }
@@ -76,11 +76,11 @@ const IconLibrary = () => {
     );
   };
 
-  const filteredPictograms = getFilteredPictorams();
+  const filteredPictograms = getFilteredPictograms();
 
   const allCategories = Object.entries(
     groupBy(filteredPictograms, 'category')
-  ).sort(([catagoryA], [catagoryB]) => catagoryA > catagoryB);
+  ).sort(([categoryA], [categoryB]) => categoryA > categoryB);
 
   const filteredCategories =
     selectedCategory === 'All pictograms'
@@ -109,7 +109,7 @@ const IconLibrary = () => {
           setSelectedCategory={setSelectedCategory}
           allIconResults={filteredPictograms.length}
           pageName="pictogram"
-          pageUrl="https://github.com/carbon-design-system/carbon/raw/v10/packages/pictograms/master/productive-pictogram-master.ai"
+          pageUrl="https://github.com/carbon-design-system/carbon/raw/refs/heads/main/packages/pictograms/master/productive-pictogram-master.ai"
         />
       ) : (
         <div className={svgLibrary}>
