@@ -30,7 +30,7 @@ const SecondRightText = () => (
     We welcome all feedback, designs, or ideas in order to produce the best
     possible experience for our users. If you’re interested in contributing,
     check out our contributing guidelines to get started.
-    <a className={calloutLink} href="/contributing/get-started/">
+    <a className={calloutLink} href="/contributing/get-started/overview">
       Start contributing →
     </a>
   </p>
