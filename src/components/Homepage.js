@@ -10,7 +10,7 @@ const FirstLeftText = () => <p>Carbon Design System</p>;
 
 const FirstRightText = () => (
   <p>
-    Carbon is IBM’s <strong>open source</strong> design system for products and
+    Carbon is IBM's <strong>open source</strong> design system for products and
     digital experiences. With the IBM Design Language as its foundation, the
     system consists of working code, design tools and resources, human interface
     guidelines, and a vibrant community of contributors.
@@ -28,7 +28,7 @@ const SecondLeftText = () => (
 const SecondRightText = () => (
   <p>
     We welcome all feedback, designs, or ideas in order to produce the best
-    possible experience for our users. If you’re interested in contributing,
+    possible experience for our users. If you're interested in contributing,
     check out our contributing guidelines to get started.
     <a className={calloutLink} href="/contributing/get-started/overview">
       Start contributing →
