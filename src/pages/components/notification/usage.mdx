@@ -76,17 +76,17 @@ with users, they are disruptive and should be used sparingly.
 
 For more context on when to use each notification variant, including modals,
 refer to the [notifications pattern](/patterns/notification-pattern/). Carbon
-only supports inline, toast, actionable, and modal notification variants,
+supports only inline, toast, actionable, and modal notification variants,
 although some product teams also support banners and notification centers.
 
 ### Variants
 
-| Variant                   | Purpose                                                                                                                                                          |
-| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Inline](#inline)         | Inline notifications show up in task flows, to notify users of the status of an action. They usually appear at the top of the primary content area.              |
-| [Toast](#toast)           | Toasts are non-modal, time-based window elements used to display short messages; they usually appear at the top of the screen and disappear after a few seconds. |
-| [Actionable](#actionable) | Actionable notifications allow for interactive elements within a notification styled like an inline or toast notification.                                       |
-| [Callout](#callout)       | Callouts are used to highlight important information that loads with the contents of the page, is placed contextually, and cannot be dismissed.                  |
+| Variant                   | Purpose                                                                                                                                                                       |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Inline](#inline)         | Inline notifications show up in task flows, to notify users of the status of an action. They usually appear at the top of the primary content area.                           |
+| [Toast](#toast)           | Toast notifications are non-modal, time-based window elements used to display short messages; they usually appear at the top of the screen and disappear after a few seconds. |
+| [Actionable](#actionable) | Actionable notifications allow for interactive elements within a notification styled like an inline or toast notification.                                                    |
+| [Callout](#callout)       | Callouts are used to highlight important information that loads with the contents of the page, is placed contextually, and cannot be dismissed.                               |
 
 ### Feature flags
 
@@ -171,27 +171,33 @@ take action and, therefore, does not include success or error statuses.
 
 ## Content
 
-Notifications provide limited space for content, and therefore the content must
-be short and concise. A user should be able to quickly scan the notification, be
-apprised of the situation, and know what to do next.
+Notifications provide limited space for content and, therefore, the content must
+be short and concise. Follow the guidance in
+[IBM Style - Messages](https://ibmdocs-test.dcs.ibm.com/docs/en/ibm-style?topic=format-messages)
+and write the message so the user can, by scanning the notification, be apprised
+of the situation and quickly know what to do next.
 
 ### Main elements
 
 #### Title
 
 - The title should be short and descriptive, explaining the most important piece
-  of information.
+  of information. For error messages, tell users what stopped or can't be done
+  in the title, for example “Server instance unavailable”.
 - Don't use a period to end a title.
 - When using rich text, such as in a title, a screen reader will read aloud the
-  entire message as one sentence. Since the message will be read as one string,
-  do not depend on text styling to convey meaning.
+  entire message as one sentence. Because the message will be read as one
+  string, do not depend on text styling to convey meaning.
 
 #### Body content
 
-- Be concise and avoid repeating or paraphrasing the title.
-- Limit content to one or two short sentences.
+- Be concise; limit the content to one or two short sentences.
+- Don't repeat or paraphrase the title.
 - Explain how to resolve the issue by including any troubleshooting actions or
-  next steps.
+  next steps. This is what IBM Style calls the “user action”. User actions are
+  mandatory for error messages.
+- When possible, use an actionable notification and include links in the
+  notification body that redirect the user to where they resolve the problem.
 
 #### Action button
 
@@ -208,10 +214,10 @@ apprised of the situation, and know what to do next.
 
 ### Overflow
 
-If a toast or inline notification requires a message longer than two lines, use
-an actionable notification and include a short message with a “View more” link
-that takes the user to a view of the full notification message. This can be
-either a full page with more details or a modal.
+If a toast or inline notification requires a message that is longer than two
+lines, use an actionable notification and include a short message with a “View
+more” link that takes the user to a view of the full notification message. This
+destination can be either a full page with more details or a modal.
 
 ### Further guidance
 
@@ -220,19 +226,23 @@ For further content guidance, see Carbon's
 
 ## Inline
 
-Inline notifications show up in task flows, to notify users of the status of an
-action or system. They usually appear at the top of the primary content area or
-close to the item needing attention.
+Inline notifications show up in task flows to notify users of the status of an
+action or system. Inline notifications usually appear at the top of the primary
+content area or close to the item needing attention.
 
 ### Inline formatting
 
 <Row>
 <Column colLg={8}>
 
-![Example of inline notification with action button](images/02_notification_format_608.png)
+![Examples of inline notification placements across different UI layouts](images/02_notification_format_608.png)
 
 </Column>
 </Row>
+
+<Caption>
+  Examples of inline notification placements across different UI layouts
+</Caption>
 
 #### Sizing
 
@@ -246,17 +256,17 @@ Inline notifications appear near their related items. They can expand to fill
 the width of the container or content area they are in and should align to the
 grid columns.
 
-We recommend placing inline notifications at the bottom of forms, just above the
-submission and cancel buttons. When error notifications apply to individual text
-inputs, they should supplement the error state on that specific input field.
+Place inline notifications at the bottom of forms, just above the submission and
+cancel buttons. When error notifications apply to individual text inputs, they
+should supplement the error state on that specific input field.
 
 <Row>
 <Column colLg={8}>
 
-![Example of inline notification placement](images/notification-usage-placement.png)
+![Example of inline notification  supporting an error message on a form](images/notification-usage-placement.png)
 
 <Caption>
-  Example of an inline notification supporting an error message on a form
+  Examples of an inline notification supporting an error message on a form
 </Caption>
 
 </Column>
@@ -273,26 +283,32 @@ critical for a user to read or interact with the notification.
 
 ## Toast
 
-Toasts are non-modal, time-based window elements used to display short messages;
-they usually appear at the top of the screen and disappear after a few seconds.
+Toast notifications are non-modal, time-based window elements used to display
+short messages; they usually appear at the top of the screen and disappear after
+a few seconds.
 
 ### Toast formatting
 
 <Row>
 <Column colLg={8}>
 
-![Example of toast notification with action button and time stamp](images/04_toast_format_608.png)
+![Examples of toast notification placements across different UI layouts](images/04_toast_format_608.png)
 
 </Column>
 </Row>
+
+<Caption>
+  Examples of toast notification placements across different UI layouts
+</Caption>
 
 #### Time stamp
 
 Toast notifications can include a time stamp at the bottom the container. The
 time stamp shows the time the notification was sent. Using time stamps is
-optional but toasts should be consistent across the product so either all toasts
-should include time stamps or none of them should. The time stamp is optional
-and can be removed if a third line of content is needed.
+optional but toast notifications should be consistent across the product so
+either all toast notifications should include time stamps or none of them
+should. The time stamp is optional and can be removed if a third line of content
+is needed.
 
 #### Sizing
 
@@ -322,24 +338,25 @@ dismissed.
 
 ### Dismissal
 
-Toast notifications persist by default. Toasts do have the option to timeout and
+Toast notifications persist by default, but they can timeout and be coded to
 dismiss automatically after five seconds on the screen. They can also include a
-close button so users can dismiss them sooner. Toasts cover content on the
-screen so they should always be easily dismissed. Because toast notifications
-can dismiss automatically, users should be able to access them elsewhere after
-the toast disappears. This allows them to be accessible for users who need more
-time reading the notification or who may want to refer back to the notification.
+close button so users can dismiss them sooner. Toast notifications cover content
+on the screen so they should always be easily dismissed. Because toast
+notifications can dismiss automatically, users should be able to access them
+elsewhere after the toast notification disappears if they need more time to read
+the notification or who want to refer to it later.
 
 ## Actionable
 
-Actionable notifications allow for interactive elements within a notification
-styled like an inline or toast notification. Actionable notifications, since
-they require user interaction, take focus when triggered and can be highly
-disruptive to screen readers and keyboard users. With actionable notifications,
-only one action is allowed per notification. This action frequently takes users
-to a flow or page related to the message, where they can resolve the
-notification. Consider using a notification center where a user can revisit and
-act on past notifications.
+Actionable notifications are inline or toast notifications that have interactive
+elements. Because actionable notifications require user interaction, actionable
+notifications come into focus when triggered and, therefore, they disrupt screen
+readers and keyboard users. Only one action is allowed for each notification,
+and this action frequently takes users to a flow or page related to the message
+where they can resolve the notification.
+
+Consider using a notification center where a user can revisit and act on past
+notifications.
 
 ### Formatting
 
@@ -353,10 +370,10 @@ notification.
 #### Toast
 
 Actionable toast notifications can include a tertiary button at the end of their
-body content. This button should be short and navigate users to a page or modal
-where they can take action to address the notification or find further
-information. Because toast notifications automatically dismiss, it is important
-that there are alternative routes to navigate to the link destination.
+body content. This button should be short and should take users to a page or
+modal where they can take action to address the notification or find further
+information. Because toast notifications automatically dismiss, ensure there are
+alternative routes to navigate to the link destination.
 
 <Row>
 <Column colLg={8}>
@@ -372,13 +389,13 @@ that there are alternative routes to navigate to the link destination.
 
 ### Dismissal
 
-Actionable notifications persist by default until a user dismisses them. If
-using inline styling, refer to [inline notifications](#inline-notifications) for
-inline dismissal. If using toast styling for an actionable notification, then
-the notification should remain on screen until the user dismisses it. With the
-notification remaining open, the user has enough time to interact with the
-button without the toast closing too soon. Refer to
-[toast notifications](#toast-notifications) for further information.
+Actionable notifications persist until a user dismisses them. If you're using
+inline styling, refer to [inline notifications](#inline-notifications) for
+inline dismissal. If you're using toast-notification style for an actionable
+notification, the notification should remain on screen until the user dismisses
+it. Because the notification remains open, the user has enough time to interact
+with the button without the toast closing too soon. For more information, see
+[toast notifications](#toast-notifications).
 
 ### Links
 
@@ -388,8 +405,8 @@ actionable notification can be used to redirect the user to next steps.
 ### Actions
 
 If needed, actionable notifications can include a ghost button for inline
-notifications or a tertiary button for toasts. These action buttons enable users
-to address the notification or navigate to a page for more details.
+notifications or a tertiary button for toast notifications. These action buttons
+enable users to address the notification or navigate to a page for more details.
 
 ## Callout
 
@@ -523,7 +540,7 @@ notifications are best for critical messaging while low-contrast notifications
 are less visually disruptive for users.
 
 It's up to the product team to decide which notification style to use in their
-product. Callouts, inline, and toast notifications can use different styles but
+product. Callouts, inline, and toast notifications can use different styles, but
 you should never mix styles within each notification variant. When in doubt, use
 low-contrast notifications.
 
