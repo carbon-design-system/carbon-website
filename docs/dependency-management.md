@@ -22,7 +22,7 @@ When a dependency is no longer needed, it should be removed so we can reduce our
 
 ## Updating dependencies
 
-One major difference between `npm` and `yarn`, is that `yarn` doesn't really care too much about the `package.json` file. The actual versions used to build your project are derived from the `yarn.lock` file at the root of the directory. This makes sense, considering the `package.json` file has semanticly versioned _ranges_ for dependencies.
+One major difference between `npm` and `yarn`, is that `yarn` doesn't really care too much about the `package.json` file. The actual versions used to build your project are derived from the `yarn.lock` file at the root of the directory. This makes sense, considering the `package.json` file has semantically versioned _ranges_ for dependencies.
 
 To update our dependency, we can type `yarn upgrade-interactive`. This let's us chose which packages we want to update individually. If you want to include packages with updates beyond your version range (breaking/non-semver) pass the `latest` flag: `yarn upgrade-interactive --latest`
 

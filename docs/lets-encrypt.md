@@ -12,7 +12,7 @@ We can use the DNS challenge that is a part of the manual process outlined
 for wildcard domains for our `carbondesignsystem.com` TLD.
 
 To get started, you will need to install the
-[`certbot`](https://certbot.eff.org/lets-encrypt/osx-other.html) utillity. If
+[`certbot`](https://certbot.eff.org/lets-encrypt/osx-other.html) utility. If
 you're using homebrew, you can install this software by running the following in
 your terminal:
 
