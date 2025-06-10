@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkcarbondesignsystem=self.webpackChunkcarbondesignsystem||[]).push([[246950],{201641:function(e,n,t){function s(e){return e&&"object"==typeof e&&"default"in e?e:{default:e}}var u=s(t(605556));const f={size:u.default.oneOfType([u.default.number,u.default.string])};n.iconPropTypes=f}}]);
