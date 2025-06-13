@@ -48,3 +48,19 @@ Running the build command generates all the files and places them in the
 ```
 yarn build
 ```
+
+## 👩‍💻 Getting Started as a First-Time Contributor
+
+Welcome! 🎉 If you're new to contributing to this project, here’s a quick guide
+to get you started smoothly.
+
+### 1. Prerequisites
+
+- **Node.js (v16 or higher recommended)**  
+  [Install Node.js](https://nodejs.org/) or use a version manager like
+  [`nvm`](https://github.com/nvm-sh/nvm).
+- **Yarn package manager**  
+  Install Yarn globally (if not already installed):
+  ```bash
+  npm install --global yarn
+  ```
