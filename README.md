@@ -30,7 +30,7 @@ src
 - 🗺
   [Navigation guidelines](https://gatsby-theme-carbon.now.sh/guides/navigation/sidebar)
 
-- `yarn install` – install dependencies
+- `yarn install` – installs all project dependencies listed in `package.json`
 - `yarn dev` – start the development server
 - `yarn dev:clean` – use this if you have cache issues
 - `lint:js` – lint your JavaScript files
