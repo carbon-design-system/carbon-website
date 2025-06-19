@@ -73,5 +73,16 @@ module.exports = {
         directory: path.resolve(__dirname, './src/data/chart-index'),
       },
     },
+    // Fix for Sass legacy JS API deprecation warnings:
+    {
+      resolve: 'gatsby-plugin-sass',
+      options: {
+        implementation: require('sass'), // Use Dart Sass explicitly
+        sassOptions: {
+          // No need for 'api' here as Dart Sass is default now, but you can silence warnings:
+          quietDeps: true,
+        },
+      },
+    },
   ],
 };
