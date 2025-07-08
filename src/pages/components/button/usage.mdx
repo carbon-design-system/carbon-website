@@ -23,6 +23,8 @@ import {
   Upload,
 } from '@carbon/react/icons';
 
+import { UnorderedList, ListItem } from '@carbon/react';
+
 <PageDescription>
 
 Buttons are used to initialize an action. Button labels express what action will
@@ -186,6 +188,8 @@ more context around the use case for each size. For guidance on button heights
 as well as type sizes and tokens,
 see [Sizes](/components/button/style#sizes.mdx) on the Style tab.
 
+Carbon does not recommend mixing different button sizes in #Button groups.
+
 | Button size        | Use case                                                                                                                                          |
 | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Small              | Use when vertical space is limited or in areas with a confined layout.                                                                            |
@@ -284,13 +288,187 @@ button locations include:
 | Right-justified | Inline notifications, inline field buttons and data tables, progressive forms, wizards, and single-button dialogs.                                                                                                                                                                                                                        |
 | Full-span       | Dialogs, side panel, and small tiles; currently Carbon does not offer a way to implement full-span buttons in code, without an override as mentioned [here](https://github.com/carbon-design-system/carbon/blob/66c14c2d2631a868703073a6cfabf1fd03a0b9e7/packages/styles/scss/components/button/_mixins.scss#L56), they max out at 320px. |
 
-#### Fixed versus fluid buttons
+#### Fixed width button
 
 Button alignment is also closely related to whether the button is treated as a
 fixed or a fluid element within a layout. When we say “fixed,” there is a fixed
 padding of 16px to the left and a 64px padding to the right of the button label.
 The button label determines the button’s width. Refer to the
 [Style tab](/components/button/style#button-structure) for more guidance.
+
+<Row>
+<Column colLg={8}>
+
+![Example of a fixed width primary button in a layout.](images/button_usage_bg_1.png)
+
+<Caption>Example of a fixed width primary button in a layout.</Caption>
+
+</Column>
+</Row>
+
+#### Hanging vs non-hanging button alignment
+
+Hanging button alignment is when the button label is aligned to the grid rather 
+than the container. This alignment should be used to group sections between 
+components and button directly affecting each other. 
+
+Non-hanging button alignment is when the button container is aligned to the grid. 
+These rules apply for buttons with a visible container, for buttons that don’t 
+have a visible container in the default state such as ghost button and danger 
+ghost button, refer to [ghost button](/components/button/usage/#ghost-button) 
+alignment.
+
+<DoDontRow>
+  <DoDont type="do" caption="Example of a fixed width button’s hanging alignment.">
+
+![Example of a fixed width button’s hanging alignment.](images/button_usage_bg_2.png)
+
+  </DoDont>
+  <DoDont type="do" caption="Example of a fixed width button’s non-hanging alignment.">
+
+![Example of a fixed width button’s non-hanging alignment.](images/button_usage_bg_3.png)
+
+  </DoDont>
+</DoDontRow>
+
+#### Fluid width button
+
+There is a hybrid scenario where a floating primary, secondary, or tertiary 
+button can span a designated number of columns on the responsive column grid, 
+giving it a fluid width. These are called “fluid width buttons.” 
+ 
+Fluid width buttons are always preferable to fixed width default buttons in a 
+layout. When possible, set the button container’s relative position to the 
+responsive layout grid and match the button width to the width of other elements 
+on the page. Ideally, when using groups of related buttons (not including ghost 
+buttons unless in a tearsheet or modal), they should all be the same width. See 
+button groups below for more detailed information. 
+
+<Row>
+<Column colLg={8}>
+
+![Example of a fluid width primary button matching the width of a card in a layout.](images/button_usage_bg_4.png)
+
+<Caption>Example of a fluid width primary button matching the width of a card in a layout.</Caption>
+
+</Column>
+</Row>
+
+### Button groups
+
+Button groups are a useful way of aligning buttons that have a relationship.
+Group the buttons logically into sets based on usage and importance. Too many
+calls to action will overwhelm and confuse users so they should be avoided.
+
+As mentioned in the [Emphasis section](#emphasis), you don’t necessarily need to
+use the buttons in the order that their labels imply. Either a secondary or a
+tertiary button can be used in conjunction with a primary button. In fact, due
+to the visual weight of the secondary button, it’s recommended to use tertiary
+or ghost buttons in layouts with more than three calls to action.
+
+<Row>
+<Column colLg={12}>
+
+![Example of button groups in a UI.](images/button_usage_bg_5.png)
+
+<Caption>Example of button groups in a UI.</Caption>
+
+</Column>
+</Row>
+
+#### Button groups versus Menu buttons
+
+Button groups should be used when there are either two or three actions that a 
+user needs to consider. Any more than three actions should be grouped 
+meaningfully using [Menu buttons](/components/menu-buttons/usage/), to reduce 
+the amount of space these actions take up on a page. Alternatively, for 
+interfaces that need many common actions or functions, consider using a 
+[toolbar](https://pages.github.ibm.com/carbon/ibm-products/components/toolbar/usage/). 
+
+<DoDontRow>
+<DoDont
+type="do"
+colMd={6} colLg={6}
+caption="Do use menu buttons to group meaningful actions being applied to the same data.">
+
+![Do use menu buttons to group meaningful actions being applied to the same data.](images/button_usage_bg_6.png)
+
+</DoDont>
+<DoDont
+colMd={6} colLg={6}
+type="dont"
+caption="Do not use many individual buttons applying to the same data.">
+
+![Do not use many individual buttons applying to the same data.](images/button_usage_bg_7.png)
+
+</DoDont>
+</DoDontRow>
+
+#### Button width in button groups
+
+When using groups of related buttons (not including ghost buttons), they 
+should all be the same width. The width of all the buttons is usually 
+determined by the longest button label.
+
+_Note: We recommend following this guidance for toolbar and batch actions toolbar as well._
+
+<Row>
+<Column colLg={8}>
+
+![Example of button width in button groups.](images/button_usage_bg_8.png)
+
+<Caption>Example of button width in button groups.</Caption>
+
+</Column>
+</Row>
+
+<DoDontRow>
+  <DoDont type="do" caption="Do apply the same width to all buttons in a group, even if they don’t bleed.">
+
+![Do apply the same width to all buttons in a group, even if they don’t bleed.](images/button_usage_bg_9.png)
+
+  </DoDont>
+  <DoDont type="dont" caption="Do not make buttons in a group different widths.">
+
+![Do not make buttons in a group different widths.](images/button_usage_bg_10.png)
+
+  </DoDont>
+</DoDontRow>
+
+#### Hanging vs non-hanging fluid width button group alignment
+
+This can be achieved in one of two ways, both of which are acceptable. The 
+first approach involves using the narrow gutter mode. In this situation, 
+each button would be set individually on the column grid.  
+_Note: Carbon developers are working on the narrow gutter mode, currently 
+left-hanging buttons can only be achieved with an override._ 
+
+Some products don’t want to hang their buttons into the gutter, but still 
+want a 16px distance between buttons. This can be achieved while maintaining 
+same-width buttons by treating the button group as a single object (rather 
+than two separate entities) on the grid. Each button will essentially span 50% 
+of their container with a programmatic 16px gutter between them.
+
+<DoDontRow>
+<DoDont
+type="do"
+colMd={6} colLg={6}
+caption="Example of hanging buttons in a button groups.">
+
+![Example of hanging buttons in a button groups.](images/button_usage_bg_11.png)
+
+</DoDont>
+<DoDont
+colMd={6} colLg={6}
+type="do"
+caption="Here the button group is treated as one element on the grid to achieve a 16px gutter between the two, without the gutter hang.">
+
+![Here the button group is treated as one element on the grid to achieve a 16px gutter between the two, without the gutter hang.](images/button_usage_bg_12.png)
+
+</DoDont>
+</DoDontRow>
+
+#### Fluid button groups
 
 When we say “fluid,” we mean that the button becomes a part of a larger,
 compound component by bleeding to two or more edges of its container. Rather
@@ -346,116 +524,6 @@ accessibility. Refer to the
 </Column>
 </Row>
 
-#### Fluid width buttons
-
-There is a hybrid scenario where a floating primary, secondary, or tertiary
-button can span a designated number of columns on the responsive column grid,
-giving it a fluid width. These are called “fluid width buttons.”
-
-Fluid width buttons are always preferable to fixed width default buttons in a
-layout. When possible set the button container’s relative position to the
-responsive layout grid and match the button width to the width of other elements
-on the page. Ideally, when using groups of related buttons (not including ghost
-buttons unless in a tearsheet or modal), they should all be the same width. See
-button groups below for more detailed information.
-
-<Row>
-<Column colLg={8}>
-
-![Example of a primary button matching the width of a card in a layout.](images/button_usage_15.png)
-
-<Caption>
-  Example of a primary button matching the width of a card in a layout.
-</Caption>
-
-</Column>
-</Row>
-
-### Button groups
-
-Button groups are a useful way of aligning buttons that have a relationship.
-Group the buttons logically into sets based on usage and importance. Too many
-calls to action will overwhelm and confuse users so they should be avoided.
-
-As mentioned in the [Emphasis section](#emphasis), you don’t necessarily need to
-use the buttons in the order that their labels imply. Either a secondary or a
-tertiary button can be used in conjunction with a primary button. In fact, due
-to the visual weight of the secondary button, it’s recommended to use tertiary
-or ghost buttons in layouts with more than three calls to action.
-
-<Row>
-<Column colLg={8}>
-
-![multiple buttons in a layout](images/button_usage_16.png)
-
-</Column>
-</Row>
-
-<DoDontRow>
-  <DoDont type="do" caption="Do use a primary and two of the same lower emphasis buttons in a button group.">
-
-![Do use a primary and two of the same lower emphasis buttons in a button group.](images/button_usage_17.png)
-
-  </DoDont>
-  <DoDont type="dont" caption="Do not mix primary, secondary, and tertiary buttons in the same button group.">
-
-![Do not mix primary, secondary, and tertiary buttons in the same button group.](images/button_usage_18.png)
-
-  </DoDont>
-</DoDontRow>
-
-#### Button groups and the grid
-
-Ideally, when using groups of related buttons (not including ghost buttons),
-they should all be the same width. This can be achieved in one of two ways, both
-of which are acceptable. The first approach involves using the
-[narrow gutter mode](/elements/2x-grid/implementation#gutter-modes). In this
-situation each button would be set individually on the column grid. _Note:
-Carbon developers are working on the narrow gutter mode, currently left-hanging
-buttons can only be achieved with an override._
-
-<Row>
-<Column colLg={8}>
-
-![Example of hanging buttons on the grid](images/button_usage_19.png)
-
-<Caption>Example of hanging buttons</Caption>
-
-</Column>
-</Row>
-
-Some products don’t want to hang their buttons into the gutter, but still want a
-16px distance between buttons. This can be achieved while maintaining same-width
-buttons by treating the button group as a single object (rather than two
-separate entities) on the grid. Each button will essentially span 50% of their
-container with a programmatic 16px gutter between them.
-
-<Row>
-<Column colLg={8}>
-
-![Button group as single grid element](images/button_usage_20.png)
-
-<Caption>
-  Here the button group is treated as one element on the grid to achieve a 16px
-  gutter between the two, without gutter hang.
-</Caption>
-
-</Column>
-</Row>
-
-<DoDontRow>
-  <DoDont type="do" caption="Do apply the same width to all buttons in a group, even if they don’t bleed.">
-
-![Do apply the same width to all buttons in a group](images/button_usage_21.png)
-
-  </DoDont>
-  <DoDont type="dont" caption="Do not make buttons in a group different widths.">
-
-![Do not make buttons in a group different widths.](images/button_usage_22.png)
-
-  </DoDont>
-</DoDontRow>
-
 #### Horizontally arranged groups
 
 When using multiple buttons, the position of the primary button adheres to the
@@ -481,17 +549,19 @@ revised our position.
 </Column>
 </Row>
 
-#### Stacked button groups
+#### Vertically stacked button groups
 
 Typical product landing pages have buttons side by side. However vertical button
 groups are also common in products, to save real estate in narrow columns and
-occasionally side panels. In these instances, the primary button is always on
-top and the secondary or tertiary button is below.
+occasionally side panels. 
 
-Generally, when designers stack buttons, they tend to use the hybrid fluid
-buttons. However, stacked fluid buttons are also an option in desktop side
-panels with especially long calls to action. _Note: experimenting with stacked
-fluid buttons would require an override to the existing code._
+These stacked buttons can act as fluid buttons bleeding into the side panel or 
+they can have a 16px spacing surrounding the side panel. The 16px spacing allows 
+the use of a tertiary button in the vertically  stacked button group. In these 
+instances, the primary button is always on top and the secondary or tertiary 
+button is below. 
+
+_Note: experimenting with stacked fluid buttons would require an override to the existing code._
 
 <Row>
 <Column colLg={12}>
@@ -501,16 +571,32 @@ fluid buttons would require an override to the existing code._
 </Column>
 </Row>
 
-#### Groups with Danger buttons
+<Title>Button groups combinations with Primary button</Title>
 
-Danger buttons have a different visual style to inform users of potentially
-destructive actions they are about to take. Within a set, use the primary danger
-button style.
+Text
 
-<Row>
-<Column colLg={8}>
+<Row className="table--component-checklist">
+<Column colMd={8} colLg={8} noGutterSm>
 
-![Danger button treated as Primary button in a modal](images/button_usage_25.png)
+| Number of buttons | Recommended combination of button groups                                                                                                                                                                                                                                                                                                         |
+| ------------------| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 2                 | <UnorderedList><ListItem>Primary and Secondary button</ListItem><ListItem>Primary and Tertiary button</ListItem><ListItem>Primary and Ghost button</ListItem><ListItem>Primary and Danger tertiary button</ListItem><ListItem>Danger primary and Secondary button</ListItem><ListItem>Danger primary and Ghost button</ListItem></UnorderedList> |
+| 3                 | <UnorderedList><ListItem>Primary, Secondary and Tertiary button</ListItem><ListItem>Primary, Secondary and Ghost button</ListItem><ListItem>Primary and 2 Secondary buttons</ListItem><ListItem>Primary and 2 Tertiary buttons</ListItem><ListItem>Primary and Danger info??</ListItem></UnorderedList>                                          |
+
+</Column>
+</Row>
+
+<Title>Button groups combinations without Primary button</Title>
+
+Text
+
+<Row className="table--component-checklist">
+<Column colMd={8} colLg={8} noGutterSm>
+
+| Number of buttons | Recommended combination of button groups                                                                                                                 |
+| ------------------| -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 2                 | <UnorderedList><ListItem>2 Tertiary buttons</ListItem><ListItem>Tertiary and Ghost button</ListItem><ListItem>2 Ghost buttons</ListItem></UnorderedList> |
+| 3                 | <UnorderedList><ListItem>3 Tertiary buttons</ListItem></UnorderedList>                                                                                   |
 
 </Column>
 </Row>
@@ -1235,7 +1321,7 @@ for the following use cases:
   action.
 - There is insufficient space and multiple actions, therefore a toolbar using
   icon buttons is required. See
-  the [toolbars pattern](https://pages.github.ibm.com/cdai-design/pal/patterns/toolbars)
+  the [toolbars pattern](https://pages.github.ibm.com/carbon/ibm-products/components/toolbar/usage/)
   for more details.
 
 <Row>
