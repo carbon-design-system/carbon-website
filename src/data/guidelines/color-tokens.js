@@ -502,11 +502,11 @@ const colorTokens = {
         },
         g90: {
           name: 'Gray 70 hover',
-          hex: '#656565',
+          hex: '#636363',
         },
         g100: {
           name: 'Gray 80 hover',
-          hex: '#4c4c4c',
+          hex: '#474747',
         },
       },
     },
@@ -527,7 +527,7 @@ const colorTokens = {
         },
         g100: {
           name: 'Gray 70 hover',
-          hex: '#656565',
+          hex: '#636363',
         },
       },
     },
@@ -544,7 +544,7 @@ const colorTokens = {
         },
         g90: {
           name: 'Gray 70 hover',
-          hex: '#656565',
+          hex: '#636363',
         },
         g100: {
           name: 'Gray 60 hover',
