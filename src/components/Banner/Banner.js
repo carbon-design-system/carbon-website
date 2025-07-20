@@ -5,7 +5,7 @@ import { ArrowRight } from '@carbon/react/icons';
 import {
   banner,
   bannerText,
-  // bannerHeading,
+  bannerHeading,
   bannerDetails,
   buttonBanner,
 } from './Banner.module.scss';
@@ -14,20 +14,19 @@ const Banner = () => {
   return (
     <div aria-label="banner" className={banner}>
       <p className={bannerText}>
-        {/* <strong className={bannerHeading}>
-          This is the bolded text
-        </strong> */}
+        <strong className={bannerHeading}>
+          A new web experience is coming!
+        </strong>
         <span className={bannerDetails}>
-          Help improve the Carbon website experience by taking our two minute
-          survey.
+          The v1 Carbon platform is now available in public beta.
         </span>
       </p>
       <Button
-        href="https://your.feedback.ibm.com/jfe/form/SV_eQVJIwXK3hlrdhc"
+        href="https://next.carbondesignsystem.com"
         className={buttonBanner}
         kind="ghost"
         renderIcon={ArrowRight}>
-        Take the survey
+        Try the Carbon Platform
       </Button>
     </div>
   );
