@@ -23,8 +23,11 @@ const colorTokens = {
       },
     },
     '$layer-background-01': {
-      role: ['Default page background', 'Automatically matches contextual layer background'],
-     value: {
+      role: [
+        'Default page background',
+        'Automatically matches contextual layer background',
+      ],
+      value: {
         white: {
           name: 'White',
           hex: '#ffffff',
@@ -258,8 +261,11 @@ const colorTokens = {
         },
       },
     },
-     '$layer-background-02': {
-      role: ['Container color on $layer-background-01', 'Automatically matches contextual layer background'],
+    '$layer-background-02': {
+      role: [
+        'Container color on $layer-background-01',
+        'Automatically matches contextual layer background',
+      ],
       value: {
         white: {
           name: 'Gray 10',
@@ -280,7 +286,10 @@ const colorTokens = {
       },
     },
     '$layer-background-03': {
-      role: ['Container color on $layer-background-02', 'Automatically matches contextual layer background'],
+      role: [
+        'Container color on $layer-background-02',
+        'Automatically matches contextual layer background',
+      ],
       value: {
         white: {
           name: 'White',
