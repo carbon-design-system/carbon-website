@@ -22,6 +22,30 @@ const colorTokens = {
         },
       },
     },
+    '$layer-background-01': {
+      role: [
+        'Default page background',
+        'Automatically matches contextual layer background',
+      ],
+      value: {
+        white: {
+          name: 'White',
+          hex: '#ffffff',
+        },
+        g10: {
+          name: 'Gray 10',
+          hex: '#f4f4f4',
+        },
+        g90: {
+          name: 'Gray 90',
+          hex: '#262626',
+        },
+        g100: {
+          name: 'Gray 100',
+          hex: '#161616',
+        },
+      },
+    },
     '$background-hover': {
       role: [
         'Hover color for $background',
@@ -237,6 +261,54 @@ const colorTokens = {
         },
       },
     },
+    '$layer-background-02': {
+      role: [
+        'Container color on $layer-background-01',
+        'Automatically matches contextual layer background',
+      ],
+      value: {
+        white: {
+          name: 'Gray 10',
+          hex: '#f4f4f4',
+        },
+        g10: {
+          name: 'White',
+          hex: '#ffffff',
+        },
+        g90: {
+          name: 'Gray 80',
+          hex: '#393939',
+        },
+        g100: {
+          name: 'Gray 90',
+          hex: '#262626',
+        },
+      },
+    },
+    '$layer-background-03': {
+      role: [
+        'Container color on $layer-background-02',
+        'Automatically matches contextual layer background',
+      ],
+      value: {
+        white: {
+          name: 'White',
+          hex: '#ffffff',
+        },
+        g10: {
+          name: 'Gray 10',
+          hex: '#f4f4f4',
+        },
+        g90: {
+          name: 'Gray 70',
+          hex: '#525252',
+        },
+        g100: {
+          name: 'Gray 80',
+          hex: '#393939',
+        },
+      },
+    },
     '$layer-hover-01': {
       role: ['Hover color for $layer-01'],
       value: {
@@ -431,19 +503,19 @@ const colorTokens = {
       value: {
         white: {
           name: 'Gray 20 hover',
-          hex: '#cacaca',
+          hex: '#d1d1d1',
         },
         g10: {
           name: 'Gray 20 hover',
-          hex: '#cacaca',
+          hex: '#d1d1d1',
         },
         g90: {
           name: 'Gray 70 hover',
-          hex: '#656565',
+          hex: '#636363',
         },
         g100: {
           name: 'Gray 80 hover',
-          hex: '#4c4c4c',
+          hex: '#474747',
         },
       },
     },
@@ -452,11 +524,11 @@ const colorTokens = {
       value: {
         white: {
           name: 'Gray 20 hover',
-          hex: '#cacaca',
+          hex: '#d1d1d1',
         },
         g10: {
           name: 'Gray 20 hover',
-          hex: '#cacaca',
+          hex: '#d1d1d1',
         },
         g90: {
           name: 'Gray 60 hover',
@@ -464,7 +536,7 @@ const colorTokens = {
         },
         g100: {
           name: 'Gray 70 hover',
-          hex: '#656565',
+          hex: '#636363',
         },
       },
     },
@@ -473,15 +545,15 @@ const colorTokens = {
       value: {
         white: {
           name: 'Gray 20 hover',
-          hex: '#cacaca',
+          hex: '#d1d1d1',
         },
         g10: {
           name: 'Gray 20 hover',
-          hex: '#cacaca',
+          hex: '#d1d1d1',
         },
         g90: {
           name: 'Gray 70 hover',
-          hex: '#656565',
+          hex: '#636363',
         },
         g100: {
           name: 'Gray 60 hover',
