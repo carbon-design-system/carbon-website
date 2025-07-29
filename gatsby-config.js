@@ -60,8 +60,7 @@ module.exports = {
           baseUrl: 'https://github.com/carbon-design-system/carbon-website',
           subDirectory: '',
         },
-        // Temporarily disable mediumAccount to avoid API rate limit errors
-        // mediumAccount: ['carbondesign', 'design-ibm'],
+        mediumAccount: ['carbondesign', 'design-ibm'],
         theme: {
           homepage: 'white',
         },
