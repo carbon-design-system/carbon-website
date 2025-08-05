@@ -42,7 +42,7 @@ const links = {
   ],
   secondCol: [
     { href: 'https://medium.com/carbondesign', linkText: 'Medium' },
-    { href: 'https://twitter.com/_carbondesign', linkText: 'Twitter' },
+    { href: 'https://x.com/_carbondesign', linkText: '𝕏' },
   ],
 };
 
