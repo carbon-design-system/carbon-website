@@ -17,6 +17,8 @@ class ComponentOverview extends React.Component {
       componentUrl = '/components/dropdown/usage';
     } else if (component === 'UI shell') {
       componentUrl = '/components/UI-shell-header/usage';
+    } else if (component === 'Tree view') {
+      componentUrl = '/components/tree-view/usage';
     } else {
       componentUrl = `/components/${component
         .toLowerCase()
