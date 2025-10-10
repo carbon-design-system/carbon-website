@@ -48,7 +48,11 @@ const NoResult = ({
               subTitle={`Submit ${
                 pageName === 'icon' ? 'an icon' : 'a pictogram'
               } design`}
-              href="https://github.ibm.com/brand/pictograms/issues/new">
+              href={
+                pageName === 'icon'
+                  ? 'https://github.ibm.com/brand/ui-icons/issues/new'
+                  : 'https://github.ibm.com/brand/pictograms/issues/new'
+              }>
               <Github />
             </ResourceCard>
           </Column>
