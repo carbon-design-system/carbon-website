@@ -1,20 +1,17 @@
-import React from 'react';
-import cx from 'classnames';
+import { StructuredListCell, StructuredListRow, Tag } from '@carbon/react';
 import {
-  StructuredListRow,
-  StructuredListCell,
-  CodeSnippet,
-} from '@carbon/react';
-import {
+  cell,
+  descriptionCell,
+  glyph,
   icon,
   iconGroup,
   iconWrapper,
   isDark,
-  glyph,
   statusIndicatorRow,
-  descriptionCell,
-  cell,
 } from './StatusIndicator.module.scss';
+
+import React from 'react';
+import cx from 'classnames';
 
 export const StatusIcon = ({ attention, theme, fileName, isGlyph }) => {
   const path = `/status-icons/${attention}/${theme}/${fileName}.svg`;
@@ -84,14 +81,8 @@ const StatusIndicatorRow = ({
       </StructuredListCell>
       <StructuredListCell className={cell}>{statusname}</StructuredListCell>
       <StructuredListCell className={cell}>
-        <CodeSnippet type="inline" feedback="Copied!" light>
-          {token}
-        </CodeSnippet>
-        {secondarytoken && (
-          <CodeSnippet type="inline" feedback="Copied!" light>
-            {secondarytoken}
-          </CodeSnippet>
-        )}
+        <Tag size="sm">{token}</Tag>
+        {secondarytoken && <Tag size="sm">{secondarytoken}</Tag>}
       </StructuredListCell>
       <StructuredListCell className={cx(cell, descriptionCell)}>
         {description}
