@@ -1,7 +1,6 @@
 const path = require('path');
 
 exports.onCreateWebpackConfig = ({ actions, getConfig }) => {
-  // Allows importing html files for component code examples
   actions.setWebpackConfig({
     module: {
       rules: [
@@ -19,15 +18,25 @@ exports.onCreateWebpackConfig = ({ actions, getConfig }) => {
       ],
     },
     resolve: {
+      // Ensure node_modules are in the path for resolution
       modules: [path.resolve(__dirname, 'src'), 'node_modules'],
       alias: {
-        // light-weight fork of buble compiler from react-live team
         buble: path.resolve(__dirname, 'node_modules', '@philpl/buble'),
+        // Explicitly resolve @carbon packages to their node_modules path
+        '@carbon/react': path.resolve(__dirname, 'node_modules/@carbon/react'),
+        '@carbon/icons-react': path.resolve(__dirname, 'node_modules/@carbon/icons-react'),
+        '@carbon/styles': path.resolve(__dirname, 'node_modules/@carbon/styles'), // Keep for Sass if needed
       },
+      // Fallback for older module resolution patterns
+      fallback: {
+        'crypto': false, // Example of adding fallbacks if needed for older modules
+        'stream': false,
+        'path': require.resolve('path-browserify'), // Ensure path resolves correctly
+        // You might need more if other 'cannot resolve' errors appear for node built-ins
+      }
     },
   });
 
-  // Disable sourcemaps in production
   if (getConfig().mode === 'production') {
     actions.setWebpackConfig({
       devtool: false,
@@ -38,7 +47,6 @@ exports.onCreateWebpackConfig = ({ actions, getConfig }) => {
 exports.createPages = ({ actions }) => {
   const { createRedirect } = actions;
 
-  // Community index
   createRedirect({
     fromPath: '/community/components',
     toPath: '/community/component-index',
@@ -50,7 +58,6 @@ exports.createPages = ({ actions }) => {
     isPermanent: true,
   });
 
-  // Developing
   createRedirect({
     fromPath: '/resources',
     toPath: '/developing/developer-resources',
@@ -97,7 +104,6 @@ exports.createPages = ({ actions }) => {
     isPermanent: true,
   });
 
-  // Case studies
   createRedirect({
     fromPath: ' /case-studies/overview',
     toPath: '/all-about-carbon/who-uses-carbon/',
@@ -114,7 +120,6 @@ exports.createPages = ({ actions }) => {
     isPermanent: true,
   });
 
-  // Data-visualization
   createRedirect({
     fromPath: '/data-visualization/basic-charts',
     toPath: '/data-visualization/simple-charts',
@@ -126,7 +131,6 @@ exports.createPages = ({ actions }) => {
     isPermanent: true,
   });
 
-  // Elements L0 - 2022/02
   createRedirect({
     fromPath: '/guidelines/2x-grid/overview',
     toPath: '/elements/2x-grid/overview',
