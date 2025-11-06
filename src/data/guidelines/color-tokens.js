@@ -2551,20 +2551,20 @@ const colorTokens = {
       role: ['Background overlay'],
       value: {
         white: {
-          name: 'Gray 100, 50%',
-          hex: '#161616 @ 50%',
+          name: 'Black',
+          hex: '#000000 @ 60%',
         },
         g10: {
-          name: 'Gray 100, 50%',
-          hex: '#161616 @ 50%',
+          name: 'Black',
+          hex: '#000000 @ 60%',
         },
         g90: {
-          name: 'Gray 100, 70%',
-          hex: '#161616 @70%',
+          name: 'Black',
+          hex: '#000000 @ 60%',
         },
         g100: {
-          name: 'Gray 100, 70%',
-          hex: '#161616 @ 70%',
+          name: 'Black',
+          hex: '#000000 @ 60%',
         },
       },
     },
