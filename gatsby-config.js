@@ -14,14 +14,6 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        name: 'component-index-images',
-        path: path.join(__dirname, 'src/data/index'),
-        ignore: ['**/*.js', '**/*.yml', '**/.*'],
-      },
-    },
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
         name: 'chart-index-images',
         path: path.join(__dirname, 'src/data/chart-index'),
         ignore: ['**/*.js', '**/*.yml', '**/.*'],
