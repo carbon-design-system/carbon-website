@@ -35,7 +35,7 @@ for type styles on common elements like `h1`, `h2`, `p`, etc.
 
 You can use this package by writing the following:
 
-```scss
+```css
 @use '@carbon/type';
 // Include type reset
 @include type.reset();
@@ -66,7 +66,7 @@ on Carbon to handle all typography styling.
 The `type-classes` mixin will output a collection of utility CSS that you can
 use to style a given HTML element with type-related styles.
 
-```scss
+```css
 @mixin type-classes;
 ```
 
@@ -89,12 +89,30 @@ You can find a full reference of the type styles that are available on the
 [Carbon Design System website](https://carbondesignsystem.com/elements/typography/type-sets)
 .
 
-You can include a token in your Sass file by writing:
+You can include a type token in your Sass file by using the type-style mixin
+from the Carbon type package.
 
-```scss
+#### Standard type tokens
+
+Standard type tokens apply fixed font sizes that remain constant across all
+viewport sizes.
+
+```css
 @use '@carbon/type';
 
 @include type.type-style('productive-heading-01');
+```
+
+#### Fluid type tokens
+
+Fluid type tokens scale responsively between minimum and maximum font sizes
+based on the viewport width. The second parameter (`true`) is required to enable
+fluid behavior for these tokens.
+
+```css
+@use '@carbon/type';
+
+@include type.type-style('fluid-heading-01', true);
 ```
 
 ### Reset
@@ -102,7 +120,7 @@ You can include a token in your Sass file by writing:
 An optional type reset is provided under the `type.reset()` mixin. You can
 include this mixin by writing the following in your Sass file:
 
-```scss
+```css
 @use '@carbon/type';
 
 @include type.reset();
@@ -121,14 +139,14 @@ recommendation is to use [type styles](#type-styles) .
 If you are looking to use the type scale, you can include all the scale-related
 utilities and variables by writing the following in your Sass file:
 
-```scss
+```css
 @use '@carbon/type';
 ```
 
 You can access a specific step in the type scale by using the `type-scale`
 function:
 
-```scss
+```css
 @use '@carbon/type';
 
 .my-selector {
