@@ -4294,6 +4294,27 @@ const colorTokens = {
         },
       },
     },
+    '$chat-bubble-agent-text': {
+      role: ['Chat bubble text color for agents'],
+      value: {
+        white: {
+          name: 'Gray 100',
+          hex: '#161616',
+        },
+        g10: {
+          name: 'Gray 100',
+          hex: '#161616',
+        },
+        g90: {
+          name: 'Gray 10',
+          hex: '#f4f4f4',
+        },
+        g100: {
+          name: 'Gray 10',
+          hex: '#f4f4f4',
+        },
+      },
+    },
     '$chat-bubble-border': {
       role: ['Chat bubble border color for agents'],
       value: {
@@ -4312,6 +4333,27 @@ const colorTokens = {
         g100: {
           name: 'Gray 70',
           hex: '#525252',
+        },
+      },
+    },
+    '$chat-bubble-user-text': {
+      role: ['Chat bubble text color for users'],
+      value: {
+        white: {
+          name: 'Gray 100',
+          hex: '#161616',
+        },
+        g10: {
+          name: 'Gray 100',
+          hex: '#161616',
+        },
+        g90: {
+          name: 'Gray 10',
+          hex: '#f4f4f4',
+        },
+        g100: {
+          name: 'Gray 10',
+          hex: '#f4f4f4',
         },
       },
     },
@@ -4378,6 +4420,27 @@ const colorTokens = {
         },
       },
     },
+    '$chat-prompt-text': {
+      role: ['Text for chat prompt'],
+      value: {
+        white: {
+          name: 'Gray 100',
+          hex: '#161616',
+        },
+        g10: {
+          name: 'Gray 100',
+          hex: '#161616',
+        },
+        g90: {
+          name: 'Gray 10',
+          hex: '#f4f4f4',
+        },
+        g100: {
+          name: 'Gray 10',
+          hex: '#f4f4f4',
+        },
+      },
+    },
     '$chat-shell-background': {
       role: ['Chat shell background color'],
       value: {
@@ -4417,6 +4480,27 @@ const colorTokens = {
         g100: {
           name: 'Gray 90',
           hex: '#262626',
+        },
+      },
+    },
+    '$chat-header-text': {
+      role: ['Text / fill for header'],
+      value: {
+        white: {
+          name: 'Gray 100',
+          hex: '#161616',
+        },
+        g10: {
+          name: 'Gray 100',
+          hex: '#161616',
+        },
+        g90: {
+          name: 'Gray 10',
+          hex: '#f4f4f4',
+        },
+        g100: {
+          name: 'Gray 10',
+          hex: '#f4f4f4',
         },
       },
     },
