@@ -1639,6 +1639,783 @@ const colorTokens = {
       },
     },
   },
+  'syntax-tokens': {
+    '$syntax-comment': {
+      role: ['Default comment text'],
+      value: {
+        white: { name: 'Green 60', hex: '#198038' },
+        g10: { name: 'Green 60', hex: '#198038' },
+        g90: { name: 'Green 40', hex: '#42be65' },
+        g100: { name: 'Green 40', hex: '#42be65' },
+      },
+    },
+    '$syntax-line-comment': {
+      role: ['Single-line comment'],
+      value: {
+        white: { name: 'Green 60', hex: '#198038' },
+        g10: { name: 'Green 60', hex: '#198038' },
+        g90: { name: 'Green 40', hex: '#42be65' },
+        g100: { name: 'Green 40', hex: '#42be65' },
+      },
+    },
+    '$syntax-block-comment': {
+      role: ['Block comment'],
+      value: {
+        white: { name: 'Green 60', hex: '#198038' },
+        g10: { name: 'Green 60', hex: '#198038' },
+        g90: { name: 'Green 40', hex: '#42be65' },
+        g100: { name: 'Green 40', hex: '#42be65' },
+      },
+    },
+    '$syntax-doc-comment': {
+      role: ['Documentation comment'],
+      value: {
+        white: { name: 'Green 60', hex: '#198038' },
+        g10: { name: 'Green 60', hex: '#198038' },
+        g90: { name: 'Green 40', hex: '#42be65' },
+        g100: { name: 'Green 40', hex: '#42be65' },
+      },
+    },
+    '$syntax-doc-string': {
+      role: ['Docstring'],
+      value: {
+        white: { name: 'Gray 100', hex: '#161616' },
+        g10: { name: 'Gray 100', hex: '#161616' },
+        g90: { name: 'Gray 10', hex: '#f4f4f4' },
+        g100: { name: 'Gray 10', hex: '#f4f4f4' },
+      },
+    },
+    '$syntax-keyword': {
+      role: ['Keywords'],
+      value: {
+        white: { name: 'Blue 60', hex: '#0f62fe' },
+        g10: { name: 'Blue 60', hex: '#0f62fe' },
+        g90: { name: 'Blue 50', hex: '#4589ff' },
+        g100: { name: 'Blue 50', hex: '#4589ff' },
+      },
+    },
+    '$syntax-operator-keyword': {
+      role: ['Operator keywords'],
+      value: {
+        white: { name: 'Blue 60', hex: '#0f62fe' },
+        g10: { name: 'Blue 60', hex: '#0f62fe' },
+        g90: { name: 'Blue 50', hex: '#4589ff' },
+        g100: { name: 'Blue 50', hex: '#4589ff' },
+      },
+    },
+    '$syntax-control-keyword': {
+      role: ['Control-flow keywords'],
+      value: {
+        white: { name: 'Purple 70', hex: '#8a3ffc' },
+        g10: { name: 'Purple 70', hex: '#8a3ffc' },
+        g90: { name: 'Purple 40', hex: '#be95ff' },
+        g100: { name: 'Purple 40', hex: '#be95ff' },
+      },
+    },
+    '$syntax-definition-keyword': {
+      role: ['Definition keywords'],
+      value: {
+        white: { name: 'Cyan 70', hex: '#00bcd4' },
+        g10: { name: 'Cyan 70', hex: '#00bcd4' },
+        g90: { name: 'Cyan 40', hex: '#5fd7e7' },
+        g100: { name: 'Cyan 40', hex: '#5fd7e7' },
+      },
+    },
+    '$syntax-module-keyword': {
+      role: ['Module/import keywords'],
+      value: {
+        white: { name: 'Purple 70', hex: '#8a3ffc' },
+        g10: { name: 'Purple 70', hex: '#8a3ffc' },
+        g90: { name: 'Purple 40', hex: '#be95ff' },
+        g100: { name: 'Purple 40', hex: '#be95ff' },
+      },
+    },
+    '$syntax-variable': {
+      role: ['Variable'],
+      value: {
+        white: { name: 'Blue 60', hex: '#0f62fe' },
+        g10: { name: 'Blue 60', hex: '#0f62fe' },
+        g90: { name: 'Blue 30', hex: '#78a9ff' },
+        g100: { name: 'Blue 30', hex: '#78a9ff' },
+      },
+    },
+    '$syntax-name': {
+      role: ['Name'],
+      value: {
+        white: { name: 'Blue 60', hex: '#0f62fe' },
+        g10: { name: 'Blue 60', hex: '#0f62fe' },
+        g90: { name: 'Blue 30', hex: '#78a9ff' },
+        g100: { name: 'Blue 30', hex: '#78a9ff' },
+      },
+    },
+    '$syntax-variable-name': {
+      role: ['Variable name'],
+      value: {
+        white: { name: 'Blue 60', hex: '#0f62fe' },
+        g10: { name: 'Blue 60', hex: '#0f62fe' },
+        g90: { name: 'Blue 30', hex: '#78a9ff' },
+        g100: { name: 'Blue 30', hex: '#78a9ff' },
+      },
+    },
+    '$syntax-label-name': {
+      role: ['Label name'],
+      value: {
+        white: { name: 'Blue 60', hex: '#0f62fe' },
+        g10: { name: 'Blue 60', hex: '#0f62fe' },
+        g90: { name: 'Blue 30', hex: '#78a9ff' },
+        g100: { name: 'Blue 30', hex: '#78a9ff' },
+      },
+    },
+    '$syntax-attribute': {
+      role: ['Attribute'],
+      value: {
+        white: { name: 'Cyan 70', hex: '#00bcd4' },
+        g10: { name: 'Cyan 70', hex: '#00bcd4' },
+        g90: { name: 'Cyan 40', hex: '#5fd7e7' },
+        g100: { name: 'Cyan 40', hex: '#5fd7e7' },
+      },
+    },
+    '$syntax-attribute-name': {
+      role: ['Attribute name'],
+      value: {
+        white: { name: 'Cyan 70', hex: '#00bcd4' },
+        g10: { name: 'Cyan 70', hex: '#00bcd4' },
+        g90: { name: 'Cyan 40', hex: '#5fd7e7' },
+        g100: { name: 'Cyan 40', hex: '#5fd7e7' },
+      },
+    },
+    '$syntax-property-name': {
+      role: ['Property name'],
+      value: {
+        white: { name: 'Cyan 70', hex: '#00bcd4' },
+        g10: { name: 'Cyan 70', hex: '#00bcd4' },
+        g90: { name: 'Cyan 40', hex: '#5fd7e7' },
+        g100: { name: 'Cyan 40', hex: '#5fd7e7' },
+      },
+    },
+    '$syntax-tag': {
+      role: ['Tag delimiters'],
+      value: {
+        white: { name: 'Teal 60', hex: '#009d9a' },
+        g10: { name: 'Teal 60', hex: '#009d9a' },
+        g90: { name: 'Teal 30', hex: '#2fd3cc' },
+        g100: { name: 'Teal 30', hex: '#2fd3cc' },
+      },
+    },
+    '$syntax-tag-name': {
+      role: ['Tag name'],
+      value: {
+        white: { name: 'Teal 60', hex: '#009d9a' },
+        g10: { name: 'Teal 60', hex: '#009d9a' },
+        g90: { name: 'Teal 30', hex: '#2fd3cc' },
+        g100: { name: 'Teal 30', hex: '#2fd3cc' },
+      },
+    },
+    '$syntax-type': {
+      role: ['Type'],
+      value: {
+        white: { name: 'Teal 60', hex: '#009d9a' },
+        g10: { name: 'Teal 60', hex: '#009d9a' },
+        g90: { name: 'Teal 30', hex: '#2fd3cc' },
+        g100: { name: 'Teal 30', hex: '#2fd3cc' },
+      },
+    },
+    '$syntax-type-name': {
+      role: ['Type name'],
+      value: {
+        white: { name: 'Teal 60', hex: '#009d9a' },
+        g10: { name: 'Teal 60', hex: '#009d9a' },
+        g90: { name: 'Teal 30', hex: '#2fd3cc' },
+        g100: { name: 'Teal 30', hex: '#2fd3cc' },
+      },
+    },
+    '$syntax-class-name': {
+      role: ['Class name'],
+      value: {
+        white: { name: 'Teal 60', hex: '#009d9a' },
+        g10: { name: 'Teal 60', hex: '#009d9a' },
+        g90: { name: 'Teal 30', hex: '#2fd3cc' },
+        g100: { name: 'Teal 30', hex: '#2fd3cc' },
+      },
+    },
+    '$syntax-namespace': {
+      role: ['Namespace'],
+      value: {
+        white: { name: 'Teal 60', hex: '#009d9a' },
+        g10: { name: 'Teal 60', hex: '#009d9a' },
+        g90: { name: 'Teal 30', hex: '#2fd3cc' },
+        g100: { name: 'Teal 30', hex: '#2fd3cc' },
+      },
+    },
+    '$syntax-macro-name': {
+      role: ['Macro name'],
+      value: {
+        white: { name: 'Gray 100', hex: '#161616' },
+        g10: { name: 'Gray 100', hex: '#161616' },
+        g90: { name: 'Gray 10', hex: '#f4f4f4' },
+        g100: { name: 'Gray 10', hex: '#f4f4f4' },
+      },
+    },
+    '$syntax-atom': {
+      role: ['Atom literal'],
+      value: {
+        white: { name: 'Gray 100', hex: '#161616' },
+        g10: { name: 'Gray 100', hex: '#161616' },
+        g90: { name: 'Gray 10', hex: '#f4f4f4' },
+        g100: { name: 'Gray 10', hex: '#f4f4f4' },
+      },
+    },
+    '$syntax-literal': {
+      role: ['Literal'],
+      value: {
+        white: { name: 'Gray 100', hex: '#161616' },
+        g10: { name: 'Gray 100', hex: '#161616' },
+        g90: { name: 'Gray 10', hex: '#f4f4f4' },
+        g100: { name: 'Gray 10', hex: '#f4f4f4' },
+      },
+    },
+    '$syntax-bool': {
+      role: ['Boolean'],
+      value: {
+        white: { name: 'Gray 100', hex: '#161616' },
+        g10: { name: 'Gray 100', hex: '#161616' },
+        g90: { name: 'Gray 10', hex: '#f4f4f4' },
+        g100: { name: 'Gray 10', hex: '#f4f4f4' },
+      },
+    },
+    '$syntax-null': {
+      role: ['Null/undefined'],
+      value: {
+        white: { name: 'Gray 100', hex: '#161616' },
+        g10: { name: 'Gray 100', hex: '#161616' },
+        g90: { name: 'Gray 10', hex: '#f4f4f4' },
+        g100: { name: 'Gray 10', hex: '#f4f4f4' },
+      },
+    },
+    '$syntax-self': {
+      role: ['Self/this'],
+      value: {
+        white: { name: 'Teal 60', hex: '#009d9a' },
+        g10: { name: 'Teal 60', hex: '#009d9a' },
+        g90: { name: 'Teal 30', hex: '#2fd3cc' },
+        g100: { name: 'Teal 30', hex: '#2fd3cc' },
+      },
+    },
+    '$syntax-number': {
+      role: ['Number'],
+      value: {
+        white: { name: 'Green 60', hex: '#198038' },
+        g10: { name: 'Green 60', hex: '#198038' },
+        g90: { name: 'Green 30', hex: '#6fdc8c' },
+        g100: { name: 'Green 30', hex: '#6fdc8c' },
+      },
+    },
+    '$syntax-integer': {
+      role: ['Integer'],
+      value: {
+        white: { name: 'Green 60', hex: '#198038' },
+        g10: { name: 'Green 60', hex: '#198038' },
+        g90: { name: 'Green 30', hex: '#6fdc8c' },
+        g100: { name: 'Green 30', hex: '#6fdc8c' },
+      },
+    },
+    '$syntax-float': {
+      role: ['Float'],
+      value: {
+        white: { name: 'Green 60', hex: '#198038' },
+        g10: { name: 'Green 60', hex: '#198038' },
+        g90: { name: 'Green 30', hex: '#6fdc8c' },
+        g100: { name: 'Green 30', hex: '#6fdc8c' },
+      },
+    },
+    '$syntax-unit': {
+      role: ['Unit'],
+      value: {
+        white: { name: 'Green 60', hex: '#198038' },
+        g10: { name: 'Green 60', hex: '#198038' },
+        g90: { name: 'Green 30', hex: '#6fdc8c' },
+        g100: { name: 'Green 30', hex: '#6fdc8c' },
+      },
+    },
+    '$syntax-string': {
+      role: ['String'],
+      value: {
+        white: { name: 'Gray 100', hex: '#161616' },
+        g10: { name: 'Gray 100', hex: '#161616' },
+        g90: { name: 'Gray 10', hex: '#f4f4f4' },
+        g100: { name: 'Gray 10', hex: '#f4f4f4' },
+      },
+    },
+    '$syntax-character': {
+      role: ['Character'],
+      value: {
+        white: { name: 'Gray 100', hex: '#161616' },
+        g10: { name: 'Gray 100', hex: '#161616' },
+        g90: { name: 'Gray 10', hex: '#f4f4f4' },
+        g100: { name: 'Gray 10', hex: '#f4f4f4' },
+      },
+    },
+    '$syntax-attribute-value': {
+      role: ['Attribute value'],
+      value: {
+        white: { name: 'Gray 100', hex: '#161616' },
+        g10: { name: 'Gray 100', hex: '#161616' },
+        g90: { name: 'Gray 10', hex: '#f4f4f4' },
+        g100: { name: 'Gray 10', hex: '#f4f4f4' },
+      },
+    },
+    '$syntax-special-string': {
+      role: ['Special string'],
+      value: {
+        white: { name: 'Purple 60', hex: '#a56eff' },
+        g10: { name: 'Purple 60', hex: '#a56eff' },
+        g90: { name: 'Purple 40', hex: '#be95ff' },
+        g100: { name: 'Purple 40', hex: '#be95ff' },
+      },
+    },
+    '$syntax-regexp': {
+      role: ['RegExp'],
+      value: {
+        white: { name: 'Purple 70', hex: '#8a3ffc' },
+        g10: { name: 'Purple 70', hex: '#8a3ffc' },
+        g90: { name: 'Purple 40', hex: '#be95ff' },
+        g100: { name: 'Purple 40', hex: '#be95ff' },
+      },
+    },
+    '$syntax-escape': {
+      role: ['Escape sequence'],
+      value: {
+        white: { name: 'Cool Gray 80', hex: '#8d8d8d' },
+        g10: { name: 'Cool Gray 80', hex: '#8d8d8d' },
+        g90: { name: 'Gray 20', hex: '#e5e5e5' },
+        g100: { name: 'Gray 20', hex: '#e5e5e5' },
+      },
+    },
+    '$syntax-url': {
+      role: ['URL literal'],
+      value: {
+        white: { name: 'Cool Gray 80', hex: '#8d8d8d' },
+        g10: { name: 'Cool Gray 80', hex: '#8d8d8d' },
+        g90: { name: 'Gray 20', hex: '#e5e5e5' },
+        g100: { name: 'Gray 20', hex: '#e5e5e5' },
+      },
+    },
+    '$syntax-color': {
+      role: ['Color literal'],
+      value: {
+        white: { name: 'Gray 100', hex: '#161616' },
+        g10: { name: 'Gray 100', hex: '#161616' },
+        g90: { name: 'Gray 10', hex: '#f4f4f4' },
+        g100: { name: 'Gray 10', hex: '#f4f4f4' },
+      },
+    },
+    '$syntax-operator': {
+      role: ['Color literal'],
+      value: {
+        white: { name: 'Cool Gray 80', hex: '#8d8d8d' },
+        g10: { name: 'Cool Gray 80', hex: '#8d8d8d' },
+        g90: { name: 'Gray 20', hex: '#e5e5e5' },
+        g100: { name: 'Gray 20', hex: '#e5e5e5' },
+      },
+    },
+    '$syntax-deref-operator': {
+      role: ['Color literal'],
+      value: {
+        white: { name: 'Cool Gray 80', hex: '#8d8d8d' },
+        g10: { name: 'Cool Gray 80', hex: '#8d8d8d' },
+        g90: { name: 'Gray 20', hex: '#e5e5e5' },
+        g100: { name: 'Gray 20', hex: '#e5e5e5' },
+      },
+    },
+    '$syntax-arithmetic-operator': {
+      role: ['Color literal'],
+      value: {
+        white: { name: 'Cool Gray 80', hex: '#8d8d8d' },
+        g10: { name: 'Cool Gray 80', hex: '#8d8d8d' },
+        g90: { name: 'Gray 20', hex: '#e5e5e5' },
+        g100: { name: 'Gray 20', hex: '#e5e5e5' },
+      },
+    },
+    '$syntax-logic-operator': {
+      role: ['Color literal'],
+      value: {
+        white: { name: 'Cool Gray 80', hex: '#8d8d8d' },
+        g10: { name: 'Cool Gray 80', hex: '#8d8d8d' },
+        g90: { name: 'Gray 20', hex: '#e5e5e5' },
+        g100: { name: 'Gray 20', hex: '#e5e5e5' },
+      },
+    },
+    '$syntax-bitwise-operator': {
+      role: ['Color literal'],
+      value: {
+        white: { name: 'Cool Gray 80', hex: '#8d8d8d' },
+        g10: { name: 'Cool Gray 80', hex: '#8d8d8d' },
+        g90: { name: 'Gray 20', hex: '#e5e5e5' },
+        g100: { name: 'Gray 20', hex: '#e5e5e5' },
+      },
+    },
+    '$syntax-compare-operator': {
+      role: ['Color literal'],
+      value: {
+        white: { name: 'Cool Gray 80', hex: '#8d8d8d' },
+        g10: { name: 'Cool Gray 80', hex: '#8d8d8d' },
+        g90: { name: 'Gray 20', hex: '#e5e5e5' },
+        g100: { name: 'Gray 20', hex: '#e5e5e5' },
+      },
+    },
+    '$syntax-update-operator': {
+      role: ['Color literal'],
+      value: {
+        white: { name: 'Cool Gray 80', hex: '#8d8d8d' },
+        g10: { name: 'Cool Gray 80', hex: '#8d8d8d' },
+        g90: { name: 'Gray 20', hex: '#e5e5e5' },
+        g100: { name: 'Gray 20', hex: '#e5e5e5' },
+      },
+    },
+    '$syntax-definition-operator': {
+      role: ['Color literal'],
+      value: {
+        white: { name: 'Cyan 70', hex: '#0072c3' },
+        g10: { name: 'Cyan 70', hex: '#0072c3' },
+        g90: { name: 'Cyan 40', hex: '#78a9ff' },
+        g100: { name: 'Cyan 40', hex: '#78a9ff' },
+      },
+    },
+    '$syntax-type-operator': {
+      role: ['Color literal'],
+      value: {
+        white: { name: 'Teal 60', hex: '#009d9a' },
+        g10: { name: 'Teal 60', hex: '#009d9a' },
+        g90: { name: 'Teal 40', hex: '#3ddbd9' },
+        g100: { name: 'Teal 40', hex: '#3ddbd9' },
+      },
+    },
+    '$syntax-control-operator': {
+      role: ['Color literal'],
+      value: {
+        white: { name: 'Purple 60', hex: '#8a3ffc' },
+        g10: { name: 'Purple 60', hex: '#8a3ffc' },
+        g90: { name: 'Purple 40', hex: '#be95ff' },
+        g100: { name: 'Purple 40', hex: '#be95ff' },
+      },
+    },
+    '$syntax-modifier': {
+      role: ['Color literal'],
+      value: {
+        white: { name: 'Magenta 60', hex: '#d02670' },
+        g10: { name: 'Magenta 60', hex: '#d02670' },
+        g90: { name: 'Magenta 40', hex: '#ff7eb6' },
+        g100: { name: 'Magenta 40', hex: '#ff7eb6' },
+      },
+    },
+    '$syntax-punctuation': {
+      role: ['Color literal'],
+      value: {
+        white: { name: 'Cool Gray 80', hex: '#8d8d8d' },
+        g10: { name: 'Cool Gray 80', hex: '#8d8d8d' },
+        g90: { name: 'Gray 20', hex: '#e5e5e5' },
+        g100: { name: 'Gray 20', hex: '#e5e5e5' },
+      },
+    },
+    '$syntax-separator': {
+      role: ['Color literal'],
+      value: {
+        white: { name: 'Cool Gray 80', hex: '#8d8d8d' },
+        g10: { name: 'Cool Gray 80', hex: '#8d8d8d' },
+        g90: { name: 'Gray 20', hex: '#e5e5e5' },
+        g100: { name: 'Gray 20', hex: '#e5e5e5' },
+      },
+    },
+    '$syntax-bracket': {
+      role: ['Color literal'],
+      value: {
+        white: { name: 'Cool Gray 80', hex: '#8d8d8d' },
+        g10: { name: 'Cool Gray 80', hex: '#8d8d8d' },
+        g90: { name: 'Gray 20', hex: '#e5e5e5' },
+        g100: { name: 'Gray 20', hex: '#e5e5e5' },
+      },
+    },
+    '$syntax-angle-bracket': {
+      role: ['Color literal'],
+      value: {
+        white: { name: 'Cool Gray 60', hex: '#6f6f6f' },
+        g10: { name: 'Cool Gray 60', hex: '#6f6f6f' },
+        g90: { name: 'Gray 50', hex: '#8d8d8d' },
+        g100: { name: 'Gray 50', hex: '#8d8d8d' },
+      },
+    },
+    '$syntax-square-bracket': {
+      role: ['Color literal'],
+      value: {
+        white: { name: 'Cool Gray 80', hex: '#8d8d8d' },
+        g10: { name: 'Cool Gray 80', hex: '#8d8d8d' },
+        g90: { name: 'Gray 20', hex: '#e5e5e5' },
+        g100: { name: 'Gray 20', hex: '#e5e5e5' },
+      },
+    },
+    '$syntax-paren': {
+      role: ['Color literal'],
+      value: {
+        white: { name: 'Cool Gray 80', hex: '#8d8d8d' },
+        g10: { name: 'Cool Gray 80', hex: '#8d8d8d' },
+        g90: { name: 'Gray 20', hex: '#e5e5e5' },
+        g100: { name: 'Gray 20', hex: '#e5e5e5' },
+      },
+    },
+    '$syntax-brace': {
+      role: ['Color literal'],
+      value: {
+        white: { name: 'Cool Gray 80', hex: '#8d8d8d' },
+        g10: { name: 'Cool Gray 80', hex: '#8d8d8d' },
+        g90: { name: 'Gray 20', hex: '#e5e5e5' },
+        g100: { name: 'Gray 20', hex: '#e5e5e5' },
+      },
+    },
+    '$syntax-content': {
+      role: ['Color literal'],
+      value: {
+        white: { name: 'Gray 100', hex: '#161616' },
+        g10: { name: 'Gray 100', hex: '#161616' },
+        g90: { name: 'Gray 10', hex: '#f4f4f4' },
+        g100: { name: 'Gray 10', hex: '#f4f4f4' },
+      },
+    },
+    '$syntax-list': {
+      role: ['Color literal'],
+      value: {
+        white: { name: 'Gray 100', hex: '#161616' },
+        g10: { name: 'Gray 100', hex: '#161616' },
+        g90: { name: 'Gray 10', hex: '#f4f4f4' },
+        g100: { name: 'Gray 10', hex: '#f4f4f4' },
+      },
+    },
+    '$syntax-emphasis': {
+      role: ['Color literal'],
+      value: {
+        white: { name: 'Gray 100', hex: '#161616' },
+        g10: { name: 'Gray 100', hex: '#161616' },
+        g90: { name: 'Gray 10', hex: '#f4f4f4' },
+        g100: { name: 'Gray 10', hex: '#f4f4f4' },
+      },
+    },
+    '$syntax-strong': {
+      role: ['Color literal'],
+      value: {
+        white: { name: 'Gray 100', hex: '#161616' },
+        g10: { name: 'Gray 100', hex: '#161616' },
+        g90: { name: 'Gray 10', hex: '#f4f4f4' },
+        g100: { name: 'Gray 10', hex: '#f4f4f4' },
+      },
+    },
+    '$syntax-monospace': {
+      role: ['Color literal'],
+      value: {
+        white: { name: 'Gray 100', hex: '#161616' },
+        g10: { name: 'Gray 100', hex: '#161616' },
+        g90: { name: 'Gray 10', hex: '#f4f4f4' },
+        g100: { name: 'Gray 10', hex: '#f4f4f4' },
+      },
+    },
+    '$syntax-strikethrough': {
+      role: ['Color literal'],
+      value: {
+        white: { name: 'Gray 100', hex: '#161616' },
+        g10: { name: 'Gray 100', hex: '#161616' },
+        g90: { name: 'Gray 10', hex: '#f4f4f4' },
+        g100: { name: 'Gray 10', hex: '#f4f4f4' },
+      },
+    },
+    '$syntax-heading': {
+      role: ['Color literal'],
+      value: {
+        white: { name: 'Cyan 70', hex: '#0072c3' },
+        g10: { name: 'Cyan 70', hex: '#0072c3' },
+        g90: { name: 'Cyan 40', hex: '#78a9ff' },
+        g100: { name: 'Cyan 40', hex: '#78a9ff' },
+      },
+    },
+    '$syntax-heading-1': {
+      role: ['Color literal'],
+      value: {
+        white: { name: 'Cyan 70', hex: '#0072c3' },
+        g10: { name: 'Cyan 70', hex: '#0072c3' },
+        g90: { name: 'Cyan 40', hex: '#78a9ff' },
+        g100: { name: 'Cyan 40', hex: '#78a9ff' },
+      },
+    },
+    '$syntax-heading-2': {
+      role: ['Color literal'],
+      value: {
+        white: { name: 'Cyan 70', hex: '#0072c3' },
+        g10: { name: 'Cyan 70', hex: '#0072c3' },
+        g90: { name: 'Cyan 40', hex: '#78a9ff' },
+        g100: { name: 'Cyan 40', hex: '#78a9ff' },
+      },
+    },
+    '$syntax-heading-3': {
+      role: ['Color literal'],
+      value: {
+        white: { name: 'Cyan 70', hex: '#0072c3' },
+        g10: { name: 'Cyan 70', hex: '#0072c3' },
+        g90: { name: 'Cyan 40', hex: '#78a9ff' },
+        g100: { name: 'Cyan 40', hex: '#78a9ff' },
+      },
+    },
+    '$syntax-heading-4': {
+      role: ['Color literal'],
+      value: {
+        white: { name: 'Cyan 70', hex: '#0072c3' },
+        g10: { name: 'Cyan 70', hex: '#0072c3' },
+        g90: { name: 'Cyan 40', hex: '#78a9ff' },
+        g100: { name: 'Cyan 40', hex: '#78a9ff' },
+      },
+    },
+    '$syntax-heading-5': {
+      role: ['Color literal'],
+      value: {
+        white: { name: 'Cyan 70', hex: '#0072c3' },
+        g10: { name: 'Cyan 70', hex: '#0072c3' },
+        g90: { name: 'Cyan 40', hex: '#78a9ff' },
+        g100: { name: 'Cyan 40', hex: '#78a9ff' },
+      },
+    },
+    '$syntax-heading-6': {
+      role: ['Color literal'],
+      value: {
+        white: { name: 'Cyan 70', hex: '#0072c3' },
+        g10: { name: 'Cyan 70', hex: '#0072c3' },
+        g90: { name: 'Cyan 40', hex: '#78a9ff' },
+        g100: { name: 'Cyan 40', hex: '#78a9ff' },
+      },
+    },
+    '$syntax-content-separator': {
+      role: ['Color literal'],
+      value: {
+        white: { name: 'Cool Gray 80', hex: '#8d8d8d' },
+        g10: { name: 'Cool Gray 80', hex: '#8d8d8d' },
+        g90: { name: 'Gray 20', hex: '#e5e5e5' },
+        g100: { name: 'Gray 20', hex: '#e5e5e5' },
+      },
+    },
+    '$syntax-quote': {
+      role: ['Color literal'],
+      value: {
+        white: { name: 'Gray 60', hex: '#6f6f6f' },
+        g10: { name: 'Gray 60', hex: '#6f6f6f' },
+        g90: { name: 'Gray 40', hex: '#c6c6c6' },
+        g100: { name: 'Gray 40', hex: '#c6c6c6' },
+      },
+    },
+    '$syntax-link': {
+      role: ['Color literal'],
+      value: {
+        white: { name: 'Blue 60', hex: '#0f62fe' },
+        g10: { name: 'Blue 60', hex: '#0f62fe' },
+        g90: { name: 'Blue 50', hex: '#4589ff' },
+        g100: { name: 'Blue 50', hex: '#4589ff' },
+      },
+    },
+    '$syntax-invalid': {
+      role: ['Color literal'],
+      value: {
+        white: { name: 'Red 60', hex: '#da1e28' },
+        g10: { name: 'Red 60', hex: '#da1e28' },
+        g90: { name: 'Red 50', hex: '#fa4d56' },
+        g100: { name: 'Red 50', hex: '#fa4d56' },
+      },
+    },
+    '$syntax-meta': {
+      role: ['Color literal'],
+      value: {
+        white: { name: 'Green 60', hex: '#24a148' },
+        g10: { name: 'Green 60', hex: '#24a148' },
+        g90: { name: 'Green 40', hex: '#42be65' },
+        g100: { name: 'Green 40', hex: '#42be65' },
+      },
+    },
+    '$syntax-document-meta': {
+      role: ['Color literal'],
+      value: {
+        white: { name: 'Green 60', hex: '#24a148' },
+        g10: { name: 'Green 60', hex: '#24a148' },
+        g90: { name: 'Green 40', hex: '#42be65' },
+        g100: { name: 'Green 40', hex: '#42be65' },
+      },
+    },
+    '$syntax-annotation': {
+      role: ['Color literal'],
+      value: {
+        white: { name: 'Teal 60', hex: '#009d9a' },
+        g10: { name: 'Teal 60', hex: '#009d9a' },
+        g90: { name: 'Teal 40', hex: '#3ddbd9' },
+        g100: { name: 'Teal 40', hex: '#3ddbd9' },
+      },
+    },
+    '$syntax-processing-instruction': {
+      role: ['Color literal'],
+      value: {
+        white: { name: 'Purple 60', hex: '#8a3ffc' },
+        g10: { name: 'Purple 60', hex: '#8a3ffc' },
+        g90: { name: 'Purple 40', hex: '#be95ff' },
+        g100: { name: 'Purple 40', hex: '#be95ff' },
+      },
+    },
+    '$syntax-definition': {
+      role: ['Color literal'],
+      value: {
+        white: { name: 'Cyan 70', hex: '#0072c3' },
+        g10: { name: 'Cyan 70', hex: '#0072c3' },
+        g90: { name: 'Cyan 40', hex: '#78a9ff' },
+        g100: { name: 'Cyan 40', hex: '#78a9ff' },
+      },
+    },
+    '$syntax-constant': {
+      role: ['Color literal'],
+      value: {
+        white: { name: 'Blue 60', hex: '#0f62fe' },
+        g10: { name: 'Blue 60', hex: '#0f62fe' },
+        g90: { name: 'Blue 50', hex: '#4589ff' },
+        g100: { name: 'Blue 50', hex: '#4589ff' },
+      },
+    },
+    '$syntax-function': {
+      role: ['Color literal'],
+      value: {
+        white: { name: 'Yellow 60', hex: '#f1c21b' },
+        g10: { name: 'Yellow 60', hex: '#f1c21b' },
+        g90: { name: 'Yellow 30', hex: '#f1c21b' },
+        g100: { name: 'Yellow 30', hex: '#f1c21b' },
+      },
+    },
+    '$syntax-standard': {
+      role: ['Color literal'],
+      value: {
+        white: { name: 'Blue 60', hex: '#0f62fe' },
+        g10: { name: 'Blue 60', hex: '#0f62fe' },
+        g90: { name: 'Blue 50', hex: '#4589ff' },
+        g100: { name: 'Blue 50', hex: '#4589ff' },
+      },
+    },
+    '$syntax-local': {
+      role: ['Color literal'],
+      value: {
+        white: { name: 'Blue 60', hex: '#0f62fe' },
+        g10: { name: 'Blue 60', hex: '#0f62fe' },
+        g90: { name: 'Blue 30', hex: '#a6c8ff' },
+        g100: { name: 'Blue 30', hex: '#a6c8ff' },
+      },
+    },
+    '$syntax-special': {
+      role: ['Color literal'],
+      value: {
+        white: { name: 'Blue 60', hex: '#0f62fe' },
+        g10: { name: 'Blue 60', hex: '#0f62fe' },
+        g90: { name: 'Blue 50', hex: '#4589ff' },
+        g100: { name: 'Blue 50', hex: '#4589ff' },
+      },
+    },
+  },
+
   'icon-tokens': {
     '$icon-primary': {
       role: ['Primary icons'],
