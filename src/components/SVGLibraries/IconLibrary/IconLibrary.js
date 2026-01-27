@@ -119,6 +119,9 @@ const IconLibrary = () => {
           allIconResults={filteredIcons.length}
           pageName="icon"
           pageUrl="https://github.com/carbon-design-system/carbon/blob/main/packages/icons/master/ui-icon-master.ai"
+          single="https://github.ibm.com/brand/ui-icons/issues/new?assignees=&labels=ui-icon%2Crequest%2Csingle&projects=&template=01-ui-icon-request-single.yml&title=%5BUI+icon%5D+single%3A+UI+icon+name"
+          batch="https://github.ibm.com/brand/ui-icons/issues/new?assignees=&labels=ui-icon%2Crequest&projects=&template=02-ui-icon-request-batch.yml&title=%5BUI+icon%5D+batch%3A+UI+icon+batch+name"
+          update="https://github.ibm.com/brand/ui-icons/issues/new?assignees=&labels=ui-icon%2Crequest%2Cupdate&projects=&template=03-ui-icon-request-update.yml&title=%5BUI+icon%5D+update%3A+UI+icon+name"
         />
       ) : (
         <div className={svgLibrary}>
