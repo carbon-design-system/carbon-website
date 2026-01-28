@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkcarbondesignsystem=self.webpackChunkcarbondesignsystem||[]).push([[599024],{999939:function(s,e,n){var c=n(605556);const i={size:c.oneOfType([c.number,c.string])};e.iconPropTypes=i}}]);
