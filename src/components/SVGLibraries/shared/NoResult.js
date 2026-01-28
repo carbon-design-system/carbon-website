@@ -17,6 +17,9 @@ const NoResult = ({
   type = 'icons',
   pageName,
   pageUrl,
+  single,
+  batch,
+  update,
 }) => (
   <div className={noResult}>
     {allIconResults ? (
@@ -62,6 +65,27 @@ const NoResult = ({
               href={pageUrl}
               subTitle={`Download the ${pageName} master`}>
               <Illustrator />
+            </ResourceCard>
+          </Column>
+          <Column colMd={4} colLg={4} noGutterSm>
+            <ResourceCard
+              href={single}
+              subTitle={`UI ${pageName} request: Single`}>
+              <Github />
+            </ResourceCard>
+          </Column>
+          <Column colMd={4} colLg={4} noGutterSm>
+            <ResourceCard
+              href={batch}
+              subTitle={`UI ${pageName} request: Batch`}>
+              <Github />
+            </ResourceCard>
+          </Column>
+          <Column colMd={4} colLg={4} noGutterSm>
+            <ResourceCard
+              href={update}
+              subTitle={`UI ${pageName} request: Update`}>
+              <Github />
             </ResourceCard>
           </Column>
         </Row>
