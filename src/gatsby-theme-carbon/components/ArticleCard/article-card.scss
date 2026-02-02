@@ -63,11 +63,17 @@
   @include type-style('label-01');
 }
 
-// At the moment, we force 16:9 for medium posts, this
-// is how we would force 16:9 for all article cards
-// .cds--article-card__img {
-//   aspect-ratio: 16 / 9;
-// }
+// Enforce 16:9 for all article cards excluding those with gifs
+.cds--article-card__img {
+  aspect-ratio: 16 / 9;
+}
+
+.cds--article-card__img img:not([src$='.gif']),
+.cds--article-card__img span {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
 .cds--article-card__img .gatsby-resp-image-wrapper {
   margin-bottom: 0;
