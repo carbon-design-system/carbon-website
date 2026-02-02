@@ -42,37 +42,13 @@ authentication credentials, which can be provided to your MCP client.
   access.
 </InlineNotification>
 
-<br />
+### Access request workflow
 
-<Link
-  href="https://mcp.carbondesignsystem.com/mcp/auth/ibmid/web"
-  target="_blank">
-  Visit this link to generate your token and session ID
-</Link>
+1. <Link href="https://mcp.carbondesignsystem.com/mcp/auth/ibmid/web" target="_blank"> Visit this link to generate your token and session ID</Link>
+2. Request access if prompted
+3. Check your email for the activation link
+4. Copy your credentials: to add to your Carbon MCP configuration
 
-### Access request screen captures
-
-After clicking the link above, sign in with your IBMid (w3id for IBMers) at the
-screen below:
-
-![Login to IBM Cloud](./images/log_in.png)
-
-After signing in with your IBMid, if you are prompted to request access to
-Carbon MCP, you can complete the brief request form.
-
-![Carbon MCP access request](./images/submit_request.png)
-
-Once your access request has been approved, you will receive an email to
-activate your credentials. You'll then click the _"Continue to Carbon MCP
-sign-in"_ button.
-
-![Carbon MCP invitation email](./images/invitation_email.png)
-
-You will then be provided with your authentication credentials, as shown below.
-Once there, copy/paste the `Authorization code` and `Session ID` or
-`Auth headers JSON` into your MCP client config.
-
-![Carbon MCP auth credentials](./images/auth_creds.png)
 
 ## Step 3: Connecting to IBM Bob and other MCP clients
 
@@ -740,7 +716,8 @@ correctness**, and deliver precise, efficient Carbon code and guidance.
 
 ### System prompt configuration examples: Claude and Cursor
 
-**Claude Code and Claude Desktop**
+<Accordion>
+<AccordionItem title="Claude Code and Claude Desktop">
 
 Add a `systemPrompt` field to your Carbon MCP server
 [Claude Code configuration](#claude-code) and
@@ -770,7 +747,9 @@ Configuration file location for Claude Desktop (macOS): <br/>
 Configuration file location for Claude Code (macOS): <br/>
 `~/.config/claude-code/config.json`
 
-**Cursor**
+</AccordionItem>
+
+<AccordionItem title="Cursor">
 
 Cursor uses `Workspace Rules` as its system prompt equivalent. These rules act
 as persistent instructions that Cursor sends to the model before each request.
@@ -784,3 +763,6 @@ Add Carbon MCP system prompt to Cursor:
 - Paste the [Carbon MCP system prompt](#carbon-mcp-client-system-prompt) into
   the `Workspace Rules` editor
 - Save the rule to apply it as a system prompt for the workspace
+
+</AccordionItem>
+</Accordion>

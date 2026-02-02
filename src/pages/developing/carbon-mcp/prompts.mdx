@@ -4,6 +4,8 @@ tabs: ['Overview', 'Onboarding and setup', 'Prompts']
 description: User prompt guidance and best practices
 ---
 
+import { Accordion, AccordionItem } from '@carbon/react';
+
 <PageDescription>
 
 Use the guide below to write effective user prompts to improve AI outcomes for
@@ -139,7 +141,7 @@ embodies Carbon MCP prompt best practices. The placeholders are defined as:
 ```markdown
 TASK:
 
-You are an expert developer using <FRAMEWORK>.  
+You are an expert developer using <FRAMEWORK>.
 Build <APP_DESCRIPTION> using <COMPONENT_LIST>.
 
 I. Carbon Design System fidelity:
@@ -158,17 +160,17 @@ code, ensure:
 - Use IBM Plex font via Carbon typography tokens and classes
 - All text uses proper semantic HTML (`h1`, `h2`, `h3`, `p`, lists) with Carbon
   typography applied
-- **Always include these required SCSS imports in your stylesheet**:  
+- **Always include these required SCSS imports in your stylesheet**:
   `@use '@carbon/styles/scss/themes' as *; @use '@carbon/styles/scss/theme' with ($theme: $white); @use '@carbon/styles'; @use '@carbon/styles/scss/spacing' as *; @use '@carbon/styles/scss/type' as *;`
 - **Do not use inline style props** with token strings such as:
   - React: `style={{ margin: '$spacing-05' }}`
   - Web Components: `style="margin: $spacing-05"`
-- **Instead**, when layout spacing or alignment is required:  
+- **Instead**, when layout spacing or alignment is required:
   a. Create small utility classes in `src/styles.scss` (for example,
   `.page-section { padding-block: $spacing-07; }`,
-  `.tiles-row { gap: $spacing-05; }`).  
+  `.tiles-row { gap: $spacing-05; }`).
   b. Use only Carbon spacing tokens (`$spacing-03`, `$spacing-05`,
-  `$spacing-07`, etc.).  
+  `$spacing-07`, etc.).
   c. Apply these classes using `className` in React or `class` in Web
   Components.
 - This ensures spacing and alignment are driven strictly by **Carbon tokens and
@@ -227,7 +229,8 @@ customization for your specific AI code generation task.
   describing the code you want generated.
 </InlineNotification>
 
-### Example 1: Generating code with Carbon React (Core) components
+<Accordion>
+  <AccordionItem title="Example 1: Generating code with Carbon React (Core) components">
 
 ```markdown
 TASK:
@@ -340,8 +343,9 @@ V. NON-NEGOTIABLES:
 - No Tailwind or utility class frameworks; include Carbon SCSS imports
 - Imports resolve; code compiles on first run
 ```
+</AccordionItem>
 
-### Example 2: Generating code with both Carbon React (Core + IBM Products)
+<AccordionItem title="Example 2: Generating code with both Carbon React (Core + IBM Products)">
 
 ```markdown
 TASK:
@@ -450,7 +454,8 @@ V. NON-NEGOTIABLES:
 - Imports resolve; code compiles on first run
 ```
 
-### Example 3: Generating code with Carbon Web components (Core)
+</AccordionItem>
+<AccordionItem title="Example 3: Generating code with Carbon Web components (Core)">
 
 ```markdown
 TASK:
@@ -568,3 +573,5 @@ V. NON-NEGOTIABLES:
 - No Tailwind or utility class frameworks; include Carbon SCSS imports
 - Imports resolve; code compiles on first run
 ```
+</AccordionItem>
+</Accordion>
