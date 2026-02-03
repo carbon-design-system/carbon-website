@@ -113,20 +113,19 @@ we'll call it an `InfoSection` with three `InfoCard`s as children.
 ## The info section
 
 Inside `page-landing__r3` in `index.html` we will make a couple of small
-changes. Add the class `info-section` to the `cds--subgrid`
+changes. Add the class `info-section` to the `<cds-grid>`
 
 ```html path=index.html
-<div class="info-section cds--subgrid cds--subgrid--full-wide"></div>
+<cds-grid full-width class="info-section">
 ```
 
 and replace `The principles` and surrounding column with which changes the
 column settings and provides a class for us to style the section heading.
 
 ```html path=index.html
-<div
-  class="info-section__column cds--sm:col-span-4 cds--md:col-span-8 cds--lg:col-span-16 cds--xlg:col-span-4 cds--css-grid-column">
+<cds-column class="info-section__column page-landing__label" sm="4" md="8" lg="16" xlg="4">            
   <h3 class="info-section__heading">The Principles</h3>
-</div>
+</cds-column>
 ```
 
 Style the `info-section__heading` with:
@@ -148,17 +147,15 @@ info card template.
 
 ```html path=index.html
 <template id="template--info-card">
-  <div
-    class="info-card cds--sm:col-span-4 cds--md:col-span-8 cds--lg:col-span-5 cds--xlg:col-span-4 cds--css-grid-column">
-    <div class="info-card__upper">
-      <h4 class="info-card__heading">
-        Carbon is
-        <strong class="info-card__heading--strong">thing goes here</strong>
-      </h4>
-      <p class="info-card__body">Body goes here</p>
+  <cds-column class="info-card" sm="4" md="8" lg="5" xlg="4">
+    <div class="info-card__uppder">
+      <h4 class="info-card__heading">Carbon is <strong class="info-card__heading--strong">thing goes here</strong></h4>
+      <p class="info-card__body">
+        Body goes here
+      </p>
     </div>
     <div class="info-card__pictogram"></div>
-  </div>
+  </cds-column>
 </template>
 ```
 
