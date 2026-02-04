@@ -41,9 +41,15 @@ const NoResult = ({
       <>
         <h2 className={h2}>No result found</h2>
         <p className={paragraph}>
-          It appears we don’t have an icon that matches your search. Try
-          different search terms or give us a hand—submit your own design to the
-          library!
+          It appears we don’t have{' '}
+          {`${pageName === 'icon' ? 'an icon' : 'a pictogram'}`} that matches
+          your search. Try different search terms or submit an issue for a new{' '}
+          {`${pageName === 'icon' ? 'icon' : 'pictogram'}`}. Select from the
+          ticket options here or check the{' '}
+          <a href="https://www.ibm.com/design/language/iconography/pictograms/contribute/">
+            Contribute
+          </a>{' '}
+          page for more details and best practices.
         </p>
         <Row className="resource-card-group">
           <Column colMd={4} colLg={4} noGutterSm>
