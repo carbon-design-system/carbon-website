@@ -21,6 +21,7 @@ import svelte from './icons/svelte.png';
 import vue from './icons/vue.png';
 import webcomponents from './icons/webcomponents.png';
 import yourlearning from './icons/yourlearning.svg';
+import monday from './icons/monday.svg';
 
 const localIcons = {
   angular,
@@ -41,6 +42,7 @@ const localIcons = {
   vue,
   webcomponents,
   yourlearning,
+  monday
 };
 
 const carbonIcons = {
