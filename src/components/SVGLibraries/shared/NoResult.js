@@ -48,27 +48,6 @@ const NoResult = ({
         <Row className="resource-card-group">
           <Column colMd={4} colLg={4} noGutterSm>
             <ResourceCard
-              subTitle={`Submit ${
-                pageName === 'icon' ? 'an icon' : 'a pictogram'
-              } design`}
-              href={
-                pageName === 'icon'
-                  ? 'https://github.ibm.com/brand/ui-icons/issues/new'
-                  : 'https://github.ibm.com/brand/pictograms/issues/new'
-              }>
-              <Github />
-            </ResourceCard>
-          </Column>
-          <Column colMd={4} colLg={4} noGutterSm>
-            <ResourceCard
-              actionIcon="download"
-              href={pageUrl}
-              subTitle={`Download the ${pageName} master`}>
-              <Illustrator />
-            </ResourceCard>
-          </Column>
-          <Column colMd={4} colLg={4} noGutterSm>
-            <ResourceCard
               href={single}
               subTitle={`UI ${pageName} request: Single`}>
               <Github />
@@ -86,6 +65,14 @@ const NoResult = ({
               href={update}
               subTitle={`UI ${pageName} request: Update`}>
               <Github />
+            </ResourceCard>
+          </Column>
+          <Column colMd={4} colLg={4} noGutterSm>
+            <ResourceCard
+              actionIcon="download"
+              href={pageUrl}
+              subTitle={`Download the ${pageName} master`}>
+              <Illustrator />
             </ResourceCard>
           </Column>
         </Row>
