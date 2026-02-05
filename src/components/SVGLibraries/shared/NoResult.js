@@ -17,6 +17,9 @@ const NoResult = ({
   type = 'icons',
   pageName,
   pageUrl,
+  single,
+  batch,
+  update,
 }) => (
   <div className={noResult}>
     {allIconResults ? (
@@ -38,21 +41,35 @@ const NoResult = ({
       <>
         <h2 className={h2}>No result found</h2>
         <p className={paragraph}>
-          It appears we don’t have an icon that matches your search. Try
-          different search terms or give us a hand—submit your own design to the
-          library!
+          It appears we don’t have{' '}
+          {`${pageName === 'icon' ? 'an icon' : 'a pictogram'}`} that matches
+          your search. Try different search terms or submit an issue for a new{' '}
+          {`${pageName === 'icon' ? 'icon' : 'pictogram'}`}. Select from the
+          ticket options here or check the{' '}
+          <a href="https://www.ibm.com/design/language/iconography/pictograms/contribute/">
+            Contribute
+          </a>{' '}
+          page for more details and best practices.
         </p>
         <Row className="resource-card-group">
           <Column colMd={4} colLg={4} noGutterSm>
             <ResourceCard
-              subTitle={`Submit ${
-                pageName === 'icon' ? 'an icon' : 'a pictogram'
-              } design`}
-              href={
-                pageName === 'icon'
-                  ? 'https://github.ibm.com/brand/ui-icons/issues/new'
-                  : 'https://github.ibm.com/brand/pictograms/issues/new'
-              }>
+              href={single}
+              subTitle={`UI ${pageName} request: Single`}>
+              <Github />
+            </ResourceCard>
+          </Column>
+          <Column colMd={4} colLg={4} noGutterSm>
+            <ResourceCard
+              href={batch}
+              subTitle={`UI ${pageName} request: Batch`}>
+              <Github />
+            </ResourceCard>
+          </Column>
+          <Column colMd={4} colLg={4} noGutterSm>
+            <ResourceCard
+              href={update}
+              subTitle={`UI ${pageName} request: Update`}>
               <Github />
             </ResourceCard>
           </Column>
