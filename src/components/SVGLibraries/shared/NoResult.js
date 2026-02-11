@@ -46,7 +46,10 @@ const NoResult = ({
           your search. Try different search terms or submit an issue for a new{' '}
           {`${pageName === 'icon' ? 'icon' : 'pictogram'}`}. Select from the
           ticket options here or check the{' '}
-          <a href="https://www.ibm.com/design/language/iconography/pictograms/contribute/">
+          <a
+            href={`https://www.ibm.com/design/language/iconography/${
+              pageName === 'icon' ? 'ui-icons' : 'pictograms'
+            }/contribute`}>
             Contribute
           </a>{' '}
           page for more details and best practices.
