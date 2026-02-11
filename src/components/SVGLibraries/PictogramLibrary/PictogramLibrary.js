@@ -110,9 +110,9 @@ const IconLibrary = () => {
           allIconResults={filteredPictograms.length}
           pageName="pictogram"
           pageUrl="https://github.com/carbon-design-system/carbon/raw/refs/heads/main/packages/pictograms/master/productive-pictogram-master.ai"
-          single="https://github.ibm.com/brand/ui-icons/issues/new?assignees=&labels=ui-icon%2Crequest%2Csingle&projects=&template=01-ui-icon-request-single.yml&title=%5BUI+icon%5D+single%3A+UI+icon+name"
-          batch="https://github.ibm.com/brand/ui-icons/issues/new?assignees=&labels=ui-icon%2Crequest&projects=&template=02-ui-icon-request-batch.yml&title=%5BUI+icon%5D+batch%3A+UI+icon+batch+name"
-          update="https://github.ibm.com/brand/ui-icons/issues/new?assignees=&labels=ui-icon%2Crequest%2Cupdate&projects=&template=03-ui-icon-request-update.yml&title=%5BUI+icon%5D+update%3A+UI+icon+name"
+          single="https://github.ibm.com/brand/Pictograms/issues/new?assignees=&labels=picto%2Crequest%2Csingle&projects=&template=01-pictogram-request-single.yml&title=%5BPicto%5D+single%3A+Pictogram+name"
+          batch="https://github.ibm.com/brand/Pictograms/issues/new?assignees=&labels=picto%2Crequest%2Cbatch&projects=&template=02-pictogram-request-batch.yml&title=%5BPicto%5D+batch%3A+Pictogram+batch+name"
+          update="https://github.ibm.com/brand/Pictograms/issues/new?assignees=&labels=picto%2Crequest%2Cupdate&projects=&template=03-pictogram-request-update.yml&title=%5BPicto%5D+update%3A+Pictogram+name"
         />
       ) : (
         <div className={svgLibrary}>
