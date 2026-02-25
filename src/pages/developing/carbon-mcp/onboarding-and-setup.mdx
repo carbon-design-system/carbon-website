@@ -164,35 +164,19 @@ current Bob session.
 
 <AccordionItem title="Claude Code">
 
-- Edit the Claude Code configuration file if it exists, else create the file.
-  For macOS/Linux, the configuration file is located
-  `~/.config/claude-code/config.json`
-- Insert the following configuration into your config.json file:
-  <br />
-  <br />
+- Use the Claude Code CLI and replace the `<TOKEN>` and `<SESSION>` with your
+  Carbon MCP auth credentials
 
-```markdown
-{ "mcpServers": { "carbon-mcp": { "type":"streamable-http", "url":
-"https://mcp.carbondesignsystem.com/mcp", "disabled": false, "timeout": 600,
-"headers": { "Authorization": "Bearer <TOKEN>", "X-MCP-Session": "<SESSION>" },
-"alwaysAllow": ["code_search", "docs_search"] } } }
+<br />
+
+```bash
+claude mcp add-json carbon-mcp '{"type":"http","url":"https://mcp.carbondesignsystem.com/mcp","headers":{"Authorization":"Bearer <TOKEN>","X-MCP-Session":"<SESSION>"}}'
 ```
 
 <br />
-<br />
 
-- Replace `<TOKEN>` and `<SESSION>` with your actual Carbon MCP auth credentials
-- Save and close the file
-- Quit and relaunch Claude Code
-- Verify that Claude Code recognizes Carbon MCP by running this command: <br/>
-  `claude-code --list-mcp-servers`
-- You should see Carbon MCP listed:
+- Verify that Claude Code recognizes Carbon MCP by running `claude mcp list`
 
-<br />
-![Carbon MCP Claude connected to Claude desktop](./images/carbon-mcp-connected-to-claude-code.png)
-
-<br />
-<br />
 </AccordionItem>
 
 <AccordionItem title="Claude Desktop">
@@ -238,8 +222,9 @@ This section describes how to make both connections.
 </AccordionItem>
 
 <AccordionItem title="Cursor">
+[![Install MCP Server](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=carbon-mcp&config=eyJ0eXBlIjoic3RyZWFtYWJsZS1odHRwIiwidXJsIjoiaHR0cHM6Ly9tY3AuY2FyYm9uZGVzaWduc3lzdGVtLmNvbS9tY3AiLCJkaXNhYmxlZCI6ZmFsc2UsInRpbWVvdXQiOjYwMCwiaGVhZGVycyI6eyJBdXRob3JpemF0aW9uIjoiIiwiWC1NQ1AtU2Vzc2lvbiI6IiJ9LCJhbHdheXNBbGxvdyI6WyJjb2RlX3NlYXJjaCIsImRvY3Nfc2VhcmNoIl19)
 
-- Open the command palette
+- Or manually open the command palette
 - Select “View: Open MCP Settings”
 - Click on “Add custom MCP”
 - It will open a file with your MCP servers where you can add the following
@@ -287,31 +272,18 @@ This section describes how to make both connections.
 
 <AccordionItem title="VS Code">
 
-_Support for MCP in VS Code requires a recent version of VS Code that comes with
-Copilot Chat installed. Go to Settings and search for “Copilot” to confirm
-Copilot Chat is enabled._
+[![Install in VS Code](https://img.shields.io/badge/VS_Code-Install_carbon--mcp-0098FF?style=flat&logo=visualstudiocode&logoColor=ffffff)](vscode:mcp/install?%7B%22name%22%3A%22carbon-mcp%22%2C%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fmcp.carbondesignsystem.com%2Fmcp%22%2C%22headers%22%3A%7B%22Authorization%22%3A%22Bearer%20%24%7Binput%3Atoken%7D%22%2C%22X-MCP-Session%22%3A%22%24%7Binput%3Asession%7D%22%7D%2C%22inputs%22%3A%5B%7B%22id%22%3A%22token%22%2C%22type%22%3A%22promptString%22%2C%22description%22%3A%22Carbon%20MCP%20Token%22%2C%22password%22%3Atrue%7D%2C%7B%22id%22%3A%22session%22%2C%22type%22%3A%22promptString%22%2C%22description%22%3A%22Carbon%20MCP%20Session%20ID%22%7D%5D%7D)
 
-- Open the Command Palette
-- Select “Copilot: Open MCP Settings”
-- Click on “Add custom MCP”
-- It will open a JSON file with your MCP servers where you can add the following
-  configuration:
+- Or use VS Code CLI and replace the `<TOKEN>` and `<SESSION>` with your Carbon
+  MCP auth credentials
 
-  <br />
+<br />
 
-```markdown
-{ "mcpServers": { "carbon-mcp": { "type":"streamable-http", "url":
-"https://mcp.carbondesignsystem.com/mcp", "disabled": false, "timeout": 600,
-"headers": { "Authorization": "Bearer <TOKEN>", "X-MCP-Session": "<SESSION>" },
-"alwaysAllow": ["code_search", "docs_search"] } } }
+```bash
+code --add-mcp '{"name":"carbon-mcp","type":"http","url":"https://mcp.carbondesignsystem.com/mcp","headers":{"Authorization":"Bearer <TOKEN>","X-MCP-Session":"<SESSION>"}}'
 ```
 
 <br />
-<br />
-
-- Replace `<TOKEN>` and `<SESSION>` with your actual Carbon MCP auth credentials
-- Save and close the file
-- Quit and relaunch VS Code
 
 </AccordionItem>
 
@@ -322,6 +294,10 @@ If the MCP client you are using is not listed, refer to their documentation for
 
 </AccordionItem>
 </Accordion>
+
+Additionally, an `llms.txt` file is available [here](/llms.txt) — a structured
+index of Carbon Design System documentation, components, and source repositories
+for AI tools and LLMs.
 
 ## Step 4: Adding the client system prompt
 
