@@ -261,11 +261,26 @@ This section describes how to make both connections.
 
 <br />
 
+{/* prettier-ignore */}
 ```markdown
-{ "mcpServers": { "carbon-mcp": { "type":"streamable-http", "url":
-"https://mcp.carbondesignsystem.com/mcp", "disabled": false, "timeout": 600,
-"headers": { "Authorization": "Bearer <TOKEN>", "X-MCP-Session": "<SESSION>" },
-"alwaysAllow": ["code_search", "docs_search"] } } }
+{
+    "mcpServers": {
+        "carbon-mcp": {
+            "type": "streamable-http",
+            "url": "https://mcp.carbondesignsystem.com/mcp",
+            "disabled": false,
+            "timeout": 600,
+            "headers": {
+                "Authorization": "Bearer <TOKEN>",
+                "X-MCP-Session": "<SESSION>"
+            },
+            "alwaysAllow": [
+                "code_search",
+                "docs_search"
+            ]
+        }
+    }
+}
 ```
 
 <br />
@@ -345,26 +360,52 @@ This section describes how to make both connections.
 
 </AccordionItem>
 
- <AccordionItem title="GitHub Coding Agent" style={{display: "none"}}>
+<AccordionItem title="GitHub Coding Agent">
 
-- Open your repository in GitHub
-- Go to Settings
+- Open your repository > Settings in GitHub
+
+<br />
+![GitHub Repository Settings](./images/Github"Open-your-repo".png)
+<br />
+
 - Open Copilot > Coding agent
-- Edit the MCP configuration
 
-  <br />
+<br />
+![GitHub Coding Agent](./images/Github"Coding-agent".png)
+<br />
 
+- Add the MCP configuration
+
+<br />
+
+{/* prettier-ignore */}
 ```markdown
-{ "mcpServers": { "carbon-mcp": { "type":"streamable-http", "url":
-"https://mcp.carbondesignsystem.com/mcp", "disabled": false, "timeout": 600,
-"headers": { "Authorization": "Bearer <TOKEN>", "X-MCP-Session": "<SESSION>" },
-"alwaysAllow": ["code_search", "docs_search"] } } }
+{
+    "mcpServers": {
+        "carbon-mcp": {
+            "type": "http",
+            "url": "https://mcp.carbondesignsystem.com/mcp",
+            "headers": {
+                "Authorization": "Bearer <TOKEN>",
+                "X-MCP-Session": "<SESSION>"
+            },
+            "tools": [
+                "code_search",
+                "docs_search"
+            ]
+        }
+    }
+}
 ```
 
 <br />
-<br />
 
-- Click _Save MCP configuration_
+- Replace `<TOKEN>` and `<SESSION>` with your actual Carbon MCP auth
+  credentials. Click _Save MCP Configuration_.
+
+<br />
+![GitHub Save MCP Config](./images/Github"Edit-mcp".png)
+<br />
 
 </AccordionItem>
 
