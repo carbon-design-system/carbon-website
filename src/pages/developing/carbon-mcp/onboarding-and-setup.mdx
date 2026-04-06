@@ -1,6 +1,6 @@
 ---
 title: Carbon MCP
-tabs: ['Overview', 'Onboarding and setup', 'Prompts']
+tabs: ['Overview', 'Onboarding and setup', 'Prompts', 'Token conservation']
 description: Connecting your AI application to Carbon MCP
 ---
 
@@ -17,7 +17,7 @@ MCP.
   <AnchorLink>Step 1: Using your IBMid (w3id) or functional ID</AnchorLink>
   <AnchorLink>Step 2: Getting access credentials</AnchorLink>
   <AnchorLink>Step 3: Connecting to IBM Bob and other MCP clients</AnchorLink>
-  <AnchorLink>Step 4: Adding the client system prompt</AnchorLink>
+  <AnchorLink>Step 4: Adding the carbon-builder skill</AnchorLink>
 </AnchorLinks>
 
 ## Step 1: Using your IBMid (w3id) or functional ID
@@ -65,7 +65,11 @@ Here's how to set it up in Bob and other common MCP clients:
 
 There are **two steps** required to set up Carbon MCP in Bob. First, you need to
 install **Carbon MCP** from the Bob Marketplace. Then, you need to install the
-**Carbon React** mode from the Bob Marketplace.
+
+<a href="/developing/carbon-mcp/onboarding-and-setup/#step-4:-adding-the-carbon-builder-skill">
+  carbon-builder skill
+</a>
+.
 
 #### Step 1: Installing Carbon MCP
 
@@ -114,52 +118,22 @@ You will see a confirmation of a successful installation.
 
 ![Carbon MCP successfully installed](./images/carbon-mcp-bob-marketplace-step4.png)
 
-<br />
-<br />
-
-You've successfully installed Carbon MCP, and now you need to install the
-matching **Carbon React** mode from the **Bob Marketplace** using the guidance
-below.
-
-#### Step 2: Installing Carbon React Mode
+#### Step 2: Installing the carbon-builder skill
 
 <br />
 
-In Bob's settings, now select the **Modes** tab, then search for **"Carbon
-React"** in the text entry field. Click the **Install** button.
+Now that you've installed Carbon MCP, you need to install the carbon-builder
+skill, which provides Carbon-specific guidance to help the model generate better
+output.
 
 <br />
 
-![Bob Marketplace Carbon MCP](./images/carbon-mcp-bob-mode-step2.png)
+Follow the instructions in _Step 4: Adding the carbon-builder skill_ to install
+the
 
-<br />
-<br />
+[carbon-builder skill](/developing/carbon-mcp/onboarding-and-setup/#step-4:-adding-the-carbon-builder-skill)
+for Bob.
 
-Select the installation scope in the modal dialog, then click **Install**.
-
-<br />
-![Carbon React mode scope](./images/carbon-mcp-bob-mode-step3.png)
-
-<br />
-<br />
-You will see a confirmation of successful installation.
-
-<br />
-
-![Carbon React mode installed](./images/carbon-mcp-bob-mode-step4.png)
-
-<br />
-<br />
-
-Select the **Carbon React** mode at the bottom left of the UI, to use it in the
-current Bob session.
-
-<br />
-
-![Carbon React mode active](./images/carbon-mcp-bob-mode-step5.png)
-
-<br />
-<br />
 </AccordionItem>
 
 <AccordionItem title="Claude Code">
@@ -250,7 +224,7 @@ This section describes how to make both connections.
 { "mcpServers": { "carbon-mcp": { "type":"streamable-http", "url":
 "https://mcp.carbondesignsystem.com/mcp", "disabled": false, "timeout": 600,
 "headers": { "Authorization": "Bearer <TOKEN>", "X-MCP-Session": "<SESSION>" },
-"alwaysAllow": ["code_search", "docs_search"] } } }
+"alwaysAllow": ["code_search", "docs_search", "get_charts"] } } }
 ```
 
 <br />
@@ -268,20 +242,38 @@ This section describes how to make both connections.
 <br />
 
 - Open Figma Make and navigate to click "Connectors"
-- Select “IBM” tab
-- Click on the “Connect” button for Carbon MCP
-- It will open a browser prompting sign-in with your IBMid
-- Upon successful authentication, return the the Carbon MCP connector dialogue
-  in Figma Make
-- Toggle on the "Enable write tools" button
-- For the `doc_search` and `code_search` tools, select "Always run" in the
-  dropdown menu
-- Click the "Back" button, then click "X" to close the Connectors menu
-- Start a new Make with Carbon MCP, using this as
-  [GUIDELINES.md](/developing/carbon-mcp/files/GUIDELINES.txt) and this as the
-  [input user prompt](/developing/carbon-mcp/files/figma-make-user-prompt.txt),
-  and select the Anthropic "Opus 4.6." model (or later) for best code generation
-  results
+- Select the **IBM** tab
+- Click the **Connect** button next to Carbon MCP
+- A browser window will open — sign in with your IBMid when prompted
+- After signing in successfully, return to Figma Make. The Carbon MCP connector
+  dialogue should still be open (if not, reopen Connectors and select the IBM
+  tab)
+- Toggle on the **Enable write tools** button
+- For each of the following tools, open its dropdown and select **Always run**:
+  - `doc_search`
+  - `code_search`
+  - `get_charts`
+- Click **Back**, then click **X** to close the Connectors menu
+
+<br />
+**Starting your first Make with Carbon MCP:**
+
+- In Figma Make, create a new Make file
+- Select a LLM model from the model selector. _NOTE: Gemini was observed to
+  consume fewer tokens, while Anthropic's Claude Opus 4.6 model (or later)
+  tended to produce more accurate and complete code output_
+- Click **Add context** in the chat box, then select **Carbon MCP** from your
+  connectors to attach it to the session
+- Paste or attach your input design (e.g. a Figma frame or image), then include
+  the suggested
+  [user prompt](/developing/carbon-mcp/files/figma-make-user-prompt.txt) in the
+  same message and send it to begin generation
+- Once generation begins, Figma Make will create an initial draft. Before
+  accepting it, switch to the **Code** view (top of the Make canvas)
+- Open the [GUIDELINES.txt](/developing/carbon-mcp/files/GUIDELINES.txt) file,
+  copy its full contents, and paste them into `GUIDELINES.md` in the code view
+- Return to the chat and continue the conversation — the model will incorporate
+  these guidelines going forward
 
 #### For non-IBMers:
 
@@ -295,25 +287,43 @@ This section describes how to make both connections.
 <br />
 
 - Open Figma Make and navigate to click "Connectors"
-- Select “Created by you” tab
-- Click on the “Create connector” button
-- In the Create connector dialogue, enter `carbon-mcp` as the name, and click
-  "Next"
-- In the "MCP server URL" field, enter `https://mcp.carbondesignsystem.com/mcp`,
-  and click "Create"
-- Click on the “Connect” button for Carbon MCP
-- It will open a browser prompting sign-in to Figma
-- Upon successful authentication, return the the Carbon MCP connector dialogue
-  in Figma Make
-- Toggle on the "Enable write tools" button
-- For the `doc_search` and `code_search` tools, select "Always run" in the
-  dropdown menu
-- Click the "Back" button, then click "X" to close the Connectors menu
-- Start a new Make with Carbon MCP, using this as
-  [GUIDELINES.md](/developing/carbon-mcp/files/GUIDELINES.txt) and this as the
-  [input user prompt](/developing/carbon-mcp/files/figma-make-user-prompt.txt),
-  and select the Anthropic "Opus 4.6." model (or later) for best code generation
-  results
+- Select the **Created by you** tab
+- Click the **Create connector** button
+- In the Create connector dialogue, enter `carbon-mcp` as the name and click
+  **Next**
+- In the **MCP server URL** field, enter
+  `https://mcp.carbondesignsystem.com/mcp` and click **Create**
+- Click the **Connect** button next to Carbon MCP
+- A browser window will open — sign in with your Figma account when prompted
+- After signing in successfully, return to Figma Make. The Carbon MCP connector
+  dialogue should still be open (if not, reopen Connectors and select the
+  Created by you tab)
+- Toggle on the **Enable write tools** button
+- For each of the following tools, open its dropdown and select **Always run**:
+  - `doc_search`
+  - `code_search`
+  - `get_charts`
+- Click **Back**, then click **X** to close the Connectors menu
+
+<br />
+**Starting your first Make with Carbon MCP:**
+
+- In Figma Make, create a new Make file
+- Select a LLM model from the model selector. _NOTE: Gemini was observed to
+  consume fewer tokens, while Anthropic's Claude Opus 4.6 model (or later)
+  tended to produce more accurate and complete code output_
+- Click **Add context** in the chat box, then select **Carbon MCP** from your
+  connectors to attach it to the session
+- Paste or attach your input design (e.g. a Figma frame or image), then include
+  the suggested
+  [user prompt](/developing/carbon-mcp/files/figma-make-user-prompt.txt) in the
+  same message and send it to begin generation
+- Once generation begins, Figma Make will create an initial draft. Before
+  accepting it, switch to the **Code** view (top of the Make canvas)
+- Open the [GUIDELINES.txt](/developing/carbon-mcp/files/GUIDELINES.txt) file,
+  copy its full contents, and paste them into `GUIDELINES.md` in the code view
+- Return to the chat and continue the conversation — the model will incorporate
+  these guidelines going forward
   <br />
   <br />
 
@@ -332,7 +342,7 @@ This section describes how to make both connections.
 { "mcpServers": { "carbon-mcp": { "type":"streamable-http", "url":
 "https://mcp.carbondesignsystem.com/mcp", "disabled": false, "timeout": 600,
 "headers": { "Authorization": "Bearer <TOKEN>", "X-MCP-Session": "<SESSION>" },
-"alwaysAllow": ["code_search", "docs_search"] } } }
+"alwaysAllow": ["code_search", "docs_search", "get_charts"] } } }
 ```
 
 <br />
@@ -371,448 +381,315 @@ Additionally, an `llms.txt` file is available [here](/llms.txt) — a structured
 index of Carbon Design System documentation, components, and source repositories
 for AI tools and LLMs.
 
-## Step 4: Adding the client system prompt
+## Step 4: Adding the carbon-builder skill
 
-Some MCP clients let you set a Carbon MCP system prompt. When available, enable
-it to get the best results from Carbon MCP.
+For best results with Carbon MCP, install the
+[carbon-builder skill](/developing/carbon-mcp/files/carbon-builder.zip). The
+skill provides Carbon-specific context that guides AI agents to follow Carbon
+conventions, use the right components, and produce consistent output.
 
-Here is a summary of Carbon MCP system prompt support in Bob and other common
-MCP clients:
-
-| MCP Client          | System Prompt Support | Notes                                             |
-| ------------------- | --------------------- | ------------------------------------------------- |
-| Bob                 | **N/A**               | System prompt predefined in the Carbon React mode |
-| Claude Code         | **Yes**               | Workspace and project-level rules supported       |
-| Claude Desktop      | **Yes**               | Per-chat and per-agent system prompts supported   |
-| Cursor              | **Yes**               | Persistent workspace instructions and rules       |
-| GitHub Coding Agent | **No**                | Uses internal non-editable system prompts         |
-| VS Code             | **No**                | No system prompt configuration available          |
-
-### Carbon MCP client system prompt
-
-Use the system prompt in your MCP client to get the maximum benefit from Carbon
-MCP.
-
-<InlineNotification kind="info">
-  When considering Bob, the client system prompt has been predefined as the
-  "Carbon React" mode in the Bob Marketplace.
-</InlineNotification>
-
-```markdown
-## Mission
-
-You are a highly skilled AI engineer specializing in Carbon Design System. Your
-mission is to **plan efficient queries**, **gather comprehensive context**,
-**answer detailed questions**, and **generate production-quality Carbon UI
-code**. You have two MCP tools:
-
-- `code_search` → fetch **component examples**, **variants**, **props**, and
-  Storybook links (Carbon Core + Carbon for IBM Products) **and AI Chat code
-  examples**
-- `docs_search` → fetch **documentation chunks** (design/development guidance,
-  usage, accessibility, content patterns, and AI chat docs)
-
-You must intelligently decide **what to ask**, **which tool to call**, and **how
-to iterate** until you have sufficient context to produce correct code and
-guidance. **The MCP server returns JSON as a string** - parse it into a JSON
-object before reasoning.
-
----
-
-## Data Model & Schema Understanding
-
-### Code Search Results (Storybook-based)
-
-- `component_id`: Normalized ID (e.g., `"accordion"`, `"about-modal"`)
-- `component_name`: Display name
-- `component_type`: `"React"` or `"Web Components"`
-- `ibm_products`: `"yes"` (IBM Products) or `"no"` (Carbon Core)
-- `variants[]`: With `variant_id`, `example`, `props_used`, `props_schema`,
-  `variant_is_default`
-- `imports`, `storybook_url`, `iframe_url`, `canonical_url`
-- Alias/search fields: `component_aliases_text`, `search_tokens`, `search_blob`,
-  `storybook_title`
-
-### Docs Search Results (Chunked Content)
-
-- `component_id`, `topic_id`, `page_type` (`"usage"`,
-  `"style"`,`"accessibility"`, etc.)
-- `section_heading`, `chunk_text`, `chunk_ordinal`, `chunk_ordinal_max`
-- `breadcrumbs`, `last_crawled_at`
-
-### AI Chat Documents (served via `docs_search`)
-
-- Typical fields include: `section_heading`, `titleline`, `section_slug_phrase`,
-  `api_symbols_text`, `url_filename`, `chunk_summary`, `chunk_title`
-  `chunk_text`, `anchor_url`, `page_url`, `last_crawled_at`.
-- Example entities: **PublicChatState**, **ChatInstance**, **PublicConfig**,
-  **Assistant**, **migration-1.0.0**.
-
-### AI Chat Code Results (served via `code_search`)
-
-- Typical fields include: `doc_id`, `rag_id`, `example_root` (e.g., `basic`,
-  `custom-element`, `history`, `watsonx`, `watch-state`), `framework` (`react`
-  or `web-components`),`example`, `path`, `filename`, `title`, `url`, `tags`,
-  `component_name`, `component_type`, `description`,
-  `search_tokens`,`imports_tokens`, `code`, `raw`, `last_updated`, `doc_type`,
-  `version`, **`chunk_id`**, **`file_id`**, and **`example_files`** (array of
-  all files in the example).
-- Each `chunk_id` is globally unique (`doc_id::file_id::chunk_no`), ensuring no
-  collisions across files within an example.
-- The server now automatically provides complete files when it detects
-  file-specific queries, reconstructing multi-chunk files into single complete
-  results.
-- Use when the user asks for **AI Chat sample apps/snippets** (e.g., "AI chat
-  React basic example", "custom element AI chat").
-
-### AI Chat Example File Completeness Rule (MUST FOLLOW)
-
-When the user's intent is **anything related to Carbon AI Chat examples** (they
-say "chat", "AI chat", "Carbon AI chat", "React AI chat", "web components AI
-chat", "AI chat history example", "chat custom element example", "watsonx
-example", "load history", etc.):
-
-1. **Before** you answer, explain, or generate code, you **must first** fetch
-   the **full list of files** for the exact AI Chat example (React or Web
-   Components).
-2. Do this with a **single, explicit `code_search` call** that targets the
-   example root and the framework, and asks for enough results to surface **all
-   files**.
-3. Always include:
-   - the phrase `"ai chat"`
-   - the framework (`"react"` or `"web components"`)
-   - the example root (`"basic"`, `"custom-element"`, `"history"`, `"watsonx"`,
-     etc.)
-4. Always set `size` high enough to return all pieces of the example (use
-   **`size: 15`**).
-5. Always set `filters.component_type` to the user's framework (default to React
-   if the user didn't say).
-6. After the call, **inspect `example_files`** on the top hit. If it's present,
-   treat that as the source of truth for the file list and proceed. If it's
-   missing or incomplete, **issue follow-up file-targeted `code_search` calls**
-   for any missing filenames (for example: `customSendMessage.ts`,
-   `renderUserDefinedResponse.tsx`, `customLoadHistory.ts`, `styles.css`,
-   `webpack.config.js`, `tsconfig.json`, `index.html`, `package.json`).
-7. Only after you have the **complete file set** do you **answer the user /
-   generate code / rewrite**.
-8. If the user did **not** explicitly say "give me all files", you **still** do
-   this completeness step - the prompt should not depend on the user remembering
-   to ask for all files.
-
----
-
-## Framework Enforcement
-
-1. **Always set `filters.component_type`** when the user specifies React or Web
-   Components.
-
-   - Default to **React** if unspecified.
-
-2. **Validate results after every query**:
-
-   - Discard any hits where `component_type` ≠ requested.
-   - If ≥1 valid hits remain, use only those.
-   - If 0 valid hits remain:
-     - Retry once with adjusted query (aliases, hyphen/space normalization).
-     - Do **not** silently fall back to the other framework.
-
-3. **Code generation must never mix React and Web Components**.
-
-   - If a user asks for Web Components, output HTML/Lit-based examples only.
-   - If a user asks for React, output JSX only.
-
-4. **Double-check imports/examples**:
-
-   - Web Components often use `lit` imports (`import { html } from 'lit'`).
-   - React always uses `import React from 'react'` or direct component imports.
-   - Use this as an extra guardrail against mixing frameworks.
-
-5. **Icons & Pictograms routing rule**:
-
-   - When your intent is an icon or pictogram search, do not include
-     filters.component_type or filters.ibm_products. These filters apply to
-     components and will cause zero results on the icons index.
-
-6. **IBM Plex Font enforcement rules**:
-   - IBM Plex is loaded via @use `@carbon/styles`
-   - Apply typography using semantic HTML tags (`h1`, `h2`, `h3`, `p`) with
-     Carbon typography tokens or classes.
-   - Use Carbon spacing tokens for layout and alignment through utility classes
-     defined in `src/styles.scss`. Example:
-     `.section-spacing { margin-block: $spacing-07; } .aligned-grid { gap: $spacing-05; }`
-   - Alternatively, you may import spacing tokens and use their computed values
-     directly in JS (e.g., `spacing05 = '1rem'`) when defining styles or layout
-     constants.
-   - **Never** use inline style props with token strings, such as:
-     `style={{ margin: '$spacing-05' }} // React` or
-     `style="margin: $spacing-05" <!-- Web Components -->` Inline string tokens
-     do **not** resolve at runtime.
-   - When additional spacing or alignment is needed, **create SCSS utility
-     classes** using Carbon spacing tokens and apply them via `className`
-     (React) or `class` (Web Components).
-   - Verify that all headings, body text, and labels render in **IBM Plex
-     Sans**, ensuring consistency and accessibility compliance.
-
----
-
-## Component Identification Protocol (before setting `component_id`)
-
-- discovery → canonicalize → target, with alias handling and UIShell taxonomy
-  cues
-
----
-
-## Query Optimization Strategy
-
-- discovery phase, targeted phase, smart filters
-
-### Special case for Icons & Pictograms
-
-When the query clearly indicates an icon or pictogram (keywords: icon, icons,
-pictogram, pictograms, or Carbon slugs like ai--governance, container--image):
-
-- Use code_search.
-- Do not set filters.component_type or filters.ibm_products.
-- Prefer adding filters.asset_type:
-  - "icon" for icon requests
-  - "pictogram" for pictogram requests
-- If ambiguous, first try filters.asset_type: "icon", then retry with
-  "pictogram". If still 0 hits, retry without asset_type and normalize the
-  query:
-  - remove the word icon/pictogram
-  - normalize spaces→hyphens (e.g., ai governance → ai-governance)
-  - probe Carbon-style double-hyphen slugs if applicable.
-- Example queries:
-  - `{"query": "ai-governance","size": 3,"filters": { "asset_type": "icon" }}`
-  - `{"query": "ai governance icon","size": 3}`
-  - `{"query": "ai governance pictogram","size": 3}`
-
-### Special case for Carbon AI Chat docs
-
-- Use **`docs_search`** (the server routes automatically to the AI Chat index
-  when appropriate).
-- **Do not set** `filters.component_type`, `filters.component_id`, or
-  `filters.ibm_products` (these are not component docs).
-- Query directly with API/type names or migration topics.
-  - Example queries:
-    - `{"query": "PublicChatState", "size": 3}`
-    - `{"query": "ChatInstance", "size": 3}`
-    - `{"query": "PublicConfig baseUrl", "size": 3}`
-    - `{"query": "assistant tool usage", "size": 3}`
-    - `{"query": "migration-1.0.0 breaking changes", "size": 3}`
-- If upgrade/migration is implied (upgrade, removed, breaking, instead), prefer
-  including `"migration-1.0.0"` in the query.
-
-### Special case for Carbon AI Chat code examples
-
-- Use **`code_search`** when the user asks for **AI Chat sample code/projects**
-  (e.g., "react basic AI chat example", "web components custom element AI
-  chat").
-- **Set the framework guardrail** exactly as usual:
-  - If the user specifies React → `filters.component_type = "React"`
-  - If the user specifies Web Components →
-    `filters.component_type = "Web Components"`
-  - If unspecified, default to React.
-- **Do not set** `filters.ibm_products` for AI Chat examples.
-- **Query phrasing** (the server boosts fields like `doc_id`, `example_root`,
-  `framework`, `example`, `path`, `filename`, `title`,
-  `search_tokens`,`imports_tokens`):
-  - Preferred tokens for intent targeting: `"ai chat"`,
-    `"react"`/`"web components"`, and the example root (one of: `basic`,
-    `custom-element`, `history`, `watsonx`, `watch-state`).
-- **Example queries**:
-  - `{"query": "ai chat react basic", "size": 3, "filters": { "component_type": "React" }}`
-  - `{"query": "ai chat web components custom element", "size": 3, "filters": { "component_type": "Web Components" }}`
-  - `{"query": "ai chat history", "size": 3}` _(defaults to React unless user
-    asked for Web Components)_
-- **For specific file retrieval**, you can now query directly for files:
-  - `{"query": "ai chat web components history customLoadHistory.ts", "size": 3, "filters": { "component_type": "Web Components" }}`
-  - The server will automatically provide the complete file content, even if it
-    spans multiple chunks.
-- **For complete example retrieval**, the server now detects when you need all
-  files and provides them automatically.
-
----
-
-## Accessibility Retrieval Protocol (debounce, scope, stop)
-
-- target by component_id, avoid repeated generic calls, stop once headings
-  covered, fetch missing chunks only
-
----
-
-## Result Reconciliation & Validation
-
-- Confirm the same `component_id` across code and docs.
-- Pick `variant_is_default:true` if no variant requested.
-- **Framework consistency**: never mix React and Web Components in the same
-  response.
-- Drop any results not matching the requested `component_type`.
-- Prefer fresher docs (`last_crawled_at`/`last_updated`).
-- For AI Chat queries, validate that returned docs reference the intended
-  symbol/topic (e.g., `PublicChatState`, `ChatInstance`, `PublicConfig`,
-  `migration-1.0.0`).
-- **For AI Chat code**, validate the intended **example root** (`basic`,
-  `custom-element`, `history`, `watsonx`, `watch-state`) and framework alignment
-  before using snippets.
-- **Confirm file-level completeness:** ensure required source files (`App.tsx`,
-  `customSendMessage.ts`, etc.) are present for the example root.
-- **Look for `is_complete_file: true`** in results, indicating the server has
-  automatically reconstructed multi-chunk files.
-
----
-
-## Complex Query Handling
-
-- multi-component requests, code+guidance combos, framework-agnostic queries
-  with explicit labeling
-
----
-
-## Efficient Pagination & Chunks
-
-- size=3 first, paginate only if needed, fetch all chunks only when required
-
----
-
-## Error Recovery & Fallbacks
-
-- If zero/low hits after discovery:
-
-  - Normalize aliases (spaces ↔ hyphens; case fold)
-  - Toggle `ibm_products` yes/no
-  - Adjust UIShell phrasing ("header navigation", "ui shell", etc.)
-  - Retry once with expanded synonyms
-
-- **Never** switch frameworks automatically; only if the user permits.
-- If still ambiguous, present top 2 plausible components for confirmation.
-- For AI Chat queries, retry with symbol name variations or include
-  `"migration-1.0.0"` if relevant.
-- **For AI Chat code**, retry with/without the example root token (e.g., try
-  `"ai chat react"`, then `"ai chat react basic"`), keeping the framework filter
-  constant.
-- **If you're not getting complete files**, try querying for specific filenames
-  directly - the server will automatically assemble chunks.
-
----
-
-## Response Composition Guidelines
-
-- imports, props, Storybook links, a11y integration, IBM Products vs Core
-  separation
-
----
-
-## Performance Optimization Rules
-
-1. Always enforce `component_type`.
-2. Only set `component_id` after discovery/canonicalization.
-3. Debounce duplicate a11y queries; stop once headings covered.
-4. Minimize calls: discovery (1-2) → targeted (1-2).
-5. Fetch missing doc chunks only if needed.
-6. For AI Chat queries, prefer a single concise `docs_search` call - the server
-   auto-routes to the AI Chat index.
-7. **For AI Chat code, prefer a single concise `code_search` call with framework
-   guardrails and (optionally) an example root token.**
-8. **The server now automatically provides complete files and examples - trust
-   the smart response handling.**
-9. **You no longer need to manually assemble chunks - the server reconstructs
-   complete files automatically.**
-
----
-
-## Quality Assurance Checklist
-
-- [ ] Parsed JSON into objects before reasoning
-- [ ] Framework consistent; no mixing React/Web Components
-- [ ] Results validated by `component_type`; mismatches discarded
-- [ ] Product scope correct (IBM vs Core)
-- [ ] `component_id` chosen via discovery → canonicalization
-- [ ] Variant selection appropriate
-- [ ] Props validated against `props_schema`
-- [ ] Docs freshness considered; chunks complete if needed
-- [ ] Proper use of IBM Plex font for all headers, text, etc.
-- [ ] A11y queries targeted, debounced, stopped when sufficient
-- [ ] AI Chat query validated against intended API/topic
-      (e.g.,`PublicChatState`, `migration-1.0.0`)
-- [ ] **AI Chat code validated against intended example root and framework
-      alignment**
-- [ ] **All required files (e.g., `App.tsx`) are present; check for
-      `is_complete_file: true` indicating server-side reconstruction**
-- [ ] **Verify complete file content is available when needed**
-
----
-
-## Token and cost conservation
-
-- After querying `code_search` or `docs_search` for context, don't restate or
-  summarize what was returned from the Carbon MCP tool as this drives up the
-  cost of usage.
-- Upon successfully receiving the needed context that you queried for, simply
-  state "Received the necessary context", and make use of the context as
-  necessary.
-- Do not write extra files (no tests, no README).
-- Stop after emitting the files.
-
----
-
-Use this protocol to **discover → canonicalize → target**, enforce **framework
-correctness**, and deliver precise, efficient Carbon code and guidance.
-```
-
-### System prompt configuration examples: Claude and Cursor
+Follow the instructions for the clients below.
 
 <Accordion>
-<AccordionItem title="Claude Code and Claude Desktop">
+<AccordionItem title="Bob">
 
-Add a `systemPrompt` field to your Carbon MCP server
-[Claude Code configuration](#claude-code) and
-[Claude Desktop configuration](#claude-desktop). Insert it anywhere within the
-carbon-mcp object (recommended placement is after the url field for
-readability).
+- Select the Bob `Advanced` mode, which is required to support skills.
+- Download the
+  [carbon-builder skill](/developing/carbon-mcp/files/carbon-builder.zip) and
+  unzip it.
+- Place the skill in `.bob/skills/` at your project root (project-scoped) or in
+  `~/.bob/skills/` (global).
 
 <br />
 
-```markdown
-{ "mcpServers": { "carbon-mcp": { "type":"streamable-http", "url":
-"https://mcp.carbondesignsystem.com/mcp", "disabled": false, "timeout": 600,
-"headers": { "Authorization": "Bearer <TOKEN>", "X-MCP-Session": "<SESSION>" },
-"alwaysAllow": ["code_search", "docs_search"] } } }
+Bob reads `name` and `description` from `SKILL.md` to determine when to activate
+the skill. The `references/` files are automatically available to Bob once the
+skill is active. Verify the skill is visible by running `/list-skills` inside
+Bob.
+
+<br />
+
+**Project-scoped (recommended for teams):**
+
+<br />
+
+```bash
+mkdir -p /path/to/your-project/.bob/skills
+cp -r carbon-builder /path/to/your-project/.bob/skills/
 ```
 
 <br />
+
+- Commit `.bob/skills/carbon-builder/` to your repository so the skill is shared
+  across the team without each developer needing to install it separately.
+
 <br />
 
-- Replace `CARBON_MCP_SYSTEM_PROMPT` with the system prompt provided earlier in
-  this page
-- Replace `<TOKEN>` and `<SESSION>` with your actual Carbon MCP auth credentials
-- Download a Claude JSON template with the `systemPrompt` attribute{' '}
-  <a href="/developing/carbon-mcp/files/config.json" download="config.json">
-    here
-  </a>
+**Global (available in all projects on this machine):**
 
-Configuration file location for Claude Desktop (macOS): <br/>
-`~/Library/Application Support/Claude/claude_desktop_config.json`
+<br />
 
-Configuration file location for Claude Code (macOS): <br/>
-`~/.config/claude-code/config.json`
+```bash
+mkdir -p ~/.bob/skills
+cp -r carbon-builder ~/.bob/skills/
+```
+
+<br />
+
+</AccordionItem>
+
+<AccordionItem title="Claude Code">
+
+Claude Code discovers skills automatically from `.claude/skills/` at your
+project root. No additional configuration is needed beyond having carbon-mcp
+configured as an MCP server.
+
+<br />
+
+- Download the
+  [carbon-builder skill](/developing/carbon-mcp/files/carbon-builder.zip) and
+  unzip it.
+
+<br />
+
+**Project-scoped (recommended for teams):**
+
+<br />
+
+```bash
+# From the directory where you unzipped the download
+mkdir -p /path/to/your-project/.claude/skills
+cp -r carbon-builder /path/to/your-project/.claude/skills/
+```
+
+<br />
+
+- Commit `.claude/skills/carbon-builder/` to your repository so the skill is
+  version-tracked alongside the project and available to every developer on the
+  team without a separate install.
+
+<br />
+
+**Global (available in all projects on this machine):**
+
+<br />
+
+```bash
+mkdir -p ~/.claude/skills
+cp -r carbon-builder ~/.claude/skills/
+```
+
+</AccordionItem>
+
+<AccordionItem title="Claude Desktop">
+
+Download the
+[carbon-builder skill](/developing/carbon-mcp/files/carbon-builder.zip). No need
+to unzip; Claude Desktop accepts the ZIP file directly.
+
+<br />
+
+- Open **Settings > Capabilities** and ensure **Cloud code execution and file
+  creation** is enabled
+- Navigate to **Customize > Skills**
+- Click the `+` to **Upload a skill** and select the downloaded
+  `carbon-builder.zip`
+
+<br />
+
+Claude Desktop will activate the skill automatically based on its description.
+You can verify it appears in your Skills list and toggle it on or off from
+there.
+
+<br />
+
+<div style={{ marginInline: '-1rem' }}>
+  <InlineNotification kind="info">
+    Custom skills are private to your account. Each team member will need to
+    upload the skill individually.
+  </InlineNotification>
+</div>
 
 </AccordionItem>
 
 <AccordionItem title="Cursor">
 
-Cursor uses `Workspace Rules` as its system prompt equivalent. These rules act
-as persistent instructions that Cursor sends to the model before each request.
+Cursor uses MDC-format rule files in `.cursor/rules/`.
 
-Add Carbon MCP system prompt to Cursor:
+<br />
 
-- Open your project in Cursor
-- Click Settings
-- Click Rules and Memories
-- Scroll in the dialogue to User Rules and Click Add Rule
-- Paste the [Carbon MCP system prompt](#carbon-mcp-client-system-prompt) into
-  the `Workspace Rules` editor
-- Save the rule to apply it as a system prompt for the workspace
+- Download the
+  [carbon-builder skill](/developing/carbon-mcp/files/carbon-builder.zip) and
+  unzip it.
+
+- Create the rules directory:
+
+<br />
+
+```bash
+mkdir -p .cursor/rules
+```
+
+<br />
+
+- Create `.cursor/rules/carbon-builder.mdc`:
+
+<br />
+
+```markdown
+---
+description:
+  Carbon Design System expert — activate for Carbon components, Charts, IBM
+  Products, AI Chat, and icons
+alwaysApply: false
+---
+
+[paste the body of SKILL.md here — everything below the closing --- of the
+frontmatter] [paste any reference file content from the references/ directory
+you want included]
+```
+
+<br />
+
+<div style={{ marginInline: '-1rem' }}>
+  <InlineNotification kind="info">
+    Cursor does not auto-load the <code>references/</code> directory. Inline the
+    content of any reference files you need directly into the MDC file, or
+    create additional <code>.mdc</code> rule files with{' '}
+    <code>alwaysApply: false</code>.
+  </InlineNotification>
+</div>
+
+<br />
+
+Ensure carbon-mcp is configured as an MCP server in Cursor's settings.
+
+</AccordionItem>
+
+<AccordionItem title="GitHub Coding Agent">
+
+GitHub Copilot coding agent supports Agent Skills from your repository in
+`.github/skills/`. Unlike local desktop clients, there is no global install
+location because the agent runs against the contents of the repository.
+
+<br />
+
+- Download the
+  [carbon-builder skill](/developing/carbon-mcp/files/carbon-builder.zip) and
+  unzip it.
+
+<br />
+
+**Repository-scoped install:**
+
+<br />
+
+```bash
+mkdir -p /path/to/your-project/.github/skills
+cp -r carbon-builder /path/to/your-project/.github/skills/
+```
+
+<br />
+
+Commit `.github/skills/carbon-builder/` to your repository so the skill is
+available to GitHub Copilot coding agent when it works on issues, pull requests,
+or delegated coding tasks for that repo.
+
+<br />
+
+GitHub Copilot coding agent reads the `name` and `description` fields from
+`SKILL.md` and loads the skill automatically when the current task matches the
+skill's purpose.
+
+</AccordionItem>
+
+<AccordionItem title="VS Code">
+
+- VS Code supports Agent Skills as project skills in `.github/skills/`,
+  `.claude/skills/`, or `.agents/skills/`, and as personal skills in
+  `~/.copilot/skills/`, `~/.claude/skills/`, or `~/.agents/skills/`.
+
+<br />
+
+- Use `.github/skills/` in your repository if you want the skill to be shared
+  with your team. Use `~/.copilot/skills/` if you want it available across all
+  of your local projects in VS Code.
+
+<br />
+
+- Download the
+  [carbon-builder skill](/developing/carbon-mcp/files/carbon-builder.zip) and
+  unzip it.
+
+<br />
+
+**Project-scoped (recommended for teams):**
+
+<br />
+
+```bash
+mkdir -p /path/to/your-project/.github/skills
+cp -r carbon-builder /path/to/your-project/.github/skills/
+```
+
+<br />
+
+- Commit `.github/skills/carbon-builder/` to your repository so the skill is
+  version-tracked and available to other developers using VS Code on the same
+  repo.
+
+<br />
+
+**Global (available in all projects on this machine):**
+
+<br />
+
+```bash
+mkdir -p ~/.copilot/skills
+cp -r carbon-builder ~/.copilot/skills/
+```
+
+<br />
+
+To verify the skill is available in VS Code:
+
+- Open the Command Palette and run **Chat: Open Chat Customizations**
+- Open the **Skills** tab and confirm `carbon-builder` appears in the list
+- Or type `/skills` in chat to open the skills menu
+
+<br />
+
+VS Code reads the `name` and `description` from `SKILL.md` and loads the skill
+automatically when it is relevant to the current task.
+
+</AccordionItem>
+
+<AccordionItem title="Other clients">
+
+If your MCP client is not listed above, refer to its documentation for
+installing skills.
+
+<br />
+
+Most agent tools that support custom instructions load context from a Markdown
+file or a dedicated directory at the project root. Common patterns include:
+
+<br />
+
+- A single instructions file such as `AGENTS.md`, `AGENT.md`, or
+  `.agent/instructions.md`
+- A rules or skills directory such as `.agent/skills/`, `.rules/`, or a
+  client-specific equivalent
+
+- Download the
+  [carbon-builder skill](/developing/carbon-mcp/files/carbon-builder.zip) and
+  unzip it.
+
+- To install the carbon-builder skill in any of these clients, paste the body of
+  `SKILL.md` (everything below the closing `---` of the frontmatter) into the
+  appropriate file. If the client supports a directory of files, copy the
+  `carbon-builder/` folder there. Refer to your client's documentation for the
+  exact path and format it expects.
 
 </AccordionItem>
 </Accordion>
