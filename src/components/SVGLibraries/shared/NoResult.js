@@ -46,7 +46,10 @@ const NoResult = ({
           your search. Try different search terms or submit an issue for a new{' '}
           {`${pageName === 'icon' ? 'icon' : 'pictogram'}`}. Select from the
           ticket options here or check the{' '}
-          <a href="https://www.ibm.com/design/language/iconography/pictograms/contribute/">
+          <a
+            href={`https://www.ibm.com/design/language/iconography/${
+              pageName === 'icon' ? 'ui-icons' : 'pictograms'
+            }/contribute`}>
             Contribute
           </a>{' '}
           page for more details and best practices.
@@ -55,21 +58,27 @@ const NoResult = ({
           <Column colMd={4} colLg={4} noGutterSm>
             <ResourceCard
               href={single}
-              subTitle={`UI ${pageName} request: Single`}>
+              subTitle={`${
+                pageName === 'icon' ? 'UI icon' : 'Pictogram'
+              } request: Single`}>
               <Github />
             </ResourceCard>
           </Column>
           <Column colMd={4} colLg={4} noGutterSm>
             <ResourceCard
               href={batch}
-              subTitle={`UI ${pageName} request: Batch`}>
+              subTitle={`${
+                pageName === 'icon' ? 'UI icon' : 'Pictogram'
+              } request: Batch`}>
               <Github />
             </ResourceCard>
           </Column>
           <Column colMd={4} colLg={4} noGutterSm>
             <ResourceCard
               href={update}
-              subTitle={`UI ${pageName} request: Update`}>
+              subTitle={`${
+                pageName === 'icon' ? 'UI icon' : 'Pictogram'
+              } request: Update`}>
               <Github />
             </ResourceCard>
           </Column>
