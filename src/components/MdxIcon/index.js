@@ -11,6 +11,7 @@ import codesandbox from './icons/codesandbox.svg';
 import figma from './icons/figma.svg';
 import illustrator from './icons/illustrator.svg';
 import medium from './icons/medium.svg';
+import monday from './icons/monday.svg';
 import npm from './icons/npm.svg';
 import react from './icons/react.png';
 import sass from './icons/sass.png';
@@ -31,6 +32,7 @@ const localIcons = {
   figma,
   illustrator,
   medium,
+  monday,
   npm,
   react,
   sass,
