@@ -210,28 +210,80 @@ This section describes how to make both connections.
 </AccordionItem>
 
 <AccordionItem title="Cursor">
-[![Install MCP Server](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=carbon-mcp&config=eyJ0eXBlIjoic3RyZWFtYWJsZS1odHRwIiwidXJsIjoiaHR0cHM6Ly9tY3AuY2FyYm9uZGVzaWduc3lzdGVtLmNvbS9tY3AiLCJkaXNhYmxlZCI6ZmFsc2UsInRpbWVvdXQiOjYwMCwiaGVhZGVycyI6eyJBdXRob3JpemF0aW9uIjoiIiwiWC1NQ1AtU2Vzc2lvbiI6IiJ9LCJhbHdheXNBbGxvdyI6WyJjb2RlX3NlYXJjaCIsImRvY3Nfc2VhcmNoIl19)
+Carbon MCP can be set up in Cursor in one of the following ways:
 
-- Or manually open the command palette
-- Select “View: Open MCP Settings”
-- Click on “Add custom MCP”
+<br />
+[![Install MCP Server](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=carbon-mcp&config=eyJ0eXBlIjoic3RyZWFtYWJsZS1odHRwIiwidXJsIjoiaHR0cHM6Ly9tY3AuY2FyYm9uZGVzaWduc3lzdGVtLmNvbS9tY3AiLCJkaXNhYmxlZCI6ZmFsc2UsInRpbWVvdXQiOjYwMCwiaGVhZGVycyI6eyJBdXRob3JpemF0aW9uIjoiIiwiWC1NQ1AtU2Vzc2lvbiI6IiJ9LCJhbHdheXNBbGxvdyI6WyJjb2RlX3NlYXJjaCIsImRvY3Nfc2VhcmNoIl19)
+<br />
+<br />
+
+- Use the “Add to Cursor” button shown above to automatically configure the MCP
+  server.
+
+<br />
+
+- Alternatively, manually configure the MCP server by opening the Command
+  Palette and following the steps below.
+
+<br />
+![Cursor Command Palette](./images/Cursor"Open-the-command-palette".png)
+<br />
+
+- Search for and select “View: Open MCP Settings.”
+
+<br />
+![Cursor MCP Settings](./images/Cursor"Search-&-Select".png)
+<br />
+
+- In the MCP Settings view, click “Add Custom MCP”.
+
+<br />
+![Cursor Add Custom MCP](./images/Cursor"Click-Add-custom-MCP".png)
+<br />
+
 - It will open a file with your MCP servers where you can add the following
   configuration:
-  <br />
-  <br />
 
+<br />
+
+{/* prettier-ignore */}
 ```markdown
-{ "mcpServers": { "carbon-mcp": { "type":"streamable-http", "url":
-"https://mcp.carbondesignsystem.com/mcp", "disabled": false, "timeout": 600,
-"headers": { "Authorization": "Bearer <TOKEN>", "X-MCP-Session": "<SESSION>" },
-"alwaysAllow": ["code_search", "docs_search", "get_charts"] } } }
+{
+    "mcpServers": {
+        "carbon-mcp": {
+            "type": "streamable-http",
+            "url": "https://mcp.carbondesignsystem.com/mcp",
+            "disabled": false,
+            "timeout": 600,
+            "headers": {
+                "Authorization": "Bearer <TOKEN>",
+                "X-MCP-Session": "<SESSION>"
+            },
+            "alwaysAllow": [
+                "code_search",
+                "docs_search"
+            ]
+        }
+    }
+}
 ```
 
 <br />
+
+- Replace `<TOKEN>` and `<SESSION>` with your actual Carbon MCP auth
+  credentials. Save and close the file, then restart Cursor to apply the
+  changes.
+
 <br />
-- Replace `<TOKEN>` and `<SESSION>` with your actual Carbon MCP auth credentials
-- Save and close the file
-- Quit and relaunch Cursor
+![Cursor Carbon MCP config](./images/Cursor"Replace-<TOKEN>".png)
+<br />
+
+- Verify that the Carbon MCP extension is configured by ensuring the toggle is
+  switched on and shows as Enabled.
+
+<br />
+![Cursor Carbon MCP enabled](./images/Cursor"Verify-Carbon-MCP".png)
+<br />
 
 </AccordionItem>
 
@@ -329,35 +381,70 @@ This section describes how to make both connections.
 
 </AccordionItem>
 
- <AccordionItem title="GitHub Coding Agent" style={{display: "none"}}>
+<AccordionItem title="GitHub Coding Agent">
 
-- Open your repository in GitHub
-- Go to Settings
-- Open Copilot > Coding agent
-- Edit the MCP configuration
+- Open your repository in GitHub and navigate to "Settings".
 
-  <br />
+<br />
+![GitHub Repository Settings](./images/Github"Open-your-repo".png)
+<br />
 
+- In the Settings sidebar, open Copilot and select "Coding agent".
+
+<br />
+![GitHub Coding Agent](./images/Github"Cloud-agent".png)
+<br />
+
+- Add the MCP configuration
+
+<br />
+
+{/* prettier-ignore */}
 ```markdown
-{ "mcpServers": { "carbon-mcp": { "type":"streamable-http", "url":
-"https://mcp.carbondesignsystem.com/mcp", "disabled": false, "timeout": 600,
-"headers": { "Authorization": "Bearer <TOKEN>", "X-MCP-Session": "<SESSION>" },
-"alwaysAllow": ["code_search", "docs_search", "get_charts"] } } }
+{
+    "mcpServers": {
+        "carbon-mcp": {
+            "type": "http",
+            "url": "https://mcp.carbondesignsystem.com/mcp",
+            "headers": {
+                "Authorization": "Bearer <TOKEN>",
+                "X-MCP-Session": "<SESSION>"
+            },
+            "tools": [
+                "code_search",
+                "docs_search"
+            ]
+        }
+    }
+}
 ```
 
 <br />
-<br />
 
-- Click _Save MCP configuration_
+- Replace `<TOKEN>` and `<SESSION>` with your actual Carbon MCP auth
+  credentials, then click "Save MCP configuration".
+
+<br />
+![GitHub Save MCP Config](./images/Github"Edit-mcp".png)
+<br />
 
 </AccordionItem>
 
 <AccordionItem title="VS Code">
+Carbon MCP can be set up in VS Code in one of the following ways:
 
+<br />
 [![Install in VS Code](https://img.shields.io/badge/VS_Code-Install_carbon--mcp-0098FF?style=flat&logo=visualstudiocode&logoColor=ffffff)](vscode:mcp/install?%7B%22name%22%3A%22carbon-mcp%22%2C%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fmcp.carbondesignsystem.com%2Fmcp%22%2C%22headers%22%3A%7B%22Authorization%22%3A%22Bearer%20%24%7Binput%3Atoken%7D%22%2C%22X-MCP-Session%22%3A%22%24%7Binput%3Asession%7D%22%7D%2C%22inputs%22%3A%5B%7B%22id%22%3A%22token%22%2C%22type%22%3A%22promptString%22%2C%22description%22%3A%22Carbon%20MCP%20Token%22%2C%22password%22%3Atrue%7D%2C%7B%22id%22%3A%22session%22%2C%22type%22%3A%22promptString%22%2C%22description%22%3A%22Carbon%20MCP%20Session%20ID%22%7D%5D%7D)
+<br />
+<br />
 
-- Or use VS Code CLI and replace the `<TOKEN>` and `<SESSION>` with your Carbon
-  MCP auth credentials
+- Use the “Install carbon-mcp” button shown above to automatically configure the
+  MCP server.
+
+<br />
+
+- Alternatively, manually use VS Code CLI and replace the `<TOKEN>` and
+  `<SESSION>` with your Carbon MCP auth credentials
 
 <br />
 
