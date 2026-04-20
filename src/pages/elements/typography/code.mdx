@@ -154,6 +154,61 @@ function:
 }
 ```
 
+## Heading component
+
+The [`Heading`](https://react.carbondesignsystem.com/?path=/story/components-heading--default) component in React provides a semantic and accessible way to structure headings in your application. It automatically manages heading levels based on nesting, ensuring proper document hierarchy for screen readers.
+
+### Basic usage
+
+The Heading component uses nested `<Section>` components to automatically determine the appropriate heading level (h1-h6):
+
+```jsx
+import { Heading, Section } from '@carbon/react';
+
+<Heading>h1</Heading>
+<Section>
+  <Heading>h2</Heading>
+  <Section>
+    <Heading>h3</Heading>
+  </Section>
+</Section>
+```
+
+### Custom heading levels
+
+You can override the automatic level assignment using the `level` prop on the `Section` component:
+
+```jsx
+<Section level={2}>
+  <Heading>This will be an h2</Heading>
+</Section>
+```
+
+### Heading to type token mapping
+
+By default, HTML heading elements map to Carbon type tokens as follows:
+
+| HTML Element | Default Type Token | Type Style |
+| :----------- | :----------------- | :--------- |
+| `<h1>` | `heading-07` | productive-heading-07 |
+| `<h2>` | `heading-06` | productive-heading-06 |
+| `<h3>` | `heading-05` | productive-heading-05 |
+| `<h4>` | `heading-04` | productive-heading-04 |
+| `<h5>` | `heading-03` | productive-heading-03 |
+| `<h6>` | `heading-02` | productive-heading-02 |
+
+These mappings are applied when using the `type.default-type()` mixin. You can customize heading styles by targeting specific heading elements with type-style mixins:
+
+```scss
+h1 {
+  @include type.type-style('productive-heading-07');
+}
+
+h2 {
+  @include type.type-style('productive-heading-06');
+}
+```
+
 ## Resources
 
 <Row className="resource-card-group">
