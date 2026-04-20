@@ -1,0 +1,134 @@
+---
+title: Heading
+description:
+  The Heading component automatically infers the appropriate heading level based
+  on the Section component, helping maintain proper document structure without
+  manual specification.
+tabs: ['Usage', 'Style', 'Code', 'Accessibility']
+---
+
+<PageDescription>
+
+Preview the Heading component with the React live demo. For detailed code usage
+documentation, see the Storybooks for each framework below.
+
+</PageDescription>
+
+## Documentation
+
+<Row className="resource-card-group">
+<Column colLg={4} colMd={4} noGutterSm>
+  <ResourceCard
+    subTitle="React"
+    href="https://react.carbondesignsystem.com/?path=/story/components-heading--default"
+    >
+
+<MdxIcon name="react" />
+
+  </ResourceCard>
+</Column>
+<Column colLg={4} colMd={4} noGutterSm>
+  <ResourceCard
+    subTitle="Web Components"
+    href="https://web-components.carbondesignsystem.com/?path=/docs/components-heading--overview"
+    >
+
+<MdxIcon name="webcomponents" />
+
+  </ResourceCard>
+</Column>
+</Row>
+
+## Live demo
+
+<StorybookDemo
+  themeSelector
+  url="https://react.carbondesignsystem.com"
+  variants={[
+    {
+      label: 'Default',
+      variant: 'components-heading--default',
+    },
+    {
+      label: 'Custom level',
+      variant: 'components-heading--custom-level',
+    },
+  ]}
+/>
+
+## Code examples
+
+### Installation
+
+```bash
+npm install @carbon/react
+```
+
+### Basic implementation
+
+```jsx
+import { Heading, Section } from '@carbon/react';
+
+function MyPage() {
+  return (
+    <Section>
+      <Heading>Main Title</Heading>
+      <p>Page content...</p>
+
+      <Section>
+        <Heading>Section Title</Heading>
+        <p>Section content...</p>
+      </Section>
+    </Section>
+  );
+}
+```
+
+### Semantic HTML with `as` prop
+
+```jsx
+<Section as="article">
+  <Heading>Article Title</Heading>
+  <p>Article content...</p>
+</Section>
+
+<Section as="nav">
+  <Heading>Navigation</Heading>
+  <ul>...</ul>
+</Section>
+```
+
+### Manual level override
+
+```jsx
+// Start at h3 instead of h1
+<Section level={3}>
+  <Heading>This renders as h3</Heading>
+  <Section>
+    <Heading>This renders as h4</Heading>
+  </Section>
+</Section>
+```
+
+### Reusable component pattern
+
+```jsx
+function Card({ title, description, children }) {
+  return (
+    <Section className="card">
+      <Heading>{title}</Heading>
+      <p>{description}</p>
+      {children}
+    </Section>
+  );
+}
+
+// Usage - heading level adapts to context
+<Section>
+  <Heading>Dashboard</Heading>
+  <Card title="Statistics" description="View your stats" />
+  <Card title="Activity" description="Recent activity">
+    <Card title="Today" description="Today's activity" />
+  </Card>
+</Section>;
+```
