@@ -22,7 +22,7 @@ const Banner = () => {
         className={buttonBanner}
         kind="ghost"
         renderIcon={ArrowRight}>
-        Explore the preview site →
+        Explore the preview site
       </Button>
     </div>
   );
