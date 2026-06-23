@@ -7,7 +7,7 @@ import Header from 'gatsby-theme-carbon/src/components/Header';
 import { Switcher } from 'gatsby-theme-carbon/src/components/Switcher';
 import Footer from 'gatsby-theme-carbon/src/components/Footer';
 import Container from 'gatsby-theme-carbon/src/components/Container';
-import Banner from '../../components/Banner';
+// import Banner from '../../components/Banner';
 
 import 'gatsby-theme-carbon/src/styles/index.scss';
 import { layout } from '../../styles/Layout.module.scss';
@@ -44,7 +44,7 @@ const Layout = ({
         pageDescription={pageDescription}
         pageKeywords={pageKeywords}
       />
-      {homepage && <Banner />}
+      {/* {homepage && <Banner />} */}
       <Header />
       <Switcher />
       <LeftNav homepage={homepage} is404Page={is404} theme={theme} />
