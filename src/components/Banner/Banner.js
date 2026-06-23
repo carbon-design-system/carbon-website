@@ -13,14 +13,16 @@ const Banner = () => {
   return (
     <div aria-label="banner" className={banner}>
       <p className={bannerText}>
-        <strong className={bannerHeading}>Meet the new Carbon.</strong>
+        <strong className={bannerHeading}>
+          The Carbon site has been redesigned.
+        </strong>
       </p>
       <Button
         href="https://preview.carbondesignsystem.com"
         className={buttonBanner}
         kind="ghost"
         renderIcon={ArrowRight}>
-        Try the preview site
+        Explore the preview site →
       </Button>
     </div>
   );
