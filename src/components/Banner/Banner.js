@@ -13,7 +13,7 @@ const Banner = () => {
   return (
     <div aria-label="banner" className={banner}>
       <p className={bannerText}>
-        <strong className={bannerHeading}>Meet the new Carbon.</strong>
+        <strong className={bannerHeading}>Meet the new Carbon</strong>
       </p>
       <Button
         href="https://next.carbondesignsystem.com"
