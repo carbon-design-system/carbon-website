@@ -6,7 +6,6 @@ import {
   banner,
   bannerText,
   bannerHeading,
-  bannerDetails,
   buttonBanner,
 } from './Banner.module.scss';
 
@@ -14,19 +13,14 @@ const Banner = () => {
   return (
     <div aria-label="banner" className={banner}>
       <p className={bannerText}>
-        <strong className={bannerHeading}>
-          A new web experience is coming!
-        </strong>
-        <span className={bannerDetails}>
-          The v1 Carbon platform is now available in public beta.
-        </span>
+        <strong className={bannerHeading}>Meet the new Carbon</strong>
       </p>
       <Button
         href="https://next.carbondesignsystem.com"
         className={buttonBanner}
         kind="ghost"
         renderIcon={ArrowRight}>
-        Try the Carbon Platform
+        Try the preview site
       </Button>
     </div>
   );
