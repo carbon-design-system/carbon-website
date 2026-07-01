@@ -16,7 +16,7 @@ const Banner = () => {
         <strong className={bannerHeading}>Meet the new Carbon</strong>
       </p>
       <Button
-        href="https://next.carbondesignsystem.com"
+        href="https://preview.carbondesignsystem.com"
         className={buttonBanner}
         kind="ghost"
         renderIcon={ArrowRight}>
