@@ -1,0 +1,80 @@
+---
+title: Heading
+description:
+  The Heading component automatically infers the appropriate heading level based
+  on the Section component, helping maintain proper document structure without
+  manual specification.
+tabs: ['Usage', 'Style', 'Code', 'Accessibility']
+---
+
+<PageDescription>
+
+The Heading component maintains semantic HTML structure by automatically
+inferring heading levels, ensuring accessibility is preserved while simplifying
+development.
+
+</PageDescription>
+
+<AnchorLinks>
+  <AnchorLink>What Carbon provides</AnchorLink>
+  <AnchorLink>Design recommendations</AnchorLink>
+  <AnchorLink>Development considerations</AnchorLink>
+</AnchorLinks>
+
+## What Carbon provides
+
+The Heading component automatically manages semantic heading levels (h1-h6)
+through Section nesting, ensuring proper document structure for assistive
+technologies without manual intervention.
+
+For information on typography and visual styling, see
+[Typography overview](/elements/typography/overview).
+
+### Keyboard support
+
+The Heading component itself has no interactive keyboard behavior. Screen reader
+users navigate headings using:
+
+| Key         | Action                           |
+| ----------- | -------------------------------- |
+| `H`         | Jump to next heading (JAWS/NVDA) |
+| `Shift + H` | Jump to previous heading         |
+| `1-6`       | Jump to specific heading level   |
+
+### Screen reader announcements
+
+Screen readers announce:
+
+- The heading level (e.g., "Heading level 2")
+- The heading text content
+- The semantic structure, not visual styling
+
+## Development considerations
+
+### Implementation requirements
+
+```jsx
+// Required: Always wrap Heading in Section
+<Section>
+  <Heading>Accessible heading</Heading>
+</Section>
+
+// Semantic HTML elements
+<Section as="article">
+  <Heading>Article title</Heading>
+</Section>
+
+<Section as="nav">
+  <Heading>Navigation menu</Heading>
+</Section>
+```
+
+### WCAG 2.1 compliance
+
+The Heading component supports:
+
+| Success Criterion            | Level | Requirement                          |
+| ---------------------------- | ----- | ------------------------------------ |
+| 1.3.1 Info and Relationships | A     | Semantic heading structure preserved |
+| 2.4.6 Headings and Labels    | AA    | Headings describe topics/purposes    |
+| 2.4.10 Section Headings      | AAA   | Content organized with headings      |
