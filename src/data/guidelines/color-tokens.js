@@ -2414,6 +2414,24 @@ const colorTokens = {
         g100: { name: 'Blue 50', hex: '#4589ff' },
       },
     },
+    '$syntax-deleted': {
+      role: ['Color literal'],
+      value: {
+        white: { name: 'Red 20', hex: '#ffd7d9' },
+        g10: { name: 'Red 20', hex: '#ffd7d9' },
+        g90: { name: 'Red 70', hex: '#a2191f' },
+        g100: { name: 'Red 70', hex: '#a2191f' },
+      },
+    },
+    '$syntax-inserted': {
+      role: ['Color literal'],
+      value: {
+        white: { name: 'Green 20', hex: '#a7f0ba' },
+        g10: { name: 'Green 20', hex: '#a7f0ba' },
+        g90: { name: 'Green 60', hex: '#198038' },
+        g100: { name: 'Green 60', hex: '#198038' },
+      },
+    },
   },
 
   'icon-tokens': {
