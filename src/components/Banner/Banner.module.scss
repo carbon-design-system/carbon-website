@@ -6,6 +6,7 @@
   right: 0;
   z-index: 99999;
   display: flex;
+  align-items: center;
   width: 100%;
   height: rem(48px);
   justify-content: space-between;
@@ -54,8 +55,12 @@
     @include type-style('body-short-01');
 
     display: block;
-    padding: rem(15px) 0 0 $spacing-05;
+    padding-left: $spacing-05;
   }
+}
+
+.banner-heading {
+  display: block;
 }
 
 .banner-details {
@@ -69,16 +74,22 @@
 
 // override carbon button styles
 .banner :global(.cds--btn--ghost).button-banner {
-  width: 100%;
+  display: flex;
+  align-items: center;
+  width: calc(100% - #{$spacing-07});
   max-width: 100%;
+  height: rem(48px);
+  margin: 0 $spacing-05;
   color: $text-on-color;
 
   @include breakpoint('md') {
     width: auto;
+    margin: 0 $spacing-05 0 0;
+    padding: $spacing-05;
   }
 
   &:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--cds-hover-primary, #0050e6);
     color: $text-on-color;
   }
 }
