@@ -4,8 +4,6 @@ tabs: ['Overview', 'Onboarding and setup', 'Prompts', 'Token conservation']
 description: Connecting your AI application to Carbon MCP
 ---
 
-import { Link } from 'gatsby';
-
 <PageDescription>
 
 Follow these steps to configure your AI application or AI agent to use Carbon
@@ -14,49 +12,49 @@ MCP.
 </PageDescription>
 
 <AnchorLinks>
-  <AnchorLink>Step 1: Using your IBMid (w3id) or functional ID</AnchorLink>
-  <AnchorLink>Step 2: Getting access credentials</AnchorLink>
+  <AnchorLink>Step 1: Using your IBMid or w3id</AnchorLink>
+  <AnchorLink>Step 2: Accessing the Carbon MCP cloud server</AnchorLink>
   <AnchorLink>Step 3: Connecting to IBM Bob and other MCP clients</AnchorLink>
   <AnchorLink>Step 4: Adding the carbon-builder skill</AnchorLink>
 </AnchorLinks>
 
-## Step 1: Using your IBMid (w3id) or functional ID
+## Step 1: Using your IBMid or w3id
 
-When going through the OAuth onboarding process, you will need to authenticate
-with your IBMid (w3id for IBMers). If you need an IBMid, create one
-[here](https://www.ibm.com/account/reg/us-en/signup?formid=urx-19776).
+When going through the OAuth onboarding, you'll need to authenticate with your
+IBMid (w3id for IBMers). If you don't have one,
+[create an IBMid](https://www.ibm.com/account/reg/us-en/signup?formid=urx-19776).
 
-IBM product teams also have the option of authenticating via a functional ID. If
-your team needs a functional ID, create one
-[here](https://w3.ibm.com/#/support/article/04535/drms_addrecord?section=fid).
+## Step 2: Accessing the Carbon MCP cloud server
 
-## Step 2: Getting access credentials
+The Carbon MCP cloud server runs at `https://mcp.carbondesignsystem.com/mcp`.
 
-This step will launch the authorization flow to generate Carbon MCP
-authentication credentials, which can be provided to your MCP client.
+Most agents support OAuth connectors. To connect, add the server URL as a remote
+MCP server and sign in with your IBMid when your agent prompts you. For clients
+that use a mcp.json config file, the minimal setup is:
 
-<InlineNotification kind="info">
-  IBMers will be provided authentication credentials immediately upon clicking
-  the link below and signing in. All other users will be prompted to request
-  access.
-</InlineNotification>
+```json
+{
+  "mcpServers": {
+    "carbon-mcp": {
+      "type": "streamable-http",
+      "url": "https://mcp.carbondesignsystem.com/mcp",
+      "oauth": true,
+      "alwaysAllow": []
+    }
+  }
+}
+```
 
-### Access request workflow
+### Generate a token and session ID (if needed)
 
-1. <Link
-     href="https://mcp.carbondesignsystem.com/mcp/auth/ibmid/web"
-     target="_blank">
-     {' '}
-     Visit this link to generate your token and session ID
-   </Link>
-2. Request access if prompted
-3. Check your email for the activation link
-4. Copy your credentials: to add to your Carbon MCP configuration
+For clients that don't support OAuth discovery, use an auth token and session ID
+instead. Carbon MCP still supports that method for anyone already set up that
+way.
+
+1. [Visit this link to generate a token and session ID](https://mcp.carbondesignsystem.com/mcp/auth/ibmid/web)
+2. Copy your credentials to add to your Carbon MCP configuration
 
 ## Step 3: Connecting to IBM Bob and other MCP clients
-
-The IBM Cloud deployment of the Carbon MCP is available at
-`https://mcp.carbondesignsystem.com/mcp`.
 
 Here's how to set it up in Bob and other common MCP clients:
 
@@ -67,9 +65,8 @@ There are **two steps** required to set up Carbon MCP in Bob. First, you need to
 install **Carbon MCP** from the Bob Marketplace. Then, you need to install the
 
 <a href="/developing/carbon-mcp/onboarding-and-setup/#step-4:-adding-the-carbon-builder-skill">
-  carbon-builder skill
+  carbon-builder skill.
 </a>
-.
 
 #### Step 1: Installing Carbon MCP
 
@@ -136,67 +133,9 @@ for Bob.
 
 </AccordionItem>
 
-<AccordionItem title="Claude Code">
-
-- Use the Claude Code CLI and replace the `<TOKEN>` and `<SESSION>` with your
-  Carbon MCP auth credentials
-
-<br />
-
-```bash
-claude mcp add-json carbon-mcp '{"type":"http","url":"https://mcp.carbondesignsystem.com/mcp","headers":{"Authorization":"Bearer <TOKEN>","X-MCP-Session":"<SESSION>"}}'
-```
-
-<br />
-
-- Verify that Claude Code recognizes Carbon MCP by running `claude mcp list`
-
-</AccordionItem>
-
 <AccordionItem title="Claude Desktop">
 
-Carbon MCP can be set up in Claude Desktop as an Extension or Custom Connector.
-This section describes how to make both connections.
-
-#### Adding Carbon MCP as an Extension
-
-- Open Settings > Extensions > Advanced Settings
-
-<br />
-![Claude Desktop Step 1](./images/Claude-Desktop-"Open-Settings-Extensions".png)
-<br />
-
-- Click Install Extension
-
-<br />
-![Claude Desktop Step 2](./images/Claude-Desktop"Click-Install-Extension".png)
-<br />
-
-- Install the `Carbon MCP Claude Desktop extension`, which can be downloaded
-  [here](/developing/carbon-mcp/files/carbon-mcp-claude-extension.mcpb).
-
-<br />
-![Claude Desktop Step 3](./images/Claude-Desktop-"Install-the-Carbon-1".png)
-<br />
-![Claude Desktop Step 4](./images/Claude-Desktop-"Install-the-Carbon-2".png)
-<br />
-
-- Enter your Carbon MCP auth token and session ID in the modal, click Save to
-  confirm.
-
-<br />
-![Claude Desktop Step 5](./images/Claude-Desktop-"Enter-your-Carbon-MCP".png)
-<br />
-
-- Verify that the Carbon MCP extension is configured by ensuring the toggle is
-  switched on and shows as Enabled.
-
-<br />
-![Carbon MCP Claude Desktop extension](./images/Claude-Desktop-"Enable-Extension-1".png)
-<br />
-![Carbon MCP Claude Desktop extension](./images/Claude-Desktop-"Enable-Extension-2".png)
-<br />
-<br />
+Carbon MCP can be set up in Claude Desktop as Custom Connector.
 
 #### Adding Carbon MCP as a Custom Connector
 
@@ -205,119 +144,57 @@ This section describes how to make both connections.
 - When prompted for a name, enter `carbon-mcp`
 - Under the Remote MCP server URL input, use
   `https://mcp.carbondesignsystem.com/mcp`
+- Click Continue
+- For Authentication radio button, select "Always required"
+- For Oauth client, select "No client ID — register one automatically"
 - Click Add
+- If prompted by Claude Desktop to allow a connection to Carbon MCP, click "Allow"
 
 </AccordionItem>
 
 <AccordionItem title="Cursor">
-Carbon MCP can be set up in Cursor in one of the following ways:
 
-<br />
-[![Install MCP Server](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=carbon-mcp&config=eyJ0eXBlIjoic3RyZWFtYWJsZS1odHRwIiwidXJsIjoiaHR0cHM6Ly9tY3AuY2FyYm9uZGVzaWduc3lzdGVtLmNvbS9tY3AiLCJkaXNhYmxlZCI6ZmFsc2UsInRpbWVvdXQiOjYwMCwiaGVhZGVycyI6eyJBdXRob3JpemF0aW9uIjoiIiwiWC1NQ1AtU2Vzc2lvbiI6IiJ9LCJhbHdheXNBbGxvdyI6WyJjb2RlX3NlYXJjaCIsImRvY3Nfc2VhcmNoIl19)
-<br />
-<br />
-
-- Use the “Add to Cursor” button shown above to automatically configure the MCP
-  server.
+Carbon MCP can be set up in Cursor by clicking the deeplink below:
 
 <br />
 
-- Alternatively, manually configure the MCP server by opening the Command
-  Palette and following the steps below.
+[![Install MCP Server](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=carbon-mcp&config=eyJ0eXBlIjoic3RyZWFtYWJsZS1odHRwIiwidXJsIjoiaHR0cHM6Ly9tY3AuY2FyYm9uZGVzaWduc3lzdGVtLmNvbS9tY3AiLCJvYXV0aCI6dHJ1ZSwiYWx3YXlzQWxsb3ciOlsiY29kZV9zZWFyY2giLCJkb2NzX3NlYXJjaCIsImdldF9jaGFydHMiXX0=)
 
 <br />
-![Cursor Command Palette](./images/Cursor-Open-the-command-palette.png)
-<br />
 
-- Search for and select “View: Open MCP Settings.”
-
-<br />
-![Cursor MCP Settings](./images/Cursor-Search-and-Select.png)
-<br />
-
-- In the MCP Settings view, click “Add Custom MCP”.
-
-<br />
-![Cursor Add Custom MCP](./images/Cursor-Click-Add-custom-MCP.png)
-<br />
-
+- Or manually open the command palette
+- Select “View: Open MCP Settings”
+- Click on “Add custom MCP”
 - It will open a file with your MCP servers where you can add the following
   configuration:
+  <br />
+  <br />
 
-<br />
-
-{/* prettier-ignore */}
-```markdown
+```json
 {
-    "mcpServers": {
-        "carbon-mcp": {
-            "type": "streamable-http",
-            "url": "https://mcp.carbondesignsystem.com/mcp",
-            "disabled": false,
-            "timeout": 600,
-            "headers": {
-                "Authorization": "Bearer <TOKEN>",
-                "X-MCP-Session": "<SESSION>"
-            },
-            "alwaysAllow": [
-                "code_search",
-                "docs_search"
-            ]
-        }
+  "mcpServers": {
+    "carbon-mcp": {
+      "type": "streamable-http",
+      "url": "https://mcp.carbondesignsystem.com/mcp",
+      "oauth": true,
+      "alwaysAllow": []
     }
+  }
 }
 ```
 
 <br />
-
-- Replace `<TOKEN>` and `<SESSION>` with your actual Carbon MCP auth
-  credentials. Save and close the file, then restart Cursor to apply the
-  changes.
-
-<br />
-![Cursor Carbon MCP config](./images/Cursor-Replace-TOKEN.png)
-<br />
-
-- Verify that the Carbon MCP extension is configured by ensuring the toggle is
-  switched on and shows as Enabled.
-
-<br />
-![Cursor Carbon MCP enabled](./images/Cursor"Verify-Carbon-MCP".png)
-<br />
-
-</AccordionItem>
-
-<AccordionItem title="Codex">
-
-Carbon MCP can be set up in Codex by editing your `~/.codex/config.toml`.
-
-<br />
-
-{/* prettier-ignore */}
-```markdown
-[mcp_servers.carbon_mcp]
-enabled = true
-url = "https://mcp.carbondesignsystem.com/mcp"
-enabled_tools = ["code_search", "docs_search", "get_charts"]
-
-[mcp_servers.carbon_mcp.http_headers]
-Authorization = "Bearer <TOKEN>"
-X-MCP-Session = "<SESSION>"
-```
-
-<br />
-
-- Replace `<TOKEN>` and `<SESSION>` with your actual Carbon MCP auth
-  credentials. Save and close the file, then restart Codex to apply the changes.
-- Verify that the Carbon MCP extension is configured by ensuring the toggle is
-  switched on and shows as Enabled.
+<br />- Save and close the file - Sign in with your IBMid when Cursor prompts you
+- Quit and relaunch Cursor
 
 </AccordionItem>
 
 <AccordionItem title="Figma Make">
 
-#### For IBMers:
+Figma Make can generate Carbon source code from Figma designs by combining
+four Carbon resources shared below: a Carbon Figma Make kit, an AI agent skill, an AI prompt, and Carbon MCP tools for live Carbon documentation, implementation examples, charts, and code-audit capabilities.
 
+#### For IBMers:
 <br />
 
 - Open Figma Make and navigate to click "Connectors"
@@ -332,6 +209,8 @@ X-MCP-Session = "<SESSION>"
   - `doc_search`
   - `code_search`
   - `get_charts`
+  - `labs_search`
+  - `code_audit`
 - Click **Back**, then click **X** to close the Connectors menu
 
 <br />
@@ -341,18 +220,17 @@ X-MCP-Session = "<SESSION>"
 - Select a LLM model from the model selector. _NOTE: Gemini was observed to
   consume fewer tokens, while Anthropic's Claude Opus 4.6 model (or later)
   tended to produce more accurate and complete code output_
-- Click **Add context** in the chat box, then select **Carbon MCP** from your
-  connectors to attach it to the session
-- Paste or attach your input design (e.g. a Figma frame or image), then include
-  the suggested
-  [user prompt](/developing/carbon-mcp/files/figma-make-user-prompt.txt) in the
-  same message and send it to begin generation
-- Once generation begins, Figma Make will create an initial draft. Before
-  accepting it, switch to the **Code** view (top of the Make canvas)
-- Open the [GUIDELINES.txt](/developing/carbon-mcp/files/GUIDELINES.txt) file,
-  copy its full contents, and paste them into `GUIDELINES.md` in the code view
-- Return to the chat and continue the conversation — the model will incorporate
-  these guidelines going forward
+- In the chat box, click **Select a Make kit** and choose
+  **Carbon MCP - React v11 Make Kit**
+- Click **Connectors**, then select **Carbon MCP** from your connectors to
+  attach it to the session
+- Add the published skill to your prompt by typing
+  `/carbon-builder-figma-make-react`, or by choosing **Skills > Use skills >
+  carbon-builder-figma-make-react**
+- Paste your Figma frame directly into the chat
+- In the chat box, include the suggested
+  [user prompt](/developing/carbon-mcp/files/USER_PROMPT_DESIGN_TO_CODE.md) to generate Carbon source code from the input design
+- Send the prompt to begin generation
 
 #### For non-IBMers:
 
@@ -382,6 +260,8 @@ X-MCP-Session = "<SESSION>"
   - `doc_search`
   - `code_search`
   - `get_charts`
+  - `labs_search`
+  - `code_audit`
 - Click **Back**, then click **X** to close the Connectors menu
 
 <br />
@@ -391,116 +271,111 @@ X-MCP-Session = "<SESSION>"
 - Select a LLM model from the model selector. _NOTE: Gemini was observed to
   consume fewer tokens, while Anthropic's Claude Opus 4.6 model (or later)
   tended to produce more accurate and complete code output_
-- Click **Add context** in the chat box, then select **Carbon MCP** from your
-  connectors to attach it to the session
-- Paste or attach your input design (e.g. a Figma frame or image), then include
-  the suggested
-  [user prompt](/developing/carbon-mcp/files/figma-make-user-prompt.txt) in the
-  same message and send it to begin generation
-- Once generation begins, Figma Make will create an initial draft. Before
-  accepting it, switch to the **Code** view (top of the Make canvas)
-- Open the [GUIDELINES.txt](/developing/carbon-mcp/files/GUIDELINES.txt) file,
-  copy its full contents, and paste them into `GUIDELINES.md` in the code view
-- Return to the chat and continue the conversation — the model will incorporate
-  these guidelines going forward
+- In the chat box, click **Select a Make kit** and choose
+  **Carbon MCP - React v11 Make Kit**
+- Click **Connectors**, then select **Carbon MCP** from your connectors to
+  attach it to the session
+- Add the published skill to your prompt by typing
+  `/carbon-builder-figma-make-react`, or by choosing **Skills > Use skills >
+  carbon-builder-figma-make-react**
+- Paste your Figma frame directly into the chat
+- In the chat box, include the suggested
+  [user prompt](/developing/carbon-mcp/files/USER_PROMPT_DESIGN_TO_CODE.md) to
+  generate Carbon source code from the input design
+- Send the prompt to begin generation
   <br />
   <br />
-
-</AccordionItem>
-
-<AccordionItem title="GitHub Coding Agent">
-
-- Open your repository in GitHub and navigate to "Settings".
-
-<br />
-![GitHub Repository Settings](./images/Github"Open-your-repo".png)
-<br />
-
-- In the Settings sidebar, open Copilot and select "Coding agent".
-
-<br />
-![GitHub Coding Agent](./images/Github-Cloud-agent.png)
-<br />
-
-- Add the MCP configuration
-
-<br />
-
-{/* prettier-ignore */}
-```markdown
-{
-    "mcpServers": {
-        "carbon-mcp": {
-            "type": "http",
-            "url": "https://mcp.carbondesignsystem.com/mcp",
-            "headers": {
-                "Authorization": "Bearer <TOKEN>",
-                "X-MCP-Session": "<SESSION>"
-            },
-            "tools": [
-                "code_search",
-                "docs_search"
-            ]
-        }
-    }
-}
-```
-
-<br />
-
-- Replace `<TOKEN>` and `<SESSION>` with your actual Carbon MCP auth
-  credentials, then click "Save MCP configuration".
-
-<br />
-![GitHub Save MCP Config](./images/Github-Edit-mcp.png)
-<br />
-
-</AccordionItem>
-
-<AccordionItem title="VS Code">
-Carbon MCP can be set up in VS Code in one of the following ways:
-
-<br />
-[![Install in VS Code](https://img.shields.io/badge/VS_Code-Install_carbon--mcp-0098FF?style=flat&logo=visualstudiocode&logoColor=ffffff)](vscode:mcp/install?%7B%22name%22%3A%22carbon-mcp%22%2C%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fmcp.carbondesignsystem.com%2Fmcp%22%2C%22headers%22%3A%7B%22Authorization%22%3A%22Bearer%20%24%7Binput%3Atoken%7D%22%2C%22X-MCP-Session%22%3A%22%24%7Binput%3Asession%7D%22%7D%2C%22inputs%22%3A%5B%7B%22id%22%3A%22token%22%2C%22type%22%3A%22promptString%22%2C%22description%22%3A%22Carbon%20MCP%20Token%22%2C%22password%22%3Atrue%7D%2C%7B%22id%22%3A%22session%22%2C%22type%22%3A%22promptString%22%2C%22description%22%3A%22Carbon%20MCP%20Session%20ID%22%7D%5D%7D)
-<br />
-<br />
-
-- Use the “Install carbon-mcp” button shown above to automatically configure the
-  MCP server.
-
-<br />
-
-- Alternatively, manually use VS Code CLI and replace the `<TOKEN>` and
-  `<SESSION>` with your Carbon MCP auth credentials
-
-<br />
-
-```bash
-code --add-mcp '{"name":"carbon-mcp","type":"http","url":"https://mcp.carbondesignsystem.com/mcp","headers":{"Authorization":"Bearer <TOKEN>","X-MCP-Session":"<SESSION>"}}'
-```
-
-<br />
 
 </AccordionItem>
 
 <AccordionItem title="Other clients">
 
+Using a client other than Bob, Claude Desktop, Cursor, or Figma Make? Set it up
+below.
+
+### Claude Code
+
+<br />
+
+- Add Carbon MCP with the Claude Code CLI:
+
+<br />
+
+```bash
+claude mcp add --transport http carbon-mcp https://mcp.carbondesignsystem.com/mcp
+```
+
+<br />
+
+- Sign in with your IBMid when Claude Code prompts you
+- Verify that Claude Code recognizes Carbon MCP by running `claude mcp list`
+
+### VS Code
+
+<br />
+
+[![Install in VS Code](https://img.shields.io/badge/VS_Code-Install_carbon--mcp-0098FF?style=flat&logo=visualstudiocode&logoColor=ffffff)](vscode:mcp/install?%7B%22name%22%3A%22carbon-mcp%22%2C%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fmcp.carbondesignsystem.com%2Fmcp%22%7D)
+
+<br />
+
+- Or use the VS Code CLI:
+
+<br />
+
+```bash
+code --add-mcp '{"name":"carbon-mcp","type":"http","url":"https://mcp.carbondesignsystem.com/mcp"}'
+```
+
+<br />
+
+- Sign in with your IBMid when VS Code prompts you
+
+### Any other client
+
+<br />
+
 If the MCP client you are using is not listed, refer to their documentation for
 `remote servers` and use `https://mcp.carbondesignsystem.com/mcp` as the URL.
+
+<br />
+
+For clients that require an auth token and session ID instead of OAuth, use this
+configuration:
+
+<br />
+
+```json
+{
+  "mcpServers": {
+    "carbon-mcp": {
+      "type": "streamable-http",
+      "url": "https://mcp.carbondesignsystem.com/mcp",
+      "disabled": false,
+      "timeout": 600,
+      "headers": {
+        "Authorization": "Bearer <TOKEN>",
+        "X-MCP-Session": "<SESSION>"
+      },
+      "alwaysAllow": []
+    }
+  }
+}
+```
+
+<br />
+
+Replace `<TOKEN>` and `<SESSION>` with your Carbon MCP token and session ID.
 
 </AccordionItem>
 </Accordion>
 
-Additionally, an `llms.txt` file is available [here](/llms.txt) — a structured
-index of Carbon Design System documentation, components, and source repositories
-for AI tools and LLMs.
-
 ## Step 4: Adding the carbon-builder skill
 
-For best results with Carbon MCP, install the
-[carbon-builder skill](/developing/carbon-mcp/files/carbon-builder.zip). The
-skill provides Carbon-specific context that guides AI agents to follow Carbon
-conventions, use the right components, and produce consistent output.
+For best results with Carbon MCP, install the Carbon Builder skill. The source
+is in this
+[Github repo](https://github.com/carbon-design-system/carbon-mcp/tree/main/public/skills/carbon-builder).
+This skill gives AI agents the Carbon-specific context they need to follow
+Carbon conventions, use the right components, and produce consistent output.
 
 Follow the instructions for the clients below.
 
@@ -509,8 +384,8 @@ Follow the instructions for the clients below.
 
 - Select the Bob `Advanced` mode, which is required to support skills.
 - Download the
-  [carbon-builder skill](/developing/carbon-mcp/files/carbon-builder.zip) and
-  unzip it.
+  [carbon-builder skill](https://github.com/carbon-design-system/carbon-mcp/raw/main/public/skills/carbon-builder.zip)
+  and unzip it.
 - Place the skill in `.bob/skills/` at your project root (project-scoped) or in
   `~/.bob/skills/` (global).
 
@@ -527,9 +402,20 @@ Bob.
 
 <br />
 
+_macOS / Linux_
+
 ```bash
 mkdir -p /path/to/your-project/.bob/skills
 cp -r carbon-builder /path/to/your-project/.bob/skills/
+```
+
+<br />
+
+_Windows (PowerShell)_
+
+```powershell
+New-Item -ItemType Directory -Force -Path C:\path\to\your-project\.bob\skills
+Copy-Item -Recurse carbon-builder C:\path\to\your-project\.bob\skills\
 ```
 
 <br />
@@ -543,6 +429,8 @@ cp -r carbon-builder /path/to/your-project/.bob/skills/
 
 <br />
 
+_macOS / Linux_
+
 ```bash
 mkdir -p ~/.bob/skills
 cp -r carbon-builder ~/.bob/skills/
@@ -550,56 +438,22 @@ cp -r carbon-builder ~/.bob/skills/
 
 <br />
 
-</AccordionItem>
+_Windows (PowerShell)_
 
-<AccordionItem title="Claude Code">
-
-Claude Code discovers skills automatically from `.claude/skills/` at your
-project root. No additional configuration is needed beyond having carbon-mcp
-configured as an MCP server.
-
-<br />
-
-- Download the
-  [carbon-builder skill](/developing/carbon-mcp/files/carbon-builder.zip) and
-  unzip it.
-
-<br />
-
-**Project-scoped (recommended for teams):**
-
-<br />
-
-```bash
-# From the directory where you unzipped the download
-mkdir -p /path/to/your-project/.claude/skills
-cp -r carbon-builder /path/to/your-project/.claude/skills/
+```powershell
+New-Item -ItemType Directory -Force -Path $HOME\.bob\skills
+Copy-Item -Recurse carbon-builder $HOME\.bob\skills\
 ```
 
 <br />
-
-- Commit `.claude/skills/carbon-builder/` to your repository so the skill is
-  version-tracked alongside the project and available to every developer on the
-  team without a separate install.
-
-<br />
-
-**Global (available in all projects on this machine):**
-
-<br />
-
-```bash
-mkdir -p ~/.claude/skills
-cp -r carbon-builder ~/.claude/skills/
-```
 
 </AccordionItem>
 
 <AccordionItem title="Claude Desktop">
 
 Download the
-[carbon-builder skill](/developing/carbon-mcp/files/carbon-builder.zip). No need
-to unzip; Claude Desktop accepts the ZIP file directly.
+[carbon-builder skill](https://github.com/carbon-design-system/carbon-mcp/raw/main/public/skills/carbon-builder.zip).
+No need to unzip; Claude Desktop accepts the ZIP file directly.
 
 <br />
 
@@ -633,15 +487,25 @@ Cursor uses MDC-format rule files in `.cursor/rules/`.
 <br />
 
 - Download the
-  [carbon-builder skill](/developing/carbon-mcp/files/carbon-builder.zip) and
-  unzip it.
+  [carbon-builder skill](https://github.com/carbon-design-system/carbon-mcp/raw/main/public/skills/carbon-builder.zip)
+  and unzip it.
 
 - Create the rules directory:
 
 <br />
 
+_macOS / Linux_
+
 ```bash
 mkdir -p .cursor/rules
+```
+
+<br />
+
+_Windows (PowerShell)_
+
+```powershell
+New-Item -ItemType Directory -Force -Path .cursor\rules
 ```
 
 <br />
@@ -680,7 +544,79 @@ Ensure carbon-mcp is configured as an MCP server in Cursor's settings.
 
 </AccordionItem>
 
-<AccordionItem title="GitHub Coding Agent">
+<AccordionItem title="Other clients">
+
+Using a client other than Bob, Claude Desktop, or Cursor? Set it up below.
+
+### Claude Code
+
+<br />
+
+Claude Code discovers skills automatically from `.claude/skills/` at your
+project root. No additional configuration is needed beyond having carbon-mcp
+configured as an MCP server.
+
+<br />
+
+- Download the
+  [carbon-builder skill](https://github.com/carbon-design-system/carbon-mcp/raw/main/public/skills/carbon-builder.zip)
+  and unzip it.
+
+<br />
+
+**Project-scoped (recommended for teams):**
+
+<br />
+
+_macOS / Linux_
+
+```bash
+# From the directory where you unzipped the download
+mkdir -p /path/to/your-project/.claude/skills
+cp -r carbon-builder /path/to/your-project/.claude/skills/
+```
+
+<br />
+
+_Windows (PowerShell)_
+
+```powershell
+# From the directory where you unzipped the download
+New-Item -ItemType Directory -Force -Path C:\path\to\your-project\.claude\skills
+Copy-Item -Recurse carbon-builder C:\path\to\your-project\.claude\skills\
+```
+
+<br />
+
+- Commit `.claude/skills/carbon-builder/` to your repository so the skill is
+  version-tracked alongside the project and available to every developer on the
+  team without a separate install.
+
+<br />
+
+**Global (available in all projects on this machine):**
+
+<br />
+
+_macOS / Linux_
+
+```bash
+mkdir -p ~/.claude/skills
+cp -r carbon-builder ~/.claude/skills/
+```
+
+<br />
+
+_Windows (PowerShell)_
+
+```powershell
+New-Item -ItemType Directory -Force -Path $HOME\.claude\skills
+Copy-Item -Recurse carbon-builder $HOME\.claude\skills\
+```
+
+### GitHub Coding Agent
+
+<br />
 
 GitHub Copilot coding agent supports Agent Skills from your repository in
 `.github/skills/`. Unlike local desktop clients, there is no global install
@@ -689,8 +625,8 @@ location because the agent runs against the contents of the repository.
 <br />
 
 - Download the
-  [carbon-builder skill](/developing/carbon-mcp/files/carbon-builder.zip) and
-  unzip it.
+  [carbon-builder skill](https://github.com/carbon-design-system/carbon-mcp/raw/main/public/skills/carbon-builder.zip)
+  and unzip it.
 
 <br />
 
@@ -698,9 +634,20 @@ location because the agent runs against the contents of the repository.
 
 <br />
 
+_macOS / Linux_
+
 ```bash
 mkdir -p /path/to/your-project/.github/skills
 cp -r carbon-builder /path/to/your-project/.github/skills/
+```
+
+<br />
+
+_Windows (PowerShell)_
+
+```powershell
+New-Item -ItemType Directory -Force -Path C:\path\to\your-project\.github\skills
+Copy-Item -Recurse carbon-builder C:\path\to\your-project\.github\skills\
 ```
 
 <br />
@@ -715,9 +662,9 @@ GitHub Copilot coding agent reads the `name` and `description` fields from
 `SKILL.md` and loads the skill automatically when the current task matches the
 skill's purpose.
 
-</AccordionItem>
+### VS Code
 
-<AccordionItem title="VS Code">
+<br />
 
 - VS Code supports Agent Skills as project skills in `.github/skills/`,
   `.claude/skills/`, or `.agents/skills/`, and as personal skills in
@@ -732,8 +679,8 @@ skill's purpose.
 <br />
 
 - Download the
-  [carbon-builder skill](/developing/carbon-mcp/files/carbon-builder.zip) and
-  unzip it.
+  [carbon-builder skill](https://github.com/carbon-design-system/carbon-mcp/raw/main/public/skills/carbon-builder.zip)
+  and unzip it.
 
 <br />
 
@@ -741,9 +688,20 @@ skill's purpose.
 
 <br />
 
+_macOS / Linux_
+
 ```bash
 mkdir -p /path/to/your-project/.github/skills
 cp -r carbon-builder /path/to/your-project/.github/skills/
+```
+
+<br />
+
+_Windows (PowerShell)_
+
+```powershell
+New-Item -ItemType Directory -Force -Path C:\path\to\your-project\.github\skills
+Copy-Item -Recurse carbon-builder C:\path\to\your-project\.github\skills\
 ```
 
 <br />
@@ -758,9 +716,20 @@ cp -r carbon-builder /path/to/your-project/.github/skills/
 
 <br />
 
+_macOS / Linux_
+
 ```bash
 mkdir -p ~/.copilot/skills
 cp -r carbon-builder ~/.copilot/skills/
+```
+
+<br />
+
+_Windows (PowerShell)_
+
+```powershell
+New-Item -ItemType Directory -Force -Path $HOME\.copilot\skills
+Copy-Item -Recurse carbon-builder $HOME\.copilot\skills\
 ```
 
 <br />
@@ -776,9 +745,9 @@ To verify the skill is available in VS Code:
 VS Code reads the `name` and `description` from `SKILL.md` and loads the skill
 automatically when it is relevant to the current task.
 
-</AccordionItem>
+### Any other client
 
-<AccordionItem title="Other clients">
+<br />
 
 If your MCP client is not listed above, refer to its documentation for
 installing skills.
@@ -796,8 +765,8 @@ file or a dedicated directory at the project root. Common patterns include:
   client-specific equivalent
 
 - Download the
-  [carbon-builder skill](/developing/carbon-mcp/files/carbon-builder.zip) and
-  unzip it.
+  [carbon-builder skill](https://github.com/carbon-design-system/carbon-mcp/raw/main/public/skills/carbon-builder.zip)
+  and unzip it.
 
 - To install the carbon-builder skill in any of these clients, paste the body of
   `SKILL.md` (everything below the closing `---` of the frontmatter) into the
