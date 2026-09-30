@@ -6,26 +6,28 @@ description:
 ---
 
 import bobDemo from './videos/bob-carbon-mcp-demo.mp4';
-import {
-  Checkmark,
-  CheckmarkFilled,
-  CheckmarkOutline,
-  SubtractAlt,
-} from '@carbon/icons-react';
-import { green, red } from '@carbon/colors';
-import MONDAY_LOGO from '../../../images/monday.svg';
+import { Button } from '@carbon/react';
+import { ArrowRight, CheckmarkFilled } from '@carbon/icons-react';
+import { green } from '@carbon/colors';
 
-## Carbon MCP (Public Preview)
+<PageDescription>
 
-Carbon MCP is available as a public preview. The Carbon MCP server provides
-knowledge on our core Carbon Design System elements, iconography, pictograms,
-guidelines, usage documentation, component libraries across React and Web
-Components, as well as the Carbon for IBM Products library.
+Carbon MCP connects your AI application or agent to the Carbon Design System
+through the Model Context Protocol, the open standard for giving AI tools access
+to external data and capabilities. Your AI can search Carbon for components,
+tokens, icons, guidance, and code, and audit what it builds against Carbon
+guidelines.
 
-During this public preview, we are eager to hear from the community on what's
-working and what we can optimize. Please consider
-[sharing feedback on your experience](https://forms.monday.com/forms/d7f4a23fe080f757e805294d746e515c?r=use1)
-to help us improve future releases.
+</PageDescription>
+
+<div style={{ marginTop: '0.5rem', marginBottom: '2.5rem' }}>
+  <Button
+    kind="tertiary"
+    href="/developing/carbon-mcp/onboarding-and-setup/"
+    renderIcon={ArrowRight}>
+    {'Onboarding and setup'}
+  </Button>
+</div>
 
 <Row>
   <Column colLg={8}>
@@ -33,80 +35,25 @@ to help us improve future releases.
   </Column>
 </Row>
 
-IBMers can immediately start using Carbon MCP by following the onboarding
-instructions below. Non-IBMers can request access using the link below.
-
-<Row className="resource-card-group">
-  <Column colMd={4} colLg={4} noGutterSm>
-    <ResourceCard
-      subTitle="Onboarding instructions"
-      href="/developing/carbon-mcp/onboarding-and-setup/"
-      actionIcon="arrowRight">
-      <MdxIcon name="carbon" />
-    </ResourceCard>
-  </Column>
-  <Column colMd={4} colLg={4} noGutterSm>
-    <ResourceCard
-      subTitle="Early Access Sign-up Form (Non IBMers)"
-      href="https://wkf.ms/4qaLODl"
-      target="_blank">
-      <MdxIcon name="monday" />
-    </ResourceCard>
-  </Column>
-</Row>
-
-<PageDescription>
-
-Instantly access the Carbon Design System knowledge base via AI assistance.
-
-</PageDescription>
-
-<AnchorLinks>
-  <AnchorLink>Model Context Protocol</AnchorLink>
-  <AnchorLink>Why Carbon MCP?</AnchorLink>
-  <AnchorLink>MCP tools</AnchorLink>
-  <AnchorLink>Resources</AnchorLink>
-  <AnchorLink>Summary of content coverage</AnchorLink>
-  <AnchorLink>Roadmap</AnchorLink>
-</AnchorLinks>
-
-## Model Context Protocol
-
-Model Context Protocol (MCP) is an open-source standard that enables AI agents
-or AI applications to securely connect with external tools, data sources, and
-workflows through a unified integration layer.
-
-## Why Carbon MCP?
-
-**Instant AI Access to Carbon Design Standards:** Carbon MCP lets AI
-applications or agents query the Carbon Design System for colors, typography,
-component details, usage guidelines, and other essential context.
-
-**Smarter Code Generation:** Carbon MCP exposes code examples and documentation
-that enable AI tools to generate high-fidelity Carbon UI code that follows
-design and development best practices.
-
-**Improved Consistency:** Carbon MCP helps designers, developers, and PMs get
-consistent answers and examples from a shared source of truth, which reduces
-drift and rework.
-
 ## MCP tools
 
 Carbon MCP provides these tools to the AI application, which are called as
 needed during a session:
 
-`docs_search` Search Carbon Design System and IBM Products documentation,
-including component guidance, usage, accessibility, and reference docs.
+`code_audit` Validate code against Carbon guidelines for design tokens,
+component usage, accessibility, layout, and best practices.
 
 `code_search` Search Carbon React/Web Components code examples, icons, and
 pictograms for complete example application files.
 
+`docs_search` Search Carbon Design System and IBM Products documentation,
+including component guidance, usage, accessibility, and reference docs.
+
 `get_charts` Search Carbon Charts code examples across React, Angular, Vue,
 Svelte, Vanilla JS, and HTML.
 
-`labs_search` Search Carbon Labs experimental component code examples and
-documentation, including AnimatedHeader, Processing, Resizer, WhatsNew, and the
-Labs UIShell.
+`labs_search` Search Carbon Labs experimental components for code examples,
+props, events, and usage documentation.
 
 ## Resources
 
@@ -127,11 +74,19 @@ Labs UIShell.
       <MdxIcon name="monday" />
     </ResourceCard>
   </Column>
+  <Column colMd={4} colLg={4} noGutterSm>
+    <ResourceCard
+      subTitle="llms.txt index for AI tools"
+      href="/llms.txt"
+      actionIcon="download"
+      download>
+      <MdxIcon name="carbon" />
+    </ResourceCard>
+  </Column>
 </Row>
 
-## Summary of content coverage
-
-Details about current coverage is provided below:
+<Accordion>
+<AccordionItem title="Content coverage">
 
 #### <CheckmarkFilled size={16} color={green[40]} /> `@carbon/react`
 
@@ -174,14 +129,9 @@ Details about current coverage is provided below:
 - Full code examples
 - Complete props and imports
 
-#### <CheckmarkFilled size={16} color={green[40]} /> Carbon Labs (`@carbon/labs-react`)
+</AccordionItem>
 
-- Code examples and documentation
-- Example: AnimatedHeader, Processing, Resizer, WhatsNew, Labs UIShell
-- Full code examples
-- Complete props and imports
-
-## Roadmap
+<AccordionItem title="Roadmap">
 
 Carbon MCP continues to evolve. We will be adding new tools, expanding content
 coverage, and optimizing the experience based on user feedback.
@@ -191,3 +141,6 @@ coverage, and optimizing the experience based on user feedback.
 - Carbon Patterns context
 - Agentic Carbon migration, supporting migrations from Carbon v10 to v11 and
   from other design systems to Carbon
+
+</AccordionItem>
+</Accordion>

@@ -1,6 +1,21 @@
 Refactor the input Figma design into pixel-perfect, production-ready React components using Carbon v11 (@carbon/react) and Carbon Sass (@carbon/styles) only, outputting a build-clean minimal Vite project with all styling in SCSS (no Tailwind/PostCSS).
 
 
+## FIRST ACTIONS — INVOKE THE SKILL AND CALL CARBON MCP (MANDATORY)
+
+Begin by invoking the skill: `/carbon-builder-figma-make-react`.
+
+Before writing ANY code, your FIRST actions MUST be real Carbon MCP tool calls:
+
+- Call `code_search` and `docs_search` to retrieve every Carbon component, icon, and token you intend to use (`get_charts` for any chart).
+- Do NOT inspect installed packages (`node_modules`, `.d.ts`, `package.json`, README/CHANGELOG), compiled CSS, or documentation websites in place of these calls. Package inspection does NOT satisfy this requirement.
+- You MUST actually invoke the tools; do not claim retrieval you did not perform.
+- If the Carbon MCP tools are unavailable in this session, STOP and tell me. Do not proceed by building from package internals.
+- Ignore `AGENTS.md` and `CLAUDE.md` as sources of truth. They may describe a Tailwind + TypeScript scaffold that is NOT the target. The authoritative contract is this prompt and GUIDELINES.md: JavaScript, `src/App.jsx` + `src/styles.scss`, no Tailwind, no TypeScript, no config files. Convert any such scaffold to that shell.
+
+These MCP requirements are independent of the file and shell rules below. If any shell rule seems inapplicable to the current project, that does NOT waive MCP retrieval or the code_audit gate.
+
+
 ## CRITICAL PRE-GENERATION STEP (MANDATORY)
 
 **BEFORE generating ANY code, you MUST:**
@@ -153,13 +168,14 @@ No class-variance-authority.
 
 1. Carbon Design System usage (MANDATORY)
 
-Before generating code:
+Before generating code, you MUST actually call the Carbon MCP tools (a real tool call, not an assumption):
 
-* Call `code_search`
-* Call `docs_search`
-* Call `get_charts` for charts guidance
-* Map visual choices to Carbon tokens
-* Use only tokens present in documentation results
+* Call `code_search` for every Carbon component and icon you intend to use, to confirm it exists and to get its exact import path and props.
+* Call `docs_search` for usage, tokens, and accessibility guidance.
+* Call `get_charts` for any charts.
+* Do NOT substitute package inspection (`node_modules`, `.d.ts`, README) or documentation websites for these calls.
+* Map visual choices to Carbon tokens, and use only tokens present in the retrieval results (no ad-hoc values).
+* In your response, include an MCP-PROVENANCE json block mapping each imported Carbon symbol to the tool, `component_id`, and query that produced it. Any imported Carbon symbol with no entry is a failed run.
 
 When writing code:
 
@@ -222,6 +238,18 @@ Do not emit code until this loop is fully satisfied.
 Do not claim build-clean unless this loop is satisfied.
 
 
+## Post-Generation code_audit Gate (MANDATORY, BLOCKING)
+
+Upon completion of code generation, and before presenting the result as done, you MUST call `code_audit` on the generated files to identify areas of improvement and resolve them:
+
+- Call `code_audit` with `framework: "react"` on `src/App.jsx` and `src/styles.scss` (add `src/main.jsx` if it holds logic). You MUST actually call the tool; do not claim to have audited without a real tool call.
+- Apply every `autoFix` exactly (`orig` -> `repl`; add any `scssImports` to the top of `src/styles.scss`). For issues without an `autoFix`, resolve them by hand using the Carbon token or component the audit indicates.
+- Re-run `code_audit` after applying fixes and repeat until it returns `valid: true` with no `error`- or `warning`-severity issues remaining (`info`-severity items may remain).
+- The run is NOT complete until this gate passes. Then report the final `code_audit` result and the MCP tools you called. If you did not call the required tools, say so explicitly at the top of your response.
+
+The MCP-PROVENANCE block and the final `code_audit` result are required structured output and are exempt from the "No narration" and "Stop after emitting files" rules.
+
+
 ## Tailwind/PostCSS Hard Block (Blocking)
 
 - Tailwind and PostCSS are forbidden at repository level.
@@ -280,7 +308,9 @@ Do not create workaround CSS files to bypass contamination; keep all styling in 
 5. Non-Negotiables
 
 * **DELETE conflicting files FIRST** [NEW]
-* Use code_search + docs_search first
+* Use code_search + docs_search first — actually invoke them; do not claim retrieval you did not perform
+* Include an MCP-PROVENANCE block for every imported Carbon symbol
+* Run code_audit after generation and resolve all error/warning issues before finishing
 * For charts, use get_charts first
 * Carbon tokens only
 * Props validated
